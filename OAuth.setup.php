@@ -22,6 +22,7 @@ class MWOAuthSetup {
 		$frontendDir = "$dir/frontend";
 		$langDir     = "$dir/frontend/language/";
 		$spActionDir = "$dir/frontend/specialpages/actions";
+		$libDir      = "$dir/lib";
 
 		# Main i18n file and special page alias file
 		$messagesFiles['MWOAuth'] = "$langDir/MWOAuth.i18n.php";
@@ -33,6 +34,7 @@ class MWOAuthSetup {
 		# API for "initiate"?
 		# API for "token"?
 
+		$classes['SpecialOAuth'] = "$frontendDir/specials/SpecialOAuth.php";
 		$classes['MWOAuthConsumerRegistration'] = "$spActionDir/MWOAuthConsumerRegistration.php";
 		$classes['MWOAuthManageConsumers'] = "$spActionDir/MWOAuthManageConsumers.php";
 		$classes['MWOAuthManageMyGrants'] = "$spActionDir/MWOAuthManageMyGrants.php";
@@ -42,11 +44,14 @@ class MWOAuthSetup {
 
 		# Utility functions
 		$classes['MWOAuthUtils'] = "$backendDir/MWOAuthUtils.php";
+		$classes['MWOAuthException'] = "$backendDir/MWOAuthException.php";
 
 		# Data access objects
 		$classes['MWOAuthDAO'] = "$backendDir/MWOAuthDAO.php";
+		$classes['MWOAuthToken'] = "$backendDir/MWOAuthToken.php";
 		$classes['MWOAuthConsumer'] = "$backendDir/MWOAuthConsumer.php";
 		$classes['MWOAuthConsumerAcceptance'] = "$backendDir/MWOAuthConsumerAcceptance.php";
+		$classes['MWOAuthRequest'] = "$backendDir/MWOAuthRequest.php";
 
 		# Control logic
 		$classes['MWOAuthDAOAccessControl'] = "$controlDir/MWOAuthDAOAccessControl.php";
@@ -54,6 +59,24 @@ class MWOAuthSetup {
 		$classes['MWOAuthConsumerSubmitControl'] = "$controlDir/MWOAuthConsumerSubmitControl.php";
 		$classes['MWOAuthConsumerAcceptanceSubmitControl'] =
 			"$controlDir/MWOAuthConsumerAcceptanceSubmitControl.php";
+		$classes['MWOAuthServer'] = "$backendDir/MWOAuthServer.php"; // "MWOAuth1Protocol" might be a better name
+		$classes['MWOAuthSignatureMethod_RSA_SHA1'] = "$backendDir/MWOAuthSignatureMethod.php";
+
+
+		# Library
+		$classes['OAuthException'] = "$libDir/OAuth.php";
+		$classes['OAuthConsumer'] = "$libDir/OAuth.php";
+		$classes['OAuthToken'] = "$libDir/OAuth.php";
+		$classes['OAuthSignatureMethod'] = "$libDir/OAuth.php";
+		$classes['OAuthSignatureMethod_HMAC_SHA1'] = "$libDir/OAuth.php";
+		$classes['OAuthSignatureMethod_RSA_SHA1'] = "$libDir/OAuth.php";
+		$classes['OAuthRequest'] = "$libDir/OAuth.php";
+		$classes['OAuthServer'] = "$libDir/OAuth.php";
+		$classes['OAuthDataStore'] = "$libDir/OAuth.php";
+		$classes['OAuthUtil'] = "$libDir/OAuth.php";
+
+		# Storage
+		$classes['MWOAuthDataStore'] = "$backendDir/MWOAuthDataStore.php";
 
 		# Schema changes
 		$classes['MWOAuthUpdaterHooks'] = "$schemaDir/MWOAuthUpdater.hooks.php";

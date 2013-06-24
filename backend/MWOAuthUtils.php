@@ -1,6 +1,9 @@
 <?php
 /**
  * Static utility functions for OAuth
+ *
+ * @file
+ * @ingroup OAuth
  */
 class MWOAuthUtils {
 	/**
@@ -45,6 +48,40 @@ class MWOAuthUtils {
 		}
 		return $table;
 	}
+
+	/**
+	 * Sanitize the output of apache_request_headers because
+	 * we always want the keys to be Cased-Like-This and arh()
+	 * returns the headers in the same case as they are in the
+	 * request
+	 * @return Array of apache headers and their values
+	 */
+	public static function getHeaders() {
+		$request = RequestContext::getMain()->getRequest();
+		$headers = $request->getAllHeaders();
+
+		$out = array();
+		foreach ($headers AS $key => $value) {
+			$key = str_replace(
+				" ",
+				"-",
+				ucwords( strtolower( str_replace( "-", " ", $key) ) )
+			);
+			$out[$key] = $value;
+		}
+		return $out;
+	}
+
+	/**
+	 * Make a cache key for the given arguments, that (hopefully) won't clash with
+	 * anything else in your cache
+	 */
+	public static function getCacheKey( /* varags */ ) {
+		global $wgMWOAuthCentralWiki;
+		$args = func_get_args();
+		return "OAUTH:$wgMWOAuthCentralWiki:" . implode( ':', $args );
+	}
+
 
 	/**
 	 * @param DatabaseBase $db
