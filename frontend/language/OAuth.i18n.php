@@ -9,5 +9,5 @@
 $messages = array();
 
 $messages['en'] = array(
-	'oath-desc' => 'OAuth 1.0a API authentication',
+	'oauth-desc' => 'OAuth 1.0a API authentication',
 );
