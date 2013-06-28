@@ -19,6 +19,13 @@ $messages['ast'] = array(
 	'oauth-desc' => 'Autenticación API OAuth 1.0a',
 );
 
+/** Czech (česky)
+ * @author Mormegil
+ */
+$messages['cs'] = array(
+	'oauth-desc' => 'Autentizace pomocí rozhraní OAuth 1.0a',
+);
+
 /** German (Deutsch)
  * @author Se4598
  */
