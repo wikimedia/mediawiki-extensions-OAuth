@@ -26,7 +26,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $wgExtensionCredits['other'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'OAuth 1.0a API authentication',
-	'descriptionmsg' => 'oauth-desc',
+	'descriptionmsg' => 'mwoauth-desc',
 	'author'         => array( 'Aaron Schulz' ),
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:OAuth',
 );
@@ -36,13 +36,21 @@ require( __DIR__ . '/OAuth.config.php' );
 
 # Define were PHP files and i18n files are located
 require( __DIR__ . '/OAuth.setup.php' );
-OAuthSetup::defineSourcePaths( $wgAutoloadClasses, $wgExtensionMessagesFiles );
+MWOAuthSetup::defineSourcePaths( $wgAutoloadClasses, $wgExtensionMessagesFiles );
 
 # Define JS/CSS modules and file locations
-OAuthUISetup::defineResourceModules( $wgResourceModules );
+MWOAuthUISetup::defineResourceModules( $wgResourceModules );
 
 # Actually register special pages
-OAuthUISetup::defineSpecialPages( $wgSpecialPages, $wgSpecialPageGroups );
+$wgExtensionFunctions[] = function() {
+	global $wgSpecialPages, $wgSpecialPageGroups;
+	MWOAuthUISetup::defineSpecialPages( $wgSpecialPages, $wgSpecialPageGroups );
+};
+
+$wgLogTypes[] = 'mwoauthconsumer';
+# Log name and description as well as action handlers
+MWOAuthUISetup::defineLogBasicDescription( $wgLogNames, $wgLogHeaders, $wgFilterLogTypes );
+MWOAuthUISetup::defineLogActionHandlers( $wgLogActions, $wgLogActionsHandlers );
 
 # API-related hook handlers
-OAuthAPISetup::defineHookHandlers( $wgHooks );
+MWOAuthAPISetup::defineHookHandlers( $wgHooks );

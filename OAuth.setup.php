@@ -2,7 +2,7 @@
 /**
  * Class containing basic setup functions.
  */
-class OAuthSetup {
+class MWOAuthSetup {
 	/**
 	 * Register source code paths.
 	 * This function must NOT depend on any config vars.
@@ -15,38 +15,44 @@ class OAuthSetup {
 		$dir = __DIR__;
 
 		# Basic directory layout
-		$backendDir       = "$dir/backend";
-		$schemaDir        = "$dir/backend/schema";
-		$businessDir      = "$dir/business";
-		$apiDir           = "$dir/api";
-		$frontendDir      = "$dir/frontend";
-		$langDir          = "$dir/frontend/language/";
-		$spActionDir      = "$dir/frontend/specialpages/actions";
+		$backendDir  = "$dir/backend";
+		$schemaDir   = "$dir/backend/schema";
+		$controlDir  = "$dir/control";
+		$apiDir      = "$dir/api";
+		$frontendDir = "$dir/frontend";
+		$langDir     = "$dir/frontend/language/";
+		$spActionDir = "$dir/frontend/specialpages/actions";
 
 		# Main i18n file and special page alias file
-		$messagesFiles['OAuth'] = "$langDir/OAuth.i18n.php";
-		$messagesFiles['OAuthAliases'] = "$langDir/OAuth.alias.php";
+		$messagesFiles['MWOAuth'] = "$langDir/MWOAuth.i18n.php";
+		$messagesFiles['MWOAuthAliases'] = "$langDir/MWOAuth.alias.php";
 
-		$classes['OAuthAPISetup'] = "$apiDir/OAuthAPI.setup.php";
-		$classes['OAuthUISetup'] = "$frontendDir/OAuthUI.setup.php";
+		$classes['MWOAuthAPISetup'] = "$apiDir/MWOAuthAPI.setup.php";
+		$classes['MWOAuthUISetup'] = "$frontendDir/MWOAuthUI.setup.php";
 
 		# API for "initiate"?
 		# API for "token"?
 
-		# Special:OAuthClientRegistration
-		# Special:OAuthClientRegistrationApproval
-		# Special:OAuth/authorize
-		# Special:OAuth/initiate?
-		# Special:OAuth/token?
+		$classes['MWOAuthConsumerRegistration'] = "$spActionDir/MWOAuthConsumerRegistration.php";
+		$classes['MWOAuthManageConsumers'] = "$spActionDir/MWOAuthManageConsumers.php";
+		# Special:MWOAuth/authorize
+		# Special:MWOAuth/initiate?
+		# Special:MWOAuth/token?
 
 		# Utility functions
-		$classes['OAuth'] = "$backendDir/OAuthUtils.php";
+		$classes['MWOAuthUtils'] = "$backendDir/MWOAuthUtils.php";
 
 		# Data access objects
+		$classes['MWOAuthDAO'] = "$backendDir/MWOAuthDAO.php";
+		$classes['MWOAuthConsumer'] = "$backendDir/MWOAuthConsumer.php";
 
-		# Business logic
+		# Control logic
+		$classes['MWOAuthDAOAccessControl'] = "$controlDir/MWOAuthDAOAccessControl.php";
+		$classes['MWOAuthConsumerAccessControl'] = "$controlDir/MWOAuthConsumerAccessControl.php";
+		$classes['MWOAuthSubmitControl'] = "$controlDir/MWOAuthSubmitControl.php";
+		$classes['MWOAuthConsumerSubmitControl'] = "$controlDir/MWOAuthConsumerSubmitControl.php";
 
 		# Schema changes
-		$classes['OAuthUpdaterHooks'] = "$schemaDir/OAuthUpdater.hooks.php";
+		$classes['MWOAuthUpdaterHooks'] = "$schemaDir/MWOAuthUpdater.hooks.php";
 	}
 }

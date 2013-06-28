@@ -2,7 +2,7 @@
 /**
  * Class containing updater functions for an OAuth environment
  */
-class OAuthUpdaterHooks {
+class MWOAuthUpdaterHooks {
 
 	/**
 	 * @param DatabaseUpdater $updater
