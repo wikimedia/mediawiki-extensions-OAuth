@@ -11,5 +11,5 @@ $specialPageAliases = array();
 /** English (English) */
 $specialPageAliases['en'] = array(
 	'MWOAuthConsumerRegistration' => array( 'MWOAuthConsumerRegistration' ),
-	'MWOAuthManageConsumers' => array( 'MWOAuthManageConsumers' )
+	'MWOAuthManageConsumers' => array( 'MWOAuthManageConsumers' ),
 );
