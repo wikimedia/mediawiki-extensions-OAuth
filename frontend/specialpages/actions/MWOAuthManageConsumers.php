@@ -166,7 +166,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 				Linker::makeKnownLinkObj(
 					$this->getTitle( $stageKey ),
 					// Give grep a chance to find the usages:
-					// mwoauthmanageconsumers-q-proposed, mwoauthmanageconsumers-q-reject,
+					// mwoauthmanageconsumers-q-proposed, mwoauthmanageconsumers-q-rejected,
 					// mwoauthmanageconsumers-q-expired
 					$this->msg( 'mwoauthmanageconsumers-q-' . $stageKey )->escaped()
 				) .
@@ -184,8 +184,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 				Linker::makeKnownLinkObj(
 					$this->getTitle( $stageKey ),
 					// Give grep a chance to find the usages:
-					// mwoauthmanageconsumers-l-proposed, mwoauthmanageconsumers-l-reject,
-					// mwoauthmanageconsumers-l-expired
+					// mwoauthmanageconsumers-l-approved, mwoauthmanageconsumers-l-disabled
 					$this->msg( 'mwoauthmanageconsumers-l-' . $stageKey )->escaped()
 				) .
 				" [$counts[$stage]]" .

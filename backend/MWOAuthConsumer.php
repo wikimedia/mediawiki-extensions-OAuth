@@ -165,7 +165,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	/**
 	 * @return array
 	 */
-	public static function newRestictions() {
+	public static function newRestrictions() {
 		return array( 'IPAddresses' => array( '0.0.0.0/0', '::/0' ) );
 	}
 
