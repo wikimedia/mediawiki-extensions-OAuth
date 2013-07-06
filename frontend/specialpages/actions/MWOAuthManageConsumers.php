@@ -213,7 +213,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 
 		$user = $this->getUser();
 		$db = MWOAuthUtils::getCentralDB( DB_SLAVE );
-		$cmr = MWOAuthConsumerAccessControl::wrap(
+		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $db, $consumerKey ), $this->getContext() );
 		if ( !$cmr ) {
 			$this->getOutput()->addHtml( $this->msg( 'mwoauth-invalid-consumer-key' )->escaped() );
@@ -266,9 +266,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 				'grants'  => array(
 					'type' => 'textarea',
 					'label-message' => 'mwoauth-consumer-grantsneeded',
-					'default' => !is_null( $cmr->get( 'grants' ) )
-						? FormatJSON::encode( $cmr->get( 'grants' ) )
-						: $this->msg( 'mwoauthmanageconsumers-field-hidden' ),
+					'default' => $cmr->get( 'grants', array( 'FormatJSON', 'encode' ) ),
 					'readonly' => true,
 					'rows' => 5
 				),
@@ -285,18 +283,14 @@ class MWOAuthManageConsumers extends SpecialPage {
 				'restrictions' => array(
 					'type' => 'textarea',
 					'label-message' => 'mwoauth-consumer-restrictions',
-					'default' => !is_null( $cmr->get( 'restrictions' ) )
-						? FormatJSON::encode( $cmr->get( 'restrictions' ) )
-						: $this->msg( 'mwoauthmanageconsumers-field-hidden' ),
+					'default' => $cmr->get( 'restrictions', array( 'FormatJSON', 'encode' ) ),
 					'readonly' => true,
 					'rows' => 5
 				),
 				'rsaKey' => array(
 					'type' => 'textarea',
 					'label-message' => 'mwoauth-consumer-rsakey',
-					'default' => !is_null( $cmr->get( 'rsaKey' ) )
-						? $cmr->get( 'rsaKey' )
-						: $this->msg( 'mwoauthmanageconsumers-field-hidden' ),
+					'default' => $cmr->get( 'rsaKey' ),
 					'readonly' => true,
 					'rows' => 5
 				),
@@ -391,11 +385,8 @@ class MWOAuthManageConsumers extends SpecialPage {
 			MWOAuthConsumer::STAGE_DISABLED => 'disable',
 		);
 
-		$cmr = MWOAuthConsumerAccessControl::wrap(
+		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
-		if ( $cmr->get( 'deleted' ) ) {
-			// todo
-		}
 
 		$cmrKey = $cmr->get( 'consumerKey' );
 		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
@@ -437,39 +428,27 @@ class MWOAuthManageConsumers extends SpecialPage {
 		$lang = $this->getLanguage();
 		$data = array(
 			'mwoauthmanageconsumers-name' => htmlspecialchars(
-				!is_null( $cmr->get( 'name' ) )
-					? $cmr->get( 'name' ) . ' [' . $cmr->get( 'version' ) . ']'
-					: $this->msg( 'mwoauth-consumer-stage-suppressed' )
+				$cmr->get( 'name', function( $s ) use ( $cmr ) {
+					return $s . ' [' . $cmr->get( 'version' ) . ']'; } )
 			),
 			'mwoauthmanageconsumers-user' => htmlspecialchars(
-				!is_null( $cmr->get( 'userId' ) )
-					? User::whoIs( $cmr->get( 'userId' ) )
-					: $this->msg( 'mwoauth-consumer-stage-suppressed' )
+				$cmr->get( 'userId', array( 'User', 'whoIs' ) )
 			),
 			'mwoauthmanageconsumers-description' => htmlspecialchars(
-				!is_null( $cmr->get( 'description' ) )
-					? $lang->truncate( $cmr->get( 'description' ), 10024 )
-					: $this->msg( 'mwoauth-consumer-stage-suppressed' )
+				$cmr->get( 'description', function( $s ) use ( $lang ) {
+					return $lang->truncate( $s, 10024 ); } )
 			),
-			'mwoauthmanageconsumers-email' => htmlspecialchars(
-				!is_null( $cmr->get( 'email' ) )
-					? $cmr->get( 'email' )
-					: $this->msg( 'mwoauth-consumer-stage-suppressed' )
-			),
-			'mwoauthmanageconsumers-consumerkey' => htmlspecialchars(
-				!is_null( $cmr->get( 'consumerKey' ) )
-					? $cmr->get( 'consumerKey' )
-					: $this->msg( 'mwoauth-consumer-stage-suppressed' )
-			),
+			'mwoauthmanageconsumers-email' => htmlspecialchars( $cmr->get( 'email' ) ),
+			'mwoauthmanageconsumers-consumerkey' => htmlspecialchars( $cmr->get( 'consumerKey' ) ),
 			'mwoauthmanageconsumers-lastchange' => $logHtml
 		);
 
 		$r .= "<table class='mw-mwoauthmanageconsumers-body-{$encStageKey}' " .
 			"cellspacing='1' cellpadding='3' border='1' width='100%'>";
-		foreach ( $data as $msg => $value ) {
+		foreach ( $data as $msg => $encValue ) {
 			$r .= '<tr>' .
 				'<td><strong>' . $this->msg( $msg )->escaped() . '</strong></td>' .
-				'<td width=\'90%\'>' . $value . '</td>' .
+				'<td width=\'90%\'>' . $encValue . '</td>' .
 				'</tr>';
 		}
 		$r .= '</table>';

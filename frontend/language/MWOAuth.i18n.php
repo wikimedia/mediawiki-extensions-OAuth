@@ -14,6 +14,9 @@ $messages['en'] = array(
 	'mwoauth-missing-field' => 'Missing value for "$1" field',
 	'mwoauth-invalid-field' => 'Invalid value provided for "$1" field',
 
+	'mwoauth-field-hidden' => '(this information is hidden)',
+	'mwoauth-field-private' => '(this information is private)',
+
 	'mwoauth-consumer-key' => 'Consumer key:',
 	'mwoauth-consumer-name' => 'Application name:',
 	'mwoauth-consumer-version' => 'Major version:',
@@ -104,7 +107,6 @@ You have been assigned a consumer token of $1 and a secret token of $2. \'\'\'Pl
 	'mwoauthmanageconsumers-reason' => 'Reason:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Update consumer status',
 	'mwoauthmanageconsumers-viewing' => 'User "$1" is currently viewing this consumer',
-	'mwoauthmanageconsumers-field-hidden' => '(You are not allowed to view this field)',
 	'mwoauthmanageconsumers-success-approved' => 'Request successfuly approved.',
 	'mwoauthmanageconsumers-success-rejected' => 'Request successfuly rejected.',
 	'mwoauthmanageconsumers-success-disabled' => 'Consumer successfuly disabled.',

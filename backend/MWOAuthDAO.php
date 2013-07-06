@@ -22,68 +22,14 @@
  * Representation of a Data Access Object
  */
 abstract class MWOAuthDAO implements IDBAccessObject {
-	protected function __construct() {}
-
 	/**
-	 * Get the schema information for this object.
-	 * This should return an associative array with:
-	 *   - idField        : a field with an integer/hex UNIQUE identifier
-	 *   - table          : a table name
-	 *   - fieldColumnMap : a map of field names to column names
-	 *
-	 * @return array
+	 * @throws Exception
 	 */
-	abstract protected static function getSchema();
-
-	/**
-	 * @return string
-	 */
-	final protected static function getTable() {
-		$schema = static::getSchema();
-		return $schema['table'];
-	}
-
-	/**
-	 * @return array
-	 */
-	final protected static function getFieldColumnMap() {
-		$schema = static::getSchema();
-		return $schema['fieldColumnMap'];
-	}
-
-	/**
-	 * @param string $field
-	 * @return string
-	 */
-	final protected static function getColumn( $field ) {
-		$schema = static::getSchema();
-		return $schema['fieldColumnMap'][$field];
-	}
-
-	/**
-	 * @param string $field
-	 * @return bool
-	 */
-	final protected static function hasField( $field ) {
-		$schema = static::getSchema();
-		return isset( $schema['fieldColumnMap'][$field] );
-	}
-
-	/**
-	 * @return string
-	 */
-	final protected static function getIdColumn() {
-		$schema = static::getSchema();
-		return $schema['fieldColumnMap'][$schema['idField']];
-	}
-
-	/**
-	 * @return int|string
-	 */
-	final protected function getIdValue() {
-		$schema = static::getSchema();
-		$field = $schema['idField'];
-		return $this->$field;
+	final protected function __construct() {
+		$fields = array_keys( static::getFieldPermissionChecks() );
+		if ( array_diff( $fields, $this->getFieldNames() ) ) {
+			throw new Exception( "Invalid field(s) defined in access check methods." );
+		}
 	}
 
 	/**
@@ -231,6 +177,111 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	}
 
 	/**
+	 * Check if a user (from the context) can view a field
+	 *
+	 * @see MWOAuthDAO::userCanAccess()
+	 * @see MWOAuthDAOAccessControl
+	 *
+	 * @param string $name
+	 * @param RequestContext $context
+	 * @return Message|true Returns on success or a Message if the user lacks access
+	 * @throws Exception
+	 */
+	final public function userCanAccess( $name, RequestContext $context ) {
+		$map = static::getFieldPermissionChecks();
+		if ( isset( $map[$name] ) ) {
+			$method = $map[$name];
+			return $this->$method( $name, $context );
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * Get the schema information for this object type
+	 *
+	 * This should return an associative array with:
+	 *   - idField        : a field with an integer/hex UNIQUE identifier
+	 *   - table          : a table name
+	 *   - fieldColumnMap : a map of field names to column names
+	 *
+	 * @return array
+	 */
+	protected static function getSchema() {
+		// Note: declaring this abstract raises E_STRICT
+		throw new Exception( "getSchema() not defined in " . get_class() );
+	}
+
+	/**
+	 * Get the access control check methods for this object type
+	 *
+	 * This returns a map of field names to method names.
+	 * The methods check if a context user has access to the field,
+	 * returning true if they do and a Message object otherwise.
+	 * The methods take (field name, RequestContext) as arguments.
+	 *
+	 * @see MWOAuthDAO::userCanAccess()
+	 * @see MWOAuthDAOAccessControl
+	 *
+	 * @return array Map of (field name => name of method that checks access)
+	 */
+	protected static function getFieldPermissionChecks() {
+		// Note: declaring this abstract raises E_STRICT
+		throw new Exception( "getFieldPermissionChecks() not defined in " . get_class() );
+	}
+
+	/**
+	 * @return string
+	 */
+	final protected static function getTable() {
+		$schema = static::getSchema();
+		return $schema['table'];
+	}
+
+	/**
+	 * @return array
+	 */
+	final protected static function getFieldColumnMap() {
+		$schema = static::getSchema();
+		return $schema['fieldColumnMap'];
+	}
+
+	/**
+	 * @param string $field
+	 * @return string
+	 */
+	final protected static function getColumn( $field ) {
+		$schema = static::getSchema();
+		return $schema['fieldColumnMap'][$field];
+	}
+
+	/**
+	 * @param string $field
+	 * @return bool
+	 */
+	final protected static function hasField( $field ) {
+		$schema = static::getSchema();
+		return isset( $schema['fieldColumnMap'][$field] );
+	}
+
+	/**
+	 * @return string
+	 */
+	final protected static function getIdColumn() {
+		$schema = static::getSchema();
+		return $schema['fieldColumnMap'][$schema['idField']];
+	}
+
+	/**
+	 * @return int|string
+	 */
+	final protected function getIdValue() {
+		$schema = static::getSchema();
+		$field = $schema['idField'];
+		return $this->$field;
+	}
+
+	/**
 	 * @param array $values
 	 * @return void
 	 */
@@ -287,12 +338,10 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	abstract protected function decodeRow( DatabaseBase $db, $row );
 
 	/**
-	 * Subclasses should extend this to encode DB fields (e.g. timestamps)
-	 *
 	 * @param DatabaseBase $db
 	 * @return array
 	 */
-	final public function getRowArray( DatabaseBase $db ) {
+	final protected function getRowArray( DatabaseBase $db ) {
 		$row = array();
 		foreach ( static::getFieldColumnMap() as $field => $column ) {
 			$row[$column] = $this->$field;
