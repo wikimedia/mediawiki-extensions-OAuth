@@ -395,9 +395,30 @@ Dir wurde der Verbrauchertoken $1 und der Geheimtoken $2 zugewiesen. '''Bitte di
 
 /** French (français)
  * @author Gomoko
+ * @author Louperivois
  */
 $messages['fr'] = array(
-	'oauth-desc' => 'API d’authentification OAuth 1.0a',
+	'mwoauth-desc' => 'API d’authentification OAuth 1.0a', # Fuzzy
+	'mwoauth-missing-field' => 'Valeur manquante pour le champ « $1 »',
+	'mwoauth-invalid-field' => 'Valeur invalide fournie pour le champ « $1 »',
+	'mwoauth-consumer-name' => "Nom de l'application :",
+	'mwoauth-consumer-stage' => 'Statut actuel :',
+	'mwoauth-consumer-description' => "Description de l'application :",
+	'mwoauth-consumer-reason' => 'Motif :',
+	'mwoauth-consumer-stage-rejected' => 'rejeté',
+	'mwoauth-consumer-stage-disabled' => 'désactivé',
+	'mwoauth-consumer-stage-suppressed' => 'supprimé',
+	'mwoauthmanageconsumers-lastchange' => 'Dernière modification',
+	'mwoauthmanageconsumers-approve' => 'Approuvé',
+	'mwoauthmanageconsumers-reject' => 'Rejeté',
+	'mwoauthmanageconsumers-rsuppress' => 'Rejeté et supprimé',
+	'mwoauthmanageconsumers-disable' => 'Désactivé',
+	'mwoauthmanageconsumers-dsuppress' => 'Désactivé et supprimé',
+	'mwoauthmanageconsumers-reenable' => 'Réactivé',
+	'mwoauthmanageconsumers-reason' => 'Motif :',
+	'mwoauthmanageconsumers-field-hidden' => "(Vous n'êtes pas autorisé à visualiser ce champ)",
+	'mwoauthmanageconsumers-success-approved' => 'Requête approuvée avec succès.',
+	'mwoauthmanageconsumers-success-rejected' => 'Requête rejetée avec succès.',
 );
 
 /** Galician (galego)
@@ -494,6 +515,8 @@ $messages['mk'] = array(
 	'mwoauth-consumer-stage-disabled' => 'оневозможен',
 	'mwoauth-consumer-stage-suppressed' => 'притаен',
 	'mwoauthconsumerregistration' => 'Регистрација на потрошувач на OAuth',
+	'mwoauthconsumerregistration-propose-legend' => 'Нов кориснички прилог за OAuth',
+	'mwoauthconsumerregistration-update-legend' => 'Измена на кориснички прилог за OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Предложи потрошувач',
 	'mwoauthconsumerregistration-update-submit' => 'Измени потрошувач',
 	'mwoauthconsumerregistration-proposed' => "Вашето потрошувачко барање е успешно примено.
@@ -506,6 +529,27 @@ $messages['mk'] = array(
 	'mwoauthmanageconsumers-showrejected' => 'Одбиени барања',
 	'mwoauthmanageconsumers-showexpired' => 'Истечени барања',
 	'mwoauthmanageconsumers-main' => 'Главна',
+	'mwoauthmanageconsumers-maintext' => 'Страницава е предвидена за работење со барања за кориснички прилози за OAuth (погл. http://oauth.net) и раководење со постоечките потрошувачи.',
+	'mwoauthmanageconsumers-queues' => 'Подолу изберете редица на потрочувачи за одобрување:',
+	'mwoauthmanageconsumers-q-proposed' => 'Редица на барања за предлагање на потрошувачи',
+	'mwoauthmanageconsumers-q-rejected' => 'Редица на одбиени потрошувачки барања',
+	'mwoauthmanageconsumers-q-expired' => 'Редица на истечени потрошувачки барања',
+	'mwoauthmanageconsumers-lists' => 'Подолу изберете потрошувачки статусен список:',
+	'mwoauthmanageconsumers-l-approved' => 'Список на моментално одобрени корисници',
+	'mwoauthmanageconsumers-l-disabled' => 'Список на моментално оневозможени потрошувачи',
+	'mwoauthmanageconsumers-none-proposed' => 'На списокот нема предложени потрошувачи.',
+	'mwoauthmanageconsumers-none-rejected' => 'На списокот нема предложени потрошувачи.',
+	'mwoauthmanageconsumers-none-approved' => 'Нема потрошувачи што одговараат на дадените услови.',
+	'mwoauthmanageconsumers-none-disabled' => 'Нема потрошувачи што одговараат на дадените услови.',
+	'mwoauthmanageconsumers-name' => 'Потрошувач',
+	'mwoauthmanageconsumers-user' => 'Издавач',
+	'mwoauthmanageconsumers-description' => 'Опис',
+	'mwoauthmanageconsumers-email' => 'Е-пошта за контакт',
+	'mwoauthmanageconsumers-consumerkey' => 'Потрошувачки клуч',
+	'mwoauthmanageconsumers-lastchange' => 'Последна измена',
+	'mwoauthmanageconsumers-review' => 'проверка/раководство',
+	'mwoauthmanageconsumers-confirm-text' => 'Образецов служи за одобрување, одбивање или преовозможување на корисникот.',
+	'mwoauthmanageconsumers-confirm-legend' => 'Раководење со потрошувач на OAuth',
 	'mwoauthmanageconsumers-action' => 'Статус на измената:',
 	'mwoauthmanageconsumers-approve' => 'Одобрен',
 	'mwoauthmanageconsumers-reject' => 'Одбиен',
