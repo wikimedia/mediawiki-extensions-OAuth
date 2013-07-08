@@ -481,6 +481,26 @@ $messages['ja'] = array(
 	'mwoauthconsumer-consumer-logpage' => 'OAuth コンシューマー記録',
 );
 
+/** Luxembourgish (Lëtzebuergesch)
+ * @author Robby
+ */
+$messages['lb'] = array(
+	'mwoauth-missing-field' => 'De Wäert fir d\'Feld "$1" feelt',
+	'mwoauth-consumer-name' => 'Numm vun der Applicatioun:',
+	'mwoauth-consumer-reason' => 'Grond:',
+	'mwoauth-consumer-stage-proposed' => 'geplangt',
+	'mwoauth-consumer-stage-rejected' => 'refuséiert',
+	'mwoauth-consumer-stage-expired' => 'ofgelaf',
+	'mwoauthmanageconsumers-main' => 'Haapt',
+	'mwoauthmanageconsumers-name' => 'Konsument',
+	'mwoauthmanageconsumers-description' => 'Beschreiwung',
+	'mwoauthmanageconsumers-lastchange' => 'Lescht Ännerung',
+	'mwoauthmanageconsumers-review' => 'nokucken/geréieren',
+	'mwoauthmanageconsumers-disable' => 'Desaktivéiert',
+	'mwoauthmanageconsumers-reason' => 'Grond:',
+	'mwoauthmanageconsumers-field-hidden' => '(Dir däerft dëst Feld net gesinn)',
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
@@ -515,6 +535,20 @@ $messages['mk'] = array(
 	'mwoauth-consumer-stage-disabled' => 'оневозможен',
 	'mwoauth-consumer-stage-suppressed' => 'притаен',
 	'mwoauthconsumerregistration' => 'Регистрација на потрошувач на OAuth',
+	'mwoauthconsumerregistration-propose-text' => 'Образецов служи за предлагање на нов потрошувач на OAuth (погл. http://oauth.net).
+
+Неколку препораки и напомении:
+* Доделувајте што помалку одобренија. Одбегнувајте ги оние што не се потребни во моментов.
+* По можност, внесете RSA-клуч; во спротивно (помалку безбедно) ќе ви зададеме таен клуч.
+* Користете ги полињата за ограничувања од JSON за да го ограничите пристапот на потрошувачот на IP-адресите во тие CIDR-опсези.
+* Можете да го ограничите потрошувачот на само едно вики на ова мрежно место, внесувајќи ја назнаката на викито („*“ за сите викија).
+* Укажаната е-пошта мора да одговара на онаа на вашата сметка (која пак, мора да биде потврдена).',
+	'mwoauthconsumerregistration-update-text' => 'Образецот подолу служи за менување на аспекти на потрошувачот на OAuth што се во ваша контрола.
+
+Сите вредности тука ќе се презапишат врз претходните. Не оставајте празни полиња, освен ако не сакате да ги исчистите истите.',
+	'mwoauthconsumerregistration-maintext' => 'Оваа страница е наменета за предлагање и измена на потрошувачки прилози за OAuth (погл. http://oauth.net) во регистарот на ова мрежно место.
+
+Од овде можете да [[Special:MWOAuthConsumerRegistration/propose|предложите нов потрошувач]].',
 	'mwoauthconsumerregistration-propose-legend' => 'Нов кориснички прилог за OAuth',
 	'mwoauthconsumerregistration-update-legend' => 'Измена на кориснички прилог за OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Предложи потрошувач',
@@ -539,6 +573,7 @@ $messages['mk'] = array(
 	'mwoauthmanageconsumers-l-disabled' => 'Список на моментално оневозможени потрошувачи',
 	'mwoauthmanageconsumers-none-proposed' => 'На списокот нема предложени потрошувачи.',
 	'mwoauthmanageconsumers-none-rejected' => 'На списокот нема предложени потрошувачи.',
+	'mwoauthmanageconsumers-none-expired' => 'На списокот нема предложени потрошувачи.',
 	'mwoauthmanageconsumers-none-approved' => 'Нема потрошувачи што одговараат на дадените услови.',
 	'mwoauthmanageconsumers-none-disabled' => 'Нема потрошувачи што одговараат на дадените услови.',
 	'mwoauthmanageconsumers-name' => 'Потрошувач',
@@ -581,4 +616,20 @@ $messages['mk'] = array(
 $messages['roa-tara'] = array(
 	'mwoauth-desc' => 'OAuth 1.0a API de autendicazione',
 	'mwoauth-missing-field' => 'Valore zumbate pu cambe "$1"',
+	'mwoauth-invalid-field' => 'Valore date invalide pu cambe "$1"',
+	'mwoauth-consumer-key' => "Chiave d'u consumatore:",
+	'mwoauth-consumer-name' => "Nome de l'applicazione:",
+	'mwoauth-consumer-version' => 'Versione prengepàle:',
+	'mwoauth-consumer-stage' => 'State de mò:',
+	'mwoauth-consumer-email' => 'Indirizze email de condatte:',
+	'mwoauth-consumer-description' => "Descrizione de l'applicazione:",
+	'mwoauth-consumer-reason' => 'Mutive:',
+	'mwoauth-consumer-stage-proposed' => 'proposte',
+	'mwoauth-consumer-stage-rejected' => 'scettate',
+	'mwoauth-consumer-stage-expired' => 'scadute',
+	'mwoauth-consumer-stage-approved' => 'approvate',
+	'mwoauth-consumer-stage-disabled' => 'disabbilitate',
+	'mwoauth-consumer-stage-suppressed' => 'scangellate',
+	'mwoauthmanageconsumers-main' => 'Prengepàle',
+	'mwoauthmanageconsumers-reason' => 'Mutive:',
 );
