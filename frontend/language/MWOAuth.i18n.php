@@ -380,7 +380,6 @@ Dir wurde der Verbrauchertoken $1 und der Geheimtoken $2 zugewiesen. '''Bitte di
 	'mwoauthmanageconsumers-reason' => 'Grund:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Verbraucherstatus aktualisieren',
 	'mwoauthmanageconsumers-viewing' => '„$1“ betrachtet derzeit diesen Verbraucher',
-	'mwoauthmanageconsumers-field-hidden' => '(Du bist nicht berechtigt, dieses Feld anzusehen.)',
 	'mwoauthmanageconsumers-success-approved' => 'Antrag erfolgreich bestätigt.',
 	'mwoauthmanageconsumers-success-rejected' => 'Antrag erfolgreich abgelehnt.',
 	'mwoauthmanageconsumers-success-disabled' => 'Verbraucher erfolgreich deaktiviert.',
@@ -400,17 +399,87 @@ Dir wurde der Verbrauchertoken $1 und der Geheimtoken $2 zugewiesen. '''Bitte di
  * @author Louperivois
  */
 $messages['fr'] = array(
-	'mwoauth-desc' => 'API d’authentification OAuth 1.0a', # Fuzzy
+	'mwoauth-desc' => 'API d’authentification OAuth 1.0a',
 	'mwoauth-missing-field' => 'Valeur manquante pour le champ « $1 »',
 	'mwoauth-invalid-field' => 'Valeur invalide fournie pour le champ « $1 »',
+	'mwoauth-consumer-key' => 'Clé du consommateur :',
 	'mwoauth-consumer-name' => "Nom de l'application :",
+	'mwoauth-consumer-version' => 'Version majeure :',
 	'mwoauth-consumer-stage' => 'Statut actuel :',
+	'mwoauth-consumer-email' => 'Adresse de courriel de contact :',
 	'mwoauth-consumer-description' => "Description de l'application :",
+	'mwoauth-consumer-callbackurl' => 'URl « de rappel » pour OAuth :',
+	'mwoauth-consumer-grantsneeded' => 'Droits utilisés (JSON) :',
+	'mwoauth-consumer-wiki' => 'Utilisation en mono-wiki :',
+	'mwoauth-consumer-restrictions' => 'Limitations d’utilisation (JSON) :',
+	'mwoauth-consumer-rsakey' => 'Clé RSA du consommateur :',
+	'mwoauth-consumer-secretkey' => 'Jeton secret du consommateur :',
 	'mwoauth-consumer-reason' => 'Motif :',
+	'mwoauth-consumer-alreadyexists' => 'Un consommateur avec cette combinaison de nom/version/autorisation existe déjà',
+	'mwoauth-consumer-not-accepted' => 'Impossible de mettre à jour les informations pour une demande de consommateur en cours',
+	'mwoauth-wrong-consumer-key' => 'La clé du consommateur ne correspond pas au nom de l’application',
+	'mwoauth-consumer-not-proposed' => 'Le consommateur n’est actuellement pas proposé',
+	'mwoauth-consumer-not-disabled' => 'Le consommateur n’est pas désactivé pour le moment',
+	'mwoauth-consumer-not-approved' => 'Le consommateur n’est pas approuvé (il peut avoir été désactivé)',
+	'mwoauth-invalid-consumer-key' => 'Aucun consommateur n’existe avec la clé fournie.',
+	'mwoauth-consumer-stage-proposed' => 'proposé',
 	'mwoauth-consumer-stage-rejected' => 'rejeté',
+	'mwoauth-consumer-stage-expired' => 'expiré',
+	'mwoauth-consumer-stage-approved' => 'approuvé',
 	'mwoauth-consumer-stage-disabled' => 'désactivé',
 	'mwoauth-consumer-stage-suppressed' => 'supprimé',
+	'mwoauthconsumerregistration' => 'Inscription du consommateur OAuth',
+	'mwoauthconsumerregistration-propose-text' => 'Utilisez le formulaire ci-dessous pour proposer un nouveau consommateur OAuth (voir http://oauth.net).
+
+Quelques recommandations et remarques :
+* Essayez d’utiliser le moins de droits possibles. Évitez les droits qui ne sont pas vraiment nécessaires pour le moment.
+* Veuillez fournir une clé RSA si possible ; sinon, un jeton secret (moins sécurisé) vous sera assigné.
+* Utilisez le champ limitations JSON pour limiter l’accès de ce consommateur aux adresses IP dans ces plages de CIDR.
+* Vous pouvez utiliser un ID de wiki pour limiter ce consommateur à un unique wiki de ce site (utilisez "*" pour tous les wikis).
+* L’adresse de courriel fournie doit correspondre à celle de votre compte (qui doit avoir été confirmée).',
+	'mwoauthconsumerregistration-update-text' => 'Utilisez le formulaire ci-dessous pour mettre à jour les aspects d’un consommateur OAuth que vous contrôlez.
+
+Toutes les valeurs ici écraseront les précédentes. Ne laissez aucun champ blanc sauf si vous désirez vraiment effacer ces valeurs.',
+	'mwoauthconsumerregistration-maintext' => 'Cette page a pour but de proposer et mettre à jour des applications consommatrices OAuth (voir http://oauth.net) dans le registre de ce site.
+
+Depuis ici, vous pouvez [[Special:MWOAuthConsumerRegistration/propose|proposer un nouveau consommateur]].',
+	'mwoauthconsumerregistration-propose-legend' => 'Nouvelle application consommatrice OAuth',
+	'mwoauthconsumerregistration-update-legend' => 'Mettre à jour l’application consommatrice OAuth',
+	'mwoauthconsumerregistration-propose-submit' => 'Proposer un consommateur',
+	'mwoauthconsumerregistration-update-submit' => 'Mettre à jour un consommateur',
+	'mwoauthconsumerregistration-proposed' => "Votre demande de consommateur a bien été reçue.
+
+Il vous a été assigné un jeton de consommateur $1 et un jeton secret $2. '''Veuillez les conserver pour des besoins ultérieurs.'''",
+	'mwoauthconsumerregistration-updated' => 'Votre registre de consommateur a bien été mis à jour.',
+	'mwoauthmanageconsumers' => 'Gérer les consommateurs OAuth',
+	'mwoauthmanageconsumers-type' => 'Files :',
+	'mwoauthmanageconsumers-showproposed' => 'Requêtes proposées',
+	'mwoauthmanageconsumers-showrejected' => 'Requêtes rejetées',
+	'mwoauthmanageconsumers-showexpired' => 'Requêtes expirées',
+	'mwoauthmanageconsumers-main' => 'Principal',
+	'mwoauthmanageconsumers-maintext' => 'Cette page a pour but fr gérer les demandes d’applications consommatrices OAuth (voir http://oauth.net) et de gérer les consommateurs OAuth existants.',
+	'mwoauthmanageconsumers-queues' => 'Sélectionner une file de confirmation de consommateur ci-dessous :',
+	'mwoauthmanageconsumers-q-proposed' => 'File des requêtes de consommateur proposés',
+	'mwoauthmanageconsumers-q-rejected' => 'File des requêtes de consommateur rejetées',
+	'mwoauthmanageconsumers-q-expired' => 'File des requêtes de consommateur expirées',
+	'mwoauthmanageconsumers-lists' => 'Sélectionner une liste d’état de consommateur ci-dessous :',
+	'mwoauthmanageconsumers-l-approved' => 'Liste des consommateurs actuellement approuvés',
+	'mwoauthmanageconsumers-l-disabled' => 'Liste des consommateurs actuellement désactivés',
+	'mwoauthmanageconsumers-none-proposed' => 'Aucun consommateur proposé dans cette liste.',
+	'mwoauthmanageconsumers-none-rejected' => 'Aucun consommateur proposé dans cette liste.',
+	'mwoauthmanageconsumers-none-expired' => 'Aucun consommateur proposé dans cette liste.',
+	'mwoauthmanageconsumers-none-approved' => 'Aucun consommateur ne répond à ce critère.',
+	'mwoauthmanageconsumers-none-disabled' => 'Aucun consommateur ne correspond à ce critère.',
+	'mwoauthmanageconsumers-name' => 'Consommateur',
+	'mwoauthmanageconsumers-user' => 'Éditeur',
+	'mwoauthmanageconsumers-description' => 'Description',
+	'mwoauthmanageconsumers-email' => 'Courriel de contact',
+	'mwoauthmanageconsumers-consumerkey' => 'Clé de consommateur',
 	'mwoauthmanageconsumers-lastchange' => 'Dernière modification',
+	'mwoauthmanageconsumers-review' => 'revoir/gérer',
+	'mwoauthmanageconsumers-confirm-text' => 'Utilisez ce formulaire pour approuver, rejeter, désactiver ou réactiver ce consommateur.',
+	'mwoauthmanageconsumers-confirm-legend' => 'Gérer le consommateur OAuth',
+	'mwoauthmanageconsumers-action' => 'Modifier l’état :',
 	'mwoauthmanageconsumers-approve' => 'Approuvé',
 	'mwoauthmanageconsumers-reject' => 'Rejeté',
 	'mwoauthmanageconsumers-rsuppress' => 'Rejeté et supprimé',
@@ -418,9 +487,20 @@ $messages['fr'] = array(
 	'mwoauthmanageconsumers-dsuppress' => 'Désactivé et supprimé',
 	'mwoauthmanageconsumers-reenable' => 'Réactivé',
 	'mwoauthmanageconsumers-reason' => 'Motif :',
-	'mwoauthmanageconsumers-field-hidden' => "(Vous n'êtes pas autorisé à visualiser ce champ)",
+	'mwoauthmanageconsumers-confirm-submit' => 'Mettre à jour l’état du consommateur',
+	'mwoauthmanageconsumers-viewing' => 'L’utilisateur « $1 » est actuellement en train de visualiser ce consommateur',
 	'mwoauthmanageconsumers-success-approved' => 'Requête approuvée avec succès.',
 	'mwoauthmanageconsumers-success-rejected' => 'Requête rejetée avec succès.',
+	'mwoauthmanageconsumers-success-disabled' => 'Le consommateur a bien été désactivé.',
+	'mwoauthmanageconsumers-success-reanable' => 'Le consommateur a bien été réactivé.',
+	'mwoauth-logentry-consumer-propose' => 'un consommateur OAuth proposé (clé du consommateur $2)',
+	'mwoauth-logentry-consumer-update' => 'un consommateur OAuth mis à jour (clé du consommateur $2)',
+	'mwoauth-logentry-consumer-approve' => 'un consommateur OAuth approuvé par $1 (clé du consommateur $2)',
+	'mwoauth-logentry-consumer-reject' => 'un consommateur OAuth rejeté par $1 (clé du consommateur $2)',
+	'mwoauth-logentry-consumer-disable' => 'un consommateur OAuth désactivé par $1 (clé du consommateur $2)',
+	'mwoauth-logentry-consumer-reenable' => 'un consommateur OAuth réactivé par $1 (clé du consommateur $2)',
+	'mwoauthconsumer-consumer-logpage' => 'journal du consommateur OAuth',
+	'mwoauthconsumer-consumer-logpagetext' => 'Journal des approbations, rejets et désactivations de consommateurs OAuth enregistrés.',
 );
 
 /** Galician (galego)
@@ -470,7 +550,6 @@ $messages['ja'] = array(
 	'mwoauthmanageconsumers-reason' => '理由:',
 	'mwoauthmanageconsumers-confirm-submit' => 'コンシューマーの状態を更新',
 	'mwoauthmanageconsumers-viewing' => '利用者「$1」が現在このコンシューマーを閲覧中です',
-	'mwoauthmanageconsumers-field-hidden' => '(あなたにはこのフィールドを閲覧する権限がありません)',
 	'mwoauthmanageconsumers-success-approved' => 'リクエストを承認しました。',
 	'mwoauthmanageconsumers-success-rejected' => 'リクエストを却下しました。',
 	'mwoauthmanageconsumers-success-disabled' => 'コンシューマーを無効にしました。',
@@ -500,7 +579,6 @@ $messages['lb'] = array(
 	'mwoauthmanageconsumers-review' => 'nokucken/geréieren',
 	'mwoauthmanageconsumers-disable' => 'Desaktivéiert',
 	'mwoauthmanageconsumers-reason' => 'Grond:',
-	'mwoauthmanageconsumers-field-hidden' => '(Dir däerft dëst Feld net gesinn)',
 );
 
 /** Macedonian (македонски)
@@ -597,7 +675,6 @@ $messages['mk'] = array(
 	'mwoauthmanageconsumers-reason' => 'Причина:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Измени потр. статус',
 	'mwoauthmanageconsumers-viewing' => 'Корисникот „$1“ во моментов го гледа потрошувачов',
-	'mwoauthmanageconsumers-field-hidden' => '(Не ви е дозволено да го гледате полево)',
 	'mwoauthmanageconsumers-success-approved' => 'Барањето е успешно одобрено.',
 	'mwoauthmanageconsumers-success-rejected' => 'Барањето е успешно одбиено.',
 	'mwoauthmanageconsumers-success-disabled' => 'Потрошувачот е успешно оневозможен.',
