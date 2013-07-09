@@ -61,7 +61,6 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	const STAGE_DISABLED = 4;
 
 	protected static function getSchema() {
-		// NOTE: keep MWOAuthConsumerAccessControl up to date
 		return array(
 			'idField'        => 'id',
 			'table'          => 'oauth_registered_consumer',
@@ -85,6 +84,20 @@ class MWOAuthConsumer extends MWOAuthDAO {
 				'stageTimestamp'     => 'oarc_stage_timestamp',
 				'deleted'            => 'oarc_deleted'
 			),
+		);
+	}
+
+	protected static function getFieldPermissionChecks() {
+		return array(
+			'name'            => 'userCanSee',
+			'userId'          => 'userCanSee',
+			'version'         => 'userCanSee',
+			'callbackUrl'     => 'userCanSee',
+			'description'     => 'userCanSee',
+			'email'           => 'userCanSeeEmail',
+			'secretKey'       => 'userCanSeePrivate',
+			'rsaKey'          => 'userCanSeePrivate',
+			'restrictions'    => 'userCanSeePrivate',
 		);
 	}
 
@@ -180,5 +193,31 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$row['oarc_grants'] = FormatJSON::decode( $row['oarc_grants'], true );
 		$row['oarc_email_authenticated'] = wfTimestamp( TS_MW, $row['oarc_email_authenticated'] );
 		return $row;
+	}
+
+	protected function userCanSee( $name, RequestContext $context ) {
+		if ( $this->get( 'deleted' )
+			&& !$context->getUser()->isAllowed( 'mwoauthviewsuppressed' ) )
+		{
+			return $context->msg( 'mwoauth-field-hidden' );
+		} else {
+			return true;
+		}
+	}
+
+	protected function userCanSeePrivate( $name, RequestContext $context ) {
+		if ( !$context->getUser()->isAllowed( 'mwoauthviewprivate' ) ) {
+			return $context->msg( 'mwoauth-field-private' );
+		} else {
+			return $this->userCanSee( $name, $context );
+		}
+	}
+
+	protected function userCanSeeEmail( $name, RequestContext $context ) {
+		if ( !$context->getUser()->isAllowed( 'mwoauthmanageconsumer' ) ) {
+			return $context->msg( 'mwoauth-field-private' );
+		} else {
+			return $this->userCanSee( $name, $context );
+		}
 	}
 }

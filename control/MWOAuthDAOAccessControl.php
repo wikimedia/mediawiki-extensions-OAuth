@@ -19,36 +19,21 @@
 */
 
 /**
- * Wrapper of an MWOAuth Data Access Object to handle authorization to view fields
- *
- * A field to method name map allows for access to certain fields to be
- * handled by custom methods for private or potentially private data.
- * The name of the field is passed to the method so fields that need
- * common permission checks can use the same function if desired.
+ * Wrapper of an MWOAuthDAO that handles authorization to view fields
  */
-abstract class MWOAuthDAOAccessControl extends ContextSource {
+class MWOAuthDAOAccessControl extends ContextSource {
 	/** @var MWOAuthDAO */
 	protected $dao;
 	/** @var RequestContext */
 	protected $context;
 
-	/** Array (field name => accessor method name) map */
-	protected static $accessors;
-
 	/**
 	 * @param MWOAuthDAO $dao
 	 * @param RequestContext $context
 	 */
-	final public function __construct( MWOAuthDAO $dao, RequestContext $context ) {
+	final protected function __construct( MWOAuthDAO $dao, RequestContext $context ) {
 		$this->dao = $dao;
 		$this->context = $context;
-		// Detect mismatched DAOs or typos in the accessor map
-		if ( !is_array( static::$accessors ) ) {
-			throw new Exception( "Accessor map is not defined." );
-		} elseif ( array_diff( array_keys( static::$accessors ), $this->dao->getFieldNames() ) ) {
-			throw new Exception( "Field(s) are defined in " . get_class( $this ) .
-				"that do not exist in " . get_class( $dao ) . "." );
-		}
 	}
 
 	/**
@@ -75,18 +60,20 @@ abstract class MWOAuthDAOAccessControl extends ContextSource {
 
 	/**
 	 * Get the value of a field, taking into account user permissions.
-	 * An appropriate dummy value might be returned if access is denied.
+	 * An appropriate Message will be returned if access is denied.
 	 *
 	 * @param string $name
-	 * @return mixed
+	 * @param callback $sCallback Optional callback to apply to result on access success
+	 * @return mixed Returns a Message on access failure
 	 * @throws Exception
 	 */
-	final public function get( $name ) {
-		if ( isset( static::$accessors[$name] ) ) {
-			$method = static::$accessors[$name];
-			return $this->$method( $name );
+	final public function get( $name, $sCallback = null ) {
+		$msg = $this->dao->userCanAccess( $name, $this->context );
+		if ( $msg instanceof Message ) {
+			return $msg;
 		} else {
-			return $this->dao->get( $name );
+			$value = $this->dao->get( $name );
+			return $sCallback ? call_user_func( $sCallback, $value ) : $value;
 		}
 	}
 }

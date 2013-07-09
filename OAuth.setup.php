@@ -48,7 +48,6 @@ class MWOAuthSetup {
 
 		# Control logic
 		$classes['MWOAuthDAOAccessControl'] = "$controlDir/MWOAuthDAOAccessControl.php";
-		$classes['MWOAuthConsumerAccessControl'] = "$controlDir/MWOAuthConsumerAccessControl.php";
 		$classes['MWOAuthSubmitControl'] = "$controlDir/MWOAuthSubmitControl.php";
 		$classes['MWOAuthConsumerSubmitControl'] = "$controlDir/MWOAuthConsumerSubmitControl.php";
 
