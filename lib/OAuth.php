@@ -329,10 +329,10 @@ class OAuthRequest {
 	 */
 	public static function from_consumer_and_token( $consumer, $token, $http_method, $http_url, $parameters = NULL ) {
 		$parameters = ( $parameters ) ?	$parameters : array();
-		$defaults = array( "oauth_version" = > OAuthRequest::$version,
-			"oauth_nonce" = > OAuthRequest::generate_nonce(),
-			"oauth_timestamp" = > OAuthRequest::generate_timestamp(),
-			"oauth_consumer_key" = > $consumer->key );
+		$defaults = array( "oauth_version" => OAuthRequest::$version,
+			"oauth_nonce" => OAuthRequest::generate_nonce(),
+			"oauth_timestamp" => OAuthRequest::generate_timestamp(),
+			"oauth_consumer_key" => $consumer->key );
 		if ( $token ) {
 			$defaults['oauth_token'] = $token->key;
 		}
@@ -438,7 +438,7 @@ class OAuthRequest {
 		$post_data = $this->to_postdata();
 		$out = $this->get_normalized_http_url();
 		if ( $post_data ) {
-			$out . = '?'.$post_data;
+			$out .= '?'.$post_data;
 		}
 		return $out;
 	}
@@ -462,13 +462,13 @@ class OAuthRequest {
 			$out = 'Authorization: OAuth';
 
 		$total = array();
-		foreach ( $this->parameters as $k = > $v ) {
+		foreach ( $this->parameters as $k => $v ) {
 			if ( substr( $k, 0, 5 ) != "oauth" ) continue;
 			if ( is_array( $v ) ) {
 				throw new OAuthException( 'Arrays not supported in headers' );
 			}
-			$out . = ( $first ) ? ' ' : ',';
-			$out . = OAuthUtil::urlencode_rfc3986( $k ) .
+			$out .= ( $first ) ? ' ' : ',';
+			$out .= OAuthUtil::urlencode_rfc3986( $k ) .
 				' = "' .
 				OAuthUtil::urlencode_rfc3986( $v ) .
 				'"';
@@ -793,7 +793,7 @@ class OAuthUtil {
 	public static function split_header( $header, $only_allow_oauth_parameters = true ) {
 		$params = array();
 		if ( preg_match_all( '/( ' . ( $only_allow_oauth_parameters ? 'oauth_' : '' ) . '[a-z_-]* ) = ( :?"( [^"]* )"|( [^,]* ) )/', $header, $matches ) ) {
-			foreach ( $matches[1] as $i = > $h ) {
+			foreach ( $matches[1] as $i => $h ) {
 				$params[$h] = OAuthUtil::urldecode_rfc3986( empty( $matches[3][$i] ) ? $matches[4][$i] : $matches[3][$i] );
 			}
 			if ( isset( $params['realm'] ) ) {
@@ -815,7 +815,7 @@ class OAuthUtil {
 			// returns the headers in the same case as they are in the
 			// request
 			$out = array();
-			foreach ( $headers AS $key = > $value ) {
+			foreach ( $headers AS $key => $value ) {
 				$key = str_replace(
 					" ",
 					"-",
@@ -832,7 +832,7 @@ class OAuthUtil {
 			if( isset( $_ENV['CONTENT_TYPE'] ) )
 				$out['Content-Type'] = $_ENV['CONTENT_TYPE'];
 
-			foreach ( $_SERVER as $key = > $value ) {
+			foreach ( $_SERVER as $key => $value ) {
 				if ( substr( $key, 0, 5 ) == "HTTP_" ) {
 					// this is chaos, basically it is just there to capitalize the first
 					// letter of every word that is not an initial HTTP and strip HTTP
@@ -894,7 +894,7 @@ class OAuthUtil {
 		uksort( $params, 'strcmp' );
 
 		$pairs = array();
-		foreach ( $params as $parameter = > $value ) {
+		foreach ( $params as $parameter => $value ) {
 			if ( is_array( $value ) ) {
 				// If two or more parameters share the same name, they are sorted by their value
 				// Ref: Spec: 9.1.1 ( 1 )
