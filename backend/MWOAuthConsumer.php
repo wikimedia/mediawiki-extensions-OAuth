@@ -26,7 +26,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $id;
 	/** @var string Hex token */
 	protected $consumerKey;
-	/** @var integer Publisher user ID */
+	/** @var integer Publisher user ID (on central wiki) */
 	protected $userId;
 	/** @var string Version used for handshake breaking changes */
 	protected $version;
@@ -46,6 +46,8 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $secretKey;
 	/** @var string RSA key */
 	protected $rsaKey;
+	/** @var array List of grants */
+	protected $grants;
 	/** @var array IP restrictions */
 	protected $restrictions;
 	/** @var integer MWOAuthConsumer::STAGE_* constant */
@@ -182,7 +184,8 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$row['oarc_stage_timestamp'] = $db->timestamp( $row['oarc_stage_timestamp'] );
 		$row['oarc_restrictions'] = FormatJSON::encode( $row['oarc_restrictions'] );
 		$row['oarc_grants'] = FormatJSON::encode( $row['oarc_grants'] );
-		$row['oarc_email_authenticated'] = $db->timestamp( $row['oarc_email_authenticated'] );
+		$row['oarc_email_authenticated'] =
+			$db->timestampOrNull( $row['oarc_email_authenticated'] );
 		return $row;
 	}
 
@@ -191,7 +194,8 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$row['oarc_stage_timestamp'] = wfTimestamp( TS_MW, $row['oarc_stage_timestamp'] );
 		$row['oarc_restrictions'] = FormatJSON::decode( $row['oarc_restrictions'], true );
 		$row['oarc_grants'] = FormatJSON::decode( $row['oarc_grants'], true );
-		$row['oarc_email_authenticated'] = wfTimestamp( TS_MW, $row['oarc_email_authenticated'] );
+		$row['oarc_email_authenticated'] =
+			wfTimestampOrNull( TS_MW, $row['oarc_email_authenticated'] );
 		return $row;
 	}
 

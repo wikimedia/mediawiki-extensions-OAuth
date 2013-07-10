@@ -19,14 +19,13 @@
 */
 
 /**
- * Handle the logic of submitting a application consumer request
+ * This handles the core logic of approving/disabling consumers
+ * from using particular user accounts
  *
  * @TODO: improve error messages
  */
 class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
-	protected function getRequiredFields() {
-		return array(
-			// @TODO: handle input trimming
+	protected function getRequiredFields() {return array(
 			// Proposer (application administrator) actions:
 			'propose'     => array(
 				'name'         => '/^.{1,128}$/',
@@ -137,16 +136,9 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 			$logEntry->setComment( $this->vals['description'] );
 			$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
-			$logid = $logEntry->insert( $dbw );
-			// @TODO: Core wrapper
-			$dbw->insert( 'log_search',
-				array(
-					'ls_field'  => 'OAuthConsumer',
-					'ls_value'  => $cmr->get( 'consumerKey' ),
-					'ls_log_id' => $logid ),
-				__METHOD__,
-				'IGNORE'
-			);
+			$logEntry->setRelations( array(
+				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
+			) );
 
 			return $this->success( $cmr );
 		case 'update':
@@ -178,16 +170,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 			$logEntry->setComment( $this->vals['reason'] );
 			$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
+			$logEntry->setRelations( array(
+				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
+			) );
 			$logid = $logEntry->insert( $dbw );
-			// @TODO: Core wrapper
-			$dbw->insert( 'log_search',
-				array(
-					'ls_field'  => 'OAuthConsumer',
-					'ls_value'  => $cmr->get( 'consumerKey' ),
-					'ls_log_id' => $logid ),
-				__METHOD__,
-				'IGNORE'
-			);
 
 			return $this->success( $cmr );
 		case 'approve':
@@ -219,16 +205,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 			$logEntry->setComment( $this->vals['reason'] );
 			$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
+			$logEntry->setRelations( array(
+				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
+			) );
 			$logid = $logEntry->insert( $dbw );
-			// @TODO: Core wrapper
-			$dbw->insert( 'log_search',
-				array(
-					'ls_field'  => 'OAuthConsumer',
-					'ls_value'  => $cmr->get( 'consumerKey' ),
-					'ls_log_id' => $logid ),
-				__METHOD__,
-				'IGNORE'
-			);
 
 			// @TODO: email/notifications?
 
@@ -258,16 +238,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 			$logEntry->setComment( $this->vals['reason'] );
 			$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
+			$logEntry->setRelations( array(
+				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
+			) );
 			$logid = $logEntry->insert( $dbw );
-			// @TODO: Core wrapper
-			$dbw->insert( 'log_search',
-				array(
-					'ls_field'  => 'OAuthConsumer',
-					'ls_value'  => $cmr->get( 'consumerKey' ),
-					'ls_log_id' => $logid ),
-				__METHOD__,
-				'IGNORE'
-			);
 
 			// @TODO: email/notifications?
 
@@ -301,16 +275,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 			$logEntry->setComment( $this->vals['reason'] );
 			$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
+			$logEntry->setRelations( array(
+				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
+			) );
 			$logid = $logEntry->insert( $dbw );
-			// @TODO: Core wrapper
-			$dbw->insert( 'log_search',
-				array(
-					'ls_field'  => 'OAuthConsumer',
-					'ls_value'  => $cmr->get( 'consumerKey' ),
-					'ls_log_id' => $logid ),
-				__METHOD__,
-				'IGNORE'
-			);
 
 			// @TODO: email/notifications?
 
@@ -340,16 +308,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 			$logEntry->setComment( $this->vals['reason'] );
 			$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
+			$logEntry->setRelations( array(
+				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
+			) );
 			$logid = $logEntry->insert( $dbw );
-			// @TODO: Core wrapper
-			$dbw->insert( 'log_search',
-				array(
-					'ls_field'  => 'OAuthConsumer',
-					'ls_value'  => $cmr->get( 'consumerKey' ),
-					'ls_log_id' => $logid ),
-				__METHOD__,
-				'IGNORE'
-			);
 
 			// @TODO: email/notifications?
 

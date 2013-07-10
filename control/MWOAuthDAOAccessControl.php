@@ -69,8 +69,8 @@ class MWOAuthDAOAccessControl extends ContextSource {
 	 */
 	final public function get( $name, $sCallback = null ) {
 		$msg = $this->dao->userCanAccess( $name, $this->context );
-		if ( $msg instanceof Message ) {
-			return $msg;
+		if ( $msg !== true ) {
+			return $msg; // should be a Message object
 		} else {
 			$value = $this->dao->get( $name );
 			return $sCallback ? call_user_func( $sCallback, $value ) : $value;

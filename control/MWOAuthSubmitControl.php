@@ -94,12 +94,18 @@ abstract class MWOAuthSubmitControl extends ContextSource {
 	 */
 	protected function validateFields( array $required ) {
 		foreach ( $required as $field => $validator ) {
-			if ( is_null( $this->vals[$field] ) ) {
+			if ( !isset( $this->vals[$field] ) ) {
 				// @TODO: check for field-specific message first
 				return $this->failure( "missing_field_$field", 'mwoauth-missing-field', $field );
+			} elseif ( !is_scalar( $this->vals[$field] ) ) {
+				// @TODO: check for field-specific message first
+				return $this->failure( "invalid_field_$field", 'mwoauth-invalid-field', $field );
+			}
+			if ( is_string( $this->vals[$field] ) ) {
+				$this->vals[$field] = trim( $this->vals[$field] ); // trim all input
 			}
 			$valid = is_string( $validator ) // regex
-				? is_scalar( $this->vals[$field] ) && preg_match( $validator, $this->vals[$field] )
+				? preg_match( $validator, $this->vals[$field] )
 				: $validator( $this->vals[$field] );
 			if ( !$valid ) {
 				// @TODO: check for field-specific message first

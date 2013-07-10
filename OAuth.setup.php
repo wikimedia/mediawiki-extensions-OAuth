@@ -35,6 +35,7 @@ class MWOAuthSetup {
 
 		$classes['MWOAuthConsumerRegistration'] = "$spActionDir/MWOAuthConsumerRegistration.php";
 		$classes['MWOAuthManageConsumers'] = "$spActionDir/MWOAuthManageConsumers.php";
+		$classes['MWOAuthManageMyGrants'] = "$spActionDir/MWOAuthManageMyGrants.php";
 		# Special:MWOAuth/authorize
 		# Special:MWOAuth/initiate?
 		# Special:MWOAuth/token?
@@ -45,11 +46,14 @@ class MWOAuthSetup {
 		# Data access objects
 		$classes['MWOAuthDAO'] = "$backendDir/MWOAuthDAO.php";
 		$classes['MWOAuthConsumer'] = "$backendDir/MWOAuthConsumer.php";
+		$classes['MWOAuthConsumerAcceptance'] = "$backendDir/MWOAuthConsumerAcceptance.php";
 
 		# Control logic
 		$classes['MWOAuthDAOAccessControl'] = "$controlDir/MWOAuthDAOAccessControl.php";
 		$classes['MWOAuthSubmitControl'] = "$controlDir/MWOAuthSubmitControl.php";
 		$classes['MWOAuthConsumerSubmitControl'] = "$controlDir/MWOAuthConsumerSubmitControl.php";
+		$classes['MWOAuthConsumerAcceptanceSubmitControl'] =
+			"$controlDir/MWOAuthConsumerAcceptanceSubmitControl.php";
 
 		# Schema changes
 		$classes['MWOAuthUpdaterHooks'] = "$schemaDir/MWOAuthUpdater.hooks.php";

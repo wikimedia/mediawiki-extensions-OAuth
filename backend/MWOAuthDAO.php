@@ -22,6 +22,8 @@
  * Representation of a Data Access Object
  */
 abstract class MWOAuthDAO implements IDBAccessObject {
+	private $daoOrigin = 'new'; // string; object construction origin
+
 	/**
 	 * @throws Exception
 	 */
@@ -138,7 +140,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	public function save( DatabaseBase $dbw ) {
 		$uniqueId = $this->getIdValue();
 		$idColumn = static::getIdColumn();
-		if ( $uniqueId ) {
+		if ( $this->daoOrigin === 'db' ) {
 			$dbw->update(
 				static::getTable(),
 				$this->getRowArray( $dbw ),
@@ -314,6 +316,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 			$values[$field] = $row[$column];
 		}
 		$this->loadFromValues( $values );
+		$this->daoOrigin = 'db';
 	}
 
 	/**

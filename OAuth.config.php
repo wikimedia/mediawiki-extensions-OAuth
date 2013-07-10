@@ -12,6 +12,7 @@ $wgAvailableRights[] = 'mwoauthmanageconsumer';
 $wgAvailableRights[] = 'mwoauthsuppress';
 $wgAvailableRights[] = 'mwoauthviewsuppressed';
 $wgAvailableRights[] = 'mwoauthviewprivate';
+$wgAvailableRights[] = 'mwoauthmanagemyconsumers';
 
 # End of configuration variables.
 # ########

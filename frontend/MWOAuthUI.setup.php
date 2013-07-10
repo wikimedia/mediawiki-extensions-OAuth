@@ -15,6 +15,7 @@ class MWOAuthUISetup {
 			$groups['MWOAuthConsumerRegistration'] = 'users';
 			$pages['MWOAuthManageConsumers'] = 'MWOAuthManageConsumers';
 			$groups['MWOAuthManageConsumers'] = 'users';
+			$pages['MWOAuthManageMyGrants'] = 'MWOAuthManageMyGrants';
 		}
 	}
 

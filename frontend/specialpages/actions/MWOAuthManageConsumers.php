@@ -76,8 +76,6 @@ class MWOAuthManageConsumers extends SpecialPage {
 			break;
 		}
 
-		$this->addQueueSubtitleLinks( $consumerKey );
-
 		if ( $this->stage !== null ) {
 			$this->stageKey = $stageKey;
 			if ( $consumerKey ) {
@@ -88,6 +86,8 @@ class MWOAuthManageConsumers extends SpecialPage {
 		} else {
 			$this->showMainHub();
 		}
+
+		$this->addQueueSubtitleLinks( $consumerKey );
 
 		$this->getOutput()->addModules( 'ext.MWOAuth' ); // CSS
 	}
@@ -103,21 +103,21 @@ class MWOAuthManageConsumers extends SpecialPage {
 		$listLinks = array();
 		if ( $consumerKey || $this->stage !== MWOAuthConsumer::STAGE_PROPOSED ) {
 			$listLinks[] = Linker::linkKnown(
-				SpecialPage::getSafeTitleFor( 'MWOAuthManageConsumers', 'proposed' ),
+				$this->getTitle( 'proposed' ),
 				$this->msg( 'mwoauthmanageconsumers-showproposed' )->escaped() );
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthmanageconsumers-showproposed' )->escaped();
 		}
 		if ( $consumerKey || $this->stage !== MWOAuthConsumer::STAGE_REJECTED ) {
 			$listLinks[] = Linker::linkKnown(
-				SpecialPage::getSafeTitleFor( 'MWOAuthManageConsumers', 'rejected' ),
+				$this->getTitle( 'rejected' ),
 				$this->msg( 'mwoauthmanageconsumers-showrejected' )->escaped() );
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthmanageconsumers-showrejected' )->escaped();
 		}
 		if ( $consumerKey || $this->stage !== MWOAuthConsumer::STAGE_EXPIRED ) {
 			$listLinks[] = Linker::linkKnown(
-				SpecialPage::getSafeTitleFor( 'MWOAuthManageConsumers', 'expired' ),
+				$this->getTitle( 'expired' ),
 				$this->msg( 'mwoauthmanageconsumers-showexpired' )->escaped() );
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthmanageconsumers-showexpired' )->escaped();
@@ -128,15 +128,8 @@ class MWOAuthManageConsumers extends SpecialPage {
 		$viewall = $this->msg( 'parentheses' )->rawParams( Linker::linkKnown(
 			$this->getTitle(), $this->msg( 'mwoauthmanageconsumers-main' )->escaped() ) );
 
-		// Give grep a chance to find the usages:
-		// mwoauthmanageconsumers-type-proposed, mwoauthmanageconsumers-type-reject,
-		// mwoauthmanageconsumers-type-expired
 		$this->getOutput()->setSubtitle(
 			"<strong>" . $this->msg( 'mwoauthmanageconsumers-type' )->escaped() . " <i>" .
-			( $this->stageKey !== null
-				? $this->msg( "mwoauthmanageconsumers-type-{$this->stageKey}" )->escaped()
-				: ''
-			) .
 			"</i></strong> [{$linkHtml}] <strong>{$viewall}</strong>" );
 	}
 
@@ -171,7 +164,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 				'<li>' .
 				"<$tag>" .
 				Linker::makeKnownLinkObj(
-					SpecialPage::getSafeTitleFor( 'MWOAuthManageConsumers', $stageKey ),
+					$this->getTitle( $stageKey ),
 					// Give grep a chance to find the usages:
 					// mwoauthmanageconsumers-q-proposed, mwoauthmanageconsumers-q-reject,
 					// mwoauthmanageconsumers-q-expired
@@ -189,7 +182,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 			$out->addHTML(
 				'<li>' .
 				Linker::makeKnownLinkObj(
-					SpecialPage::getSafeTitleFor( 'MWOAuthManageConsumers', $stageKey ),
+					$this->getTitle( $stageKey ),
 					// Give grep a chance to find the usages:
 					// mwoauthmanageconsumers-l-proposed, mwoauthmanageconsumers-l-reject,
 					// mwoauthmanageconsumers-l-expired
@@ -243,6 +236,11 @@ class MWOAuthManageConsumers extends SpecialPage {
 					'label-message' => 'mwoauth-consumer-version',
 					'default' => $cmr->get( 'version' )
 				),
+				'user' => array(
+					'type' => 'info',
+					'label-message' => 'mwoauth-consumer-user',
+					'default' => $cmr->get( 'userId', array( 'User', 'whoIs' ) )
+				),
 				'stage' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-stage',
@@ -286,6 +284,11 @@ class MWOAuthManageConsumers extends SpecialPage {
 					'default' => $cmr->get( 'restrictions', array( 'FormatJSON', 'encode' ) ),
 					'readonly' => true,
 					'rows' => 5
+				),
+				'secretKey' => array(
+					'type' => 'info',
+					'label-message' => 'mwoauth-consumer-secretkey',
+					'default' => $cmr->get( 'secretKey' )
 				),
 				'rsaKey' => array(
 					'type' => 'textarea',
@@ -335,6 +338,9 @@ class MWOAuthManageConsumers extends SpecialPage {
 		$status = $form->show();
 		if ( $status instanceof Status && $status->isOk() ) {
 			$type = self::$stageKeyMap[$status->value['result']->get( 'stage' )];
+			// Uses messages mwoauthmanageconsumers-success-proposed,
+			// mwoauthmanageconsumers-success-rejected, mwoauthmanageconsumers-success-approved,
+			// mwoauthmanageconsumers-success-disabled, mwoauthmanageconsumers-success-reenabled
 			$this->getOutput()->addWikiMsg( "mwoauthmanageconsumers-success-$type" );
 			$this->getOutput()->returnToMain();
 		} else {
@@ -392,7 +398,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
 
 		$link = Linker::linkKnown(
-			SpecialPage::getSafeTitleFor( 'MWOAuthManageConsumers', "{$stageKey}/{$cmrKey}" ),
+			$this->getTitle( "{$stageKey}/{$cmrKey}" ),
 			$this->msg( 'mwoauthmanageconsumers-review' )->escaped()
 		);
 
