@@ -18,6 +18,8 @@ $messages['en'] = array(
 	'mwoauth-field-private' => '(this information is private)',
 
 	'mwoauth-grant-generic' => '"$1" rights bundle',
+	'mwoauth-prefs-managegrants' => 'OAuth consumer access:',
+	'mwoauth-prefs-managegrantslink' => 'manage grants on behalf of this account',
 
 	'mwoauth-consumer-key' => 'Consumer key:',
 	'mwoauth-consumer-name' => 'Application name:',

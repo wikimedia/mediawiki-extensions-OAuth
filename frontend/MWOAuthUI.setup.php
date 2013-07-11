@@ -22,6 +22,14 @@ class MWOAuthUISetup {
 	}
 
 	/**
+	 * @param array $hooks $wgHooks
+	 * @return void
+	 */
+	public static function defineHookHandlers( &$hooks ) {
+		$hooks['GetPreferences'][] = 'MWOAuthUIHooks::onGetPreferences';
+	}
+
+	/**
 	 * @param array $logNames $wgLogNames (assoc array of log name message keys)
 	 * @param array $logHeaders $wgLogHeaders (assoc array of log header message keys)
 	 * @param array $filterLogTypes $wgFilterLogTypes

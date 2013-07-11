@@ -30,6 +30,7 @@ class MWOAuthSetup {
 
 		$classes['MWOAuthAPISetup'] = "$apiDir/MWOAuthAPI.setup.php";
 		$classes['MWOAuthUISetup'] = "$frontendDir/MWOAuthUI.setup.php";
+		$classes['MWOAuthUIHooks'] = "$frontendDir/MWOAuthUI.hooks.php";
 
 		# Special pages
 		$classes['SpecialOAuth'] = "$frontendDir/specials/SpecialOAuth.php";
