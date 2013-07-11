@@ -167,6 +167,7 @@ See also:
 	'mwoauth-consumer-key' => '{{Identical|Consumer key}}',
 	'mwoauth-consumer-name' => '{{Identical|Application name}}',
 	'mwoauth-consumer-version' => 'Used as label for the "Version" input box.',
+	'mwoauth-consumer-user' => '{{Identical|Publisher}}',
 	'mwoauth-consumer-stage' => '{{Identical|Current status}}',
 	'mwoauth-consumer-email' => 'Used as label for the "Email address" input box.',
 	'mwoauth-consumer-description' => 'Used as label for the "description" textarea.',
@@ -176,7 +177,8 @@ See [[w:Callback (computer programming)]].',
 	'mwoauth-consumer-grantsneeded' => 'Used as label for the textarea.
 
 The value is written in JSON format.',
-	'mwoauth-consumer-wiki' => 'Used as label for the input box. The default value for the input box is "*".',
+	'mwoauth-consumer-wiki' => 'Used as label for the input box. The default value for the input box is "*".
+{{Identical|Applicable wiki}}',
 	'mwoauth-consumer-restrictions' => 'Used as label for the textarea. (The value is written in JSON format.)
 
 Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hidden}}.',
@@ -185,6 +187,7 @@ Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hi
 Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hidden}}.',
 	'mwoauth-consumer-secretkey' => 'Used as label for the textarea.',
 	'mwoauth-consumer-reason' => '{{Identical|Reason}}',
+	'mwoauth-invalid-consumer-key' => 'Used as error message',
 	'mwoauth-consumer-stage-rejected' => '{{Identical|Rejected}}',
 	'mwoauth-consumer-stage-expired' => '{{Identical|Expired}}',
 	'mwoauth-consumer-stage-approved' => '{{Identical|Approved}}',
@@ -296,6 +299,28 @@ Followed by the following radio boxes:
 	'mwoauthmanageconsumers-confirm-submit' => 'Used as label for the Submit button.',
 	'mwoauthmanageconsumers-viewing' => 'Parameters:
 * $1 - username',
+	'mwoauthmanagemygrants-navigation' => '{{Identical|Navigation}}',
+	'mwoauthmanagemygrants-showlist' => 'Used as link text or as plain text',
+	'mwoauthmanagemygrants-user' => '{{Identical|Publisher}}',
+	'mwoauthmanagemygrants-description' => '{{Identical|Description}}',
+	'mwoauthmanagemygrants-wiki' => '{{Identical|Applicable wiki}}',
+	'mwoauthmanagemygrants-consumerkey' => '{{Identical|Consumer key}}',
+	'mwoauthmanagemygrants-confirm-legend' => 'Used as fieldset label',
+	'mwoauthmanagemygrants-update' => 'Used as label for the radio box.
+
+See also:
+* {{msg-mw|Mwoauthmanagemygrants-action}}',
+	'mwoauthmanagemygrants-renounce' => 'Used as label for the radio box.
+
+See also:
+* {{msg-mw|Mwoauthmanagemygrants-action}}',
+	'mwoauthmanagemygrants-action' => 'Used as label for the radio box group.
+
+Followed by the following radio boxes:
+* {{msg-mw|Mwoauthmanagemygrants-update}}
+* {{msg-mw|Mwoauthmanagemygrants-renounce}}
+{{Identical|Change status}}',
+	'mwoauthmanagemygrants-confirm-submit' => 'Used as label for the Submit button',
 	'mwoauthconsumer-consumer-logpage' => '{{doc-logpage}}',
 	'mwoauthconsumer-consumer-logpagetext' => 'Description of the OAuth consumer log.',
 );
@@ -304,7 +329,18 @@ Followed by the following radio boxes:
  * @author Xuacu
  */
 $messages['ast'] = array(
-	'oauth-desc' => 'Autenticación API OAuth 1.0a',
+	'mwoauth-desc' => 'Autenticación API OAuth 1.0a',
+	'mwoauth-missing-field' => 'Falta el valor del campu "$1"',
+	'mwoauth-invalid-field' => 'Diose un valor inválidu pal campu "$1"',
+	'mwoauth-field-hidden' => '(esta información ta tapecida)',
+	'mwoauth-field-private' => '(esta información ye privada)',
+	'mwoauth-consumer-key' => 'Clave del consumidor:',
+	'mwoauth-consumer-name' => "Nome d'aplicación:",
+	'mwoauth-consumer-version' => 'Versión mayor:',
+	'mwoauth-consumer-stage' => 'Estáu actual:',
+	'mwoauth-consumer-email' => 'Direición de corréu-e de contautu:',
+	'mwoauth-consumer-description' => "Descripción de l'aplicación:",
+	'mwoauth-consumer-callbackurl' => 'URL de "callback" OAuth:',
 );
 
 /** Czech (česky)
@@ -327,15 +363,17 @@ $messages['de'] = array(
 	'mwoauth-consumer-key' => 'Verbraucherschlüssel:',
 	'mwoauth-consumer-name' => 'Anwendungsname:',
 	'mwoauth-consumer-version' => 'Hauptversion:',
+	'mwoauth-consumer-user' => 'Herausgeber:',
 	'mwoauth-consumer-stage' => 'Aktueller Status:',
 	'mwoauth-consumer-email' => 'Kontakt-E-Mail-Adresse:',
 	'mwoauth-consumer-description' => 'Anwendungsbeschreibung:',
 	'mwoauth-consumer-callbackurl' => 'OAuth-Callback-URL:',
-	'mwoauth-consumer-grantsneeded' => 'Verwendete Bewilligungen (JSON):',
-	'mwoauth-consumer-wiki' => 'Einzel-Wiki-Verwendung:',
+	'mwoauth-consumer-grantsneeded' => 'Anwendbare Bewilligungen (JSON):',
+	'mwoauth-consumer-wiki' => 'Anwendbares Wiki:',
 	'mwoauth-consumer-restrictions' => 'Benutzungsbeschränkungen (JSON):',
 	'mwoauth-consumer-rsakey' => 'Verbraucher-RSA-Schlüssel:',
 	'mwoauth-consumer-secretkey' => 'Geheimer Verbrauchertoken:',
+	'mwoauth-consumer-accesstoken' => 'Zugriffstoken:',
 	'mwoauth-consumer-reason' => 'Grund:',
 	'mwoauth-consumer-alreadyexists' => 'Ein Verbraucher mit dieser Namen-/Versions-/Autorenkombination ist bereits vorhanden',
 	'mwoauth-consumer-not-accepted' => 'Die Informationen für einen ausstehenden Verbraucherantrag konnten nicht aktualisiert werden',
@@ -344,6 +382,7 @@ $messages['de'] = array(
 	'mwoauth-consumer-not-disabled' => 'Der Verbraucher ist derzeit nicht deaktiviert',
 	'mwoauth-consumer-not-approved' => 'Der Verbraucher ist nicht bestätigt (vielleicht wurde er deaktiviert)',
 	'mwoauth-invalid-consumer-key' => 'Es ist kein Verbraucher mit dem angegebenen Schlüssel vorhanden.',
+	'mwoauth-invalid-access-token' => 'Es ist kein Zugriffstoken mit dem angegebenen Schlüssel vorhanden.',
 	'mwoauth-consumer-stage-proposed' => 'geplant',
 	'mwoauth-consumer-stage-rejected' => 'abgelehnt',
 	'mwoauth-consumer-stage-expired' => 'abgelaufen',
@@ -415,6 +454,31 @@ Dir wurde der Verbrauchertoken $1 und der Geheimtoken $2 zugewiesen. '''Bitte di
 	'mwoauthmanageconsumers-success-rejected' => 'Antrag erfolgreich abgelehnt.',
 	'mwoauthmanageconsumers-success-disabled' => 'Verbraucher erfolgreich deaktiviert.',
 	'mwoauthmanageconsumers-success-reanable' => 'Verbraucher erfolgreich reaktiviert.',
+	'mwoauthmanagemygrants' => 'Benutzerkonten-OAuth-Bewilligungen verwalten',
+	'mwoauthmanagemygrants-navigation' => 'Navigation:',
+	'mwoauthmanagemygrants-showlist' => 'Verbraucherliste',
+	'mwoauthmanagemygrants-none' => 'Keine Verbraucher haben Zugriff im Namen deines Benutzerkontos.',
+	'mwoauthmanagemygrants-name' => 'Verbrauchername',
+	'mwoauthmanagemygrants-user' => 'Herausgeber',
+	'mwoauthmanagemygrants-description' => 'Beschreibung',
+	'mwoauthmanagemygrants-wiki' => 'Anwendbares Wiki',
+	'mwoauthmanagemygrants-wikiallowed' => 'Erlaubt auf Wiki',
+	'mwoauthmanagemygrants-grants' => 'Anwendbare Bewilligungen',
+	'mwoauthmanagemygrants-grantsallowed' => 'Erlaubte Bewilligungen:',
+	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Erlaubte anwendbare Bewilligungen:',
+	'mwoauthmanagemygrants-consumerkey' => 'Verbraucherschlüssel',
+	'mwoauthmanagemygrants-review' => 'Zugriff überprüfen/verwalten',
+	'mwoauthmanagemygrants-grantaccept' => 'Dem Verbraucher bewilligt',
+	'mwoauthmanagemygrants-confirm-text' => 'Verwende das unten stehende Formular, um den Zugriff oder Bewilligungen für einen OAuth-Verbraucher zu entziehen, der auf deinen Namen handelt.
+
+Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergruppe (Websiteprojekte) zu haben, gibt es für diesen Verbraucher mehrere Zugriffstokens.',
+	'mwoauthmanagemygrants-confirm-legend' => 'Verbraucherzugriffstoken verwalten',
+	'mwoauthmanagemygrants-update' => 'Zugriffstokenbewilligungen aktualisieren',
+	'mwoauthmanagemygrants-renounce' => 'Deautorisieren und Zugriffstoken löschen',
+	'mwoauthmanagemygrants-action' => 'Status ändern:',
+	'mwoauthmanagemygrants-confirm-submit' => 'Zugriffstokenstatus aktualisieren',
+	'mwoauthmanagemygrants-success-update' => 'Der Zugriffstoken für diesen Verbraucher wurde erfolgreich aktualisiert.',
+	'mwoauthmanagemygrants-success-renounce' => 'Der Zugriffstoken für diesen Verbraucher wurde erfolgreich gelöscht.',
 	'mwoauth-logentry-consumer-propose' => 'plante einen OAuth-Verbraucher (Verbraucherschlüssel $2)',
 	'mwoauth-logentry-consumer-update' => 'aktualisierte einen OAuth-Verbraucher (Verbraucherschlüssel $2)',
 	'mwoauth-logentry-consumer-approve' => 'bestätigte einen OAuth-Verbraucher von $1 (Verbraucherschlüssel $2)',
@@ -438,15 +502,17 @@ $messages['fr'] = array(
 	'mwoauth-consumer-key' => 'Clé du consommateur :',
 	'mwoauth-consumer-name' => "Nom de l'application :",
 	'mwoauth-consumer-version' => 'Version majeure :',
+	'mwoauth-consumer-user' => 'Éditeur :',
 	'mwoauth-consumer-stage' => 'Statut actuel :',
 	'mwoauth-consumer-email' => 'Adresse de courriel de contact :',
 	'mwoauth-consumer-description' => "Description de l'application :",
 	'mwoauth-consumer-callbackurl' => 'URl « de rappel » pour OAuth :',
-	'mwoauth-consumer-grantsneeded' => 'Droits utilisés (JSON) :',
-	'mwoauth-consumer-wiki' => 'Utilisation en mono-wiki :',
+	'mwoauth-consumer-grantsneeded' => 'Droits applicables (JSON) :',
+	'mwoauth-consumer-wiki' => 'Wiki applicable :',
 	'mwoauth-consumer-restrictions' => 'Limitations d’utilisation (JSON) :',
 	'mwoauth-consumer-rsakey' => 'Clé RSA du consommateur :',
 	'mwoauth-consumer-secretkey' => 'Jeton secret du consommateur :',
+	'mwoauth-consumer-accesstoken' => 'Jeton d’accès :',
 	'mwoauth-consumer-reason' => 'Motif :',
 	'mwoauth-consumer-alreadyexists' => 'Un consommateur avec cette combinaison de nom/version/autorisation existe déjà',
 	'mwoauth-consumer-not-accepted' => 'Impossible de mettre à jour les informations pour une demande de consommateur en cours',
@@ -455,6 +521,7 @@ $messages['fr'] = array(
 	'mwoauth-consumer-not-disabled' => 'Le consommateur n’est pas désactivé pour le moment',
 	'mwoauth-consumer-not-approved' => 'Le consommateur n’est pas approuvé (il peut avoir été désactivé)',
 	'mwoauth-invalid-consumer-key' => 'Aucun consommateur n’existe avec la clé fournie.',
+	'mwoauth-invalid-access-token' => 'Aucun jeton d’accès n’existe pour la clé fournie',
 	'mwoauth-consumer-stage-proposed' => 'proposé',
 	'mwoauth-consumer-stage-rejected' => 'rejeté',
 	'mwoauth-consumer-stage-expired' => 'expiré',
@@ -526,6 +593,31 @@ Il vous a été assigné un jeton de consommateur $1 et un jeton secret $2. '''V
 	'mwoauthmanageconsumers-success-rejected' => 'Requête rejetée avec succès.',
 	'mwoauthmanageconsumers-success-disabled' => 'Le consommateur a bien été désactivé.',
 	'mwoauthmanageconsumers-success-reanable' => 'Le consommateur a bien été réactivé.',
+	'mwoauthmanagemygrants' => 'Gérer les droits de compte OAuth',
+	'mwoauthmanagemygrants-navigation' => 'Navigation :',
+	'mwoauthmanagemygrants-showlist' => 'Liste de consommateurs',
+	'mwoauthmanagemygrants-none' => 'Aucun consommateur n’a d’accès de la part de votre compte.',
+	'mwoauthmanagemygrants-name' => 'Nom du consommateur',
+	'mwoauthmanagemygrants-user' => 'Éditeur',
+	'mwoauthmanagemygrants-description' => 'Description',
+	'mwoauthmanagemygrants-wiki' => 'Wiki applicable',
+	'mwoauthmanagemygrants-wikiallowed' => 'Autorisé sur le wiki',
+	'mwoauthmanagemygrants-grants' => 'Droits applicables',
+	'mwoauthmanagemygrants-grantsallowed' => 'Droits accordés :',
+	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Droits applicables accordés :',
+	'mwoauthmanagemygrants-consumerkey' => 'Clé du consommateur',
+	'mwoauthmanagemygrants-review' => 'Revoir/gérer l’accès',
+	'mwoauthmanagemygrants-grantaccept' => 'Accordé au consommateur',
+	'mwoauthmanagemygrants-confirm-text' => 'Utilisez le formulaire ci-dessous pour révoquer l’accès ou les droits d’un consommateur OAuth à agir en votre nom.
+
+Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un sous-ensemble de wikis (projets de site), alors il y aura des jetons d’accès multiples pour ce consommateur.',
+	'mwoauthmanagemygrants-confirm-legend' => 'Gérer le jeton d’accès du consommateur',
+	'mwoauthmanagemygrants-update' => 'Mettre à jour les droits du jeton d’accès',
+	'mwoauthmanagemygrants-renounce' => 'Ne plus autoriser et supprimer le jeton d’accès',
+	'mwoauthmanagemygrants-action' => 'Modifier l’état :',
+	'mwoauthmanagemygrants-confirm-submit' => 'Mettre à jour l’état du jeton d’accès',
+	'mwoauthmanagemygrants-success-update' => 'Le jeton d’accès pour ce consommateur a bien été mis à jour.',
+	'mwoauthmanagemygrants-success-renounce' => 'Le jeton d’accès pour ce consommateur a bien été supprimé.',
 	'mwoauth-logentry-consumer-propose' => 'un consommateur OAuth proposé (clé du consommateur $2)',
 	'mwoauth-logentry-consumer-update' => 'un consommateur OAuth mis à jour (clé du consommateur $2)',
 	'mwoauth-logentry-consumer-approve' => 'un consommateur OAuth approuvé par $1 (clé du consommateur $2)',
@@ -555,13 +647,16 @@ $messages['ja'] = array(
 	'mwoauth-consumer-key' => 'コンシューマー キー:',
 	'mwoauth-consumer-name' => 'アプリケーション名:',
 	'mwoauth-consumer-version' => 'メジャー バージョン:',
+	'mwoauth-consumer-user' => '発行者:',
 	'mwoauth-consumer-stage' => '現在の状態:',
 	'mwoauth-consumer-email' => '連絡先メールアドレス:',
 	'mwoauth-consumer-description' => 'アプリケーションの説明:',
 	'mwoauth-consumer-callbackurl' => 'OAuth コールバック URL:',
 	'mwoauth-consumer-rsakey' => 'コンシューマー RSA キー:',
 	'mwoauth-consumer-secretkey' => 'コンシューマー秘密トークン:',
+	'mwoauth-consumer-accesstoken' => 'アクセス トークン:',
 	'mwoauth-consumer-reason' => '理由:',
+	'mwoauth-invalid-consumer-key' => '指定したキーのコンシューマーは存在しません。',
 	'mwoauth-consumer-stage-disabled' => '無効',
 	'mwoauthconsumerregistration' => 'OAuth コンシューマー登録',
 	'mwoauthconsumerregistration-update-legend' => 'OAuth コンシューマー アプリケーションの更新',
@@ -574,6 +669,7 @@ $messages['ja'] = array(
 	'mwoauthmanageconsumers-none-approved' => 'この条件に該当するコンシューマーはありません。',
 	'mwoauthmanageconsumers-none-disabled' => 'この条件に該当するコンシューマーはありません。',
 	'mwoauthmanageconsumers-name' => 'コンシューマー',
+	'mwoauthmanageconsumers-user' => '発行者',
 	'mwoauthmanageconsumers-description' => '説明',
 	'mwoauthmanageconsumers-email' => '連絡先メール',
 	'mwoauthmanageconsumers-consumerkey' => 'コンシューマー キー',
@@ -589,11 +685,20 @@ $messages['ja'] = array(
 	'mwoauthmanageconsumers-success-rejected' => 'リクエストを却下しました。',
 	'mwoauthmanageconsumers-success-disabled' => 'コンシューマーを無効にしました。',
 	'mwoauthmanageconsumers-success-reanable' => 'コンシューマーを再度有効にしました。',
+	'mwoauthmanagemygrants-navigation' => 'ナビゲーション:',
+	'mwoauthmanagemygrants-showlist' => 'コンシューマー一覧',
+	'mwoauthmanagemygrants-name' => 'コンシューマー名',
+	'mwoauthmanagemygrants-user' => '発行者',
+	'mwoauthmanagemygrants-description' => '説明',
+	'mwoauthmanagemygrants-consumerkey' => 'コンシューマー キー',
+	'mwoauthmanagemygrants-confirm-legend' => 'コンシューマー アクセス トークンの管理',
+	'mwoauthmanagemygrants-action' => '状態の変更:',
+	'mwoauthmanagemygrants-confirm-submit' => 'アクセス トークンの状態を更新',
 	'mwoauth-logentry-consumer-update' => 'OAuth コンシューマーを更新 (コンシューマー キー $2)',
-	'mwoauth-logentry-consumer-approve' => 'OAuth コンシューマーを承認 (コンシューマー キー $2)', # Fuzzy
-	'mwoauth-logentry-consumer-reject' => 'OAuth コンシューマーを却下 (コンシューマー キー $2)', # Fuzzy
-	'mwoauth-logentry-consumer-disable' => 'OAuth コンシューマーを無効化 (コンシューマー キー $2)', # Fuzzy
-	'mwoauth-logentry-consumer-reenable' => 'OAuth コンシューマーを再有効化 (コンシューマー キー $2)', # Fuzzy
+	'mwoauth-logentry-consumer-approve' => '$1 による OAuth コンシューマーを承認 (コンシューマー キー $2)',
+	'mwoauth-logentry-consumer-reject' => '$1 による OAuth コンシューマーを却下 (コンシューマー キー $2)',
+	'mwoauth-logentry-consumer-disable' => '$1 による OAuth コンシューマーを無効化 (コンシューマー キー $2)',
+	'mwoauth-logentry-consumer-reenable' => '$1 による OAuth コンシューマーを再有効化 (コンシューマー キー $2)',
 	'mwoauthconsumer-consumer-logpage' => 'OAuth コンシューマー記録',
 );
 
@@ -628,15 +733,17 @@ $messages['mk'] = array(
 	'mwoauth-consumer-key' => 'Потрошувачки клуч:',
 	'mwoauth-consumer-name' => 'Назив на прилогот:',
 	'mwoauth-consumer-version' => 'Главна верзија:',
+	'mwoauth-consumer-user' => 'Издавач:',
 	'mwoauth-consumer-stage' => 'Тековен статус:',
 	'mwoauth-consumer-email' => 'Е-пошта за контакт:',
 	'mwoauth-consumer-description' => 'Опис на прилогот:',
 	'mwoauth-consumer-callbackurl' => 'URL-адреса за повикување на OAuth:',
-	'mwoauth-consumer-grantsneeded' => 'Користени доделувања (JSON):',
-	'mwoauth-consumer-wiki' => 'Употреба на едно вики:',
+	'mwoauth-consumer-grantsneeded' => 'Применливи доделувања (JSON):',
+	'mwoauth-consumer-wiki' => 'Применливо вики:',
 	'mwoauth-consumer-restrictions' => 'Ограничувања на употребата (JSON):',
 	'mwoauth-consumer-rsakey' => 'Потрошувачки RSA-клуч:',
 	'mwoauth-consumer-secretkey' => 'Таен потрошувачки жетон:',
+	'mwoauth-consumer-accesstoken' => 'Пристапен жетон:',
 	'mwoauth-consumer-reason' => 'Причина:',
 	'mwoauth-consumer-alreadyexists' => 'Веќе постои потрошувач со ваква комбинација од име/верзија/автор',
 	'mwoauth-consumer-not-accepted' => 'Не можам да ги изменам информациите за потрошувачко барање во исчекување',
@@ -645,6 +752,7 @@ $messages['mk'] = array(
 	'mwoauth-consumer-not-disabled' => 'Потрошувачот во моментов не е оневозможен',
 	'mwoauth-consumer-not-approved' => 'Потрошувачот не е одобрен (може да е оневозможен)',
 	'mwoauth-invalid-consumer-key' => 'Не постои потрошувач со таков клуч.',
+	'mwoauth-invalid-access-token' => 'Не постои пристапен жетон со таков клуч.',
 	'mwoauth-consumer-stage-proposed' => 'предложен',
 	'mwoauth-consumer-stage-rejected' => 'одбиен',
 	'mwoauth-consumer-stage-expired' => 'истечен',
@@ -716,6 +824,31 @@ $messages['mk'] = array(
 	'mwoauthmanageconsumers-success-rejected' => 'Барањето е успешно одбиено.',
 	'mwoauthmanageconsumers-success-disabled' => 'Потрошувачот е успешно оневозможен.',
 	'mwoauthmanageconsumers-success-reanable' => 'Потрошувачот е успешно преовозможен.',
+	'mwoauthmanagemygrants' => 'Раководење со доделувања на OAuth на сметки',
+	'mwoauthmanagemygrants-navigation' => 'Навигација:',
+	'mwoauthmanagemygrants-showlist' => 'Список на потрошувачи',
+	'mwoauthmanagemygrants-none' => 'Нема потрошувачи со пристап во име на вашата сметка.',
+	'mwoauthmanagemygrants-name' => 'Име на потрошувач',
+	'mwoauthmanagemygrants-user' => 'Издавач',
+	'mwoauthmanagemygrants-description' => 'Опис',
+	'mwoauthmanagemygrants-wiki' => 'Применливо вики',
+	'mwoauthmanagemygrants-wikiallowed' => 'Дозволено на викито',
+	'mwoauthmanagemygrants-grants' => 'Применливи доделувања',
+	'mwoauthmanagemygrants-grantsallowed' => 'Дозволени доделувања:',
+	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Дозволени применливи доделувања:',
+	'mwoauthmanagemygrants-consumerkey' => 'Потрошувачки клуч',
+	'mwoauthmanagemygrants-review' => 'Разглед./раковод. на пристап',
+	'mwoauthmanagemygrants-grantaccept' => 'Доделено на потрошувачот',
+	'mwoauthmanagemygrants-confirm-text' => 'Следниот образец служи за одземање на пристап или доделен OAuth на потрошувач за да дејствува во ваше име.
+
+Имајте предвид дека ако овластите некого со пристап на само дел од викијата (проектите) наместо сите во целина, тогаш тој потрошувач ќе има повеќе пристапни жетони.',
+	'mwoauthmanagemygrants-confirm-legend' => 'Ракободење со жетон за кориснички пристап',
+	'mwoauthmanagemygrants-update' => 'Измени доделувања на прист. жетон',
+	'mwoauthmanagemygrants-renounce' => 'Одземи дозвола и избриши пристап. жетон',
+	'mwoauthmanagemygrants-action' => 'Смени статус:',
+	'mwoauthmanagemygrants-confirm-submit' => 'Измени статус на пристап. жетон',
+	'mwoauthmanagemygrants-success-update' => 'Пристапниот жетон на овој потрошувач е успешно изменет.',
+	'mwoauthmanagemygrants-success-renounce' => 'Пристапниот жетон на овој потрошувач е успешно избришан.',
 	'mwoauth-logentry-consumer-propose' => 'предложен потрошувач на OAuth (потрошувачки клуч: $2)',
 	'mwoauth-logentry-consumer-update' => 'изменет потрошувач на OAuth (потрошувачки клуч: $2)',
 	'mwoauth-logentry-consumer-approve' => '$1 одобри потрошувач на OAuth (потрошувачки клуч: $2)',
@@ -724,6 +857,21 @@ $messages['mk'] = array(
 	'mwoauth-logentry-consumer-reenable' => '$1 преовозможи потрошувач на OAuth (потрошувачки клуч: $2)',
 	'mwoauthconsumer-consumer-logpage' => 'Потрошувачки дневник за OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Дневник на одобрувања, одбивања и оневозможувања на регистрирани потрошувачи на OAuth.',
+);
+
+/** Malayalam (മലയാളം)
+ * @author Raghith
+ */
+$messages['ml'] = array(
+	'mwoauthmanagemygrants-user' => 'പ്രസാധക(ൻ)',
+);
+
+/** Polish (polski)
+ * @author Chrumps
+ */
+$messages['pl'] = array(
+	'mwoauth-consumer-reason' => 'Powód:',
+	'mwoauthmanageconsumers-reason' => 'Powód:',
 );
 
 /** tarandíne (tarandíne)
