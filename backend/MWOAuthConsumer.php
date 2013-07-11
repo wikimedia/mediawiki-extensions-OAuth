@@ -38,7 +38,6 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $email;
 	/** @var string TS_MW timestamp of when email address was confirmed */
 	protected $emailAuthenticated;
-
 	/** @var string Wiki ID the application can be used on (or "*" for all) */
 	protected $wiki;
 	/** @var string TS_MW timestamp of proposal */
@@ -62,20 +61,6 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	const STAGE_REJECTED = 2;
 	const STAGE_EXPIRED  = 3;
 	const STAGE_DISABLED = 4;
-
-	/**
-	 * Magic method so that $consumer->secret and $consumer->key work. This allows MWOAuthConsumer
-	 * to be a replacement for OAuthConsumer in lib/OAuth.php without inheriting.
-	 */
-	public function __get( $prop ) {
-		if ( $prop === 'key' ) {
-			return $this->consumerKey;
-		} elseif ( $prop === 'secret' ) {
-			return $this->secretKey;
-		} else {
-			return $this->$prop;
-		}
-	}
 
 	protected static function getSchema() {
 		return array(
@@ -174,7 +159,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 * @return array
 	 */
 	public static function newGrants() {
-		return array( 'user' );
+		return array();
 	}
 
 	/**
@@ -251,6 +236,20 @@ class MWOAuthConsumer extends MWOAuthDAO {
 			return $context->msg( 'mwoauth-field-private' );
 		} else {
 			return $this->userCanSee( $name, $context );
+		}
+	}
+
+	/**
+	 * Magic method so that $consumer->secret and $consumer->key work. This allows MWOAuthConsumer
+	 * to be a replacement for OAuthConsumer in lib/OAuth.php without inheriting.
+	 */
+	public function __get( $prop ) {
+		if ( $prop === 'key' ) {
+			return $this->consumerKey;
+		} elseif ( $prop === 'secret' ) {
+			return $this->secretKey;
+		} else {
+			return $this->$prop;
 		}
 	}
 }

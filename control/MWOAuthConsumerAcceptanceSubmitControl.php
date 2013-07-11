@@ -28,20 +28,23 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 	protected function getRequiredFields() {
 		return array(
 			'accept'    => array(
-				'consumerKey' => '/^[0-9a-f]{32}$/',
-				'wiki'        => function( $s ) {
+				'consumerKey'  => '/^[0-9a-f]{32}$/',
+				'requestToken' => '/^[0-9a-f]{32}$/',
+				'wiki'         => function( $s ) {
 					return WikiMap::getWiki( $s ) || $s === '*'; },
-				'grants'      => function( $s ) {
-					// @TODO: beef up
-					return is_array( FormatJSON::decode( $s, true ) ); }
+				'grants'       => function( $s ) {
+					$grants = FormatJSON::decode( $s, true );
+					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
+				}
 			),
 			'update'  => array(
 				'accessToken' => '/^[0-9a-f]{32}$/',
 				'wiki'        => function( $s ) {
 					return WikiMap::getWiki( $s ) || $s === '*'; },
 				'grants'      => function( $s ) {
-					// @TODO: beef up
-					return is_array( FormatJSON::decode( $s, true ) ); }
+					$grants = FormatJSON::decode( $s, true );
+					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
+				}
 			),
 			'renounce'  => array(
 				'accessToken' => '/^[0-9a-f]{32}$/',
@@ -109,10 +112,13 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			} elseif ( $cmra->get( 'userId' ) !== $this->getUser()->getId() ) {
 				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 			}
+			$cmr = MWOAuthConsumer::newFromId( $dbw, $cmra->get( 'consumerId' ) );
 
+			$grants = FormatJSON::decode( $this->vals['grants'], true );
 			$cmra->setFields( array(
 				'wiki'   => $this->vals['wiki'],
-				'grants' => FormatJSON::decode( $this->vals['grants'], true ) ) );
+				'grants' => array_intersect( $grants, $cmr->get( 'grants' ) ) // sanity
+			) );
 			$cmra->save( $dbw );
 
 			return $this->success( $cmra );

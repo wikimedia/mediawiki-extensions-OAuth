@@ -17,6 +17,8 @@ $messages['en'] = array(
 	'mwoauth-field-hidden' => '(this information is hidden)',
 	'mwoauth-field-private' => '(this information is private)',
 
+	'mwoauth-grant-generic' => '"$1" rights bundle',
+
 	'mwoauth-consumer-key' => 'Consumer key:',
 	'mwoauth-consumer-name' => 'Application name:',
 	'mwoauth-consumer-version' => 'Major version:',
@@ -25,16 +27,18 @@ $messages['en'] = array(
 	'mwoauth-consumer-email' => 'Contact email address:',
 	'mwoauth-consumer-description' => 'Application description:',
 	'mwoauth-consumer-callbackurl' => 'OAuth "callback" URL:',
-	'mwoauth-consumer-grantsneeded' => 'Applicable grants (JSON):',
+	'mwoauth-consumer-grantsneeded' => 'Applicable grants:',
+	'mwoauth-consumer-grantsneeded-json' => 'Applicable grants (JSON):',
+	'mwoauth-consumer-required-grant' => 'Applicable to consumer',
 	'mwoauth-consumer-wiki' => 'Applicable wiki:',
-	'mwoauth-consumer-restrictions' => 'Usage restrictions (JSON):',
-	'mwoauth-consumer-rsakey' => 'Consumer RSA key:',
+	'mwoauth-consumer-restrictions' => 'Usage restictions:',
+	'mwoauth-consumer-restrictions-json' => 'Usage restictions (JSON):',
+	'mwoauth-consumer-rsakey' => 'Public RSA key:',
 	'mwoauth-consumer-secretkey' => 'Consumer secret token:',
 	'mwoauth-consumer-accesstoken' => 'Access token:',
 	'mwoauth-consumer-reason' => 'Reason:',
-	'mwoauth-consumer-alreadyexists' => 'A consumer with this name/version/author combination already exists',
+	'mwoauth-consumer-alreadyexists' => 'A consumer with this name/version/publisher combination already exists',
 	'mwoauth-consumer-not-accepted' => 'Cannot update information for a pending consumer request',
-	'mwoauth-wrong-consumer-key' => 'The consumer key does not match the application name',
 	'mwoauth-consumer-not-proposed' => 'The consumer is not currently proposed',
 	'mwoauth-consumer-not-disabled' => 'The consumer is not currently disabled',
 	'mwoauth-consumer-not-approved' => 'The consumer is not approved (it may have been disabled)',
@@ -62,15 +66,23 @@ A few recommendations and remarks:
 All values here will overwrite any previous ones. Do not leave blank fields unless you intend to clear those values.',
 	'mwoauthconsumerregistration-maintext' => 'This page is meant for proposing and updating OAuth (see http://oauth.net) consumer applications in this site\'s registry.
 
-From here, you can [[Special:MWOAuthConsumerRegistration/propose|propose a new consumer]].',
+From here, you can [[Special:MWOAuthConsumerRegistration/propose|propose a new consumer]] or [[Special:MWOAuthConsumerRegistration/list|manage existing consumers]].',
 	'mwoauthconsumerregistration-propose-legend' => 'New OAuth consumer application',
 	'mwoauthconsumerregistration-update-legend' => 'Update OAuth consumer application',
 	'mwoauthconsumerregistration-propose-submit' => 'Propose consumer',
 	'mwoauthconsumerregistration-update-submit' => 'Update consumer',
-	'mwoauthconsumerregistration-proposed' => 'You consumer request has been received.
+	'mwoauthconsumerregistration-none' => 'You do not control any OAuth consumers.',
+	'mwoauthconsumerregistration-name' => 'Consumer',
+	'mwoauthconsumerregistration-user' => 'Publisher',
+	'mwoauthconsumerregistration-description' => 'Description',
+	'mwoauthconsumerregistration-email' => 'Contact email',
+	'mwoauthconsumerregistration-consumerkey' => 'Consumer key',
+	'mwoauthconsumerregistration-lastchange' => 'Last change',
+	'mwoauthconsumerregistration-manage' => 'manage',
+	'mwoauthconsumerregistration-proposed' => 'Your OAuth consumer request has been received.
 
-You have been assigned a consumer token of $1 and a secret token of $2. \'\'\'Please record these for future reference.\'\'\'',
-	'mwoauthconsumerregistration-updated' => 'You consumer registry has been updated.',
+You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of \'\'\'$2\'\'\'. \'\'Please record these for future reference.\'\'',
+	'mwoauthconsumerregistration-updated' => 'Your OAuth consumer registry was successfully updated.',
 
 	'mwoauthmanageconsumers' => 'Manage OAuth consumers',
 	'mwoauthmanageconsumers-type' => 'Queues:',
@@ -106,7 +118,7 @@ You have been assigned a consumer token of $1 and a secret token of $2. \'\'\'Pl
 	'mwoauthmanageconsumers-rsuppress' => 'Rejected and suppressed',
 	'mwoauthmanageconsumers-disable' => 'Disabled',
 	'mwoauthmanageconsumers-dsuppress' => 'Disabled and suppressed',
-	'mwoauthmanageconsumers-reenable' => 'Re-enabled',
+	'mwoauthmanageconsumers-reenable' => 'Approved',
 	'mwoauthmanageconsumers-reason' => 'Reason:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Update consumer status',
 	'mwoauthmanageconsumers-viewing' => 'User "$1" is currently viewing this consumer',
@@ -141,16 +153,15 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauthmanagemygrants-success-update' => 'The access token for this consumer has been updated.',
 	'mwoauthmanagemygrants-success-renounce' => 'The access token for this consumer has been deleted.',
 
-	'mwoauth-logentry-consumer-propose' => 'proposed an OAuth consumer (consumer key $2)',
-	'mwoauth-logentry-consumer-update' => 'updated an OAuth consumer (consumer key $2)',
-	'mwoauth-logentry-consumer-approve' => 'approved an OAuth consumer by $1 (consumer key $2)',
-	'mwoauth-logentry-consumer-reject' => 'rejected an OAuth consumer by $1 (consumer key $2)',
-	'mwoauth-logentry-consumer-disable' => 'disabled an OAuth consumer by $1 (consumer key $2)',
-	'mwoauth-logentry-consumer-reenable' => 're-enabled an OAuth consumer by $1 (consumer key $2)',
+	'logentry-mwoauthconsumer-propose' => '$1 proposed an OAuth consumer (consumer key $4)',
+	'logentry-mwoauthconsumer-update' => '$1 updated an OAuth consumer (consumer key $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 approved an OAuth consumer by $2 (consumer key $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 rejected an OAuth consumer by $2 (consumer key $4)',
+	'logentry-mwoauthconsumer-disable' => '$1 disabled an OAuth consumer by $2 (consumer key $4)',
+	'logentry-mwoauthconsumer-reenable' => '$1 re-enabled an OAuth consumer by $2 (consumer key $4)',
 
 	'mwoauthconsumer-consumer-logpage' => 'OAuth consumer log',
 	'mwoauthconsumer-consumer-logpagetext' => 'Log of approvals, rejections, and disabling of registered OAuth consumers.',
-
 
 	'mwoauth-bad-csrf-token' => 'Session failure when submitting form. Please try your submissions again.',
 	'mwoauth-bad-request' => 'There was an error in your OAuth request.',
@@ -185,6 +196,10 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauth-grants-deletepages' => 'Delete Pages',
 	'mwoauth-grants-upload' => 'Upload Files',
 
+	'mwoauth-grant-editpage' => 'Edit existing pages',
+	'mwoauth-grant-createeditmovepage' => 'Create, edit, and move pages',
+	'mwoauth-grant-uploadfile' => 'Upload new files',
+	'mwoauth-grant-uploadeditmovefile' => 'Upload, replace, and move files',
 );
 
 /** Message documentation (Message documentation)

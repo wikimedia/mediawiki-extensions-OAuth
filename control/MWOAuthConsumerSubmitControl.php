@@ -38,19 +38,21 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				'wiki'         => function( $s ) {
 					return WikiMap::getWiki( $s ) || $s === '*'; },
 				'grants'       => function( $s ) {
-					// @TODO: beef up
-					return is_array( FormatJSON::decode( $s, true ) ); },
+					$grants = FormatJSON::decode( $s, true );
+					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
+				},
 				'restrictions' => function( $s ) {
-					// @TODO: beef up
-					return is_array( FormatJSON::decode( $s, true ) ); },
+					$restrictions = FormatJSON::decode( $s, true );
+					return MWOAuthUtils::restrictionsAreValid( $restrictions );
+				},
 				'rsaKey'       => '/^.*$/', // @TODO: beef up
 			),
 			'update'      => array(
-				'name'         => '/^.{1,128}$/',
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
 				'restrictions' => function( $s ) {
-					// @TODO: beef up
-					return is_array( FormatJSON::decode( $s, true ) ); },
+					$restrictions = FormatJSON::decode( $s, true );
+					return MWOAuthUtils::restrictionsAreValid( $restrictions );
+				},
 				'rsaKey'       => '/^.*$/', // @TODO: beef up
 				'reason'       => '/^.{0,255}$/'
 			),
@@ -139,6 +141,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$logEntry->setRelations( array(
 				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
 			) );
+			$logEntry->insert( $dbw );
 
 			return $this->success( $cmr );
 		case 'update':
@@ -151,8 +154,6 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
 			} elseif ( $cmr->get( 'userId' ) !== $user->getId() ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
-			} elseif ( $cmr->get( 'name' ) !== $this->vals['name'] ) {
-				return $this->failure( 'wrong_consumer_key', 'mwoauth-wrong-consumer-key' );
 			} elseif ( $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED ) {
 				return $this->failure( 'not_accepted', 'mwoauth-consumer-not-accepted' );
 			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthsuppress' ) ) {
@@ -173,7 +174,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$logEntry->setRelations( array(
 				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
 			) );
-			$logid = $logEntry->insert( $dbw );
+			$logEntry->insert( $dbw );
 
 			return $this->success( $cmr );
 		case 'approve':
@@ -208,7 +209,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$logEntry->setRelations( array(
 				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
 			) );
-			$logid = $logEntry->insert( $dbw );
+			$logEntry->insert( $dbw );
 
 			// @TODO: email/notifications?
 
@@ -241,7 +242,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$logEntry->setRelations( array(
 				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
 			) );
-			$logid = $logEntry->insert( $dbw );
+			$logEntry->insert( $dbw );
 
 			// @TODO: email/notifications?
 
@@ -278,7 +279,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$logEntry->setRelations( array(
 				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
 			) );
-			$logid = $logEntry->insert( $dbw );
+			$logEntry->insert( $dbw );
 
 			// @TODO: email/notifications?
 
@@ -311,7 +312,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$logEntry->setRelations( array(
 				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
 			) );
-			$logid = $logEntry->insert( $dbw );
+			$logEntry->insert( $dbw );
 
 			// @TODO: email/notifications?
 
