@@ -92,7 +92,7 @@ class MWOAuthConsumerRegistration extends SpecialPage {
 						'type' => 'textarea',
 						'label-message' => 'mwoauth-consumer-restrictions',
 						'required' => true,
-						'default' => FormatJSON::encode( MWOAuthConsumer::newRestictions() ),
+						'default' => FormatJSON::encode( MWOAuthConsumer::newRestrictions() ),
 						'rows' => 5
 					),
 					'rsaKey' => array(
