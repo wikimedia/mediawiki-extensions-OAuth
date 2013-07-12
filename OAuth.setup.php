@@ -31,16 +31,11 @@ class MWOAuthSetup {
 		$classes['MWOAuthAPISetup'] = "$apiDir/MWOAuthAPI.setup.php";
 		$classes['MWOAuthUISetup'] = "$frontendDir/MWOAuthUI.setup.php";
 
-		# API for "initiate"?
-		# API for "token"?
-
+		# Special pages
 		$classes['SpecialOAuth'] = "$frontendDir/specials/SpecialOAuth.php";
 		$classes['MWOAuthConsumerRegistration'] = "$spActionDir/MWOAuthConsumerRegistration.php";
 		$classes['MWOAuthManageConsumers'] = "$spActionDir/MWOAuthManageConsumers.php";
 		$classes['MWOAuthManageMyGrants'] = "$spActionDir/MWOAuthManageMyGrants.php";
-		# Special:MWOAuth/authorize
-		# Special:MWOAuth/initiate?
-		# Special:MWOAuth/token?
 
 		# Utility functions
 		$classes['MWOAuthUtils'] = "$backendDir/MWOAuthUtils.php";

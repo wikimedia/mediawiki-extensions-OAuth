@@ -208,7 +208,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $db, $consumerKey ), $this->getContext() );
 		if ( !$cmr ) {
-			$this->getOutput()->addHtml( $this->msg( 'mwoauth-invalid-consumer-key' )->escaped() );
+			$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 			return;
 		} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			throw new PermissionsError( 'mwoauthviewsuppressed' );
@@ -218,12 +218,11 @@ class MWOAuthManageConsumers extends SpecialPage {
 
 		$form = new HTMLForm(
 			array(
-				'consumerKey' => array(
-					'type' => 'text',
+				'consumerKeyShown' => array(
+					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-key',
 					'default' => $cmr->get( 'consumerKey' ),
-					'size' => '40',
-					'readonly' => true
+					'size' => '40'
 				),
 				'name' => array(
 					'type' => 'info',
@@ -238,15 +237,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 				'user' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-user',
-					'default' => $cmr->get( 'userId', array( 'User', 'whoIs' ) )
-				),
-				'stage' => array(
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-stage',
-					'default' => $cmr->get( 'deleted' )
-						? $this->msg( 'mwoauth-consumer-stage-suppressed' )
-						: $this->msg( 'mwoauth-consumer-stage-' .
-							self::$stageKeyMap[$cmr->get( 'stage' )] )
+					'default' => $cmr->get( 'userId', 'User::whoIs' )
 				),
 				'description' => array(
 					'type' => 'textarea',
@@ -262,7 +253,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 				),
 				'grants'  => array(
 					'type' => 'textarea',
-					'label-message' => 'mwoauth-consumer-grantsneeded',
+					'label-message' => 'mwoauth-consumer-grantsneeded-json',
 					'default' => $cmr->get( 'grants', array( 'FormatJSON', 'encode' ) ),
 					'readonly' => true,
 					'rows' => 5
@@ -279,7 +270,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 				),
 				'restrictions' => array(
 					'type' => 'textarea',
-					'label-message' => 'mwoauth-consumer-restrictions',
+					'label-message' => 'mwoauth-consumer-restrictions-json',
 					'default' => $cmr->get( 'restrictions', array( 'FormatJSON', 'encode' ) ),
 					'readonly' => true,
 					'rows' => 5
@@ -296,10 +287,13 @@ class MWOAuthManageConsumers extends SpecialPage {
 					'readonly' => true,
 					'rows' => 5
 				),
-				'reason' => array(
-					'type' => 'text',
-					'label-message' => 'mwoauthmanageconsumers-reason',
-					'required' => true
+				'stage' => array(
+					'type' => 'info',
+					'label-message' => 'mwoauth-consumer-stage',
+					'default' => $cmr->get( 'deleted' )
+						? $this->msg( 'mwoauth-consumer-stage-suppressed' )
+						: $this->msg( 'mwoauth-consumer-stage-' .
+							self::$stageKeyMap[$cmr->get( 'stage' )] )
 				),
 				'action' => array(
 					'type' => 'radio',
@@ -314,7 +308,16 @@ class MWOAuthManageConsumers extends SpecialPage {
 						$this->msg( 'mwoauthmanageconsumers-disable' )->escaped() => 'disable',
 						$this->msg( 'mwoauthmanageconsumers-dsuppress' )->escaped() => 'dsuppress',
 						$this->msg( 'mwoauthmanageconsumers-reenable' )->escaped()  => 'reenable' )
-				)
+				),
+				'reason' => array(
+					'type' => 'text',
+					'label-message' => 'mwoauthmanageconsumers-reason',
+					'required' => true
+				),
+				'consumerKey' => array(
+					'type' => 'hidden',
+					'default' => $cmr->get( 'consumerKey' )
+				),
 			),
 			$this->getContext()
 		);
@@ -343,7 +346,18 @@ class MWOAuthManageConsumers extends SpecialPage {
 			$this->getOutput()->addWikiMsg( "mwoauthmanageconsumers-success-$type" );
 			$this->getOutput()->returnToMain();
 		} else {
-			# Set a key to who is looking at this request
+			$out = $this->getOutput();
+			// Show all of the status updates
+			$logPage = new LogPage( 'mwoauthconsumer' );
+			$out->addHTML( Xml::element( 'h2', null, $logPage->getName()->text() ) );
+			LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '',
+				array(
+					'conds'  => array(
+						'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ),
+					'flags'  => LogEventsList::NO_EXTRA_USER_LINKS
+				)
+			);
+			// Set a key to who is looking at this request
 			$key = wfMemcKey( 'mwoauth', 'manageconsumers', 'view', $cmr->get( 'id' ) );
 			$wgMemc->set( $key, $user->getID(), 60 * 5 );
 		}
@@ -356,18 +370,17 @@ class MWOAuthManageConsumers extends SpecialPage {
 	 * @return void
 	 */
 	protected function showConsumerList() {
-		$out = $this->getOutput();
-
 		$pager = new MWOAuthManageConsumersPager( $this, array(), $this->stage );
-
 		if ( $pager->getNumRows() ) {
-			$out->addHTML( $pager->getNavigationBar() );
-			$out->addHTML( $pager->getBody() );
-			$out->addHTML( $pager->getNavigationBar() );
+			$this->getOutput()->addHTML( $pager->getNavigationBar() );
+			$this->getOutput()->addHTML( $pager->getBody() );
+			$this->getOutput()->addHTML( $pager->getNavigationBar() );
 		} else {
-			$out->addWikiMsg( "mwoauthmanageconsumers-none-{$this->stageKey}" );
+			// Uses messages mwoauthmanageconsumers-none-proposed,
+			// mwoauthmanageconsumers-none-rejected, mwoauthmanageconsumers-none-approved,
+			// mwoauthmanageconsumers-none-disabled, mwoauthmanageconsumers-none-reenabled
+			$this->getOutput()->addWikiMsg( "mwoauthmanageconsumers-none-{$this->stageKey}" );
 		}
-
 		# Every 30th view, prune old deleted items
 		if ( 0 == mt_rand( 0, 29 ) ) {
 			MWOAuthUtils::runAutoMaintenance( MWOAuthUtils::getCentralDB( DB_MASTER ) );
@@ -437,7 +450,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 					return $s . ' [' . $cmr->get( 'version' ) . ']'; } )
 			),
 			'mwoauthmanageconsumers-user' => htmlspecialchars(
-				$cmr->get( 'userId', array( 'User', 'whoIs' ) )
+				$cmr->get( 'userId', 'User::whoIs' )
 			),
 			'mwoauthmanageconsumers-description' => htmlspecialchars(
 				$cmr->get( 'description', function( $s ) use ( $lang ) {

@@ -132,7 +132,7 @@ class MWOAuthManageMyGrants extends UnlistedSpecialPage {
 				'user' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-user',
-					'default' => $cmr->get( 'userId', array( 'User', 'whoIs' ) )
+					'default' => $cmr->get( 'userId', 'User::whoIs' )
 				),
 				'version' => array(
 					'type' => 'info',
@@ -158,7 +158,7 @@ class MWOAuthManageMyGrants extends UnlistedSpecialPage {
 						$this->msg( 'mwoauthmanagemygrants-grantaccept' )->escaped() => 'grant'
 					),
 					'rows' => array_combine(
-						$cmr->get( 'grants' ), // @TODO: use messages
+						array_map( 'MWOAuthUtils::grantName', $cmr->get( 'grants' ) ),
 						$cmr->get( 'grants' )
 					),
 					'default' => array_map(
@@ -218,16 +218,13 @@ class MWOAuthManageMyGrants extends UnlistedSpecialPage {
 	 * @return void
 	 */
 	protected function showConsumerList() {
-		$out = $this->getOutput();
-
 		$pager = new MWOAuthManageMyGrantsPager( $this, array(), $this->getUser()->getId() );
-
 		if ( $pager->getNumRows() ) {
-			$out->addHTML( $pager->getNavigationBar() );
-			$out->addHTML( $pager->getBody() );
-			$out->addHTML( $pager->getNavigationBar() );
+			$this->getOutput()->addHTML( $pager->getNavigationBar() );
+			$this->getOutput()->addHTML( $pager->getBody() );
+			$this->getOutput()->addHTML( $pager->getNavigationBar() );
 		} else {
-			$out->addWikiMsg( "mwoauthmanagemygrants-none" );
+			$this->getOutput()->addWikiMsg( "mwoauthmanagemygrants-none" );
 		}
 	}
 

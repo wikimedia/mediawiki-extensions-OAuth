@@ -42,12 +42,7 @@ class MWOAuthUISetup {
 	public static function defineLogActionHandlers(
 		&$logActions, &$logActionsHandlers
 	) {
-		$logActions['mwoauthconsumer/propose'] = 'mwoauth-logentry-consumer-propose';
-		$logActions['mwoauthconsumer/update'] = 'mwoauth-logentry-consumer-update';
-		$logActions['mwoauthconsumer/approve'] = 'mwoauth-logentry-consumer-approve';
-		$logActions['mwoauthconsumer/reject'] = 'mwoauth-logentry-consumer-reject';
-		$logActions['mwoauthconsumer/disable'] = 'mwoauth-logentry-consumer-disable';
-		$logActions['mwoauthconsumer/reenable'] = 'mwoauth-logentry-consumer-reenable';
+		$logActionsHandlers['mwoauthconsumer/*'] = 'LogFormatter';
 	}
 
 	/**

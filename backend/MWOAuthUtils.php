@@ -44,7 +44,7 @@ class MWOAuthUtils {
 			MWOAuthConsumer::STAGE_REJECTED => 0,
 		);
 		foreach ( $res as $row ) {
-			$table[(int)$row->oarc_stage] = $row->count;
+			$table[(int)$row->oarc_stage] = (int)$row->count;
 		}
 		return $table;
 	}
@@ -78,16 +78,98 @@ class MWOAuthUtils {
 	 */
 	public static function getCacheKey( /* varags */ ) {
 		global $wgMWOAuthCentralWiki;
+
 		$args = func_get_args();
 		return "OAUTH:$wgMWOAuthCentralWiki:" . implode( ':', $args );
 	}
 
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param DatabaseBase $dbw
 	 * @return void
 	 */
-	public static function runAutoMaintenance( DatabaseBase $db ) {
-		// @TODO: move old rejected => expired and DELETE even older expired
+	public static function runAutoMaintenance( DatabaseBase $dbw ) {
+		global $wgMWOAuthRequestExpirationAge;
+
+		if ( $wgMWOAuthRequestExpirationAge <= 0 ) {
+			return;
+		}
+
+		$cutoff = $dbw->timestamp( time() - $wgMWOAuthRequestExpirationAge );
+		$dbw->onTransactionIdle( function() use ( $dbw ) {
+			$dbw->update( 'oauth_registered_consumer',
+				array( 'oarc_stage' => MWOAuthConsumer::STAGE_EXPIRED,
+					'oarc_stage_timestamp' => $dbw->timestamp() ),
+				array( 'oarc_stage' => MWOAuthConsumer::STAGE_PROPOSED,
+					'oarc_stage_timestamp < ' . $dbw->addQuotes( $cutoff ) ),
+				__METHOD__
+			);
+		} );
+	}
+
+	/**
+	 * @return array
+	 */
+	public static function getValidGrants() {
+		global $wgMWOAuthGrantPermissions;
+
+		return array_keys( $wgMWOAuthGrantPermissions );
+	}
+
+	/**
+	 * @param string $grant
+	 * @return Message
+	 */
+	public static function grantName( $grant ) {
+		$msg = wfMessage( "mwoauth-grant-$grant" );
+		return $msg->exists() ? $msg : wfMessage( "mwoauth-grant-generic", $grant );
+	}
+
+	/**
+	 * @param array|string $grants
+	 * @return array
+	 */
+	public static function getGrantRights( $grants ) {
+		global $wgMWOAuthGrantPermissions;
+
+		$rights = array();
+		foreach ( (array)$grants as $grant ) {
+			if ( isset( $wgMWOAuthGrantPermissions[$grant] ) ) {
+				$rights = array_merge( $rights,
+					array_keys( array_filter( $wgMWOAuthGrantPermissions[$grant] ) ) );
+			}
+		}
+		return array_unique( $rights );
+	}
+
+	/**
+	 * @param array $grants
+	 * @return bool
+	 */
+	public static function grantsAreValid( array $grants ) {
+		return array_diff( $grants, self::getValidGrants() ) === array();
+	}
+
+	/**
+	 * @param array $restrictions
+	 * @return bool
+	 */
+	public static function restrictionsAreValid( array $restrictions ) {
+		static $validKeys = array( 'IPAddresses' );
+		static $neededKeys = array( 'IPAddresses' );
+
+		$keys = array_keys( $restrictions );
+		if ( array_diff( $keys, $validKeys ) ) {
+			return false;
+		} elseif ( array_diff( $neededKeys, $keys ) ) {
+			return false;
+		}
+		foreach ( $restrictions['IPAddresses'] as $ip ) {
+			if ( !IP::isIPAddress( $ip ) ) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 }
