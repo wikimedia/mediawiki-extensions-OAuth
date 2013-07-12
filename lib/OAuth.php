@@ -462,12 +462,12 @@ class OAuthRequest {
 	 */
 	public function to_header( $realm = null ) {
 		$first = true;
-	if( $realm ) {
-			$out = 'Authorization: OAuth realm = "' . OAuthUtil::urlencode_rfc3986( $realm ) . '"';
+		if( $realm ) {
+			$out = 'Authorization: OAuth realm="' . OAuthUtil::urlencode_rfc3986( $realm ) . '"';
 			$first = false;
-		} else
+		} else {
 			$out = 'Authorization: OAuth';
-
+		}
 		$total = array();
 		foreach ( $this->parameters as $k => $v ) {
 			if ( substr( $k, 0, 5 ) != "oauth" ) continue;
@@ -476,7 +476,7 @@ class OAuthRequest {
 			}
 			$out .= ( $first ) ? ' ' : ',';
 			$out .= OAuthUtil::urlencode_rfc3986( $k ) .
-				' = "' .
+				'="' .
 				OAuthUtil::urlencode_rfc3986( $v ) .
 				'"';
 			$first = false;
@@ -798,9 +798,11 @@ class OAuthUtil {
 	// May 28th, 2010 - method updated to tjerk.meesters for a speed improvement.
 	//									see http://code.google.com/p/oauth/issues/detail?id = 163
 	public static function split_header( $header, $only_allow_oauth_parameters = true ) {
+		wfDebugLog( 'OAuth', __METHOD__ . ": pulling headers from '$header'" );
 		$params = array();
-		if ( preg_match_all( '/( ' . ( $only_allow_oauth_parameters ? 'oauth_' : '' ) . '[a-z_-]* ) = ( :?"( [^"]* )"|( [^,]* ) )/', $header, $matches ) ) {
+		if ( preg_match_all( '/(' . ( $only_allow_oauth_parameters ? 'oauth_' : '' ) . '[a-z_-]*)=(:?"([^"]*)"|([^,]*))/', $header, $matches ) ) {
 			foreach ( $matches[1] as $i => $h ) {
+				wfDebugLog( 'OAuth', __METHOD__ . ": '$i' => '$h'" );
 				$params[$h] = OAuthUtil::urldecode_rfc3986( empty( $matches[3][$i] ) ? $matches[4][$i] : $matches[3][$i] );
 			}
 			if ( isset( $params['realm'] ) ) {
