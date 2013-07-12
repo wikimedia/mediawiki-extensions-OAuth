@@ -37,7 +37,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
 				}
 			),
-			'update'  => array(
+			'update'   => array(
 				'accessToken' => '/^[0-9a-f]{32}$/',
 				'wiki'        => function( $s ) {
 					return WikiMap::getWiki( $s ) || $s === '*'; },
@@ -46,7 +46,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
 				}
 			),
-			'renounce'  => array(
+			'renounce' => array(
 				'accessToken' => '/^[0-9a-f]{32}$/',
 			),
 		);
@@ -68,8 +68,6 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 	}
 
 	protected function processAction( $action ) {
-		global $wgMemc;
-
 		$user = $this->getUser(); // proposer or admin
 		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
 

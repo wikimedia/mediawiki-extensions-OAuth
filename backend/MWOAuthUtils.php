@@ -109,7 +109,7 @@ class MWOAuthUtils {
 		}
 
 		$cutoff = $dbw->timestamp( time() - $wgMWOAuthRequestExpirationAge );
-		$dbw->onTransactionIdle( function() use ( $dbw ) {
+		$dbw->onTransactionIdle( function() use ( $dbw, $cutoff ) {
 			$dbw->update( 'oauth_registered_consumer',
 				array( 'oarc_stage' => MWOAuthConsumer::STAGE_EXPIRED,
 					'oarc_stage_timestamp' => $dbw->timestamp() ),

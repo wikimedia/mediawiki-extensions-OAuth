@@ -44,7 +44,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $registration;
 	/** @var string Secret hmac key */
 	protected $secretKey;
-	/** @var string RSA key */
+	/** @var string Public RSA key */
 	protected $rsaKey;
 	/** @var array List of grants */
 	protected $grants;
@@ -64,7 +64,6 @@ class MWOAuthConsumer extends MWOAuthDAO {
 
 	protected static function getSchema() {
 		return array(
-			'idField'        => 'id',
 			'table'          => 'oauth_registered_consumer',
 			'fieldColumnMap' => array(
 				'id'                 => 'oarc_id',
@@ -86,6 +85,8 @@ class MWOAuthConsumer extends MWOAuthDAO {
 				'stageTimestamp'     => 'oarc_stage_timestamp',
 				'deleted'            => 'oarc_deleted'
 			),
+			'idField'        => 'id',
+			'autoIncrField'  => 'id',
 		);
 	}
 
@@ -96,9 +97,9 @@ class MWOAuthConsumer extends MWOAuthDAO {
 			'version'         => 'userCanSee',
 			'callbackUrl'     => 'userCanSee',
 			'description'     => 'userCanSee',
+			'rsaKey'          => 'userCanSee',
 			'email'           => 'userCanSeeEmail',
 			'secretKey'       => 'userCanSeePrivate',
-			'rsaKey'          => 'userCanSeePrivate',
 			'restrictions'    => 'userCanSeePrivate',
 		);
 	}

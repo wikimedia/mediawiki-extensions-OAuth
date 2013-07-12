@@ -117,12 +117,10 @@ class MWOAuthManageMyGrants extends UnlistedSpecialPage {
 
 		$form = new HTMLForm(
 			array(
-				'accessToken' => array(
-					'type' => 'text',
+				'accessTokenShown' => array(
+					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-accesstoken',
-					'default' => $cmra->get( 'accessToken' ),
-					'size' => '40',
-					'readonly' => true
+					'default' => $cmra->get( 'accessToken' )
 				),
 				'name' => array(
 					'type' => 'info',
@@ -184,7 +182,11 @@ class MWOAuthManageMyGrants extends UnlistedSpecialPage {
 					'options' => array(
 						$this->msg( 'mwoauthmanagemygrants-update' )->escaped() => 'update',
 						$this->msg( 'mwoauthmanagemygrants-renounce' )->escaped() => 'renounce' )
-				)
+				),
+				'accessToken' => array(
+					'type' => 'hidden',
+					'default' => $cmra->get( 'accessToken' )
+				),
 			),
 			$this->getContext()
 		);
@@ -251,7 +253,7 @@ class MWOAuthManageMyGrants extends UnlistedSpecialPage {
 			wfTimestamp( TS_MW, $cmr->get( 'registration' ) ), true );
 
 		$encStageKey = htmlspecialchars( $stageKey ); // sanity
-		$r = "<li class='mw-mwoauthmanagemygrants-type-{$encStageKey}'>";
+		$r = "<li class='mw-mwoauthmanagemygrants-{$encStageKey}'>";
 
 		$r .= $time . " (<strong>{$link}</strong>)";
 
@@ -271,7 +273,7 @@ class MWOAuthManageMyGrants extends UnlistedSpecialPage {
 			'mwoauthmanagemygrants-consumerkey' => $cmr->get( 'consumerKey' )
 		);
 
-		$r .= "<table class='mw-mwoauthmanagemygrants-body-{$encStageKey}' " .
+		$r .= "<table class='mw-mwoauthmanagemygrants-body' " .
 			"cellspacing='1' cellpadding='3' border='1' width='100%'>";
 		foreach ( $data as $msg => $value ) {
 			$r .= '<tr>' .
@@ -280,7 +282,6 @@ class MWOAuthManageMyGrants extends UnlistedSpecialPage {
 				'</tr>';
 		}
 		$r .= '</table>';
-
 		$r .= '</li>';
 
 		return $r;
@@ -301,6 +302,9 @@ class MWOAuthManageMyGrantsPager extends ReverseChronologicalPager {
 
 		$this->mConds[] = 'oaac_consumer_id = oarc_id';
 		$this->mConds['oaac_user_id'] = $user;
+		if ( !$this->getUser()->isAllowed( 'mwoauthviewsuppressed' ) ) {
+			$this->mConds['oarc_deleted'] = 0;
+		}
 
 		parent::__construct();
 		# Treat 20 as the default limit, since each entry takes up 5 rows.

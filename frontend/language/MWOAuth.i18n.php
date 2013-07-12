@@ -55,6 +55,10 @@ $messages['en'] = array(
 	'mwoauth-consumer-stage-suppressed' => 'suppressed',
 
 	'mwoauthconsumerregistration' => 'OAuth consumer registration',
+	'mwoauthconsumerregistration-navigation' => 'Navigation:',
+	'mwoauthconsumerregistration-propose' => 'Propose new consumer',
+	'mwoauthconsumerregistration-list' => 'My consumer list',
+	'mwoauthconsumerregistration-main' => 'Main',
 	'mwoauthconsumerregistration-propose-text' => 'Use the form below to propose a new OAuth consumer (see http://oauth.net).
 
 A few recommendations and remarks:
@@ -68,7 +72,7 @@ A few recommendations and remarks:
 All values here will overwrite any previous ones. Do not leave blank fields unless you intend to clear those values.',
 	'mwoauthconsumerregistration-maintext' => 'This page is meant for proposing and updating OAuth (see http://oauth.net) consumer applications in this site\'s registry.
 
-From here, you can [[Special:MWOAuthConsumerRegistration/propose|propose a new consumer]] or [[Special:MWOAuthConsumerRegistration/list|manage existing consumers]].',
+From here, you can [[Special:MWOAuthConsumerRegistration/propose|propose a new consumer]] or [[Special:MWOAuthConsumerRegistration/list|manage your existing consumers]].',
 	'mwoauthconsumerregistration-propose-legend' => 'New OAuth consumer application',
 	'mwoauthconsumerregistration-update-legend' => 'Update OAuth consumer application',
 	'mwoauthconsumerregistration-propose-submit' => 'Propose consumer',
@@ -79,6 +83,7 @@ From here, you can [[Special:MWOAuthConsumerRegistration/propose|propose a new c
 	'mwoauthconsumerregistration-description' => 'Description',
 	'mwoauthconsumerregistration-email' => 'Contact email',
 	'mwoauthconsumerregistration-consumerkey' => 'Consumer key',
+	'mwoauthconsumerregistration-stage' => 'Status',
 	'mwoauthconsumerregistration-lastchange' => 'Last change',
 	'mwoauthconsumerregistration-manage' => 'manage',
 	'mwoauthconsumerregistration-proposed' => 'Your OAuth consumer request has been received.
@@ -131,7 +136,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 
 	'mwoauthmanagemygrants' => 'Manage account OAuth grants',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
-	'mwoauthmanagemygrants-showlist' => 'Consumer list',
+	'mwoauthmanagemygrants-showlist' => 'Accepted consumer list',
 	'mwoauthmanagemygrants-none' => 'No consumers have access on behalf of your account.',
 	'mwoauthmanagemygrants-name' => 'Consumer name',
 	'mwoauthmanagemygrants-user' => 'Publisher',
@@ -139,12 +144,12 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthmanagemygrants-wiki' => 'Applicable wiki',
 	'mwoauthmanagemygrants-wikiallowed' => 'Allowed on wiki',
 	'mwoauthmanagemygrants-grants' => 'Applicable grants',
-	'mwoauthmanagemygrants-grantsallowed' => 'Grants allowed:',
+	'mwoauthmanagemygrants-grantsallowed' => 'Grants allowed',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Applicable grants allowed:',
 	'mwoauthmanagemygrants-consumerkey' => 'Consumer key',
-	'mwoauthmanagemygrants-review' => 'Review/manage access',
+	'mwoauthmanagemygrants-review' => 'review/manage access',
 	'mwoauthmanagemygrants-grantaccept' => 'Granted to consumer',
-	'mwoauthmanagemygrants-confirm-text' => 'Use the form below to revoke access or grants for an OAuth consumer to act on your behalf.
+	'mwoauthmanagemygrants-confirm-text' => 'Use the form below to revoke access or change grants for an OAuth consumer to act on your behalf.
 
 Note that if you authorized a consumer to only have access to a subset of wikis (site projects), then there will be multiple access tokens for that consumer.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Manage consumer access token',
@@ -157,10 +162,10 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 
 	'logentry-mwoauthconsumer-propose' => '$1 proposed an OAuth consumer (consumer key $4)',
 	'logentry-mwoauthconsumer-update' => '$1 updated an OAuth consumer (consumer key $4)',
-	'logentry-mwoauthconsumer-approve' => '$1 approved an OAuth consumer by $2 (consumer key $4)',
-	'logentry-mwoauthconsumer-reject' => '$1 rejected an OAuth consumer by $2 (consumer key $4)',
-	'logentry-mwoauthconsumer-disable' => '$1 disabled an OAuth consumer by $2 (consumer key $4)',
-	'logentry-mwoauthconsumer-reenable' => '$1 re-enabled an OAuth consumer by $2 (consumer key $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 approved an OAuth consumer by $3 (consumer key $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 rejected an OAuth consumer by $3 (consumer key $4)',
+	'logentry-mwoauthconsumer-disable' => '$1 disabled an OAuth consumer by $3 (consumer key $4)',
+	'logentry-mwoauthconsumer-reenable' => '$1 re-enabled an OAuth consumer by $3 (consumer key $4)',
 
 	'mwoauthconsumer-consumer-logpage' => 'OAuth consumer log',
 	'mwoauthconsumer-consumer-logpagetext' => 'Log of approvals, rejections, and disabling of registered OAuth consumers.',
@@ -249,6 +254,10 @@ Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hi
 	'mwoauth-consumer-stage-disabled' => '{{Identical|Disabled}}',
 	'mwoauth-consumer-stage-suppressed' => '{{Identical|Suppressed}}',
 	'mwoauthconsumerregistration' => '{{doc-special|MWOAuthConsumerRegistration}}',
+	'mwoauthconsumerregistration-navigation' => 'Used in page subtitle',
+	'mwoauthconsumerregistration-propose' => 'Used in page subtitle link text',
+	'mwoauthconsumerregistration-list' => 'Used in page subtitle link text',
+	'mwoauthconsumerregistration-main' => 'Used in page subtitle link text',
 	'mwoauthconsumerregistration-propose-legend' => 'Used as fieldset label.',
 	'mwoauthconsumerregistration-update-legend' => 'Used as fieldset label.',
 	'mwoauthconsumerregistration-propose-submit' => 'Used as label for the Submit button.',

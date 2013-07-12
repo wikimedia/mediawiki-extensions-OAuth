@@ -96,7 +96,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 	 * Show other sub-queue links. Grey out the current one.
 	 * When viewing a request, show them all.
 	 *
-	 * @param type $consumerKey
+	 * @param string $consumerKey
 	 * @return void
 	 */
 	protected function addQueueSubtitleLinks( $consumerKey ) {
@@ -129,8 +129,8 @@ class MWOAuthManageConsumers extends SpecialPage {
 			$this->getTitle(), $this->msg( 'mwoauthmanageconsumers-main' )->escaped() ) );
 
 		$this->getOutput()->setSubtitle(
-			"<strong>" . $this->msg( 'mwoauthmanageconsumers-type' )->escaped() . " <i>" .
-			"</i></strong> [{$linkHtml}] <strong>{$viewall}</strong>" );
+			"<strong>" . $this->msg( 'mwoauthmanageconsumers-type' )->escaped() .
+			"</strong> [{$linkHtml}] <strong>{$viewall}</strong>" );
 	}
 
 	/**
@@ -216,6 +216,25 @@ class MWOAuthManageConsumers extends SpecialPage {
 		$pending = !in_array( $cmr->get( 'stage' ), array(
 			MWOAuthConsumer::STAGE_APPROVED, MWOAuthConsumer::STAGE_DISABLED ) );
 
+		if ( $pending ) {
+			$opts = array(
+				$this->msg( 'mwoauthmanageconsumers-approve' )->escaped() => 'approve',
+				$this->msg( 'mwoauthmanageconsumers-reject' )->escaped()  => 'reject'
+			);
+			if ( $this->getUser()->isAllowed( 'mwoauthsuppress' ) ) {
+				$msg = $this->msg( 'mwoauthmanageconsumers-rsuppress' )->escaped();
+				$opts["<strong>$msg</strong>"] = 'rsuppress';
+			}
+		} else {
+			$opts = array(
+				$this->msg( 'mwoauthmanageconsumers-disable' )->escaped() => 'disable',
+				$this->msg( 'mwoauthmanageconsumers-reenable' )->escaped()  => 'reenable'
+			);
+			if ( $this->getUser()->isAllowed( 'mwoauthsuppress' ) ) {
+				$msg = $this->msg( 'mwoauthmanageconsumers-dsuppress' )->escaped();
+				$opts["<strong>$msg</strong>"] = 'dsuppress';
+			}
+		}
 		$form = new HTMLForm(
 			array(
 				'consumerKeyShown' => array(
@@ -299,15 +318,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 					'type' => 'radio',
 					'label-message' => 'mwoauthmanageconsumers-action',
 					'required' => true,
-					'options' => $pending
-					? array(
-						$this->msg( 'mwoauthmanageconsumers-approve' )->escaped() => 'approve',
-						$this->msg( 'mwoauthmanageconsumers-reject' )->escaped()  => 'reject',
-						$this->msg( 'mwoauthmanageconsumers-rsuppress' )->escaped() => 'rsuppress' )
-					: array(
-						$this->msg( 'mwoauthmanageconsumers-disable' )->escaped() => 'disable',
-						$this->msg( 'mwoauthmanageconsumers-dsuppress' )->escaped() => 'dsuppress',
-						$this->msg( 'mwoauthmanageconsumers-reenable' )->escaped()  => 'reenable' )
+					'options' => $opts
 				),
 				'reason' => array(
 					'type' => 'text',
@@ -418,7 +429,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 			wfTimestamp( TS_MW, $cmr->get( 'registration' ) ), true );
 
 		$encStageKey = htmlspecialchars( $stageKey ); // sanity
-		$r = "<li class='mw-mwoauthmanageconsumers-type-{$encStageKey}'>";
+		$r = "<li class='mw-mwoauthmanageconsumers-{$encStageKey}'>";
 
 		$r .= $time . " (<strong>{$link}</strong>)";
 
@@ -461,7 +472,7 @@ class MWOAuthManageConsumers extends SpecialPage {
 			'mwoauthmanageconsumers-lastchange' => $logHtml
 		);
 
-		$r .= "<table class='mw-mwoauthmanageconsumers-body-{$encStageKey}' " .
+		$r .= "<table class='mw-mwoauthmanageconsumers-body' " .
 			"cellspacing='1' cellpadding='3' border='1' width='100%'>";
 		foreach ( $data as $msg => $encValue ) {
 			$r .= '<tr>' .

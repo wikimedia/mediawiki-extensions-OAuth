@@ -23,6 +23,7 @@
  */
 abstract class MWOAuthDAO implements IDBAccessObject {
 	private $daoOrigin = 'new'; // string; object construction origin
+	private $daoPending = true; // boolean; whether fields changed or the field is new
 
 	/**
 	 * @throws Exception
@@ -120,6 +121,9 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 			}
 			$old[$name] = $this->$name;
 			$this->$name = $value;
+			if ( $old[$name] !== $value ) {
+				$this->daoPending = true;
+			}
 		}
 		$this->normalizeValues();
 		return $old;
@@ -141,19 +145,32 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 		$uniqueId = $this->getIdValue();
 		$idColumn = static::getIdColumn();
 		if ( $this->daoOrigin === 'db' ) {
-			$dbw->update(
-				static::getTable(),
-				$this->getRowArray( $dbw ),
-				array( $idColumn => $uniqueId ),
-				__METHOD__
-			);
-			return $dbw->affectedRows() > 0;
+			if ( $this->daoPending ) {
+				wfDebug( get_class( $this ) . ': performing DB update; object changed.' );
+				$dbw->update(
+					static::getTable(),
+					$this->getRowArray( $dbw ),
+					array( $idColumn => $uniqueId ),
+					__METHOD__
+				);
+				$afield = static::getAutoIncrField();
+				if ( $afield !== null ) { // update field for auto-increment field
+					$this->$afield = $dbw->insertId();
+				}
+				$this->daoPending = false;
+				return $dbw->affectedRows() > 0;
+			} else {
+				wfDebug( get_class( $this ) . ': skipping DB update; object unchanged.' );
+				return false; // short-circuit
+			}
 		} else {
+			wfDebug( get_class( $this ) . ': performing DB update; new object.' );
 			$dbw->insert(
 				static::getTable(),
 				$this->getRowArray( $dbw ),
 				__METHOD__
 			);
+			$this->daoPending = false;
 			return true;
 		}
 	}
@@ -166,12 +183,13 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	public function delete( DatabaseBase $dbw ) {
 		$uniqueId = $this->getIdValue();
 		$idColumn = static::getIdColumn();
-		if ( $uniqueId ) {
+		if ( $this->daoOrigin === 'db' ) {
 			$dbw->delete(
 				static::getTable(),
 				array( $idColumn => $uniqueId ),
 				__METHOD__
 			);
+			$this->daoPending = true;
 			return $dbw->affectedRows() > 0;
 		} else {
 			return false;
@@ -204,6 +222,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	 *
 	 * This should return an associative array with:
 	 *   - idField        : a field with an integer/hex UNIQUE identifier
+	 *   - autoIncrField  : a field that auto-increments in the DB (or NULL if none)
 	 *   - table          : a table name
 	 *   - fieldColumnMap : a map of field names to column names
 	 *
@@ -267,6 +286,14 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	}
 
 	/**
+	 * @return string|null
+	 */
+	final protected static function getAutoIncrField() {
+		$schema = static::getSchema();
+		return isset( $schema['autoIncrField'] ) ? $schema['autoIncrField'] : null;
+	}
+
+	/**
 	 * @return string
 	 */
 	final protected static function getIdColumn() {
@@ -295,6 +322,8 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 			$this->$field = $values[$field];
 		}
 		$this->normalizeValues();
+		$this->daoOrigin = 'new';
+		$this->daoPending = true;
 	}
 
 	/**
@@ -317,6 +346,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 		}
 		$this->loadFromValues( $values );
 		$this->daoOrigin = 'db';
+		$this->daoPending = false;
 	}
 
 	/**

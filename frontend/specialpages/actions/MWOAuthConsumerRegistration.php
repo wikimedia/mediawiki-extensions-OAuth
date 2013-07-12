@@ -31,7 +31,7 @@ class MWOAuthConsumerRegistration extends SpecialPage {
 	);
 
 	public function __construct() {
-		parent::__construct( 'MWOAuthConsumerRegistration', 'mwoauthproposeconsumer' );
+		parent::__construct( 'MWOAuthConsumerRegistration' );
 	}
 
 	public function execute( $par ) {
@@ -157,13 +157,13 @@ class MWOAuthConsumerRegistration extends SpecialPage {
 				MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
 			if ( !$cmr ) {
 				$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
-				return;
+				break;
 			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 				throw new PermissionsError( 'mwoauthviewsuppressed' );
 			} elseif ( $cmr->get( 'userId' ) !== $user->getId() ) {
 				// No not show private information to other users
 				$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
-				return;
+				break;
 			}
 
 			$form = new HTMLForm(
@@ -195,7 +195,7 @@ class MWOAuthConsumerRegistration extends SpecialPage {
 					'secretKey' => array(
 						'type' => 'password',
 						'label-message' => 'mwoauth-consumer-secretkey',
-						'size' => '45',
+						'size' => '50',
 						'required' => false,
 						'default' => $cmr->getDAO()->get( 'secretKey' ),
 					),
@@ -242,8 +242,8 @@ class MWOAuthConsumerRegistration extends SpecialPage {
 				$out->addHTML( Xml::element( 'h2', null, $logPage->getName()->text() ) );
 				LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '',
 					array(
-						'conds'  => array(
-							'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ),
+						'conds'  => array( 'ls_field' => 'OAuthConsumer',
+							'ls_value' => $cmr->get( 'consumerKey' ) ),
 						'flags'  => LogEventsList::NO_EXTRA_USER_LINKS
 					)
 				);
@@ -266,6 +266,44 @@ class MWOAuthConsumerRegistration extends SpecialPage {
 		default:
 			$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-maintext' );
 		}
+
+		$this->addSubtitleLinks( $action, $consumerKey );
+
+		$this->getOutput()->addModules( 'ext.MWOAuth' ); // CSS
+	}
+
+	/**
+	 * Show navigation links
+	 *
+	 * @param string $action
+	 * @param string $consumerKey
+	 * @return void
+	 */
+	protected function addSubtitleLinks( $action, $consumerKey ) {
+		$listLinks = array();
+		if ( $consumerKey || $action !== 'propose' ) {
+			$listLinks[] = Linker::linkKnown(
+				$this->getTitle( 'propose' ),
+				$this->msg( 'mwoauthconsumerregistration-propose' )->escaped() );
+		} else {
+			$listLinks[] = $this->msg( 'mwoauthconsumerregistration-propose' )->escaped();
+		}
+		if ( $consumerKey || $action !== 'list' ) {
+			$listLinks[] = Linker::linkKnown(
+				$this->getTitle( 'list' ),
+				$this->msg( 'mwoauthconsumerregistration-list' )->escaped() );
+		} else {
+			$listLinks[] = $this->msg( 'mwoauthconsumerregistration-list' )->escaped();
+		}
+
+		$linkHtml = $this->getLanguage()->pipeList( $listLinks );
+
+		$viewall = $this->msg( 'parentheses' )->rawParams( Linker::linkKnown(
+			$this->getTitle(), $this->msg( 'mwoauthconsumerregistration-main' )->escaped() ) );
+
+		$this->getOutput()->setSubtitle(
+			"<strong>" . $this->msg( 'mwoauthconsumerregistration-navigation' )->escaped() .
+			"</strong> [{$linkHtml}] <strong>{$viewall}</strong>" );
 	}
 
 	/**
@@ -287,10 +325,6 @@ class MWOAuthConsumerRegistration extends SpecialPage {
 
 		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
 		$encStageKey = htmlspecialchars( $stageKey ); // sanity
-		$r = "<li class='mw-mwoauthconsumerregistration-type-{$encStageKey}'>";
-
-		$r .= $time . " (<strong>{$link}</strong>)";
-
 		// Show last log entry (@TODO: title namespace?)
 		// @TODO: inject DB
 		$logHtml = '';
@@ -309,16 +343,22 @@ class MWOAuthConsumerRegistration extends SpecialPage {
 				$cmr->get( 'name', function( $s ) use ( $cmr ) {
 					return $s . ' [' . $cmr->get( 'version' ) . ']'; } )
 			),
+			'mwoauthconsumerregistration-stage' =>
+				$this->msg( "mwoauth-consumer-stage-$stageKey" )->escaped(),
 			'mwoauthconsumerregistration-description' => htmlspecialchars(
 				$cmr->get( 'description', function( $s ) use ( $lang ) {
 					return $lang->truncate( $s, 10024 ); } )
 			),
-			'mwoauthconsumerregistration-email' => htmlspecialchars( $cmr->get( 'email' ) ),
-			'mwoauthconsumerregistration-consumerkey' => htmlspecialchars( $cmr->get( 'consumerKey' ) ),
+			'mwoauthconsumerregistration-email' => htmlspecialchars(
+				$cmr->get( 'email' ) ),
+			'mwoauthconsumerregistration-consumerkey' => htmlspecialchars(
+				$cmr->get( 'consumerKey' ) ),
 			'mwoauthconsumerregistration-lastchange' => $logHtml
 		);
 
-		$r .= "<table class='mw-mwoauthconsumerregistration-body-{$encStageKey}' " .
+		$r = "<li class='mw-mwoauthconsumerregistration-{$encStageKey}'>";
+		$r .= "<span>$time (<strong>{$link}</strong>)</span>";
+		$r .= "<table class='mw-mwoauthconsumerregistration-body' " .
 			"cellspacing='1' cellpadding='3' border='1' width='100%'>";
 		foreach ( $data as $msg => $encValue ) {
 			$r .= '<tr>' .

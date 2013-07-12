@@ -39,7 +39,6 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 
 	protected static function getSchema() {
 		return array(
-			'idField'        => 'accessToken',
 			'table'          => 'oauth_accepted_consumer',
 			'fieldColumnMap' => array(
 				'wiki'         => 'oaac_wiki',
@@ -50,6 +49,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 				'grants'       => 'oaac_grants',
 				'accepted'     => 'oaac_accepted'
 			),
+			'idField'        => 'accessToken',
 		);
 	}
 

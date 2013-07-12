@@ -54,10 +54,15 @@ class MWOAuthUISetup {
 	}
 
 	/**
-	 * @param array $modules $wgResourceModules
+	 * Append resource module definitions
+	 * @param $modules Array $wgResourceModules
 	 * @return void
 	 */
 	public static function defineResourceModules( array &$modules ) {
-
+		$modules['ext.MWOAuth'] = array(
+			'styles'        => 'MWOAuth.css',
+			'localBasePath' => dirname( __FILE__ ) . '/modules',
+			'remoteExtPath' => 'OAuth/frontend/modules',
+		);
 	}
 }

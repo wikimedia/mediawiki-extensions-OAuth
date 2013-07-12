@@ -42,17 +42,18 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
 				},
 				'restrictions' => function( $s ) {
-					$restrictions = FormatJSON::decode( $s, true );
-					return MWOAuthUtils::restrictionsAreValid( $restrictions );
+					$res = FormatJSON::decode( $s, true );
+					return is_array( $res ) && MWOAuthUtils::restrictionsAreValid( $res );
 				},
 				'rsaKey'       => '/^.*$/', // @TODO: beef up
 			),
 			'update'      => array(
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
 				'restrictions' => function( $s ) {
-					$restrictions = FormatJSON::decode( $s, true );
-					return MWOAuthUtils::restrictionsAreValid( $restrictions );
+					$res = FormatJSON::decode( $s, true );
+					return is_array( $res ) && MWOAuthUtils::restrictionsAreValid( $res );
 				},
+				'secretKey'    => '/^([0-9a-f]{32})?$/',
 				'rsaKey'       => '/^.*$/', // @TODO: beef up
 				'reason'       => '/^.{0,255}$/'
 			),
@@ -160,21 +161,23 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'permission_denied', 'badaccess-group0' ); // sanity
 			}
 
-			$oldVals = $cmr->setFields( array(
+			$cmr->setFields( array(
 				'rsaKey'       => $this->vals['rsaKey'],
 				'restrictions' => FormatJSON::decode( $this->vals['restrictions'], true ),
 				'secretKey'    => $this->vals['secretKey'] ) );
-			$cmr->save( $dbw );
 
-			$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'update' );
-			$logEntry->setPerformer( $user );
-			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
-			$logEntry->setComment( $this->vals['reason'] );
-			$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
-			$logEntry->setRelations( array(
-				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
-			) );
-			$logEntry->insert( $dbw );
+			// Log if something actually changed
+			if ( $cmr->save( $dbw ) ) {
+				$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'update' );
+				$logEntry->setPerformer( $user );
+				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
+				$logEntry->setComment( $this->vals['reason'] );
+				$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
+				$logEntry->setRelations( array(
+					'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
+				) );
+				$logEntry->insert( $dbw );
+			}
 
 			return $this->success( $cmr );
 		case 'approve':
@@ -199,19 +202,21 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				'stage'          => MWOAuthConsumer::STAGE_APPROVED,
 				'stageTimestamp' => wfTimestampNow(),
 				'deleted'        => 0 ) );
-			$cmr->save( $dbw );
 
-			$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'approve' );
-			$logEntry->setPerformer( $user );
-			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
-			$logEntry->setComment( $this->vals['reason'] );
-			$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
-			$logEntry->setRelations( array(
-				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
-			) );
-			$logEntry->insert( $dbw );
+			// Log if something actually changed
+			if ( $cmr->save( $dbw ) ) {
+				$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'approve' );
+				$logEntry->setPerformer( $user );
+				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
+				$logEntry->setComment( $this->vals['reason'] );
+				$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
+				$logEntry->setRelations( array(
+					'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
+				) );
+				$logEntry->insert( $dbw );
 
-			// @TODO: email/notifications?
+				// @TODO: email/notifications?
+			}
 
 			return $this->success( $cmr );
 		case 'reject':
@@ -226,25 +231,29 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'not_proposed', 'mwoauth-consumer-not-proposed' );
 			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
+			} elseif ( $this->vals['suppress'] && !$user->isAllowed( 'mwoauthsuppress' ) ) {
+				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			}
 
 			$cmr->setFields( array(
 				'stage'          => MWOAuthConsumer::STAGE_REJECTED,
 				'stageTimestamp' => wfTimestampNow(),
 				'deleted'        => $this->vals['suppress'] ) );
-			$cmr->save( $dbw );
 
-			$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'reject' );
-			$logEntry->setPerformer( $user );
-			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
-			$logEntry->setComment( $this->vals['reason'] );
-			$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
-			$logEntry->setRelations( array(
-				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
-			) );
-			$logEntry->insert( $dbw );
+			// Log if something actually changed
+			if ( $cmr->save( $dbw ) ) {
+				$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'reject' );
+				$logEntry->setPerformer( $user );
+				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
+				$logEntry->setComment( $this->vals['reason'] );
+				$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
+				$logEntry->setRelations( array(
+					'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
+				) );
+				$logEntry->insert( $dbw );
 
-			// @TODO: email/notifications?
+				// @TODO: email/notifications?
+			}
 
 			return $this->success( $cmr );
 		case 'disable':
@@ -269,19 +278,21 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				'stage'          => MWOAuthConsumer::STAGE_DISABLED,
 				'stageTimestamp' => wfTimestampNow(),
 				'deleted'        => $this->vals['suppress'] ) );
-			$cmr->save( $dbw );
 
-			$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'disable' );
-			$logEntry->setPerformer( $user );
-			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
-			$logEntry->setComment( $this->vals['reason'] );
-			$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
-			$logEntry->setRelations( array(
-				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
-			) );
-			$logEntry->insert( $dbw );
+			// Log if something actually changed
+			if ( $cmr->save( $dbw ) ) {
+				$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'disable' );
+				$logEntry->setPerformer( $user );
+				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
+				$logEntry->setComment( $this->vals['reason'] );
+				$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
+				$logEntry->setRelations( array(
+					'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
+				) );
+				$logEntry->insert( $dbw );
 
-			// @TODO: email/notifications?
+				// @TODO: email/notifications?
+			}
 
 			return $this->success( $cmr );
 		case 'reenable':
@@ -302,19 +313,21 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				'stage'          => MWOAuthConsumer::STAGE_APPROVED,
 				'stageTimestamp' => wfTimestampNow(),
 				'deleted'        => 0 ) );
-			$cmr->save( $dbw );
 
-			$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'reenable' );
-			$logEntry->setPerformer( $user );
-			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
-			$logEntry->setComment( $this->vals['reason'] );
-			$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
-			$logEntry->setRelations( array(
-				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
-			) );
-			$logEntry->insert( $dbw );
+			// Log if something actually changed
+			if ( $cmr->save( $dbw ) ) {
+				$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'reenable' );
+				$logEntry->setPerformer( $user );
+				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
+				$logEntry->setComment( $this->vals['reason'] );
+				$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
+				$logEntry->setRelations( array(
+					'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
+				) );
+				$logEntry->insert( $dbw );
 
-			// @TODO: email/notifications?
+				// @TODO: email/notifications?
+			}
 
 			return $this->success( $cmr );
 		}
