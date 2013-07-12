@@ -73,6 +73,19 @@ class MWOAuthUtils {
 	}
 
 	/**
+	 * Test this request for an OAuth Authorization header
+	 * @param WebRequest $request the MediaWiki request
+	 * @return Boolean (true if a header was found)
+	 */
+	public static function hasOAuthHeaders( WebRequest $request ) {
+		$header = $request->getHeader( 'Authorization' );
+		if ( $header !== false && substr( $header, 0, 6 ) == 'OAuth ' ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Make a cache key for the given arguments, that (hopefully) won't clash with
 	 * anything else in your cache
 	 */
