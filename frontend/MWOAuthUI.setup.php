@@ -17,6 +17,8 @@ class MWOAuthUISetup {
 			$groups['MWOAuthManageConsumers'] = 'users';
 			$pages['MWOAuthManageMyGrants'] = 'MWOAuthManageMyGrants';
 		}
+		// I think we want to allow the handshake with any wiki
+		$pages['OAuth'] = 'SpecialOAuth';
 	}
 
 	/**

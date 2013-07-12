@@ -149,7 +149,42 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauth-logentry-consumer-reenable' => 're-enabled an OAuth consumer by $1 (consumer key $2)',
 
 	'mwoauthconsumer-consumer-logpage' => 'OAuth consumer log',
-	'mwoauthconsumer-consumer-logpagetext' => 'Log of approvals, rejections, and disabling of registered OAuth consumers.'
+	'mwoauthconsumer-consumer-logpagetext' => 'Log of approvals, rejections, and disabling of registered OAuth consumers.',
+
+
+	'mwoauth-bad-csrf-token' => 'Session failure when submitting form. Please try your submissions again.',
+	'mwoauth-bad-request' => 'There was an error in your OAuth request.',
+	'mwoauthdatastore-access-token-not-found' => 'No approved grant was found for that authorization token',
+	'mwoauthdatastore-request-token-not-found' => 'No request was found for that token',
+	'mwoauthdatastore-bad-token' => 'No token was found matching your request',
+	'mwoauthdatastore-bad-verifier' => 'The verification code provided was not valid',
+	'mwoauthdatastore-invalid-token-type' => 'The requested token type is invalid',
+	'mwoauthgrants-general-error' => 'There was an error in your OAuth request',
+	'mwoauthserver-bad-consumer' => 'No approved cosumer was found for the provided key',
+	'mwoauthserver-insufficient-rights' => 'You do not have sufficient rights to perform this action',
+	'mwoauthserver-invalid-request-token' => 'Invalid token in your request',
+	'mwoauthserver-invalid-user-hookabort' => 'This user cannot use OAuth',
+
+	'mwoauth-form-description' => 'The following application is requesting to use MediaWiki on your behalf. The application will be able to perform any actions that are allowed with the list if reqested rights below. Only allow applications that you trust to use these permissions as you would.',
+	'mwoauth-form-legal' => '',
+	'mwoauth-form-button-approve' => 'Yes, Allow',
+	'mwoauth-form-confirmation' => 'Allow this application to act on your behalf?',
+	'mwoauth-authorize-form' => 'Application Details:',
+	'mwoauth-authorize-form-user' => 'Application Author: $1',
+	'mwoauth-authorize-form-name' => 'Application Name: $1',
+	'mwoauth-authorize-form-description' => 'Application Description: $1',
+	'mwoauth-authorize-form-version' => 'Application Version: $1',
+	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-grants-heading' => 'Requested Permissions: ',
+	'mwoauth-grants-nogrants' => 'The application has not requested any permissions.',
+	'mwoauth-grants-editpages' => 'Edit Pages',
+	'mwoauth-grants-editmyinterface' => 'Edit Your Interface (Javascript and CSS) Pages',
+	'mwoauth-grants-editinterface' => 'Edit MediaWiki\'s Interface (Javascript and CSS) Pages',
+	'mwoauth-grants-movepages' => 'Move Pages',
+	'mwoauth-grants-createpages' => 'Create Pages',
+	'mwoauth-grants-deletepages' => 'Delete Pages',
+	'mwoauth-grants-upload' => 'Upload Files',
+
 );
 
 /** Message documentation (Message documentation)

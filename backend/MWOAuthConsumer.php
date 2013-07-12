@@ -38,11 +38,12 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $email;
 	/** @var string TS_MW timestamp of when email address was confirmed */
 	protected $emailAuthenticated;
+
 	/** @var string Wiki ID the application can be used on (or "*" for all) */
 	protected $wiki;
 	/** @var string TS_MW timestamp of proposal */
 	protected $registration;
-	/** @var string Secret hex token */
+	/** @var string Secret hmac key */
 	protected $secretKey;
 	/** @var string RSA key */
 	protected $rsaKey;
@@ -61,6 +62,20 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	const STAGE_REJECTED = 2;
 	const STAGE_EXPIRED  = 3;
 	const STAGE_DISABLED = 4;
+
+	/**
+	 * Magic method so that $consumer->secret and $consumer->key work. This allows MWOAuthConsumer
+	 * to be a replacement for OAuthConsumer in lib/OAuth.php without inheriting.
+	 */
+	public function __get( $prop ) {
+		if ( $prop === 'key' ) {
+			return $this->consumerKey;
+		} elseif ( $prop === 'secret' ) {
+			return $this->secretKey;
+		} else {
+			return $this->$prop;
+		}
+	}
 
 	protected static function getSchema() {
 		return array(
@@ -169,6 +184,19 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		return array( 'IPAddresses' => array( '0.0.0.0/0', '::/0' ) );
 	}
 
+	/**
+	 * @param string $verifyCode verification code
+	 * @param string $requestKey original request key from /initiate
+	 * @return string the url for redirection
+	 */
+	public function generateCallbackUrl( $verifyCode, $requestKey ) {
+		$params = array(
+			'oauth_verifier' => $verifyCode,
+			'oauth_token' => $requestKey
+		);
+		return wfAppendQuery( $this->callbackUrl, $params );
+	}
+
 	protected function normalizeValues() {
 		$this->id = (int)$this->id;
 		$this->userId = (int)$this->userId;
@@ -176,6 +204,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$this->stage = (int)$this->stage;
 		$this->stageTimestamp = wfTimestamp( TS_MW, $this->stageTimestamp );
 		$this->emailAuthenticated = wfTimestamp( TS_MW, $this->emailAuthenticated );
+
 		$this->deleted = (int)$this->deleted;
 	}
 
