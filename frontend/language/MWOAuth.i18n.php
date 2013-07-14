@@ -162,12 +162,12 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauthmanagemygrants-success-update' => 'The access token for this consumer has been updated.',
 	'mwoauthmanagemygrants-success-renounce' => 'The access token for this consumer has been deleted.',
 
-	'logentry-mwoauthconsumer-propose' => '$1 proposed an OAuth consumer (consumer key $4)',
-	'logentry-mwoauthconsumer-update' => '$1 updated an OAuth consumer (consumer key $4)',
-	'logentry-mwoauthconsumer-approve' => '$1 approved an OAuth consumer by $3 (consumer key $4)',
-	'logentry-mwoauthconsumer-reject' => '$1 rejected an OAuth consumer by $3 (consumer key $4)',
-	'logentry-mwoauthconsumer-disable' => '$1 disabled an OAuth consumer by $3 (consumer key $4)',
-	'logentry-mwoauthconsumer-reenable' => '$1 re-enabled an OAuth consumer by $3 (consumer key $4)',
+	'logentry-mwoauthconsumer-propose' => '$1 {{GENDER:$2|proposed}} an OAuth consumer (consumer key $4)',
+	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|updated}} an OAuth consumer (consumer key $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 {{GENDER:$2|approved}} an OAuth consumer by $3 (consumer key $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 {{GENDER:$2|rejected}} an OAuth consumer by $3 (consumer key $4)',
+	'logentry-mwoauthconsumer-disable' => '$1 {{GENDER:$2|disabled}} an OAuth consumer by $3 (consumer key $4)',
+	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|re-enabled}} an OAuth consumer by $3 (consumer key $4)',
 
 	'mwoauthconsumer-consumer-logpage' => 'OAuth consumer log',
 	'mwoauthconsumer-consumer-logpagetext' => 'Log of approvals, rejections, and disabling of registered OAuth consumers.',
