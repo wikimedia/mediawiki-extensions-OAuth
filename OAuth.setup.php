@@ -21,22 +21,26 @@ class MWOAuthSetup {
 		$apiDir      = "$dir/api";
 		$frontendDir = "$dir/frontend";
 		$langDir     = "$dir/frontend/language/";
-		$spActionDir = "$dir/frontend/specialpages/actions";
+		$specialsDir = "$dir/frontend/specialpages";
 		$libDir      = "$dir/lib";
 
 		# Main i18n file and special page alias file
 		$messagesFiles['MWOAuth'] = "$langDir/MWOAuth.i18n.php";
 		$messagesFiles['MWOAuthAliases'] = "$langDir/MWOAuth.alias.php";
 
+		# Setup classes
 		$classes['MWOAuthAPISetup'] = "$apiDir/MWOAuthAPI.setup.php";
 		$classes['MWOAuthUISetup'] = "$frontendDir/MWOAuthUI.setup.php";
 		$classes['MWOAuthUIHooks'] = "$frontendDir/MWOAuthUI.hooks.php";
 
 		# Special pages
-		$classes['SpecialOAuth'] = "$frontendDir/specials/SpecialOAuth.php";
-		$classes['MWOAuthConsumerRegistration'] = "$spActionDir/MWOAuthConsumerRegistration.php";
-		$classes['MWOAuthManageConsumers'] = "$spActionDir/MWOAuthManageConsumers.php";
-		$classes['MWOAuthManageMyGrants'] = "$spActionDir/MWOAuthManageMyGrants.php";
+		$classes['SpecialMWOAuth'] = "$specialsDir/SpecialMWOAuth.php";
+		$classes['SpecialMWOAuthConsumerRegistration'] =
+			"$specialsDir/SpecialMWOAuthConsumerRegistration.php";
+		$classes['SpecialMWOAuthManageConsumers'] =
+			"$specialsDir/SpecialMWOAuthManageConsumers.php";
+		$classes['SpecialMWOAuthManageMyGrants'] =
+			"$specialsDir/SpecialMWOAuthManageMyGrants.php";
 
 		# Utility functions
 		$classes['MWOAuthUtils'] = "$backendDir/MWOAuthUtils.php";
@@ -55,9 +59,8 @@ class MWOAuthSetup {
 		$classes['MWOAuthConsumerSubmitControl'] = "$controlDir/MWOAuthConsumerSubmitControl.php";
 		$classes['MWOAuthConsumerAcceptanceSubmitControl'] =
 			"$controlDir/MWOAuthConsumerAcceptanceSubmitControl.php";
-		$classes['MWOAuthServer'] = "$backendDir/MWOAuthServer.php"; // "MWOAuth1Protocol" might be a better name
+		$classes['MWOAuthServer'] = "$backendDir/MWOAuthServer.php"; // "MWOAuth1Protocol"?
 		$classes['MWOAuthSignatureMethod_RSA_SHA1'] = "$backendDir/MWOAuthSignatureMethod.php";
-
 
 		# Library
 		$classes['OAuthException'] = "$libDir/OAuth.php";

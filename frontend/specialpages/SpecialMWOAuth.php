@@ -1,9 +1,8 @@
 <?php
 
-class SpecialOAuth extends UnlistedSpecialPage {
-
+class SpecialMWOAuth extends UnlistedSpecialPage {
 	function __construct() {
-		parent::__construct( 'OAuth' );
+		parent::__construct( 'MWOAuth' );
 	}
 
 	public function execute( $subpage ) {
