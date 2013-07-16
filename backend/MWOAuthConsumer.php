@@ -105,12 +105,12 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param DBConnRef $db
 	 * @param string $key
 	 * @param integer $flags MWOAuthConsumer::READ_* bitfield
 	 * @return MWOAuthConsumer|bool
 	 */
-	public static function newFromKey( DatabaseBase $db, $key, $flags = 0 ) {
+	public static function newFromKey( DBConnRef $db, $key, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
 			array( 'oarc_consumer_key' => $key ),
@@ -128,7 +128,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param DBConnRef $db
 	 * @param string $name
 	 * @param string $version
 	 * @param User|integer $user User or user ID
@@ -136,7 +136,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 * @return MWOAuthConsumer|bool
 	 */
 	public static function newFromNameVersionUser(
-		DatabaseBase $db, $name, $version, $user, $flags = 0
+		DBConnRef $db, $name, $version, $user, $flags = 0
 	) {
 		$uid = ( $user instanceof User ) ? $user->getId() : $user;
 
@@ -194,7 +194,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$this->deleted = (int)$this->deleted;
 	}
 
-	protected function encodeRow( DatabaseBase $db, $row ) {
+	protected function encodeRow( DBConnRef $db, $row ) {
 		$row['oarc_registration'] = $db->timestamp( $row['oarc_registration'] );
 		$row['oarc_stage_timestamp'] = $db->timestamp( $row['oarc_stage_timestamp'] );
 		$row['oarc_restrictions'] = FormatJSON::encode( $row['oarc_restrictions'] );
@@ -204,7 +204,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		return $row;
 	}
 
-	protected function decodeRow( DatabaseBase $db, $row ) {
+	protected function decodeRow( DBConnRef $db, $row ) {
 		$row['oarc_registration'] = wfTimestamp( TS_MW, $row['oarc_registration'] );
 		$row['oarc_stage_timestamp'] = wfTimestamp( TS_MW, $row['oarc_stage_timestamp'] );
 		$row['oarc_restrictions'] = FormatJSON::decode( $row['oarc_restrictions'], true );

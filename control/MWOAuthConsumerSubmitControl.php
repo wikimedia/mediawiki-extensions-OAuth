@@ -334,11 +334,11 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param DBConnRef $db
 	 * @param int $userId
 	 * @return Title
 	 */
-	protected function getLogTitle( DatabaseBase $db, $userId ) {
+	protected function getLogTitle( DBConnRef $db, $userId ) {
 		$name = $db->selectField( 'user', 'user_name', array( 'user_id' => $userId ) );
 		return Title::makeTitleSafe( NS_USER, $name );
 	}

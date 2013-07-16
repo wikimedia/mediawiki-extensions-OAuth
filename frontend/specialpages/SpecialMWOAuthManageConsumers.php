@@ -399,11 +399,11 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param DBConnRef $db
 	 * @param sdtclass $row
 	 * @return string
 	 */
-	public function formatRow( $db, $row ) {
+	public function formatRow( DBConnRef $db, $row ) {
 		global $wgMemc;
 
 		static $stageActionMap = array(
@@ -499,13 +499,14 @@ class MWOAuthManageConsumersPager extends ReverseChronologicalPager {
 	function __construct( $form, $conds, $stage ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
-
 		$this->mConds['oarc_stage'] = $stage;
 		if ( !$this->getUser()->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			$this->mConds['oarc_deleted'] = 0;
 		}
 
+		$this->mDB = MWOAuthUtils::getCentralDB( DB_SLAVE );
 		parent::__construct();
+
 		# Treat 20 as the default limit, since each entry takes up 5 rows.
 		$urlLimit = $this->mRequest->getInt( 'limit' );
 		$this->mLimit = $urlLimit ? $urlLimit : 20;

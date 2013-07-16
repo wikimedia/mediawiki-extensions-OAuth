@@ -16,20 +16,21 @@ class MWOAuthUtils {
 	}
 
 	/**
-	 * @TODO: reference count/release DB
 	 * @param integer $index DB_MASTER/DB_SLAVE
+	 * @return DBConnRef
 	 */
 	public static function getCentralDB( $index ) {
 		global $wgMWOAuthCentralWiki;
 
-		return wfGetDB( $index, array(), $wgMWOAuthCentralWiki );
+		return wfGetLB( $wgMWOAuthCentralWiki )->getConnectionRef(
+			$index, array(), $wgMWOAuthCentralWiki );
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param DBConnRef $db
 	 * @return array
 	 */
-	public static function getConsumerStateCounts( DatabaseBase $db ) {
+	public static function getConsumerStateCounts( DBConnRef $db ) {
 		$res = $db->select( 'oauth_registered_consumer',
 			array( 'oarc_stage', 'count' => 'COUNT(*)' ),
 			array(),
@@ -98,10 +99,10 @@ class MWOAuthUtils {
 
 
 	/**
-	 * @param DatabaseBase $dbw
+	 * @param DBConnRef $dbw
 	 * @return void
 	 */
-	public static function runAutoMaintenance( DatabaseBase $dbw ) {
+	public static function runAutoMaintenance( DBConnRef $dbw ) {
 		global $wgMWOAuthRequestExpirationAge;
 
 		if ( $wgMWOAuthRequestExpirationAge <= 0 ) {

@@ -60,12 +60,12 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param DatabaseBase $db
+	 * @param DBConnRef $db
 	 * @param string $token Access token
 	 * @param integer $flags MWOAuthConsumerAcceptance::READ_* bitfield
 	 * @return MWOAuthConsumerAcceptance|bool
 	 */
-	public static function newFromToken( DatabaseBase $db, $token, $flags = 0 ) {
+	public static function newFromToken( DBConnRef $db, $token, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
 			array( 'oaac_access_token' => $token ),
@@ -88,13 +88,13 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		$this->accepted = wfTimestamp( TS_MW, $this->accepted );
 	}
 
-	protected function encodeRow( DatabaseBase $db, $row ) {
+	protected function encodeRow( DBConnRef $db, $row ) {
 		$row['oaac_grants'] = FormatJSON::encode( $row['oaac_grants'] );
 		$row['oaac_accepted'] = $db->timestamp( $row['oaac_accepted'] );
 		return $row;
 	}
 
-	protected function decodeRow( DatabaseBase $db, $row ) {;
+	protected function decodeRow( DBConnRef $db, $row ) {;
 		$row['oaac_grants'] = FormatJSON::decode( $row['oaac_grants'], true );
 		$row['oaac_accepted'] = wfTimestamp( TS_MW, $row['oaac_accepted'] );
 		return $row;
