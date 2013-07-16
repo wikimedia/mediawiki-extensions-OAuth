@@ -483,7 +483,7 @@ Hier einige Empfehlungen und Bemerkungen:
 Alle Werte hier überschreiben alle vorherigen. Hinterlasse keine leeren Felder, außer du beabsichtigst, diese Werte zu löschen.',
 	'mwoauthconsumerregistration-maintext' => 'Diese Seite ist gedacht zur Planung und Aktualisierung von OAuth-Verbraucheranwendungen (siehe http://oauth.net) in der Websiteregistrierung.
 
-Du kannst von hier [[Special:MWOAuthConsumerRegistration/propose|einen neuen Verbraucher planen]] oder [[Special:MWOAuthConsumerRegistration/list|vorhandene Verbraucher verwalten]].',
+Du kannst von hier [[Special:MWOAuthConsumerRegistration/propose|einen neuen Verbraucher planen]] oder [[Special:MWOAuthConsumerRegistration/list|vorhandene Verbraucher verwalten]].', # Fuzzy
 	'mwoauthconsumerregistration-propose-legend' => 'Neue OAuth-Verbraucheranwendung',
 	'mwoauthconsumerregistration-update-legend' => 'OAuth-Verbraucheranwendung aktualisieren',
 	'mwoauthconsumerregistration-propose-submit' => 'Verbraucher planen',
@@ -544,7 +544,7 @@ Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen.
 	'mwoauthmanageconsumers-success-reanable' => 'Der Verbraucher wurde reaktiviert.',
 	'mwoauthmanagemygrants' => 'Benutzerkonten-OAuth-Bewilligungen verwalten',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
-	'mwoauthmanagemygrants-showlist' => 'Verbraucherliste',
+	'mwoauthmanagemygrants-showlist' => 'Verbraucherliste', # Fuzzy
 	'mwoauthmanagemygrants-none' => 'Keine Verbraucher haben Zugriff im Namen deines Benutzerkontos.',
 	'mwoauthmanagemygrants-name' => 'Verbrauchername',
 	'mwoauthmanagemygrants-user' => 'Herausgeber',
@@ -559,7 +559,7 @@ Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen.
 	'mwoauthmanagemygrants-grantaccept' => 'Dem Verbraucher bewilligt',
 	'mwoauthmanagemygrants-confirm-text' => 'Verwende das unten stehende Formular, um den Zugriff oder Bewilligungen für einen OAuth-Verbraucher zu entziehen, der auf deinen Namen handelt.
 
-Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergruppe (Websiteprojekte) zu haben, gibt es für diesen Verbraucher mehrere Zugriffstokens.',
+Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergruppe (Websiteprojekte) zu haben, gibt es für diesen Verbraucher mehrere Zugriffstokens.', # Fuzzy
 	'mwoauthmanagemygrants-confirm-legend' => 'Verbraucherzugriffstoken verwalten',
 	'mwoauthmanagemygrants-update' => 'Zugriffstokenbewilligungen aktualisieren',
 	'mwoauthmanagemygrants-renounce' => 'Deautorisieren und Zugriffstoken löschen',
@@ -569,10 +569,10 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'mwoauthmanagemygrants-success-renounce' => 'Der Zugriffstoken für diesen Verbraucher wurde gelöscht.',
 	'logentry-mwoauthconsumer-propose' => '$1 plante einen OAuth-Verbraucher (Verbraucherschlüssel $4)',
 	'logentry-mwoauthconsumer-update' => '$1 aktualisierte einen OAuth-Verbraucher (Verbraucherschlüssel $4)',
-	'logentry-mwoauthconsumer-approve' => '$1 bestätigte einen OAuth-Verbraucher von $2 (Verbraucherschlüssel $4)',
-	'logentry-mwoauthconsumer-reject' => '$1 lehnte einen OAuth-Verbraucher von $2 ab (Verbraucherschlüssel $4)',
-	'logentry-mwoauthconsumer-disable' => '$1 deaktivierte einen OAuth-Verbraucher von $2 (Verbraucherschlüssel $4)',
-	'logentry-mwoauthconsumer-reenable' => '$1 reaktivierte einen OAuth-Verbraucher von $2 (Verbraucherschlüssel $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 bestätigte einen OAuth-Verbraucher von $3 (Verbraucherschlüssel $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 lehnte einen OAuth-Verbraucher von $3 ab (Verbraucherschlüssel $4)',
+	'logentry-mwoauthconsumer-disable' => '$1 deaktivierte einen OAuth-Verbraucher von $3 (Verbraucherschlüssel $4)',
+	'logentry-mwoauthconsumer-reenable' => '$1 reaktivierte einen OAuth-Verbraucher von $3 (Verbraucherschlüssel $4)',
 	'mwoauthconsumer-consumer-logpage' => 'OAuth-Verbraucher-Logbuch',
 	'mwoauthconsumer-consumer-logpagetext' => 'Logbuch von Bestätigungen, Ablehnungen und Deaktivierungen registrierter OAuth-Verbraucher.',
 	'mwoauth-bad-csrf-token' => 'Beim Übermitteln des Formulars ist ein Sitzungsfehler aufgetreten. Bitte erneut versuchen.',
@@ -671,7 +671,7 @@ Quelques recommandations et remarques :
 Toutes les valeurs ici écraseront les précédentes. Ne laissez aucun champ blanc sauf si vous désirez vraiment effacer ces valeurs.',
 	'mwoauthconsumerregistration-maintext' => 'Cette page a pour but de proposer et mettre à jour des applications consommatrices OAuth (voir http://oauth.net) dans le registre de ce site.
 
-Depuis ici, vous pouvez [[Special:MWOAuthConsumerRegistration/propose|proposer un nouveau consommateur]] ou [[Special:MWOAuthConsumerRegistration/list|gérer les consommateurs existants]].',
+Depuis ici, vous pouvez [[Special:MWOAuthConsumerRegistration/propose|proposer un nouveau consommateur]] ou [[Special:MWOAuthConsumerRegistration/list|gérer les consommateurs existants]].', # Fuzzy
 	'mwoauthconsumerregistration-propose-legend' => 'Nouvelle application consommatrice OAuth',
 	'mwoauthconsumerregistration-update-legend' => 'Mettre à jour l’application consommatrice OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Proposer un consommateur',
@@ -732,7 +732,7 @@ Il vous a été assigné un jeton de consommateur '''$1''' et un jeton secret ''
 	'mwoauthmanageconsumers-success-reanable' => 'Le consommateur a été réactivé.',
 	'mwoauthmanagemygrants' => 'Gérer les droits de compte OAuth',
 	'mwoauthmanagemygrants-navigation' => 'Navigation :',
-	'mwoauthmanagemygrants-showlist' => 'Liste de consommateurs',
+	'mwoauthmanagemygrants-showlist' => 'Liste de consommateurs', # Fuzzy
 	'mwoauthmanagemygrants-none' => 'Aucun consommateur n’a d’accès de la part de votre compte.',
 	'mwoauthmanagemygrants-name' => 'Nom du consommateur',
 	'mwoauthmanagemygrants-user' => 'Éditeur',
@@ -747,7 +747,7 @@ Il vous a été assigné un jeton de consommateur '''$1''' et un jeton secret ''
 	'mwoauthmanagemygrants-grantaccept' => 'Accordé au consommateur',
 	'mwoauthmanagemygrants-confirm-text' => 'Utilisez le formulaire ci-dessous pour révoquer l’accès ou les droits d’un consommateur OAuth à agir en votre nom.
 
-Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un sous-ensemble de wikis (projets de site), alors il y aura des jetons d’accès multiples pour ce consommateur.',
+Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un sous-ensemble de wikis (projets de site), alors il y aura des jetons d’accès multiples pour ce consommateur.', # Fuzzy
 	'mwoauthmanagemygrants-confirm-legend' => 'Gérer le jeton d’accès du consommateur',
 	'mwoauthmanagemygrants-update' => 'Mettre à jour les droits du jeton d’accès',
 	'mwoauthmanagemygrants-renounce' => 'Ne plus autoriser et supprimer le jeton d’accès',
@@ -757,10 +757,10 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauthmanagemygrants-success-renounce' => 'Le jeton d’accès pour ce consommateur a été supprimé.',
 	'logentry-mwoauthconsumer-propose' => '$1 a proposé un consommateur OAuth (clé du consommateur $4)',
 	'logentry-mwoauthconsumer-update' => '$1 a mis à jour un consommateur OAuth (clé du consommateur $4)',
-	'logentry-mwoauthconsumer-approve' => '$1 a approuvé un consommateur OAuth proposé par $2 (clé du consommateur $4)',
-	'logentry-mwoauthconsumer-reject' => '$1 a rejeté un consommateur OAuth proposé par $2 (clé du consommateur $4)',
-	'logentry-mwoauthconsumer-disable' => '$1 a désactivé un consommateur OAuth proposé par $2 (clé du consommateur $4)',
-	'logentry-mwoauthconsumer-reenable' => '$1 a réactivé un consommateur OAuth proposé par $2 (clé du consommateur $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 a approuvé un consommateur OAuth proposé par $3 (clé du consommateur $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 a rejeté un consommateur OAuth proposé par $3 (clé du consommateur $4)',
+	'logentry-mwoauthconsumer-disable' => '$1 a désactivé un consommateur OAuth proposé par $3 (clé du consommateur $4)',
+	'logentry-mwoauthconsumer-reenable' => '$1 a réactivé un consommateur OAuth proposé par $3 (clé du consommateur $4)',
 	'mwoauthconsumer-consumer-logpage' => 'journal du consommateur OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Journal des approbations, rejets et désactivations de consommateurs OAuth enregistrés.',
 	'mwoauth-bad-csrf-token' => 'Erreur de session lors de l’envoi du formulaire. Veuillez réessayer vos envois.',
@@ -898,7 +898,7 @@ $messages['gl'] = array(
 	'mwoauthmanageconsumers-success-reanable' => 'Reactivouse o consumidor.',
 	'mwoauthmanagemygrants' => 'Administrar as concesión de conta OAuth',
 	'mwoauthmanagemygrants-navigation' => 'Navegación:',
-	'mwoauthmanagemygrants-showlist' => 'Lista de consumidores',
+	'mwoauthmanagemygrants-showlist' => 'Lista de consumidores', # Fuzzy
 	'mwoauthmanagemygrants-name' => 'Nome do consumidor',
 	'mwoauthmanagemygrants-user' => 'Editor',
 	'mwoauthmanagemygrants-description' => 'Descrición',
@@ -1008,7 +1008,7 @@ $messages['ja'] = array(
 	'mwoauthmanageconsumers-success-disabled' => 'コンシューマーを無効にしました。',
 	'mwoauthmanageconsumers-success-reanable' => 'コンシューマーを再度有効にしました。',
 	'mwoauthmanagemygrants-navigation' => 'ナビゲーション:',
-	'mwoauthmanagemygrants-showlist' => 'コンシューマー一覧',
+	'mwoauthmanagemygrants-showlist' => 'コンシューマー一覧', # Fuzzy
 	'mwoauthmanagemygrants-name' => 'コンシューマー名',
 	'mwoauthmanagemygrants-user' => '発行者',
 	'mwoauthmanagemygrants-description' => '説明',
@@ -1020,10 +1020,10 @@ $messages['ja'] = array(
 	'mwoauthmanagemygrants-success-renounce' => 'このコンシューマーのアクセス トークンを削除しました。',
 	'logentry-mwoauthconsumer-propose' => '$1 が OAuth コンシューマーを提案 (コンシューマー キー $4)',
 	'logentry-mwoauthconsumer-update' => '$1 が OAuth コンシューマーを更新 (コンシューマー キー $4)',
-	'logentry-mwoauthconsumer-approve' => '$1 が $2 による OAuth コンシューマーを承認 (コンシューマー キー $4)',
-	'logentry-mwoauthconsumer-reject' => '$1 が $2 による OAuth コンシューマーを却下 (コンシューマー キー $4)',
-	'logentry-mwoauthconsumer-disable' => '$1 が $2 による OAuth コンシューマーを無効化 (コンシューマー キー $4)',
-	'logentry-mwoauthconsumer-reenable' => '$1 が $2 による OAuth コンシューマーを再有効化 (コンシューマー キー $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 が $3 による OAuth コンシューマーを承認 (コンシューマー キー $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 が $3 による OAuth コンシューマーを却下 (コンシューマー キー $4)',
+	'logentry-mwoauthconsumer-disable' => '$1 が $3 による OAuth コンシューマーを無効化 (コンシューマー キー $4)',
+	'logentry-mwoauthconsumer-reenable' => '$1 が $3 による OAuth コンシューマーを再有効化 (コンシューマー キー $4)',
 	'mwoauthconsumer-consumer-logpage' => 'OAuth コンシューマー記録',
 	'mwoauth-authorize-form' => 'アプリケーションの詳細:',
 	'mwoauth-authorize-form-user' => 'アプリケーションの作者: $1',
@@ -1116,7 +1116,7 @@ $messages['mk'] = array(
 Сите вредности тука ќе се презапишат врз претходните. Не оставајте празни полиња, освен ако не сакате да ги исчистите истите.',
 	'mwoauthconsumerregistration-maintext' => 'Оваа страница е наменета за предлагање и измена на потрошувачки прилози за OAuth (погл. http://oauth.net) во регистарот на ова мрежно место.
 
-Од овде можете да [[Special:MWOAuthConsumerRegistration/propose|предложите нов потрошувач]] или пак [[Special:MWOAuthConsumerRegistration/list|раководите со постоечките]].',
+Од овде можете да [[Special:MWOAuthConsumerRegistration/propose|предложите нов потрошувач]] или пак [[Special:MWOAuthConsumerRegistration/list|раководите со постоечките]].', # Fuzzy
 	'mwoauthconsumerregistration-propose-legend' => 'Нов кориснички прилог за OAuth',
 	'mwoauthconsumerregistration-update-legend' => 'Измена на кориснички прилог за OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Предложи потрошувач',
@@ -1177,7 +1177,7 @@ $messages['mk'] = array(
 	'mwoauthmanageconsumers-success-reanable' => 'Потрошувачот е преовозможен.',
 	'mwoauthmanagemygrants' => 'Раководење со доделувања на OAuth на сметки',
 	'mwoauthmanagemygrants-navigation' => 'Навигација:',
-	'mwoauthmanagemygrants-showlist' => 'Список на потрошувачи',
+	'mwoauthmanagemygrants-showlist' => 'Список на потрошувачи', # Fuzzy
 	'mwoauthmanagemygrants-none' => 'Нема потрошувачи со пристап во име на вашата сметка.',
 	'mwoauthmanagemygrants-name' => 'Име на потрошувач',
 	'mwoauthmanagemygrants-user' => 'Издавач',
@@ -1192,7 +1192,7 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-grantaccept' => 'Доделено на потрошувачот',
 	'mwoauthmanagemygrants-confirm-text' => 'Следниот образец служи за одземање на пристап или доделен OAuth на потрошувач за да дејствува во ваше име.
 
-Имајте предвид дека ако овластите некого со пристап на само дел од викијата (проектите) наместо сите во целина, тогаш тој потрошувач ќе има повеќе пристапни жетони.',
+Имајте предвид дека ако овластите некого со пристап на само дел од викијата (проектите) наместо сите во целина, тогаш тој потрошувач ќе има повеќе пристапни жетони.', # Fuzzy
 	'mwoauthmanagemygrants-confirm-legend' => 'Ракободење со жетон за кориснички пристап',
 	'mwoauthmanagemygrants-update' => 'Измени доделувања на прист. жетон',
 	'mwoauthmanagemygrants-renounce' => 'Одземи дозвола и избриши пристап. жетон',
@@ -1202,10 +1202,10 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-success-renounce' => 'Пристапниот жетон на овој потрошувач е избришан.',
 	'logentry-mwoauthconsumer-propose' => '$1 предложи потрошувач на OAuth (потрошувачки клуч $4)',
 	'logentry-mwoauthconsumer-update' => '$1 измени потрошувач на OAuth (потрошувачки клуч $4)',
-	'logentry-mwoauthconsumer-approve' => '$1 одобри потрошувач на OAuth со $2 (потрошувачки клуч $4)',
-	'logentry-mwoauthconsumer-reject' => '$1 одби потрошувач на OAuth со $2 (потрошувачки клуч $4)',
-	'logentry-mwoauthconsumer-disable' => '$1 оневозможи потрошувач на OAuth со $2 (потрошувачки клуч $4)',
-	'logentry-mwoauthconsumer-reenable' => '$1 преовозможи потрошувач на OAuth со $2 (потрошувачки клуч $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 одобри потрошувач на OAuth со $3 (потрошувачки клуч $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 одби потрошувач на OAuth со $3 (потрошувачки клуч $4)',
+	'logentry-mwoauthconsumer-disable' => '$1 оневозможи потрошувач на OAuth со $3 (потрошувачки клуч $4)',
+	'logentry-mwoauthconsumer-reenable' => '$1 преовозможи потрошувач на OAuth со $3 (потрошувачки клуч $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Потрошувачки дневник за OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Дневник на одобрувања, одбивања и оневозможувања на регистрирани потрошувачи на OAuth.',
 	'mwoauth-bad-csrf-token' => 'Се јави проблем во сесијата при поднесувањето на образецот. Обидете се повторно.',
@@ -1249,6 +1249,15 @@ $messages['mk'] = array(
  */
 $messages['ml'] = array(
 	'mwoauthmanagemygrants-user' => 'പ്രസാധക(ൻ)',
+);
+
+/** Low Saxon (Netherlands) (Nedersaksies)
+ * @author Servien
+ */
+$messages['nds-nl'] = array(
+	'mwoauthconsumerregistration-navigation' => 'Navigasie:',
+	'mwoauthconsumerregistration-main' => 'Veurblad',
+	'mwoauthconsumerregistration-stage' => 'Staotus',
 );
 
 /** Dutch (Nederlands)
@@ -1328,7 +1337,7 @@ $messages['nl'] = array(
 	'mwoauthmanageconsumers-success-reanable' => 'De consumer is opnieuw ingeschakeld.',
 	'mwoauthmanagemygrants' => 'OAuthrechten van gebruiker beheren',
 	'mwoauthmanagemygrants-navigation' => 'Navigatie:',
-	'mwoauthmanagemygrants-showlist' => 'Consumerlijst',
+	'mwoauthmanagemygrants-showlist' => 'Consumerlijst', # Fuzzy
 	'mwoauthmanagemygrants-none' => 'Er zijn geen consumers die toegang hebben namens uw gebruiker.',
 	'mwoauthmanagemygrants-name' => 'Consumernaam',
 	'mwoauthmanagemygrants-user' => 'Uitgever',
@@ -1444,4 +1453,13 @@ $messages['roa-tara'] = array(
 	'mwoauthmanageconsumers-showexpired' => 'Richieste scadute',
 	'mwoauthmanageconsumers-main' => 'Prengepàle',
 	'mwoauthmanageconsumers-reason' => 'Mutive:',
+);
+
+/** Turkish (Türkçe)
+ * @author Rapsar
+ */
+$messages['tr'] = array(
+	'mwoauth-form-button-approve' => 'Evet, izin ver',
+	'mwoauth-grants-editpages' => 'Sayfaları değiştir',
+	'mwoauth-grants-upload' => 'Dosya yükle',
 );
