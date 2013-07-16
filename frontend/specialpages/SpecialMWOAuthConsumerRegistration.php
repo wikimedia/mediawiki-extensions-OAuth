@@ -131,7 +131,9 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			$form->setSubmitCallback( function( array $data, IContextSource $context ) {
 				$data['grants'] = FormatJSON::encode( // adapt form to controller
 					preg_replace( '/^grant-/', '', $data['grants'] ) );
-				$controller = new MWOAuthConsumerSubmitControl( $context, $data );
+
+				$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
+				$controller = new MWOAuthConsumerSubmitControl( $context, $data, $dbw );
 				return $controller->submit();
 			} );
 			$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-propose-legend' );
@@ -161,7 +163,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 				throw new PermissionsError( 'mwoauthviewsuppressed' );
 			} elseif ( $cmr->get( 'userId' ) !== $user->getId() ) {
-				// No not show private information to other users
+				// Do not show private information to other users
 				$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 				break;
 			}
@@ -223,7 +225,8 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				$this->getContext()
 			);
 			$form->setSubmitCallback( function( array $data, IContextSource $context ) {
-				$controller = new MWOAuthConsumerSubmitControl( $context, $data );
+				$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
+				$controller = new MWOAuthConsumerSubmitControl( $context, $data, $dbw );
 				return $controller->submit();
 			} );
 			$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-update-legend' );

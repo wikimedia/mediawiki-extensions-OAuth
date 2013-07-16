@@ -339,7 +339,8 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 			} elseif ( $data['action'] === 'rsuppress' ) {
 				$data = array( 'action' => 'reject', 'suppress' => 1 ) + $data;
 			}
-			$controller = new MWOAuthConsumerSubmitControl( $context, $data );
+			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
+			$controller = new MWOAuthConsumerSubmitControl( $context, $data, $dbw );
 			return $controller->submit();
 		} );
 

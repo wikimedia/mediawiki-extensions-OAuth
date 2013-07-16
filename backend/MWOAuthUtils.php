@@ -200,4 +200,54 @@ class MWOAuthUtils {
 		$server->add_signature_method( new MWOAuthSignatureMethod_RSA_SHA1( $store ) );
 		return $server;
 	}
+
+	/**
+	 * Given a central wiki user ID, get a local User object
+	 *
+	 * @param integer $userId
+	 * @return User|bool User or false if not found
+	 * @throws MWOAuthException
+	 */
+	public static function getLocalUserFromCentralId( $userId ) {
+		global $wgMWOAuthCentralWiki;
+
+		if ( MWOAuthUtils::isCentralWiki() ) {
+			$user = User::newFromId( $userId );
+		} else { // only some central user system can give us the ID
+			$user = false;
+			// Let extensions check that central wiki user ID is attached to a global account
+			// and that return the user on this wiki that is attached to that global account
+			wfRunHooks( 'OAuthGetLocalUserFromCentralId',
+				array( $userId, $wgMWOAuthCentralWiki, &$user ) );
+		}
+
+		return $user;
+	}
+
+	/**
+	 * Given a local User object, get the user ID for that user on the central wiki
+	 *
+	 * @param User $user
+	 * @return integer|bool ID or false if not found
+	 * @throws MWOAuthException
+	 */
+	public static function getCentralIdFromLocalUser( User $user ) {
+		global $wgMWOAuthCentralWiki;
+
+		if ( MWOAuthUtils::isCentralWiki() ) {
+			$id = $user->getId();
+		} else { // only some central user system can give us the ID
+			$id = false;
+			// Let CentralAuth check that $user is attached to a global account and
+			// that the foreign local account on the central wiki is also attached to it
+			wfRunHooks( 'OAuthGetCentralIdFromLocalUser',
+				array( $user, $wgMWOAuthCentralWiki, &$id ) );
+		}
+
+		if ( !$id ) {
+			throw new MWOAuthException( 'mwoauthserver-invalid-user' );
+		}
+
+		return $id;
+	}
 }

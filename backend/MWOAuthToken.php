@@ -1,11 +1,8 @@
 <?php
 
-
 class MWOAuthToken extends OAuthToken {
-
 	// Keep the verification code here
 	protected $code;
-
 	// Token to find grant in oauth_accepted_consumer
 	protected $accessTokenKey;
 
@@ -25,5 +22,3 @@ class MWOAuthToken extends OAuthToken {
 		return $this->accessTokenKey;
 	}
 }
-
-

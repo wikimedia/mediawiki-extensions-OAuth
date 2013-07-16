@@ -25,6 +25,19 @@
  * @TODO: improve error messages
  */
 class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
+	/** @var DBConnRef */
+	protected $dbw;
+
+	/**
+	 * @param IContextSource $context
+	 * @param array $params
+	 * @param DBConnRef $dbw Result of MWOAuthUtils::getCentralDB( DB_MASTER )
+	 */
+	public function __construct( IContextSource $context, array $params, DBConnRef $dbw ) {
+		parent::__construct( $context, $params );
+		$this->dbw = $dbw;
+	}
+
 	protected function getRequiredFields() {
 		return array(
 			'accept'    => array(
@@ -69,7 +82,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 
 	protected function processAction( $action ) {
 		$user = $this->getUser(); // proposer or admin
-		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
+		$dbw = $this->dbw; // convenience
 
 		switch ( $action ) {
 		/*
@@ -132,15 +145,5 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 
 			return $this->success( $cmra );
 		}
-	}
-
-	/**
-	 * @param DBConnRef $db
-	 * @param int $userId
-	 * @return Title
-	 */
-	protected function getLogTitle( DBConnRef $db, $userId ) {
-		$name = $db->selectField( 'user', 'user_name', array( 'user_id' => $userId ) );
-		return Title::makeTitleSafe( NS_USER, $name );
 	}
 }

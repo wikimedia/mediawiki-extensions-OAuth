@@ -8,7 +8,6 @@
  */
 
 class MWOAuthRequest extends OAuthRequest {
-
 	private $sourceIP;
 
 	public function __construct( $httpMethod, $httpUrl, $parameters, $sourcIP=false ) {

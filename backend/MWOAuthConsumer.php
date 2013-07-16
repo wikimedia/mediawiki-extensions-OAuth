@@ -176,11 +176,10 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 * @return string the url for redirection
 	 */
 	public function generateCallbackUrl( $verifyCode, $requestKey ) {
-		$params = array(
+		return wfAppendQuery( $this->callbackUrl, array(
 			'oauth_verifier' => $verifyCode,
-			'oauth_token' => $requestKey
-		);
-		return wfAppendQuery( $this->callbackUrl, $params );
+			'oauth_token'    => $requestKey
+		) );
 	}
 
 	protected function normalizeValues() {
@@ -190,7 +189,6 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$this->stage = (int)$this->stage;
 		$this->stageTimestamp = wfTimestamp( TS_MW, $this->stageTimestamp );
 		$this->emailAuthenticated = wfTimestamp( TS_MW, $this->emailAuthenticated );
-
 		$this->deleted = (int)$this->deleted;
 	}
 
@@ -212,6 +210,21 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$row['oarc_email_authenticated'] =
 			wfTimestampOrNull( TS_MW, $row['oarc_email_authenticated'] );
 		return $row;
+	}
+
+	/**
+	 * Magic method so that $consumer->secret and $consumer->key work.
+	 * This allows MWOAuthConsumer to be a replacement for OAuthConsumer
+	 * in lib/OAuth.php without inheriting.
+	 */
+	public function __get( $prop ) {
+		if ( $prop === 'key' ) {
+			return $this->consumerKey;
+		} elseif ( $prop === 'secret' ) {
+			return $this->secretKey;
+		} else {
+			return $this->$prop;
+		}
 	}
 
 	protected function userCanSee( $name, RequestContext $context ) {
@@ -237,20 +250,6 @@ class MWOAuthConsumer extends MWOAuthDAO {
 			return $context->msg( 'mwoauth-field-private' );
 		} else {
 			return $this->userCanSee( $name, $context );
-		}
-	}
-
-	/**
-	 * Magic method so that $consumer->secret and $consumer->key work. This allows MWOAuthConsumer
-	 * to be a replacement for OAuthConsumer in lib/OAuth.php without inheriting.
-	 */
-	public function __get( $prop ) {
-		if ( $prop === 'key' ) {
-			return $this->consumerKey;
-		} elseif ( $prop === 'secret' ) {
-			return $this->secretKey;
-		} else {
-			return $this->$prop;
 		}
 	}
 }
