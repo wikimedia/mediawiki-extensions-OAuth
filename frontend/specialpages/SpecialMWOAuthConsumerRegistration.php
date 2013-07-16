@@ -21,7 +21,7 @@
 /**
  * Page that has registration request form and consumer update form
  */
-class MWOAuthConsumerRegistration extends SpecialPage {
+class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	protected static $stageKeyMap = array(
 		MWOAuthConsumer::STAGE_PROPOSED => 'proposed',
 		MWOAuthConsumer::STAGE_REJECTED => 'rejected',

@@ -22,7 +22,7 @@
  * Special page for listing the queue of consumer requests and managing
  * their approval/rejection and also for listing approved/disabled consumers
  */
-class MWOAuthManageConsumers extends SpecialPage {
+class SpecialMWOAuthManageConsumers extends SpecialPage {
 	protected $stage; // integer; MWOAuthConsumer::STAGE_* constant
 	protected $stageKey; // string
 

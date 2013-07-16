@@ -9,16 +9,16 @@ class MWOAuthUISetup {
 	 * @return void
 	 */
 	public static function defineSpecialPages( array &$pages, array &$groups ) {
+		// Pages available on all wikis
+		$pages['MWOAuth'] = 'SpecialMWOAuth';
 		// Pages specific to the central OAuth management wiki
 		if ( MWOAuthUtils::isCentralWiki() ) {
-			$pages['MWOAuthConsumerRegistration'] = 'MWOAuthConsumerRegistration';
+			$pages['MWOAuthConsumerRegistration'] = 'SpecialMWOAuthConsumerRegistration';
 			$groups['MWOAuthConsumerRegistration'] = 'users';
-			$pages['MWOAuthManageConsumers'] = 'MWOAuthManageConsumers';
+			$pages['MWOAuthManageConsumers'] = 'SpecialMWOAuthManageConsumers';
 			$groups['MWOAuthManageConsumers'] = 'users';
-			$pages['MWOAuthManageMyGrants'] = 'MWOAuthManageMyGrants';
+			$pages['MWOAuthManageMyGrants'] = 'SpecialMWOAuthManageMyGrants';
 		}
-		// I think we want to allow the handshake with any wiki
-		$pages['OAuth'] = 'SpecialOAuth';
 	}
 
 	/**
