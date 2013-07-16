@@ -56,6 +56,7 @@ CREATE INDEX /*i*/oarc_stage_timestamp
 
 -- Grant approvals by users for consumers
 CREATE TABLE IF NOT EXISTS /*_*/oauth_accepted_consumer (
+    oaac_id integer unsigned NOT NULL auto_increment PRIMARY KEY,
     -- The name of a wiki or "*"
     oaac_wiki varchar(255) binary NOT NULL,
     -- Key to the user who approved the consumer (on the central wiki)
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_accepted_consumer (
     -- Tokens for the consumer to act on behave of the user
     oaac_access_token varbinary(32) NOT NULL,
     oaac_access_secret varbinary(32) NOT NULL,
-    --- JSON blob of actually accepted grants
+    -- JSON blob of actually accepted grants
     oaac_grants blob NOT NULL,
     -- Timestamp of grant approval by the user
     oaac_accepted varbinary(14) NOT NULL
@@ -77,3 +78,4 @@ CREATE UNIQUE INDEX /*i*/oaac_user_consumer_wiki
     ON /*_*/oauth_accepted_consumer (oaac_user_id,oaac_consumer_id,oaac_wiki);
 CREATE INDEX /*i*/oaac_consumer_user
     ON /*_*/oauth_accepted_consumer (oaac_consumer_id,oaac_user_id);
+CREATE INDEX /*i*/oaac_user_id ON /*_*/oauth_accepted_consumer (oaac_user_id,oaac_id);

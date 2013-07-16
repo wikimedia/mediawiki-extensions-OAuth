@@ -504,7 +504,7 @@ class MWOAuthManageConsumersPager extends ReverseChronologicalPager {
 			$this->mConds['oarc_deleted'] = 0;
 		}
 
-		$this->mDB = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$this->mDb = MWOAuthUtils::getCentralDB( DB_SLAVE );
 		parent::__construct();
 
 		# Treat 20 as the default limit, since each entry takes up 5 rows.

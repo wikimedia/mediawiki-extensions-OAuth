@@ -51,11 +51,11 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 		// Format is Special:MWOAuthManageMyGrants[/list|/manage/<accesstoken>]
 		$navigation = explode( '/', $par );
 		$typeKey = isset( $navigation[0] ) ? $navigation[0] : null;
-		$accessToken = isset( $navigation[1] ) ? $navigation[1] : null;
+		$acceptanceId = isset( $navigation[1] ) ? $navigation[1] : null;
 
 		switch ( $typeKey ) {
 		case 'manage':
-			$this->handleConsumerForm( $accessToken );
+			$this->handleConsumerForm( $acceptanceId );
 			break;
 		case 'list':
 			// fall through
@@ -64,7 +64,7 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 			break;
 		}
 
-		$this->addSubtitleLinks( $accessToken );
+		$this->addSubtitleLinks( $acceptanceId );
 
 		$this->getOutput()->addModules( 'ext.MWOAuth' ); // CSS
 	}
@@ -72,12 +72,12 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 	/**
 	 * Show other parent page link
 	 *
-	 * @param type $accessToken
+	 * @param type $acceptanceId
 	 * @return void
 	 */
-	protected function addSubtitleLinks( $accessToken ) {
+	protected function addSubtitleLinks( $acceptanceId ) {
 		$listLinks = array();
-		if ( $accessToken ) {
+		if ( $acceptanceId ) {
 			$listLinks[] = Linker::linkKnown(
 				$this->getTitle( 'proposed' ),
 				$this->msg( 'mwoauthmanagemygrants-showlist' )->escaped() );
@@ -95,15 +95,15 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 	/**
 	 * Show the form to approve/reject/disable/re-enable consumers
 	 *
-	 * @param string $accessToken
+	 * @param string $acceptanceId
 	 * @return void
 	 */
-	protected function handleConsumerForm( $accessToken ) {
+	protected function handleConsumerForm( $acceptanceId ) {
 		$user = $this->getUser();
 		$db = MWOAuthUtils::getCentralDB( DB_SLAVE );
 
 		$cmra = MWOAuthDAOAccessControl::wrap(
-			MWOAuthConsumerAcceptance::newFromToken( $db, $accessToken ), $this->getContext() );
+			MWOAuthConsumerAcceptance::newFromId( $db, $acceptanceId ), $this->getContext() );
 		if ( !$cmra ) {
 			$this->getOutput()->addHtml( $this->msg( 'mwoauth-invalid-access-token' )->escaped() );
 			return;
@@ -117,11 +117,6 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 
 		$form = new HTMLForm(
 			array(
-				'accessTokenShown' => array(
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-accesstoken',
-					'default' => $cmra->get( 'accessToken' )
-				),
 				'name' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-name',
@@ -183,9 +178,9 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 						$this->msg( 'mwoauthmanagemygrants-update' )->escaped() => 'update',
 						$this->msg( 'mwoauthmanagemygrants-renounce' )->escaped() => 'renounce' )
 				),
-				'accessToken' => array(
+				'acceptanceId' => array(
 					'type' => 'hidden',
-					'default' => $cmra->get( 'accessToken' )
+					'default' => $cmra->get( 'id' )
 				),
 			),
 			$this->getContext()
@@ -216,7 +211,6 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 	/**
 	 * Show a paged list of consumers with links to details
 	 *
-	 * @param string $accessToken
 	 * @return void
 	 */
 	protected function showConsumerList() {
@@ -245,7 +239,7 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
 
 		$link = Linker::linkKnown(
-			$this->getTitle( 'manage/' . $cmra->get( 'accessToken' ) ),
+			$this->getTitle( 'manage/' . $cmra->get( 'id' ) ),
 			$this->msg( 'mwoauthmanagemygrants-review' )->escaped()
 		);
 
@@ -305,7 +299,7 @@ class MWOAuthManageMyGrantsPager extends ReverseChronologicalPager {
 			$this->mConds['oarc_deleted'] = 0;
 		}
 
-		$this->mDB = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$this->mDb = MWOAuthUtils::getCentralDB( DB_SLAVE );
 		parent::__construct();
 
 		# Treat 20 as the default limit, since each entry takes up 5 rows.
@@ -365,6 +359,6 @@ class MWOAuthManageMyGrantsPager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	function getIndexField() {
-		return 'oaac_accepted';
+		return 'oaac_consumer_id';
 	}
 }
