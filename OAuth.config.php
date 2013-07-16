@@ -127,5 +127,11 @@ $wgGroupPermissions['user']['mwoauthmanagemygrants'] = true;
 /** @var bool Require HTTPs for user transactions that might send out secret tokens */
 $wgMWOAuthSecureTokenTransfer = false;
 
+/** @var array List of API module classes to disable when OAuth is used for the request. */
+$wgMWOauthDisabledApiModules = array(
+	'ApiLogin',
+	'ApiLogout',
+);
+
 # End of configuration variables.
 # ########

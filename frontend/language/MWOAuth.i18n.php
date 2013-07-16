@@ -185,6 +185,13 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauthserver-invalid-request-token' => 'Invalid token in your request.',
 	'mwoauthserver-invalid-user-hookabort' => 'This user cannot use OAuth.',
 
+	'mwoauth-invalid-authorization-title' => 'OAuth authorization error',
+	'mwoauth-invalid-authorization' => 'The authorization headers in your request are not valid: $1',
+	'mwoauth-invalid-authorization-wrong-wiki' => 'The authorization headers in your request are not valid for $1',
+	'mwoauth-invalid-authorization-invalid-user' => 'The authorization headers in your request are for a user that doesn\'t exist here',
+	'mwoauth-invalid-authorization-wrong-user' => 'The authorization headers in your request are for a different user',
+	'mwoauth-invalid-authorization-not-approved' => 'The authorization headers in your request are for an OAuth consumer that is not currently approved',
+
 	'mwoauth-form-description' => 'The following application is requesting to use MediaWiki on your behalf. The application will be able to perform any actions that are allowed with the list if requested rights below. Only allow applications that you trust to use these permissions as you would.',
 	'mwoauth-form-existing' => "'''This application is requesting authorization to MediaWiki on your behalf, but you have already granted access:'''
 *  Grants: $1
@@ -432,6 +439,23 @@ Followed by the following radio boxes:
 	'mwoauth-authorize-form-description' => '{{Identical|Application description}}',
 	'mwoauth-authorize-form-version' => '{{Identical|Application version}}',
 	'mwoauth-authorize-form-wiki' => '{{Identical|Wiki}}',
+	'mwoauth-invalid-authorization-title' => 'Title of the error page when the Authorization header is invalid',
+	'mwoauth-invalid-authorization' => 'Text of the error page when the Authorization header is invalid. Parameters are:
+* $1 - Specific error message from the OAuth layer, probably not localized',
+	'mwoauth-invalid-authorization-wrong-wiki' => 'Text of the error page when the Authorization header is for the wrong wiki. Parameters are:
+* $1 - wiki id',
+	'mwoauth-invalid-authorization-invalid-user' => 'Text of the error page when the Authorization header is for a user that doesn\'t exist',
+	'mwoauth-invalid-authorization-wrong-user' => 'Text of the error page when the Authorization header is for the wrong user',
+	'mwoauth-invalid-authorization-not-approved' => 'Text of the error page when the Authorization header is for a consumer that isn\'t approved',
+	'mwoauth-grants-editpages' => '{{Identical|Edit page}}',
+	'mwoauth-grants-movepages' => '{{Identical|Move page}}',
+	'mwoauth-grants-createpages' => '{{Identical|Create page}}',
+	'mwoauth-grants-deletepages' => '{{Identical|Delete page}}',
+	'mwoauth-grants-upload' => '{{Identical|Upload file}}',
+
+	'mwoauthconsumerregistration-updated' => 'Shown as success message',
+	'mwoauthconsumerregistration-secretreset' => 'Shown on success message. Parameters:
+* $1 - new secret token',
 	'mwoauth-callback-not-oob' => 'Warning that the OAuth developer failed to include the required "oauth_callback" parameter, which must be set to the case-sensitive string "oob"',
 	'right-mwoauthproposeconsumer' => '{{doc-right|mwoauthproposeconsumer}}',
 	'right-mwoauthupdateconsumer' => '{{doc-right|mwoauthupdateconsumer}}',
