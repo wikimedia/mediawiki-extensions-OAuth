@@ -86,6 +86,34 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		}
 	}
 
+	/**
+	 * @param DBConnRef $db
+	 * @param String $userId of user who authorized (central wiki's id)
+	 * @param MWOAuthConsumer $consumer
+	 * @param String $wiki wiki associated with the acceptance
+	 * @param integer $flags MWOAuthConsumerAcceptance::READ_* bitfield
+	 * @return MWOAuthConsumerAcceptance|bool
+	 */
+	public static function newFromUserConsumerWiki( DBConnRef $db, $userId, $consumer, $wiki, $flags = 0 ) {
+		$row = $db->selectRow( static::getTable(),
+			array_values( static::getFieldColumnMap() ),
+			array( 'oaac_user_id' => $userId,
+				'oaac_consumer_id' => $consumer->get( 'id' ),
+				'oaac_wiki' => $wiki
+			),
+			__METHOD__,
+			( $flags & self::READ_LOCKING ) ? array( 'FOR UPDATE' ) : array()
+		);
+
+		if ( $row ) {
+			$consumer = new self();
+			$consumer->loadFromRow( $db, $row );
+			return $consumer;
+		} else {
+			return false;
+		}
+	}
+
 	protected function normalizeValues() {
 		$this->userId = (int)$this->userId;
 		$this->consumerId = (int)$this->consumerId;

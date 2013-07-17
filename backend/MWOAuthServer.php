@@ -82,11 +82,12 @@ class MWOAuthServer extends OAuthServer {
 	 * generate the callback URL where we will redirect our user back to the consumer.
 	 * @param String $consumerKey
 	 * @param String $requestTokenKey
-	 * @param User $mwUser user authorizing the request
+	 * @param User $mwUser user authorizing the request (local user)
+	 * @param bool $update update the grants/wiki to those requested by consumer
 	 * @return String the callback URL to redirect the user
 	 * @throws MWOAuthException
 	 */
-	public function authorize( $consumerKey, $requestTokenKey, User $mwUser ) {
+	public function authorize( $consumerKey, $requestTokenKey, User $mwUser, $update ) {
 		// Check that user and consumer are in good standing
 		if ( $mwUser->isBlocked() ) {
 			throw new MWOAuthException( 'mwoauthserver-insufficient-rights' );
@@ -101,18 +102,17 @@ class MWOAuthServer extends OAuthServer {
 		}
 
 		// Generate and Update the tokens:
-		// * Generate Access token, and add a pointer to it in the request token
 		// * Generate a new Verification code, and add it to the request token
-		// * Resave Request token with
-		$accessToken = MWOAuthDataStore::newToken();
+		// * Either add or update the authorization
+		// ** Generate a new access token if this is a new authorization
+		// * Resave request token with the access token
+
 		$verifyCode = MWCryptRand::generateHex( 32, true);
 		$requestToken = $this->data_store->lookup_token( $consumer, 'request', $requestTokenKey );
 		if ( !$requestToken || !( $requestToken instanceof MWOAuthToken ) ) {
 			throw new MWOAuthException( 'mwoauthserver-invalid-request-token' );
 		}
 		$requestToken->addVerifyCode( $verifyCode );
-		$requestToken->addAccessKey( $accessToken->key );
-		$this->data_store->updateRequestToken( $requestToken, $consumer );
 
 		// CentralAuth may abort here if there is no global account for this user
 		$userId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
@@ -120,23 +120,81 @@ class MWOAuthServer extends OAuthServer {
 			throw new MWOAuthException( 'mwoauthserver-invalid-user' );
 		}
 
-		// Add the Authorization to the database
+		// Authorization Token
 		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
-		$cmra = MWOAuthConsumerAcceptance::newFromArray( array(
-			'id'           => null,
-			'wiki'         => $consumer->get( 'wiki' ),
-			'userId'       => $userId,
-			'consumerId'   => $consumer->get( 'id' ),
-			'accessToken'  => $accessToken->key,
-			'accessSecret' => $accessToken->secret,
-			'grants'       => $consumer->get( 'grants' ),
-			'accepted'     => wfTimestampNow()
-		) );
-		$cmra->save( $dbw );
 
-		wfDebugLog( 'OAuth', "Verification code {$requestToken->getVerifyCode()} for " .
-			"$requestTokenKey (client: $consumerKey)" );
+		// Check if this authorization exists
+		$cmra = $this->getCurrentAuthorization( $mwUser, $consumer );
 
+		if ( $update ) {
+			// This should be an update to an existing authorization
+			if ( !$cmra ) {
+				// update requested, but no existing key
+				throw new MWOAuthException( 'mwoauthserver-invalid-request' );
+			}
+			$cmra->setFields( array(
+				'wiki'   => $consumer->get( 'wiki' ),
+				'grants' => $consumer->get( 'grants' )
+			) );
+			$cmra->save( $dbw );
+			$accessToken = new MWOAuthToken( $cmra->get( 'accessToken' ), '' );
+		} elseif ( !$cmra ) {
+			// Add the Authorization to the database
+			$accessToken = MWOAuthDataStore::newToken();
+			$cmra = MWOAuthConsumerAcceptance::newFromArray( array(
+				'wiki'         => $consumer->get( 'wiki' ),
+				'userId'       => $userId,
+				'consumerId'   => $consumer->get( 'id' ),
+				'accessToken'  => $accessToken->key,
+				'accessSecret' => $accessToken->secret,
+				'grants'       => $consumer->get( 'grants' ),
+				'accepted'     => wfTimestampNow()
+			) );
+			$cmra->save( $dbw );
+		} else {
+			// Authorization exists, no updates requested, so no changes to the db
+			$accessToken = new MWOAuthToken( $cmra->get( 'accessToken' ), '' );
+		}
+
+		$requestToken->addAccessKey( $accessToken->key );
+		$this->data_store->updateRequestToken( $requestToken, $consumer );
+		wfDebugLog( 'OAuth', "Verification code {$requestToken->getVerifyCode()} for $requestTokenKey (client: $consumerKey)" );
 		return $consumer->generateCallbackUrl( $requestToken->getVerifyCode(), $requestTokenKey );
 	}
+
+	/**
+	 * Attempts to get an authorization by this user, for this consumer. First attempts
+	 * to fine an acceptance for the current wiki, when for '*' wikis. In theory, a user
+	 * could authorize different grants on a particular wiki vs. all wikis, for a given
+	 * consumer.
+	 * @param User $mwUser (local wiki user) User who may or may not have authorizations
+	 * @param MWOAuthConsumer $consumer
+	 * @param integer $flags MWOAuthConsumerAcceptance::READ_* bitfield
+	 * @return MWOAuthConsumerAcceptance
+	 */
+	public function getCurrentAuthorization( User $mwUser, $consumer ) {
+		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+
+		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
+		if ( !$centralUserId ) {
+			throw new MWOAuthException( 'mwoauthserver-invalid-user' );
+		}
+
+		$cmra = MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
+			$dbr,
+			$centralUserId,
+			$consumer,
+			wfWikiID()
+		);
+		if ( !$cmra ) {
+			$cmra = MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
+				$dbr,
+				$centralUserId,
+				$consumer,
+				'*'
+			);
+		}
+		return $cmra;
+	}
+
 }

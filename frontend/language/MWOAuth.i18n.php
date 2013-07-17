@@ -184,9 +184,14 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauthserver-invalid-user-hookabort' => 'This user cannot use OAuth.',
 
 	'mwoauth-form-description' => 'The following application is requesting to use MediaWiki on your behalf. The application will be able to perform any actions that are allowed with the list if requested rights below. Only allow applications that you trust to use these permissions as you would.',
+	'mwoauth-form-existing' => "'''This application is requesting authorization to MediaWiki on your behalf, but you have already granted access:'''
+*  Grants: $1
+*  Wiki: $2
+*  Authorized on: $3",
 	'mwoauth-form-legal' => '',
 	'mwoauth-form-button-approve' => 'Yes, allow',
 	'mwoauth-form-confirmation' => 'Allow this application to act on your behalf?',
+	'mwoauth-form-confirmation-update' => 'Update this authorization to the requested privileges. Leaving this unchecked will keep your existing authorizations',
 	'mwoauth-authorize-form' => 'Application details:',
 	'mwoauth-authorize-form-user' => 'Application author: $1',
 	'mwoauth-authorize-form-name' => 'Application name: $1',
