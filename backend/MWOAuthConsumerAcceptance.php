@@ -22,6 +22,8 @@
  * Representation of an OAuth consumer acceptance
  */
 class MWOAuthConsumerAcceptance extends MWOAuthDAO {
+	/** @var integer Unique ID */
+	protected $id;
 	/** @var string Wiki ID the application can be used on (or "*" for all) */
 	protected $wiki;
 	/** @var integer Publisher user ID (on central wiki) */
@@ -30,7 +32,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	protected $consumerId;
 	/** @var string Hex token */
 	protected $accessToken;
-	/** @var string Hex token */
+	/** @var string Secret HMAC key */
 	protected $secretToken;
 	/** @var array List of grants */
 	protected $grants;
@@ -41,6 +43,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		return array(
 			'table'          => 'oauth_accepted_consumer',
 			'fieldColumnMap' => array(
+				'id'           => 'oaac_id',
 				'wiki'         => 'oaac_wiki',
 				'userId'       => 'oaac_user_id',
 				'consumerId'   => 'oaac_consumer_id',
@@ -49,7 +52,8 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 				'grants'       => 'oaac_grants',
 				'accepted'     => 'oaac_accepted'
 			),
-			'idField'        => 'accessToken',
+			'idField'        => 'id',
+			'autoIncrField'  => 'id',
 		);
 	}
 

@@ -110,7 +110,7 @@ class MWOAuthServer extends OAuthServer {
 		// Generate and Update the tokens:
 		// * Generate Access token, and add a pointer to it in the request token
 		// * Generate a new Verification code, and add it to the request token
-		// * Resave Request token with 
+		// * Resave Request token with
 		$accessToken = MWOAuthDataStore::newToken();
 		$verifyCode = MWCryptRand::generateHex( 32, true);
 		$requestToken = $this->data_store->lookup_token( $consumer, 'request', $requestTokenKey );
@@ -127,6 +127,7 @@ class MWOAuthServer extends OAuthServer {
 
 		// Add the Authorization to the database
 		$cmra = MWOAuthConsumerAcceptance::newFromArray( array(
+			'id'           => null,
 			'wiki'         => $consumer->get( 'wiki' ),
 			'userId'       => $mwUser->getId(),
 			'consumerId'   => $consumer->get( 'id' ),

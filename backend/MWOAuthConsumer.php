@@ -22,7 +22,7 @@
  * Representation of an OAuth consumer request
  */
 class MWOAuthConsumer extends MWOAuthDAO {
-	/** @var integer */
+	/** @var integer Unique ID */
 	protected $id;
 	/** @var string Hex token */
 	protected $consumerKey;
@@ -42,7 +42,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $wiki;
 	/** @var string TS_MW timestamp of proposal */
 	protected $registration;
-	/** @var string Secret hmac key */
+	/** @var string Secret HMAC key */
 	protected $secretKey;
 	/** @var string Public RSA key */
 	protected $rsaKey;

@@ -38,7 +38,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 				}
 			),
 			'update'   => array(
-				'accessToken' => '/^[0-9a-f]{32}$/',
+				'acceptanceId' => '/^\d+$/',
 				'wiki'        => function( $s ) {
 					return WikiMap::getWiki( $s ) || $s === '*'; },
 				'grants'      => function( $s ) {
@@ -47,7 +47,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 				}
 			),
 			'renounce' => array(
-				'accessToken' => '/^[0-9a-f]{32}$/',
+				'acceptanceId' => '/^\d+$/',
 			),
 		);
 	}
@@ -104,7 +104,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			$cmra->save();
 		*/
 		case 'update':
-			$cmra = MWOAuthConsumerAcceptance::newFromToken( $dbw, $this->vals['accessToken'] );
+			$cmra = MWOAuthConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
 			if ( !$cmra ) {
 				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 			} elseif ( $cmra->get( 'userId' ) !== $this->getUser()->getId() ) {
@@ -121,7 +121,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 
 			return $this->success( $cmra );
 		case 'renounce':
-			$cmra = MWOAuthConsumerAcceptance::newFromToken( $dbw, $this->vals['accessToken'] );
+			$cmra = MWOAuthConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
 			if ( !$cmra ) {
 				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 			} elseif ( $cmra->get( 'userId' ) !== $this->getUser()->getId() ) {
