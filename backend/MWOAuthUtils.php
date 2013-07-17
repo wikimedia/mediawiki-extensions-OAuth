@@ -135,6 +135,9 @@ class MWOAuthUtils {
 	 * @return Message
 	 */
 	public static function grantName( $grant ) {
+		// Give grep a chance to find the usages:
+		// mwoauth-grant-editpage, mwoauth-grant-createeditmovepage,
+		// mwoauth-grant-uploadfile, mwoauth-grant-uploadeditmovefile
 		$msg = wfMessage( "mwoauth-grant-$grant" );
 		return $msg->exists() ? $msg : wfMessage( "mwoauth-grant-generic", $grant );
 	}

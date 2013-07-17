@@ -343,6 +343,9 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				$cmr->get( 'name', function( $s ) use ( $cmr ) {
 					return $s . ' [' . $cmr->get( 'version' ) . ']'; } )
 			),
+			// Give grep a chance to find the usages:
+			// mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected, mwoauth-consumer-stage-expired,
+			// mwoauth-consumer-stage-approved, mwoauth-consumer-stage-disabled, mwoauth-consumer-stage-suppressed
 			'mwoauthconsumerregistration-stage' =>
 				$this->msg( "mwoauth-consumer-stage-$stageKey" )->escaped(),
 			'mwoauthconsumerregistration-description' => htmlspecialchars(

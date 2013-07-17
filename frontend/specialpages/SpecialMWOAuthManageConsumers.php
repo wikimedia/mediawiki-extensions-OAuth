@@ -309,6 +309,10 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 				'stage' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-stage',
+					// Give grep a chance to find the usages:
+					// mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
+					// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
+					// mwoauth-consumer-stage-disabled, mwoauth-consumer-stage-suppressed
 					'default' => $cmr->get( 'deleted' )
 						? $this->msg( 'mwoauth-consumer-stage-suppressed' )
 						: $this->msg( 'mwoauth-consumer-stage-' .

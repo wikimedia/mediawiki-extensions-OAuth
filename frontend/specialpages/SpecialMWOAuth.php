@@ -193,6 +193,10 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		} else {
 			$list = '';
 			foreach ( $grants as $grant) {
+				// Give grep a chance to find the usages:
+				// mwoauth-grants-editpages, mwoauth-grants-editmyinterface, mwoauth-grants-editinterface,
+				// mwoauth-grants-movepages, mwoauth-grants-createpages, mwoauth-grants-deletepages,
+				// mwoauth-grants-upload
 				$list .= Html::element(
 					'li',
 					array(),
