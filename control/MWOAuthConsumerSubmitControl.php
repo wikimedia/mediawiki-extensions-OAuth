@@ -25,7 +25,21 @@
  * @TODO: improve error messages
  */
 class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
-	protected function getRequiredFields() {return array(
+	/** @var DBConnRef */
+	protected $dbw;
+
+	/**
+	 * @param IContextSource $context
+	 * @param array $params
+	 * @param DBConnRef $dbw Result of MWOAuthUtils::getCentralDB( DB_MASTER )
+	 */
+	public function __construct( IContextSource $context, array $params, DBConnRef $dbw ) {
+		parent::__construct( $context, $params );
+		$this->dbw = $dbw;
+	}
+
+	protected function getRequiredFields() {
+		return array(
 			// Proposer (application administrator) actions:
 			'propose'     => array(
 				'name'         => '/^.{1,128}$/',
@@ -96,7 +110,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 	protected function processAction( $action ) {
 		$user = $this->getUser(); // proposer or admin
-		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
+		$dbw = $this->dbw; // convenience
 
 		switch ( $action ) {
 		case 'propose':

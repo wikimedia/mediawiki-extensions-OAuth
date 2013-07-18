@@ -190,7 +190,9 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 			$act = $data['action']; // this will be valid on success
 			$data['grants'] = FormatJSON::encode( // adapt form to controller
 				preg_replace( '/^grant-/', '', $data['grants'] ) );
-			$controller = new MWOAuthConsumerAcceptanceSubmitControl( $context, $data );
+
+			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
+			$controller = new MWOAuthConsumerAcceptanceSubmitControl( $context, $data, $dbw );
 			return $controller->submit();
 		} );
 
@@ -262,7 +264,8 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 					return $lang->truncate( $s, 10024 ); } ),
 			'mwoauthmanagemygrants-wiki' => $cmr->get( 'wiki' ),
 			'mwoauthmanagemygrants-wikiallowed' => $cmra->get( 'wiki' ),
-			'mwoauthmanagemygrants-grants' => $lang->commaList( $cmr->get( 'grants' ) ),
+			'mwoauthmanagemygrants-grants' => $lang->commaList(
+				array_map( 'MWOAuthUtils::grantName', $cmr->get( 'grants' ) ) ),
 			'mwoauthmanagemygrants-grantsallowed' => $lang->commaList( $cmra->get( 'grants' ) ),
 			'mwoauthmanagemygrants-consumerkey' => $cmr->get( 'consumerKey' )
 		);

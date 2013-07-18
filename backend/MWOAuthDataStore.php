@@ -1,14 +1,16 @@
 <?php
 
-
 class MWOAuthDataStore extends OAuthDataStore {
-
 	// ObjectCache for Tokens and Nonces
 	protected $cache;
 
 	// Persistant storage for logging/audit
 	protected $logging;
 
+	/**
+	 * @param BagOStuff $cache
+	 * @param type $logdb
+	 */
 	public function __construct( BagOStuff $cache, $logdb ) {
 		$this->cache = $cache;
 		$this->logging = $logdb;
@@ -45,7 +47,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 				throw new MWOAuthException( 'mwoauthdatastore-request-token-not-found' );
 			}
 		} elseif ( $token_type == 'access' ) {
-			$dbr = $this->getSlaveDB();
+			$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 			$row = $dbr->selectRow(
 				'oauth_accepted_consumer',
 				'*',
@@ -142,33 +144,6 @@ class MWOAuthDataStore extends OAuthDataStore {
 	}
 
 	/**
-	 * Add an entry into the oauth_accepted_consumer table. TODO: this could use MWOAuthConsumerAcceptance
-	 * @param $user User granting access
-	 * @param MWOAuthConsumer $consumer
-	 * @param Array $grants
-	 * @param OAuthToken $token Credential/Access Token
-	 */
-	public function addGrant( $user, MWOAuthConsumer $consumer, $grants, $token ) {
-		// insert into oauth_accepted_consumer
-		if ( $user->getId() == 0 ) {
-			// This is a final sanity check
-			throw new MWOAuthExeption( 'mwoauthdatastore-invalid-user' );
-		}
-
-		$dbw = $this->getDB();
-		$row = array(
-			'oaac_wiki' => $consumer->get( 'wiki' ),
-			'oaac_user_id' => $user->getId(),
-			'oaac_consumer_id' => $consumer->get( 'id' ),
-			'oaac_access_token' => $token->key,
-			'oaac_access_secret' => $token->secret,
-			'oaac_accepted' => $dbw->timestamp(),
-			'oaac_grants'=> FormatJSON::encode( $grants )
-		);
-		$dbw->insert( 'oauth_accepted_consumer', $row, __METHOD__ );
-	}
-
-	/**
 	 * Update a request token. The token probably already exists, but had another attribute added.
 	 * @param MWOAuthToken $token the token to store
 	 * @param MWOAuthConsumer|OAuthConsumer $consumer
@@ -185,24 +160,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return String|null
 	 */
 	public function getRSAKey( $consumerKey ) {
-		$dbr = $this->getSlaveDB();
-		$row = $dbr->selectRow(
-			'oauth_registered_consumer',
-			'oarc_rsa_key',
-			array( 'oarc_consumer_key' => $consumerKey ),
-			__METHOD__
-		);
-		if ( !$row ) {
-			return null;
-		}
-		return $row->oarc_rsa_key;
-	}
-
-	private function getDB() {
-		return MWOAuthUtils::getCentralDB( DB_MASTER );
-	}
-
-	private function getSlaveDB() {
-		return MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$cmr = MWOAuthConsumer::newFromKey( $dbr, $consumerKey );
+		return $cmr ? $cmr->get( 'rsaKey' ) : null;
 	}
 }

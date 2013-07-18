@@ -1,13 +1,13 @@
 <?php
 
 class MWOAuthServer extends OAuthServer {
-
 	/**
 	 * Process a request_token request returns the request token on success. This
 	 * also checks the IP restriction, which the OAuthServer method did not.
 	 *
 	 * @param MWOAuthRequest the request
 	 * @return MWOAuthToken
+	 * @throws MWOAuthException
 	 */
 	public function fetch_request_token( &$request ) {
 		$this->get_version( $request );
@@ -31,6 +31,10 @@ class MWOAuthServer extends OAuthServer {
 	/**
 	 * process an access_token request
 	 * returns the access token on success
+	 *
+	 * @param MWOAuthRequest the request
+	 * @return MWOAuthToken
+	 * @throws MWOAuthException
 	 */
 	public function fetch_access_token( &$request ) {
 		$this->get_version( $request );
@@ -60,26 +64,16 @@ class MWOAuthServer extends OAuthServer {
 	 * @param MWOAuthRequest $request
 	 */
 	private function checkSourceIP( $consumer, $request ) {
-		// TODO: Cache the answers
 		$restrictions = $consumer->get( 'restrictions' );
 		$requestIP = $request->getSourceIP();
-		$authorized = false;
 
-		$ranges = $restrictions['IPAddresses']; #FormatJSON::decode( $restrictions, true );
-
-		if ( $ranges === null && $restrictions !== '' ) {
-			// assume the user entered a single range
-			$ranges = array( $restrictions );
-		}
-
-		foreach ( $ranges as $range ) {
+		foreach ( $restrictions['IPAddresses'] as $range ) {
 			if ( IP::isInRange( $requestIP, $range ) ) {
-				$authorized = true;
-				break;
+				return true;
 			}
 		}
 
-		return $authorized;
+		return false;
 	}
 
 	/**
@@ -90,20 +84,19 @@ class MWOAuthServer extends OAuthServer {
 	 * @param String $requestTokenKey
 	 * @param User $mwUser user authorizing the request
 	 * @return String the callback URL to redirect the user
+	 * @throws MWOAuthException
 	 */
-	public function authorize( $consumerKey, $requestTokenKey, $mwUser ) {
-
+	public function authorize( $consumerKey, $requestTokenKey, User $mwUser ) {
 		// Check that user and consumer are in good standing
-		// TODO: Anything else? mwoauthmanagemyconsumers?
 		if ( $mwUser->isBlocked() ) {
 			throw new MWOAuthException( 'mwoauthserver-insufficient-rights' );
 		}
 		$consumer = $this->data_store->lookup_consumer( $consumerKey );
 		if ( !$consumer ) {
 			throw new MWOAuthException( 'mwoauthserver-bad-consumer' );
-		}
-		if ( $consumer->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED ) {
-			//TODO other checks?
+		} elseif ( $consumer->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED ) {
+			throw new MWOAuthException( 'mwoauthserver-bad-consumer' );
+		} elseif ( $consumer->get( 'deleted' ) ) { // extra sanity
 			throw new MWOAuthException( 'mwoauthserver-bad-consumer' );
 		}
 
@@ -121,37 +114,29 @@ class MWOAuthServer extends OAuthServer {
 		$requestToken->addAccessKey( $accessToken->key );
 		$this->data_store->updateRequestToken( $requestToken, $consumer );
 
-		// Make sure other extensions can switch out our user. CentralAuth may abort here
-		// if there is no global account for this user.
-		$this->getOAuthUser( $mwUser );
+		// CentralAuth may abort here if there is no global account for this user
+		$userId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
+		if ( !$userId ) {
+			throw new MWOAuthException( 'mwoauthserver-invalid-user' );
+		}
 
 		// Add the Authorization to the database
+		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
 		$cmra = MWOAuthConsumerAcceptance::newFromArray( array(
 			'id'           => null,
 			'wiki'         => $consumer->get( 'wiki' ),
-			'userId'       => $mwUser->getId(),
+			'userId'       => $userId,
 			'consumerId'   => $consumer->get( 'id' ),
 			'accessToken'  => $accessToken->key,
 			'accessSecret' => $accessToken->secret,
 			'grants'       => $consumer->get( 'grants' ),
 			'accepted'     => wfTimestampNow()
 		) );
-		$cmra->save( MWOAuthUtils::getCentralDB( DB_MASTER ) );
+		$cmra->save( $dbw );
 
-		wfDebugLog( 'OAuth', "Verification code {$requestToken->getVerifyCode()} for $requestTokenKey (client: $consumerKey)" );
+		wfDebugLog( 'OAuth', "Verification code {$requestToken->getVerifyCode()} for " .
+			"$requestTokenKey (client: $consumerKey)" );
 
 		return $consumer->generateCallbackUrl( $requestToken->getVerifyCode(), $requestTokenKey );
-	}
-
-	/**
-	 * Ensure we're using the correct user object, in case another extension wants to switch
-	 * it out. After this, $user->getId() is used to store/get Grants for this user.
-	 * @param User $user
-	 */
-	private function getOAuthUser( &$user ) {
-		// Let CentralAuth, etc, change out the user
-		if ( !wfRunHooks( 'OAuth-getUser', array( $user ) ) ) {
-			throw new MWOAuthException( 'mwoauthserver-invalid-user-hookabort' );
-		}
 	}
 }
