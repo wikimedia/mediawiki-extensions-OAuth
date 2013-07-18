@@ -46,6 +46,7 @@ $messages['en'] = array(
 	'mwoauth-consumer-not-approved' => 'The consumer is not approved (it may have been disabled)',
 	'mwoauth-invalid-consumer-key' => 'No consumer exists with the given key.',
 	'mwoauth-invalid-access-token' => 'No access token exists with the given key.',
+	'mwoauth-consumer-conflict' => 'Someone changed the attributes of this consumer as you viewed it. Please try again. You may want to check the change log.',
 
 	'mwoauth-consumer-stage-proposed' => 'proposed',
 	'mwoauth-consumer-stage-rejected' => 'rejected',
@@ -404,6 +405,7 @@ Followed by the following radio boxes:
 	'mwoauth-grants-createpages' => '{{Identical|Create page}}',
 	'mwoauth-grants-deletepages' => '{{Identical|Delete page}}',
 	'mwoauth-grants-upload' => '{{Identical|Upload file}}',
+	'mwoauth-consumer-conflict' => 'Used as error message',
 );
 
 /** Asturian (asturianu)

@@ -217,6 +217,10 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 						'type' => 'hidden',
 						'default' => $cmr->get( 'consumerKey' )
 					),
+					'changeToken' => array(
+						'type'    => 'hidden',
+						'default' => $cmr->getDAO()->getChangeToken( $this->getContext() )
+					),
 					'action' => array(
 						'type'    => 'hidden',
 						'default' => 'update'

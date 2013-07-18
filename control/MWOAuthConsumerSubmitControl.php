@@ -59,7 +59,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					$res = FormatJSON::decode( $s, true );
 					return is_array( $res ) && MWOAuthUtils::restrictionsAreValid( $res );
 				},
-				'rsaKey'       => '/^.*$/', // @TODO: beef up
+				'rsaKey'       => '/^.*$/' // @TODO: beef up
 			),
 			'update'      => array(
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
@@ -69,26 +69,31 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				},
 				'secretKey'    => '/^([0-9a-f]{32})?$/',
 				'rsaKey'       => '/^.*$/', // @TODO: beef up
-				'reason'       => '/^.{0,255}$/'
+				'reason'       => '/^.{0,255}$/',
+				'changeToken'  => '/^[0-9a-f]{40}$/'
 			),
 			// Approver (project administrator) actions:
 			'approve'     => array(
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
-				'reason'       => '/^.{0,255}$/'
+				'reason'       => '/^.{0,255}$/',
+				'changeToken'  => '/^[0-9a-f]{40}$/'
 			),
 			'reject'      => array(
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
 				'reason'       => '/^.{0,255}$/',
 				'suppress'     => '/^[01]$/',
+				'changeToken'  => '/^[0-9a-f]{40}$/'
 			),
 			'disable'     => array(
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
 				'reason'       => '/^.{0,255}$/',
 				'suppress'     => '/^[01]$/',
+				'changeToken'  => '/^[0-9a-f]{40}$/'
 			),
 			'reenable'    => array(
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
-				'reason'       => '/^.{0,255}$/'
+				'reason'       => '/^.{0,255}$/',
+				'changeToken'  => '/^[0-9a-f]{40}$/'
 			)
 		);
 	}
@@ -109,6 +114,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	}
 
 	protected function processAction( $action ) {
+		$context = $this->getContext();
 		$user = $this->getUser(); // proposer or admin
 		$dbw = $this->dbw; // convenience
 
@@ -169,10 +175,14 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
 			} elseif ( $cmr->get( 'userId' ) !== $user->getId() ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
-			} elseif ( $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED ) {
-				return $this->failure( 'not_accepted', 'mwoauth-consumer-not-accepted' );
+			} elseif ( $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
+				&& $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_PROPOSED )
+			{
+				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' ); // sanity
+			} elseif ( !$cmr->checkChangeToken( $context, $this->vals['changeToken'] ) ) {
+				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
 			}
 
 			$cmr->setFields( array(
@@ -210,6 +220,8 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'not_proposed', 'mwoauth-consumer-not-proposed' );
 			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
+			} elseif ( !$cmr->checkChangeToken( $context, $this->vals['changeToken'] ) ) {
+				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
 			}
 
 			$cmr->setFields( array(
@@ -247,6 +259,8 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			} elseif ( $this->vals['suppress'] && !$user->isAllowed( 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
+			} elseif ( !$cmr->checkChangeToken( $context, $this->vals['changeToken'] ) ) {
+				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
 			}
 
 			$cmr->setFields( array(
@@ -286,6 +300,8 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'not_approved', 'mwoauth-consumer-not-approved' );
 			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
+			} elseif ( !$cmr->checkChangeToken( $context, $this->vals['changeToken'] ) ) {
+				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
 			}
 
 			$cmr->setFields( array(
@@ -321,6 +337,8 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'not_disabled', 'mwoauth-consumer-not-disabled' );
 			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
+			} elseif ( !$cmr->checkChangeToken( $context, $this->vals['changeToken'] ) ) {
+				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
 			}
 
 			$cmr->setFields( array(

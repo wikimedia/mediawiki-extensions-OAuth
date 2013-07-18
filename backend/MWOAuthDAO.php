@@ -197,27 +197,6 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	}
 
 	/**
-	 * Check if a user (from the context) can view a field
-	 *
-	 * @see MWOAuthDAO::userCanAccess()
-	 * @see MWOAuthDAOAccessControl
-	 *
-	 * @param string $name
-	 * @param RequestContext $context
-	 * @return Message|true Returns on success or a Message if the user lacks access
-	 * @throws Exception
-	 */
-	final public function userCanAccess( $name, RequestContext $context ) {
-		$map = static::getFieldPermissionChecks();
-		if ( isset( $map[$name] ) ) {
-			$method = $map[$name];
-			return $this->$method( $name, $context );
-		} else {
-			return true;
-		}
-	}
-
-	/**
 	 * Get the schema information for this object type
 	 *
 	 * This should return an associative array with:
@@ -380,5 +359,56 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 			$row[$column] = $this->$field;
 		}
 		return $this->encodeRow( $db, $row );
+	}
+
+	/**
+	 * Check if a user (from the context) can view a field
+	 *
+	 * @see MWOAuthDAO::userCanAccess()
+	 * @see MWOAuthDAOAccessControl
+	 *
+	 * @param string $name
+	 * @param RequestContext $context
+	 * @return Message|true Returns on success or a Message if the user lacks access
+	 * @throws Exception
+	 */
+	final public function userCanAccess( $name, RequestContext $context ) {
+		$map = static::getFieldPermissionChecks();
+		if ( isset( $map[$name] ) ) {
+			$method = $map[$name];
+			return $this->$method( $name, $context );
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * Get the current conflict token value for a user
+	 *
+	 * @param RequestContext $context
+	 * @return string Hex token
+	 */
+	final public function getChangeToken( RequestContext $context ) {
+		$map = array();
+		foreach ( $this->getFieldNames() as $field ) {
+			if ( $this->userCanAccess( $field, $context ) ) {
+				$map[$field] = $this->$field;
+			} else {
+				$map[$field] = null; // don't convey this information
+			}
+		}
+		return hash_hmac( 'sha1', serialize( $map ),
+			$context->getUser()->getEditToken( $this->getIdValue(), $context->getRequest() ) );
+	}
+
+	/**
+	 * Compare an old change token to the current one
+	 *
+	 * @param RequestContext $context
+	 * @param string $oldToken
+	 * @return bool Whether the current is unchanged
+	 */
+	final public function checkChangeToken( RequestContext $context, $oldToken ) {
+		return ( $this->getChangeToken( $context ) === $oldToken );
 	}
 }

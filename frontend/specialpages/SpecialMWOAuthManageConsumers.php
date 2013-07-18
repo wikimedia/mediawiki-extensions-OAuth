@@ -204,9 +204,9 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		global $wgMemc;
 
 		$user = $this->getUser();
-		$db = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 		$cmr = MWOAuthDAOAccessControl::wrap(
-			MWOAuthConsumer::newFromKey( $db, $consumerKey ), $this->getContext() );
+			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
 		if ( !$cmr ) {
 			$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 			return;
@@ -241,7 +241,6 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-key',
 					'default' => $cmr->get( 'consumerKey' ),
-					'size' => '40'
 				),
 				'name' => array(
 					'type' => 'info',
@@ -259,10 +258,9 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					'default' => $cmr->get( 'userId', 'User::whoIs' )
 				),
 				'description' => array(
-					'type' => 'textarea',
+					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-description',
 					'default' => $cmr->get( 'description' ),
-					'readonly' => true,
 					'rows' => 5
 				),
 				'callbackUrl' => array(
@@ -271,10 +269,9 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					'default' => $cmr->get( 'callbackUrl' )
 				),
 				'grants'  => array(
-					'type' => 'textarea',
+					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-grantsneeded-json',
 					'default' => $cmr->get( 'grants', array( 'FormatJSON', 'encode' ) ),
-					'readonly' => true,
 					'rows' => 5
 				),
 				'email' => array(
@@ -288,10 +285,9 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					'default' => $cmr->get( 'wiki' )
 				),
 				'restrictions' => array(
-					'type' => 'textarea',
+					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-restrictions-json',
 					'default' => $cmr->get( 'restrictions', array( 'FormatJSON', 'encode' ) ),
-					'readonly' => true,
 					'rows' => 5
 				),
 				'secretKey' => array(
@@ -300,10 +296,9 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					'default' => $cmr->get( 'secretKey' )
 				),
 				'rsaKey' => array(
-					'type' => 'textarea',
+					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-rsakey',
 					'default' => $cmr->get( 'rsaKey' ),
-					'readonly' => true,
 					'rows' => 5
 				),
 				'stage' => array(
@@ -332,6 +327,10 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 				'consumerKey' => array(
 					'type' => 'hidden',
 					'default' => $cmr->get( 'consumerKey' )
+				),
+				'changeToken' => array(
+					'type' => 'hidden',
+					'default' => $cmr->getDAO()->getChangeToken( $this->getContext() )
 				),
 			),
 			$this->getContext()
