@@ -241,7 +241,9 @@ The value is written in JSON format.',
 {{Identical|Applicable wiki}}',
 	'mwoauth-consumer-restrictions' => 'Used as label for the textarea. (The value is written in JSON format.)
 
-Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hidden}}.',
+Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hidden}}.
+{{Identical|Usage restriction}}',
+	'mwoauth-consumer-restrictions-json' => '{{Identical|Usage restriction}}',
 	'mwoauth-consumer-rsakey' => 'Used as label for the textarea.
 
 Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hidden}}.',
@@ -392,6 +394,7 @@ Followed by the following radio boxes:
 	'logentry-mwoauthconsumer-propose' => '{{logentry}}',
 	'mwoauthconsumer-consumer-logpage' => '{{doc-logpage}}',
 	'mwoauthconsumer-consumer-logpagetext' => 'Description of the OAuth consumer log.',
+	'mwoauthserver-invalid-user-hookabort' => 'Used as error message.',
 	'mwoauth-authorize-form-name' => '{{Identical|Application name}}',
 	'mwoauth-authorize-form-description' => '{{Identical|Application description}}',
 	'mwoauth-authorize-form-version' => '{{Identical|Application version}}',
@@ -833,6 +836,7 @@ $messages['gl'] = array(
 	'mwoauth-invalid-field' => 'Achegouse un valor non válido para o campo "$1"',
 	'mwoauth-field-hidden' => '(esta información está agochada)',
 	'mwoauth-field-private' => '(esta información é privada)',
+	'mwoauth-grant-generic' => 'conxunto de dereitos "$1"',
 	'mwoauth-prefs-managegrants' => 'Acceso de consumidor OAuth:',
 	'mwoauth-prefs-managegrantslink' => 'administrar as concesións en nome desta conta',
 	'mwoauth-consumer-key' => 'Clave do consumidor:',
@@ -871,6 +875,20 @@ $messages['gl'] = array(
 	'mwoauthconsumerregistration-propose' => 'Propoñer un novo consumidor',
 	'mwoauthconsumerregistration-list' => 'A miña lista de consumidores',
 	'mwoauthconsumerregistration-main' => 'Principal',
+	'mwoauthconsumerregistration-propose-text' => 'Utilice o formulario inferior para propoñer un novo consumidor OAuth (véxase http://oauth.net).
+
+Algunhas recomendacións e observacións:
+* Intente utilizar as menos concesións posibles. Evite as concesións que non sexan realmente necesarias agora.
+* Achegue unha clave RSA se fose posible; en caso contrario, asignaráselle un pase secreto (menos seguro).
+* Utilice o campo de restricións JSON para limitar o acceso deste consumidor aos enderezos IP neses rangos CIDR.
+* Pode empregar un ID de wiki para restrinxir o consumidor a un único wiki neste sitio (utilice "*" para todos os wikis).
+* O enderezo de correo electrónico achegado debe coincidir co da súa conta (que debeu ser confirmado).',
+	'mwoauthconsumerregistration-update-text' => 'Utilice o formulario inferior para actualizar aspectos dun consumidor OAuth que controle.
+
+Todos os valores que haxa aquí sobrescribirán os anteriores. Non deixe campos en branco a menos que queira limpar eses valores.',
+	'mwoauthconsumerregistration-maintext' => 'Esta páxina está destinada a propoñer e actualizar aplicacións de consumidor OAuth (véxase http://oauth.net) no rexistro do sitio.
+
+Desde aquí, pode [[Special:MWOAuthConsumerRegistration/propose|propoñer un novo consumidor]] ou [[Special:MWOAuthConsumerRegistration/list|administrar os consumidores existentes]].',
 	'mwoauthconsumerregistration-propose-legend' => 'Nova aplicación de consumidores OAuth',
 	'mwoauthconsumerregistration-update-legend' => 'Actualizar a aplicación de consumidores OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Propoñer o consumidor',
@@ -884,6 +902,9 @@ $messages['gl'] = array(
 	'mwoauthconsumerregistration-stage' => 'Estado',
 	'mwoauthconsumerregistration-lastchange' => 'Última modificación',
 	'mwoauthconsumerregistration-manage' => 'administrar',
+	'mwoauthconsumerregistration-proposed' => "Recibiuse a súa solicitude de consumidor OAuth.
+
+Asignóuselle o pase de consumidor '''$1''' e o pase secreto '''$2'''. ''Garde estes datos para unha futura referencia.''",
 	'mwoauthconsumerregistration-updated' => 'Actualizouse correctamente o seu rexistro de consumidor OAuth.',
 	'mwoauthmanageconsumers' => 'Administrar os consumidores OAuth',
 	'mwoauthmanageconsumers-type' => 'Colas:',
@@ -891,6 +912,7 @@ $messages['gl'] = array(
 	'mwoauthmanageconsumers-showrejected' => 'Solicitudes rexeitadas',
 	'mwoauthmanageconsumers-showexpired' => 'Solicitudes caducadas',
 	'mwoauthmanageconsumers-main' => 'Principal',
+	'mwoauthmanageconsumers-maintext' => 'Esta páxina está destinada a manexar solicitudes de aplicación de consumidor OAuth (véxase http://oauth.net) e a administrar os consumidores OAuth establecidos.',
 	'mwoauthmanageconsumers-queues' => 'Seleccione unha cola de confirmación de consumidor a continuación:',
 	'mwoauthmanageconsumers-q-proposed' => 'Cola das solicitudes de consumidor propostas',
 	'mwoauthmanageconsumers-q-rejected' => 'Cola das solicitudes de consumidor rexeitadas',
@@ -929,6 +951,7 @@ $messages['gl'] = array(
 	'mwoauthmanagemygrants' => 'Administrar as concesión de conta OAuth',
 	'mwoauthmanagemygrants-navigation' => 'Navegación:',
 	'mwoauthmanagemygrants-showlist' => 'Lista de consumidores aceptados',
+	'mwoauthmanagemygrants-none' => 'Ningún consumidor ten acceso á súa conta.',
 	'mwoauthmanagemygrants-name' => 'Nome do consumidor',
 	'mwoauthmanagemygrants-user' => 'Editor',
 	'mwoauthmanagemygrants-description' => 'Descrición',
@@ -940,6 +963,9 @@ $messages['gl'] = array(
 	'mwoauthmanagemygrants-consumerkey' => 'Clave do consumidor',
 	'mwoauthmanagemygrants-review' => 'Revisar/Administrar o acceso',
 	'mwoauthmanagemygrants-grantaccept' => 'Concedido ao consumidor',
+	'mwoauthmanagemygrants-confirm-text' => 'Utilice o formulario inferior para revogar o acceso ou cambiar as concesións dun consumidor OAuth para que actúe no seu nome.
+
+Teña en conta que se autoriza que un consumidor só teña acceso a un subconxunto de wikis (proxectos de sitio), entón haberá múltiples pases de acceso para ese consumidor.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Administrar o pase de acceso do consumidor',
 	'mwoauthmanagemygrants-update' => 'Actualizar as concesións de pases de acceso',
 	'mwoauthmanagemygrants-renounce' => 'Desautorizar e borrar o pase de acceso',
@@ -947,6 +973,12 @@ $messages['gl'] = array(
 	'mwoauthmanagemygrants-confirm-submit' => 'Actualizar o estado do pase de acceso',
 	'mwoauthmanagemygrants-success-update' => 'Actualizouse o pase de acceso deste consumidor.',
 	'mwoauthmanagemygrants-success-renounce' => 'Borrouse o pase de acceso deste consumidor.',
+	'logentry-mwoauthconsumer-propose' => '$1 propoñeu un consumidor OAuth (clave de consumidor $4)',
+	'logentry-mwoauthconsumer-update' => '$1 actualizou un consumidor OAuth (clave de consumidor $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 aprobou un consumidor OAuth de $3 (clave de consumidor $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 rexeitou un consumidor OAuth de $3 (clave de consumidor $4)',
+	'logentry-mwoauthconsumer-disable' => '$1 desactivou un consumidor OAuth de $3 (clave de consumidor $4)',
+	'logentry-mwoauthconsumer-reenable' => '$1 reactivou un consumidor OAuth de $3 (clave de consumidor $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Rexistro de consumidores OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Rexistro de aprobacións, rexeitamentos e desactivacións dos consumidores OAuth rexistrados.',
 	'mwoauth-bad-csrf-token' => 'Produciuse un erro de sesión ao enviar o formulario. Intente realizar o envío outra vez.',
@@ -961,6 +993,7 @@ $messages['gl'] = array(
 	'mwoauthserver-insufficient-rights' => 'Non ten os dereitos necesarios para levar a cabo esta acción',
 	'mwoauthserver-invalid-request-token' => 'Pase non válido na súa solicitude',
 	'mwoauthserver-invalid-user-hookabort' => 'Este usuario non pode utilizar OAuth',
+	'mwoauth-form-description' => 'A seguinte aplicación está solicitando utilizar MediaWiki no seu nome. A aplicación poderá realizar calquera acción para a que teña permiso da lista inferior, se o solicitase. Autorice unicamente aplicacións nas que confíe que usarán estes permisos como faría vostede.',
 	'mwoauth-form-button-approve' => 'Si, permitir',
 	'mwoauth-form-confirmation' => 'Quere permitir que esta aplicación actúe no seu nome?',
 	'mwoauth-authorize-form' => 'Detalles da aplicación:',
@@ -1002,6 +1035,7 @@ $messages['ja'] = array(
 	'mwoauth-consumer-description' => 'アプリケーションの説明:',
 	'mwoauth-consumer-callbackurl' => 'OAuth コールバック URL:',
 	'mwoauth-consumer-restrictions' => '使用制限:',
+	'mwoauth-consumer-restrictions-json' => '使用制限 (JSON):',
 	'mwoauth-consumer-rsakey' => '公開 RSA キー:',
 	'mwoauth-consumer-secretkey' => 'コンシューマー秘密トークン:',
 	'mwoauth-consumer-accesstoken' => 'アクセス トークン:',
@@ -1059,6 +1093,12 @@ $messages['ja'] = array(
 	'logentry-mwoauthconsumer-disable' => '$1 が $3 による OAuth コンシューマーを無効化 (コンシューマー キー $4)',
 	'logentry-mwoauthconsumer-reenable' => '$1 が $3 による OAuth コンシューマーを再有効化 (コンシューマー キー $4)',
 	'mwoauthconsumer-consumer-logpage' => 'OAuth コンシューマー記録',
+	'mwoauthdatastore-bad-token' => '該当するトークンは見つかりませんでした。',
+	'mwoauthdatastore-bad-verifier' => '指定した認証コードは無効でした。',
+	'mwoauthgrants-general-error' => 'OAuth リクエストでエラーが発生しました。',
+	'mwoauthserver-insufficient-rights' => 'あなたにはこの操作を実行する権限がありません。',
+	'mwoauthserver-invalid-request-token' => 'リクエストに無効なトークンがあります。',
+	'mwoauthserver-invalid-user-hookabort' => 'この利用者は OAuth を使用できません。',
 	'mwoauth-authorize-form' => 'アプリケーションの詳細:',
 	'mwoauth-authorize-form-user' => 'アプリケーションの作者: $1',
 	'mwoauth-authorize-form-name' => 'アプリケーション名: $1',
