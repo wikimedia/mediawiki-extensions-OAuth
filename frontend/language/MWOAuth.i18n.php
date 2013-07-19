@@ -251,6 +251,7 @@ Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hi
 	'mwoauth-consumer-secretkey' => 'Used as label for the textarea.',
 	'mwoauth-consumer-reason' => '{{Identical|Reason}}',
 	'mwoauth-invalid-consumer-key' => 'Used as error message',
+	'mwoauth-consumer-conflict' => 'Used as error message',
 	'mwoauth-consumer-stage-rejected' => '{{Identical|Rejected}}',
 	'mwoauth-consumer-stage-expired' => '{{Identical|Expired}}',
 	'mwoauth-consumer-stage-approved' => '{{Identical|Approved}}',
@@ -405,7 +406,6 @@ Followed by the following radio boxes:
 	'mwoauth-grants-createpages' => '{{Identical|Create page}}',
 	'mwoauth-grants-deletepages' => '{{Identical|Delete page}}',
 	'mwoauth-grants-upload' => '{{Identical|Upload file}}',
-	'mwoauth-consumer-conflict' => 'Used as error message',
 );
 
 /** Asturian (asturianu)
@@ -471,6 +471,7 @@ $messages['de'] = array(
 	'mwoauth-consumer-not-approved' => 'Der Verbraucher ist nicht bestätigt (vielleicht wurde er deaktiviert)',
 	'mwoauth-invalid-consumer-key' => 'Es ist kein Verbraucher mit dem angegebenen Schlüssel vorhanden.',
 	'mwoauth-invalid-access-token' => 'Es ist kein Zugriffstoken mit dem angegebenen Schlüssel vorhanden.',
+	'mwoauth-consumer-conflict' => 'Ein anderer hat bereits die Attribute dieses Verbrauchers geändert. Bitte erneut versuchen. Du kannst auch das Änderungs-Logbuch überprüfen.',
 	'mwoauth-consumer-stage-proposed' => 'geplant',
 	'mwoauth-consumer-stage-rejected' => 'abgelehnt',
 	'mwoauth-consumer-stage-expired' => 'abgelaufen',
@@ -676,6 +677,7 @@ $messages['fr'] = array(
 	'mwoauth-consumer-not-approved' => 'Le consommateur n’est pas approuvé (il peut avoir été désactivé)',
 	'mwoauth-invalid-consumer-key' => 'Aucun consommateur n’existe avec la clé fournie.',
 	'mwoauth-invalid-access-token' => 'Aucun jeton d’accès n’existe pour la clé fournie',
+	'mwoauth-consumer-conflict' => 'Quelqu’un a modifié les attributs de ce consommateur pendant que vous le consultiez. Veuillez réessayer. Vous pouvez aussi vérifier le journal des modifications.',
 	'mwoauth-consumer-stage-proposed' => 'proposé',
 	'mwoauth-consumer-stage-rejected' => 'rejeté',
 	'mwoauth-consumer-stage-expired' => 'expiré',
