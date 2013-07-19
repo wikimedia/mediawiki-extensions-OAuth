@@ -95,11 +95,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			}
 
 			// @TODO: handle exceptions
-			$store = new MWOAuthDataStore( $wgMemc, MWOAuthUtils::getCentralDB( DB_MASTER ) );
-			$oauthServer = new MWOAuthServer( $store );
-			$oauthServer->add_signature_method( new OAuthSignatureMethod_HMAC_SHA1() );
-			$oauthServer->add_signature_method( new MWOAuthSignatureMethod_RSA_SHA1( $store ) );
-
+			$oauthServer = MWOAuthUtils::newMWOAuthServer();
 			$callback = $oauthServer->authorize(
 				$this->vals['consumerKey'], $this->vals['requestToken'], $this->getUser() );
 
