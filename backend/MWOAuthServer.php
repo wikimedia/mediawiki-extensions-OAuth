@@ -14,6 +14,11 @@ class MWOAuthServer extends OAuthServer {
 
 		$consumer = $this->get_consumer( $request );
 
+		// Consumer must have a key for us to verify
+		if ( !$consumer->get( 'secretKey' ) && !$consumer->get( 'rsaKey' ) ) {
+			throw new MWOAuthException( 'invalid-consumer' );
+		}
+
 		$this->checkSourceIP( $consumer, $request );
 
 		// no token required for the initial token request
@@ -41,10 +46,20 @@ class MWOAuthServer extends OAuthServer {
 
 		$consumer = $this->get_consumer( $request );
 
+		// Consumer must have a key for us to verify
+		if ( !$consumer->get( 'secretKey' ) && !$consumer->get( 'rsaKey' ) ) {
+			throw new MWOAuthException( 'invalid-consumer' );
+		}
+
 		$this->checkSourceIP( $consumer, $request );
 
 		// requires authorized request token
-		$token = $this->get_token( $request, $consumer, "request" );
+		$token = $this->get_token( $request, $consumer, 'request' );
+
+		if ( !$token->secret ) {
+			// This token has a blank secret.. something is wrong
+			throw new MWOAuthException( 'bad-token' );
+		}
 
 		$this->check_signature( $request, $consumer, $token );
 
@@ -66,6 +81,10 @@ class MWOAuthServer extends OAuthServer {
 	private function checkSourceIP( $consumer, $request ) {
 		$restrictions = $consumer->get( 'restrictions' );
 		$requestIP = $request->getSourceIP();
+
+		if ( !isset( $restrictions['IPAddresses'] ) ) {
+			return true; // sanity; should not happen
+		}
 
 		foreach ( $restrictions['IPAddresses'] as $range ) {
 			if ( IP::isInRange( $requestIP, $range ) ) {

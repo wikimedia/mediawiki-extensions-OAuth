@@ -36,6 +36,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					if ( !$requestToken || !$consumerKey ) {
 						throw new MWOAuthException( 'mwoauth-bad-request' );
 					}
+					// TODO? Test that $requestToken exists in memcache
 
 					if ( $mwUser->isAnon() ) {
 						//redirect to login
@@ -94,7 +95,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					break;
 				case 'token':
 					$OAuthRequest = MWOAuthRequest::fromRequest( $request );
-					wfDebugLog( 'OAuth', "/token: '{$OAuthRequest->getConsumerKey()}' getting temporary credentials" );
+					wfDebugLog( 'OAuth', "/token: '{$OAuthRequest->get_parameter( 'oauth_consumer_key' )}' getting temporary credentials" );
 					$token = $oauthServer->fetch_access_token( $OAuthRequest );
 					$this->returnToken( $token, $format );
 
