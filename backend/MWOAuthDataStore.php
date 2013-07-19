@@ -1,33 +1,33 @@
 <?php
 
 class MWOAuthDataStore extends OAuthDataStore {
-	// ObjectCache for Tokens and Nonces
+	/** @var DBConnRef DB for the consumer/grant registry */
+	protected $centralDB;
+	/** @var BagOStuff Cache for Tokens and Nonces */
 	protected $cache;
 
-	// Persistant storage for logging/audit
-	protected $logging;
-
 	/**
+	 * @param DBConnRef $centralDB Central DB slave
 	 * @param BagOStuff $cache
-	 * @param type $logdb
 	 */
-	public function __construct( BagOStuff $cache, $logdb ) {
+	public function __construct( DBConnRef $centralDB, BagOStuff $cache ) {
+		$this->centralDB = $centralDB;
 		$this->cache = $cache;
-		$this->logging = $logdb;
 	}
 
 	/**
 	 * Get an MWOAuthConsuer from the consumer's key
+	 *
 	 * @param String $consumerKey the string value of the Consumer's key
 	 * @return MWOAuthConsumer
 	 */
 	public function lookup_consumer( $consumerKey ) {
-		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
-		return MWOAuthConsumer::newFromKey( $dbr, $consumerKey );
+		return MWOAuthConsumer::newFromKey( $this->centralDB, $consumerKey );
 	}
 
 	/**
-	 * Get either a request or access token from the data store.
+	 * Get either a request or access token from the data store
+	 *
 	 * @param OAuthConsumer|MWOAuthConsumer $consumer
 	 * @param $token_type
 	 * @param $token String the token
@@ -47,8 +47,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 				throw new MWOAuthException( 'mwoauthdatastore-request-token-not-found' );
 			}
 		} elseif ( $token_type == 'access' ) {
-			$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
-			$row = $dbr->selectRow(
+			$row = $this->centralDB->selectRow(
 				'oauth_accepted_consumer',
 				'*',
 				array( 'oaac_access_token' => $token ),
@@ -79,11 +78,9 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 */
 	public function lookup_nonce( $consumer, $token, $nonce, $timestamp ) {
 		$key = MWOAuthUtils::getCacheKey( 'nonce', $consumer->key, $token, $nonce );
-
-		// Do an add for the key associated with this nonce. If the key exisits, nonce has
-		// been used. Set timeout 5 minutes in the future of the timestamp, to match
-		// OAuthServer. Use the timestamp so the client can also expire their nonce records
-		// after 5 mins.
+		// Do an add for the key associated with this nonce to check if it was already used.
+		// Set timeout 5 minutes in the future of the timestamp as OAuthServer does. Use the
+		// timestamp so the client can also expire their nonce records after 5 mins.
 		if ( !$this->cache->add( $key, 1, $timestamp + 300 ) ) {
 			wfDebugLog( 'OAuth', "$key exists, so nonce has been used by this consumer+token" );
 			return true;
@@ -99,21 +96,22 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 */
 	public static function newToken() {
 		return new MWOAuthToken(
-			MWCryptRand::generateHex( 32, false), //The key doesn't need to be unpredictable
+			MWCryptRand::generateHex( 32, false), // the key doesn't need to be unpredictable
 			MWCryptRand::generateHex( 32, true)
 		);
 	}
 
 	/**
-	 * Generate a new token, save it in the cache, and return it
+	 * Generate a new token (attached to this consumer), save it in the cache, and return it
+	 *
 	 * @param MWOAuthConsumer|OAuthConsumer $consumer
 	 */
 	public function new_request_token( $consumer, $callback = null ) {
-		// return a new token attached to this consumer
 		$token = $this->newToken();
 		$cacheKey = MWOAuthUtils::getCacheKey( 'token', $consumer->key, 'request', $token->key );
 		$this->cache->add( $cacheKey, $token, 600 ); //10 minutes. Kindof arbitray.
-		wfDebugLog( 'OAuth', __METHOD__ . ": New request token {$token->key} for {$consumer->key}" );
+		wfDebugLog( 'OAuth', __METHOD__ .
+			": New request token {$token->key} for {$consumer->key}" );
 		return $token;
 	}
 
@@ -127,30 +125,33 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return MWOAuthToken the access token
 	 */
 	public function new_access_token( $token, $consumer, $verifier = null ) {
-		wfDebugLog( 'OAuth', __METHOD__ . ": Getting new access token for token {$token->key}, consumer {$consumer->key}" );
+		wfDebugLog( 'OAuth', __METHOD__ .
+			": Getting new access token for token {$token->key}, consumer {$consumer->key}" );
 
 		if ( !$token->getVerifyCode() || !$token->getAccessKey() ) {
 			throw new MWOAuthException( 'mwoauthdatastore-bad-token' );
-		}
-
-		if ( $token->getVerifyCode() !== $verifier ) {
+		} elseif ( $token->getVerifyCode() !== $verifier ) {
 			throw new MWOAuthException( 'mwoauthdatastore-bad-verifier' );
 		}
 
+		$cacheKey = MWOAuthUtils::getCacheKey( 'token',
+			$consumer->get( 'consumerKey' ), 'request', $token->key );
 		$accessToken = $this->lookup_token( $consumer, 'access', $token->getAccessKey() );
-		$this->cache->delete( MWOAuthUtils::getCacheKey( 'token', $consumer->get( 'consumerKey' ), 'request', $token->key ) );
-		wfDebugLog( 'OAuth', __METHOD__ . ": New access token {$accessToken->key} for {$consumer->key}" );
+		$this->cache->delete( $cacheKey );
+		wfDebugLog( 'OAuth', __METHOD__ .
+			": New access token {$accessToken->key} for {$consumer->key}" );
 		return $accessToken;
 	}
 
 	/**
 	 * Update a request token. The token probably already exists, but had another attribute added.
+	 *
 	 * @param MWOAuthToken $token the token to store
 	 * @param MWOAuthConsumer|OAuthConsumer $consumer
 	 */
 	public function updateRequestToken( $token, $consumer ) {
 		$cacheKey = MWOAuthUtils::getCacheKey( 'token', $consumer->key, 'request', $token->key );
-		$this->cache->set( $cacheKey, $token, 600 ); //10 more minutes. Kindof arbitray.
+		$this->cache->set( $cacheKey, $token, 600 ); // 10 more minutes. Kindof arbitray.
 	}
 
 	/**
@@ -160,8 +161,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return String|null
 	 */
 	public function getRSAKey( $consumerKey ) {
-		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
-		$cmr = MWOAuthConsumer::newFromKey( $dbr, $consumerKey );
+		$cmr = MWOAuthConsumer::newFromKey( $this->centralDB, $consumerKey );
 		return $cmr ? $cmr->get( 'rsaKey' ) : null;
 	}
 }

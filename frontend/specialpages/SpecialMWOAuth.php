@@ -14,12 +14,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		}
 
 		try {
-
-			$store = $this->getStorage();
-			$oauthServer = new MWOAuthServer( $store );
-			$oauthServer->add_signature_method( new OAuthSignatureMethod_HMAC_SHA1() );
-			$oauthServer->add_signature_method( new MWOAuthSignatureMethod_RSA_SHA1( $store ) );
-
+			$oauthServer = MWOAuthUtils::newMWOAuthServer();
 			switch ( $subpage ) {
 				case 'initiate':
 					$OAuthRequest = MWOAuthRequest::fromRequest( $request );
@@ -115,11 +110,6 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	private function doRedirect( $url ) {
 		$output = $this->getOutput();
 		$output->redirect( $url );
-	}
-
-	private function getStorage() {
-		global $wgMemc; //TODO instance of config
-		return new MWOAuthDataStore( $wgMemc, wfGetDB( DB_MASTER ) );
 	}
 
 	private function showAuthorizeForm( $params ) {

@@ -192,15 +192,18 @@ class MWOAuthUtils {
 
 	/**
 	 * Quickly get a new server with all the default configurations
+	 *
 	 * @return MWOAuthServer with default configurations
 	 */
 	public static function newMWOAuthServer() {
 		global $wgMemc;
+
 		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
-		$store = new MWOAuthDataStore( $wgMemc, $dbr );
+		$store = new MWOAuthDataStore( $dbr, $wgMemc );
 		$server = new MWOAuthServer( $store );
 		$server->add_signature_method( new OAuthSignatureMethod_HMAC_SHA1() );
 		$server->add_signature_method( new MWOAuthSignatureMethod_RSA_SHA1( $store ) );
+
 		return $server;
 	}
 
