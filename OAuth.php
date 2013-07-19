@@ -52,6 +52,8 @@ $wgLogTypes[] = 'mwoauthconsumer';
 MWOAuthUISetup::defineLogBasicDescription( $wgLogNames, $wgLogHeaders, $wgFilterLogTypes );
 MWOAuthUISetup::defineLogActionHandlers( $wgLogActions, $wgLogActionsHandlers );
 
+# Basic hook handlers
+MWOAuthSetup::defineHookHandlers( $wgHooks );
 # GUI-related hook handlers
 MWOAuthUISetup::defineHookHandlers( $wgHooks );
 # API-related hook handlers
