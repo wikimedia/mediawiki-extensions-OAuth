@@ -90,6 +90,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		$this->userId = (int)$this->userId;
 		$this->consumerId = (int)$this->consumerId;
 		$this->accepted = wfTimestamp( TS_MW, $this->accepted );
+		$this->grants = (array)$this->grants; // sanity
 	}
 
 	protected function encodeRow( DBConnRef $db, $row ) {

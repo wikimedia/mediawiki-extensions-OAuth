@@ -30,7 +30,6 @@ $messages['en'] = array(
 	'mwoauth-consumer-description' => 'Application description:',
 	'mwoauth-consumer-callbackurl' => 'OAuth "callback" URL:',
 	'mwoauth-consumer-grantsneeded' => 'Applicable grants:',
-	'mwoauth-consumer-grantsneeded-json' => 'Applicable grants (JSON):',
 	'mwoauth-consumer-required-grant' => 'Applicable to consumer',
 	'mwoauth-consumer-wiki' => 'Applicable wiki:',
 	'mwoauth-consumer-restrictions' => 'Usage restrictions:',
@@ -235,9 +234,6 @@ See also:
 	'mwoauth-consumer-callbackurl' => 'Used as label for the "Callback URL" input box.
 
 See [[w:Callback (computer programming)]].',
-	'mwoauth-consumer-grantsneeded-json' => 'Used as label for the textarea.
-
-The value is written in JSON format.',
 	'mwoauth-consumer-wiki' => 'Used as label for the input box. The default value for the input box is "*".
 {{Identical|Applicable wiki}}',
 	'mwoauth-consumer-restrictions' => 'Used as label for the textarea. (The value is written in JSON format.)
