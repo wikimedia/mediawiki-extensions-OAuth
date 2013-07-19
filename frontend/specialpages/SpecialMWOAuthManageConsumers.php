@@ -204,6 +204,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		global $wgMemc;
 
 		$user = $this->getUser();
+		$lang = $this->getLanguage();
 		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
@@ -270,8 +271,11 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 				),
 				'grants'  => array(
 					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-grantsneeded-json',
-					'default' => $cmr->get( 'grants', array( 'FormatJSON', 'encode' ) ),
+					'label-message' => 'mwoauth-consumer-grantsneeded',
+					'default' => $cmr->get( 'grants', function( $grants ) use ( $lang ) {
+						return $lang->semicolonList(
+							array_map( 'MWOAuthUtils::grantName', $grants ) );
+					} ),
 					'rows' => 5
 				),
 				'email' => array(

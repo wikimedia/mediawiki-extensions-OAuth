@@ -264,9 +264,10 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 					return $lang->truncate( $s, 10024 ); } ),
 			'mwoauthmanagemygrants-wiki' => $cmr->get( 'wiki' ),
 			'mwoauthmanagemygrants-wikiallowed' => $cmra->get( 'wiki' ),
-			'mwoauthmanagemygrants-grants' => $lang->commaList(
+			'mwoauthmanagemygrants-grants' => $lang->semicolonList(
 				array_map( 'MWOAuthUtils::grantName', $cmr->get( 'grants' ) ) ),
-			'mwoauthmanagemygrants-grantsallowed' => $lang->commaList( $cmra->get( 'grants' ) ),
+			'mwoauthmanagemygrants-grantsallowed' => $lang->semicolonList(
+				array_map( 'MWOAuthUtils::grantName', $cmra->get( 'grants' ) ) ),
 			'mwoauthmanagemygrants-consumerkey' => $cmr->get( 'consumerKey' )
 		);
 

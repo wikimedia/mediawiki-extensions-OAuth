@@ -190,6 +190,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$this->stageTimestamp = wfTimestamp( TS_MW, $this->stageTimestamp );
 		$this->emailAuthenticated = wfTimestamp( TS_MW, $this->emailAuthenticated );
 		$this->deleted = (int)$this->deleted;
+		$this->grants = (array)$this->grants; // sanity
 	}
 
 	protected function encodeRow( DBConnRef $db, $row ) {
