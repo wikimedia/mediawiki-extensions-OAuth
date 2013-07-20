@@ -86,10 +86,12 @@ From here, you can [[Special:MWOAuthConsumerRegistration/propose|propose a new c
 	'mwoauthconsumerregistration-stage' => 'Status',
 	'mwoauthconsumerregistration-lastchange' => 'Last change',
 	'mwoauthconsumerregistration-manage' => 'manage',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Reset the secret key to a new value',
 	'mwoauthconsumerregistration-proposed' => 'Your OAuth consumer request has been received.
 
 You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of \'\'\'$2\'\'\'. \'\'Please record these for future reference.\'\'',
 	'mwoauthconsumerregistration-updated' => 'Your OAuth consumer registry was successfully updated.',
+	'mwoauthconsumerregistration-secretreset' => 'You have been assigned a consumer secret token of \'\'\'$1\'\'\'. \'\'Please record this for future reference.\'\'',
 
 	'mwoauthmanageconsumers' => 'Manage OAuth consumers',
 	'mwoauthmanageconsumers-type' => 'Queues:',
@@ -270,11 +272,13 @@ Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hi
 	'mwoauthconsumerregistration-propose-submit' => 'Used as label for the Submit button.',
 	'mwoauthconsumerregistration-update-submit' => 'Used as label for the Submit button.',
 	'mwoauthconsumerregistration-stage' => '{{Identical|Status}}',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Used a label for a checkbox',
 	'mwoauthconsumerregistration-proposed' => 'Used as success message.
 
 Parameters:
 * $1 - consumer key
 * $2 - secret key',
+
 	'mwoauthmanageconsumers' => '{{doc-special|MWOAuthManageConsumers}}
 {{Identical|Manage OAuth consumer}}',
 	'mwoauthmanageconsumers-type' => 'Used as subtitle.
@@ -407,6 +411,10 @@ Followed by the following radio boxes:
 	'mwoauth-grants-createpages' => '{{Identical|Create page}}',
 	'mwoauth-grants-deletepages' => '{{Identical|Delete page}}',
 	'mwoauth-grants-upload' => '{{Identical|Upload file}}',
+
+	'mwoauthconsumerregistration-updated' => 'Shown as success message',
+	'mwoauthconsumerregistration-secretreset' => 'Shown on success message. Parameters:
+* $1 - new secret token',
 );
 
 /** Asturian (asturianu)

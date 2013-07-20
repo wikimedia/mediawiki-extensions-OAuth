@@ -67,8 +67,8 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					$res = FormatJSON::decode( $s, true );
 					return is_array( $res ) && MWOAuthUtils::restrictionsAreValid( $res );
 				},
-				'secretKey'    => '/^([0-9a-f]{32})?$/',
 				'rsaKey'       => '/^.*$/', // @TODO: beef up
+				'resetSecret'  => function( $s ) { return is_bool( $s ); },
 				'reason'       => '/^.{0,255}$/',
 				'changeToken'  => '/^[0-9a-f]{40}$/'
 			),
@@ -188,7 +188,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$cmr->setFields( array(
 				'rsaKey'       => $this->vals['rsaKey'],
 				'restrictions' => FormatJSON::decode( $this->vals['restrictions'], true ),
-				'secretKey'    => $this->vals['secretKey'] ) );
+				'secretKey'    => $this->vals['resetSecret']
+					? MWCryptRand::generateHex( 32 )
+					: $cmr->get( 'secretKey' )
+			) );
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
