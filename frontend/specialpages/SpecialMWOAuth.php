@@ -24,6 +24,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$this->returnToken( $token, $format );
 					break;
 				case 'authorize':
+					//TODO: most of the "controller" logic should be move somewhere else
 					$mwUser = $this->getUser();
 					$requestToken = $request->getVal( 'oauth_token', false ); //oauth_token
 					$consumerKey = $request->getVal( 'oauth_consumer_key', false ); //oauth_key
@@ -60,22 +61,31 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 						$callback = $oauthServer->authorize(
 							$consumerKey,
 							$requestToken,
-							$mwUser
+							$mwUser,
+							$request->getCheck( 'grants-update' )
 						);
 						// Redirect to callback url
 						$this->doRedirect( $callback );
 					} else {
+						$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 						$consumer = MWOAuthDAOAccessControl::wrap(
-								MWOAuthConsumer::newFromKey( MWOAuthUtils::getCentralDB( DB_SLAVE ), $consumerKey ),
+								MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
 								$this->getContext()
 						);
 						if ( !$consumer ) {
 							throw new MWOAuthException( 'mwoauth-bad-request' );
 						}
+						// Check if this user has authorized grants for this consumer previously
+						$existing = $oauthServer->getCurrentAuthorization(
+							$mwUser,
+							$consumer->getDAO()
+						);
+
 						$formParams = array(
 							'consumerKey' => $consumerKey,
 							'requestToken' => $requestToken,
 							'grants' => $consumer->get( 'grants' ),
+							'existing' => $existing,
 							'description' => array (
 								'user' => User::newFromId( $consumer->get( 'userId') )->getName(),
 								'name' => $consumer->get( 'name'),
@@ -117,7 +127,18 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$user = $this->getUser();
 
 		$out->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
-		$out->addHTML( Html::element( 'p', array(), $this->msg( 'mwoauth-form-description' )->text() ) );
+		if ( !$params['existing'] ) {
+			$out->addHTML( Html::element( 'p', array(), $this->msg( 'mwoauth-form-description' )->text() ) );
+		} else {
+			// User has already authorized this consumer
+			$lang = $this->getLanguage();
+			$grants = $params['existing']->get( 'grants');
+			$grantList = is_null( $grants ) ? $this->msg( 'mwoauth-grants-nogrants' )->text() : $lang->commaList( $grants );
+			$out->addWikiMsg( 'mwoauth-form-existing',
+				$grantList,
+				$params['existing']->get( 'wiki'),
+				$params['existing']->get( 'accepted' ) );
+		}
 		$out->addHTML( Html::element( 'p', array(), $this->msg( 'mwoauth-form-legal' )->text() ) );
 
 		$out->addHTML( Html::element( 'p', array(), $this->msg( 'mwoauth-authorize-form' )->text() ) );
@@ -138,7 +159,10 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$out->addHTML( Html::rawElement( 'ul', array(), $description ) );
 
 		$out->addHTML( $this->getGrantsHtml( $params['grants'] ) );
-
+		if ( $params['existing'] ) {
+			// Checkbox to allow the user to update their permission to match the Consumer's request
+			$fields['mwoauth-form-confirmation-update'] = Xml::check( 'grants-update', false );
+		}
 		$fields['mwoauth-form-confirmation'] = Xml::submitButton( $this->msg( 'mwoauth-form-button-approve' )->text() );
 		$form = Xml::buildForm( $fields );
 		$form = Xml::fieldset( null, $form );
