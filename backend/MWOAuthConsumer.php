@@ -131,18 +131,16 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 * @param DBConnRef $db
 	 * @param string $name
 	 * @param string $version
-	 * @param User|integer $user User or user ID
+	 * @param integer $userId Central user ID
 	 * @param integer $flags MWOAuthConsumer::READ_* bitfield
 	 * @return MWOAuthConsumer|bool
 	 */
 	public static function newFromNameVersionUser(
-		DBConnRef $db, $name, $version, $user, $flags = 0
+		DBConnRef $db, $name, $version, $userId, $flags = 0
 	) {
-		$uid = ( $user instanceof User ) ? $user->getId() : $user;
-
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
-			array( 'oarc_name' => $name, 'oarc_version' => $version, 'oarc_user_id' => $uid ),
+			array( 'oarc_name' => $name, 'oarc_version' => $version, 'oarc_user_id' => $userId ),
 			__METHOD__,
 			( $flags & self::READ_LOCKING ) ? array( 'FOR UPDATE' ) : array()
 		);
