@@ -102,7 +102,8 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 							$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
 						),
 						'rows' => array_combine(
-							array_map( 'MWOAuthUtils::grantName', MWOAuthUtils::getValidGrants() ),
+							array_map( 'htmlspecialchars',
+								MWOAuthUtils::grantNames( MWOAuthUtils::getValidGrants() ) ),
 							MWOAuthUtils::getValidGrants()
 						),
 						// @TODO: tooltips
