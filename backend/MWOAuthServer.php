@@ -26,10 +26,17 @@ class MWOAuthServer extends OAuthServer {
 
 		$this->check_signature( $request, $consumer, $token );
 
-		// Rev A change
+		// In MediaWiki, we require the callback to be established at registration
+		// OAuth 1.0a (rfc5849, section 2.1) specifies that oauth_callback is required
+		// for the temporary credentials, and "If the client is unable to receive callbacks
+		// or a callback URI has been established via other means, the parameter value MUST
+		// be set to "oob" (case sensitive), to indicate an out-of-band configuration."
 		$callback = $request->get_parameter( 'oauth_callback' );
+		if ( $callback !== 'oob' ) {
+			throw new MWOAuthException( 'callback-not-oob' );
+		}
 		$new_token = $this->data_store->new_request_token( $consumer, $callback );
-
+		$new_token->oauth_callback_confirmed = 'true';
 		return $new_token;
 	}
 

@@ -250,10 +250,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		if ( $format == 'raw' ) {
 			$return = 'oauth_token=' . OAuthUtil::urlencode_rfc3986( $token->key );
 			$return .= '&oauth_token_secret=' . OAuthUtil::urlencode_rfc3986( $token->secret );
+			$return .= '&oauth_callback_confirmed=true';
 			$this->showResponse( $return, 'raw' );
 		} elseif ( $format == 'json' ) {
-			#unset( $token->code );
-			#unset( $token->accessTokenKey );
 			$this->showResponse( FormatJSON::encode( $token ), 'raw' );
 		} elseif ( $format == 'html' ) {
 			$html = Html::element(
@@ -265,6 +264,11 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				'li',
 				array(),
 				'oauth_token_secret = ' . OAuthUtil::urlencode_rfc3986( $token->secret )
+			);
+			$html .= Html::element(
+				'li',
+				array(),
+				'oauth_callback_confirmed = true'
 			);
 			$html = Html::rawElement( 'ul', array(), $html );
 			$this->showResponse( $html, 'html' );

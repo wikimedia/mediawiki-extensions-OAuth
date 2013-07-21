@@ -214,6 +214,8 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauth-grant-createeditmovepage' => 'Create, edit, and move pages',
 	'mwoauth-grant-uploadfile' => 'Upload new files',
 	'mwoauth-grant-uploadeditmovefile' => 'Upload, replace, and move files',
+
+	'mwoauth-callback-not-oob' => 'oauth_callback must be set, and must be set to "oob" (case-sensitive)',
 );
 
 /** Message documentation (Message documentation)
@@ -415,6 +417,7 @@ Followed by the following radio boxes:
 	'mwoauthconsumerregistration-updated' => 'Shown as success message',
 	'mwoauthconsumerregistration-secretreset' => 'Shown on success message. Parameters:
 * $1 - new secret token',
+	'mwoauth-callback-not-oob' => 'Warning that the OAuth developer failed to include the required "oauth_callback" parameter, which must be set to the case-sensitive string "oob"',
 );
 
 /** Asturian (asturianu)
