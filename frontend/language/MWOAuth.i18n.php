@@ -602,8 +602,13 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'mwoauthserver-invalid-request-token' => 'Deine Anfrage enthält einen ungültigen Token',
 	'mwoauthserver-invalid-user-hookabort' => 'Dieser Benutzer kann nicht OAuth benutzen',
 	'mwoauth-form-description' => 'Die folgende Anwendung will MediaWiki in deinem Namen benutzen. Die Anwendung wird jede Aktion ausführen können, die in der unten stehenden Liste erlaubt wird. Lasse nur Anwendungen zu, denen du eine Verwendung dieser Berechtigungen zutraust.',
+	'mwoauth-form-existing' => "'''Diese Anwendung fordert Berechtigungen für MediaWiki auf deinen Namen an, du hast jedoch bereits Zugriff gewährt:'''
+*  Berechtigungen: $1
+*  Wiki: $2
+*  Genehmigt am: $3",
 	'mwoauth-form-button-approve' => 'Ja, erlauben',
 	'mwoauth-form-confirmation' => 'Darf diese Anwendung auf deinen Namen handeln?',
+	'mwoauth-form-confirmation-update' => 'Aktualisiere diese Genehmigung für die angeforderten Berechtigungen. Das ungeprüft lassen behält deine vorhandenen Genehmigungen bei.',
 	'mwoauth-authorize-form' => 'Anwendungsdetails:',
 	'mwoauth-authorize-form-user' => 'Anwendungsentwickler: $1',
 	'mwoauth-authorize-form-name' => 'Anwendungsname: $1',
@@ -634,6 +639,11 @@ $messages['en-gb'] = array(
 Note that if you authorised a consumer to only have access to a subset of wikis (site projects), then there will be multiple access tokens for that consumer.',
 	'mwoauthmanagemygrants-renounce' => 'De-authorise and delete access token',
 	'mwoauthdatastore-access-token-not-found' => 'No approved grant was found for that authorisation token',
+	'mwoauth-form-existing' => "'''This application is requesting authorisation to MediaWiki on your behalf, but you have already granted access:'''
+*  Grants: $1
+*  Wiki: $2
+*  Authorised on: $3",
+	'mwoauth-form-confirmation-update' => 'Update this authorisation to the requested privileges. Leaving this unchecked will keep your existing authorisations',
 );
 
 /** French (français)
@@ -1303,8 +1313,13 @@ $messages['mk'] = array(
 	'mwoauthserver-invalid-request-token' => 'Неважечки жетон во барањето',
 	'mwoauthserver-invalid-user-hookabort' => 'Корисникот не може да користи OAuth',
 	'mwoauth-form-description' => 'Следниов прилог бара да го користи МедијаВики во ваше име. Ќе може да ги извршува сите дејства дозволени во рамките на долунаведениот список со побарани права. Ова треба да го дозволувате само на прилози на кои им верувате.',
+	'mwoauth-form-existing' => "'''Овој прилог бара овластување од МедијаВики во ваше име, но веќе има добиено пристап:'''
+*  Доделувања: $1
+*  Вики: $2
+*  Овластен на: $3",
 	'mwoauth-form-button-approve' => 'Да, дозволи',
 	'mwoauth-form-confirmation' => 'Да му дозволам на прилогот да врши работи во ваше име?',
+	'mwoauth-form-confirmation-update' => 'Дополни го ова овластување со побараните привилегии. Ако ова остане нештиклирано, ќе ги задржите постоечките овластувања',
 	'mwoauth-authorize-form' => 'Подробности за податокот:',
 	'mwoauth-authorize-form-user' => 'Автор на прилогот: $1',
 	'mwoauth-authorize-form-name' => 'Име на прилогот: $1',
