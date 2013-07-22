@@ -80,4 +80,12 @@ class MWOAuthSetup {
 		# Schema changes
 		$classes['MWOAuthUpdaterHooks'] = "$schemaDir/MWOAuthUpdater.hooks.php";
 	}
+
+	/**
+	 * @param array $hooks $wgHooks
+	 * @return void
+	 */
+	public static function defineHookHandlers( &$hooks ) {
+		$hooks['LoadExtensionSchemaUpdates'][] = 'MWOAuthUpdaterHooks::addSchemaUpdates';
+	}
 }
