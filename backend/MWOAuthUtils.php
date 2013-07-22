@@ -256,4 +256,21 @@ class MWOAuthUtils {
 
 		return $id;
 	}
+
+	/**
+	 * Get the effective secret key/token to use for OAuth purposes.
+	 *
+	 * For example, the "secret key" and "access secret" values that are
+	 * used for authenticating request should be the result of applying this
+	 * function to the respective values stored in the DB. This means that
+	 * a leak of DB values is not enough to impersonate consumers.
+	 *
+	 * @param string $secret
+	 * @return string
+	 */
+	public static function hmacDBSecret( $secret ) {
+		global $wgSecretKey;
+
+		return $wgSecretKey ? hash_hmac( 'sha1', $secret, $wgSecretKey ) : $secret;
+	}
 }

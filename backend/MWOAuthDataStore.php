@@ -36,7 +36,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	public function lookup_token( $consumer, $token_type, $token ) {
 		wfDebugLog( 'OAuth', __METHOD__ . ": Looking up $token_type token '$token'" );
 
-		if ( $token_type == 'request' ) {
+		if ( $token_type === 'request' ) {
 			$returnToken = $this->cache->get( MWOAuthUtils::getCacheKey(
 				'token',
 				$consumer->key,
@@ -46,19 +46,13 @@ class MWOAuthDataStore extends OAuthDataStore {
 			if ( $token === null || !( $returnToken instanceof MWOAuthToken ) ) {
 				throw new MWOAuthException( 'mwoauthdatastore-request-token-not-found' );
 			}
-		} elseif ( $token_type == 'access' ) {
-			$row = $this->centralDB->selectRow(
-				'oauth_accepted_consumer',
-				'*',
-				array( 'oaac_access_token' => $token ),
-				__METHOD__
-			);
-
-			if ( !$row ) {
+		} elseif ( $token_type === 'access' ) {
+			$cmra = MWOAuthConsumerAcceptance::newFromToken( $this->centralDB, $token );
+			if ( !$cmra ) {
 				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found' );
 			}
-
-			$returnToken = new MWOAuthToken( $row->oaac_access_token, $row->oaac_access_secret );
+			$secret = MWOAuthUtils::hmacDBSecret( $cmra->get( 'accessSecret' ) );
+			$returnToken = new MWOAuthToken( $cmra->get( 'accessToken' ), $secret );
 		} else {
 			throw new MWOAuthException( 'mwoauthdatastore-invalid-token-type' );
 		}
@@ -105,6 +99,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * Generate a new token (attached to this consumer), save it in the cache, and return it
 	 *
 	 * @param MWOAuthConsumer|OAuthConsumer $consumer
+	 * @return MWOAuthToken
 	 */
 	public function new_request_token( $consumer, $callback = null ) {
 		$token = $this->newToken();
