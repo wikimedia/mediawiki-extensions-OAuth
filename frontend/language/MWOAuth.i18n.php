@@ -817,8 +817,13 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauthserver-invalid-request-token' => 'Jeton non valide dans votre demande',
 	'mwoauthserver-invalid-user-hookabort' => 'Cet utilisateur ne peut pas utiliser OAuth',
 	'mwoauth-form-description' => 'L’application suivante demande à utiliser MediaWiki de votre part. L’application pourra effectuer n’importe quelle action autorisée dans la liste des droits ci-dessous, si besoin. N’autorisez que les applications auxquelles vous faites confiance à utiliser ces droits comme vous le feriez.',
+	'mwoauth-form-existing' => "'''Cette application demande une autorisation d'accès à MediaWiki en votre nom, mais vous avez déjà accordé cet accès :'''
+* Droits : $1
+* Wiki : $2
+* Autorisé le : $3",
 	'mwoauth-form-button-approve' => 'Oui, autoriser',
 	'mwoauth-form-confirmation' => 'Autoriser cette application à agir en votre nom ?',
+	'mwoauth-form-confirmation-update' => 'Mettre à jour cette autorisation avec les privilèges demandés. Le laisser décoché conservera vos autorisations actuelles.',
 	'mwoauth-authorize-form' => 'Détails sur l’application :',
 	'mwoauth-authorize-form-user' => 'Auteur de l’application : $1',
 	'mwoauth-authorize-form-name' => 'Nom de l’application : $1',
@@ -1007,8 +1012,13 @@ Teña en conta que se autoriza que un consumidor só teña acceso a un subconxun
 	'mwoauthserver-invalid-request-token' => 'Pase non válido na súa solicitude',
 	'mwoauthserver-invalid-user-hookabort' => 'Este usuario non pode utilizar OAuth',
 	'mwoauth-form-description' => 'A seguinte aplicación está solicitando utilizar MediaWiki no seu nome. A aplicación poderá realizar calquera acción para a que teña permiso da lista inferior, se o solicitase. Autorice unicamente aplicacións nas que confíe que usarán estes permisos como faría vostede.',
+	'mwoauth-form-existing' => "'''Esta aplicación está solicitando autorización a MediaWiki no seu nome, pero vostede xa concedeu este acceso:'''
+*  Concesións: $1
+*  Wiki: $2
+*  Autorizado o: $3",
 	'mwoauth-form-button-approve' => 'Si, permitir',
 	'mwoauth-form-confirmation' => 'Quere permitir que esta aplicación actúe no seu nome?',
+	'mwoauth-form-confirmation-update' => 'Actualizar esta autorización cos privilexios solicitados. Deixar isto sen marcar ha manter as autorizacións actuais',
 	'mwoauth-authorize-form' => 'Detalles da aplicación:',
 	'mwoauth-authorize-form-user' => 'Autor da aplicación: $1',
 	'mwoauth-authorize-form-name' => 'Nome da aplicación: $1',
