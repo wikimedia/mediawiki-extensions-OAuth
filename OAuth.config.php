@@ -50,5 +50,8 @@ $wgAvailableRights[] = 'mwoauthmanagemygrants';
 
 $wgGroupPermissions['user']['mwoauthmanagemygrants'] = true;
 
+/** @var bool Require HTTPs for user transactions that might send out secret tokens */
+$wgMWOAuthSecureTokenTransfer = false;
+
 # End of configuration variables.
 # ########
