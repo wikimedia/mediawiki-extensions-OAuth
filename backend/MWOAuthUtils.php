@@ -243,11 +243,17 @@ class MWOAuthUtils {
 		if ( MWOAuthUtils::isCentralWiki() ) {
 			$id = $user->getId();
 		} else { // only some central user system can give us the ID
-			$id = false;
-			// Let CentralAuth check that $user is attached to a global account and
-			// that the foreign local account on the central wiki is also attached to it
-			wfRunHooks( 'OAuthGetCentralIdFromLocalUser',
-				array( $user, $wgMWOAuthCentralWiki, &$id ) );
+			if ( isset( $user->oAuthUserData['centralId'] ) ) {
+				$id = $user->oAuthUserData['centralId'];
+			} else {
+				$id = false;
+				// Let CentralAuth check that $user is attached to a global account and
+				// that the foreign local account on the central wiki is also attached to it
+				wfRunHooks( 'OAuthGetCentralIdFromLocalUser',
+					array( $user, $wgMWOAuthCentralWiki, &$id ) );
+				// Process cache the result to avoid queries
+				$user->oAuthUserData['centralId'] = $id;
+			}
 		}
 
 		if ( !$id ) {
