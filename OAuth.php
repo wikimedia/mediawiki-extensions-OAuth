@@ -41,12 +41,6 @@ MWOAuthSetup::defineSourcePaths( $wgAutoloadClasses, $wgExtensionMessagesFiles )
 # Define JS/CSS modules and file locations
 MWOAuthUISetup::defineResourceModules( $wgResourceModules );
 
-# Actually register special pages
-$wgExtensionFunctions[] = function() {
-	global $wgSpecialPages, $wgSpecialPageGroups;
-	MWOAuthUISetup::defineSpecialPages( $wgSpecialPages, $wgSpecialPageGroups );
-};
-
 $wgLogTypes[] = 'mwoauthconsumer';
 # Log name and description as well as action handlers
 MWOAuthUISetup::defineLogBasicDescription( $wgLogNames, $wgLogHeaders, $wgFilterLogTypes );
@@ -58,3 +52,13 @@ MWOAuthSetup::defineHookHandlers( $wgHooks );
 MWOAuthUISetup::defineHookHandlers( $wgHooks );
 # API-related hook handlers
 MWOAuthAPISetup::defineHookHandlers( $wgHooks );
+
+# Actually register special pages and set default $wgMWOAuthCentralWiki
+$wgExtensionFunctions[] = function() {
+	global $wgMWOAuthCentralWiki, $wgSpecialPages, $wgSpecialPageGroups;
+
+	if ( $wgMWOAuthCentralWiki === false ) {
+		$wgMWOAuthCentralWiki = wfWikiId(); // default
+	}
+	MWOAuthUISetup::defineSpecialPages( $wgSpecialPages, $wgSpecialPageGroups );
+};
