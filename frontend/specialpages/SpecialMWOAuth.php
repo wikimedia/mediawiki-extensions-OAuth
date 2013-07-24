@@ -88,7 +88,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 							'grants' => $consumer->get( 'grants' ),
 							'existing' => $existing,
 							'description' => array (
-								'user' => User::newFromId( $consumer->get( 'userId') )->getName(),
+								'user' => MWOAuthUtils::getCentralUserNameFromId(
+									$consumer->get( 'userId' ) ),
 								'name' => $consumer->get( 'name'),
 								'version' => $consumer->get( 'version'),
 								'description' => $consumer->get( 'description'),

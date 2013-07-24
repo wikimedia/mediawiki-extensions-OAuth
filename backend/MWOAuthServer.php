@@ -141,8 +141,8 @@ class MWOAuthServer extends OAuthServer {
 		$requestToken->addVerifyCode( $verifyCode );
 
 		// CentralAuth may abort here if there is no global account for this user
-		$userId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
-		if ( !$userId ) {
+		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
+		if ( !$centralUserId ) {
 			throw new MWOAuthException( 'mwoauthserver-invalid-user' );
 		}
 
@@ -170,7 +170,7 @@ class MWOAuthServer extends OAuthServer {
 			$cmra = MWOAuthConsumerAcceptance::newFromArray( array(
 				'id'           => null,
 				'wiki'         => $consumer->get( 'wiki' ),
-				'userId'       => $userId,
+				'userId'       => $centralUserId,
 				'consumerId'   => $consumer->get( 'id' ),
 				'accessToken'  => $accessToken->key,
 				'accessSecret' => $accessToken->secret,

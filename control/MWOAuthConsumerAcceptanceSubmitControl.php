@@ -84,6 +84,11 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 		$user = $this->getUser(); // proposer or admin
 		$dbw = $this->dbw; // convenience
 
+		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
+		if ( !$centralUserId ) { // sanity
+			return $this->failure( 'permission_denied', 'badaccess-group0' );
+		}
+
 		switch ( $action ) {
 		/*
 		case 'accept': // @TODO: unused (WIP)
@@ -102,7 +107,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			// WIP: PUT THIS IN authorize()
 			$cmra = MWOAuthConsumerAcceptance::newFromArray( array(
 				'wiki'         => $this->vals['wiki'],
-				'userId'       => $this->getUser()->getId(),
+				'userId'       => $centralUserId,
 				'consumerId'   => $cmr->getId(),
 				'accessToken'  => ...,
 				'accessSecret' => ...,
@@ -116,7 +121,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			$cmra = MWOAuthConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
 			if ( !$cmra ) {
 				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
-			} elseif ( $cmra->get( 'userId' ) !== $this->getUser()->getId() ) {
+			} elseif ( $cmra->get( 'userId' ) !== $centralUserId ) {
 				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 			}
 			$cmr = MWOAuthConsumer::newFromId( $dbw, $cmra->get( 'consumerId' ) );
@@ -133,7 +138,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			$cmra = MWOAuthConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
 			if ( !$cmra ) {
 				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
-			} elseif ( $cmra->get( 'userId' ) !== $this->getUser()->getId() ) {
+			} elseif ( $cmra->get( 'userId' ) !== $centralUserId ) {
 				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 			}
 

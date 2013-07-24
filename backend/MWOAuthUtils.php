@@ -237,8 +237,30 @@ class MWOAuthUtils {
 	 * Given a central wiki user ID, get a local User object
 	 *
 	 * @param integer $userId
+	 * @return string|bool User name or false if not found
+	 */
+	public static function getCentralUserNameFromId( $userId ) {
+		global $wgMWOAuthCentralWiki;
+
+		if ( MWOAuthUtils::isCentralWiki() ) {
+			$name = User::whoIs( $userId );
+		} else {
+			$namesById = array( $userId => false );
+			// Let extensions check that central wiki user ID is attached to a global account
+			// and that return the user on this wiki that is attached to that global account
+			wfRunHooks( 'OAuthGetUserNamesFromCentralIds',
+				array( $wgMWOAuthCentralWiki, &$namesById ) );
+			$name = $namesById[$userId];
+		}
+
+		return $name;
+	}
+
+	/**
+	 * Given a central wiki user ID, get a local User object
+	 *
+	 * @param integer $userId
 	 * @return User|bool User or false if not found
-	 * @throws MWOAuthException
 	 */
 	public static function getLocalUserFromCentralId( $userId ) {
 		global $wgMWOAuthCentralWiki;
@@ -261,7 +283,6 @@ class MWOAuthUtils {
 	 *
 	 * @param User $user
 	 * @return integer|bool ID or false if not found
-	 * @throws MWOAuthException
 	 */
 	public static function getCentralIdFromLocalUser( User $user ) {
 		global $wgMWOAuthCentralWiki;
@@ -280,10 +301,6 @@ class MWOAuthUtils {
 				// Process cache the result to avoid queries
 				$user->oAuthUserData['centralId'] = $id;
 			}
-		}
-
-		if ( !$id ) {
-			throw new MWOAuthException( 'mwoauthserver-invalid-user' );
 		}
 
 		return $id;

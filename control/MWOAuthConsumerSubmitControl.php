@@ -118,6 +118,11 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 		$user = $this->getUser(); // proposer or admin
 		$dbw = $this->dbw; // convenience
 
+		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
+		if ( !$centralUserId ) { // sanity
+			return $this->failure( 'permission_denied', 'badaccess-group0' );
+		}
+
 		switch ( $action ) {
 		case 'propose':
 			if ( !$user->isAllowed( 'mwoauthproposeconsumer' ) ) {
@@ -130,7 +135,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			}
 
 			if ( MWOAuthConsumer::newFromNameVersionUser(
-				$dbw, $this->vals['name'], $this->vals['version'], $user->getId() ) )
+				$dbw, $this->vals['name'], $this->vals['version'], $centralUserId ) )
 			{
 				return $this->failure( 'consumer_exists', 'mwoauth-consumer-alreadyexists' );
 			}
@@ -140,7 +145,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				array(
 					'id'                 => null, // auto-increment
 					'consumerKey'        => MWCryptRand::generateHex( 32 ),
-					'userId'             => $user->getId(),
+					'userId'             => $centralUserId,
 					'email'              => $user->getEmail(),
 					'emailAuthenticated' => $now, // see above
 					'secretKey'          => MWCryptRand::generateHex( 32 ),
@@ -173,7 +178,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$cmr = MWOAuthConsumer::newFromKey( $dbw, $this->vals['consumerKey'] );
 			if ( !$cmr ) {
 				return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
-			} elseif ( $cmr->get( 'userId' ) !== $user->getId() ) {
+			} elseif ( $cmr->get( 'userId' ) !== $centralUserId ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			} elseif ( $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
 				&& $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_PROPOSED )
@@ -374,7 +379,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	 * @return Title
 	 */
 	protected function getLogTitle( DBConnRef $db, $userId ) {
-		$name = $db->selectField( 'user', 'user_name', array( 'user_id' => $userId ) );
+		$name = MWOAuthUtils::getCentralUserNameFromId( $userId );
 		return Title::makeTitleSafe( NS_USER, $name );
 	}
 }

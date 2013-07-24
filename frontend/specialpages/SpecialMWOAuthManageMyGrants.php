@@ -126,7 +126,7 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 				'user' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-user',
-					'default' => $cmr->get( 'userId', 'User::whoIs' )
+					'default' => $cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' )
 				),
 				'version' => array(
 					'type' => 'info',
@@ -227,7 +227,8 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 	 * @return void
 	 */
 	protected function showConsumerList() {
-		$pager = new MWOAuthManageMyGrantsPager( $this, array(), $this->getUser()->getId() );
+		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $this->getUser() );
+		$pager = new MWOAuthManageMyGrantsPager( $this, array(), $centralUserId );
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addHTML( $pager->getNavigationBar() );
 			$this->getOutput()->addHTML( $pager->getBody() );
@@ -269,7 +270,8 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 			'mwoauthmanagemygrants-name' =>
 				$cmr->get( 'name', function( $s ) use ( $cmr ) {
 					return $s . ' [' . $cmr->get( 'version' ) . ']'; } ),
-			'mwoauthmanagemygrants-user' => $cmr->get( 'userId', array( 'User', 'whoIs' ) ),
+			'mwoauthmanagemygrants-user' => $cmr->get( 'userId',
+				'MWOAuthUtils::getCentralUserNameFromId' ),
 			'mwoauthmanagemygrants-description' =>
 				$cmr->get( 'description', function( $s ) use ( $lang ) {
 					return $lang->truncate( $s, 10024 ); } ),
@@ -305,11 +307,11 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 class MWOAuthManageMyGrantsPager extends ReverseChronologicalPager {
 	public $mForm, $mConds;
 
-	function __construct( $form, $conds, $user ) {
+	function __construct( $form, $conds, $centralUserId ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->mConds[] = 'oaac_consumer_id = oarc_id';
-		$this->mConds['oaac_user_id'] = $user;
+		$this->mConds['oaac_user_id'] = $centralUserId;
 		if ( !$this->getUser()->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			$this->mConds['oarc_deleted'] = 0;
 		}

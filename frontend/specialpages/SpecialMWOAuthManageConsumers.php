@@ -256,7 +256,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 				'user' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-user',
-					'default' => $cmr->get( 'userId', 'User::whoIs' )
+					'default' => $cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' )
 				),
 				'description' => array(
 					'type' => 'info',
@@ -463,7 +463,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					return $s . ' [' . $cmr->get( 'version' ) . ']'; } )
 			),
 			'mwoauthmanageconsumers-user' => htmlspecialchars(
-				$cmr->get( 'userId', 'User::whoIs' )
+				$cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' )
 			),
 			'mwoauthmanageconsumers-description' => htmlspecialchars(
 				$cmr->get( 'description', function( $s ) use ( $lang ) {

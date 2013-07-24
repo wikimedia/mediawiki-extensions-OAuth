@@ -48,6 +48,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$user = $this->getUser();
 		$request = $this->getRequest();
 		$lang = $this->getLanguage();
+		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
 
 		$block = $user->getBlock();
 		if ( $block ) {
@@ -183,7 +184,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				break;
 			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 				throw new PermissionsError( 'mwoauthviewsuppressed' );
-			} elseif ( $cmr->get( 'userId' ) !== $user->getId() ) {
+			} elseif ( $cmr->get( 'userId' ) !== $centralUserId ) {
 				// Do not show private information to other users
 				$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 				break;
@@ -282,7 +283,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			}
 			break;
 		case 'list':
-			$pager = new MWOAuthListMyConsumersPager( $this, array(), $this->getUser() );
+			$pager = new MWOAuthListMyConsumersPager( $this, array(), $centralUserId );
 			if ( $pager->getNumRows() ) {
 				$this->getOutput()->addHTML( $pager->getNavigationBar() );
 				$this->getOutput()->addHTML( $pager->getBody() );
@@ -417,10 +418,10 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 class MWOAuthListMyConsumersPager extends ReverseChronologicalPager {
 	public $mForm, $mConds;
 
-	function __construct( $form, $conds, $user ) {
+	function __construct( $form, $conds, $centralUserId ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
-		$this->mConds['oarc_user_id'] = $user instanceof $user ? $user->getId() : $user;
+		$this->mConds['oarc_user_id'] = $centralUserId;
 		if ( !$this->getUser()->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			$this->mConds['oarc_deleted'] = 0;
 		}
