@@ -131,6 +131,19 @@ class MWOAuthUtils {
 	}
 
 	/**
+	 * @return array
+	 */
+	public static function getRightsByGrant() {
+		global $wgMWOAuthGrantPermissions;
+
+		$res = array();
+		foreach ( $wgMWOAuthGrantPermissions as $grant => $rights ) {
+			$res[$grant] = array_keys( array_filter( $rights ) );
+		}
+		return $res;
+	}
+
+	/**
 	 * @param string $grant
 	 * @return Message
 	 */
