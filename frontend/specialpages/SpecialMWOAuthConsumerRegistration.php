@@ -167,6 +167,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 				break;
 			}
+			$oldSecretKey = $cmr->getDAO()->get( 'secretKey' );
 
 			$form = new HTMLForm(
 				array(
@@ -194,12 +195,10 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 						'default' => FormatJSON::encode( $cmr->getDAO()->get( 'restrictions' ) ),
 						'rows' => 5
 					),
-					'secretKey' => array(
-						'type' => 'password',
-						'label-message' => 'mwoauth-consumer-secretkey',
-						'size' => '50',
-						'required' => false,
-						'default' => $cmr->getDAO()->get( 'secretKey' ),
+					'resetSecret' => array(
+						'type' => 'check',
+						'label-message' => 'mwoauthconsumerregistration-resetsecretkey',
+						'default' => false,
 					),
 					'rsaKey' => array(
 						'type' => 'textarea',
@@ -241,6 +240,11 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			$status = $form->show();
 			if ( $status instanceof Status && $status->isOk() ) {
 				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-updated' );
+				$curSecretKey = $status->value['result']->get( 'secretKey' );
+				if ( $oldSecretKey !== $curSecretKey ) { // token reset?
+					$this->getOutput()->addWikiMsg(
+						'mwoauthconsumerregistration-secretreset', $curSecretKey );
+				}
 				$this->getOutput()->returnToMain();
 			} else {
 				$out = $this->getOutput();
