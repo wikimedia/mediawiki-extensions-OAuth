@@ -94,7 +94,9 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	 * @param integer $flags MWOAuthConsumerAcceptance::READ_* bitfield
 	 * @return MWOAuthConsumerAcceptance|bool
 	 */
-	public static function newFromUserConsumerWiki( DBConnRef $db, $userId, $consumer, $wiki, $flags = 0 ) {
+	public static function newFromUserConsumerWiki(
+		DBConnRef $db, $userId, $consumer, $wiki, $flags = 0
+	) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
 			array( 'oaac_user_id' => $userId,

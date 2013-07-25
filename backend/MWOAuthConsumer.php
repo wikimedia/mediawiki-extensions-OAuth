@@ -220,7 +220,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		if ( $prop === 'key' ) {
 			return $this->consumerKey;
 		} elseif ( $prop === 'secret' ) {
-			return $this->secretKey;
+			return MWOAuthUtils::hmacDBSecret( $this->secretKey );
 		} else {
 			return $this->$prop;
 		}

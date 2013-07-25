@@ -294,11 +294,6 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					'default' => $cmr->get( 'restrictions', array( 'FormatJSON', 'encode' ) ),
 					'rows' => 5
 				),
-				'secretKey' => array(
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-secretkey',
-					'default' => $cmr->get( 'secretKey' )
-				),
 				'rsaKey' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-rsakey',

@@ -145,7 +145,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			if ( $status instanceof Status && $status->isOk() ) {
 				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-proposed',
 					$status->value['result']->get( 'consumerKey' ),
-					$status->value['result']->get( 'secretKey' ) );
+					MWOAuthUtils::hmacDBSecret( $status->value['result']->get( 'secretKey' ) ) );
 				$this->getOutput()->returnToMain();
 			}
 			break;
@@ -242,8 +242,8 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-updated' );
 				$curSecretKey = $status->value['result']->get( 'secretKey' );
 				if ( $oldSecretKey !== $curSecretKey ) { // token reset?
-					$this->getOutput()->addWikiMsg(
-						'mwoauthconsumerregistration-secretreset', $curSecretKey );
+					$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-secretreset',
+						MWOAuthUtils::hmacDBSecret( $curSecretKey ) );
 				}
 				$this->getOutput()->returnToMain();
 			} else {
