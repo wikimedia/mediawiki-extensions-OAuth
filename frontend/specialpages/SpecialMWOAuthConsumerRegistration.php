@@ -35,6 +35,16 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	}
 
 	public function execute( $par ) {
+		global $wgMWOAuthSecureTokenTransfer;
+
+		// Redirect to HTTPs if attempting to access this page via HTTP.
+		// Proposals and updates to consumers can involve sending new secrets.
+		if ( $wgMWOAuthSecureTokenTransfer && WebRequest::detectProtocol() !== 'https' ) {
+			$url = $this->getFullTitle()->getFullURL( array(), false, PROTO_HTTPS );
+			$this->getOutput()->redirect( $url );
+			return;
+		}
+
 		$user = $this->getUser();
 		$request = $this->getRequest();
 
