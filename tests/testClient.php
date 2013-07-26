@@ -1,4 +1,9 @@
 <?php
+
+if ( PHP_SAPI !== 'cli' ) {
+	die( "CLI-only test script\n" );
+}
+
 /**
  * A basic client for overall testing
  */
