@@ -14,6 +14,20 @@
 $wgMWOAuthCentralWiki = false;
 
 /**
+ * @var bool Whether shared global user IDs are stored in the oauth tables
+ * On wiki farms with a central authentication system (with integer user IDs)
+ * that share a single OAuth management wiki, this must be set to true. If wikis
+ * have a central authentication system but have their own OAuth management, then
+ * this can be either true or false. Otherwise it should always be set to false.
+ *
+ * Setting this to true requires an MWOAuth aware authentication extension.
+ *
+ * This value should not be changed after the fact to avoid ambigious IDs.
+ * Proper user ID migration should be done before any such changes.
+ */
+$wgMWOAuthSharedUserIDs = false;
+
+/**
  * @var Array Map of (grant => right => boolean)
  * Users authorize consumers (like Apps) to act on their behalf but only with
  * a subset of the user's normal account rights (signed off on by the user).

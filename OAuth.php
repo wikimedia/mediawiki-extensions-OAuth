@@ -55,10 +55,15 @@ MWOAuthAPISetup::defineHookHandlers( $wgHooks );
 
 # Actually register special pages and set default $wgMWOAuthCentralWiki
 $wgExtensionFunctions[] = function() {
-	global $wgMWOAuthCentralWiki, $wgSpecialPages, $wgSpecialPageGroups;
+	global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
+	global $wgSpecialPages, $wgSpecialPageGroups;
 
 	if ( $wgMWOAuthCentralWiki === false ) {
+		// Treat each wiki as its own "central wiki" as there is no actual one
 		$wgMWOAuthCentralWiki = wfWikiId(); // default
+	} else {
+		// There is actually a central wiki, requiring global user IDs via hook
+		$wgMWOAuthSharedUserIDs = true;
 	}
 	MWOAuthUISetup::defineSpecialPages( $wgSpecialPages, $wgSpecialPageGroups );
 };

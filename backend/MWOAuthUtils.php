@@ -240,17 +240,17 @@ class MWOAuthUtils {
 	 * @return string|bool User name or false if not found
 	 */
 	public static function getCentralUserNameFromId( $userId ) {
-		global $wgMWOAuthCentralWiki;
+		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
 
-		if ( MWOAuthUtils::isCentralWiki() ) {
-			$name = User::whoIs( $userId );
-		} else {
+		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
 			$namesById = array( $userId => false );
 			// Let extensions check that central wiki user ID is attached to a global account
 			// and that return the user on this wiki that is attached to that global account
 			wfRunHooks( 'OAuthGetUserNamesFromCentralIds',
 				array( $wgMWOAuthCentralWiki, &$namesById ) );
 			$name = $namesById[$userId];
+		} else {
+			$name = User::whoIs( $userId );
 		}
 
 		return $name;
@@ -263,16 +263,16 @@ class MWOAuthUtils {
 	 * @return User|bool User or false if not found
 	 */
 	public static function getLocalUserFromCentralId( $userId ) {
-		global $wgMWOAuthCentralWiki;
+		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
 
-		if ( MWOAuthUtils::isCentralWiki() ) {
-			$user = User::newFromId( $userId );
-		} else { // only some central user system can give us the ID
+		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
 			$user = false;
 			// Let extensions check that central wiki user ID is attached to a global account
 			// and that return the user on this wiki that is attached to that global account
 			wfRunHooks( 'OAuthGetLocalUserFromCentralId',
 				array( $userId, $wgMWOAuthCentralWiki, &$user ) );
+		} else {
+			$user = User::newFromId( $userId );
 		}
 
 		return $user;
@@ -285,11 +285,9 @@ class MWOAuthUtils {
 	 * @return integer|bool ID or false if not found
 	 */
 	public static function getCentralIdFromLocalUser( User $user ) {
-		global $wgMWOAuthCentralWiki;
+		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
 
-		if ( MWOAuthUtils::isCentralWiki() ) {
-			$id = $user->getId();
-		} else { // only some central user system can give us the ID
+		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
 			if ( isset( $user->oAuthUserData['centralId'] ) ) {
 				$id = $user->oAuthUserData['centralId'];
 			} else {
@@ -301,6 +299,8 @@ class MWOAuthUtils {
 				// Process cache the result to avoid queries
 				$user->oAuthUserData['centralId'] = $id;
 			}
+		} else {
+			$id = $user->getId();
 		}
 
 		return $id;
