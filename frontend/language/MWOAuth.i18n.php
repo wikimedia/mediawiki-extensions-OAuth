@@ -294,7 +294,9 @@ Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hi
 Parameters:
 * $1 - consumer key
 * $2 - secret key',
-
+	'mwoauthconsumerregistration-updated' => 'Shown as success message',
+	'mwoauthconsumerregistration-secretreset' => 'Shown on success message. Parameters:
+* $1 - new secret token',
 	'mwoauthmanageconsumers' => '{{doc-special|MWOAuthManageConsumers}}
 {{Identical|Manage OAuth consumer}}',
 	'mwoauthmanageconsumers-type' => 'Used as subtitle.
@@ -427,12 +429,7 @@ Followed by the following radio boxes:
 	'mwoauth-grants-createpages' => '{{Identical|Create page}}',
 	'mwoauth-grants-deletepages' => '{{Identical|Delete page}}',
 	'mwoauth-grants-upload' => '{{Identical|Upload file}}',
-
-	'mwoauthconsumerregistration-updated' => 'Shown as success message',
-	'mwoauthconsumerregistration-secretreset' => 'Shown on success message. Parameters:
-* $1 - new secret token',
 	'mwoauth-callback-not-oob' => 'Warning that the OAuth developer failed to include the required "oauth_callback" parameter, which must be set to the case-sensitive string "oob"',
-
 	'right-mwoauthproposeconsumer' => '{{doc-right|mwoauthproposeconsumer}}',
 	'right-mwoauthupdateconsumer' => '{{doc-right|mwoauthupdateconsumer}}',
 	'right-mwoauthmanageconsumer' => '{{doc-right|mwoauthmanageconsumer}}',
@@ -440,7 +437,6 @@ Followed by the following radio boxes:
 	'right-mwoauthviewsuppressed' => '{{doc-right|mwoauthviewsuppressed}}',
 	'right-mwoauthviewprivate' => '{{doc-right|mwoauthviewprivate}}',
 	'right-mwoauthmanagemygrants' => '{{doc-right|mwoauthmanagemygrants}}',
-
 	'action-mwoauthmanageconsumer' => '{{Doc-action|mwoauthmanageconsumer}}',
 	'action-mwoauthmanagemygrants' => '{{Doc-action|mwoauthmanagemygrants}}',
 	'action-mwoauthproposeconsumer' => '{{Doc-action|mwoauthproposeconsumer}}',
@@ -549,10 +545,12 @@ Du kannst von hier [[Special:MWOAuthConsumerRegistration/propose|einen neuen Ver
 	'mwoauthconsumerregistration-stage' => 'Status',
 	'mwoauthconsumerregistration-lastchange' => 'Letzte Änderung',
 	'mwoauthconsumerregistration-manage' => 'verwalten',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Den geheimen Schlüssel auf einen neuen Wert zurücksetzen',
 	'mwoauthconsumerregistration-proposed' => "Wir haben deinen OAuth-Verbraucherantrag erhalten.
 
 Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen. ''Bitte diese für die Zukunft aufbewahren.''",
 	'mwoauthconsumerregistration-updated' => 'Deine OAuth-Verbraucherregistrierung wurde erfolgreich aktualisiert.',
+	'mwoauthconsumerregistration-secretreset' => "Dir wurde der geheime Verbrauchertoken '''$1''' zugeordnet. ''Bitte diesen für die Zukunft aufbewahren.''",
 	'mwoauthmanageconsumers' => 'OAuth-Verbraucher verwalten',
 	'mwoauthmanageconsumers-type' => 'Warteschlangen:',
 	'mwoauthmanageconsumers-showproposed' => 'Geplante Anträge',
@@ -667,6 +665,7 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'mwoauth-grant-createeditmovepage' => 'Seiten erstellen, bearbeiten und verschieben',
 	'mwoauth-grant-uploadfile' => 'Neue Dateien hochladen',
 	'mwoauth-grant-uploadeditmovefile' => 'Dateien hochladen, ersetzen und verschieben',
+	'mwoauth-callback-not-oob' => 'oauth_callback muss auf „oob“ festgelegt sein (Groß-/Kleinschreibung beachten)',
 );
 
 /** British English (British English)
@@ -764,10 +763,12 @@ Depuis ici, vous pouvez [[Special:MWOAuthConsumerRegistration/propose|proposer u
 	'mwoauthconsumerregistration-stage' => 'État',
 	'mwoauthconsumerregistration-lastchange' => 'Dernière modification',
 	'mwoauthconsumerregistration-manage' => 'gérer',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Réinitialiser la clé secrète avec une nouvelle valeur',
 	'mwoauthconsumerregistration-proposed' => "Votre demande de consommateur OAuth a été reçue.
 
 Il vous a été assigné un jeton de consommateur '''$1''' et un jeton secret '''$2'''. ''Veuillez les conserver pour des besoins ultérieurs.''",
 	'mwoauthconsumerregistration-updated' => 'Votre registre de consommateur OAuth a bien été mis à jour.',
+	'mwoauthconsumerregistration-secretreset' => "Un jeton secret de consommateur de '''$1''' vous a été assigné. ''Veuillez le conserver pour tout besoin ultérieur.''",
 	'mwoauthmanageconsumers' => 'Gérer les consommateurs OAuth',
 	'mwoauthmanageconsumers-type' => 'Files :',
 	'mwoauthmanageconsumers-showproposed' => 'Requêtes proposées',
@@ -882,6 +883,7 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauth-grant-createeditmovepage' => 'Créer, modifier et renommer des pages',
 	'mwoauth-grant-uploadfile' => 'Importer de nouveaux fichiers',
 	'mwoauth-grant-uploadeditmovefile' => 'Télécharger, remplacer et renommer des fichiers',
+	'mwoauth-callback-not-oob' => 'oauth_callback doit être défini, et doit valoir "oob" (en minuscules)',
 );
 
 /** Galician (galego)
@@ -1113,6 +1115,7 @@ $messages['ja'] = array(
 	'mwoauthconsumerregistration-update-submit' => 'コンシューマーを更新',
 	'mwoauthconsumerregistration-stage' => '状態',
 	'mwoauthconsumerregistration-updated' => 'あなたの OAuth コンシューマー レジストリを更新しました。',
+	'mwoauthconsumerregistration-secretreset' => "「'''$1'''」のコンシューマー秘密トークンを割り当てました。''今後のためこれを記録しておいてください。''",
 	'mwoauthmanageconsumers' => 'OAuthコンシューマー管理',
 	'mwoauthmanageconsumers-type' => 'キュー:',
 	'mwoauthmanageconsumers-main' => 'メイン',
@@ -1174,6 +1177,7 @@ $messages['ja'] = array(
 	'mwoauth-grants-createpages' => 'ページの作成',
 	'mwoauth-grants-deletepages' => 'ページの削除',
 	'mwoauth-grants-upload' => 'ファイルのアップロード',
+	'mwoauth-callback-not-oob' => 'oauth_callback に「oob」を設定してください (大文字小文字を区別)',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -1221,8 +1225,8 @@ $messages['mk'] = array(
 	'mwoauth-consumer-restrictions' => 'Ограничувања на употребата:',
 	'mwoauth-consumer-restrictions-json' => 'Ограничувања на употребата (JSON):',
 	'mwoauth-consumer-rsakey' => 'Јавен RSA-клуч:',
-	'mwoauth-consumer-secretkey' => 'Таен потрошувачки жетон:',
-	'mwoauth-consumer-accesstoken' => 'Пристапен жетон:',
+	'mwoauth-consumer-secretkey' => 'Тајна потрошувачка шифра:',
+	'mwoauth-consumer-accesstoken' => 'Пристапна шифра:',
 	'mwoauth-consumer-reason' => 'Причина:',
 	'mwoauth-consumer-alreadyexists' => 'Веќе постои потрошувач со ваква комбинација од име/верзија/издавач',
 	'mwoauth-consumer-not-accepted' => 'Не можам да ги изменам информациите за потрошувачко барање во исчекување',
@@ -1230,7 +1234,7 @@ $messages['mk'] = array(
 	'mwoauth-consumer-not-disabled' => 'Потрошувачот во моментов не е оневозможен',
 	'mwoauth-consumer-not-approved' => 'Потрошувачот не е одобрен (може да е оневозможен)',
 	'mwoauth-invalid-consumer-key' => 'Не постои потрошувач со таков клуч.',
-	'mwoauth-invalid-access-token' => 'Не постои пристапен жетон со таков клуч.',
+	'mwoauth-invalid-access-token' => 'Не постои пристапна шифра со таков клуч.',
 	'mwoauth-consumer-conflict' => 'Некои ги изменил атрибутети на овој потрошувач додека го разгледувавте. Обидете се повторно. Може да го погледате и дневникот на измени.',
 	'mwoauth-consumer-stage-proposed' => 'предложен',
 	'mwoauth-consumer-stage-rejected' => 'одбиен',
@@ -1272,7 +1276,7 @@ $messages['mk'] = array(
 	'mwoauthconsumerregistration-manage' => 'раководи',
 	'mwoauthconsumerregistration-proposed' => "Вашето потрошувачко барање за OAuth е примено.
 
-Вашиот потрошувачки жетон гласи '''$1''', а тајниот жетон гласи '''$2'''. ''Зачувајте ги бидејќи може да ви затребаат во иднина.''",
+Вашата потрошувачка шифра гласи '''$1''', а тајната шифра гласи '''$2'''. ''Зачувајте ги бидејќи може да ви затребаат во иднина.''",
 	'mwoauthconsumerregistration-updated' => 'Вашиот потрошувачки регистар na OAuth е успешно изменет.',
 	'mwoauthmanageconsumers' => 'Раководење со потрошувачи на OAuth',
 	'mwoauthmanageconsumers-type' => 'Редици:',
@@ -1334,13 +1338,13 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-confirm-text' => 'Следниот образец служи за одземање на пристап или да ги измените доделените права на потрошувач на OAuth за да дејствува во ваше име.
 
 Имајте предвид дека ако овластите некого со пристап на само дел од викијата (проектите) наместо сите во целина, тогаш тој потрошувач ќе има повеќе пристапни жетони.',
-	'mwoauthmanagemygrants-confirm-legend' => 'Ракободење со жетон за кориснички пристап',
-	'mwoauthmanagemygrants-update' => 'Измени доделувања на прист. жетон',
-	'mwoauthmanagemygrants-renounce' => 'Одземи дозвола и избриши пристап. жетон',
+	'mwoauthmanagemygrants-confirm-legend' => 'Раководење со шифра за кориснички пристап',
+	'mwoauthmanagemygrants-update' => 'Измени доделувања на пристап. шифра',
+	'mwoauthmanagemygrants-renounce' => 'Одземи дозвола и избриши пристап. шифра',
 	'mwoauthmanagemygrants-action' => 'Смени статус:',
-	'mwoauthmanagemygrants-confirm-submit' => 'Измени статус на пристап. жетон',
-	'mwoauthmanagemygrants-success-update' => 'Пристапниот жетон на овој потрошувач е изменет.',
-	'mwoauthmanagemygrants-success-renounce' => 'Пристапниот жетон на овој потрошувач е избришан.',
+	'mwoauthmanagemygrants-confirm-submit' => 'Измени статус на пристап. шифра',
+	'mwoauthmanagemygrants-success-update' => 'Пристапната шифра на овој потрошувач е изменета.',
+	'mwoauthmanagemygrants-success-renounce' => 'Пристапната шифра на овој потрошувач е избришана.',
 	'logentry-mwoauthconsumer-propose' => '$1 предложи потрошувач на OAuth (потрошувачки клуч $4)',
 	'logentry-mwoauthconsumer-update' => '$1 измени потрошувач на OAuth (потрошувачки клуч $4)',
 	'logentry-mwoauthconsumer-approve' => '$1 одобри потрошувач на OAuth со $3 (потрошувачки клуч $4)',
@@ -1351,15 +1355,15 @@ $messages['mk'] = array(
 	'mwoauthconsumer-consumer-logpagetext' => 'Дневник на одобрувања, одбивања и оневозможувања на регистрирани потрошувачи на OAuth.',
 	'mwoauth-bad-csrf-token' => 'Се јави проблем во сесијата при поднесувањето на образецот. Обидете се повторно.',
 	'mwoauth-bad-request' => 'Се јави грешка во барањето за OAuth.',
-	'mwoauthdatastore-access-token-not-found' => 'Не пронајдов одобрено доделување со тој повластен жетон',
-	'mwoauthdatastore-request-token-not-found' => 'Не пронајдов барање со тој жетон',
+	'mwoauthdatastore-access-token-not-found' => 'Не пронајдов одобрено доделување со таа повластена шифра',
+	'mwoauthdatastore-request-token-not-found' => 'Не пронајдов барање со таа шифра',
 	'mwoauthdatastore-bad-token' => 'Не пронајдов барање што одговара на бараното',
 	'mwoauthdatastore-bad-verifier' => 'Укажаниот потврден код е неважечки',
-	'mwoauthdatastore-invalid-token-type' => 'Побараниот тип на жетон е неважечки',
+	'mwoauthdatastore-invalid-token-type' => 'Побараниот тип на шифра е неважечки.',
 	'mwoauthgrants-general-error' => 'Се појави грешка во барањето за OAuth',
 	'mwoauthserver-bad-consumer' => 'Нема одобрен потрошувач со таков клуч',
 	'mwoauthserver-insufficient-rights' => 'Ги немате потребните права за да го извршите ова дејство.',
-	'mwoauthserver-invalid-request-token' => 'Неважечки жетон во барањето',
+	'mwoauthserver-invalid-request-token' => 'Неважечкa шифра во барањето.',
 	'mwoauthserver-invalid-user-hookabort' => 'Корисникот не може да користи OAuth',
 	'mwoauth-form-description' => 'Следниов прилог бара да го користи МедијаВики во ваше име. Ќе може да ги извршува сите дејства дозволени во рамките на долунаведениот список со побарани права. Ова треба да го дозволувате само на прилози на кои им верувате.',
 	'mwoauth-form-existing' => "'''Овој прилог бара овластување од МедијаВики во ваше име, но веќе има добиено пристап:'''
