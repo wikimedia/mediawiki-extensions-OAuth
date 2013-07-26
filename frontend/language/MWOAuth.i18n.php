@@ -216,6 +216,20 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauth-grant-uploadeditmovefile' => 'Upload, replace, and move files',
 
 	'mwoauth-callback-not-oob' => 'oauth_callback must be set, and must be set to "oob" (case-sensitive)',
+
+	'right-mwoauthproposeconsumer' => 'Propose new OAuth consumers',
+	'right-mwoauthupdateconsumer' => 'Update OAuth consumers',
+	'right-mwoauthmanageconsumer' => 'Manage OAuth consumers',
+	'right-mwoauthsuppress' => 'Suppress OAuth consumers',
+	'right-mwoauthviewsuppressed' => 'View suppressed OAuth consumers',
+	'right-mwoauthviewprivate' => 'View private OAuth data',
+	'right-mwoauthmanagemygrants' => 'Manage OAuth grants',
+
+	'action-mwoauthmanageconsumer' => 'manage OAuth consumers',
+	'action-mwoauthmanagemygrants' => 'manage your OAuth grants',
+	'action-mwoauthproposeconsumer' => 'propose new OAuth consumers',
+	'action-mwoauthupdateconsumer' => 'update OAuth consumers',
+	'action-mwoauthviewsuppressed' => 'view suppressed OAuth consumers',
 );
 
 /** Message documentation (Message documentation)
@@ -418,6 +432,20 @@ Followed by the following radio boxes:
 	'mwoauthconsumerregistration-secretreset' => 'Shown on success message. Parameters:
 * $1 - new secret token',
 	'mwoauth-callback-not-oob' => 'Warning that the OAuth developer failed to include the required "oauth_callback" parameter, which must be set to the case-sensitive string "oob"',
+
+	'right-mwoauthproposeconsumer' => '{{doc-right|mwoauthproposeconsumer}}',
+	'right-mwoauthupdateconsumer' => '{{doc-right|mwoauthupdateconsumer}}',
+	'right-mwoauthmanageconsumer' => '{{doc-right|mwoauthmanageconsumer}}',
+	'right-mwoauthsuppress' => '{{doc-right|mwoauthsuppress}}',
+	'right-mwoauthviewsuppressed' => '{{doc-right|mwoauthviewsuppressed}}',
+	'right-mwoauthviewprivate' => '{{doc-right|mwoauthviewprivate}}',
+	'right-mwoauthmanagemygrants' => '{{doc-right|mwoauthmanagemygrants}}',
+
+	'action-mwoauthmanageconsumer' => '{{Doc-action|mwoauthmanageconsumer}}',
+	'action-mwoauthmanagemygrants' => '{{Doc-action|mwoauthmanagemygrants}}',
+	'action-mwoauthproposeconsumer' => '{{Doc-action|mwoauthproposeconsumer}}',
+	'action-mwoauthupdateconsumer' => '{{Doc-action|mwoauthupdateconsumer}}',
+	'action-mwoauthviewsuppressed' => '{{Doc-action|mwoauthviewsuppressed}}',
 );
 
 /** Asturian (asturianu)
