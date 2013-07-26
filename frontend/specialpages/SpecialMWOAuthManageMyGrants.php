@@ -152,7 +152,8 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 						$this->msg( 'mwoauthmanagemygrants-grantaccept' )->escaped() => 'grant'
 					),
 					'rows' => array_combine(
-						array_map( 'MWOAuthUtils::grantName', $cmr->get( 'grants' ) ),
+						array_map( 'htmlspecialchars',
+							MWOAuthUtils::grantNames( $cmr->get( 'grants' ) ) ),
 						$cmr->get( 'grants' )
 					),
 					'default' => array_map(
@@ -275,9 +276,9 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 			'mwoauthmanagemygrants-wiki' => $cmr->get( 'wiki' ),
 			'mwoauthmanagemygrants-wikiallowed' => $cmra->get( 'wiki' ),
 			'mwoauthmanagemygrants-grants' => $lang->semicolonList(
-				array_map( 'MWOAuthUtils::grantName', $cmr->get( 'grants' ) ) ),
+				MWOAuthUtils::grantNames( $cmr->get( 'grants' ) ) ),
 			'mwoauthmanagemygrants-grantsallowed' => $lang->semicolonList(
-				array_map( 'MWOAuthUtils::grantName', $cmra->get( 'grants' ) ) ),
+				MWOAuthUtils::grantNames( $cmra->get( 'grants' ) ) ),
 			'mwoauthmanagemygrants-consumerkey' => $cmr->get( 'consumerKey' )
 		);
 

@@ -273,8 +273,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-grantsneeded',
 					'default' => $cmr->get( 'grants', function( $grants ) use ( $lang ) {
-						return $lang->semicolonList(
-							array_map( 'MWOAuthUtils::grantName', $grants ) );
+						return $lang->semicolonList( MWOAuthUtils::grantNames( $grants ) );
 					} ),
 					'rows' => 5
 				),

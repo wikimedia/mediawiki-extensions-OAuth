@@ -145,14 +145,23 @@ class MWOAuthUtils {
 
 	/**
 	 * @param string $grant
-	 * @return Message
+	 * @return string Grant description
 	 */
 	public static function grantName( $grant ) {
 		// Give grep a chance to find the usages:
 		// mwoauth-grant-editpage, mwoauth-grant-createeditmovepage,
 		// mwoauth-grant-uploadfile, mwoauth-grant-uploadeditmovefile
 		$msg = wfMessage( "mwoauth-grant-$grant" );
-		return $msg->exists() ? $msg : wfMessage( "mwoauth-grant-generic", $grant );
+		$msg = $msg->exists() ? $msg : wfMessage( "mwoauth-grant-generic", $grant );
+		return $msg->text();
+	}
+
+	/**
+	 * @param array $grants
+	 * @return array Array of corresponding grant descriptions
+	 */
+	public static function grantNames( array $grants ) {
+		return array_map( 'MWOAuthUtils::grantName', $grants );
 	}
 
 	/**

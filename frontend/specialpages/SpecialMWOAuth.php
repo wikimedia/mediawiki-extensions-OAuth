@@ -207,15 +207,11 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			);
 		} else {
 			$list = '';
-			foreach ( $grants as $grant) {
-				// Give grep a chance to find the usages:
-				// mwoauth-grants-editpages, mwoauth-grants-editmyinterface, mwoauth-grants-editinterface,
-				// mwoauth-grants-movepages, mwoauth-grants-createpages, mwoauth-grants-deletepages,
-				// mwoauth-grants-upload
+			foreach ( $grants as $grant ) {
 				$list .= Html::element(
 					'li',
 					array(),
-					$this->msg( "mwoauth-grants-$grant" )->text()
+					MWOAuthUtils::grantName( $grant )
 				);
 			}
 			$html .= Html::rawElement( 'ul', array(), $list );
