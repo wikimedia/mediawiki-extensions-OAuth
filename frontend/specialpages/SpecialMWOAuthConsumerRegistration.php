@@ -47,6 +47,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 		$user = $this->getUser();
 		$request = $this->getRequest();
+		$lang = $this->getLanguage();
 
 		$block = $user->getBlock();
 		if ( $block ) {
@@ -115,7 +116,16 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 							array_map( 'MWOAuthUtils::grantName', MWOAuthUtils::getValidGrants() ),
 							MWOAuthUtils::getValidGrants()
 						),
-						// @TODO: tooltips
+						'tooltips' => array_combine(
+							array_map( 'MWOAuthUtils::grantName', MWOAuthUtils::getValidGrants() ),
+							array_map(
+								function( $rights ) use ( $lang ) {
+									return $lang->semicolonList( array_map(
+										'User::getRightDescription', $rights ) );
+								},
+								MWOAuthUtils::getRightsByGrant()
+							)
+						),
 					),
 					'restrictions' => array(
 						'type' => 'textarea',

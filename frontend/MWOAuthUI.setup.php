@@ -60,7 +60,7 @@ class MWOAuthUISetup {
 	 */
 	public static function defineResourceModules( array &$modules ) {
 		$modules['ext.MWOAuth'] = array(
-			'styles'        => 'MWOAuth.css',
+			'styles'        => 'ext.MWOAuth.css',
 			'localBasePath' => dirname( __FILE__ ) . '/modules',
 			'remoteExtPath' => 'OAuth/frontend/modules',
 		);

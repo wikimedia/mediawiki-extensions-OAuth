@@ -100,6 +100,7 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 	 */
 	protected function handleConsumerForm( $acceptanceId ) {
 		$user = $this->getUser();
+		$lang = $this->getLanguage();
 		$db = MWOAuthUtils::getCentralDB( DB_SLAVE );
 
 		$cmra = MWOAuthDAOAccessControl::wrap(
@@ -157,8 +158,17 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 					'default' => array_map(
 						function( $g ) { return "grant-$g"; },
 						$cmra->get( 'grants' )
+					),
+					'tooltips' => array_combine(
+						array_map( 'MWOAuthUtils::grantName', MWOAuthUtils::getValidGrants() ),
+						array_map(
+							function( $rights ) use ( $lang ) {
+								return $lang->semicolonList( array_map(
+									'User::getRightDescription', $rights ) );
+							},
+							MWOAuthUtils::getRightsByGrant()
+						)
 					)
-					// @TODO: tooltips
 				),
 				'usedOnWiki' => array(
 					'type' => 'info',
