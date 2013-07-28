@@ -432,12 +432,14 @@ Followed by the following radio boxes:
 	'mwoauth-callback-not-oob' => 'Warning that the OAuth developer failed to include the required "oauth_callback" parameter, which must be set to the case-sensitive string "oob"',
 	'right-mwoauthproposeconsumer' => '{{doc-right|mwoauthproposeconsumer}}',
 	'right-mwoauthupdateconsumer' => '{{doc-right|mwoauthupdateconsumer}}',
-	'right-mwoauthmanageconsumer' => '{{doc-right|mwoauthmanageconsumer}}',
+	'right-mwoauthmanageconsumer' => '{{doc-right|mwoauthmanageconsumer}}
+{{Identical|Manage OAuth consumer}}',
 	'right-mwoauthsuppress' => '{{doc-right|mwoauthsuppress}}',
 	'right-mwoauthviewsuppressed' => '{{doc-right|mwoauthviewsuppressed}}',
 	'right-mwoauthviewprivate' => '{{doc-right|mwoauthviewprivate}}',
 	'right-mwoauthmanagemygrants' => '{{doc-right|mwoauthmanagemygrants}}',
-	'action-mwoauthmanageconsumer' => '{{Doc-action|mwoauthmanageconsumer}}',
+	'action-mwoauthmanageconsumer' => '{{Doc-action|mwoauthmanageconsumer}}
+{{Identical|Manage OAuth consumer}}',
 	'action-mwoauthmanagemygrants' => '{{Doc-action|mwoauthmanagemygrants}}',
 	'action-mwoauthproposeconsumer' => '{{Doc-action|mwoauthproposeconsumer}}',
 	'action-mwoauthupdateconsumer' => '{{Doc-action|mwoauthupdateconsumer}}',
@@ -666,6 +668,18 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'mwoauth-grant-uploadfile' => 'Neue Dateien hochladen',
 	'mwoauth-grant-uploadeditmovefile' => 'Dateien hochladen, ersetzen und verschieben',
 	'mwoauth-callback-not-oob' => 'oauth_callback muss auf „oob“ festgelegt sein (Groß-/Kleinschreibung beachten)',
+	'right-mwoauthproposeconsumer' => 'Neue OAuth-Verbraucher planen',
+	'right-mwoauthupdateconsumer' => 'OAuth-Verbraucher aktualisieren',
+	'right-mwoauthmanageconsumer' => 'OAuth-Verbraucher verwalten',
+	'right-mwoauthsuppress' => 'OAuth-Verbraucher unterdrücken',
+	'right-mwoauthviewsuppressed' => 'Unterdrückte OAuth-Verbraucher ansehen',
+	'right-mwoauthviewprivate' => 'Private OAuth-Daten ansehen',
+	'right-mwoauthmanagemygrants' => 'OAuth-Berechtigungen verwalten',
+	'action-mwoauthmanageconsumer' => 'OAuth-Verbraucher zu verwalten',
+	'action-mwoauthmanagemygrants' => 'deine OAuth-Berechtigungen zu verwalten',
+	'action-mwoauthproposeconsumer' => 'neue OAuth-Verbraucher zu planen',
+	'action-mwoauthupdateconsumer' => 'OAuth-Verbraucher zu aktualisieren',
+	'action-mwoauthviewsuppressed' => 'unterdrückte OAuth-Verbraucher anzusehen',
 );
 
 /** British English (British English)
@@ -961,10 +975,12 @@ Desde aquí, pode [[Special:MWOAuthConsumerRegistration/propose|propoñer un nov
 	'mwoauthconsumerregistration-stage' => 'Estado',
 	'mwoauthconsumerregistration-lastchange' => 'Última modificación',
 	'mwoauthconsumerregistration-manage' => 'administrar',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Restablecer a clave secreta cun novo valor',
 	'mwoauthconsumerregistration-proposed' => "Recibiuse a súa solicitude de consumidor OAuth.
 
 Asignóuselle o pase de consumidor '''$1''' e o pase secreto '''$2'''. ''Garde estes datos para unha futura referencia.''",
 	'mwoauthconsumerregistration-updated' => 'Actualizouse correctamente o seu rexistro de consumidor OAuth.',
+	'mwoauthconsumerregistration-secretreset' => "Asignóuselle o pase de consumidor '''$1'''. ''Garde estes datos para unha futura referencia.''",
 	'mwoauthmanageconsumers' => 'Administrar os consumidores OAuth',
 	'mwoauthmanageconsumers-type' => 'Colas:',
 	'mwoauthmanageconsumers-showproposed' => 'Solicitudes propostas',
@@ -1079,6 +1095,19 @@ Teña en conta que se autoriza que un consumidor só teña acceso a un subconxun
 	'mwoauth-grant-createeditmovepage' => 'Crear, editar e mover páxinas',
 	'mwoauth-grant-uploadfile' => 'Cargar ficheiros novos',
 	'mwoauth-grant-uploadeditmovefile' => 'Cargar, substituír e mover ficheiros',
+	'mwoauth-callback-not-oob' => 'oauth_callback debe estar definido e ter o valor "oob" (distingue entre maiúsculas e minúsculas)',
+	'right-mwoauthproposeconsumer' => 'Propoñer novos consumidores OAuth',
+	'right-mwoauthupdateconsumer' => 'Actualizar os consumidores OAuth',
+	'right-mwoauthmanageconsumer' => 'Administrar os consumidores OAuth',
+	'right-mwoauthsuppress' => 'Eliminar consumidores OAuth',
+	'right-mwoauthviewsuppressed' => 'Ver os consumidores OAuth eliminados',
+	'right-mwoauthviewprivate' => 'Ver os datos OAuth privados',
+	'right-mwoauthmanagemygrants' => 'Administrar as concesións OAuth',
+	'action-mwoauthmanageconsumer' => 'administrar os consumidores OAuth',
+	'action-mwoauthmanagemygrants' => 'administrar as súas concesións OAuth',
+	'action-mwoauthproposeconsumer' => 'propoñer novos consumidores OAuth',
+	'action-mwoauthupdateconsumer' => 'actualizar os consumidores OAuth',
+	'action-mwoauthviewsuppressed' => 'ver os consumidores OAuth eliminados',
 );
 
 /** Japanese (日本語)
@@ -1178,6 +1207,18 @@ $messages['ja'] = array(
 	'mwoauth-grants-deletepages' => 'ページの削除',
 	'mwoauth-grants-upload' => 'ファイルのアップロード',
 	'mwoauth-callback-not-oob' => 'oauth_callback に「oob」を設定してください (大文字小文字を区別)',
+	'right-mwoauthproposeconsumer' => '新しいコンシューマーを提案',
+	'right-mwoauthupdateconsumer' => 'OAuthコンシューマーを更新',
+	'right-mwoauthmanageconsumer' => 'OAuthコンシューマーを管理',
+	'right-mwoauthsuppress' => 'OAuthコンシューマーを秘匿',
+	'right-mwoauthviewsuppressed' => '秘匿されたOAuthコンシューマーを閲覧',
+	'right-mwoauthviewprivate' => '非公開OAuthデータを閲覧',
+	'right-mwoauthmanagemygrants' => 'OAuth付与を管理',
+	'action-mwoauthmanageconsumer' => 'OAuthコンシューマーの管理',
+	'action-mwoauthmanagemygrants' => 'OAuth付与の管理',
+	'action-mwoauthproposeconsumer' => '新しいコンシューマーの提案',
+	'action-mwoauthupdateconsumer' => 'OAuthコンシューマーの更新',
+	'action-mwoauthviewsuppressed' => '秘匿されたOAuthコンシューマーの閲覧',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -1274,10 +1315,12 @@ $messages['mk'] = array(
 	'mwoauthconsumerregistration-stage' => 'Статус',
 	'mwoauthconsumerregistration-lastchange' => 'Последна измена',
 	'mwoauthconsumerregistration-manage' => 'раководи',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Дај нова вредност на тајниот клуч',
 	'mwoauthconsumerregistration-proposed' => "Вашето потрошувачко барање за OAuth е примено.
 
 Вашата потрошувачка шифра гласи '''$1''', а тајната шифра гласи '''$2'''. ''Зачувајте ги бидејќи може да ви затребаат во иднина.''",
 	'mwoauthconsumerregistration-updated' => 'Вашиот потрошувачки регистар na OAuth е успешно изменет.',
+	'mwoauthconsumerregistration-secretreset' => "Вашата тајна потрошувачка шифра гласи '''$1'''. ''Зачувајте ја бидејќи може да ви затреба во иднина.''",
 	'mwoauthmanageconsumers' => 'Раководење со потрошувачи на OAuth',
 	'mwoauthmanageconsumers-type' => 'Редици:',
 	'mwoauthmanageconsumers-showproposed' => 'Предложени барања',
@@ -1392,6 +1435,19 @@ $messages['mk'] = array(
 	'mwoauth-grant-createeditmovepage' => 'Создавање, измена и преместување на страници',
 	'mwoauth-grant-uploadfile' => 'Подигни нови податотеки',
 	'mwoauth-grant-uploadeditmovefile' => 'Подигање, замена и преместување на податотеки',
+	'mwoauth-callback-not-oob' => 'oauth_callback мора да е поставено на „oob“ (строго со мали букви)',
+	'right-mwoauthproposeconsumer' => 'Предлагање на нови потрошувачи на OAuth',
+	'right-mwoauthupdateconsumer' => 'Измена на потрошувачи на OAuth',
+	'right-mwoauthmanageconsumer' => 'Раководење со потрошувачи на OAuth',
+	'right-mwoauthsuppress' => 'Скривање на потрошувачи на OAuth',
+	'right-mwoauthviewsuppressed' => 'Преглед на скриените потрошувачи на OAuth',
+	'right-mwoauthviewprivate' => 'Преглед на приватни податоци за OAuth',
+	'right-mwoauthmanagemygrants' => 'Раководење со доделувања за OAuth',
+	'action-mwoauthmanageconsumer' => 'раководење со потрошувачи на OAuth',
+	'action-mwoauthmanagemygrants' => 'раководење со вашите доделувања за OAuth',
+	'action-mwoauthproposeconsumer' => 'предлагање на потрошувачи на OAuth',
+	'action-mwoauthupdateconsumer' => 'измена на потрошувачи на OAuth',
+	'action-mwoauthviewsuppressed' => 'преглед на скриени потрошувачи на OAuth',
 );
 
 /** Malayalam (മലയാളം)
