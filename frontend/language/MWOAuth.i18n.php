@@ -898,6 +898,18 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauth-grant-uploadfile' => 'Importer de nouveaux fichiers',
 	'mwoauth-grant-uploadeditmovefile' => 'Télécharger, remplacer et renommer des fichiers',
 	'mwoauth-callback-not-oob' => 'oauth_callback doit être défini, et doit valoir "oob" (en minuscules)',
+	'right-mwoauthproposeconsumer' => 'Proposer des nouveaux consommateurs OAuth',
+	'right-mwoauthupdateconsumer' => 'Mettre à jour les consommateurs OAuth',
+	'right-mwoauthmanageconsumer' => 'Gérer les consommateurs OAuth',
+	'right-mwoauthsuppress' => 'Supprimer les consommateurs OAuth',
+	'right-mwoauthviewsuppressed' => 'Afficher les consommateurs OAuth supprimés',
+	'right-mwoauthviewprivate' => 'Afficher les données privées OAuth',
+	'right-mwoauthmanagemygrants' => 'Gérer les droits OAuth',
+	'action-mwoauthmanageconsumer' => 'gérer les consommateurs OAuth',
+	'action-mwoauthmanagemygrants' => 'gérer vos droits OAuth',
+	'action-mwoauthproposeconsumer' => 'proposer de nouveaux consommateurs OAuth',
+	'action-mwoauthupdateconsumer' => 'mettre à jour les consommateurs OAuth',
+	'action-mwoauthviewsuppressed' => 'afficher les consommateurs OAuth supprimés',
 );
 
 /** Galician (galego)
