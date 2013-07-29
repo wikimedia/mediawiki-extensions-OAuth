@@ -27,29 +27,89 @@ $wgMWOAuthGrantPermissions = array();
 // @TODO: clean up grants
 // @TODO: auto-include read/editsemiprotected rights?
 
-$wgMWOAuthGrantPermissions['editpage']['read'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['autoconfirmed'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['autopatrol'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['autoreview'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['editsemiprotected'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['ipblock-exempt'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['nominornewtalk'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['patrolmarks'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['proxyunbannable'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['purge'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['read'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['skipcaptcha'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['torunblocked'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['unblockself'] = true;
+$wgMWOAuthGrantPermissions['useoauth']['writeapi'] = true;
+
+$wgMWOAuthGrantPermissions['highvolume']['bot'] = true;
+$wgMWOAuthGrantPermissions['highvolume']['apihighlimits'] = true;
+$wgMWOAuthGrantPermissions['highvolume']['noratelimit'] = true;
+$wgMWOAuthGrantPermissions['highvolume']['markbotedits'] = true;
+
 $wgMWOAuthGrantPermissions['editpage']['edit'] = true;
 $wgMWOAuthGrantPermissions['editpage']['minoredit'] = true;
-$wgMWOAuthGrantPermissions['editpage']['editsemiprotected'] = true;
 
-$wgMWOAuthGrantPermissions['createeditmovepage']['read'] = true;
+$wgMWOAuthGrantPermissions['editprotected'] = $wgMWOAuthGrantPermissions['editpage'];
+$wgMWOAuthGrantPermissions['editprotected']['editprotected'] = true;
+
+$wgMWOAuthGrantPermissions['editmycssjs'] = $wgMWOAuthGrantPermissions['editpage'];
+$wgMWOAuthGrantPermissions['editmycssjs']['editmyusercss'] = true;
+$wgMWOAuthGrantPermissions['editmycssjs']['editmyuserjs'] = true;
+
+$wgMWOAuthGrantPermissions['editinterface'] = $wgMWOAuthGrantPermissions['editpage'];
+$wgMWOAuthGrantPermissions['editinterface']['editinterface'] = true;
+$wgMWOAuthGrantPermissions['editinterface']['editusercss'] = true;
+$wgMWOAuthGrantPermissions['editinterface']['edituserjs'] = true;
+
+$wgMWOAuthGrantPermissions['createeditmovepage'] = $wgMWOAuthGrantPermissions['editpage'];
 $wgMWOAuthGrantPermissions['createeditmovepage']['createpage'] = true;
 $wgMWOAuthGrantPermissions['createeditmovepage']['createtalk'] = true;
-$wgMWOAuthGrantPermissions['createeditmovepage']['edit'] = true;
 $wgMWOAuthGrantPermissions['createeditmovepage']['move'] = true;
-$wgMWOAuthGrantPermissions['createeditmovepage']['minoredit'] = true;
-$wgMWOAuthGrantPermissions['createeditmovepage']['editsemiprotected'] = true;
+$wgMWOAuthGrantPermissions['createeditmovepage']['move-rootuserpages'] = true;
+$wgMWOAuthGrantPermissions['createeditmovepage']['move-subpages'] = true;
 
-$wgMWOAuthGrantPermissions['uploadfile']['read'] = true;
 $wgMWOAuthGrantPermissions['uploadfile']['upload'] = true;
 $wgMWOAuthGrantPermissions['uploadfile']['reupload-own'] = true;
-$wgMWOAuthGrantPermissions['createeditmovepage']['editsemiprotected'] = true;
 
-$wgMWOAuthGrantPermissions['uploadeditmovefile']['read'] = true;
-$wgMWOAuthGrantPermissions['uploadeditmovefile']['upload'] = true;
+$wgMWOAuthGrantPermissions['uploadeditmovefile'] = $wgMWOAuthGrantPermissions['uploadfile'];
 $wgMWOAuthGrantPermissions['uploadeditmovefile']['reupload'] = true;
-$wgMWOAuthGrantPermissions['uploadeditmovefile']['move-file'] = true;
-$wgMWOAuthGrantPermissions['createeditmovepage']['editsemiprotected'] = true;
+$wgMWOAuthGrantPermissions['uploadeditmovefile']['reupload-shared'] = true;
+$wgMWOAuthGrantPermissions['uploadeditmovefile']['upload_by_url'] = true;
+$wgMWOAuthGrantPermissions['uploadeditmovefile']['movefile'] = true;
+$wgMWOAuthGrantPermissions['uploadeditmovefile']['suppressredirect'] = true;
+
+$wgMWOAuthGrantPermissions['patrol']['patrol'] = true;
+
+$wgMWOAuthGrantPermissions['rollback']['rollback'] = true;
+
+$wgMWOAuthGrantPermissions['blockusers']['block'] = true;
+$wgMWOAuthGrantPermissions['blockusers']['blockemail'] = true;
+
+$wgMWOAuthGrantPermissions['viewdeleted']['browsearchive'] = true;
+$wgMWOAuthGrantPermissions['viewdeleted']['deletedhistory'] = true;
+$wgMWOAuthGrantPermissions['viewdeleted']['deletedtext'] = true;
+
+$wgMWOAuthGrantPermissions['delete'] = $wgMWOAuthGrantPermissions['editpage'] +
+	$wgMWOAuthGrantPermissions['viewdeleted'];
+$wgMWOAuthGrantPermissions['delete']['delete'] = true;
+$wgMWOAuthGrantPermissions['delete']['bigdelete'] = true;
+$wgMWOAuthGrantPermissions['delete']['deletelogentry'] = true;
+$wgMWOAuthGrantPermissions['delete']['deleterevision'] = true;
+$wgMWOAuthGrantPermissions['delete']['undelete'] = true;
+
+$wgMWOAuthGrantPermissions['protect'] = $wgMWOAuthGrantPermissions['editprotected'];
+$wgMWOAuthGrantPermissions['protect']['protect'] = true;
+
+$wgMWOAuthGrantPermissions['oversight']['hideuser'] = true;
+$wgMWOAuthGrantPermissions['oversight']['suppressrevision'] = true;
+$wgMWOAuthGrantPermissions['oversight']['suppressionlog'] = true;
+
+$wgMWOAuthGrantPermissions['viewmywatchlist']['viewmywatchlist'] = true;
+
+$wgMWOAuthGrantPermissions['editmywatchlist']['editmywatchlist'] = true;
+
+$wgMWOAuthGrantPermissions['sendemail']['sendemail'] = true;
 
 /** @var integer Seconds after which an idle consumer request is marked as "expired" */
 $wgMWOAuthRequestExpirationAge = 30 * 86400;
