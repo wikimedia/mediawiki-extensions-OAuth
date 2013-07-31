@@ -261,6 +261,29 @@ See also:
 * $1 - field name
 See also:
 * {{msg-mw|Mwoauth-missing-field}}',
+	'mwoauth-grant-generic' => 'Used if the grant name is not defined. Parameters:
+* $1 - grant name
+
+Defined grants (grant name refers: blockusers, createeditmovepage, ...):
+* {{msg-mw|Mwoauth-grant-blockusers}}
+* {{msg-mw|Mwoauth-grant-createeditmovepage}}
+* {{msg-mw|Mwoauth-grant-delete}}
+* {{msg-mw|Mwoauth-grant-editinterface}}
+* {{msg-mw|Mwoauth-grant-editmycssjs}}
+* {{msg-mw|Mwoauth-grant-editmywatchlist}}
+* {{msg-mw|Mwoauth-grant-editpage}}
+* {{msg-mw|Mwoauth-grant-editprotected}}
+* {{msg-mw|Mwoauth-grant-highvolume}}
+* {{msg-mw|Mwoauth-grant-oversight}}
+* {{msg-mw|Mwoauth-grant-patrol}}
+* {{msg-mw|Mwoauth-grant-protect}}
+* {{msg-mw|Mwoauth-grant-rollback}}
+* {{msg-mw|Mwoauth-grant-sendemail}}
+* {{msg-mw|Mwoauth-grant-uploadeditmovefile}}
+* {{msg-mw|Mwoauth-grant-uploadfile}}
+* {{msg-mw|Mwoauth-grant-useoauth}}
+* {{msg-mw|Mwoauth-grant-viewdeleted}}
+* {{msg-mw|Mwoauth-grant-viewmywatchlist}}',
 	'mwoauth-consumer-key' => '{{Identical|Consumer key}}',
 	'mwoauth-consumer-name' => '{{Identical|Application name}}',
 	'mwoauth-consumer-version' => 'Used as label for the "Version" input box.',
@@ -296,13 +319,20 @@ Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hi
 {{Identical|Navigation}}',
 	'mwoauthconsumerregistration-propose' => 'Used in page subtitle link text',
 	'mwoauthconsumerregistration-list' => 'Used in page subtitle link text',
-	'mwoauthconsumerregistration-main' => 'Used in page subtitle link text.
+	'mwoauthconsumerregistration-main' => 'Used as label for "View all" link.
+
+Preceded by list of the links ("|" separated) which have any one of the following link texts:
+* {{msg-mw|Mwoauthconsumerregistration-propose}}
+* {{msg-mw|Mwoauthconsumerregistration-list}}
 {{Identical|Main}}',
 	'mwoauthconsumerregistration-propose-legend' => 'Used as fieldset label.',
 	'mwoauthconsumerregistration-update-legend' => 'Used as fieldset label.',
 	'mwoauthconsumerregistration-propose-submit' => 'Used as label for the Submit button.',
 	'mwoauthconsumerregistration-update-submit' => 'Used as label for the Submit button.',
+	'mwoauthconsumerregistration-name' => '{{Identical|Consumer}}',
+	'mwoauthconsumerregistration-consumerkey' => '{{Identical|Consumer key}}',
 	'mwoauthconsumerregistration-stage' => '{{Identical|Status}}',
+	'mwoauthconsumerregistration-lastchange' => '{{Identical|Last change}}',
 	'mwoauthconsumerregistration-resetsecretkey' => 'Used a label for a checkbox',
 	'mwoauthconsumerregistration-proposed' => 'Used as success message.
 
@@ -370,6 +400,7 @@ The list is preceded by the label {{msg-mw|Mwoauthmanageconsumers-lists}}.',
 	'mwoauthmanageconsumers-l-disabled' => 'Used as text for the link which points to [[Special:MWOAuthManageConsumers]].
 
 The list is preceded by the label {{msg-mw|Mwoauthmanageconsumers-lists}}.',
+	'mwoauthmanageconsumers-name' => '{{Identical|Consumer}}',
 	'mwoauthmanageconsumers-user' => '{{Identical|Publisher}}',
 	'mwoauthmanageconsumers-description' => '{{Identical|Description}}',
 	'mwoauthmanageconsumers-email' => 'Followed by an email address or the message {{msg-mw|Mwoauth-consumer-stage-suppressed}}.',
@@ -705,6 +736,12 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'mwoauthserver-insufficient-rights' => 'Du hast keine ausreichenden Rechte, um diese Aktion auszuführen.',
 	'mwoauthserver-invalid-request-token' => 'Deine Anfrage enthält einen ungültigen Token',
 	'mwoauthserver-invalid-user-hookabort' => 'Dieser Benutzer kann nicht OAuth benutzen',
+	'mwoauth-invalid-authorization-title' => 'OAuth-Autorisierungsfehler',
+	'mwoauth-invalid-authorization' => 'Die Autorisierungsheader in deiner Anfrage sind nicht gültig: $1',
+	'mwoauth-invalid-authorization-wrong-wiki' => 'Die Autorisierungsheader in deiner Anfrage sind nicht gültig für $1',
+	'mwoauth-invalid-authorization-invalid-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen Benutzer, der hier nicht vorhanden ist.',
+	'mwoauth-invalid-authorization-wrong-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen anderen Benutzer',
+	'mwoauth-invalid-authorization-not-approved' => 'Die Autorisierungsheader in deiner Anfrage sind für einen OAuth-Verbraucher, der derzeit nicht bestätigt ist.',
 	'mwoauth-form-description' => 'Die folgende Anwendung will MediaWiki in deinem Namen benutzen. Die Anwendung wird jede Aktion ausführen können, die in der unten stehenden Liste erlaubt wird. Lasse nur Anwendungen zu, denen du eine Verwendung dieser Berechtigungen zutraust.',
 	'mwoauth-form-existing' => "'''Diese Anwendung fordert Berechtigungen für MediaWiki auf deinen Namen an, du hast jedoch bereits Zugriff gewährt:'''
 *  Berechtigungen: $1
@@ -764,6 +801,12 @@ $messages['en-gb'] = array(
 Note that if you authorised a consumer to only have access to a subset of wikis (site projects), then there will be multiple access tokens for that consumer.',
 	'mwoauthmanagemygrants-renounce' => 'De-authorise and delete access token',
 	'mwoauthdatastore-access-token-not-found' => 'No approved grant was found for that authorisation token',
+	'mwoauth-invalid-authorization-title' => 'OAuth authorisation error',
+	'mwoauth-invalid-authorization' => 'The authorisation headers in your request are not valid: $1',
+	'mwoauth-invalid-authorization-wrong-wiki' => 'The authorisation headers in your request are not valid for $1',
+	'mwoauth-invalid-authorization-invalid-user' => "The authorisation headers in your request are for a user that doesn't exist here",
+	'mwoauth-invalid-authorization-wrong-user' => 'The authorisation headers in your request are for a different user',
+	'mwoauth-invalid-authorization-not-approved' => 'The authorisation headers in your request are for an OAuth consumer that is not currently approved',
 	'mwoauth-form-existing' => "'''This application is requesting authorisation to MediaWiki on your behalf, but you have already granted access:'''
 *  Grants: $1
 *  Wiki: $2
@@ -943,6 +986,12 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauthserver-insufficient-rights' => 'Vous n’avez pas les droits suffisants pour effectuer cette action',
 	'mwoauthserver-invalid-request-token' => 'Jeton non valide dans votre demande',
 	'mwoauthserver-invalid-user-hookabort' => 'Cet utilisateur ne peut pas utiliser OAuth',
+	'mwoauth-invalid-authorization-title' => 'Erreur d’autorisation OAuth',
+	'mwoauth-invalid-authorization' => 'Les entêtes d’autorisation dans votre requête ne sont pas valides : $1',
+	'mwoauth-invalid-authorization-wrong-wiki' => 'Les entêtes d’autorisation dans votre requête ne sont pas valides pour $1',
+	'mwoauth-invalid-authorization-invalid-user' => 'Les entêtes d’autorisation dans votre requête concernent un utilisateur qui n’existe pas ici',
+	'mwoauth-invalid-authorization-wrong-user' => 'Les entêtes d’autorisation dans votre requête concernent un autre utilisateur',
+	'mwoauth-invalid-authorization-not-approved' => 'Les entêtes d’autorisation dans votre requête concernent un consommateur OAuth qui n’est pas approuvé pour le moment',
 	'mwoauth-form-description' => 'L’application suivante demande à utiliser MediaWiki de votre part. L’application pourra effectuer n’importe quelle action autorisée dans la liste des droits ci-dessous, si besoin. N’autorisez que les applications auxquelles vous faites confiance à utiliser ces droits comme vous le feriez.',
 	'mwoauth-form-existing' => "'''Cette application demande une autorisation d'accès à MediaWiki en votre nom, mais vous avez déjà accordé cet accès :'''
 * Droits : $1
@@ -1211,6 +1260,230 @@ Teña en conta que se autoriza que un consumidor só teña acceso a un subconxun
 	'action-mwoauthviewsuppressed' => 'ver os consumidores OAuth eliminados',
 );
 
+/** Interlingua (interlingua)
+ * @author McDutchie
+ */
+$messages['ia'] = array(
+	'mwoauth-desc' => 'Authentication via le API de OAuth 1.0a',
+	'mwoauth-missing-field' => 'Manca un valor pro le campo "$1"',
+	'mwoauth-invalid-field' => 'Valor non valide fornite pro le campo "$1"',
+	'mwoauth-field-hidden' => '(iste information es celate)',
+	'mwoauth-field-private' => '(iste information es private)',
+	'mwoauth-grant-generic' => 'gruppo de derectos "$1"',
+	'mwoauth-prefs-managegrants' => 'Accesso de consumitor OAuth:',
+	'mwoauth-prefs-managegrantslink' => 'gerer concessiones in nomine de iste conto',
+	'mwoauth-consumer-key' => 'Clave de consumitor:',
+	'mwoauth-consumer-name' => 'Nomine del application:',
+	'mwoauth-consumer-version' => 'Version major:',
+	'mwoauth-consumer-user' => 'Editor:',
+	'mwoauth-consumer-stage' => 'Stato actual:',
+	'mwoauth-consumer-email' => 'Adresse de e-mail de contacto:',
+	'mwoauth-consumer-description' => 'Description del application:',
+	'mwoauth-consumer-callbackurl' => 'URL de retorno pro OAuth:',
+	'mwoauth-consumer-grantsneeded' => 'Concessiones applicabile:',
+	'mwoauth-consumer-required-grant' => 'Applicabile al consumitor',
+	'mwoauth-consumer-wiki' => 'Wiki applicabile:',
+	'mwoauth-consumer-restrictions' => 'Limitationes de uso:',
+	'mwoauth-consumer-restrictions-json' => 'Limitationes de uso (JSON):',
+	'mwoauth-consumer-rsakey' => 'Clave RSA public:',
+	'mwoauth-consumer-secretkey' => 'Indicio secrete de consumitor:',
+	'mwoauth-consumer-accesstoken' => 'Indicio de accesso:',
+	'mwoauth-consumer-reason' => 'Motivo:',
+	'mwoauth-consumer-alreadyexists' => 'Un consumitor con iste combination de nomine/version/editor jam existe.',
+	'mwoauth-consumer-not-accepted' => 'Impossibile actualisar information pro un requesta de consumitor pendente.',
+	'mwoauth-consumer-not-proposed' => 'Le consumitor non es proponite actualmente.',
+	'mwoauth-consumer-not-disabled' => 'Le consumitor non es actualmente disactivate.',
+	'mwoauth-consumer-not-approved' => 'Le consumitor non es approbate (illo pote haber essite disactivate)',
+	'mwoauth-invalid-consumer-key' => 'Nulle consumitor existe con le calve fornite.',
+	'mwoauth-invalid-access-token' => 'Nulle indicio de accesso existe con le clave fornite.',
+	'mwoauth-consumer-conflict' => 'Alcuno ha cambiate le attributos de iste consumitor durante que tu lo visualisava. Per favor reproba. Pote esser un bon idea verificar le registro de cambiamentos.',
+	'mwoauth-consumer-stage-proposed' => 'proponite',
+	'mwoauth-consumer-stage-rejected' => 'rejectate',
+	'mwoauth-consumer-stage-expired' => 'expirate',
+	'mwoauth-consumer-stage-approved' => 'approbate',
+	'mwoauth-consumer-stage-disabled' => 'disactivate',
+	'mwoauth-consumer-stage-suppressed' => 'supprimite',
+	'mwoauthconsumerregistration' => 'Registration de consumitores OAuth',
+	'mwoauthconsumerregistration-navigation' => 'Navigation:',
+	'mwoauthconsumerregistration-propose' => 'Proponer nove consumitor',
+	'mwoauthconsumerregistration-list' => 'Mi lista de consumitores',
+	'mwoauthconsumerregistration-main' => 'Principal',
+	'mwoauthconsumerregistration-propose-text' => 'Usa le formulario hic infra pro proponer un nove consumitor OAuth (vide http://oauth.net).
+
+Ecce alcun recommendationes e remarcas:
+* Concede le minus derectos possibile. Evita concessiones que non es necessari in iste momento.
+* Forni un clave RSA si possibile; alteremente un indicio secrete (e minus secur) te essera assignate.
+* Usa le campo de restrictiones JSON pro limitar le accesso de iste consumitor al adresses IP in iste rangos CIDR.
+* Tu pote usar un ID de wiki pro limitar le consumitor a un singule wiki in iste sito (usa "*" pro tote le wikis).
+* Le adresse de e-mail fornite debe esser identic a illo de tu conto (le qual debe esser confirmate).',
+	'mwoauthconsumerregistration-update-text' => 'Le formulario sequente permitte actualisar aspectos de un consumitor OAuth que tu controla.
+
+Tote le valores hic superscribera omne previe valores. Non lassa campos vacue si tu non ha le intention de rader iste valores.',
+	'mwoauthconsumerregistration-maintext' => 'Iste pagina es pro proponer e actualisar applicationes de consumitor OAuth (vide http://oauth.net) in le base de registration de iste sito.
+
+Ab hic, tu pote [[Special:MWOAuthConsumerRegistration/propose|proponer un nove consumitor]] o [[Special:MWOAuthConsumerRegistration/list|gerer tu consumitores existente]].',
+	'mwoauthconsumerregistration-propose-legend' => 'Nove application de consumitor OAuth',
+	'mwoauthconsumerregistration-update-legend' => 'Actualisar application de consumitor OAuth',
+	'mwoauthconsumerregistration-propose-submit' => 'Proponer consumitor',
+	'mwoauthconsumerregistration-update-submit' => 'Actualisar consumitor',
+	'mwoauthconsumerregistration-none' => 'Tu non controla alcun consumitor OAuth.',
+	'mwoauthconsumerregistration-name' => 'Consumitor',
+	'mwoauthconsumerregistration-user' => 'Editor',
+	'mwoauthconsumerregistration-description' => 'Description',
+	'mwoauthconsumerregistration-email' => 'E-mail de contacto',
+	'mwoauthconsumerregistration-consumerkey' => 'Clave de consumitor',
+	'mwoauthconsumerregistration-stage' => 'Stato',
+	'mwoauthconsumerregistration-lastchange' => 'Ultime cambiamento',
+	'mwoauthconsumerregistration-manage' => 'gerer',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Reinitialisar le clave secrete a un nove valor',
+	'mwoauthconsumerregistration-proposed' => "Tu requesta de consumitor OAuth ha essite recipite.
+
+Le systema te ha assignate un indicio de consumitor '''$1''' e un indicio secrete '''$2'''. ''Per favor conserva istes pro referentia futur.''",
+	'mwoauthconsumerregistration-updated' => 'Le registration de consumitor OAuth ha essite actualisate con successo.',
+	'mwoauthconsumerregistration-secretreset' => "Le systema te ha assignate un indicio secrete de consumitor '''$1'''. ''Per favor conserva lo pro referentia futur.''",
+	'mwoauthmanageconsumers' => 'Gerer consumitores OAuth',
+	'mwoauthmanageconsumers-type' => 'Caudas:',
+	'mwoauthmanageconsumers-showproposed' => 'Requestas proponite',
+	'mwoauthmanageconsumers-showrejected' => 'Requestas rejectate',
+	'mwoauthmanageconsumers-showexpired' => 'Requestas expirate',
+	'mwoauthmanageconsumers-main' => 'Principal',
+	'mwoauthmanageconsumers-maintext' => 'Iste pagina es pro gerer requestas de application de consumitor OAuth (vide http://oauth.net) e pro gerer le consumitores OAuth establite.',
+	'mwoauthmanageconsumers-queues' => 'Selige un cauda de confirmation de consumitor del lista sequente:',
+	'mwoauthmanageconsumers-q-proposed' => 'Cauda de requestas de consumitor proponite',
+	'mwoauthmanageconsumers-q-rejected' => 'Cauda de requestas de consumitor rejectate',
+	'mwoauthmanageconsumers-q-expired' => 'Cauda de requestas de consumitor expirate',
+	'mwoauthmanageconsumers-lists' => 'Selige un lista de stato de consumitor:',
+	'mwoauthmanageconsumers-l-approved' => 'Lista de consumitores actualmente approbate',
+	'mwoauthmanageconsumers-l-disabled' => 'Lista de consumitores actualmente disactivate',
+	'mwoauthmanageconsumers-none-proposed' => 'Nulle consumitores proponite in iste lista.',
+	'mwoauthmanageconsumers-none-rejected' => 'Nulle consumitores proponite in iste lista.',
+	'mwoauthmanageconsumers-none-expired' => 'Nulle consumitores proponite in iste lista.',
+	'mwoauthmanageconsumers-none-approved' => 'Nulle consumitor corresponde a iste criterios.',
+	'mwoauthmanageconsumers-none-disabled' => 'Nulle consumitor corresponde a iste criterios.',
+	'mwoauthmanageconsumers-name' => 'Consumitor',
+	'mwoauthmanageconsumers-user' => 'Editor',
+	'mwoauthmanageconsumers-description' => 'Description',
+	'mwoauthmanageconsumers-email' => 'E-mail de contacto',
+	'mwoauthmanageconsumers-consumerkey' => 'Clave de consumitor',
+	'mwoauthmanageconsumers-lastchange' => 'Ultime cambiamento',
+	'mwoauthmanageconsumers-review' => 'revider/gerer',
+	'mwoauthmanageconsumers-confirm-text' => 'Usa iste formulario pro approbar, rejectar, disactivar o reactivar iste consumitor.',
+	'mwoauthmanageconsumers-confirm-legend' => 'Gerer consumitor OAuth',
+	'mwoauthmanageconsumers-action' => 'Cambiar stato:',
+	'mwoauthmanageconsumers-approve' => 'Approbate',
+	'mwoauthmanageconsumers-reject' => 'Rejectate',
+	'mwoauthmanageconsumers-rsuppress' => 'Rejectate e supprimite',
+	'mwoauthmanageconsumers-disable' => 'Disactivate',
+	'mwoauthmanageconsumers-dsuppress' => 'Disactivate e supprimite',
+	'mwoauthmanageconsumers-reenable' => 'Approbate',
+	'mwoauthmanageconsumers-reason' => 'Motivo:',
+	'mwoauthmanageconsumers-confirm-submit' => 'Actualisar stato de consumitor',
+	'mwoauthmanageconsumers-viewing' => 'Le usator "$1" actualmente visualisa iste consumitor',
+	'mwoauthmanageconsumers-success-approved' => 'Le requesta ha essite approbate.',
+	'mwoauthmanageconsumers-success-rejected' => 'Le requesta ha essite rejectate.',
+	'mwoauthmanageconsumers-success-disabled' => 'Le consumitor ha essite disactivate.',
+	'mwoauthmanageconsumers-success-reanable' => 'Le consumitor ha essite reactivate.',
+	'mwoauthmanagemygrants' => 'Gerer concessiones de conto OAuth',
+	'mwoauthmanagemygrants-navigation' => 'Navigation:',
+	'mwoauthmanagemygrants-showlist' => 'Lista de consumitores acceptate',
+	'mwoauthmanagemygrants-none' => 'Nulle consumitor ha accesso in nomine de tu conto.',
+	'mwoauthmanagemygrants-name' => 'Nomine del consumitor',
+	'mwoauthmanagemygrants-user' => 'Editor',
+	'mwoauthmanagemygrants-description' => 'Description',
+	'mwoauthmanagemygrants-wiki' => 'Wiki applicabile',
+	'mwoauthmanagemygrants-wikiallowed' => 'Permittite in wiki',
+	'mwoauthmanagemygrants-grants' => 'Concessiones applicabile',
+	'mwoauthmanagemygrants-grantsallowed' => 'Concessiones permittite',
+	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Concessiones applicabile permittite:',
+	'mwoauthmanagemygrants-consumerkey' => 'Clave de consumitor',
+	'mwoauthmanagemygrants-review' => 'revider/gerer accesso',
+	'mwoauthmanagemygrants-grantaccept' => 'Concedite al consumitor',
+	'mwoauthmanagemygrants-confirm-text' => 'Usa le formulario hic infra pro revocar le accesso o cambiar le concessiones de un consumitor OAuth pro ager in tu nomine.
+
+Nota que si tu ha autorisate un consumitor a haber accesso solmente a un parte del wikis (projectos de sito), alora il habera plure indicios de accesso pro iste consumitor.',
+	'mwoauthmanagemygrants-confirm-legend' => 'Gerer indicio de accesso de consumitor',
+	'mwoauthmanagemygrants-update' => 'Actualisar concessiones de indicio de accesso',
+	'mwoauthmanagemygrants-renounce' => 'Disautorisar e deler indicio de accesso',
+	'mwoauthmanagemygrants-action' => 'Cambiar stato:',
+	'mwoauthmanagemygrants-confirm-submit' => 'Actualisar le stato de indicio de accesso',
+	'mwoauthmanagemygrants-success-update' => 'Le indicio de accesso pro iste consumitor ha essite actualisate.',
+	'mwoauthmanagemygrants-success-renounce' => 'Le indicio de accesso pro iste consumitor ha essite delite.',
+	'logentry-mwoauthconsumer-propose' => '$1 proponeva un consumitor OAuth (clave de consumitor $4)',
+	'logentry-mwoauthconsumer-update' => '$1 actualisava un consumitor OAuth (clave de consumitor $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 approbava un consumitor OAuth per $3 (clave de consumitor $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 rejectava un consumitor OAuth per $3 (clave de consumitor $4)',
+	'logentry-mwoauthconsumer-disable' => '$1 disactivava un consumitor OAuth per $3 (clave de consumitor $4)',
+	'logentry-mwoauthconsumer-reenable' => '$1 reactivava un consumitor OAuth per $3 (clave de consumitor $4)',
+	'mwoauthconsumer-consumer-logpage' => 'Registro de consumitores OAuth',
+	'mwoauthconsumer-consumer-logpagetext' => 'Registro de approbation, rejection e disactivation de consumitores OAuth registrate.',
+	'mwoauth-bad-csrf-token' => 'Fallimento de session durante le submission del formulario. Per favor retenta tu submissiones.',
+	'mwoauth-bad-request' => 'Il habeva un error in le requesta OAuth.',
+	'mwoauthdatastore-access-token-not-found' => 'Nulle concession approbate ha essite trovate pro iste indicio de autorisation.',
+	'mwoauthdatastore-request-token-not-found' => 'Nulle requesta ha essite trovate pro iste indicio.',
+	'mwoauthdatastore-bad-token' => 'Nulle indicio ha essite trovate que corresponde a tu requesta.',
+	'mwoauthdatastore-bad-verifier' => 'Le codice de verification fornite non es valide.',
+	'mwoauthdatastore-invalid-token-type' => 'Le typo de indicio requestate non es valide.',
+	'mwoauthgrants-general-error' => 'Il habeva un error in tu requesta OAuth.',
+	'mwoauthserver-bad-consumer' => 'Nulle consumitor approbate ha essite trovate pro le clave fornite.',
+	'mwoauthserver-insufficient-rights' => 'Tu non ha derectos sufficiente pro exequer iste action.',
+	'mwoauthserver-invalid-request-token' => 'Il ha un indicio non valide in tu requesta.',
+	'mwoauthserver-invalid-user-hookabort' => 'Iste usator non pote usar OAuth.',
+	'mwoauth-invalid-authorization-title' => 'Error de autorisation OAuth',
+	'mwoauth-invalid-authorization' => 'Le capites de autorisation in tu requesta non es valide: $1',
+	'mwoauth-invalid-authorization-wrong-wiki' => 'Le capites de autorisation in tu requesta non es valide pro $1',
+	'mwoauth-invalid-authorization-invalid-user' => 'Le capites de autorisation in tu requesta es pro un usator que non existe hic',
+	'mwoauth-invalid-authorization-wrong-user' => 'Le capites de autorisation in tu requesta es pro un altere usator',
+	'mwoauth-invalid-authorization-not-approved' => 'Le capites de autorisation in tu requesta es pro un consumitor OAuth que non es actualmente approbate',
+	'mwoauth-form-description' => 'Le sequente application requesta usar MediaWiki in tu nomine. Le application potera exequer omne actiones que es permittite con le lista de derectos requestate hic infra. Tu debe autorisar solmente le applicationes que tu considera digne de fide pro usar iste permissiones como tu lo facerea.',
+	'mwoauth-form-existing' => "'''Iste application requesta autorisation pro MediaWiki in tu nomine, ma tu ha jam concedite le accesso:'''
+*  Concessiones: $1
+*  Wiki: $2
+*  Autorisate le: $3",
+	'mwoauth-form-button-approve' => 'Si, autorisar',
+	'mwoauth-form-confirmation' => 'Autorisar iste application a ager in tu nomine?',
+	'mwoauth-form-confirmation-update' => 'Actualisar iste autorisation al privilegios requestate. Si tu lassa isto non marcate, le autorisationes existente essera mantenite.',
+	'mwoauth-authorize-form' => 'Detalios del application:',
+	'mwoauth-authorize-form-user' => 'Autor del application: $1',
+	'mwoauth-authorize-form-name' => 'Nomine del application: $1',
+	'mwoauth-authorize-form-description' => 'Description del application: $1',
+	'mwoauth-authorize-form-version' => 'Version del application: $1',
+	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-grants-heading' => 'Permissiones requestate:',
+	'mwoauth-grants-nogrants' => 'Le application non ha requestate alcun permission.',
+	'mwoauth-grant-blockusers' => 'Blocar usatores',
+	'mwoauth-grant-createeditmovepage' => 'Crear, modificar e renominar paginas',
+	'mwoauth-grant-delete' => 'Deler paginas, versiones e entratas de registro',
+	'mwoauth-grant-editinterface' => 'Modificar le spatio de nomines MediaWiki e le CSS/JS de usatores',
+	'mwoauth-grant-editmycssjs' => 'Modificar le CSS/JS del proprie usator',
+	'mwoauth-grant-editmywatchlist' => 'Modificar le proprie observatorio',
+	'mwoauth-grant-editpage' => 'Modificar paginas existente',
+	'mwoauth-grant-editprotected' => 'Modificar paginas protegite',
+	'mwoauth-grant-highvolume' => 'Modification in massa',
+	'mwoauth-grant-oversight' => 'Celar usatores e supprimer versiones',
+	'mwoauth-grant-patrol' => 'Patruliar',
+	'mwoauth-grant-protect' => 'Proteger e disproteger paginas',
+	'mwoauth-grant-rollback' => 'Revocar',
+	'mwoauth-grant-sendemail' => 'Inviar e-mail',
+	'mwoauth-grant-uploadeditmovefile' => 'Actualisar, reimplaciar e renominar files',
+	'mwoauth-grant-uploadfile' => 'Incargar nove files',
+	'mwoauth-grant-useoauth' => 'Derectos de base',
+	'mwoauth-grant-viewdeleted' => 'Vider information delite',
+	'mwoauth-grant-viewmywatchlist' => 'Vider le proprie observatorio',
+	'mwoauth-callback-not-oob' => 'oauth_callback debe esser definite, e debe esser mittite a "oob" (distingue inter majusculas e minusculas)',
+	'right-mwoauthproposeconsumer' => 'Proponer nove consumitores OAuth',
+	'right-mwoauthupdateconsumer' => 'Actualisar consumitores OAuth',
+	'right-mwoauthmanageconsumer' => 'Gerer consumitores OAuth',
+	'right-mwoauthsuppress' => 'Supprimer consumitores OAuth',
+	'right-mwoauthviewsuppressed' => 'Vider consumitores OAuth supprimite',
+	'right-mwoauthviewprivate' => 'Vider datos OAuth private',
+	'right-mwoauthmanagemygrants' => 'Gerer concessiones OAuth',
+	'action-mwoauthmanageconsumer' => 'gerer consumitores OAuth',
+	'action-mwoauthmanagemygrants' => 'gerer le proprie concessiones OAuth',
+	'action-mwoauthproposeconsumer' => 'proponer nove consumitores OAUth',
+	'action-mwoauthupdateconsumer' => 'actualisar consumitores OAuth',
+	'action-mwoauthviewsuppressed' => 'vider consumitores OAUth supprimite',
+);
+
 /** Japanese (日本語)
  * @author Shirayuki
  */
@@ -1237,6 +1510,7 @@ $messages['ja'] = array(
 	'mwoauth-consumer-reason' => '理由:',
 	'mwoauth-consumer-alreadyexists' => 'この名前/バージョン/発行者の組み合わせを持つコンシューマーは既に存在します',
 	'mwoauth-invalid-consumer-key' => '指定したキーのコンシューマーは存在しません。',
+	'mwoauth-invalid-access-token' => '指定したキーのアクセス トークンは存在しません。',
 	'mwoauth-consumer-stage-disabled' => '無効',
 	'mwoauthconsumerregistration' => 'OAuth コンシューマー登録',
 	'mwoauthconsumerregistration-navigation' => 'ナビゲーション:',
@@ -1244,7 +1518,10 @@ $messages['ja'] = array(
 	'mwoauthconsumerregistration-main' => 'メイン',
 	'mwoauthconsumerregistration-update-legend' => 'OAuth コンシューマー アプリケーションの更新',
 	'mwoauthconsumerregistration-update-submit' => 'コンシューマーを更新',
+	'mwoauthconsumerregistration-name' => 'コンシューマー',
+	'mwoauthconsumerregistration-consumerkey' => 'コンシューマー キー',
 	'mwoauthconsumerregistration-stage' => '状態',
+	'mwoauthconsumerregistration-lastchange' => '最新の変更',
 	'mwoauthconsumerregistration-updated' => 'あなたの OAuth コンシューマー レジストリを更新しました。',
 	'mwoauthconsumerregistration-secretreset' => "「'''$1'''」のコンシューマー秘密トークンを割り当てました。''今後のためこれを記録しておいてください。''",
 	'mwoauthmanageconsumers' => 'OAuthコンシューマー管理',
@@ -1295,6 +1572,7 @@ $messages['ja'] = array(
 	'mwoauthserver-insufficient-rights' => 'あなたにはこの操作を実行する権限がありません。',
 	'mwoauthserver-invalid-request-token' => 'リクエストに無効なトークンがあります。',
 	'mwoauthserver-invalid-user-hookabort' => 'この利用者は OAuth を使用できません。',
+	'mwoauth-invalid-authorization-title' => 'OAuth 認証エラー',
 	'mwoauth-authorize-form' => 'アプリケーションの詳細:',
 	'mwoauth-authorize-form-user' => 'アプリケーションの作者: $1',
 	'mwoauth-authorize-form-name' => 'アプリケーション名: $1',
@@ -1521,6 +1799,12 @@ $messages['mk'] = array(
 	'mwoauthserver-insufficient-rights' => 'Ги немате потребните права за да го извршите ова дејство.',
 	'mwoauthserver-invalid-request-token' => 'Неважечкa шифра во барањето.',
 	'mwoauthserver-invalid-user-hookabort' => 'Корисникот не може да користи OAuth',
+	'mwoauth-invalid-authorization-title' => 'Грешка со овластувањето во OAuth',
+	'mwoauth-invalid-authorization' => 'Овластителните заглавија во вашето барање се неисправни: $1',
+	'mwoauth-invalid-authorization-wrong-wiki' => 'Овластителните заглавија во вашето барање се неисправни за $1',
+	'mwoauth-invalid-authorization-invalid-user' => 'Овластителните заглавија во вашето барање се однесуваат на корисникот што тука не постои',
+	'mwoauth-invalid-authorization-wrong-user' => 'Овластителните заглавија во вашето барање се однесуваат на друг корисник',
+	'mwoauth-invalid-authorization-not-approved' => 'Овластителните заглавија во вашето барање се однесуваат на потрошувач на OAuth што во моментов не е одобрен',
 	'mwoauth-form-description' => 'Следниов прилог бара да го користи МедијаВики во ваше име. Ќе може да ги извршува сите дејства дозволени во рамките на долунаведениот список со побарани права. Ова треба да го дозволувате само на прилози на кои им верувате.',
 	'mwoauth-form-existing' => "'''Овој прилог бара овластување од МедијаВики во ваше име, но веќе има добиено пристап:'''
 *  Доделувања: $1
@@ -1620,8 +1904,20 @@ $messages['nl'] = array(
 	'mwoauth-consumer-stage-approved' => 'goedgekeurd',
 	'mwoauth-consumer-stage-disabled' => 'uitgeschakeld',
 	'mwoauth-consumer-stage-suppressed' => 'onderdrukt',
+	'mwoauthconsumerregistration-navigation' => 'Navigatie:',
+	'mwoauthconsumerregistration-propose' => 'Nieuwe consumer voorstellen',
+	'mwoauthconsumerregistration-list' => 'Uw consumerlijst',
+	'mwoauthconsumerregistration-propose-text' => 'Gebruik het formulier hieronder om een nieuwe OAuthconsumer voor te stellen (zie http://oauth.net).
+
+Een paar aanbevelingen en opmerkingen:
+* Probeer zo min mogelijk bevoegdheden te gebruiken  Vermijd bevoegdheden die niet echt nodig zijn;
+* Gebruik als mogelijk een RSA-sleutel; als dat niet mogelijk is, wordt u een (minder veilig) geheim token toegewezen;
+* Gebruik het veld JSON-beperkingen om de toegang voor deze consumer te beperken tot IP-adressen in de opgegeven CIDR-bereiken;
+* U kunt een wiki-ID gebruiken om de consumer te beperken tot één enkele wiki op deze site (gebruik "*" voor alle wiki\'s);
+* Het e-mailadres moet overeenkomen met dat van uw gebruiker (en het e-mailadres moet zijn bevestigd).',
 	'mwoauthconsumerregistration-propose-legend' => 'Nieuwe OAuthconsumertoepassing',
 	'mwoauthconsumerregistration-update-legend' => 'OAuthconsumertoepassing bijwerken',
+	'mwoauthconsumerregistration-propose-submit' => 'Consumer voorstellen',
 	'mwoauthconsumerregistration-update-submit' => 'Consumer bijwerken',
 	'mwoauthconsumerregistration-name' => 'Consumer',
 	'mwoauthconsumerregistration-user' => 'Uitgever',
@@ -1710,7 +2006,12 @@ $messages['nl'] = array(
 	'mwoauth-grant-blockusers' => 'Gebruikers blokkeren',
 	'mwoauth-grant-createeditmovepage' => "Pagina's aanmaken, bewerken en hernoemen",
 	'mwoauth-grant-delete' => "Pagina's, wijzigingen en vermeldingen in het logboek verwijderen",
+	'mwoauth-grant-editmycssjs' => 'Uw eigen CSS/JavaScript bewerken',
+	'mwoauth-grant-editmywatchlist' => 'Uw eigen volglijst bewerken',
 	'mwoauth-grant-editpage' => "Bestaande pagina's bewerken",
+	'mwoauth-grant-editprotected' => "Beveiligde pagina's bewerken",
+	'mwoauth-grant-highvolume' => 'Veel bewerkingen in korte tijd maken',
+	'mwoauth-grant-oversight' => 'Gebruikers en versies verbergen',
 	'mwoauth-grant-patrol' => 'Wijzigingen controleren',
 	'mwoauth-grant-protect' => "Pagina's beveiligen en beveiliging opheffen",
 	'mwoauth-grant-rollback' => 'Terugdraaien',
@@ -1720,6 +2021,17 @@ $messages['nl'] = array(
 	'mwoauth-grant-useoauth' => 'Basisrechten',
 	'mwoauth-grant-viewdeleted' => 'Verwijderde gegevens bekijken',
 	'mwoauth-grant-viewmywatchlist' => 'Uw volglijst bekijken',
+	'right-mwoauthproposeconsumer' => 'Nieuwe OAuthconsumers voorstellen',
+	'right-mwoauthupdateconsumer' => 'OAuthconsumers bijwerken',
+	'right-mwoauthmanageconsumer' => 'OAuthconsumers beheren',
+	'right-mwoauthsuppress' => 'OAuthconsumers onderdrukken',
+	'right-mwoauthviewsuppressed' => 'Onderdrukte OAuthconsumers bekijken',
+	'right-mwoauthmanagemygrants' => 'OAuthbevoegdheden beheren',
+	'action-mwoauthmanageconsumer' => 'OAuthconsumers te beheren',
+	'action-mwoauthmanagemygrants' => 'uw OAuthbevoegdheden te beheren',
+	'action-mwoauthproposeconsumer' => 'nieuwe OAuthconsumers voor te stellen',
+	'action-mwoauthupdateconsumer' => 'OAuthconsumers bij te werken',
+	'action-mwoauthviewsuppressed' => 'onderdrukte OAuthconsumers te bekijken',
 );
 
 /** Polish (polski)
