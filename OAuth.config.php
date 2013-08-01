@@ -133,5 +133,13 @@ $wgMWOauthDisabledApiModules = array(
 	'ApiLogout',
 );
 
+/**
+ * @var string Secret to add to HMAC of token secrets
+ * A cryptographically random string, used as an extra protection for secrets stored in the
+ * database. This can use the wiki's $wgSecretKey, but in multi-wiki configurations, this needs
+ * to be the same for all wikis.
+ */
+$wgOAuthSecretKey = $wgSecretKey;
+
 # End of configuration variables.
 # ########

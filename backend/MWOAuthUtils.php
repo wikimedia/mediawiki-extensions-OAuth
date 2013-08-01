@@ -301,8 +301,8 @@ class MWOAuthUtils {
 	 * @return string
 	 */
 	public static function hmacDBSecret( $secret ) {
-		global $wgSecretKey;
+		global $wgOAuthSecretKey;
 
-		return $wgSecretKey ? hash_hmac( 'sha1', $secret, $wgSecretKey ) : $secret;
+		return $wgOAuthSecretKey ? hash_hmac( 'sha1', $secret, $wgOAuthSecretKey ) : $secret;
 	}
 }
