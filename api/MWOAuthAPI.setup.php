@@ -65,6 +65,7 @@ class MWOAuthAPISetup {
 		$hooks['UserGetRights'][] = __CLASS__ . '::onUserGetRights';
 		$hooks['UserIsEveryoneAllowed'][] = __CLASS__ . '::onUserIsEveryoneAllowed';
 		$hooks['ApiCheckCanExecute'][] = __CLASS__ . '::onApiCheckCanExecute';
+		$hooks['RecentChange_save'][] = __CLASS__ . '::onRecentChange_save';
 	}
 
 	/**
@@ -203,6 +204,28 @@ class MWOAuthAPISetup {
 			}
 		}
 
+		return true;
+	}
+
+	/**
+	 * Record the fact that OAuth was used for anything added to RecentChanges.
+	 *
+	 * @param RecentChange $rc
+	 * @return boolean true
+	 */
+	public static function onRecentChange_save( $rc ) {
+		$accesstoken = self::getOAuthAccessToken();
+		if ( $accesstoken !== null ) {
+			$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+			$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $accesstoken->key );
+			$consumerId = $access->get( 'consumerId' );
+			ChangeTags::addTags(
+				"OAuth CID: $consumerId",
+				$rc->mAttribs['rc_id'],
+				$rc->mAttribs['rc_this_oldid'],
+				$rc->mAttribs['rc_logid']
+			);
+		}
 		return true;
 	}
 }
