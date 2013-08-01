@@ -168,6 +168,7 @@ class MWOAuthServer extends OAuthServer {
 			// Add the Authorization to the database
 			$accessToken = MWOAuthDataStore::newToken();
 			$cmra = MWOAuthConsumerAcceptance::newFromArray( array(
+				'id'           => null,
 				'wiki'         => $consumer->get( 'wiki' ),
 				'userId'       => $userId,
 				'consumerId'   => $consumer->get( 'id' ),

@@ -697,7 +697,7 @@ class OAuthServer {
 		 );
 
 		if ( !$valid_sig ) {
-			wfDebugLog( 'OAuth', __METHOD__ . ": Signature check ($signature_method) failed" );
+			wfDebugLog( 'OAuth', __METHOD__ . ': Signature check (' . get_class( $signature_method ) . ') failed' );
 			throw new OAuthException( "Invalid signature" );
 		}
 	}
