@@ -1210,6 +1210,12 @@ Teña en conta que se autoriza que un consumidor só teña acceso a un subconxun
 	'mwoauthserver-insufficient-rights' => 'Non ten os dereitos necesarios para levar a cabo esta acción',
 	'mwoauthserver-invalid-request-token' => 'Pase non válido na súa solicitude',
 	'mwoauthserver-invalid-user-hookabort' => 'Este usuario non pode utilizar OAuth',
+	'mwoauth-invalid-authorization-title' => 'Erro de autorización OAuth',
+	'mwoauth-invalid-authorization' => 'As cabeceiras de autorización da súa solicitude non son válidas: $1',
+	'mwoauth-invalid-authorization-wrong-wiki' => 'As cabeceiras de autorización da súa solicitude non son válidas para $1',
+	'mwoauth-invalid-authorization-invalid-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario que non existe aquí',
+	'mwoauth-invalid-authorization-wrong-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario diferente',
+	'mwoauth-invalid-authorization-not-approved' => 'As cabeceiras de autorización da súa solicitude son para un consumidor OAuth que non está aprobado actualmente',
 	'mwoauth-form-description' => 'A seguinte aplicación está solicitando utilizar MediaWiki no seu nome. A aplicación poderá realizar calquera acción para a que teña permiso da lista inferior, se o solicitase. Autorice unicamente aplicacións nas que confíe que usarán estes permisos como faría vostede.',
 	'mwoauth-form-existing' => "'''Esta aplicación está solicitando autorización a MediaWiki no seu nome, pero vostede xa concedeu este acceso:'''
 *  Concesións: $1
