@@ -149,8 +149,12 @@ class MWOAuthUtils {
 	 */
 	public static function grantName( $grant ) {
 		// Give grep a chance to find the usages:
-		// mwoauth-grant-editpage, mwoauth-grant-createeditmovepage,
-		// mwoauth-grant-uploadfile, mwoauth-grant-uploadeditmovefile
+		// mwoauth-grant-blockusers, mwoauth-grant-createeditmovepage, mwoauth-grant-delete,
+		// mwoauth-grant-editinterface, mwoauth-grant-editmycssjs, mwoauth-grant-editmywatchlist,
+		// mwoauth-grant-editpage, mwoauth-grant-editprotected, mwoauth-grant-highvolume,
+		// mwoauth-grant-oversight, mwoauth-grant-patrol, mwoauth-grant-protect, mwoauth-grant-rollback,
+		// mwoauth-grant-sendemail, mwoauth-grant-uploadeditmovefile, mwoauth-grant-uploadfile,
+		// mwoauth-grant-useoauth, mwoauth-grant-viewdeleted, mwoauth-grant-viewmywatchlist
 		$msg = wfMessage( "mwoauth-grant-$grant" );
 		$msg = $msg->exists() ? $msg : wfMessage( "mwoauth-grant-generic", $grant );
 		return $msg->text();
