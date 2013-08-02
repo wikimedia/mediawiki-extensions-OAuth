@@ -48,6 +48,16 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 						return;
 					}
 
+					// Check to make sure this user is the same user
+					// on the central wiki
+					$centralId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
+					if ( !$centralId ) {
+						// For now, just abort and give them hints to fix in
+						// the error message. TODO: if we can fix the issue with
+						// a few redirects, do that here.
+						throw new MWOAuthException( 'mwoauth-authorize-form-invalid-user' );
+					}
+
 					if ( $request->getVal( 'doAuthorize', false ) ) {
 						// Require POST
 						if ( !$request->wasPosted() ) {

@@ -207,6 +207,8 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauth-authorize-form-description' => 'Application description: $1',
 	'mwoauth-authorize-form-version' => 'Application version: $1',
 	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-authorize-form-invalid-user' => 'This user account cannot use OAuth, because the account on this wiki, and the account on the central OAuth wiki are not linked.',
+	'mwoauth-error' => 'OAuth Error',
 	'mwoauth-grants-heading' => 'Requested permissions: ',
 	'mwoauth-grants-nogrants' => 'The application has not requested any permissions.',
 
@@ -478,6 +480,8 @@ Followed by the following radio boxes:
 	'mwoauth-authorize-form-description' => '{{Identical|Application description}}',
 	'mwoauth-authorize-form-version' => '{{Identical|Application version}}',
 	'mwoauth-authorize-form-wiki' => '{{Identical|Wiki}}',
+	'mwoauth-authorize-form-invalid-user' => 'Text of the error page when the user cannot use OAuth.',
+	'mwoauth-error' => 'Heading on the page, whenever an OAuth error is presented to a user.',
 	'mwoauth-grants-heading' => 'Used as label for the grants list.
 
 See also:

@@ -10,9 +10,9 @@ class MWOAuthUISetup {
 	 */
 	public static function defineSpecialPages( array &$pages, array &$groups ) {
 		// Pages available on all wikis
-		$pages['MWOAuth'] = 'SpecialMWOAuth';
 		// Pages specific to the central OAuth management wiki
 		if ( MWOAuthUtils::isCentralWiki() ) {
+			$pages['MWOAuth'] = 'SpecialMWOAuth';
 			$pages['MWOAuthConsumerRegistration'] = 'SpecialMWOAuthConsumerRegistration';
 			$groups['MWOAuthConsumerRegistration'] = 'users';
 			$pages['MWOAuthManageConsumers'] = 'SpecialMWOAuthManageConsumers';
