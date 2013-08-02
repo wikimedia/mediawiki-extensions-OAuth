@@ -10,7 +10,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$request = $this->getRequest();
 		$format = $request->getVal( 'format', 'raw' );
 		if ( !in_array( $subpage, array( 'initiate', 'authorize', 'token' ) ) ) {
-			$this->showError( wfMessage( 'oauth-client-invalidrequest' ), $format );
+			$this->showError( 'oauth-client-invalidrequest', $format );
 		}
 
 		try {
@@ -25,6 +25,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					break;
 				case 'authorize':
 					//TODO: most of the "controller" logic should be move somewhere else
+					$format = $request->getVal( 'format', 'html' );
 					$mwUser = $this->getUser();
 					$requestToken = $request->getVal( 'oauth_token', false ); //oauth_token
 					$consumerKey = $request->getVal( 'oauth_consumer_key', false ); //oauth_key
