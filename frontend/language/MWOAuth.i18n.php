@@ -1878,6 +1878,7 @@ $messages['nds-nl'] = array(
 );
 
 /** Dutch (Nederlands)
+ * @author Hansmuller
  * @author Siebrand
  */
 $messages['nl'] = array(
@@ -2024,7 +2025,7 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauth-grant-sendemail' => 'E-mail verzenden',
 	'mwoauth-grant-uploadeditmovefile' => 'Bestanden uploaden, vervangen en hernoemen',
 	'mwoauth-grant-uploadfile' => 'Nieuwe bestanden uploaden',
-	'mwoauth-grant-useoauth' => 'Basisrechten',
+	'mwoauth-grant-useoauth' => 'Grondrechten',
 	'mwoauth-grant-viewdeleted' => 'Verwijderde gegevens bekijken',
 	'mwoauth-grant-viewmywatchlist' => 'Uw volglijst bekijken',
 	'right-mwoauthproposeconsumer' => 'Nieuwe OAuthconsumers voorstellen',
