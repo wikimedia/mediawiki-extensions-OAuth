@@ -243,6 +243,9 @@ class MWOAuthUtils {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
+			if ( !Hooks::isRegistered( 'OAuthGetUserNamesFromCentralIds' ) ) {
+				throw new MWException( "No handler for 'OAuthGetUserNamesFromCentralIds' hook" );
+			}
 			$namesById = array( $userId => false );
 			// Let extensions check that central wiki user ID is attached to a global account
 			// and that return the user on this wiki that is attached to that global account
@@ -266,6 +269,9 @@ class MWOAuthUtils {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
+			if ( !Hooks::isRegistered( 'OAuthGetLocalUserFromCentralId' ) ) {
+				throw new MWException( "No handler for 'OAuthGetLocalUserFromCentralId' hook" );
+			}
 			$user = false;
 			// Let extensions check that central wiki user ID is attached to a global account
 			// and that return the user on this wiki that is attached to that global account
@@ -291,6 +297,9 @@ class MWOAuthUtils {
 			if ( isset( $user->oAuthUserData['centralId'] ) ) {
 				$id = $user->oAuthUserData['centralId'];
 			} else {
+				if ( !Hooks::isRegistered( 'OAuthGetCentralIdFromLocalUser' ) ) {
+					throw new MWException( "No handler for 'OAuthGetCentralIdFromLocalUser' hook" );
+				}
 				$id = false;
 				// Let CentralAuth check that $user is attached to a global account and
 				// that the foreign local account on the central wiki is also attached to it
