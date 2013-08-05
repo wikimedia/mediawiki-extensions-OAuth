@@ -37,6 +37,11 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	public function execute( $par ) {
 		global $wgMWOAuthSecureTokenTransfer;
 
+		$user = $this->getUser();
+		$request = $this->getRequest();
+		$lang = $this->getLanguage();
+		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
+
 		// Redirect to HTTPs if attempting to access this page via HTTP.
 		// Proposals and updates to consumers can involve sending new secrets.
 		if ( $wgMWOAuthSecureTokenTransfer && WebRequest::detectProtocol() !== 'https' ) {
@@ -45,20 +50,18 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			return;
 		}
 
-		$user = $this->getUser();
-		$request = $this->getRequest();
-		$lang = $this->getLanguage();
-		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
+		$this->setHeaders();
+		$this->getOutput()->disallowUserJs();
 
 		$block = $user->getBlock();
 		if ( $block ) {
 			throw new UserBlockedError( $block );
 		} elseif ( wfReadOnly() ) {
 			throw new ReadOnlyError();
+		} elseif ( !$this->getUser()->isLoggedIn() ) {
+			$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-notloggedin' );
+			return;
 		}
-
-		$this->setHeaders();
-		$this->getOutput()->disallowUserJs();
 
 		// Format is Special:MWOAuthConsumerRegistration[/propose|/list|/update/<consumer key>]
 		$navigation = explode( '/', $par );

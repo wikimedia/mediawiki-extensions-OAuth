@@ -42,14 +42,15 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		$user = $this->getUser();
 		$request = $this->getRequest();
 
-		if ( !$user->isAllowed( 'mwoauthmanageconsumer' ) ) {
-			throw new PermissionsError( 'mwoauthmanageconsumer' );
-		} elseif ( !$user->getID() ) {
-			throw new PermissionsError( 'user' );
-		}
-
 		$this->setHeaders();
 		$this->getOutput()->disallowUserJs();
+
+		if ( !$user->isLoggedIn() ) {
+			$this->getOutput()->addWikiMsg( 'mwoauthmanageconsumers-notloggedin' );
+			return;
+		} elseif ( !$user->isAllowed( 'mwoauthmanageconsumer' ) ) {
+			throw new PermissionsError( 'mwoauthmanageconsumer' );
+		}
 
 		// Format is Special:MWOAuthManageConsumers[/<stage>[/<consumer key>]]
 		$navigation = explode( '/', $par );

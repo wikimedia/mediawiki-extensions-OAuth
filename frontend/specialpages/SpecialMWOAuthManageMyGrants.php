@@ -39,14 +39,15 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 		$user = $this->getUser();
 		$request = $this->getRequest();
 
-		if ( !$user->isAllowed( 'mwoauthmanagemygrants' ) ) {
-			throw new PermissionsError( 'mwoauthmanagemygrants' );
-		} elseif ( !$user->getID() ) {
-			throw new PermissionsError( 'user' );
-		}
-
 		$this->setHeaders();
 		$this->getOutput()->disallowUserJs();
+
+		if ( !$this->getUser()->isLoggedIn() ) {
+			$this->getOutput()->addWikiMsg( 'mwoauthmanagemygrants-notloggedin' );
+			return;
+		} elseif ( !$user->isAllowed( 'mwoauthmanagemygrants' ) ) {
+			throw new PermissionsError( 'mwoauthmanagemygrants' );
+		}
 
 		// Format is Special:MWOAuthManageMyGrants[/list|/manage/<accesstoken>]
 		$navigation = explode( '/', $par );
