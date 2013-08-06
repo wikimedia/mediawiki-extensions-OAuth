@@ -43,7 +43,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			// Proposer (application administrator) actions:
 			'propose'     => array(
 				'name'         => '/^.{1,128}$/',
-				'version'      => '/^.{1,32}$/',
+				'version'      => '/^\d{1,3}(\.\d{1,2}){0,2}(-(dev|alpha|beta))?$/',
 				'callbackUrl'  => function( $s ) {
 					return wfParseUrl( $s ) !== null; },
 				'description'  => '/^.*$/',
@@ -138,6 +138,17 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				$dbw, $this->vals['name'], $this->vals['version'], $centralUserId ) )
 			{
 				return $this->failure( 'consumer_exists', 'mwoauth-consumer-alreadyexists' );
+			}
+
+			$curVer = $dbw->selectField( 'oauth_registered_consumer',
+				'oarc_version',
+				array( 'oarc_name' => $this->vals['name'], 'oarc_user_id' => $centralUserId ),
+				__METHOD__,
+				array( 'ORDER BY' => 'oarc_registration DESC', 'FOR UPDATE' )
+			);
+			if ( $curVer !== false && version_compare( $curVer, $this->vals['version'], '>=' ) ) {
+				return $this->failure( 'consumer_exists',
+					'mwoauth-consumer-alreadyexistsversion', $curVer );
 			}
 
 			$now = wfTimestampNow();
