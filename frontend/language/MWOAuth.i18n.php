@@ -1881,6 +1881,27 @@ $messages['ml'] = array(
 	'mwoauthmanagemygrants-user' => 'പ്രസാധക(ൻ)',
 );
 
+/** Marathi (मराठी)
+ * @author V.narsikar
+ */
+$messages['mr'] = array(
+	'mwoauth-grant-blockusers' => 'सदस्य प्रतिबंधन',
+	'mwoauth-grant-delete' => 'पाने, आवृत्त्या व नोंदी वगळा',
+	'mwoauth-grant-editinterface' => 'मिडियाविकि नामविश्व व सदस्यांची CSS/JS संपादा',
+	'mwoauth-grant-editmycssjs' => 'आपले स्वतःचे CSS/JS पान संपादित करा',
+	'mwoauth-grant-editmywatchlist' => 'आपली निरीक्षणयादी संपादित करा',
+	'mwoauth-grant-editprotected' => 'संपादनांपासून सुरक्षित असलेली पाने',
+	'mwoauth-grant-highvolume' => 'अत्त्युच्च-जागा घेणारे संपादन',
+	'mwoauth-grant-oversight' => 'सदस्य लपवा व आवृत्त्या दाबा',
+	'mwoauth-grant-patrol' => 'गस्त',
+	'mwoauth-grant-protect' => 'पाने सुरक्षित किंवा असुरक्षित करा',
+	'mwoauth-grant-rollback' => 'परतवा',
+	'mwoauth-grant-sendemail' => 'विपत्र पाठवा',
+	'mwoauth-grant-useoauth' => 'मुळ अधिकार',
+	'mwoauth-grant-viewdeleted' => 'वगळलेली माहिती बघा',
+	'mwoauth-grant-viewmywatchlist' => 'आपली निरीक्षणसूची बघा',
+);
+
 /** Low Saxon (Netherlands) (Nedersaksies)
  * @author Servien
  */
