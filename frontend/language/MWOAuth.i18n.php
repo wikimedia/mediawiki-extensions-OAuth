@@ -1875,10 +1875,12 @@ $messages['mk'] = array(
 );
 
 /** Malayalam (മലയാളം)
+ * @author Kavya Manohar
  * @author Raghith
  */
 $messages['ml'] = array(
 	'mwoauthmanagemygrants-user' => 'പ്രസാധക(ൻ)',
+	'mwoauth-grant-sendemail' => 'ഇമെയിൽ അയയ്ക്കുക',
 );
 
 /** Marathi (मराठी)
