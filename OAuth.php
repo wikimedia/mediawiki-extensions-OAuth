@@ -38,25 +38,14 @@ require( __DIR__ . '/OAuth.config.php' );
 require( __DIR__ . '/OAuth.setup.php' );
 MWOAuthSetup::defineSourcePaths( $wgAutoloadClasses, $wgExtensionMessagesFiles );
 
-# Define JS/CSS modules and file locations
-MWOAuthUISetup::defineResourceModules( $wgResourceModules );
-
-$wgLogTypes[] = 'mwoauthconsumer';
-# Log name and description as well as action handlers
-MWOAuthUISetup::defineLogBasicDescription( $wgLogNames, $wgLogHeaders, $wgFilterLogTypes );
-MWOAuthUISetup::defineLogActionHandlers( $wgLogActions, $wgLogActionsHandlers );
-
-# Basic hook handlers
-MWOAuthSetup::defineHookHandlers( $wgHooks );
-# GUI-related hook handlers
-MWOAuthUISetup::defineHookHandlers( $wgHooks );
-# API-related hook handlers
-MWOAuthAPISetup::defineHookHandlers( $wgHooks );
+# Setup steps that does not depend on configuration
+MWOAuthSetup::unconditionalSetup();
+MWOAuthUISetup::unconditionalSetup();
+MWOAuthAPISetup::unconditionalSetup();
 
 # Actually register special pages and set default $wgMWOAuthCentralWiki
 $wgExtensionFunctions[] = function() {
 	global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
-	global $wgSpecialPages, $wgSpecialPageGroups;
 
 	if ( $wgMWOAuthCentralWiki === false ) {
 		// Treat each wiki as its own "central wiki" as there is no actual one
@@ -65,5 +54,5 @@ $wgExtensionFunctions[] = function() {
 		// There is actually a central wiki, requiring global user IDs via hook
 		$wgMWOAuthSharedUserIDs = true;
 	}
-	MWOAuthUISetup::defineSpecialPages( $wgSpecialPages, $wgSpecialPageGroups );
+	MWOAuthUISetup::conditionalSetup();
 };

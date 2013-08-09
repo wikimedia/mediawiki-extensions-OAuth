@@ -4,6 +4,22 @@
  */
 class MWOAuthAPISetup {
 	/**
+	 * This function must NOT depend on any config vars
+	 *
+	 * @return void
+	 */
+	public static function unconditionalSetup() {
+		global $wgHooks;
+
+		$wgHooks['UserLoadFromSession'][] = __CLASS__ . '::onUserLoadFromSession';
+		$wgHooks['UserLoadAfterLoadFromSession'][] = __CLASS__ . '::onUserLoadAfterLoadFromSession';
+		$wgHooks['UserGetRights'][] = __CLASS__ . '::onUserGetRights';
+		$wgHooks['UserIsEveryoneAllowed'][] = __CLASS__ . '::onUserIsEveryoneAllowed';
+		$wgHooks['ApiCheckCanExecute'][] = __CLASS__ . '::onApiCheckCanExecute';
+		$wgHooks['RecentChange_save'][] = __CLASS__ . '::onRecentChange_save';
+	}
+
+	/**
 	 * Create the appropriate type of exception to throw, based on MW_API
 	 *
 	 * @param string $msgKey Key for the error message
@@ -52,20 +68,6 @@ class MWOAuthAPISetup {
 			throw self::makeException( 'mwoauth-invalid-authorization', $result->getMessage() );
 		}
 		return $result;
-	}
-
-	/**
-	 * Register hooks handlers
-	 * @param Array $hooks $wgHooks (assoc array of hooks and handlers)
-	 * @return void
-	 */
-	public static function defineHookHandlers( array &$hooks ) {
-		$hooks['UserLoadFromSession'][] = __CLASS__ . '::onUserLoadFromSession';
-		$hooks['UserLoadAfterLoadFromSession'][] = __CLASS__ . '::onUserLoadAfterLoadFromSession';
-		$hooks['UserGetRights'][] = __CLASS__ . '::onUserGetRights';
-		$hooks['UserIsEveryoneAllowed'][] = __CLASS__ . '::onUserIsEveryoneAllowed';
-		$hooks['ApiCheckCanExecute'][] = __CLASS__ . '::onApiCheckCanExecute';
-		$hooks['RecentChange_save'][] = __CLASS__ . '::onRecentChange_save';
 	}
 
 	/**

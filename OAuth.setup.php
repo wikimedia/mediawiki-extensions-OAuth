@@ -82,13 +82,15 @@ class MWOAuthSetup {
 	}
 
 	/**
-	 * @param array $hooks $wgHooks
+	 * This function must NOT depend on any config vars
+	 *
 	 * @return void
 	 */
-	public static function defineHookHandlers( &$hooks ) {
-		$hooks['LoadExtensionSchemaUpdates'][] = 'MWOAuthUpdaterHooks::addSchemaUpdates';
+	public static function unconditionalSetup() {
+		global $wgHooks;
 
-		$hooks['UnitTestsList'][] = function( array &$files ) {
+		$wgHooks['LoadExtensionSchemaUpdates'][] = 'MWOAuthUpdaterHooks::addSchemaUpdates';
+		$wgHooks['UnitTestsList'][] = function( array &$files ) {
 			$directoryIterator = new RecursiveDirectoryIterator( __DIR__ . '/tests/' );
 			foreach ( new RecursiveIteratorIterator( $directoryIterator ) as $fileInfo ) {
 				if ( substr( $fileInfo->getFilename(), -8 ) === 'Test.php' ) {

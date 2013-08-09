@@ -4,62 +4,39 @@
  */
 class MWOAuthUISetup {
 	/**
-	 * @param array $pages $wgSpecialPages (list of special pages)
-	 * @param array $groups $wgSpecialPageGroups (assoc array of special page groups)
+	 * This function must NOT depend on any config vars
+	 *
 	 * @return void
 	 */
-	public static function defineSpecialPages( array &$pages, array &$groups ) {
-		// Pages available on all wikis
-		// Pages specific to the central OAuth management wiki
+	public static function unconditionalSetup() {
+		global $wgHooks;
+
+		$wgHooks['GetPreferences'][] = 'MWOAuthUIHooks::onGetPreferences';
+	}
+
+	/**
+	 * @return void
+	 */
+	public static function conditionalSetup() {
+		global $wgSpecialPages, $wgSpecialPageGroups;
+		global $wgLogTypes, $wgLogNames, $wgLogHeaders, $wgLogActionsHandlers;
+		global $wgResourceModules;
+
 		if ( MWOAuthUtils::isCentralWiki() ) {
-			$pages['MWOAuth'] = 'SpecialMWOAuth';
-			$pages['MWOAuthConsumerRegistration'] = 'SpecialMWOAuthConsumerRegistration';
-			$groups['MWOAuthConsumerRegistration'] = 'users';
-			$pages['MWOAuthManageConsumers'] = 'SpecialMWOAuthManageConsumers';
-			$groups['MWOAuthManageConsumers'] = 'users';
-			$pages['MWOAuthManageMyGrants'] = 'SpecialMWOAuthManageMyGrants';
+			$wgSpecialPages['MWOAuth'] = 'SpecialMWOAuth'; // @TODO: allow everywhere
+			$wgSpecialPages['MWOAuthConsumerRegistration'] = 'SpecialMWOAuthConsumerRegistration';
+			$wgSpecialPageGroups['MWOAuthConsumerRegistration'] = 'users';
+			$wgSpecialPages['MWOAuthManageConsumers'] = 'SpecialMWOAuthManageConsumers';
+			$wgSpecialPageGroups['MWOAuthManageConsumers'] = 'users';
+			$wgSpecialPages['MWOAuthManageMyGrants'] = 'SpecialMWOAuthManageMyGrants';
+
+			$wgLogTypes[] = 'mwoauthconsumer';
+			$wgLogNames['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpage';
+			$wgLogHeaders['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpagetext';
+			$wgLogActionsHandlers['mwoauthconsumer/*'] = 'LogFormatter';
 		}
-	}
 
-	/**
-	 * @param array $hooks $wgHooks
-	 * @return void
-	 */
-	public static function defineHookHandlers( &$hooks ) {
-		$hooks['GetPreferences'][] = 'MWOAuthUIHooks::onGetPreferences';
-	}
-
-	/**
-	 * @param array $logNames $wgLogNames (assoc array of log name message keys)
-	 * @param array $logHeaders $wgLogHeaders (assoc array of log header message keys)
-	 * @param array $filterLogTypes $wgFilterLogTypes
-	 * @return void
-	 */
-	public static function defineLogBasicDescription(
-		&$logNames, &$logHeaders, &$filterLogTypes
-	) {
-		$logNames['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpage';
-		$logHeaders['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpagetext';
-	}
-
-	/**
-	 * @param array$logActions $wgLogActions (assoc array of log action message keys)
-	 * @param array $logActionsHandlers $wgLogActionsHandlers (assoc array of log handlers)
-	 * @return void
-	 */
-	public static function defineLogActionHandlers(
-		&$logActions, &$logActionsHandlers
-	) {
-		$logActionsHandlers['mwoauthconsumer/*'] = 'LogFormatter';
-	}
-
-	/**
-	 * Append resource module definitions
-	 * @param $modules Array $wgResourceModules
-	 * @return void
-	 */
-	public static function defineResourceModules( array &$modules ) {
-		$modules['ext.MWOAuth'] = array(
+		$wgResourceModules['ext.MWOAuth'] = array(
 			'styles'        => 'ext.MWOAuth.css',
 			'localBasePath' => dirname( __FILE__ ) . '/modules',
 			'remoteExtPath' => 'OAuth/frontend/modules',
