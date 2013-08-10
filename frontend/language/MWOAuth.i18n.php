@@ -2101,6 +2101,13 @@ $messages['pt'] = array(
 	'mwoauth-grants-upload' => 'Carregar ficheiros',
 );
 
+/** Brazilian Portuguese (português do Brasil)
+ * @author Luckas
+ */
+$messages['pt-br'] = array(
+	'mwoauth-form-button-approve' => 'Sim, permitir',
+);
+
 /** tarandíne (tarandíne)
  * @author Joetaras
  */
@@ -2213,4 +2220,47 @@ $messages['tr'] = array(
 	'mwoauth-form-button-approve' => 'Evet, izin ver',
 	'mwoauth-grants-editpages' => 'Sayfaları değiştir',
 	'mwoauth-grants-upload' => 'Dosya yükle',
+);
+
+/** Ukrainian (українська)
+ * @author Andriykopanytsia
+ */
+$messages['uk'] = array(
+	'mwoauth-consumer-key' => 'Ключ покупця:',
+	'mwoauth-consumer-name' => 'Назва програми:',
+	'mwoauth-consumer-version' => 'Основна версія:',
+	'mwoauth-consumer-user' => 'Видавець:',
+	'mwoauth-consumer-stage' => 'Поточний статус:',
+	'mwoauth-consumer-email' => 'Контактна адреса електронної пошти:',
+	'mwoauth-consumer-description' => 'Опис програми:',
+	'mwoauth-consumer-grantsneeded' => 'Придатні гранти:',
+	'mwoauth-consumer-required-grant' => 'Застосовний до покупця',
+	'mwoauth-consumer-wiki' => 'Придатні вікі:',
+	'mwoauth-consumer-restrictions' => 'Обмеження на використання:',
+	'mwoauth-consumer-restrictions-json' => 'Обмеження на користування (JSON):',
+	'mwoauth-consumer-rsakey' => 'Відкритий ключ RSA:',
+	'mwoauth-consumer-accesstoken' => 'Маркер доступу:',
+	'mwoauth-consumer-reason' => 'Причина:',
+	'mwoauth-consumer-stage-proposed' => 'запропоновано',
+	'mwoauth-consumer-stage-rejected' => 'відхилено',
+	'mwoauth-consumer-stage-expired' => 'застаріле',
+	'mwoauth-consumer-stage-approved' => 'затверджено',
+	'mwoauth-consumer-stage-disabled' => 'вимкнено',
+	'mwoauthconsumerregistration-navigation' => 'Навігація:',
+	'mwoauthconsumerregistration-main' => 'Головна',
+	'mwoauthconsumerregistration-user' => 'Видавець',
+	'mwoauthconsumerregistration-description' => 'Опис',
+	'mwoauthconsumerregistration-stage' => 'Статус',
+	'mwoauthconsumerregistration-lastchange' => 'Остання зміна',
+	'mwoauthmanageconsumers-user' => 'Видавець',
+	'mwoauthmanageconsumers-approve' => 'Затверджено',
+	'mwoauthmanageconsumers-reject' => 'Відхилено',
+	'mwoauthmanageconsumers-reenable' => 'Затверджено',
+	'mwoauthmanageconsumers-reason' => 'Причина:',
+	'mwoauthmanagemygrants-navigation' => 'Навігація:',
+	'mwoauthmanagemygrants-description' => 'Опис',
+	'mwoauthmanagemygrants-action' => 'Змінити статус:',
+	'mwoauth-form-button-approve' => 'Так, дозволити',
+	'mwoauth-form-confirmation' => 'Дозволити цій програмі діяти від вашого імені?',
+	'mwoauth-grant-patrol' => 'Патруль',
 );
