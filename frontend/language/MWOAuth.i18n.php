@@ -1646,6 +1646,7 @@ $messages['lb'] = array(
 	'mwoauthmanagemygrants-description' => 'Beschreiwung',
 	'mwoauthmanagemygrants-wiki' => 'Applicabel Wiki',
 	'mwoauthserver-invalid-user-hookabort' => 'Dëse Benotzer däerf OAuth net benotzen.',
+	'mwoauth-invalid-authorization-title' => "OAuth Autorisatioun's-Feeler",
 	'mwoauth-form-button-approve' => 'Jo, erlaben',
 	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
 	'mwoauth-grants-heading' => 'Ugefroten Autorisatiounen:',
