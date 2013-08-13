@@ -90,8 +90,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 */
 	public static function newToken() {
 		return new MWOAuthToken(
-			MWCryptRand::generateHex( 32, false), // the key doesn't need to be unpredictable
-			MWCryptRand::generateHex( 32, true)
+			MWCryptRand::generateHex( 32, false ), // the key doesn't need to be unpredictable
+			MWCryptRand::generateHex( 32, true )
 		);
 	}
 
@@ -102,7 +102,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return MWOAuthToken
 	 */
 	public function new_request_token( $consumer, $callback = null ) {
-		$token = $this->newToken();
+		$token = MWOAuthDataStore::newToken();
 		$cacheKey = MWOAuthUtils::getCacheKey( 'token', $consumer->key, 'request', $token->key );
 		$this->cache->add( $cacheKey, $token, 600 ); //10 minutes. Kindof arbitray.
 		wfDebugLog( 'OAuth', __METHOD__ .
