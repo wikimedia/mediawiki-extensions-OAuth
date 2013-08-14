@@ -233,7 +233,7 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauth-callback-not-oob' => 'oauth_callback must be set, and must be set to "oob" (case-sensitive)',
 
 	'right-mwoauthproposeconsumer' => 'Propose new OAuth consumers',
-	'right-mwoauthupdateconsumer' => 'Update OAuth consumers',
+	'right-mwoauthupdateownconsumer' => 'Update OAuth consumers you control',
 	'right-mwoauthmanageconsumer' => 'Manage OAuth consumers',
 	'right-mwoauthsuppress' => 'Suppress OAuth consumers',
 	'right-mwoauthviewsuppressed' => 'View suppressed OAuth consumers',
@@ -243,7 +243,7 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'action-mwoauthmanageconsumer' => 'manage OAuth consumers',
 	'action-mwoauthmanagemygrants' => 'manage your OAuth grants',
 	'action-mwoauthproposeconsumer' => 'propose new OAuth consumers',
-	'action-mwoauthupdateconsumer' => 'update OAuth consumers',
+	'action-mwoauthupdateownconsumer' => 'update OAuth consumers you control',
 	'action-mwoauthviewsuppressed' => 'view suppressed OAuth consumers',
 );
 
@@ -527,7 +527,7 @@ See also:
 {{Identical|View your watchlist}}',
 	'mwoauth-callback-not-oob' => 'Warning that the OAuth developer failed to include the required "oauth_callback" parameter, which must be set to the case-sensitive string "oob"',
 	'right-mwoauthproposeconsumer' => '{{doc-right|mwoauthproposeconsumer}}',
-	'right-mwoauthupdateconsumer' => '{{doc-right|mwoauthupdateconsumer}}',
+	'right-mwoauthupdateownconsumer' => '{{doc-right|mwoauthupdateownconsumer}}',
 	'right-mwoauthmanageconsumer' => '{{doc-right|mwoauthmanageconsumer}}
 {{Identical|Manage OAuth consumer}}',
 	'right-mwoauthsuppress' => '{{doc-right|mwoauthsuppress}}',
@@ -538,7 +538,7 @@ See also:
 {{Identical|Manage OAuth consumer}}',
 	'action-mwoauthmanagemygrants' => '{{Doc-action|mwoauthmanagemygrants}}',
 	'action-mwoauthproposeconsumer' => '{{Doc-action|mwoauthproposeconsumer}}',
-	'action-mwoauthupdateconsumer' => '{{Doc-action|mwoauthupdateconsumer}}',
+	'action-mwoauthupdateownconsumer' => '{{Doc-action|mwoauthupdateownconsumer}}',
 	'action-mwoauthviewsuppressed' => '{{Doc-action|mwoauthviewsuppressed}}',
 );
 

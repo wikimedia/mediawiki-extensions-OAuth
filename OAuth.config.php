@@ -136,7 +136,7 @@ $wgMWOAuthGrantPermissions['sendemail']['sendemail'] = true;
 $wgMWOAuthRequestExpirationAge = 30 * 86400;
 
 $wgAvailableRights[] = 'mwoauthproposeconsumer';
-$wgAvailableRights[] = 'mwoauthupdateconsumer';
+$wgAvailableRights[] = 'mwoauthupdateownconsumer';
 $wgAvailableRights[] = 'mwoauthmanageconsumer';
 $wgAvailableRights[] = 'mwoauthsuppress';
 $wgAvailableRights[] = 'mwoauthviewsuppressed';

@@ -171,7 +171,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			return $this->success( $cmr );
 		case 'update':
-			if ( !$user->isAllowed( 'mwoauthupdateconsumer' ) ) {
+			if ( !$user->isAllowed( 'mwoauthupdateownconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			}
 

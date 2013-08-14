@@ -172,8 +172,8 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			}
 			break;
 		case 'update':
-			if ( !$user->isAllowed( 'mwoauthupdateconsumer' ) ) {
-				throw new PermissionsError( 'mwoauthupdateconsumer' );
+			if ( !$user->isAllowed( 'mwoauthupdateownconsumer' ) ) {
+				throw new PermissionsError( 'mwoauthupdateownconsumer' );
 			}
 
 			$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
