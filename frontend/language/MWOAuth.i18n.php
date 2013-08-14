@@ -1651,6 +1651,7 @@ $messages['lb'] = array(
 	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
 	'mwoauth-grants-heading' => 'Ugefroten Autorisatiounen:',
 	'mwoauth-grant-blockusers' => 'Benotzer spären',
+	'mwoauth-grant-editmycssjs' => 'Ären eegene Benotzer CSS/JS änneren',
 	'mwoauth-grant-editmywatchlist' => 'Ännert Är Iwwerwaachungslëscht',
 	'mwoauth-grant-editprotected' => 'Gespaarte Säiten änneren',
 	'mwoauth-grant-oversight' => 'Benotzer verstoppen a Versioune läschen',
