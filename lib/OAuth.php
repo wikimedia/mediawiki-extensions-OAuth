@@ -860,7 +860,7 @@ class OAuthUtil {
 		return $out;
 	}
 
-	// This function takes a input like a = b&a = c&d = e and returns the parsed
+	// This function takes a input like a=b&a=c&d=e and returns the parsed
 	// parameters like this
 	// array( 'a' => array( 'b','c' ), 'd' => 'e' )
 	public static function parse_parameters( $input ) {
@@ -870,7 +870,7 @@ class OAuthUtil {
 
 		$parsed_parameters = array();
 		foreach ( $pairs as $pair ) {
-			$split = explode( ' = ', $pair, 2 );
+			$split = explode( '=', $pair, 2 );
 			$parameter = OAuthUtil::urldecode_rfc3986( $split[0] );
 			$value = isset( $split[1] ) ? OAuthUtil::urldecode_rfc3986( $split[1] ) : '';
 

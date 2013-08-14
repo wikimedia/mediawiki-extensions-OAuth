@@ -50,7 +50,8 @@ class MWOAuthRequest extends OAuthRequest {
 				'application/x-www-form-urlencoded'
 			) === 0
 		) {
-			$postData = $request->getPostValues();
+			$postData = OAuthUtil::parse_parameters( $request->getRawPostString() );
+			wfDebugLog( 'OAuth', __METHOD__ . ": Post String = $postData" );
 			$parameters = array_merge( $parameters, $postData );
 		}
 
