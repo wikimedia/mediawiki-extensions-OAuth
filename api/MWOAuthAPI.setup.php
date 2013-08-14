@@ -105,6 +105,8 @@ class MWOAuthAPISetup {
 					'accesstoken' => $accesstoken,
 					'rights' => MWOAuthUtils::getGrantRights( $access->get( 'grants' ) ),
 				);
+				// Setup a session for this OAuth user, so edit tokens work
+				wfSetupSession();
 				$result = true;
 			}
 		} catch( ErrorPageError $ex ) {
