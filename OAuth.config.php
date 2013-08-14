@@ -28,6 +28,13 @@ $wgMWOAuthCentralWiki = false;
 $wgMWOAuthSharedUserIDs = false;
 
 /**
+ * @var string Extension to use as the source of shared user IDs if enabled
+ *
+ * This has no effect if $wgMWOAuthSharedUserIDs is set to false.
+ */
+$wgMWOAuthSharedUserSource = false;
+
+/**
  * @var Array Map of (grant => right => boolean)
  * Users authorize consumers (like Apps) to act on their behalf but only with
  * a subset of the user's normal account rights (signed off on by the user).
