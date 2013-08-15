@@ -234,7 +234,7 @@ class MWOAuthUtils {
 	}
 
 	/**
-	 * Given a central wiki user ID, get a local User object
+	 * Given a central wiki user ID, get a central user name
 	 *
 	 * @param integer $userId
 	 * @return string|bool User name or false if not found
@@ -247,8 +247,6 @@ class MWOAuthUtils {
 				throw new MWException( "No handler for 'OAuthGetUserNamesFromCentralIds' hook" );
 			}
 			$namesById = array( $userId => false );
-			// Let extensions check that central wiki user ID is attached to a global account
-			// and that return the user on this wiki that is attached to that global account
 			wfRunHooks( 'OAuthGetUserNamesFromCentralIds',
 				array( $wgMWOAuthCentralWiki, &$namesById, $wgMWOAuthSharedUserSource ) );
 			// If there is no such user, the extension should set the name to false
