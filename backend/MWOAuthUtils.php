@@ -237,25 +237,37 @@ class MWOAuthUtils {
 	 * Given a central wiki user ID, get a central user name
 	 *
 	 * @param integer $userId
-	 * @return string|bool User name or false if not found
+	 * @param bool|User $audience show hidden names based on this user, or false for public
+	 * @return string|bool User name, false if not found, empty string if name is hidden
 	 */
-	public static function getCentralUserNameFromId( $userId ) {
+	public static function getCentralUserNameFromId( $userId, $audience = false ) {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
 			if ( !Hooks::isRegistered( 'OAuthGetUserNamesFromCentralIds' ) ) {
 				throw new MWException( "No handler for 'OAuthGetUserNamesFromCentralIds' hook" );
 			}
-			$namesById = array( $userId => false );
+			$namesById = array( $userId => null );
 			wfRunHooks( 'OAuthGetUserNamesFromCentralIds',
-				array( $wgMWOAuthCentralWiki, &$namesById, $wgMWOAuthSharedUserSource ) );
-			// If there is no such user, the extension should set the name to false
-			if ( in_array( null, $namesById ) ) {
+				array( $wgMWOAuthCentralWiki,
+					&$namesById,
+					$audience,
+					$wgMWOAuthSharedUserSource
+				)
+			);
+			$name = $namesById[$userId];
+			if ( $name === null ) {
+				// The extension didn't handle the id
 				throw new MWException( 'Could not lookup name from ID via hook.' );
 			}
-			$name = $namesById[$userId];
 		} else {
-			$name = User::whoIs( $userId );
+			$name = '';
+			$user = User::newFromName( $userId );
+			if ( !$user->isHidden()
+				|| ( $audience instanceof User && $audience->isAllowed( 'hideuser' ) )
+			) {
+				$name = $user->getName();
+			}
 		}
 
 		return $name;
@@ -274,7 +286,7 @@ class MWOAuthUtils {
 			if ( !Hooks::isRegistered( 'OAuthGetLocalUserFromCentralId' ) ) {
 				throw new MWException( "No handler for 'OAuthGetLocalUserFromCentralId' hook" );
 			}
-			$user = false;
+			$user = null;
 			// Let extensions check that central wiki user ID is attached to a global account
 			// and that return the user on this wiki that is attached to that global account
 			wfRunHooks( 'OAuthGetLocalUserFromCentralId',
@@ -306,7 +318,7 @@ class MWOAuthUtils {
 				if ( !Hooks::isRegistered( 'OAuthGetCentralIdFromLocalUser' ) ) {
 					throw new MWException( "No handler for 'OAuthGetCentralIdFromLocalUser' hook" );
 				}
-				$id = false;
+				$id = null;
 				// Let CentralAuth check that $user is attached to a global account and
 				// that the foreign local account on the central wiki is also attached to it
 				wfRunHooks( 'OAuthGetCentralIdFromLocalUser',
