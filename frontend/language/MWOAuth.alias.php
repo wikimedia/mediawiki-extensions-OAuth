@@ -12,6 +12,8 @@ $specialPageAliases = array();
 $specialPageAliases['en'] = array(
 	'MWOAuthConsumerRegistration' => array( 'MWOAuthConsumerRegistration' ),
 	'MWOAuthManageConsumers' => array( 'MWOAuthManageConsumers' ),
+	'MWOAuthManageMyGrants' => array( 'MWOAuthManageMyGrants' ),
+	'MWOAuth' => array( 'MWOAuth' ),
 );
 
 /** German (Deutsch) */
