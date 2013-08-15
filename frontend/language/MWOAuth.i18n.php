@@ -23,7 +23,7 @@ $messages['en'] = array(
 
 	'mwoauth-consumer-key' => 'Consumer key:',
 	'mwoauth-consumer-name' => 'Application name:',
-	'mwoauth-consumer-version' => 'Major version:',
+	'mwoauth-consumer-version' => 'Consumer version:',
 	'mwoauth-consumer-user' => 'Publisher:',
 	'mwoauth-consumer-stage' => 'Current status:',
 	'mwoauth-consumer-email' => 'Contact email address:',
@@ -39,6 +39,7 @@ $messages['en'] = array(
 	'mwoauth-consumer-accesstoken' => 'Access token:',
 	'mwoauth-consumer-reason' => 'Reason:',
 	'mwoauth-consumer-alreadyexists' => 'A consumer with this name/version/publisher combination already exists',
+	'mwoauth-consumer-alreadyexistsversion' => 'A consumer with this name/publisher combination already exists with an equal or higher version ("$1")',
 	'mwoauth-consumer-not-accepted' => 'Cannot update information for a pending consumer request',
 	'mwoauth-consumer-not-proposed' => 'The consumer is not currently proposed',
 	'mwoauth-consumer-not-disabled' => 'The consumer is not currently disabled',
@@ -64,7 +65,8 @@ $messages['en'] = array(
 
 A few recommendations and remarks:
 * Try to use as few grants as possible. Avoid grants that are not actually needed now.
-* Please provide an RSA key if possible; otherwise a (less secure) secret token will be assigned to you.
+* Versions are of the form "major.minor.release" (the last two being optional) and increase as grant changes are needed.
+* Please provide an RSA key if possible; otherwise a (less secure) secret token will have to be used.
 * Use the JSON restrictions field to limit access of this consumer to IP addresses in those CIDR ranges.
 * You can use a wiki ID to restrict the consumer to a single wiki on this site (use "*" for all wikis).
 * The email address provided must match that of your account (which must have been confirmed).',
@@ -547,6 +549,8 @@ See also:
 	'action-mwoauthproposeconsumer' => '{{Doc-action|mwoauthproposeconsumer}}',
 	'action-mwoauthupdateownconsumer' => '{{Doc-action|mwoauthupdateownconsumer}}',
 	'action-mwoauthviewsuppressed' => '{{Doc-action|mwoauthviewsuppressed}}',
+	'alreadyexistsversion' => 'Used as error message. Parameters:
+* $1 - the current consumer application version'
 );
 
 /** Asturian (asturianu)
