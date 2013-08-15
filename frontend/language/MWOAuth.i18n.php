@@ -55,6 +55,7 @@ $messages['en'] = array(
 	'mwoauth-consumer-stage-suppressed' => 'suppressed',
 
 	'mwoauthconsumerregistration' => 'OAuth consumer registration',
+	'mwoauthconsumerregistration-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthconsumerregistration-navigation' => 'Navigation:',
 	'mwoauthconsumerregistration-propose' => 'Propose new consumer',
 	'mwoauthconsumerregistration-list' => 'My consumer list',
@@ -94,6 +95,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthconsumerregistration-secretreset' => 'You have been assigned a consumer secret token of \'\'\'$1\'\'\'. \'\'Please record this for future reference.\'\'',
 
 	'mwoauthmanageconsumers' => 'Manage OAuth consumers',
+	'mwoauthmanageconsumers-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthmanageconsumers-type' => 'Queues:',
 	'mwoauthmanageconsumers-showproposed' => 'Proposed requests',
 	'mwoauthmanageconsumers-showrejected' => 'Rejected requests',
@@ -137,6 +139,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthmanageconsumers-success-reanable' => 'Consumer has been re-enabled.',
 
 	'mwoauthmanagemygrants' => 'Manage account OAuth grants',
+	'mwoauthmanagemygrants-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
 	'mwoauthmanagemygrants-showlist' => 'Accepted consumer list',
 	'mwoauthmanagemygrants-none' => 'No consumers have access on behalf of your account.',
