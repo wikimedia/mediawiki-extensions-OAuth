@@ -41,7 +41,7 @@ class OAuthConsumer {
 	}
 
 	function __toString() {
-		return "OAuthConsumer[key = $this->key,secret = $this->secret]";
+		return "OAuthConsumer[key=$this->key,secret=$this->secret]";
 	}
 }
 
@@ -64,9 +64,9 @@ class OAuthToken {
 	 * would respond to request_token and access_token calls with
 	 */
 	function to_string() {
-		return "oauth_token = " .
+		return "oauth_token=" .
 			 OAuthUtil::urlencode_rfc3986( $this->key ) .
-			 "&oauth_token_secret = " .
+			 "&oauth_token_secret=" .
 			 OAuthUtil::urlencode_rfc3986( $this->secret );
 	}
 
@@ -268,11 +268,8 @@ class OAuthRequest {
 	public static $POST_INPUT = 'php://input';
 
 	function __construct( $http_method, $http_url, $parameters = NULL ) {
-		# This was double-adding query parameters when from_request was used.
-		if ( !$parameters ) {
-			$parameters = array();
-			$parameters = array_merge( OAuthUtil::parse_parameters( parse_url( $http_url, PHP_URL_QUERY ) ), $parameters );
-		}
+		$parameters = ($parameters) ? $parameters : array();
+		$parameters = array_merge( OAuthUtil::parse_parameters(parse_url($http_url, PHP_URL_QUERY)), $parameters);
 		$this->parameters = $parameters;
 		$this->http_method = $http_method;
 		$this->http_url = $http_url;
