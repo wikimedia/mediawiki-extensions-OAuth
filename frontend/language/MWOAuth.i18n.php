@@ -260,6 +260,7 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
  * @author Siebrand
  */
 $messages['qqq'] = array(
+	'mwoauth-desc' => 'Used as subtitle.',
 	'mwoauth-missing-field' => 'Parameters:
 * $1 - field name
 See also:
@@ -268,6 +269,14 @@ See also:
 * $1 - field name
 See also:
 * {{msg-mw|Mwoauth-missing-field}}',
+	'mwoauth-field-hidden' => 'Used if the information has been deleted and the user is not allowed to view suppressed information.
+
+See also:
+* {{msg-mw|Mwoauth-field-private}}',
+	'mwoauth-field-private' => 'Used if the user is not allowed to view private information.
+
+See also:
+* {{msg-mw|Mwoauth-field-hidden}}',
 	'mwoauth-grant-generic' => 'Used if the grant name is not defined. Parameters:
 * $1 - grant name
 
@@ -291,37 +300,83 @@ Defined grants (grant name refers: blockusers, createeditmovepage, ...):
 * {{msg-mw|Mwoauth-grant-useoauth}}
 * {{msg-mw|Mwoauth-grant-viewdeleted}}
 * {{msg-mw|Mwoauth-grant-viewmywatchlist}}',
-	'mwoauth-consumer-key' => '{{Identical|Consumer key}}',
-	'mwoauth-consumer-name' => '{{Identical|Application name}}',
+	'mwoauth-prefs-managegrants' => 'Used as label in [[Special:Preferences]].',
+	'mwoauth-prefs-managegrantslink' => 'Used in [[Special:Preferences]].
+
+Used as text for the link which points to [[Special:MWOAuthManageMyGrants]].
+
+Preceded by the label {{msg-mw|Mwoauth-prefs-managegrants}}.',
+	'mwoauth-consumer-key' => 'Used as label for the "Consumer key" input box.
+{{Identical|Consumer key}}',
+	'mwoauth-consumer-name' => 'Used as label for the "Application name" input box.
+{{Identical|Application name}}',
 	'mwoauth-consumer-version' => 'Used as label for the "Version" input box.',
-	'mwoauth-consumer-user' => '{{Identical|Publisher}}',
-	'mwoauth-consumer-stage' => '{{Identical|Current status}}',
+	'mwoauth-consumer-user' => 'Used as label for the "Central username" box.
+{{Identical|Publisher}}',
+	'mwoauth-consumer-stage' => 'Used as label for the "Stage" value
+
+Followed by any one of the following messages:
+* {{msg-mw|Mwoauth-consumer-stage-proposed}}
+* {{msg-mw|Mwoauth-consumer-stage-rejected}}
+* {{msg-mw|Mwoauth-consumer-stage-expired}}
+* {{msg-mw|Mwoauth-consumer-stage-approved}}
+* {{msg-mw|Mwoauth-consumer-stage-disabled}}
+* {{msg-mw|Mwoauth-consumer-stage-suppressed}}
+{{Identical|Current status}}',
 	'mwoauth-consumer-email' => 'Used as label for the "Email address" input box.',
 	'mwoauth-consumer-description' => 'Used as label for the "description" textarea.
 {{Identical|Application description}}',
 	'mwoauth-consumer-callbackurl' => 'Used as label for the "Callback URL" input box.
 
 See [[w:Callback (computer programming)]].',
+	'mwoauth-consumer-grantsneeded' => 'Used as label.
+
+Followed by the list of grants.',
+	'mwoauth-consumer-required-grant' => 'Used as table column header.',
 	'mwoauth-consumer-wiki' => 'Used as label for the input box. The default value for the input box is "*".
 {{Identical|Applicable wiki}}',
 	'mwoauth-consumer-restrictions' => 'Used as label for the textarea. (The value is written in JSON format.)
 
 Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hidden}}.
 {{Identical|Usage restriction}}',
-	'mwoauth-consumer-restrictions-json' => '{{Identical|Usage restriction}}',
+	'mwoauth-consumer-restrictions-json' => 'Used as label for the "Restrictions" textarea.
+{{Identical|Usage restriction}}',
 	'mwoauth-consumer-rsakey' => 'Used as label for the textarea.
 
 Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hidden}}.',
 	'mwoauth-consumer-secretkey' => 'Used as label for the textarea.',
-	'mwoauth-consumer-reason' => '{{Identical|Reason}}',
-	'mwoauth-invalid-consumer-key' => 'Used as error message',
-	'mwoauth-consumer-conflict' => 'Used as error message',
-	'mwoauth-consumer-stage-rejected' => '{{Identical|Rejected}}',
-	'mwoauth-consumer-stage-expired' => '{{Identical|Expired}}',
-	'mwoauth-consumer-stage-approved' => '{{Identical|Approved}}',
-	'mwoauth-consumer-stage-disabled' => '{{Identical|Disabled}}',
-	'mwoauth-consumer-stage-suppressed' => '{{Identical|Suppressed}}',
+	'mwoauth-consumer-accesstoken' => 'Unused at this time.',
+	'mwoauth-consumer-reason' => 'Used as label for the "Reason" value.
+{{Identical|Reason}}',
+	'mwoauth-consumer-alreadyexists' => 'Used as failure message.',
+	'mwoauth-consumer-alreadyexistsversion' => 'Used as failure message. Parameters:
+* $1 - current consumer version number',
+	'mwoauth-consumer-not-accepted' => 'Unused at this time.',
+	'mwoauth-consumer-not-proposed' => 'Used as failure message.
+
+See also:
+* {{msg-mw|Mwoauth-consumer-not-disabled}}',
+	'mwoauth-consumer-not-disabled' => 'Used as failure message.
+
+See also:
+* {{msg-mw|Mwoauth-consumer-not-proposed}}',
+	'mwoauth-consumer-not-approved' => 'Used as failure message.',
+	'mwoauth-invalid-consumer-key' => 'Used as failure message.',
+	'mwoauth-invalid-access-token' => 'Used as failure message.',
+	'mwoauth-consumer-conflict' => 'Used as failure message.',
+	'mwoauth-consumer-stage-proposed' => '{{Related|Mwoauth-consumer-stage}}',
+	'mwoauth-consumer-stage-rejected' => '{{Related|Mwoauth-consumer-stage}}
+{{Identical|Rejected}}',
+	'mwoauth-consumer-stage-expired' => '{{Related|Mwoauth-consumer-stage}}
+{{Identical|Expired}}',
+	'mwoauth-consumer-stage-approved' => '{{Related|Mwoauth-consumer-stage}}
+{{Identical|Approved}}',
+	'mwoauth-consumer-stage-disabled' => '{{Related|Mwoauth-consumer-stage}}
+{{Identical|Disabled}}',
+	'mwoauth-consumer-stage-suppressed' => '{{Related|Mwoauth-consumer-stage}}
+{{Identical|Suppressed}}',
 	'mwoauthconsumerregistration' => '{{doc-special|MWOAuthConsumerRegistration}}',
+	'mwoauthconsumerregistration-notloggedin' => 'Used if not blocked, not read-only and not logged in.',
 	'mwoauthconsumerregistration-navigation' => 'Used in page subtitle.
 {{Identical|Navigation}}',
 	'mwoauthconsumerregistration-propose' => 'Used in page subtitle link text',
@@ -332,14 +387,34 @@ Preceded by list of the links ("|" separated) which have any one of the followin
 * {{msg-mw|Mwoauthconsumerregistration-propose}}
 * {{msg-mw|Mwoauthconsumerregistration-list}}
 {{Identical|Main}}',
+	'mwoauthconsumerregistration-propose-text' => 'Used as introduction text for the form.',
+	'mwoauthconsumerregistration-update-text' => 'Used as introduction text for the form.',
+	'mwoauthconsumerregistration-maintext' => 'Used as introduction text in [[Special:MWOAuthConsumerRegistration]].',
 	'mwoauthconsumerregistration-propose-legend' => 'Used as fieldset label.',
 	'mwoauthconsumerregistration-update-legend' => 'Used as fieldset label.',
 	'mwoauthconsumerregistration-propose-submit' => 'Used as label for the Submit button.',
 	'mwoauthconsumerregistration-update-submit' => 'Used as label for the Submit button.',
-	'mwoauthconsumerregistration-name' => '{{Identical|Consumer}}',
-	'mwoauthconsumerregistration-consumerkey' => '{{Identical|Consumer key}}',
-	'mwoauthconsumerregistration-stage' => '{{Identical|Status}}',
-	'mwoauthconsumerregistration-lastchange' => '{{Identical|Last change}}',
+	'mwoauthconsumerregistration-none' => 'Used if there are no OAuth consumers to list.',
+	'mwoauthconsumerregistration-name' => 'Used as table row header.
+{{Identical|Consumer}}',
+	'mwoauthconsumerregistration-user' => '{{Identical|Publisher}}',
+	'mwoauthconsumerregistration-description' => '{{Identical|Description}}',
+	'mwoauthconsumerregistration-consumerkey' => 'Used as table row header.
+{{Identical|Consumer key}}',
+	'mwoauthconsumerregistration-stage' => 'Used as table row header.
+
+Followed by any one of the following messages:
+* {{msg-mw|Mwoauth-consumer-stage-proposed}}
+* {{msg-mw|Mwoauth-consumer-stage-rejected}}
+* {{msg-mw|Mwoauth-consumer-stage-expired}}
+* {{msg-mw|Mwoauth-consumer-stage-approved}}
+* {{msg-mw|Mwoauth-consumer-stage-disabled}}
+* {{msg-mw|Mwoauth-consumer-stage-suppressed}}
+{{Identical|Status}}',
+	'mwoauthconsumerregistration-lastchange' => 'Used as table row header.
+{{Identical|Last change}}',
+	'mwoauthconsumerregistration-manage' => 'Used as link text.
+{{Identical|Manage}}',
 	'mwoauthconsumerregistration-resetsecretkey' => 'Used a label for a checkbox',
 	'mwoauthconsumerregistration-proposed' => 'Used as success message.
 
@@ -351,6 +426,7 @@ Parameters:
 * $1 - new secret token',
 	'mwoauthmanageconsumers' => '{{doc-special|MWOAuthManageConsumers}}
 {{Identical|Manage OAuth consumer}}',
+	'mwoauthmanageconsumers-notloggedin' => 'Used if the user is not logged in.',
 	'mwoauthmanageconsumers-type' => 'Used as subtitle.
 
 Followed by any one (or zero) of the following messages:
@@ -377,6 +453,9 @@ Preceded by a list of links which have any one of the following labels:
 * {{msg-mw|Mwoauthmanageconsumers-showrejected}}
 * {{msg-mw|Mwoauthmanageconsumers-showexpired}}
 {{Identical|Main}}',
+	'mwoauthmanageconsumers-maintext' => 'Used in [[Special:MWOAuthManageConsumers]].
+
+Followed by the message {{msg-mw|Mwoauthmanageconsumers-queues}}.',
 	'mwoauthmanageconsumers-queues' => 'Used as label.
 
 Followed by a list of links which point to [[Special:MWOAuthManageConsumers]].
@@ -407,12 +486,27 @@ The list is preceded by the label {{msg-mw|Mwoauthmanageconsumers-lists}}.',
 	'mwoauthmanageconsumers-l-disabled' => 'Used as text for the link which points to [[Special:MWOAuthManageConsumers]].
 
 The list is preceded by the label {{msg-mw|Mwoauthmanageconsumers-lists}}.',
-	'mwoauthmanageconsumers-name' => '{{Identical|Consumer}}',
-	'mwoauthmanageconsumers-user' => '{{Identical|Publisher}}',
-	'mwoauthmanageconsumers-description' => '{{Identical|Description}}',
+	'mwoauthmanageconsumers-none-proposed' => 'Used if there are not consumers to list.
+{{Related|Mwoauthmanageconsumers-none}}',
+	'mwoauthmanageconsumers-none-rejected' => 'Used if there are not consumers to list.
+{{Related|Mwoauthmanageconsumers-none}}',
+	'mwoauthmanageconsumers-none-expired' => 'Used if there are not consumers to list.
+{{Related|Mwoauthmanageconsumers-none}}',
+	'mwoauthmanageconsumers-none-approved' => 'Used if there are not consumers to list.
+{{Related|Mwoauthmanageconsumers-none}}',
+	'mwoauthmanageconsumers-none-disabled' => 'Used if there are not consumers to list.
+{{Related|Mwoauthmanageconsumers-none}}',
+	'mwoauthmanageconsumers-name' => 'Used as table row header.
+{{Identical|Consumer}}',
+	'mwoauthmanageconsumers-user' => 'Used as table row header for the "Central username".
+{{Identical|Publisher}}',
+	'mwoauthmanageconsumers-description' => 'Used as table row header.
+{{Identical|Description}}',
 	'mwoauthmanageconsumers-email' => 'Followed by an email address or the message {{msg-mw|Mwoauth-consumer-stage-suppressed}}.',
-	'mwoauthmanageconsumers-consumerkey' => '{{Identical|Consumer key}}',
-	'mwoauthmanageconsumers-lastchange' => '{{Identical|Last change}}',
+	'mwoauthmanageconsumers-consumerkey' => 'Used as table row header.
+{{Identical|Consumer key}}',
+	'mwoauthmanageconsumers-lastchange' => 'Used as table row header.
+{{Identical|Last change}}',
 	'mwoauthmanageconsumers-review' => 'Used as label for the link which points to [[Special:MWOAuthManageConsumers]].',
 	'mwoauthmanageconsumers-confirm-text' => 'Used as introduction text for the form.',
 	'mwoauthmanageconsumers-confirm-legend' => 'Used as fieldset label.
@@ -443,16 +537,35 @@ Followed by the following radio boxes:
 	'mwoauthmanageconsumers-reenable' => 'Used as label for the radio box.
 {{Related|Mwoauthmanageconsumers}}
 {{Identical|Approved}}',
-	'mwoauthmanageconsumers-reason' => '{{Identical|Reason}}',
+	'mwoauthmanageconsumers-reason' => 'Used as label for the "Reason" input box.
+{{Identical|Reason}}',
 	'mwoauthmanageconsumers-confirm-submit' => 'Used as label for the Submit button.',
 	'mwoauthmanageconsumers-viewing' => 'Parameters:
 * $1 - username',
-	'mwoauthmanagemygrants-navigation' => '{{Identical|Navigation}}',
+	'mwoauthmanageconsumers-success-approved' => 'Used as success message.
+{{Related|Mwoauthmanageconsumers-success}}',
+	'mwoauthmanageconsumers-success-rejected' => 'Used as success message.
+{{Related|Mwoauthmanageconsumers-success}}',
+	'mwoauthmanageconsumers-success-disabled' => 'Used as success message.
+{{Related|Mwoauthmanageconsumers-success}}',
+	'mwoauthmanageconsumers-success-reanable' => 'Used as success message.
+{{Related|Mwoauthmanageconsumers-success}}',
+	'mwoauthmanagemygrants' => '{{doc-special|MWOAuthManageMyGrants}}',
+	'mwoauthmanagemygrants-notloggedin' => 'Used in [[Special:MWOAuthManageMyGrants]] if the user is not logged in.',
+	'mwoauthmanagemygrants-navigation' => 'Used as subtitle.
+
+Followed by a link with the link text {{msg-mw|Mwoauthmanagemygrants-showlist}}. It can be without link.
+{{Identical|Navigation}}',
 	'mwoauthmanagemygrants-showlist' => 'Used as link text or as plain text',
-	'mwoauthmanagemygrants-user' => '{{Identical|Publisher}}',
-	'mwoauthmanagemygrants-description' => '{{Identical|Description}}',
-	'mwoauthmanagemygrants-wiki' => '{{Identical|Applicable wiki}}',
-	'mwoauthmanagemygrants-consumerkey' => '{{Identical|Consumer key}}',
+	'mwoauthmanagemygrants-name' => 'Used as table row header.',
+	'mwoauthmanagemygrants-user' => 'Used as table row header for "Central username".
+{{Identical|Publisher}}',
+	'mwoauthmanagemygrants-description' => 'Used as table row header.
+{{Identical|Description}}',
+	'mwoauthmanagemygrants-wiki' => 'Used as table row header.
+{{Identical|Applicable wiki}}',
+	'mwoauthmanagemygrants-consumerkey' => 'Used as table row header.
+{{Identical|Consumer key}}',
 	'mwoauthmanagemygrants-confirm-legend' => 'Used as fieldset label',
 	'mwoauthmanagemygrants-update' => 'Used as label for the radio box.
 
@@ -470,6 +583,16 @@ Followed by the following radio boxes:
 {{Identical|Change status}}',
 	'mwoauthmanagemygrants-confirm-submit' => 'Used as label for the Submit button',
 	'logentry-mwoauthconsumer-propose' => '{{logentry}}',
+	'logentry-mwoauthconsumer-update' => '{{logentry}}
+* $4 - consumer key',
+	'logentry-mwoauthconsumer-approve' => '{{logentry}}
+* $4 - consumer key',
+	'logentry-mwoauthconsumer-reject' => '{{logentry}}
+* $4 - consumer key',
+	'logentry-mwoauthconsumer-disable' => '{{logentry}}
+* $4 - consumer key',
+	'logentry-mwoauthconsumer-reenable' => '{{logentry}}
+* $4 - consumer key',
 	'mwoauthconsumer-consumer-logpage' => '{{doc-logpage}}',
 	'mwoauthconsumer-consumer-logpagetext' => 'Description of the OAuth consumer log.',
 	'mwoauthserver-invalid-user-hookabort' => 'Used as error message.',
@@ -481,6 +604,12 @@ Followed by the following radio boxes:
 	'mwoauth-invalid-authorization-invalid-user' => "Text of the error page when the Authorization header is for a user that doesn't exist",
 	'mwoauth-invalid-authorization-wrong-user' => 'Text of the error page when the Authorization header is for the wrong user',
 	'mwoauth-invalid-authorization-not-approved' => "Text of the error page when the Authorization header is for a consumer that isn't approved",
+	'mwoauth-form-existing' => 'Used if the user has already authorized this consumer. Parameters:
+* $1 - list of grants, or the message {{msg-mw|Mwoauth-grants-nogrants}}
+* $2 - existing wiki
+* $3 - existing accepted',
+	'mwoauth-authorize-form-user' => 'Used as label. Parameters:
+* $1 - ...',
 	'mwoauth-authorize-form-name' => '{{Identical|Application name}}',
 	'mwoauth-authorize-form-description' => '{{Identical|Application description}}',
 	'mwoauth-authorize-form-version' => '{{Identical|Application version}}',
@@ -549,8 +678,6 @@ See also:
 	'action-mwoauthproposeconsumer' => '{{Doc-action|mwoauthproposeconsumer}}',
 	'action-mwoauthupdateownconsumer' => '{{Doc-action|mwoauthupdateownconsumer}}',
 	'action-mwoauthviewsuppressed' => '{{Doc-action|mwoauthviewsuppressed}}',
-	'alreadyexistsversion' => 'Used as error message. Parameters:
-* $1 - the current consumer application version'
 );
 
 /** Asturian (asturianu)
@@ -593,7 +720,7 @@ $messages['de'] = array(
 	'mwoauth-prefs-managegrantslink' => 'Berechtigungen im Namen dieses Kontos verwalten',
 	'mwoauth-consumer-key' => 'Verbraucherschlüssel:',
 	'mwoauth-consumer-name' => 'Anwendungsname:',
-	'mwoauth-consumer-version' => 'Hauptversion:',
+	'mwoauth-consumer-version' => 'Verbraucherversion:',
 	'mwoauth-consumer-user' => 'Herausgeber:',
 	'mwoauth-consumer-stage' => 'Aktueller Status:',
 	'mwoauth-consumer-email' => 'Kontakt-E-Mail-Adresse:',
@@ -609,6 +736,7 @@ $messages['de'] = array(
 	'mwoauth-consumer-accesstoken' => 'Zugriffstoken:',
 	'mwoauth-consumer-reason' => 'Grund:',
 	'mwoauth-consumer-alreadyexists' => 'Ein Verbraucher mit dieser Namen-/Versions-/Herausgeberkombination ist bereits vorhanden',
+	'mwoauth-consumer-alreadyexistsversion' => 'Ein Verbraucher mit dieser Namen-/Herausgeber-Kombination ist bereits mit einer gleichen oder höheren Version vorhanden („$1“)',
 	'mwoauth-consumer-not-accepted' => 'Die Informationen für einen ausstehenden Verbraucherantrag konnten nicht aktualisiert werden',
 	'mwoauth-consumer-not-proposed' => 'Der Verbraucher ist derzeit nicht geplant',
 	'mwoauth-consumer-not-disabled' => 'Der Verbraucher ist derzeit nicht deaktiviert',
@@ -623,6 +751,7 @@ $messages['de'] = array(
 	'mwoauth-consumer-stage-disabled' => 'deaktiviert',
 	'mwoauth-consumer-stage-suppressed' => 'unterdrückt',
 	'mwoauthconsumerregistration' => 'OAuth-Verbraucherregistrierung',
+	'mwoauthconsumerregistration-notloggedin' => 'Du musst angemeldet sein, um auf diese Seite zugreifen zu können.',
 	'mwoauthconsumerregistration-navigation' => 'Navigation:',
 	'mwoauthconsumerregistration-propose' => 'Neuen Verbraucher planen',
 	'mwoauthconsumerregistration-list' => 'Meine Verbraucherliste',
@@ -631,7 +760,8 @@ $messages['de'] = array(
 
 Hier einige Empfehlungen und Bemerkungen:
 * Versuche, so wenig Berechtigungen wie möglich zu verwenden. Vermeide Berechtigungen, die in Wirklichkeit nicht benötigt werden.
-* Bitte gib einen RSA-Schlüssel an, falls möglich. Anderenfalls wird dir ein weniger sicherer Geheimtoken zugewiesen.
+* Versionen haben die Form „Hauptversion.Nebenversion.Release“ (die letzten zwei sind optional) und steigen mit der Notwendigkeit von Berechtigungsänderungen an.
+* Bitte gib einen RSA-Schlüssel an, falls möglich. Anderenfalls muss ein wenig sicherer Geheimtoken benutzt werden.
 * Verwende das JSON-Beschränkungsfeld, um den Zugriff dieses Verbrauchers auf IP-Adressen in diesen CIDR-Bereichen zu beschränken.
 * Du kannst eine Wikikennung verwenden, um den Verbraucher auf ein einzelnes Wiki auf dieser Website zu beschränken (verwende „*“ für alle Wikis).
 * Die angegebene E-Mail-Adresse muss mit der deines Benutzerkontos übereinstimmen und bestätigt sein.',
@@ -661,6 +791,7 @@ Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen.
 	'mwoauthconsumerregistration-updated' => 'Deine OAuth-Verbraucherregistrierung wurde erfolgreich aktualisiert.',
 	'mwoauthconsumerregistration-secretreset' => "Dir wurde der geheime Verbrauchertoken '''$1''' zugeordnet. ''Bitte diesen für die Zukunft aufbewahren.''",
 	'mwoauthmanageconsumers' => 'OAuth-Verbraucher verwalten',
+	'mwoauthmanageconsumers-notloggedin' => 'Du musst angemeldet sein, um auf diese Seite zugreifen zu können.',
 	'mwoauthmanageconsumers-type' => 'Warteschlangen:',
 	'mwoauthmanageconsumers-showproposed' => 'Geplante Anträge',
 	'mwoauthmanageconsumers-showrejected' => 'Abgelehnte Anträge',
@@ -703,6 +834,7 @@ Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen.
 	'mwoauthmanageconsumers-success-disabled' => 'Der Verbraucher wurde deaktiviert.',
 	'mwoauthmanageconsumers-success-reanable' => 'Der Verbraucher wurde reaktiviert.',
 	'mwoauthmanagemygrants' => 'Benutzerkonten-OAuth-Berechtigungen verwalten',
+	'mwoauthmanagemygrants-notloggedin' => 'Du musst angemeldet sein, um auf diese Seite zugreifen zu können.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
 	'mwoauthmanagemygrants-showlist' => 'Liste akzeptierter Verbraucher',
 	'mwoauthmanagemygrants-none' => 'Keine Verbraucher haben Zugriff im Namen deines Benutzerkontos.',
@@ -767,6 +899,8 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'mwoauth-authorize-form-description' => 'Anwendungsbeschreibung: $1',
 	'mwoauth-authorize-form-version' => 'Anwendungsversion: $1',
 	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-authorize-form-invalid-user' => 'Dieses Benutzerkonto kann nicht OAuth verwenden, da das Konto auf diesem Wiki und das Konto auf dem zentralen OAuth-Wiki nicht verknüpft sind.',
+	'mwoauth-error' => 'OAuth-Fehler',
 	'mwoauth-grants-heading' => 'Angeforderte Berechtigungen:',
 	'mwoauth-grants-nogrants' => 'Die Anwendung hat keine Berechtigungen beantragt.',
 	'mwoauth-grant-blockusers' => 'Benutzer sperren',
@@ -790,7 +924,7 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'mwoauth-grant-viewmywatchlist' => 'Deine Beobachtungsliste ansehen',
 	'mwoauth-callback-not-oob' => 'oauth_callback muss auf „oob“ festgelegt sein (Groß-/Kleinschreibung beachten)',
 	'right-mwoauthproposeconsumer' => 'Neue OAuth-Verbraucher planen',
-	'right-mwoauthupdateconsumer' => 'OAuth-Verbraucher aktualisieren',
+	'right-mwoauthupdateownconsumer' => 'OAuth-Verbraucher aktualisieren',
 	'right-mwoauthmanageconsumer' => 'OAuth-Verbraucher verwalten',
 	'right-mwoauthsuppress' => 'OAuth-Verbraucher unterdrücken',
 	'right-mwoauthviewsuppressed' => 'Unterdrückte OAuth-Verbraucher ansehen',
@@ -799,7 +933,7 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'action-mwoauthmanageconsumer' => 'OAuth-Verbraucher zu verwalten',
 	'action-mwoauthmanagemygrants' => 'deine OAuth-Berechtigungen zu verwalten',
 	'action-mwoauthproposeconsumer' => 'neue OAuth-Verbraucher zu planen',
-	'action-mwoauthupdateconsumer' => 'OAuth-Verbraucher zu aktualisieren',
+	'action-mwoauthupdateownconsumer' => 'OAuth-Verbraucher zu aktualisieren',
 	'action-mwoauthviewsuppressed' => 'unterdrückte OAuth-Verbraucher anzusehen',
 );
 
@@ -843,7 +977,7 @@ $messages['fr'] = array(
 	'mwoauth-prefs-managegrantslink' => 'gérer les droits au nom de ce compte',
 	'mwoauth-consumer-key' => 'Clé du consommateur :',
 	'mwoauth-consumer-name' => "Nom de l'application :",
-	'mwoauth-consumer-version' => 'Version majeure :',
+	'mwoauth-consumer-version' => 'Version majeure :', # Fuzzy
 	'mwoauth-consumer-user' => 'Éditeur :',
 	'mwoauth-consumer-stage' => 'Statut actuel :',
 	'mwoauth-consumer-email' => 'Adresse de courriel de contact :',
@@ -873,6 +1007,7 @@ $messages['fr'] = array(
 	'mwoauth-consumer-stage-disabled' => 'désactivé',
 	'mwoauth-consumer-stage-suppressed' => 'supprimé',
 	'mwoauthconsumerregistration' => 'Inscription du consommateur OAuth',
+	'mwoauthconsumerregistration-notloggedin' => 'Vous devez être connecté pour accéder à cette page.',
 	'mwoauthconsumerregistration-navigation' => 'Navigation :',
 	'mwoauthconsumerregistration-propose' => 'Proposer un nouveau consommateur',
 	'mwoauthconsumerregistration-list' => 'Ma liste de consommateurs',
@@ -884,7 +1019,7 @@ Quelques recommandations et remarques :
 * Veuillez fournir une clé RSA si possible ; sinon, un jeton secret (moins sécurisé) vous sera assigné.
 * Utilisez le champ limitations JSON pour limiter l’accès de ce consommateur aux adresses IP dans ces plages de CIDR.
 * Vous pouvez utiliser un ID de wiki pour limiter ce consommateur à un unique wiki de ce site (utilisez "*" pour tous les wikis).
-* L’adresse de courriel fournie doit correspondre à celle de votre compte (qui doit avoir été confirmée).',
+* L’adresse de courriel fournie doit correspondre à celle de votre compte (qui doit avoir été confirmée).', # Fuzzy
 	'mwoauthconsumerregistration-update-text' => 'Utilisez le formulaire ci-dessous pour mettre à jour les aspects d’un consommateur OAuth que vous contrôlez.
 
 Toutes les valeurs ici écraseront les précédentes. Ne laissez aucun champ blanc sauf si vous désirez vraiment effacer ces valeurs.',
@@ -911,6 +1046,7 @@ Il vous a été assigné un jeton de consommateur '''$1''' et un jeton secret ''
 	'mwoauthconsumerregistration-updated' => 'Votre registre de consommateur OAuth a bien été mis à jour.',
 	'mwoauthconsumerregistration-secretreset' => "Un jeton secret de consommateur de '''$1''' vous a été assigné. ''Veuillez le conserver pour tout besoin ultérieur.''",
 	'mwoauthmanageconsumers' => 'Gérer les consommateurs OAuth',
+	'mwoauthmanageconsumers-notloggedin' => 'Vous devez être connecté pour accéder à cette page.',
 	'mwoauthmanageconsumers-type' => 'Files :',
 	'mwoauthmanageconsumers-showproposed' => 'Requêtes proposées',
 	'mwoauthmanageconsumers-showrejected' => 'Requêtes rejetées',
@@ -953,6 +1089,7 @@ Il vous a été assigné un jeton de consommateur '''$1''' et un jeton secret ''
 	'mwoauthmanageconsumers-success-disabled' => 'Le consommateur a été désactivé.',
 	'mwoauthmanageconsumers-success-reanable' => 'Le consommateur a été réactivé.',
 	'mwoauthmanagemygrants' => 'Gérer les droits de compte OAuth',
+	'mwoauthmanagemygrants-notloggedin' => 'Vous devez être connecté pour accéder à cette page.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation :',
 	'mwoauthmanagemygrants-showlist' => 'Liste de consommateurs acceptés',
 	'mwoauthmanagemygrants-none' => 'Aucun consommateur n’a d’accès de la part de votre compte.',
@@ -1017,6 +1154,8 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauth-authorize-form-description' => 'Description de l’application : $1',
 	'mwoauth-authorize-form-version' => 'Version de l’application : $1',
 	'mwoauth-authorize-form-wiki' => 'Wiki : $1',
+	'mwoauth-authorize-form-invalid-user' => 'Ce compte utilisateur ne peut pas utiliser OAuth, parce que le compte de ce wiki et le compte du wiki central OAuth ne sont pas liés.',
+	'mwoauth-error' => 'Erreur OAuth',
 	'mwoauth-grants-heading' => 'Droits requis :',
 	'mwoauth-grants-nogrants' => 'L’application n’a demandé aucun droit.',
 	'mwoauth-grant-blockusers' => 'Bloquer les utilisateurs',
@@ -1040,7 +1179,7 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauth-grant-viewmywatchlist' => 'Afficher votre liste de suivi',
 	'mwoauth-callback-not-oob' => 'oauth_callback doit être défini, et doit valoir "oob" (en minuscules)',
 	'right-mwoauthproposeconsumer' => 'Proposer des nouveaux consommateurs OAuth',
-	'right-mwoauthupdateconsumer' => 'Mettre à jour les consommateurs OAuth',
+	'right-mwoauthupdateownconsumer' => 'Mettre à jour les consommateurs OAuth',
 	'right-mwoauthmanageconsumer' => 'Gérer les consommateurs OAuth',
 	'right-mwoauthsuppress' => 'Supprimer les consommateurs OAuth',
 	'right-mwoauthviewsuppressed' => 'Afficher les consommateurs OAuth supprimés',
@@ -1049,7 +1188,7 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'action-mwoauthmanageconsumer' => 'gérer les consommateurs OAuth',
 	'action-mwoauthmanagemygrants' => 'gérer vos droits OAuth',
 	'action-mwoauthproposeconsumer' => 'proposer de nouveaux consommateurs OAuth',
-	'action-mwoauthupdateconsumer' => 'mettre à jour les consommateurs OAuth',
+	'action-mwoauthupdateownconsumer' => 'mettre à jour les consommateurs OAuth',
 	'action-mwoauthviewsuppressed' => 'afficher les consommateurs OAuth supprimés',
 );
 
@@ -1513,7 +1652,7 @@ $messages['ja'] = array(
 	'mwoauth-prefs-managegrants' => 'OAuth コンシューマー アクセス:',
 	'mwoauth-consumer-key' => 'コンシューマー キー:',
 	'mwoauth-consumer-name' => 'アプリケーション名:',
-	'mwoauth-consumer-version' => 'メジャー バージョン:',
+	'mwoauth-consumer-version' => 'コンシューマーのバージョン:',
 	'mwoauth-consumer-user' => '発行者:',
 	'mwoauth-consumer-stage' => '現在の状態:',
 	'mwoauth-consumer-email' => '連絡先メールアドレス:',
@@ -1530,18 +1669,22 @@ $messages['ja'] = array(
 	'mwoauth-invalid-access-token' => '指定したキーのアクセス トークンは存在しません。',
 	'mwoauth-consumer-stage-disabled' => '無効',
 	'mwoauthconsumerregistration' => 'OAuth コンシューマー登録',
+	'mwoauthconsumerregistration-notloggedin' => 'このページにアクセスするにはログインしてください。',
 	'mwoauthconsumerregistration-navigation' => 'ナビゲーション:',
 	'mwoauthconsumerregistration-list' => '自分のコンシューマー一覧',
 	'mwoauthconsumerregistration-main' => 'メイン',
 	'mwoauthconsumerregistration-update-legend' => 'OAuth コンシューマー アプリケーションの更新',
 	'mwoauthconsumerregistration-update-submit' => 'コンシューマーを更新',
 	'mwoauthconsumerregistration-name' => 'コンシューマー',
+	'mwoauthconsumerregistration-user' => '発行者',
+	'mwoauthconsumerregistration-description' => '説明',
 	'mwoauthconsumerregistration-consumerkey' => 'コンシューマー キー',
 	'mwoauthconsumerregistration-stage' => '状態',
 	'mwoauthconsumerregistration-lastchange' => '最新の変更',
 	'mwoauthconsumerregistration-updated' => 'あなたの OAuth コンシューマー レジストリを更新しました。',
 	'mwoauthconsumerregistration-secretreset' => "「'''$1'''」のコンシューマー秘密トークンを割り当てました。''今後のためこれを記録しておいてください。''",
 	'mwoauthmanageconsumers' => 'OAuthコンシューマー管理',
+	'mwoauthmanageconsumers-notloggedin' => 'このページにアクセスするにはログインしてください。',
 	'mwoauthmanageconsumers-type' => 'キュー:',
 	'mwoauthmanageconsumers-main' => 'メイン',
 	'mwoauthmanageconsumers-queues' => '以下からコンシューマー確認のキューを選択:',
@@ -1565,6 +1708,7 @@ $messages['ja'] = array(
 	'mwoauthmanageconsumers-success-rejected' => 'リクエストを却下しました。',
 	'mwoauthmanageconsumers-success-disabled' => 'コンシューマーを無効にしました。',
 	'mwoauthmanageconsumers-success-reanable' => 'コンシューマーを再度有効にしました。',
+	'mwoauthmanagemygrants-notloggedin' => 'このページにアクセスするにはログインしてください。',
 	'mwoauthmanagemygrants-navigation' => 'ナビゲーション:',
 	'mwoauthmanagemygrants-showlist' => 'コンシューマー一覧', # Fuzzy
 	'mwoauthmanagemygrants-name' => 'コンシューマー名',
@@ -1596,6 +1740,8 @@ $messages['ja'] = array(
 	'mwoauth-authorize-form-description' => 'アプリケーションの説明: $1',
 	'mwoauth-authorize-form-version' => 'アプリケーションのバージョン: $1',
 	'mwoauth-authorize-form-wiki' => 'ウィキ: $1',
+	'mwoauth-authorize-form-invalid-user' => 'このウィキと中央管理 OAuth ウィキの利用者アカウントがリンクされていないため、このアカウントでは OAuth を使用できません。',
+	'mwoauth-error' => 'OAuth エラー',
 	'mwoauth-grant-blockusers' => '利用者をブロック',
 	'mwoauth-grant-createeditmovepage' => 'ページを作成/編集/移動',
 	'mwoauth-grant-delete' => 'ページ、版、記録項目を削除',
@@ -1616,7 +1762,7 @@ $messages['ja'] = array(
 	'mwoauth-grant-viewmywatchlist' => '自身のウォッチリストを閲覧',
 	'mwoauth-callback-not-oob' => 'oauth_callback に「oob」を設定してください (大文字小文字を区別)',
 	'right-mwoauthproposeconsumer' => '新しいコンシューマーを提案',
-	'right-mwoauthupdateconsumer' => 'OAuthコンシューマーを更新',
+	'right-mwoauthupdateownconsumer' => '自身が制御できるOAuthコンシューマーを更新',
 	'right-mwoauthmanageconsumer' => 'OAuthコンシューマーを管理',
 	'right-mwoauthsuppress' => 'OAuthコンシューマーを秘匿',
 	'right-mwoauthviewsuppressed' => '秘匿されたOAuthコンシューマーを閲覧',
@@ -1625,7 +1771,7 @@ $messages['ja'] = array(
 	'action-mwoauthmanageconsumer' => 'OAuthコンシューマーの管理',
 	'action-mwoauthmanagemygrants' => 'OAuth付与の管理',
 	'action-mwoauthproposeconsumer' => '新しいコンシューマーの提案',
-	'action-mwoauthupdateconsumer' => 'OAuthコンシューマーの更新',
+	'action-mwoauthupdateownconsumer' => '自分が制御できるOAuthコンシューマーの更新',
 	'action-mwoauthviewsuppressed' => '秘匿されたOAuthコンシューマーの閲覧',
 );
 
@@ -1643,9 +1789,11 @@ $messages['lb'] = array(
 	'mwoauth-consumer-stage-rejected' => 'refuséiert',
 	'mwoauth-consumer-stage-expired' => 'ofgelaf',
 	'mwoauth-consumer-stage-disabled' => 'desaktivéiert',
+	'mwoauthconsumerregistration-notloggedin' => 'Dir musst ageloggt si fir op dës Säit ze kommen.',
 	'mwoauthconsumerregistration-navigation' => 'Navigatioun:',
 	'mwoauthconsumerregistration-description' => 'Beschreiwung',
 	'mwoauthconsumerregistration-lastchange' => 'Lescht Ännerung',
+	'mwoauthmanageconsumers-notloggedin' => 'Dir musst ageloggt si fir op dës Säit ze kommen.',
 	'mwoauthmanageconsumers-main' => 'Haapt',
 	'mwoauthmanageconsumers-name' => 'Konsument',
 	'mwoauthmanageconsumers-description' => 'Beschreiwung',
@@ -1653,6 +1801,7 @@ $messages['lb'] = array(
 	'mwoauthmanageconsumers-review' => 'nokucken/geréieren',
 	'mwoauthmanageconsumers-disable' => 'Desaktivéiert',
 	'mwoauthmanageconsumers-reason' => 'Grond:',
+	'mwoauthmanagemygrants-notloggedin' => 'Dir musst ageloggt si fir op dës Säit ze kommen.',
 	'mwoauthmanagemygrants-navigation' => 'Navigatioun:',
 	'mwoauthmanagemygrants-description' => 'Beschreiwung',
 	'mwoauthmanagemygrants-wiki' => 'Applicabel Wiki',
@@ -1660,6 +1809,7 @@ $messages['lb'] = array(
 	'mwoauth-invalid-authorization-title' => "OAuth Autorisatioun's-Feeler",
 	'mwoauth-form-button-approve' => 'Jo, erlaben',
 	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-error' => 'OAuth Feeler',
 	'mwoauth-grants-heading' => 'Ugefroten Autorisatiounen:',
 	'mwoauth-grant-blockusers' => 'Benotzer spären',
 	'mwoauth-grant-editmycssjs' => 'Ären eegene Benotzer CSS/JS änneren',
@@ -2250,7 +2400,7 @@ $messages['tr'] = array(
 $messages['uk'] = array(
 	'mwoauth-consumer-key' => 'Ключ покупця:',
 	'mwoauth-consumer-name' => 'Назва програми:',
-	'mwoauth-consumer-version' => 'Основна версія:',
+	'mwoauth-consumer-version' => 'Основна версія:', # Fuzzy
 	'mwoauth-consumer-user' => 'Видавець:',
 	'mwoauth-consumer-stage' => 'Поточний статус:',
 	'mwoauth-consumer-email' => 'Контактна адреса електронної пошти:',
@@ -2285,4 +2435,11 @@ $messages['uk'] = array(
 	'mwoauth-form-button-approve' => 'Так, дозволити',
 	'mwoauth-form-confirmation' => 'Дозволити цій програмі діяти від вашого імені?',
 	'mwoauth-grant-patrol' => 'Патруль',
+);
+
+/** Yiddish (ייִדיש)
+ * @author פוילישער
+ */
+$messages['yi'] = array(
+	'mwoauth-consumer-version' => 'קאנסומענט ווערסיע:',
 );
