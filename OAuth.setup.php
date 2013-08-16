@@ -87,5 +87,15 @@ class MWOAuthSetup {
 	 */
 	public static function defineHookHandlers( &$hooks ) {
 		$hooks['LoadExtensionSchemaUpdates'][] = 'MWOAuthUpdaterHooks::addSchemaUpdates';
+
+		$hooks['UnitTestsList'][] = function( array &$files ) {
+			$directoryIterator = new RecursiveDirectoryIterator( __DIR__ . '/tests/' );
+			foreach ( new RecursiveIteratorIterator( $directoryIterator ) as $fileInfo ) {
+				if ( substr( $fileInfo->getFilename(), -8 ) === 'Test.php' ) {
+					$files[] = $fileInfo->getPathname();
+				}
+			}
+			return true;
+		};
 	}
 }
