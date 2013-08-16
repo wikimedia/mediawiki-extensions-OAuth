@@ -81,6 +81,8 @@ class MWOAuthAPISetup {
 	 * @return boolean
 	 */
 	public static function onUserLoadFromSession( User $user, &$result ) {
+		global $wgMemc;
+
 		$user->oAuthSessionData = array();
 		try {
 			$accesstoken = self::getOAuthAccessToken();
@@ -107,8 +109,17 @@ class MWOAuthAPISetup {
 					'accesstoken' => $accesstoken,
 					'rights' => MWOAuthUtils::getGrantRights( $access->get( 'grants' ) ),
 				);
-				// Setup a session for this OAuth user, so edit tokens work
-				wfSetupSession();
+				// Setup a session for this OAuth user, so edit tokens work.
+				// Preserve the session ID used so clients can ignore cookies.
+				$key = wfMemcKey( 'oauthsessionid', $access->get( 'id' ) );
+				$sessionId = $wgMemc->get( $key ) ?: MWCryptRand::generateHex( 32, true );
+				$wgMemc->set( $key, $sessionId, 3600 ); // create/renew
+				wfSetupSession( $sessionId ); // create/reuse this "anonymous" session
+				Hooks::register( 'AfterFinalPageOutput', function( $out ) {
+					// Just in case, make sure this is not a valid login session for sanity
+					RequestContext::getMain()->getRequest()->setSessionData( 'wsUserName', null );
+				} );
+
 				$result = true;
 			}
 		} catch( ErrorPageError $ex ) {
