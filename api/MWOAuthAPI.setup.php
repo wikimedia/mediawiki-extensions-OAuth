@@ -81,7 +81,7 @@ class MWOAuthAPISetup {
 	 * @return boolean
 	 */
 	public static function onUserLoadFromSession( User $user, &$result ) {
-		global $wgMemc;
+		global $wgMemc, $wgBlockDisablesLogin;
 
 		$user->oAuthSessionData = array();
 		try {
@@ -102,6 +102,9 @@ class MWOAuthAPISetup {
 				}
 				if ( $user->isLoggedIn() && $user->getId() !== $localUser->getId() ) {
 					throw self::makeException( 'mwoauth-invalid-authorization-wrong-user' );
+				}
+				if ( $localUser->isLocked() || ( $wgBlockDisablesLogin && $localUser->isBlocked() ) ) {
+					throw self::makeException( 'mwoauth-invalid-authorization-blocked-user' );
 				}
 				$user->setID( $localUser->getId() );
 				$user->loadFromId();
