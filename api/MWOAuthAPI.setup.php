@@ -17,6 +17,7 @@ class MWOAuthAPISetup {
 		$wgHooks['UserIsEveryoneAllowed'][] = __CLASS__ . '::onUserIsEveryoneAllowed';
 		$wgHooks['ApiCheckCanExecute'][] = __CLASS__ . '::onApiCheckCanExecute';
 		$wgHooks['RecentChange_save'][] = __CLASS__ . '::onRecentChange_save';
+		$wgHooks['CentralAuthAbortCentralAuthToken'][] = __CLASS__ . '::onCentralAuthAbortCentralAuthToken';
 	}
 
 	/**
@@ -243,6 +244,19 @@ class MWOAuthAPISetup {
 				$rc->mAttribs['rc_this_oldid'],
 				$rc->mAttribs['rc_logid']
 			);
+		}
+		return true;
+	}
+
+	/**
+	 * Prevent CentralAuth from issuing centralauthtokens if we have
+	 * OAuth headers in this request.
+	 * @return boolean
+	 */
+	public static function onCentralAuthAbortCentralAuthToken() {
+		$request = RequestContext::getMain()->getRequest();
+		if ( MWOAuthUtils::hasOAuthHeaders( $request ) ) {
+			return false;
 		}
 		return true;
 	}
