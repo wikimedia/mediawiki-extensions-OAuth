@@ -9,7 +9,8 @@
 $messages = array();
 
 $messages['en'] = array(
-	'mwoauth-desc' => 'OAuth 1.0a API authentication',
+	'mwoauth' => 'OAuth',
+	'mwoauth-desc' => 'OAuth 1.0a API Authorization',
 
 	'mwoauth-missing-field' => 'Missing value for "$1" field',
 	'mwoauth-invalid-field' => 'Invalid value provided for "$1" field',
@@ -260,6 +261,7 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
  * @author Siebrand
  */
 $messages['qqq'] = array(
+	'mwoauth' => 'Title of MWOAuth page',
 	'mwoauth-desc' => 'Used as subtitle.',
 	'mwoauth-missing-field' => 'Parameters:
 * $1 - field name
@@ -376,6 +378,7 @@ See also:
 	'mwoauth-consumer-stage-suppressed' => '{{Related|Mwoauth-consumer-stage}}
 {{Identical|Suppressed}}',
 	'mwoauthconsumerregistration' => '{{doc-special|MWOAuthConsumerRegistration}}',
+	'mwoauthconsumerregistration-email' => 'field on registration form for email',
 	'mwoauthconsumerregistration-notloggedin' => 'Used if not blocked, not read-only and not logged in.',
 	'mwoauthconsumerregistration-navigation' => 'Used in page subtitle.
 {{Identical|Navigation}}',
@@ -424,6 +427,11 @@ Parameters:
 	'mwoauthconsumerregistration-updated' => 'Shown as success message',
 	'mwoauthconsumerregistration-secretreset' => 'Shown on success message. Parameters:
 * $1 - new secret token',
+	'mwoauthdatastore-access-token-not-found' => 'Error message when an invalid access token was submitted',
+	'mwoauthdatastore-request-token-not-found' => 'Error message when an invalid request token was submitted',
+	'mwoauthdatastore-bad-token' => 'Error message when an invalid token was submitted',
+	'mwoauthdatastore-bad-verifier' => 'Error message when an invalid verification code was submitted',
+	'mwoauthdatastore-invalid-token-type' => 'Error message when an invalid page was requested',
 	'mwoauthmanageconsumers' => '{{doc-special|MWOAuthManageConsumers}}
 {{Identical|Manage OAuth consumer}}',
 	'mwoauthmanageconsumers-notloggedin' => 'Used if the user is not logged in.',
@@ -558,6 +566,7 @@ Followed by a link with the link text {{msg-mw|Mwoauthmanagemygrants-showlist}}.
 {{Identical|Navigation}}',
 	'mwoauthmanagemygrants-showlist' => 'Used as link text or as plain text',
 	'mwoauthmanagemygrants-name' => 'Used as table row header.',
+	'mwoauthmanagemygrants-none' => 'Message when a user has not authorized any OAuth consumers',
 	'mwoauthmanagemygrants-user' => 'Used as table row header for "Central username".
 {{Identical|Publisher}}',
 	'mwoauthmanagemygrants-description' => 'Used as table row header.
@@ -596,6 +605,9 @@ Followed by the following radio boxes:
 	'mwoauthconsumer-consumer-logpage' => '{{doc-logpage}}',
 	'mwoauthconsumer-consumer-logpagetext' => 'Description of the OAuth consumer log.',
 	'mwoauthserver-invalid-user-hookabort' => 'Used as error message.',
+	'mwoauthserver-bad-consumer' => 'Error message when an invalid consumer identifier was submitted',
+	'mwoauthserver-insufficient-rights' => 'Error message that the user does not have the required rights to perform this request',
+	'mwoauthserver-invalid-request-token' => 'Error message when an invalid request token was submitted',
 	'mwoauth-invalid-authorization-title' => 'Title of the error page when the Authorization header is invalid',
 	'mwoauth-invalid-authorization' => 'Text of the error page when the Authorization header is invalid. Parameters are:
 * $1 - Specific error message from the OAuth layer, probably not localized',
@@ -608,6 +620,7 @@ Followed by the following radio boxes:
 * $1 - list of grants, or the message {{msg-mw|Mwoauth-grants-nogrants}}
 * $2 - existing wiki
 * $3 - existing accepted',
+	'mwoauth-authorize-form' => 'Form section label',
 	'mwoauth-authorize-form-user' => 'Used as label. Parameters:
 * $1 - ...',
 	'mwoauth-authorize-form-name' => '{{Identical|Application name}}',
@@ -615,7 +628,14 @@ Followed by the following radio boxes:
 	'mwoauth-authorize-form-version' => '{{Identical|Application version}}',
 	'mwoauth-authorize-form-wiki' => '{{Identical|Wiki}}',
 	'mwoauth-authorize-form-invalid-user' => 'Text of the error page when the user cannot use OAuth.',
+	'mwoauth-bad-csrf-token' => 'Warning message when a bad edit token was used in the form',
+	'mwoauth-bad-request' => 'General error when there was a problem processing the request',
 	'mwoauth-error' => 'Heading on the page, whenever an OAuth error is presented to a user.',
+	'mwoauth-form-description' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf',
+
+	'mwoauth-form-button-approve' => 'Button label, indicating the user wants to allow access',
+	'mwoauth-form-confirmation' => 'Form label, asking if the user is sure they want to allow access',
+	'mwoauth-form-confirmation-update' => 'Checkbox label, asking if the user wants to update the permissions they are granting to a consumer, if they have previously granted access to this consumer',
 	'mwoauth-grants-heading' => 'Used as label for the grants list.
 
 See also:
@@ -649,6 +669,7 @@ See also:
 	'mwoauth-grant-editpage' => 'Name for OAuth grant "editpage"',
 	'mwoauth-grant-editprotected' => 'Name for OAuth grant "editprotected"',
 	'mwoauth-grant-highvolume' => 'Name for OAuth grant "highvolume"',
+	'mwoauth-grants-nogrants' => 'Warning message that the OAuth consumer has not requested any permissions',
 	'mwoauth-grant-oversight' => 'Name for OAuth grant "oversight"',
 	'mwoauth-grant-patrol' => 'Name for OAuth grant "patrol"',
 	'mwoauth-grant-protect' => 'Name for OAuth grant "protect"',
@@ -663,6 +684,7 @@ See also:
 	'mwoauth-grant-viewdeleted' => 'Name for OAuth grant "viewdeleted"',
 	'mwoauth-grant-viewmywatchlist' => 'Name for OAuth grant "viewmywatchlist".
 {{Identical|View your watchlist}}',
+	'mwoauthgrants-general-error' => 'Generic error, when something unexpected happened while processing the OAuth request',
 	'mwoauth-callback-not-oob' => 'Warning that the OAuth developer failed to include the required "oauth_callback" parameter, which must be set to the case-sensitive string "oob"',
 	'right-mwoauthproposeconsumer' => '{{doc-right|mwoauthproposeconsumer}}',
 	'right-mwoauthupdateownconsumer' => '{{doc-right|mwoauthupdateownconsumer}}',

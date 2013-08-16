@@ -6,7 +6,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	}
 
 	public function execute( $subpage ) {
-
+		$this->setHeaders();
 		$request = $this->getRequest();
 		$format = $request->getVal( 'format', 'raw' );
 		if ( !in_array( $subpage, array( 'initiate', 'authorize', 'token' ) ) ) {
@@ -232,8 +232,6 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	}
 
 	/**
-	 *
-	 *
 	 * @param string $message message key to return to the user
 	 * @param string $format the format of the response: json, xml, or html
 	 */
@@ -249,8 +247,6 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	}
 
 	/**
-	 *
-	 *
 	 * @param array $response values to give back to the client
 	 * @param string $format the format of the response: json, xml, or html
 	 */
@@ -285,8 +281,6 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 
 
 	/**
-	 *
-	 *
 	 * @param string $response html or string to pass back to the user. Already escaped.
 	 * @param string $format the format of the response: raw, or otherwise
 	 */
