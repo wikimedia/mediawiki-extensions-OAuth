@@ -196,6 +196,7 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauth-invalid-authorization-invalid-user' => 'The authorization headers in your request are for a user that doesn\'t exist here',
 	'mwoauth-invalid-authorization-wrong-user' => 'The authorization headers in your request are for a different user',
 	'mwoauth-invalid-authorization-not-approved' => 'The authorization headers in your request are for an OAuth consumer that is not currently approved',
+	'mwoauth-invalid-authorization-blocked-user' => 'The authorization headers in your request are for a user who is blocked',
 
 	'mwoauth-form-description' => 'The following application is requesting to use MediaWiki on your behalf. The application will be able to perform any actions that are allowed with the list if requested rights below. Only allow applications that you trust to use these permissions as you would.',
 	'mwoauth-form-existing' => "'''This application is requesting authorization to MediaWiki on your behalf, but you have already granted access:'''
@@ -604,6 +605,7 @@ Followed by the following radio boxes:
 	'mwoauth-invalid-authorization-invalid-user' => "Text of the error page when the Authorization header is for a user that doesn't exist",
 	'mwoauth-invalid-authorization-wrong-user' => 'Text of the error page when the Authorization header is for the wrong user',
 	'mwoauth-invalid-authorization-not-approved' => "Text of the error page when the Authorization header is for a consumer that isn't approved",
+	'mwoauth-invalid-authorization-blocked-user' => 'Text of the error page when Authorization header is for a user who is blocked',
 	'mwoauth-form-existing' => 'Used if the user has already authorized this consumer. Parameters:
 * $1 - list of grants, or the message {{msg-mw|Mwoauth-grants-nogrants}}
 * $2 - existing wiki
