@@ -121,7 +121,9 @@ class MWOAuthServer extends OAuthServer {
 		$consumer = $this->data_store->lookup_consumer( $consumerKey );
 		if ( !$consumer ) {
 			throw new MWOAuthException( 'mwoauthserver-bad-consumer' );
-		} elseif ( $consumer->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED ) {
+		} elseif ( $consumer->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
+			&& !$consumer->isPendingAndOwnedBy( $mwUser ) // let publisher test this
+		) {
 			throw new MWOAuthException( 'mwoauthserver-bad-consumer' );
 		} elseif ( $consumer->get( 'deleted' ) ) { // extra sanity
 			throw new MWOAuthException( 'mwoauthserver-bad-consumer' );

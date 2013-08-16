@@ -180,6 +180,20 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		) );
 	}
 
+	/**
+	 * Check if the consumer is still pending approval and is owned by $user
+	 *
+	 * @param User $user
+	 * @return boolean
+	 */
+	public function isPendingAndOwnedBy( User $user ) {
+		if ( $this->stage === self::STAGE_PROPOSED ) {
+			$centralId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
+			return ( $centralId && $this->userId === $centralId );
+		}
+		return false;
+	}
+
 	protected function normalizeValues() {
 		$this->id = (int)$this->id;
 		$this->userId = (int)$this->userId;
