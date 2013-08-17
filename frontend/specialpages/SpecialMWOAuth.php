@@ -87,6 +87,11 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 						if ( !$consumer ) {
 							throw new MWOAuthException( 'mwoauth-bad-request' );
 						}
+						if ( $consumer->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
+							&& !$consumer->getDAO()->isPendingAndOwnedBy( $mwUser )
+						) {
+							throw new MWOAuthException( 'mwoauth-invalid-authorization-not-approved' );
+						}
 						// Check if this user has authorized grants for this consumer previously
 						$existing = $oauthServer->getCurrentAuthorization(
 							$mwUser,
