@@ -379,7 +379,6 @@ See also:
 	'mwoauth-consumer-stage-suppressed' => '{{Related|Mwoauth-consumer-stage}}
 {{Identical|Suppressed}}',
 	'mwoauthconsumerregistration' => '{{doc-special|MWOAuthConsumerRegistration}}',
-	'mwoauthconsumerregistration-email' => 'field on registration form for email',
 	'mwoauthconsumerregistration-notloggedin' => 'Used if not blocked, not read-only and not logged in.',
 	'mwoauthconsumerregistration-navigation' => 'Used in page subtitle.
 {{Identical|Navigation}}',
@@ -403,6 +402,7 @@ Preceded by list of the links ("|" separated) which have any one of the followin
 {{Identical|Consumer}}',
 	'mwoauthconsumerregistration-user' => '{{Identical|Publisher}}',
 	'mwoauthconsumerregistration-description' => '{{Identical|Description}}',
+	'mwoauthconsumerregistration-email' => 'field on registration form for email',
 	'mwoauthconsumerregistration-consumerkey' => 'Used as table row header.
 {{Identical|Consumer key}}',
 	'mwoauthconsumerregistration-stage' => 'Used as table row header.
@@ -428,11 +428,6 @@ Parameters:
 	'mwoauthconsumerregistration-updated' => 'Shown as success message',
 	'mwoauthconsumerregistration-secretreset' => 'Shown on success message. Parameters:
 * $1 - new secret token',
-	'mwoauthdatastore-access-token-not-found' => 'Error message when an invalid access token was submitted',
-	'mwoauthdatastore-request-token-not-found' => 'Error message when an invalid request token was submitted',
-	'mwoauthdatastore-bad-token' => 'Error message when an invalid token was submitted',
-	'mwoauthdatastore-bad-verifier' => 'Error message when an invalid verification code was submitted',
-	'mwoauthdatastore-invalid-token-type' => 'Error message when an invalid page was requested',
 	'mwoauthmanageconsumers' => '{{doc-special|MWOAuthManageConsumers}}
 {{Identical|Manage OAuth consumer}}',
 	'mwoauthmanageconsumers-notloggedin' => 'Used if the user is not logged in.',
@@ -566,8 +561,8 @@ Followed by the following radio boxes:
 Followed by a link with the link text {{msg-mw|Mwoauthmanagemygrants-showlist}}. It can be without link.
 {{Identical|Navigation}}',
 	'mwoauthmanagemygrants-showlist' => 'Used as link text or as plain text',
-	'mwoauthmanagemygrants-name' => 'Used as table row header.',
 	'mwoauthmanagemygrants-none' => 'Message when a user has not authorized any OAuth consumers',
+	'mwoauthmanagemygrants-name' => 'Used as table row header.',
 	'mwoauthmanagemygrants-user' => 'Used as table row header for "Central username".
 {{Identical|Publisher}}',
 	'mwoauthmanagemygrants-description' => 'Used as table row header.
@@ -605,10 +600,18 @@ Followed by the following radio boxes:
 * $4 - consumer key',
 	'mwoauthconsumer-consumer-logpage' => '{{doc-logpage}}',
 	'mwoauthconsumer-consumer-logpagetext' => 'Description of the OAuth consumer log.',
-	'mwoauthserver-invalid-user-hookabort' => 'Used as error message.',
+	'mwoauth-bad-csrf-token' => 'Warning message when a bad edit token was used in the form',
+	'mwoauth-bad-request' => 'General error when there was a problem processing the request',
+	'mwoauthdatastore-access-token-not-found' => 'Error message when an invalid access token was submitted',
+	'mwoauthdatastore-request-token-not-found' => 'Error message when an invalid request token was submitted',
+	'mwoauthdatastore-bad-token' => 'Error message when an invalid token was submitted',
+	'mwoauthdatastore-bad-verifier' => 'Error message when an invalid verification code was submitted',
+	'mwoauthdatastore-invalid-token-type' => 'Error message when an invalid page was requested',
+	'mwoauthgrants-general-error' => 'Generic error, when something unexpected happened while processing the OAuth request',
 	'mwoauthserver-bad-consumer' => 'Error message when an invalid consumer identifier was submitted',
 	'mwoauthserver-insufficient-rights' => 'Error message that the user does not have the required rights to perform this request',
 	'mwoauthserver-invalid-request-token' => 'Error message when an invalid request token was submitted',
+	'mwoauthserver-invalid-user-hookabort' => 'Used as error message.',
 	'mwoauth-invalid-authorization-title' => 'Title of the error page when the Authorization header is invalid',
 	'mwoauth-invalid-authorization' => 'Text of the error page when the Authorization header is invalid. Parameters are:
 * $1 - Specific error message from the OAuth layer, probably not localized',
@@ -618,10 +621,14 @@ Followed by the following radio boxes:
 	'mwoauth-invalid-authorization-wrong-user' => 'Text of the error page when the Authorization header is for the wrong user',
 	'mwoauth-invalid-authorization-not-approved' => "Text of the error page when the Authorization header is for a consumer that isn't approved",
 	'mwoauth-invalid-authorization-blocked-user' => 'Text of the error page when Authorization header is for a user who is blocked',
+	'mwoauth-form-description' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf',
 	'mwoauth-form-existing' => 'Used if the user has already authorized this consumer. Parameters:
 * $1 - list of grants, or the message {{msg-mw|Mwoauth-grants-nogrants}}
 * $2 - existing wiki
 * $3 - existing accepted',
+	'mwoauth-form-button-approve' => 'Button label, indicating the user wants to allow access',
+	'mwoauth-form-confirmation' => 'Form label, asking if the user is sure they want to allow access',
+	'mwoauth-form-confirmation-update' => 'Checkbox label, asking if the user wants to update the permissions they are granting to a consumer, if they have previously granted access to this consumer',
 	'mwoauth-authorize-form' => 'Form section label',
 	'mwoauth-authorize-form-user' => 'Used as label. Parameters:
 * $1 - ...',
@@ -630,14 +637,7 @@ Followed by the following radio boxes:
 	'mwoauth-authorize-form-version' => '{{Identical|Application version}}',
 	'mwoauth-authorize-form-wiki' => '{{Identical|Wiki}}',
 	'mwoauth-authorize-form-invalid-user' => 'Text of the error page when the user cannot use OAuth.',
-	'mwoauth-bad-csrf-token' => 'Warning message when a bad edit token was used in the form',
-	'mwoauth-bad-request' => 'General error when there was a problem processing the request',
 	'mwoauth-error' => 'Heading on the page, whenever an OAuth error is presented to a user.',
-	'mwoauth-form-description' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf',
-
-	'mwoauth-form-button-approve' => 'Button label, indicating the user wants to allow access',
-	'mwoauth-form-confirmation' => 'Form label, asking if the user is sure they want to allow access',
-	'mwoauth-form-confirmation-update' => 'Checkbox label, asking if the user wants to update the permissions they are granting to a consumer, if they have previously granted access to this consumer',
 	'mwoauth-grants-heading' => 'Used as label for the grants list.
 
 See also:
@@ -660,6 +660,7 @@ See also:
 * {{msg-mw|Mwoauth-grant-useoauth}}
 * {{msg-mw|Mwoauth-grant-viewdeleted}}
 * {{msg-mw|Mwoauth-grant-viewmywatchlist}}',
+	'mwoauth-grants-nogrants' => 'Warning message that the OAuth consumer has not requested any permissions',
 	'mwoauth-grant-blockusers' => 'Name for OAuth grant "blockusers".
 {{Identical|Block user}}',
 	'mwoauth-grant-createeditmovepage' => 'Name for OAuth grant "createeditmovepage"',
@@ -671,7 +672,6 @@ See also:
 	'mwoauth-grant-editpage' => 'Name for OAuth grant "editpage"',
 	'mwoauth-grant-editprotected' => 'Name for OAuth grant "editprotected"',
 	'mwoauth-grant-highvolume' => 'Name for OAuth grant "highvolume"',
-	'mwoauth-grants-nogrants' => 'Warning message that the OAuth consumer has not requested any permissions',
 	'mwoauth-grant-oversight' => 'Name for OAuth grant "oversight"',
 	'mwoauth-grant-patrol' => 'Name for OAuth grant "patrol"',
 	'mwoauth-grant-protect' => 'Name for OAuth grant "protect"',
@@ -686,7 +686,6 @@ See also:
 	'mwoauth-grant-viewdeleted' => 'Name for OAuth grant "viewdeleted"',
 	'mwoauth-grant-viewmywatchlist' => 'Name for OAuth grant "viewmywatchlist".
 {{Identical|View your watchlist}}',
-	'mwoauthgrants-general-error' => 'Generic error, when something unexpected happened while processing the OAuth request',
 	'mwoauth-callback-not-oob' => 'Warning that the OAuth developer failed to include the required "oauth_callback" parameter, which must be set to the case-sensitive string "oob"',
 	'right-mwoauthproposeconsumer' => '{{doc-right|mwoauthproposeconsumer}}',
 	'right-mwoauthupdateownconsumer' => '{{doc-right|mwoauthupdateownconsumer}}',
@@ -909,6 +908,7 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'mwoauth-invalid-authorization-invalid-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen Benutzer, der hier nicht vorhanden ist.',
 	'mwoauth-invalid-authorization-wrong-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen anderen Benutzer',
 	'mwoauth-invalid-authorization-not-approved' => 'Die Autorisierungsheader in deiner Anfrage sind für einen OAuth-Verbraucher, der derzeit nicht bestätigt ist.',
+	'mwoauth-invalid-authorization-blocked-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen Benutzer, der gesperrt ist.',
 	'mwoauth-form-description' => 'Die folgende Anwendung will MediaWiki in deinem Namen benutzen. Die Anwendung wird jede Aktion ausführen können, die in der unten stehenden Liste erlaubt wird. Lasse nur Anwendungen zu, denen du eine Verwendung dieser Berechtigungen zutraust.',
 	'mwoauth-form-existing' => "'''Diese Anwendung fordert Berechtigungen für MediaWiki auf deinen Namen an, du hast jedoch bereits Zugriff gewährt:'''
 *  Berechtigungen: $1
@@ -976,6 +976,7 @@ Note that if you authorised a consumer to only have access to a subset of wikis 
 	'mwoauth-invalid-authorization-invalid-user' => "The authorisation headers in your request are for a user that doesn't exist here",
 	'mwoauth-invalid-authorization-wrong-user' => 'The authorisation headers in your request are for a different user',
 	'mwoauth-invalid-authorization-not-approved' => 'The authorisation headers in your request are for an OAuth consumer that is not currently approved',
+	'mwoauth-invalid-authorization-blocked-user' => 'The authorisation headers in your request are for a user who is blocked',
 	'mwoauth-form-existing' => "'''This application is requesting authorisation to MediaWiki on your behalf, but you have already granted access:'''
 *  Grants: $1
 *  Wiki: $2
@@ -1668,6 +1669,7 @@ Nota que si tu ha autorisate un consumitor a haber accesso solmente a un parte d
  * @author Shirayuki
  */
 $messages['ja'] = array(
+	'mwoauth' => 'OAuth',
 	'mwoauth-desc' => 'OAuth 1.0a API 認証',
 	'mwoauth-missing-field' => '「$1」フィールドの値がありません',
 	'mwoauth-invalid-field' => '「$1」フィールドに指定した値は無効です',
@@ -1803,6 +1805,7 @@ $messages['ja'] = array(
  * @author Robby
  */
 $messages['lb'] = array(
+	'mwoauth-desc' => 'OAuth 1.0a API Autorisatioun',
 	'mwoauth-missing-field' => 'De Wäert fir d\'Feld "$1" feelt',
 	'mwoauth-field-hidden' => '(dës Informatioun ass verstoppt)',
 	'mwoauth-field-private' => '(dës Informatioun ass privat)',
@@ -1860,7 +1863,7 @@ $messages['mk'] = array(
 	'mwoauth-prefs-managegrantslink' => 'раководи со права во име на оваа сметка',
 	'mwoauth-consumer-key' => 'Потрошувачки клуч:',
 	'mwoauth-consumer-name' => 'Назив на прилогот:',
-	'mwoauth-consumer-version' => 'Главна верзија:',
+	'mwoauth-consumer-version' => 'Потрошувачка верзија:',
 	'mwoauth-consumer-user' => 'Издавач:',
 	'mwoauth-consumer-stage' => 'Тековен статус:',
 	'mwoauth-consumer-email' => 'Е-пошта за контакт:',
@@ -1876,6 +1879,7 @@ $messages['mk'] = array(
 	'mwoauth-consumer-accesstoken' => 'Пристапна шифра:',
 	'mwoauth-consumer-reason' => 'Причина:',
 	'mwoauth-consumer-alreadyexists' => 'Веќе постои потрошувач со ваква комбинација од име/верзија/издавач',
+	'mwoauth-consumer-alreadyexistsversion' => 'Веќе постои потрошувач со оваа комбинација на име/издавач со еднаква или повисока верзија („$1“)',
 	'mwoauth-consumer-not-accepted' => 'Не можам да ги изменам информациите за потрошувачко барање во исчекување',
 	'mwoauth-consumer-not-proposed' => 'Потрошувачот во моментов не е предложен',
 	'mwoauth-consumer-not-disabled' => 'Потрошувачот во моментов не е оневозможен',
@@ -1890,6 +1894,7 @@ $messages['mk'] = array(
 	'mwoauth-consumer-stage-disabled' => 'оневозможен',
 	'mwoauth-consumer-stage-suppressed' => 'притаен',
 	'mwoauthconsumerregistration' => 'Регистрација на потрошувач на OAuth',
+	'mwoauthconsumerregistration-notloggedin' => 'Треба да сте најавени за да ја отворите страницата.',
 	'mwoauthconsumerregistration-navigation' => 'Навигација:',
 	'mwoauthconsumerregistration-propose' => 'Предложи нов потрошувач',
 	'mwoauthconsumerregistration-list' => 'Список на мои потрошувачи',
@@ -1898,6 +1903,7 @@ $messages['mk'] = array(
 
 Неколку препораки и напомении:
 * Доделувајте што помалку одобренија. Одбегнувајте ги оние што не се потребни во моментов.
+* Верзиите се од обликот „главно.споредно.издание“ (последните две се незадолжителни) и зголемете и се зголемуваат со потребата за измени во доделувањата.
 * По можност, внесете RSA-клуч; во спротивно (помалку безбедно) ќе ви зададеме таен клуч.
 * Користете ги полињата за ограничувања од JSON за да го ограничите пристапот на потрошувачот на IP-адресите во тие CIDR-опсези.
 * Можете да го ограничите потрошувачот на само едно вики на ова мрежно место, внесувајќи ја назнаката на викито („*“ за сите викија).
@@ -1928,6 +1934,7 @@ $messages['mk'] = array(
 	'mwoauthconsumerregistration-updated' => 'Вашиот потрошувачки регистар na OAuth е успешно изменет.',
 	'mwoauthconsumerregistration-secretreset' => "Вашата тајна потрошувачка шифра гласи '''$1'''. ''Зачувајте ја бидејќи може да ви затреба во иднина.''",
 	'mwoauthmanageconsumers' => 'Раководење со потрошувачи на OAuth',
+	'mwoauthmanageconsumers-notloggedin' => 'Треба да сте најавени за да ја отворите страницата.',
 	'mwoauthmanageconsumers-type' => 'Редици:',
 	'mwoauthmanageconsumers-showproposed' => 'Предложени барања',
 	'mwoauthmanageconsumers-showrejected' => 'Одбиени барања',
@@ -1970,6 +1977,7 @@ $messages['mk'] = array(
 	'mwoauthmanageconsumers-success-disabled' => 'Потрошувачот е оневозможен.',
 	'mwoauthmanageconsumers-success-reanable' => 'Потрошувачот е преовозможен.',
 	'mwoauthmanagemygrants' => 'Раководење со доделувања на OAuth на сметки',
+	'mwoauthmanagemygrants-notloggedin' => 'Треба да сте најавени за да ја отворите страницата.',
 	'mwoauthmanagemygrants-navigation' => 'Навигација:',
 	'mwoauthmanagemygrants-showlist' => 'Список на прифатени потрошувачи',
 	'mwoauthmanagemygrants-none' => 'Нема потрошувачи со пристап во име на вашата сметка.',
@@ -2034,6 +2042,8 @@ $messages['mk'] = array(
 	'mwoauth-authorize-form-description' => 'Опис на прилогот: $1',
 	'mwoauth-authorize-form-version' => 'Верзиај на прилогот: $1',
 	'mwoauth-authorize-form-wiki' => 'Вики: $1',
+	'mwoauth-authorize-form-invalid-user' => 'Оваа корисничка сметка не може да користи OAuth бидејќи не е поврзана со сметката на OAuth.',
+	'mwoauth-error' => 'Грешка во OAuth',
 	'mwoauth-grants-heading' => 'Побарани дозволи:',
 	'mwoauth-grants-nogrants' => 'Прилогот нема побарано ниедна дозвола.',
 	'mwoauth-grant-blockusers' => 'Блокирање корисници',
@@ -2057,7 +2067,7 @@ $messages['mk'] = array(
 	'mwoauth-grant-viewmywatchlist' => 'Преглед на вашите набљудувања',
 	'mwoauth-callback-not-oob' => 'oauth_callback мора да е поставено на „oob“ (строго со мали букви)',
 	'right-mwoauthproposeconsumer' => 'Предлагање на нови потрошувачи на OAuth',
-	'right-mwoauthupdateconsumer' => 'Измена на потрошувачи на OAuth',
+	'right-mwoauthupdateownconsumer' => 'Измена на потрошувачи на OAuth',
 	'right-mwoauthmanageconsumer' => 'Раководење со потрошувачи на OAuth',
 	'right-mwoauthsuppress' => 'Скривање на потрошувачи на OAuth',
 	'right-mwoauthviewsuppressed' => 'Преглед на скриените потрошувачи на OAuth',
@@ -2066,7 +2076,7 @@ $messages['mk'] = array(
 	'action-mwoauthmanageconsumer' => 'раководење со потрошувачи на OAuth',
 	'action-mwoauthmanagemygrants' => 'раководење со вашите доделувања за OAuth',
 	'action-mwoauthproposeconsumer' => 'предлагање на потрошувачи на OAuth',
-	'action-mwoauthupdateconsumer' => 'измена на потрошувачи на OAuth',
+	'action-mwoauthupdateownconsumer' => 'измена на потрошувачи на OAuth',
 	'action-mwoauthviewsuppressed' => 'преглед на скриени потрошувачи на OAuth',
 );
 
@@ -2315,11 +2325,13 @@ $messages['roa-tara'] = array(
 	'mwoauth-field-private' => "(sta 'mbormazione jè private)",
 	'mwoauth-consumer-key' => "Chiave d'u consumatore:",
 	'mwoauth-consumer-name' => "Nome de l'applicazione:",
-	'mwoauth-consumer-version' => 'Versione prengepàle:',
+	'mwoauth-consumer-version' => "Versione d'u consumatore:",
 	'mwoauth-consumer-user' => 'Pubblecatore:',
 	'mwoauth-consumer-stage' => 'State de mò:',
 	'mwoauth-consumer-email' => 'Indirizze email de condatte:',
 	'mwoauth-consumer-description' => "Descrizione de l'applicazione:",
+	'mwoauth-consumer-wiki' => 'Uicchi applicabbile:',
+	'mwoauth-consumer-restrictions' => 'Ause le restriziune:',
 	'mwoauth-consumer-rsakey' => 'Chiave pubblche RSA:',
 	'mwoauth-consumer-reason' => 'Mutive:',
 	'mwoauth-consumer-stage-proposed' => 'proposte',
@@ -2328,6 +2340,8 @@ $messages['roa-tara'] = array(
 	'mwoauth-consumer-stage-approved' => 'approvate',
 	'mwoauth-consumer-stage-disabled' => 'disabbilitate',
 	'mwoauth-consumer-stage-suppressed' => 'scangellate',
+	'mwoauthconsumerregistration-navigation' => 'Navigazzione:',
+	'mwoauthconsumerregistration-main' => 'Prengepàle',
 	'mwoauthconsumerregistration-user' => 'Pubblecatore',
 	'mwoauthconsumerregistration-description' => 'Descrizione',
 	'mwoauthconsumerregistration-email' => 'Email de condatte',
@@ -2422,9 +2436,16 @@ $messages['tr'] = array(
  * @author Andriykopanytsia
  */
 $messages['uk'] = array(
+	'mwoauth-desc' => 'OAuth 1.0a API авторизація',
+	'mwoauth-missing-field' => 'Відсутнє значення для поля "$1"',
+	'mwoauth-invalid-field' => 'Неприпустиме значення для поля "$1"',
+	'mwoauth-field-hidden' => '(ця інформація прихована)',
+	'mwoauth-field-private' => '(ця інформація є конфіденційною)',
+	'mwoauth-prefs-managegrants' => 'Доступу OAuth споживача:',
+	'mwoauth-prefs-managegrantslink' => 'керувати дозволами від імені цього облікового запису',
 	'mwoauth-consumer-key' => 'Ключ покупця:',
 	'mwoauth-consumer-name' => 'Назва програми:',
-	'mwoauth-consumer-version' => 'Основна версія:', # Fuzzy
+	'mwoauth-consumer-version' => 'Споживча версія:',
 	'mwoauth-consumer-user' => 'Видавець:',
 	'mwoauth-consumer-stage' => 'Поточний статус:',
 	'mwoauth-consumer-email' => 'Контактна адреса електронної пошти:',
@@ -2448,9 +2469,18 @@ $messages['uk'] = array(
 	'mwoauthconsumerregistration-description' => 'Опис',
 	'mwoauthconsumerregistration-stage' => 'Статус',
 	'mwoauthconsumerregistration-lastchange' => 'Остання зміна',
+	'mwoauthmanageconsumers-type' => 'Черги:',
+	'mwoauthmanageconsumers-showproposed' => 'Запропоновані запити',
+	'mwoauthmanageconsumers-showrejected' => 'Відхилені запити',
+	'mwoauthmanageconsumers-showexpired' => 'Застарілі запити',
+	'mwoauthmanageconsumers-main' => 'Головна',
 	'mwoauthmanageconsumers-user' => 'Видавець',
+	'mwoauthmanageconsumers-description' => 'Опис',
+	'mwoauthmanageconsumers-consumerkey' => 'Ключ покупця',
+	'mwoauthmanageconsumers-lastchange' => 'Остання зміна',
 	'mwoauthmanageconsumers-approve' => 'Затверджено',
 	'mwoauthmanageconsumers-reject' => 'Відхилено',
+	'mwoauthmanageconsumers-disable' => 'Вимкнено',
 	'mwoauthmanageconsumers-reenable' => 'Затверджено',
 	'mwoauthmanageconsumers-reason' => 'Причина:',
 	'mwoauthmanagemygrants-navigation' => 'Навігація:',
