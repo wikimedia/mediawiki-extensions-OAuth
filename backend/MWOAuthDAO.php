@@ -111,6 +111,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	 * Set the values for a set of fields
 	 *
 	 * @param array $values (field => value) map
+	 * @throws Exception
 	 * @return array Map of old values
 	 */
 	final public function setFields( array $values ) {
@@ -205,6 +206,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	 *   - table          : a table name
 	 *   - fieldColumnMap : a map of field names to column names
 	 *
+	 * @throws Exception
 	 * @return array
 	 */
 	protected static function getSchema() {
@@ -223,6 +225,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	 * @see MWOAuthDAO::userCanAccess()
 	 * @see MWOAuthDAOAccessControl
 	 *
+	 * @throws Exception
 	 * @return array Map of (field name => name of method that checks access)
 	 */
 	protected static function getFieldPermissionChecks() {
@@ -291,7 +294,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 
 	/**
 	 * @param array $values
-	 * @return void
+	 * @throws Exception
 	 */
 	final protected function loadFromValues( array $values ) {
 		foreach ( static::getFieldColumnMap() as $field => $column ) {

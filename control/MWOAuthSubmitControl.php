@@ -42,6 +42,7 @@ abstract class MWOAuthSubmitControl extends ContextSource {
 	 * This will check basic permissions, validate the action and paramters
 	 * and route the submission handling to the internal subclass function.
 	 *
+	 * @throws MWException
 	 * @return Status
 	 */
 	public function submit() {
@@ -81,7 +82,6 @@ abstract class MWOAuthSubmitControl extends ContextSource {
 	/**
 	 * Check action-independent permissions against the user for this submission
 	 *
-	 * @param string $action
 	 * @return Status
 	 */
 	abstract protected function checkBasePermissions();

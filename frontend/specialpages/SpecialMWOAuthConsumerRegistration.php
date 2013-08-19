@@ -38,7 +38,6 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		global $wgMWOAuthSecureTokenTransfer;
 
 		$user = $this->getUser();
-		$request = $this->getRequest();
 		$lang = $this->getLanguage();
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
 

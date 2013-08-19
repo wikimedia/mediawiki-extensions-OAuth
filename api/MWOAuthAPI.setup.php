@@ -76,9 +76,9 @@ class MWOAuthAPISetup {
 	 *
 	 * We need to validate the OAuth credentials, and tag this user object.
 	 *
-	 * @throws UsageException
 	 * @param User $user
 	 * @param boolean|null &$result Set to a boolean to skip the normal loading
+	 * @throws MWException
 	 * @return boolean
 	 */
 	public static function onUserLoadFromSession( User $user, &$result ) {

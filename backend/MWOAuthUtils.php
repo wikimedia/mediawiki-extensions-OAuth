@@ -238,6 +238,7 @@ class MWOAuthUtils {
 	 *
 	 * @param integer $userId
 	 * @param bool|User $audience show hidden names based on this user, or false for public
+	 * @throws MWException
 	 * @return string|bool User name, false if not found, empty string if name is hidden
 	 */
 	public static function getCentralUserNameFromId( $userId, $audience = false ) {
@@ -277,6 +278,7 @@ class MWOAuthUtils {
 	 * Given a central wiki user ID, get a local User object
 	 *
 	 * @param integer $userId
+	 * @throws MWException
 	 * @return User|bool User or false if not found
 	 */
 	public static function getLocalUserFromCentralId( $userId ) {
@@ -306,6 +308,7 @@ class MWOAuthUtils {
 	 * Given a local User object, get the user ID for that user on the central wiki
 	 *
 	 * @param User $user
+	 * @throws MWException
 	 * @return integer|bool ID or false if not found
 	 */
 	public static function getCentralIdFromLocalUser( User $user ) {

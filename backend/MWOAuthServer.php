@@ -84,6 +84,7 @@ class MWOAuthServer extends OAuthServer {
 	 *
 	 * @param MWOAuthConsumer $consumer
 	 * @param MWOAuthRequest $request
+	 * @return bool
 	 */
 	private function checkSourceIP( $consumer, $request ) {
 		$restrictions = $consumer->get( 'restrictions' );
@@ -198,7 +199,7 @@ class MWOAuthServer extends OAuthServer {
 	 * consumer.
 	 * @param User $mwUser (local wiki user) User who may or may not have authorizations
 	 * @param MWOAuthConsumer $consumer
-	 * @param integer $flags MWOAuthConsumerAcceptance::READ_* bitfield
+	 * @throws MWOAuthException
 	 * @return MWOAuthConsumerAcceptance
 	 */
 	public function getCurrentAuthorization( User $mwUser, $consumer ) {

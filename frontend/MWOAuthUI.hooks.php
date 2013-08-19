@@ -3,7 +3,7 @@
  * Class containing GUI even handler functions for an OAuth environment
  */
 class MWOAuthUIHooks {
-	public static function onGetPreferences(  $user, &$preferences ) {
+	public static function onGetPreferences( $user, &$preferences ) {
 		$prefInsert = array( 'mwoauth-prefs-managegrants' =>
 			array(
 				'section' => 'personal/info',

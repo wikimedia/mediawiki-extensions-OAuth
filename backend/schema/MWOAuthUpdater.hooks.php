@@ -17,7 +17,7 @@ class MWOAuthUpdaterHooks {
 
 			$updater->addExtensionTable( 'oauth_registered_consumer', "$base/OAuth.sql" );
 		} elseif ( $updater->getDB()->getType() == 'postgres' ) {
-			$base = "$base/postgres";
+			//$base = "$base/postgres";
 
 			// @TODO
 		}

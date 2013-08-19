@@ -40,7 +40,6 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 
 	public function execute( $par ) {
 		$user = $this->getUser();
-		$request = $this->getRequest();
 
 		$this->setHeaders();
 		$this->getOutput()->disallowUserJs();
@@ -199,7 +198,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	 * Show the form to approve/reject/disable/re-enable consumers
 	 *
 	 * @param string $consumerKey
-	 * @return void
+	 * @throws PermissionsError
 	 */
 	protected function handleConsumerForm( $consumerKey ) {
 		global $wgMemc;
@@ -379,9 +378,6 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 
 	/**
 	 * Show a paged list of consumers with links to details
-	 *
-	 * @param string $consumerKey
-	 * @return void
 	 */
 	protected function showConsumerList() {
 		$pager = new MWOAuthManageConsumersPager( $this, array(), $this->stage );

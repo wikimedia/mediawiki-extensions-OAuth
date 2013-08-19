@@ -142,7 +142,6 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 
 	private function showAuthorizeForm( $params ) {
 		$out = $this->getOutput();
-		$user = $this->getUser();
 
 		$out->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
 		if ( !$params['existing'] ) {
@@ -203,6 +202,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 
 	/**
 	 * @param Array $grants list of grants (null is also allowed for no permissions)
+	 * @return string
 	 */
 	private function getGrantsHtml( $grants ) {
 		// TODO: dom / styling
@@ -252,7 +252,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param array $response values to give back to the client
+	 * @param OAuthToken $token
 	 * @param string $format the format of the response: json, xml, or html
 	 */
 	private function returnToken( OAuthToken $token, $format  ) {

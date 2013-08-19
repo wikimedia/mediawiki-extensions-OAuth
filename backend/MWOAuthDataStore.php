@@ -31,6 +31,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @param OAuthConsumer|MWOAuthConsumer $consumer
 	 * @param $token_type
 	 * @param $token String the token
+	 * @throws MWOAuthException
 	 * @return MWOAuthToken
 	 */
 	public function lookup_token( $consumer, $token_type, $token ) {
@@ -99,6 +100,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * Generate a new token (attached to this consumer), save it in the cache, and return it
 	 *
 	 * @param MWOAuthConsumer|OAuthConsumer $consumer
+	 * @param null $callback
 	 * @return MWOAuthToken
 	 */
 	public function new_request_token( $consumer, $callback = null ) {
@@ -117,6 +119,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @param MWOAuthToken $token the request token that started this
 	 * @param OAuthConsumer $consumer
 	 * @param $verifier
+	 * @throws MWOAuthException
 	 * @return MWOAuthToken the access token
 	 */
 	public function new_access_token( $token, $consumer, $verifier = null ) {

@@ -37,7 +37,6 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 
 	public function execute( $par ) {
 		$user = $this->getUser();
-		$request = $this->getRequest();
 
 		$this->setHeaders();
 		$this->getOutput()->disallowUserJs();
@@ -97,7 +96,7 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 	 * Show the form to approve/reject/disable/re-enable consumers
 	 *
 	 * @param string $acceptanceId
-	 * @return void
+	 * @throws PermissionsError
 	 */
 	protected function handleConsumerForm( $acceptanceId ) {
 		$user = $this->getUser();
@@ -250,7 +249,6 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 		$cmra = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumerAcceptance::newFromRow( $db, $row ), $this->getContext() );
 
-		$cmrKey = $cmr->get( 'consumerKey' );
 		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
 
 		$link = Linker::linkKnown(

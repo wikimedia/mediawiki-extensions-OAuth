@@ -39,6 +39,7 @@ class MWOAuthDAOAccessControl extends ContextSource {
 	/**
 	 * @param MWOAuthDAO $dao
 	 * @param RequestContext $context
+	 * @throws Exception
 	 * @return MWOAuthDAOAccessControl
 	 */
 	final public static function wrap( $dao, RequestContext $context ) {
