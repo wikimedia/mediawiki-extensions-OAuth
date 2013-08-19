@@ -47,7 +47,7 @@ class OAuthTestUtils {
 
 		if( $method == 'POST' ) {
 			$_SERVER['HTTP_CONTENT_TYPE'] = 'application/x-www-form-urlencoded';
-			$_POST = parse_str($post_data);
+			parse_str($post_data, $_POST);
 			OAuthRequest::$POST_INPUT = 'data:application/x-www-form-urlencoded,'.$post_data;
 		}
 
