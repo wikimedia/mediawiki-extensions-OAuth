@@ -1002,7 +1002,7 @@ $messages['fr'] = array(
 	'mwoauth-prefs-managegrantslink' => 'gérer les droits au nom de ce compte',
 	'mwoauth-consumer-key' => 'Clé du consommateur :',
 	'mwoauth-consumer-name' => "Nom de l'application :",
-	'mwoauth-consumer-version' => 'Version majeure :', # Fuzzy
+	'mwoauth-consumer-version' => 'Version du consommateur :',
 	'mwoauth-consumer-user' => 'Éditeur :',
 	'mwoauth-consumer-stage' => 'Statut actuel :',
 	'mwoauth-consumer-email' => 'Adresse de courriel de contact :',
@@ -1018,6 +1018,7 @@ $messages['fr'] = array(
 	'mwoauth-consumer-accesstoken' => 'Jeton d’accès :',
 	'mwoauth-consumer-reason' => 'Motif :',
 	'mwoauth-consumer-alreadyexists' => 'Un consommateur avec cette combinaison de nom/version/éditeur existe déjà',
+	'mwoauth-consumer-alreadyexistsversion' => 'Un consommateur avec cette combinaison de nom/éditeur existe déjà avec une version égale ou supérieure ("$1")',
 	'mwoauth-consumer-not-accepted' => 'Impossible de mettre à jour les informations pour une demande de consommateur en cours',
 	'mwoauth-consumer-not-proposed' => 'Le consommateur n’est actuellement pas proposé',
 	'mwoauth-consumer-not-disabled' => 'Le consommateur n’est pas désactivé pour le moment',
@@ -1041,10 +1042,11 @@ $messages['fr'] = array(
 
 Quelques recommandations et remarques :
 * Essayez d’utiliser le moins de droits possibles. Évitez les droits qui ne sont pas vraiment nécessaires pour le moment.
+* Les versions sont de la forme « majeure.mineure.révision » (les deux derniers étant facultatifs) et augmentent quand des modifications de droit sont nécessaires.
 * Veuillez fournir une clé RSA si possible ; sinon, un jeton secret (moins sécurisé) vous sera assigné.
 * Utilisez le champ limitations JSON pour limiter l’accès de ce consommateur aux adresses IP dans ces plages de CIDR.
 * Vous pouvez utiliser un ID de wiki pour limiter ce consommateur à un unique wiki de ce site (utilisez "*" pour tous les wikis).
-* L’adresse de courriel fournie doit correspondre à celle de votre compte (qui doit avoir été confirmée).', # Fuzzy
+* L’adresse de courriel fournie doit correspondre à celle de votre compte (qui doit avoir été confirmée).',
 	'mwoauthconsumerregistration-update-text' => 'Utilisez le formulaire ci-dessous pour mettre à jour les aspects d’un consommateur OAuth que vous contrôlez.
 
 Toutes les valeurs ici écraseront les précédentes. Ne laissez aucun champ blanc sauf si vous désirez vraiment effacer ces valeurs.',
@@ -1165,6 +1167,7 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauth-invalid-authorization-invalid-user' => 'Les entêtes d’autorisation dans votre requête concernent un utilisateur qui n’existe pas ici',
 	'mwoauth-invalid-authorization-wrong-user' => 'Les entêtes d’autorisation dans votre requête concernent un autre utilisateur',
 	'mwoauth-invalid-authorization-not-approved' => 'Les entêtes d’autorisation dans votre requête concernent un consommateur OAuth qui n’est pas approuvé pour le moment',
+	'mwoauth-invalid-authorization-blocked-user' => 'Les entêtes d’autorisation dans votre requête concernent un utilisateur qui est bloqué',
 	'mwoauth-form-description' => 'L’application suivante demande à utiliser MediaWiki de votre part. L’application pourra effectuer n’importe quelle action autorisée dans la liste des droits ci-dessous, si besoin. N’autorisez que les applications auxquelles vous faites confiance à utiliser ces droits comme vous le feriez.',
 	'mwoauth-form-existing' => "'''Cette application demande une autorisation d'accès à MediaWiki en votre nom, mais vous avez déjà accordé cet accès :'''
 * Droits : $1
@@ -2446,6 +2449,7 @@ $messages['uk'] = array(
 	'mwoauth-invalid-field' => 'Неприпустиме значення для поля "$1"',
 	'mwoauth-field-hidden' => '(ця інформація прихована)',
 	'mwoauth-field-private' => '(ця інформація є конфіденційною)',
+	'mwoauth-grant-generic' => 'Пучок прав "$1"',
 	'mwoauth-prefs-managegrants' => 'Доступу OAuth споживача:',
 	'mwoauth-prefs-managegrantslink' => 'керувати дозволами від імені цього облікового запису',
 	'mwoauth-consumer-key' => 'Ключ споживача:',
@@ -2486,20 +2490,40 @@ $messages['uk'] = array(
 	'mwoauthconsumerregistration-propose' => 'Запропонувати нового споживача',
 	'mwoauthconsumerregistration-list' => 'Мій список споживачів',
 	'mwoauthconsumerregistration-main' => 'Головна',
+	'mwoauthconsumerregistration-propose-text' => 'Використовуйте форму нижче, щоб запропонувати нового споживача OAuth (див. http://oauth.net).
+
+Кілька рекомендацій і зауважень:
+* Постарайтеся використовувати якомога менше дозволів за можливості. Уникайте дозволів, які насправді не потрібні зараз.
+* Версії мають форму "major.minor.release" (останні дві необов\'язкові) і вони збільшуються, якщо необхідні зміни дозволів.
+* Будь ласка, вкажіть ключ RSA, якщо можливо; в іншому випадку (менш безпечно) таємний маркер повинен використовуватися.
+* Використовуйте обмеження поля JSON  для обмеження доступу споживача до IP-адрес в тих  діапазонах CIDR.
+* Ви можете використовувати ідентифікатор вікі, аби обмежувати споживача в одному вікі-проекті на цьому сайті (використовуйте "*" для всіх вікі).
+* Надана адреса електронної пошти повинна збігатися з вашим обліковим записом (який повинен бути підтвердженим).',
 	'mwoauthconsumerregistration-update-text' => 'Використовуйте форму нижче, щоб оновити аспекти споживача OAuth, які ви контролюєте.
 
 Всі значення тут будуть переписувати будь-які попередні. Не залишайте порожні поля, якщо ви не маєте наміру вилучити ці значення.',
+	'mwoauthconsumerregistration-maintext' => 'Ця сторінка призначена для того, щоб пропонувати і оновлювати програми споживачів OAuth (див. http://oauth.net) у реєстрі цього сайту.
+
+ Звідси ви можете [[Special:MWOAuthConsumerRegistration/propose|пропонувати нових споживачів]] або [[Special:MWOAuthConsumerRegistration/list|управляти наявними споживачами]].',
+	'mwoauthconsumerregistration-propose-legend' => 'Нова програма OAuth споживача',
+	'mwoauthconsumerregistration-update-legend' => 'Оновити програму споживача OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Запропонувати споживача',
 	'mwoauthconsumerregistration-update-submit' => 'Оновити споживача',
 	'mwoauthconsumerregistration-none' => 'Ви не контролюєте жодного споживача OAuth.',
 	'mwoauthconsumerregistration-name' => 'Споживач',
 	'mwoauthconsumerregistration-user' => 'Видавець',
 	'mwoauthconsumerregistration-description' => 'Опис',
+	'mwoauthconsumerregistration-email' => 'Адреса ел. пошти',
 	'mwoauthconsumerregistration-consumerkey' => 'Ключ споживача',
 	'mwoauthconsumerregistration-stage' => 'Статус',
 	'mwoauthconsumerregistration-lastchange' => 'Остання зміна',
 	'mwoauthconsumerregistration-manage' => 'керування',
 	'mwoauthconsumerregistration-resetsecretkey' => 'Очистити секретний ключ до нового значення',
+	'mwoauthconsumerregistration-proposed' => "Ваш запит споживача OAuth був отриманий.
+
+Вам призначений маркер споживача ''\$1''' і таємний маркер '''\$2'''. \"Будь ласка, запишіть їх для використання в майбутньому.\"",
+	'mwoauthconsumerregistration-updated' => 'Ваш реєстр споживача OAuth успішно оновлено.',
+	'mwoauthconsumerregistration-secretreset' => "Вам призначений секретний маркер споживача '''$1'''. „Будь ласка, запишіть це на майбутнє“.",
 	'mwoauthmanageconsumers' => 'Управління споживачами OAuth',
 	'mwoauthmanageconsumers-notloggedin' => 'Ви повинні увійти в систему для доступу до цієї сторінки.',
 	'mwoauthmanageconsumers-type' => 'Черги:',
@@ -2518,6 +2542,8 @@ $messages['uk'] = array(
 	'mwoauthmanageconsumers-none-proposed' => 'Немає запропонованих споживачів в цьому списку.',
 	'mwoauthmanageconsumers-none-rejected' => 'Немає запропонованих споживачів в цьому списку.',
 	'mwoauthmanageconsumers-none-expired' => 'Немає запропонованих споживачів в цьому списку.',
+	'mwoauthmanageconsumers-none-approved' => 'Жодний споживач не відповідає цьому критерію.',
+	'mwoauthmanageconsumers-none-disabled' => 'Жодний споживач не відповідає цьому критерію.',
 	'mwoauthmanageconsumers-name' => 'Споживач',
 	'mwoauthmanageconsumers-user' => 'Видавець',
 	'mwoauthmanageconsumers-description' => 'Опис',
@@ -2530,7 +2556,9 @@ $messages['uk'] = array(
 	'mwoauthmanageconsumers-action' => 'Змінити статус:',
 	'mwoauthmanageconsumers-approve' => 'Затверджено',
 	'mwoauthmanageconsumers-reject' => 'Відхилено',
+	'mwoauthmanageconsumers-rsuppress' => 'Відхилено і пригнічено',
 	'mwoauthmanageconsumers-disable' => 'Вимкнено',
+	'mwoauthmanageconsumers-dsuppress' => 'Вимкнено і пригнічено',
 	'mwoauthmanageconsumers-reenable' => 'Затверджено',
 	'mwoauthmanageconsumers-reason' => 'Причина:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Оновити статус споживача',
@@ -2539,6 +2567,7 @@ $messages['uk'] = array(
 	'mwoauthmanageconsumers-success-rejected' => 'Запит був відхилений.',
 	'mwoauthmanageconsumers-success-disabled' => 'Споживач вже вимкнений.',
 	'mwoauthmanageconsumers-success-reanable' => 'Споживач вже повторно увімкнений.',
+	'mwoauthmanagemygrants' => 'Управління ґрантами облікового запису OAuth',
 	'mwoauthmanagemygrants-notloggedin' => 'Ви повинні увійти в систему для доступу до цієї сторінки.',
 	'mwoauthmanagemygrants-navigation' => 'Навігація:',
 	'mwoauthmanagemygrants-showlist' => 'Список прийнятих споживачів',
@@ -2546,31 +2575,74 @@ $messages['uk'] = array(
 	'mwoauthmanagemygrants-name' => "Ім'я споживача",
 	'mwoauthmanagemygrants-user' => 'Видавець',
 	'mwoauthmanagemygrants-description' => 'Опис',
+	'mwoauthmanagemygrants-wiki' => 'Застосовні вікі',
+	'mwoauthmanagemygrants-wikiallowed' => 'Дозволено на вікі',
+	'mwoauthmanagemygrants-grants' => 'Застосовні ґранти',
+	'mwoauthmanagemygrants-grantsallowed' => 'Ґранти, які дозволили',
+	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Застосовні гранти дозволено:',
 	'mwoauthmanagemygrants-consumerkey' => 'Ключ споживача',
+	'mwoauthmanagemygrants-review' => 'огляд/управління доступом',
+	'mwoauthmanagemygrants-grantaccept' => 'Надано до споживача',
+	'mwoauthmanagemygrants-confirm-text' => 'Використовуйте форму нижче, аби скасувати доступ або змінити гранти для споживача  OAuth, який діє від вашого імені.
+
+Зауважте, що, якщо ви надали споживачеві доступ тільки до підмножини вікі (проектів сайту), то буде кілька маркерів доступу для цього споживача.',
+	'mwoauthmanagemygrants-confirm-legend' => 'Управління маркером доступу споживача',
+	'mwoauthmanagemygrants-update' => 'Оновити ґранти маркера доступу',
+	'mwoauthmanagemygrants-renounce' => 'Скасувати авторизацію та вилучити маркер доступу',
 	'mwoauthmanagemygrants-action' => 'Змінити статус:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Оновити стан маркера доступу',
 	'mwoauthmanagemygrants-success-update' => 'Вже оновлено маркер доступу для цього споживача.',
 	'mwoauthmanagemygrants-success-renounce' => 'Маркер доступу для цього споживача вже видалено.',
+	'logentry-mwoauthconsumer-propose' => '$1 {{GENDER:$2|запропонував|запропонувала}} споживача OAuth (ключ споживача $4)',
+	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|оновив|оновила}} споживача OAuth (ключ споживача $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 {{GENDER:$2|схвалив|схвалила}} споживача OAuth на $3 (ключ споживача $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 {{GENDER:$2|відхилив|відхилила}} споживача OAuth на $3 (ключ споживача $4)',
+	'logentry-mwoauthconsumer-disable' => '$1 {{GENDER:$2|вимкнув|вимкнула}} споживача OAuth на $3 (ключ споживача $4)',
+	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|повторно увімкнув|повторно увімкнула}} споживача OAuth на $3 (ключ споживача $4)',
+	'mwoauthconsumer-consumer-logpage' => 'Журнал споживача OAuth',
+	'mwoauthconsumer-consumer-logpagetext' => 'Журнал затвердження, відхилення і вимкнення зареєстрованих споживачів OAuth.',
+	'mwoauth-bad-csrf-token' => 'Помилка сесії при відправці форми. Будь ласка, спробуйте ваші підтвердження ще раз.',
 	'mwoauth-bad-request' => 'Помилка у вашому запиті на OAuth.',
+	'mwoauthdatastore-access-token-not-found' => 'Не знайдено схваленого ґранту для цього маркера авторизації.',
+	'mwoauthdatastore-request-token-not-found' => 'Не знайдено запиту для цього маркера.',
+	'mwoauthdatastore-bad-token' => 'Не знайдено маркера, відповідного вашому запиту.',
+	'mwoauthdatastore-bad-verifier' => 'Наданий код підтвердження недійсний.',
 	'mwoauthdatastore-invalid-token-type' => 'Неприпустимий маркер запитаного типу.',
 	'mwoauthgrants-general-error' => 'Помилка у вашому запиті на OAuth.',
+	'mwoauthserver-bad-consumer' => 'Не знайдено затвердженого споживача для наданого ключа.',
 	'mwoauthserver-insufficient-rights' => 'У вас не вистачає прав для виконання цієї дії.',
 	'mwoauthserver-invalid-request-token' => 'Неприпустимий маркер у вашому запиті.',
 	'mwoauthserver-invalid-user-hookabort' => 'Цей користувач не може використовувати OAuth.',
 	'mwoauth-invalid-authorization-title' => 'Помилка авторизації OAuth',
+	'mwoauth-invalid-authorization' => 'Неприпустимі заголовки авторизації у вашому запиті:$1',
+	'mwoauth-invalid-authorization-wrong-wiki' => 'Неприпустимі заголовки авторизації у вашому запиті для $1',
+	'mwoauth-invalid-authorization-invalid-user' => 'Не існують заголовки авторизації у вашому запиті для користувача',
+	'mwoauth-invalid-authorization-wrong-user' => 'Заголовки авторизації у вашому запиті призначені для іншого користувача',
+	'mwoauth-invalid-authorization-not-approved' => 'Заголовки авторизації у вашому запитів призначені для ще незатвердженого споживача OAuth',
+	'mwoauth-invalid-authorization-blocked-user' => 'Заголовки авторизації у вашому запитів призначені для заблокованого користувача',
+	'mwoauth-form-description' => 'Нижченаведений застосунок вимагає використовувати Медіавікі від вашого імені. Додаток матиме можливість виконувати будь-які дії, які дозволено зі списком нижче запрошених прав. Дозволяються лише застосунки, які використовують ці дозволи, що й ви.',
+	'mwoauth-form-existing' => '"Ця програма запитує дозвіл на Медіавікі від вашого імені, але ви вже надали доступ:"\'
+* Гранти: $1
+* Вікі: $2
+* Уповноважені: $3',
 	'mwoauth-form-button-approve' => 'Так, дозволити',
 	'mwoauth-form-confirmation' => 'Дозволити цій програмі діяти від вашого імені?',
+	'mwoauth-form-confirmation-update' => 'Оновити цей дозвіл до запитаних привілегій. Залишіть це відміченим для збереження ваших наявних дозволів',
 	'mwoauth-authorize-form' => 'Інформація про програму:',
 	'mwoauth-authorize-form-user' => 'Автор програми: $1',
 	'mwoauth-authorize-form-name' => 'Назва програми: $1',
 	'mwoauth-authorize-form-description' => 'Опис програми: $1',
 	'mwoauth-authorize-form-version' => 'Версія програми: $1',
 	'mwoauth-authorize-form-wiki' => 'Вікі: $1',
+	'mwoauth-authorize-form-invalid-user' => "Цей обліковий запис користувача не може використовувати OAuth, тому що облікового запису на цій вікі і обліковий запис у вікі OAuth не пов'язані.",
 	'mwoauth-error' => 'Помилка OAuth',
 	'mwoauth-grants-heading' => 'Потрібні дозволи:',
 	'mwoauth-grants-nogrants' => 'Програма не вимагає жодних дозволів.',
 	'mwoauth-grant-blockusers' => 'Блокування користувачів',
 	'mwoauth-grant-createeditmovepage' => 'Створення, редагування і переміщення сторінок',
+	'mwoauth-grant-delete' => 'Видалення сторінок, версій і записів журналу',
+	'mwoauth-grant-editinterface' => 'Редагування простору імен Медіавікі та користувача CSS/JS',
+	'mwoauth-grant-editmycssjs' => 'Редагування власного користувацького CSS/JS',
 	'mwoauth-grant-editmywatchlist' => 'Редагувати список спостереження',
 	'mwoauth-grant-editpage' => 'Редагувати наявні сторінки',
 	'mwoauth-grant-editprotected' => 'Редагувати захищені сторінки',
@@ -2585,14 +2657,19 @@ $messages['uk'] = array(
 	'mwoauth-grant-useoauth' => 'Основні права',
 	'mwoauth-grant-viewdeleted' => 'Перегляд видаленої інформації',
 	'mwoauth-grant-viewmywatchlist' => 'Перегляд списку спостереження',
+	'mwoauth-callback-not-oob' => 'oauth_callback мусить бути заданим і слід задати "oob" (з урахуванням регістру)',
 	'right-mwoauthproposeconsumer' => 'Запропонувати нових споживачів OAuth',
 	'right-mwoauthupdateownconsumer' => 'Оновлення споживачів OAuth, яких ви контролюєте',
+	'right-mwoauthmanageconsumer' => 'Управління споживачами OAuth',
+	'right-mwoauthsuppress' => 'Придушити споживачів OAuth',
+	'right-mwoauthviewsuppressed' => 'Перегляд пригнічених споживачів OAuth',
 	'right-mwoauthviewprivate' => 'Переглянути приватні дані OAuth',
 	'right-mwoauthmanagemygrants' => 'Керувати грантами OAuth',
 	'action-mwoauthmanageconsumer' => 'управляти споживачами OAuth',
 	'action-mwoauthmanagemygrants' => 'управляти вашими ґрантами OAuth',
 	'action-mwoauthproposeconsumer' => 'пропонувати нових споживачів OAuth',
 	'action-mwoauthupdateownconsumer' => 'оновити споживачів OAuth, яких ви контролюєте',
+	'action-mwoauthviewsuppressed' => 'переглянути пригнічених споживачів OAuth',
 );
 
 /** Yiddish (ייִדיש)
