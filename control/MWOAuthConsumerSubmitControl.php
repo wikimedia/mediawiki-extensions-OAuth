@@ -128,10 +128,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			if ( !$user->isAllowed( 'mwoauthproposeconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			} elseif ( !$user->isEmailConfirmed() ) {
-				return $this->failure( 'email_not_confirmed', 'mwoauth-email-not-confirmed' );
+				return $this->failure( 'email_not_confirmed', 'mwoauth-consumer-email-unconfirmed' );
 			} elseif ( $user->getEmail() !== $this->vals['email'] ) {
 				// @TODO: allow any email and don't set emailAuthenticated below
-				return $this->failure( 'email_mismatched', 'mwoauth-email-email_mismatched' );
+				return $this->failure( 'email_mismatched', 'mwoauth-consumer-email-mismatched' );
 			}
 
 			if ( MWOAuthConsumer::newFromNameVersionUser(

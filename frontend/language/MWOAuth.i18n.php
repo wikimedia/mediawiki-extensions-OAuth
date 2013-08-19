@@ -39,6 +39,8 @@ $messages['en'] = array(
 	'mwoauth-consumer-secretkey' => 'Consumer secret token:',
 	'mwoauth-consumer-accesstoken' => 'Access token:',
 	'mwoauth-consumer-reason' => 'Reason:',
+	'mwoauth-consumer-email-unconfirmed' => 'Your account email address has not yet been confirmed.',
+	'mwoauth-consumer-email-mismatched' => 'Provided email address must match that of your account.',
 	'mwoauth-consumer-alreadyexists' => 'A consumer with this name/version/publisher combination already exists',
 	'mwoauth-consumer-alreadyexistsversion' => 'A consumer with this name/publisher combination already exists with an equal or higher version ("$1")',
 	'mwoauth-consumer-not-accepted' => 'Cannot update information for a pending consumer request',
@@ -351,6 +353,8 @@ Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hi
 	'mwoauth-consumer-accesstoken' => 'Unused at this time.',
 	'mwoauth-consumer-reason' => 'Used as label for the "Reason" value.
 {{Identical|Reason}}',
+	'mwoauth-consumer-email-unconfirmed' => 'Used as failure message.',
+	'mwoauth-consumer-email-mismatched' => 'Used as failure message.',
 	'mwoauth-consumer-alreadyexists' => 'Used as failure message.',
 	'mwoauth-consumer-alreadyexistsversion' => 'Used as failure message. Parameters:
 * $1 - current consumer version number',
