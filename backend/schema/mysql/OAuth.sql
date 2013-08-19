@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_registered_consumer (
     oarc_email_authenticated varbinary(14) NULL,
     -- What wiki this is allowed on (a single wiki or '*' for all)
     oarc_wiki varbinary(32) NOT NULL,
-	-- Grants needed for client consumers
-	oarc_grants blob NOT NULL,
+    -- Grants needed for client consumers
+    arc_grants blob NOT NULL,
     -- Timestamp of consumer proposal
     oarc_registration varbinary(14) NOT NULL,
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_registered_consumer (
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/oarc_consumer_key
-	ON /*_*/oauth_registered_consumer (oarc_consumer_key);
+    ON /*_*/oauth_registered_consumer (oarc_consumer_key);
 CREATE UNIQUE INDEX /*i*/oarc_name_version_user
     ON /*_*/oauth_registered_consumer (oarc_name,oarc_user_id,oarc_version);
 CREATE INDEX /*i*/oarc_user_id ON /*_*/oauth_registered_consumer (oarc_user_id);
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_accepted_consumer (
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/oaac_access_token
-	ON /*_*/oauth_accepted_consumer (oaac_access_token);
+    ON /*_*/oauth_accepted_consumer (oaac_access_token);
 CREATE UNIQUE INDEX /*i*/oaac_user_consumer_wiki
     ON /*_*/oauth_accepted_consumer (oaac_user_id,oaac_consumer_id,oaac_wiki);
 CREATE INDEX /*i*/oaac_consumer_user
