@@ -18,6 +18,7 @@ To complete the process, provide this verification value to the application: \'\
 
 	'mwoauth-missing-field' => 'Missing value for "$1" field',
 	'mwoauth-invalid-field' => 'Invalid value provided for "$1" field',
+	'mwoauth-invalid-field-generic' => 'Invalid value provided',
 
 	'mwoauth-field-hidden' => '(this information is hidden)',
 	'mwoauth-field-private' => '(this information is private)',
@@ -273,6 +274,7 @@ $messages['qqq'] = array(
 	'mwoauth-verified' => 'Displayed to the user when the consumer does not have a callback URL, to provide the verification token that the consumer needs to complete the authorization process. Parameters:
 * $1 - Verificiation token
 * $2 - Request token (the app should already have this)',
+	'mwoauth-invalid-field-generic' => 'Used as error message',
 	'mwoauth-missing-field' => 'Parameters:
 * $1 - field name
 See also:

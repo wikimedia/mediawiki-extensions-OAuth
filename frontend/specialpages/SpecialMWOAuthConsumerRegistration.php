@@ -73,8 +73,10 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				throw new PermissionsError( 'mwoauthproposeconsumer' );
 			}
 
+			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
+			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), array(), $dbw );
 			$form = new HTMLForm(
-				array(
+				$control->registerValidators( array(
 					'name' => array(
 						'type' => 'text',
 						'label-message' => 'mwoauth-consumer-name',
@@ -130,6 +132,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 								MWOAuthUtils::getRightsByGrant()
 							)
 						),
+						'validation-callback' => null // different format
 					),
 					'restrictions' => array(
 						'type' => 'textarea',
@@ -149,17 +152,18 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 						'type'    => 'hidden',
 						'default' => 'propose'
 					)
-				),
+				) ),
 				$this->getContext()
 			);
-			$form->setSubmitCallback( function( array $data, IContextSource $context ) {
-				$data['grants'] = FormatJSON::encode( // adapt form to controller
-					preg_replace( '/^grant-/', '', $data['grants'] ) );
+			$form->setSubmitCallback(
+				function( array $data, IContextSource $context ) use ( $control ) {
+					$data['grants'] = FormatJSON::encode( // adapt form to controller
+						preg_replace( '/^grant-/', '', $data['grants'] ) );
 
-				$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
-				$controller = new MWOAuthConsumerSubmitControl( $context, $data, $dbw );
-				return $controller->submit();
-			} );
+					$control->setInputParameters( $data );
+					return $control->submit();
+				}
+			);
 			$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-propose-legend' );
 			$form->setSubmitTextMsg( 'mwoauthconsumerregistration-propose-submit' );
 			$form->addPreText(

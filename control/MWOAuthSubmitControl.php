@@ -37,6 +37,13 @@ abstract class MWOAuthSubmitControl extends ContextSource {
 	}
 
 	/**
+	 * @param array $params
+	 */
+	public function setInputParameters( array $params ) {
+		$this->vals = $params;
+	}
+
+	/**
 	 * Attempt to validate and submit this data
 	 *
 	 * This will check basic permissions, validate the action and paramters
@@ -72,8 +79,52 @@ abstract class MWOAuthSubmitControl extends ContextSource {
 	}
 
 	/**
+	 * Given an HTMLForm descriptor array, register the field validation callbacks
+	 *
+	 * @param array $descriptors
+	 * @return array
+	 */
+	public function registerValidators( array $descriptors ) {
+		foreach ( $descriptors as $field => &$description ) {
+			if ( array_key_exists( 'validation-callback', $description ) ) {
+				continue; // already set to something
+			}
+			$control = $this;
+			$description['validation-callback'] =
+				function( $value, $allValues ) use ( $control, $field ) {
+					return $control->validateFieldInternal( $field, $value, $allValues );
+				};
+		}
+		return $descriptors;
+	}
+
+	/**
+	 * This method should not be called outside MWOAuthSubmitControl
+	 *
+	 * @param string $field
+	 * @param string $value
+	 * @param array $allValues
+	 * @return boolean|string
+	 */
+	public function validateFieldInternal( $field, $value, $allValues ) {
+		$validators = $this->getRequiredFields();
+		if ( !isset( $validators[$allValues['action']][$field] ) ) {
+			return true; // nothing to check
+		}
+		$validator = $validators[$allValues['action']][$field];
+		$isValid = is_string( $validator ) // regex
+			? preg_match( $validator, $value )
+			: $validator( $value, $allValues );
+		if ( !$isValid ) {
+			return wfMessage( 'mwoauth-invalid-field-generic' )->text();
+		}
+		return true;
+	}
+
+	/**
 	 * Get the field names and their validation regexes or functions
-	 * (which return a boolean) for each action that this controller handles
+	 * (which return a boolean) for each action that this controller handles.
+	 * When functions are used, they take (field value, field/value map) as params.
 	 *
 	 * @return Array (action => (field name => validation regex or function))
 	 */
@@ -106,7 +157,7 @@ abstract class MWOAuthSubmitControl extends ContextSource {
 			}
 			$valid = is_string( $validator ) // regex
 				? preg_match( $validator, $this->vals[$field] )
-				: $validator( $this->vals[$field] );
+				: $validator( $this->vals[$field], $this->vals );
 			if ( !$valid ) {
 				// @TODO: check for field-specific message first
 				return $this->failure( "invalid_field_$field", 'mwoauth-invalid-field', $field );
