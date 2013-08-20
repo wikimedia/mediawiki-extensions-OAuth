@@ -67,7 +67,7 @@ $messages['en'] = array(
 A few recommendations and remarks:
 * Try to use as few grants as possible. Avoid grants that are not actually needed now.
 * Versions are of the form "major.minor.release" (the last two being optional) and increase as grant changes are needed.
-* Please provide an RSA key if possible; otherwise a (less secure) secret token will have to be used.
+* Please provide a public RSA key (in PEM format) if possible; otherwise a (less secure) secret token will have to be used.
 * Use the JSON restrictions field to limit access of this consumer to IP addresses in those CIDR ranges.
 * You can use a wiki ID to restrict the consumer to a single wiki on this site (use "*" for all wikis).
 * The email address provided must match that of your account (which must have been confirmed).',
