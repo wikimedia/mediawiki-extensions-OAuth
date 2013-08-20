@@ -46,7 +46,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				'version'      => '/^\d{1,3}(\.\d{1,2}){0,2}(-(dev|alpha|beta))?$/',
 				'callbackUrl'  => function( $s ) {
 					return wfParseUrl( $s ) !== null; },
-				'description'  => '/^.*$/',
+				'description'  => '/^.*$/s',
 				'email'        => function( $s ) {
 					return Sanitizer::validateEmail( $s ); },
 				'wiki'         => function( $s ) {
