@@ -39,6 +39,21 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	}
 
 	protected function getRequiredFields() {
+		$validateRsaKey = function( $s ) {
+			if ( trim( $s ) === '' ) {
+				return true;
+			}
+			$key = openssl_pkey_get_public( $s );
+			if ( $key === false ) {
+				return false;
+			}
+			$info = openssl_pkey_get_details( $key );
+			if ( $info['type'] !== OPENSSL_KEYTYPE_RSA ) {
+				return false;
+			}
+			return true;
+		};
+
 		return array(
 			// Proposer (application administrator) actions:
 			'propose'     => array(
@@ -59,7 +74,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					$res = FormatJSON::decode( $s, true );
 					return is_array( $res ) && MWOAuthUtils::restrictionsAreValid( $res );
 				},
-				'rsaKey'       => '/^.*$/' // @TODO: beef up
+				'rsaKey'       => $validateRsaKey,
 			),
 			'update'      => array(
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
@@ -67,7 +82,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					$res = FormatJSON::decode( $s, true );
 					return is_array( $res ) && MWOAuthUtils::restrictionsAreValid( $res );
 				},
-				'rsaKey'       => '/^.*$/', // @TODO: beef up
+				'rsaKey'       => $validateRsaKey,
 				'resetSecret'  => function( $s ) { return is_bool( $s ); },
 				'reason'       => '/^.{0,255}$/',
 				'changeToken'  => '/^[0-9a-f]{40}$/'
