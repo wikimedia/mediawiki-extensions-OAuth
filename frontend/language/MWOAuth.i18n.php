@@ -306,7 +306,7 @@ Defined grants (grant name refers: blockusers, createeditmovepage, ...):
 * {{msg-mw|Mwoauth-grant-viewdeleted}}
 * {{msg-mw|Mwoauth-grant-viewmywatchlist}}',
 	'mwoauth-prefs-managegrants' => 'Used as label in [[Special:Preferences]].',
-	'mwoauth-prefs-managegrantslink' => 'Used in [[Special:Preferences]].
+	'mwoauth-prefs-managegrantslink' => 'Used in [[Special:Preferences]]. See example: [[mw:Special:Preferences]].
 
 Used as text for the link which points to [[Special:MWOAuthManageMyGrants]].
 
@@ -1003,7 +1003,7 @@ $messages['fr'] = array(
 	'mwoauth-field-private' => '(cette information est privée)',
 	'mwoauth-grant-generic' => 'ensemble de droits « $1 »',
 	'mwoauth-prefs-managegrants' => 'Accès du consommateur OAuth :',
-	'mwoauth-prefs-managegrantslink' => 'gérer les droits au nom de ce compte',
+	'mwoauth-prefs-managegrantslink' => 'Gérer les droits au nom de ce compte',
 	'mwoauth-consumer-key' => 'Clé du consommateur :',
 	'mwoauth-consumer-name' => "Nom de l'application :",
 	'mwoauth-consumer-version' => 'Version du consommateur :',
@@ -1808,6 +1808,22 @@ $messages['ja'] = array(
 	'action-mwoauthviewsuppressed' => '秘匿されたOAuthコンシューマーの閲覧',
 );
 
+/** Korean (한국어)
+ * @author 아라
+ */
+$messages['ko'] = array(
+	'mwoauth-desc' => 'OAuth 1.0a API 인증',
+	'mwoauth-consumer-key' => '컨슈머 키:',
+	'mwoauthmanageconsumers-confirm-legend' => 'OAuth 컨슈머 관리',
+	'mwoauthmanageconsumers-action' => '상태 바꾸기:',
+	'mwoauthmanageconsumers-approve' => '승인됨',
+	'mwoauthmanageconsumers-reject' => '거부됨',
+	'mwoauthmanageconsumers-rsuppress' => '거부 및 억제됨',
+	'mwoauthmanageconsumers-disable' => '비활성화됨',
+	'mwoauthmanageconsumers-dsuppress' => '비활성화 및 억제됨',
+	'mwoauthmanageconsumers-reenable' => '승인됨',
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
@@ -1871,7 +1887,7 @@ $messages['mk'] = array(
 	'mwoauth-field-private' => '(оваа информација е приватна)',
 	'mwoauth-grant-generic' => 'Група права „$1“',
 	'mwoauth-prefs-managegrants' => 'Пристап на потрошувач на OAuth:',
-	'mwoauth-prefs-managegrantslink' => 'раководи со права во име на оваа сметка',
+	'mwoauth-prefs-managegrantslink' => 'раководи со права во име на оваа сметка', # Fuzzy
 	'mwoauth-consumer-key' => 'Потрошувачки клуч:',
 	'mwoauth-consumer-name' => 'Назив на прилогот:',
 	'mwoauth-consumer-version' => 'Потрошувачка верзија:',
@@ -2446,6 +2462,7 @@ $messages['tr'] = array(
 
 /** Ukrainian (українська)
  * @author Andriykopanytsia
+ * @author Ата
  */
 $messages['uk'] = array(
 	'mwoauth-desc' => 'OAuth 1.0a API авторизація',
@@ -2455,7 +2472,7 @@ $messages['uk'] = array(
 	'mwoauth-field-private' => '(ця інформація є конфіденційною)',
 	'mwoauth-grant-generic' => 'Пучок прав "$1"',
 	'mwoauth-prefs-managegrants' => 'Доступу OAuth споживача:',
-	'mwoauth-prefs-managegrantslink' => 'керувати дозволами від імені цього облікового запису',
+	'mwoauth-prefs-managegrantslink' => 'Керувати дозволами від імені цього облікового запису',
 	'mwoauth-consumer-key' => 'Ключ споживача:',
 	'mwoauth-consumer-name' => 'Назва програми:',
 	'mwoauth-consumer-version' => 'Споживча версія:',
@@ -2473,6 +2490,8 @@ $messages['uk'] = array(
 	'mwoauth-consumer-secretkey' => 'Секретний маркер споживача:',
 	'mwoauth-consumer-accesstoken' => 'Маркер доступу:',
 	'mwoauth-consumer-reason' => 'Причина:',
+	'mwoauth-consumer-email-unconfirmed' => 'Ваша адреса електронної пошти облікового запису ще не підтверджена.',
+	'mwoauth-consumer-email-mismatched' => 'Вказана адреса електронної пошти повинна відповідати вашому обліковому запису.',
 	'mwoauth-consumer-alreadyexists' => 'Споживач з таким поєднанням імен/версії/видавця вже існує',
 	'mwoauth-consumer-alreadyexistsversion' => 'Споживач з таким поєднанням імені/видавця вже існує з тою самою чи новішою версією  ("$1")',
 	'mwoauth-consumer-not-accepted' => 'Не вдалося оновити відомості для запиту на очікуваного споживача',
