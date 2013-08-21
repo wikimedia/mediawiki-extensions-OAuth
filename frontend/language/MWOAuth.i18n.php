@@ -353,8 +353,8 @@ Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hi
 	'mwoauth-consumer-accesstoken' => 'Unused at this time.',
 	'mwoauth-consumer-reason' => 'Used as label for the "Reason" value.
 {{Identical|Reason}}',
-	'mwoauth-consumer-email-unconfirmed' => 'Used as failure message.',
-	'mwoauth-consumer-email-mismatched' => 'Used as failure message.',
+	'mwoauth-consumer-email-unconfirmed' => 'Used as failure message when taking some action which requires email-confirmation.',
+	'mwoauth-consumer-email-mismatched' => 'Used as failure message when taking some action.',
 	'mwoauth-consumer-alreadyexists' => 'Used as failure message.',
 	'mwoauth-consumer-alreadyexistsversion' => 'Used as failure message. Parameters:
 * $1 - current consumer version number',
@@ -729,7 +729,18 @@ $messages['ast'] = array(
  * @author Mormegil
  */
 $messages['cs'] = array(
-	'oauth-desc' => 'Autentizace pomocí rozhraní OAuth 1.0a',
+	'mwoauth-desc' => 'Autorizace pomocí rozhraní OAuth 1.0a',
+	'mwoauth-missing-field' => 'Chybějící hodnota pole „$1“',
+	'mwoauth-invalid-field' => 'Uvedena neplatná hodnota pole „$1“',
+	'mwoauth-authorize-form' => 'Podrobnosti o aplikaci:',
+	'mwoauth-authorize-form-user' => 'Autor aplikace: $1',
+	'mwoauth-authorize-form-name' => 'Název aplikace: $1',
+	'mwoauth-authorize-form-description' => 'Popis aplikace: $1',
+	'mwoauth-authorize-form-version' => 'Verze aplikace: $1',
+	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-error' => 'Chyba OAuth',
+	'mwoauth-grants-heading' => 'Vyžadovaná oprávnění:',
+	'mwoauth-grants-nogrants' => 'Tato aplikace nevyžaduje žádná oprávnění.',
 );
 
 /** German (Deutsch)
@@ -762,6 +773,8 @@ $messages['de'] = array(
 	'mwoauth-consumer-secretkey' => 'Geheimer Verbrauchertoken:',
 	'mwoauth-consumer-accesstoken' => 'Zugriffstoken:',
 	'mwoauth-consumer-reason' => 'Grund:',
+	'mwoauth-consumer-email-unconfirmed' => 'Die E-Mail-Adresse deines Benutzerkontos wurde noch nicht bestätigt.',
+	'mwoauth-consumer-email-mismatched' => 'Die angegebene E-Mail-Adresse muss mit der deines Benutzerkontos übereinstimmen.',
 	'mwoauth-consumer-alreadyexists' => 'Ein Verbraucher mit dieser Namen-/Versions-/Herausgeberkombination ist bereits vorhanden',
 	'mwoauth-consumer-alreadyexistsversion' => 'Ein Verbraucher mit dieser Namen-/Herausgeber-Kombination ist bereits mit einer gleichen oder höheren Version vorhanden („$1“)',
 	'mwoauth-consumer-not-accepted' => 'Die Informationen für einen ausstehenden Verbraucherantrag konnten nicht aktualisiert werden',
@@ -1021,6 +1034,8 @@ $messages['fr'] = array(
 	'mwoauth-consumer-secretkey' => 'Jeton secret du consommateur :',
 	'mwoauth-consumer-accesstoken' => 'Jeton d’accès :',
 	'mwoauth-consumer-reason' => 'Motif :',
+	'mwoauth-consumer-email-unconfirmed' => 'Votre adresse de courriel du compte n’a pas encore été confirmée.',
+	'mwoauth-consumer-email-mismatched' => 'L’adresse de courriel fournie doit correspondre à celle de votre compte.',
 	'mwoauth-consumer-alreadyexists' => 'Un consommateur avec cette combinaison de nom/version/éditeur existe déjà',
 	'mwoauth-consumer-alreadyexistsversion' => 'Un consommateur avec cette combinaison de nom/éditeur existe déjà avec une version égale ou supérieure ("$1")',
 	'mwoauth-consumer-not-accepted' => 'Impossible de mettre à jour les informations pour une demande de consommateur en cours',
@@ -1672,6 +1687,35 @@ Nota que si tu ha autorisate un consumitor a haber accesso solmente a un parte d
 	'action-mwoauthviewsuppressed' => 'vider consumitores OAUth supprimite',
 );
 
+/** Italian (italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'mwoauth-missing-field' => 'Valore mancante per il campo "$1".',
+	'mwoauth-invalid-field' => 'Valore non valido per il campo "$1".',
+	'mwoauth-field-hidden' => '(questa informazione è nascosta)',
+	'mwoauth-field-private' => '(questa informazione è privata)',
+	'mwoauth-consumer-stage-proposed' => 'proposto',
+	'mwoauth-consumer-stage-rejected' => 'rifiutato',
+	'mwoauth-consumer-stage-expired' => 'scaduto',
+	'mwoauth-consumer-stage-approved' => 'approvato',
+	'mwoauth-consumer-stage-disabled' => 'disabilitato',
+	'mwoauth-consumer-stage-suppressed' => 'soppresso',
+	'mwoauthmanageconsumers-approve' => 'Approvato',
+	'mwoauthmanageconsumers-reject' => 'Rifiutato',
+	'mwoauthmanageconsumers-rsuppress' => 'Rifiutato e soppresso',
+	'mwoauthmanageconsumers-disable' => 'Disabilitato',
+	'mwoauthmanageconsumers-dsuppress' => 'Disabilitato e soppresso',
+	'mwoauthmanageconsumers-reenable' => 'Approvato',
+	'mwoauthmanageconsumers-reason' => 'Motivo:',
+	'mwoauth-authorize-form' => "Dettagli dell'applicazione:",
+	'mwoauth-authorize-form-user' => "Autore dell'applicazione: $1",
+	'mwoauth-authorize-form-name' => "Nome dell'applicazione: $1",
+	'mwoauth-authorize-form-description' => "Descrizione dell'applicazione: $1",
+	'mwoauth-authorize-form-version' => "Versione dell'applicazione: $1",
+	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+);
+
 /** Japanese (日本語)
  * @author Shirayuki
  */
@@ -1697,6 +1741,8 @@ $messages['ja'] = array(
 	'mwoauth-consumer-secretkey' => 'コンシューマー秘密トークン:',
 	'mwoauth-consumer-accesstoken' => 'アクセス トークン:',
 	'mwoauth-consumer-reason' => '理由:',
+	'mwoauth-consumer-email-unconfirmed' => 'アカウントのメールアドレスがまだ確認されていません。',
+	'mwoauth-consumer-email-mismatched' => '指定したメールアドレスは、アカウントのものと一致しません。',
 	'mwoauth-consumer-alreadyexists' => 'この名前/バージョン/発行者の組み合わせを持つコンシューマーは既に存在します',
 	'mwoauth-invalid-consumer-key' => '指定したキーのコンシューマーは存在しません。',
 	'mwoauth-invalid-access-token' => '指定したキーのアクセス トークンは存在しません。',
@@ -1860,6 +1906,7 @@ $messages['lb'] = array(
 	'mwoauth-invalid-authorization-blocked-user' => "D'Autorisatiounen an Ärer Ufro si fir ee Benotzer dee gespaart ass",
 	'mwoauth-form-button-approve' => 'Jo, erlaben',
 	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-authorize-form-invalid-user' => 'Dëse Benotzerkont kann OAuth net benotzen, well de Benotzerkont op dëser Wiki an de Benotzerkont op der zentraler OAuth Wiki net matenee verbonn sinn.',
 	'mwoauth-error' => 'OAuth Feeler',
 	'mwoauth-grants-heading' => 'Ugefroten Autorisatiounen:',
 	'mwoauth-grant-blockusers' => 'Benotzer spären',
@@ -1887,7 +1934,7 @@ $messages['mk'] = array(
 	'mwoauth-field-private' => '(оваа информација е приватна)',
 	'mwoauth-grant-generic' => 'Група права „$1“',
 	'mwoauth-prefs-managegrants' => 'Пристап на потрошувач на OAuth:',
-	'mwoauth-prefs-managegrantslink' => 'раководи со права во име на оваа сметка', # Fuzzy
+	'mwoauth-prefs-managegrantslink' => 'Раководење со права во име на оваа сметка',
 	'mwoauth-consumer-key' => 'Потрошувачки клуч:',
 	'mwoauth-consumer-name' => 'Назив на прилогот:',
 	'mwoauth-consumer-version' => 'Потрошувачка верзија:',
@@ -1905,6 +1952,8 @@ $messages['mk'] = array(
 	'mwoauth-consumer-secretkey' => 'Тајна потрошувачка шифра:',
 	'mwoauth-consumer-accesstoken' => 'Пристапна шифра:',
 	'mwoauth-consumer-reason' => 'Причина:',
+	'mwoauth-consumer-email-unconfirmed' => 'Вашата е-поштенска адреса сè уште не е потврдена.',
+	'mwoauth-consumer-email-mismatched' => 'Укажаната е-пошта мора да одговара на онаа во сметката.',
 	'mwoauth-consumer-alreadyexists' => 'Веќе постои потрошувач со ваква комбинација од име/верзија/издавач',
 	'mwoauth-consumer-alreadyexistsversion' => 'Веќе постои потрошувач со оваа комбинација на име/издавач со еднаква или повисока верзија („$1“)',
 	'mwoauth-consumer-not-accepted' => 'Не можам да ги изменам информациите за потрошувачко барање во исчекување',
