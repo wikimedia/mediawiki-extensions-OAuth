@@ -9,7 +9,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$this->setHeaders();
 		$request = $this->getRequest();
 		$format = $request->getVal( 'format', 'raw' );
-		if ( !in_array( $subpage, array( 'initiate', 'authorize', 'token' ) ) ) {
+		if ( !in_array( $subpage, array( 'initiate', 'authorize', 'verified', 'token' ) ) ) {
 			$this->showError( 'oauth-client-invalidrequest', $format );
 		}
 
@@ -121,6 +121,22 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$token = $oauthServer->fetch_access_token( $OAuthRequest );
 					$this->returnToken( $token, $format );
 
+					break;
+				case 'verified':
+					$format = $request->getVal( 'format', 'html' );
+					$verifier = $request->getVal( 'oauth_verifier', false );
+					$requestToken = $request->getVal( 'oauth_token', false );
+					if ( !$verifier || !$requestToken ) {
+						throw new MWOAuthException( 'mwoauth-bad-request' );
+					}
+					$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
+					$this->showResponse(
+						$this->msg( 'mwoauth-verified',
+							wfEscapeWikiText( $verifier ),
+							wfEscapeWikiText( $requestToken )
+						)->parse(),
+						$format
+					);
 					break;
 				default:
 					throw new OAuthException( 'mwoauth-invalid-method' );
