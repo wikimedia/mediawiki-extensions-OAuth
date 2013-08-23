@@ -716,13 +716,49 @@ $messages['ast'] = array(
 	'mwoauth-invalid-field' => 'Diose un valor inválidu pal campu "$1"',
 	'mwoauth-field-hidden' => '(esta información ta tapecida)',
 	'mwoauth-field-private' => '(esta información ye privada)',
+	'mwoauth-grant-generic' => 'Conxuntu de drechos "$1"',
+	'mwoauth-prefs-managegrants' => 'Accesu de consumidor OAuth:',
+	'mwoauth-prefs-managegrantslink' => "Xestionar permisos nel nome d'esta cuenta",
 	'mwoauth-consumer-key' => 'Clave del consumidor:',
 	'mwoauth-consumer-name' => "Nome d'aplicación:",
-	'mwoauth-consumer-version' => 'Versión mayor:',
+	'mwoauth-consumer-version' => 'Versión de consumidor:',
+	'mwoauth-consumer-user' => 'Editorial:',
 	'mwoauth-consumer-stage' => 'Estáu actual:',
 	'mwoauth-consumer-email' => 'Direición de corréu-e de contautu:',
 	'mwoauth-consumer-description' => "Descripción de l'aplicación:",
 	'mwoauth-consumer-callbackurl' => 'URL de "callback" OAuth:',
+	'mwoauth-consumer-grantsneeded' => 'Concesiones aplicables:',
+	'mwoauth-consumer-required-grant' => 'Aplicable al consumidor',
+	'mwoauth-consumer-wiki' => 'Wiki aplicable:',
+	'mwoauth-consumer-restrictions' => "Torgues d'usu:",
+	'mwoauth-consumer-restrictions-json' => "Torgues d'usu (JSON):",
+	'mwoauth-consumer-rsakey' => 'Clave pública RSA:',
+	'mwoauth-consumer-secretkey' => 'Pase secretu del consumidor:',
+	'mwoauth-consumer-accesstoken' => "Pase d'accesu:",
+	'mwoauth-consumer-reason' => 'Motivu:',
+	'mwoauth-consumer-email-unconfirmed' => 'La direición de corréu de la to cuenta inda nun se confirmó.',
+	'mwoauth-consumer-email-mismatched' => 'La direición de corréu proporcionada tien de casar cola de la to cuenta.',
+	'mwoauth-consumer-alreadyexists' => 'Yá esiste un consumidor con esta combinación de nome/versión/editor',
+	'mwoauth-consumer-alreadyexistsversion' => 'Yá esiste un consumidor con esta combinación de nome/editor con una versión igual o mayor ("$1")',
+	'mwoauth-consumer-not-accepted' => "Nun se pue anovar la información d'una solicitú de consumidor pendiente",
+	'mwoauth-consumer-not-proposed' => 'El consumidor nun ta propuestu actualmente',
+	'mwoauth-consumer-not-disabled' => 'El consumidor nun ta desactiváu actualmente',
+	'mwoauth-consumer-not-approved' => 'El consumidor nun ta aprobáu (seique, desactivóse)',
+	'mwoauth-invalid-consumer-key' => 'Nun esiste dengún consumidor cola clave dada.',
+	'mwoauth-invalid-access-token' => "Nun esiste dengún pase d'accesu cola clave dada.",
+	'mwoauth-consumer-conflict' => "Dalguién camudó los atributos d'esti consumidor mentanto lu vía. Por favor, vuelva a intentalo. Pue comprobar el rexistru de cambios.",
+	'mwoauth-consumer-stage-proposed' => 'propuestu',
+	'mwoauth-consumer-stage-rejected' => 'refugáu',
+	'mwoauth-consumer-stage-expired' => 'caducáu',
+	'mwoauth-consumer-stage-approved' => 'aprobáu',
+	'mwoauth-consumer-stage-disabled' => 'desactiváu',
+	'mwoauth-consumer-stage-suppressed' => 'suprimíu',
+	'mwoauthconsumerregistration' => "Rexistru de consumidor d'OAuth",
+	'mwoauthconsumerregistration-notloggedin' => "Tien d'aniciar sesión pa entrar nesta páxina.",
+	'mwoauthconsumerregistration-navigation' => 'Navegación:',
+	'mwoauthconsumerregistration-propose' => 'Proponer un consumidor nuevu',
+	'mwoauthconsumerregistration-list' => 'La mio llista de consumidores',
+	'mwoauthconsumerregistration-main' => 'Principal',
 );
 
 /** Czech (česky)
@@ -744,7 +780,14 @@ $messages['cs'] = array(
 	'mwoauth-consumer-stage' => 'Aktuální stav:',
 	'mwoauth-consumer-email' => 'Kontaktní e-mailová adresa:',
 	'mwoauth-consumer-description' => 'Popis aplikace:',
+	'mwoauth-consumer-callbackurl' => 'URL pro OAuth „callback“:',
+	'mwoauth-consumer-required-grant' => 'Použitelné konzumentem',
+	'mwoauth-consumer-wiki' => 'Použitelná wiki:',
+	'mwoauth-consumer-restrictions' => 'Omezení užití:',
+	'mwoauth-consumer-restrictions-json' => 'Omezení užití (JSON):',
 	'mwoauth-consumer-rsakey' => 'Veřejný RSA klíč:',
+	'mwoauth-consumer-secretkey' => 'Tajný token konzumenta:',
+	'mwoauth-consumer-accesstoken' => 'Přístupový token:',
 	'mwoauth-consumer-reason' => 'Důvod:',
 	'mwoauth-consumer-email-unconfirmed' => 'E-mailová adresa vašeho uživatelského účtu dosud nebyla potvrzena.',
 	'mwoauth-consumer-email-mismatched' => 'Uvedená e-mailová adresa musí odpovídat té ve vašem uživatelském účtu.',
@@ -756,6 +799,28 @@ $messages['cs'] = array(
 	'mwoauth-consumer-stage-approved' => 'schválený',
 	'mwoauth-consumer-stage-disabled' => 'zakázaný',
 	'mwoauth-consumer-stage-suppressed' => 'utajený',
+	'mwoauthconsumerregistration' => 'Registrace konzumenta OAuth',
+	'mwoauthconsumerregistration-notloggedin' => 'Pro přístup k této stránce musíte být přihlášen(a).',
+	'mwoauthconsumerregistration-navigation' => 'Navigace:',
+	'mwoauthconsumerregistration-propose' => 'Navrhnout nového konzumenta',
+	'mwoauthconsumerregistration-list' => 'Seznam mých konzumentů',
+	'mwoauthconsumerregistration-main' => 'Hlavní',
+	'mwoauthconsumerregistration-propose-text' => 'Pomocí níže zobrazeného formuláře můžete navrhnout nového konzumenta OAuth (vizte http://oauth.net).
+
+Několik doporučení a poznámek:
+* Snažte se použít co nejméně oprávnění. Vyhněte se těm, která ve skutečnosti zatím nepotřebujete.
+* Verze má tvar „major.minor.release“ (poslední dvě části jsou nepovinné) a zvyšuje se, když jsou potřeba změny oprávnění.
+* Pokud je to možná, poskytněte RSA klíč; v opačném případě se musí používat (méně bezpečný) tajný token.
+* Pomocí omezení v JSON můžete omezit tomuto konzumentu přístup jen na IP adresy v daných rozsazích CIDR.
+* Pomocí ID wiki můžete omezit tohoto konzumenta na jedinou wiki na tomto serveru (pro všechny wiki uveďte „*“).
+* Zadaná e-mailová adresa musí odpovídat té na vašem uživatelském účtu (která musí být ověřena).', # Fuzzy
+	'mwoauthconsumerregistration-maintext' => 'Tato stránka slouží k navrhování a změnám konzumentských aplikací OAuth (vizte http://oauth.net) v registru tohoto serveru.
+
+Můžete zde [[Special:MWOAuthConsumerRegistration/propose|navrhnout nového konzumenta]] nebo [[Special:MWOAuthConsumerRegistration/list|spravovat své existující konzumenty]].',
+	'mwoauthconsumerregistration-propose-legend' => 'Nová konzumentská aplikace OAuth',
+	'mwoauthconsumerregistration-update-legend' => 'Změna konzumentské aplikace OAuth',
+	'mwoauthconsumerregistration-propose-submit' => 'Navrhnout konzumenta',
+	'mwoauthconsumerregistration-update-submit' => 'Upravit konzumenta',
 	'mwoauthconsumerregistration-none' => 'Nespravujete žádné konzumenty OAuth.',
 	'mwoauthconsumerregistration-name' => 'Konzument',
 	'mwoauthconsumerregistration-user' => 'Vydavatel',
@@ -765,6 +830,10 @@ $messages['cs'] = array(
 	'mwoauthconsumerregistration-stage' => 'Stav',
 	'mwoauthconsumerregistration-lastchange' => 'Poslední změna',
 	'mwoauthconsumerregistration-manage' => 'spravovat',
+	'mwoauthconsumerregistration-proposed' => "Vaše žádost o konzumenta OAuth byla přijata.
+
+Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zaznamenejte si je pro budoucí použití.''",
+	'mwoauthconsumerregistration-secretreset' => "Byl vám přidělen tajný token konzumenta '''$1'''. ''Zaznamenejte si ho pro budoucí použití.''",
 	'mwoauthmanageconsumers' => 'Správa konzumentů OAuth',
 	'mwoauthmanageconsumers-notloggedin' => 'Pro přístup k této stránce musíte být přihlášen(a).',
 	'mwoauthmanageconsumers-type' => 'Fronty:',
@@ -793,10 +862,12 @@ $messages['cs'] = array(
 	'mwoauthmanageconsumers-success-disabled' => 'Konzument byl zakázán.',
 	'mwoauthmanageconsumers-success-reanable' => 'Konzument byl znovu povolen.',
 	'mwoauthmanagemygrants-notloggedin' => 'Pro přístup k této stránce musíte být přihlášen(a).',
+	'mwoauthmanagemygrants-navigation' => 'Navigace:',
 	'mwoauthmanagemygrants-none' => 'Žádný konzument nemá jménem vašeho účtu přístup.',
 	'mwoauthmanagemygrants-name' => 'Název konzumenta',
 	'mwoauthmanagemygrants-user' => 'Vydavatel',
 	'mwoauthmanagemygrants-description' => 'Popis',
+	'mwoauthmanagemygrants-wiki' => 'Použitelná wiki',
 	'mwoauthmanagemygrants-consumerkey' => 'Klíč konzumenta',
 	'mwoauthmanagemygrants-review' => 'zkontrolovat/spravovat přístup',
 	'mwoauthmanagemygrants-action' => 'Změnit stav:',
@@ -808,6 +879,9 @@ $messages['cs'] = array(
 	'logentry-mwoauthconsumer-reenable' => '$1 znovu {{GENDER:$2|povolil|povolila}} konzumenta OAuth uživatele $3 (klíč konzumenta $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Kniha konzumentů OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Protokol schválení, zamítnutí a zákazů registrovaných konzumentů OAuth.',
+	'mwoauth-bad-request' => 'Ve vašem OAuth požadavku byla chyba.',
+	'mwoauthgrants-general-error' => 'Ve vašem OAuth požadavku byla chyba.',
+	'mwoauth-invalid-authorization-title' => 'Chyba autorizace OAuth',
 	'mwoauth-invalid-authorization' => 'Autorizační hlavičky ve vašem požadavku nejsou platné: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'Autorizační hlavičky ve vašem požadavku nejsou pro $1 platné',
 	'mwoauth-invalid-authorization-invalid-user' => 'Autorizační hlavičky ve vašem požadavku jsou pro uživatele, který zde neexistuje',
@@ -840,6 +914,7 @@ $messages['cs'] = array(
 	'mwoauth-grant-editmywatchlist' => 'Upravovat váš seznam sledovaných stránek',
 	'mwoauth-grant-editpage' => 'Editovat existující stránky',
 	'mwoauth-grant-editprotected' => 'Editovat zamčené stránky',
+	'mwoauth-grant-highvolume' => 'Hromadné editace',
 	'mwoauth-grant-oversight' => 'Skrývat uživatele a utajovat revize',
 	'mwoauth-grant-patrol' => 'Patrolovat',
 	'mwoauth-grant-protect' => 'Zamykat a odemykat stránky',
@@ -921,7 +996,7 @@ $messages['de'] = array(
 Hier einige Empfehlungen und Bemerkungen:
 * Versuche, so wenig Berechtigungen wie möglich zu verwenden. Vermeide Berechtigungen, die in Wirklichkeit nicht benötigt werden.
 * Versionen haben die Form „Hauptversion.Nebenversion.Release“ (die letzten zwei sind optional) und steigen mit der Notwendigkeit von Berechtigungsänderungen an.
-* Bitte gib einen RSA-Schlüssel an, falls möglich. Anderenfalls muss ein wenig sicherer Geheimtoken benutzt werden.
+* Bitte gib einen öffentlichen RSA-Schlüssel an (im PEM-Format), falls möglich. Anderenfalls muss ein wenig sicherer Geheimtoken benutzt werden.
 * Verwende das JSON-Beschränkungsfeld, um den Zugriff dieses Verbrauchers auf IP-Adressen in diesen CIDR-Bereichen zu beschränken.
 * Du kannst eine Wikikennung verwenden, um den Verbraucher auf ein einzelnes Wiki auf dieser Website zu beschränken (verwende „*“ für alle Wikis).
 * Die angegebene E-Mail-Adresse muss mit der deines Benutzerkontos übereinstimmen und bestätigt sein.',
@@ -1185,7 +1260,7 @@ Quelques recommandations et remarques :
 * Veuillez fournir une clé RSA si possible ; sinon, un jeton secret (moins sécurisé) vous sera assigné.
 * Utilisez le champ limitations JSON pour limiter l’accès de ce consommateur aux adresses IP dans ces plages de CIDR.
 * Vous pouvez utiliser un ID de wiki pour limiter ce consommateur à un unique wiki de ce site (utilisez "*" pour tous les wikis).
-* L’adresse de courriel fournie doit correspondre à celle de votre compte (qui doit avoir été confirmée).',
+* L’adresse de courriel fournie doit correspondre à celle de votre compte (qui doit avoir été confirmée).', # Fuzzy
 	'mwoauthconsumerregistration-update-text' => 'Utilisez le formulaire ci-dessous pour mettre à jour les aspects d’un consommateur OAuth que vous contrôlez.
 
 Toutes les valeurs ici écraseront les précédentes. Ne laissez aucun champ blanc sauf si vous désirez vraiment effacer ces valeurs.',
@@ -1979,7 +2054,83 @@ $messages['ja'] = array(
  */
 $messages['ko'] = array(
 	'mwoauth-desc' => 'OAuth 1.0a API 인증',
+	'mwoauth-missing-field' => '"$1" 필드에 대한 값이 없습니다',
+	'mwoauth-invalid-field' => '"$1" 필드에 제공한 값이 잘못되었습니다',
+	'mwoauth-field-hidden' => '(이 정보는 숨겨져 있습니다)',
+	'mwoauth-field-private' => '(이 정보는 비공개입니다)',
+	'mwoauth-grant-generic' => '"$1" 권한 번들',
+	'mwoauth-prefs-managegrants' => 'OAuth 컨슈머 접근:',
+	'mwoauth-prefs-managegrantslink' => '이 계정 대신 부여 관리',
 	'mwoauth-consumer-key' => '컨슈머 키:',
+	'mwoauth-consumer-name' => '애플리케이션 이름:',
+	'mwoauth-consumer-version' => '컨슈머 버전:',
+	'mwoauth-consumer-user' => '게시자:',
+	'mwoauth-consumer-stage' => '현재 상태:',
+	'mwoauth-consumer-email' => '연락처 이메일 주소:',
+	'mwoauth-consumer-description' => '애플리케이션 설명:',
+	'mwoauth-consumer-callbackurl' => 'OAuth "콜백" URL:',
+	'mwoauth-consumer-grantsneeded' => '적용할 수 있는 부여:',
+	'mwoauth-consumer-required-grant' => '컨슈머에게 적용할 수 있음',
+	'mwoauth-consumer-wiki' => '적용할 수 있는 위키:',
+	'mwoauth-consumer-restrictions' => '사용 제한:',
+	'mwoauth-consumer-restrictions-json' => '사용 제한 (JSON):',
+	'mwoauth-consumer-rsakey' => '공개 RSA 키:',
+	'mwoauth-consumer-secretkey' => '컨슈머 비밀 토큰:',
+	'mwoauth-consumer-accesstoken' => '접근 토큰:',
+	'mwoauth-consumer-reason' => '이유:',
+	'mwoauth-consumer-email-unconfirmed' => '계정 이메일 주소가 아직 확인되지 않았습니다.',
+	'mwoauth-consumer-email-mismatched' => '제공한 이메일 주소는 계정과 일치하지 않습니다.',
+	'mwoauth-consumer-not-proposed' => '컨슈머가 현재 제안되어 있지 않습니다',
+	'mwoauth-consumer-not-disabled' => '컨슈머가 현재 비활성화되어 있지 않습니다',
+	'mwoauth-consumer-not-approved' => '컨슈머가 현재 승인되어 있지 않습니다 (비활성화되었을 수 있습니다)',
+	'mwoauth-consumer-stage-proposed' => '제안됨',
+	'mwoauth-consumer-stage-rejected' => '거부됨',
+	'mwoauth-consumer-stage-expired' => '만료됨',
+	'mwoauth-consumer-stage-approved' => '승인됨',
+	'mwoauth-consumer-stage-disabled' => '비활성화됨',
+	'mwoauth-consumer-stage-suppressed' => '억제됨',
+	'mwoauthconsumerregistration' => 'OAuth 컨슈머 등록',
+	'mwoauthconsumerregistration-notloggedin' => '이 페이지에 접근하려면 로그인해야 합니다.',
+	'mwoauthconsumerregistration-navigation' => '둘러보기:',
+	'mwoauthconsumerregistration-propose' => '새 컨슈머 제안',
+	'mwoauthconsumerregistration-list' => '내 컨슈머 목록',
+	'mwoauthconsumerregistration-main' => '주요',
+	'mwoauthconsumerregistration-propose-submit' => '컨슈머 제안',
+	'mwoauthconsumerregistration-update-submit' => '컨슈머 업데이트',
+	'mwoauthconsumerregistration-name' => '컨슈머',
+	'mwoauthconsumerregistration-user' => '게시자',
+	'mwoauthconsumerregistration-description' => '설명',
+	'mwoauthconsumerregistration-email' => '연락처 이메일',
+	'mwoauthconsumerregistration-consumerkey' => '컨슈머 키',
+	'mwoauthconsumerregistration-stage' => '상태',
+	'mwoauthconsumerregistration-lastchange' => '마지막으로 바뀜',
+	'mwoauthconsumerregistration-manage' => '관리',
+	'mwoauthconsumerregistration-resetsecretkey' => '비밀 키를 새 값으로 재설정',
+	'mwoauthconsumerregistration-updated' => 'OAuth 컨슈머 등록을 성공적으로 업데이트했습니다.',
+	'mwoauthmanageconsumers' => 'OAuth 컨슈머 관리',
+	'mwoauthmanageconsumers-notloggedin' => '이 페이지에 접근하려면 로그인해야 합니다.',
+	'mwoauthmanageconsumers-type' => '대기열:',
+	'mwoauthmanageconsumers-showproposed' => '제안된 요청',
+	'mwoauthmanageconsumers-showrejected' => '거부된 요청',
+	'mwoauthmanageconsumers-showexpired' => '만료된 요청',
+	'mwoauthmanageconsumers-main' => '주요',
+	'mwoauthmanageconsumers-q-proposed' => '제안된 컨슈머 요청의 대기열',
+	'mwoauthmanageconsumers-q-rejected' => '거부된 컨슈머 요청의 대기열',
+	'mwoauthmanageconsumers-q-expired' => '만료된 컨슈머 요청의 대기열',
+	'mwoauthmanageconsumers-lists' => '아래에서 컨슈머 상태 목록을 선택:',
+	'mwoauthmanageconsumers-l-approved' => '현재 승인된 컨슈머 목록',
+	'mwoauthmanageconsumers-l-disabled' => '현재 비활성화된 컨슈머 목록',
+	'mwoauthmanageconsumers-none-proposed' => '이 목록에 제안된 컨슈머가 없습니다.',
+	'mwoauthmanageconsumers-none-rejected' => '이 목록에 제안된 컨슈머가 없습니다.',
+	'mwoauthmanageconsumers-none-expired' => '이 목록에 제안된 컨슈머가 없습니다.',
+	'mwoauthmanageconsumers-name' => '컨슈머',
+	'mwoauthmanageconsumers-user' => '게시자',
+	'mwoauthmanageconsumers-description' => '설명',
+	'mwoauthmanageconsumers-email' => '연락처 이메일',
+	'mwoauthmanageconsumers-consumerkey' => '컨슈머 키',
+	'mwoauthmanageconsumers-lastchange' => '마지막으로 바뀜',
+	'mwoauthmanageconsumers-review' => '검토/관리',
+	'mwoauthmanageconsumers-confirm-text' => '이 컨슈머를 승인, 거부, 비활성화, 또는 다시 활성화하려면 이 양식을 사용하세요.',
 	'mwoauthmanageconsumers-confirm-legend' => 'OAuth 컨슈머 관리',
 	'mwoauthmanageconsumers-action' => '상태 바꾸기:',
 	'mwoauthmanageconsumers-approve' => '승인됨',
@@ -1988,6 +2139,19 @@ $messages['ko'] = array(
 	'mwoauthmanageconsumers-disable' => '비활성화됨',
 	'mwoauthmanageconsumers-dsuppress' => '비활성화 및 억제됨',
 	'mwoauthmanageconsumers-reenable' => '승인됨',
+	'mwoauthmanageconsumers-reason' => '이유:',
+	'mwoauthmanageconsumers-confirm-submit' => '컨슈머 상태 업데이트',
+	'mwoauthmanageconsumers-viewing' => '"$1" 사용자는 현재 이 컨슈머를 보는 중입니다',
+	'mwoauthmanageconsumers-success-approved' => '요청이 승인되었습니다.',
+	'mwoauthmanageconsumers-success-rejected' => '요청이 거부되었습니다.',
+	'mwoauthmanageconsumers-success-disabled' => '컨슈머가 비활성화되었습니다.',
+	'mwoauthmanageconsumers-success-reanable' => '컨슈머가 다시 활성화되었습니다.',
+	'mwoauthmanagemygrants' => '계정 OAuth 부여 관리',
+	'mwoauthmanagemygrants-notloggedin' => '이 페이지에 접근하려면 로그인해야 합니다.',
+	'mwoauthmanagemygrants-navigation' => '둘러보기:',
+	'mwoauthmanagemygrants-wiki' => '적용할 수 있는 위키',
+	'mwoauthmanagemygrants-grants' => '적용할 수 있는 부여',
+	'mwoauthmanagemygrants-review' => '접근 검토/관리',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -2104,7 +2268,7 @@ $messages['mk'] = array(
 * По можност, внесете RSA-клуч; во спротивно (помалку безбедно) ќе ви зададеме таен клуч.
 * Користете ги полињата за ограничувања од JSON за да го ограничите пристапот на потрошувачот на IP-адресите во тие CIDR-опсези.
 * Можете да го ограничите потрошувачот на само едно вики на ова мрежно место, внесувајќи ја назнаката на викито („*“ за сите викија).
-* Укажаната е-пошта мора да одговара на онаа на вашата сметка (која пак, мора да биде потврдена).',
+* Укажаната е-пошта мора да одговара на онаа на вашата сметка (која пак, мора да биде потврдена).', # Fuzzy
 	'mwoauthconsumerregistration-update-text' => 'Образецот подолу служи за менување на аспекти на потрошувачот на OAuth што се во ваша контрола.
 
 Сите вредности тука ќе се презапишат врз претходните. Не оставајте празни полиња, освен ако не сакате да ги исчистите истите.',
@@ -2694,7 +2858,7 @@ $messages['uk'] = array(
 * Будь ласка, вкажіть ключ RSA, якщо можливо; в іншому випадку (менш безпечно) таємний маркер повинен використовуватися.
 * Використовуйте обмеження поля JSON  для обмеження доступу споживача до IP-адрес в тих  діапазонах CIDR.
 * Ви можете використовувати ідентифікатор вікі, аби обмежувати споживача в одному вікі-проекті на цьому сайті (використовуйте "*" для всіх вікі).
-* Надана адреса електронної пошти повинна збігатися з вашим обліковим записом (який повинен бути підтвердженим).',
+* Надана адреса електронної пошти повинна збігатися з вашим обліковим записом (який повинен бути підтвердженим).', # Fuzzy
 	'mwoauthconsumerregistration-update-text' => 'Використовуйте форму нижче, щоб оновити аспекти споживача OAuth, які ви контролюєте.
 
 Всі значення тут будуть переписувати будь-які попередні. Не залишайте порожні поля, якщо ви не маєте наміру вилучити ці значення.',
