@@ -781,6 +781,7 @@ $messages['cs'] = array(
 	'mwoauth-consumer-email' => 'Kontaktní e-mailová adresa:',
 	'mwoauth-consumer-description' => 'Popis aplikace:',
 	'mwoauth-consumer-callbackurl' => 'URL pro OAuth „callback“:',
+	'mwoauth-consumer-grantsneeded' => 'Použitelná oprávnění:',
 	'mwoauth-consumer-required-grant' => 'Použitelné konzumentem',
 	'mwoauth-consumer-wiki' => 'Použitelná wiki:',
 	'mwoauth-consumer-restrictions' => 'Omezení užití:',
@@ -793,6 +794,13 @@ $messages['cs'] = array(
 	'mwoauth-consumer-email-mismatched' => 'Uvedená e-mailová adresa musí odpovídat té ve vašem uživatelském účtu.',
 	'mwoauth-consumer-alreadyexists' => 'Konzument s touto kombinací název/verze/vydavatel již existuje',
 	'mwoauth-consumer-alreadyexistsversion' => 'Konzument s touto kombinací název/vydavatel již existuje ve stejné či vyšší verzi („$1“)',
+	'mwoauth-consumer-not-accepted' => 'Nelze změnit údaje u probíhajícího požadavku na konzumenta',
+	'mwoauth-consumer-not-proposed' => 'Tento konzument není momentálně navržen',
+	'mwoauth-consumer-not-disabled' => 'Tento konzument není momentálně zakázán',
+	'mwoauth-consumer-not-approved' => 'Tento konzument není schválen (mohl být zakázán)',
+	'mwoauth-invalid-consumer-key' => 'Žádný konzument s daným klíčem neexistuje.',
+	'mwoauth-invalid-access-token' => 'Žádný přístupový token s daným klíčem neexistuje.',
+	'mwoauth-consumer-conflict' => 'Zatímco jste si tohoto konzumenta {{GENDER:|prohlížel|prohlížela|prohlíželi}}, někdo změnil jeho atributy. Možná si budete chtít prohlédnout protokol změn.',
 	'mwoauth-consumer-stage-proposed' => 'navržený',
 	'mwoauth-consumer-stage-rejected' => 'odmítnutý',
 	'mwoauth-consumer-stage-expired' => 'propadlý',
@@ -810,10 +818,13 @@ $messages['cs'] = array(
 Několik doporučení a poznámek:
 * Snažte se použít co nejméně oprávnění. Vyhněte se těm, která ve skutečnosti zatím nepotřebujete.
 * Verze má tvar „major.minor.release“ (poslední dvě části jsou nepovinné) a zvyšuje se, když jsou potřeba změny oprávnění.
-* Pokud je to možná, poskytněte RSA klíč; v opačném případě se musí používat (méně bezpečný) tajný token.
+* Pokud je to možné, poskytněte veřejný klíč RSA (ve formátu PEM); v opačném případě se musí používat (méně bezpečný) tajný token.
 * Pomocí omezení v JSON můžete omezit tomuto konzumentu přístup jen na IP adresy v daných rozsazích CIDR.
 * Pomocí ID wiki můžete omezit tohoto konzumenta na jedinou wiki na tomto serveru (pro všechny wiki uveďte „*“).
-* Zadaná e-mailová adresa musí odpovídat té na vašem uživatelském účtu (která musí být ověřena).', # Fuzzy
+* Zadaná e-mailová adresa musí odpovídat té na vašem uživatelském účtu (která musí být ověřena).',
+	'mwoauthconsumerregistration-update-text' => 'Pomocí níže uvedeného formuláře můžete změnit vlastnosti konzumenta OAuth, kterého spravujete.
+
+Všechny uvedené hodnoty přepíšou ty původní. Neponechávejte žádná pole prázdná, pokud nechcete jejich hodnoty smazat.',
 	'mwoauthconsumerregistration-maintext' => 'Tato stránka slouží k navrhování a změnám konzumentských aplikací OAuth (vizte http://oauth.net) v registru tohoto serveru.
 
 Můžete zde [[Special:MWOAuthConsumerRegistration/propose|navrhnout nového konzumenta]] nebo [[Special:MWOAuthConsumerRegistration/list|spravovat své existující konzumenty]].',
@@ -830,9 +841,11 @@ Můžete zde [[Special:MWOAuthConsumerRegistration/propose|navrhnout nového kon
 	'mwoauthconsumerregistration-stage' => 'Stav',
 	'mwoauthconsumerregistration-lastchange' => 'Poslední změna',
 	'mwoauthconsumerregistration-manage' => 'spravovat',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Resetovat tajný klíč na novou hodnotu',
 	'mwoauthconsumerregistration-proposed' => "Vaše žádost o konzumenta OAuth byla přijata.
 
 Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zaznamenejte si je pro budoucí použití.''",
+	'mwoauthconsumerregistration-updated' => 'Vaše registrace konzumenta OAuth byla úspěšně upravena.',
 	'mwoauthconsumerregistration-secretreset' => "Byl vám přidělen tajný token konzumenta '''$1'''. ''Zaznamenejte si ho pro budoucí použití.''",
 	'mwoauthmanageconsumers' => 'Správa konzumentů OAuth',
 	'mwoauthmanageconsumers-notloggedin' => 'Pro přístup k této stránce musíte být přihlášen(a).',
@@ -841,6 +854,19 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'mwoauthmanageconsumers-showrejected' => 'Odmítnuté žádosti',
 	'mwoauthmanageconsumers-showexpired' => 'Propadlé žádosti',
 	'mwoauthmanageconsumers-main' => 'Hlavní',
+	'mwoauthmanageconsumers-maintext' => 'Tato stránka slouží k řešení požadavků na konzumentské aplikace OAuth (vizte http://oauth.net) a správě existujících konzumentů OAuth.',
+	'mwoauthmanageconsumers-queues' => 'Níže si vyberte frontu potvrzení konzumentů:',
+	'mwoauthmanageconsumers-q-proposed' => 'Fronta navržených žádostí o konzumenta',
+	'mwoauthmanageconsumers-q-rejected' => 'Fronta odmítnutých žádostí o konzumenta',
+	'mwoauthmanageconsumers-q-expired' => 'Fronta propadlých žádostí o konzumenta',
+	'mwoauthmanageconsumers-lists' => 'Níže si vyberte seznam konzumentů podle stavu:',
+	'mwoauthmanageconsumers-l-approved' => 'Seznam schválených konzumentů',
+	'mwoauthmanageconsumers-l-disabled' => 'Seznam zakázaných konzumentů',
+	'mwoauthmanageconsumers-none-proposed' => 'V tomto seznamu nejsou žádní navržení konzumenti.',
+	'mwoauthmanageconsumers-none-rejected' => 'V tomto seznamu nejsou žádní navržení konzumenti.',
+	'mwoauthmanageconsumers-none-expired' => 'V tomto seznamu nejsou žádní navržení konzumenti.',
+	'mwoauthmanageconsumers-none-approved' => 'Těmto kritériím nevyhovuje žádný konzument.',
+	'mwoauthmanageconsumers-none-disabled' => 'Těmto kritériím nevyhovuje žádný konzument.',
 	'mwoauthmanageconsumers-name' => 'Konzument',
 	'mwoauthmanageconsumers-user' => 'Vydavatel',
 	'mwoauthmanageconsumers-description' => 'Popis',
@@ -848,6 +874,7 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'mwoauthmanageconsumers-consumerkey' => 'Klíč konzumenta',
 	'mwoauthmanageconsumers-lastchange' => 'Poslední změna',
 	'mwoauthmanageconsumers-review' => 'zkontrolovat/spravovat',
+	'mwoauthmanageconsumers-confirm-text' => 'Pomocí tohoto formuláře můžete tohoto konzumenta schválit, odmítnout, zakázat nebo znovu povolit.',
 	'mwoauthmanageconsumers-confirm-legend' => 'Správa konzumenta OAuth',
 	'mwoauthmanageconsumers-action' => 'Změnit stav:',
 	'mwoauthmanageconsumers-approve' => 'Schválený',
@@ -857,6 +884,8 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'mwoauthmanageconsumers-dsuppress' => 'Zakázaný a utajený',
 	'mwoauthmanageconsumers-reenable' => 'Schválený',
 	'mwoauthmanageconsumers-reason' => 'Důvod:',
+	'mwoauthmanageconsumers-confirm-submit' => 'Aktualizovat stav konzumenta',
+	'mwoauthmanageconsumers-viewing' => 'Tohoto konzumenta si v současné chvíli prohlíží {{GENDER:$1|uživatel|uživatelka}} „$1“.',
 	'mwoauthmanageconsumers-success-approved' => 'Žádost byla schválena.',
 	'mwoauthmanageconsumers-success-rejected' => 'Žádost byla zamítnuta.',
 	'mwoauthmanageconsumers-success-disabled' => 'Konzument byl zakázán.',
@@ -870,7 +899,14 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'mwoauthmanagemygrants-wiki' => 'Použitelná wiki',
 	'mwoauthmanagemygrants-consumerkey' => 'Klíč konzumenta',
 	'mwoauthmanagemygrants-review' => 'zkontrolovat/spravovat přístup',
+	'mwoauthmanagemygrants-confirm-text' => 'Pomocí níže zobrazeného formuláře můžete odvolat přístup nebo změnit oprávnění konzumenta OAuth k jednání vaším jménem.
+
+Uvědomte si, že pokud jste konzumentovi dovolili přístup jen k podmnožině wiki (projektů), bude k tomuto konzumentovi existovat více přístupových tokenů.',
+	'mwoauthmanagemygrants-confirm-legend' => 'Správa přístupového tokenu konzumenta',
 	'mwoauthmanagemygrants-action' => 'Změnit stav:',
+	'mwoauthmanagemygrants-confirm-submit' => 'Aktualizovat stav přístupového tokenu',
+	'mwoauthmanagemygrants-success-update' => 'Přístupový token tohoto konzumenta byl aktualizován.',
+	'mwoauthmanagemygrants-success-renounce' => 'Přístupový token tohoto konzumenta byl smazán.',
 	'logentry-mwoauthconsumer-propose' => '$1 {{GENDER:$2|navrhl|navrhla}} konzumenta OAuth (klíč konzumenta $4)',
 	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|aktualizoval|aktualizovala}} konzumenta OAuth (klíč konzumenta $4)',
 	'logentry-mwoauthconsumer-approve' => '$1 {{GENDER:$2|schválil|schválila}} konzumenta OAuth uživatele $3 (klíč konzumenta $4)',
@@ -879,8 +915,17 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'logentry-mwoauthconsumer-reenable' => '$1 znovu {{GENDER:$2|povolil|povolila}} konzumenta OAuth uživatele $3 (klíč konzumenta $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Kniha konzumentů OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Protokol schválení, zamítnutí a zákazů registrovaných konzumentů OAuth.',
+	'mwoauth-bad-csrf-token' => 'Při odeslání formuláře došlo k chybě relace. Zkuste ho odeslat znovu.',
 	'mwoauth-bad-request' => 'Ve vašem OAuth požadavku byla chyba.',
+	'mwoauthdatastore-request-token-not-found' => 'Pro tento token nebyl nalezen žádný požadavek.',
+	'mwoauthdatastore-bad-token' => 'Žádný token odpovídající vašemu požadavku nebyl nalezen.',
+	'mwoauthdatastore-bad-verifier' => 'Poskytnutý ověřovací kód nebyl platný.',
+	'mwoauthdatastore-invalid-token-type' => 'Požadovaný typ tokenu není platný.',
 	'mwoauthgrants-general-error' => 'Ve vašem OAuth požadavku byla chyba.',
+	'mwoauthserver-bad-consumer' => 'K poskytnutému klíči nebyl nalezen žádný schválený konzument.',
+	'mwoauthserver-insufficient-rights' => 'K provedení této akce nemáte dostatečná oprávnění.',
+	'mwoauthserver-invalid-request-token' => 'Váš požadavek obsahuje neplatný token.',
+	'mwoauthserver-invalid-user-hookabort' => 'Tento uživatel nemůže používat OAuth.',
 	'mwoauth-invalid-authorization-title' => 'Chyba autorizace OAuth',
 	'mwoauth-invalid-authorization' => 'Autorizační hlavičky ve vašem požadavku nejsou platné: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'Autorizační hlavičky ve vašem požadavku nejsou pro $1 platné',
@@ -2083,6 +2128,8 @@ $messages['ko'] = array(
 	'mwoauth-consumer-not-proposed' => '컨슈머가 현재 제안되어 있지 않습니다',
 	'mwoauth-consumer-not-disabled' => '컨슈머가 현재 비활성화되어 있지 않습니다',
 	'mwoauth-consumer-not-approved' => '컨슈머가 현재 승인되어 있지 않습니다 (비활성화되었을 수 있습니다)',
+	'mwoauth-invalid-consumer-key' => '주어진 키로 된 컨슈머가 존재하지 않습니다.',
+	'mwoauth-invalid-access-token' => '주어진 키로 된 접근 토큰이 존재하지 않습니다.',
 	'mwoauth-consumer-stage-proposed' => '제안됨',
 	'mwoauth-consumer-stage-rejected' => '거부됨',
 	'mwoauth-consumer-stage-expired' => '만료됨',
@@ -2095,6 +2142,8 @@ $messages['ko'] = array(
 	'mwoauthconsumerregistration-propose' => '새 컨슈머 제안',
 	'mwoauthconsumerregistration-list' => '내 컨슈머 목록',
 	'mwoauthconsumerregistration-main' => '주요',
+	'mwoauthconsumerregistration-propose-legend' => '새 OAuth 컨슈머 애플리케이션',
+	'mwoauthconsumerregistration-update-legend' => 'OAuth 컨슈머 애플리케이션 업데이트',
 	'mwoauthconsumerregistration-propose-submit' => '컨슈머 제안',
 	'mwoauthconsumerregistration-update-submit' => '컨슈머 업데이트',
 	'mwoauthconsumerregistration-name' => '컨슈머',
@@ -3096,6 +3145,7 @@ $messages['uk'] = array(
  */
 $messages['yi'] = array(
 	'mwoauth-consumer-version' => 'קאנסומענט ווערסיע:',
+	'mwoauth-consumer-email-unconfirmed' => 'אייער קאנטע ע־פאסט אדרעס איז נאך נישט געווארן באשטעטיגט.',
 );
 
 /** Simplified Chinese (中文（简体）‎)
