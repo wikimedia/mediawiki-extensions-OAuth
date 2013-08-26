@@ -634,12 +634,20 @@ Followed by the following radio boxes:
 	'mwoauth-form-confirmation' => 'Form label, asking if the user is sure they want to allow access',
 	'mwoauth-form-confirmation-update' => 'Checkbox label, asking if the user wants to update the permissions they are granting to a consumer, if they have previously granted access to this consumer',
 	'mwoauth-authorize-form' => 'Form section label',
-	'mwoauth-authorize-form-user' => 'Used as label. Parameters:
-* $1 - ...',
-	'mwoauth-authorize-form-name' => '{{Identical|Application name}}',
-	'mwoauth-authorize-form-description' => '{{Identical|Application description}}',
-	'mwoauth-authorize-form-version' => '{{Identical|Application version}}',
-	'mwoauth-authorize-form-wiki' => '{{Identical|Wiki}}',
+	'mwoauth-authorize-form-user' => 'Parameters:
+* $1 - author',
+	'mwoauth-authorize-form-name' => 'Parameters:
+* $1 - application name
+{{Identical|Application name}}',
+	'mwoauth-authorize-form-description' => 'Parameters:
+* $1 - description
+{{Identical|Application description}}',
+	'mwoauth-authorize-form-version' => 'Parameters:
+* $1 - version
+{{Identical|Application version}}',
+	'mwoauth-authorize-form-wiki' => 'Parameters:
+* $1 - wiki
+{{Identical|Wiki}}',
 	'mwoauth-authorize-form-invalid-user' => 'Text of the error page when the user cannot use OAuth.',
 	'mwoauth-error' => 'Heading on the page, whenever an OAuth error is presented to a user.',
 	'mwoauth-grants-heading' => 'Used as label for the grants list.
@@ -892,11 +900,15 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'mwoauthmanageconsumers-success-reanable' => 'Konzument byl znovu povolen.',
 	'mwoauthmanagemygrants-notloggedin' => 'Pro přístup k této stránce musíte být přihlášen(a).',
 	'mwoauthmanagemygrants-navigation' => 'Navigace:',
+	'mwoauthmanagemygrants-showlist' => 'Seznam schválených konzumentů',
 	'mwoauthmanagemygrants-none' => 'Žádný konzument nemá jménem vašeho účtu přístup.',
 	'mwoauthmanagemygrants-name' => 'Název konzumenta',
 	'mwoauthmanagemygrants-user' => 'Vydavatel',
 	'mwoauthmanagemygrants-description' => 'Popis',
 	'mwoauthmanagemygrants-wiki' => 'Použitelná wiki',
+	'mwoauthmanagemygrants-wikiallowed' => 'Povoleno na wiki',
+	'mwoauthmanagemygrants-grants' => 'Použitelná oprávnění',
+	'mwoauthmanagemygrants-grantsallowed' => 'Přidělená oprávnění',
 	'mwoauthmanagemygrants-consumerkey' => 'Klíč konzumenta',
 	'mwoauthmanagemygrants-review' => 'zkontrolovat/spravovat přístup',
 	'mwoauthmanagemygrants-confirm-text' => 'Pomocí níže zobrazeného formuláře můžete odvolat přístup nebo změnit oprávnění konzumenta OAuth k jednání vaším jménem.
@@ -1302,10 +1314,10 @@ $messages['fr'] = array(
 Quelques recommandations et remarques :
 * Essayez d’utiliser le moins de droits possibles. Évitez les droits qui ne sont pas vraiment nécessaires pour le moment.
 * Les versions sont de la forme « majeure.mineure.révision » (les deux derniers étant facultatifs) et augmentent quand des modifications de droit sont nécessaires.
-* Veuillez fournir une clé RSA si possible ; sinon, un jeton secret (moins sécurisé) vous sera assigné.
+* Veuillez fournir une clé publique RSA (au format PEM) si possible ; sinon, un jeton secret (moins sécurisé) vous sera assigné.
 * Utilisez le champ limitations JSON pour limiter l’accès de ce consommateur aux adresses IP dans ces plages de CIDR.
 * Vous pouvez utiliser un ID de wiki pour limiter ce consommateur à un unique wiki de ce site (utilisez "*" pour tous les wikis).
-* L’adresse de courriel fournie doit correspondre à celle de votre compte (qui doit avoir été confirmée).', # Fuzzy
+* L’adresse de courriel fournie doit correspondre à celle de votre compte (qui doit avoir été confirmée).',
 	'mwoauthconsumerregistration-update-text' => 'Utilisez le formulaire ci-dessous pour mettre à jour les aspects d’un consommateur OAuth que vous contrôlez.
 
 Toutes les valeurs ici écraseront les précédentes. Ne laissez aucun champ blanc sauf si vous désirez vraiment effacer ces valeurs.',
@@ -1490,10 +1502,10 @@ $messages['gl'] = array(
 	'mwoauth-field-private' => '(esta información é privada)',
 	'mwoauth-grant-generic' => 'conxunto de dereitos "$1"',
 	'mwoauth-prefs-managegrants' => 'Acceso de consumidor OAuth:',
-	'mwoauth-prefs-managegrantslink' => 'administrar as concesións en nome desta conta',
+	'mwoauth-prefs-managegrantslink' => 'administrar as concesións en nome desta conta', # Fuzzy
 	'mwoauth-consumer-key' => 'Clave do consumidor:',
 	'mwoauth-consumer-name' => 'Nome da aplicación:',
-	'mwoauth-consumer-version' => 'Versión maior:',
+	'mwoauth-consumer-version' => 'Versión maior:', # Fuzzy
 	'mwoauth-consumer-user' => 'Editor:',
 	'mwoauth-consumer-stage' => 'Estado actual:',
 	'mwoauth-consumer-email' => 'Enderezo de correo electrónico de contacto:',
@@ -1534,7 +1546,7 @@ Algunhas recomendacións e observacións:
 * Achegue unha clave RSA se fose posible; en caso contrario, asignaráselle un pase secreto (menos seguro).
 * Utilice o campo de restricións JSON para limitar o acceso deste consumidor aos enderezos IP neses rangos CIDR.
 * Pode empregar un ID de wiki para restrinxir o consumidor a un único wiki neste sitio (utilice "*" para todos os wikis).
-* O enderezo de correo electrónico achegado debe coincidir co da súa conta (que debeu ser confirmado).',
+* O enderezo de correo electrónico achegado debe coincidir co da súa conta (que debeu ser confirmado).', # Fuzzy
 	'mwoauthconsumerregistration-update-text' => 'Utilice o formulario inferior para actualizar aspectos dun consumidor OAuth que controle.
 
 Todos os valores que haxa aquí sobrescribirán os anteriores. Non deixe campos en branco a menos que queira limpar eses valores.',
@@ -1690,7 +1702,7 @@ Teña en conta que se autoriza que un consumidor só teña acceso a un subconxun
 	'mwoauth-grant-viewmywatchlist' => 'Ver a súa lista de vixilancia',
 	'mwoauth-callback-not-oob' => 'oauth_callback debe estar definido e ter o valor "oob" (distingue entre maiúsculas e minúsculas)',
 	'right-mwoauthproposeconsumer' => 'Propoñer novos consumidores OAuth',
-	'right-mwoauthupdateconsumer' => 'Actualizar os consumidores OAuth',
+	'right-mwoauthupdateownconsumer' => 'Actualizar os consumidores OAuth que vostede controle',
 	'right-mwoauthmanageconsumer' => 'Administrar os consumidores OAuth',
 	'right-mwoauthsuppress' => 'Eliminar consumidores OAuth',
 	'right-mwoauthviewsuppressed' => 'Ver os consumidores OAuth eliminados',
@@ -1699,7 +1711,7 @@ Teña en conta que se autoriza que un consumidor só teña acceso a un subconxun
 	'action-mwoauthmanageconsumer' => 'administrar os consumidores OAuth',
 	'action-mwoauthmanagemygrants' => 'administrar as súas concesións OAuth',
 	'action-mwoauthproposeconsumer' => 'propoñer novos consumidores OAuth',
-	'action-mwoauthupdateconsumer' => 'actualizar os consumidores OAuth',
+	'action-mwoauthupdateownconsumer' => 'actualizar os consumidores OAuth que vostede controle',
 	'action-mwoauthviewsuppressed' => 'ver os consumidores OAuth eliminados',
 );
 
@@ -1931,16 +1943,53 @@ Nota que si tu ha autorisate un consumitor a haber accesso solmente a un parte d
  * @author Beta16
  */
 $messages['it'] = array(
+	'mwoauth-desc' => 'API autorizzazioni OAuth 1.0a',
 	'mwoauth-missing-field' => 'Valore mancante per il campo "$1".',
 	'mwoauth-invalid-field' => 'Valore non valido per il campo "$1".',
 	'mwoauth-field-hidden' => '(questa informazione è nascosta)',
 	'mwoauth-field-private' => '(questa informazione è privata)',
+	'mwoauth-grant-generic' => 'Pacchetto diritti "$1"',
+	'mwoauth-prefs-managegrantslink' => 'Gestisci assegnazioni per conto di questa utenza',
+	'mwoauth-consumer-name' => 'Nome applicazione:',
+	'mwoauth-consumer-user' => 'Editore:',
+	'mwoauth-consumer-stage' => 'Stato attuale:',
+	'mwoauth-consumer-email' => 'Indirizzo email di contatto:',
+	'mwoauth-consumer-description' => 'Descrizione applicazione:',
+	'mwoauth-consumer-grantsneeded' => 'Assegnazioni applicabili:',
+	'mwoauth-consumer-wiki' => 'Wiki applicabili:',
+	'mwoauth-consumer-restrictions' => "Restrizioni d'uso:",
+	'mwoauth-consumer-restrictions-json' => "Restrizioni d'uso (JSON):",
+	'mwoauth-consumer-rsakey' => 'Chiave RSA pubblica:',
+	'mwoauth-consumer-accesstoken' => 'Token di accesso:',
+	'mwoauth-consumer-reason' => 'Motivo:',
+	'mwoauth-consumer-email-unconfirmed' => 'Il tuo indirizzo email non è stato ancora confermato.',
+	'mwoauth-consumer-email-mismatched' => "L'indirizzo email fornito deve corrispondere a quello della tua utenza.",
 	'mwoauth-consumer-stage-proposed' => 'proposto',
 	'mwoauth-consumer-stage-rejected' => 'rifiutato',
 	'mwoauth-consumer-stage-expired' => 'scaduto',
 	'mwoauth-consumer-stage-approved' => 'approvato',
 	'mwoauth-consumer-stage-disabled' => 'disabilitato',
 	'mwoauth-consumer-stage-suppressed' => 'soppresso',
+	'mwoauthconsumerregistration-main' => 'Principale',
+	'mwoauthconsumerregistration-user' => 'Editore',
+	'mwoauthconsumerregistration-description' => 'Descrizione',
+	'mwoauthconsumerregistration-email' => 'Email di contatto',
+	'mwoauthconsumerregistration-stage' => 'Stato',
+	'mwoauthconsumerregistration-lastchange' => 'Ultima modifica',
+	'mwoauthconsumerregistration-manage' => 'gestisci',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Reimposta la chiave segreta ad un nuovo valore',
+	'mwoauthmanageconsumers-notloggedin' => "Devi effettuare l'accesso per accedere a questa pagina.",
+	'mwoauthmanageconsumers-type' => 'Code:',
+	'mwoauthmanageconsumers-showproposed' => 'Richieste proposte',
+	'mwoauthmanageconsumers-showrejected' => 'Richieste rifiutate',
+	'mwoauthmanageconsumers-showexpired' => 'Richieste scadute',
+	'mwoauthmanageconsumers-main' => 'Principale',
+	'mwoauthmanageconsumers-user' => 'Editore',
+	'mwoauthmanageconsumers-description' => 'Descrizione',
+	'mwoauthmanageconsumers-email' => 'Email di contatto',
+	'mwoauthmanageconsumers-lastchange' => 'Ultima modifica',
+	'mwoauthmanageconsumers-review' => 'rivedi/gestisci',
+	'mwoauthmanageconsumers-action' => 'Modifica stato:',
 	'mwoauthmanageconsumers-approve' => 'Approvato',
 	'mwoauthmanageconsumers-reject' => 'Rifiutato',
 	'mwoauthmanageconsumers-rsuppress' => 'Rifiutato e soppresso',
@@ -1948,12 +1997,65 @@ $messages['it'] = array(
 	'mwoauthmanageconsumers-dsuppress' => 'Disabilitato e soppresso',
 	'mwoauthmanageconsumers-reenable' => 'Approvato',
 	'mwoauthmanageconsumers-reason' => 'Motivo:',
+	'mwoauthmanageconsumers-success-approved' => 'La richiesta è stata approvata.',
+	'mwoauthmanageconsumers-success-rejected' => 'La richiesta è stata rifiutata.',
+	'mwoauthmanagemygrants' => 'Gestione assegnazioni utenze OAuth',
+	'mwoauthmanagemygrants-notloggedin' => "Devi effettuare l'accesso per accedere a questa pagina.",
+	'mwoauthmanagemygrants-user' => 'Editore',
+	'mwoauthmanagemygrants-description' => 'Descrizione',
+	'mwoauthmanagemygrants-wiki' => 'Wiki applicabili',
+	'mwoauthmanagemygrants-grants' => 'Assegnazioni applicabili',
+	'mwoauthmanagemygrants-grantsallowed' => 'Diritti consentiti',
+	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Assegnazioni applicabili consentite:',
+	'mwoauthmanagemygrants-review' => 'rivedi/gestisci accesso',
+	'mwoauthmanagemygrants-update' => 'Aggiorna le assegnazioni del token di accesso',
+	'mwoauthmanagemygrants-action' => 'Modifica stato:',
+	'mwoauthmanagemygrants-confirm-submit' => 'Aggiorna lo stato del token di accesso',
+	'mwoauth-bad-request' => "C'è un errore nella tua richiesta OAuth.",
+	'mwoauthdatastore-access-token-not-found' => 'Non è stata trovata alcuna assegnazione approvata per il token di autorizzazione.',
+	'mwoauthdatastore-request-token-not-found' => 'Non è stata trovata alcuna richiesta per il token.',
+	'mwoauthdatastore-bad-token' => 'Non è stato trovato alcun token che corrisponde alla tua richiesta.',
+	'mwoauthdatastore-bad-verifier' => 'Il codice di verifica fornito non è valido.',
+	'mwoauthdatastore-invalid-token-type' => 'Il tipo di token richiesto non è valido.',
+	'mwoauthgrants-general-error' => "C'è un errore nella tua richiesta OAuth.",
+	'mwoauthserver-insufficient-rights' => 'Non hai i diritti sufficienti per eseguire questa azione.',
+	'mwoauthserver-invalid-request-token' => 'Token non valido nella tua richiesta.',
+	'mwoauthserver-invalid-user-hookabort' => 'Questo utente non può utilizzare OAuth.',
+	'mwoauth-invalid-authorization-title' => 'Errore autorizzazione OAuth',
+	'mwoauth-form-button-approve' => 'Si, permetti',
+	'mwoauth-form-confirmation' => 'Consentire a questa applicazione di agire per vostro conto?',
 	'mwoauth-authorize-form' => "Dettagli dell'applicazione:",
 	'mwoauth-authorize-form-user' => "Autore dell'applicazione: $1",
 	'mwoauth-authorize-form-name' => "Nome dell'applicazione: $1",
 	'mwoauth-authorize-form-description' => "Descrizione dell'applicazione: $1",
 	'mwoauth-authorize-form-version' => "Versione dell'applicazione: $1",
 	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-error' => 'Errore OAuth',
+	'mwoauth-grants-heading' => 'Autorizzazioni richieste:',
+	'mwoauth-grants-nogrants' => "L'applicazione non ha richiesto alcuna autorizzazione.",
+	'mwoauth-grant-blockusers' => 'Blocca utenti',
+	'mwoauth-grant-createeditmovepage' => 'Crea, modifica e sposta le pagine',
+	'mwoauth-grant-delete' => 'Cancella pagine, versioni, e voci di registro',
+	'mwoauth-grant-editinterface' => 'Modifica il namespace MediaWiki e i file CSS/JS di altri utenti',
+	'mwoauth-grant-editmycssjs' => 'Modifica i file CSS/JS del proprio utente',
+	'mwoauth-grant-editmywatchlist' => 'Modifica i tuoi osservati speciali',
+	'mwoauth-grant-editpage' => 'Modifica pagine esistenti',
+	'mwoauth-grant-editprotected' => 'Modifica pagine protette',
+	'mwoauth-grant-highvolume' => 'Modifiche massive',
+	'mwoauth-grant-oversight' => 'Nasconde utenti e sopprime le versioni',
+	'mwoauth-grant-patrol' => 'Verifica',
+	'mwoauth-grant-protect' => 'Protegge e sprotegge pagine',
+	'mwoauth-grant-rollback' => 'Rollback',
+	'mwoauth-grant-sendemail' => 'Invia email',
+	'mwoauth-grant-uploadeditmovefile' => 'Carica, sostituisce e sposta i file',
+	'mwoauth-grant-uploadfile' => 'Carica nuovi file',
+	'mwoauth-grant-useoauth' => 'Diritti di base',
+	'mwoauth-grant-viewdeleted' => 'Vede le informazioni cancellate',
+	'mwoauth-grant-viewmywatchlist' => 'Vedi i tuoi osservati speciali',
+	'mwoauth-callback-not-oob' => 'oauth_callback deve essere impostato a "oob" (in minuscolo)',
+	'right-mwoauthviewprivate' => 'Visualizza dati privati OAuth',
+	'right-mwoauthmanagemygrants' => 'Gestisce assegnazioni OAuth',
+	'action-mwoauthmanagemygrants' => 'gestire le tue assegnazioni OAuth',
 );
 
 /** Japanese (日本語)
@@ -2756,6 +2858,13 @@ Een paar aanbevelingen en opmerkingen:
 	'action-mwoauthviewsuppressed' => 'onderdrukte OAuthconsumers te bekijken',
 );
 
+/** Occitan (occitan)
+ * @author Cedric31
+ */
+$messages['oc'] = array(
+	'mwoauth-error' => 'Error OAuth',
+);
+
 /** Polish (polski)
  * @author Chrumps
  */
@@ -2963,10 +3072,10 @@ $messages['uk'] = array(
 Кілька рекомендацій і зауважень:
 * Постарайтеся використовувати якомога менше дозволів за можливості. Уникайте дозволів, які насправді не потрібні зараз.
 * Версії мають форму "major.minor.release" (останні дві необов\'язкові) і вони збільшуються, якщо необхідні зміни дозволів.
-* Будь ласка, вкажіть ключ RSA, якщо можливо; в іншому випадку (менш безпечно) таємний маркер повинен використовуватися.
+* Будь ласка, вкажіть відкритий ключ RSA (у форматі PEM), якщо можливо; в іншому випадку (менш безпечно) таємний маркер повинен використовуватися.
 * Використовуйте обмеження поля JSON  для обмеження доступу споживача до IP-адрес в тих  діапазонах CIDR.
 * Ви можете використовувати ідентифікатор вікі, аби обмежувати споживача в одному вікі-проекті на цьому сайті (використовуйте "*" для всіх вікі).
-* Надана адреса електронної пошти повинна збігатися з вашим обліковим записом (який повинен бути підтвердженим).', # Fuzzy
+* Надана адреса електронної пошти повинна збігатися з вашим обліковим записом (який повинен бути підтвердженим).',
 	'mwoauthconsumerregistration-update-text' => 'Використовуйте форму нижче, щоб оновити аспекти споживача OAuth, які ви контролюєте.
 
 Всі значення тут будуть переписувати будь-які попередні. Не залишайте порожні поля, якщо ви не маєте наміру вилучити ці значення.',
