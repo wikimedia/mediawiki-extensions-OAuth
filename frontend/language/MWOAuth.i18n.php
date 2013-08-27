@@ -909,12 +909,16 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'mwoauthmanagemygrants-wikiallowed' => 'Povoleno na wiki',
 	'mwoauthmanagemygrants-grants' => 'Použitelná oprávnění',
 	'mwoauthmanagemygrants-grantsallowed' => 'Přidělená oprávnění',
+	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Přidělená použitelná oprávnění:',
 	'mwoauthmanagemygrants-consumerkey' => 'Klíč konzumenta',
 	'mwoauthmanagemygrants-review' => 'zkontrolovat/spravovat přístup',
+	'mwoauthmanagemygrants-grantaccept' => 'Přiděleno konzumentovi',
 	'mwoauthmanagemygrants-confirm-text' => 'Pomocí níže zobrazeného formuláře můžete odvolat přístup nebo změnit oprávnění konzumenta OAuth k jednání vaším jménem.
 
 Uvědomte si, že pokud jste konzumentovi dovolili přístup jen k podmnožině wiki (projektů), bude k tomuto konzumentovi existovat více přístupových tokenů.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Správa přístupového tokenu konzumenta',
+	'mwoauthmanagemygrants-update' => 'Aktualizovat oprávnění přístupového tokenu',
+	'mwoauthmanagemygrants-renounce' => 'Zrušit oprávnění a smazat přístupový token',
 	'mwoauthmanagemygrants-action' => 'Změnit stav:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Aktualizovat stav přístupového tokenu',
 	'mwoauthmanagemygrants-success-update' => 'Přístupový token tohoto konzumenta byl aktualizován.',
@@ -929,6 +933,7 @@ Uvědomte si, že pokud jste konzumentovi dovolili přístup jen k podmnožině 
 	'mwoauthconsumer-consumer-logpagetext' => 'Protokol schválení, zamítnutí a zákazů registrovaných konzumentů OAuth.',
 	'mwoauth-bad-csrf-token' => 'Při odeslání formuláře došlo k chybě relace. Zkuste ho odeslat znovu.',
 	'mwoauth-bad-request' => 'Ve vašem OAuth požadavku byla chyba.',
+	'mwoauthdatastore-access-token-not-found' => 'K tomuto schválenému autorizačnímu tokenu nebylo nalezeno žádné schválené oprávnění.',
 	'mwoauthdatastore-request-token-not-found' => 'Pro tento token nebyl nalezen žádný požadavek.',
 	'mwoauthdatastore-bad-token' => 'Žádný token odpovídající vašemu požadavku nebyl nalezen.',
 	'mwoauthdatastore-bad-verifier' => 'Poskytnutý ověřovací kód nebyl platný.',
@@ -1502,10 +1507,10 @@ $messages['gl'] = array(
 	'mwoauth-field-private' => '(esta información é privada)',
 	'mwoauth-grant-generic' => 'conxunto de dereitos "$1"',
 	'mwoauth-prefs-managegrants' => 'Acceso de consumidor OAuth:',
-	'mwoauth-prefs-managegrantslink' => 'administrar as concesións en nome desta conta', # Fuzzy
+	'mwoauth-prefs-managegrantslink' => 'Administrar as concesións en nome desta conta',
 	'mwoauth-consumer-key' => 'Clave do consumidor:',
 	'mwoauth-consumer-name' => 'Nome da aplicación:',
-	'mwoauth-consumer-version' => 'Versión maior:', # Fuzzy
+	'mwoauth-consumer-version' => 'Versión do consumidor:',
 	'mwoauth-consumer-user' => 'Editor:',
 	'mwoauth-consumer-stage' => 'Estado actual:',
 	'mwoauth-consumer-email' => 'Enderezo de correo electrónico de contacto:',
@@ -1520,7 +1525,10 @@ $messages['gl'] = array(
 	'mwoauth-consumer-secretkey' => 'Pase secreto do consumidor:',
 	'mwoauth-consumer-accesstoken' => 'Pase de acceso:',
 	'mwoauth-consumer-reason' => 'Motivo:',
+	'mwoauth-consumer-email-unconfirmed' => 'Aínda non se confirmou o enderezo de correo electrónico da súa conta.',
+	'mwoauth-consumer-email-mismatched' => 'O enderezo de correo electrónico achegado debe coincidir co da súa conta.',
 	'mwoauth-consumer-alreadyexists' => 'Xa existe un consumidor con esa combinación de nome/versión/editor',
+	'mwoauth-consumer-alreadyexistsversion' => 'Xa existe un consumidor con esa combinación de nome/editor cunha versión igual ou maior ("$1")',
 	'mwoauth-consumer-not-accepted' => 'Non se pode actualizar a información dunha solicitude de consumidor pendente',
 	'mwoauth-consumer-not-proposed' => 'O consumidor non está proposto actualmente',
 	'mwoauth-consumer-not-disabled' => 'O consumidor non está desactivado actualmente',
@@ -1535,7 +1543,8 @@ $messages['gl'] = array(
 	'mwoauth-consumer-stage-disabled' => 'desactivado',
 	'mwoauth-consumer-stage-suppressed' => 'suprimido',
 	'mwoauthconsumerregistration' => 'Rexistro de consumidores OAuth',
-	'mwoauthconsumerregistration-navigation' => ':Navegación',
+	'mwoauthconsumerregistration-notloggedin' => 'Debe acceder ao sistema para acceder a esta páxina.',
+	'mwoauthconsumerregistration-navigation' => 'Navegación:',
 	'mwoauthconsumerregistration-propose' => 'Propoñer un novo consumidor',
 	'mwoauthconsumerregistration-list' => 'A miña lista de consumidores',
 	'mwoauthconsumerregistration-main' => 'Principal',
@@ -1543,10 +1552,11 @@ $messages['gl'] = array(
 
 Algunhas recomendacións e observacións:
 * Intente utilizar as menos concesións posibles. Evite as concesións que non sexan realmente necesarias agora.
-* Achegue unha clave RSA se fose posible; en caso contrario, asignaráselle un pase secreto (menos seguro).
+* As versións son da forma "maior.menor.lanzamento" (os dous últimos son opcionais) e aumentan cando son necesarios cambios nas concesións.
+* Achegue unha clave RSA pública (en formato PEM) se fose posible; en caso contrario, haberá que utilizar un pase secreto (menos seguro).
 * Utilice o campo de restricións JSON para limitar o acceso deste consumidor aos enderezos IP neses rangos CIDR.
 * Pode empregar un ID de wiki para restrinxir o consumidor a un único wiki neste sitio (utilice "*" para todos os wikis).
-* O enderezo de correo electrónico achegado debe coincidir co da súa conta (que debeu ser confirmado).', # Fuzzy
+* O enderezo de correo electrónico achegado debe coincidir co da súa conta (que debeu ser confirmado).',
 	'mwoauthconsumerregistration-update-text' => 'Utilice o formulario inferior para actualizar aspectos dun consumidor OAuth que controle.
 
 Todos os valores que haxa aquí sobrescribirán os anteriores. Non deixe campos en branco a menos que queira limpar eses valores.',
@@ -1573,6 +1583,7 @@ Asignóuselle o pase de consumidor '''$1''' e o pase secreto '''$2'''. ''Garde e
 	'mwoauthconsumerregistration-updated' => 'Actualizouse correctamente o seu rexistro de consumidor OAuth.',
 	'mwoauthconsumerregistration-secretreset' => "Asignóuselle o pase de consumidor '''$1'''. ''Garde estes datos para unha futura referencia.''",
 	'mwoauthmanageconsumers' => 'Administrar os consumidores OAuth',
+	'mwoauthmanageconsumers-notloggedin' => 'Debe acceder ao sistema para acceder a esta páxina.',
 	'mwoauthmanageconsumers-type' => 'Colas:',
 	'mwoauthmanageconsumers-showproposed' => 'Solicitudes propostas',
 	'mwoauthmanageconsumers-showrejected' => 'Solicitudes rexeitadas',
@@ -1615,6 +1626,7 @@ Asignóuselle o pase de consumidor '''$1''' e o pase secreto '''$2'''. ''Garde e
 	'mwoauthmanageconsumers-success-disabled' => 'Desactivouse o consumidor.',
 	'mwoauthmanageconsumers-success-reanable' => 'Reactivouse o consumidor.',
 	'mwoauthmanagemygrants' => 'Administrar as concesión de conta OAuth',
+	'mwoauthmanagemygrants-notloggedin' => 'Debe acceder ao sistema para acceder a esta páxina.',
 	'mwoauthmanagemygrants-navigation' => 'Navegación:',
 	'mwoauthmanagemygrants-showlist' => 'Lista de consumidores aceptados',
 	'mwoauthmanagemygrants-none' => 'Ningún consumidor ten acceso á súa conta.',
@@ -1665,6 +1677,7 @@ Teña en conta que se autoriza que un consumidor só teña acceso a un subconxun
 	'mwoauth-invalid-authorization-invalid-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario que non existe aquí',
 	'mwoauth-invalid-authorization-wrong-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario diferente',
 	'mwoauth-invalid-authorization-not-approved' => 'As cabeceiras de autorización da súa solicitude son para un consumidor OAuth que non está aprobado actualmente',
+	'mwoauth-invalid-authorization-blocked-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario que está bloqueado',
 	'mwoauth-form-description' => 'A seguinte aplicación está solicitando utilizar MediaWiki no seu nome. A aplicación poderá realizar calquera acción para a que teña permiso da lista inferior, se o solicitase. Autorice unicamente aplicacións nas que confíe que usarán estes permisos como faría vostede.',
 	'mwoauth-form-existing' => "'''Esta aplicación está solicitando autorización a MediaWiki no seu nome, pero vostede xa concedeu este acceso:'''
 *  Concesións: $1
@@ -1679,6 +1692,8 @@ Teña en conta que se autoriza que un consumidor só teña acceso a un subconxun
 	'mwoauth-authorize-form-description' => 'Descrición da aplicación: $1',
 	'mwoauth-authorize-form-version' => 'Versión da aplicación: $1',
 	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-authorize-form-invalid-user' => 'Esta conta de usuario non pode utilizar OAuth porque non están ligadas a conta neste wiki e a conta no wiki central de OAuth.',
+	'mwoauth-error' => 'Erro OAuth',
 	'mwoauth-grants-heading' => 'Permisos solicitados:',
 	'mwoauth-grants-nogrants' => 'A aplicación non solicitou ningún permiso.',
 	'mwoauth-grant-blockusers' => 'Bloquear usuarios',
@@ -2475,10 +2490,10 @@ $messages['mk'] = array(
 Неколку препораки и напомении:
 * Доделувајте што помалку одобренија. Одбегнувајте ги оние што не се потребни во моментов.
 * Верзиите се од обликот „главно.споредно.издание“ (последните две се незадолжителни) и зголемете и се зголемуваат со потребата за измени во доделувањата.
-* По можност, внесете RSA-клуч; во спротивно (помалку безбедно) ќе ви зададеме таен клуч.
+* По можност, внесете јавен RSA-клуч (во форматот PEM); во спротивно (помалку безбедно) ќе ви зададеме таен клуч.
 * Користете ги полињата за ограничувања од JSON за да го ограничите пристапот на потрошувачот на IP-адресите во тие CIDR-опсези.
 * Можете да го ограничите потрошувачот на само едно вики на ова мрежно место, внесувајќи ја назнаката на викито („*“ за сите викија).
-* Укажаната е-пошта мора да одговара на онаа на вашата сметка (која пак, мора да биде потврдена).', # Fuzzy
+* Укажаната е-пошта мора да одговара на онаа на вашата сметка (која пак, мора да биде потврдена).',
 	'mwoauthconsumerregistration-update-text' => 'Образецот подолу служи за менување на аспекти на потрошувачот на OAuth што се во ваша контрола.
 
 Сите вредности тука ќе се презапишат врз претходните. Не оставајте празни полиња, освен ако не сакате да ги исчистите истите.',
@@ -3247,6 +3262,101 @@ $messages['uk'] = array(
 	'action-mwoauthproposeconsumer' => 'пропонувати нових споживачів OAuth',
 	'action-mwoauthupdateownconsumer' => 'оновити споживачів OAuth, яких ви контролюєте',
 	'action-mwoauthviewsuppressed' => 'переглянути пригнічених споживачів OAuth',
+);
+
+/** Vietnamese (Tiếng Việt)
+ * @author Minh Nguyen
+ */
+$messages['vi'] = array(
+	'mwoauth-missing-field' => 'Thiếu giá trị cho trường “$1”',
+	'mwoauth-invalid-field' => 'Giá trị không hợp lệ được đưa vào trường “$1”',
+	'mwoauth-field-hidden' => '(thông tin này bị ẩn)',
+	'mwoauth-field-private' => '(thông tin này là bí mật)',
+	'mwoauth-grant-generic' => 'Gói quyền “$1”',
+	'mwoauth-consumer-name' => 'Tên ứng dụng:',
+	'mwoauth-consumer-user' => 'Nhà xuất bản:',
+	'mwoauth-consumer-stage' => 'Trạng thái hiện tại:',
+	'mwoauth-consumer-email' => 'Địa chỉ thư điện tử liên lạc:',
+	'mwoauth-consumer-description' => 'Miêu tả ứng dụng:',
+	'mwoauth-consumer-callbackurl' => 'URL “gọi lại” OAuth:',
+	'mwoauth-consumer-restrictions' => 'Hạn chế sử dụng:',
+	'mwoauth-consumer-restrictions-json' => 'Hạn chế sử dụng (JSON):',
+	'mwoauth-consumer-rsakey' => 'Chìa khóa RSA công cộng:',
+	'mwoauth-consumer-reason' => 'Lý do:',
+	'mwoauth-consumer-email-unconfirmed' => 'Địa chỉ thư điện tử tài khoản của bạn chưa được xác nhận.',
+	'mwoauth-consumer-stage-proposed' => 'đề xuất',
+	'mwoauth-consumer-stage-rejected' => 'từ chối',
+	'mwoauth-consumer-stage-expired' => 'hết hạn',
+	'mwoauth-consumer-stage-approved' => 'chấp nhận',
+	'mwoauth-consumer-stage-disabled' => 'tắt',
+	'mwoauth-consumer-stage-suppressed' => 'ẩn',
+	'mwoauthconsumerregistration-main' => 'Chính',
+	'mwoauthconsumerregistration-user' => 'Nhà xuất bản',
+	'mwoauthconsumerregistration-description' => 'Miêu tả',
+	'mwoauthconsumerregistration-email' => 'Địa chỉ thư điện tử liên lạc',
+	'mwoauthconsumerregistration-stage' => 'Trạng thái',
+	'mwoauthconsumerregistration-lastchange' => 'Thay đổi cuối cùng',
+	'mwoauthconsumerregistration-manage' => 'quản lý',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Đặt lại chìa khóa bí mật thành một giá trị mới',
+	'mwoauthmanageconsumers-notloggedin' => 'Bạn phải đăng nhập để truy cấp trang này.',
+	'mwoauthmanageconsumers-type' => 'Hàng đợi:',
+	'mwoauthmanageconsumers-showproposed' => 'Yêu cầu được đề xuất',
+	'mwoauthmanageconsumers-showrejected' => 'Yêu cầu bị từ chối',
+	'mwoauthmanageconsumers-showexpired' => 'Yêu cầu đã hết hạn',
+	'mwoauthmanageconsumers-main' => 'Chính',
+	'mwoauthmanageconsumers-user' => 'Nhà xuất bản',
+	'mwoauthmanageconsumers-description' => 'Miêu tả',
+	'mwoauthmanageconsumers-email' => 'Địa chỉ thư điện tử liên lạc',
+	'mwoauthmanageconsumers-lastchange' => 'Thay đổi cuối cùng',
+	'mwoauthmanageconsumers-review' => 'xem lại/quản lý',
+	'mwoauthmanageconsumers-action' => 'Thay đổi trạng thái:',
+	'mwoauthmanageconsumers-approve' => 'Chấp nhận',
+	'mwoauthmanageconsumers-reject' => 'Từ chối',
+	'mwoauthmanageconsumers-rsuppress' => 'Từ chối và ẩn',
+	'mwoauthmanageconsumers-disable' => 'Tắt',
+	'mwoauthmanageconsumers-dsuppress' => 'Tắt và ẩn',
+	'mwoauthmanageconsumers-reenable' => 'Chấp nhận',
+	'mwoauthmanageconsumers-reason' => 'Lý do:',
+	'mwoauthmanageconsumers-success-approved' => 'Yêu cầu đã được chấp nhận.',
+	'mwoauthmanageconsumers-success-rejected' => 'Yêu cầu đã bị từ chối.',
+	'mwoauthmanagemygrants-user' => 'Nhà xuất bản',
+	'mwoauthmanagemygrants-description' => 'Miêu tả',
+	'mwoauthmanagemygrants-wikiallowed' => 'Được cho phép trên wiki',
+	'mwoauthmanagemygrants-review' => 'xem lại/quản lý truy cập',
+	'mwoauthmanagemygrants-action' => 'Thay đổi trạng thái:',
+	'mwoauth-bad-request' => 'Có lỗi trong yêu cầu OAuth của bạn.',
+	'mwoauthdatastore-invalid-token-type' => 'Đã yêu cầu kiểu dấu hiệu không hợp lệ.',
+	'mwoauthgrants-general-error' => 'Có lỗi trong yêu cầu OAuth của bạn.',
+	'mwoauthserver-invalid-request-token' => 'Dấu hiệu không hợp lệ trong yêu cầu của bạn.',
+	'mwoauthserver-invalid-user-hookabort' => 'Người dùng này không thể dùng OAuth.',
+	'mwoauth-form-button-approve' => 'Có, cho phép',
+	'mwoauth-authorize-form' => 'Chi tiết ứng dụng:',
+	'mwoauth-authorize-form-user' => 'Tác giả ứng dụng: $1',
+	'mwoauth-authorize-form-name' => 'Tên ứng dụng: $1',
+	'mwoauth-authorize-form-description' => 'Miêu tả ứng dụng: $1',
+	'mwoauth-authorize-form-version' => 'Phiên bản ứng dụng: $1',
+	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-error' => 'Lỗi OAuth',
+	'mwoauth-grant-blockusers' => 'Cấm người dùng',
+	'mwoauth-grant-createeditmovepage' => 'Tạo, sửa, và di chuyển trang',
+	'mwoauth-grant-delete' => 'Xóa trang, phiên bản, và mục nhật ký',
+	'mwoauth-grant-editinterface' => 'Sửa không gian tên MediaWiki và CSS/JS cá nhân',
+	'mwoauth-grant-editmycssjs' => 'Sửa đổi CSS/JS cá nhân của bạn',
+	'mwoauth-grant-editmywatchlist' => 'Sửa danh sách theo dõi của bạn',
+	'mwoauth-grant-editpage' => 'Sửa đổi các trang đã tồn tại',
+	'mwoauth-grant-editprotected' => 'Sửa đội các trang bị khóa',
+	'mwoauth-grant-highvolume' => 'Sửa đổi tốc độ cao',
+	'mwoauth-grant-oversight' => 'Ẩn người dùng và phiên bản',
+	'mwoauth-grant-patrol' => 'Tuần tra',
+	'mwoauth-grant-protect' => 'Khóa và mở khóa các trang',
+	'mwoauth-grant-rollback' => 'Lùi tất cả',
+	'mwoauth-grant-sendemail' => 'Gửi thư điện tử',
+	'mwoauth-grant-uploadeditmovefile' => 'Tải lên, thay thế, và di chuyển tập tin',
+	'mwoauth-grant-uploadfile' => 'Tải lên tập tin mới',
+	'mwoauth-grant-useoauth' => 'Quyền cơ bản',
+	'mwoauth-grant-viewdeleted' => 'Xem thông tin bị xóa',
+	'mwoauth-grant-viewmywatchlist' => 'Xem danh sách theo dõi của bạn',
+	'right-mwoauthviewprivate' => 'Xem dữ liệu riêng OAuth',
 );
 
 /** Yiddish (ייִדיש)
