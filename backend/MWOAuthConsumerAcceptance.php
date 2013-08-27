@@ -59,7 +59,13 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 
 	protected static function getFieldPermissionChecks() {
 		return array(
-			'accessSecret' => 'userCanSeePrivate'
+			'wiki'         => 'userCanSee',
+			'userId'       => 'userCanSee',
+			'consumerId'   => 'userCanSee',
+			'accessToken'  => 'userCanSeePrivate',
+			'accessSecret' => 'userCanSeeSecret',
+			'grants'       => 'userCanSee',
+			'accepted'     => 'userCanSee',
 		);
 	}
 
@@ -135,11 +141,26 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		return $row;
 	}
 
-	protected function userCanSeePrivate( $name, RequestContext $context ) {
-		if ( !$context->getUser()->isAllowed( 'mwoauthviewprivate' ) ) {
+	protected function userCanSee( $name, RequestContext $context ) {
+		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $context->getUser() );
+		if ( $this->userId != $centralUserId
+			&& !$context->getUser()->isAllowed( 'mwoauthviewprivate' )
+		) {
 			return $context->msg( 'mwoauth-field-private' );
 		} else {
 			return true;
 		}
+	}
+
+	protected function userCanSeePrivate( $name, RequestContext $context ) {
+		if ( !$context->getUser()->isAllowed( 'mwoauthviewprivate' ) ) {
+			return $context->msg( 'mwoauth-field-private' );
+		} else {
+			return $this->userCanSee( $name, $context );
+		}
+	}
+
+	protected function userCanSeeSecret( $name, RequestContext $context ) {
+		return $context->msg( 'mwoauth-field-private' );
 	}
 }
