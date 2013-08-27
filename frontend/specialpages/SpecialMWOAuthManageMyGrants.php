@@ -103,9 +103,15 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 		$lang = $this->getLanguage();
 		$db = MWOAuthUtils::getCentralDB( DB_SLAVE );
 
+		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
+		if ( !$centralUserId ) {
+			$this->getOutput()->addWikiMsg( 'badaccess-group0' );
+			return;
+		}
+
 		$cmra = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumerAcceptance::newFromId( $db, $acceptanceId ), $this->getContext() );
-		if ( !$cmra ) {
+		if ( !$cmra || $cmra->get( 'userId' ) !== $centralUserId ) {
 			$this->getOutput()->addHtml( $this->msg( 'mwoauth-invalid-access-token' )->escaped() );
 			return;
 		}
