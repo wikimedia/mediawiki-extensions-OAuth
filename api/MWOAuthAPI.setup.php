@@ -123,7 +123,7 @@ class MWOAuthAPISetup {
 				wfSetupSession( $sessionId ); // create/reuse this "anonymous" session
 				Hooks::register( 'AfterFinalPageOutput', function( $out ) {
 					// Just in case, make sure this is not a valid login session for sanity
-					RequestContext::getMain()->getRequest()->setSessionData( 'wsUserName', null );
+					RequestContext::getMain()->getRequest()->setSessionData( 'wsUserID', 0 );
 				} );
 
 				$result = true;
