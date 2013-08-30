@@ -81,8 +81,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					} else {
 						$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 						$consumer = MWOAuthDAOAccessControl::wrap(
-								MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
-								$this->getContext()
+							MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
+							$this->getContext()
 						);
 						if ( !$consumer ) {
 							throw new MWOAuthException( 'mwoauth-bad-request' );

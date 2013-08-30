@@ -22,8 +22,8 @@ class MWOAuthUISetup {
 		global $wgLogTypes, $wgLogNames, $wgLogHeaders, $wgLogActionsHandlers;
 		global $wgResourceModules;
 
+		$wgSpecialPages['MWOAuth'] = 'SpecialMWOAuth';
 		if ( MWOAuthUtils::isCentralWiki() ) {
-			$wgSpecialPages['MWOAuth'] = 'SpecialMWOAuth'; // @TODO: allow everywhere
 			$wgSpecialPages['MWOAuthConsumerRegistration'] = 'SpecialMWOAuthConsumerRegistration';
 			$wgSpecialPageGroups['MWOAuthConsumerRegistration'] = 'users';
 			$wgSpecialPages['MWOAuthManageConsumers'] = 'SpecialMWOAuthManageConsumers';
