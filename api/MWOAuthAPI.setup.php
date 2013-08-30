@@ -88,17 +88,21 @@ class MWOAuthAPISetup {
 		try {
 			$accesstoken = self::getOAuthAccessToken();
 			if ( $accesstoken !== null ) {
+				$wiki = wfWikiID();
 				$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 				$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $accesstoken->key );
-				if ( $access->get( 'wiki' ) !== '*' && $access->get( 'wiki' ) !== wfWikiID() ) {
-					throw self::makeException(
-						'mwoauth-invalid-authorization-wrong-wiki', wfWikiID() );
+				if ( $access->get( 'wiki' ) !== '*' && $access->get( 'wiki' ) !== $wiki ) {
+					throw self::makeException( 'mwoauth-invalid-authorization-wrong-wiki', $wiki );
 				}
 				$consumer = MWOAuthConsumer::newFromId( $dbr, $access->get( 'consumerId' ) );
 				if ( $consumer->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
 					&& !$consumer->isPendingAndOwnedBy( $user ) // let publisher test this
 				) {
 					throw self::makeException( 'mwoauth-invalid-authorization-not-approved' );
+				} elseif ( $consumer->get( 'wiki' ) !== '*'
+					&& $consumer->get( 'wiki' ) !== $wiki
+				) {
+					throw self::makeException( 'mwoauth-invalid-authorization-wrong-wiki', $wiki );
 				}
 				$localUser = MWOAuthUtils::getLocalUserFromCentralId( $access->get( 'userId' ) );
 				if ( !$localUser || !$localUser->isLoggedIn() ) {
