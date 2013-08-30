@@ -236,8 +236,11 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 				$opts["<strong>$msg</strong>"] = 'dsuppress';
 			}
 		}
+
+		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
+		$control = new MWOAuthConsumerSubmitControl( $this->getContext(), array(), $dbw );
 		$form = new HTMLForm(
-			array(
+			$control->registerValidators( array(
 				'consumerKeyShown' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-key',
@@ -330,20 +333,21 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					'type' => 'hidden',
 					'default' => $cmr->getDAO()->getChangeToken( $this->getContext() )
 				),
-			),
+			) ),
 			$this->getContext()
 		);
-		$form->setSubmitCallback( function( array $data, IContextSource $context ) {
-			$data['suppress'] = 0;
-			if ( $data['action'] === 'dsuppress' ) {
-				$data = array( 'action' => 'disable', 'suppress' => 1 ) + $data;
-			} elseif ( $data['action'] === 'rsuppress' ) {
-				$data = array( 'action' => 'reject', 'suppress' => 1 ) + $data;
+		$form->setSubmitCallback(
+			function( array $data, IContextSource $context ) use ( $control ) {
+				$data['suppress'] = 0;
+				if ( $data['action'] === 'dsuppress' ) {
+					$data = array( 'action' => 'disable', 'suppress' => 1 ) + $data;
+				} elseif ( $data['action'] === 'rsuppress' ) {
+					$data = array( 'action' => 'reject', 'suppress' => 1 ) + $data;
+				}
+				$control->setInputParameters( $data );
+				return $control->submit();
 			}
-			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
-			$controller = new MWOAuthConsumerSubmitControl( $context, $data, $dbw );
-			return $controller->submit();
-		} );
+		);
 
 		$form->setWrapperLegendMsg( 'mwoauthmanageconsumers-confirm-legend' );
 		$form->setSubmitTextMsg( 'mwoauthmanageconsumers-confirm-submit' );
