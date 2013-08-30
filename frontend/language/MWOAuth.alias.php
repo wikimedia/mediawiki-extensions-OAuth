@@ -21,6 +21,7 @@ $specialPageAliases['de'] = array(
 	'MWOAuthConsumerRegistration' => array( 'Verbraucherregistrierung' ),
 	'MWOAuthManageConsumers' => array( 'Verbraucher_verwalten' ),
 	'MWOAuthManageMyGrants' => array( 'Meine_Berechtigungen_verwalten' ),
+	'MWOAuth' => array( 'OAuth' ),
 );
 
 /** Korean (한국어) */
@@ -35,4 +36,6 @@ $specialPageAliases['ko'] = array(
 $specialPageAliases['mk'] = array(
 	'MWOAuthConsumerRegistration' => array( 'МВOAuthРегистрацијаПотрошувач' ),
 	'MWOAuthManageConsumers' => array( 'МВOAuthРаководењеПотрошувач' ),
+	'MWOAuthManageMyGrants' => array( 'MWOAuthРаководењеМоиДоделувања' ),
+	'MWOAuth' => array( 'MWOAuth' ),
 );
