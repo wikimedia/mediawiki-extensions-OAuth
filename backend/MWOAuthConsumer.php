@@ -99,7 +99,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 			'description'     => 'userCanSee',
 			'rsaKey'          => 'userCanSee',
 			'email'           => 'userCanSeeEmail',
-			'secretKey'       => 'userCanSeePrivate',
+			'secretKey'       => 'userCanSeeSecret',
 			'restrictions'    => 'userCanSeePrivate',
 		);
 	}
@@ -264,5 +264,9 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		} else {
 			return $this->userCanSee( $name, $context );
 		}
+	}
+
+	protected function userCanSeeSecret( $name, RequestContext $context ) {
+		return $context->msg( 'mwoauth-field-private' );
 	}
 }
