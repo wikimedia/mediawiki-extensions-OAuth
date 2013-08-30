@@ -12,6 +12,10 @@ $messages['en'] = array(
 	'mwoauth' => 'OAuth',
 	'mwoauth-desc' => 'OAuth 1.0a API Authorization',
 
+	'mwoauth-verified' => 'The application is now allowed to access MediaWiki on your behalf.
+
+To complete the process, provide this verification value to the application: \'\'\'$1\'\'\'',
+
 	'mwoauth-missing-field' => 'Missing value for "$1" field',
 	'mwoauth-invalid-field' => 'Invalid value provided for "$1" field',
 
@@ -266,6 +270,9 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 $messages['qqq'] = array(
 	'mwoauth' => 'Title of MWOAuth page',
 	'mwoauth-desc' => 'Used as subtitle.',
+	'mwoauth-verified' => 'Displayed to the user when the consumer does not have a callback URL, to provide the verification token that the consumer needs to complete the authorization process. Parameters:
+* $1 - Verificiation token
+* $2 - Request token (the app should already have this)',
 	'mwoauth-missing-field' => 'Parameters:
 * $1 - field name
 See also:
