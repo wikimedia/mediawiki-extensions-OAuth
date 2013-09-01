@@ -274,7 +274,6 @@ $messages['qqq'] = array(
 	'mwoauth-verified' => 'Displayed to the user when the consumer does not have a callback URL, to provide the verification token that the consumer needs to complete the authorization process. Parameters:
 * $1 - Verificiation token
 * $2 - Request token (the app should already have this)',
-	'mwoauth-invalid-field-generic' => 'Used as error message',
 	'mwoauth-missing-field' => 'Parameters:
 * $1 - field name
 See also:
@@ -283,6 +282,7 @@ See also:
 * $1 - field name
 See also:
 * {{msg-mw|Mwoauth-missing-field}}',
+	'mwoauth-invalid-field-generic' => 'Used as generic error message for form field validation.',
 	'mwoauth-field-hidden' => 'Used if the information has been deleted and the user is not allowed to view suppressed information.
 
 See also:
@@ -1018,8 +1018,12 @@ Uvědomte si, že pokud jste konzumentovi dovolili přístup jen k podmnožině 
  */
 $messages['de'] = array(
 	'mwoauth-desc' => 'OAuth-1.0a-API-Authentifikation',
+	'mwoauth-verified' => "Die Anwendung ist jetzt berechtigt, in deinem Namen auf MediaWiki zuzugreifen.
+
+Um den Prozess abzuschließen, gib diesen Verifizierungswert an die Anwendung weiter: '''$1'''",
 	'mwoauth-missing-field' => 'Fehlender Wert für das Feld „$1“',
 	'mwoauth-invalid-field' => 'Für das Feld „$1“ wurde ein ungültiger Wert angegeben',
+	'mwoauth-invalid-field-generic' => 'Ungültigen Wert angegeben',
 	'mwoauth-field-hidden' => '(diese Information ist versteckt)',
 	'mwoauth-field-private' => '(diese Information ist privat)',
 	'mwoauth-grant-generic' => 'Rechtegruppe „$1“',
@@ -1513,8 +1517,12 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
  */
 $messages['gl'] = array(
 	'mwoauth-desc' => 'Autenticación API OAuth 1.0a',
+	'mwoauth-verified' => "Agora, esta aplicación ten permitido acceder a MediaWiki no seu nome.
+
+Para completar o proceso, achegue este valor de verificación á aplicación: '''$1'''",
 	'mwoauth-missing-field' => 'Falta o valor para o campo "$1"',
 	'mwoauth-invalid-field' => 'Achegouse un valor non válido para o campo "$1"',
+	'mwoauth-invalid-field-generic' => 'O valor proporcionado non é válido',
 	'mwoauth-field-hidden' => '(esta información está agochada)',
 	'mwoauth-field-private' => '(esta información é privada)',
 	'mwoauth-grant-generic' => 'conxunto de dereitos "$1"',
@@ -2151,6 +2159,7 @@ $messages['ja'] = array(
 	'mwoauth-desc' => 'OAuth 1.0a API 認証',
 	'mwoauth-missing-field' => '「$1」フィールドの値がありません',
 	'mwoauth-invalid-field' => '「$1」フィールドに指定した値は無効です',
+	'mwoauth-invalid-field-generic' => '指定した値は無効です',
 	'mwoauth-field-hidden' => '(この情報は非表示です)',
 	'mwoauth-field-private' => '(この情報は非公開です)',
 	'mwoauth-prefs-managegrants' => 'OAuth コンシューマー アクセス:',
@@ -2510,8 +2519,12 @@ $messages['lb'] = array(
  */
 $messages['mk'] = array(
 	'mwoauth-desc' => 'Заверка со прилогот OAuth 1.0a',
+	'mwoauth-verified' => "На прилогот не му е дозволен пристап до МедијаВики во ваше име.
+
+За да ја довршите постапката, на прилогот укажете му ја следнава контролна вредност: '''$1'''",
 	'mwoauth-missing-field' => 'Недостасува вредност во полето „$1“',
 	'mwoauth-invalid-field' => 'Во полето „$1“ е зададена неважечка вредност',
+	'mwoauth-invalid-field-generic' => 'Укажана е неважечка вредност',
 	'mwoauth-field-hidden' => '(оваа информација е скриена)',
 	'mwoauth-field-private' => '(оваа информација е приватна)',
 	'mwoauth-grant-generic' => 'Група права „$1“',
@@ -3188,8 +3201,12 @@ $messages['tr'] = array(
  */
 $messages['uk'] = array(
 	'mwoauth-desc' => 'OAuth 1.0a API авторизація',
+	'mwoauth-verified' => "Цій програмі зараз дозволений доступ до Медіавікі від вашого імені.
+
+Для завершення процесу надайте це перевірене значення програмі: '''$1'''",
 	'mwoauth-missing-field' => 'Відсутнє значення для поля "$1"',
 	'mwoauth-invalid-field' => 'Неприпустиме значення для поля "$1"',
+	'mwoauth-invalid-field-generic' => 'Надано неприпустиме значення',
 	'mwoauth-field-hidden' => '(ця інформація прихована)',
 	'mwoauth-field-private' => '(ця інформація є конфіденційною)',
 	'mwoauth-grant-generic' => 'Пучок прав "$1"',
