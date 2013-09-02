@@ -1981,6 +1981,7 @@ $messages['it'] = array(
 	'mwoauth-desc' => 'API autorizzazioni OAuth 1.0a',
 	'mwoauth-missing-field' => 'Valore mancante per il campo "$1".',
 	'mwoauth-invalid-field' => 'Valore non valido per il campo "$1".',
+	'mwoauth-invalid-field-generic' => 'Valore indicato non valido',
 	'mwoauth-field-hidden' => '(questa informazione è nascosta)',
 	'mwoauth-field-private' => '(questa informazione è privata)',
 	'mwoauth-grant-generic' => 'Pacchetto diritti "$1"',
