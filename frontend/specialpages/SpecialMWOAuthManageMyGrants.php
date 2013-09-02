@@ -220,8 +220,7 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 
 		$status = $form->show();
 		if ( $status instanceof Status && $status->isOk() ) {
-			// Uses messages mwoauthmanagemygrants-success-update,
-			// mwoauthmanagemygrants-success-renounce
+			// Messages: mwoauthmanagemygrants-success-update, mwoauthmanagemygrants-success-renounce
 			$this->getOutput()->addWikiMsg( "mwoauthmanagemygrants-success-$act" );
 			$this->getOutput()->returnToMain();
 		}

@@ -177,12 +177,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$out->addHTML( Html::element( 'p', array(), $this->msg( 'mwoauth-authorize-form' )->text() ) );
 		$description = '';
 		foreach ( $params['description'] as $descKey => $descVal ) {
-			/* Messages:
-			'mwoauth-authorize-form-user'
-			'mwoauth-authorize-form-name'
-			'mwoauth-authorize-form-description'
-			'mwoauth-authorize-form-version'
-			'mwoauth-authorize-form-wiki'*/
+			// Messages: mwoauth-authorize-form-user, mwoauth-authorize-form-name,
+			// mwoauth-authorize-form-description, mwoauth-authorize-form-version,
+			// mwoauth-authorize-form-wiki
 			$description .= Html::element(
 				'li',
 				array(),
