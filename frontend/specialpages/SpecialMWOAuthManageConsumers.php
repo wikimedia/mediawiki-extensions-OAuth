@@ -165,8 +165,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 				"<$tag>" .
 				Linker::makeKnownLinkObj(
 					$this->getTitle( $stageKey ),
-					// Give grep a chance to find the usages:
-					// mwoauthmanageconsumers-q-proposed, mwoauthmanageconsumers-q-rejected,
+					// Messages: mwoauthmanageconsumers-q-proposed, mwoauthmanageconsumers-q-rejected,
 					// mwoauthmanageconsumers-q-expired
 					$this->msg( 'mwoauthmanageconsumers-q-' . $stageKey )->escaped()
 				) .
@@ -183,8 +182,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 				'<li>' .
 				Linker::makeKnownLinkObj(
 					$this->getTitle( $stageKey ),
-					// Give grep a chance to find the usages:
-					// mwoauthmanageconsumers-l-approved, mwoauthmanageconsumers-l-disabled
+					// Messages: mwoauthmanageconsumers-l-approved, mwoauthmanageconsumers-l-disabled
 					$this->msg( 'mwoauthmanageconsumers-l-' . $stageKey )->escaped()
 				) .
 				" [$counts[$stage]]" .
@@ -302,10 +300,9 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 				'stage' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-stage',
-					// Give grep a chance to find the usages:
-					// mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
+					// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
 					// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
-					// mwoauth-consumer-stage-disabled, mwoauth-consumer-stage-suppressed
+					// mwoauth-consumer-stage-disabled
 					'default' => $cmr->get( 'deleted' )
 						? $this->msg( 'mwoauth-consumer-stage-suppressed' )
 						: $this->msg( 'mwoauth-consumer-stage-' .
@@ -353,9 +350,8 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		$status = $form->show();
 		if ( $status instanceof Status && $status->isOk() ) {
 			$type = self::$stageKeyMap[$status->value['result']->get( 'stage' )];
-			// Uses messages mwoauthmanageconsumers-success-proposed,
-			// mwoauthmanageconsumers-success-rejected, mwoauthmanageconsumers-success-approved,
-			// mwoauthmanageconsumers-success-disabled, mwoauthmanageconsumers-success-reenabled
+			// Messages: mwoauthmanageconsumers-success-approved, mwoauthmanageconsumers-success-rejected,
+			// mwoauthmanageconsumers-success-disabled
 			$this->getOutput()->addWikiMsg( "mwoauthmanageconsumers-success-$type" );
 			$this->getOutput()->returnToMain();
 		} else {
@@ -386,9 +382,9 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 			$this->getOutput()->addHTML( $pager->getBody() );
 			$this->getOutput()->addHTML( $pager->getNavigationBar() );
 		} else {
-			// Uses messages mwoauthmanageconsumers-none-proposed,
-			// mwoauthmanageconsumers-none-rejected, mwoauthmanageconsumers-none-approved,
-			// mwoauthmanageconsumers-none-disabled, mwoauthmanageconsumers-none-reenabled
+			// Messages: mwoauthmanageconsumers-none-proposed, mwoauthmanageconsumers-none-rejected,
+			// mwoauthmanageconsumers-none-expired, mwoauthmanageconsumers-none-approved,
+			// mwoauthmanageconsumers-none-disabled
 			$this->getOutput()->addWikiMsg( "mwoauthmanageconsumers-none-{$this->stageKey}" );
 		}
 		# Every 30th view, prune old deleted items
