@@ -1,5 +1,26 @@
 <?php
+/*
+ (c) Chris Steipp, Aaron Schulz 2013, GPL
 
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License along
+ with this program; if not, write to the Free Software Foundation, Inc.,
+ 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ http://www.gnu.org/copyleft/gpl.html
+*/
+
+/**
+ * Page that handles OAuth consumer authorization and token exchange
+ */
 class SpecialMWOAuth extends UnlistedSpecialPage {
 	function __construct() {
 		parent::__construct( 'MWOAuth' );
@@ -7,6 +28,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 
 	public function execute( $subpage ) {
 		$this->setHeaders();
+
+		$user = $this->getUser();
 		$request = $this->getRequest();
 		$format = $request->getVal( 'format', 'raw' );
 		if ( !in_array( $subpage, array( 'initiate', 'authorize', 'verified', 'token' ) ) ) {
@@ -14,113 +37,48 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		}
 
 		try {
-			$oauthServer = MWOAuthUtils::newMWOAuthServer();
 			switch ( $subpage ) {
 				case 'initiate':
-					$OAuthRequest = MWOAuthRequest::fromRequest( $request );
-					wfDebugLog( 'OAuth', __METHOD__ . ": Consumer '{$OAuthRequest->getConsumerKey()}' getting temporary credentials" );
+					$oauthServer = MWOAuthUtils::newMWOAuthServer();
+					$oauthRequest = MWOAuthRequest::fromRequest( $request );
+					wfDebugLog( 'OAuth', __METHOD__ . ": Consumer " .
+						"'{$oauthRequest->getConsumerKey()}' getting temporary credentials" );
 					// fetch_request_token does the version, freshness, and sig checks
-					$token = $oauthServer->fetch_request_token( $OAuthRequest );
+					$token = $oauthServer->fetch_request_token( $oauthRequest );
 					$this->returnToken( $token, $format );
 					break;
 				case 'authorize':
-					//TODO: most of the "controller" logic should be move somewhere else
-					$format = $request->getVal( 'format', 'html' );
-					$mwUser = $this->getUser();
-					$requestToken = $request->getVal( 'oauth_token', false ); //oauth_token
-					$consumerKey = $request->getVal( 'oauth_consumer_key', false ); //oauth_key
-					wfDebugLog( 'OAuth', __METHOD__ . ": doing 'authorize' with '$requestToken' '$consumerKey' for '{$mwUser->getName()}'" );
-					if ( !$requestToken || !$consumerKey ) {
-						throw new MWOAuthException( 'mwoauth-bad-request' );
-					}
+					$format = $request->getVal( 'format', 'html' ); // for exceptions
+					// Hack: prefix needed for HTMLForm
+					$requestToken = $request->getVal( 'wprequestToken',
+						$request->getVal( 'oauth_token' ) );
+					$consumerKey = $request->getVal( 'wpconsumerKey',
+						$request->getVal( 'oauth_consumer_key' ) );
+					wfDebugLog( 'OAuth', __METHOD__ . ": doing 'authorize' with " .
+						"'$requestToken' '$consumerKey' for '{$user->getName()}'" );
 					// TODO? Test that $requestToken exists in memcache
-
-					if ( $mwUser->isAnon() ) {
-						//redirect to login
+					if ( $user->isAnon() ) {
+						// Redirect to login page
 						$query['returnto'] = $this->getTitle( 'authorize' )->getPrefixedText();
 						$query['returntoquery'] = wfArrayToCgi( array(
-							'oauth_token' => $requestToken,
+							'oauth_token'        => $requestToken,
 							'oauth_consumer_key' => $consumerKey
 						) );
 						$loginPage = SpecialPage::getTitleFor( 'UserLogin' );
 						$url = $loginPage->getLocalURL( $query );
-						$this->doRedirect( $url );
-						return;
-					}
-
-					// Check to make sure this user is the same user
-					// on the central wiki
-					$centralId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
-					if ( !$centralId ) {
-						// For now, just abort and give them hints to fix in
-						// the error message. TODO: if we can fix the issue with
-						// a few redirects, do that here.
-						throw new MWOAuthException( 'mwoauth-authorize-form-invalid-user' );
-					}
-
-					if ( $request->getVal( 'doAuthorize', false ) ) {
-						// Require POST
-						if ( !$request->wasPosted() ) {
-							throw new MWOAuthException( 'mwoauth-not-posted' );
-						}
-
-						// Check csrf token
-						$CSRFToken = $request->getVal( 'formToken', false );
-						if ( !$mwUser->matchEditToken( $CSRFToken, 'OAuth:Authorize' ) ) {
-							throw new MWOAuthException( 'mwoauth-bad-csrf-token' );
-						}
-						// Create Grant
-						$callback = $oauthServer->authorize(
-							$consumerKey,
-							$requestToken,
-							$mwUser,
-							$request->getCheck( 'grants-update' )
-						);
-						// Redirect to callback url
-						$this->doRedirect( $callback );
+						$this->getOutput()->redirect( $url );
 					} else {
-						$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
-						$consumer = MWOAuthDAOAccessControl::wrap(
-							MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
-							$this->getContext()
-						);
-						if ( !$consumer ) {
-							throw new MWOAuthException( 'mwoauth-bad-request' );
-						}
-						if ( $consumer->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
-							&& !$consumer->getDAO()->isPendingAndOwnedBy( $mwUser )
-						) {
-							throw new MWOAuthException( 'mwoauth-invalid-authorization-not-approved' );
-						}
-						// Check if this user has authorized grants for this consumer previously
-						$existing = $oauthServer->getCurrentAuthorization(
-							$mwUser,
-							$consumer->getDAO()
-						);
-
-						$formParams = array(
-							'consumerKey' => $consumerKey,
-							'requestToken' => $requestToken,
-							'grants' => $consumer->get( 'grants' ),
-							'existing' => $existing,
-							'description' => array (
-								'user' => MWOAuthUtils::getCentralUserNameFromId(
-									$consumer->get( 'userId' ) ),
-								'name' => $consumer->get( 'name'),
-								'version' => $consumer->get( 'version'),
-								'description' => $consumer->get( 'description'),
-								'wiki' => $consumer->get( 'wiki'),
-							)
-						);
-						$this->showAuthorizeForm( $formParams );
+						// Show form and redirect on submission for authorization
+						$this->handleAuthorizationForm( $requestToken, $consumerKey );
 					}
 					break;
 				case 'token':
-					$OAuthRequest = MWOAuthRequest::fromRequest( $request );
-					wfDebugLog( 'OAuth', "/token: '{$OAuthRequest->get_parameter( 'oauth_consumer_key' )}' getting temporary credentials" );
-					$token = $oauthServer->fetch_access_token( $OAuthRequest );
+					$oauthServer = MWOAuthUtils::newMWOAuthServer();
+					$oauthRequest = MWOAuthRequest::fromRequest( $request );
+					$consumerKey = $oauthRequest->get_parameter( 'oauth_consumer_key' );
+					wfDebugLog( 'OAuth', "/token: '{$consumerKey}' getting temporary credentials" );
+					$token = $oauthServer->fetch_access_token( $oauthRequest );
 					$this->returnToken( $token, $format );
-
 					break;
 				case 'verified':
 					$format = $request->getVal( 'format', 'html' );
@@ -141,7 +99,6 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				default:
 					throw new OAuthException( 'mwoauth-invalid-method' );
 			}
-
 		} catch ( MWOAuthException $exception ) {
 			wfDebugLog( 'OAuth', __METHOD__ . ": Exception " . $exception->getMessage() );
 			$this->showError( $exception->getMessage(), $format );
@@ -151,66 +108,124 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		}
 	}
 
-	private function doRedirect( $url ) {
-		$output = $this->getOutput();
-		$output->redirect( $url );
-	}
+	// @TODO: cancel button
+	protected function handleAuthorizationForm( $requestToken, $consumerKey ) {
+		$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
 
-	private function showAuthorizeForm( $params ) {
-		$out = $this->getOutput();
+		$user = $this->getUser();
+		$lang = $this->getLanguage();
 
-		$out->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
-		if ( !$params['existing'] ) {
-			$out->addHTML( Html::element( 'p', array(), $this->msg( 'mwoauth-form-description' )->text() ) );
-		} else {
-			// User has already authorized this consumer
-			$lang = $this->getLanguage();
-			$grants = $params['existing']->get( 'grants');
-			$grantList = is_null( $grants ) ? $this->msg( 'mwoauth-grants-nogrants' )->text() : $lang->commaList( $grants );
-			$out->addWikiMsg( 'mwoauth-form-existing',
-				$grantList,
-				$params['existing']->get( 'wiki'),
-				$params['existing']->get( 'accepted' ) );
+		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE ); // @TODO: lazy handle
+		$oauthServer = MWOAuthUtils::newMWOAuthServer();
+
+		$cmr = MWOAuthDAOAccessControl::wrap(
+			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
+			$this->getContext()
+		);
+		if ( !$cmr ) {
+			throw new MWOAuthException( 'mwoauth-bad-request' );
+		} elseif ( $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
+			&& !$cmr->getDAO()->isPendingAndOwnedBy( $user )
+		) {
+			throw new MWOAuthException( 'mwoauth-invalid-authorization-not-approved' );
 		}
-		$out->addHTML( Html::element( 'p', array(), $this->msg( 'mwoauth-form-legal' )->text() ) );
 
-		$out->addHTML( Html::element( 'p', array(), $this->msg( 'mwoauth-authorize-form' )->text() ) );
-		$description = '';
-		foreach ( $params['description'] as $descKey => $descVal ) {
-			// Messages: mwoauth-authorize-form-user, mwoauth-authorize-form-name,
-			// mwoauth-authorize-form-description, mwoauth-authorize-form-version,
-			// mwoauth-authorize-form-wiki
-			$description .= Html::element(
-				'li',
-				array(),
-				$this->msg( 'mwoauth-authorize-form-' . $descKey, $descVal )->text()
-			);
-		}
-		$out->addHTML( Html::rawElement( 'ul', array(), $description ) );
+		// Check if this user has authorized grants for this consumer previously
+		$existing = $oauthServer->getCurrentAuthorization( $user, $cmr->getDAO() );
 
-		$out->addHTML( $this->getGrantsHtml( $params['grants'] ) );
-		if ( $params['existing'] ) {
-			// Checkbox to allow the user to update their permission to match the Consumer's request
-			$fields['mwoauth-form-confirmation-update'] = Xml::check( 'grants-update', false );
-		}
-		$fields['mwoauth-form-confirmation'] = Xml::submitButton( $this->msg( 'mwoauth-form-button-approve' )->text() );
-		$form = Xml::buildForm( $fields );
-		$form = Xml::fieldset( null, $form );
+		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), array(), $dbr );
+		$form = new HTMLForm(
+			$control->registerValidators( array(
+				'name' => array(
+					'type' => 'info',
+					'label-message' => 'mwoauth-consumer-name',
+					'default' => $cmr->get( 'name' ),
+					'size' => '45'
+				),
+				'user' => array(
+					'type' => 'info',
+					'label-message' => 'mwoauth-consumer-user',
+					'default' => $cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' )
+				),
+				'version' => array(
+					'type' => 'info',
+					'label-message' => 'mwoauth-consumer-version',
+					'default' => $cmr->get( 'version' ),
+				),
+				'description' => array(
+					'type' => 'info',
+					'label-message' => 'mwoauth-consumer-description',
+					'default' => $cmr->get( 'description' ),
+					'rows' => 5
+				),
+				'wiki' => array(
+					'type' => 'info',
+					'label-message' => 'mwoauth-consumer-wiki',
+					'default' => $cmr->get( 'wiki' ),
+				),
+				'grants'  => array(
+					'type' => 'info',
+					'label-message' => 'mwoauth-grants-heading',
+					'default' => $this->getGrantsHtml( $cmr->get( 'grants' ) ),
+					'raw' => true
+				),
+				'action' => array(
+					'type'    => 'hidden',
+					'default' => 'accept',
+					'validation-callback' => null // different format
+				),
+				'confirmUpdate' => array(
+					'type'    => 'hidden',
+					'default' => $existing ? 1 : 0,
+					'validation-callback' => null // different format
+				),
+				'consumerKey' => array(
+					'type'    => 'hidden',
+					'default' => $consumerKey,
+					'validation-callback' => null // different format
+				),
+				'requestToken' => array(
+					'type'    => 'hidden',
+					'default' => $requestToken,
+					'validation-callback' => null // different format
+				)
+			) ),
+			$this->getContext()
+		);
+		$form->setSubmitCallback(
+			function( array $data, IContextSource $context ) use ( $control ) {
+				$data['grants'] = FormatJSON::encode( // adapt form to controller
+					preg_replace( '/^grant-/', '', $data['grants'] ) );
 
-		$form .= Html::hidden( 'oauth_consumer_key', $params['consumerKey'] );
-		$form .= Html::hidden( 'oauth_token', $params['requestToken'] );
-		$form .= Html::hidden( 'formToken', $this->getUser()->getEditToken( 'OAuth:Authorize' ) );
-		$form .= Html::hidden( 'doAuthorize', '1' );
-
-		$form = Xml::tags( 'form',
-			array(
-				'action' => $this->getTitle( 'authorize' )->getFullURL(),
-				'method' => 'post'
-			),
-			$form
+				$control->setInputParameters( $data );
+				return $control->submit();
+			}
 		);
 
-		$out->addHTML( $form );
+		if ( $existing ) {
+			// User has already authorized this consumer
+			$grants = $existing->get( 'grants');
+			$grantList = is_null( $grants )
+				? $this->msg( 'mwoauth-grants-nogrants' )->text()
+				: $lang->semicolonList( MWOAuthUtils::grantNames( $grants ) );
+			$form->addPreText( $this->msg( 'mwoauth-form-existing',
+				$grantList,
+				$existing->get( 'wiki' ),
+				$lang->timeAndDate( $existing->get( 'accepted' ), true )
+			)->parseAsBlock() );
+		} else {
+			$form->addPreText( $this->msg( 'mwoauth-form-description' )->parseAsBlock() );
+		}
+		$form->addPreText( $this->msg( 'mwoauth-form-legal' )->text() );
+
+		$form->setWrapperLegendMsg( 'mwoauth-desc' );
+		$form->setSubmitTextMsg( 'mwoauth-form-button-approve' );
+
+		$status = $form->show();
+		if ( $status instanceof Status && $status->isOk() ) {
+			// Redirect to callback url
+			$this->getOutput()->redirect( $status->value['result']['callbackUrl'] );
+		}
 	}
 
 	/**
@@ -219,12 +234,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	 */
 	private function getGrantsHtml( $grants ) {
 		// TODO: dom / styling
-		$html = Html::element(
-			'p',
-			array(),
-			$this->msg( 'mwoauth-grants-heading' )->text()
-		);
-
+		$html = '';
 		if ( $grants === array() || is_null( $grants ) ) {
 			$html .= Html::rawElement(
 				'ul',
@@ -305,6 +315,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	private function showResponse( $response, $format  ) {
 		$out = $this->getOutput();
 		if ( $format == 'raw' ) {
+			// FIXME: breaks with text/trace profiler
 			$out->setArticleBodyOnly( true );
 			$out->enableClientCache( false );
 			$out->preventClickjacking();

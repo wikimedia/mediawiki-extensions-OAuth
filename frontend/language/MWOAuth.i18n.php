@@ -206,21 +206,13 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauth-invalid-authorization-not-approved' => 'The authorization headers in your request are for an OAuth consumer that is not currently approved',
 	'mwoauth-invalid-authorization-blocked-user' => 'The authorization headers in your request are for a user who is blocked',
 
-	'mwoauth-form-description' => 'The following application is requesting to use MediaWiki on your behalf. The application will be able to perform any actions that are allowed with the list if requested rights below. Only allow applications that you trust to use these permissions as you would.',
+	'mwoauth-form-description' => "'''The following application is requesting to use MediaWiki on your behalf'''. If you grant access, then the application will be able to perform any actions that are allowed with the list of requested permissions below. Only allow applications that you trust to use these permissions as you would.",
 	'mwoauth-form-existing' => "'''This application is requesting authorization to MediaWiki on your behalf, but you have already granted access:'''
 *  Grants: $1
 *  Wiki: $2
 *  Authorized on: $3",
 	'mwoauth-form-legal' => '',
 	'mwoauth-form-button-approve' => 'Yes, allow',
-	'mwoauth-form-confirmation' => 'Allow this application to act on your behalf?',
-	'mwoauth-form-confirmation-update' => 'Update this authorization to the requested privileges. Leaving this unchecked will keep your existing authorizations',
-	'mwoauth-authorize-form' => 'Application details:',
-	'mwoauth-authorize-form-user' => 'Application author: $1',
-	'mwoauth-authorize-form-name' => 'Application name: $1',
-	'mwoauth-authorize-form-description' => 'Application description: $1',
-	'mwoauth-authorize-form-version' => 'Application version: $1',
-	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
 	'mwoauth-authorize-form-invalid-user' => 'This user account cannot use OAuth, because the account on this wiki, and the account on the central OAuth wiki are not linked.',
 	'mwoauth-error' => 'OAuth Error',
 	'mwoauth-grants-heading' => 'Requested permissions: ',
@@ -246,6 +238,7 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauth-grant-viewdeleted' => 'View deleted information',
 	'mwoauth-grant-viewmywatchlist' => 'View your watchlist',
 
+	'mwoauth-oauth-exception' => 'An error occurred in the OAuth protocol: $1',
 	'mwoauth-callback-not-oob' => 'oauth_callback must be set, and must be set to "oob" (case-sensitive)',
 
 	'right-mwoauthproposeconsumer' => 'Propose new OAuth consumers',
@@ -382,6 +375,8 @@ See also:
 	'mwoauth-invalid-consumer-key' => 'Used as failure message.',
 	'mwoauth-invalid-access-token' => 'Used as failure message.',
 	'mwoauth-consumer-conflict' => 'Used as failure message.',
+	'mwoauth-oauth-exception' => 'Used as failure message. Parameters:
+* $1 - Exception message text',
 	'mwoauth-consumer-stage-proposed' => '{{Related|Mwoauth-consumer-stage}}',
 	'mwoauth-consumer-stage-rejected' => '{{Related|Mwoauth-consumer-stage}}
 {{Identical|Rejected}}',

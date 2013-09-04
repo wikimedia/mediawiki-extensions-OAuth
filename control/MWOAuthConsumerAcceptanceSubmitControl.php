@@ -41,14 +41,9 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 	protected function getRequiredFields() {
 		return array(
 			'accept'    => array(
-				'consumerKey'  => '/^[0-9a-f]{32}$/',
-				'requestToken' => '/^[0-9a-f]{32}$/',
-				'wiki'         => function( $s ) {
-					return WikiMap::getWiki( $s ) || $s === '*'; },
-				'grants'       => function( $s ) {
-					$grants = FormatJSON::decode( $s, true );
-					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
-				}
+				'consumerKey'   => '/^[0-9a-f]{32}$/',
+				'requestToken'  => '/^[0-9a-f]{32}$/',
+				'confirmUpdate' => '/^[01]$/',
 			),
 			'update'   => array(
 				'acceptanceId' => '/^\d+$/',
@@ -90,35 +85,33 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 		}
 
 		switch ( $action ) {
-		/*
 		case 'accept': // @TODO: unused (WIP)
 			$cmr = MWOAuthConsumer::newFromKey( $dbw, $this->vals['consumerKey'] );
 			if ( !$cmr ) {
 				return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
 			} elseif ( $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
-				&& !$consumer->isPendingAndOwnedBy( $mwUser ) // let publisher test this
+				&& !$cmr->isPendingAndOwnedBy( $user ) // let publisher test this
 			) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			}
 
-			// @TODO: handle exceptions
-			$oauthServer = MWOAuthUtils::newMWOAuthServer();
-			$callback = $oauthServer->authorize(
-				$this->vals['consumerKey'], $this->vals['requestToken'], $this->getUser() );
+			try {
+				$oauthServer = MWOAuthUtils::newMWOAuthServer();
+				$callback = $oauthServer->authorize(
+					$this->vals['consumerKey'],
+					$this->vals['requestToken'],
+					$this->getUser(),
+					(bool)$this->vals['confirmUpdate']
+				);
+			} catch ( MWOAuthException $exception ) {
+				return $this->failure( 'oauth_exception',
+					'mwoauth-oauth-exception', wfMessage( $exception->getMessage() )->text() );
+			} catch ( OAuthException $exception ) {
+				return $this->failure( 'oauth_exception',
+					'mwoauth-oauth-exception', $exception->getMessage() );
+			}
 
-			// WIP: PUT THIS IN authorize()
-			$cmra = MWOAuthConsumerAcceptance::newFromArray( array(
-				'wiki'         => $this->vals['wiki'],
-				'userId'       => $centralUserId,
-				'consumerId'   => $cmr->getId(),
-				'accessToken'  => ...,
-				'accessSecret' => ...,
-				'grants'       => FormatJSON::decode( $this->vals['grants'], true ),
-				'accepted'     => wfTimestampNow()
-			) );
-			return $this->success( $cmra );
-			$cmra->save();
-		*/
+			return $this->success( array( 'callbackUrl' => $callback ) );
 		case 'update':
 			$cmra = MWOAuthConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
 			if ( !$cmra ) {
