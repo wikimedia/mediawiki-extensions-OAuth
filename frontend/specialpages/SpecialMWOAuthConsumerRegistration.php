@@ -197,8 +197,10 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			}
 			$oldSecretKey = $cmr->getDAO()->get( 'secretKey' );
 
+			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
+			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), array(), $dbw );
 			$form = new HTMLForm(
-				array(
+				$control->registerValidators( array(
 					'nameShown' => array(
 						'type' => 'info',
 						'label-message' => 'mwoauth-consumer-name',
@@ -252,14 +254,15 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 						'type'    => 'hidden',
 						'default' => 'update'
 					)
-				),
+				) ),
 				$this->getContext()
 			);
-			$form->setSubmitCallback( function( array $data, IContextSource $context ) {
-				$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
-				$controller = new MWOAuthConsumerSubmitControl( $context, $data, $dbw );
-				return $controller->submit();
-			} );
+			$form->setSubmitCallback(
+				function( array $data, IContextSource $context ) use ( $control ) {
+					$control->setInputParameters( $data );
+					return $control->submit();
+				}
+			);
 			$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-update-legend' );
 			$form->setSubmitTextMsg( 'mwoauthconsumerregistration-update-submit' );
 			$form->addPreText(
