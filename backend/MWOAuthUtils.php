@@ -263,7 +263,7 @@ class MWOAuthUtils {
 			}
 		} else {
 			$name = '';
-			$user = User::newFromName( $userId );
+			$user = User::newFromId( $userId );
 			if ( !$user->isHidden()
 				|| ( $audience instanceof User && $audience->isAllowed( 'hideuser' ) )
 			) {
