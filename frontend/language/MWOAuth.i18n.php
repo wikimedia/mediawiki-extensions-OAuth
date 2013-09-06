@@ -375,8 +375,6 @@ See also:
 	'mwoauth-invalid-consumer-key' => 'Used as failure message.',
 	'mwoauth-invalid-access-token' => 'Used as failure message.',
 	'mwoauth-consumer-conflict' => 'Used as failure message.',
-	'mwoauth-oauth-exception' => 'Used as failure message. Parameters:
-* $1 - Exception message text',
 	'mwoauth-consumer-stage-proposed' => '{{Related|Mwoauth-consumer-stage}}',
 	'mwoauth-consumer-stage-rejected' => '{{Related|Mwoauth-consumer-stage}}
 {{Identical|Rejected}}',
@@ -637,23 +635,6 @@ Followed by the following radio boxes:
 * $2 - existing wiki
 * $3 - existing accepted',
 	'mwoauth-form-button-approve' => 'Button label, indicating the user wants to allow access',
-	'mwoauth-form-confirmation' => 'Form label, asking if the user is sure they want to allow access',
-	'mwoauth-form-confirmation-update' => 'Checkbox label, asking if the user wants to update the permissions they are granting to a consumer, if they have previously granted access to this consumer',
-	'mwoauth-authorize-form' => 'Form section label',
-	'mwoauth-authorize-form-user' => 'Parameters:
-* $1 - author',
-	'mwoauth-authorize-form-name' => 'Parameters:
-* $1 - application name
-{{Identical|Application name}}',
-	'mwoauth-authorize-form-description' => 'Parameters:
-* $1 - description
-{{Identical|Application description}}',
-	'mwoauth-authorize-form-version' => 'Parameters:
-* $1 - version
-{{Identical|Application version}}',
-	'mwoauth-authorize-form-wiki' => 'Parameters:
-* $1 - wiki
-{{Identical|Wiki}}',
 	'mwoauth-authorize-form-invalid-user' => 'Text of the error page when the user cannot use OAuth.',
 	'mwoauth-error' => 'Heading on the page, whenever an OAuth error is presented to a user.',
 	'mwoauth-grants-heading' => 'Used as label for the grants list.
@@ -704,6 +685,8 @@ See also:
 	'mwoauth-grant-viewdeleted' => 'Name for OAuth grant "viewdeleted"',
 	'mwoauth-grant-viewmywatchlist' => 'Name for OAuth grant "viewmywatchlist".
 {{Identical|View your watchlist}}',
+	'mwoauth-oauth-exception' => 'Used as failure message. Parameters:
+* $1 - Exception message text',
 	'mwoauth-callback-not-oob' => 'Warning that the OAuth developer failed to include the required "oauth_callback" parameter, which must be set to the case-sensitive string "oob"',
 	'right-mwoauthproposeconsumer' => '{{doc-right|mwoauthproposeconsumer}}',
 	'right-mwoauthupdateownconsumer' => '{{doc-right|mwoauthupdateownconsumer}}',
@@ -1196,20 +1179,12 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'mwoauth-invalid-authorization-wrong-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen anderen Benutzer',
 	'mwoauth-invalid-authorization-not-approved' => 'Die Autorisierungsheader in deiner Anfrage sind für einen OAuth-Verbraucher, der derzeit nicht bestätigt ist.',
 	'mwoauth-invalid-authorization-blocked-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen Benutzer, der gesperrt ist.',
-	'mwoauth-form-description' => 'Die folgende Anwendung will MediaWiki in deinem Namen benutzen. Die Anwendung wird jede Aktion ausführen können, die in der unten stehenden Liste erlaubt wird. Lasse nur Anwendungen zu, denen du eine Verwendung dieser Berechtigungen zutraust.',
+	'mwoauth-form-description' => 'Die folgende Anwendung will MediaWiki in deinem Namen benutzen. Die Anwendung wird jede Aktion ausführen können, die in der unten stehenden Liste erlaubt wird. Lasse nur Anwendungen zu, denen du eine Verwendung dieser Berechtigungen zutraust.', # Fuzzy
 	'mwoauth-form-existing' => "'''Diese Anwendung fordert Berechtigungen für MediaWiki auf deinen Namen an, du hast jedoch bereits Zugriff gewährt:'''
 *  Berechtigungen: $1
 *  Wiki: $2
 *  Genehmigt am: $3",
 	'mwoauth-form-button-approve' => 'Ja, erlauben',
-	'mwoauth-form-confirmation' => 'Darf diese Anwendung auf deinen Namen handeln?',
-	'mwoauth-form-confirmation-update' => 'Aktualisiere diese Genehmigung für die angeforderten Berechtigungen. Das ungeprüft lassen behält deine vorhandenen Genehmigungen bei.',
-	'mwoauth-authorize-form' => 'Anwendungsdetails:',
-	'mwoauth-authorize-form-user' => 'Anwendungsentwickler: $1',
-	'mwoauth-authorize-form-name' => 'Anwendungsname: $1',
-	'mwoauth-authorize-form-description' => 'Anwendungsbeschreibung: $1',
-	'mwoauth-authorize-form-version' => 'Anwendungsversion: $1',
-	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
 	'mwoauth-authorize-form-invalid-user' => 'Dieses Benutzerkonto kann nicht OAuth verwenden, da das Konto auf diesem Wiki und das Konto auf dem zentralen OAuth-Wiki nicht verknüpft sind.',
 	'mwoauth-error' => 'OAuth-Fehler',
 	'mwoauth-grants-heading' => 'Angeforderte Berechtigungen:',
@@ -1695,20 +1670,12 @@ Teña en conta que se autoriza que un consumidor só teña acceso a un subconxun
 	'mwoauth-invalid-authorization-wrong-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario diferente',
 	'mwoauth-invalid-authorization-not-approved' => 'As cabeceiras de autorización da súa solicitude son para un consumidor OAuth que non está aprobado actualmente',
 	'mwoauth-invalid-authorization-blocked-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario que está bloqueado',
-	'mwoauth-form-description' => 'A seguinte aplicación está solicitando utilizar MediaWiki no seu nome. A aplicación poderá realizar calquera acción para a que teña permiso da lista inferior, se o solicitase. Autorice unicamente aplicacións nas que confíe que usarán estes permisos como faría vostede.',
+	'mwoauth-form-description' => 'A seguinte aplicación está solicitando utilizar MediaWiki no seu nome. A aplicación poderá realizar calquera acción para a que teña permiso da lista inferior, se o solicitase. Autorice unicamente aplicacións nas que confíe que usarán estes permisos como faría vostede.', # Fuzzy
 	'mwoauth-form-existing' => "'''Esta aplicación está solicitando autorización a MediaWiki no seu nome, pero vostede xa concedeu este acceso:'''
 *  Concesións: $1
 *  Wiki: $2
 *  Autorizado o: $3",
 	'mwoauth-form-button-approve' => 'Si, permitir',
-	'mwoauth-form-confirmation' => 'Quere permitir que esta aplicación actúe no seu nome?',
-	'mwoauth-form-confirmation-update' => 'Actualizar esta autorización cos privilexios solicitados. Deixar isto sen marcar ha manter as autorizacións actuais',
-	'mwoauth-authorize-form' => 'Detalles da aplicación:',
-	'mwoauth-authorize-form-user' => 'Autor da aplicación: $1',
-	'mwoauth-authorize-form-name' => 'Nome da aplicación: $1',
-	'mwoauth-authorize-form-description' => 'Descrición da aplicación: $1',
-	'mwoauth-authorize-form-version' => 'Versión da aplicación: $1',
-	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
 	'mwoauth-authorize-form-invalid-user' => 'Esta conta de usuario non pode utilizar OAuth porque non están ligadas a conta neste wiki e a conta no wiki central de OAuth.',
 	'mwoauth-error' => 'Erro OAuth',
 	'mwoauth-grants-heading' => 'Permisos solicitados:',
@@ -2141,13 +2108,6 @@ Da qui, è possibile [[Special:MWOAuthConsumerRegistration/propose|proporre un n
 	'mwoauth-invalid-authorization-not-approved' => "L'intestazione dell'autorizzazione nella tua richiesta è per un cliente OAuth che non è attualmente approvato",
 	'mwoauth-invalid-authorization-blocked-user' => "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un utente che è bloccato",
 	'mwoauth-form-button-approve' => 'Si, permetti',
-	'mwoauth-form-confirmation' => 'Consentire a questa applicazione di agire per vostro conto?',
-	'mwoauth-authorize-form' => "Dettagli dell'applicazione:",
-	'mwoauth-authorize-form-user' => "Autore dell'applicazione: $1",
-	'mwoauth-authorize-form-name' => "Nome dell'applicazione: $1",
-	'mwoauth-authorize-form-description' => "Descrizione dell'applicazione: $1",
-	'mwoauth-authorize-form-version' => "Versione dell'applicazione: $1",
-	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
 	'mwoauth-error' => 'Errore OAuth',
 	'mwoauth-grants-heading' => 'Autorizzazioni richieste:',
 	'mwoauth-grants-nogrants' => "L'applicazione non ha richiesto alcuna autorizzazione.",
@@ -2283,12 +2243,6 @@ $messages['ja'] = array(
 	'mwoauthserver-invalid-request-token' => 'リクエストに無効なトークンがあります。',
 	'mwoauthserver-invalid-user-hookabort' => 'この利用者は OAuth を使用できません。',
 	'mwoauth-invalid-authorization-title' => 'OAuth 認証エラー',
-	'mwoauth-authorize-form' => 'アプリケーションの詳細:',
-	'mwoauth-authorize-form-user' => 'アプリケーションの作者: $1',
-	'mwoauth-authorize-form-name' => 'アプリケーション名: $1',
-	'mwoauth-authorize-form-description' => 'アプリケーションの説明: $1',
-	'mwoauth-authorize-form-version' => 'アプリケーションのバージョン: $1',
-	'mwoauth-authorize-form-wiki' => 'ウィキ: $1',
 	'mwoauth-authorize-form-invalid-user' => 'このウィキと中央管理 OAuth ウィキの利用者アカウントがリンクされていないため、このアカウントでは OAuth を使用できません。',
 	'mwoauth-error' => 'OAuth エラー',
 	'mwoauth-grant-blockusers' => '利用者をブロック',
@@ -2500,21 +2454,29 @@ $messages['ko'] = array(
 $messages['lb'] = array(
 	'mwoauth-desc' => 'OAuth 1.0a API Autorisatioun',
 	'mwoauth-missing-field' => 'De Wäert fir d\'Feld "$1" feelt',
+	'mwoauth-invalid-field-generic' => 'Net valabele Wäert uginn',
 	'mwoauth-field-hidden' => '(dës Informatioun ass verstoppt)',
 	'mwoauth-field-private' => '(dës Informatioun ass privat)',
 	'mwoauth-consumer-name' => 'Numm vun der Applicatioun:',
 	'mwoauth-consumer-stage' => 'Aktuelle Status:',
 	'mwoauth-consumer-reason' => 'Grond:',
 	'mwoauth-consumer-email-unconfirmed' => "D'E-Mail-Adress vun Ärem Benotzerkont gouf nach net confirméiert.",
+	'mwoauth-consumer-not-disabled' => 'De Konsument ass elo net desaktivéiert',
+	'mwoauth-invalid-consumer-key' => 'Et gëtt kee Konsument mat dem Schlëssel deen ugi gouf.',
 	'mwoauth-consumer-stage-proposed' => 'geplangt',
 	'mwoauth-consumer-stage-rejected' => 'refuséiert',
 	'mwoauth-consumer-stage-expired' => 'ofgelaf',
 	'mwoauth-consumer-stage-disabled' => 'desaktivéiert',
 	'mwoauthconsumerregistration-notloggedin' => 'Dir musst ageloggt si fir op dës Säit ze kommen.',
 	'mwoauthconsumerregistration-navigation' => 'Navigatioun:',
+	'mwoauthconsumerregistration-update-submit' => 'Konsument aktualiséieren',
+	'mwoauthconsumerregistration-name' => 'Konsument',
 	'mwoauthconsumerregistration-description' => 'Beschreiwung',
 	'mwoauthconsumerregistration-lastchange' => 'Lescht Ännerung',
 	'mwoauthmanageconsumers-notloggedin' => 'Dir musst ageloggt si fir op dës Säit ze kommen.',
+	'mwoauthmanageconsumers-showproposed' => 'Proposéiert Ufroen',
+	'mwoauthmanageconsumers-showrejected' => 'Refuséiert Ufroen',
+	'mwoauthmanageconsumers-showexpired' => 'Ofgelafen Ufroen',
 	'mwoauthmanageconsumers-main' => 'Haapt',
 	'mwoauthmanageconsumers-name' => 'Konsument',
 	'mwoauthmanageconsumers-description' => 'Beschreiwung',
@@ -2522,15 +2484,16 @@ $messages['lb'] = array(
 	'mwoauthmanageconsumers-review' => 'nokucken/geréieren',
 	'mwoauthmanageconsumers-disable' => 'Desaktivéiert',
 	'mwoauthmanageconsumers-reason' => 'Grond:',
+	'mwoauthmanageconsumers-success-approved' => 'Ufro gouf ugeholl.',
 	'mwoauthmanagemygrants-notloggedin' => 'Dir musst ageloggt si fir op dës Säit ze kommen.',
 	'mwoauthmanagemygrants-navigation' => 'Navigatioun:',
 	'mwoauthmanagemygrants-description' => 'Beschreiwung',
 	'mwoauthmanagemygrants-wiki' => 'Applicabel Wiki',
+	'mwoauthmanagemygrants-action' => 'Status änneren:',
 	'mwoauthserver-invalid-user-hookabort' => 'Dëse Benotzer däerf OAuth net benotzen.',
 	'mwoauth-invalid-authorization-title' => "OAuth Autorisatioun's-Feeler",
 	'mwoauth-invalid-authorization-blocked-user' => "D'Autorisatiounen an Ärer Ufro si fir ee Benotzer dee gespaart ass",
 	'mwoauth-form-button-approve' => 'Jo, erlaben',
-	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
 	'mwoauth-authorize-form-invalid-user' => 'Dëse Benotzerkont kann OAuth net benotzen, well de Benotzerkont op dëser Wiki an de Benotzerkont op der zentraler OAuth Wiki net matenee verbonn sinn.',
 	'mwoauth-error' => 'OAuth Feeler',
 	'mwoauth-grants-heading' => 'Ugefroten Autorisatiounen:',
@@ -2546,6 +2509,7 @@ $messages['lb'] = array(
 	'mwoauth-grant-useoauth' => 'Basisrechter',
 	'mwoauth-grant-viewdeleted' => 'Geläschten Informatioune kucken',
 	'mwoauth-grant-viewmywatchlist' => 'Kuckt Är Iwwerwaachungslëscht',
+	'mwoauth-oauth-exception' => 'Am OAuth-Protokoll ass e Feeler geschitt: $1',
 );
 
 /** Macedonian (македонски)
@@ -2734,20 +2698,12 @@ $messages['mk'] = array(
 	'mwoauth-invalid-authorization-wrong-user' => 'Овластителните заглавија во вашето барање се однесуваат на друг корисник',
 	'mwoauth-invalid-authorization-not-approved' => 'Овластителните заглавија во вашето барање се однесуваат на потрошувач на OAuth што во моментов не е одобрен',
 	'mwoauth-invalid-authorization-blocked-user' => 'Овластителните заглавија во вашето барање се однесуваат на корисник што е блокиран',
-	'mwoauth-form-description' => 'Следниов прилог бара да го користи МедијаВики во ваше име. Ќе може да ги извршува сите дејства дозволени во рамките на долунаведениот список со побарани права. Ова треба да го дозволувате само на прилози на кои им верувате.',
+	'mwoauth-form-description' => 'Следниов прилог бара да го користи МедијаВики во ваше име. Ќе може да ги извршува сите дејства дозволени во рамките на долунаведениот список со побарани права. Ова треба да го дозволувате само на прилози на кои им верувате.', # Fuzzy
 	'mwoauth-form-existing' => "'''Овој прилог бара овластување од МедијаВики во ваше име, но веќе има добиено пристап:'''
 *  Доделувања: $1
 *  Вики: $2
 *  Овластен на: $3",
 	'mwoauth-form-button-approve' => 'Да, дозволи',
-	'mwoauth-form-confirmation' => 'Да му дозволам на прилогот да врши работи во ваше име?',
-	'mwoauth-form-confirmation-update' => 'Дополни го ова овластување со побараните привилегии. Ако ова остане нештиклирано, ќе ги задржите постоечките овластувања',
-	'mwoauth-authorize-form' => 'Подробности за податокот:',
-	'mwoauth-authorize-form-user' => 'Автор на прилогот: $1',
-	'mwoauth-authorize-form-name' => 'Име на прилогот: $1',
-	'mwoauth-authorize-form-description' => 'Опис на прилогот: $1',
-	'mwoauth-authorize-form-version' => 'Верзиај на прилогот: $1',
-	'mwoauth-authorize-form-wiki' => 'Вики: $1',
 	'mwoauth-authorize-form-invalid-user' => 'Оваа корисничка сметка не може да користи OAuth бидејќи не е поврзана со сметката на OAuth.',
 	'mwoauth-error' => 'Грешка во OAuth',
 	'mwoauth-grants-heading' => 'Побарани дозволи:',
@@ -3044,6 +3000,9 @@ $messages['oc'] = array(
 	'mwoauthconsumerregistration-propose' => 'Prepausar un novèl consomator',
 	'mwoauthconsumerregistration-list' => 'Ma lista de consomators',
 	'mwoauthconsumerregistration-main' => 'Principal',
+	'mwoauthconsumerregistration-propose-submit' => 'Prepausar un consomator',
+	'mwoauthconsumerregistration-update-submit' => 'Metre a jorn un consomator',
+	'mwoauthconsumerregistration-none' => 'Contrarotlatz pas cap de consomator OAuth.',
 	'mwoauthconsumerregistration-name' => 'Consomator',
 	'mwoauthconsumerregistration-user' => 'Editor',
 	'mwoauthconsumerregistration-description' => 'Descripcion',
@@ -3078,6 +3037,8 @@ $messages['oc'] = array(
 	'mwoauthmanagemygrants-wikiallowed' => 'Autorizat sul wiki',
 	'mwoauthmanagemygrants-consumerkey' => 'Clau del consomator',
 	'mwoauth-error' => 'Error OAuth',
+	'mwoauth-grant-blockusers' => 'Blocar los utilizaires',
+	'mwoauth-grant-patrol' => 'Patrolhar',
 );
 
 /** Polish (polski)
@@ -3416,20 +3377,12 @@ $messages['uk'] = array(
 	'mwoauth-invalid-authorization-wrong-user' => 'Заголовки авторизації у вашому запиті призначені для іншого користувача',
 	'mwoauth-invalid-authorization-not-approved' => 'Заголовки авторизації у вашому запитів призначені для ще незатвердженого споживача OAuth',
 	'mwoauth-invalid-authorization-blocked-user' => 'Заголовки авторизації у вашому запитів призначені для заблокованого користувача',
-	'mwoauth-form-description' => 'Нижченаведений застосунок вимагає використовувати Медіавікі від вашого імені. Додаток матиме можливість виконувати будь-які дії, які дозволено зі списком нижче запрошених прав. Дозволяються лише застосунки, які використовують ці дозволи, що й ви.',
+	'mwoauth-form-description' => 'Нижченаведений застосунок вимагає використовувати Медіавікі від вашого імені. Додаток матиме можливість виконувати будь-які дії, які дозволено зі списком нижче запрошених прав. Дозволяються лише застосунки, які використовують ці дозволи, що й ви.', # Fuzzy
 	'mwoauth-form-existing' => '"Ця програма запитує дозвіл на Медіавікі від вашого імені, але ви вже надали доступ:"\'
 * Гранти: $1
 * Вікі: $2
 * Уповноважені: $3',
 	'mwoauth-form-button-approve' => 'Так, дозволити',
-	'mwoauth-form-confirmation' => 'Дозволити цій програмі діяти від вашого імені?',
-	'mwoauth-form-confirmation-update' => 'Оновити цей дозвіл до запитаних привілегій. Залишіть це відміченим для збереження ваших наявних дозволів',
-	'mwoauth-authorize-form' => 'Інформація про програму:',
-	'mwoauth-authorize-form-user' => 'Автор програми: $1',
-	'mwoauth-authorize-form-name' => 'Назва програми: $1',
-	'mwoauth-authorize-form-description' => 'Опис програми: $1',
-	'mwoauth-authorize-form-version' => 'Версія програми: $1',
-	'mwoauth-authorize-form-wiki' => 'Вікі: $1',
 	'mwoauth-authorize-form-invalid-user' => "Цей обліковий запис користувача не може використовувати OAuth, тому що облікового запису на цій вікі і обліковий запис у вікі OAuth не пов'язані.",
 	'mwoauth-error' => 'Помилка OAuth',
 	'mwoauth-grants-heading' => 'Потрібні дозволи:',
