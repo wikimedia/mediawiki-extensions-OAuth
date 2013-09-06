@@ -226,5 +226,4 @@ class MWOAuthServer extends OAuthServer {
 		}
 		return $cmra;
 	}
-
 }

@@ -68,8 +68,16 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 						$url = $loginPage->getLocalURL( $query );
 						$this->getOutput()->redirect( $url );
 					} else {
-						// Show form and redirect on submission for authorization
-						$this->handleAuthorizationForm( $requestToken, $consumerKey );
+						if ( $request->wasPosted() && $request->getCheck( 'cancel' ) ) {
+							// Show acceptance cancellation confirmation
+							$this->getOutput()->addSubtitle(
+								$this->msg( 'mwoauth-desc' )->escaped() );
+							$this->getOutput()->addWikiMsg( 'mwoauth-acceptance-cancelled' );
+							$this->getOutput()->addReturnTo( Title::newMainPage() );
+						} else {
+							// Show form and redirect on submission for authorization
+							$this->handleAuthorizationForm( $requestToken, $consumerKey );
+						}
 					}
 					break;
 				case 'token':
@@ -106,9 +114,10 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			wfDebugLog( 'OAuth', __METHOD__ . ": Exception " . $exception->getMessage() );
 			$this->showError( $exception->getMessage(), $format );
 		}
+
+		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.BasicStyles' );
 	}
 
-	// @TODO: cancel button
 	protected function handleAuthorizationForm( $requestToken, $consumerKey ) {
 		$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
 
@@ -130,98 +139,76 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			throw new MWOAuthException( 'mwoauth-invalid-authorization-not-approved' );
 		}
 
+		$this->getOutput()->addModuleStyles( array( 'mediawiki.ui', 'ext.MWOAuth.AuthorizeForm' ) );
+		$this->getOutput()->addModules( 'ext.MWOAuth.AuthorizeDialog' );
+
 		// Check if this user has authorized grants for this consumer previously
 		$existing = $oauthServer->getCurrentAuthorization( $user, $cmr->getDAO() );
 
 		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), array(), $dbr );
 		$form = new HTMLForm(
 			$control->registerValidators( array(
-				'name' => array(
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-name',
-					'default' => $cmr->get( 'name' ),
-					'size' => '45'
-				),
-				'user' => array(
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-user',
-					'default' => $cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' )
-				),
-				'version' => array(
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-version',
-					'default' => $cmr->get( 'version' ),
-				),
-				'description' => array(
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-description',
-					'default' => $cmr->get( 'description' ),
-					'rows' => 5
-				),
-				'wiki' => array(
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-wiki',
-					'default' => $cmr->get( 'wiki' ),
-				),
-				'grants'  => array(
-					'type' => 'info',
-					'label-message' => 'mwoauth-grants-heading',
-					'default' => $this->getGrantsHtml( $cmr->get( 'grants' ) ),
-					'raw' => true
-				),
 				'action' => array(
 					'type'    => 'hidden',
 					'default' => 'accept',
-					'validation-callback' => null // different format
 				),
 				'confirmUpdate' => array(
 					'type'    => 'hidden',
 					'default' => $existing ? 1 : 0,
-					'validation-callback' => null // different format
 				),
 				'consumerKey' => array(
 					'type'    => 'hidden',
 					'default' => $consumerKey,
-					'validation-callback' => null // different format
 				),
 				'requestToken' => array(
 					'type'    => 'hidden',
 					'default' => $requestToken,
-					'validation-callback' => null // different format
 				)
 			) ),
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
 			function( array $data, IContextSource $context ) use ( $control ) {
-				$data['grants'] = FormatJSON::encode( // adapt form to controller
-					preg_replace( '/^grant-/', '', $data['grants'] ) );
-
+				if ( $context->getRequest()->getCheck( 'cancel' ) ) { // sanity
+					throw new MWException( 'Received request for a form cancellation.' );
+				}
 				$control->setInputParameters( $data );
 				return $control->submit();
 			}
 		);
+		$form->setId( 'mw-mwoauth-authorize-form' );
 
-		if ( $existing ) {
-			// User has already authorized this consumer
-			$grants = $existing->get( 'grants');
-			$grantList = is_null( $grants )
-				? $this->msg( 'mwoauth-grants-nogrants' )->text()
-				: $lang->semicolonList( MWOAuthUtils::grantNames( $grants ) );
-			$form->addPreText( $this->msg( 'mwoauth-form-existing',
-				$grantList,
-				$existing->get( 'wiki' ),
-				$lang->timeAndDate( $existing->get( 'accepted' ), true )
+		if ( $cmr->get( 'wiki' ) === '*' ) {
+			$form->addHeaderText( $this->msg( 'mwoauth-form-description-allwikis',
+				$this->getUser()->getName(),
+				$cmr->get( 'name' ),
+				$cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' ),
+				$this->getGrantsWikiText( $cmr->get( 'grants' ) )
 			)->parseAsBlock() );
 		} else {
-			$form->addPreText( $this->msg( 'mwoauth-form-description' )->parseAsBlock() );
+			$form->addHeaderText( $this->msg( 'mwoauth-form-description-onewiki',
+				$this->getUser()->getName(),
+				$cmr->get( 'name' ),
+				$cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' ),
+				$cmr->get( 'wiki', 'MWOAuthUtils::getWikiIdName' ),
+				$this->getGrantsWikiText( $cmr->get( 'grants' ) )
+			)->parseAsBlock() );
 		}
-		$form->addPreText( $this->msg( 'mwoauth-form-legal' )->text() );
+		$form->addHeaderText( $this->msg( 'mwoauth-form-legal' )->text() );
 
-		$form->setWrapperLegendMsg( 'mwoauth-desc' );
-		$form->setSubmitTextMsg( 'mwoauth-form-button-approve' );
+		$form->suppressDefaultSubmit();
+		$form->addButton( 'cancel',
+			wfMessage( 'mwoauth-form-button-cancel' )->text(), null,
+			array( 'class' => 'mw-mwoauth-authorize-button mw-ui-button' ) );
+		$form->addButton( 'accept',
+			wfMessage( 'mwoauth-form-button-approve' )->text(), null,
+			array( 'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-constructive' ) );
+		$form->addFooterText( wfMessage( 'mwoauth-form-privacypolicy-link' )->parse() );
 
+		$this->getOutput()->addHtml(
+			'<div id="mw-mwoauth-authorize-dialog" class="mw-ui-container">' );
 		$status = $form->show();
+		$this->getOutput()->addHtml( '</div>' );
 		if ( $status instanceof Status && $status->isOk() ) {
 			// Redirect to callback url
 			$this->getOutput()->redirect( $status->value['result']['callbackUrl'] );
@@ -230,33 +217,19 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 
 	/**
 	 * @param Array $grants list of grants (null is also allowed for no permissions)
-	 * @return string
+	 * @return string Wikitext
 	 */
-	private function getGrantsHtml( $grants ) {
-		// TODO: dom / styling
-		$html = '';
-		if ( $grants === array() || is_null( $grants ) ) {
-			$html .= Html::rawElement(
-				'ul',
-				array(),
-				Html::element(
-					'li',
-					array(),
-					$this->msg( 'mwoauth-grants-nogrants' )->text()
-				)
-			);
-		} else {
-			$list = '';
-			foreach ( $grants as $grant ) {
-				$list .= Html::element(
-					'li',
-					array(),
-					MWOAuthUtils::grantName( $grant )
-				);
+	private function getGrantsWikiText( $grants ) {
+		$s = '';
+		foreach ( MWOAuthUtils::getGrantGroups( $grants ) as $group => $grants ) {
+			if ( $group === 'hidden' ) {
+				continue;
 			}
-			$html .= Html::rawElement( 'ul', array(), $list );
+			$s .= "*<strong>" . wfMessage( "mwoauth-grant-group-$group" )->text() . "</strong>\n";
+			$s .= ":" . $this->getLanguage()->semicolonList(
+				array_map( 'MWOAuthUtils::grantName', $grants ) ) . "\n";
 		}
-		return $html;
+		return "$s\n";
 	}
 
 	/**

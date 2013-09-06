@@ -27,6 +27,7 @@ To complete the process, provide this verification value to the application: \'\
 	'mwoauth-prefs-managegrants' => 'OAuth consumer access:',
 	'mwoauth-prefs-managegrantslink' => 'Manage grants on behalf of this account',
 
+	'mwoauth-consumer-allwikis' => 'All projects on this site',
 	'mwoauth-consumer-key' => 'Consumer key:',
 	'mwoauth-consumer-name' => 'Application name:',
 	'mwoauth-consumer-version' => 'Consumer version:',
@@ -206,17 +207,36 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauth-invalid-authorization-not-approved' => 'The authorization headers in your request are for an OAuth consumer that is not currently approved',
 	'mwoauth-invalid-authorization-blocked-user' => 'The authorization headers in your request are for a user who is blocked',
 
-	'mwoauth-form-description' => "'''The following application is requesting to use MediaWiki on your behalf'''. If you grant access, then the application will be able to perform any actions that are allowed with the list of requested permissions below. Only allow applications that you trust to use these permissions as you would.",
-	'mwoauth-form-existing' => "'''This application is requesting authorization to MediaWiki on your behalf, but you have already granted access:'''
-*  Grants: $1
-*  Wiki: $2
-*  Authorized on: $3",
+	'mwoauth-form-description-allwikis' => "Hi $1,
+
+'''$2''' would like to do the following actions on your behalf on all projects of this site:
+
+
+$4",
+	'mwoauth-form-description-onewiki' => "Hi $1,
+
+'''$2''' would like to do the following actions on your behalf on ''$4'':
+
+
+$5",
 	'mwoauth-form-legal' => '',
-	'mwoauth-form-button-approve' => 'Yes, allow',
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Privacy Policy]]',
+	'mwoauth-form-button-approve' => 'Allow',
+	'mwoauth-form-button-cancel' => 'Cancel',
 	'mwoauth-authorize-form-invalid-user' => 'This user account cannot use OAuth, because the account on this wiki, and the account on the central OAuth wiki are not linked.',
 	'mwoauth-error' => 'OAuth Error',
-	'mwoauth-grants-heading' => 'Requested permissions: ',
+	'mwoauth-grants-heading' => 'Requested permissions:',
 	'mwoauth-grants-nogrants' => 'The application has not requested any permissions.',
+	'mwoauth-acceptance-cancelled' => 'You have cancelled this request to authorize an OAuth consumer to act on your behalf.',
+
+	'mwoauth-grant-group-page-interaction' => 'Interact with pages',
+	'mwoauth-grant-group-file-interaction' => 'Interact with media',
+	'mwoauth-grant-group-watchlist-interaction' => 'Interact with your watchlist',
+	'mwoauth-grant-group-email' => 'Send email',
+	'mwoauth-grant-group-high-volume' => 'Perform high volume activity',
+	'mwoauth-grant-group-customization' => 'Consumization and preferences',
+	'mwoauth-grant-group-administration' => 'Perform adminstrative actions',
+	'mwoauth-grant-group-other' => 'Miscellaneous activity',
 
 	'mwoauth-grant-blockusers' => 'Block users',
 	'mwoauth-grant-createeditmovepage' => 'Create, edit, and move pages',
@@ -228,10 +248,10 @@ Note that if you authorized a consumer to only have access to a subset of wikis 
 	'mwoauth-grant-editprotected' => 'Edit protected pages',
 	'mwoauth-grant-highvolume' => 'High-volume editing',
 	'mwoauth-grant-oversight' => 'Hide users and suppress revisions',
-	'mwoauth-grant-patrol' => 'Patrol',
+	'mwoauth-grant-patrol' => 'Patrol changes to pages',
 	'mwoauth-grant-protect' => 'Protect and unprotect pages',
-	'mwoauth-grant-rollback' => 'Rollback',
-	'mwoauth-grant-sendemail' => 'Send email',
+	'mwoauth-grant-rollback' => 'Rollback changes to pages',
+	'mwoauth-grant-sendemail' => 'Send email to other users',
 	'mwoauth-grant-uploadeditmovefile' => 'Upload, replace, and move files',
 	'mwoauth-grant-uploadfile' => 'Upload new files',
 	'mwoauth-grant-useoauth' => 'Basic rights',
@@ -629,12 +649,36 @@ Followed by the following radio boxes:
 	'mwoauth-invalid-authorization-wrong-user' => 'Text of the error page when the Authorization header is for the wrong user',
 	'mwoauth-invalid-authorization-not-approved' => "Text of the error page when the Authorization header is for a consumer that isn't approved",
 	'mwoauth-invalid-authorization-blocked-user' => 'Text of the error page when Authorization header is for a user who is blocked',
-	'mwoauth-form-description' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf',
-	'mwoauth-form-existing' => 'Used if the user has already authorized this consumer. Parameters:
-* $1 - list of grants, or the message {{msg-mw|Mwoauth-grants-nogrants}}
-* $2 - existing wiki
-* $3 - existing accepted',
+	'mwoauth-form-description-allwikis' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf. Parameters:
+* $1 - The user name
+* $2 - Application name
+* $3 - Application publisher
+* $4 - Formatted list of grants',
+	'mwoauth-form-description-onewiki' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf. Parameters:
+* $1 - The user name
+* $2 - Application name
+* $3 - Application publisher
+* $4 - Wiki project name
+* $5 - Formatted list of grants',
 	'mwoauth-form-button-approve' => 'Button label, indicating the user wants to allow access',
+	'mwoauth-form-button-cancel' => 'Button label, indicating the user wants to cancel granting access',
+	'mwoauth-form-confirmation' => 'Form label, asking if the user is sure they want to allow access',
+	'mwoauth-form-confirmation-update' => 'Checkbox label, asking if the user wants to update the permissions they are granting to a consumer, if they have previously granted access to this consumer',
+	'mwoauth-authorize-form' => 'Form section label',
+	'mwoauth-authorize-form-user' => 'Parameters:
+* $1 - author',
+	'mwoauth-authorize-form-name' => 'Parameters:
+* $1 - application name
+{{Identical|Application name}}',
+	'mwoauth-authorize-form-description' => 'Parameters:
+* $1 - description
+{{Identical|Application description}}',
+	'mwoauth-authorize-form-version' => 'Parameters:
+* $1 - version
+{{Identical|Application version}}',
+	'mwoauth-authorize-form-wiki' => 'Parameters:
+* $1 - wiki
+{{Identical|Wiki}}',
 	'mwoauth-authorize-form-invalid-user' => 'Text of the error page when the user cannot use OAuth.',
 	'mwoauth-error' => 'Heading on the page, whenever an OAuth error is presented to a user.',
 	'mwoauth-grants-heading' => 'Used as label for the grants list.

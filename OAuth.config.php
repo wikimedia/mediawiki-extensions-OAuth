@@ -122,15 +122,40 @@ $wgMWOAuthGrantPermissions['delete']['undelete'] = true;
 $wgMWOAuthGrantPermissions['protect'] = $wgMWOAuthGrantPermissions['editprotected'];
 $wgMWOAuthGrantPermissions['protect']['protect'] = true;
 
-$wgMWOAuthGrantPermissions['oversight']['hideuser'] = true;
-$wgMWOAuthGrantPermissions['oversight']['suppressrevision'] = true;
-$wgMWOAuthGrantPermissions['oversight']['suppressionlog'] = true;
-
 $wgMWOAuthGrantPermissions['viewmywatchlist']['viewmywatchlist'] = true;
 
 $wgMWOAuthGrantPermissions['editmywatchlist']['editmywatchlist'] = true;
 
 $wgMWOAuthGrantPermissions['sendemail']['sendemail'] = true;
+
+/** @var Array Map of grants to their UI grouping */
+$wgMWOAuthGrantPermissionGroups = array(
+	'useoauth'            => 'hidden',
+
+	'editpage'            => 'page-interaction',
+	'createeditmovepage'  => 'page-interaction',
+	'editprotected'       => 'page-interaction',
+	'patrol'              => 'page-interaction',
+
+	'uploadfile'          => 'file-interaction',
+	'uploadeditmovefile'  => 'file-interaction',
+
+	'viewmywatchlist'     => 'watchlist-interaction',
+	'editviewmywatchlist' => 'watchlist-interaction',
+
+	'sendemail'           => 'email',
+
+	'highvolume'          => 'high-volume',
+
+	'editmycssjs'         => 'customization',
+
+	'editinterface'       => 'administration',
+	'rollback'            => 'administration',
+	'blockusers'          => 'administration',
+	'delete'              => 'administration',
+	'viewdeleted'         => 'administration',
+	'protect'             => 'administration',
+);
 
 /** @var integer Seconds after which an idle consumer request is marked as "expired" */
 $wgMWOAuthRequestExpirationAge = 30 * 86400;
