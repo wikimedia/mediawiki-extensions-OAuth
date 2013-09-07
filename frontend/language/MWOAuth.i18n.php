@@ -1179,7 +1179,7 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'mwoauth-invalid-authorization-wrong-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen anderen Benutzer',
 	'mwoauth-invalid-authorization-not-approved' => 'Die Autorisierungsheader in deiner Anfrage sind für einen OAuth-Verbraucher, der derzeit nicht bestätigt ist.',
 	'mwoauth-invalid-authorization-blocked-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen Benutzer, der gesperrt ist.',
-	'mwoauth-form-description' => 'Die folgende Anwendung will MediaWiki in deinem Namen benutzen. Die Anwendung wird jede Aktion ausführen können, die in der unten stehenden Liste erlaubt wird. Lasse nur Anwendungen zu, denen du eine Verwendung dieser Berechtigungen zutraust.', # Fuzzy
+	'mwoauth-form-description' => "'''Die folgende Anwendung will MediaWiki in deinem Namen benutzen'''. Falls du Zugriff gewährst, wird die Anwendung jede Aktion ausführen können, die in der unten stehenden Berechtigungsliste aufgeführt ist. Lasse nur Anwendungen zu, denen du eine Verwendung dieser Berechtigungen zutraust.",
 	'mwoauth-form-existing' => "'''Diese Anwendung fordert Berechtigungen für MediaWiki auf deinen Namen an, du hast jedoch bereits Zugriff gewährt:'''
 *  Berechtigungen: $1
 *  Wiki: $2
@@ -1208,6 +1208,7 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'mwoauth-grant-useoauth' => 'Basisrechte',
 	'mwoauth-grant-viewdeleted' => 'Gelöschte Informationen ansehen',
 	'mwoauth-grant-viewmywatchlist' => 'Deine Beobachtungsliste ansehen',
+	'mwoauth-oauth-exception' => 'Im OAuth-Protokoll ist ein Fehler aufgetreten: $1',
 	'mwoauth-callback-not-oob' => 'oauth_callback muss auf „oob“ festgelegt sein (Groß-/Kleinschreibung beachten)',
 	'right-mwoauthproposeconsumer' => 'Neue OAuth-Verbraucher planen',
 	'right-mwoauthupdateownconsumer' => 'OAuth-Verbraucher aktualisieren',
@@ -2263,6 +2264,7 @@ $messages['ja'] = array(
 	'mwoauth-grant-useoauth' => '基本的な権限',
 	'mwoauth-grant-viewdeleted' => '削除された情報を閲覧',
 	'mwoauth-grant-viewmywatchlist' => '自身のウォッチリストを閲覧',
+	'mwoauth-oauth-exception' => 'OAuth プロトコルでエラーが発生しました: $1',
 	'mwoauth-callback-not-oob' => 'oauth_callback に「oob」を設定してください (大文字小文字を区別)',
 	'right-mwoauthproposeconsumer' => '新しいコンシューマーを提案',
 	'right-mwoauthupdateownconsumer' => '自身が制御できるOAuthコンシューマーを更新',
@@ -3377,7 +3379,7 @@ $messages['uk'] = array(
 	'mwoauth-invalid-authorization-wrong-user' => 'Заголовки авторизації у вашому запиті призначені для іншого користувача',
 	'mwoauth-invalid-authorization-not-approved' => 'Заголовки авторизації у вашому запитів призначені для ще незатвердженого споживача OAuth',
 	'mwoauth-invalid-authorization-blocked-user' => 'Заголовки авторизації у вашому запитів призначені для заблокованого користувача',
-	'mwoauth-form-description' => 'Нижченаведений застосунок вимагає використовувати Медіавікі від вашого імені. Додаток матиме можливість виконувати будь-які дії, які дозволено зі списком нижче запрошених прав. Дозволяються лише застосунки, які використовують ці дозволи, що й ви.', # Fuzzy
+	'mwoauth-form-description' => 'Нижченаведена програма вимагає використовувати Медіавікі від вашого імені. Якщо ви надасте доступ, то програма матиме можливість виконувати будь-які дії, які дозволено  списком нижче потрібних прав. Дозволяються лише програми, які використовують ці дозволи, що й ви.',
 	'mwoauth-form-existing' => '"Ця програма запитує дозвіл на Медіавікі від вашого імені, але ви вже надали доступ:"\'
 * Гранти: $1
 * Вікі: $2
@@ -3406,6 +3408,7 @@ $messages['uk'] = array(
 	'mwoauth-grant-useoauth' => 'Основні права',
 	'mwoauth-grant-viewdeleted' => 'Перегляд видаленої інформації',
 	'mwoauth-grant-viewmywatchlist' => 'Перегляд списку спостереження',
+	'mwoauth-oauth-exception' => 'Сталася помилка у протоколі OAuth:$1',
 	'mwoauth-callback-not-oob' => 'oauth_callback мусить бути заданим і слід задати "oob" (з урахуванням регістру)',
 	'right-mwoauthproposeconsumer' => 'Запропонувати нових споживачів OAuth',
 	'right-mwoauthupdateownconsumer' => 'Оновлення споживачів OAuth, яких ви контролюєте',
