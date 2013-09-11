@@ -1247,6 +1247,17 @@ Note that if you authorised a consumer to only have access to a subset of wikis 
 	'mwoauth-form-confirmation-update' => 'Update this authorisation to the requested privileges. Leaving this unchecked will keep your existing authorisations',
 );
 
+/** Spanish (español)
+ * @author Fitoschido
+ */
+$messages['es'] = array(
+	'mwoauth-verified' => "La aplicación ahora puede acceder a MediaWiki en tu nombre.
+
+Para completar el proceso, proporciona este valor de comprobación a la aplcación: '''$1'''",
+	'mwoauth-invalid-field-generic' => 'Se ha proporcionado un valor no válido',
+	'mwoauth-oauth-exception' => 'Ha ocurrido un error en el protocolo OAuth: $1',
+);
+
 /** French (français)
  * @author Crochet.david
  * @author Gomoko
@@ -2017,7 +2028,11 @@ Da qui, è possibile [[Special:MWOAuthConsumerRegistration/propose|proporre un n
 	'mwoauthconsumerregistration-lastchange' => 'Ultima modifica',
 	'mwoauthconsumerregistration-manage' => 'gestisci',
 	'mwoauthconsumerregistration-resetsecretkey' => 'Reimposta la chiave segreta ad un nuovo valore',
+	'mwoauthconsumerregistration-proposed' => "La tua richiesta per il cliente OAuth è stata ricevuta.
+
+Ti è stato assegnato il token cliente '''$1''' e il token segreto '''$2'''. ''Registra questi dati per riferimenti futuri.''",
 	'mwoauthconsumerregistration-updated' => 'La registrazione del tuo cliente OAuth è stata aggiornata correttamente.',
+	'mwoauthconsumerregistration-secretreset' => "Ti è stato assegnato il token segreto '''$1'''. ''Registra questi dati per riferimenti futuri.''",
 	'mwoauthmanageconsumers' => 'Gestione clienti OAuth',
 	'mwoauthmanageconsumers-notloggedin' => "Devi effettuare l'accesso per accedere a questa pagina.",
 	'mwoauthmanageconsumers-type' => 'Code:',
@@ -2025,6 +2040,7 @@ Da qui, è possibile [[Special:MWOAuthConsumerRegistration/propose|proporre un n
 	'mwoauthmanageconsumers-showrejected' => 'Richieste respinte',
 	'mwoauthmanageconsumers-showexpired' => 'Richieste scadute',
 	'mwoauthmanageconsumers-main' => 'Principale',
+	'mwoauthmanageconsumers-maintext' => 'Questa pagina è usata per la gestione delle applicazioni OAuth (vedi http://oauth.net), delle richieste e dei clienti istituiti.',
 	'mwoauthmanageconsumers-queues' => 'Seleziona una coda di conferma dei clienti da sotto:',
 	'mwoauthmanageconsumers-q-proposed' => 'Coda delle richieste proposte',
 	'mwoauthmanageconsumers-q-rejected' => 'Coda delle richieste respinte',
@@ -2076,6 +2092,9 @@ Da qui, è possibile [[Special:MWOAuthConsumerRegistration/propose|proporre un n
 	'mwoauthmanagemygrants-consumerkey' => 'Chiave cliente',
 	'mwoauthmanagemygrants-review' => 'rivedi/gestisci accesso',
 	'mwoauthmanagemygrants-grantaccept' => 'Assegnazioni al cliente',
+	'mwoauthmanagemygrants-confirm-text' => "Usa il seguente modulo per revocare o modificare l'accesso ad un cliente OAuth di agire per vostro conto.
+
+Nota che se hai autorizzato un cliente ad avere accesso solo a un sottoinsieme di wiki (siti di progetto), allora ci saranno token di accesso multipli per quel cliente.",
 	'mwoauthmanagemygrants-confirm-legend' => 'Gestione token di accesso del cliente',
 	'mwoauthmanagemygrants-update' => 'Aggiorna le assegnazioni del token di accesso',
 	'mwoauthmanagemygrants-renounce' => "Annulla l'autorizzazione e cancella il token di accesso",
@@ -2110,7 +2129,13 @@ Da qui, è possibile [[Special:MWOAuthConsumerRegistration/propose|proporre un n
 	'mwoauth-invalid-authorization-wrong-user' => "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un altro utente",
 	'mwoauth-invalid-authorization-not-approved' => "L'intestazione dell'autorizzazione nella tua richiesta è per un cliente OAuth che non è attualmente approvato",
 	'mwoauth-invalid-authorization-blocked-user' => "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un utente che è bloccato",
+	'mwoauth-form-description' => "'''La seguente applicazione sta richiedendo di utilizzare MediaWiki per tuo conto'''. Se si concede l'accesso, l'applicazione sarà in grado di eseguire azioni che sono autorizzati con l'elenco delle autorizzazioni richieste di seguito. Permetti solo le applicazioni che consideri affidabili per queste autorizzazioni.",
+	'mwoauth-form-existing' => "'''Questa applicazione sta richiedendo l'autorizzazione a MediaWiki di agire a tuo nome, ma hai già concesso l'accesso:'''
+*  Assegnazioni: $1
+*  Wiki: $2
+*  Autorizzato su: $3",
 	'mwoauth-form-button-approve' => 'Si, permetti',
+	'mwoauth-authorize-form-invalid-user' => "Questo account non può usare OAuth, perché l'utenza su questo wiki e quella sul wiki OAuth centrale non sono collegate.",
 	'mwoauth-error' => 'Errore OAuth',
 	'mwoauth-grants-heading' => 'Autorizzazioni richieste:',
 	'mwoauth-grants-nogrants' => "L'applicazione non ha richiesto alcuna autorizzazione.",
@@ -2133,6 +2158,7 @@ Da qui, è possibile [[Special:MWOAuthConsumerRegistration/propose|proporre un n
 	'mwoauth-grant-useoauth' => 'Diritti di base',
 	'mwoauth-grant-viewdeleted' => 'Vede le informazioni cancellate',
 	'mwoauth-grant-viewmywatchlist' => 'Vedi i tuoi osservati speciali',
+	'mwoauth-oauth-exception' => 'Si è verificato un errore nel protocollo OAuth: $1',
 	'mwoauth-callback-not-oob' => 'oauth_callback deve essere impostato a "oob" (in minuscolo)',
 	'right-mwoauthproposeconsumer' => 'Propone nuovi clienti OAuth',
 	'right-mwoauthupdateownconsumer' => 'Aggiorna clienti OAuth che controlla',
