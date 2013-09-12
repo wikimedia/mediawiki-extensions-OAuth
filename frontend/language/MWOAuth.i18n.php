@@ -2008,6 +2008,15 @@ Per completare il processo, inserisci questo valore per la verifica nel'applicaz
 	'mwoauthconsumerregistration-propose' => 'Proponi nuovo cliente',
 	'mwoauthconsumerregistration-list' => 'Miei clienti',
 	'mwoauthconsumerregistration-main' => 'Principale',
+	'mwoauthconsumerregistration-propose-text' => 'Usa il seguente modulo per proporre un nuovo cliente OAuth (vedi http://oauth.net).
+
+Alcune raccomandazioni e osservazioni:
+* cerca di utilizzare meno assegnazioni possibili. Cerca di evitare di assegnare diritti che non sono realmente necessari ora
+* le versioni sono nella forma "major.minor.release" (gli ultimi due sono opzionali) ed aumentala nel caso siano necessarie ulteriori assegnazioni di diritti
+* fornisce una chiave RSA pubblica (in formato PEM) se possibile; altrimenti dovrà essere utilizzato un token segreto (meno sicuro)
+* utilizza il campo di restrizioni JSON per limitare l\'accesso di questo cliente da indirizzi IP in tali intervalli CIDR
+* è possibile utilizzare un ID wiki per limitare il cliente ad un singolo wiki su questo sito (usa "*" per tutti gli wiki)
+* l\'indirizzo email fornito deve corrispondere a quello della tua utenza (che deve essere confermato).',
 	'mwoauthconsumerregistration-update-text' => 'Utilizza il modulo qui sotto per aggiornare gli aspetti di un cliente OAuth che controlli.
 
 I valori qui sovrascriveranno tutti quelli precedenti. Non lasciarli in bianco se non hai intenzione di cancellare quei valori.',
