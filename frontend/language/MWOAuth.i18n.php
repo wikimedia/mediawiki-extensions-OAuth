@@ -1261,14 +1261,19 @@ Para completar el proceso, proporciona este valor de comprobación a la aplcaci�
 /** French (français)
  * @author Crochet.david
  * @author Gomoko
+ * @author Jean-Frédéric
  * @author Linedwell
  * @author Louperivois
  * @author Wyz
  */
 $messages['fr'] = array(
 	'mwoauth-desc' => 'API d’authentification OAuth 1.0a',
+	'mwoauth-verified' => "L’application peut maintenant accéder à MediaWiki en votre nom. 
+
+Pour terminer le processus, veuillez fournir cette valeur de vérification à l’application : ''' $1 '''",
 	'mwoauth-missing-field' => 'Valeur manquante pour le champ « $1 »',
 	'mwoauth-invalid-field' => 'Valeur invalide fournie pour le champ « $1 »',
+	'mwoauth-invalid-field-generic' => 'Valeur non valide fournie',
 	'mwoauth-field-hidden' => '(cette information est masquée)',
 	'mwoauth-field-private' => '(cette information est privée)',
 	'mwoauth-grant-generic' => 'ensemble de droits « $1 »',
@@ -1444,20 +1449,12 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauth-invalid-authorization-wrong-user' => 'Les entêtes d’autorisation dans votre requête concernent un autre utilisateur',
 	'mwoauth-invalid-authorization-not-approved' => 'Les entêtes d’autorisation dans votre requête concernent un consommateur OAuth qui n’est pas approuvé pour le moment',
 	'mwoauth-invalid-authorization-blocked-user' => 'Les entêtes d’autorisation dans votre requête concernent un utilisateur qui est bloqué',
-	'mwoauth-form-description' => 'L’application suivante demande à utiliser MediaWiki de votre part. L’application pourra effectuer n’importe quelle action autorisée dans la liste des droits ci-dessous, si besoin. N’autorisez que les applications auxquelles vous faites confiance à utiliser ces droits comme vous le feriez.',
+	'mwoauth-form-description' => "'''L’application suivante demande à utiliser MediaWiki en votre nom'''. Si vous lui donnez accès, l’application pourra effectuer n’importe quelle action autorisée dans la liste des droits ci-dessous. N’autorisez que les applications auxquelles vous faites confiance à utiliser ces droits comme vous le feriez.",
 	'mwoauth-form-existing' => "'''Cette application demande une autorisation d'accès à MediaWiki en votre nom, mais vous avez déjà accordé cet accès :'''
 * Droits : $1
 * Wiki : $2
 * Autorisé le : $3",
 	'mwoauth-form-button-approve' => 'Oui, autoriser',
-	'mwoauth-form-confirmation' => 'Autoriser cette application à agir en votre nom ?',
-	'mwoauth-form-confirmation-update' => 'Mettre à jour cette autorisation avec les privilèges demandés. Le laisser décoché conservera vos autorisations actuelles.',
-	'mwoauth-authorize-form' => 'Détails sur l’application :',
-	'mwoauth-authorize-form-user' => 'Auteur de l’application : $1',
-	'mwoauth-authorize-form-name' => 'Nom de l’application : $1',
-	'mwoauth-authorize-form-description' => 'Description de l’application : $1',
-	'mwoauth-authorize-form-version' => 'Version de l’application : $1',
-	'mwoauth-authorize-form-wiki' => 'Wiki : $1',
 	'mwoauth-authorize-form-invalid-user' => 'Ce compte utilisateur ne peut pas utiliser OAuth, parce que le compte de ce wiki et le compte du wiki central OAuth ne sont pas liés.',
 	'mwoauth-error' => 'Erreur OAuth',
 	'mwoauth-grants-heading' => 'Droits requis :',
@@ -1481,6 +1478,7 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauth-grant-useoauth' => 'Droits de base',
 	'mwoauth-grant-viewdeleted' => 'Afficher les informations supprimées',
 	'mwoauth-grant-viewmywatchlist' => 'Afficher votre liste de suivi',
+	'mwoauth-oauth-exception' => 'Une erreur s’est produite dans le protocole OAuth : $1',
 	'mwoauth-callback-not-oob' => 'oauth_callback doit être défini, et doit valoir "oob" (en minuscules)',
 	'right-mwoauthproposeconsumer' => 'Proposer des nouveaux consommateurs OAuth',
 	'right-mwoauthupdateownconsumer' => 'Mettre à jour les consommateurs OAuth',
