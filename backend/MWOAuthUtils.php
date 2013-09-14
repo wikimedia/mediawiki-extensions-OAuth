@@ -194,6 +194,32 @@ class MWOAuthUtils {
 	}
 
 	/**
+	 * @param Array $grants
+	 * @return Array Map of (group => (grant list))
+	 */
+	public static function getGrantGroups( $grantsFilter = null ) {
+		global $wgMWOAuthGrantPermissions, $wgMWOAuthGrantPermissionGroups;
+
+		if ( is_array( $grantsFilter ) ) {
+			$grantsFilter = array_flip( $grantsFilter );
+		}
+
+		$groups = array();
+		foreach ( $wgMWOAuthGrantPermissions as $grant => $rights ) {
+			if ( $grantsFilter !== null && !isset( $grantsFilter[$grant] ) ) {
+				continue;
+			}
+			if ( isset( $wgMWOAuthGrantPermissionGroups[$grant] ) ) {
+				$groups[$wgMWOAuthGrantPermissionGroups[$grant]][] = $grant;
+			} else {
+				$groups['other'][] = $grant;
+			}
+		}
+
+		return $groups;
+	}
+
+	/**
 	 * @param array $restrictions
 	 * @return bool
 	 */
@@ -214,6 +240,20 @@ class MWOAuthUtils {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Get the pretty name of an OAuth wiki ID restriction value
+	 *
+	 * @param string $wikiId A wiki ID or '*'
+	 * @return string
+	 */
+	public static function getWikiIdName( $wikiId ) {
+		if ( $wikiId === '*' ) {
+			return wfMessage( 'mwoauth-consumer-allwikis' )->text();
+		} else {
+			return WikiMap::getWiki( $wikiId )->getWikiName();
+		}
 	}
 
 	/**

@@ -1,0 +1,18 @@
+
+#mw-mwoauth-authorize-form > a {
+	font-weight: bold;
+}
+
+#mw-mwoauth-authorize-form > p {
+	font-size: 1.3em;
+}
+
+input.mw-mwoauth-authorize-button {
+	margin-left: .7em;
+	margin-right: .7em;
+	margin-bottom: .5em;
+}
+
+.client-js #mw-mwoauth-authorize-dialog {
+	display: none; /* no flicker */
+}

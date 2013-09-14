@@ -66,7 +66,7 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 
 		$this->addSubtitleLinks( $acceptanceId );
 
-		$this->getOutput()->addModules( 'ext.MWOAuth' ); // CSS
+		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.BasicStyles' );
 	}
 
 	/**

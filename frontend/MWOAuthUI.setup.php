@@ -9,9 +9,29 @@ class MWOAuthUISetup {
 	 * @return void
 	 */
 	public static function unconditionalSetup() {
-		global $wgHooks;
+		global $wgSpecialPages, $wgHooks, $wgResourceModules;
+
+		$wgSpecialPages['MWOAuth'] = 'SpecialMWOAuth';
 
 		$wgHooks['GetPreferences'][] = 'MWOAuthUIHooks::onGetPreferences';
+
+		$wgResourceModules['ext.MWOAuth.BasicStyles'] = array(
+			'styles'        => array( 'ext.MWOAuth.BasicStyles.css' ),
+			'localBasePath' => dirname( __FILE__ ) . '/modules',
+			'remoteExtPath' => 'OAuth/frontend/modules'
+		);
+		$wgResourceModules['ext.MWOAuth.AuthorizeForm'] = array(
+			'styles'        => array('ext.MWOAuth.AuthorizeForm.css' ),
+			'localBasePath' => dirname( __FILE__ ) . '/modules',
+			'remoteExtPath' => 'OAuth/frontend/modules'
+		);
+		$wgResourceModules['ext.MWOAuth.AuthorizeDialog'] = array(
+			'scripts'       => array( 'ext.MWOAuth.AuthorizeDialog.js' ),
+			'dependencies'  => array( 'jquery.ui.dialog' ),
+			'localBasePath' => dirname( __FILE__ ) . '/modules',
+			'remoteExtPath' => 'OAuth/frontend/modules',
+			'messages'      => array( 'mwoauth-desc' )
+		);
 	}
 
 	/**
@@ -20,9 +40,7 @@ class MWOAuthUISetup {
 	public static function conditionalSetup() {
 		global $wgSpecialPages, $wgSpecialPageGroups;
 		global $wgLogTypes, $wgLogNames, $wgLogHeaders, $wgLogActionsHandlers;
-		global $wgResourceModules;
 
-		$wgSpecialPages['MWOAuth'] = 'SpecialMWOAuth';
 		if ( MWOAuthUtils::isCentralWiki() ) {
 			$wgSpecialPages['MWOAuthConsumerRegistration'] = 'SpecialMWOAuthConsumerRegistration';
 			$wgSpecialPageGroups['MWOAuthConsumerRegistration'] = 'users';
@@ -35,11 +53,5 @@ class MWOAuthUISetup {
 			$wgLogHeaders['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpagetext';
 			$wgLogActionsHandlers['mwoauthconsumer/*'] = 'LogFormatter';
 		}
-
-		$wgResourceModules['ext.MWOAuth'] = array(
-			'styles'        => 'ext.MWOAuth.css',
-			'localBasePath' => dirname( __FILE__ ) . '/modules',
-			'remoteExtPath' => 'OAuth/frontend/modules',
-		);
 	}
 }
