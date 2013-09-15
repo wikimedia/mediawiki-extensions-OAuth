@@ -662,23 +662,6 @@ Followed by the following radio boxes:
 * $5 - Formatted list of grants',
 	'mwoauth-form-button-approve' => 'Button label, indicating the user wants to allow access',
 	'mwoauth-form-button-cancel' => 'Button label, indicating the user wants to cancel granting access',
-	'mwoauth-form-confirmation' => 'Form label, asking if the user is sure they want to allow access',
-	'mwoauth-form-confirmation-update' => 'Checkbox label, asking if the user wants to update the permissions they are granting to a consumer, if they have previously granted access to this consumer',
-	'mwoauth-authorize-form' => 'Form section label',
-	'mwoauth-authorize-form-user' => 'Parameters:
-* $1 - author',
-	'mwoauth-authorize-form-name' => 'Parameters:
-* $1 - application name
-{{Identical|Application name}}',
-	'mwoauth-authorize-form-description' => 'Parameters:
-* $1 - description
-{{Identical|Application description}}',
-	'mwoauth-authorize-form-version' => 'Parameters:
-* $1 - version
-{{Identical|Application version}}',
-	'mwoauth-authorize-form-wiki' => 'Parameters:
-* $1 - wiki
-{{Identical|Wiki}}',
 	'mwoauth-authorize-form-invalid-user' => 'Text of the error page when the user cannot use OAuth.',
 	'mwoauth-error' => 'Heading on the page, whenever an OAuth error is presented to a user.',
 	'mwoauth-grants-heading' => 'Used as label for the grants list.
@@ -1493,12 +1476,7 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauth-invalid-authorization-wrong-user' => 'Les entêtes d’autorisation dans votre requête concernent un autre utilisateur',
 	'mwoauth-invalid-authorization-not-approved' => 'Les entêtes d’autorisation dans votre requête concernent un consommateur OAuth qui n’est pas approuvé pour le moment',
 	'mwoauth-invalid-authorization-blocked-user' => 'Les entêtes d’autorisation dans votre requête concernent un utilisateur qui est bloqué',
-	'mwoauth-form-description' => "'''L’application suivante demande à utiliser MediaWiki en votre nom'''. Si vous lui donnez accès, l’application pourra effectuer n’importe quelle action autorisée dans la liste des droits ci-dessous. N’autorisez que les applications auxquelles vous faites confiance à utiliser ces droits comme vous le feriez.",
-	'mwoauth-form-existing' => "'''Cette application demande une autorisation d'accès à MediaWiki en votre nom, mais vous avez déjà accordé cet accès :'''
-* Droits : $1
-* Wiki : $2
-* Autorisé le : $3",
-	'mwoauth-form-button-approve' => 'Oui, autoriser',
+	'mwoauth-form-button-approve' => 'Oui, autoriser', # Fuzzy
 	'mwoauth-authorize-form-invalid-user' => 'Ce compte utilisateur ne peut pas utiliser OAuth, parce que le compte de ce wiki et le compte du wiki central OAuth ne sont pas liés.',
 	'mwoauth-error' => 'Erreur OAuth',
 	'mwoauth-grants-heading' => 'Droits requis :',
@@ -1513,10 +1491,10 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauth-grant-editprotected' => 'Modifier les pages protégées',
 	'mwoauth-grant-highvolume' => 'Modification de gros volumes',
 	'mwoauth-grant-oversight' => 'Masquer les utilisateurs et supprimer les révisions',
-	'mwoauth-grant-patrol' => 'Patrouiller',
+	'mwoauth-grant-patrol' => 'Patrouiller', # Fuzzy
 	'mwoauth-grant-protect' => 'Protéger et déprotéger les pages',
-	'mwoauth-grant-rollback' => 'Retour arrière',
-	'mwoauth-grant-sendemail' => 'Envoyer des courriels',
+	'mwoauth-grant-rollback' => 'Retour arrière', # Fuzzy
+	'mwoauth-grant-sendemail' => 'Envoyer des courriels', # Fuzzy
 	'mwoauth-grant-uploadeditmovefile' => 'Télécharger, remplacer et renommer des fichiers',
 	'mwoauth-grant-uploadfile' => 'Importer de nouveaux fichiers',
 	'mwoauth-grant-useoauth' => 'Droits de base',
@@ -1725,12 +1703,7 @@ Teña en conta que se autoriza que un consumidor só teña acceso a un subconxun
 	'mwoauth-invalid-authorization-wrong-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario diferente',
 	'mwoauth-invalid-authorization-not-approved' => 'As cabeceiras de autorización da súa solicitude son para un consumidor OAuth que non está aprobado actualmente',
 	'mwoauth-invalid-authorization-blocked-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario que está bloqueado',
-	'mwoauth-form-description' => "'''A seguinte aplicación está solicitando utilizar MediaWiki no seu nome'''. Se vostede permite o acceso, a aplicación poderá realizar calquera acción para a que teña permiso da lista inferior. Autorice unicamente aplicacións nas que confíe que usarán estes permisos como faría vostede.",
-	'mwoauth-form-existing' => "'''Esta aplicación está solicitando autorización a MediaWiki no seu nome, pero vostede xa concedeu este acceso:'''
-*  Concesións: $1
-*  Wiki: $2
-*  Autorizado o: $3",
-	'mwoauth-form-button-approve' => 'Si, permitir',
+	'mwoauth-form-button-approve' => 'Si, permitir', # Fuzzy
 	'mwoauth-authorize-form-invalid-user' => 'Esta conta de usuario non pode utilizar OAuth porque non están ligadas a conta neste wiki e a conta no wiki central de OAuth.',
 	'mwoauth-error' => 'Erro OAuth',
 	'mwoauth-grants-heading' => 'Permisos solicitados:',
@@ -1745,10 +1718,10 @@ Teña en conta que se autoriza que un consumidor só teña acceso a un subconxun
 	'mwoauth-grant-editprotected' => 'Editar as páxinas protexidas',
 	'mwoauth-grant-highvolume' => 'Edicións de gran volume',
 	'mwoauth-grant-oversight' => 'Agochar usuarios e eliminar revisións',
-	'mwoauth-grant-patrol' => 'Patrullar',
+	'mwoauth-grant-patrol' => 'Patrullar', # Fuzzy
 	'mwoauth-grant-protect' => 'Protexer e desprotexer páxinas',
-	'mwoauth-grant-rollback' => 'Reverter',
-	'mwoauth-grant-sendemail' => 'Enviar correos electrónicos',
+	'mwoauth-grant-rollback' => 'Reverter', # Fuzzy
+	'mwoauth-grant-sendemail' => 'Enviar correos electrónicos', # Fuzzy
 	'mwoauth-grant-uploadeditmovefile' => 'Cargar, substituír e mover ficheiros',
 	'mwoauth-grant-uploadfile' => 'Cargar ficheiros novos',
 	'mwoauth-grant-useoauth' => 'Dereitos básicos',
@@ -2180,12 +2153,7 @@ Nota che se hai autorizzato un cliente ad avere accesso solo a un sottoinsieme d
 	'mwoauth-invalid-authorization-wrong-user' => "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un altro utente",
 	'mwoauth-invalid-authorization-not-approved' => "L'intestazione dell'autorizzazione nella tua richiesta è per un cliente OAuth che non è attualmente approvato",
 	'mwoauth-invalid-authorization-blocked-user' => "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un utente che è bloccato",
-	'mwoauth-form-description' => "'''La seguente applicazione sta richiedendo di utilizzare MediaWiki per tuo conto'''. Se si concede l'accesso, l'applicazione sarà in grado di eseguire azioni che sono autorizzati con l'elenco delle autorizzazioni richieste di seguito. Permetti solo le applicazioni che consideri affidabili per queste autorizzazioni.",
-	'mwoauth-form-existing' => "'''Questa applicazione sta richiedendo l'autorizzazione a MediaWiki di agire a tuo nome, ma hai già concesso l'accesso:'''
-*  Assegnazioni: $1
-*  Wiki: $2
-*  Autorizzato su: $3",
-	'mwoauth-form-button-approve' => 'Si, permetti',
+	'mwoauth-form-button-approve' => 'Si, permetti', # Fuzzy
 	'mwoauth-authorize-form-invalid-user' => "Questo account non può usare OAuth, perché l'utenza su questo wiki e quella sul wiki OAuth centrale non sono collegate.",
 	'mwoauth-error' => 'Errore OAuth',
 	'mwoauth-grants-heading' => 'Autorizzazioni richieste:',
@@ -2200,10 +2168,10 @@ Nota che se hai autorizzato un cliente ad avere accesso solo a un sottoinsieme d
 	'mwoauth-grant-editprotected' => 'Modifica pagine protette',
 	'mwoauth-grant-highvolume' => 'Modifiche massive',
 	'mwoauth-grant-oversight' => 'Nasconde utenti e sopprime le versioni',
-	'mwoauth-grant-patrol' => 'Verifica',
+	'mwoauth-grant-patrol' => 'Verifica', # Fuzzy
 	'mwoauth-grant-protect' => 'Protegge e sprotegge pagine',
-	'mwoauth-grant-rollback' => 'Rollback',
-	'mwoauth-grant-sendemail' => 'Invia email',
+	'mwoauth-grant-rollback' => 'Rollback', # Fuzzy
+	'mwoauth-grant-sendemail' => 'Invia email', # Fuzzy
 	'mwoauth-grant-uploadeditmovefile' => 'Carica, sostituisce e sposta i file',
 	'mwoauth-grant-uploadfile' => 'Carica nuovi file',
 	'mwoauth-grant-useoauth' => 'Diritti di base',
@@ -2518,7 +2486,7 @@ $messages['ko'] = array(
 	'mwoauth-invalid-authorization-wrong-user' => '요청에 있는 인증 헤더가 다른 사용자를 위한 것입니다',
 	'mwoauth-invalid-authorization-not-approved' => '요청에 있는 인증 헤더가 현재 승인되지 않은 OAuth 컨슈머를 위한 것입니다',
 	'mwoauth-invalid-authorization-blocked-user' => '요청에 있는 인증 헤더가 차단된 사용자를 위한 것입니다',
-	'mwoauth-form-button-approve' => '예, 허용합니다',
+	'mwoauth-form-button-approve' => '예, 허용합니다', # Fuzzy
 	'mwoauth-error' => 'OAuth 오류',
 	'mwoauth-grants-heading' => '요청된 권한:',
 	'mwoauth-grants-nogrants' => '애플리케이션은 권한을 요청하지 않았습니다.',
@@ -2532,10 +2500,10 @@ $messages['ko'] = array(
 	'mwoauth-grant-editprotected' => '보호된 문서 편집하기',
 	'mwoauth-grant-highvolume' => '대용량 편집',
 	'mwoauth-grant-oversight' => '사용자 숨기기와 판 억제',
-	'mwoauth-grant-patrol' => '검토',
+	'mwoauth-grant-patrol' => '검토', # Fuzzy
 	'mwoauth-grant-protect' => '문서 보호 및 보호 해제',
-	'mwoauth-grant-rollback' => '되돌리기',
-	'mwoauth-grant-sendemail' => '이메일 보내기',
+	'mwoauth-grant-rollback' => '되돌리기', # Fuzzy
+	'mwoauth-grant-sendemail' => '이메일 보내기', # Fuzzy
 	'mwoauth-grant-uploadeditmovefile' => '파일 올리기, 바꾸기, 옮기기',
 	'mwoauth-grant-uploadfile' => '새 파일 올리기',
 	'mwoauth-grant-useoauth' => '기본 권한',
@@ -2807,12 +2775,7 @@ $messages['mk'] = array(
 	'mwoauth-invalid-authorization-wrong-user' => 'Овластителните заглавија во вашето барање се однесуваат на друг корисник',
 	'mwoauth-invalid-authorization-not-approved' => 'Овластителните заглавија во вашето барање се однесуваат на потрошувач на OAuth што во моментов не е одобрен',
 	'mwoauth-invalid-authorization-blocked-user' => 'Овластителните заглавија во вашето барање се однесуваат на корисник што е блокиран',
-	'mwoauth-form-description' => "'''Следниов прилог бара да го користи МедијаВики во ваше име'''. Ако му дадете пристап, тогаш прилогот може да ги извршува сите дејства дозволени во рамките на долунаведениот список со побарани дозволи. Ова треба да го дозволувате само на прилози на кои им верувате.",
-	'mwoauth-form-existing' => "'''Овој прилог бара овластување од МедијаВики во ваше име, но веќе има добиено пристап:'''
-*  Доделувања: $1
-*  Вики: $2
-*  Овластен на: $3",
-	'mwoauth-form-button-approve' => 'Да, дозволи',
+	'mwoauth-form-button-approve' => 'Да, дозволи', # Fuzzy
 	'mwoauth-authorize-form-invalid-user' => 'Оваа корисничка сметка не може да користи OAuth бидејќи не е поврзана со сметката на OAuth.',
 	'mwoauth-error' => 'Грешка во OAuth',
 	'mwoauth-grants-heading' => 'Побарани дозволи:',
@@ -2827,10 +2790,10 @@ $messages['mk'] = array(
 	'mwoauth-grant-editprotected' => 'Уредување на заштитени страници',
 	'mwoauth-grant-highvolume' => 'Уредување на ангро',
 	'mwoauth-grant-oversight' => 'Скривање на корисници и ревизии',
-	'mwoauth-grant-patrol' => 'Патрола',
+	'mwoauth-grant-patrol' => 'Патрола', # Fuzzy
 	'mwoauth-grant-protect' => 'Заштита на незаштитени страници',
-	'mwoauth-grant-rollback' => 'Отповикување',
-	'mwoauth-grant-sendemail' => 'Испраќање на е-пошта',
+	'mwoauth-grant-rollback' => 'Отповикување', # Fuzzy
+	'mwoauth-grant-sendemail' => 'Испраќање на е-пошта', # Fuzzy
 	'mwoauth-grant-uploadeditmovefile' => 'Подигање, замена и преместување на податотеки',
 	'mwoauth-grant-uploadfile' => 'Подигни нови податотеки',
 	'mwoauth-grant-useoauth' => 'Основни права',
@@ -3317,6 +3280,7 @@ $messages['uk'] = array(
 	'mwoauth-grant-generic' => 'Пучок прав "$1"',
 	'mwoauth-prefs-managegrants' => 'Доступу OAuth споживача:',
 	'mwoauth-prefs-managegrantslink' => 'Керувати дозволами від імені цього облікового запису',
+	'mwoauth-consumer-allwikis' => 'Всі проекти на цьому сайті',
 	'mwoauth-consumer-key' => 'Ключ споживача:',
 	'mwoauth-consumer-name' => 'Назва програми:',
 	'mwoauth-consumer-version' => 'Споживча версія:',
@@ -3487,16 +3451,34 @@ $messages['uk'] = array(
 	'mwoauth-invalid-authorization-wrong-user' => 'Заголовки авторизації у вашому запиті призначені для іншого користувача',
 	'mwoauth-invalid-authorization-not-approved' => 'Заголовки авторизації у вашому запитів призначені для ще незатвердженого споживача OAuth',
 	'mwoauth-invalid-authorization-blocked-user' => 'Заголовки авторизації у вашому запитів призначені для заблокованого користувача',
-	'mwoauth-form-description' => 'Нижченаведена програма вимагає використовувати Медіавікі від вашого імені. Якщо ви надасте доступ, то програма матиме можливість виконувати будь-які дії, які дозволено  списком нижче потрібних прав. Дозволяються лише програми, які використовують ці дозволи, що й ви.',
-	'mwoauth-form-existing' => '"Ця програма запитує дозвіл на Медіавікі від вашого імені, але ви вже надали доступ:"\'
-* Гранти: $1
-* Вікі: $2
-* Уповноважені: $3',
-	'mwoauth-form-button-approve' => 'Так, дозволити',
+	'mwoauth-form-description-allwikis' => "Привіт $1,
+
+'''$2'''  хотіла б зробити наступні дії від вашого імені за всіма проектами сайту:
+
+
+$4",
+	'mwoauth-form-description-onewiki' => 'Привіт $1,
+
+"\'$2"\' хотіла б зробити наступні дії від вашого імені на "$4":
+
+
+$5',
+	'mwoauth-form-privacypolicy-link' => ' [[{{ns:Project}}:Privacy policy|Privacy Policy]]',
+	'mwoauth-form-button-approve' => 'Дозволити',
+	'mwoauth-form-button-cancel' => 'Скасувати',
 	'mwoauth-authorize-form-invalid-user' => "Цей обліковий запис користувача не може використовувати OAuth, тому що облікового запису на цій вікі і обліковий запис у вікі OAuth не пов'язані.",
 	'mwoauth-error' => 'Помилка OAuth',
 	'mwoauth-grants-heading' => 'Потрібні дозволи:',
 	'mwoauth-grants-nogrants' => 'Програма не вимагає жодних дозволів.',
+	'mwoauth-acceptance-cancelled' => 'Ви скасували цей запит авторизації OAuth, щоб діяти від вашого імені.',
+	'mwoauth-grant-group-page-interaction' => 'Взаємодіяти з сторінками',
+	'mwoauth-grant-group-file-interaction' => 'Взаємодіяти з медіа',
+	'mwoauth-grant-group-watchlist-interaction' => 'Взаємодіяти з вашим списком спостереження',
+	'mwoauth-grant-group-email' => 'Надіслати листа',
+	'mwoauth-grant-group-high-volume' => 'Виконати великий обсяг діяльності',
+	'mwoauth-grant-group-customization' => 'Налаштування і переваги',
+	'mwoauth-grant-group-administration' => 'Виконати адміністративні дії',
+	'mwoauth-grant-group-other' => 'Різна діяльність',
 	'mwoauth-grant-blockusers' => 'Блокування користувачів',
 	'mwoauth-grant-createeditmovepage' => 'Створення, редагування і переміщення сторінок',
 	'mwoauth-grant-delete' => 'Видалення сторінок, версій і записів журналу',
@@ -3507,10 +3489,10 @@ $messages['uk'] = array(
 	'mwoauth-grant-editprotected' => 'Редагувати захищені сторінки',
 	'mwoauth-grant-highvolume' => 'Редагування великих обсягів',
 	'mwoauth-grant-oversight' => 'Приховати користувачів і подавити версії',
-	'mwoauth-grant-patrol' => 'Патруль',
+	'mwoauth-grant-patrol' => 'Патрулювати зміни на сторінках',
 	'mwoauth-grant-protect' => 'Захистити і зняти захист сторінок',
-	'mwoauth-grant-rollback' => 'Відкинути',
-	'mwoauth-grant-sendemail' => 'Надіслати листа',
+	'mwoauth-grant-rollback' => 'Відкат змін на сторінках',
+	'mwoauth-grant-sendemail' => 'Відправляти пошту іншим користувачам',
 	'mwoauth-grant-uploadeditmovefile' => 'Завантажити, замінити та перемістити файли',
 	'mwoauth-grant-uploadfile' => 'Завантажити нові файли',
 	'mwoauth-grant-useoauth' => 'Основні права',
@@ -3536,8 +3518,12 @@ $messages['uk'] = array(
  * @author Minh Nguyen
  */
 $messages['vi'] = array(
+	'mwoauth-verified' => "Ứng dụng hiện được phép truy cập MediaWiki thay mặt bạn.
+
+Để hoàn thành quá trình này, xin hãy nhập giá trị xác minh này vào ứng dụng: '''$1'''",
 	'mwoauth-missing-field' => 'Thiếu giá trị cho trường “$1”',
 	'mwoauth-invalid-field' => 'Giá trị không hợp lệ được đưa vào trường “$1”',
+	'mwoauth-invalid-field-generic' => 'Giá trị không hợp lệ được cung cấp',
 	'mwoauth-field-hidden' => '(thông tin này bị ẩn)',
 	'mwoauth-field-private' => '(thông tin này là bí mật)',
 	'mwoauth-grant-generic' => 'Gói quyền “$1”',
@@ -3547,17 +3533,24 @@ $messages['vi'] = array(
 	'mwoauth-consumer-email' => 'Địa chỉ thư điện tử liên lạc:',
 	'mwoauth-consumer-description' => 'Miêu tả ứng dụng:',
 	'mwoauth-consumer-callbackurl' => 'URL “gọi lại” OAuth:',
+	'mwoauth-consumer-grantsneeded' => 'Các quyền có liên quan:',
+	'mwoauth-consumer-wiki' => 'Wiki có liên quan:',
 	'mwoauth-consumer-restrictions' => 'Hạn chế sử dụng:',
 	'mwoauth-consumer-restrictions-json' => 'Hạn chế sử dụng (JSON):',
 	'mwoauth-consumer-rsakey' => 'Chìa khóa RSA công cộng:',
+	'mwoauth-consumer-accesstoken' => 'Dấu hiệu truy cập:',
 	'mwoauth-consumer-reason' => 'Lý do:',
 	'mwoauth-consumer-email-unconfirmed' => 'Địa chỉ thư điện tử tài khoản của bạn chưa được xác nhận.',
+	'mwoauth-consumer-email-mismatched' => 'Địa chỉ thư điện tử được cung cấp phải cũng là địa chỉ thư điện tử của tài khoản của bạn.',
+	'mwoauth-invalid-access-token' => 'Không có dấu hiện truy cập với chìa khóa được cung cấp.',
 	'mwoauth-consumer-stage-proposed' => 'đề xuất',
 	'mwoauth-consumer-stage-rejected' => 'từ chối',
 	'mwoauth-consumer-stage-expired' => 'hết hạn',
 	'mwoauth-consumer-stage-approved' => 'chấp nhận',
 	'mwoauth-consumer-stage-disabled' => 'tắt',
 	'mwoauth-consumer-stage-suppressed' => 'ẩn',
+	'mwoauthconsumerregistration-notloggedin' => 'Bạn phải đăng nhập để truy cấp trang này.',
+	'mwoauthconsumerregistration-navigation' => 'Điều hướng:',
 	'mwoauthconsumerregistration-main' => 'Chính',
 	'mwoauthconsumerregistration-user' => 'Nhà xuất bản',
 	'mwoauthconsumerregistration-description' => 'Miêu tả',
@@ -3587,24 +3580,33 @@ $messages['vi'] = array(
 	'mwoauthmanageconsumers-reason' => 'Lý do:',
 	'mwoauthmanageconsumers-success-approved' => 'Yêu cầu đã được chấp nhận.',
 	'mwoauthmanageconsumers-success-rejected' => 'Yêu cầu đã bị từ chối.',
+	'mwoauthmanagemygrants-notloggedin' => 'Bạn phải đăng nhập để truy cấp trang này.',
+	'mwoauthmanagemygrants-navigation' => 'Điều hướng:',
 	'mwoauthmanagemygrants-user' => 'Nhà xuất bản',
 	'mwoauthmanagemygrants-description' => 'Miêu tả',
+	'mwoauthmanagemygrants-wiki' => 'Wiki có liên quan',
 	'mwoauthmanagemygrants-wikiallowed' => 'Được cho phép trên wiki',
+	'mwoauthmanagemygrants-grants' => 'Các quyền có liên quan',
+	'mwoauthmanagemygrants-grantsallowed' => 'Các quyền được cấp',
+	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Các quyền được cấp có liên quan:',
 	'mwoauthmanagemygrants-review' => 'xem lại/quản lý truy cập',
+	'mwoauthmanagemygrants-update' => 'Cập nhận các dấu hiệu truy cập được cấp',
 	'mwoauthmanagemygrants-action' => 'Thay đổi trạng thái:',
+	'mwoauthmanagemygrants-confirm-submit' => 'Cập nhật trạng thái của dấu hiệu truy cập',
 	'mwoauth-bad-request' => 'Có lỗi trong yêu cầu OAuth của bạn.',
+	'mwoauthdatastore-request-token-not-found' => 'Không tìm thấy yêu cầu ứng với dấu hiệu này.',
+	'mwoauthdatastore-bad-token' => 'Không tìm thấy dấu hiệu ứng với yêu cầu của bạn.',
+	'mwoauthdatastore-bad-verifier' => 'Mã xác minh được cung cấp là không hợp lệ.',
 	'mwoauthdatastore-invalid-token-type' => 'Đã yêu cầu kiểu dấu hiệu không hợp lệ.',
 	'mwoauthgrants-general-error' => 'Có lỗi trong yêu cầu OAuth của bạn.',
+	'mwoauthserver-insufficient-rights' => 'Bạn không có đủ quyền để thực hiện thao tác này.',
 	'mwoauthserver-invalid-request-token' => 'Dấu hiệu không hợp lệ trong yêu cầu của bạn.',
 	'mwoauthserver-invalid-user-hookabort' => 'Người dùng này không thể dùng OAuth.',
-	'mwoauth-form-button-approve' => 'Có, cho phép',
-	'mwoauth-authorize-form' => 'Chi tiết ứng dụng:',
-	'mwoauth-authorize-form-user' => 'Tác giả ứng dụng: $1',
-	'mwoauth-authorize-form-name' => 'Tên ứng dụng: $1',
-	'mwoauth-authorize-form-description' => 'Miêu tả ứng dụng: $1',
-	'mwoauth-authorize-form-version' => 'Phiên bản ứng dụng: $1',
-	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-form-button-approve' => 'Có, cho phép', # Fuzzy
+	'mwoauth-authorize-form-invalid-user' => 'Tài khoản người dùng này không thể sử dụng OAuth vì tài khoản trên wiki này không được liên kết với tài khoản trên wiki OAuth trung ương.',
 	'mwoauth-error' => 'Lỗi OAuth',
+	'mwoauth-grants-heading' => 'Các quyền được yêu cầu:',
+	'mwoauth-grants-nogrants' => 'Ứng dụng không yêu cầu quyền nào.',
 	'mwoauth-grant-blockusers' => 'Cấm người dùng',
 	'mwoauth-grant-createeditmovepage' => 'Tạo, sửa, và di chuyển trang',
 	'mwoauth-grant-delete' => 'Xóa trang, phiên bản, và mục nhật ký',
@@ -3615,16 +3617,20 @@ $messages['vi'] = array(
 	'mwoauth-grant-editprotected' => 'Sửa đội các trang bị khóa',
 	'mwoauth-grant-highvolume' => 'Sửa đổi tốc độ cao',
 	'mwoauth-grant-oversight' => 'Ẩn người dùng và phiên bản',
-	'mwoauth-grant-patrol' => 'Tuần tra',
+	'mwoauth-grant-patrol' => 'Tuần tra', # Fuzzy
 	'mwoauth-grant-protect' => 'Khóa và mở khóa các trang',
-	'mwoauth-grant-rollback' => 'Lùi tất cả',
-	'mwoauth-grant-sendemail' => 'Gửi thư điện tử',
+	'mwoauth-grant-rollback' => 'Lùi tất cả', # Fuzzy
+	'mwoauth-grant-sendemail' => 'Gửi thư điện tử', # Fuzzy
 	'mwoauth-grant-uploadeditmovefile' => 'Tải lên, thay thế, và di chuyển tập tin',
 	'mwoauth-grant-uploadfile' => 'Tải lên tập tin mới',
 	'mwoauth-grant-useoauth' => 'Quyền cơ bản',
 	'mwoauth-grant-viewdeleted' => 'Xem thông tin bị xóa',
 	'mwoauth-grant-viewmywatchlist' => 'Xem danh sách theo dõi của bạn',
+	'mwoauth-oauth-exception' => 'Đã xuất hiện lỗi trong giao thức OAuth: $1',
+	'mwoauth-callback-not-oob' => 'oauth_callback phải được xác định là “oob” (phải là chữ thường)',
 	'right-mwoauthviewprivate' => 'Xem dữ liệu riêng OAuth',
+	'right-mwoauthmanagemygrants' => 'Quản lý các quyền OAuth được cấp',
+	'action-mwoauthmanagemygrants' => 'quản lý các quyền OAuth mà bạn cấp',
 );
 
 /** Yiddish (ייִדיש)
