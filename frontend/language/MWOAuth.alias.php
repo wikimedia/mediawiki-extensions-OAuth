@@ -10,10 +10,10 @@ $specialPageAliases = array();
 
 /** English (English) */
 $specialPageAliases['en'] = array(
-	'MWOAuthConsumerRegistration' => array( 'MWOAuthConsumerRegistration' ),
-	'MWOAuthManageConsumers' => array( 'MWOAuthManageConsumers' ),
-	'MWOAuthManageMyGrants' => array( 'MWOAuthManageMyGrants' ),
-	'MWOAuth' => array( 'MWOAuth' ),
+	'MWOAuthConsumerRegistration' => array( 'MWOAuthConsumerRegistration', 'OAuthRegistration' ),
+	'MWOAuthManageConsumers' => array( 'MWOAuthManageConsumers', 'OAuthManageConsumers' ),
+	'MWOAuthManageMyGrants' => array( 'MWOAuthManageMyGrants', 'OAuthGrants' ),
+	'MWOAuth' => array( 'MWOAuth', 'OAuth' ),
 );
 
 /** German (Deutsch) */
