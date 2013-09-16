@@ -22,6 +22,8 @@
  * This handles the core logic of submitting/approving application
  * consumer requests and the logic of managing approved consumers
  *
+ * This control can be used on any wiki, not just the management one
+ *
  * @TODO: improve error messages
  */
 class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
@@ -68,9 +70,6 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			return $this->failure( 'permission_denied', 'badaccess-group0' );
 		} elseif ( wfReadOnly() ) {
 			return $this->failure( 'readonly', 'readonlytext', wfReadOnlyReason() );
-		} elseif ( !MWOAuthUtils::isCentralWiki() ) { // sanity
-			// We attach consumers to the ID of a user on the management wiki
-			throw new MWException( "This can only be used from the OAuth management wiki." );
 		}
 		return $this->success();
 	}
@@ -85,7 +84,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 		}
 
 		switch ( $action ) {
-		case 'accept': // @TODO: unused (WIP)
+		case 'accept':
 			$cmr = MWOAuthConsumer::newFromKey( $dbw, $this->vals['consumerKey'] );
 			if ( !$cmr ) {
 				return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
