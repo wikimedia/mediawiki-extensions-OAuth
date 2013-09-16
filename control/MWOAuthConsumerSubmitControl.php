@@ -22,6 +22,8 @@
  * This handles the core logic of approving/disabling consumers
  * from using particular user accounts
  *
+ * This control can only be used on the management wiki
+ *
  * @TODO: improve error messages
  */
 class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
@@ -122,7 +124,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 		} elseif ( wfReadOnly() ) {
 			return $this->failure( 'readonly', 'readonlytext', wfReadOnlyReason() );
 		} elseif ( !MWOAuthUtils::isCentralWiki() ) { // sanity
-			// We attach consumers to the ID of a user on the management wiki
+			// This logs consumer changes to the local logging table on the central wiki
 			throw new MWException( "This can only be used from the OAuth management wiki." );
 		}
 		return $this->success();

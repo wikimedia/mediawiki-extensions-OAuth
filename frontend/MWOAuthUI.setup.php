@@ -12,6 +12,7 @@ class MWOAuthUISetup {
 		global $wgSpecialPages, $wgHooks, $wgResourceModules;
 
 		$wgSpecialPages['MWOAuth'] = 'SpecialMWOAuth';
+		$wgSpecialPages['MWOAuthManageMyGrants'] = 'SpecialMWOAuthManageMyGrants';
 
 		$wgHooks['GetPreferences'][] = 'MWOAuthUIHooks::onGetPreferences';
 
@@ -46,7 +47,6 @@ class MWOAuthUISetup {
 			$wgSpecialPageGroups['MWOAuthConsumerRegistration'] = 'users';
 			$wgSpecialPages['MWOAuthManageConsumers'] = 'SpecialMWOAuthManageConsumers';
 			$wgSpecialPageGroups['MWOAuthManageConsumers'] = 'users';
-			$wgSpecialPages['MWOAuthManageMyGrants'] = 'SpecialMWOAuthManageMyGrants';
 
 			$wgLogTypes[] = 'mwoauthconsumer';
 			$wgLogNames['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpage';
