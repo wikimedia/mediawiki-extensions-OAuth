@@ -252,7 +252,12 @@ class MWOAuthUtils {
 		if ( $wikiId === '*' ) {
 			return wfMessage( 'mwoauth-consumer-allwikis' )->text();
 		} else {
-			return WikiMap::getWiki( $wikiId )->getWikiName();
+			$host = WikiMap::getWikiName( $wikiId );
+			if ( strpos( $host, '.' ) ) {
+				return $host; // e.g. "en.wikipedia.org"
+			} else {
+				return $wikiId;
+			}
 		}
 	}
 

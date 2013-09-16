@@ -107,6 +107,14 @@ abstract class MWOAuthSubmitControl extends ContextSource {
 	 * @return boolean|string
 	 */
 	public function validateFieldInternal( $field, $value, $allValues ) {
+		if ( !isset( $allValues['action'] ) && isset( $this->vals['action'] ) ) {
+			// The action may be derived, especially for multi-button forms.
+			// Such an HTMLForm will not have an action key set in $allValues.
+			$allValues['action'] = $this->vals['action']; // injected
+		}
+		if ( !isset( $allValues['action'] ) ) {
+			throw new MWException( "No form action defined; cannot validate fields." );
+		}
 		$validators = $this->getRequiredFields();
 		if ( !isset( $validators[$allValues['action']][$field] ) ) {
 			return true; // nothing to check
