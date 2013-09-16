@@ -649,19 +649,36 @@ Followed by the following radio boxes:
 	'mwoauth-invalid-authorization-wrong-user' => 'Text of the error page when the Authorization header is for the wrong user',
 	'mwoauth-invalid-authorization-not-approved' => "Text of the error page when the Authorization header is for a consumer that isn't approved",
 	'mwoauth-invalid-authorization-blocked-user' => 'Text of the error page when Authorization header is for a user who is blocked',
-	'mwoauth-form-description-allwikis' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf. Parameters:
-* $1 - The user name
-* $2 - Application name
-* $3 - Application publisher
-* $4 - Formatted list of grants',
-	'mwoauth-form-description-onewiki' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf. Parameters:
-* $1 - The user name
-* $2 - Application name
-* $3 - Application publisher
-* $4 - Wiki project name
-* $5 - Formatted list of grants',
-	'mwoauth-form-button-approve' => 'Button label, indicating the user wants to allow access',
-	'mwoauth-form-button-cancel' => 'Button label, indicating the user wants to cancel granting access',
+	'mwoauth-form-description-allwikis' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf.
+
+Parameters:
+* $1 - the username
+* $2 - application name
+* $3 - application publisher
+* $4 - formatted list of grants
+See also:
+* {{msg-mw|Mwoauth-form-description-onewiki}}',
+	'mwoauth-form-description-onewiki' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf.
+
+Parameters:
+* $1 - the username
+* $2 - application name
+* $3 - application publisher
+* $4 - wiki project name
+* $5 - formatted list of grants
+See also:
+* {{msg-mw|Mwoauth-form-description-allwikis}}',
+	'mwoauth-form-privacypolicy-link' => '{{doc-important|Do not translate <code><nowiki>{{ns:Project}}:Privacy policy</nowiki></code> part.}}',
+	'mwoauth-form-button-approve' => 'Button label, indicating the user wants to allow access.
+
+See also:
+* {{msg-mw|Mwoauth-form-button-cancel}}
+{{Identical|Approve}}',
+	'mwoauth-form-button-cancel' => 'Button label, indicating the user wants to cancel granting access.
+
+See also:
+* {{msg-mw|Mwoauth-form-button-approve}}
+{{Identical|Cancel}}',
 	'mwoauth-authorize-form-invalid-user' => 'Text of the error page when the user cannot use OAuth.',
 	'mwoauth-error' => 'Heading on the page, whenever an OAuth error is presented to a user.',
 	'mwoauth-grants-heading' => 'Used as label for the grants list.
@@ -687,30 +704,60 @@ See also:
 * {{msg-mw|Mwoauth-grant-viewdeleted}}
 * {{msg-mw|Mwoauth-grant-viewmywatchlist}}',
 	'mwoauth-grants-nogrants' => 'Warning message that the OAuth consumer has not requested any permissions',
-	'mwoauth-grant-blockusers' => 'Name for OAuth grant "blockusers".
-{{Identical|Block user}}',
-	'mwoauth-grant-createeditmovepage' => 'Name for OAuth grant "createeditmovepage"',
-	'mwoauth-grant-delete' => 'Name for OAuth grant "delete"',
-	'mwoauth-grant-editinterface' => 'Name for OAuth grant "editinterface"',
-	'mwoauth-grant-editmycssjs' => 'Name for OAuth grant "editmycssjs"',
-	'mwoauth-grant-editmywatchlist' => 'Name for OAuth grant "editmywatchlist".
-{{Identical|Edit your watchlist}}',
-	'mwoauth-grant-editpage' => 'Name for OAuth grant "editpage"',
-	'mwoauth-grant-editprotected' => 'Name for OAuth grant "editprotected"',
-	'mwoauth-grant-highvolume' => 'Name for OAuth grant "highvolume"',
-	'mwoauth-grant-oversight' => 'Name for OAuth grant "oversight"',
-	'mwoauth-grant-patrol' => 'Name for OAuth grant "patrol"',
-	'mwoauth-grant-protect' => 'Name for OAuth grant "protect"',
-	'mwoauth-grant-rollback' => 'Name for OAuth grant "rollback".
-{{Identical|Rollback}}',
-	'mwoauth-grant-sendemail' => 'Name for OAuth grant "sendemail".
+	'mwoauth-grant-group-page-interaction' => '{{Related|Mwoauth-grant-group}}',
+	'mwoauth-grant-group-file-interaction' => '{{Related|Mwoauth-grant-group}}',
+	'mwoauth-grant-group-watchlist-interaction' => '{{Related|Mwoauth-grant-group}}',
+	'mwoauth-grant-group-email' => '{{Related|Mwoauth-grant-group}}
 {{Identical|E-mail}}',
-	'mwoauth-grant-uploadeditmovefile' => 'Name for OAuth grant "uploadeditmovefile"',
+	'mwoauth-grant-group-high-volume' => '{{Related|Mwoauth-grant-group}}',
+	'mwoauth-grant-group-customization' => '{{Related|Mwoauth-grant-group}}',
+	'mwoauth-grant-group-administration' => '{{Related|Mwoauth-grant-group}}',
+	'mwoauth-grant-group-other' => '{{Related|Mwoauth-grant-group}}',
+	'mwoauth-grant-blockusers' => 'Name for OAuth grant "blockusers".
+{{Related|Mwoauth-grant}}
+{{Identical|Block user}}',
+	'mwoauth-grant-createeditmovepage' => 'Name for OAuth grant "createeditmovepage".
+{{Related|Mwoauth-grant}}',
+	'mwoauth-grant-delete' => 'Name for OAuth grant "delete".
+{{Related|Mwoauth-grant}}',
+	'mwoauth-grant-editinterface' => 'Name for OAuth grant "editinterface".
+
+"JS" stands for "JavaScript".
+{{Related|Mwoauth-grant}}',
+	'mwoauth-grant-editmycssjs' => 'Name for OAuth grant "editmycssjs".
+
+"JS" stands for "JavaScript".
+{{Related|Mwoauth-grant}}',
+	'mwoauth-grant-editmywatchlist' => 'Name for OAuth grant "editmywatchlist".
+{{Related|Mwoauth-grant}}
+{{Identical|Edit your watchlist}}',
+	'mwoauth-grant-editpage' => 'Name for OAuth grant "editpage".
+{{Related|Mwoauth-grant}}',
+	'mwoauth-grant-editprotected' => 'Name for OAuth grant "editprotected".
+{{Related|Mwoauth-grant}}',
+	'mwoauth-grant-highvolume' => 'Name for OAuth grant "highvolume".
+{{Related|Mwoauth-grant}}',
+	'mwoauth-grant-oversight' => 'Name for OAuth grant "oversight".
+{{Related|Mwoauth-grant}}',
+	'mwoauth-grant-patrol' => 'Name for OAuth grant "patrol".
+{{Related|Mwoauth-grant}}',
+	'mwoauth-grant-protect' => 'Name for OAuth grant "protect".
+{{Related|Mwoauth-grant}}',
+	'mwoauth-grant-rollback' => 'Name for OAuth grant "rollback".
+{{Related|Mwoauth-grant}}',
+	'mwoauth-grant-sendemail' => 'Name for OAuth grant "sendemail".
+{{Related|Mwoauth-grant}}',
+	'mwoauth-grant-uploadeditmovefile' => 'Name for OAuth grant "uploadeditmovefile".
+{{Related|Mwoauth-grant}}',
 	'mwoauth-grant-uploadfile' => 'Name for OAuth grant "uploadfile".
+{{Related|Mwoauth-grant}}
 {{Identical|Upload new file}}',
-	'mwoauth-grant-useoauth' => 'Name for OAuth grant "useoauth"',
-	'mwoauth-grant-viewdeleted' => 'Name for OAuth grant "viewdeleted"',
+	'mwoauth-grant-useoauth' => 'Name for OAuth grant "useoauth".
+{{Related|Mwoauth-grant}}',
+	'mwoauth-grant-viewdeleted' => 'Name for OAuth grant "viewdeleted".
+{{Related|Mwoauth-grant}}',
 	'mwoauth-grant-viewmywatchlist' => 'Name for OAuth grant "viewmywatchlist".
+{{Related|Mwoauth-grant}}
 {{Identical|View your watchlist}}',
 	'mwoauth-oauth-exception' => 'Used as failure message. Parameters:
 * $1 - Exception message text',
@@ -1036,6 +1083,7 @@ Um den Prozess abzuschließen, gib diesen Verifizierungswert an die Anwendung we
 	'mwoauth-grant-generic' => 'Rechtegruppe „$1“',
 	'mwoauth-prefs-managegrants' => 'OAuth-Verbraucherzugriff:',
 	'mwoauth-prefs-managegrantslink' => 'Berechtigungen im Namen dieses Kontos verwalten',
+	'mwoauth-consumer-allwikis' => 'Alle Projekte auf dieser Website',
 	'mwoauth-consumer-key' => 'Verbraucherschlüssel:',
 	'mwoauth-consumer-name' => 'Anwendungsname:',
 	'mwoauth-consumer-version' => 'Verbraucherversion:',
@@ -1206,16 +1254,34 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'mwoauth-invalid-authorization-wrong-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen anderen Benutzer',
 	'mwoauth-invalid-authorization-not-approved' => 'Die Autorisierungsheader in deiner Anfrage sind für einen OAuth-Verbraucher, der derzeit nicht bestätigt ist.',
 	'mwoauth-invalid-authorization-blocked-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen Benutzer, der gesperrt ist.',
-	'mwoauth-form-description' => "'''Die folgende Anwendung will MediaWiki in deinem Namen benutzen'''. Falls du Zugriff gewährst, wird die Anwendung jede Aktion ausführen können, die in der unten stehenden Berechtigungsliste aufgeführt ist. Lasse nur Anwendungen zu, denen du eine Verwendung dieser Berechtigungen zutraust.",
-	'mwoauth-form-existing' => "'''Diese Anwendung fordert Berechtigungen für MediaWiki auf deinen Namen an, du hast jedoch bereits Zugriff gewährt:'''
-*  Berechtigungen: $1
-*  Wiki: $2
-*  Genehmigt am: $3",
-	'mwoauth-form-button-approve' => 'Ja, erlauben',
+	'mwoauth-form-description-allwikis' => "Hallo $1,
+
+'''$2''' will die folgenden Aktionen auf allen Projekten auf dieser Website in deinem Namen ausführen:
+
+
+$4",
+	'mwoauth-form-description-onewiki' => "Hallo $1,
+
+'''$2''' will die folgenden Aktionen auf ''$4'' in deinem Namen ausführen:
+
+
+$5",
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Datenschutzrichtlinie]]',
+	'mwoauth-form-button-approve' => 'Erlauben',
+	'mwoauth-form-button-cancel' => 'Abbrechen',
 	'mwoauth-authorize-form-invalid-user' => 'Dieses Benutzerkonto kann nicht OAuth verwenden, da das Konto auf diesem Wiki und das Konto auf dem zentralen OAuth-Wiki nicht verknüpft sind.',
 	'mwoauth-error' => 'OAuth-Fehler',
 	'mwoauth-grants-heading' => 'Angeforderte Berechtigungen:',
 	'mwoauth-grants-nogrants' => 'Die Anwendung hat keine Berechtigungen beantragt.',
+	'mwoauth-acceptance-cancelled' => 'Du hast diese Anfrage zur Autorisierung eines OAuth-Verbrauchers abgebrochen.',
+	'mwoauth-grant-group-page-interaction' => 'Mit Seiten interagieren',
+	'mwoauth-grant-group-file-interaction' => 'Mit Medien interagieren',
+	'mwoauth-grant-group-watchlist-interaction' => 'Mit deiner Beobachtungsliste interagieren',
+	'mwoauth-grant-group-email' => 'E-Mail versenden',
+	'mwoauth-grant-group-high-volume' => 'Massenaktivitäten ausführen',
+	'mwoauth-grant-group-customization' => 'Anpassung und Einstellungen',
+	'mwoauth-grant-group-administration' => 'Administrative Aktionen ausführen',
+	'mwoauth-grant-group-other' => 'Verschiedene Aktivitäten',
 	'mwoauth-grant-blockusers' => 'Benutzer sperren',
 	'mwoauth-grant-createeditmovepage' => 'Seiten erstellen, bearbeiten und verschieben',
 	'mwoauth-grant-delete' => 'Seiten, Versionen und Logbucheinträge löschen',
@@ -1226,10 +1292,10 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
 	'mwoauth-grant-editprotected' => 'Geschützte Seiten bearbeiten',
 	'mwoauth-grant-highvolume' => 'Massenbearbeitungen',
 	'mwoauth-grant-oversight' => 'Benutzer verstecken und Versionen unterdrücken',
-	'mwoauth-grant-patrol' => 'Kontrollieren',
+	'mwoauth-grant-patrol' => 'Änderungen an Seiten kontrollieren',
 	'mwoauth-grant-protect' => 'Seiten schützen und freigeben',
-	'mwoauth-grant-rollback' => 'Zurücksetzen',
-	'mwoauth-grant-sendemail' => 'E-Mails versenden',
+	'mwoauth-grant-rollback' => 'Änderungen an Seiten zurücksetzen',
+	'mwoauth-grant-sendemail' => 'E-Mails an andere Benutzer versenden',
 	'mwoauth-grant-uploadeditmovefile' => 'Dateien hochladen, ersetzen und verschieben',
 	'mwoauth-grant-uploadfile' => 'Neue Dateien hochladen',
 	'mwoauth-grant-useoauth' => 'Basisrechte',
@@ -1255,6 +1321,7 @@ Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergr
  * @author Shirayuki
  */
 $messages['en-gb'] = array(
+	'mwoauth-desc' => 'OAuth 1.0a API Authorisation',
 	'mwoauthmanagemygrants-confirm-text' => 'Use the form below to revoke access or change grants for an OAuth consumer to act on your behalf.
 
 Note that if you authorised a consumer to only have access to a subset of wikis (site projects), then there will be multiple access tokens for that consumer.',
@@ -1267,11 +1334,7 @@ Note that if you authorised a consumer to only have access to a subset of wikis 
 	'mwoauth-invalid-authorization-wrong-user' => 'The authorisation headers in your request are for a different user',
 	'mwoauth-invalid-authorization-not-approved' => 'The authorisation headers in your request are for an OAuth consumer that is not currently approved',
 	'mwoauth-invalid-authorization-blocked-user' => 'The authorisation headers in your request are for a user who is blocked',
-	'mwoauth-form-existing' => "'''This application is requesting authorisation to MediaWiki on your behalf, but you have already granted access:'''
-*  Grants: $1
-*  Wiki: $2
-*  Authorised on: $3",
-	'mwoauth-form-confirmation-update' => 'Update this authorisation to the requested privileges. Leaving this unchecked will keep your existing authorisations',
+	'mwoauth-acceptance-cancelled' => 'You have cancelled this request to authorise an OAuth consumer to act on your behalf.',
 );
 
 /** Spanish (español)
@@ -1533,6 +1596,7 @@ Para completar o proceso, achegue este valor de verificación á aplicación: ''
 	'mwoauth-grant-generic' => 'conxunto de dereitos "$1"',
 	'mwoauth-prefs-managegrants' => 'Acceso de consumidor OAuth:',
 	'mwoauth-prefs-managegrantslink' => 'Administrar as concesións en nome desta conta',
+	'mwoauth-consumer-allwikis' => 'Todos os proxectos deste sitio',
 	'mwoauth-consumer-key' => 'Clave do consumidor:',
 	'mwoauth-consumer-name' => 'Nome da aplicación:',
 	'mwoauth-consumer-version' => 'Versión do consumidor:',
@@ -1703,11 +1767,34 @@ Teña en conta que se autoriza que un consumidor só teña acceso a un subconxun
 	'mwoauth-invalid-authorization-wrong-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario diferente',
 	'mwoauth-invalid-authorization-not-approved' => 'As cabeceiras de autorización da súa solicitude son para un consumidor OAuth que non está aprobado actualmente',
 	'mwoauth-invalid-authorization-blocked-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario que está bloqueado',
-	'mwoauth-form-button-approve' => 'Si, permitir', # Fuzzy
+	'mwoauth-form-description-allwikis' => "Boas $1:
+
+'''$2''' quere realizar as seguintes accións no seu nome en todos os proxectos deste sitio:
+
+
+$4",
+	'mwoauth-form-description-onewiki' => "Boas $1:
+
+'''$2''' quere realizar as seguintes accións no seu nome en ''$4'':
+
+
+$5",
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Política de protección de datos]]',
+	'mwoauth-form-button-approve' => 'Permitir',
+	'mwoauth-form-button-cancel' => 'Cancelar',
 	'mwoauth-authorize-form-invalid-user' => 'Esta conta de usuario non pode utilizar OAuth porque non están ligadas a conta neste wiki e a conta no wiki central de OAuth.',
 	'mwoauth-error' => 'Erro OAuth',
 	'mwoauth-grants-heading' => 'Permisos solicitados:',
 	'mwoauth-grants-nogrants' => 'A aplicación non solicitou ningún permiso.',
+	'mwoauth-acceptance-cancelled' => 'Cancelou esta solicitude de autorización para que o consumidor OAuth actúe no seu nome.',
+	'mwoauth-grant-group-page-interaction' => 'Interactuar coas páxinas',
+	'mwoauth-grant-group-file-interaction' => 'Interactuar cos ficheiros multimedia',
+	'mwoauth-grant-group-watchlist-interaction' => 'Interactuar coa súa lista de vixilancia',
+	'mwoauth-grant-group-email' => 'Enviar correos electrónicos',
+	'mwoauth-grant-group-high-volume' => 'Realizar actividades de alto volume',
+	'mwoauth-grant-group-customization' => 'Personalización e preferencias',
+	'mwoauth-grant-group-administration' => 'Realizar accións administrativas',
+	'mwoauth-grant-group-other' => 'Outras actividades',
 	'mwoauth-grant-blockusers' => 'Bloquear usuarios',
 	'mwoauth-grant-createeditmovepage' => 'Crear, editar e mover páxinas',
 	'mwoauth-grant-delete' => 'Borrar páxinas, revisións e entradas de rexistro',
@@ -1718,10 +1805,10 @@ Teña en conta que se autoriza que un consumidor só teña acceso a un subconxun
 	'mwoauth-grant-editprotected' => 'Editar as páxinas protexidas',
 	'mwoauth-grant-highvolume' => 'Edicións de gran volume',
 	'mwoauth-grant-oversight' => 'Agochar usuarios e eliminar revisións',
-	'mwoauth-grant-patrol' => 'Patrullar', # Fuzzy
+	'mwoauth-grant-patrol' => 'Patrullar os cambios feitos ás páxinas',
 	'mwoauth-grant-protect' => 'Protexer e desprotexer páxinas',
-	'mwoauth-grant-rollback' => 'Reverter', # Fuzzy
-	'mwoauth-grant-sendemail' => 'Enviar correos electrónicos', # Fuzzy
+	'mwoauth-grant-rollback' => 'Reverter os cambios feitos ás páxinas',
+	'mwoauth-grant-sendemail' => 'Enviar correos electrónicos a outros usuarios',
 	'mwoauth-grant-uploadeditmovefile' => 'Cargar, substituír e mover ficheiros',
 	'mwoauth-grant-uploadfile' => 'Cargar ficheiros novos',
 	'mwoauth-grant-useoauth' => 'Dereitos básicos',
@@ -1983,6 +2070,7 @@ Per completare il processo, inserisci questo valore per la verifica nel'applicaz
 	'mwoauth-grant-generic' => 'Pacchetto diritti "$1"',
 	'mwoauth-prefs-managegrants' => 'Accesso cliente OAuth:',
 	'mwoauth-prefs-managegrantslink' => 'Gestisci assegnazioni per conto di questa utenza',
+	'mwoauth-consumer-allwikis' => 'Tutti i progetti su questo sito',
 	'mwoauth-consumer-key' => 'Chiave cliente:',
 	'mwoauth-consumer-name' => 'Nome applicazione:',
 	'mwoauth-consumer-version' => 'Versione cliente:',
@@ -2153,11 +2241,33 @@ Nota che se hai autorizzato un cliente ad avere accesso solo a un sottoinsieme d
 	'mwoauth-invalid-authorization-wrong-user' => "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un altro utente",
 	'mwoauth-invalid-authorization-not-approved' => "L'intestazione dell'autorizzazione nella tua richiesta è per un cliente OAuth che non è attualmente approvato",
 	'mwoauth-invalid-authorization-blocked-user' => "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un utente che è bloccato",
-	'mwoauth-form-button-approve' => 'Si, permetti', # Fuzzy
+	'mwoauth-form-description-allwikis' => "Ciao $1,
+
+'''$2''' vorrebbe eseguire le seguenti azioni per tuo conto su tutti i progetti di questo sito:
+
+$4",
+	'mwoauth-form-description-onewiki' => "Ciao $1,
+
+'''$2''' vorrebbe eseguire le seguenti azioni per tuo conto su ''$4'':
+
+
+$5",
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Politica relativa alla privacy]]',
+	'mwoauth-form-button-approve' => 'Consenti',
+	'mwoauth-form-button-cancel' => 'Annulla',
 	'mwoauth-authorize-form-invalid-user' => "Questo account non può usare OAuth, perché l'utenza su questo wiki e quella sul wiki OAuth centrale non sono collegate.",
 	'mwoauth-error' => 'Errore OAuth',
 	'mwoauth-grants-heading' => 'Autorizzazioni richieste:',
 	'mwoauth-grants-nogrants' => "L'applicazione non ha richiesto alcuna autorizzazione.",
+	'mwoauth-acceptance-cancelled' => 'Hai annullato la richiesta di autorizzazione per il cliente OAuth di agire per tuo conto.',
+	'mwoauth-grant-group-page-interaction' => 'Interagisce con le pagine',
+	'mwoauth-grant-group-file-interaction' => 'Interagisce con i file multimediali',
+	'mwoauth-grant-group-watchlist-interaction' => 'Interagisce con i tuoi osservati speciali',
+	'mwoauth-grant-group-email' => 'Invia email',
+	'mwoauth-grant-group-high-volume' => 'Esegue azioni massive',
+	'mwoauth-grant-group-customization' => 'Personalizzazione e preferenze',
+	'mwoauth-grant-group-administration' => 'Esegue azioni adminstrative',
+	'mwoauth-grant-group-other' => 'Attività varie',
 	'mwoauth-grant-blockusers' => 'Blocca utenti',
 	'mwoauth-grant-createeditmovepage' => 'Crea, modifica e sposta le pagine',
 	'mwoauth-grant-delete' => 'Cancella pagine, versioni, e voci di registro',
@@ -2168,10 +2278,10 @@ Nota che se hai autorizzato un cliente ad avere accesso solo a un sottoinsieme d
 	'mwoauth-grant-editprotected' => 'Modifica pagine protette',
 	'mwoauth-grant-highvolume' => 'Modifiche massive',
 	'mwoauth-grant-oversight' => 'Nasconde utenti e sopprime le versioni',
-	'mwoauth-grant-patrol' => 'Verifica', # Fuzzy
+	'mwoauth-grant-patrol' => 'Segna le modifiche alle pagine come verificate',
 	'mwoauth-grant-protect' => 'Protegge e sprotegge pagine',
-	'mwoauth-grant-rollback' => 'Rollback', # Fuzzy
-	'mwoauth-grant-sendemail' => 'Invia email', # Fuzzy
+	'mwoauth-grant-rollback' => 'Rollback delle modifiche alle pagine',
+	'mwoauth-grant-sendemail' => 'Invia email ad altri utenti',
 	'mwoauth-grant-uploadeditmovefile' => 'Carica, sostituisce e sposta i file',
 	'mwoauth-grant-uploadfile' => 'Carica nuovi file',
 	'mwoauth-grant-useoauth' => 'Diritti di base',
@@ -2205,6 +2315,7 @@ $messages['ja'] = array(
 	'mwoauth-field-hidden' => '(この情報は非表示です)',
 	'mwoauth-field-private' => '(この情報は非公開です)',
 	'mwoauth-prefs-managegrants' => 'OAuth コンシューマー アクセス:',
+	'mwoauth-consumer-allwikis' => 'このサイト上のすべてのプロジェクト',
 	'mwoauth-consumer-key' => 'コンシューマー キー:',
 	'mwoauth-consumer-name' => 'アプリケーション名:',
 	'mwoauth-consumer-version' => 'コンシューマーのバージョン:',
@@ -2291,8 +2402,13 @@ $messages['ja'] = array(
 	'mwoauthserver-invalid-request-token' => 'リクエストに無効なトークンがあります。',
 	'mwoauthserver-invalid-user-hookabort' => 'この利用者は OAuth を使用できません。',
 	'mwoauth-invalid-authorization-title' => 'OAuth 認証エラー',
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|プライバシー・ポリシー]]',
+	'mwoauth-form-button-approve' => '許可',
+	'mwoauth-form-button-cancel' => 'キャンセル',
 	'mwoauth-authorize-form-invalid-user' => 'このウィキと中央管理 OAuth ウィキの利用者アカウントがリンクされていないため、このアカウントでは OAuth を使用できません。',
 	'mwoauth-error' => 'OAuth エラー',
+	'mwoauth-grant-group-email' => 'メールの送信',
+	'mwoauth-grant-group-other' => 'その他の活動',
 	'mwoauth-grant-blockusers' => '利用者をブロック',
 	'mwoauth-grant-createeditmovepage' => 'ページを作成/編集/移動',
 	'mwoauth-grant-delete' => 'ページ、版、記録項目を削除',
@@ -2302,10 +2418,10 @@ $messages['ja'] = array(
 	'mwoauth-grant-editpage' => '既存のページを編集',
 	'mwoauth-grant-editprotected' => '保護されたページを編集',
 	'mwoauth-grant-oversight' => '利用者名および版を秘匿',
-	'mwoauth-grant-patrol' => '巡回',
+	'mwoauth-grant-patrol' => 'ページへの変更の巡回',
 	'mwoauth-grant-protect' => 'ページを保護および保護解除',
-	'mwoauth-grant-rollback' => '巻き戻し',
-	'mwoauth-grant-sendemail' => 'メールを送信',
+	'mwoauth-grant-rollback' => 'ページヘの変更の巻き戻し',
+	'mwoauth-grant-sendemail' => '他の利用者へのメールの送信',
 	'mwoauth-grant-uploadeditmovefile' => 'ファイルをアップロード/置き換え/移動',
 	'mwoauth-grant-uploadfile' => '新しいファイルをアップロード',
 	'mwoauth-grant-useoauth' => '基本的な権限',
@@ -2570,19 +2686,23 @@ $messages['lb'] = array(
 	'mwoauthserver-invalid-user-hookabort' => 'Dëse Benotzer däerf OAuth net benotzen.',
 	'mwoauth-invalid-authorization-title' => "OAuth Autorisatioun's-Feeler",
 	'mwoauth-invalid-authorization-blocked-user' => "D'Autorisatiounen an Ärer Ufro si fir ee Benotzer dee gespaart ass",
-	'mwoauth-form-button-approve' => 'Jo, erlaben',
+	'mwoauth-form-button-approve' => 'Erlaben',
+	'mwoauth-form-button-cancel' => 'Ofbriechen',
 	'mwoauth-authorize-form-invalid-user' => 'Dëse Benotzerkont kann OAuth net benotzen, well de Benotzerkont op dëser Wiki an de Benotzerkont op der zentraler OAuth Wiki net matenee verbonn sinn.',
 	'mwoauth-error' => 'OAuth Feeler',
 	'mwoauth-grants-heading' => 'Ugefroten Autorisatiounen:',
+	'mwoauth-grant-group-page-interaction' => 'Mat Säiten interagéieren',
+	'mwoauth-grant-group-watchlist-interaction' => 'Mat Ärer Iwwerwaachungslëscht interagéieren',
+	'mwoauth-grant-group-email' => 'E-Mail schécken',
 	'mwoauth-grant-blockusers' => 'Benotzer spären',
 	'mwoauth-grant-editinterface' => 'MediaWiki-Nummraum a Benotzer CSS/JS änneren',
 	'mwoauth-grant-editmycssjs' => 'Ären eegene Benotzer CSS/JS änneren',
 	'mwoauth-grant-editmywatchlist' => 'Ännert Är Iwwerwaachungslëscht',
 	'mwoauth-grant-editprotected' => 'Gespaarte Säiten änneren',
 	'mwoauth-grant-oversight' => 'Benotzer verstoppen a Versioune läschen',
-	'mwoauth-grant-patrol' => 'Iwwerwaachen',
-	'mwoauth-grant-rollback' => 'Zrécksetzen',
-	'mwoauth-grant-sendemail' => 'E-Mail schécken',
+	'mwoauth-grant-patrol' => 'Ännerungen op Säiten iwwerwaachen',
+	'mwoauth-grant-rollback' => 'Ännerungen op Säiten zrécksetzen',
+	'mwoauth-grant-sendemail' => 'Anere Benotzer E-Maile schécken',
 	'mwoauth-grant-useoauth' => 'Basisrechter',
 	'mwoauth-grant-viewdeleted' => 'Geläschten Informatioune kucken',
 	'mwoauth-grant-viewmywatchlist' => 'Kuckt Är Iwwerwaachungslëscht',
@@ -2605,6 +2725,7 @@ $messages['mk'] = array(
 	'mwoauth-grant-generic' => 'Група права „$1“',
 	'mwoauth-prefs-managegrants' => 'Пристап на потрошувач на OAuth:',
 	'mwoauth-prefs-managegrantslink' => 'Раководење со права во име на оваа сметка',
+	'mwoauth-consumer-allwikis' => 'Сите проекти на ова мрежно место',
 	'mwoauth-consumer-key' => 'Потрошувачки клуч:',
 	'mwoauth-consumer-name' => 'Назив на прилогот:',
 	'mwoauth-consumer-version' => 'Потрошувачка верзија:',
@@ -2775,11 +2896,34 @@ $messages['mk'] = array(
 	'mwoauth-invalid-authorization-wrong-user' => 'Овластителните заглавија во вашето барање се однесуваат на друг корисник',
 	'mwoauth-invalid-authorization-not-approved' => 'Овластителните заглавија во вашето барање се однесуваат на потрошувач на OAuth што во моментов не е одобрен',
 	'mwoauth-invalid-authorization-blocked-user' => 'Овластителните заглавија во вашето барање се однесуваат на корисник што е блокиран',
-	'mwoauth-form-button-approve' => 'Да, дозволи', # Fuzzy
+	'mwoauth-form-description-allwikis' => "Здраво $1,
+
+Програмот '''$2''' би сакал да ги изврши следниве дејства во ваше име на ова мрежно место:
+
+
+$4",
+	'mwoauth-form-description-onewiki' => "Здраво $1,
+
+Програмот '''$2''' би сакал да ги изврши следниве дејства во ваше име на ''$4'':
+
+
+$5",
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Заштита на личните податоци]]',
+	'mwoauth-form-button-approve' => 'Дозволи',
+	'mwoauth-form-button-cancel' => 'Откажи',
 	'mwoauth-authorize-form-invalid-user' => 'Оваа корисничка сметка не може да користи OAuth бидејќи не е поврзана со сметката на OAuth.',
 	'mwoauth-error' => 'Грешка во OAuth',
 	'mwoauth-grants-heading' => 'Побарани дозволи:',
 	'mwoauth-grants-nogrants' => 'Прилогот нема побарано ниедна дозвола.',
+	'mwoauth-acceptance-cancelled' => 'Го имате откажано ова барање за овластување на потрошувач на OAuth да делува ваше име.',
+	'mwoauth-grant-group-page-interaction' => 'Опходување со страници',
+	'mwoauth-grant-group-file-interaction' => 'Опходување со слики и снимки',
+	'mwoauth-grant-group-watchlist-interaction' => 'Опходување со списокот на набљудувања',
+	'mwoauth-grant-group-email' => 'Испраќање на е-пошта',
+	'mwoauth-grant-group-high-volume' => 'Вршење на активности од голем обем',
+	'mwoauth-grant-group-customization' => 'Прилагодувања и поставки',
+	'mwoauth-grant-group-administration' => 'Вршење на административни дејства',
+	'mwoauth-grant-group-other' => 'Разни активности',
 	'mwoauth-grant-blockusers' => 'Блокирање корисници',
 	'mwoauth-grant-createeditmovepage' => 'Создавање, измена и преместување на страници',
 	'mwoauth-grant-delete' => 'Бришење на страници, ревизии и дневнички записи',
@@ -2790,10 +2934,10 @@ $messages['mk'] = array(
 	'mwoauth-grant-editprotected' => 'Уредување на заштитени страници',
 	'mwoauth-grant-highvolume' => 'Уредување на ангро',
 	'mwoauth-grant-oversight' => 'Скривање на корисници и ревизии',
-	'mwoauth-grant-patrol' => 'Патрола', # Fuzzy
+	'mwoauth-grant-patrol' => 'Патрола на измени во страници',
 	'mwoauth-grant-protect' => 'Заштита на незаштитени страници',
-	'mwoauth-grant-rollback' => 'Отповикување', # Fuzzy
-	'mwoauth-grant-sendemail' => 'Испраќање на е-пошта', # Fuzzy
+	'mwoauth-grant-rollback' => 'Отповикување на измени во страници',
+	'mwoauth-grant-sendemail' => 'Испраќање на е-пошта до други корисници',
 	'mwoauth-grant-uploadeditmovefile' => 'Подигање, замена и преместување на податотеки',
 	'mwoauth-grant-uploadfile' => 'Подигни нови податотеки',
 	'mwoauth-grant-useoauth' => 'Основни права',
@@ -3185,6 +3329,14 @@ $messages['roa-tara'] = array(
 	'mwoauthmanageconsumers-showexpired' => 'Richieste scadute',
 	'mwoauthmanageconsumers-main' => 'Prengepàle',
 	'mwoauthmanageconsumers-reason' => 'Mutive:',
+);
+
+/** Serbian (Cyrillic script) (српски (ћирилица)‎)
+ * @author Milicevic01
+ */
+$messages['sr-ec'] = array(
+	'mwoauth-field-hidden' => '(ова информација је скривена)',
+	'mwoauth-field-private' => '(ова информација је приватна)',
 );
 
 /** Swedish (svenska)
