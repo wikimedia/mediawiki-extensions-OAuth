@@ -139,17 +139,20 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 					'label-message' => 'mwoauth-consumer-version',
 					'default' => $cmr->get( 'version' )
 				),
-				'consumerKey' => array(
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-key',
-					'default' => $cmr->get( 'consumerKey' )
-				),
 				'description' => array(
-					'type' => 'textarea',
+					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-description',
 					'default' => $cmr->get( 'description' ),
-					'readonly' => true,
-					'rows' => 5
+				),
+				'usedOnWiki' => array(
+					'type' => 'info',
+					'label-message' => 'mwoauth-consumer-wiki',
+					'default' => $cmr->get( 'wiki' )
+				),
+				'wiki' => array(
+					'type' => 'text',
+					'label-message' => 'mwoauthmanagemygrants-wikiallowed',
+					'default' => $cmra->get( 'wiki' )
 				),
 				'grants'  => array(
 					'type' => 'checkmatrix',
@@ -177,24 +180,6 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 						)
 					)
 				),
-				'usedOnWiki' => array(
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-wiki',
-					'default' => $cmr->get( 'wiki' )
-				),
-				'wiki' => array(
-					'type' => 'text',
-					'label-message' => 'mwoauthmanagemygrants-wikiallowed',
-					'default' => $cmra->get( 'wiki' )
-				),
-				'action' => array(
-					'type' => 'radio',
-					'label-message' => 'mwoauthmanagemygrants-action',
-					'required' => true,
-					'options' => array(
-						$this->msg( 'mwoauthmanagemygrants-update' )->escaped() => 'update',
-						$this->msg( 'mwoauthmanagemygrants-renounce' )->escaped() => 'renounce' )
-				),
 				'acceptanceId' => array(
 					'type' => 'hidden',
 					'default' => $cmra->get( 'id' )
@@ -204,7 +189,13 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 		);
 		$act = null;
 		$form->setSubmitCallback( function( array $data, IContextSource $context ) use ( &$act ) {
-			$act = $data['action']; // this will be valid on success
+			$request = $context->getRequest();
+			if ( $request->getCheck( 'update' ) ) {
+				$data['action'] = $act = 'update';
+			}
+			if ( $request->getCheck( 'renounce' ) ) {
+				$data['action'] = $act = 'renounce';
+			}
 			$data['grants'] = FormatJSON::encode( // adapt form to controller
 				preg_replace( '/^grant-/', '', $data['grants'] ) );
 
@@ -214,7 +205,12 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 		} );
 
 		$form->setWrapperLegendMsg( 'mwoauthmanagemygrants-confirm-legend' );
-		$form->setSubmitTextMsg( 'mwoauthmanagemygrants-confirm-submit' );
+		$opts = array(
+			'class' => 'mw-htmlform-submit',
+		);
+		$form->suppressDefaultSubmit();
+		$form->addButton( 'update', $this->msg( 'mwoauthmanagemygrants-update' )->escaped(), null, $opts );
+		$form->addButton( 'renounce', $this->msg( 'mwoauthmanagemygrants-renounce' )->escaped(), null, $opts );
 		$form->addPreText(
 			$this->msg( 'mwoauthmanagemygrants-confirm-text' )->parseAsBlock() );
 
