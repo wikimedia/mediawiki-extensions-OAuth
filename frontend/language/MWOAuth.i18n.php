@@ -70,7 +70,7 @@ To complete the process, provide this verification value to the application: \'\
 	'mwoauthconsumerregistration-propose' => 'Propose new consumer',
 	'mwoauthconsumerregistration-list' => 'My consumer list',
 	'mwoauthconsumerregistration-main' => 'Main',
-	'mwoauthconsumerregistration-propose-text' => 'Use the form below to propose a new OAuth consumer (see http://oauth.net).
+	'mwoauthconsumerregistration-propose-text' => 'Developers should use the form below to propose a new OAuth consumer (see the [//www.mediawiki.org/wiki/Extension:OAuth extension documentation] for more details). After submitting this form, you will receive a token that your application will use to identify itself to MediaWiki. An OAuth administrator will need to approve your application before it can be authorized by other users.
 
 A few recommendations and remarks:
 * Try to use as few grants as possible. Avoid grants that are not actually needed now.
@@ -82,9 +82,13 @@ A few recommendations and remarks:
 	'mwoauthconsumerregistration-update-text' => 'Use the form below to update aspects of an OAuth consumer you control.
 
 All values here will overwrite any previous ones. Do not leave blank fields unless you intend to clear those values.',
-	'mwoauthconsumerregistration-maintext' => 'This page is meant for proposing and updating OAuth (see http://oauth.net) consumer applications in this site\'s registry.
+	'mwoauthconsumerregistration-maintext' => 'This page is for letting developers propose and update OAuth consumer applications in this site\'s registry.
 
-From here, you can [[Special:MWOAuthConsumerRegistration/propose|propose a new consumer]] or [[Special:MWOAuthConsumerRegistration/list|manage your existing consumers]].',
+From here, you can:
+* [[Special:MWOAuthConsumerRegistration/propose|Request a token for a new consumer]].
+* [[Special:MWOAuthConsumerRegistration/list|Manage your existing consumers]].
+
+For more information about OAuth, please see the [//www.mediawiki.org/wiki/Extension:OAuth extension documentation].',
 	'mwoauthconsumerregistration-propose-legend' => 'New OAuth consumer application',
 	'mwoauthconsumerregistration-update-legend' => 'Update OAuth consumer application',
 	'mwoauthconsumerregistration-propose-submit' => 'Propose consumer',
