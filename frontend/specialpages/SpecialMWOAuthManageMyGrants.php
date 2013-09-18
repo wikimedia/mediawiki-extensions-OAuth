@@ -273,7 +273,7 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 			return $s . ' [' . $cmr->get( 'version' ) . ']';
 		} ) );
 
-		$r = "<li>";
+		$r = '<li class="mw-mwoauthmanagemygrants-body">';
 		$r .= "{$encName} (<strong>{$link}</strong>)";
 		$data = array(
 			'mwoauthmanagemygrants-user' => $cmr->get( 'userId',
@@ -282,15 +282,10 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 				'MWOAuthUtils::getWikiIdName' )
 		);
 
-		$r .= "<table class='mw-mwoauthmanagemygrants-body' " .
-			"cellspacing='1' cellpadding='3' border='1' width='100%'>";
 		foreach ( $data as $msg => $value ) {
-			$r .= '<tr>' .
-				'<td><strong>' . $this->msg( $msg )->escaped() . '</strong></td>' .
-				'<td width=\'90%\'>' . htmlspecialchars( $value ) . '</td>' .
-				'</tr>';
+			$r .= '<p><strong>' . $this->msg( $msg )->escaped() . '</strong>: ' .
+				htmlspecialchars( $value ) . '</p>';
 		}
-		$r .= '</table>';
 		$r .= '</li>';
 
 		return $r;
