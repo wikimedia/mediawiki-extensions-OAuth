@@ -165,12 +165,14 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthmanagemygrants-consumerkey' => 'Consumer key',
 	'mwoauthmanagemygrants-review' => 'review/manage access',
 	'mwoauthmanagemygrants-grantaccept' => 'Granted to consumer',
-	'mwoauthmanagemygrants-confirm-text' => 'Use the form below to revoke access or change grants for an OAuth consumer to act on your behalf.
-
-Note that if you authorized a consumer to only have access to a subset of wikis (site projects), then there will be multiple access tokens for that consumer.',
+	'mwoauthmanagemygrants-confirm-text' => 'Use the form below to revoke access or change grants for an OAuth consumer to act on your behalf. A few notes:
+* This form controls a particular access "token", or key, that lets a consumer access your account.
+* If you seperately authorized a consumer to access different projects on your behalf, then you will have multiple access tokens for that consumer.
+* If you want to revoke access to consumer, be sure to revoke all the access tokens for all versions of that consumer you accepted.
+* Using "*" in the wiki field grants access to all projects on this site; using a wiki project ID limits access to a single project.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Manage consumer access token',
-	'mwoauthmanagemygrants-update' => 'Update access token grants',
-	'mwoauthmanagemygrants-renounce' => 'De-authorize and delete access token',
+	'mwoauthmanagemygrants-update' => 'Update grants',
+	'mwoauthmanagemygrants-renounce' => 'Deauthorize consumer',
 	'mwoauthmanagemygrants-action' => 'Change status:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Update access token status',
 	'mwoauthmanagemygrants-success-update' => 'The access token for this consumer has been updated.',
@@ -1358,7 +1360,7 @@ Para completar el proceso, proporciona este valor de comprobación a la aplcaci�
  */
 $messages['fr'] = array(
 	'mwoauth-desc' => 'API d’authentification OAuth 1.0a',
-	'mwoauth-verified' => "L’application peut maintenant accéder à MediaWiki en votre nom. 
+	'mwoauth-verified' => "L’application peut maintenant accéder à MediaWiki en votre nom.
 
 Pour terminer le processus, veuillez fournir cette valeur de vérification à l’application : ''' $1 '''",
 	'mwoauth-missing-field' => 'Valeur manquante pour le champ « $1 »',

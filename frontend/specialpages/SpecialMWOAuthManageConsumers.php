@@ -315,7 +315,8 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					'type' => 'radio',
 					'label-message' => 'mwoauthmanageconsumers-action',
 					'required' => true,
-					'options' => $opts
+					'options' => $opts,
+					'default' => '' // no validate on GET
 				),
 				'reason' => array(
 					'type' => 'text',

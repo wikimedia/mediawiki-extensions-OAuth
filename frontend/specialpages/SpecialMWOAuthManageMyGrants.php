@@ -101,7 +101,7 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 	protected function handleConsumerForm( $acceptanceId ) {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
-		$db = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
 		if ( !$centralUserId ) {
@@ -110,34 +110,42 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 		}
 
 		$cmra = MWOAuthDAOAccessControl::wrap(
-			MWOAuthConsumerAcceptance::newFromId( $db, $acceptanceId ), $this->getContext() );
+			MWOAuthConsumerAcceptance::newFromId( $dbr, $acceptanceId ), $this->getContext() );
 		if ( !$cmra || $cmra->get( 'userId' ) !== $centralUserId ) {
 			$this->getOutput()->addHtml( $this->msg( 'mwoauth-invalid-access-token' )->escaped() );
 			return;
 		}
 
 		$cmr = MWOAuthDAOAccessControl::wrap(
-			MWOAuthConsumer::newFromId( $db, $cmra->get( 'consumerId' ) ), $this->getContext() );
+			MWOAuthConsumer::newFromId( $dbr, $cmra->get( 'consumerId' ) ), $this->getContext() );
 		if ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			throw new PermissionsError( 'mwoauthviewsuppressed' );
 		}
 
+		$this->getOutput()->addModuleStyles( 'mediawiki.ui' );
+
+		$action = '';
+		if ( $this->getRequest()->getCheck( 'renounce' ) ) {
+			$action = 'renounce';
+		} elseif ( $this->getRequest()->getCheck( 'update' ) ) {
+			$action = 'update';
+		}
+
+		$data = array( 'action' => $action );
+		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), $data, $dbr );
 		$form = new HTMLForm(
-			array(
+			$control->registerValidators( array(
 				'name' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-name',
-					'default' => $cmr->get( 'name' )
+					'default' => $cmr->get( 'name',
+						function( $s ) use ( $cmr ) {
+							return $s . ' [' . $cmr->get( 'version' ) . ']'; } )
 				),
 				'user' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-user',
 					'default' => $cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' )
-				),
-				'version' => array(
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-version',
-					'default' => $cmr->get( 'version' )
 				),
 				'description' => array(
 					'type' => 'info',
@@ -147,7 +155,7 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 				'usedOnWiki' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-wiki',
-					'default' => $cmr->get( 'wiki' )
+					'default' => $cmr->get( 'wiki', 'MWOAuthUtils::getWikiIdName' )
 				),
 				'wiki' => array(
 					'type' => 'text',
@@ -178,46 +186,50 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 							},
 							MWOAuthUtils::getRightsByGrant()
 						)
-					)
+					),
+					'validation-callback' => null // different format
 				),
 				'acceptanceId' => array(
 					'type' => 'hidden',
 					'default' => $cmra->get( 'id' )
-				),
-			),
+				)
+			) ),
 			$this->getContext()
 		);
-		$act = null;
-		$form->setSubmitCallback( function( array $data, IContextSource $context ) use ( &$act ) {
-			$request = $context->getRequest();
-			if ( $request->getCheck( 'update' ) ) {
-				$data['action'] = $act = 'update';
-			}
-			if ( $request->getCheck( 'renounce' ) ) {
-				$data['action'] = $act = 'renounce';
-			}
-			$data['grants'] = FormatJSON::encode( // adapt form to controller
-				preg_replace( '/^grant-/', '', $data['grants'] ) );
+		$form->setSubmitCallback(
+			function( array $data, IContextSource $context ) use ( $action ) {
+				$data['action'] = $action;
+				$data['grants'] = FormatJSON::encode( // adapt form to controller
+					preg_replace( '/^grant-/', '', $data['grants'] ) );
 
-			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
-			$controller = new MWOAuthConsumerAcceptanceSubmitControl( $context, $data, $dbw );
-			return $controller->submit();
-		} );
+				$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
+				$control = new MWOAuthConsumerAcceptanceSubmitControl( $context, $data, $dbw );
+				return $control->submit();
+			}
+		);
 
 		$form->setWrapperLegendMsg( 'mwoauthmanagemygrants-confirm-legend' );
 		$opts = array(
 			'class' => 'mw-htmlform-submit',
 		);
 		$form->suppressDefaultSubmit();
-		$form->addButton( 'update', $this->msg( 'mwoauthmanagemygrants-update' )->escaped(), null, $opts );
-		$form->addButton( 'renounce', $this->msg( 'mwoauthmanagemygrants-renounce' )->escaped(), null, $opts );
+		$form->addButton( 'update',
+			$this->msg( 'mwoauthmanagemygrants-update' )->escaped(),
+			null,
+			array( 'class' => 'mw-ui-button mw-ui-primary' )
+		);
+		$form->addButton( 'renounce',
+			$this->msg( 'mwoauthmanagemygrants-renounce' )->escaped(),
+			null,
+			array( 'class' => 'mw-ui-button mw-ui-destructive' )
+		);
 		$form->addPreText(
 			$this->msg( 'mwoauthmanagemygrants-confirm-text' )->parseAsBlock() );
 
 		$status = $form->show();
 		if ( $status instanceof Status && $status->isOk() ) {
 			// Messages: mwoauthmanagemygrants-success-update, mwoauthmanagemygrants-success-renounce
-			$this->getOutput()->addWikiMsg( "mwoauthmanagemygrants-success-$act" );
+			$this->getOutput()->addWikiMsg( "mwoauthmanagemygrants-success-$action" );
 			$this->getOutput()->returnToMain();
 		}
 	}
@@ -257,31 +269,17 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 			$this->msg( 'mwoauthmanagemygrants-review' )->escaped()
 		);
 
-		$time = $this->getLanguage()->timeanddate(
-			wfTimestamp( TS_MW, $cmr->get( 'registration' ) ), true );
+		$encName = htmlspecialchars( $cmr->get( 'name', function( $s ) use ( $cmr ) {
+			return $s . ' [' . $cmr->get( 'version' ) . ']';
+		} ) );
 
-		$encStageKey = htmlspecialchars( $stageKey ); // sanity
-		$r = "<li class='mw-mwoauthmanagemygrants-{$encStageKey}'>";
-
-		$r .= $time . " (<strong>{$link}</strong>)";
-
-		$lang = $this->getLanguage();
+		$r = "<li>";
+		$r .= "{$encName} (<strong>{$link}</strong>)";
 		$data = array(
-			'mwoauthmanagemygrants-name' =>
-				$cmr->get( 'name', function( $s ) use ( $cmr ) {
-					return $s . ' [' . $cmr->get( 'version' ) . ']'; } ),
 			'mwoauthmanagemygrants-user' => $cmr->get( 'userId',
 				'MWOAuthUtils::getCentralUserNameFromId' ),
-			'mwoauthmanagemygrants-description' =>
-				$cmr->get( 'description', function( $s ) use ( $lang ) {
-					return $lang->truncate( $s, 10024 ); } ),
-			'mwoauthmanagemygrants-wiki' => $cmr->get( 'wiki' ),
-			'mwoauthmanagemygrants-wikiallowed' => $cmra->get( 'wiki' ),
-			'mwoauthmanagemygrants-grants' => $lang->semicolonList(
-				MWOAuthUtils::grantNames( $cmr->get( 'grants' ) ) ),
-			'mwoauthmanagemygrants-grantsallowed' => $lang->semicolonList(
-				MWOAuthUtils::grantNames( $cmra->get( 'grants' ) ) ),
-			'mwoauthmanagemygrants-consumerkey' => $cmr->get( 'consumerKey' )
+			'mwoauthmanagemygrants-wikiallowed' => $cmra->get( 'wiki',
+				'MWOAuthUtils::getWikiIdName' )
 		);
 
 		$r .= "<table class='mw-mwoauthmanagemygrants-body' " .
