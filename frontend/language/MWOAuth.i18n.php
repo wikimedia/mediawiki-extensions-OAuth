@@ -1540,11 +1540,32 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauth-invalid-authorization-wrong-user' => 'Les entêtes d’autorisation dans votre requête concernent un autre utilisateur',
 	'mwoauth-invalid-authorization-not-approved' => 'Les entêtes d’autorisation dans votre requête concernent un consommateur OAuth qui n’est pas approuvé pour le moment',
 	'mwoauth-invalid-authorization-blocked-user' => 'Les entêtes d’autorisation dans votre requête concernent un utilisateur qui est bloqué',
-	'mwoauth-form-button-approve' => 'Oui, autoriser', # Fuzzy
+	'mwoauth-form-description-allwikis' => "Bonjour $1,
+
+'''$2''' souhaiterait faire les actions suivantes en votre nom sur tous les projets de ce site :
+
+
+$4",
+	'mwoauth-form-description-onewiki' => "Bonjour $1,
+
+'''$2''' souhaiterait faire les actions suivantes en votre nom sur ''$4'':
+
+
+$5",
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Politique de confidentialité]]',
+	'mwoauth-form-button-approve' => 'Autoriser',
+	'mwoauth-form-button-cancel' => 'Annuler',
 	'mwoauth-authorize-form-invalid-user' => 'Ce compte utilisateur ne peut pas utiliser OAuth, parce que le compte de ce wiki et le compte du wiki central OAuth ne sont pas liés.',
 	'mwoauth-error' => 'Erreur OAuth',
 	'mwoauth-grants-heading' => 'Droits requis :',
 	'mwoauth-grants-nogrants' => 'L’application n’a demandé aucun droit.',
+	'mwoauth-acceptance-cancelled' => 'Vous avez annulé cette demande d’autoriser un consommateur OAuth à agir en votre nom.',
+	'mwoauth-grant-group-page-interaction' => 'Interagir avec des pages',
+	'mwoauth-grant-group-file-interaction' => 'Interagir avec des médias',
+	'mwoauth-grant-group-watchlist-interaction' => 'Interagir avec votre liste de suivi',
+	'mwoauth-grant-group-email' => 'Envoyer un courriel',
+	'mwoauth-grant-group-administration' => 'Effectuer des actions administratives',
+	'mwoauth-grant-group-other' => 'Activités diverses',
 	'mwoauth-grant-blockusers' => 'Bloquer les utilisateurs',
 	'mwoauth-grant-createeditmovepage' => 'Créer, modifier et renommer des pages',
 	'mwoauth-grant-delete' => 'Supprimer les pages, les révisions et les entrées du journal',
@@ -1555,10 +1576,10 @@ Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un 
 	'mwoauth-grant-editprotected' => 'Modifier les pages protégées',
 	'mwoauth-grant-highvolume' => 'Modification de gros volumes',
 	'mwoauth-grant-oversight' => 'Masquer les utilisateurs et supprimer les révisions',
-	'mwoauth-grant-patrol' => 'Patrouiller', # Fuzzy
+	'mwoauth-grant-patrol' => 'Marquer des pages comme patrouillées',
 	'mwoauth-grant-protect' => 'Protéger et déprotéger les pages',
-	'mwoauth-grant-rollback' => 'Retour arrière', # Fuzzy
-	'mwoauth-grant-sendemail' => 'Envoyer des courriels', # Fuzzy
+	'mwoauth-grant-rollback' => 'Révoquer des modifications sur des pages',
+	'mwoauth-grant-sendemail' => 'Envoyer des courriels aux autres utilisateurs',
 	'mwoauth-grant-uploadeditmovefile' => 'Télécharger, remplacer et renommer des fichiers',
 	'mwoauth-grant-uploadfile' => 'Importer de nouveaux fichiers',
 	'mwoauth-grant-useoauth' => 'Droits de base',
