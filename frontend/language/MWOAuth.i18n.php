@@ -1130,7 +1130,7 @@ Um den Prozess abzuschließen, gib diesen Verifizierungswert an die Anwendung we
 	'mwoauthconsumerregistration-propose' => 'Neuen Verbraucher planen',
 	'mwoauthconsumerregistration-list' => 'Meine Verbraucherliste',
 	'mwoauthconsumerregistration-main' => 'Start',
-	'mwoauthconsumerregistration-propose-text' => 'Verwende das unten stehende Formular, um einen neuen OAuth-Verbraucher zu planen (siehe http://oauth.net).
+	'mwoauthconsumerregistration-propose-text' => 'Entwickler sollten das unten stehende Formular benutzen, um einen neuen OAuth-Verbraucher zu planen (siehe die [//www.mediawiki.org/wiki/Extension:OAuth Erweiterungsdokumentation] für Einzelheiten). Nach dem Abschicken dieses Formulars erhältst du einen Token, der von deiner Anwendung zur Identifizierung für MediaWiki verwendet wird. Ein OAuth-Administrator muss deine Anwendung bestätigen, bevor sie von anderen Benutzern autorisiert werden kann.
 
 Hier einige Empfehlungen und Bemerkungen:
 * Versuche, so wenig Berechtigungen wie möglich zu verwenden. Vermeide Berechtigungen, die in Wirklichkeit nicht benötigt werden.
@@ -1142,9 +1142,13 @@ Hier einige Empfehlungen und Bemerkungen:
 	'mwoauthconsumerregistration-update-text' => 'Verwende das unten stehende Formular, um Aspekte eines von dir kontrollierten OAuth-Verbrauchers zu aktualisieren.
 
 Alle Werte hier überschreiben alle vorherigen. Hinterlasse keine leeren Felder, außer du beabsichtigst, diese Werte zu löschen.',
-	'mwoauthconsumerregistration-maintext' => 'Diese Seite ist gedacht zur Planung und Aktualisierung von OAuth-Verbraucheranwendungen (siehe http://oauth.net) in der Websiteregistrierung.
+	'mwoauthconsumerregistration-maintext' => 'Diese Seite dient der Planung und Aktualisierung von OAuth-Verbraucheranwendungen in der Websiteregistrierung durch Entwickler.
 
-Du kannst von hier [[Special:MWOAuthConsumerRegistration/propose|einen neuen Verbraucher planen]] oder [[Special:MWOAuthConsumerRegistration/list|deine vorhandenen Verbraucher verwalten]].',
+Du kannst von hier
+* [[Special:MWOAuthConsumerRegistration/propose|einen Token für einen neuen Verbraucher anfordern]] oder
+* [[Special:MWOAuthConsumerRegistration/list|deine vorhandenen Verbraucher verwalten]].
+
+Für mehr Informationen über OAuth, siehe die [//www.mediawiki.org/wiki/Extension:OAuth Erweiterungsdokumentation].',
 	'mwoauthconsumerregistration-propose-legend' => 'Neue OAuth-Verbraucheranwendung',
 	'mwoauthconsumerregistration-update-legend' => 'OAuth-Verbraucheranwendung aktualisieren',
 	'mwoauthconsumerregistration-propose-submit' => 'Verbraucher planen',
@@ -1221,14 +1225,16 @@ Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen.
 	'mwoauthmanagemygrants-grantsallowed' => 'Erlaubte Berechtigungen:',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Erlaubte anwendbare Berechtigungen:',
 	'mwoauthmanagemygrants-consumerkey' => 'Verbraucherschlüssel',
-	'mwoauthmanagemygrants-review' => 'Zugriff überprüfen/verwalten',
-	'mwoauthmanagemygrants-grantaccept' => 'Dem Verbraucher gewährt',
-	'mwoauthmanagemygrants-confirm-text' => 'Verwende das unten stehende Formular, um den Zugriff zu entziehen oder um Berechtigungen für einen OAuth-Verbraucher zu ändern, der auf deinen Namen handelt.
-
-Falls du nur einen Verbraucher autorisiert hast, um Zugriff auf eine Wikiuntergruppe (Websiteprojekte) zu haben, gibt es für diesen Verbraucher mehrere Zugriffstokens.',
+	'mwoauthmanagemygrants-review' => 'Zugriff überprüfen/verwalten', # Fuzzy
+	'mwoauthmanagemygrants-grantaccept' => 'Dem Verbraucher gewährt', # Fuzzy
+	'mwoauthmanagemygrants-confirm-text' => 'Verwende das unten stehende Formular, um den Zugriff zu entziehen oder um Berechtigungen für einen OAuth-Verbraucher zu ändern, der auf deinen Namen handelt. Einige Anmerkungen:
+* Dieses Formular überwacht einen speziellen Zugriffstoken oder Schlüssel, der einen Verbraucher auf dein Konto zugreifen lässt.
+* Falls du einen Verbraucher getrennt autorisiert hast, um auf unterschiedliche Projekte in deinem Namen zuzugreifen, dann hast du mehrere Zugriffstokens für diesen Verbraucher.
+* Wenn du dem Verbraucher Zugriff entziehen willst, stelle sicher, dass alle Zugriffstokens für alle Versionen dieses akzeptierten Verbrauchers entzogen werden.
+* Verwende „*“ im Wikifeld, um Zugriff für alle Projekte auf dieser Website zu gewähren. Eine Wikiprojektkennung beschränkt den Zugriff auf ein einzelnes Projekt.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Verbraucherzugriffstoken verwalten',
-	'mwoauthmanagemygrants-update' => 'Zugriffstokenberechtigungen aktualisieren',
-	'mwoauthmanagemygrants-renounce' => 'Deautorisieren und Zugriffstoken löschen',
+	'mwoauthmanagemygrants-update' => 'Berechtigungen aktualisieren',
+	'mwoauthmanagemygrants-renounce' => 'Verbraucher deautorisieren', # Fuzzy
 	'mwoauthmanagemygrants-action' => 'Status ändern:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Zugriffstokenstatus aktualisieren',
 	'mwoauthmanagemygrants-success-update' => 'Der Zugriffstoken für diesen Verbraucher wurde aktualisiert.',
@@ -1330,8 +1336,8 @@ $messages['en-gb'] = array(
 	'mwoauth-desc' => 'OAuth 1.0a API Authorisation',
 	'mwoauthmanagemygrants-confirm-text' => 'Use the form below to revoke access or change grants for an OAuth consumer to act on your behalf.
 
-Note that if you authorised a consumer to only have access to a subset of wikis (site projects), then there will be multiple access tokens for that consumer.',
-	'mwoauthmanagemygrants-renounce' => 'De-authorise and delete access token',
+Note that if you authorised a consumer to only have access to a subset of wikis (site projects), then there will be multiple access tokens for that consumer.', # Fuzzy
+	'mwoauthmanagemygrants-renounce' => 'De-authorise and delete access token', # Fuzzy
 	'mwoauthdatastore-access-token-not-found' => 'No approved grant was found for that authorisation token',
 	'mwoauth-invalid-authorization-title' => 'OAuth authorisation error',
 	'mwoauth-invalid-authorization' => 'The authorisation headers in your request are not valid: $1',
@@ -1416,7 +1422,7 @@ Pour terminer le processus, veuillez fournir cette valeur de vérification à l�
 	'mwoauthconsumerregistration-propose' => 'Proposer un nouveau consommateur',
 	'mwoauthconsumerregistration-list' => 'Ma liste de consommateurs',
 	'mwoauthconsumerregistration-main' => 'Principal',
-	'mwoauthconsumerregistration-propose-text' => 'Utilisez le formulaire ci-dessous pour proposer un nouveau consommateur OAuth (voir http://oauth.net).
+	'mwoauthconsumerregistration-propose-text' => 'Les développeurs devraient utiliser le formulaire ci-dessous pour proposer un nouveau consommateur OAuth (voir la [//www.mediawiki.org/wiki/Extension:OAuth documentation de l’extension] pour plus de détails). Après avoir publié ce formulaire, vous recevrez un jeton que votre application utilisera pour s’identifier auprès de MediaWiki. Un administrateur OAuth devra approuver votre application avant qu’elle puis être autorisée  par les autres utilisateurs.
 
 Quelques recommandations et remarques :
 * Essayez d’utiliser le moins de droits possibles. Évitez les droits qui ne sont pas vraiment nécessaires pour le moment.
@@ -1428,9 +1434,13 @@ Quelques recommandations et remarques :
 	'mwoauthconsumerregistration-update-text' => 'Utilisez le formulaire ci-dessous pour mettre à jour les aspects d’un consommateur OAuth que vous contrôlez.
 
 Toutes les valeurs ici écraseront les précédentes. Ne laissez aucun champ blanc sauf si vous désirez vraiment effacer ces valeurs.',
-	'mwoauthconsumerregistration-maintext' => 'Cette page a pour but de proposer et mettre à jour des applications consommatrices OAuth (voir http://oauth.net) dans le registre de ce site.
+	'mwoauthconsumerregistration-maintext' => 'Cette page sert à laisser les développeurs proposer et mettre à jour des applications consommatrices OAuth dans le registre de ce site.
 
-Depuis ici, vous pouvez [[Special:MWOAuthConsumerRegistration/propose|proposer un nouveau consommateur]] ou [[Special:MWOAuthConsumerRegistration/list|gérer vos consommateurs existants]].',
+Depuis ici, vous pouvez :
+* [[Special:MWOAuthConsumerRegistration/propose|Demander un jeton pour un nouveau consommateur]].
+* [[Special:MWOAuthConsumerRegistration/list|Gérer os consommateurs existants]].
+
+Pour plus d’information sur OAuth, voyez la [//www.mediawiki.org/wiki/Extension:OAuth documentation de l’extension].',
 	'mwoauthconsumerregistration-propose-legend' => 'Nouvelle application consommatrice OAuth',
 	'mwoauthconsumerregistration-update-legend' => 'Mettre à jour l’application consommatrice OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Proposer un consommateur',
@@ -1507,14 +1517,16 @@ Il vous a été assigné un jeton de consommateur '''$1''' et un jeton secret ''
 	'mwoauthmanagemygrants-grantsallowed' => 'Droits accordés :',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Droits applicables accordés :',
 	'mwoauthmanagemygrants-consumerkey' => 'Clé du consommateur',
-	'mwoauthmanagemygrants-review' => 'Revoir/gérer l’accès',
-	'mwoauthmanagemygrants-grantaccept' => 'Accordé au consommateur',
-	'mwoauthmanagemygrants-confirm-text' => 'Utilisez le formulaire ci-dessous pour révoquer l’accès ou modifier les droits d’un consommateur OAuth à agir en votre nom.
-
-Notez bien que si vous autorisez un consommateur à n’avoir accès qu’à un sous-ensemble de wikis (projets de site), alors il y aura des jetons d’accès multiples pour ce consommateur.',
+	'mwoauthmanagemygrants-review' => 'Revoir/gérer l’accès', # Fuzzy
+	'mwoauthmanagemygrants-grantaccept' => 'Accordé au consommateur', # Fuzzy
+	'mwoauthmanagemygrants-confirm-text' => 'Utilisez le formulaire ci-dessous pour révoquer l’accès ou modifier les droits d’un consommateur OAuth à agir en votre nom. Quelques remarques :
+* Ce formulaire contrôle un « jeton », ou clé, d’accès particulier, qui permet à un consommateur d’accéder à votre compte.
+* Si vous autorisez de façon isolée un consommateur à avoir accès à différents projets en votre nom, alors vous aurez des jetons d’accès multiples pour ce consommateur.
+* Si vous voulez révoquer l’accès du consommateur, assurez-vous d’annuler tous les jetons d’accès pour toutes les versions de ce consommateur que vous avez acceptées.
+* Utiliser "*" dans le champ wiki accorde l’accès à tous les projets de ce site ; utiliser un ID de projet du wiki limite l’accès à un unique projet.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Gérer le jeton d’accès du consommateur',
-	'mwoauthmanagemygrants-update' => 'Mettre à jour les droits du jeton d’accès',
-	'mwoauthmanagemygrants-renounce' => 'Ne plus autoriser et supprimer le jeton d’accès',
+	'mwoauthmanagemygrants-update' => 'Mettre à jour les droits',
+	'mwoauthmanagemygrants-renounce' => 'Ne plus autoriser le consommateur', # Fuzzy
 	'mwoauthmanagemygrants-action' => 'Modifier l’état :',
 	'mwoauthmanagemygrants-confirm-submit' => 'Mettre à jour l’état du jeton d’accès',
 	'mwoauthmanagemygrants-success-update' => 'Le jeton d’accès pour ce consommateur a été mis à jour.',
@@ -1570,6 +1582,8 @@ $5",
 	'mwoauth-grant-group-file-interaction' => 'Interagir avec des médias',
 	'mwoauth-grant-group-watchlist-interaction' => 'Interagir avec votre liste de suivi',
 	'mwoauth-grant-group-email' => 'Envoyer un courriel',
+	'mwoauth-grant-group-high-volume' => 'Effectuer une activité de fort volume',
+	'mwoauth-grant-group-customization' => 'Consumérisation et préférences',
 	'mwoauth-grant-group-administration' => 'Effectuer des actions administratives',
 	'mwoauth-grant-group-other' => 'Activités diverses',
 	'mwoauth-grant-blockusers' => 'Bloquer les utilisateurs',
@@ -1673,13 +1687,13 @@ Algunhas recomendacións e observacións:
 * Achegue unha clave RSA pública (en formato PEM) se fose posible; en caso contrario, haberá que utilizar un pase secreto (menos seguro).
 * Utilice o campo de restricións JSON para limitar o acceso deste consumidor aos enderezos IP neses rangos CIDR.
 * Pode empregar un ID de wiki para restrinxir o consumidor a un único wiki neste sitio (utilice "*" para todos os wikis).
-* O enderezo de correo electrónico achegado debe coincidir co da súa conta (que debeu ser confirmado).',
+* O enderezo de correo electrónico achegado debe coincidir co da súa conta (que debeu ser confirmado).', # Fuzzy
 	'mwoauthconsumerregistration-update-text' => 'Utilice o formulario inferior para actualizar aspectos dun consumidor OAuth que controle.
 
 Todos os valores que haxa aquí sobrescribirán os anteriores. Non deixe campos en branco a menos que queira limpar eses valores.',
 	'mwoauthconsumerregistration-maintext' => 'Esta páxina está destinada a propoñer e actualizar aplicacións de consumidor OAuth (véxase http://oauth.net) no rexistro do sitio.
 
-Desde aquí, pode [[Special:MWOAuthConsumerRegistration/propose|propoñer un novo consumidor]] ou [[Special:MWOAuthConsumerRegistration/list|administrar os consumidores existentes]].',
+Desde aquí, pode [[Special:MWOAuthConsumerRegistration/propose|propoñer un novo consumidor]] ou [[Special:MWOAuthConsumerRegistration/list|administrar os consumidores existentes]].', # Fuzzy
 	'mwoauthconsumerregistration-propose-legend' => 'Nova aplicación de consumidores OAuth',
 	'mwoauthconsumerregistration-update-legend' => 'Actualizar a aplicación de consumidores OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Propoñer o consumidor',
@@ -1756,14 +1770,14 @@ Asignóuselle o pase de consumidor '''$1''' e o pase secreto '''$2'''. ''Garde e
 	'mwoauthmanagemygrants-grantsallowed' => 'Concesións permitidas:',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Concesións aplicables permitidas:',
 	'mwoauthmanagemygrants-consumerkey' => 'Clave do consumidor',
-	'mwoauthmanagemygrants-review' => 'Revisar/Administrar o acceso',
-	'mwoauthmanagemygrants-grantaccept' => 'Concedido ao consumidor',
+	'mwoauthmanagemygrants-review' => 'Revisar/Administrar o acceso', # Fuzzy
+	'mwoauthmanagemygrants-grantaccept' => 'Concedido ao consumidor', # Fuzzy
 	'mwoauthmanagemygrants-confirm-text' => 'Utilice o formulario inferior para revogar o acceso ou cambiar as concesións dun consumidor OAuth para que actúe no seu nome.
 
-Teña en conta que se autoriza que un consumidor só teña acceso a un subconxunto de wikis (proxectos de sitio), entón haberá múltiples pases de acceso para ese consumidor.',
+Teña en conta que se autoriza que un consumidor só teña acceso a un subconxunto de wikis (proxectos de sitio), entón haberá múltiples pases de acceso para ese consumidor.', # Fuzzy
 	'mwoauthmanagemygrants-confirm-legend' => 'Administrar o pase de acceso do consumidor',
-	'mwoauthmanagemygrants-update' => 'Actualizar as concesións de pases de acceso',
-	'mwoauthmanagemygrants-renounce' => 'Desautorizar e borrar o pase de acceso',
+	'mwoauthmanagemygrants-update' => 'Actualizar as concesións de pases de acceso', # Fuzzy
+	'mwoauthmanagemygrants-renounce' => 'Desautorizar e borrar o pase de acceso', # Fuzzy
 	'mwoauthmanagemygrants-action' => 'Cambiar o estado:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Actualizar o estado do pase de acceso',
 	'mwoauthmanagemygrants-success-update' => 'Actualizouse o pase de acceso deste consumidor.',
@@ -2147,13 +2161,13 @@ Alcune raccomandazioni e osservazioni:
 * fornisce una chiave RSA pubblica (in formato PEM) se possibile; altrimenti dovrà essere utilizzato un token segreto (meno sicuro)
 * utilizza il campo di restrizioni JSON per limitare l\'accesso di questo cliente da indirizzi IP in tali intervalli CIDR
 * è possibile utilizzare un ID wiki per limitare il cliente ad un singolo wiki su questo sito (usa "*" per tutti gli wiki)
-* l\'indirizzo email fornito deve corrispondere a quello della tua utenza (che deve essere confermato).',
+* l\'indirizzo email fornito deve corrispondere a quello della tua utenza (che deve essere confermato).', # Fuzzy
 	'mwoauthconsumerregistration-update-text' => 'Utilizza il modulo qui sotto per aggiornare gli aspetti di un cliente OAuth che controlli.
 
 I valori qui sovrascriveranno tutti quelli precedenti. Non lasciarli in bianco se non hai intenzione di cancellare quei valori.',
 	'mwoauthconsumerregistration-maintext' => "Questa pagina è usata per la proposta e l'aggiornamento delle applicazioni OAuth (vedi http://oauth.net) registrate in questo sito.
 
-Da qui, è possibile [[Special:MWOAuthConsumerRegistration/propose|proporre un nuovo cliente]] o [[Special:MWOAuthConsumerRegistration/list|gestisci i tuoi clienti esistenti]].",
+Da qui, è possibile [[Special:MWOAuthConsumerRegistration/propose|proporre un nuovo cliente]] o [[Special:MWOAuthConsumerRegistration/list|gestisci i tuoi clienti esistenti]].", # Fuzzy
 	'mwoauthconsumerregistration-propose-legend' => 'Nuova applicazione cliente OAuth',
 	'mwoauthconsumerregistration-update-legend' => 'Aggiorna applicazione cliente OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Proponi cliente',
@@ -2230,14 +2244,14 @@ Ti è stato assegnato il token cliente '''$1''' e il token segreto '''$2'''. ''R
 	'mwoauthmanagemygrants-grantsallowed' => 'Diritti consentiti',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Assegnazioni applicabili consentite:',
 	'mwoauthmanagemygrants-consumerkey' => 'Chiave cliente',
-	'mwoauthmanagemygrants-review' => 'rivedi/gestisci accesso',
-	'mwoauthmanagemygrants-grantaccept' => 'Assegnazioni al cliente',
+	'mwoauthmanagemygrants-review' => 'rivedi/gestisci accesso', # Fuzzy
+	'mwoauthmanagemygrants-grantaccept' => 'Assegnazioni al cliente', # Fuzzy
 	'mwoauthmanagemygrants-confirm-text' => "Usa il seguente modulo per revocare o modificare l'accesso ad un cliente OAuth di agire per vostro conto.
 
-Nota che se hai autorizzato un cliente ad avere accesso solo a un sottoinsieme di wiki (siti di progetto), allora ci saranno token di accesso multipli per quel cliente.",
+Nota che se hai autorizzato un cliente ad avere accesso solo a un sottoinsieme di wiki (siti di progetto), allora ci saranno token di accesso multipli per quel cliente.", # Fuzzy
 	'mwoauthmanagemygrants-confirm-legend' => 'Gestione token di accesso del cliente',
-	'mwoauthmanagemygrants-update' => 'Aggiorna le assegnazioni del token di accesso',
-	'mwoauthmanagemygrants-renounce' => "Annulla l'autorizzazione e cancella il token di accesso",
+	'mwoauthmanagemygrants-update' => 'Aggiorna le assegnazioni del token di accesso', # Fuzzy
+	'mwoauthmanagemygrants-renounce' => "Annulla l'autorizzazione e cancella il token di accesso", # Fuzzy
 	'mwoauthmanagemygrants-action' => 'Modifica stato:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Aggiorna lo stato del token di accesso',
 	'mwoauthmanagemygrants-success-update' => 'Il token di accesso per questo cliente è stato aggiornato.',
@@ -2797,7 +2811,7 @@ $messages['mk'] = array(
 	'mwoauthconsumerregistration-propose' => 'Предложи нов потрошувач',
 	'mwoauthconsumerregistration-list' => 'Список на мои потрошувачи',
 	'mwoauthconsumerregistration-main' => 'Главна',
-	'mwoauthconsumerregistration-propose-text' => 'Образецов служи за предлагање на нов потрошувач на OAuth (погл. http://oauth.net).
+	'mwoauthconsumerregistration-propose-text' => 'Програмерите треба да го користат образецов за предлагање на нов потрошувач на OAuth (повеќе ќе најдете во [//www.mediawiki.org/wiki/Extension:OAuth документацијата на додатокот]). Откако ќе го поднесете образецот, ќе добиете шифра со која ќе се претставувате на МедијаВики. Администратор на OAuth ќе треба да ви ја одобри пријавата пред да можат да ја овластуваат корисниците.
 
 Неколку препораки и напомении:
 * Доделувајте што помалку одобренија. Одбегнувајте ги оние што не се потребни во моментов.
@@ -2809,9 +2823,9 @@ $messages['mk'] = array(
 	'mwoauthconsumerregistration-update-text' => 'Образецот подолу служи за менување на аспекти на потрошувачот на OAuth што се во ваша контрола.
 
 Сите вредности тука ќе се презапишат врз претходните. Не оставајте празни полиња, освен ако не сакате да ги исчистите истите.',
-	'mwoauthconsumerregistration-maintext' => 'Оваа страница е наменета за предлагање и измена на потрошувачки прилози за OAuth (погл. http://oauth.net) во регистарот на ова мрежно место.
+	'mwoauthconsumerregistration-maintext' => 'Оваа страница им овозможува на програмерите да предлагаат и подновуваат (менуваат) потрошувачки прилози за OAuth (погл. http://oauth.net) во регистарот на ова мрежно место.
 
-Од овде можете да [[Special:MWOAuthConsumerRegistration/propose|предложите нов потрошувач]] или пак [[Special:MWOAuthConsumerRegistration/list|раководите со вашите постоечки потрошувачи]].',
+Од овде можете да: [[Special:MWOAuthConsumerRegistration/propose|предложите нов потрошувач]] или пак [[Special:MWOAuthConsumerRegistration/list|раководите со вашите постоечки потрошувачи]].',
 	'mwoauthconsumerregistration-propose-legend' => 'Нов кориснички прилог за OAuth',
 	'mwoauthconsumerregistration-update-legend' => 'Измена на кориснички прилог за OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Предложи потрошувач',
@@ -2888,14 +2902,16 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-grantsallowed' => 'Дозволени доделувања:',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Дозволени применливи доделувања:',
 	'mwoauthmanagemygrants-consumerkey' => 'Потрошувачки клуч',
-	'mwoauthmanagemygrants-review' => 'Разглед./раковод. на пристап',
-	'mwoauthmanagemygrants-grantaccept' => 'Доделено на потрошувачот',
-	'mwoauthmanagemygrants-confirm-text' => 'Следниот образец служи за одземање на пристап или да ги измените доделените права на потрошувач на OAuth за да дејствува во ваше име.
+	'mwoauthmanagemygrants-review' => 'Разглед./раковод. на пристап', # Fuzzy
+	'mwoauthmanagemygrants-grantaccept' => 'Доделено на потрошувачот', # Fuzzy
+	'mwoauthmanagemygrants-confirm-text' => 'Следниот образец служи за одземање на пристап или да ги измените доделените права на потрошувач на OAuth за да дејствува во ваше име. Неколку напомени:
 
-Имајте предвид дека ако овластите некого со пристап на само дел од викијата (проектите) наместо сите во целина, тогаш тој потрошувач ќе има повеќе пристапни жетони.',
+* Образецов контролира дадена шифра или клуч за пристап, со која потрошувач добива пристап до вашата сметка.
+
+Доколку посебно сте овластиле некого со пристап на разни проекти во ваше име, тогаш ќе имате повеќе пристапни шифри.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Раководење со шифра за кориснички пристап',
-	'mwoauthmanagemygrants-update' => 'Измени доделувања на пристап. шифра',
-	'mwoauthmanagemygrants-renounce' => 'Одземи дозвола и избриши пристап. шифра',
+	'mwoauthmanagemygrants-update' => 'Измени доделувања',
+	'mwoauthmanagemygrants-renounce' => 'Одземи дозвола на потрошувачот', # Fuzzy
 	'mwoauthmanagemygrants-action' => 'Смени статус:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Измени статус на пристап. шифра',
 	'mwoauthmanagemygrants-success-update' => 'Пристапната шифра на овој потрошувач е изменета.',
@@ -3372,6 +3388,7 @@ $messages['sr-ec'] = array(
 
 /** Swedish (svenska)
  * @author Jopparn
+ * @author WikiPhoenix
  */
 $messages['sv'] = array(
 	'mwoauth-missing-field' => 'Saknar värde för "$1"-fältet',
@@ -3379,7 +3396,7 @@ $messages['sv'] = array(
 	'mwoauth-field-hidden' => '(denna information är dold)',
 	'mwoauth-field-private' => '(denna information är privata)',
 	'mwoauth-consumer-name' => 'Applikationsnamn:',
-	'mwoauth-consumer-version' => 'Större version:',
+	'mwoauth-consumer-version' => 'Konsumentversion:',
 	'mwoauth-consumer-user' => 'Utgivare:',
 	'mwoauth-consumer-stage' => 'Aktuell status:',
 	'mwoauth-consumer-grantsneeded' => 'Tillämpliga stipendium:',
@@ -3428,9 +3445,7 @@ $messages['sv'] = array(
 	'mwoauthmanagemygrants-grantsallowed' => 'Stipendier tillåtna',
 	'mwoauthmanagemygrants-action' => 'Ändra status:',
 	'mwoauthserver-insufficient-rights' => 'Du har inte tillräcklig behörighet för att utföra denna åtgärd.',
-	'mwoauth-form-button-approve' => 'Ja, tillåt',
-	'mwoauth-form-confirmation' => 'Tillåt detta program att agera å dina vägnar?',
-	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-form-button-approve' => 'Tillåt',
 	'mwoauth-grant-createeditmovepage' => 'Skapa, redigera och flytta sidor',
 	'mwoauth-grant-editpage' => 'Redigera befintliga sidor',
 	'mwoauth-grant-uploadeditmovefile' => 'Ladda upp, byt och flytta filer',
@@ -3504,7 +3519,7 @@ $messages['uk'] = array(
 	'mwoauthconsumerregistration-propose' => 'Запропонувати нового споживача',
 	'mwoauthconsumerregistration-list' => 'Мій список споживачів',
 	'mwoauthconsumerregistration-main' => 'Головна',
-	'mwoauthconsumerregistration-propose-text' => 'Використовуйте форму нижче, щоб запропонувати нового споживача OAuth (див. http://oauth.net).
+	'mwoauthconsumerregistration-propose-text' => 'Розробники можуть використовувати форму нижче, щоб запропонувати нового споживача OAuth (див. [//www.mediawiki.org/wiki/Extension:OAuth extension documentation] за подробицями). Після надсилання цієї форми ви отримаєте маркер для вашої програми, який буде використовуватися нею при ідентифікації на Медіавікі. Адміністратор OAuth повинен затвердити вашу програму, перш ніж вона буде авторизована іншими користувачами.
 
 Кілька рекомендацій і зауважень:
 * Постарайтеся використовувати якомога менше дозволів за можливості. Уникайте дозволів, які насправді не потрібні зараз.
@@ -3516,9 +3531,13 @@ $messages['uk'] = array(
 	'mwoauthconsumerregistration-update-text' => 'Використовуйте форму нижче, щоб оновити аспекти споживача OAuth, які ви контролюєте.
 
 Всі значення тут будуть переписувати будь-які попередні. Не залишайте порожні поля, якщо ви не маєте наміру вилучити ці значення.',
-	'mwoauthconsumerregistration-maintext' => 'Ця сторінка призначена для того, щоб пропонувати і оновлювати програми споживачів OAuth (див. http://oauth.net) у реєстрі цього сайту.
+	'mwoauthconsumerregistration-maintext' => 'Ця сторінка дозволяє розробникам пропонувати та оновлювати клієнтські програми OAuth у реєстрі сайту.
 
- Звідси ви можете [[Special:MWOAuthConsumerRegistration/propose|пропонувати нових споживачів]] або [[Special:MWOAuthConsumerRegistration/list|управляти наявними споживачами]].',
+Звідси ви можете:
+* [[Special:MWOAuthConsumerRegistration/propose|Запитувати маркер для нового клієнта]].
+* [[Special:MWOAuthConsumerRegistration/list|Управляти вашими наявними клієнтами]].
+
+For more information about OAuth, please see the [//www.mediawiki.org/wiki/Extension: документацція про розширення OAuth].',
 	'mwoauthconsumerregistration-propose-legend' => 'Нова програма OAuth споживача',
 	'mwoauthconsumerregistration-update-legend' => 'Оновити програму споживача OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Запропонувати споживача',
@@ -3595,14 +3614,16 @@ $messages['uk'] = array(
 	'mwoauthmanagemygrants-grantsallowed' => 'Ґранти, які дозволили',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Застосовні гранти дозволено:',
 	'mwoauthmanagemygrants-consumerkey' => 'Ключ споживача',
-	'mwoauthmanagemygrants-review' => 'огляд/управління доступом',
-	'mwoauthmanagemygrants-grantaccept' => 'Надано до споживача',
-	'mwoauthmanagemygrants-confirm-text' => 'Використовуйте форму нижче, аби скасувати доступ або змінити гранти для споживача  OAuth, який діє від вашого імені.
-
-Зауважте, що, якщо ви надали споживачеві доступ тільки до підмножини вікі (проектів сайту), то буде кілька маркерів доступу для цього споживача.',
+	'mwoauthmanagemygrants-review' => 'огляд/управління доступом', # Fuzzy
+	'mwoauthmanagemygrants-grantaccept' => 'Надано до споживача', # Fuzzy
+	'mwoauthmanagemygrants-confirm-text' => 'Використовуйте форму нижче, аби скасувати доступ або змінити гранти для споживача  OAuth, який діє від вашого імені. Кілька зауважень:
+ * Ця форма контролює конкретний маркер доступу, або ключ, що дозволяє клієнтський доступ до вашого облікового запису.
+ * Зауважте, що, якщо ви окремо надали споживачеві доступ до різних проектів від вашого імені, то буде кілька маркерів доступу для цього споживача.
+ * Якщо ви хочете скасувати доступ до споживача, то не забудьте скасувати всі маркери доступу для всіх версій цього споживача, які ви прийняли.
+ * Використання "*" у полі вікі надає доступ до всіх проектів на цьому сайті; використання ІД вікі-проекту обмежує доступ до одного проекту.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Управління маркером доступу споживача',
-	'mwoauthmanagemygrants-update' => 'Оновити ґранти маркера доступу',
-	'mwoauthmanagemygrants-renounce' => 'Скасувати авторизацію та вилучити маркер доступу',
+	'mwoauthmanagemygrants-update' => 'Оновити ґранти',
+	'mwoauthmanagemygrants-renounce' => 'Скасувати авторизацію', # Fuzzy
 	'mwoauthmanagemygrants-action' => 'Змінити статус:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Оновити стан маркера доступу',
 	'mwoauthmanagemygrants-success-update' => 'Вже оновлено маркер доступу для цього споживача.',
@@ -3772,8 +3793,8 @@ $messages['vi'] = array(
 	'mwoauthmanagemygrants-grants' => 'Các quyền có liên quan',
 	'mwoauthmanagemygrants-grantsallowed' => 'Các quyền được cấp',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Các quyền được cấp có liên quan:',
-	'mwoauthmanagemygrants-review' => 'xem lại/quản lý truy cập',
-	'mwoauthmanagemygrants-update' => 'Cập nhận các dấu hiệu truy cập được cấp',
+	'mwoauthmanagemygrants-review' => 'xem lại/quản lý truy cập', # Fuzzy
+	'mwoauthmanagemygrants-update' => 'Cập nhận các dấu hiệu truy cập được cấp', # Fuzzy
 	'mwoauthmanagemygrants-action' => 'Thay đổi trạng thái:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Cập nhật trạng thái của dấu hiệu truy cập',
 	'mwoauth-bad-request' => 'Có lỗi trong yêu cầu OAuth của bạn.',
