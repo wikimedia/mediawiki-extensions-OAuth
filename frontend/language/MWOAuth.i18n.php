@@ -167,8 +167,8 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthmanagemygrants-grantsallowed' => 'Grants allowed',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Applicable grants allowed:',
 	'mwoauthmanagemygrants-consumerkey' => 'Consumer key',
-	'mwoauthmanagemygrants-review' => 'review/manage access',
-	'mwoauthmanagemygrants-grantaccept' => 'Granted to consumer',
+	'mwoauthmanagemygrants-review' => 'manage access',
+	'mwoauthmanagemygrants-grantaccept' => 'Granted',
 	'mwoauthmanagemygrants-confirm-text' => 'Use the form below to revoke access or change grants for an OAuth consumer to act on your behalf. A few notes:
 * This form controls a particular access "token", or key, that lets a consumer access your account.
 * If you seperately authorized a consumer to access different projects on your behalf, then you will have multiple access tokens for that consumer.
@@ -176,7 +176,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 * Using "*" in the wiki field grants access to all projects on this site; using a wiki project ID limits access to a single project.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Manage consumer access token',
 	'mwoauthmanagemygrants-update' => 'Update grants',
-	'mwoauthmanagemygrants-renounce' => 'Deauthorize consumer',
+	'mwoauthmanagemygrants-renounce' => 'Deauthorize',
 	'mwoauthmanagemygrants-action' => 'Change status:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Update access token status',
 	'mwoauthmanagemygrants-success-update' => 'The access token for this consumer has been updated.',

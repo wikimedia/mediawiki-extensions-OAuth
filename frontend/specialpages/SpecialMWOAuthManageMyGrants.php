@@ -213,15 +213,15 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 			'class' => 'mw-htmlform-submit',
 		);
 		$form->suppressDefaultSubmit();
-		$form->addButton( 'update',
-			$this->msg( 'mwoauthmanagemygrants-update' )->escaped(),
-			null,
-			array( 'class' => 'mw-ui-button mw-ui-primary' )
-		);
 		$form->addButton( 'renounce',
 			$this->msg( 'mwoauthmanagemygrants-renounce' )->escaped(),
 			null,
 			array( 'class' => 'mw-ui-button mw-ui-destructive' )
+		);
+		$form->addButton( 'update',
+			$this->msg( 'mwoauthmanagemygrants-update' )->escaped(),
+			null,
+			array( 'class' => 'mw-ui-button mw-ui-primary' )
 		);
 		$form->addPreText(
 			$this->msg( 'mwoauthmanagemygrants-confirm-text' )->parseAsBlock() );
@@ -273,8 +273,8 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 			return $s . ' [' . $cmr->get( 'version' ) . ']';
 		} ) );
 
-		$r = '<li class="mw-mwoauthmanagemygrants-body">';
-		$r .= "{$encName} (<strong>{$link}</strong>)";
+		$r = '<li class="mw-mwoauthmanagemygrants-list-item">';
+		$r .= "<strong>{$encName}</strong> (<strong>{$link}</strong>)";
 		$data = array(
 			'mwoauthmanagemygrants-user' => $cmr->get( 'userId',
 				'MWOAuthUtils::getCentralUserNameFromId' ),
@@ -282,9 +282,8 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 				'MWOAuthUtils::getWikiIdName' )
 		);
 
-		foreach ( $data as $msg => $value ) {
-			$r .= '<p><strong>' . $this->msg( $msg )->escaped() . '</strong>: ' .
-				htmlspecialchars( $value ) . '</p>';
+		foreach ( $data as $msg => $val ) {
+			$r .= '<p>' . $this->msg( $msg )->escaped() . ': ' . htmlspecialchars( $val ) . '</p>';
 		}
 		$r .= '</li>';
 

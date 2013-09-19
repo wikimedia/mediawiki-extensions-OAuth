@@ -33,3 +33,7 @@
 .mw-mwoauthconsumerregistration-disabled {
 	background-color: #CEB7E1;
 }
+
+.mw-mwoauthmanagemygrants-list-item {
+	margin-bottom: 1em;
+}
