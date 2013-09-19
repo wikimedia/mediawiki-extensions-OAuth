@@ -32,9 +32,6 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$user = $this->getUser();
 		$request = $this->getRequest();
 		$format = $request->getVal( 'format', 'raw' );
-		if ( !in_array( $subpage, array( 'initiate', 'authorize', 'verified', 'token' ) ) ) {
-			$this->showError( 'oauth-client-invalidrequest', $format );
-		}
 
 		try {
 			switch ( $subpage ) {
@@ -48,7 +45,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$this->returnToken( $token, $format );
 					break;
 				case 'authorize':
-					$format = $request->getVal( 'format', 'html' ); // for exceptions
+					$format = 'html'; // for exceptions
 					// Hack: prefix needed for HTMLForm
 					$requestToken = $request->getVal( 'wprequestToken',
 						$request->getVal( 'oauth_token' ) );
@@ -89,7 +86,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$this->returnToken( $token, $format );
 					break;
 				case 'verified':
-					$format = $request->getVal( 'format', 'html' );
+					$format = 'html'; // for exceptions
 					$verifier = $request->getVal( 'oauth_verifier', false );
 					$requestToken = $request->getVal( 'oauth_token', false );
 					if ( !$verifier || !$requestToken ) {
@@ -105,7 +102,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					);
 					break;
 				default:
-					throw new OAuthException( 'mwoauth-invalid-method' );
+					$this->showError( 'oauth-client-invalidrequest', $format );
 			}
 		} catch ( MWOAuthException $exception ) {
 			wfDebugLog( 'OAuth', __METHOD__ . ": Exception " . $exception->getMessage() );
@@ -234,22 +231,22 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 
 	/**
 	 * @param string $message message key to return to the user
-	 * @param string $format the format of the response: json, xml, or html
+	 * @param string $format the format of the response: html, raw, or json
 	 */
 	private function showError( $message, $format ) {
-		if ( $format == 'html' ) {
-			$this->getOutput()->showErrorPage( 'mwoauth-error', $message );
-		} elseif ( $format == 'raw' ) {
+		if ( $format == 'raw' ) {
 			$this->showResponse( 'Error: ' . wfMessage( $message )->escaped(), 'raw' );
 		} elseif ( $format == 'json' ) {
-			$error = json_encode( array( 'error' => wfMessage( $message )->escaped() ) );
-			$this->showResponse( $error, 'raw' );
+			$error = FormatJSON::encode( array( 'error' => wfMessage( $message )->escaped() ) );
+			$this->showResponse( $error, 'json' );
+		} elseif ( $format == 'html' ) {
+			$this->getOutput()->showErrorPage( 'mwoauth-error', $message );
 		}
 	}
 
 	/**
 	 * @param OAuthToken $token
-	 * @param string $format the format of the response: json, xml, or html
+	 * @param string $format the format of the response: html, raw, or json
 	 */
 	private function returnToken( OAuthToken $token, $format  ) {
 		if ( $format == 'raw' ) {
@@ -258,7 +255,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			$return .= '&oauth_callback_confirmed=true';
 			$this->showResponse( $return, 'raw' );
 		} elseif ( $format == 'json' ) {
-			$this->showResponse( FormatJSON::encode( $token ), 'raw' );
+			$this->showResponse( FormatJSON::encode( $token ), 'json' );
 		} elseif ( $format == 'html' ) {
 			$html = Html::element(
 				'li',
@@ -280,22 +277,30 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		}
 	}
 
-
 	/**
-	 * @param string $response html or string to pass back to the user. Already escaped.
-	 * @param string $format the format of the response: raw, or otherwise
+	 * @param string $data html or string to pass back to the user. Already escaped.
+	 * @param string $format the format of the response: raw, json, or html
 	 */
-	private function showResponse( $response, $format  ) {
+	private function showResponse( $data, $format  ) {
 		$out = $this->getOutput();
-		if ( $format == 'raw' ) {
-			// FIXME: breaks with text/trace profiler
-			$out->setArticleBodyOnly( true );
-			$out->enableClientCache( false );
-			$out->preventClickjacking();
-			$out->clearHTML();
-			$out->addHTML( $response );
-		} else {
-			$out->addHtml( $response );
+		if ( $format == 'raw' || $format == 'json' ) {
+			$this->getOutput()->disable();
+			// Cancel output buffering and gzipping if set
+			wfResetOutputBuffers();
+			// We must not allow the output to be Squid cached
+			$response = $this->getRequest()->response();
+			$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
+			$response->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
+			$response->header( 'Pragma: no-cache' );
+			$response->header( 'Content-length: ' . strlen( $data ) );
+			if ( $format == 'json' ) {
+				$response->header( 'Content-type: application/json' );
+			} else {
+				$response->header( 'Content-type: text/plain' );
+			}
+			print $data;
+		} elseif ( $format == 'html' ) { // html
+			$out->addHtml( $data );
 		}
 	}
 }
