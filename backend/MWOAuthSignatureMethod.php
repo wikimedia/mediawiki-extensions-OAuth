@@ -3,12 +3,28 @@
 class MWOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
 	/** OAuthDataStore */
 	protected $store;
+	/** PEM encoded RSA private key **/
+	private $privateKey;
 
 	/**
 	 * @param OAuthDataStore $store
+	 * @param string $privateKey RSA private key, passed to openssl_get_privatekey
 	 */
-	function __construct( OAuthDataStore $store ) {
+	function __construct( OAuthDataStore $store, $privateKey = null ) {
 		$this->store = $store;
+		$this->privateKey = $privateKey;
+
+		if ( $privateKey !== null ) {
+			$key = openssl_pkey_get_private( $privateKey );
+			if ( !$key ) {
+				throw new OAuthException( "Invalid private key given" );
+			}
+			$details = openssl_pkey_get_details( $key );
+			if ( $details['type'] !== OPENSSL_KEYTYPE_RSA ) {
+				throw new OAuthException( "Key is not an RSA key" );
+			}
+			openssl_pkey_free( $key );
+		}
 	}
 
 	/**
@@ -27,6 +43,9 @@ class MWOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
 	 * this function to get your private key, so you can sign the request.
 	 */
 	protected function fetch_private_cert( &$request ) {
-		throw new OAuthException( "This has not been implemented" );
+		if ( $this->privateKey === null ) {
+			throw new OAuthException( "No private key was set" );
+		}
+		return $this->privateKey;
 	}
 }
