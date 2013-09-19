@@ -187,6 +187,10 @@ class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
 							MWOAuthUtils::getRightsByGrant()
 						)
 					),
+					'force-options-on' => array_map(
+						function( $g ) { return "grant-$g"; },
+						MWOAuthUtils::getHiddenGrants()
+					),
 					'validation-callback' => null // different format
 				),
 				'acceptanceId' => array(

@@ -220,6 +220,23 @@ class MWOAuthUtils {
 	}
 
 	/**
+	 * Get the list of grants that are hidden and should always be granted
+	 *
+	 * @return array
+	 */
+	public static function getHiddenGrants() {
+		global $wgMWOAuthGrantPermissionGroups;
+
+		$grants = array();
+		foreach ( $wgMWOAuthGrantPermissionGroups as $grant => $group ) {
+			if ( $group === 'hidden' ) {
+				$grants[] = $grant;
+			}
+		}
+		return $grants;
+	}
+
+	/**
 	 * @param array $restrictions
 	 * @return bool
 	 */

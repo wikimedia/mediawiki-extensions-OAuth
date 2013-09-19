@@ -223,7 +223,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$s = '';
 		foreach ( MWOAuthUtils::getGrantGroups( $grants ) as $group => $grants ) {
 			if ( $group === 'hidden' ) {
-				continue;
+				continue; // implicitly granted
 			}
 			$s .= "*<strong>" . wfMessage( "mwoauth-grant-group-$group" )->text() . "</strong>\n";
 			$s .= ":" . $this->getLanguage()->semicolonList(
