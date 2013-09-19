@@ -20,7 +20,7 @@ class MWOAuthSetup {
 		$controlDir  = "$dir/control";
 		$apiDir      = "$dir/api";
 		$frontendDir = "$dir/frontend";
-		$langDir     = "$dir/frontend/language/";
+		$langDir     = "$dir/frontend/language";
 		$specialsDir = "$dir/frontend/specialpages";
 		$libDir      = "$dir/lib";
 
