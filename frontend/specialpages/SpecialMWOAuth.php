@@ -175,22 +175,30 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		);
 		$form->setId( 'mw-mwoauth-authorize-form' );
 
+		// Possible messages are:
+		// * mwoauth-form-description-allwikis
+		// * mwoauth-form-description-onewiki
+		// * mwoauth-form-description-allwikis-nogrants
+		// * mwoauth-form-description-onewiki-nogrants
+		$msgKey = 'mwoauth-form-description';
+		$params = array(
+			$this->getUser()->getName(),
+			$cmr->get( 'name' ),
+			$cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' ),
+		);
 		if ( $cmr->get( 'wiki' ) === '*' ) {
-			$form->addHeaderText( $this->msg( 'mwoauth-form-description-allwikis',
-				$this->getUser()->getName(),
-				$cmr->get( 'name' ),
-				$cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' ),
-				$this->getGrantsWikiText( $cmr->get( 'grants' ) )
-			)->parseAsBlock() );
+			$msgKey .= '-allwikis';
 		} else {
-			$form->addHeaderText( $this->msg( 'mwoauth-form-description-onewiki',
-				$this->getUser()->getName(),
-				$cmr->get( 'name' ),
-				$cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' ),
-				$cmr->get( 'wiki', 'MWOAuthUtils::getWikiIdName' ),
-				$this->getGrantsWikiText( $cmr->get( 'grants' ) )
-			)->parseAsBlock() );
+			$msgKey .= '-onewiki';
+			$params[] = $cmr->get( 'wiki', 'MWOAuthUtils::getWikiIdName' );
 		}
+		$grantsText = $this->getGrantsWikiText( $cmr->get( 'grants' ) );
+		if ( $grantsText === "\n" ) {
+			$msgKey .= '-nogrants';
+		} else {
+			$params[] = $grantsText;
+		}
+		$form->addHeaderText( $this->msg( $msgKey, $params )->parseAsBlock() );
 		$form->addHeaderText( $this->msg( 'mwoauth-form-legal' )->text() );
 
 		$form->suppressDefaultSubmit();

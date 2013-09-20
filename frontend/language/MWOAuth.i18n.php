@@ -225,6 +225,13 @@ $4",
 
 
 $5",
+	'mwoauth-form-description-allwikis-nogrants' => "Hi $1,
+
+'''$2''' would like to have basic access on your behalf on all projects of this site.",
+	'mwoauth-form-description-onewiki-nogrants' => "Hi $1,
+
+'''$2''' would like to have basic access on your behalf on ''$4''.",
+
 	'mwoauth-form-legal' => '',
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Privacy Policy]]',
 	'mwoauth-form-button-approve' => 'Allow',
@@ -663,7 +670,9 @@ Parameters:
 * $3 - application publisher
 * $4 - formatted list of grants
 See also:
-* {{msg-mw|Mwoauth-form-description-onewiki}}',
+* {{msg-mw|Mwoauth-form-description-onewiki}}
+* {{msg-mw|Mwoauth-form-description-allwikis-nogrants}}
+* {{msg-mw|Mwoauth-form-description-onewiki-nogrants}}',
 	'mwoauth-form-description-onewiki' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf.
 
 Parameters:
@@ -673,7 +682,30 @@ Parameters:
 * $4 - wiki project name
 * $5 - formatted list of grants
 See also:
-* {{msg-mw|Mwoauth-form-description-allwikis}}',
+* {{msg-mw|Mwoauth-form-description-allwikis}}
+* {{msg-mw|Mwoauth-form-description-allwikis-nogrants}}
+* {{msg-mw|Mwoauth-form-description-onewiki-nogrants}}',
+	'mwoauth-form-description-allwikis-nogrants' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.
+
+Parameters:
+* $1 - the username
+* $2 - application name
+* $3 - application publisher
+See also:
+* {{msg-mw|Mwoauth-form-description-allwikis}}
+* {{msg-mw|Mwoauth-form-description-onewiki}}
+* {{msg-mw|Mwoauth-form-description-onewiki-nogrants}}',
+	'mwoauth-form-description-onewiki' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.
+
+Parameters:
+* $1 - the username
+* $2 - application name
+* $3 - application publisher
+* $4 - wiki project name
+See also:
+* {{msg-mw|Mwoauth-form-description-allwikis}}
+* {{msg-mw|Mwoauth-form-description-onewiki}}
+* {{msg-mw|Mwoauth-form-description-allwikis-nogrants}}',
 	'mwoauth-form-privacypolicy-link' => '{{doc-important|Do not translate <code><nowiki>{{ns:Project}}:Privacy policy</nowiki></code> part.}}',
 	'mwoauth-form-button-approve' => 'Button label, indicating the user wants to allow access.
 
