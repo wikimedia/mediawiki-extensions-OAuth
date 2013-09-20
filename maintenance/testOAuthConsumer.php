@@ -16,8 +16,12 @@ class TestOAuthConsumer extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Test an OAuth consumer";
 		$this->addOption( 'consumerKey', 'Consumer key', true, true );
-		$this->addOption( 'consumerSecret', 'Consumer secret', true, true );
+		$this->addOption( 'consumerSecret', 'Consumer secret', false, true );
+		$this->addOption( 'RSAKeyFile',
+			'File containing the RSA private key for the consumer', false, true
+		);
 		$this->addOption( 'useSSL', 'Use SSL' );
+		$this->addOption( 'verbose', 'Verbose output (e.g. HTTP request/response headers)' );
 	}
 
 	public function execute() {
@@ -25,18 +29,31 @@ class TestOAuthConsumer extends Maintenance {
 
 		$consumerKey = $this->getOption( 'consumerKey' );
 		$consumerSecret = $this->getOption( 'consumerSecret' );
+		$rsaKeyFile = $this->getOption( 'RSAKeyFile' );
 		$baseurl = "{$wgServer}{$wgScriptPath}/index.php?title=Special:MWOAuth";
 		$endpoint = "{$baseurl}/initiate&format=json&oauth_callback=oob";
 
 		$endpoint_acc = "{$baseurl}/token&format=json";
+
+		if ( !$consumerSecret && !$rsaKeyFile ) {
+			$this->error( "Either consumerSecret or RSAKeyFile required!" );
+			$this->maybeHelp( true );
+		}
 
 		$c = new OAuthConsumer( $consumerKey, $consumerSecret );
 		$parsed = parse_url( $endpoint );
 		$params = array();
 		parse_str( $parsed['query'], $params );
 		$req_req = OAuthRequest::from_consumer_and_token( $c, NULL, "GET", $endpoint, $params );
-		$hmac_method = new OAuthSignatureMethod_HMAC_SHA1();
-		$sig_method = $hmac_method;
+		if ( $rsaKeyFile ) {
+			try {
+				$sig_method = new TestOAuthSignatureMethod_RSA_SHA1( $rsaKeyFile );
+			} catch ( OAuthException $ex ) {
+				$this->error( $ex->getMessage(), 1 );
+			}
+		} else {
+			$sig_method = new OAuthSignatureMethod_HMAC_SHA1();
+		}
 		$req_req->sign_request( $sig_method, $c, NULL );
 
 		$this->output( "Calling: $req_req\n" );
@@ -45,6 +62,9 @@ class TestOAuthConsumer extends Maintenance {
 		curl_setopt( $ch, CURLOPT_URL, (string) $req_req );
 		if ( $this->hasOption( 'useSSL' ) ) {
 			curl_setopt( $ch, CURLOPT_PORT , 443 );
+		}
+		if ( $this->hasOption( 'verbose' ) ) {
+			curl_setopt( $ch, CURLOPT_VERBOSE, true );
 		}
 		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
 		curl_setopt( $ch, CURLOPT_HEADER, 0 );
@@ -86,6 +106,9 @@ class TestOAuthConsumer extends Maintenance {
 		if ( $this->hasOption( 'useSSL' ) ) {
 			curl_setopt( $ch, CURLOPT_PORT , 443 );
 		}
+		if ( $this->hasOption( 'verbose' ) ) {
+			curl_setopt( $ch, CURLOPT_VERBOSE, true );
+		}
 		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
 		curl_setopt( $ch, CURLOPT_HEADER, 0 );
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
@@ -95,6 +118,41 @@ class TestOAuthConsumer extends Maintenance {
 		}
 
 		$this->output( "Returned: $data\n\n" );
+	}
+}
+
+class TestOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
+	private $privKey, $pubKey;
+
+	function __construct( $privKeyFile ) {
+		$key = file_get_contents( $privKeyFile );
+		if ( !$key ) {
+			throw new OAuthException( "Could not read private key file $privKeyFile" );
+		}
+
+		$privKey = openssl_pkey_get_private( $key );
+		if ( !$privKey ) {
+			throw new OAuthException( "File $privKeyFile does not contain a private key" );
+		}
+
+		$details = openssl_pkey_get_details( $privKey );
+		if ( $details['type'] !== OPENSSL_KEYTYPE_RSA ) {
+			throw new OAuthException( "Key is not an RSA key" );
+		}
+		if ( !$details['key'] ) {
+			throw new OAuthException( "Could not get public key from private key" );
+		}
+
+		$this->privKey = $key;
+		$this->pubKey = $details['key'];
+	}
+
+	protected function fetch_public_cert( &$request ) {
+		return $this->pubKey;
+	}
+
+	protected function fetch_private_cert( &$request ) {
+		return $this->privKey;
 	}
 }
 
