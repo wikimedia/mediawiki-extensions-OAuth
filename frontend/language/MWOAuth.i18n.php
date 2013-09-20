@@ -612,6 +612,7 @@ Followed by a link with the link text {{msg-mw|Mwoauthmanagemygrants-showlist}}.
 {{Identical|Applicable wiki}}',
 	'mwoauthmanagemygrants-consumerkey' => 'Used as table row header.
 {{Identical|Consumer key}}',
+	'mwoauthmanagemygrants-review' => 'Used as link text.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Used as fieldset label',
 	'mwoauthmanagemygrants-update' => 'Used as label for the radio box.
 
@@ -673,28 +674,6 @@ See also:
 * {{msg-mw|Mwoauth-form-description-onewiki}}
 * {{msg-mw|Mwoauth-form-description-allwikis-nogrants}}
 * {{msg-mw|Mwoauth-form-description-onewiki-nogrants}}',
-	'mwoauth-form-description-onewiki' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf.
-
-Parameters:
-* $1 - the username
-* $2 - application name
-* $3 - application publisher
-* $4 - wiki project name
-* $5 - formatted list of grants
-See also:
-* {{msg-mw|Mwoauth-form-description-allwikis}}
-* {{msg-mw|Mwoauth-form-description-allwikis-nogrants}}
-* {{msg-mw|Mwoauth-form-description-onewiki-nogrants}}',
-	'mwoauth-form-description-allwikis-nogrants' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.
-
-Parameters:
-* $1 - the username
-* $2 - application name
-* $3 - application publisher
-See also:
-* {{msg-mw|Mwoauth-form-description-allwikis}}
-* {{msg-mw|Mwoauth-form-description-onewiki}}
-* {{msg-mw|Mwoauth-form-description-onewiki-nogrants}}',
 	'mwoauth-form-description-onewiki' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.
 
 Parameters:
@@ -706,6 +685,16 @@ See also:
 * {{msg-mw|Mwoauth-form-description-allwikis}}
 * {{msg-mw|Mwoauth-form-description-onewiki}}
 * {{msg-mw|Mwoauth-form-description-allwikis-nogrants}}',
+	'mwoauth-form-description-allwikis-nogrants' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.
+
+Parameters:
+* $1 - the username
+* $2 - application name
+* $3 - application publisher
+See also:
+* {{msg-mw|Mwoauth-form-description-allwikis}}
+* {{msg-mw|Mwoauth-form-description-onewiki}}
+* {{msg-mw|Mwoauth-form-description-onewiki-nogrants}}',
 	'mwoauth-form-privacypolicy-link' => '{{doc-important|Do not translate <code><nowiki>{{ns:Project}}:Privacy policy</nowiki></code> part.}}',
 	'mwoauth-form-button-approve' => 'Button label, indicating the user wants to allow access.
 
@@ -1257,8 +1246,8 @@ Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen.
 	'mwoauthmanagemygrants-grantsallowed' => 'Erlaubte Berechtigungen:',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Erlaubte anwendbare Berechtigungen:',
 	'mwoauthmanagemygrants-consumerkey' => 'Verbraucherschlüssel',
-	'mwoauthmanagemygrants-review' => 'Zugriff überprüfen/verwalten', # Fuzzy
-	'mwoauthmanagemygrants-grantaccept' => 'Dem Verbraucher gewährt', # Fuzzy
+	'mwoauthmanagemygrants-review' => 'Zugriff verwalten',
+	'mwoauthmanagemygrants-grantaccept' => 'Gewährt',
 	'mwoauthmanagemygrants-confirm-text' => 'Verwende das unten stehende Formular, um den Zugriff zu entziehen oder um Berechtigungen für einen OAuth-Verbraucher zu ändern, der auf deinen Namen handelt. Einige Anmerkungen:
 * Dieses Formular überwacht einen speziellen Zugriffstoken oder Schlüssel, der einen Verbraucher auf dein Konto zugreifen lässt.
 * Falls du einen Verbraucher getrennt autorisiert hast, um auf unterschiedliche Projekte in deinem Namen zuzugreifen, dann hast du mehrere Zugriffstokens für diesen Verbraucher.
@@ -1266,7 +1255,7 @@ Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen.
 * Verwende „*“ im Wikifeld, um Zugriff für alle Projekte auf dieser Website zu gewähren. Eine Wikiprojektkennung beschränkt den Zugriff auf ein einzelnes Projekt.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Verbraucherzugriffstoken verwalten',
 	'mwoauthmanagemygrants-update' => 'Berechtigungen aktualisieren',
-	'mwoauthmanagemygrants-renounce' => 'Verbraucher deautorisieren', # Fuzzy
+	'mwoauthmanagemygrants-renounce' => 'Deautorisieren',
 	'mwoauthmanagemygrants-action' => 'Status ändern:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Zugriffstokenstatus aktualisieren',
 	'mwoauthmanagemygrants-success-update' => 'Der Zugriffstoken für diesen Verbraucher wurde aktualisiert.',
@@ -1369,7 +1358,7 @@ $messages['en-gb'] = array(
 	'mwoauthmanagemygrants-confirm-text' => 'Use the form below to revoke access or change grants for an OAuth consumer to act on your behalf.
 
 Note that if you authorised a consumer to only have access to a subset of wikis (site projects), then there will be multiple access tokens for that consumer.', # Fuzzy
-	'mwoauthmanagemygrants-renounce' => 'De-authorise and delete access token', # Fuzzy
+	'mwoauthmanagemygrants-renounce' => 'Deauthorise',
 	'mwoauthdatastore-access-token-not-found' => 'No approved grant was found for that authorisation token',
 	'mwoauth-invalid-authorization-title' => 'OAuth authorisation error',
 	'mwoauth-invalid-authorization' => 'The authorisation headers in your request are not valid: $1',
@@ -1549,8 +1538,8 @@ Il vous a été assigné un jeton de consommateur '''$1''' et un jeton secret ''
 	'mwoauthmanagemygrants-grantsallowed' => 'Droits accordés :',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Droits applicables accordés :',
 	'mwoauthmanagemygrants-consumerkey' => 'Clé du consommateur',
-	'mwoauthmanagemygrants-review' => 'Revoir/gérer l’accès', # Fuzzy
-	'mwoauthmanagemygrants-grantaccept' => 'Accordé au consommateur', # Fuzzy
+	'mwoauthmanagemygrants-review' => 'gérer l’accès',
+	'mwoauthmanagemygrants-grantaccept' => 'Accordé',
 	'mwoauthmanagemygrants-confirm-text' => 'Utilisez le formulaire ci-dessous pour révoquer l’accès ou modifier les droits d’un consommateur OAuth à agir en votre nom. Quelques remarques :
 * Ce formulaire contrôle un « jeton », ou clé, d’accès particulier, qui permet à un consommateur d’accéder à votre compte.
 * Si vous autorisez de façon isolée un consommateur à avoir accès à différents projets en votre nom, alors vous aurez des jetons d’accès multiples pour ce consommateur.
@@ -1558,7 +1547,7 @@ Il vous a été assigné un jeton de consommateur '''$1''' et un jeton secret ''
 * Utiliser "*" dans le champ wiki accorde l’accès à tous les projets de ce site ; utiliser un ID de projet du wiki limite l’accès à un unique projet.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Gérer le jeton d’accès du consommateur',
 	'mwoauthmanagemygrants-update' => 'Mettre à jour les droits',
-	'mwoauthmanagemygrants-renounce' => 'Ne plus autoriser le consommateur', # Fuzzy
+	'mwoauthmanagemygrants-renounce' => 'Ne plus autoriser',
 	'mwoauthmanagemygrants-action' => 'Modifier l’état :',
 	'mwoauthmanagemygrants-confirm-submit' => 'Mettre à jour l’état du jeton d’accès',
 	'mwoauthmanagemygrants-success-update' => 'Le jeton d’accès pour ce consommateur a été mis à jour.',
@@ -1802,14 +1791,14 @@ Asignóuselle o pase de consumidor '''$1''' e o pase secreto '''$2'''. ''Garde e
 	'mwoauthmanagemygrants-grantsallowed' => 'Concesións permitidas:',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Concesións aplicables permitidas:',
 	'mwoauthmanagemygrants-consumerkey' => 'Clave do consumidor',
-	'mwoauthmanagemygrants-review' => 'Revisar/Administrar o acceso', # Fuzzy
-	'mwoauthmanagemygrants-grantaccept' => 'Concedido ao consumidor', # Fuzzy
+	'mwoauthmanagemygrants-review' => 'administrar o acceso',
+	'mwoauthmanagemygrants-grantaccept' => 'Concedido',
 	'mwoauthmanagemygrants-confirm-text' => 'Utilice o formulario inferior para revogar o acceso ou cambiar as concesións dun consumidor OAuth para que actúe no seu nome.
 
 Teña en conta que se autoriza que un consumidor só teña acceso a un subconxunto de wikis (proxectos de sitio), entón haberá múltiples pases de acceso para ese consumidor.', # Fuzzy
 	'mwoauthmanagemygrants-confirm-legend' => 'Administrar o pase de acceso do consumidor',
-	'mwoauthmanagemygrants-update' => 'Actualizar as concesións de pases de acceso', # Fuzzy
-	'mwoauthmanagemygrants-renounce' => 'Desautorizar e borrar o pase de acceso', # Fuzzy
+	'mwoauthmanagemygrants-update' => 'Actualizar as concesións',
+	'mwoauthmanagemygrants-renounce' => 'Desautorizar',
 	'mwoauthmanagemygrants-action' => 'Cambiar o estado:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Actualizar o estado do pase de acceso',
 	'mwoauthmanagemygrants-success-update' => 'Actualizouse o pase de acceso deste consumidor.',
@@ -2457,6 +2446,7 @@ $messages['ja'] = array(
 	'mwoauthmanagemygrants-user' => '発行者',
 	'mwoauthmanagemygrants-description' => '説明',
 	'mwoauthmanagemygrants-consumerkey' => 'コンシューマー キー',
+	'mwoauthmanagemygrants-review' => 'アクセスを管理',
 	'mwoauthmanagemygrants-confirm-legend' => 'コンシューマー アクセス トークンの管理',
 	'mwoauthmanagemygrants-action' => '状態の変更:',
 	'mwoauthmanagemygrants-confirm-submit' => 'アクセス トークンの状態を更新',
@@ -2757,6 +2747,7 @@ $messages['lb'] = array(
 	'mwoauthmanagemygrants-navigation' => 'Navigatioun:',
 	'mwoauthmanagemygrants-description' => 'Beschreiwung',
 	'mwoauthmanagemygrants-wiki' => 'Applicabel Wiki',
+	'mwoauthmanagemygrants-grantaccept' => 'Accordéiert',
 	'mwoauthmanagemygrants-action' => 'Status änneren:',
 	'mwoauthserver-invalid-user-hookabort' => 'Dëse Benotzer däerf OAuth net benotzen.',
 	'mwoauth-invalid-authorization-title' => "OAuth Autorisatioun's-Feeler",
@@ -3646,8 +3637,8 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'mwoauthmanagemygrants-grantsallowed' => 'Ґранти, які дозволили',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Застосовні гранти дозволено:',
 	'mwoauthmanagemygrants-consumerkey' => 'Ключ споживача',
-	'mwoauthmanagemygrants-review' => 'огляд/управління доступом', # Fuzzy
-	'mwoauthmanagemygrants-grantaccept' => 'Надано до споживача', # Fuzzy
+	'mwoauthmanagemygrants-review' => 'управління доступом',
+	'mwoauthmanagemygrants-grantaccept' => 'Надано',
 	'mwoauthmanagemygrants-confirm-text' => 'Використовуйте форму нижче, аби скасувати доступ або змінити гранти для споживача  OAuth, який діє від вашого імені. Кілька зауважень:
  * Ця форма контролює конкретний маркер доступу, або ключ, що дозволяє клієнтський доступ до вашого облікового запису.
  * Зауважте, що, якщо ви окремо надали споживачеві доступ до різних проектів від вашого імені, то буде кілька маркерів доступу для цього споживача.
@@ -3655,7 +3646,7 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
  * Використання "*" у полі вікі надає доступ до всіх проектів на цьому сайті; використання ІД вікі-проекту обмежує доступ до одного проекту.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Управління маркером доступу споживача',
 	'mwoauthmanagemygrants-update' => 'Оновити ґранти',
-	'mwoauthmanagemygrants-renounce' => 'Скасувати авторизацію', # Fuzzy
+	'mwoauthmanagemygrants-renounce' => 'Скасувати авторизацію',
 	'mwoauthmanagemygrants-action' => 'Змінити статус:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Оновити стан маркера доступу',
 	'mwoauthmanagemygrants-success-update' => 'Вже оновлено маркер доступу для цього споживача.',
@@ -3867,6 +3858,21 @@ $messages['vi'] = array(
 	'right-mwoauthviewprivate' => 'Xem dữ liệu riêng OAuth',
 	'right-mwoauthmanagemygrants' => 'Quản lý các quyền OAuth được cấp',
 	'action-mwoauthmanagemygrants' => 'quản lý các quyền OAuth mà bạn cấp',
+);
+
+/** Wu (吴语)
+ * @author 十弌
+ */
+$messages['wuu'] = array(
+	'mwoauth-consumer-allwikis' => '箇網站個全部項目',
+	'mwoauth-form-button-approve' => '允許',
+	'mwoauth-form-button-cancel' => '取消',
+	'mwoauth-grant-group-page-interaction' => '搭頁面互動',
+	'mwoauth-grant-group-file-interaction' => '搭媒體互動',
+	'mwoauth-grant-group-watchlist-interaction' => '搭爾個監視表互動',
+	'mwoauth-grant-group-email' => '發電郵',
+	'mwoauth-grant-rollback' => '畀修改擂轉到頁面',
+	'mwoauth-grant-sendemail' => '發電郵畀各許用戶',
 );
 
 /** Yiddish (ייִדיש)
