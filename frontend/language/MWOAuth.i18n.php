@@ -247,7 +247,7 @@ $5",
 	'mwoauth-grant-group-watchlist-interaction' => 'Interact with your watchlist',
 	'mwoauth-grant-group-email' => 'Send email',
 	'mwoauth-grant-group-high-volume' => 'Perform high volume activity',
-	'mwoauth-grant-group-customization' => 'Consumization and preferences',
+	'mwoauth-grant-group-customization' => 'Customization and preferences',
 	'mwoauth-grant-group-administration' => 'Perform adminstrative actions',
 	'mwoauth-grant-group-other' => 'Miscellaneous activity',
 
