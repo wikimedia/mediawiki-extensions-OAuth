@@ -1299,6 +1299,12 @@ $4",
 
 
 $5",
+	'mwoauth-form-description-allwikis-nogrants' => "Hallo $1,
+
+'''$2''' will Basiszugriff in deinem Namen auf allen Projekten dieser Website haben.",
+	'mwoauth-form-description-onewiki-nogrants' => "Hallo $1,
+
+'''$2''' will Basiszugriff in deinem Namen auf ''$4'' haben.",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Datenschutzrichtlinie]]',
 	'mwoauth-form-button-approve' => 'Erlauben',
 	'mwoauth-form-button-cancel' => 'Abbrechen',
@@ -1355,6 +1361,15 @@ $5",
  */
 $messages['en-gb'] = array(
 	'mwoauth-desc' => 'OAuth 1.0a API Authorisation',
+	'mwoauthconsumerregistration-propose-text' => 'Developers should use the form below to propose a new OAuth consumer (see the [//www.mediawiki.org/wiki/Extension:OAuth extension documentation] for more details). After submitting this form, you will receive a token that your application will use to identify itself to MediaWiki. An OAuth administrator will need to approve your application before it can be authorised by other users.
+
+A few recommendations and remarks:
+* Try to use as few grants as possible. Avoid grants that are not actually needed now.
+* Versions are of the form "major.minor.release" (the last two being optional) and increase as grant changes are needed.
+* Please provide a public RSA key (in PEM format) if possible; otherwise a (less secure) secret token will have to be used.
+* Use the JSON restrictions field to limit access of this consumer to IP addresses in those CIDR ranges.
+* You can use a wiki ID to restrict the consumer to a single wiki on this site (use "*" for all wikis).
+* The email address provided must match that of your account (which must have been confirmed).',
 	'mwoauthmanagemygrants-confirm-text' => 'Use the form below to revoke access or change grants for an OAuth consumer to act on your behalf.
 
 Note that if you authorised a consumer to only have access to a subset of wikis (site projects), then there will be multiple access tokens for that consumer.', # Fuzzy
@@ -2748,6 +2763,7 @@ $messages['lb'] = array(
 	'mwoauthmanagemygrants-description' => 'Beschreiwung',
 	'mwoauthmanagemygrants-wiki' => 'Applicabel Wiki',
 	'mwoauthmanagemygrants-grantaccept' => 'Accordéiert',
+	'mwoauthmanagemygrants-renounce' => 'Autorisatioun ewechhuelen',
 	'mwoauthmanagemygrants-action' => 'Status änneren:',
 	'mwoauthserver-invalid-user-hookabort' => 'Dëse Benotzer däerf OAuth net benotzen.',
 	'mwoauth-invalid-authorization-title' => "OAuth Autorisatioun's-Feeler",
@@ -2925,8 +2941,8 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-grantsallowed' => 'Дозволени доделувања:',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Дозволени применливи доделувања:',
 	'mwoauthmanagemygrants-consumerkey' => 'Потрошувачки клуч',
-	'mwoauthmanagemygrants-review' => 'Разглед./раковод. на пристап', # Fuzzy
-	'mwoauthmanagemygrants-grantaccept' => 'Доделено на потрошувачот', # Fuzzy
+	'mwoauthmanagemygrants-review' => 'раковод. со пристап',
+	'mwoauthmanagemygrants-grantaccept' => 'Доделено',
 	'mwoauthmanagemygrants-confirm-text' => 'Следниот образец служи за одземање на пристап или да ги измените доделените права на потрошувач на OAuth за да дејствува во ваше име. Неколку напомени:
 
 * Образецов контролира дадена шифра или клуч за пристап, со која потрошувач добива пристап до вашата сметка.
@@ -2934,7 +2950,7 @@ $messages['mk'] = array(
 Доколку посебно сте овластиле некого со пристап на разни проекти во ваше име, тогаш ќе имате повеќе пристапни шифри.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Раководење со шифра за кориснички пристап',
 	'mwoauthmanagemygrants-update' => 'Измени доделувања',
-	'mwoauthmanagemygrants-renounce' => 'Одземи дозвола на потрошувачот', # Fuzzy
+	'mwoauthmanagemygrants-renounce' => 'Одземи дозвола',
 	'mwoauthmanagemygrants-action' => 'Смени статус:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Измени статус на пристап. шифра',
 	'mwoauthmanagemygrants-success-update' => 'Пристапната шифра на овој потрошувач е изменета.',
@@ -2978,6 +2994,12 @@ $4",
 
 
 $5",
+	'mwoauth-form-description-allwikis-nogrants' => "Здраво $1,
+
+Програмот '''$2''' би сакал да добие основен пристап на сите проекти на ова мрежно место во ваше име.",
+	'mwoauth-form-description-onewiki-nogrants' => "Здраво $1,
+
+Програмот '''$2''' би сакал да добие основен пристап до ''$4'' во ваше име.",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Заштита на личните податоци]]',
 	'mwoauth-form-button-approve' => 'Дозволи',
 	'mwoauth-form-button-cancel' => 'Откажи',
@@ -3690,6 +3712,12 @@ $4",
 
 
 $5',
+	'mwoauth-form-description-allwikis-nogrants' => "Привіт $1,
+
+'''$2''' хотів би мати базовий доступ від вашого імені на всі проекти з цього сайту.",
+	'mwoauth-form-description-onewiki-nogrants' => "Привіт $1,
+
+'''$2''' хотів би мати базовий доступ від вашого імені на  ''$4''.",
 	'mwoauth-form-privacypolicy-link' => ' [[{{ns:Project}}:Privacy policy|Privacy Policy]]',
 	'mwoauth-form-button-approve' => 'Дозволити',
 	'mwoauth-form-button-cancel' => 'Скасувати',
@@ -3816,8 +3844,8 @@ $messages['vi'] = array(
 	'mwoauthmanagemygrants-grants' => 'Các quyền có liên quan',
 	'mwoauthmanagemygrants-grantsallowed' => 'Các quyền được cấp',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Các quyền được cấp có liên quan:',
-	'mwoauthmanagemygrants-review' => 'xem lại/quản lý truy cập', # Fuzzy
-	'mwoauthmanagemygrants-update' => 'Cập nhận các dấu hiệu truy cập được cấp', # Fuzzy
+	'mwoauthmanagemygrants-review' => 'quản lý truy cập',
+	'mwoauthmanagemygrants-update' => 'Cập nhật các dấu hiệu được cấp',
 	'mwoauthmanagemygrants-action' => 'Thay đổi trạng thái:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Cập nhật trạng thái của dấu hiệu truy cập',
 	'mwoauth-bad-request' => 'Có lỗi trong yêu cầu OAuth của bạn.',
@@ -3829,7 +3857,7 @@ $messages['vi'] = array(
 	'mwoauthserver-insufficient-rights' => 'Bạn không có đủ quyền để thực hiện thao tác này.',
 	'mwoauthserver-invalid-request-token' => 'Dấu hiệu không hợp lệ trong yêu cầu của bạn.',
 	'mwoauthserver-invalid-user-hookabort' => 'Người dùng này không thể dùng OAuth.',
-	'mwoauth-form-button-approve' => 'Có, cho phép', # Fuzzy
+	'mwoauth-form-button-approve' => 'Cho phép',
 	'mwoauth-authorize-form-invalid-user' => 'Tài khoản người dùng này không thể sử dụng OAuth vì tài khoản trên wiki này không được liên kết với tài khoản trên wiki OAuth trung ương.',
 	'mwoauth-error' => 'Lỗi OAuth',
 	'mwoauth-grants-heading' => 'Các quyền được yêu cầu:',
@@ -3844,10 +3872,10 @@ $messages['vi'] = array(
 	'mwoauth-grant-editprotected' => 'Sửa đội các trang bị khóa',
 	'mwoauth-grant-highvolume' => 'Sửa đổi tốc độ cao',
 	'mwoauth-grant-oversight' => 'Ẩn người dùng và phiên bản',
-	'mwoauth-grant-patrol' => 'Tuần tra', # Fuzzy
+	'mwoauth-grant-patrol' => 'Tuần tra các thay đổi trang',
 	'mwoauth-grant-protect' => 'Khóa và mở khóa các trang',
-	'mwoauth-grant-rollback' => 'Lùi tất cả', # Fuzzy
-	'mwoauth-grant-sendemail' => 'Gửi thư điện tử', # Fuzzy
+	'mwoauth-grant-rollback' => 'Lùi một loạt thay đổi vào một trang',
+	'mwoauth-grant-sendemail' => 'Gửi thư điện tử cho người dùng khác',
 	'mwoauth-grant-uploadeditmovefile' => 'Tải lên, thay thế, và di chuyển tập tin',
 	'mwoauth-grant-uploadfile' => 'Tải lên tập tin mới',
 	'mwoauth-grant-useoauth' => 'Quyền cơ bản',
