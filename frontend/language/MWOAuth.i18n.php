@@ -1396,6 +1396,13 @@ Para completar el proceso, proporciona este valor de comprobación a la aplcaci�
 	'mwoauth-oauth-exception' => 'Ha ocurrido un error en el protocolo OAuth: $1',
 );
 
+/** Finnish (suomi)
+ * @author Nike
+ */
+$messages['fi'] = array(
+	'mwoauth-grant-group-customization' => 'Mukautus ja asetukset',
+);
+
 /** French (français)
  * @author Crochet.david
  * @author Gomoko
@@ -2487,6 +2494,7 @@ $messages['ja'] = array(
 	'mwoauth-authorize-form-invalid-user' => 'このウィキと中央管理 OAuth ウィキの利用者アカウントがリンクされていないため、このアカウントでは OAuth を使用できません。',
 	'mwoauth-error' => 'OAuth エラー',
 	'mwoauth-grant-group-email' => 'メールの送信',
+	'mwoauth-grant-group-customization' => 'カスタマイズと個人設定',
 	'mwoauth-grant-group-other' => 'その他の活動',
 	'mwoauth-grant-blockusers' => '利用者をブロック',
 	'mwoauth-grant-createeditmovepage' => 'ページを作成/編集/移動',
@@ -3352,10 +3360,12 @@ $messages['oc'] = array(
 
 /** Polish (polski)
  * @author Chrumps
+ * @author Ty221
  */
 $messages['pl'] = array(
 	'mwoauth-consumer-reason' => 'Powód:',
 	'mwoauthmanageconsumers-reason' => 'Powód:',
+	'mwoauth-grant-group-customization' => 'Dostosowywanie i preferencje',
 );
 
 /** Portuguese (português)
@@ -3421,6 +3431,15 @@ $messages['roa-tara'] = array(
 	'mwoauthmanageconsumers-showexpired' => 'Richieste scadute',
 	'mwoauthmanageconsumers-main' => 'Prengepàle',
 	'mwoauthmanageconsumers-reason' => 'Mutive:',
+);
+
+/** Slovak (slovenčina)
+ * @author Kusavica
+ */
+$messages['sk'] = array(
+	'mwoauth-form-button-approve' => 'Povoliť',
+	'mwoauth-form-button-cancel' => 'Zrušiť',
+	'mwoauth-grant-group-email' => 'Poslať email',
 );
 
 /** Serbian (Cyrillic script) (српски (ћирилица)‎)
