@@ -128,6 +128,8 @@ $wgMWOAuthGrantPermissions['editmywatchlist']['editmywatchlist'] = true;
 
 $wgMWOAuthGrantPermissions['sendemail']['sendemail'] = true;
 
+$wgMWOAuthGrantPermissions['createaccount']['createaccount'] = true;
+
 /** @var Array Map of grants to their UI grouping */
 $wgMWOAuthGrantPermissionGroups = array(
 	'useoauth'            => 'hidden',
@@ -155,6 +157,7 @@ $wgMWOAuthGrantPermissionGroups = array(
 	'delete'              => 'administration',
 	'viewdeleted'         => 'administration',
 	'protect'             => 'administration',
+	'createaccount'       => 'administration',
 );
 
 /** @var integer Seconds after which an idle consumer request is marked as "expired" */

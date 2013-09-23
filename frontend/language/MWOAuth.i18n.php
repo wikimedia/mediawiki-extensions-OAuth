@@ -252,6 +252,7 @@ $5",
 	'mwoauth-grant-group-other' => 'Miscellaneous activity',
 
 	'mwoauth-grant-blockusers' => 'Block users',
+	'mwoauth-grant-createaccount' => 'Create accounts',
 	'mwoauth-grant-createeditmovepage' => 'Create, edit, and move pages',
 	'mwoauth-grant-delete' => 'Delete pages, revisions, and log entries',
 	'mwoauth-grant-editinterface' => 'Edit the MediaWiki namespace and user CSS/JS',
@@ -324,6 +325,7 @@ See also:
 
 Defined grants (grant name refers: blockusers, createeditmovepage, ...):
 * {{msg-mw|Mwoauth-grant-blockusers}}
+* {{msg-mw|Mwoauth-grant-createaccount}}
 * {{msg-mw|Mwoauth-grant-createeditmovepage}}
 * {{msg-mw|Mwoauth-grant-delete}}
 * {{msg-mw|Mwoauth-grant-editinterface}}
@@ -712,6 +714,7 @@ See also:
 
 See also:
 * {{msg-mw|Mwoauth-grant-blockusers}}
+* {{msg-mw|Mwoauth-grant-createaccount}}
 * {{msg-mw|Mwoauth-grant-createeditmovepage}}
 * {{msg-mw|Mwoauth-grant-delete}}
 * {{msg-mw|Mwoauth-grant-editinterface}}
@@ -743,6 +746,8 @@ See also:
 	'mwoauth-grant-blockusers' => 'Name for OAuth grant "blockusers".
 {{Related|Mwoauth-grant}}
 {{Identical|Block user}}',
+	'mwoauth-grant-createeditmovepage' => 'Name for OAuth grant "createaccount".
+{{Related|Mwoauth-grant}}',
 	'mwoauth-grant-createeditmovepage' => 'Name for OAuth grant "createeditmovepage".
 {{Related|Mwoauth-grant}}',
 	'mwoauth-grant-delete' => 'Name for OAuth grant "delete".
