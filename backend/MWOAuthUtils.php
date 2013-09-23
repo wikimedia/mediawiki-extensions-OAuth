@@ -154,7 +154,8 @@ class MWOAuthUtils {
 		// mwoauth-grant-editpage, mwoauth-grant-editprotected, mwoauth-grant-highvolume,
 		// mwoauth-grant-oversight, mwoauth-grant-patrol, mwoauth-grant-protect, mwoauth-grant-rollback,
 		// mwoauth-grant-sendemail, mwoauth-grant-uploadeditmovefile, mwoauth-grant-uploadfile,
-		// mwoauth-grant-useoauth, mwoauth-grant-viewdeleted, mwoauth-grant-viewmywatchlist
+		// mwoauth-grant-useoauth, mwoauth-grant-viewdeleted, mwoauth-grant-viewmywatchlist,
+		// mwoauth-grant-createaccount
 		$msg = wfMessage( "mwoauth-grant-$grant" );
 		$msg = $msg->exists() ? $msg : wfMessage( "mwoauth-grant-generic", $grant );
 		return $msg->text();
