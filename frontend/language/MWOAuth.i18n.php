@@ -1613,6 +1613,12 @@ $4",
 
 
 $5",
+	'mwoauth-form-description-allwikis-nogrants' => "Bonjour $1,
+
+'''$2''' aimerait avoir un accès simple en votre nom à tous les projets de ce site.",
+	'mwoauth-form-description-onewiki-nogrants' => "Bonjour $1,
+
+'''$2''' aimerait avoir un accès simple en votre nom à ''$4''.",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Politique de confidentialité]]',
 	'mwoauth-form-button-approve' => 'Autoriser',
 	'mwoauth-form-button-cancel' => 'Annuler',
@@ -2287,14 +2293,14 @@ Ti è stato assegnato il token cliente '''$1''' e il token segreto '''$2'''. ''R
 	'mwoauthmanagemygrants-grantsallowed' => 'Diritti consentiti',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Assegnazioni applicabili consentite:',
 	'mwoauthmanagemygrants-consumerkey' => 'Chiave cliente',
-	'mwoauthmanagemygrants-review' => 'rivedi/gestisci accesso', # Fuzzy
-	'mwoauthmanagemygrants-grantaccept' => 'Assegnazioni al cliente', # Fuzzy
+	'mwoauthmanagemygrants-review' => 'gestisci accesso',
+	'mwoauthmanagemygrants-grantaccept' => 'Assegnazioni',
 	'mwoauthmanagemygrants-confirm-text' => "Usa il seguente modulo per revocare o modificare l'accesso ad un cliente OAuth di agire per vostro conto.
 
 Nota che se hai autorizzato un cliente ad avere accesso solo a un sottoinsieme di wiki (siti di progetto), allora ci saranno token di accesso multipli per quel cliente.", # Fuzzy
 	'mwoauthmanagemygrants-confirm-legend' => 'Gestione token di accesso del cliente',
-	'mwoauthmanagemygrants-update' => 'Aggiorna le assegnazioni del token di accesso', # Fuzzy
-	'mwoauthmanagemygrants-renounce' => "Annulla l'autorizzazione e cancella il token di accesso", # Fuzzy
+	'mwoauthmanagemygrants-update' => 'Aggiorna le assegnazioni',
+	'mwoauthmanagemygrants-renounce' => "Rimuovi l'autorizzazione",
 	'mwoauthmanagemygrants-action' => 'Modifica stato:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Aggiorna lo stato del token di accesso',
 	'mwoauthmanagemygrants-success-update' => 'Il token di accesso per questo cliente è stato aggiornato.',
@@ -3931,6 +3937,7 @@ $messages['yi'] = array(
 );
 
 /** Simplified Chinese (中文（简体）‎)
+ * @author Liuxinyu970226
  * @author Shirayuki
  */
 $messages['zh-hans'] = array(
@@ -3938,4 +3945,11 @@ $messages['zh-hans'] = array(
 	'mwoauthconsumerregistration-description' => '说明',
 	'mwoauthconsumerregistration-stage' => '状态',
 	'mwoauthmanageconsumers-reason' => '原因：',
+	'mwoauthmanagemygrants-review' => '管理访问',
+	'mwoauthmanagemygrants-grantaccept' => '授权',
+	'mwoauthmanagemygrants-renounce' => '取消授权',
+	'mwoauth-form-button-approve' => '允许',
+	'mwoauth-form-button-cancel' => '取消',
+	'mwoauth-grant-group-email' => '发送电邮',
+	'mwoauth-grant-rollback' => '回退更改到页',
 );
