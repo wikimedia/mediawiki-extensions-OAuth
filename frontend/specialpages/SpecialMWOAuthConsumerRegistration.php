@@ -45,8 +45,11 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		// Proposals and updates to consumers can involve sending new secrets.
 		if ( $wgMWOAuthSecureTokenTransfer && WebRequest::detectProtocol() !== 'https' ) {
 			$url = $this->getFullTitle()->getFullURL( array(), false, PROTO_HTTPS );
-			$this->getOutput()->redirect( $url );
-			return;
+			if ( substr( $url, 0, 8 ) === 'https://' ) {
+				$this->getOutput()->redirect( $url );
+				return;
+			}
+			throw new MWException( 'Cannot redirect to HTTPs; $wgServer is not protocol relative' );
 		}
 
 		$this->setHeaders();
