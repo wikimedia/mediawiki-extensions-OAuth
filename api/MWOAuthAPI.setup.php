@@ -128,6 +128,7 @@ class MWOAuthAPISetup {
 				Hooks::register( 'AfterFinalPageOutput', function( $out ) {
 					// Just in case, make sure this is not a valid login session for sanity
 					RequestContext::getMain()->getRequest()->setSessionData( 'wsUserID', 0 );
+					header_remove( 'Set-Cookie' ); // no real use for these
 				} );
 
 				$result = true;
