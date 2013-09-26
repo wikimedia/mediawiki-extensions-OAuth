@@ -687,6 +687,17 @@ See also:
 * {{msg-mw|Mwoauth-form-description-allwikis}}
 * {{msg-mw|Mwoauth-form-description-onewiki}}
 * {{msg-mw|Mwoauth-form-description-allwikis-nogrants}}',
+	'mwoauth-form-description-onewiki-nogrants' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.
+
+Parameters:
+* $1 - the username
+* $2 - application name
+* $3 - application publisher
+* $4 - wiki project name
+See also:
+* {{msg-mw|Mwoauth-form-description-allwikis}}
+* {{msg-mw|Mwoauth-form-description-onewiki}}
+* {{msg-mw|Mwoauth-form-description-onewiki-nogrants}}',
 	'mwoauth-form-description-allwikis-nogrants' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.
 
 Parameters:
@@ -808,6 +819,19 @@ See also:
 	'action-mwoauthproposeconsumer' => '{{Doc-action|mwoauthproposeconsumer}}',
 	'action-mwoauthupdateownconsumer' => '{{Doc-action|mwoauthupdateownconsumer}}',
 	'action-mwoauthviewsuppressed' => '{{Doc-action|mwoauthviewsuppressed}}',
+	'mwoauth-consumer-allwikis' => 'Description of scope of consumer access when the scope is all wiki projects on the site',
+	'mwoauthmanagemygrants-wikiallowed' => 'Used as field label',
+	'mwoauthmanagemygrants-grants' => 'Used as field label',
+	'mwoauthmanagemygrants-grantsallowed' => 'Used as field label',
+	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Used as field label',
+	'mwoauthmanagemygrants-grantaccept' => 'Used as checkbox column label',
+	'mwoauthmanagemygrants-success-update' => 'Message shown when grants for an OAuth consumer are updated by a user',
+	'mwoauthmanagemygrants-success-renounce' => 'Message shown when grants for an OAuth consumer are totally revoked',
+	'mwoauthmanagemygrants-confirm-text' => 'Explanation text for grants management form for a user',
+	'mwoauth-form-legal' => 'Message used for wiki-specific legal notes. Keep this blank.',
+	'mwoauth-acceptance-cancelled' => 'Message shown when an OAuth authorization request is declined',
+	'mwoauth-grant-createaccount' => 'Name for OAuth grant "createaccount".
+{{Related|Mwoauth-grant}}',
 );
 
 /** Asturian (asturianu)
