@@ -10,10 +10,13 @@
 			var form = $( '#mw-mwoauth-authorize-dialog' );
 			form.find( '.mw-htmlform-submit-buttons' ).addClass( 'mw-ui-flush-right' );
 			form.dialog( {
+				dialogClass: 'mw-mwoauth-authorize-jQuery-dialog',
 				modal: true,
 				width: 800,
 				maxHeight: 600,
-				title: mw.msg( 'mwoauth-desc' )
+				title: mw.msg( 'mwoauth-desc' ),
+				draggable: false,
+				resizable: false
 			} );
 		}
 	};

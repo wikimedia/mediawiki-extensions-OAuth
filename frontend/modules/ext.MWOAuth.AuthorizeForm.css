@@ -16,3 +16,7 @@ input.mw-mwoauth-authorize-button {
 .client-js #mw-mwoauth-authorize-dialog {
 	display: none; /* no flicker */
 }
+
+.mw-mwoauth-authorize-jQuery-dialog .ui-dialog-titlebar {
+	display: none;
+}
