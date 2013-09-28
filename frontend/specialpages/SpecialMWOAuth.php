@@ -80,9 +80,26 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				case 'token':
 					$oauthServer = MWOAuthUtils::newMWOAuthServer();
 					$oauthRequest = MWOAuthRequest::fromRequest( $request );
+
+					$isRsa = $oauthRequest->get_parameter( "oauth_signature_method" ) === 'RSA-SHA1';
+
+					// We want to use HTTPS when returning the credentials. But
+					// for RSA we don't need to return a token secret, so HTTP is ok.
+					if ( !$isRsa && $request->detectProtocol() == 'http'
+						&& substr( wfExpandUrl( '/', PROTO_HTTPS ), 0, 8 ) === 'https://'
+					) {
+						$redirUrl = str_replace( 'http://', 'https://', $request->getFullRequestURL() );
+						$this->getOutput()->redirect( $redirUrl );
+						break;
+					}
+
 					$consumerKey = $oauthRequest->get_parameter( 'oauth_consumer_key' );
 					wfDebugLog( 'OAuth', "/token: '{$consumerKey}' getting temporary credentials" );
 					$token = $oauthServer->fetch_access_token( $oauthRequest );
+					if ( $isRsa ) {
+						// RSA doesn't use the token secret, so don't return one.
+						$token->secret = '__unused__';
+					}
 					$this->returnToken( $token, $format );
 					break;
 				case 'verified':
