@@ -350,6 +350,7 @@ Defined grants (grant name refers: blockusers, createeditmovepage, ...):
 Used as text for the link which points to [[Special:MWOAuthManageMyGrants]].
 
 Preceded by the label {{msg-mw|Mwoauth-prefs-managegrants}}.',
+	'mwoauth-consumer-allwikis' => 'Description of scope of consumer access when the scope is all wiki projects on the site',
 	'mwoauth-consumer-key' => 'Used as label for the "Consumer key" input box.
 {{Identical|Consumer key}}',
 	'mwoauth-consumer-name' => 'Used as label for the "Application name" input box.
@@ -612,9 +613,15 @@ Followed by a link with the link text {{msg-mw|Mwoauthmanagemygrants-showlist}}.
 {{Identical|Description}}',
 	'mwoauthmanagemygrants-wiki' => 'Used as table row header.
 {{Identical|Applicable wiki}}',
+	'mwoauthmanagemygrants-wikiallowed' => 'Used as field label',
+	'mwoauthmanagemygrants-grants' => 'Used as field label',
+	'mwoauthmanagemygrants-grantsallowed' => 'Used as field label',
+	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Used as field label',
 	'mwoauthmanagemygrants-consumerkey' => 'Used as table row header.
 {{Identical|Consumer key}}',
 	'mwoauthmanagemygrants-review' => 'Used as link text.',
+	'mwoauthmanagemygrants-grantaccept' => 'Used as checkbox column label',
+	'mwoauthmanagemygrants-confirm-text' => 'Explanation text for grants management form for a user',
 	'mwoauthmanagemygrants-confirm-legend' => 'Used as fieldset label',
 	'mwoauthmanagemygrants-update' => 'Used as label for the radio box.
 
@@ -631,6 +638,8 @@ Followed by the following radio boxes:
 * {{msg-mw|Mwoauthmanagemygrants-renounce}}
 {{Identical|Change status}}',
 	'mwoauthmanagemygrants-confirm-submit' => 'Used as label for the Submit button',
+	'mwoauthmanagemygrants-success-update' => 'Message shown when grants for an OAuth consumer are updated by a user',
+	'mwoauthmanagemygrants-success-renounce' => 'Message shown when grants for an OAuth consumer are totally revoked',
 	'logentry-mwoauthconsumer-propose' => '{{logentry}}',
 	'logentry-mwoauthconsumer-update' => '{{logentry}}
 * $4 - consumer key',
@@ -687,6 +696,16 @@ See also:
 * {{msg-mw|Mwoauth-form-description-allwikis}}
 * {{msg-mw|Mwoauth-form-description-onewiki}}
 * {{msg-mw|Mwoauth-form-description-allwikis-nogrants}}',
+	'mwoauth-form-description-allwikis-nogrants' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.
+
+Parameters:
+* $1 - the username
+* $2 - application name
+* $3 - application publisher
+See also:
+* {{msg-mw|Mwoauth-form-description-allwikis}}
+* {{msg-mw|Mwoauth-form-description-onewiki}}
+* {{msg-mw|Mwoauth-form-description-onewiki-nogrants}}',
 	'mwoauth-form-description-onewiki-nogrants' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.
 
 Parameters:
@@ -698,16 +717,7 @@ See also:
 * {{msg-mw|Mwoauth-form-description-allwikis}}
 * {{msg-mw|Mwoauth-form-description-onewiki}}
 * {{msg-mw|Mwoauth-form-description-onewiki-nogrants}}',
-	'mwoauth-form-description-allwikis-nogrants' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.
-
-Parameters:
-* $1 - the username
-* $2 - application name
-* $3 - application publisher
-See also:
-* {{msg-mw|Mwoauth-form-description-allwikis}}
-* {{msg-mw|Mwoauth-form-description-onewiki}}
-* {{msg-mw|Mwoauth-form-description-onewiki-nogrants}}',
+	'mwoauth-form-legal' => 'Message used for wiki-specific legal notes. Keep this blank.',
 	'mwoauth-form-privacypolicy-link' => '{{doc-important|Do not translate <code><nowiki>{{ns:Project}}:Privacy policy</nowiki></code> part.}}',
 	'mwoauth-form-button-approve' => 'Button label, indicating the user wants to allow access.
 
@@ -745,6 +755,7 @@ See also:
 * {{msg-mw|Mwoauth-grant-viewdeleted}}
 * {{msg-mw|Mwoauth-grant-viewmywatchlist}}',
 	'mwoauth-grants-nogrants' => 'Warning message that the OAuth consumer has not requested any permissions',
+	'mwoauth-acceptance-cancelled' => 'Message shown when an OAuth authorization request is declined',
 	'mwoauth-grant-group-page-interaction' => '{{Related|Mwoauth-grant-group}}',
 	'mwoauth-grant-group-file-interaction' => '{{Related|Mwoauth-grant-group}}',
 	'mwoauth-grant-group-watchlist-interaction' => '{{Related|Mwoauth-grant-group}}',
@@ -757,7 +768,7 @@ See also:
 	'mwoauth-grant-blockusers' => 'Name for OAuth grant "blockusers".
 {{Related|Mwoauth-grant}}
 {{Identical|Block user}}',
-	'mwoauth-grant-createeditmovepage' => 'Name for OAuth grant "createaccount".
+	'mwoauth-grant-createaccount' => 'Name for OAuth grant "createaccount".
 {{Related|Mwoauth-grant}}',
 	'mwoauth-grant-createeditmovepage' => 'Name for OAuth grant "createeditmovepage".
 {{Related|Mwoauth-grant}}',
@@ -819,19 +830,6 @@ See also:
 	'action-mwoauthproposeconsumer' => '{{Doc-action|mwoauthproposeconsumer}}',
 	'action-mwoauthupdateownconsumer' => '{{Doc-action|mwoauthupdateownconsumer}}',
 	'action-mwoauthviewsuppressed' => '{{Doc-action|mwoauthviewsuppressed}}',
-	'mwoauth-consumer-allwikis' => 'Description of scope of consumer access when the scope is all wiki projects on the site',
-	'mwoauthmanagemygrants-wikiallowed' => 'Used as field label',
-	'mwoauthmanagemygrants-grants' => 'Used as field label',
-	'mwoauthmanagemygrants-grantsallowed' => 'Used as field label',
-	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Used as field label',
-	'mwoauthmanagemygrants-grantaccept' => 'Used as checkbox column label',
-	'mwoauthmanagemygrants-success-update' => 'Message shown when grants for an OAuth consumer are updated by a user',
-	'mwoauthmanagemygrants-success-renounce' => 'Message shown when grants for an OAuth consumer are totally revoked',
-	'mwoauthmanagemygrants-confirm-text' => 'Explanation text for grants management form for a user',
-	'mwoauth-form-legal' => 'Message used for wiki-specific legal notes. Keep this blank.',
-	'mwoauth-acceptance-cancelled' => 'Message shown when an OAuth authorization request is declined',
-	'mwoauth-grant-createaccount' => 'Name for OAuth grant "createaccount".
-{{Related|Mwoauth-grant}}',
 );
 
 /** Asturian (asturianu)
@@ -1351,6 +1349,7 @@ $5",
 	'mwoauth-grant-group-administration' => 'Administrative Aktionen ausführen',
 	'mwoauth-grant-group-other' => 'Verschiedene Aktivitäten',
 	'mwoauth-grant-blockusers' => 'Benutzer sperren',
+	'mwoauth-grant-createaccount' => 'Benutzerkonten erstellen',
 	'mwoauth-grant-createeditmovepage' => 'Seiten erstellen, bearbeiten und verschieben',
 	'mwoauth-grant-delete' => 'Seiten, Versionen und Logbucheinträge löschen',
 	'mwoauth-grant-editinterface' => 'MediaWiki-Namensraum und Benutzer-CSS/JS bearbeiten',
@@ -1416,12 +1415,24 @@ Note that if you authorised a consumer to only have access to a subset of wikis 
 
 /** Spanish (español)
  * @author Fitoschido
+ * @author Ovruni
  */
 $messages['es'] = array(
 	'mwoauth-verified' => "La aplicación ahora puede acceder a MediaWiki en tu nombre.
 
 Para completar el proceso, proporciona este valor de comprobación a la aplcación: '''$1'''",
 	'mwoauth-invalid-field-generic' => 'Se ha proporcionado un valor no válido',
+	'mwoauth-consumer-allwikis' => 'Todos los proyectos en este sitio',
+	'mwoauthmanagemygrants-review' => 'administrar el acceso',
+	'mwoauthmanagemygrants-grantaccept' => 'Concedido',
+	'mwoauthmanagemygrants-update' => 'Actualizar permisos',
+	'mwoauthmanagemygrants-renounce' => 'No autorizado',
+	'mwoauth-form-button-approve' => 'Permitir',
+	'mwoauth-form-button-cancel' => 'Cancelar',
+	'mwoauth-grant-group-page-interaction' => 'Interactuar con páginas',
+	'mwoauth-grant-group-email' => 'Enviar correo electrónico',
+	'mwoauth-grant-createaccount' => 'Crear cuentas',
+	'mwoauth-grant-sendemail' => 'Enviar un correo electrónico a otros usuarios',
 	'mwoauth-oauth-exception' => 'Ha ocurrido un error en el protocolo OAuth: $1',
 );
 
@@ -1665,6 +1676,7 @@ $5",
 	'mwoauth-grant-group-administration' => 'Effectuer des actions administratives',
 	'mwoauth-grant-group-other' => 'Activités diverses',
 	'mwoauth-grant-blockusers' => 'Bloquer les utilisateurs',
+	'mwoauth-grant-createaccount' => 'Créer des comptes',
 	'mwoauth-grant-createeditmovepage' => 'Créer, modifier et renommer des pages',
 	'mwoauth-grant-delete' => 'Supprimer les pages, les révisions et les entrées du journal',
 	'mwoauth-grant-editinterface' => 'Modifier le CSS et le JS de l’espace de nommage MédiaWiki et de l’utilisateur',
@@ -1757,7 +1769,7 @@ Para completar o proceso, achegue este valor de verificación á aplicación: ''
 	'mwoauthconsumerregistration-propose' => 'Propoñer un novo consumidor',
 	'mwoauthconsumerregistration-list' => 'A miña lista de consumidores',
 	'mwoauthconsumerregistration-main' => 'Principal',
-	'mwoauthconsumerregistration-propose-text' => 'Utilice o formulario inferior para propoñer un novo consumidor OAuth (véxase http://oauth.net).
+	'mwoauthconsumerregistration-propose-text' => 'Os desenvolvedores deben utilizar o formulario inferior para propoñer un novo consumidor OAuth (véxase a [//www.mediawiki.org/wiki/Extension:OAuth documentación da extensión] para atopar máis detalles). Despois de enviar este formulario, recibirá un pase que a súa aplicación usará para identificarse en MediaWiki. Un administrador de OAuth terá que aprobar a súa aplicación antes de poder ser autorizada por outros usuarios.
 
 Algunhas recomendacións e observacións:
 * Intente utilizar as menos concesións posibles. Evite as concesións que non sexan realmente necesarias agora.
@@ -1765,13 +1777,17 @@ Algunhas recomendacións e observacións:
 * Achegue unha clave RSA pública (en formato PEM) se fose posible; en caso contrario, haberá que utilizar un pase secreto (menos seguro).
 * Utilice o campo de restricións JSON para limitar o acceso deste consumidor aos enderezos IP neses rangos CIDR.
 * Pode empregar un ID de wiki para restrinxir o consumidor a un único wiki neste sitio (utilice "*" para todos os wikis).
-* O enderezo de correo electrónico achegado debe coincidir co da súa conta (que debeu ser confirmado).', # Fuzzy
+* O enderezo de correo electrónico achegado debe coincidir co da súa conta (que debeu ser confirmado).',
 	'mwoauthconsumerregistration-update-text' => 'Utilice o formulario inferior para actualizar aspectos dun consumidor OAuth que controle.
 
 Todos os valores que haxa aquí sobrescribirán os anteriores. Non deixe campos en branco a menos que queira limpar eses valores.',
-	'mwoauthconsumerregistration-maintext' => 'Esta páxina está destinada a propoñer e actualizar aplicacións de consumidor OAuth (véxase http://oauth.net) no rexistro do sitio.
+	'mwoauthconsumerregistration-maintext' => 'Esta páxina está destinada a que os desenvolvedores propoñan e actualicen aplicacións de consumidores OAuth no rexistro do sitio.
 
-Desde aquí, pode [[Special:MWOAuthConsumerRegistration/propose|propoñer un novo consumidor]] ou [[Special:MWOAuthConsumerRegistration/list|administrar os consumidores existentes]].', # Fuzzy
+Desde aquí, pode:
+* [[Special:MWOAuthConsumerRegistration/propose|Solicitar un pase para un novo consumidor]].
+* [[Special:MWOAuthConsumerRegistration/list|Administrar os consumidores existentes]].
+
+Para obter máis información sobre OAuth, consulte a [//www.mediawiki.org/wiki/Extension:OAuth documentación da extensión].',
 	'mwoauthconsumerregistration-propose-legend' => 'Nova aplicación de consumidores OAuth',
 	'mwoauthconsumerregistration-update-legend' => 'Actualizar a aplicación de consumidores OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Propoñer o consumidor',
@@ -1850,9 +1866,11 @@ Asignóuselle o pase de consumidor '''$1''' e o pase secreto '''$2'''. ''Garde e
 	'mwoauthmanagemygrants-consumerkey' => 'Clave do consumidor',
 	'mwoauthmanagemygrants-review' => 'administrar o acceso',
 	'mwoauthmanagemygrants-grantaccept' => 'Concedido',
-	'mwoauthmanagemygrants-confirm-text' => 'Utilice o formulario inferior para revogar o acceso ou cambiar as concesións dun consumidor OAuth para que actúe no seu nome.
-
-Teña en conta que se autoriza que un consumidor só teña acceso a un subconxunto de wikis (proxectos de sitio), entón haberá múltiples pases de acceso para ese consumidor.', # Fuzzy
+	'mwoauthmanagemygrants-confirm-text' => 'Utilice o formulario inferior para revogar o acceso ou cambiar as concesións dun consumidor OAuth para que actúe no seu nome. Algúns apuntamentos:
+* Este formulario controla un "pase", ou clave, de acceso particular que permite a un consumidor acceder á súa conta.
+* Se autorizou por separado que un consumidor teña acceso a diferentes proxectos no seu nome, entón terá múltiples pases de acceso para ese consumidor.
+* Se quere revogar o acceso do consumidor, asegúrese de revogar todos os pases de acceso para todas as versións dese consumidor que aceptou.
+* Ao poñer "*" no campo do wiki concédese acceso a todos os proxectos deste sitio; ao usar un ID de proxecto limítase o acceso a un único proxecto.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Administrar o pase de acceso do consumidor',
 	'mwoauthmanagemygrants-update' => 'Actualizar as concesións',
 	'mwoauthmanagemygrants-renounce' => 'Desautorizar',
@@ -1899,6 +1917,12 @@ $4",
 
 
 $5",
+	'mwoauth-form-description-allwikis-nogrants' => "Boas $1:
+
+'''$2''' quere ter un acceso básico no seu nome en todos os proxectos deste sitio.",
+	'mwoauth-form-description-onewiki-nogrants' => "Boas $1:
+
+'''$2''' quere ter un acceso básico no seu nome en ''$4''.",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Política de protección de datos]]',
 	'mwoauth-form-button-approve' => 'Permitir',
 	'mwoauth-form-button-cancel' => 'Cancelar',
@@ -1916,6 +1940,7 @@ $5",
 	'mwoauth-grant-group-administration' => 'Realizar accións administrativas',
 	'mwoauth-grant-group-other' => 'Outras actividades',
 	'mwoauth-grant-blockusers' => 'Bloquear usuarios',
+	'mwoauth-grant-createaccount' => 'Crear contas',
 	'mwoauth-grant-createeditmovepage' => 'Crear, editar e mover páxinas',
 	'mwoauth-grant-delete' => 'Borrar páxinas, revisións e entradas de rexistro',
 	'mwoauth-grant-editinterface' => 'Editar o espazo de nomes MediaWiki e o CSS/JS de usuario',
@@ -2231,21 +2256,25 @@ Per completare il processo, inserisci questo valore per la verifica nel'applicaz
 	'mwoauthconsumerregistration-propose' => 'Proponi nuovo cliente',
 	'mwoauthconsumerregistration-list' => 'Miei clienti',
 	'mwoauthconsumerregistration-main' => 'Principale',
-	'mwoauthconsumerregistration-propose-text' => 'Usa il seguente modulo per proporre un nuovo cliente OAuth (vedi http://oauth.net).
+	'mwoauthconsumerregistration-propose-text' => "Gli sviluppatori dovrebbero usare il seguente modulo per proporre un nuovo cliente OAuth (vedi la [//www.mediawiki.org/wiki/Extension:OAuth documentazione dell'estensione] per ulteriori dettagli). Dopo l'invio di questo modulo, riceverai un token che l'applicazione utilizzerà per identificarsi in MediaWiki. Un amministratore di OAuth dovrà approvare l'applicazione prima che questa potrà essere autorizzata da altri utenti.
 
 Alcune raccomandazioni e osservazioni:
 * cerca di utilizzare meno assegnazioni possibili. Cerca di evitare di assegnare diritti che non sono realmente necessari ora
-* le versioni sono nella forma "major.minor.release" (gli ultimi due sono opzionali) ed aumentala nel caso siano necessarie ulteriori assegnazioni di diritti
+* le versioni sono nella forma \"major.minor.release\" (gli ultimi due sono opzionali) ed aumentala nel caso siano necessarie ulteriori assegnazioni di diritti
 * fornisce una chiave RSA pubblica (in formato PEM) se possibile; altrimenti dovrà essere utilizzato un token segreto (meno sicuro)
-* utilizza il campo di restrizioni JSON per limitare l\'accesso di questo cliente da indirizzi IP in tali intervalli CIDR
-* è possibile utilizzare un ID wiki per limitare il cliente ad un singolo wiki su questo sito (usa "*" per tutti gli wiki)
-* l\'indirizzo email fornito deve corrispondere a quello della tua utenza (che deve essere confermato).', # Fuzzy
+* utilizza il campo di restrizioni JSON per limitare l'accesso di questo cliente da indirizzi IP in tali intervalli CIDR
+* è possibile utilizzare un ID wiki per limitare il cliente ad un singolo wiki su questo sito (usa \"*\" per tutti gli wiki)
+* l'indirizzo email fornito deve corrispondere a quello della tua utenza (che deve essere confermato).",
 	'mwoauthconsumerregistration-update-text' => 'Utilizza il modulo qui sotto per aggiornare gli aspetti di un cliente OAuth che controlli.
 
 I valori qui sovrascriveranno tutti quelli precedenti. Non lasciarli in bianco se non hai intenzione di cancellare quei valori.',
-	'mwoauthconsumerregistration-maintext' => "Questa pagina è usata per la proposta e l'aggiornamento delle applicazioni OAuth (vedi http://oauth.net) registrate in questo sito.
+	'mwoauthconsumerregistration-maintext' => "Questa pagina è per consentire agli sviluppatori di proporre e l'aggiornare le applicazioni OAuth registrate in questo sito.
 
-Da qui, è possibile [[Special:MWOAuthConsumerRegistration/propose|proporre un nuovo cliente]] o [[Special:MWOAuthConsumerRegistration/list|gestisci i tuoi clienti esistenti]].", # Fuzzy
+Da qui, è possibile:
+* [[Special:MWOAuthConsumerRegistration/propose|richiedere un token per un nuovo cliente]]
+* [[Special:MWOAuthConsumerRegistration/list|gestire i tuoi clienti esistenti]].
+
+Per ulteriori informazioni su OAuth, vedi la [//www.mediawiki.org/wiki/Extension:OAuth documentazione dell'estensione].",
 	'mwoauthconsumerregistration-propose-legend' => 'Nuova applicazione cliente OAuth',
 	'mwoauthconsumerregistration-update-legend' => 'Aggiorna applicazione cliente OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Proponi cliente',
@@ -2324,9 +2353,11 @@ Ti è stato assegnato il token cliente '''$1''' e il token segreto '''$2'''. ''R
 	'mwoauthmanagemygrants-consumerkey' => 'Chiave cliente',
 	'mwoauthmanagemygrants-review' => 'gestisci accesso',
 	'mwoauthmanagemygrants-grantaccept' => 'Assegnazioni',
-	'mwoauthmanagemygrants-confirm-text' => "Usa il seguente modulo per revocare o modificare l'accesso ad un cliente OAuth di agire per vostro conto.
-
-Nota che se hai autorizzato un cliente ad avere accesso solo a un sottoinsieme di wiki (siti di progetto), allora ci saranno token di accesso multipli per quel cliente.", # Fuzzy
+	'mwoauthmanagemygrants-confirm-text' => 'Usa il seguente modulo per revocare o modificare l\'accesso ad un cliente OAuth di agire per vostro conto. Alcune note:
+* questo modulo controlla un particolare "token" di accesso, o chiave, che consente al cliente di accedere alla tua utenza
+* se hai autorizzato separatamente un cliente ad accedere ai diversi progetti per vostro conto, allora si avrà più token di accesso per quel cliente
+* se vuoi revocare l\'accesso al cliente, assicurati di revocare tutti i token di accesso per tutte le versioni di quel cliente che hai accettato
+* usando "*" nel campo wiki si garantisce l\'accesso a tutti i progetti su questo sito; utilizzando un  ID di progetto wiki si limita l\'accesso a un singolo progetto.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Gestione token di accesso del cliente',
 	'mwoauthmanagemygrants-update' => 'Aggiorna le assegnazioni',
 	'mwoauthmanagemygrants-renounce' => "Rimuovi l'autorizzazione",
@@ -2372,6 +2403,12 @@ $4",
 
 
 $5",
+	'mwoauth-form-description-allwikis-nogrants' => "Ciao $1,
+
+'''$2''' vorrebbe avere l'accesso di base per tuo conto su tutti i progetti di questo sito.",
+	'mwoauth-form-description-onewiki-nogrants' => "Ciao $1,
+
+'''$2''' vorrebbe avere l'accesso di base per tuo conto su ''$4''.",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Politica relativa alla privacy]]',
 	'mwoauth-form-button-approve' => 'Consenti',
 	'mwoauth-form-button-cancel' => 'Annulla',
@@ -2389,6 +2426,7 @@ $5",
 	'mwoauth-grant-group-administration' => 'Esegue azioni adminstrative',
 	'mwoauth-grant-group-other' => 'Attività varie',
 	'mwoauth-grant-blockusers' => 'Blocca utenti',
+	'mwoauth-grant-createaccount' => "Crea un'utenza",
 	'mwoauth-grant-createeditmovepage' => 'Crea, modifica e sposta le pagine',
 	'mwoauth-grant-delete' => 'Cancella pagine, versioni, e voci di registro',
 	'mwoauth-grant-editinterface' => 'Modifica il namespace MediaWiki e i file CSS/JS di altri utenti',
@@ -2532,6 +2570,7 @@ $messages['ja'] = array(
 	'mwoauth-grant-group-customization' => 'カスタマイズと個人設定',
 	'mwoauth-grant-group-other' => 'その他の活動',
 	'mwoauth-grant-blockusers' => '利用者をブロック',
+	'mwoauth-grant-createaccount' => 'アカウントを作成',
 	'mwoauth-grant-createeditmovepage' => 'ページを作成/編集/移動',
 	'mwoauth-grant-delete' => 'ページ、版、記録項目を削除',
 	'mwoauth-grant-editinterface' => 'MediaWiki 名前空間および利用者 CSS/JavaScript を編集',
@@ -2806,6 +2845,7 @@ $messages['lb'] = array(
 	'mwoauthmanagemygrants-description' => 'Beschreiwung',
 	'mwoauthmanagemygrants-wiki' => 'Applicabel Wiki',
 	'mwoauthmanagemygrants-grantaccept' => 'Accordéiert',
+	'mwoauthmanagemygrants-update' => 'Rechter aktualiséieren',
 	'mwoauthmanagemygrants-renounce' => 'Autorisatioun ewechhuelen',
 	'mwoauthmanagemygrants-action' => 'Status änneren:',
 	'mwoauthserver-invalid-user-hookabort' => 'Dëse Benotzer däerf OAuth net benotzen.',
@@ -2822,6 +2862,7 @@ $messages['lb'] = array(
 	'mwoauth-grant-group-customization' => 'Upassungen an Astellungen',
 	'mwoauth-grant-group-other' => 'Verschidden Aktivitéiten',
 	'mwoauth-grant-blockusers' => 'Benotzer spären',
+	'mwoauth-grant-createaccount' => 'Benotzerkonten opmaachen',
 	'mwoauth-grant-editinterface' => 'MediaWiki-Nummraum a Benotzer CSS/JS änneren',
 	'mwoauth-grant-editmycssjs' => 'Ären eegene Benotzer CSS/JS änneren',
 	'mwoauth-grant-editmywatchlist' => 'Ännert Är Iwwerwaachungslëscht',
@@ -3060,6 +3101,7 @@ $5",
 	'mwoauth-grant-group-administration' => 'Вршење на административни дејства',
 	'mwoauth-grant-group-other' => 'Разни активности',
 	'mwoauth-grant-blockusers' => 'Блокирање корисници',
+	'mwoauth-grant-createaccount' => 'Направи сметки',
 	'mwoauth-grant-createeditmovepage' => 'Создавање, измена и преместување на страници',
 	'mwoauth-grant-delete' => 'Бришење на страници, ревизии и дневнички записи',
 	'mwoauth-grant-editinterface' => 'Измена на именскиот простор „МедијаВики“ и кориснички CSS/JS',
@@ -3097,10 +3139,12 @@ $5",
 /** Malayalam (മലയാളം)
  * @author Kavya Manohar
  * @author Raghith
+ * @author Santhosh.thottingal
  */
 $messages['ml'] = array(
 	'mwoauthmanagemygrants-user' => 'പ്രസാധക(ൻ)',
-	'mwoauth-grant-sendemail' => 'ഇമെയിൽ അയയ്ക്കുക',
+	'mwoauth-form-button-cancel' => 'റദ്ദാക്കുക',
+	'mwoauth-grant-sendemail' => 'ഇമെയിൽ അയയ്ക്കുക', # Fuzzy
 );
 
 /** Marathi (मराठी)
@@ -3423,7 +3467,9 @@ $messages['pt'] = array(
  * @author Luckas
  */
 $messages['pt-br'] = array(
-	'mwoauth-form-button-approve' => 'Sim, permitir',
+	'mwoauth-form-button-approve' => 'Permitir',
+	'mwoauth-form-button-cancel' => 'Cancelar',
+	'mwoauth-grant-createaccount' => 'Criar contas',
 );
 
 /** tarandíne (tarandíne)
@@ -3789,6 +3835,7 @@ $5',
 	'mwoauth-grant-group-administration' => 'Виконати адміністративні дії',
 	'mwoauth-grant-group-other' => 'Різна діяльність',
 	'mwoauth-grant-blockusers' => 'Блокування користувачів',
+	'mwoauth-grant-createaccount' => 'Створити облікові записи',
 	'mwoauth-grant-createeditmovepage' => 'Створення, редагування і переміщення сторінок',
 	'mwoauth-grant-delete' => 'Видалення сторінок, версій і записів журналу',
 	'mwoauth-grant-editinterface' => 'Редагування простору імен Медіавікі та користувача CSS/JS',
@@ -3970,15 +4017,18 @@ $messages['yi'] = array(
  * @author Shirayuki
  */
 $messages['zh-hans'] = array(
+	'mwoauth-consumer-allwikis' => '本站的所有项目',
 	'mwoauth-consumer-reason' => '原因：',
 	'mwoauthconsumerregistration-description' => '说明',
 	'mwoauthconsumerregistration-stage' => '状态',
 	'mwoauthmanageconsumers-reason' => '原因：',
 	'mwoauthmanagemygrants-review' => '管理访问',
 	'mwoauthmanagemygrants-grantaccept' => '授权',
+	'mwoauthmanagemygrants-update' => '更新补助',
 	'mwoauthmanagemygrants-renounce' => '取消授权',
 	'mwoauth-form-button-approve' => '允许',
 	'mwoauth-form-button-cancel' => '取消',
 	'mwoauth-grant-group-email' => '发送电邮',
+	'mwoauth-grant-createaccount' => '注册账户',
 	'mwoauth-grant-rollback' => '回退更改到页',
 );
