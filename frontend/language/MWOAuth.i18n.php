@@ -3550,6 +3550,8 @@ $messages['sv'] = array(
 	'mwoauth-consumer-restrictions-json' => 'Användningsbegränsningar (JSON):',
 	'mwoauth-consumer-rsakey' => 'Offentlig RSA-nyckel:',
 	'mwoauth-consumer-reason' => 'Orsak:',
+	'mwoauth-consumer-email-unconfirmed' => 'Din e-postadress till kontot har ännu inte bekräftats.',
+	'mwoauth-consumer-email-mismatched' => 'Den angivna e-postadressen måste matcha den som är kopplad till ditt konto.',
 	'mwoauth-consumer-stage-proposed' => 'föreslagna',
 	'mwoauth-consumer-stage-rejected' => 'avvisade',
 	'mwoauth-consumer-stage-expired' => 'utgångna',
@@ -3591,8 +3593,14 @@ $messages['sv'] = array(
 	'mwoauthmanagemygrants-action' => 'Ändra status:',
 	'mwoauthserver-insufficient-rights' => 'Du har inte tillräcklig behörighet för att utföra denna åtgärd.',
 	'mwoauth-form-button-approve' => 'Tillåt',
+	'mwoauth-grant-createaccount' => 'Skapa konton',
 	'mwoauth-grant-createeditmovepage' => 'Skapa, redigera och flytta sidor',
+	'mwoauth-grant-delete' => 'Ta bort sidor, revideringar och loggposter',
+	'mwoauth-grant-editinterface' => 'Redigera MediaWiki-namnrymden och CSS/JS för användaren',
+	'mwoauth-grant-editmycssjs' => 'Redigera din CSS/JS för din egen användare',
+	'mwoauth-grant-editmywatchlist' => 'Redigera din bevakningslista',
 	'mwoauth-grant-editpage' => 'Redigera befintliga sidor',
+	'mwoauth-grant-editprotected' => 'Redigera skyddade sidor',
 	'mwoauth-grant-uploadeditmovefile' => 'Ladda upp, byt och flytta filer',
 	'mwoauth-grant-uploadfile' => 'Ladda upp nya filer',
 );
@@ -4013,15 +4021,29 @@ $messages['yi'] = array(
 );
 
 /** Simplified Chinese (中文（简体）‎)
+ * @author Hzy980512
  * @author Liuxinyu970226
  * @author Shirayuki
  */
 $messages['zh-hans'] = array(
+	'mwoauth-invalid-field-generic' => '提供的值无效',
+	'mwoauth-field-hidden' => '（这些信息已被隐藏）',
+	'mwoauth-field-private' => '（这些信息不是公开的）',
 	'mwoauth-consumer-allwikis' => '本站的所有项目',
 	'mwoauth-consumer-reason' => '原因：',
 	'mwoauthconsumerregistration-description' => '说明',
 	'mwoauthconsumerregistration-stage' => '状态',
+	'mwoauthmanageconsumers-action' => '更改状态：',
+	'mwoauthmanageconsumers-approve' => '已批准',
+	'mwoauthmanageconsumers-reject' => '已回绝',
+	'mwoauthmanageconsumers-rsuppress' => '已回绝并禁止',
+	'mwoauthmanageconsumers-disable' => '已禁用',
+	'mwoauthmanageconsumers-dsuppress' => '已禁用并禁止',
+	'mwoauthmanageconsumers-reenable' => '已批准',
 	'mwoauthmanageconsumers-reason' => '原因：',
+	'mwoauthmanageconsumers-success-approved' => '请求已批准。',
+	'mwoauthmanageconsumers-success-rejected' => '请求已被拒绝。',
+	'mwoauthmanagemygrants-description' => '描述',
 	'mwoauthmanagemygrants-review' => '管理访问',
 	'mwoauthmanagemygrants-grantaccept' => '授权',
 	'mwoauthmanagemygrants-update' => '更新补助',
@@ -4030,5 +4052,15 @@ $messages['zh-hans'] = array(
 	'mwoauth-form-button-cancel' => '取消',
 	'mwoauth-grant-group-email' => '发送电邮',
 	'mwoauth-grant-createaccount' => '注册账户',
+	'mwoauth-grant-editpage' => '编辑存在的页面',
+	'mwoauth-grant-editprotected' => '编辑受保护页面',
+	'mwoauth-grant-protect' => '保护页面和取消页面保护',
 	'mwoauth-grant-rollback' => '回退更改到页',
+	'mwoauth-grant-sendemail' => '给其他用户发送电子邮件',
+	'mwoauth-grant-uploadeditmovefile' => '上传，替换和移动文件',
+	'mwoauth-grant-uploadfile' => '上传新文件',
+	'mwoauth-grant-useoauth' => '基本权限',
+	'mwoauth-grant-viewdeleted' => '查看已删除信息',
+	'mwoauth-grant-viewmywatchlist' => '查看您的监视列表',
+	'mwoauth-oauth-exception' => 'OAuth 协议发生错误：$1',
 );
