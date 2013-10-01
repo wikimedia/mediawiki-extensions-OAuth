@@ -37,19 +37,21 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	public function execute( $par ) {
 		global $wgMWOAuthSecureTokenTransfer;
 
+		$request = $this->getRequest();
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
 
 		// Redirect to HTTPs if attempting to access this page via HTTP.
 		// Proposals and updates to consumers can involve sending new secrets.
-		if ( $wgMWOAuthSecureTokenTransfer && WebRequest::detectProtocol() !== 'https' ) {
-			$url = $this->getFullTitle()->getFullURL( array(), false, PROTO_HTTPS );
-			if ( substr( $url, 0, 8 ) === 'https://' ) {
-				$this->getOutput()->redirect( $url );
-				return;
-			}
-			throw new MWException( 'Cannot redirect to HTTPs; $wgServer is not protocol relative' );
+		if ( $wgMWOAuthSecureTokenTransfer
+			&& $request->detectProtocol() == 'http'
+			&& substr( wfExpandUrl( '/', PROTO_HTTPS ), 0, 8 ) === 'https://'
+		) {
+			$redirUrl = str_replace( 'http://', 'https://', $request->getFullRequestURL() );
+			$this->getOutput()->redirect( $redirUrl );
+			$this->getOutput()->addVaryHeader( 'X-Forwarded-Proto' );
+			return;
 		}
 
 		$this->setHeaders();

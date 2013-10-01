@@ -27,6 +27,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	}
 
 	public function execute( $subpage ) {
+		global $wgMWOAuthSecureTokenTransfer;
+
 		$this->setHeaders();
 
 		$user = $this->getUser();
@@ -85,11 +87,13 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 
 					// We want to use HTTPS when returning the credentials. But
 					// for RSA we don't need to return a token secret, so HTTP is ok.
-					if ( !$isRsa && $request->detectProtocol() == 'http'
+					if ( $wgMWOAuthSecureTokenTransfer && !$isRsa
+						&& $request->detectProtocol() == 'http'
 						&& substr( wfExpandUrl( '/', PROTO_HTTPS ), 0, 8 ) === 'https://'
 					) {
 						$redirUrl = str_replace( 'http://', 'https://', $request->getFullRequestURL() );
 						$this->getOutput()->redirect( $redirUrl );
+						$this->getOutput()->addVaryHeader( 'X-Forwarded-Proto' );
 						break;
 					}
 
