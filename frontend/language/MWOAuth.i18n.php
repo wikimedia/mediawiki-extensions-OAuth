@@ -3171,6 +3171,21 @@ $messages['mr'] = array(
 	'mwoauth-grant-viewmywatchlist' => 'आपली निरीक्षणसूची बघा',
 );
 
+/** Malay (Bahasa Melayu)
+ * @author Anakmalaysia
+ */
+$messages['ms'] = array(
+	'mwoauth-desc' => 'Kelulusan OAuth 1.0a API',
+	'mwoauth-verified' => "Aplikasi ini kini dibenarkan untuk mengakses MediaWiki bagi pihak anda.
+
+Untuk melengkapkan proses ini, berikan nilai penentusahan ini kepada aplikasi: '''$1'''",
+	'mwoauth-missing-field' => 'Nilai tertinggal untuk ruangan "$1"',
+	'mwoauth-invalid-field' => 'Nilai yang diberikan tidak sah untuk ruangan "$1"',
+	'mwoauth-invalid-field-generic' => 'Nilai yang diberikan tidak sah',
+	'mwoauth-field-hidden' => '(maklumat ini tersembunyi)',
+	'mwoauth-field-private' => '(maklumat ini adalah peribadi)',
+);
+
 /** Low Saxon (Netherlands) (Nedersaksies)
  * @author Servien
  */
