@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_registered_consumer (
     -- What wiki this is allowed on (a single wiki or '*' for all)
     oarc_wiki varbinary(32) NOT NULL,
     -- Grants needed for client consumers
-    arc_grants blob NOT NULL,
+    oarc_grants blob NOT NULL,
     -- Timestamp of consumer proposal
     oarc_registration varbinary(14) NOT NULL,
 
