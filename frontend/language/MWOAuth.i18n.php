@@ -251,7 +251,7 @@ $5",
 	'mwoauth-grant-group-administration' => 'Perform adminstrative actions',
 	'mwoauth-grant-group-other' => 'Miscellaneous activity',
 
-	'mwoauth-grant-blockusers' => 'Block users',
+	'mwoauth-grant-blockusers' => 'Block and unblock users',
 	'mwoauth-grant-createaccount' => 'Create accounts',
 	'mwoauth-grant-createeditmovepage' => 'Create, edit, and move pages',
 	'mwoauth-grant-delete' => 'Delete pages, revisions, and log entries',
@@ -766,8 +766,7 @@ See also:
 	'mwoauth-grant-group-administration' => '{{Related|Mwoauth-grant-group}}',
 	'mwoauth-grant-group-other' => '{{Related|Mwoauth-grant-group}}',
 	'mwoauth-grant-blockusers' => 'Name for OAuth grant "blockusers".
-{{Related|Mwoauth-grant}}
-{{Identical|Block user}}',
+{{Related|Mwoauth-grant}}',
 	'mwoauth-grant-createaccount' => 'Name for OAuth grant "createaccount".
 {{Related|Mwoauth-grant}}',
 	'mwoauth-grant-createeditmovepage' => 'Name for OAuth grant "createeditmovepage".
