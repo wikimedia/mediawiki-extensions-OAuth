@@ -3523,6 +3523,57 @@ $messages['sk'] = array(
 	'mwoauth-grant-group-email' => 'Poslať email',
 );
 
+/** Slovenian (slovenščina)
+ * @author Eleassar
+ */
+$messages['sl'] = array(
+	'mwoauth-consumer-allwikis' => 'Vsi projekti na tem spletišču',
+	'mwoauthmanagemygrants-review' => 'upravljaj z dostopom',
+	'mwoauthmanagemygrants-grantaccept' => 'Donirano',
+	'mwoauthmanagemygrants-confirm-text' => 'Za preklic dostopa ali spremembo pravic uporabnika OAuth za delovanje v vašem imenu uporabite spodnji obrazec. Nekaj opomb:
+* Ta obrazec vsebuje poseben dostopovni »žeton« oz. ključ, ki uporabniku omogoča dostop do vašega računa.
+* Če ste uporabnika ločeno pooblastili za dostop v vašem imenu do različnih projektov, boste zanj imeli več dostopovnih žetonov.
+* Če želite za uporabnika preklicati dostop, poskrbite, da boste preklicali vse dostopovne žetone za vse različice za tega uporabnika, ki ste jih prejeli.
+* Z uporabo znaka »*« v polju wiki omogočite dostop do vseh projektov tega spletišča; z uporabo ID wikiprojekta omejite dostop na posamezen projekt.',
+	'mwoauthmanagemygrants-update' => 'Posodobitev donacij',
+	'mwoauthmanagemygrants-renounce' => 'Deavtoriziraj',
+	'mwoauth-form-description-allwikis' => "Pozdravljeni, $1
+
+'''$2''' bi v vašem imenu v vseh projektih tega spletišča rad izvedel naslednje dejanje:
+
+
+$4",
+	'mwoauth-form-description-onewiki' => "Pozdravljeni, $1,
+
+'''$2''' bi v vašem imenu v projektu »$4« rad izvedel naslednje dejanje:
+
+
+$4", # Fuzzy
+	'mwoauth-form-description-allwikis-nogrants' => "Pozdravljeni, $1,
+
+'''$2''' bi v vseh projektih tega spletišča rad imel osnovni dostop v vašem imenu.$2",
+	'mwoauth-form-description-onewiki-nogrants' => "Pozdravljeni, $1,
+
+'''$2''' bi v projektu ''$4'' rad imel osnovni dostop v vašem imenu.",
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Politika zasebnosti]]',
+	'mwoauth-form-button-approve' => 'Dovoli',
+	'mwoauth-form-button-cancel' => 'Prekliči',
+	'mwoauth-acceptance-cancelled' => 'To prošnjo za avtorizacijo uporabnika OAuth za delovanje v vašem imenu ste preklicali.',
+	'mwoauth-grant-group-page-interaction' => 'Interakcija s stranmi',
+	'mwoauth-grant-group-file-interaction' => 'Interakcija z mediji',
+	'mwoauth-grant-group-watchlist-interaction' => 'Interakcija z vašim spiskom nadzorov',
+	'mwoauth-grant-group-email' => 'Pošljite e-pošto',
+	'mwoauth-grant-group-high-volume' => 'Izvedi visokoštevilsko dejanje',
+	'mwoauth-grant-group-customization' => 'Prilagoditve in nastavitve',
+	'mwoauth-grant-group-administration' => 'Izvajanje administrativnih dejanj',
+	'mwoauth-grant-group-other' => 'Druga dejavnost',
+	'mwoauth-grant-createaccount' => 'Ustvarite račune',
+	'mwoauth-grant-patrol' => 'Nadzor sprememb strani',
+	'mwoauth-grant-rollback' => 'Razveljavitev sprememb strani',
+	'mwoauth-grant-sendemail' => 'Pošiljanje e-pošte drugim uporabnikom',
+	'mwoauth-oauth-exception' => 'Napaka v protokolu OAuth: $1',
+);
+
 /** Serbian (Cyrillic script) (српски (ћирилица)‎)
  * @author Milicevic01
  */
@@ -4051,6 +4102,7 @@ $messages['zh-hans'] = array(
 	'mwoauth-form-button-approve' => '允许',
 	'mwoauth-form-button-cancel' => '取消',
 	'mwoauth-grant-group-email' => '发送电邮',
+	'mwoauth-grant-group-customization' => '自定义与设置',
 	'mwoauth-grant-createaccount' => '注册账户',
 	'mwoauth-grant-editpage' => '编辑存在的页面',
 	'mwoauth-grant-editprotected' => '编辑受保护页面',
