@@ -169,6 +169,19 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
+	 * @return array
+	 */
+	public static function getAllStages() {
+		return array(
+			MWOAuthConsumer::STAGE_PROPOSED,
+			MWOAuthConsumer::STAGE_REJECTED,
+			MWOAuthConsumer::STAGE_EXPIRED,
+			MWOAuthConsumer::STAGE_APPROVED,
+			MWOAuthConsumer::STAGE_DISABLED,
+		);
+	}
+
+	/**
 	 * @param string $verifyCode verification code
 	 * @param string $requestKey original request key from /initiate
 	 * @return string the url for redirection

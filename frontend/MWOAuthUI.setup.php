@@ -48,6 +48,8 @@ class MWOAuthUISetup {
 			$wgSpecialPageGroups['MWOAuthConsumerRegistration'] = 'users';
 			$wgSpecialPages['MWOAuthManageConsumers'] = 'SpecialMWOAuthManageConsumers';
 			$wgSpecialPageGroups['MWOAuthManageConsumers'] = 'users';
+			$wgSpecialPages['MWOAuthListConsumers'] = 'SpecialMWOAuthListConsumers';
+			$wgSpecialPageGroups['MWOAuthListConsumers'] = 'users';
 
 			$wgLogTypes[] = 'mwoauthconsumer';
 			$wgLogNames['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpage';

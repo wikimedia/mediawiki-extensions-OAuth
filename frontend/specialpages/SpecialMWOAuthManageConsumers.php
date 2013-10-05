@@ -247,7 +247,17 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 				'name' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-name',
-					'default' => $cmr->get( 'name' )
+					'default' => $cmr->get( 'name', function( $s ) {
+						$link = Linker::linkKnown(
+							SpecialPage::getTitleFor( 'MWOAuthListConsumers' ),
+							wfMessage( 'mwoauthmanageconsumers-search-name' )->escaped(),
+							array(),
+							array( 'name' => $s )
+						);
+						return htmlspecialchars( $s ) . ' ' .
+							wfMessage( 'parentheses' )->rawParams( $link )->escaped();
+					} ),
+					'raw' => true
 				),
 				'version' => array(
 					'type' => 'info',
@@ -257,7 +267,18 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 				'user' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-user',
-					'default' => $cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' )
+					'default' => $cmr->get( 'userId', function( $s ) {
+						$name = MWOAuthUtils::getCentralUserNameFromId( $s );
+						$link = Linker::linkKnown(
+							$title = SpecialPage::getTitleFor( 'MWOAuthListConsumers' ),
+							wfMessage( 'mwoauthmanageconsumers-search-publisher' )->escaped(),
+							array(),
+							array( 'publisher' => $name )
+						);
+						return htmlspecialchars( $name ) . ' ' .
+							wfMessage( 'parentheses' )->rawParams( $link )->escaped();
+					} ),
+					'raw' => true
 				),
 				'description' => array(
 					'type' => 'info',

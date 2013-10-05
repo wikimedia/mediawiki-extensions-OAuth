@@ -44,6 +44,8 @@ class MWOAuthSetup {
 			"$specialsDir/SpecialMWOAuthManageConsumers.php";
 		$classes['SpecialMWOAuthManageMyGrants'] =
 			"$specialsDir/SpecialMWOAuthManageMyGrants.php";
+		$classes['SpecialMWOAuthListConsumers'] =
+			"$specialsDir/SpecialMWOAuthListConsumers.php";
 
 		# Utility functions
 		$classes['MWOAuthUtils'] = "$backendDir/MWOAuthUtils.php";
