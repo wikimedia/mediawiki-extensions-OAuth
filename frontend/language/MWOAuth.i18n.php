@@ -8,22 +8,25 @@
 
 $messages = array();
 
-/** English (English)
- */
 $messages['en'] = array(
 	'mwoauth' => 'OAuth',
 	'mwoauth-desc' => 'OAuth 1.0a API Authorization',
-	'mwoauth-verified' => "The application is now allowed to access MediaWiki on your behalf.
 
-To complete the process, provide this verification value to the application: '''$1'''",
+	'mwoauth-verified' => 'The application is now allowed to access MediaWiki on your behalf.
+
+To complete the process, provide this verification value to the application: \'\'\'$1\'\'\'',
+
 	'mwoauth-missing-field' => 'Missing value for "$1" field',
 	'mwoauth-invalid-field' => 'Invalid value provided for "$1" field',
 	'mwoauth-invalid-field-generic' => 'Invalid value provided',
+
 	'mwoauth-field-hidden' => '(this information is hidden)',
 	'mwoauth-field-private' => '(this information is private)',
+
 	'mwoauth-grant-generic' => '"$1" rights bundle',
 	'mwoauth-prefs-managegrants' => 'OAuth consumer access:',
 	'mwoauth-prefs-managegrantslink' => 'Manage grants on behalf of this account',
+
 	'mwoauth-consumer-allwikis' => 'All projects on this site',
 	'mwoauth-consumer-key' => 'Consumer key:',
 	'mwoauth-consumer-name' => 'Application name:',
@@ -53,12 +56,14 @@ To complete the process, provide this verification value to the application: '''
 	'mwoauth-invalid-consumer-key' => 'No consumer exists with the given key.',
 	'mwoauth-invalid-access-token' => 'No access token exists with the given key.',
 	'mwoauth-consumer-conflict' => 'Someone changed the attributes of this consumer as you viewed it. Please try again. You may want to check the change log.',
+
 	'mwoauth-consumer-stage-proposed' => 'proposed',
 	'mwoauth-consumer-stage-rejected' => 'rejected',
 	'mwoauth-consumer-stage-expired' => 'expired',
 	'mwoauth-consumer-stage-approved' => 'approved',
 	'mwoauth-consumer-stage-disabled' => 'disabled',
 	'mwoauth-consumer-stage-suppressed' => 'suppressed',
+
 	'mwoauthconsumerregistration' => 'OAuth consumer registration',
 	'mwoauthconsumerregistration-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthconsumerregistration-navigation' => 'Navigation:',
@@ -77,13 +82,13 @@ A few recommendations and remarks:
 	'mwoauthconsumerregistration-update-text' => 'Use the form below to update aspects of an OAuth consumer you control.
 
 All values here will overwrite any previous ones. Do not leave blank fields unless you intend to clear those values.',
-	'mwoauthconsumerregistration-maintext' => "This page is for letting developers propose and update OAuth consumer applications in this site's registry.
+	'mwoauthconsumerregistration-maintext' => 'This page is for letting developers propose and update OAuth consumer applications in this site\'s registry.
 
 From here, you can:
 * [[Special:MWOAuthConsumerRegistration/propose|Request a token for a new consumer]].
 * [[Special:MWOAuthConsumerRegistration/list|Manage your existing consumers]].
 
-For more information about OAuth, please see the [//www.mediawiki.org/wiki/Extension:OAuth extension documentation].",
+For more information about OAuth, please see the [//www.mediawiki.org/wiki/Extension:OAuth extension documentation].',
 	'mwoauthconsumerregistration-propose-legend' => 'New OAuth consumer application',
 	'mwoauthconsumerregistration-update-legend' => 'Update OAuth consumer application',
 	'mwoauthconsumerregistration-propose-submit' => 'Propose consumer',
@@ -98,11 +103,12 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'mwoauthconsumerregistration-lastchange' => 'Last change',
 	'mwoauthconsumerregistration-manage' => 'manage',
 	'mwoauthconsumerregistration-resetsecretkey' => 'Reset the secret key to a new value',
-	'mwoauthconsumerregistration-proposed' => "Your OAuth consumer request has been received.
+	'mwoauthconsumerregistration-proposed' => 'Your OAuth consumer request has been received.
 
-You have been assigned a consumer token of '''$1''' and a secret token of '''$2'''. ''Please record these for future reference.''",
+You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of \'\'\'$2\'\'\'. \'\'Please record these for future reference.\'\'',
 	'mwoauthconsumerregistration-updated' => 'Your OAuth consumer registry was successfully updated.',
-	'mwoauthconsumerregistration-secretreset' => "You have been assigned a consumer secret token of '''$1'''. ''Please record this for future reference.''",
+	'mwoauthconsumerregistration-secretreset' => 'You have been assigned a consumer secret token of \'\'\'$1\'\'\'. \'\'Please record this for future reference.\'\'',
+
 	'mwoauthmanageconsumers' => 'Manage OAuth consumers',
 	'mwoauthmanageconsumers-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthmanageconsumers-type' => 'Queues:',
@@ -146,6 +152,7 @@ You have been assigned a consumer token of '''$1''' and a secret token of '''$2'
 	'mwoauthmanageconsumers-success-rejected' => 'Request has been rejected.',
 	'mwoauthmanageconsumers-success-disabled' => 'Consumer has been disabled.',
 	'mwoauthmanageconsumers-success-reanable' => 'Consumer has been re-enabled.',
+
 	'mwoauthmanagemygrants' => 'Manage account OAuth grants',
 	'mwoauthmanagemygrants-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
@@ -174,14 +181,17 @@ You have been assigned a consumer token of '''$1''' and a secret token of '''$2'
 	'mwoauthmanagemygrants-confirm-submit' => 'Update access token status',
 	'mwoauthmanagemygrants-success-update' => 'The access token for this consumer has been updated.',
 	'mwoauthmanagemygrants-success-renounce' => 'The access token for this consumer has been deleted.',
+
 	'logentry-mwoauthconsumer-propose' => '$1 {{GENDER:$2|proposed}} an OAuth consumer (consumer key $4)',
 	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|updated}} an OAuth consumer (consumer key $4)',
 	'logentry-mwoauthconsumer-approve' => '$1 {{GENDER:$2|approved}} an OAuth consumer by $3 (consumer key $4)',
 	'logentry-mwoauthconsumer-reject' => '$1 {{GENDER:$2|rejected}} an OAuth consumer by $3 (consumer key $4)',
 	'logentry-mwoauthconsumer-disable' => '$1 {{GENDER:$2|disabled}} an OAuth consumer by $3 (consumer key $4)',
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|re-enabled}} an OAuth consumer by $3 (consumer key $4)',
+
 	'mwoauthconsumer-consumer-logpage' => 'OAuth consumer log',
 	'mwoauthconsumer-consumer-logpagetext' => 'Log of approvals, rejections, and disabling of registered OAuth consumers.',
+
 	'mwoauth-bad-csrf-token' => 'Session failure when submitting form. Please try your submissions again.',
 	'mwoauth-bad-request' => 'There was an error in your OAuth request.',
 	'mwoauthdatastore-access-token-not-found' => 'No approved grant was found for that authorization token.',
@@ -194,13 +204,15 @@ You have been assigned a consumer token of '''$1''' and a secret token of '''$2'
 	'mwoauthserver-insufficient-rights' => 'You do not have sufficient rights to perform this action.',
 	'mwoauthserver-invalid-request-token' => 'Invalid token in your request.',
 	'mwoauthserver-invalid-user-hookabort' => 'This user cannot use OAuth.',
+
 	'mwoauth-invalid-authorization-title' => 'OAuth authorization error',
 	'mwoauth-invalid-authorization' => 'The authorization headers in your request are not valid: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'The authorization headers in your request are not valid for $1',
-	'mwoauth-invalid-authorization-invalid-user' => "The authorization headers in your request are for a user that doesn't exist here",
+	'mwoauth-invalid-authorization-invalid-user' => 'The authorization headers in your request are for a user that doesn\'t exist here',
 	'mwoauth-invalid-authorization-wrong-user' => 'The authorization headers in your request are for a different user',
 	'mwoauth-invalid-authorization-not-approved' => 'The authorization headers in your request are for an OAuth consumer that is not currently approved',
 	'mwoauth-invalid-authorization-blocked-user' => 'The authorization headers in your request are for a user who is blocked',
+
 	'mwoauth-form-description-allwikis' => "Hi $1,
 
 '''$2''' would like to do the following actions on your behalf on all projects of this site:
@@ -219,6 +231,8 @@ $5",
 	'mwoauth-form-description-onewiki-nogrants' => "Hi $1,
 
 '''$2''' would like to have basic access on your behalf on ''$4''.",
+
+	'mwoauth-form-legal' => '',
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Privacy Policy]]',
 	'mwoauth-form-button-approve' => 'Allow',
 	'mwoauth-form-button-cancel' => 'Cancel',
@@ -227,6 +241,7 @@ $5",
 	'mwoauth-grants-heading' => 'Requested permissions:',
 	'mwoauth-grants-nogrants' => 'The application has not requested any permissions.',
 	'mwoauth-acceptance-cancelled' => 'You have cancelled this request to authorize an OAuth consumer to act on your behalf.',
+
 	'mwoauth-grant-group-page-interaction' => 'Interact with pages',
 	'mwoauth-grant-group-file-interaction' => 'Interact with media',
 	'mwoauth-grant-group-watchlist-interaction' => 'Interact with your watchlist',
@@ -235,6 +250,7 @@ $5",
 	'mwoauth-grant-group-customization' => 'Customization and preferences',
 	'mwoauth-grant-group-administration' => 'Perform adminstrative actions',
 	'mwoauth-grant-group-other' => 'Miscellaneous activity',
+
 	'mwoauth-grant-blockusers' => 'Block and unblock users',
 	'mwoauth-grant-createaccount' => 'Create accounts',
 	'mwoauth-grant-createeditmovepage' => 'Create, edit, and move pages',
@@ -255,8 +271,10 @@ $5",
 	'mwoauth-grant-useoauth' => 'Basic rights',
 	'mwoauth-grant-viewdeleted' => 'View deleted information',
 	'mwoauth-grant-viewmywatchlist' => 'View your watchlist',
+
 	'mwoauth-oauth-exception' => 'An error occurred in the OAuth protocol: $1',
 	'mwoauth-callback-not-oob' => 'oauth_callback must be set, and must be set to "oob" (case-sensitive)',
+
 	'right-mwoauthproposeconsumer' => 'Propose new OAuth consumers',
 	'right-mwoauthupdateownconsumer' => 'Update OAuth consumers you control',
 	'right-mwoauthmanageconsumer' => 'Manage OAuth consumers',
@@ -264,6 +282,7 @@ $5",
 	'right-mwoauthviewsuppressed' => 'View suppressed OAuth consumers',
 	'right-mwoauthviewprivate' => 'View private OAuth data',
 	'right-mwoauthmanagemygrants' => 'Manage OAuth grants',
+
 	'action-mwoauthmanageconsumer' => 'manage OAuth consumers',
 	'action-mwoauthmanagemygrants' => 'manage your OAuth grants',
 	'action-mwoauthproposeconsumer' => 'propose new OAuth consumers',
@@ -1655,7 +1674,7 @@ $5",
 	'mwoauth-grant-group-customization' => 'Consumérisation et préférences',
 	'mwoauth-grant-group-administration' => 'Effectuer des actions administratives',
 	'mwoauth-grant-group-other' => 'Activités diverses',
-	'mwoauth-grant-blockusers' => 'Bloquer et débloquer les utilisateurs',
+	'mwoauth-grant-blockusers' => 'Bloquer les utilisateurs',
 	'mwoauth-grant-createaccount' => 'Créer des comptes',
 	'mwoauth-grant-createeditmovepage' => 'Créer, modifier et renommer des pages',
 	'mwoauth-grant-delete' => 'Supprimer les pages, les révisions et les entrées du journal',
@@ -2405,7 +2424,7 @@ $5",
 	'mwoauth-grant-group-customization' => 'Personalizzazione e preferenze',
 	'mwoauth-grant-group-administration' => 'Esegue azioni adminstrative',
 	'mwoauth-grant-group-other' => 'Attività varie',
-	'mwoauth-grant-blockusers' => 'Blocca e sblocca utenti',
+	'mwoauth-grant-blockusers' => 'Blocca utenti', # Fuzzy
 	'mwoauth-grant-createaccount' => "Crea un'utenza",
 	'mwoauth-grant-createeditmovepage' => 'Crea, modifica e sposta le pagine',
 	'mwoauth-grant-delete' => 'Cancella pagine, versioni, e voci di registro',
@@ -2549,7 +2568,7 @@ $messages['ja'] = array(
 	'mwoauth-grant-group-email' => 'メールの送信',
 	'mwoauth-grant-group-customization' => 'カスタマイズと個人設定',
 	'mwoauth-grant-group-other' => 'その他の活動',
-	'mwoauth-grant-blockusers' => '利用者をブロック/ブロック解除',
+	'mwoauth-grant-blockusers' => '利用者をブロック',
 	'mwoauth-grant-createaccount' => 'アカウントを作成',
 	'mwoauth-grant-createeditmovepage' => 'ページを作成/編集/移動',
 	'mwoauth-grant-delete' => 'ページ、版、記録項目を削除',
@@ -2585,7 +2604,6 @@ $messages['ja'] = array(
 );
 
 /** Korean (한국어)
- * @author Hym411
  * @author 아라
  */
 $messages['ko'] = array(
@@ -2708,11 +2726,11 @@ $messages['ko'] = array(
 	'mwoauthmanagemygrants-grantsallowed' => '허용된 부여',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => '적용할 수 있는 허용된 부여:',
 	'mwoauthmanagemygrants-consumerkey' => '컨슈머 키',
-	'mwoauthmanagemygrants-review' => '접근 관리',
-	'mwoauthmanagemygrants-grantaccept' => '컨슈머 부여됨',
+	'mwoauthmanagemygrants-review' => '접근 검토/관리',
+	'mwoauthmanagemygrants-grantaccept' => '컨슈머에게 부여됨',
 	'mwoauthmanagemygrants-confirm-legend' => '컨슈머 접근 토큰 관리',
-	'mwoauthmanagemygrants-update' => '접근 토큰 업데이트',
-	'mwoauthmanagemygrants-renounce' => '접근 토큰 인증 해제',
+	'mwoauthmanagemygrants-update' => '접근 토큰 부여 업데이트',
+	'mwoauthmanagemygrants-renounce' => '접근 토큰 인증 해제 및 삭제',
 	'mwoauthmanagemygrants-action' => '상태 바꾸기:',
 	'mwoauthmanagemygrants-confirm-submit' => '접근 토큰 상태 업데이트',
 	'mwoauthmanagemygrants-success-update' => '이 컨슈머에 대한 접근 토큰이 업데이트되었습니다.',
@@ -2744,19 +2762,11 @@ $messages['ko'] = array(
 	'mwoauth-invalid-authorization-wrong-user' => '요청에 있는 인증 헤더가 다른 사용자를 위한 것입니다',
 	'mwoauth-invalid-authorization-not-approved' => '요청에 있는 인증 헤더가 현재 승인되지 않은 OAuth 컨슈머를 위한 것입니다',
 	'mwoauth-invalid-authorization-blocked-user' => '요청에 있는 인증 헤더가 차단된 사용자를 위한 것입니다',
-	'mwoauth-form-button-approve' => '허용합니다',
-	'mwoauth-form-button-cancel' => '취소합니다.',
-	'mwoauth-authorize-form-invalid-user' => '이 사용자 계정은 계정이 이 위키에 있고,중앙 OAuth가 링크되지 않았기 때문에 OAuth를 사용할 수 없습니다.',
+	'mwoauth-form-button-approve' => '예, 허용합니다', # Fuzzy
 	'mwoauth-error' => 'OAuth 오류',
 	'mwoauth-grants-heading' => '요청된 권한:',
 	'mwoauth-grants-nogrants' => '애플리케이션은 권한을 요청하지 않았습니다.',
-	'mwoauth-grant-group-email' => '이메일 보내기',
-	'mwoauth-grant-group-high-volume' => '대량의 작업을 수행',
-	'mwoauth-grant-group-customization' => '사용자 최적화 및 환경 설정',
-	'mwoauth-grant-group-administration' => '관리 기능 수행',
-	'mwoauth-grant-group-other' => '기타 활동',
-	'mwoauth-grant-blockusers' => '사용자 차단 또는 차단 해제',
-	'mwoauth-grant-createaccount' => '계정 생성',
+	'mwoauth-grant-blockusers' => '사용자 차단',
 	'mwoauth-grant-createeditmovepage' => '문서 만들기, 편집 및 옮기기',
 	'mwoauth-grant-delete' => '문서, 판 및 기록 항목 삭제',
 	'mwoauth-grant-editinterface' => '미디어위키 이름공간과 사용자 CSS/JS 편집',
@@ -2766,10 +2776,10 @@ $messages['ko'] = array(
 	'mwoauth-grant-editprotected' => '보호된 문서 편집하기',
 	'mwoauth-grant-highvolume' => '대용량 편집',
 	'mwoauth-grant-oversight' => '사용자 숨기기와 판 억제',
-	'mwoauth-grant-patrol' => '페이지 검토',
+	'mwoauth-grant-patrol' => '검토', # Fuzzy
 	'mwoauth-grant-protect' => '문서 보호 및 보호 해제',
-	'mwoauth-grant-rollback' => '문서의 바뀜을 되돌리기',
-	'mwoauth-grant-sendemail' => '다른 사용자에게 이메일 보내기',
+	'mwoauth-grant-rollback' => '되돌리기', # Fuzzy
+	'mwoauth-grant-sendemail' => '이메일 보내기', # Fuzzy
 	'mwoauth-grant-uploadeditmovefile' => '파일 올리기, 바꾸기, 옮기기',
 	'mwoauth-grant-uploadfile' => '새 파일 올리기',
 	'mwoauth-grant-useoauth' => '기본 권한',
@@ -2840,7 +2850,6 @@ $messages['lb'] = array(
 	'mwoauthserver-invalid-user-hookabort' => 'Dëse Benotzer däerf OAuth net benotzen.',
 	'mwoauth-invalid-authorization-title' => "OAuth Autorisatioun's-Feeler",
 	'mwoauth-invalid-authorization-blocked-user' => "D'Autorisatiounen an Ärer Ufro si fir ee Benotzer dee gespaart ass",
-	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Dateschutzrichtlinnen]]',
 	'mwoauth-form-button-approve' => 'Erlaben',
 	'mwoauth-form-button-cancel' => 'Ofbriechen',
 	'mwoauth-authorize-form-invalid-user' => 'Dëse Benotzerkont kann OAuth net benotzen, well de Benotzerkont op dëser Wiki an de Benotzerkont op der zentraler OAuth Wiki net matenee verbonn sinn.',
@@ -2851,7 +2860,7 @@ $messages['lb'] = array(
 	'mwoauth-grant-group-email' => 'E-Mail schécken',
 	'mwoauth-grant-group-customization' => 'Upassungen an Astellungen',
 	'mwoauth-grant-group-other' => 'Verschidden Aktivitéiten',
-	'mwoauth-grant-blockusers' => 'Benotzer spären an hir Spär ophiewen',
+	'mwoauth-grant-blockusers' => 'Benotzer spären', # Fuzzy
 	'mwoauth-grant-createaccount' => 'Benotzerkonten opmaachen',
 	'mwoauth-grant-editinterface' => 'MediaWiki-Nummraum a Benotzer CSS/JS änneren',
 	'mwoauth-grant-editmycssjs' => 'Ären eegene Benotzer CSS/JS änneren',
@@ -3090,7 +3099,7 @@ $5",
 	'mwoauth-grant-group-customization' => 'Прилагодувања и поставки',
 	'mwoauth-grant-group-administration' => 'Вршење на административни дејства',
 	'mwoauth-grant-group-other' => 'Разни активности',
-	'mwoauth-grant-blockusers' => 'Блокирање и одблокирање корисници',
+	'mwoauth-grant-blockusers' => 'Блокирање корисници',
 	'mwoauth-grant-createaccount' => 'Направи сметки',
 	'mwoauth-grant-createeditmovepage' => 'Создавање, измена и преместување на страници',
 	'mwoauth-grant-delete' => 'Бришење на страници, ревизии и дневнички записи',
@@ -3450,13 +3459,6 @@ $messages['pl'] = array(
 	'mwoauth-consumer-reason' => 'Powód:',
 	'mwoauthmanageconsumers-reason' => 'Powód:',
 	'mwoauth-grant-group-customization' => 'Dostosowywanie i preferencje',
-);
-
-/** Pashto (پښتو)
- * @author Ahmed-Najib-Biabani-Ibrahimkhel
- */
-$messages['ps'] = array(
-	'mwoauth-grant-blockusers' => 'په کارنانو بنديز لگول او بنديز ليرې کول',
 );
 
 /** Portuguese (português)
@@ -3905,7 +3907,7 @@ $5',
 	'mwoauth-grant-group-customization' => 'Налаштування і переваги',
 	'mwoauth-grant-group-administration' => 'Виконати адміністративні дії',
 	'mwoauth-grant-group-other' => 'Різна діяльність',
-	'mwoauth-grant-blockusers' => 'Блокування і розблокування користувачів',
+	'mwoauth-grant-blockusers' => 'Блокування користувачів',
 	'mwoauth-grant-createaccount' => 'Створити облікові записи',
 	'mwoauth-grant-createeditmovepage' => 'Створення, редагування і переміщення сторінок',
 	'mwoauth-grant-delete' => 'Видалення сторінок, версій і записів журналу',
@@ -4061,7 +4063,6 @@ $messages['vi'] = array(
 );
 
 /** Wu (吴语)
- * @author Benojan
  * @author 十弌
  */
 $messages['wuu'] = array(
@@ -4071,9 +4072,9 @@ $messages['wuu'] = array(
 	'mwoauth-grant-group-page-interaction' => '搭頁面互動',
 	'mwoauth-grant-group-file-interaction' => '搭媒體互動',
 	'mwoauth-grant-group-watchlist-interaction' => '搭爾個監視表互動',
-	'mwoauth-grant-group-email' => '發電子信',
+	'mwoauth-grant-group-email' => '發電郵',
 	'mwoauth-grant-rollback' => '畀修改擂轉到頁面',
-	'mwoauth-grant-sendemail' => '發電子信畀各許用戶',
+	'mwoauth-grant-sendemail' => '發電郵畀各許用戶',
 );
 
 /** Yiddish (ייִדיש)
@@ -4094,7 +4095,6 @@ $messages['zh-hans'] = array(
 	'mwoauth-field-hidden' => '（这些信息已被隐藏）',
 	'mwoauth-field-private' => '（这些信息不是公开的）',
 	'mwoauth-consumer-allwikis' => '本站的所有项目',
-	'mwoauth-consumer-stage' => '当前状态：',
 	'mwoauth-consumer-reason' => '原因：',
 	'mwoauthconsumerregistration-description' => '说明',
 	'mwoauthconsumerregistration-stage' => '状态',
@@ -4113,18 +4113,11 @@ $messages['zh-hans'] = array(
 	'mwoauthmanagemygrants-grantaccept' => '授权',
 	'mwoauthmanagemygrants-update' => '更新补助',
 	'mwoauthmanagemygrants-renounce' => '取消授权',
-	'mwoauth-bad-request' => '您的OAuth请求有错误。',
-	'mwoauthserver-invalid-user-hookabort' => '此用户不能使用。',
-	'mwoauth-invalid-authorization-title' => 'OAuth认证错误',
 	'mwoauth-form-button-approve' => '允许',
 	'mwoauth-form-button-cancel' => '取消',
 	'mwoauth-grant-group-email' => '发送电邮',
 	'mwoauth-grant-group-customization' => '自定义与设置',
-	'mwoauth-grant-blockusers' => '封禁与解封用户',
 	'mwoauth-grant-createaccount' => '注册账户',
-	'mwoauth-grant-createeditmovepage' => '创建、编辑与移动页面',
-	'mwoauth-grant-editmycssjs' => '编辑您自己的用户CSS/JS',
-	'mwoauth-grant-editmywatchlist' => '编辑您的监视列表',
 	'mwoauth-grant-editpage' => '编辑存在的页面',
 	'mwoauth-grant-editprotected' => '编辑受保护页面',
 	'mwoauth-grant-protect' => '保护页面和取消页面保护',
