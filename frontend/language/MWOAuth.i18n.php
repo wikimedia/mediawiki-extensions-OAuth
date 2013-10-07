@@ -1674,7 +1674,7 @@ $5",
 	'mwoauth-grant-group-customization' => 'Consumérisation et préférences',
 	'mwoauth-grant-group-administration' => 'Effectuer des actions administratives',
 	'mwoauth-grant-group-other' => 'Activités diverses',
-	'mwoauth-grant-blockusers' => 'Bloquer les utilisateurs',
+	'mwoauth-grant-blockusers' => 'Bloquer et débloquer les utilisateurs',
 	'mwoauth-grant-createaccount' => 'Créer des comptes',
 	'mwoauth-grant-createeditmovepage' => 'Créer, modifier et renommer des pages',
 	'mwoauth-grant-delete' => 'Supprimer les pages, les révisions et les entrées du journal',
@@ -2424,7 +2424,7 @@ $5",
 	'mwoauth-grant-group-customization' => 'Personalizzazione e preferenze',
 	'mwoauth-grant-group-administration' => 'Esegue azioni adminstrative',
 	'mwoauth-grant-group-other' => 'Attività varie',
-	'mwoauth-grant-blockusers' => 'Blocca utenti', # Fuzzy
+	'mwoauth-grant-blockusers' => 'Blocca e sblocca utenti',
 	'mwoauth-grant-createaccount' => "Crea un'utenza",
 	'mwoauth-grant-createeditmovepage' => 'Crea, modifica e sposta le pagine',
 	'mwoauth-grant-delete' => 'Cancella pagine, versioni, e voci di registro',
@@ -2568,7 +2568,7 @@ $messages['ja'] = array(
 	'mwoauth-grant-group-email' => 'メールの送信',
 	'mwoauth-grant-group-customization' => 'カスタマイズと個人設定',
 	'mwoauth-grant-group-other' => 'その他の活動',
-	'mwoauth-grant-blockusers' => '利用者をブロック',
+	'mwoauth-grant-blockusers' => '利用者をブロック/ブロック解除',
 	'mwoauth-grant-createaccount' => 'アカウントを作成',
 	'mwoauth-grant-createeditmovepage' => 'ページを作成/編集/移動',
 	'mwoauth-grant-delete' => 'ページ、版、記録項目を削除',
@@ -2604,6 +2604,7 @@ $messages['ja'] = array(
 );
 
 /** Korean (한국어)
+ * @author Hym411
  * @author 아라
  */
 $messages['ko'] = array(
@@ -2726,11 +2727,11 @@ $messages['ko'] = array(
 	'mwoauthmanagemygrants-grantsallowed' => '허용된 부여',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => '적용할 수 있는 허용된 부여:',
 	'mwoauthmanagemygrants-consumerkey' => '컨슈머 키',
-	'mwoauthmanagemygrants-review' => '접근 검토/관리',
-	'mwoauthmanagemygrants-grantaccept' => '컨슈머에게 부여됨',
+	'mwoauthmanagemygrants-review' => '접근 관리',
+	'mwoauthmanagemygrants-grantaccept' => '컨슈머 부여됨',
 	'mwoauthmanagemygrants-confirm-legend' => '컨슈머 접근 토큰 관리',
-	'mwoauthmanagemygrants-update' => '접근 토큰 부여 업데이트',
-	'mwoauthmanagemygrants-renounce' => '접근 토큰 인증 해제 및 삭제',
+	'mwoauthmanagemygrants-update' => '접근 토큰 업데이트',
+	'mwoauthmanagemygrants-renounce' => '접근 토큰 인증 해제',
 	'mwoauthmanagemygrants-action' => '상태 바꾸기:',
 	'mwoauthmanagemygrants-confirm-submit' => '접근 토큰 상태 업데이트',
 	'mwoauthmanagemygrants-success-update' => '이 컨슈머에 대한 접근 토큰이 업데이트되었습니다.',
@@ -2762,11 +2763,19 @@ $messages['ko'] = array(
 	'mwoauth-invalid-authorization-wrong-user' => '요청에 있는 인증 헤더가 다른 사용자를 위한 것입니다',
 	'mwoauth-invalid-authorization-not-approved' => '요청에 있는 인증 헤더가 현재 승인되지 않은 OAuth 컨슈머를 위한 것입니다',
 	'mwoauth-invalid-authorization-blocked-user' => '요청에 있는 인증 헤더가 차단된 사용자를 위한 것입니다',
-	'mwoauth-form-button-approve' => '예, 허용합니다', # Fuzzy
+	'mwoauth-form-button-approve' => '허용합니다',
+	'mwoauth-form-button-cancel' => '취소합니다.',
+	'mwoauth-authorize-form-invalid-user' => '이 사용자 계정은 계정이 이 위키에 있고,중앙 OAuth가 링크되지 않았기 때문에 OAuth를 사용할 수 없습니다.',
 	'mwoauth-error' => 'OAuth 오류',
 	'mwoauth-grants-heading' => '요청된 권한:',
 	'mwoauth-grants-nogrants' => '애플리케이션은 권한을 요청하지 않았습니다.',
-	'mwoauth-grant-blockusers' => '사용자 차단',
+	'mwoauth-grant-group-email' => '이메일 보내기',
+	'mwoauth-grant-group-high-volume' => '대량의 작업을 수행',
+	'mwoauth-grant-group-customization' => '사용자 최적화 및 환경 설정',
+	'mwoauth-grant-group-administration' => '관리 기능 수행',
+	'mwoauth-grant-group-other' => '기타 활동',
+	'mwoauth-grant-blockusers' => '사용자 차단 또는 차단 해제',
+	'mwoauth-grant-createaccount' => '계정 생성',
 	'mwoauth-grant-createeditmovepage' => '문서 만들기, 편집 및 옮기기',
 	'mwoauth-grant-delete' => '문서, 판 및 기록 항목 삭제',
 	'mwoauth-grant-editinterface' => '미디어위키 이름공간과 사용자 CSS/JS 편집',
@@ -2776,10 +2785,10 @@ $messages['ko'] = array(
 	'mwoauth-grant-editprotected' => '보호된 문서 편집하기',
 	'mwoauth-grant-highvolume' => '대용량 편집',
 	'mwoauth-grant-oversight' => '사용자 숨기기와 판 억제',
-	'mwoauth-grant-patrol' => '검토', # Fuzzy
+	'mwoauth-grant-patrol' => '페이지 검토',
 	'mwoauth-grant-protect' => '문서 보호 및 보호 해제',
-	'mwoauth-grant-rollback' => '되돌리기', # Fuzzy
-	'mwoauth-grant-sendemail' => '이메일 보내기', # Fuzzy
+	'mwoauth-grant-rollback' => '문서의 바뀜을 되돌리기',
+	'mwoauth-grant-sendemail' => '다른 사용자에게 이메일 보내기',
 	'mwoauth-grant-uploadeditmovefile' => '파일 올리기, 바꾸기, 옮기기',
 	'mwoauth-grant-uploadfile' => '새 파일 올리기',
 	'mwoauth-grant-useoauth' => '기본 권한',
@@ -2850,6 +2859,7 @@ $messages['lb'] = array(
 	'mwoauthserver-invalid-user-hookabort' => 'Dëse Benotzer däerf OAuth net benotzen.',
 	'mwoauth-invalid-authorization-title' => "OAuth Autorisatioun's-Feeler",
 	'mwoauth-invalid-authorization-blocked-user' => "D'Autorisatiounen an Ärer Ufro si fir ee Benotzer dee gespaart ass",
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Dateschutzrichtlinnen]]',
 	'mwoauth-form-button-approve' => 'Erlaben',
 	'mwoauth-form-button-cancel' => 'Ofbriechen',
 	'mwoauth-authorize-form-invalid-user' => 'Dëse Benotzerkont kann OAuth net benotzen, well de Benotzerkont op dëser Wiki an de Benotzerkont op der zentraler OAuth Wiki net matenee verbonn sinn.',
@@ -2860,7 +2870,7 @@ $messages['lb'] = array(
 	'mwoauth-grant-group-email' => 'E-Mail schécken',
 	'mwoauth-grant-group-customization' => 'Upassungen an Astellungen',
 	'mwoauth-grant-group-other' => 'Verschidden Aktivitéiten',
-	'mwoauth-grant-blockusers' => 'Benotzer spären', # Fuzzy
+	'mwoauth-grant-blockusers' => 'Benotzer spären an hir Spär ophiewen',
 	'mwoauth-grant-createaccount' => 'Benotzerkonten opmaachen',
 	'mwoauth-grant-editinterface' => 'MediaWiki-Nummraum a Benotzer CSS/JS änneren',
 	'mwoauth-grant-editmycssjs' => 'Ären eegene Benotzer CSS/JS änneren',
@@ -3099,7 +3109,7 @@ $5",
 	'mwoauth-grant-group-customization' => 'Прилагодувања и поставки',
 	'mwoauth-grant-group-administration' => 'Вршење на административни дејства',
 	'mwoauth-grant-group-other' => 'Разни активности',
-	'mwoauth-grant-blockusers' => 'Блокирање корисници',
+	'mwoauth-grant-blockusers' => 'Блокирање и одблокирање корисници',
 	'mwoauth-grant-createaccount' => 'Направи сметки',
 	'mwoauth-grant-createeditmovepage' => 'Создавање, измена и преместување на страници',
 	'mwoauth-grant-delete' => 'Бришење на страници, ревизии и дневнички записи',
@@ -3206,7 +3216,7 @@ $messages['nl'] = array(
 	'mwoauth-field-private' => '(deze gegevens zijn privé)',
 	'mwoauth-consumer-key' => 'Consumersleutel:',
 	'mwoauth-consumer-name' => 'Naam toepassing:',
-	'mwoauth-consumer-version' => 'Hoofdversie:',
+	'mwoauth-consumer-version' => 'Consumerversie:',
 	'mwoauth-consumer-user' => 'Uitgever:',
 	'mwoauth-consumer-stage' => 'Huidige status:',
 	'mwoauth-consumer-email' => 'E-mailadres voor contact:',
@@ -3238,7 +3248,7 @@ Een paar aanbevelingen en opmerkingen:
 * Gebruik als mogelijk een RSA-sleutel; als dat niet mogelijk is, wordt u een (minder veilig) geheim token toegewezen;
 * Gebruik het veld JSON-beperkingen om de toegang voor deze consumer te beperken tot IP-adressen in de opgegeven CIDR-bereiken;
 * U kunt een wiki-ID gebruiken om de consumer te beperken tot één enkele wiki op deze site (gebruik "*" voor alle wiki\'s);
-* Het e-mailadres moet overeenkomen met dat van uw gebruiker (en het e-mailadres moet zijn bevestigd).',
+* Het e-mailadres moet overeenkomen met dat van uw gebruiker (en het e-mailadres moet zijn bevestigd).', # Fuzzy
 	'mwoauthconsumerregistration-propose-legend' => 'Nieuwe OAuthconsumertoepassing',
 	'mwoauthconsumerregistration-update-legend' => 'OAuthconsumertoepassing bijwerken',
 	'mwoauthconsumerregistration-propose-submit' => 'Consumer voorstellen',
@@ -3295,11 +3305,11 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauthmanagemygrants-grantsallowed' => 'Toegestane rechten:',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Van toepassing zijnde rechten toegestaan:',
 	'mwoauthmanagemygrants-consumerkey' => 'Consumersleutel',
-	'mwoauthmanagemygrants-review' => 'Toegang controleren en beheren',
-	'mwoauthmanagemygrants-grantaccept' => 'Toegewezen aan consumer',
+	'mwoauthmanagemygrants-review' => 'toegang beheren',
+	'mwoauthmanagemygrants-grantaccept' => 'Toegestaan',
 	'mwoauthmanagemygrants-confirm-legend' => 'consumertoegangstoken beheren',
-	'mwoauthmanagemygrants-update' => 'Toegangstokenrechten bijwerken',
-	'mwoauthmanagemygrants-renounce' => 'Rechten voor toegangstoken intrekken en het verwijderen',
+	'mwoauthmanagemygrants-update' => 'Toegang bijwerken',
+	'mwoauthmanagemygrants-renounce' => 'Machtiging intrekken',
 	'mwoauthmanagemygrants-action' => 'Statuswijziging:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Toegangstokenstatus bijwerken',
 	'mwoauthmanagemygrants-success-update' => 'Het toegangstoken voor deze consumer is bijgewerkt.',
@@ -3317,17 +3327,10 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauthserver-insufficient-rights' => 'U hebt onvoldoende rechten om deze handeling uit te voeren',
 	'mwoauthserver-invalid-request-token' => 'Ongeldig token in uw verzoek',
 	'mwoauthserver-invalid-user-hookabort' => 'Deze gebruiker kan OAuth niet gebruiken',
-	'mwoauth-form-button-approve' => 'Ja, toestaan',
-	'mwoauth-form-confirmation' => 'Deze toepassing toestaan namens u handelingen uit te voeren?',
-	'mwoauth-authorize-form' => 'TOepassingsgegevens:',
-	'mwoauth-authorize-form-user' => 'Auteur toepassing: $1',
-	'mwoauth-authorize-form-name' => 'Naam toepassing: $1',
-	'mwoauth-authorize-form-description' => 'Beschrijving toepassing: $1',
-	'mwoauth-authorize-form-version' => 'Versie toepassing: $1',
-	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-form-button-approve' => 'Toestaan',
 	'mwoauth-grants-heading' => 'Aangevraagde rechten:',
 	'mwoauth-grants-nogrants' => 'De toepassing heeft geen rechten aangevraagd.',
-	'mwoauth-grant-blockusers' => 'Gebruikers blokkeren',
+	'mwoauth-grant-blockusers' => 'Gebruikers (de)blokkeren',
 	'mwoauth-grant-createeditmovepage' => "Pagina's aanmaken, bewerken en hernoemen",
 	'mwoauth-grant-delete' => "Pagina's, wijzigingen en vermeldingen in het logboek verwijderen",
 	'mwoauth-grant-editmycssjs' => 'Uw eigen CSS/JavaScript bewerken',
@@ -3336,17 +3339,17 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauth-grant-editprotected' => "Beveiligde pagina's bewerken",
 	'mwoauth-grant-highvolume' => 'Veel bewerkingen in korte tijd maken',
 	'mwoauth-grant-oversight' => 'Gebruikers en versies verbergen',
-	'mwoauth-grant-patrol' => 'Wijzigingen controleren',
+	'mwoauth-grant-patrol' => "Wijzigingen aan pagina's controleren",
 	'mwoauth-grant-protect' => "Pagina's beveiligen en beveiliging opheffen",
-	'mwoauth-grant-rollback' => 'Terugdraaien',
-	'mwoauth-grant-sendemail' => 'E-mail verzenden',
+	'mwoauth-grant-rollback' => "Wijzigingen aan pagina's terugdraaien",
+	'mwoauth-grant-sendemail' => 'E-mail verzenden aan andere gebruikers',
 	'mwoauth-grant-uploadeditmovefile' => 'Bestanden uploaden, vervangen en hernoemen',
 	'mwoauth-grant-uploadfile' => 'Nieuwe bestanden uploaden',
 	'mwoauth-grant-useoauth' => 'Grondrechten',
 	'mwoauth-grant-viewdeleted' => 'Verwijderde gegevens bekijken',
 	'mwoauth-grant-viewmywatchlist' => 'Uw volglijst bekijken',
 	'right-mwoauthproposeconsumer' => 'Nieuwe OAuthconsumers voorstellen',
-	'right-mwoauthupdateconsumer' => 'OAuthconsumers bijwerken',
+	'right-mwoauthupdateownconsumer' => 'OAuthconsumers bijwerken',
 	'right-mwoauthmanageconsumer' => 'OAuthconsumers beheren',
 	'right-mwoauthsuppress' => 'OAuthconsumers onderdrukken',
 	'right-mwoauthviewsuppressed' => 'Onderdrukte OAuthconsumers bekijken',
@@ -3354,7 +3357,7 @@ Een paar aanbevelingen en opmerkingen:
 	'action-mwoauthmanageconsumer' => 'OAuthconsumers te beheren',
 	'action-mwoauthmanagemygrants' => 'uw OAuthbevoegdheden te beheren',
 	'action-mwoauthproposeconsumer' => 'nieuwe OAuthconsumers voor te stellen',
-	'action-mwoauthupdateconsumer' => 'OAuthconsumers bij te werken',
+	'action-mwoauthupdateownconsumer' => 'OAuthconsumers bij te werken',
 	'action-mwoauthviewsuppressed' => 'onderdrukte OAuthconsumers te bekijken',
 );
 
@@ -3459,6 +3462,13 @@ $messages['pl'] = array(
 	'mwoauth-consumer-reason' => 'Powód:',
 	'mwoauthmanageconsumers-reason' => 'Powód:',
 	'mwoauth-grant-group-customization' => 'Dostosowywanie i preferencje',
+);
+
+/** Pashto (پښتو)
+ * @author Ahmed-Najib-Biabani-Ibrahimkhel
+ */
+$messages['ps'] = array(
+	'mwoauth-grant-blockusers' => 'په کارنانو بنديز لگول او بنديز ليرې کول',
 );
 
 /** Portuguese (português)
@@ -3907,7 +3917,7 @@ $5',
 	'mwoauth-grant-group-customization' => 'Налаштування і переваги',
 	'mwoauth-grant-group-administration' => 'Виконати адміністративні дії',
 	'mwoauth-grant-group-other' => 'Різна діяльність',
-	'mwoauth-grant-blockusers' => 'Блокування користувачів',
+	'mwoauth-grant-blockusers' => 'Блокування і розблокування користувачів',
 	'mwoauth-grant-createaccount' => 'Створити облікові записи',
 	'mwoauth-grant-createeditmovepage' => 'Створення, редагування і переміщення сторінок',
 	'mwoauth-grant-delete' => 'Видалення сторінок, версій і записів журналу',
@@ -4063,6 +4073,7 @@ $messages['vi'] = array(
 );
 
 /** Wu (吴语)
+ * @author Benojan
  * @author 十弌
  */
 $messages['wuu'] = array(
@@ -4072,9 +4083,9 @@ $messages['wuu'] = array(
 	'mwoauth-grant-group-page-interaction' => '搭頁面互動',
 	'mwoauth-grant-group-file-interaction' => '搭媒體互動',
 	'mwoauth-grant-group-watchlist-interaction' => '搭爾個監視表互動',
-	'mwoauth-grant-group-email' => '發電郵',
+	'mwoauth-grant-group-email' => '發電子信',
 	'mwoauth-grant-rollback' => '畀修改擂轉到頁面',
-	'mwoauth-grant-sendemail' => '發電郵畀各許用戶',
+	'mwoauth-grant-sendemail' => '發電子信畀各許用戶',
 );
 
 /** Yiddish (ייִדיש)
@@ -4095,6 +4106,7 @@ $messages['zh-hans'] = array(
 	'mwoauth-field-hidden' => '（这些信息已被隐藏）',
 	'mwoauth-field-private' => '（这些信息不是公开的）',
 	'mwoauth-consumer-allwikis' => '本站的所有项目',
+	'mwoauth-consumer-stage' => '当前状态：',
 	'mwoauth-consumer-reason' => '原因：',
 	'mwoauthconsumerregistration-description' => '说明',
 	'mwoauthconsumerregistration-stage' => '状态',
@@ -4113,11 +4125,18 @@ $messages['zh-hans'] = array(
 	'mwoauthmanagemygrants-grantaccept' => '授权',
 	'mwoauthmanagemygrants-update' => '更新补助',
 	'mwoauthmanagemygrants-renounce' => '取消授权',
+	'mwoauth-bad-request' => '您的OAuth请求有错误。',
+	'mwoauthserver-invalid-user-hookabort' => '此用户不能使用。',
+	'mwoauth-invalid-authorization-title' => 'OAuth认证错误',
 	'mwoauth-form-button-approve' => '允许',
 	'mwoauth-form-button-cancel' => '取消',
 	'mwoauth-grant-group-email' => '发送电邮',
 	'mwoauth-grant-group-customization' => '自定义与设置',
+	'mwoauth-grant-blockusers' => '封禁与解封用户',
 	'mwoauth-grant-createaccount' => '注册账户',
+	'mwoauth-grant-createeditmovepage' => '创建、编辑与移动页面',
+	'mwoauth-grant-editmycssjs' => '编辑您自己的用户CSS/JS',
+	'mwoauth-grant-editmywatchlist' => '编辑您的监视列表',
 	'mwoauth-grant-editpage' => '编辑存在的页面',
 	'mwoauth-grant-editprotected' => '编辑受保护页面',
 	'mwoauth-grant-protect' => '保护页面和取消页面保护',
