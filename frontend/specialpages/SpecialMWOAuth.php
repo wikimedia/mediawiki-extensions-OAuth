@@ -48,10 +48,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					break;
 				case 'authorize':
 					$format = 'html'; // for exceptions
-					// Hack: prefix needed for HTMLForm
-					$requestToken = $request->getVal( 'wprequestToken',
+					$requestToken = $request->getVal( 'requestToken',
 						$request->getVal( 'oauth_token' ) );
-					$consumerKey = $request->getVal( 'wpconsumerKey',
+					$consumerKey = $request->getVal( 'consumerKey',
 						$request->getVal( 'oauth_consumer_key' ) );
 					wfDebugLog( 'OAuth', __METHOD__ . ": doing 'authorize' with " .
 						"'$requestToken' '$consumerKey' for '{$user->getName()}'" );
@@ -175,10 +174,12 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					'default' => $existing ? 1 : 0,
 				),
 				'consumerKey' => array(
+					'name'    => 'consumerKey',
 					'type'    => 'hidden',
 					'default' => $consumerKey,
 				),
 				'requestToken' => array(
+					'name'    => 'requestToken',
 					'type'    => 'hidden',
 					'default' => $requestToken,
 				)
