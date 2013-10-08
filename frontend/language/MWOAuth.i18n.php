@@ -945,13 +945,13 @@ Několik doporučení a poznámek:
 * Pokud je to možné, poskytněte veřejný klíč RSA (ve formátu PEM); v opačném případě se musí používat (méně bezpečný) tajný token.
 * Pomocí omezení v JSON můžete omezit tomuto konzumentu přístup jen na IP adresy v daných rozsazích CIDR.
 * Pomocí ID wiki můžete omezit tohoto konzumenta na jedinou wiki na tomto serveru (pro všechny wiki uveďte „*“).
-* Zadaná e-mailová adresa musí odpovídat té na vašem uživatelském účtu (která musí být ověřena).',
+* Zadaná e-mailová adresa musí odpovídat té na vašem uživatelském účtu (která musí být ověřena).', # Fuzzy
 	'mwoauthconsumerregistration-update-text' => 'Pomocí níže uvedeného formuláře můžete změnit vlastnosti konzumenta OAuth, kterého spravujete.
 
 Všechny uvedené hodnoty přepíšou ty původní. Neponechávejte žádná pole prázdná, pokud nechcete jejich hodnoty smazat.',
 	'mwoauthconsumerregistration-maintext' => 'Tato stránka slouží k navrhování a změnám konzumentských aplikací OAuth (vizte http://oauth.net) v registru tohoto serveru.
 
-Můžete zde [[Special:MWOAuthConsumerRegistration/propose|navrhnout nového konzumenta]] nebo [[Special:MWOAuthConsumerRegistration/list|spravovat své existující konzumenty]].',
+Můžete zde [[Special:MWOAuthConsumerRegistration/propose|navrhnout nového konzumenta]] nebo [[Special:MWOAuthConsumerRegistration/list|spravovat své existující konzumenty]].', # Fuzzy
 	'mwoauthconsumerregistration-propose-legend' => 'Nová konzumentská aplikace OAuth',
 	'mwoauthconsumerregistration-update-legend' => 'Změna konzumentské aplikace OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Navrhnout konzumenta',
@@ -1028,14 +1028,14 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'mwoauthmanagemygrants-grantsallowed' => 'Přidělená oprávnění',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Přidělená použitelná oprávnění:',
 	'mwoauthmanagemygrants-consumerkey' => 'Klíč konzumenta',
-	'mwoauthmanagemygrants-review' => 'zkontrolovat/spravovat přístup',
-	'mwoauthmanagemygrants-grantaccept' => 'Přiděleno konzumentovi',
+	'mwoauthmanagemygrants-review' => 'zkontrolovat/spravovat přístup', # Fuzzy
+	'mwoauthmanagemygrants-grantaccept' => 'Přiděleno konzumentovi', # Fuzzy
 	'mwoauthmanagemygrants-confirm-text' => 'Pomocí níže zobrazeného formuláře můžete odvolat přístup nebo změnit oprávnění konzumenta OAuth k jednání vaším jménem.
 
-Uvědomte si, že pokud jste konzumentovi dovolili přístup jen k podmnožině wiki (projektů), bude k tomuto konzumentovi existovat více přístupových tokenů.',
+Uvědomte si, že pokud jste konzumentovi dovolili přístup jen k podmnožině wiki (projektů), bude k tomuto konzumentovi existovat více přístupových tokenů.', # Fuzzy
 	'mwoauthmanagemygrants-confirm-legend' => 'Správa přístupového tokenu konzumenta',
-	'mwoauthmanagemygrants-update' => 'Aktualizovat oprávnění přístupového tokenu',
-	'mwoauthmanagemygrants-renounce' => 'Zrušit oprávnění a smazat přístupový token',
+	'mwoauthmanagemygrants-update' => 'Aktualizovat oprávnění přístupového tokenu', # Fuzzy
+	'mwoauthmanagemygrants-renounce' => 'Zrušit oprávnění a smazat přístupový token', # Fuzzy
 	'mwoauthmanagemygrants-action' => 'Změnit stav:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Aktualizovat stav přístupového tokenu',
 	'mwoauthmanagemygrants-success-update' => 'Přístupový token tohoto konzumenta byl aktualizován.',
@@ -1067,25 +1067,12 @@ Uvědomte si, že pokud jste konzumentovi dovolili přístup jen k podmnožině 
 	'mwoauth-invalid-authorization-wrong-user' => 'Autorizační hlavičky ve vašem požadavku jsou pro jiného uživatele',
 	'mwoauth-invalid-authorization-not-approved' => 'Autorizační hlavičky ve vašem požadavku jsou pro konzumenta OAuth, který momentálně není schválen',
 	'mwoauth-invalid-authorization-blocked-user' => 'Autorizační hlavičky ve vašem požadavku jsou pro uživatele, který je zablokován',
-	'mwoauth-form-description' => 'Následující aplikace žádá, aby mohla vaším jménem používat MediaWiki. Tato aplikace bude moci provádět jakékoli akce, které umožňuje níže uvedený seznam požadovaných oprávnění. Povolujte pouze aplikace, kterým důvěřujete, že budou tato oprávnění používat tak, jako byste je {{GENDER:|používal|používala|používali}} vy.',
-	'mwoauth-form-existing' => "'''Následující aplikace žádá, aby mohla vaším jménem používat MediaWiki, ale přístup jste jí již {{GENDER:|povolil|povolila|povolili}}:'''
-*  Přidělená oprávnění: $1
-*  Wiki: $2
-*  Autorizováno: $3",
-	'mwoauth-form-button-approve' => 'Ano, dovolit',
-	'mwoauth-form-confirmation' => 'Dovolit této aplikaci jednat vaším jménem?',
-	'mwoauth-form-confirmation-update' => 'Aktualizovat tuto autorizaci na požadovaná oprávnění. Když toto ponecháte nezaškrtnuté, zachovají se vaše stávající autorizace.',
-	'mwoauth-authorize-form' => 'Podrobnosti o aplikaci:',
-	'mwoauth-authorize-form-user' => 'Autor aplikace: $1',
-	'mwoauth-authorize-form-name' => 'Název aplikace: $1',
-	'mwoauth-authorize-form-description' => 'Popis aplikace: $1',
-	'mwoauth-authorize-form-version' => 'Verze aplikace: $1',
-	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-form-button-approve' => 'Ano, dovolit', # Fuzzy
 	'mwoauth-authorize-form-invalid-user' => 'Tento uživatelský účet nemůže používat OAuth, protože účet na této wiki není propojen s účtem na ústřední wiki OAuth.',
 	'mwoauth-error' => 'Chyba OAuth',
 	'mwoauth-grants-heading' => 'Vyžadovaná oprávnění:',
 	'mwoauth-grants-nogrants' => 'Tato aplikace nevyžaduje žádná oprávnění.',
-	'mwoauth-grant-blockusers' => 'Blokovat uživatele',
+	'mwoauth-grant-blockusers' => 'Blokovat uživatele', # Fuzzy
 	'mwoauth-grant-createeditmovepage' => 'Zakládat, editovat a přesouvat stránky',
 	'mwoauth-grant-delete' => 'Mazat stránky, revize a protokolovací záznamy',
 	'mwoauth-grant-editinterface' => 'Editovat jmenný prostor MediaWiki a uživatelské CSS/JS',
@@ -1095,10 +1082,10 @@ Uvědomte si, že pokud jste konzumentovi dovolili přístup jen k podmnožině 
 	'mwoauth-grant-editprotected' => 'Editovat zamčené stránky',
 	'mwoauth-grant-highvolume' => 'Hromadné editace',
 	'mwoauth-grant-oversight' => 'Skrývat uživatele a utajovat revize',
-	'mwoauth-grant-patrol' => 'Patrolovat',
+	'mwoauth-grant-patrol' => 'Patrolovat', # Fuzzy
 	'mwoauth-grant-protect' => 'Zamykat a odemykat stránky',
-	'mwoauth-grant-rollback' => 'Vracet editace zpět',
-	'mwoauth-grant-sendemail' => 'Posílat e-maily',
+	'mwoauth-grant-rollback' => 'Vracet editace zpět', # Fuzzy
+	'mwoauth-grant-sendemail' => 'Posílat e-maily', # Fuzzy
 	'mwoauth-grant-uploadeditmovefile' => 'Načítat, nahrazovat a přesouvat soubory',
 	'mwoauth-grant-uploadfile' => 'Načítat nové soubory',
 	'mwoauth-grant-useoauth' => 'Základní oprávnění',
@@ -1985,10 +1972,10 @@ $messages['ia'] = array(
 	'mwoauth-field-private' => '(iste information es private)',
 	'mwoauth-grant-generic' => 'gruppo de derectos "$1"',
 	'mwoauth-prefs-managegrants' => 'Accesso de consumitor OAuth:',
-	'mwoauth-prefs-managegrantslink' => 'gerer concessiones in nomine de iste conto',
+	'mwoauth-prefs-managegrantslink' => 'gerer concessiones in nomine de iste conto', # Fuzzy
 	'mwoauth-consumer-key' => 'Clave de consumitor:',
 	'mwoauth-consumer-name' => 'Nomine del application:',
-	'mwoauth-consumer-version' => 'Version major:',
+	'mwoauth-consumer-version' => 'Version major:', # Fuzzy
 	'mwoauth-consumer-user' => 'Editor:',
 	'mwoauth-consumer-stage' => 'Stato actual:',
 	'mwoauth-consumer-email' => 'Adresse de e-mail de contacto:',
@@ -2029,13 +2016,13 @@ Ecce alcun recommendationes e remarcas:
 * Forni un clave RSA si possibile; alteremente un indicio secrete (e minus secur) te essera assignate.
 * Usa le campo de restrictiones JSON pro limitar le accesso de iste consumitor al adresses IP in iste rangos CIDR.
 * Tu pote usar un ID de wiki pro limitar le consumitor a un singule wiki in iste sito (usa "*" pro tote le wikis).
-* Le adresse de e-mail fornite debe esser identic a illo de tu conto (le qual debe esser confirmate).',
+* Le adresse de e-mail fornite debe esser identic a illo de tu conto (le qual debe esser confirmate).', # Fuzzy
 	'mwoauthconsumerregistration-update-text' => 'Le formulario sequente permitte actualisar aspectos de un consumitor OAuth que tu controla.
 
 Tote le valores hic superscribera omne previe valores. Non lassa campos vacue si tu non ha le intention de rader iste valores.',
 	'mwoauthconsumerregistration-maintext' => 'Iste pagina es pro proponer e actualisar applicationes de consumitor OAuth (vide http://oauth.net) in le base de registration de iste sito.
 
-Ab hic, tu pote [[Special:MWOAuthConsumerRegistration/propose|proponer un nove consumitor]] o [[Special:MWOAuthConsumerRegistration/list|gerer tu consumitores existente]].',
+Ab hic, tu pote [[Special:MWOAuthConsumerRegistration/propose|proponer un nove consumitor]] o [[Special:MWOAuthConsumerRegistration/list|gerer tu consumitores existente]].', # Fuzzy
 	'mwoauthconsumerregistration-propose-legend' => 'Nove application de consumitor OAuth',
 	'mwoauthconsumerregistration-update-legend' => 'Actualisar application de consumitor OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'Proponer consumitor',
@@ -2110,14 +2097,14 @@ Le systema te ha assignate un indicio de consumitor '''$1''' e un indicio secret
 	'mwoauthmanagemygrants-grantsallowed' => 'Concessiones permittite',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Concessiones applicabile permittite:',
 	'mwoauthmanagemygrants-consumerkey' => 'Clave de consumitor',
-	'mwoauthmanagemygrants-review' => 'revider/gerer accesso',
-	'mwoauthmanagemygrants-grantaccept' => 'Concedite al consumitor',
+	'mwoauthmanagemygrants-review' => 'revider/gerer accesso', # Fuzzy
+	'mwoauthmanagemygrants-grantaccept' => 'Concedite al consumitor', # Fuzzy
 	'mwoauthmanagemygrants-confirm-text' => 'Usa le formulario hic infra pro revocar le accesso o cambiar le concessiones de un consumitor OAuth pro ager in tu nomine.
 
-Nota que si tu ha autorisate un consumitor a haber accesso solmente a un parte del wikis (projectos de sito), alora il habera plure indicios de accesso pro iste consumitor.',
+Nota que si tu ha autorisate un consumitor a haber accesso solmente a un parte del wikis (projectos de sito), alora il habera plure indicios de accesso pro iste consumitor.', # Fuzzy
 	'mwoauthmanagemygrants-confirm-legend' => 'Gerer indicio de accesso de consumitor',
-	'mwoauthmanagemygrants-update' => 'Actualisar concessiones de indicio de accesso',
-	'mwoauthmanagemygrants-renounce' => 'Disautorisar e deler indicio de accesso',
+	'mwoauthmanagemygrants-update' => 'Actualisar concessiones de indicio de accesso', # Fuzzy
+	'mwoauthmanagemygrants-renounce' => 'Disautorisar e deler indicio de accesso', # Fuzzy
 	'mwoauthmanagemygrants-action' => 'Cambiar stato:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Actualisar le stato de indicio de accesso',
 	'mwoauthmanagemygrants-success-update' => 'Le indicio de accesso pro iste consumitor ha essite actualisate.',
@@ -2148,23 +2135,10 @@ Nota que si tu ha autorisate un consumitor a haber accesso solmente a un parte d
 	'mwoauth-invalid-authorization-invalid-user' => 'Le capites de autorisation in tu requesta es pro un usator que non existe hic',
 	'mwoauth-invalid-authorization-wrong-user' => 'Le capites de autorisation in tu requesta es pro un altere usator',
 	'mwoauth-invalid-authorization-not-approved' => 'Le capites de autorisation in tu requesta es pro un consumitor OAuth que non es actualmente approbate',
-	'mwoauth-form-description' => 'Le sequente application requesta usar MediaWiki in tu nomine. Le application potera exequer omne actiones que es permittite con le lista de derectos requestate hic infra. Tu debe autorisar solmente le applicationes que tu considera digne de fide pro usar iste permissiones como tu lo facerea.',
-	'mwoauth-form-existing' => "'''Iste application requesta autorisation pro MediaWiki in tu nomine, ma tu ha jam concedite le accesso:'''
-*  Concessiones: $1
-*  Wiki: $2
-*  Autorisate le: $3",
-	'mwoauth-form-button-approve' => 'Si, autorisar',
-	'mwoauth-form-confirmation' => 'Autorisar iste application a ager in tu nomine?',
-	'mwoauth-form-confirmation-update' => 'Actualisar iste autorisation al privilegios requestate. Si tu lassa isto non marcate, le autorisationes existente essera mantenite.',
-	'mwoauth-authorize-form' => 'Detalios del application:',
-	'mwoauth-authorize-form-user' => 'Autor del application: $1',
-	'mwoauth-authorize-form-name' => 'Nomine del application: $1',
-	'mwoauth-authorize-form-description' => 'Description del application: $1',
-	'mwoauth-authorize-form-version' => 'Version del application: $1',
-	'mwoauth-authorize-form-wiki' => 'Wiki: $1',
+	'mwoauth-form-button-approve' => 'Si, autorisar', # Fuzzy
 	'mwoauth-grants-heading' => 'Permissiones requestate:',
 	'mwoauth-grants-nogrants' => 'Le application non ha requestate alcun permission.',
-	'mwoauth-grant-blockusers' => 'Blocar usatores',
+	'mwoauth-grant-blockusers' => 'Blocar usatores', # Fuzzy
 	'mwoauth-grant-createeditmovepage' => 'Crear, modificar e renominar paginas',
 	'mwoauth-grant-delete' => 'Deler paginas, versiones e entratas de registro',
 	'mwoauth-grant-editinterface' => 'Modificar le spatio de nomines MediaWiki e le CSS/JS de usatores',
@@ -2174,10 +2148,10 @@ Nota que si tu ha autorisate un consumitor a haber accesso solmente a un parte d
 	'mwoauth-grant-editprotected' => 'Modificar paginas protegite',
 	'mwoauth-grant-highvolume' => 'Modification in massa',
 	'mwoauth-grant-oversight' => 'Celar usatores e supprimer versiones',
-	'mwoauth-grant-patrol' => 'Patruliar',
+	'mwoauth-grant-patrol' => 'Patruliar', # Fuzzy
 	'mwoauth-grant-protect' => 'Proteger e disproteger paginas',
-	'mwoauth-grant-rollback' => 'Revocar',
-	'mwoauth-grant-sendemail' => 'Inviar e-mail',
+	'mwoauth-grant-rollback' => 'Revocar', # Fuzzy
+	'mwoauth-grant-sendemail' => 'Inviar e-mail', # Fuzzy
 	'mwoauth-grant-uploadeditmovefile' => 'Actualisar, reimplaciar e renominar files',
 	'mwoauth-grant-uploadfile' => 'Incargar nove files',
 	'mwoauth-grant-useoauth' => 'Derectos de base',
@@ -2185,7 +2159,7 @@ Nota que si tu ha autorisate un consumitor a haber accesso solmente a un parte d
 	'mwoauth-grant-viewmywatchlist' => 'Vider le proprie observatorio',
 	'mwoauth-callback-not-oob' => 'oauth_callback debe esser definite, e debe esser mittite a "oob" (distingue inter majusculas e minusculas)',
 	'right-mwoauthproposeconsumer' => 'Proponer nove consumitores OAuth',
-	'right-mwoauthupdateconsumer' => 'Actualisar consumitores OAuth',
+	'right-mwoauthupdateownconsumer' => 'Actualisar consumitores OAuth',
 	'right-mwoauthmanageconsumer' => 'Gerer consumitores OAuth',
 	'right-mwoauthsuppress' => 'Supprimer consumitores OAuth',
 	'right-mwoauthviewsuppressed' => 'Vider consumitores OAuth supprimite',
@@ -2194,7 +2168,7 @@ Nota que si tu ha autorisate un consumitor a haber accesso solmente a un parte d
 	'action-mwoauthmanageconsumer' => 'gerer consumitores OAuth',
 	'action-mwoauthmanagemygrants' => 'gerer le proprie concessiones OAuth',
 	'action-mwoauthproposeconsumer' => 'proponer nove consumitores OAUth',
-	'action-mwoauthupdateconsumer' => 'actualisar consumitores OAuth',
+	'action-mwoauthupdateownconsumer' => 'actualisar consumitores OAuth',
 	'action-mwoauthviewsuppressed' => 'vider consumitores OAUth supprimite',
 );
 
@@ -3163,7 +3137,7 @@ $messages['mr'] = array(
 	'mwoauth-prefs-managegrantslink' => 'या खात्याचे वतीने अनुदानांचे व्यवस्थापन करा',
 	'mwoauth-consumer-email-unconfirmed' => 'तुमचा विपत्र (ई-मेल) पत्ता अद्याप प्रमाणित झाला नाही.',
 	'mwoauth-consumer-email-mismatched' => 'आपल्या खात्याचा विपत्रपत्ता दिलेल्या विपत्रपत्त्याशी जुळावयास हवा.',
-	'mwoauth-grant-blockusers' => 'सदस्य प्रतिबंधन',
+	'mwoauth-grant-blockusers' => 'सदस्य प्रतिबंधन', # Fuzzy
 	'mwoauth-grant-delete' => 'पाने, आवृत्त्या व नोंदी वगळा',
 	'mwoauth-grant-editinterface' => 'मिडियाविकि नामविश्व व सदस्यांची CSS/JS संपादा',
 	'mwoauth-grant-editmycssjs' => 'आपले स्वतःचे CSS/JS पान संपादित करा',
@@ -3171,10 +3145,10 @@ $messages['mr'] = array(
 	'mwoauth-grant-editprotected' => 'संपादनांपासून सुरक्षित असलेली पाने',
 	'mwoauth-grant-highvolume' => 'अत्त्युच्च-जागा घेणारे संपादन',
 	'mwoauth-grant-oversight' => 'सदस्य लपवा व आवृत्त्या दाबा',
-	'mwoauth-grant-patrol' => 'गस्त',
+	'mwoauth-grant-patrol' => 'गस्त', # Fuzzy
 	'mwoauth-grant-protect' => 'पाने सुरक्षित किंवा असुरक्षित करा',
-	'mwoauth-grant-rollback' => 'परतवा',
-	'mwoauth-grant-sendemail' => 'विपत्र पाठवा',
+	'mwoauth-grant-rollback' => 'परतवा', # Fuzzy
+	'mwoauth-grant-sendemail' => 'विपत्र पाठवा', # Fuzzy
 	'mwoauth-grant-useoauth' => 'मुळ अधिकार',
 	'mwoauth-grant-viewdeleted' => 'वगळलेली माहिती बघा',
 	'mwoauth-grant-viewmywatchlist' => 'आपली निरीक्षणसूची बघा',
@@ -3450,8 +3424,8 @@ $messages['oc'] = array(
 	'mwoauthmanagemygrants-wikiallowed' => 'Autorizat sul wiki',
 	'mwoauthmanagemygrants-consumerkey' => 'Clau del consomator',
 	'mwoauth-error' => 'Error OAuth',
-	'mwoauth-grant-blockusers' => 'Blocar los utilizaires',
-	'mwoauth-grant-patrol' => 'Patrolhar',
+	'mwoauth-grant-blockusers' => 'Blocar los utilizaires', # Fuzzy
+	'mwoauth-grant-patrol' => 'Patrolhar', # Fuzzy
 );
 
 /** Polish (polski)
@@ -3475,16 +3449,8 @@ $messages['ps'] = array(
  * @author Dannyps
  */
 $messages['pt'] = array(
-	'mwoauth-form-button-approve' => 'Sim, permitir',
-	'mwoauth-authorize-form-description' => 'Descrição da aplicação:$1',
-	'mwoauth-authorize-form-version' => 'Versão da aplicação:$1',
+	'mwoauth-form-button-approve' => 'Sim, permitir', # Fuzzy
 	'mwoauth-grants-heading' => 'Permissões solicitadas:',
-	'mwoauth-grants-editpages' => 'Editar páginas',
-	'mwoauth-grants-editmyinterface' => 'Editar a sua interface (páginas JavaScript e CSS)',
-	'mwoauth-grants-editinterface' => 'Editar (na MediaWiki interface JavaScript e CSS) páginas',
-	'mwoauth-grants-createpages' => 'Criar páginas',
-	'mwoauth-grants-deletepages' => 'Eliminar páginas',
-	'mwoauth-grants-upload' => 'Carregar ficheiros',
 );
 
 /** Brazilian Portuguese (português do Brasil)
@@ -3684,9 +3650,7 @@ $messages['sv'] = array(
  * @author Rapsar
  */
 $messages['tr'] = array(
-	'mwoauth-form-button-approve' => 'Evet, izin ver',
-	'mwoauth-grants-editpages' => 'Sayfaları değiştir',
-	'mwoauth-grants-upload' => 'Dosya yükle',
+	'mwoauth-form-button-approve' => 'Evet, izin ver', # Fuzzy
 );
 
 /** Ukrainian (українська)
@@ -4046,7 +4010,7 @@ $messages['vi'] = array(
 	'mwoauth-error' => 'Lỗi OAuth',
 	'mwoauth-grants-heading' => 'Các quyền được yêu cầu:',
 	'mwoauth-grants-nogrants' => 'Ứng dụng không yêu cầu quyền nào.',
-	'mwoauth-grant-blockusers' => 'Cấm người dùng',
+	'mwoauth-grant-blockusers' => 'Cấm người dùng', # Fuzzy
 	'mwoauth-grant-createeditmovepage' => 'Tạo, sửa, và di chuyển trang',
 	'mwoauth-grant-delete' => 'Xóa trang, phiên bản, và mục nhật ký',
 	'mwoauth-grant-editinterface' => 'Sửa không gian tên MediaWiki và CSS/JS cá nhân',
