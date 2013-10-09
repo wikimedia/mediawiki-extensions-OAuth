@@ -1397,6 +1397,7 @@ Note that if you authorised a consumer to only have access to a subset of wikis 
 	'mwoauth-invalid-authorization-not-approved' => 'The authorisation headers in your request are for an OAuth consumer that is not currently approved',
 	'mwoauth-invalid-authorization-blocked-user' => 'The authorisation headers in your request are for a user who is blocked',
 	'mwoauth-acceptance-cancelled' => 'You have cancelled this request to authorise an OAuth consumer to act on your behalf.',
+	'mwoauth-grant-group-customization' => 'Customisation and preferences',
 );
 
 /** Spanish (español)
