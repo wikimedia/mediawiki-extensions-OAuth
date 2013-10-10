@@ -9,10 +9,11 @@ class MWOAuthUISetup {
 	 * @return void
 	 */
 	public static function unconditionalSetup() {
-		global $wgSpecialPages, $wgHooks, $wgResourceModules;
+		global $wgSpecialPages, $wgSpecialPageGroups, $wgHooks, $wgResourceModules;
 
 		$wgSpecialPages['MWOAuth'] = 'SpecialMWOAuth';
 		$wgSpecialPages['MWOAuthManageMyGrants'] = 'SpecialMWOAuthManageMyGrants';
+		$wgSpecialPageGroups['MWOAuthManageMyGrants'] = 'users';
 
 		$wgHooks['GetPreferences'][] = 'MWOAuthUIHooks::onGetPreferences';
 

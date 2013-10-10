@@ -22,7 +22,7 @@
  * Special page for listing consumers this user granted access to and
  * for manage the specific grants given or revoking access for the consumer
  */
-class SpecialMWOAuthManageMyGrants extends UnlistedSpecialPage {
+class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	protected static $stageKeyMap = array(
 		MWOAuthConsumer::STAGE_PROPOSED => 'proposed',
 		MWOAuthConsumer::STAGE_REJECTED => 'rejected',
