@@ -153,7 +153,7 @@ class MWOAuthServer extends OAuthServer {
 		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
 
 		// Check if this authorization exists
-		$cmra = $this->getCurrentAuthorization( $mwUser, $consumer );
+		$cmra = $this->getCurrentAuthorization( $mwUser, $consumer, wfWikiId() );
 
 		if ( $update ) {
 			// This should be an update to an existing authorization
@@ -193,16 +193,24 @@ class MWOAuthServer extends OAuthServer {
 	}
 
 	/**
-	 * Attempts to get an authorization by this user, for this consumer. First attempts
-	 * to fine an acceptance for the current wiki, when for '*' wikis. In theory, a user
-	 * could authorize different grants on a particular wiki vs. all wikis, for a given
-	 * consumer.
+	 * Attempts to find an authorization by this user for this consumer. Since a user can
+	 * accept a consumer multiple times (once for "*" and once for each specific wiki),
+	 * there can several access tokens per-wiki (with varying grants) for a consumer.
+	 * This will choose the most wiki-specific access token. The precedence is:
+	 * a) The acceptance for wiki X if the consumer is applicable only to wiki X
+	 * b) The acceptance for wiki $wikiId (if the consumer is applicable to it)
+	 * c) The acceptance for wikis "*" (all wikis)
+	 *
+	 * Users might want more grants on some wikis than on "*". Note that the reverse would not
+	 * make sense, since the consumer could just use the "*" acceptance if it has more grants.
+	 *
 	 * @param User $mwUser (local wiki user) User who may or may not have authorizations
 	 * @param MWOAuthConsumer $consumer
+	 * @param string $wikiId
 	 * @throws MWOAuthException
 	 * @return MWOAuthConsumerAcceptance
 	 */
-	public function getCurrentAuthorization( User $mwUser, $consumer ) {
+	public function getCurrentAuthorization( User $mwUser, $consumer, $wikiId ) {
 		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
@@ -210,11 +218,13 @@ class MWOAuthServer extends OAuthServer {
 			throw new MWOAuthException( 'mwoauthserver-invalid-user' );
 		}
 
+		$checkWiki = $consumer->get( 'wiki' ) !== '*' ? $consumer->get( 'wiki' ) : $wikiId;
+
 		$cmra = MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
 			$dbr,
 			$centralUserId,
 			$consumer,
-			wfWikiID()
+			$checkWiki
 		);
 		if ( !$cmra ) {
 			$cmra = MWOAuthConsumerAcceptance::newFromUserConsumerWiki(

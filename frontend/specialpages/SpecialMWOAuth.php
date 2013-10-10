@@ -160,7 +160,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$this->getOutput()->addModules( 'ext.MWOAuth.AuthorizeDialog' );
 
 		// Check if this user has authorized grants for this consumer previously
-		$existing = $oauthServer->getCurrentAuthorization( $user, $cmr->getDAO() );
+		$existing = $oauthServer->getCurrentAuthorization( $user, $cmr->getDAO(), wfWikiId() );
 
 		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), array(), $dbr );
 		$form = new HTMLForm(
