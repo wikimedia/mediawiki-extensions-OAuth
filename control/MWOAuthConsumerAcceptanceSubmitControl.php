@@ -50,7 +50,8 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			'update'   => array(
 				'acceptanceId' => '/^\d+$/',
 				'wiki'        => function( $s ) {
-					return WikiMap::getWiki( $s ) || $s === '*'; },
+					global $wgConf;
+					return in_array( $s, $wgConf->getLocalDatabases() ) || $s === '*'; },
 				'grants'      => function( $s ) {
 					$grants = FormatJSON::decode( $s, true );
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
