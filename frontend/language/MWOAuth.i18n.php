@@ -55,6 +55,7 @@ To complete the process, provide this verification value to the application: \'\
 	'mwoauth-consumer-not-approved' => 'The consumer is not approved (it may have been disabled)',
 	'mwoauth-invalid-consumer-key' => 'No consumer exists with the given key.',
 	'mwoauth-invalid-access-token' => 'No access token exists with the given key.',
+	'mwoauth-invalid-access-wrongwiki' => 'The consumer can only be used on wiki "$1".',
 	'mwoauth-consumer-conflict' => 'Someone changed the attributes of this consumer as you viewed it. Please try again. You may want to check the change log.',
 
 	'mwoauth-consumer-stage-proposed' => 'proposed',
@@ -193,7 +194,6 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthconsumer-consumer-logpage' => 'OAuth consumer log',
 	'mwoauthconsumer-consumer-logpagetext' => 'Log of approvals, rejections, and disabling of registered OAuth consumers.',
 
-	'mwoauth-bad-csrf-token' => 'Session failure when submitting form. Please try your submissions again.',
 	'mwoauth-bad-request' => 'There was an error in your OAuth request.',
 	'mwoauthdatastore-access-token-not-found' => 'No approved grant was found for that authorization token.',
 	'mwoauthdatastore-request-token-not-found' => 'No request was found for that token.',
@@ -831,6 +831,8 @@ See also:
 	'action-mwoauthupdateownconsumer' => '{{Doc-action|mwoauthupdateownconsumer}}',
 	'action-mwoauthviewsuppressed' => '{{Doc-action|mwoauthviewsuppressed}}',
 	'mwoauthmanagemygrants-text' => 'Explanatory text for Special:OAuthManageMyGrants page',
+	'mwoauth-invalid-access-wrongwiki' => 'Used as error message. Parameters:
+* $1 - the wiki ID the consumer is applicable to'
 );
 
 /** Asturian (asturianu)

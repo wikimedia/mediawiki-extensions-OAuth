@@ -121,6 +121,11 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			}
 			$cmr = MWOAuthConsumer::newFromId( $dbw, $cmra->get( 'consumerId' ) );
 
+			if ( $cmr->get( 'wiki' ) !== '*' && $cmr->get( 'wiki' ) !== $this->vals['wiki'] ) {
+				return $this->failure( 'invalid_wiki',
+					'mwoauth-invalid-access-wrongwiki', $cmr->get( 'wiki' ) );
+			}
+
 			$grants = FormatJSON::decode( $this->vals['grants'], true );
 			$cmra->setFields( array(
 				'wiki'   => $this->vals['wiki'],
