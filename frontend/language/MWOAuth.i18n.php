@@ -1926,7 +1926,7 @@ $5",
 	'mwoauth-grant-group-customization' => 'Personalización e preferencias',
 	'mwoauth-grant-group-administration' => 'Realizar accións administrativas',
 	'mwoauth-grant-group-other' => 'Outras actividades',
-	'mwoauth-grant-blockusers' => 'Bloquear usuarios', # Fuzzy
+	'mwoauth-grant-blockusers' => 'Bloquear e desbloquear usuarios',
 	'mwoauth-grant-createaccount' => 'Crear contas',
 	'mwoauth-grant-createeditmovepage' => 'Crear, editar e mover páxinas',
 	'mwoauth-grant-delete' => 'Borrar páxinas, revisións e entradas de rexistro',
