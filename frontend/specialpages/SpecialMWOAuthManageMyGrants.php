@@ -57,8 +57,6 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		case 'manage':
 			$this->handleConsumerForm( $acceptanceId );
 			break;
-		case 'list':
-			// fall through
 		default:
 			$this->showConsumerList();
 			break;
@@ -79,7 +77,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$listLinks = array();
 		if ( $acceptanceId ) {
 			$listLinks[] = Linker::linkKnown(
-				$this->getTitle( 'proposed' ),
+				$this->getTitle(),
 				$this->msg( 'mwoauthmanagemygrants-showlist' )->escaped() );
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthmanagemygrants-showlist' )->escaped();
