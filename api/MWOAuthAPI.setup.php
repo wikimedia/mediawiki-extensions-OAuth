@@ -90,20 +90,14 @@ class MWOAuthAPISetup {
 			if ( $accesstoken !== null ) {
 				$wiki = wfWikiID();
 				$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+
+				// Access token is for this wiki
 				$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $accesstoken->key );
 				if ( $access->get( 'wiki' ) !== '*' && $access->get( 'wiki' ) !== $wiki ) {
 					throw self::makeException( 'mwoauth-invalid-authorization-wrong-wiki', $wiki );
 				}
-				$consumer = MWOAuthConsumer::newFromId( $dbr, $access->get( 'consumerId' ) );
-				if ( $consumer->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
-					&& !$consumer->isPendingAndOwnedBy( $user ) // let publisher test this
-				) {
-					throw self::makeException( 'mwoauth-invalid-authorization-not-approved' );
-				} elseif ( $consumer->get( 'wiki' ) !== '*'
-					&& $consumer->get( 'wiki' ) !== $wiki
-				) {
-					throw self::makeException( 'mwoauth-invalid-authorization-wrong-wiki', $wiki );
-				}
+
+				// There exists a local user, matching $user if $user is logged in
 				$localUser = MWOAuthUtils::getLocalUserFromCentralId( $access->get( 'userId' ) );
 				if ( !$localUser || !$localUser->isLoggedIn() ) {
 					throw self::makeException( 'mwoauth-invalid-authorization-invalid-user' );
@@ -113,12 +107,27 @@ class MWOAuthAPISetup {
 				if ( $localUser->isLocked() || ( $wgBlockDisablesLogin && $localUser->isBlocked() ) ) {
 					throw self::makeException( 'mwoauth-invalid-authorization-blocked-user' );
 				}
+
+				// The consumer is approved or owned by $localUser, and is for this wiki.
+				$consumer = MWOAuthConsumer::newFromId( $dbr, $access->get( 'consumerId' ) );
+				if ( $consumer->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
+					&& !$consumer->isPendingAndOwnedBy( $localUser ) // let publisher test this
+				) {
+					throw self::makeException( 'mwoauth-invalid-authorization-not-approved' );
+				} elseif ( $consumer->get( 'wiki' ) !== '*'
+					&& $consumer->get( 'wiki' ) !== $wiki
+				) {
+					throw self::makeException( 'mwoauth-invalid-authorization-wrong-wiki', $wiki );
+				}
+
+				// Ok, use this user!
 				$user->setID( $localUser->getId() );
 				$user->loadFromId();
 				$user->oAuthSessionData += array(
 					'accesstoken' => $accesstoken,
 					'rights' => MWOAuthUtils::getGrantRights( $access->get( 'grants' ) ),
 				);
+
 				// Setup a session for this OAuth user, so edit tokens work.
 				// Preserve the session ID used so clients can ignore cookies.
 				$key = wfMemcKey( 'oauthsessionid', $access->get( 'id' ) );
