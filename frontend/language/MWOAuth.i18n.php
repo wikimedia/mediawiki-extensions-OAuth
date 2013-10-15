@@ -3216,14 +3216,15 @@ $messages['nl'] = array(
 	'mwoauthconsumerregistration-navigation' => 'Navigatie:',
 	'mwoauthconsumerregistration-propose' => 'Nieuwe consumer voorstellen',
 	'mwoauthconsumerregistration-list' => 'Uw consumerlijst',
-	'mwoauthconsumerregistration-propose-text' => 'Gebruik het formulier hieronder om een nieuwe OAuthconsumer voor te stellen (zie http://oauth.net).
+	'mwoauthconsumerregistration-propose-text' => 'Ontwikkelaars moeten het onderstaande formulier gebruiken om een nieuwe OAuthconsumer voor te stellen (zie de [//www.mediawiki.org/wiki/Extension:OAuth documentatie van de uitbreiding] voor meer details). Na het indienden van dit formulier ontvangt u een token dat uw programma gaat gebruiken om zichzelf te identificeren bij MediaWiki. Een OAuthbeheerder moet uw aanvraag goedkeuren voor het door andere gebruikers kan worden toegestaan.
 
 Een paar aanbevelingen en opmerkingen:
 * Probeer zo min mogelijk bevoegdheden te gebruiken  Vermijd bevoegdheden die niet echt nodig zijn;
-* Gebruik als mogelijk een RSA-sleutel; als dat niet mogelijk is, wordt u een (minder veilig) geheim token toegewezen;
+* Versies hebben de opmaak "groot.klein.release" (de laatste twee elementen zijn optioneel) en moeten oplopen als er wijzigingen voor de toestemmingen nodig zijn;
+* Gebruik als mogelijk een RSA-sleutel (in PEM-opmaak); als dat niet mogelijk is, wordt u een (minder veilig) geheim token toegewezen;
 * Gebruik het veld JSON-beperkingen om de toegang voor deze consumer te beperken tot IP-adressen in de opgegeven CIDR-bereiken;
 * U kunt een wiki-ID gebruiken om de consumer te beperken tot één enkele wiki op deze site (gebruik "*" voor alle wiki\'s);
-* Het e-mailadres moet overeenkomen met dat van uw gebruiker (en het e-mailadres moet zijn bevestigd).', # Fuzzy
+* Het e-mailadres moet overeenkomen met dat van uw gebruiker (en het e-mailadres moet zijn bevestigd).',
 	'mwoauthconsumerregistration-propose-legend' => 'Nieuwe OAuthconsumertoepassing',
 	'mwoauthconsumerregistration-update-legend' => 'OAuthconsumertoepassing bijwerken',
 	'mwoauthconsumerregistration-propose-submit' => 'Consumer voorstellen',
