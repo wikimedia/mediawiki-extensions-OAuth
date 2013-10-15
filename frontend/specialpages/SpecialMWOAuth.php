@@ -122,7 +122,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					);
 					break;
 				default:
-					$this->showError( 'oauth-client-invalidrequest', $format );
+					$format = $request->getVal( 'format', 'html' );
+					$this->showError( 'mwoauth-bad-request', $format );
 			}
 		} catch ( MWOAuthException $exception ) {
 			wfDebugLog( 'OAuth', __METHOD__ . ": Exception " . $exception->getMessage() );
