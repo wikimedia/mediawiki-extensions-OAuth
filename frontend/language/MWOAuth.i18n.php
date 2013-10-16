@@ -3516,6 +3516,7 @@ $messages['sk'] = array(
 );
 
 /** Slovenian (slovenščina)
+ * @author Dbc334
  * @author Eleassar
  */
 $messages['sl'] = array(
@@ -3537,10 +3538,10 @@ $messages['sl'] = array(
 $4",
 	'mwoauth-form-description-onewiki' => "Pozdravljeni, $1,
 
-'''$2''' bi v vašem imenu v projektu »$4« rad izvedel naslednje dejanje:
+'''$2''' bi rad na projektu »$4« v vašem imenu izvedel naslednje dejanje:
 
 
-$4", # Fuzzy
+$5",
 	'mwoauth-form-description-allwikis-nogrants' => "Pozdravljeni, $1,
 
 '''$2''' bi v vseh projektih tega spletišča rad imel osnovni dostop v vašem imenu.$2",
