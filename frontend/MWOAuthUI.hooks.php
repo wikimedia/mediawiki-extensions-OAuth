@@ -10,12 +10,10 @@ class MWOAuthUIHooks {
 				'label-message' => 'mwoauth-prefs-managegrants',
 				'type' => 'info',
 				'raw' => true,
-				'default' => wfMessage( 'parentheses' )->rawParams(
-					Linker::linkKnown(
-						SpecialPage::getTitleFor( 'MWOAuthManageMyGrants' ),
-						wfMessage( 'mwoauth-prefs-managegrantslink' )
-					)
-				)->escaped()
+				'default' => Linker::linkKnown(
+					SpecialPage::getTitleFor( 'MWOAuthManageMyGrants' ),
+					wfMessage( 'mwoauth-prefs-managegrantslink' )->escaped()
+				)
 			),
 		);
 

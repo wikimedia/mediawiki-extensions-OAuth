@@ -24,8 +24,8 @@ To complete the process, provide this verification value to the application: \'\
 	'mwoauth-field-private' => '(this information is private)',
 
 	'mwoauth-grant-generic' => '"$1" rights bundle',
-	'mwoauth-prefs-managegrants' => 'OAuth consumer access:',
-	'mwoauth-prefs-managegrantslink' => 'Manage grants on behalf of this account',
+	'mwoauth-prefs-managegrants' => 'Account users (OAuth):',
+	'mwoauth-prefs-managegrantslink' => 'Manage what applications can use your account',
 
 	'mwoauth-consumer-allwikis' => 'All projects on this site',
 	'mwoauth-consumer-key' => 'Consumer key:',
@@ -154,6 +154,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthmanageconsumers-success-reanable' => 'Consumer has been re-enabled.',
 
 	'mwoauthmanagemygrants' => 'Manage account OAuth grants',
+	'mwoauthmanagemygrants-text' => 'This page lists any applications that can use your account. For any such application, the scope of its access is limited by the permissions that you granted to the application when you authorized it to act on your behalf.',
 	'mwoauthmanagemygrants-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
 	'mwoauthmanagemygrants-showlist' => 'Accepted consumer list',
@@ -169,7 +170,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthmanagemygrants-consumerkey' => 'Consumer key',
 	'mwoauthmanagemygrants-review' => 'manage access',
 	'mwoauthmanagemygrants-grantaccept' => 'Granted',
-	'mwoauthmanagemygrants-confirm-text' => 'Use the form below to revoke access or change grants for an OAuth consumer to act on your behalf. A few notes:
+	'mwoauthmanagemygrants-confirm-text' => 'Use the form below to revoke access or change grants for an OAuth consumer to act on your behalf.
 * This form controls a particular access "token", or key, that lets a consumer access your account.
 * If you seperately authorized a consumer to access different projects on your behalf, then you will have multiple access tokens for that consumer.
 * If you want to revoke access to consumer, be sure to revoke all the access tokens for all versions of that consumer you accepted.
@@ -829,6 +830,7 @@ See also:
 	'action-mwoauthproposeconsumer' => '{{Doc-action|mwoauthproposeconsumer}}',
 	'action-mwoauthupdateownconsumer' => '{{Doc-action|mwoauthupdateownconsumer}}',
 	'action-mwoauthviewsuppressed' => '{{Doc-action|mwoauthviewsuppressed}}',
+	'mwoauthmanagemygrants-text' => 'Explanatory text for Special:OAuthManageMyGrants page',
 );
 
 /** Asturian (asturianu)
