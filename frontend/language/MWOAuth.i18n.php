@@ -1423,6 +1423,13 @@ Para completar el proceso, proporciona este valor de comprobación a la aplcaci�
 	'mwoauth-oauth-exception' => 'Ha ocurrido un error en el protocolo OAuth: $1',
 );
 
+/** Persian (فارسی)
+ * @author Ebraminio
+ */
+$messages['fa'] = array(
+	'mwoauth-field-hidden' => '(این اطلاعات پنهان است)',
+);
+
 /** Finnish (suomi)
  * @author Nike
  */
@@ -2025,6 +2032,105 @@ $messages['he'] = array(
 	'mwoauthmanageconsumers-type' => 'תורים:',
 	'mwoauthmanageconsumers-showrejected' => 'בקשות שנדחו',
 	'mwoauthmanageconsumers-showexpired' => 'בקשות שפג תוקפן',
+	'mwoauthmanageconsumers-main' => 'ראשי',
+	'mwoauthmanageconsumers-none-proposed' => 'אין צרכנים ברשימה זו.',
+	'mwoauthmanageconsumers-none-rejected' => 'אין צרכנים ברשימה זו.',
+	'mwoauthmanageconsumers-none-expired' => 'אין צרכנים ברשימה זו.',
+	'mwoauthmanageconsumers-none-approved' => 'אין צרכנים בקטגוריה זו.',
+	'mwoauthmanageconsumers-none-disabled' => 'אין צרכנים בקטגוריה זו.',
+	'mwoauthmanageconsumers-name' => 'צרכן',
+	'mwoauthmanageconsumers-user' => 'מפרסם',
+	'mwoauthmanageconsumers-description' => 'תיאור',
+	'mwoauthmanageconsumers-email' => 'שליחת דוא"ל',
+	'mwoauthmanageconsumers-consumerkey' => 'מפתח צרכן',
+	'mwoauthmanageconsumers-lastchange' => 'שינוי אחרון',
+	'mwoauthmanageconsumers-confirm-text' => 'טופס זה מיועד לאשר, לבטל, או לאפשר צרכן זה.',
+	'mwoauthmanageconsumers-confirm-legend' => 'ניהול צרכן OAuth',
+	'mwoauthmanageconsumers-action' => 'שינוי מצב:',
+	'mwoauthmanageconsumers-approve' => 'אושר',
+	'mwoauthmanageconsumers-reject' => 'נדחה',
+	'mwoauthmanageconsumers-disable' => 'בוטל',
+	'mwoauthmanageconsumers-reenable' => 'אושר',
+	'mwoauthmanageconsumers-reason' => 'סיבה:',
+	'mwoauthmanageconsumers-confirm-submit' => 'עדכון מצב צרכן',
+	'mwoauthmanageconsumers-viewing' => 'משתמש "$1" רואה כעת את הצרכן',
+	'mwoauthmanageconsumers-success-approved' => 'הבקשה אושרה',
+	'mwoauthmanageconsumers-success-rejected' => 'הבקשה נדחתה',
+	'mwoauthmanageconsumers-success-disabled' => 'צרכן בוטל',
+	'mwoauthmanageconsumers-success-reanable' => 'צרכן אופשר מחדש',
+	'mwoauthmanagemygrants-notloggedin' => 'יש להיות מחובר כדי לגשת לדף זה.',
+	'mwoauthmanagemygrants-navigation' => 'ניווט:',
+	'mwoauthmanagemygrants-showlist' => 'רשימת צרכנים שהתקבלו',
+	'mwoauthmanagemygrants-name' => 'שם צרכן',
+	'mwoauthmanagemygrants-user' => 'מפרסם',
+	'mwoauthmanagemygrants-description' => 'תיאור',
+	'mwoauthmanagemygrants-consumerkey' => 'מפתח צרכן',
+	'mwoauthmanagemygrants-review' => 'ניהול גישה',
+	'mwoauthmanagemygrants-action' => 'שינוי מצב:',
+	'mwoauthmanagemygrants-confirm-submit' => 'מצב עדכון אסימון גישה',
+	'mwoauthmanagemygrants-success-update' => 'אסימון הגישה עבור צרכן זה עודכן.',
+	'mwoauthmanagemygrants-success-renounce' => 'אסימון גישה עבור הצרכן זה נמחק.',
+	'logentry-mwoauthconsumer-propose' => '$1 {{GENDER:$2|proposed}} צרכן OAuth (מפתח צרכן $4)',
+	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|updated}} צרכן OAuth (מפתח צרכן $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 {{GENDER:$2|approved}} צרכןOAuth על ידי $3 (מפתח צרכן $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 {{GENDER:$2|rejected}} צרכן OAuth על ידי $3 (מפתח צרכן $4)',
+	'logentry-mwoauthconsumer-disable' => '$1 {{GENDER:$2|disabled}} צרכן OAuth על ידי $3 (מפתח צרכן $4)',
+	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|re-enabled}} צרכן OAuth על ידי $3 (מפתח צרכן $4)',
+	'mwoauth-bad-request' => 'אירעה שגיאה בבקשת OAuth.',
+	'mwoauthdatastore-request-token-not-found' => 'לא נמצאה בקשה לאסימון זה.',
+	'mwoauthdatastore-bad-token' => 'לא נמצא אסימון מתאים לבקשתך.',
+	'mwoauthdatastore-bad-verifier' => 'קוד האימות שסופק לא חוקי.',
+	'mwoauthdatastore-invalid-token-type' => 'האסימון המבוקש אינו תקין.',
+	'mwoauthgrants-general-error' => 'אירעה שגיאה בבקשת OAuth.',
+	'mwoauthserver-bad-consumer' => 'לא נמצא צרכן מאושר עבור המפתח שסופק.',
+	'mwoauthserver-insufficient-rights' => 'אין לך הרשאות לביצוע את פעולה זו.',
+	'mwoauthserver-invalid-request-token' => 'אסימון לא חוקי בבקשתך.',
+	'mwoauthserver-invalid-user-hookabort' => 'משתמש זה לא יכול להשתמש בOAuth.',
+	'mwoauth-invalid-authorization-title' => 'שגיאת אימות OAuth',
+	'mwoauth-form-description-allwikis' => 'שלום $1
+
+"$2" מעוניין לבצע בשמך את הפעולות הבאות בכל הפרויקטים:
+
+$4',
+	'mwoauth-form-description-onewiki' => 'שלום $1
+
+"$2" מעוניין לעשות בשמך את הפעולות הבאות ב"$4":
+
+$5',
+	'mwoauth-form-description-allwikis-nogrants' => 'שלום $1
+
+"$2" מעוניין לקבל גישה בסיסית בשמך לכל המיזמים באתר זה.',
+	'mwoauth-form-description-onewiki-nogrants' => 'שלום $1
+"$2" מעוניין לקבל בשמך גישה בסיסית ב"$4".',
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Privacy Policy]]',
+	'mwoauth-form-button-approve' => 'לאפשר',
+	'mwoauth-form-button-cancel' => 'ביטול',
+	'mwoauth-authorize-form-invalid-user' => 'משתמש זה לא יכול להשתמש בOAuth בגלל שחשבונו בויקי זה וחשבונו בויקי OAuth המרכזי אינם מקושרים.',
+	'mwoauth-error' => 'שגיאת OAuth',
+	'mwoauth-grants-heading' => 'הרשאות מבוקשות:',
+	'mwoauth-acceptance-cancelled' => 'ביטלת את הבקשה לאשר את הצרכן OAuth לפעול מטעמך.',
+	'mwoauth-grant-group-page-interaction' => 'פעילות בדפים',
+	'mwoauth-grant-group-file-interaction' => 'פעילות במדיה',
+	'mwoauth-grant-group-watchlist-interaction' => 'פעילות ברשימת מעקב',
+	'mwoauth-grant-group-email' => 'שליחת דוא"ל',
+	'mwoauth-grant-group-customization' => 'התאמה אישית והעדפות',
+	'mwoauth-grant-blockusers' => 'חסימה ושחרור משתמשים',
+	'mwoauth-grant-createaccount' => 'יצירת חשבונות',
+	'mwoauth-grant-createeditmovepage' => 'יצירה, עריכה והעברת דפים.',
+	'mwoauth-grant-delete' => 'מחיקת דפים, גרסאות ויומנים',
+	'mwoauth-grant-editinterface' => 'עריכת שם מדיה-ויקי ומשתמש CSS/JS',
+	'mwoauth-grant-editmycssjs' => 'עריכת CSS/JS של המשתמש שלך',
+	'mwoauth-grant-editmywatchlist' => 'עריכת רשימת המעקב שלך',
+	'mwoauth-grant-editpage' => 'עריכת דפים קיימים',
+	'mwoauth-grant-editprotected' => 'עריכת דפים מוגנים',
+	'mwoauth-grant-protect' => 'הפעלת הגנה והסרת הגנה מדפים',
+	'mwoauth-grant-sendemail' => 'שליחת דואר אלקטרוני למשתמשים אחרים',
+	'mwoauth-grant-uploadeditmovefile' => 'העלאת קבצים, החלפת קבצים, והעברתם.',
+	'mwoauth-grant-uploadfile' => 'העלאת קבצים חדשים',
+	'mwoauth-grant-useoauth' => 'הרשאות בסיסיות',
+	'mwoauth-grant-viewdeleted' => 'צפייה במידע שנמחק',
+	'mwoauth-grant-viewmywatchlist' => 'צפייה ברשימת מעקב',
+	'mwoauth-oauth-exception' => 'אירעה שגיאה בפרוטוקול OAuth:$1',
 );
 
 /** Interlingua (interlingua)
