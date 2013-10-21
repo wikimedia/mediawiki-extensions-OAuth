@@ -242,6 +242,8 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	 * @return void
 	 */
 	protected function showConsumerList() {
+		$this->getOutput()->addWikiMsg( 'mwoauthmanagemygrants-text' );
+
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $this->getUser() );
 		$pager = new MWOAuthManageMyGrantsPager( $this, array(), $centralUserId );
 		if ( $pager->getNumRows() ) {
