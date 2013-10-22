@@ -25,7 +25,7 @@ To complete the process, provide this verification value to the application: \'\
 
 	'mwoauth-grant-generic' => '"$1" rights bundle',
 	'mwoauth-prefs-managegrants' => 'Account users (OAuth):',
-	'mwoauth-prefs-managegrantslink' => 'Manage what applications can use your account',
+	'mwoauth-prefs-managegrantslink' => 'Manage which applications can use your account',
 
 	'mwoauth-consumer-allwikis' => 'All projects on this site',
 	'mwoauth-consumer-key' => 'Consumer key:',
