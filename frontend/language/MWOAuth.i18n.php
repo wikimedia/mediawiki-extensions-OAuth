@@ -178,7 +178,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthlistconsumers-status-expired' => 'expired',
 
 	'mwoauthmanagemygrants' => 'Manage account OAuth grants',
-	'mwoauthmanagemygrants-text' => 'This page lists any applications that can use your account. For any such application, the scope of its access is limited by the permissions that you granted to the application when you authorized it to act on your behalf.',
+	'mwoauthmanagemygrants-text' => 'This page lists any applications that can use your account. For any such application, the scope of its access is limited by the permissions that you granted to the application when you authorized it to act on your behalf. If you separately authorized a consumer to access different "sister" projects on your behalf, then you will see separate configuration for each such project below.',
 	'mwoauthmanagemygrants-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
 	'mwoauthmanagemygrants-showlist' => 'Accepted consumer list',
@@ -193,12 +193,14 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Applicable grants allowed:',
 	'mwoauthmanagemygrants-consumerkey' => 'Consumer key',
 	'mwoauthmanagemygrants-review' => 'manage access',
+	'mwoauthmanagemygrants-revoke' => 'revoke access',
 	'mwoauthmanagemygrants-grantaccept' => 'Granted',
-	'mwoauthmanagemygrants-confirm-text' => 'Use the form below to revoke access or change grants for an OAuth consumer to act on your behalf.
-* This form controls a particular access "token", or key, that lets a consumer access your account.
-* If you seperately authorized a consumer to access different projects on your behalf, then you will have multiple access tokens for that consumer.
-* If you want to revoke access to consumer, be sure to revoke all the access tokens for all versions of that consumer you accepted.
-* Using "*" in the wiki field grants access to all projects on this site; using a wiki project ID limits access to a single project.',
+	'mwoauthmanagemygrants-update-text' => 'Use the form below to modify the permissions granted to an application (OAuth consumer) to act on your behalf.
+* If you separately authorized an application to access different "sister site" projects on your behalf, then you will have separate configuration for each such project for that application.
+* Using "*" in the wiki field grants access to all projects on this site; using a wiki project ID limits access to a single project. Per-project settings take precedence.',
+	'mwoauthmanagemygrants-revoke-text' => 'Use the form below to revoke access for an application (OAuth consumer) to act on your behalf.
+* If you separately authorized an application to access different "sister site" projects on your behalf, then you will have separate configuration for each such project for that application.
+* If you want to totally revoke access to an application, be sure to revoke it from all projects that you accepted it on.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Manage consumer access token',
 	'mwoauthmanagemygrants-update' => 'Update grants',
 	'mwoauthmanagemygrants-renounce' => 'Deauthorize',
@@ -650,6 +652,7 @@ Followed by a link with the link text {{msg-mw|Mwoauthmanagemygrants-showlist}}.
 	'mwoauthmanagemygrants-consumerkey' => 'Used as table row header.
 {{Identical|Consumer key}}',
 	'mwoauthmanagemygrants-review' => 'Used as link text.',
+	'mwoauthmanagemygrants-revoke' => 'Used as link text.',
 	'mwoauthmanagemygrants-grantaccept' => 'Used as checkbox column label',
 	'mwoauthmanagemygrants-confirm-text' => 'Explanation text for grants management form for a user',
 	'mwoauthmanagemygrants-confirm-legend' => 'Used as fieldset label',
@@ -859,7 +862,8 @@ See also:
 	'action-mwoauthupdateownconsumer' => '{{Doc-action|mwoauthupdateownconsumer}}',
 	'action-mwoauthviewsuppressed' => '{{Doc-action|mwoauthviewsuppressed}}',
 	'mwoauthmanagemygrants-text' => 'Explanatory text for Special:OAuthManageMyGrants page',
-
+	'mwoauthmanagemygrants-update-text' => 'Explanatory text for Special:OAuthManageMyGrants form',
+	'mwoauthmanagemygrants-revoke-text' => 'Explanatory text for Special:OAuthManageMyGrants form',
 	'mwoauthmanageconsumers-search-name' => 'Link to search for consumers with the same name',
 	'mwoauthmanageconsumers-search-publisher' => 'Link to search for consumers by the same user',
 	'mwoauthlistconsumers' => 'Used as special page name',

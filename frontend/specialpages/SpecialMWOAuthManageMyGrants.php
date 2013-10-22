@@ -54,8 +54,11 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$acceptanceId = isset( $navigation[1] ) ? $navigation[1] : null;
 
 		switch ( $typeKey ) {
-		case 'manage':
-			$this->handleConsumerForm( $acceptanceId );
+		case 'update':
+			$this->handleConsumerForm( $acceptanceId, $typeKey );
+			break;
+		case 'revoke':
+			$this->handleConsumerForm( $acceptanceId, $typeKey );
 			break;
 		default:
 			$this->showConsumerList();
@@ -94,9 +97,10 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	 * Show the form to approve/reject/disable/re-enable consumers
 	 *
 	 * @param string $acceptanceId
+	 * @param string $type One of (update,revoke)
 	 * @throws PermissionsError
 	 */
-	protected function handleConsumerForm( $acceptanceId ) {
+	protected function handleConsumerForm( $acceptanceId, $type ) {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
@@ -156,7 +160,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 					'default' => $cmr->get( 'wiki', 'MWOAuthUtils::getWikiIdName' )
 				),
 				'wiki' => array(
-					'type' => 'text',
+					'type' => ( $type === 'revoke' ) ? 'info' : 'text',
 					'label-message' => 'mwoauthmanagemygrants-wikiallowed',
 					'default' => $cmra->get( 'wiki' )
 				),
@@ -187,7 +191,9 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 					),
 					'force-options-on' => array_map(
 						function( $g ) { return "grant-$g"; },
-						MWOAuthUtils::getHiddenGrants()
+						( $type === 'revoke' )
+							? MWOAuthUtils::getValidGrants()
+							: MWOAuthUtils::getHiddenGrants()
 					),
 					'validation-callback' => null // different format
 				),
@@ -215,18 +221,21 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			'class' => 'mw-htmlform-submit',
 		);
 		$form->suppressDefaultSubmit();
-		$form->addButton( 'renounce',
-			$this->msg( 'mwoauthmanagemygrants-renounce' )->escaped(),
-			null,
-			array( 'class' => 'mw-ui-button mw-ui-destructive' )
-		);
-		$form->addButton( 'update',
-			$this->msg( 'mwoauthmanagemygrants-update' )->escaped(),
-			null,
-			array( 'class' => 'mw-ui-button mw-ui-primary' )
-		);
+		if ( $type === 'revoke' ) {
+			$form->addButton( 'renounce',
+				$this->msg( 'mwoauthmanagemygrants-renounce' )->escaped(),
+				null,
+				array( 'class' => 'mw-ui-button mw-ui-destructive' )
+			);
+		} else {
+			$form->addButton( 'update',
+				$this->msg( 'mwoauthmanagemygrants-update' )->escaped(),
+				null,
+				array( 'class' => 'mw-ui-button mw-ui-primary' )
+			);
+		}
 		$form->addPreText(
-			$this->msg( 'mwoauthmanagemygrants-confirm-text' )->parseAsBlock() );
+			$this->msg( "mwoauthmanagemygrants-$type-text" )->parseAsBlock() );
 
 		$status = $form->show();
 		if ( $status instanceof Status && $status->isOk() ) {
@@ -268,17 +277,23 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 
 		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
 
-		$link = Linker::linkKnown(
-			$this->getTitle( 'manage/' . $cmra->get( 'id' ) ),
+		$links = array();
+		$links[] = Linker::linkKnown(
+			$this->getTitle( 'update/' . $cmra->get( 'id' ) ),
 			$this->msg( 'mwoauthmanagemygrants-review' )->escaped()
 		);
+		$links[] = Linker::linkKnown(
+			$this->getTitle( 'revoke/' . $cmra->get( 'id' ) ),
+			$this->msg( 'mwoauthmanagemygrants-revoke' )->escaped()
+		);
+		$reviewLinks = $this->getLanguage()->pipeList( $links );
 
 		$encName = htmlspecialchars( $cmr->get( 'name', function( $s ) use ( $cmr ) {
 			return $s . ' [' . $cmr->get( 'version' ) . ']';
 		} ) );
 
 		$r = '<li class="mw-mwoauthmanagemygrants-list-item">';
-		$r .= "<strong>{$encName}</strong> (<strong>{$link}</strong>)";
+		$r .= "<strong>{$encName}</strong> (<strong>$reviewLinks</strong>)";
 		$data = array(
 			'mwoauthmanagemygrants-user' => $cmr->get( 'userId',
 				'MWOAuthUtils::getCentralUserNameFromId' ),
