@@ -16,6 +16,7 @@ class MWOAuthUISetup {
 		$wgSpecialPageGroups['MWOAuthManageMyGrants'] = 'users';
 
 		$wgHooks['GetPreferences'][] = 'MWOAuthUIHooks::onGetPreferences';
+		$wgHooks['MessagesPreLoad'][] = 'MWOAuthUIHooks::onMessagesPreLoad';
 
 		$wgResourceModules['ext.MWOAuth.BasicStyles'] = array(
 			'styles'        => array( 'ext.MWOAuth.BasicStyles.css' ),
