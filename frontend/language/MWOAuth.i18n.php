@@ -387,7 +387,8 @@ Parameters:
 {{Identical|Consumer key}}',
 	'mwoauth-consumer-name' => 'Used as label for the "Application name" input box.
 {{Identical|Application name}}',
-	'mwoauth-consumer-version' => 'Used as label for the "Version" input box.',
+	'mwoauth-consumer-version' => 'Used as label for the "Version" input box.
+{{Identical|Consumer version}}',
 	'mwoauth-consumer-user' => 'Used as label for the "Central username" box.
 {{Identical|Publisher}}',
 	'mwoauth-consumer-stage' => 'Used as label for the "Stage" value
@@ -408,7 +409,8 @@ Followed by any one of the following messages:
 See [[w:Callback (computer programming)]].',
 	'mwoauth-consumer-grantsneeded' => 'Used as label.
 
-Followed by the list of grants.',
+Followed by the list of grants.
+{{Identical|Applicable grant}}',
 	'mwoauth-consumer-required-grant' => 'Used as table column header.',
 	'mwoauth-consumer-wiki' => 'Used as label for the input box. The default value for the input box is "*".
 {{Identical|Applicable wiki}}',
@@ -445,7 +447,8 @@ See also:
 	'mwoauth-invalid-access-wrongwiki' => 'Used as error message. Parameters:
 * $1 - the wiki ID the consumer is applicable to',
 	'mwoauth-consumer-conflict' => 'Used as failure message.',
-	'mwoauth-consumer-stage-proposed' => '{{Related|Mwoauth-consumer-stage}}',
+	'mwoauth-consumer-stage-proposed' => '{{Related|Mwoauth-consumer-stage}}
+{{Identical|Proposed}}',
 	'mwoauth-consumer-stage-rejected' => '{{Related|Mwoauth-consumer-stage}}
 {{Identical|Rejected}}',
 	'mwoauth-consumer-stage-expired' => '{{Related|Mwoauth-consumer-stage}}
@@ -632,8 +635,41 @@ Followed by the following radio boxes:
 {{Related|Mwoauthmanageconsumers-success}}',
 	'mwoauthmanageconsumers-success-reanable' => 'Used as success message.
 {{Related|Mwoauthmanageconsumers-success}}',
+	'mwoauthmanageconsumers-search-name' => 'Link to search for consumers with the same name',
+	'mwoauthmanageconsumers-search-publisher' => 'Link to search for consumers by the same user',
+	'mwoauthlistconsumers' => 'Used as special page name',
+	'mwoauthlistconsumers-legend' => 'Legend used for filter form fieldset',
+	'mwoauthlistconsumers-view' => 'Link to view consumer details.
+{{Identical|Detail}}',
+	'mwoauthlistconsumers-none' => 'Shown when a list of consumers is empty',
+	'mwoauthlistconsumers-name' => 'Used as a field name in consumer lists.
+{{Identical|Application name}}',
+	'mwoauthlistconsumers-version' => 'Used as a field name in consumer lists.
+{{Identical|Consumer version}}',
+	'mwoauthlistconsumers-user' => 'Used as a field name in consumer lists.
+{{Identical|Publisher}}',
+	'mwoauthlistconsumers-description' => 'Used as a field name in consumer lists',
+	'mwoauthlistconsumers-wiki' => 'Used as a field name in consumer lists.
+{{Identical|Applicable wiki}}',
+	'mwoauthlistconsumers-callbackurl' => 'Used as a field name in consumer lists',
+	'mwoauthlistconsumers-grants' => 'Used as a field name in consumer lists.
+{{Identical|Applicable grant}}',
+	'mwoauthlistconsumers-basicgrantsonly' => 'Message used when only hidden grants are used by a consumer (or none at all)',
+	'mwoauthlistconsumers-status' => 'Used as a field name in consumer lists.
+{{Identical|Status}}',
+	'mwoauth-consumer-stage-any' => 'Used as special selector field for "all consumer states".
+{{Identical|Any}}',
+	'mwoauthlistconsumers-status-proposed' => '{{Related|Mwoauthlistconsumers-status}}
+{{Identical|Proposed}}',
+	'mwoauthlistconsumers-status-approved' => '{{Related|Mwoauthlistconsumers-status}}
+{{Identical|Approved}}',
+	'mwoauthlistconsumers-status-disabled' => '{{Related|Mwoauthlistconsumers-status}}
+{{Identical|Disabled}}',
+	'mwoauthlistconsumers-status-rejected' => '{{Related|Mwoauthlistconsumers-status}}
+{{Identical|Rejected}}',
+	'mwoauthlistconsumers-status-expired' => '{{Related|Mwoauthlistconsumers-status}}',
 	'mwoauthmanagemygrants' => '{{doc-special|MWOAuthManageMyGrants}}',
-	'mwoauthmanagemygrants-text' => 'Explanatory text for [[Special:OAuthManageMyGrants]] page',
+	'mwoauthmanagemygrants-text' => 'Explanatory text for Special:OAuthManageMyGrants page',
 	'mwoauthmanagemygrants-notloggedin' => 'Used in [[Special:MWOAuthManageMyGrants]] if the user is not logged in.',
 	'mwoauthmanagemygrants-navigation' => 'Used as subtitle.
 
@@ -649,7 +685,8 @@ Followed by a link with the link text {{msg-mw|Mwoauthmanagemygrants-showlist}}.
 	'mwoauthmanagemygrants-wiki' => 'Used as table row header.
 {{Identical|Applicable wiki}}',
 	'mwoauthmanagemygrants-wikiallowed' => 'Used as field label',
-	'mwoauthmanagemygrants-grants' => 'Used as field label',
+	'mwoauthmanagemygrants-grants' => 'Used as field label.
+{{Identical|Applicable grant}}',
 	'mwoauthmanagemygrants-grantsallowed' => 'Used as field label',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Used as field label',
 	'mwoauthmanagemygrants-consumerkey' => 'Used as table row header.
@@ -657,7 +694,8 @@ Followed by a link with the link text {{msg-mw|Mwoauthmanagemygrants-showlist}}.
 	'mwoauthmanagemygrants-review' => 'Used as link text.',
 	'mwoauthmanagemygrants-revoke' => 'Used as link text.',
 	'mwoauthmanagemygrants-grantaccept' => 'Used as checkbox column label',
-	'mwoauthmanagemygrants-confirm-text' => 'Explanation text for grants management form for a user',
+	'mwoauthmanagemygrants-update-text' => 'Explanatory text for Special:OAuthManageMyGrants form',
+	'mwoauthmanagemygrants-revoke-text' => 'Explanatory text for Special:OAuthManageMyGrants form',
 	'mwoauthmanagemygrants-confirm-legend' => 'Used as fieldset label',
 	'mwoauthmanagemygrants-update' => 'Used as label for the radio box.
 
@@ -864,38 +902,13 @@ See also:
 	'action-mwoauthproposeconsumer' => '{{Doc-action|mwoauthproposeconsumer}}',
 	'action-mwoauthupdateownconsumer' => '{{Doc-action|mwoauthupdateownconsumer}}',
 	'action-mwoauthviewsuppressed' => '{{Doc-action|mwoauthviewsuppressed}}',
-	'mwoauthmanagemygrants-text' => 'Explanatory text for Special:OAuthManageMyGrants page',
-	'mwoauthmanagemygrants-update-text' => 'Explanatory text for Special:OAuthManageMyGrants form',
-	'mwoauthmanagemygrants-revoke-text' => 'Explanatory text for Special:OAuthManageMyGrants form',
-	'mwoauthmanageconsumers-search-name' => 'Link to search for consumers with the same name',
-	'mwoauthmanageconsumers-search-publisher' => 'Link to search for consumers by the same user',
-	'mwoauthlistconsumers' => 'Used as special page name',
-	'mwoauthlistconsumers-view' => 'Link to view consumer details',
-	'mwoauthlistconsumers-none' => 'Shown when a list of consumers is empty',
-	'mwoauthlistconsumers-name' => 'Used as a field name in consumer lists',
-	'mwoauthlistconsumers-user' => 'Used as a field name in consumer lists',
-	'mwoauthlistconsumers-description' => 'Used as a field name in consumer lists',
-	'mwoauthlistconsumers-wiki' => 'Used as a field name in consumer lists',
-	'mwoauthlistconsumers-status' => 'Used as a field name in consumer lists',
-	'mwoauth-consumer-stage-any' => 'Used as special selector field for "all consumer states"',
-	'mwoauthlistconsumers-status-proposed' => '{{Related|Mwoauth-consumer-stage}}',
-	'mwoauthlistconsumers-status-approved' => '{{Related|Mwoauth-consumer-stage}}',
-	'mwoauthlistconsumers-status-disabled' => '{{Related|Mwoauth-consumer-stage}}',
-	'mwoauthlistconsumers-status-rejected' => '{{Related|Mwoauth-consumer-stage}}',
-	'mwoauthlistconsumers-status-expired' => '{{Related|Mwoauth-consumer-stage}}',
-	'mwoauthlistconsumers-legend' => 'Legend used for filter form fieldset',
-	'mwoauthlistconsumers-version' => 'Used as a field name in consumer lists',
-	'mwoauthlistconsumers-callbackurl' => 'Used as a field name in consumer lists',
-	'mwoauthlistconsumers-grants' => 'Used as a field name in consumer lists',
-	'mwoauthlistconsumers-basicgrantsonly' => 'Message used when only hidden grants are used by a consumer (or none at all)',
-
 );
 
 /** Arabic (العربية)
  * @author مشعل الحربي
  */
 $messages['ar'] = array(
-	'mwoauth-prefs-managegrantslink' => 'إدارة التطبيقات التي يمكنها استخدام حسابك',
+	'mwoauth-prefs-managegrantslink' => 'إدارة التطبيقات التي يمكنها استخدام حسابك', # Fuzzy
 );
 
 /** Asturian (asturianu)
@@ -950,6 +963,13 @@ $messages['ast'] = array(
 	'mwoauthconsumerregistration-propose' => 'Proponer un consumidor nuevu',
 	'mwoauthconsumerregistration-list' => 'La mio llista de consumidores',
 	'mwoauthconsumerregistration-main' => 'Principal',
+);
+
+/** Catalan (català)
+ * @author Pginer
+ */
+$messages['ca'] = array(
+	'mwoauthlistconsumers-view' => 'detalls',
 );
 
 /** Czech (česky)
@@ -1188,8 +1208,8 @@ Um den Prozess abzuschließen, gib diesen Verifizierungswert an die Anwendung we
 	'mwoauth-field-hidden' => '(diese Information ist versteckt)',
 	'mwoauth-field-private' => '(diese Information ist privat)',
 	'mwoauth-grant-generic' => 'Rechtegruppe „$1“',
-	'mwoauth-prefs-managegrants' => 'Kontenbenutzer (OAuth):',
-	'mwoauth-prefs-managegrantslink' => 'Verwalten, welche Anwendungen dein Benutzerkonto verwenden können',
+	'mwoauth-prefs-managegrants' => 'Kontenbenutzer (OAuth):', # Fuzzy
+	'mwoauth-prefs-managegrantslink' => 'Verwalten, welche Anwendungen dein Benutzerkonto verwenden können', # Fuzzy
 	'mwoauth-consumer-allwikis' => 'Alle Projekte auf dieser Website',
 	'mwoauth-consumer-key' => 'Verbraucherschlüssel:',
 	'mwoauth-consumer-name' => 'Anwendungsname:',
@@ -1216,8 +1236,10 @@ Um den Prozess abzuschließen, gib diesen Verifizierungswert an die Anwendung we
 	'mwoauth-consumer-not-proposed' => 'Der Verbraucher ist derzeit nicht geplant',
 	'mwoauth-consumer-not-disabled' => 'Der Verbraucher ist derzeit nicht deaktiviert',
 	'mwoauth-consumer-not-approved' => 'Der Verbraucher ist nicht bestätigt (vielleicht wurde er deaktiviert)',
+	'mwoauth-missing-consumer-key' => 'Es wurde kein Verbraucherschlüssel angegeben.',
 	'mwoauth-invalid-consumer-key' => 'Es ist kein Verbraucher mit dem angegebenen Schlüssel vorhanden.',
 	'mwoauth-invalid-access-token' => 'Es ist kein Zugriffstoken mit dem angegebenen Schlüssel vorhanden.',
+	'mwoauth-invalid-access-wrongwiki' => 'Der Verbraucher kann nur auf dem Wiki „$1“ verwendet werden.',
 	'mwoauth-consumer-conflict' => 'Ein anderer hat bereits die Attribute dieses Verbrauchers geändert. Bitte erneut versuchen. Du kannst auch das Änderungs-Logbuch überprüfen.',
 	'mwoauth-consumer-stage-proposed' => 'geplant',
 	'mwoauth-consumer-stage-rejected' => 'abgelehnt',
@@ -1312,8 +1334,29 @@ Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen.
 	'mwoauthmanageconsumers-success-rejected' => 'Der Antrag wurde abgelehnt.',
 	'mwoauthmanageconsumers-success-disabled' => 'Der Verbraucher wurde deaktiviert.',
 	'mwoauthmanageconsumers-success-reanable' => 'Der Verbraucher wurde reaktiviert.',
+	'mwoauthmanageconsumers-search-name' => 'Verbraucher mit diesem Namen',
+	'mwoauthmanageconsumers-search-publisher' => 'Verbraucher von diesem Benutzer',
+	'mwoauthlistconsumers' => 'OAuth-Verbraucher auflisten',
+	'mwoauthlistconsumers-legend' => 'OAuth-Verbraucher durchsuchen',
+	'mwoauthlistconsumers-view' => 'Einzelheiten',
+	'mwoauthlistconsumers-none' => 'Es wurden keine Verbraucher gefunden, die diesen Kriterien entsprechen.',
+	'mwoauthlistconsumers-name' => 'Anwendungsname',
+	'mwoauthlistconsumers-version' => 'Verbraucherversion',
+	'mwoauthlistconsumers-user' => 'Herausgeber',
+	'mwoauthlistconsumers-description' => 'Beschreibung',
+	'mwoauthlistconsumers-wiki' => 'Anwendbares Wiki',
+	'mwoauthlistconsumers-callbackurl' => 'OAuth-Callback-URL',
+	'mwoauthlistconsumers-grants' => 'Anwendbare Berechtigungen',
+	'mwoauthlistconsumers-basicgrantsonly' => '(nur Basiszugriff)',
+	'mwoauthlistconsumers-status' => 'Status',
+	'mwoauth-consumer-stage-any' => 'alle',
+	'mwoauthlistconsumers-status-proposed' => 'geplant',
+	'mwoauthlistconsumers-status-approved' => 'bestätigt',
+	'mwoauthlistconsumers-status-disabled' => 'deaktiviert',
+	'mwoauthlistconsumers-status-rejected' => 'abgelehnt',
+	'mwoauthlistconsumers-status-expired' => 'abgelaufen',
 	'mwoauthmanagemygrants' => 'Benutzerkonten-OAuth-Berechtigungen verwalten',
-	'mwoauthmanagemygrants-text' => 'Diese Seite listet alle Anwendungen auf, die dein Benutzerkonto verwenden können. Für jede Anwendung ist der Zugriffsbereich durch die von dir gewährten Berechtigungen beschränkt, wenn du die Anwendung zum Handeln auf deinen Namen autorisiert hast.',
+	'mwoauthmanagemygrants-text' => 'Diese Seite listet alle Anwendungen auf, die dein Benutzerkonto verwenden können. Für jede Anwendung ist der Zugriffsbereich durch die von dir gewährten Berechtigungen beschränkt, wenn du die Anwendung zum Handeln auf deinen Namen autorisiert hast. Falls du einen Verbraucher separat autorisiert hast, um auf unterschiedliche Schwesterprojekte zuzugreifen, dann wirst du unten separate Konfigurationen für jedes Projekt sehen.',
 	'mwoauthmanagemygrants-notloggedin' => 'Du musst angemeldet sein, um auf diese Seite zugreifen zu können.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
 	'mwoauthmanagemygrants-showlist' => 'Liste akzeptierter Verbraucher',
@@ -1328,12 +1371,14 @@ Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen.
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Erlaubte anwendbare Berechtigungen:',
 	'mwoauthmanagemygrants-consumerkey' => 'Verbraucherschlüssel',
 	'mwoauthmanagemygrants-review' => 'Zugriff verwalten',
+	'mwoauthmanagemygrants-revoke' => 'Zugriff entziehen',
 	'mwoauthmanagemygrants-grantaccept' => 'Gewährt',
-	'mwoauthmanagemygrants-confirm-text' => 'Verwende das unten stehende Formular, um den Zugriff zu entziehen oder um Berechtigungen für einen OAuth-Verbraucher zu ändern, der auf deinen Namen handelt.
-* Dieses Formular überwacht einen speziellen Zugriffstoken oder Schlüssel, der einen Verbraucher auf dein Konto zugreifen lässt.
-* Falls du einen Verbraucher getrennt autorisiert hast, um auf unterschiedliche Projekte in deinem Namen zuzugreifen, dann hast du mehrere Zugriffstokens für diesen Verbraucher.
-* Wenn du dem Verbraucher Zugriff entziehen willst, stelle sicher, dass alle Zugriffstokens für alle Versionen dieses akzeptierten Verbrauchers entzogen werden.
-* Verwende „*“ im Wikifeld, um Zugriff für alle Projekte auf dieser Website zu gewähren. Eine Wikiprojektkennung beschränkt den Zugriff auf ein einzelnes Projekt.',
+	'mwoauthmanagemygrants-update-text' => 'Benutze das unten stehende Formular, um die gewährten Berechtigungen für eine Anwendung (OAuth-Verbraucher) zu ändern, die auf deinen Namen handelt.
+* Falls du eine Anwendung separat autorisiert hast, um auf unterschiedliche Schwesterprojekte zuzugreifen, dann wirst du separate Konfigurationen für jedes dieser Projekte haben.
+* Das Verwenden von „*“ im Wikifeld gewährt Zugriff auf alle Projekte dieser Website; eine Wikiprojektkennung beschränkt den Zugriff auf ein einzelnes Projekt. Je-Projekt-Einstellungen haben Vorrang.',
+	'mwoauthmanagemygrants-revoke-text' => 'Benutze das unten stehende Formular, um den Zugriff für eine Anwendung (OAuth-Verbraucher) zu entziehen, die auf deinen Namen handelt.
+* Falls du eine Anwendung separat autorisiert hast, um auf unterschiedliche Schwesterprojekte zuzugreifen, dann wirst du separate Konfigurationen für jedes dieser Projekte haben.
+* Wenn du den Zugriff für eine Anwendung vollständig entziehen willst, stelle sicher, dass du ihn von allen Projekten entfernst, auf denen du die Berechtigungen erteilt hast.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Verbraucherzugriffstoken verwalten',
 	'mwoauthmanagemygrants-update' => 'Berechtigungen aktualisieren',
 	'mwoauthmanagemygrants-renounce' => 'Deautorisieren',
@@ -2425,8 +2470,8 @@ Per completare il processo, inserisci questo valore per la verifica nel'applicaz
 	'mwoauth-field-hidden' => '(questa informazione è nascosta)',
 	'mwoauth-field-private' => '(questa informazione è privata)',
 	'mwoauth-grant-generic' => 'Pacchetto diritti "$1"',
-	'mwoauth-prefs-managegrants' => 'Utenze OAuth:',
-	'mwoauth-prefs-managegrantslink' => 'Gestisci le applicazioni che possono usare la tua utenza',
+	'mwoauth-prefs-managegrants' => 'Utenze OAuth:', # Fuzzy
+	'mwoauth-prefs-managegrantslink' => 'Gestisci le applicazioni che possono usare la tua utenza', # Fuzzy
 	'mwoauth-consumer-allwikis' => 'Tutti i progetti su questo sito',
 	'mwoauth-consumer-key' => 'Chiave cliente:',
 	'mwoauth-consumer-name' => 'Nome applicazione:',
@@ -2453,8 +2498,10 @@ Per completare il processo, inserisci questo valore per la verifica nel'applicaz
 	'mwoauth-consumer-not-proposed' => 'Il cliente non è attualmente proposto',
 	'mwoauth-consumer-not-disabled' => 'Il cliente non è attualmente disabilitato',
 	'mwoauth-consumer-not-approved' => 'Il cliente non è approvato (potrebbe essere stato disabilitato)',
+	'mwoauth-missing-consumer-key' => 'Non è stata fornita alcuna chiave cliente.',
 	'mwoauth-invalid-consumer-key' => 'Non esiste alcun cliente con la chiave specificata.',
 	'mwoauth-invalid-access-token' => 'Non esiste alcun token di accesso con la chiave specificata.',
+	'mwoauth-invalid-access-wrongwiki' => 'Il cliente può essere utilizzato solo nel wiki "$1".',
 	'mwoauth-consumer-conflict' => 'Qualcuno ha cambiato gli attributi di questo cliente, come si visto. Per favore riprova. Si consiglia di controllare il registro delle modifiche.',
 	'mwoauth-consumer-stage-proposed' => 'proposto',
 	'mwoauth-consumer-stage-rejected' => 'respinto',
@@ -2549,8 +2596,29 @@ Ti è stato assegnato il token cliente '''$1''' e il token segreto '''$2'''. ''R
 	'mwoauthmanageconsumers-success-rejected' => 'La richiesta è stata respinta.',
 	'mwoauthmanageconsumers-success-disabled' => 'Il cliente è stato disabilitato.',
 	'mwoauthmanageconsumers-success-reanable' => 'Il cliente è stato riabilitato.',
+	'mwoauthmanageconsumers-search-name' => 'clienti con questo nome',
+	'mwoauthmanageconsumers-search-publisher' => 'clienti di questo utente',
+	'mwoauthlistconsumers' => 'Elenco clienti OAuth',
+	'mwoauthlistconsumers-legend' => 'Naviga clienti OAuth',
+	'mwoauthlistconsumers-view' => 'dettagli',
+	'mwoauthlistconsumers-none' => 'Nessun cliente trovato che soddisfa questo criterio.',
+	'mwoauthlistconsumers-name' => 'Nome applicazione',
+	'mwoauthlistconsumers-version' => 'Versione cliente',
+	'mwoauthlistconsumers-user' => 'Editore',
+	'mwoauthlistconsumers-description' => 'Descrizione',
+	'mwoauthlistconsumers-wiki' => 'Wiki applicabili',
+	'mwoauthlistconsumers-callbackurl' => 'URL di "callback" OAuth',
+	'mwoauthlistconsumers-grants' => 'Assegnazioni applicabili',
+	'mwoauthlistconsumers-basicgrantsonly' => '(solo accesso di base)',
+	'mwoauthlistconsumers-status' => 'Stato',
+	'mwoauth-consumer-stage-any' => 'qualsiasi',
+	'mwoauthlistconsumers-status-proposed' => 'proposto',
+	'mwoauthlistconsumers-status-approved' => 'approvato',
+	'mwoauthlistconsumers-status-disabled' => 'disabilitato',
+	'mwoauthlistconsumers-status-rejected' => 'respinto',
+	'mwoauthlistconsumers-status-expired' => 'scaduto',
 	'mwoauthmanagemygrants' => 'Gestione assegnazioni utenze OAuth',
-	'mwoauthmanagemygrants-text' => "Questa pagina elenca tutte le applicazioni che possono utilizzare la tua utenza. Per tali applicazioni, l'ambito del loro accesso è limitata dalle autorizzazioni concesse all'applicazione quando è stata autorizzata ad agire per vostro conto.",
+	'mwoauthmanagemygrants-text' => "Questa pagina elenca tutte le applicazioni che possono utilizzare la tua utenza. Per tali applicazioni, l'ambito del loro accesso è limitata dalle autorizzazioni concesse all'applicazione quando è stata autorizzata ad agire per vostro conto. Se autorizzi separatamente un cliente all'accesso per vostro conto su diversi progetti \"fratelli\", poi vedrai configurazioni separate per ognuno dei progetti sotto.",
 	'mwoauthmanagemygrants-notloggedin' => "Devi effettuare l'accesso per accedere a questa pagina.",
 	'mwoauthmanagemygrants-navigation' => 'Navigazione:',
 	'mwoauthmanagemygrants-showlist' => 'Elenco clienti accettati',
@@ -2565,12 +2633,8 @@ Ti è stato assegnato il token cliente '''$1''' e il token segreto '''$2'''. ''R
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Assegnazioni applicabili consentite:',
 	'mwoauthmanagemygrants-consumerkey' => 'Chiave cliente',
 	'mwoauthmanagemygrants-review' => 'gestisci accesso',
+	'mwoauthmanagemygrants-revoke' => "revoca l'accesso",
 	'mwoauthmanagemygrants-grantaccept' => 'Assegnazioni',
-	'mwoauthmanagemygrants-confirm-text' => 'Usa il seguente modulo per revocare o modificare l\'accesso ad un cliente OAuth di agire per vostro conto.
-* questo modulo controlla un particolare "token" di accesso, o chiave, che consente al cliente di accedere alla tua utenza
-* se hai autorizzato separatamente un cliente ad accedere ai diversi progetti per vostro conto, allora si avrà più token di accesso per quel cliente
-* se vuoi revocare l\'accesso al cliente, assicurati di revocare tutti i token di accesso per tutte le versioni di quel cliente che hai accettato
-* usando "*" nel campo wiki si garantisce l\'accesso a tutti i progetti su questo sito; utilizzando un  ID di progetto wiki si limita l\'accesso a un singolo progetto.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Gestione token di accesso del cliente',
 	'mwoauthmanagemygrants-update' => 'Aggiorna le assegnazioni',
 	'mwoauthmanagemygrants-renounce' => "Rimuovi l'autorizzazione",
@@ -2684,8 +2748,8 @@ $messages['ja'] = array(
 	'mwoauth-invalid-field-generic' => '指定した値は無効です',
 	'mwoauth-field-hidden' => '(この情報は非表示です)',
 	'mwoauth-field-private' => '(この情報は非公開です)',
-	'mwoauth-prefs-managegrants' => 'アカウントの利用者 (OAuth):',
-	'mwoauth-prefs-managegrantslink' => 'どのアプリケーションがあなたのアカウントを使用するかを管理',
+	'mwoauth-prefs-managegrants' => 'アカウントの利用者 (OAuth):', # Fuzzy
+	'mwoauth-prefs-managegrantslink' => 'どのアプリケーションがあなたのアカウントを使用するかを管理', # Fuzzy
 	'mwoauth-consumer-allwikis' => 'このサイト上のすべてのプロジェクト',
 	'mwoauth-consumer-key' => 'コンシューマー キー:',
 	'mwoauth-consumer-name' => 'アプリケーション名:',
@@ -2747,7 +2811,18 @@ $messages['ja'] = array(
 	'mwoauthmanageconsumers-success-rejected' => 'リクエストを却下しました。',
 	'mwoauthmanageconsumers-success-disabled' => 'コンシューマーを無効にしました。',
 	'mwoauthmanageconsumers-success-reanable' => 'コンシューマーを再度有効にしました。',
-	'mwoauthmanagemygrants-text' => 'このページでは、あなたのアカウントを使用できるアプリケーションをすべて列挙します。各アプリケーションについて、あなたの代わりに実行することを承認した際に許可した範囲に、そのアプリケーションの権限が制限されています。',
+	'mwoauthlistconsumers-view' => '詳細',
+	'mwoauthlistconsumers-name' => 'アプリケーション名',
+	'mwoauthlistconsumers-version' => 'コンシューマーのバージョン',
+	'mwoauthlistconsumers-user' => '発行者',
+	'mwoauthlistconsumers-basicgrantsonly' => '(基本的なアクセスのみ)',
+	'mwoauthlistconsumers-status' => '状態',
+	'mwoauth-consumer-stage-any' => 'すべて',
+	'mwoauthlistconsumers-status-approved' => '承認済',
+	'mwoauthlistconsumers-status-disabled' => '無効',
+	'mwoauthlistconsumers-status-rejected' => '却下',
+	'mwoauthlistconsumers-status-expired' => '期限切れ',
+	'mwoauthmanagemygrants-text' => 'このページでは、あなたのアカウントを使用できるアプリケーションをすべて列挙します。各アプリケーションについて、あなたの代わりに実行することを承認した際に許可した範囲に、そのアプリケーションの権限が制限されています。If you separately authorized a consumer to access different "sister" projects on your behalf, then you will see separate configuration for each such project below.', # Fuzzy
 	'mwoauthmanagemygrants-notloggedin' => 'このページにアクセスするにはログインしてください。',
 	'mwoauthmanagemygrants-navigation' => 'ナビゲーション:',
 	'mwoauthmanagemygrants-showlist' => 'コンシューマー一覧', # Fuzzy
@@ -2756,6 +2831,7 @@ $messages['ja'] = array(
 	'mwoauthmanagemygrants-description' => '説明',
 	'mwoauthmanagemygrants-consumerkey' => 'コンシューマー キー',
 	'mwoauthmanagemygrants-review' => 'アクセスを管理',
+	'mwoauthmanagemygrants-revoke' => 'アクセスを取り消す',
 	'mwoauthmanagemygrants-confirm-legend' => 'コンシューマー アクセス トークンの管理',
 	'mwoauthmanagemygrants-action' => '状態の変更:',
 	'mwoauthmanagemygrants-confirm-submit' => 'アクセス トークンの状態を更新',
@@ -2830,8 +2906,8 @@ $messages['ko'] = array(
 	'mwoauth-field-hidden' => '(이 정보는 숨겨져 있습니다)',
 	'mwoauth-field-private' => '(이 정보는 비공개입니다)',
 	'mwoauth-grant-generic' => '"$1" 권한 번들',
-	'mwoauth-prefs-managegrants' => 'OAuth 컨슈머 접근:',
-	'mwoauth-prefs-managegrantslink' => '이 계정 대신 부여 관리',
+	'mwoauth-prefs-managegrants' => '계정 사용(OAuth):', # Fuzzy
+	'mwoauth-prefs-managegrantslink' => '이 계정에서 사용할 수 있는 애플리케이션 관리', # Fuzzy
 	'mwoauth-consumer-key' => '컨슈머 키:',
 	'mwoauth-consumer-name' => '애플리케이션 이름:',
 	'mwoauth-consumer-version' => '컨슈머 버전:',
@@ -2959,7 +3035,6 @@ $messages['ko'] = array(
 	'logentry-mwoauthconsumer-reenable' => '$1 사용자가 $3에 의해 OAuth 컨슈머를 {{GENDER:$2|다시 활성화했습니다}} (컨슈머 키 $4)',
 	'mwoauthconsumer-consumer-logpage' => 'OAuth 컨슈머 기록',
 	'mwoauthconsumer-consumer-logpagetext' => 'OAuth 컨슈머에 등록된 승인, 거부와 비활성화의 기록입니다.',
-	'mwoauth-bad-csrf-token' => '양식을 보낼 때 세션이 실패했습니다. 다시 보내기를 시도하세요.',
 	'mwoauth-bad-request' => 'OAuth 요청에 오류가 있습니다.',
 	'mwoauthdatastore-access-token-not-found' => '인증 토큰에 대한 승인된 부여를 찾을 수 없습니다.',
 	'mwoauthdatastore-request-token-not-found' => '해당 요청에 대한 요청을 찾을 수 없습니다.',
@@ -3066,6 +3141,10 @@ $messages['lb'] = array(
 	'mwoauthmanageconsumers-reason' => 'Grond:',
 	'mwoauthmanageconsumers-success-approved' => 'Ufro gouf ugeholl.',
 	'mwoauthmanageconsumers-success-rejected' => 'Ufro gouf refuséiert.',
+	'mwoauthlistconsumers-view' => 'Detailer',
+	'mwoauthlistconsumers-description' => 'Beschreiwung',
+	'mwoauthlistconsumers-wiki' => 'Applicabel Wiki',
+	'mwoauthlistconsumers-status-proposed' => 'proposéiert',
 	'mwoauthmanagemygrants-notloggedin' => 'Dir musst ageloggt si fir op dës Säit ze kommen.',
 	'mwoauthmanagemygrants-navigation' => 'Navigatioun:',
 	'mwoauthmanagemygrants-description' => 'Beschreiwung',
@@ -3121,8 +3200,8 @@ $messages['mk'] = array(
 	'mwoauth-field-hidden' => '(оваа информација е скриена)',
 	'mwoauth-field-private' => '(оваа информација е приватна)',
 	'mwoauth-grant-generic' => 'Група права „$1“',
-	'mwoauth-prefs-managegrants' => 'Корисници со сметки OAuth:',
-	'mwoauth-prefs-managegrantslink' => 'Кои прилози да можат да ја користат вашата сметка',
+	'mwoauth-prefs-managegrants' => 'Корисници со сметки OAuth:', # Fuzzy
+	'mwoauth-prefs-managegrantslink' => 'Кои прилози да можат да ја користат вашата сметка', # Fuzzy
 	'mwoauth-consumer-allwikis' => 'Сите проекти на ова мрежно место',
 	'mwoauth-consumer-key' => 'Потрошувачки клуч:',
 	'mwoauth-consumer-name' => 'Назив на прилогот:',
@@ -3151,6 +3230,7 @@ $messages['mk'] = array(
 	'mwoauth-consumer-not-approved' => 'Потрошувачот не е одобрен (може да е оневозможен)',
 	'mwoauth-invalid-consumer-key' => 'Не постои потрошувач со таков клуч.',
 	'mwoauth-invalid-access-token' => 'Не постои пристапна шифра со таков клуч.',
+	'mwoauth-invalid-access-wrongwiki' => 'Потрошувачот може да се користи само на викито „$1“.',
 	'mwoauth-consumer-conflict' => 'Некои ги изменил атрибутети на овој потрошувач додека го разгледувавте. Обидете се повторно. Може да го погледате и дневникот на измени.',
 	'mwoauth-consumer-stage-proposed' => 'предложен',
 	'mwoauth-consumer-stage-rejected' => 'одбиен',
@@ -3242,7 +3322,7 @@ $messages['mk'] = array(
 	'mwoauthmanageconsumers-success-disabled' => 'Потрошувачот е оневозможен.',
 	'mwoauthmanageconsumers-success-reanable' => 'Потрошувачот е преовозможен.',
 	'mwoauthmanagemygrants' => 'Раководење со доделувања на OAuth на сметки',
-	'mwoauthmanagemygrants-text' => 'На страницава се наведени прилозите што можат да ја користат вашата сметка. Нивниот степен на пристап е ограничен од тоа што сте им дозволиле да прават кога сте им го одобриле пристапот.',
+	'mwoauthmanagemygrants-text' => 'На страницава се наведени прилозите што можат да ја користат вашата сметка. Нивниот степен на пристап е ограничен од тоа што сте им дозволиле да прават кога сте им го одобриле пристапот.', # Fuzzy
 	'mwoauthmanagemygrants-notloggedin' => 'Треба да сте најавени за да ја отворите страницата.',
 	'mwoauthmanagemygrants-navigation' => 'Навигација:',
 	'mwoauthmanagemygrants-showlist' => 'Список на прифатени потрошувачи',
@@ -3258,11 +3338,6 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-consumerkey' => 'Потрошувачки клуч',
 	'mwoauthmanagemygrants-review' => 'раковод. со пристап',
 	'mwoauthmanagemygrants-grantaccept' => 'Доделено',
-	'mwoauthmanagemygrants-confirm-text' => 'Следниот образец служи за одземање на пристап или да ги измените доделените права на потрошувач на OAuth за да дејствува во ваше име.
-
-* Образецов контролира дадена шифра или клуч за пристап, со која потрошувач добива пристап до вашата сметка.
-
-Доколку посебно сте овластиле некого со пристап на разни проекти во ваше име, тогаш ќе имате повеќе пристапни шифри.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Раководење со шифра за кориснички пристап',
 	'mwoauthmanagemygrants-update' => 'Измени доделувања',
 	'mwoauthmanagemygrants-renounce' => 'Одземи дозвола',
@@ -3768,11 +3843,6 @@ $messages['sl'] = array(
 	'mwoauth-consumer-allwikis' => 'Vsi projekti na tem spletišču',
 	'mwoauthmanagemygrants-review' => 'upravljaj z dostopom',
 	'mwoauthmanagemygrants-grantaccept' => 'Donirano',
-	'mwoauthmanagemygrants-confirm-text' => 'Za preklic dostopa ali spremembo pravic uporabnika OAuth za delovanje v vašem imenu uporabite spodnji obrazec. Nekaj opomb:
-* Ta obrazec vsebuje poseben dostopovni »žeton« oz. ključ, ki uporabniku omogoča dostop do vašega računa.
-* Če ste uporabnika ločeno pooblastili za dostop v vašem imenu do različnih projektov, boste zanj imeli več dostopovnih žetonov.
-* Če želite za uporabnika preklicati dostop, poskrbite, da boste preklicali vse dostopovne žetone za vse različice za tega uporabnika, ki ste jih prejeli.
-* Z uporabo znaka »*« v polju wiki omogočite dostop do vseh projektov tega spletišča; z uporabo ID wikiprojekta omejite dostop na posamezen projekt.', # Fuzzy
 	'mwoauthmanagemygrants-update' => 'Posodobitev donacij',
 	'mwoauthmanagemygrants-renounce' => 'Deavtoriziraj',
 	'mwoauth-form-description-allwikis' => "Pozdravljeni, $1
@@ -3851,11 +3921,15 @@ $messages['sv'] = array(
 	'mwoauthconsumerregistration-navigation' => 'Navigering:',
 	'mwoauthconsumerregistration-propose' => 'Föreslå ny kund',
 	'mwoauthconsumerregistration-main' => 'Huvudsida',
+	'mwoauthconsumerregistration-name' => 'Konsument',
 	'mwoauthconsumerregistration-user' => 'Utgivare',
 	'mwoauthconsumerregistration-description' => 'Beskrivning',
+	'mwoauthconsumerregistration-email' => 'Kontakt email',
+	'mwoauthconsumerregistration-consumerkey' => 'Konsumentnyckel',
 	'mwoauthconsumerregistration-stage' => 'Status',
 	'mwoauthconsumerregistration-lastchange' => 'Senaste ändringen',
 	'mwoauthconsumerregistration-manage' => 'hantera',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Återställ den hemliga nyckeln till ett nytt värde',
 	'mwoauthmanageconsumers-type' => 'Köer:',
 	'mwoauthmanageconsumers-showproposed' => 'Föreslagna ansökningar',
 	'mwoauthmanageconsumers-showrejected' => 'Avslagna ansökningar',
@@ -3873,15 +3947,53 @@ $messages['sv'] = array(
 	'mwoauthmanageconsumers-dsuppress' => 'Inaktiverade och undertryckta',
 	'mwoauthmanageconsumers-reenable' => 'Godkänd',
 	'mwoauthmanageconsumers-reason' => 'Orsak:',
+	'mwoauthlistconsumers-view' => 'detaljer',
+	'mwoauthlistconsumers-none' => 'Inget konsumenter hittade som uppfyller detta kriterium.',
+	'mwoauthlistconsumers-name' => 'Applikationsnamn',
+	'mwoauthlistconsumers-version' => 'Konsumentversion',
+	'mwoauthlistconsumers-user' => 'Utgivare',
+	'mwoauthlistconsumers-description' => 'Beskrivning',
+	'mwoauthlistconsumers-wiki' => 'Tillämplig wiki',
+	'mwoauthlistconsumers-callbackurl' => 'OAuth "callback URL"',
+	'mwoauthlistconsumers-basicgrantsonly' => '(endast grundläggande tillgång)',
+	'mwoauthlistconsumers-status' => 'Status',
+	'mwoauth-consumer-stage-any' => 'alla',
+	'mwoauthlistconsumers-status-proposed' => 'föreslagna',
+	'mwoauthlistconsumers-status-approved' => 'godkända',
+	'mwoauthlistconsumers-status-disabled' => 'inaktiverade',
+	'mwoauthlistconsumers-status-rejected' => 'avvisad',
+	'mwoauthlistconsumers-status-expired' => 'utgången',
+	'mwoauthmanagemygrants-notloggedin' => 'Du måste vara inloggad för att komma åt denna sida.',
+	'mwoauthmanagemygrants-navigation' => 'Navigering:',
+	'mwoauthmanagemygrants-showlist' => 'Accepterad konsumentlista',
+	'mwoauthmanagemygrants-name' => 'Konsumentnamn',
 	'mwoauthmanagemygrants-user' => 'Utgivare',
 	'mwoauthmanagemygrants-description' => 'Beskrivning',
 	'mwoauthmanagemygrants-wiki' => 'Tillämplig wiki',
 	'mwoauthmanagemygrants-wikiallowed' => 'Tillåten på wiki',
 	'mwoauthmanagemygrants-grants' => 'Tillämpliga stipendier',
 	'mwoauthmanagemygrants-grantsallowed' => 'Stipendier tillåtna',
+	'mwoauthmanagemygrants-consumerkey' => 'Konsumentnyckel',
+	'mwoauthmanagemygrants-review' => 'hantera åtkomst',
+	'mwoauthmanagemygrants-revoke' => 'återkalla åtkomst',
+	'mwoauthmanagemygrants-grantaccept' => 'Beviljas',
+	'mwoauthmanagemygrants-confirm-legend' => 'Hantera konsumentåtkomst-token',
+	'mwoauthmanagemygrants-renounce' => 'Avauktorisera',
 	'mwoauthmanagemygrants-action' => 'Ändra status:',
+	'mwoauthmanagemygrants-success-update' => 'Åtkomst-token för denna konsument har uppdaterats.',
+	'mwoauthmanagemygrants-success-renounce' => 'Åtkomst-token för denna konsument har tagits bort.',
 	'mwoauthserver-insufficient-rights' => 'Du har inte tillräcklig behörighet för att utföra denna åtgärd.',
 	'mwoauth-form-button-approve' => 'Tillåt',
+	'mwoauth-grants-heading' => 'Begärda tillstånd:',
+	'mwoauth-grants-nogrants' => 'Ansökan har inte begärt något tillstånd.',
+	'mwoauth-grant-group-page-interaction' => 'Interagera med sidor',
+	'mwoauth-grant-group-file-interaction' => 'Interagera med media',
+	'mwoauth-grant-group-watchlist-interaction' => 'Interagera med din bevakningslista',
+	'mwoauth-grant-group-email' => 'Skicka e-post',
+	'mwoauth-grant-group-high-volume' => 'Utför hög volymaktivitet',
+	'mwoauth-grant-group-customization' => 'Anpassning och inställningar',
+	'mwoauth-grant-group-administration' => 'Utför administrativa åtgärder',
+	'mwoauth-grant-blockusers' => 'Blockera och avblockera användare',
 	'mwoauth-grant-createaccount' => 'Skapa konton',
 	'mwoauth-grant-createeditmovepage' => 'Skapa, redigera och flytta sidor',
 	'mwoauth-grant-delete' => 'Ta bort sidor, revideringar och loggposter',
@@ -3890,8 +4002,24 @@ $messages['sv'] = array(
 	'mwoauth-grant-editmywatchlist' => 'Redigera din bevakningslista',
 	'mwoauth-grant-editpage' => 'Redigera befintliga sidor',
 	'mwoauth-grant-editprotected' => 'Redigera skyddade sidor',
+	'mwoauth-grant-oversight' => 'Dölj användare och undertryck revideringar',
+	'mwoauth-grant-patrol' => 'Patrullera ändringar på sidor',
+	'mwoauth-grant-protect' => 'Skydda och ta bort skydd på sidor',
+	'mwoauth-grant-rollback' => 'Rulla tillbaka ändringar på sidor',
+	'mwoauth-grant-sendemail' => 'Skicka e-post till andra användare',
 	'mwoauth-grant-uploadeditmovefile' => 'Ladda upp, byt och flytta filer',
 	'mwoauth-grant-uploadfile' => 'Ladda upp nya filer',
+	'mwoauth-grant-useoauth' => 'Grundläggande rättigheter',
+	'mwoauth-grant-viewdeleted' => 'Visa raderad information',
+	'mwoauth-grant-viewmywatchlist' => 'Visa din bevakningslista',
+	'mwoauth-oauth-exception' => 'Ett fel uppstod i OAuth-protokollet: $1',
+	'mwoauth-callback-not-oob' => 'oauth_callback måste anges och måste ställas in på "oob" (skiftlägeskänslig)',
+	'right-mwoauthproposeconsumer' => 'Föreslå nya OAuth-konsumenter',
+	'right-mwoauthupdateownconsumer' => 'Uppdatera OAuth-konsumenter du styr',
+	'right-mwoauthmanageconsumer' => 'Hantera OAuth-konsumenter',
+	'right-mwoauthsuppress' => 'Undertryck OAuth-konsumenter',
+	'right-mwoauthviewsuppressed' => 'Visa undertryckta OAuth-konsumenter',
+	'right-mwoauthviewprivate' => 'Visa privat OAuth-data',
 );
 
 /** Turkish (Türkçe)
@@ -3916,8 +4044,8 @@ $messages['uk'] = array(
 	'mwoauth-field-hidden' => '(ця інформація прихована)',
 	'mwoauth-field-private' => '(ця інформація є конфіденційною)',
 	'mwoauth-grant-generic' => 'Пучок прав "$1"',
-	'mwoauth-prefs-managegrants' => 'Профілі користувачів (OAuth):',
-	'mwoauth-prefs-managegrantslink' => 'Керувати, які програми можуть використовувати ваш обліковий запис',
+	'mwoauth-prefs-managegrants' => 'Профілі користувачів (OAuth):', # Fuzzy
+	'mwoauth-prefs-managegrantslink' => 'Керувати, які програми можуть використовувати ваш обліковий запис', # Fuzzy
 	'mwoauth-consumer-allwikis' => 'Всі проекти на цьому сайті',
 	'mwoauth-consumer-key' => 'Ключ споживача:',
 	'mwoauth-consumer-name' => 'Назва програми:',
@@ -3946,6 +4074,7 @@ $messages['uk'] = array(
 	'mwoauth-consumer-not-approved' => 'Споживач незатверджений (це може було вимкнено)',
 	'mwoauth-invalid-consumer-key' => 'Не існує споживача з даним ключем.',
 	'mwoauth-invalid-access-token' => 'Немає маркера доступу з даним ключем.',
+	'mwoauth-invalid-access-wrongwiki' => 'Споживач може використовуватися тільки на вікі "$1".',
 	'mwoauth-consumer-conflict' => 'Хтось змінив параметри даного споживача, якого ви дивилися. Будь ласка, спробуйте ще раз. Ви можете перевірити журнал змін.',
 	'mwoauth-consumer-stage-proposed' => 'запропоновано',
 	'mwoauth-consumer-stage-rejected' => 'відхилено',
@@ -4041,7 +4170,7 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'mwoauthmanageconsumers-success-disabled' => 'Споживач вже вимкнений.',
 	'mwoauthmanageconsumers-success-reanable' => 'Споживач вже повторно увімкнений.',
 	'mwoauthmanagemygrants' => 'Управління ґрантами облікового запису OAuth',
-	'mwoauthmanagemygrants-text' => 'На цій сторінці перераховані всі програми, які можуть використовувати ваш обліковий запис. Для будь-яких таких програм сферу їхнього доступу обмежена дозволами, наданими програмі, коли ви уповноважили її діяти від вашого імені.',
+	'mwoauthmanagemygrants-text' => 'На цій сторінці перераховані всі програми, які можуть використовувати ваш обліковий запис. Для будь-яких таких програм сферу їхнього доступу обмежена дозволами, наданими програмі, коли ви уповноважили її діяти від вашого імені.', # Fuzzy
 	'mwoauthmanagemygrants-notloggedin' => 'Ви повинні увійти в систему для доступу до цієї сторінки.',
 	'mwoauthmanagemygrants-navigation' => 'Навігація:',
 	'mwoauthmanagemygrants-showlist' => 'Список прийнятих споживачів',
@@ -4057,11 +4186,6 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'mwoauthmanagemygrants-consumerkey' => 'Ключ споживача',
 	'mwoauthmanagemygrants-review' => 'управління доступом',
 	'mwoauthmanagemygrants-grantaccept' => 'Надано',
-	'mwoauthmanagemygrants-confirm-text' => 'Використовуйте форму нижче, аби скасувати доступ або змінити гранти для споживача  OAuth, який діє від вашого імені.
- * Ця форма контролює конкретний маркер доступу, або ключ, що дозволяє клієнтський доступ до вашого облікового запису.
- * Зауважте, що, якщо ви окремо надали споживачеві доступ до різних проектів від вашого імені, то буде кілька маркерів доступу для цього споживача.
- * Якщо ви хочете скасувати доступ до споживача, то не забудьте скасувати всі маркери доступу для всіх версій цього споживача, які ви прийняли.
- * Використання "*" у полі вікі надає доступ до всіх проектів на цьому сайті; використання ІД вікі-проекту обмежує доступ до одного проекту.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Управління маркером доступу споживача',
 	'mwoauthmanagemygrants-update' => 'Оновити ґранти',
 	'mwoauthmanagemygrants-renounce' => 'Скасувати авторизацію',
