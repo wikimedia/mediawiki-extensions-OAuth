@@ -196,8 +196,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthmanagemygrants-revoke' => 'revoke access',
 	'mwoauthmanagemygrants-grantaccept' => 'Granted',
 	'mwoauthmanagemygrants-update-text' => 'Use the form below to modify the permissions granted to an application (OAuth consumer) to act on your behalf.
-* If you separately authorized an application to access different "sister site" projects on your behalf, then you will have separate configuration for each such project for that application.
-* Using "*" in the wiki field grants access to all projects on this site; using a wiki project ID limits access to a single project. Per-project settings take precedence.',
+* If you separately authorized an application to access different "sister site" projects on your behalf, then you will have separate configuration for each such project for that application.',
 	'mwoauthmanagemygrants-revoke-text' => 'Use the form below to revoke access for an application (OAuth consumer) to act on your behalf.
 * If you separately authorized an application to access different "sister site" projects on your behalf, then you will have separate configuration for each such project for that application.
 * If you want to totally revoke access to an application, be sure to revoke it from all projects that you accepted it on.',

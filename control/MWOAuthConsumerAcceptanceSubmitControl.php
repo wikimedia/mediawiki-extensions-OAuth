@@ -49,9 +49,6 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			),
 			'update'   => array(
 				'acceptanceId' => '/^\d+$/',
-				'wiki'        => function( $s ) {
-					global $wgConf;
-					return in_array( $s, $wgConf->getLocalDatabases() ) || $s === '*'; },
 				'grants'      => function( $s ) {
 					$grants = FormatJSON::decode( $s, true );
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
@@ -121,14 +118,8 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			}
 			$cmr = MWOAuthConsumer::newFromId( $dbw, $cmra->get( 'consumerId' ) );
 
-			if ( $cmr->get( 'wiki' ) !== '*' && $cmr->get( 'wiki' ) !== $this->vals['wiki'] ) {
-				return $this->failure( 'invalid_wiki',
-					'mwoauth-invalid-access-wrongwiki', $cmr->get( 'wiki' ) );
-			}
-
 			$grants = FormatJSON::decode( $this->vals['grants'], true );
 			$cmra->setFields( array(
-				'wiki'   => $this->vals['wiki'],
 				'grants' => array_intersect( $grants, $cmr->get( 'grants' ) ) // sanity
 			) );
 			$cmra->save( $dbw );

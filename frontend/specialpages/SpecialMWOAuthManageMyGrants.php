@@ -159,11 +159,6 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 					'label-message' => 'mwoauth-consumer-wiki',
 					'default' => $cmr->get( 'wiki', 'MWOAuthUtils::getWikiIdName' )
 				),
-				'wiki' => array(
-					'type' => ( $type === 'revoke' ) ? 'info' : 'text',
-					'label-message' => 'mwoauthmanagemygrants-wikiallowed',
-					'default' => $cmra->get( 'wiki' )
-				),
 				'grants'  => array(
 					'type' => 'checkmatrix',
 					'label-message' => 'mwoauthmanagemygrants-applicablegrantsallowed',
