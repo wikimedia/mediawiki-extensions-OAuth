@@ -198,12 +198,9 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		$request = $this->getRequest();
 
 		$name = $request->getVal( 'name', '' );
-		$stage = $request->getInt( 'stage', -1 );
+		$stage = $request->getInt( 'stage', MWOAuthConsumer::STAGE_APPROVED );
 		if ( $request->getVal( 'publisher', '' ) !== '' ) {
-			// @TODO: make a MWOAuthUtils::getCentralIdFromUserName method
-			// This page is only on the central wiki, so this works though.
-			$lUser = User::newFromName( $request->getVal( 'publisher' ) );
-			$centralId = $lUser ? MWOAuthUtils::getCentralIdFromLocalUser( $lUser ) : 0;
+			$centralId = MWOAuthUtils::getCentralIdFromUserName( $request->getVal( 'publisher' ) );
 		} else {
 			$centralId = null;
 		}
