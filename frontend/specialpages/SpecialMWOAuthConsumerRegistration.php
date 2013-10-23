@@ -31,7 +31,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	);
 
 	public function __construct() {
-		parent::__construct( 'MWOAuthConsumerRegistration' );
+		parent::__construct( 'OAuthConsumerRegistration' );
 	}
 
 	public function execute( $par ) {
@@ -69,7 +69,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			return;
 		}
 
-		// Format is Special:MWOAuthConsumerRegistration[/propose|/list|/update/<consumer key>]
+		// Format is Special:OAuthConsumerRegistration[/propose|/list|/update/<consumer key>]
 		$navigation = explode( '/', $par );
 		$action = isset( $navigation[0] ) ? $navigation[0] : null;
 		$consumerKey = isset( $navigation[1] ) ? $navigation[1] : null;

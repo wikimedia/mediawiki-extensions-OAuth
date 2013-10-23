@@ -17,7 +17,7 @@ require '../lib/OAuth.php';
 
 $consumerKey = 'dpf43f3p2l4k3l03';
 $consumerSecret = 'kd94hf93k423kf44';
-$baseurl = 'https://localhost/wiki/index.php?title=Special:MWOAuth';
+$baseurl = 'https://localhost/wiki/index.php?title=Special:OAuth';
 $endpoint = $baseurl . '/initiate&format=json&oauth_callback=oob';
 
 $endpoint_acc = $baseurl . '/token&format=json';

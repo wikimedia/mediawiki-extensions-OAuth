@@ -35,7 +35,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	);
 
 	public function __construct() {
-		parent::__construct( 'MWOAuthManageConsumers', 'mwoauthmanageconsumer' );
+		parent::__construct( 'OAuthManageConsumers', 'mwoauthmanageconsumer' );
 	}
 
 	public function execute( $par ) {
@@ -51,7 +51,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 			throw new PermissionsError( 'mwoauthmanageconsumer' );
 		}
 
-		// Format is Special:MWOAuthManageConsumers[/<stage>[/<consumer key>]]
+		// Format is Special:OAuthManageConsumers[/<stage>[/<consumer key>]]
 		$navigation = explode( '/', $par );
 		$stageKey = isset( $navigation[0] ) ? $navigation[0] : null;
 		$consumerKey = isset( $navigation[1] ) ? $navigation[1] : null;
@@ -249,7 +249,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					'label-message' => 'mwoauth-consumer-name',
 					'default' => $cmr->get( 'name', function( $s ) {
 						$link = Linker::linkKnown(
-							SpecialPage::getTitleFor( 'MWOAuthListConsumers' ),
+							SpecialPage::getTitleFor( 'OAuthListConsumers' ),
 							wfMessage( 'mwoauthmanageconsumers-search-name' )->escaped(),
 							array(),
 							array( 'name' => $s )
@@ -270,7 +270,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					'default' => $cmr->get( 'userId', function( $s ) {
 						$name = MWOAuthUtils::getCentralUserNameFromId( $s );
 						$link = Linker::linkKnown(
-							$title = SpecialPage::getTitleFor( 'MWOAuthListConsumers' ),
+							$title = SpecialPage::getTitleFor( 'OAuthListConsumers' ),
 							wfMessage( 'mwoauthmanageconsumers-search-publisher' )->escaped(),
 							array(),
 							array( 'publisher' => $name )

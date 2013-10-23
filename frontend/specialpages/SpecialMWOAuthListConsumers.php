@@ -32,13 +32,13 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 	);
 
 	public function __construct() {
-		parent::__construct( 'MWOAuthListConsumers' );
+		parent::__construct( 'OAuthListConsumers' );
 	}
 
 	public function execute( $par ) {
 		$this->setHeaders();
 
-		// Format is Special:MWOAuthListConsumers[/list|/view/[<consumer key>]]
+		// Format is Special:OAuthListConsumers[/list|/view/[<consumer key>]]
 		$navigation = explode( '/', $par );
 		$type = isset( $navigation[0] ) ? $navigation[0] : null;
 		$consumerKey = isset( $navigation[1] ) ? $navigation[1] : null;
@@ -245,7 +245,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		);
 		if ( $this->getUser()->isAllowed( 'mwoauthmanageconsumer' ) ) {
 			$links[] = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'mwoauthmanageconsumers', "{$stageKey}/{$cmrKey}" ),
+				SpecialPage::getTitleFor( 'OAuthManageConsumers', "{$stageKey}/{$cmrKey}" ),
 				$this->msg( 'mwoauthmanageconsumers-review' )->escaped()
 			);
 		}

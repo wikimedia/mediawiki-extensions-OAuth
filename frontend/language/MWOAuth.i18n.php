@@ -9,7 +9,7 @@
 $messages = array();
 
 $messages['en'] = array(
-	'mwoauth' => 'OAuth',
+	'oauth' => 'OAuth',
 	'mwoauth-desc' => 'OAuth 1.0a API Authorization',
 
 	'mwoauth-verified' => 'The application is now allowed to access MediaWiki on your behalf.
@@ -68,7 +68,7 @@ To complete the process, provide this verification value to the application: \'\
 	'mwoauth-consumer-stage-disabled' => 'disabled',
 	'mwoauth-consumer-stage-suppressed' => 'suppressed',
 
-	'mwoauthconsumerregistration' => 'OAuth consumer registration',
+	'oauthconsumerregistration' => 'OAuth consumer registration',
 	'mwoauthconsumerregistration-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthconsumerregistration-navigation' => 'Navigation:',
 	'mwoauthconsumerregistration-propose' => 'Propose new consumer',
@@ -89,8 +89,8 @@ All values here will overwrite any previous ones. Do not leave blank fields unle
 	'mwoauthconsumerregistration-maintext' => 'This page is for letting developers propose and update OAuth consumer applications in this site\'s registry.
 
 From here, you can:
-* [[Special:MWOAuthConsumerRegistration/propose|Request a token for a new consumer]].
-* [[Special:MWOAuthConsumerRegistration/list|Manage your existing consumers]].
+* [[Special:OAuthConsumerRegistration/propose|Request a token for a new consumer]].
+* [[Special:OAuthConsumerRegistration/list|Manage your existing consumers]].
 
 For more information about OAuth, please see the [//www.mediawiki.org/wiki/Extension:OAuth extension documentation].',
 	'mwoauthconsumerregistration-propose-legend' => 'New OAuth consumer application',
@@ -113,7 +113,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthconsumerregistration-updated' => 'Your OAuth consumer registry was successfully updated.',
 	'mwoauthconsumerregistration-secretreset' => 'You have been assigned a consumer secret token of \'\'\'$1\'\'\'. \'\'Please record this for future reference.\'\'',
 
-	'mwoauthmanageconsumers' => 'Manage OAuth consumers',
+	'oauthmanageconsumers' => 'Manage OAuth consumers',
 	'mwoauthmanageconsumers-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthmanageconsumers-type' => 'Queues:',
 	'mwoauthmanageconsumers-showproposed' => 'Proposed requests',
@@ -159,7 +159,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthmanageconsumers-search-name' => 'consumers with this name',
 	'mwoauthmanageconsumers-search-publisher' => 'consumers by this user',
 
-	'mwoauthlistconsumers' => 'List OAuth consumers',
+	'oauthlistconsumers' => 'List OAuth consumers',
 	'mwoauthlistconsumers-legend' => 'Browse OAuth consumers',
 	'mwoauthlistconsumers-view' => 'details',
 	'mwoauthlistconsumers-none' => 'No consumers found meeting this criteria.',
@@ -179,7 +179,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthlistconsumers-status-rejected' => 'rejected',
 	'mwoauthlistconsumers-status-expired' => 'expired',
 
-	'mwoauthmanagemygrants' => 'Manage account OAuth grants',
+	'oauthmanagemygrants' => 'Manage account OAuth grants',
 	'mwoauthmanagemygrants-text' => 'This page lists any applications that can use your account. For any such application, the scope of its access is limited by the permissions that you granted to the application when you authorized it to act on your behalf. If you separately authorized a consumer to access different "sister" projects on your behalf, then you will see separate configuration for each such project below.',
 	'mwoauthmanagemygrants-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
@@ -377,7 +377,7 @@ See also:
 * {{msg-mw|Mwoauth-prefs-managegrantslink}}.',
 	'mwoauth-prefs-managegrantslink' => 'Used in [[Special:Preferences]]. See example: [[mw:Special:Preferences]].
 
-Used as text for the link which points to [[Special:MWOAuthManageMyGrants]].
+Used as text for the link which points to [[Special:OAuthManageMyGrants]].
 
 Preceded by the label {{msg-mw|Mwoauth-prefs-managegrants}}.
 
@@ -481,7 +481,7 @@ Preceded by list of the links ("|" separated) which have any one of the followin
 {{Identical|Main}}',
 	'mwoauthconsumerregistration-propose-text' => 'Used as introduction text for the form.',
 	'mwoauthconsumerregistration-update-text' => 'Used as introduction text for the form.',
-	'mwoauthconsumerregistration-maintext' => 'Used as introduction text in [[Special:MWOAuthConsumerRegistration]].',
+	'mwoauthconsumerregistration-maintext' => 'Used as introduction text in [[Special:OAuthConsumerRegistration]].',
 	'mwoauthconsumerregistration-propose-legend' => 'Used as fieldset label.',
 	'mwoauthconsumerregistration-update-legend' => 'Used as fieldset label.',
 	'mwoauthconsumerregistration-propose-submit' => 'Used as label for the Submit button.',
@@ -546,37 +546,37 @@ Preceded by a list of links which have any one of the following labels:
 * {{msg-mw|Mwoauthmanageconsumers-showrejected}}
 * {{msg-mw|Mwoauthmanageconsumers-showexpired}}
 {{Identical|Main}}',
-	'mwoauthmanageconsumers-maintext' => 'Used in [[Special:MWOAuthManageConsumers]].
+	'mwoauthmanageconsumers-maintext' => 'Used in [[Special:OAuthManageConsumers]].
 
 Followed by the message {{msg-mw|Mwoauthmanageconsumers-queues}}.',
 	'mwoauthmanageconsumers-queues' => 'Used as label.
 
-Followed by a list of links which point to [[Special:MWOAuthManageConsumers]].
+Followed by a list of links which point to [[Special:OAuthManageConsumers]].
 
 Text for the link is any one of the following messages:
 * {{msg-mw|Mwoauthmanageconsumers-q-proposed}}
 * {{msg-mw|Mwoauthmanageconsumers-q-rejected}}
 * {{msg-mw|Mwoauthmanageconsumers-q-expired}}',
-	'mwoauthmanageconsumers-q-proposed' => 'Used as text for the link which points to [[Special:MWOAuthManageConsumers]].
+	'mwoauthmanageconsumers-q-proposed' => 'Used as text for the link which points to [[Special:OAuthManageConsumers]].
 
 The list is preceded by the label {{msg-mw|Mwoauthmanageconsumers-queues}}.',
-	'mwoauthmanageconsumers-q-rejected' => 'Used as text for the link which points to [[Special:MWOAuthManageConsumers]].
+	'mwoauthmanageconsumers-q-rejected' => 'Used as text for the link which points to [[Special:OAuthManageConsumers]].
 
 The list is preceded by the label {{msg-mw|Mwoauthmanageconsumers-queues}}.',
-	'mwoauthmanageconsumers-q-expired' => 'Used as text for the link which points to [[Special:MWOAuthManageConsumers]].
+	'mwoauthmanageconsumers-q-expired' => 'Used as text for the link which points to [[Special:OAuthManageConsumers]].
 
 The list is preceded by the label {{msg-mw|Mwoauthmanageconsumers-queues}}.',
 	'mwoauthmanageconsumers-lists' => 'Used as subtitle which is followed by a list of links.
 
-The links are points to [[Special:MWOAuthManageConsumers]].
+The links are points to [[Special:OAuthManageConsumers]].
 
 The text fo the link is any one of the following messages:
 * {{msg-mw|Mwoauthmanageconsumers-l-approved}}
 * {{msg-mw|Mwoauthmanageconsumers-l-disabled}}',
-	'mwoauthmanageconsumers-l-approved' => 'Used as text for the link which points to [[Special:MWOAuthManageConsumers]].
+	'mwoauthmanageconsumers-l-approved' => 'Used as text for the link which points to [[Special:OAuthManageConsumers]].
 
 The list is preceded by the label {{msg-mw|Mwoauthmanageconsumers-lists}}.',
-	'mwoauthmanageconsumers-l-disabled' => 'Used as text for the link which points to [[Special:MWOAuthManageConsumers]].
+	'mwoauthmanageconsumers-l-disabled' => 'Used as text for the link which points to [[Special:OAuthManageConsumers]].
 
 The list is preceded by the label {{msg-mw|Mwoauthmanageconsumers-lists}}.',
 	'mwoauthmanageconsumers-none-proposed' => 'Used if there are not consumers to list.
@@ -600,7 +600,7 @@ The list is preceded by the label {{msg-mw|Mwoauthmanageconsumers-lists}}.',
 {{Identical|Consumer key}}',
 	'mwoauthmanageconsumers-lastchange' => 'Used as table row header.
 {{Identical|Last change}}',
-	'mwoauthmanageconsumers-review' => 'Used as label for the link which points to [[Special:MWOAuthManageConsumers]].',
+	'mwoauthmanageconsumers-review' => 'Used as label for the link which points to [[Special:OAuthManageConsumers]].',
 	'mwoauthmanageconsumers-confirm-text' => 'Used as introduction text for the form.',
 	'mwoauthmanageconsumers-confirm-legend' => 'Used as fieldset label.
 {{Identical|Manage OAuth consumer}}',
@@ -690,7 +690,7 @@ Followed by the following labels:
 	'mwoauthlistconsumers-status-expired' => '{{Related|Mwoauthlistconsumers-status}}',
 	'mwoauthmanagemygrants' => '{{doc-special|MWOAuthManageMyGrants}}',
 	'mwoauthmanagemygrants-text' => 'Explanatory text for Special:OAuthManageMyGrants page',
-	'mwoauthmanagemygrants-notloggedin' => 'Used in [[Special:MWOAuthManageMyGrants]] if the user is not logged in.',
+	'mwoauthmanagemygrants-notloggedin' => 'Used in [[Special:OAuthManageMyGrants]] if the user is not logged in.',
 	'mwoauthmanagemygrants-navigation' => 'Used as subtitle.
 
 Followed by a link with the link text {{msg-mw|Mwoauthmanagemygrants-showlist}}. It can be without link.
@@ -4139,7 +4139,7 @@ Alla värden här skriver över eventuella tidigare värden. Lämna inte tomma f
 	'mwoauthmanagemygrants-review' => 'hantera åtkomst',
 	'mwoauthmanagemygrants-revoke' => 'återkalla åtkomst',
 	'mwoauthmanagemygrants-grantaccept' => 'Beviljas',
-	'mwoauthmanagemygrants-update-text' => 'Använd formuläret nedan för att ändra de behörigheter som beviljats för en applikation (OAuth konsument)  att agera åt dina vägnar. 
+	'mwoauthmanagemygrants-update-text' => 'Använd formuläret nedan för att ändra de behörigheter som beviljats för en applikation (OAuth konsument)  att agera åt dina vägnar.
 * Om du separat auktoriserat en applikation för att tillgå olika systerprojekt åt dina vägnar har du separata konfigurationer för varje sådant projekt för den applikationen.
 * Att använda "*" i wikifältet ger tillgång till alla projekt på denna webbplats: att använda ett wikiprojektID begränsar åtkomst till ett enskilt projekt. Förinställda projektinställningar har företräde.', # Fuzzy
 	'mwoauthmanagemygrants-revoke-text' => 'Använd formuläret nedan för att återkalla åtkomst för en applikation (OAuth konsument) att agera åt dina vägnar. 

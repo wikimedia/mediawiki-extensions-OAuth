@@ -32,7 +32,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	);
 
 	public function __construct() {
-		parent::__construct( 'MWOAuthManageMyGrants', 'mwoauthmanagemygrants' );
+		parent::__construct( 'OAuthManageMyGrants', 'mwoauthmanagemygrants' );
 	}
 
 	public function execute( $par ) {
@@ -48,7 +48,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			throw new PermissionsError( 'mwoauthmanagemygrants' );
 		}
 
-		// Format is Special:MWOAuthManageMyGrants[/list|/manage/<accesstoken>]
+		// Format is Special:OAuthManageMyGrants[/list|/manage/<accesstoken>]
 		$navigation = explode( '/', $par );
 		$typeKey = isset( $navigation[0] ) ? $navigation[0] : null;
 		$acceptanceId = isset( $navigation[1] ) ? $navigation[1] : null;

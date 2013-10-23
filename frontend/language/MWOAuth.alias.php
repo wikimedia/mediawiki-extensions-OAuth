@@ -11,34 +11,34 @@ $specialPageAliases = array();
 
 /** English (English) */
 $specialPageAliases['en'] = array(
-	'MWOAuthConsumerRegistration' => array( 'MWOAuthConsumerRegistration', 'OAuthRegistration' ),
-	'MWOAuthManageConsumers' => array( 'MWOAuthManageConsumers', 'OAuthManageConsumers' ),
-	'MWOAuthListConsumers' => array( 'MWOAuthListConsumers', 'OAuthListConsumers' ),
-	'MWOAuthManageMyGrants' => array( 'MWOAuthManageMyGrants', 'OAuthGrants' ),
-	'MWOAuth' => array( 'MWOAuth', 'OAuth' ),
+	'OAuthConsumerRegistration' => array( 'OAuthConsumerRegistration', 'OAuthRegistration' ),
+	'OAuthManageConsumers' => array( 'OAuthManageConsumers' ),
+	'OAuthListConsumers' => array( 'OAuthListConsumers' ),
+	'OAuthManageMyGrants' => array( 'OAuthManageMyGrants', 'OAuthGrants' ),
+	'OAuth' => array( 'OAuth', 'MWOAuth' ),
 );
 
 /** German (Deutsch) */
 $specialPageAliases['de'] = array(
-	'MWOAuthConsumerRegistration' => array( 'Verbraucherregistrierung' ),
-	'MWOAuthManageConsumers' => array( 'Verbraucher_verwalten' ),
-	'MWOAuthListConsumers' => array( 'Verbraucher_auflisten' ),
-	'MWOAuthManageMyGrants' => array( 'Meine_Berechtigungen_verwalten' ),
-	'MWOAuth' => array( 'OAuth' ),
+	'OAuthConsumerRegistration' => array( 'Verbraucherregistrierung' ),
+	'OAuthManageConsumers' => array( 'Verbraucher_verwalten' ),
+	'OAuthListConsumers' => array( 'Verbraucher_auflisten' ),
+	'OAuthManageMyGrants' => array( 'Meine_Berechtigungen_verwalten' ),
+	'OAuth' => array( 'OAuth' ),
 );
 
 /** Korean (한국어) */
 $specialPageAliases['ko'] = array(
-	'MWOAuthConsumerRegistration' => array( 'MWO인증소비자등록' ),
-	'MWOAuthManageConsumers' => array( 'MWO인증소비자관리' ),
-	'MWOAuthManageMyGrants' => array( 'MWO인증내부여관리' ),
-	'MWOAuth' => array( 'MWO인증' ),
+	'OAuthConsumerRegistration' => array( 'MWO인증소비자등록' ),
+	'OAuthManageConsumers' => array( 'MWO인증소비자관리' ),
+	'OAuthManageMyGrants' => array( 'MWO인증내부여관리' ),
+	'OAuth' => array( 'MWO인증' ),
 );
 
 /** Macedonian (македонски) */
 $specialPageAliases['mk'] = array(
-	'MWOAuthConsumerRegistration' => array( 'МВOAuthРегистрацијаПотрошувач' ),
-	'MWOAuthManageConsumers' => array( 'МВOAuthРаководењеПотрошувач' ),
-	'MWOAuthManageMyGrants' => array( 'MWOAuthРаководењеМоиДоделувања' ),
-	'MWOAuth' => array( 'MWOAuth' ),
+	'OAuthConsumerRegistration' => array( 'МВOAuthРегистрацијаПотрошувач' ),
+	'OAuthManageConsumers' => array( 'МВOAuthРаководењеПотрошувач' ),
+	'OAuthManageMyGrants' => array( 'OAuthРаководењеМоиДоделувања' ),
+	'OAuth' => array( 'OAuth' ),
 );

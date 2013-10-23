@@ -23,7 +23,7 @@
  */
 class SpecialMWOAuth extends UnlistedSpecialPage {
 	function __construct() {
-		parent::__construct( 'MWOAuth' );
+		parent::__construct( 'OAuth' );
 	}
 
 	public function execute( $subpage ) {

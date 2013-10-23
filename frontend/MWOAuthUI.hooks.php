@@ -26,7 +26,7 @@ class MWOAuthUIHooks {
 				'type' => 'info',
 				'raw' => true,
 				'default' => Linker::linkKnown(
-					SpecialPage::getTitleFor( 'MWOAuthManageMyGrants' ),
+					SpecialPage::getTitleFor( 'OAuthManageMyGrants' ),
 					wfMessage( 'mwoauth-prefs-managegrantslink', $count )->escaped()
 				)
 			),
@@ -69,7 +69,7 @@ class MWOAuthUIHooks {
 		if ( $m[2] ) {
 			$message = htmlspecialchars( $cmr->get( 'description' ) );
 		} else {
-			$target = SpecialPage::getTitleFor( 'MWOAuthListConsumers',
+			$target = SpecialPage::getTitleFor( 'OAuthListConsumers',
 				'view/' . $cmr->get( 'consumerKey' )
 			);
 			$encName = wfEscapeWikiText( $cmr->get( 'name', function( $s ) use ( $cmr ) {
