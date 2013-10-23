@@ -404,6 +404,41 @@ class MWOAuthUtils {
 	}
 
 	/**
+	 * Given a username, get the user ID for that user on the central wiki. This
+	 * function MUST NOT be used to determine if a user is attached on the central
+	 * wiki. It's only intended to resolve the central id of a username.
+	 * @param string $username
+	 * @throws MWException
+	 * @return integer|bool ID or false if not found
+	 */
+	public static function getCentralIdFromUserName( $username ) {
+		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
+
+		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
+			if ( !Hooks::isRegistered( 'OAuthGetCentralIdFromUserName' ) ) {
+				throw new MWException( "No handler for 'OAuthGetCentralIdFromLocalUser' hook" );
+			}
+
+			$id = null;
+			// Let CentralAuth check that $user is attached to a global account and
+			// that the foreign local account on the central wiki is also attached to it
+			wfRunHooks( 'OAuthGetCentralIdFromUserName',
+				array( $username, $wgMWOAuthCentralWiki, &$id, $wgMWOAuthSharedUserSource ) );
+			if ( $id === null ) {
+				throw new MWException( 'Could not lookup ID for user via hook.' );
+			}
+		} else {
+			$id = false;
+			$user = User::newFromName( $username );
+			if ( $user instanceof User && $user->getId() > 0 ) {
+				$id = $user->getId();
+			}
+		}
+
+		return $id;
+	}
+
+	/**
 	 * Get the effective secret key/token to use for OAuth purposes.
 	 *
 	 * For example, the "secret key" and "access secret" values that are
