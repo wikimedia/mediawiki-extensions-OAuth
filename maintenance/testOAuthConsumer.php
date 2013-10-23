@@ -30,7 +30,8 @@ class TestOAuthConsumer extends Maintenance {
 		$consumerKey = $this->getOption( 'consumerKey' );
 		$consumerSecret = $this->getOption( 'consumerSecret' );
 		$rsaKeyFile = $this->getOption( 'RSAKeyFile' );
-		$baseurl = "{$wgServer}{$wgScriptPath}/index.php?title=Special:MWOAuth";
+		$baseurl = wfExpandUrl(
+			"{$wgServer}{$wgScriptPath}/index.php?title=Special:MWOAuth", PROTO_CANONICAL );
 		$endpoint = "{$baseurl}/initiate&format=json&oauth_callback=oob";
 
 		$endpoint_acc = "{$baseurl}/token&format=json";
