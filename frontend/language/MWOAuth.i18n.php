@@ -24,8 +24,8 @@ To complete the process, provide this verification value to the application: \'\
 	'mwoauth-field-private' => '(this information is private)',
 
 	'mwoauth-grant-generic' => '"$1" rights bundle',
-	'mwoauth-prefs-managegrants' => 'Account users (OAuth):',
-	'mwoauth-prefs-managegrantslink' => 'Manage which applications can use your account',
+	'mwoauth-prefs-managegrants' => 'Connected apps:',
+	'mwoauth-prefs-managegrantslink' => 'Manage $1 connected {{PLURAL:$1|application|applications}}',
 
 	'mwoauth-consumer-allwikis' => 'All projects on this site',
 	'mwoauth-consumer-key' => 'Consumer key:',
@@ -378,7 +378,10 @@ See also:
 
 Used as text for the link which points to [[Special:MWOAuthManageMyGrants]].
 
-Preceded by the label {{msg-mw|Mwoauth-prefs-managegrants}}.',
+Preceded by the label {{msg-mw|Mwoauth-prefs-managegrants}}.
+
+Parameters:
+* $1 - Number of connected applications',
 	'mwoauth-consumer-allwikis' => 'Description of scope of consumer access when the scope is all wiki projects on the site',
 	'mwoauth-consumer-key' => 'Used as label for the "Consumer key" input box.
 {{Identical|Consumer key}}',
