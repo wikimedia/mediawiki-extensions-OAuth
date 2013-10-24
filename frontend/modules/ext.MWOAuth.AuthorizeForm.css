@@ -1,10 +1,19 @@
 
+#mw-mwoauth-authorize-form {
+	font-size: 1em;
+}
+
 #mw-mwoauth-authorize-form > a {
 	font-weight: bold;
 }
 
 #mw-mwoauth-authorize-form > p {
-	font-size: 1.3em;
+	font-size: 1.4em;
+}
+
+span.mw-mwoauth-authorize-form-grantgroup {
+	font-weight: bold;
+	font-size: 1.2em;
 }
 
 input.mw-mwoauth-authorize-button {
