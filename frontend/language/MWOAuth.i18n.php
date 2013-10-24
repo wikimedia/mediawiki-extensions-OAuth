@@ -182,7 +182,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthmanagemygrants-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
 	'mwoauthmanagemygrants-showlist' => 'Accepted consumer list',
-	'mwoauthmanagemygrants-none' => 'No consumers have access on behalf of your account.',
+	'mwoauthmanagemygrants-none' => 'No applications are currently connected to your account.',
 	'mwoauthmanagemygrants-name' => 'Consumer name',
 	'mwoauthmanagemygrants-user' => 'Publisher',
 	'mwoauthmanagemygrants-description' => 'Description',
