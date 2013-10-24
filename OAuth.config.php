@@ -142,12 +142,10 @@ $wgMWOAuthGrantPermissionGroups = array(
 	'uploadfile'          => 'file-interaction',
 	'uploadeditmovefile'  => 'file-interaction',
 
-	'viewmywatchlist'     => 'watchlist-interaction',
-	'editviewmywatchlist' => 'watchlist-interaction',
-
 	'sendemail'           => 'email',
 
-	'highvolume'          => 'high-volume',
+	'viewmywatchlist'     => 'watchlist-interaction',
+	'editviewmywatchlist' => 'watchlist-interaction',
 
 	'editmycssjs'         => 'customization',
 
@@ -158,6 +156,8 @@ $wgMWOAuthGrantPermissionGroups = array(
 	'viewdeleted'         => 'administration',
 	'protect'             => 'administration',
 	'createaccount'       => 'administration',
+
+	'highvolume'          => 'high-volume',
 );
 
 /** @var integer Seconds after which an idle consumer request is marked as "expired" */
