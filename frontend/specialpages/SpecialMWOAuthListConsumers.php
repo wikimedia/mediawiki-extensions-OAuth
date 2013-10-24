@@ -65,16 +65,17 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 	 */
 	protected function showConsumerInfo( $consumerKey ) {
 		$user = $this->getUser();
+		$out = $this->getOutput();
 
 		if ( !$consumerKey ) {
-			$this->getOutput()->addWikiMsg( 'mwoauth-missing-consumer-key' );
+			$out->addWikiMsg( 'mwoauth-missing-consumer-key' );
 		}
 
 		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
 		if ( !$cmr ) {
-			$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
+			$out->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 			return;
 		} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			throw new PermissionsError( 'mwoauthviewsuppressed' );
@@ -119,7 +120,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			'mwoauthlistconsumers-callbackurl' => htmlspecialchars(
 				$cmr->get( 'callbackUrl' )
 			),
-			'mwoauthlistconsumers-grants' => $this->getOutput()->parseInline( $s ),
+			'mwoauthlistconsumers-grants' => $out->parseInline( $s ),
 		);
 
 		$r = '';
@@ -127,19 +128,20 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			$r .= '<p><b>' . $this->msg( $msg )->escaped() . '</b>: ' . $encValue . '</p>';
 		}
 
-		$this->getOutput()->addHtml( $r );
+		$out->addHtml( $r );
 
-		$out = $this->getOutput();
-		// Show all of the status updates
-		$logPage = new LogPage( 'mwoauthconsumer' );
-		$out->addHTML( Xml::element( 'h2', null, $logPage->getName()->text() ) );
-		LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '',
-			array(
-				'conds' => array(
-				'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ),
-				'flags' => LogEventsList::NO_EXTRA_USER_LINKS
-			)
-		);
+		if ( MWOAuthUtils::isCentralWiki() ) {
+			// Show all of the status updates
+			$logPage = new LogPage( 'mwoauthconsumer' );
+			$out->addHTML( Xml::element( 'h2', null, $logPage->getName()->text() ) );
+			LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '',
+				array(
+					'conds' => array(
+					'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ),
+					'flags' => LogEventsList::NO_EXTRA_USER_LINKS
+				)
+			);
+		}
 	}
 
 	/**
