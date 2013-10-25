@@ -56,6 +56,8 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 		$this->setHeaders();
 		$this->getOutput()->disallowUserJs();
+		$this->getOutput()->addModules( 'ext.MWOAuth.WikiSelect' );
+		$this->getOutput()->addJsConfigVars( 'wgOAuthWikiList', array_values( MWOAuthUtils::getAllWikiNames() ) );
 
 		$block = $user->getBlock();
 		if ( $block ) {
@@ -111,7 +113,12 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 						'required' => true
 					),
 					'wiki' => array(
-						'type' => 'text',
+						'type' => 'selectorother',
+						'options' => array(
+							wfMessage( 'mwoauth-consumer-allwikis' )->escaped() => '*',
+							wfMessage( 'mwoauth-consumer-wiki-thiswiki', wfWikiID() )->escaped() => wfWikiID()
+			 			),
+						'other' => wfMessage( 'mwoauth-consumer-wiki-other' )->escaped(),
 						'label-message' => 'mwoauth-consumer-wiki',
 						'required' => true,
 						'default' => '*'

@@ -68,7 +68,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					return Sanitizer::validateEmail( $s ); },
 				'wiki'         => function( $s ) {
 					global $wgConf;
-					return in_array( $s, $wgConf->getLocalDatabases() ) || $s === '*'; },
+					return ( $s === '*'
+						|| in_array( $s, $wgConf->getLocalDatabases() )
+						|| array_search( $s, MWOAuthUtils::getAllWikiNames() ) !== false
+					); },
 				'grants'       => function( $s ) {
 					$grants = FormatJSON::decode( $s, true );
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
@@ -156,6 +159,12 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				$dbw, $this->vals['name'], $this->vals['version'], $centralUserId ) )
 			{
 				return $this->failure( 'consumer_exists', 'mwoauth-consumer-alreadyexists' );
+			}
+
+			$wikiNames = MWOAuthUtils::getAllWikiNames();
+			$dbKey = array_search( $this->vals['wiki'], $wikiNames );
+			if ( $dbKey !== false ) {
+				$this->vals['wiki'] = $dbKey;
 			}
 
 			$curVer = $dbw->selectField( 'oauth_registered_consumer',

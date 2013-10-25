@@ -280,6 +280,23 @@ class MWOAuthUtils {
 	}
 
 	/**
+	 * Get the pretty names of all local wikis
+	 *
+	 * @return associative array of local wiki names indexed by wiki ID
+	 */
+	public static function getAllWikiNames() {
+		global $wgConf;
+		$wikiNames = array();
+		foreach ( $wgConf->getLocalDatabases() as $dbname ) {
+			$name = self::getWikiIdName( $dbname );
+			if ( $name != $dbname ) {
+				$wikiNames[$dbname] = $name;
+			}
+		}
+		return $wikiNames;
+	}
+
+	/**
 	 * Quickly get a new server with all the default configurations
 	 *
 	 * @return MWOAuthServer with default configurations

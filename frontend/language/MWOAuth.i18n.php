@@ -39,6 +39,8 @@ To complete the process, provide this verification value to the application: \'\
 	'mwoauth-consumer-grantsneeded' => 'Applicable grants:',
 	'mwoauth-consumer-required-grant' => 'Applicable to consumer',
 	'mwoauth-consumer-wiki' => 'Applicable wiki:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Current wiki ($1)',
+	'mwoauth-consumer-wiki-other' => 'Specific wiki',
 	'mwoauth-consumer-restrictions' => 'Usage restrictions:',
 	'mwoauth-consumer-restrictions-json' => 'Usage restrictions (JSON):',
 	'mwoauth-consumer-rsakey' => 'Public RSA key:',
@@ -414,6 +416,8 @@ Followed by the list of grants.
 	'mwoauth-consumer-required-grant' => 'Used as table column header.',
 	'mwoauth-consumer-wiki' => 'Used as label for the input box. The default value for the input box is "*".
 {{Identical|Applicable wiki}}',
+	'mwoauth-consumer-wiki-thiswiki' => 'Label for selection-list option, indicating the wiki this user is currently visiting',
+	'mwoauth-consumer-wiki-other' => 'Label for selection-list option, indicating the user wants to type in another wiki\'s name',
 	'mwoauth-consumer-restrictions' => 'Used as label for the textarea. (The value is written in JSON format.)
 
 Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hidden}}.
