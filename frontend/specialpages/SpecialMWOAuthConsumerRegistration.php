@@ -126,6 +126,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 					'grants'  => array(
 						'type' => 'checkmatrix',
 						'label-message' => 'mwoauth-consumer-grantsneeded',
+						'help-message' => 'mwoauth-consumer-grantshelp',
 						'columns' => array(
 							$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
 						),

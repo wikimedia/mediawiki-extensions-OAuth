@@ -121,6 +121,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 						$format
 					);
 					break;
+				case 'grants':
+					$this->showGrantRightsTables();
+					break;
 				default:
 					$format = $request->getVal( 'format', 'html' );
 					$this->showError( 'mwoauth-bad-request', $format );
@@ -334,5 +337,49 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		} elseif ( $format == 'html' ) { // html
 			$out->addHtml( $data );
 		}
+	}
+
+	protected function showGrantRightsTables() {
+		global $wgMWOAuthGrantPermissions;
+
+		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.special' );
+
+		$out->addWikiMsg( 'mwoauth-listgrantrights-summary' );
+
+		$out->addHTML(
+			Html::openElement( 'table',
+				array( 'class' => 'wikitable mw-oauth-listgrouprights-table' ) ) .
+				'<tr>' .
+				Html::element( 'th', null, $this->msg( 'mwoauth-listgrants-grant' )->text() ) .
+				Html::element( 'th', null, $this->msg( 'mwoauth-listgrants-rights' )->text() ) .
+				'</tr>'
+		);
+
+		foreach ( $wgMWOAuthGrantPermissions as $grant => $rights ) {
+			$descs = array();
+			$rights = array_filter( $rights ); // remove ones with 'false'
+			foreach ( $rights as $permission => $granted ) {
+				$descs[] = $this->msg(
+					'listgrouprights-right-display',
+					User::getRightDescription( $permission ),
+					'<span class="mw-oaith-listgrantrights-right-name">' . $permission . '</span>'
+				)->parse();
+			}
+			if ( !count( $descs ) ) {
+				$grantCellHtml = '';
+			} else {
+				sort( $descs );
+				$grantCellHtml = '<ul><li>' . implode( "</li>\n<li>", $descs ) . '</li></ul>';
+			}
+
+			$id = Sanitizer::escapeId( $grant );
+			$out->addHTML( Html::rawElement( 'tr', array( 'id' => $id ),
+				"<td>" . wfMessage( "mwoauth-grant-$grant" )->escaped() . "</td>" .
+				"<td>" . $grantCellHtml . '</td>'
+			) );
+		}
+
+		$out->addHTML( Html::closeElement( 'table' ) );
 	}
 }

@@ -60,6 +60,7 @@ To complete the process, provide this verification value to the application: \'\
 	'mwoauth-invalid-access-token' => 'No access token exists with the given key.',
 	'mwoauth-invalid-access-wrongwiki' => 'The consumer can only be used on wiki "$1".',
 	'mwoauth-consumer-conflict' => 'Someone changed the attributes of this consumer as you viewed it. Please try again. You may want to check the change log.',
+	'mwoauth-consumer-grantshelp' => 'Each grant gives access to listed user rights that a user account already has. See the ([[Special:OAuth/grants|table of grants]]) for more information.',
 
 	'mwoauth-consumer-stage-proposed' => 'proposed',
 	'mwoauth-consumer-stage-rejected' => 'rejected',
@@ -314,6 +315,12 @@ $5",
 	'action-mwoauthproposeconsumer' => 'propose new OAuth consumers',
 	'action-mwoauthupdateownconsumer' => 'update OAuth consumers you control',
 	'action-mwoauthviewsuppressed' => 'view suppressed OAuth consumers',
+
+	'mwoauth-listgrantrights-summary' => 'The following is a list of OAuth grants, with their associated access to user rights. Users can authorize applications to use their account, but with limited permissions based on the grants the user gave to the application. An application acting on behalf of a user cannot actually use rights that the user does not have however.
+There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] about individual rights.',
+	'mwoauth-listgrants-grant' => 'Grant',
+	'mwoauth-listgrants-rights' => 'Rights',
+	'mwoauth-listgrantrights-right-display' => '$1 <code>($2)</code>', # only translate this message to other languages if you have to change it
 );
 
 /** Message documentation (Message documentation)
@@ -916,6 +923,12 @@ See also:
 	'action-mwoauthproposeconsumer' => '{{Doc-action|mwoauthproposeconsumer}}',
 	'action-mwoauthupdateownconsumer' => '{{Doc-action|mwoauthupdateownconsumer}}',
 	'action-mwoauthviewsuppressed' => '{{Doc-action|mwoauthviewsuppressed}}',
+
+	'mwoauth-consumer-grantshelp' => 'Help text shown on consumer proposal form.',
+	'mwoauth-listgrantrights-summary' => 'Expanatory text shown at the top of the grant/rights mapping table.',
+	'mwoauth-listgrants-grant' => 'Used as table header for the grant/rights mapping table',
+	'mwoauth-listgrants-rights' => 'Used as table header for the grant/rights mapping table',
+	'mwoauth-listgrantrights-right-display' => 'Used to format rights descriptions on the grant/rights mapping table',
 );
 
 /** Arabic (العربية)
