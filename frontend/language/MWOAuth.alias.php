@@ -22,6 +22,7 @@ $specialPageAliases['en'] = array(
 $specialPageAliases['de'] = array(
 	'MWOAuthConsumerRegistration' => array( 'Verbraucherregistrierung' ),
 	'MWOAuthManageConsumers' => array( 'Verbraucher_verwalten' ),
+	'MWOAuthListConsumers' => array( 'Verbraucher_auflisten' ),
 	'MWOAuthManageMyGrants' => array( 'Meine_Berechtigungen_verwalten' ),
 	'MWOAuth' => array( 'OAuth' ),
 );

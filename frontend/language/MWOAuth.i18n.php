@@ -1388,7 +1388,7 @@ Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen.
 	'mwoauthmanagemygrants-notloggedin' => 'Du musst angemeldet sein, um auf diese Seite zugreifen zu können.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
 	'mwoauthmanagemygrants-showlist' => 'Liste akzeptierter Verbraucher',
-	'mwoauthmanagemygrants-none' => 'Keine Verbraucher haben Zugriff im Namen deines Benutzerkontos.', # Fuzzy
+	'mwoauthmanagemygrants-none' => 'Derzeit sind keine Anwendungen mit deinem Benutzerkonto verbunden.',
 	'mwoauthmanagemygrants-name' => 'Verbrauchername',
 	'mwoauthmanagemygrants-user' => 'Herausgeber',
 	'mwoauthmanagemygrants-description' => 'Beschreibung',
@@ -2863,6 +2863,7 @@ $messages['ja'] = array(
 	'mwoauthmanagemygrants-notloggedin' => 'このページにアクセスするにはログインしてください。',
 	'mwoauthmanagemygrants-navigation' => 'ナビゲーション:',
 	'mwoauthmanagemygrants-showlist' => 'コンシューマー一覧', # Fuzzy
+	'mwoauthmanagemygrants-none' => '現在、あなたのアカウントに接続されているアプリケーションはありません',
 	'mwoauthmanagemygrants-name' => 'コンシューマー名',
 	'mwoauthmanagemygrants-user' => '発行者',
 	'mwoauthmanagemygrants-description' => '説明',
@@ -3385,7 +3386,7 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-notloggedin' => 'Треба да сте најавени за да ја отворите страницата.',
 	'mwoauthmanagemygrants-navigation' => 'Навигација:',
 	'mwoauthmanagemygrants-showlist' => 'Список на прифатени потрошувачи',
-	'mwoauthmanagemygrants-none' => 'Нема потрошувачи со пристап во име на вашата сметка.', # Fuzzy
+	'mwoauthmanagemygrants-none' => 'Нема потрошувачи поврзани со вашата сметка.',
 	'mwoauthmanagemygrants-name' => 'Име на потрошувач',
 	'mwoauthmanagemygrants-user' => 'Издавач',
 	'mwoauthmanagemygrants-description' => 'Опис',
@@ -3953,31 +3954,48 @@ $messages['sr-ec'] = array(
 /** Swedish (svenska)
  * @author Eihpossophie
  * @author Jopparn
+ * @author Skalman
  * @author WikiPhoenix
  */
 $messages['sv'] = array(
+	'mwoauth-desc' => 'OAuth 1.0a API-tillstånd',
 	'mwoauth-missing-field' => 'Saknar värde för "$1"-fältet',
 	'mwoauth-invalid-field' => 'Ogiltigt värde angett för "$1"-fältet',
+	'mwoauth-invalid-field-generic' => 'Ogiltigt värde angivet',
 	'mwoauth-field-hidden' => '(denna information är dold)',
 	'mwoauth-field-private' => '(denna information är privata)',
+	'mwoauth-prefs-managegrants' => 'Anslutna appar:',
+	'mwoauth-prefs-managegrantslink' => 'Hantera $1 {{PLURAL:$1|ansluten applikation|anslutna applikationer}}',
 	'mwoauth-consumer-allwikis' => 'Alla projekt på denna webbplats',
 	'mwoauth-consumer-key' => 'Konsumentnyckel:',
 	'mwoauth-consumer-name' => 'Applikationsnamn:',
 	'mwoauth-consumer-version' => 'Konsumentversion:',
 	'mwoauth-consumer-user' => 'Utgivare:',
 	'mwoauth-consumer-stage' => 'Aktuell status:',
+	'mwoauth-consumer-email' => 'E-postadress:',
+	'mwoauth-consumer-description' => 'Beskrivning av applikationen',
+	'mwoauth-consumer-callbackurl' => 'OAuth "callback"-URL:',
 	'mwoauth-consumer-grantsneeded' => 'Tillämpliga stipendium:',
 	'mwoauth-consumer-required-grant' => 'Tillämplig för konsumenten',
 	'mwoauth-consumer-wiki' => 'Tillämplig wiki:',
 	'mwoauth-consumer-restrictions' => 'Användningsbegränsningar:',
 	'mwoauth-consumer-restrictions-json' => 'Användningsbegränsningar (JSON):',
 	'mwoauth-consumer-rsakey' => 'Offentlig RSA-nyckel:',
+	'mwoauth-consumer-secretkey' => 'Konsumentens hemliga token:',
 	'mwoauth-consumer-accesstoken' => 'Åtkomst-token:',
 	'mwoauth-consumer-reason' => 'Orsak:',
 	'mwoauth-consumer-email-unconfirmed' => 'Din e-postadress till kontot har ännu inte bekräftats.',
 	'mwoauth-consumer-email-mismatched' => 'Den angivna e-postadressen måste matcha den som är kopplad till ditt konto.',
 	'mwoauth-consumer-alreadyexists' => 'En konsument med denna kombination av namn/version/utgivare finns redan',
 	'mwoauth-consumer-alreadyexistsversion' => 'En konsument med denna kombination av namn/utgivare finns redan med en likvärdig eller högre version ("$1")',
+	'mwoauth-consumer-not-proposed' => 'Konsumenten föreslås inte för närvarande',
+	'mwoauth-consumer-not-disabled' => 'Konsumenten är inte inaktiverad för närvarande',
+	'mwoauth-consumer-not-approved' => 'Konsumenten inte är godkänd (den kan ha inaktiverats)',
+	'mwoauth-missing-consumer-key' => 'Ingen konsumentnyckel angavs.',
+	'mwoauth-invalid-consumer-key' => 'Ingen konsument finns med den nyckel.',
+	'mwoauth-invalid-access-token' => 'Ingen åtkomst-token finns med den nyckeln.',
+	'mwoauth-invalid-access-wrongwiki' => 'Konsumenten kan endast användas på wiki "$1".',
+	'mwoauth-consumer-conflict' => 'Någon ändrat attributen för denna konsument när du tittade på den. Vänligen försök igen. Du kanske vill ta en titt på ändringsloggen.',
 	'mwoauth-consumer-stage-proposed' => 'föreslagna',
 	'mwoauth-consumer-stage-rejected' => 'avvisade',
 	'mwoauth-consumer-stage-expired' => 'utgångna',
@@ -3985,9 +4003,16 @@ $messages['sv'] = array(
 	'mwoauth-consumer-stage-disabled' => 'inaktiverade',
 	'mwoauth-consumer-stage-suppressed' => 'undertryckta',
 	'mwoauthconsumerregistration' => 'OAuth konsumentenregistrering',
+	'mwoauthconsumerregistration-notloggedin' => 'Du behöver vara inloggad för att komma åt denna sida.',
 	'mwoauthconsumerregistration-navigation' => 'Navigering:',
 	'mwoauthconsumerregistration-propose' => 'Föreslå ny kund',
+	'mwoauthconsumerregistration-list' => 'Min konsumentlista',
 	'mwoauthconsumerregistration-main' => 'Huvudsida',
+	'mwoauthconsumerregistration-update-text' => 'Använd formuläret nedan för att uppdatera delar av en OAuth-konsument du styr.
+
+Alla värden här skriver över eventuella tidigare värden. Lämna inte tomma fält om du inte tänker ta bort dessa värden.',
+	'mwoauthconsumerregistration-propose-legend' => 'Ny OAuth-konsumentapplikation',
+	'mwoauthconsumerregistration-update-legend' => 'Uppdatera OAuth-konsumentapplikation',
 	'mwoauthconsumerregistration-propose-submit' => 'Föreslå konsument',
 	'mwoauthconsumerregistration-update-submit' => 'Uppdatera konsument',
 	'mwoauthconsumerregistration-none' => 'Du kontrollerar inte några OAuth-konsumenter.',
@@ -4072,7 +4097,7 @@ $messages['sv'] = array(
 	'mwoauthmanagemygrants-notloggedin' => 'Du måste vara inloggad för att komma åt denna sida.',
 	'mwoauthmanagemygrants-navigation' => 'Navigering:',
 	'mwoauthmanagemygrants-showlist' => 'Accepterad konsumentlista',
-	'mwoauthmanagemygrants-none' => 'Ingen konsument har tillgång till ditt konto åt dina vägnar.', # Fuzzy
+	'mwoauthmanagemygrants-none' => 'Inga applikationer är för närvarande anslutna till ditt konto.',
 	'mwoauthmanagemygrants-name' => 'Konsumentnamn',
 	'mwoauthmanagemygrants-user' => 'Utgivare',
 	'mwoauthmanagemygrants-description' => 'Beskrivning',
@@ -4365,7 +4390,7 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'mwoauthmanagemygrants-notloggedin' => 'Ви повинні увійти в систему для доступу до цієї сторінки.',
 	'mwoauthmanagemygrants-navigation' => 'Навігація:',
 	'mwoauthmanagemygrants-showlist' => 'Список прийнятих споживачів',
-	'mwoauthmanagemygrants-none' => 'Жодний споживач не має доступу від імені вашого облікового запису.', # Fuzzy
+	'mwoauthmanagemygrants-none' => 'Жодна програма зараз не підключена до вашого облікового запису.',
 	'mwoauthmanagemygrants-name' => "Ім'я споживача",
 	'mwoauthmanagemygrants-user' => 'Видавець',
 	'mwoauthmanagemygrants-description' => 'Опис',
@@ -4653,12 +4678,14 @@ $messages['yi'] = array(
 /** Simplified Chinese (中文（简体）‎)
  * @author Hzy980512
  * @author Liuxinyu970226
+ * @author Qiyue2001
  * @author Shirayuki
  */
 $messages['zh-hans'] = array(
 	'mwoauth-invalid-field-generic' => '提供的值无效',
 	'mwoauth-field-hidden' => '（这些信息已被隐藏）',
 	'mwoauth-field-private' => '（这些信息不是公开的）',
+	'mwoauth-prefs-managegrants' => '连接的应用程序：',
 	'mwoauth-consumer-allwikis' => '本站的所有项目',
 	'mwoauth-consumer-stage' => '当前状态：',
 	'mwoauth-consumer-reason' => '原因：',
@@ -4674,6 +4701,17 @@ $messages['zh-hans'] = array(
 	'mwoauthmanageconsumers-reason' => '原因：',
 	'mwoauthmanageconsumers-success-approved' => '请求已批准。',
 	'mwoauthmanageconsumers-success-rejected' => '请求已被拒绝。',
+	'mwoauthlistconsumers-view' => '详情',
+	'mwoauthlistconsumers-name' => '应用程序名称',
+	'mwoauthlistconsumers-version' => '消费者版本',
+	'mwoauthlistconsumers-user' => '发布者',
+	'mwoauthlistconsumers-description' => '描述',
+	'mwoauthlistconsumers-basicgrantsonly' => '（仅适用于基本访问）',
+	'mwoauthlistconsumers-status' => '状态',
+	'mwoauth-consumer-stage-any' => '任何',
+	'mwoauthlistconsumers-status-proposed' => '建议',
+	'mwoauthlistconsumers-status-disabled' => '停用',
+	'mwoauthmanagemygrants-none' => '当前没有应用程序连接到您的帐户。',
 	'mwoauthmanagemygrants-description' => '描述',
 	'mwoauthmanagemygrants-review' => '管理访问',
 	'mwoauthmanagemygrants-grantaccept' => '授权',
