@@ -416,8 +416,12 @@ Followed by the list of grants.
 	'mwoauth-consumer-required-grant' => 'Used as table column header.',
 	'mwoauth-consumer-wiki' => 'Used as label for the input box. The default value for the input box is "*".
 {{Identical|Applicable wiki}}',
-	'mwoauth-consumer-wiki-thiswiki' => 'Label for selection-list option, indicating the wiki this user is currently visiting',
-	'mwoauth-consumer-wiki-other' => 'Label for selection-list option, indicating the user wants to type in another wiki\'s name',
+	'mwoauth-consumer-wiki-thiswiki' => 'Label for selection-list option, indicating the wiki this user is currently visiting.
+
+Parameters:
+* $1 - wiki ID',
+	'mwoauth-consumer-wiki-other' => "Label for selection-list option, indicating the user wants to type in another wiki's name.
+{{Identical|Specific wiki}}",
 	'mwoauth-consumer-restrictions' => 'Used as label for the textarea. (The value is written in JSON format.)
 
 Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hidden}}.
@@ -1254,6 +1258,8 @@ Um den Prozess abzuschließen, gib diesen Verifizierungswert an die Anwendung we
 	'mwoauth-consumer-grantsneeded' => 'Anwendbare Berechtigungen:',
 	'mwoauth-consumer-required-grant' => 'An Verbraucher anwendbar',
 	'mwoauth-consumer-wiki' => 'Anwendbares Wiki:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Aktuelles Wiki ($1)',
+	'mwoauth-consumer-wiki-other' => 'Spezielles Wiki',
 	'mwoauth-consumer-restrictions' => 'Benutzungsbeschränkungen:',
 	'mwoauth-consumer-restrictions-json' => 'Benutzungsbeschränkungen (JSON):',
 	'mwoauth-consumer-rsakey' => 'Öffentlicher RSA-Schlüssel:',
@@ -1578,6 +1584,9 @@ $messages['fa'] = array(
  * @author Nike
  */
 $messages['fi'] = array(
+	'mwoauth-prefs-managegrants' => 'Liitetyt sovellukset:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Nykyinen wiki ($1)',
+	'mwoauthmanagemygrants-none' => 'Yhtään sovellusta ei ole tällä hetkellä liitetty tunnukseesi.',
 	'mwoauth-grant-group-customization' => 'Mukautus ja asetukset',
 );
 
@@ -2791,6 +2800,8 @@ $messages['ja'] = array(
 	'mwoauth-consumer-email' => '連絡先メールアドレス:',
 	'mwoauth-consumer-description' => 'アプリケーションの説明:',
 	'mwoauth-consumer-callbackurl' => 'OAuth コールバック URL:',
+	'mwoauth-consumer-wiki-thiswiki' => '現在のウィキ ($1)',
+	'mwoauth-consumer-wiki-other' => '特定のウィキ',
 	'mwoauth-consumer-restrictions' => '使用制限:',
 	'mwoauth-consumer-restrictions-json' => '使用制限 (JSON):',
 	'mwoauth-consumer-rsakey' => '公開 RSA キー:',
@@ -3156,6 +3167,8 @@ $messages['lb'] = array(
 	'mwoauth-consumer-stage' => 'Aktuelle Status:',
 	'mwoauth-consumer-email' => 'Kontakt-E-Mail-Adress:',
 	'mwoauth-consumer-description' => 'Beschreiwung vum Programm:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Aktuell Wiki ($1)',
+	'mwoauth-consumer-wiki-other' => 'Spezifesch Wiki',
 	'mwoauth-consumer-reason' => 'Grond:',
 	'mwoauth-consumer-email-unconfirmed' => "D'E-Mail-Adress vun Ärem Benotzerkont gouf nach net confirméiert.",
 	'mwoauth-consumer-not-disabled' => 'De Konsument ass elo net desaktivéiert',
@@ -3187,6 +3200,7 @@ $messages['lb'] = array(
 	'mwoauthlistconsumers-description' => 'Beschreiwung',
 	'mwoauthlistconsumers-wiki' => 'Applicabel Wiki',
 	'mwoauthlistconsumers-status-proposed' => 'proposéiert',
+	'mwoauthlistconsumers-status-disabled' => 'desaktivéiert',
 	'mwoauthmanagemygrants-notloggedin' => 'Dir musst ageloggt si fir op dës Säit ze kommen.',
 	'mwoauthmanagemygrants-navigation' => 'Navigatioun:',
 	'mwoauthmanagemygrants-description' => 'Beschreiwung',
@@ -3403,6 +3417,12 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-review' => 'раковод. со пристап',
 	'mwoauthmanagemygrants-revoke' => 'одземи пристап',
 	'mwoauthmanagemygrants-grantaccept' => 'Доделено',
+	'mwoauthmanagemygrants-update-text' => 'Со овој образец можете да ги измените дозволите доделени на некој прилог (потрошувач на OAuth) за да делува во ваше име.
+* Ако сте му дале посебно овластување за друг збратимен проект, тогаш ќе имате посебни поставки за секој таков проект.
+* Со „*“ во википолето можете да му дадете овластување за сите проекти на мрежното место. Ако сакате да го овластите за само еден проект, внесете ја неговата назнака. Конкретните поставки за даден проект имаат предност.',
+	'mwoauthmanagemygrants-revoke-text' => 'Со овој образец можете да му го одземете пристапотна некој прилог (потрошувач на OAuth) за да делува во ваше име.
+* Ако сте му дале посебно овластување за друг збратимен проект, тогаш ќе имате посебни поставки за секој таков проект.
+* Ако сакате целосно да му го одземете пристапот на прилогот, тоа направете го за секој од проектите за кои сте го овластиле.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Раководење со шифра за кориснички пристап',
 	'mwoauthmanagemygrants-update' => 'Измени доделувања',
 	'mwoauthmanagemygrants-renounce' => 'Одземи дозвола',
@@ -4256,6 +4276,8 @@ $messages['uk'] = array(
 	'mwoauth-consumer-grantsneeded' => 'Придатні гранти:',
 	'mwoauth-consumer-required-grant' => 'Застосовні до споживача',
 	'mwoauth-consumer-wiki' => 'Придатні вікі:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Поточне вікі ($1)',
+	'mwoauth-consumer-wiki-other' => 'Конкретне вікі',
 	'mwoauth-consumer-restrictions' => 'Обмеження на використання:',
 	'mwoauth-consumer-restrictions-json' => 'Обмеження на користування (JSON):',
 	'mwoauth-consumer-rsakey' => 'Відкритий ключ RSA:',
@@ -4653,6 +4675,13 @@ $messages['vi'] = array(
 	'right-mwoauthviewprivate' => 'Xem dữ liệu riêng OAuth',
 	'right-mwoauthmanagemygrants' => 'Quản lý các quyền OAuth được cấp',
 	'action-mwoauthmanagemygrants' => 'quản lý các quyền OAuth mà bạn cấp',
+);
+
+/** Volapük (Volapük)
+ * @author Malafaya
+ */
+$messages['vo'] = array(
+	'mwoauthlistconsumers-description' => 'Bepenam',
 );
 
 /** Wu (吴语)
