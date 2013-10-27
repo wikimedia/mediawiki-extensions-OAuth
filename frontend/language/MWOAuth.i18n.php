@@ -3588,6 +3588,7 @@ $messages['nds-nl'] = array(
 /** Dutch (Nederlands)
  * @author Hansmuller
  * @author Siebrand
+ * @author Sjoerddebruin
  */
 $messages['nl'] = array(
 	'mwoauth-desc' => 'Authenticatie via de OAuth 1.0a API',
@@ -3606,6 +3607,7 @@ $messages['nl'] = array(
 	'mwoauth-consumer-grantsneeded' => 'Van toepassing zijnde rechten:',
 	'mwoauth-consumer-required-grant' => 'Van toepassing op consumer',
 	'mwoauth-consumer-wiki' => 'Van toepassing op wiki:',
+	'mwoauth-consumer-wiki-other' => 'Specifieke wiki',
 	'mwoauth-consumer-restrictions' => 'Gebruiksbeperkingen:',
 	'mwoauth-consumer-restrictions-json' => 'Gebruiksbeperkingen (JSON):',
 	'mwoauth-consumer-rsakey' => 'Openbare SSH-sleutel:',
@@ -3677,7 +3679,7 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauthmanagemygrants' => 'OAuthrechten van gebruiker beheren',
 	'mwoauthmanagemygrants-navigation' => 'Navigatie:',
 	'mwoauthmanagemygrants-showlist' => 'Geaccepteerde consumerlijst',
-	'mwoauthmanagemygrants-none' => 'Er zijn geen consumers die toegang hebben namens uw gebruiker.',
+	'mwoauthmanagemygrants-none' => 'Er zijn geen consumers die toegang hebben namens uw gebruiker.', # Fuzzy
 	'mwoauthmanagemygrants-name' => 'Consumernaam',
 	'mwoauthmanagemygrants-user' => 'Uitgever',
 	'mwoauthmanagemygrants-description' => 'Beschrijving',
@@ -3752,8 +3754,8 @@ $messages['oc'] = array(
 	'mwoauth-field-hidden' => '(aquesta informacion es amagada)',
 	'mwoauth-field-private' => '(aquesta informacion es privada)',
 	'mwoauth-grant-generic' => 'ensemble de dreches « $1 »',
-	'mwoauth-prefs-managegrants' => 'Accès del consomator OAuth :',
-	'mwoauth-prefs-managegrantslink' => "Gerir los dreches al nom d'aqueste compte",
+	'mwoauth-prefs-managegrants' => 'Accès del consomator OAuth :', # Fuzzy
+	'mwoauth-prefs-managegrantslink' => "Gerir los dreches al nom d'aqueste compte", # Fuzzy
 	'mwoauth-consumer-key' => 'Clau del consomator :',
 	'mwoauth-consumer-name' => "Nom de l'aplicacion :",
 	'mwoauth-consumer-version' => 'Version del consomator :',
@@ -3831,8 +3833,8 @@ $messages['oc'] = array(
 	'mwoauthmanagemygrants-wikiallowed' => 'Autorizat sul wiki',
 	'mwoauthmanagemygrants-consumerkey' => 'Clau del consomator',
 	'mwoauth-error' => 'Error OAuth',
-	'mwoauth-grant-blockusers' => 'Blocar los utilizaires', # Fuzzy
-	'mwoauth-grant-patrol' => 'Patrolhar', # Fuzzy
+	'mwoauth-grant-blockusers' => 'Blocar e desblocar los utilizaires',
+	'mwoauth-grant-patrol' => 'Marcar de paginas coma patrolhadas',
 );
 
 /** Polish (polski)
