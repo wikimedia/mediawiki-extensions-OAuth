@@ -1412,7 +1412,7 @@ Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen.
 	'mwoauthmanagemygrants-grantaccept' => 'Gewährt',
 	'mwoauthmanagemygrants-update-text' => 'Benutze das unten stehende Formular, um die gewährten Berechtigungen für eine Anwendung (OAuth-Verbraucher) zu ändern, die auf deinen Namen handelt.
 * Falls du eine Anwendung separat autorisiert hast, um auf unterschiedliche Schwesterprojekte zuzugreifen, dann wirst du separate Konfigurationen für jedes dieser Projekte haben.
-* Das Verwenden von „*“ im Wikifeld gewährt Zugriff auf alle Projekte dieser Website; eine Wikiprojektkennung beschränkt den Zugriff auf ein einzelnes Projekt. Je-Projekt-Einstellungen haben Vorrang.',
+* Das Verwenden von „*“ im Wikifeld gewährt Zugriff auf alle Projekte dieser Website; eine Wikiprojektkennung beschränkt den Zugriff auf ein einzelnes Projekt. Je-Projekt-Einstellungen haben Vorrang.', # Fuzzy
 	'mwoauthmanagemygrants-revoke-text' => 'Benutze das unten stehende Formular, um den Zugriff für eine Anwendung (OAuth-Verbraucher) zu entziehen, die auf deinen Namen handelt.
 * Falls du eine Anwendung separat autorisiert hast, um auf unterschiedliche Schwesterprojekte zuzugreifen, dann wirst du separate Konfigurationen für jedes dieser Projekte haben.
 * Wenn du den Zugriff für eine Anwendung vollständig entziehen willst, stelle sicher, dass du ihn von allen Projekten entfernst, auf denen du die Berechtigungen erteilt hast.',
@@ -2524,6 +2524,8 @@ Per completare il processo, inserisci questo valore per la verifica nel'applicaz
 	'mwoauth-consumer-grantsneeded' => 'Assegnazioni applicabili:',
 	'mwoauth-consumer-required-grant' => 'Applicabile al cliente',
 	'mwoauth-consumer-wiki' => 'Wiki applicabili:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Wiki attuale ($1)',
+	'mwoauth-consumer-wiki-other' => 'Wiki specifico',
 	'mwoauth-consumer-restrictions' => "Restrizioni d'uso:",
 	'mwoauth-consumer-restrictions-json' => "Restrizioni d'uso (JSON):",
 	'mwoauth-consumer-rsakey' => 'Chiave RSA pubblica:',
@@ -2662,7 +2664,7 @@ Ti è stato assegnato il token cliente '''$1''' e il token segreto '''$2'''. ''R
 	'mwoauthmanagemygrants-notloggedin' => "Devi effettuare l'accesso per accedere a questa pagina.",
 	'mwoauthmanagemygrants-navigation' => 'Navigazione:',
 	'mwoauthmanagemygrants-showlist' => 'Elenco clienti accettati',
-	'mwoauthmanagemygrants-none' => 'Nessuna cliente ha accesso per tuo conto sulla tua utenza.', # Fuzzy
+	'mwoauthmanagemygrants-none' => 'Nessuna applicazione è attualmente collegata alla tua utenza.',
 	'mwoauthmanagemygrants-name' => 'Nome cliente',
 	'mwoauthmanagemygrants-user' => 'Editore',
 	'mwoauthmanagemygrants-description' => 'Descrizione',
@@ -3269,6 +3271,8 @@ $messages['mk'] = array(
 	'mwoauth-consumer-grantsneeded' => 'Применливи доделувања:',
 	'mwoauth-consumer-required-grant' => 'Применлив потрошувач',
 	'mwoauth-consumer-wiki' => 'Применливо вики:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Тековно вики ($1)',
+	'mwoauth-consumer-wiki-other' => 'Конкретно вики',
 	'mwoauth-consumer-restrictions' => 'Ограничувања на употребата:',
 	'mwoauth-consumer-restrictions-json' => 'Ограничувања на употребата (JSON):',
 	'mwoauth-consumer-rsakey' => 'Јавен RSA-клуч:',
@@ -3418,7 +3422,7 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-grantaccept' => 'Доделено',
 	'mwoauthmanagemygrants-update-text' => 'Со овој образец можете да ги измените дозволите доделени на некој прилог (потрошувач на OAuth) за да делува во ваше име.
 * Ако сте му дале посебно овластување за друг збратимен проект, тогаш ќе имате посебни поставки за секој таков проект.
-* Со „*“ во википолето можете да му дадете овластување за сите проекти на мрежното место. Ако сакате да го овластите за само еден проект, внесете ја неговата назнака. Конкретните поставки за даден проект имаат предност.',
+* Со „*“ во википолето можете да му дадете овластување за сите проекти на мрежното место. Ако сакате да го овластите за само еден проект, внесете ја неговата назнака. Конкретните поставки за даден проект имаат предност.', # Fuzzy
 	'mwoauthmanagemygrants-revoke-text' => 'Со овој образец можете да му го одземете пристапотна некој прилог (потрошувач на OAuth) за да делува во ваше име.
 * Ако сте му дале посебно овластување за друг збратимен проект, тогаш ќе имате посебни поставки за секој таков проект.
 * Ако сакате целосно да му го одземете пристапот на прилогот, тоа направете го за секој од проектите за кои сте го овластиле.',
@@ -4137,7 +4141,7 @@ Alla värden här skriver över eventuella tidigare värden. Lämna inte tomma f
 	'mwoauthmanagemygrants-grantaccept' => 'Beviljas',
 	'mwoauthmanagemygrants-update-text' => 'Använd formuläret nedan för att ändra de behörigheter som beviljats för en applikation (OAuth konsument)  att agera åt dina vägnar. 
 * Om du separat auktoriserat en applikation för att tillgå olika systerprojekt åt dina vägnar har du separata konfigurationer för varje sådant projekt för den applikationen.
-* Att använda "*" i wikifältet ger tillgång till alla projekt på denna webbplats: att använda ett wikiprojektID begränsar åtkomst till ett enskilt projekt. Förinställda projektinställningar har företräde.',
+* Att använda "*" i wikifältet ger tillgång till alla projekt på denna webbplats: att använda ett wikiprojektID begränsar åtkomst till ett enskilt projekt. Förinställda projektinställningar har företräde.', # Fuzzy
 	'mwoauthmanagemygrants-revoke-text' => 'Använd formuläret nedan för att återkalla åtkomst för en applikation (OAuth konsument) att agera åt dina vägnar. 
 * Om du separat har auktoriserat en applikation för att få åtkomst till ett annat systerprojekt åt dina vägnar så kommer du att ha separata konfigurationer för varje enskilt projekt för den applikationen.
 * Om du helt vill återkalla åtkomst till en applikation, se till att återkalla den från alla projekt där du accepterat den.',
@@ -4432,7 +4436,7 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'mwoauthmanagemygrants-grantaccept' => 'Надано',
 	'mwoauthmanagemygrants-update-text' => 'Використовуйте форму нижче, щоб змінювати дозволи надані застосунку (OAuth споживачу) діяти від вашого імені.
  * якщо ви окремо уповноважили додаток для доступу до різних "сестринських сайтів" проектів від вашого імені, то у вас буде окрема конфігурація для кожного такого проекту для цього застосунку.
- * використання "*" у вікі полі надає доступ до всіх проектів на цьому сайті; використання ІД вікі-проекту обмежує доступ до одного проекту. Налаштування на проект мають вищий пріоритет.',
+ * використання "*" у вікі полі надає доступ до всіх проектів на цьому сайті; використання ІД вікі-проекту обмежує доступ до одного проекту. Налаштування на проект мають вищий пріоритет.', # Fuzzy
 	'mwoauthmanagemygrants-revoke-text' => 'Використовуйте форму нижче, щоб скасувати доступ для програми (OAuth), щоб діяти від вашого імені.
 * Якщо ви окремо авторизували програму для доступу до різних "сестринських сайтів" проектів від вашого імені, то ви будете мати окремі налаштування для кожного такого проекту для даного додатка.
 * Якщо ви хочете повністю заборонити доступ до додатку, переконайтеся, що відкликали його з усіх проектів,у які ви прийняли його.',
