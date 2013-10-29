@@ -179,30 +179,29 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthlistconsumers-status-rejected' => 'rejected',
 	'mwoauthlistconsumers-status-expired' => 'expired',
 
-	'oauthmanagemygrants' => 'Manage account OAuth grants',
-	'mwoauthmanagemygrants-text' => 'This page lists any applications that can use your account. For any such application, the scope of its access is limited by the permissions that you granted to the application when you authorized it to act on your behalf. If you separately authorized a consumer to access different "sister" projects on your behalf, then you will see separate configuration for each such project below.',
+	'oauthmanagemygrants' => 'Manage connected applications',
+	'mwoauthmanagemygrants-text' => 'This page lists any applications that can use your account. For any such application, the scope of its access is limited by the permissions that you granted to the application when you authorized it to act on your behalf. If you separately authorized an application to access different "sister" projects on your behalf, then you will see separate configuration for each such project below.
+
+Connected applications access your account by using the OAuth protocol. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Learn more about connected applications])</span>',
 	'mwoauthmanagemygrants-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
-	'mwoauthmanagemygrants-showlist' => 'Accepted consumer list',
+	'mwoauthmanagemygrants-showlist' => 'Connected application list',
 	'mwoauthmanagemygrants-none' => 'No applications are currently connected to your account.',
-	'mwoauthmanagemygrants-name' => 'Consumer name',
 	'mwoauthmanagemygrants-user' => 'Publisher',
 	'mwoauthmanagemygrants-description' => 'Description',
-	'mwoauthmanagemygrants-wiki' => 'Applicable wiki',
 	'mwoauthmanagemygrants-wikiallowed' => 'Allowed on wiki',
 	'mwoauthmanagemygrants-grants' => 'Applicable grants',
 	'mwoauthmanagemygrants-grantsallowed' => 'Grants allowed',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Applicable grants allowed:',
-	'mwoauthmanagemygrants-consumerkey' => 'Consumer key',
 	'mwoauthmanagemygrants-review' => 'manage access',
 	'mwoauthmanagemygrants-revoke' => 'revoke access',
 	'mwoauthmanagemygrants-grantaccept' => 'Granted',
-	'mwoauthmanagemygrants-update-text' => 'Use the form below to modify the permissions granted to an application (OAuth consumer) to act on your behalf.
+	'mwoauthmanagemygrants-update-text' => 'Use the form below to modify the permissions granted to an application to act on your behalf.
 * If you separately authorized an application to access different "sister site" projects on your behalf, then you will have separate configuration for each such project for that application.',
-	'mwoauthmanagemygrants-revoke-text' => 'Use the form below to revoke access for an application (OAuth consumer) to act on your behalf.
+	'mwoauthmanagemygrants-revoke-text' => 'Use the form below to revoke access for an application to act on your behalf.
 * If you separately authorized an application to access different "sister site" projects on your behalf, then you will have separate configuration for each such project for that application.
 * If you want to totally revoke access to an application, be sure to revoke it from all projects that you accepted it on.',
-	'mwoauthmanagemygrants-confirm-legend' => 'Manage consumer access token',
+	'mwoauthmanagemygrants-confirm-legend' => 'Manage connected application',
 	'mwoauthmanagemygrants-update' => 'Update grants',
 	'mwoauthmanagemygrants-renounce' => 'Deauthorize',
 	'mwoauthmanagemygrants-action' => 'Change status:',
@@ -697,20 +696,15 @@ Followed by a link with the link text {{msg-mw|Mwoauthmanagemygrants-showlist}}.
 {{Identical|Navigation}}',
 	'mwoauthmanagemygrants-showlist' => 'Used as link text or as plain text',
 	'mwoauthmanagemygrants-none' => 'Message when a user has not authorized any OAuth consumers',
-	'mwoauthmanagemygrants-name' => 'Used as table row header.',
 	'mwoauthmanagemygrants-user' => 'Used as table row header for "Central username".
 {{Identical|Publisher}}',
 	'mwoauthmanagemygrants-description' => 'Used as table row header.
 {{Identical|Description}}',
-	'mwoauthmanagemygrants-wiki' => 'Used as table row header.
-{{Identical|Applicable wiki}}',
 	'mwoauthmanagemygrants-wikiallowed' => 'Used as field label',
 	'mwoauthmanagemygrants-grants' => 'Used as field label.
 {{Identical|Applicable grant}}',
 	'mwoauthmanagemygrants-grantsallowed' => 'Used as field label',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Used as field label',
-	'mwoauthmanagemygrants-consumerkey' => 'Used as table row header.
-{{Identical|Consumer key}}',
 	'mwoauthmanagemygrants-review' => 'Used as link text.',
 	'mwoauthmanagemygrants-revoke' => 'Used as link text.',
 	'mwoauthmanagemygrants-grantaccept' => 'Used as checkbox column label',
@@ -4143,7 +4137,7 @@ Alla värden här skriver över eventuella tidigare värden. Lämna inte tomma f
 	'mwoauthmanagemygrants-update-text' => 'Använd formuläret nedan för att ändra de behörigheter som beviljats för en applikation (OAuth konsument)  att agera åt dina vägnar.
 * Om du separat auktoriserat en applikation för att tillgå olika systerprojekt åt dina vägnar har du separata konfigurationer för varje sådant projekt för den applikationen.
 * Att använda "*" i wikifältet ger tillgång till alla projekt på denna webbplats: att använda ett wikiprojektID begränsar åtkomst till ett enskilt projekt. Förinställda projektinställningar har företräde.',
-	'mwoauthmanagemygrants-revoke-text' => 'Använd formuläret nedan för att återkalla åtkomst för en applikation (OAuth konsument) att agera åt dina vägnar. 
+	'mwoauthmanagemygrants-revoke-text' => 'Använd formuläret nedan för att återkalla åtkomst för en applikation (OAuth konsument) att agera åt dina vägnar.
 * Om du separat har auktoriserat en applikation för att få åtkomst till ett annat systerprojekt åt dina vägnar så kommer du att ha separata konfigurationer för varje enskilt projekt för den applikationen.
 * Om du helt vill återkalla åtkomst till en applikation, se till att återkalla den från alla projekt där du accepterat den.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Hantera konsumentåtkomst-token',
