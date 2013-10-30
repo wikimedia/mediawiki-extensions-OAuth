@@ -29,9 +29,10 @@ $specialPageAliases['de'] = array(
 
 /** Korean (한국어) */
 $specialPageAliases['ko'] = array(
-	'OAuthConsumerRegistration' => array( 'MWO인증소비자등록' ),
-	'OAuthManageConsumers' => array( 'MWO인증소비자관리' ),
-	'OAuthManageMyGrants' => array( 'MWO인증내부여관리' ),
+	'OAuthConsumerRegistration' => array( 'OAuth컨슈머등록', 'OAuth등록' ),
+	'OAuthManageConsumers' => array( 'OAuth컨슈머관리' ),
+	'OAuthListConsumers' => array( 'OAuth컨슈머목록' ),
+	'OAuthManageMyGrants' => array( 'OAuth내부여관리' ),
 	'OAuth' => array( 'MWO인증' ),
 );
 
