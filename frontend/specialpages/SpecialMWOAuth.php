@@ -68,10 +68,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					} else {
 						if ( $request->wasPosted() && $request->getCheck( 'cancel' ) ) {
 							// Show acceptance cancellation confirmation
-							$this->getOutput()->addSubtitle(
-								$this->msg( 'mwoauth-desc' )->escaped() );
-							$this->getOutput()->addWikiMsg( 'mwoauth-acceptance-cancelled' );
-							$this->getOutput()->addReturnTo( Title::newMainPage() );
+							$this->showCancelPage();
 						} else {
 							// Show form and redirect on submission for authorization
 							$this->handleAuthorizationForm( $requestToken, $consumerKey );
@@ -110,7 +107,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$verifier = $request->getVal( 'oauth_verifier', false );
 					$requestToken = $request->getVal( 'oauth_token', false );
 					if ( !$verifier || !$requestToken ) {
-						throw new MWOAuthException( 'mwoauth-bad-request' );
+						throw new MWOAuthException( 'mwoauth-bad-request-missing-params' );
 					}
 					$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
 					$this->showResponse(
@@ -126,18 +123,61 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					break;
 				default:
 					$format = $request->getVal( 'format', 'html' );
-					$this->showError( 'mwoauth-bad-request', $format );
+					$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+					$cmr = MWOAuthDAOAccessControl::wrap(
+						MWOAuthConsumer::newFromKey(
+							$dbr,
+							$request->getVal( 'oauth_consumer_key', null )
+						),
+						$this->getContext()
+					);
+
+					if ( !$cmr ) {
+						$this->showError(
+							wfMessage( 'mwoauth-bad-request-invalid-action' ),
+							$format
+						);
+					} else {
+						$owner = MWOAuthUtils::getCentralUserNameFromId( $cmr->get( 'userId' ), $this->getUser() );
+						$this->showError(
+							wfMessage( 'mwoauth-bad-request-invalid-action-contact',
+								MWOAuthUtils::getCentralUserTalk( $owner )
+							),
+							$format
+						);
+					}
 			}
 		} catch ( MWOAuthException $exception ) {
 			wfDebugLog( 'OAuth', __METHOD__ . ": Exception " . $exception->getMessage() );
-			$this->showError( $exception->getMessage(), $format );
+			$this->showError( wfMessage( $exception->msg, $exception->params ), $format );
 		} catch ( OAuthException $exception ) {
 			wfDebugLog( 'OAuth', __METHOD__ . ": Exception " . $exception->getMessage() );
-			$this->showError( $exception->getMessage(), $format );
+			$this->showError(
+				wfMessage( 'mwoauth-oauth-exception', $exception->getMessage() ),
+				$format
+			);
 		}
 
 		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.BasicStyles' );
 	}
+
+	protected function showCancelPage() {
+		$request = $this->getRequest();
+		$consumerKey = $request->getVal( 'consumerKey', $request->getVal( 'oauth_consumer_key' ) );
+		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$cmr = MWOAuthDAOAccessControl::wrap(
+			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
+			$this->getContext()
+		);
+
+		$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
+		$this->getOutput()->addWikiMsg(
+			'mwoauth-acceptance-cancelled',
+			$cmr->get( 'name' )
+		);
+		$this->getOutput()->addReturnTo( Title::newMainPage() );
+	}
+
 
 	protected function handleAuthorizationForm( $requestToken, $consumerKey ) {
 		$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
@@ -153,11 +193,19 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			$this->getContext()
 		);
 		if ( !$cmr ) {
-			throw new MWOAuthException( 'mwoauth-bad-request' );
+			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key' );
 		} elseif ( $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
 			&& !$cmr->getDAO()->isPendingAndOwnedBy( $user )
 		) {
-			throw new MWOAuthException( 'mwoauth-invalid-authorization-not-approved' );
+			throw new MWOAuthException(
+				'mwoauthserver-bad-consumer',
+				array(
+					$cmr->get( 'name' ),
+					MWOAuthUtils::getCentralUserTalk(
+						MWOAuthUtils::getCentralUserNameFromId( $cmr->get( 'userId' ) )
+					)
+				)
+			);
 		}
 
 		$this->getOutput()->addModuleStyles( array( 'mediawiki.ui', 'ext.MWOAuth.AuthorizeForm' ) );
@@ -267,14 +315,14 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param string $message message key to return to the user
+	 * @param Message $message to return to the user
 	 * @param string $format the format of the response: html, raw, or json
 	 */
 	private function showError( $message, $format ) {
 		if ( $format == 'raw' ) {
-			$this->showResponse( 'Error: ' . wfMessage( $message )->escaped(), 'raw' );
+			$this->showResponse( 'Error: ' .$message->escaped(), 'raw' );
 		} elseif ( $format == 'json' ) {
-			$error = FormatJSON::encode( array( 'error' => wfMessage( $message )->escaped() ) );
+			$error = FormatJSON::encode( array( 'error' => $message->getKey() ) );
 			$this->showResponse( $error, 'json' );
 		} elseif ( $format == 'html' ) {
 			$this->getOutput()->showErrorPage( 'mwoauth-error', $message );

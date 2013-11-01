@@ -190,6 +190,10 @@ abstract class MWOAuthSubmitControl extends ContextSource {
 	 */
 	protected function failure( $error, $msg /*, params */ ) {
 		$params = array_slice( func_get_args(), 2 );
+		// Use the same logic as wfMessage
+		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
 		$status = Status::newFatal( $this->context->msg( $msg, $params ) );
 		$status->value = array( 'error' => $error, 'result' => null );
 		return $status;

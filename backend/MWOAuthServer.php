@@ -120,14 +120,19 @@ class MWOAuthServer extends OAuthServer {
 			throw new MWOAuthException( 'mwoauthserver-insufficient-rights' );
 		}
 		$consumer = $this->data_store->lookup_consumer( $consumerKey );
-		if ( !$consumer ) {
-			throw new MWOAuthException( 'mwoauthserver-bad-consumer' );
+		if ( !$consumer || $consumer->get( 'deleted' ) ) {
+			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key' );
 		} elseif ( $consumer->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
 			&& !$consumer->isPendingAndOwnedBy( $mwUser ) // let publisher test this
 		) {
-			throw new MWOAuthException( 'mwoauthserver-bad-consumer' );
-		} elseif ( $consumer->get( 'deleted' ) ) { // extra sanity
-			throw new MWOAuthException( 'mwoauthserver-bad-consumer' );
+			$owner = MWOAuthUtils::getCentralUserNameFromId(
+				$consumer->get( 'userId' ),
+				$mwUser
+			);
+			throw new MWOAuthException(
+				'mwoauthserver-bad-consumer',
+				array( $consumer->get( 'name' ), MWOAuthUtils::getCentralUserTalk( $owner ) )
+			);
 		}
 
 		// Generate and Update the tokens:
@@ -146,7 +151,8 @@ class MWOAuthServer extends OAuthServer {
 		// CentralAuth may abort here if there is no global account for this user
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
-			throw new MWOAuthException( 'mwoauthserver-invalid-user' );
+			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
+			throw new MWOAuthException( $userMsg, array( $consumer->get( 'name' ) ) );
 		}
 
 		// Authorization Token
@@ -215,7 +221,8 @@ class MWOAuthServer extends OAuthServer {
 
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
-			throw new MWOAuthException( 'mwoauthserver-invalid-user' );
+			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
+			throw new MWOAuthException( $userMsg, array( $consumer->get( 'name' ) ) );
 		}
 
 		$checkWiki = $consumer->get( 'wiki' ) !== '*' ? $consumer->get( 'wiki' ) : $wikiId;

@@ -37,3 +37,8 @@
 .mw-mwoauthmanagemygrants-list-item {
 	margin-bottom: 1em;
 }
+
+.mw-mwoautherror-details {
+	font-size: .7em;
+	color: #7d7d7d;
+}

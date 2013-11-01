@@ -187,7 +187,7 @@ Connected applications access your account by using the OAuth protocol. <span cl
 	'mwoauthmanagemygrants-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
 	'mwoauthmanagemygrants-showlist' => 'Connected application list',
-	'mwoauthmanagemygrants-none' => 'No applications are currently connected to your account.',
+	'mwoauthmanagemygrants-none' => 'There aren\'t any applications connected to your account.',
 	'mwoauthmanagemygrants-user' => 'Publisher:',
 	'mwoauthmanagemygrants-description' => 'Description',
 	'mwoauthmanagemygrants-wikiallowed' => 'Allowed on project:',
@@ -220,24 +220,44 @@ Connected applications access your account by using the OAuth protocol. <span cl
 	'mwoauthconsumer-consumer-logpage' => 'OAuth consumer log',
 	'mwoauthconsumer-consumer-logpagetext' => 'Log of approvals, rejections, and disabling of registered OAuth consumers.',
 
-	'mwoauth-bad-request' => 'There was an error in your OAuth request.',
+	'mwoauth-bad-request-missing-params' => 'Sorry, something went wrong configuring this connected application. <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Contact support]</span> to get help fixing it.
+
+<span class="plainlinks mw-mwoautherror-details">OAuth missing parameters, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>',
+	'mwoauth-bad-request-invalid-action' => 'Sorry, something went wrong, you\'ll need to contact the application author for help with this.
+
+<span class="plainlinks mw-mwoautherror-details">Unknown URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>',
+	'mwoauth-bad-request-invalid-action-contact' => 'Sorry, something went wrong. You\'ll need to [$1 contact] the application author for help with this.
+
+<span class="plainlinks mw-mwoautherror-details">Unknown URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
 	'mwoauthdatastore-access-token-not-found' => 'No approved grant was found for that authorization token.',
-	'mwoauthdatastore-request-token-not-found' => 'No request was found for that token.',
+	'mwoauthdatastore-request-token-not-found' => 'Sorry, something went wrong connecting this application.
+Go back and try to connect your account again, or contact the application author.
+
+<span class="plainlinks mw-mwoautherror-details">OAuth token not found, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
 	'mwoauthdatastore-bad-token' => 'No token was found matching your request.',
 	'mwoauthdatastore-bad-verifier' => 'The verification code provided was not valid.',
 	'mwoauthdatastore-invalid-token-type' => 'The requested token type is invalid.',
 	'mwoauthgrants-general-error' => 'There was an error in your OAuth request.',
-	'mwoauthserver-bad-consumer' => 'No approved consumer was found for the provided key.',
-	'mwoauthserver-insufficient-rights' => 'You do not have sufficient rights to perform this action.',
+	'mwoauthserver-bad-consumer' => '$1 is no longer approved as a Connected App, [$2 contact] the application author for help.
+
+<span class="plainlinks mw-mwoautherror-details">Connected OAuth app not approved, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
+	'mwoauthserver-bad-consumer-key' => 'Sorry, something went wrong connecting this application.
+
+<span class="plainlinks mw-mwoautherror-details">Unknown OAuth key, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>',
+	'mwoauthserver-insufficient-rights' => 'Your account isn\'t allowed to use Connected Apps, contact your site administrator to find out why.
+
+<span class="plainlinks mw-mwoautherror-details">Insufficient OAuth user rights, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Invalid token in your request.',
-	'mwoauthserver-invalid-user-hookabort' => 'This user cannot use OAuth.',
+	'mwoauthserver-invalid-user' => 'To use Connected Apps on this site, you must have an account across all projects. When you have an account on all projects, you can try to connect $1 again.
+
+<span class="plainlinks mw-mwoautherror-details">Unified login needed, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>',
 
 	'mwoauth-invalid-authorization-title' => 'OAuth authorization error',
 	'mwoauth-invalid-authorization' => 'The authorization headers in your request are not valid: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'The authorization headers in your request are not valid for $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'The authorization headers in your request are for a user that doesn\'t exist here',
 	'mwoauth-invalid-authorization-wrong-user' => 'The authorization headers in your request are for a different user',
-	'mwoauth-invalid-authorization-not-approved' => 'The authorization headers in your request are for an OAuth consumer that is not currently approved',
+	'mwoauth-invalid-authorization-not-approved' => 'The app your trying to connect seems to be set up incorrectly, contact the author of $1 for help.',
 	'mwoauth-invalid-authorization-blocked-user' => 'The authorization headers in your request are for a user who is blocked',
 
 	'mwoauth-form-description-allwikis' => "Hi $1,
@@ -261,11 +281,10 @@ $5",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Privacy Policy]]',
 	'mwoauth-form-button-approve' => 'Allow',
 	'mwoauth-form-button-cancel' => 'Cancel',
-	'mwoauth-authorize-form-invalid-user' => 'This user account cannot use OAuth, because the account on this wiki, and the account on the central OAuth wiki are not linked.',
-	'mwoauth-error' => 'OAuth Error',
+	'mwoauth-error' => 'Application Connection Error',
 	'mwoauth-grants-heading' => 'Requested permissions:',
 	'mwoauth-grants-nogrants' => 'The application has not requested any permissions.',
-	'mwoauth-acceptance-cancelled' => 'You have cancelled this request to authorize an OAuth consumer to act on your behalf.',
+	'mwoauth-acceptance-cancelled' => 'You\'ve chosen not to allow $1 to access your account. $1 will not work unless you allow it access. You can go back to $1 or [[Special:OAuthManageMyGrants|manage]] your connected apps.',
 
 	'mwoauth-grant-group-page-interaction' => 'Interact with pages',
 	'mwoauth-grant-group-file-interaction' => 'Interact with media',
@@ -746,7 +765,11 @@ Followed by the following radio boxes:
 * $4 - consumer key',
 	'mwoauthconsumer-consumer-logpage' => '{{doc-logpage}}',
 	'mwoauthconsumer-consumer-logpagetext' => 'Description of the OAuth consumer log.',
-	'mwoauth-bad-request' => 'General error when there was a problem processing the request',
+	'mwoauth-bad-request-missing-params' => 'Error message when MediaWiki makes an error during the authorization process, and fails to send all the required url parameters',
+	'mwoauth-bad-request-invalid-action' => 'Error, when the 3rd-party OAuth developers sends users to a bad authorization url',
+	'mwoauthserver-invalid-user' => 'Error when the user attempts to use OAuth, but they do not have a unified (SUL) account, which is required',
+	'mwoauth-bad-request-invalid-action-contact' => 'Error, when the 3rd-party OAuth developers sends users to a bad authorization url, but we know which application made the request and we can link the user to a page to contact the developer',
+	'mwoauthserver-bad-consumer-key' => 'Generic error for users when a 3rd-party OAuth developer sends users to an invalid url',
 	'mwoauthdatastore-access-token-not-found' => 'Error message when an invalid access token was submitted',
 	'mwoauthdatastore-request-token-not-found' => 'Error message when an invalid request token was submitted',
 	'mwoauthdatastore-bad-token' => 'Error message when an invalid token was submitted',
@@ -821,7 +844,6 @@ See also:
 See also:
 * {{msg-mw|Mwoauth-form-button-approve}}
 {{Identical|Cancel}}',
-	'mwoauth-authorize-form-invalid-user' => 'Text of the error page when the user cannot use OAuth.',
 	'mwoauth-error' => 'Heading on the page, whenever an OAuth error is presented to a user.',
 	'mwoauth-grants-heading' => 'Used as label for the grants list.
 

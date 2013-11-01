@@ -101,8 +101,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 					(bool)$this->vals['confirmUpdate']
 				);
 			} catch ( MWOAuthException $exception ) {
-				return $this->failure( 'oauth_exception',
-					'mwoauth-oauth-exception', wfMessage( $exception->getMessage() )->text() );
+				return $this->failure( 'oauth_exception', $exception->msg, $exception->params );
 			} catch ( OAuthException $exception ) {
 				return $this->failure( 'oauth_exception',
 					'mwoauth-oauth-exception', $exception->getMessage() );

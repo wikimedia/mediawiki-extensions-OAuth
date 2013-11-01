@@ -493,7 +493,29 @@ class MWOAuthUtils {
 	 * @return string the Message key to use
 	 */
 	public static function getSiteMessage( $msgKey ) {
-		wfRunHooks( 'OAuthReplaceMessage', &$msgKey );
+		wfRunHooks( 'OAuthReplaceMessage', array( &$msgKey ) );
 		return $msgKey;
+	}
+
+	/**
+	 * Get a link to the central wiki's user talk page of a user.
+	 *
+	 * @param string $username the username of the User Talk link
+	 * @return string the (proto-relative, urlencoded) url of the central wiki's user talk page
+	 */
+	public static function getCentralUserTalk( $username ) {
+		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
+
+		$url = false;
+
+		if ( $wgMWOAuthSharedUserIDs ) {
+			$url = WikiMap::getForeignURL(
+				$wgMWOAuthCentralWiki,
+				"User_talk:$username"
+			);
+		} else {
+			$url = Title::makeTitleSafe( NS_USER_TALK, $username )->getFullURL();
+		}
+		return $url;
 	}
 }
