@@ -1014,7 +1014,7 @@ $messages['ca'] = array(
 	'mwoauthlistconsumers-view' => 'detalls',
 );
 
-/** Czech (česky)
+/** Czech (čeština)
  * @author Mormegil
  */
 $messages['cs'] = array(
@@ -1584,9 +1584,11 @@ $messages['fa'] = array(
 
 /** Finnish (suomi)
  * @author Nike
+ * @author Stryn
  */
 $messages['fi'] = array(
 	'mwoauth-prefs-managegrants' => 'Liitetyt sovellukset:',
+	'mwoauth-consumer-user' => 'Julkaisija',
 	'mwoauth-consumer-wiki-thiswiki' => 'Nykyinen wiki ($1)',
 	'mwoauthmanagemygrants-none' => 'Yhtään sovellusta ei ole tällä hetkellä liitetty tunnukseesi.',
 	'mwoauth-grant-group-customization' => 'Mukautus ja asetukset',
@@ -3207,6 +3209,7 @@ $messages['lb'] = array(
 	'mwoauthmanageconsumers-success-approved' => 'Ufro gouf ugeholl.',
 	'mwoauthmanageconsumers-success-rejected' => 'Ufro gouf refuséiert.',
 	'mwoauthlistconsumers-view' => 'Detailer',
+	'mwoauthlistconsumers-name' => 'Numm vun der Applicatioun',
 	'mwoauthlistconsumers-description' => 'Beschreiwung',
 	'mwoauthlistconsumers-wiki' => 'Applicabel Wiki',
 	'mwoauthlistconsumers-status-proposed' => 'proposéiert',
@@ -3410,11 +3413,13 @@ $messages['mk'] = array(
 	'mwoauthlistconsumers-status-disabled' => 'оневозможен',
 	'mwoauthlistconsumers-status-rejected' => 'одбиен',
 	'mwoauthlistconsumers-status-expired' => 'истечен',
-	'oauthmanagemygrants' => 'Раководење со доделувања на OAuth на сметки', # Fuzzy
-	'mwoauthmanagemygrants-text' => 'На страницава се наведени прилозите што можат да ја користат вашата сметка. Нивниот степен на пристап е ограничен од тоа што сте им дозволиле да прават кога сте им го одобриле пристапот. Ако на потрошувачот сте му дале посебно овластување за пристап на друг збратимен проект, тогаш подолу ќе ви се појават посебни поставки за секој одделен проект.', # Fuzzy
+	'oauthmanagemygrants' => 'Раководење со поврзани прилози',
+	'mwoauthmanagemygrants-text' => 'На страницава се наведени прилозите што можат да ја користат вашата сметка. Нивниот степен на пристап е ограничен од тоа што сте им дозволиле да прават кога сте им го одобриле пристапот. Ако на прилогот сте му дале посебно овластување за пристап на друг збратимен проект, тогаш подолу ќе ви се појават посебни поставки за секој одделен проект.
+
+Поврзаните прилози ја користат вашата сметка преку протокол на OAuth. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth?uselang=mk Дознајте повеќе за поврзаните прилози])</span>',
 	'mwoauthmanagemygrants-notloggedin' => 'Треба да сте најавени за да ја отворите страницата.',
 	'mwoauthmanagemygrants-navigation' => 'Навигација:',
-	'mwoauthmanagemygrants-showlist' => 'Список на прифатени потрошувачи', # Fuzzy
+	'mwoauthmanagemygrants-showlist' => 'Список на поврзани прилози',
 	'mwoauthmanagemygrants-none' => 'Нема потрошувачи поврзани со вашата сметка.',
 	'mwoauthmanagemygrants-user' => 'Издавач',
 	'mwoauthmanagemygrants-description' => 'Опис',
@@ -3425,12 +3430,12 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-review' => 'раковод. со пристап',
 	'mwoauthmanagemygrants-revoke' => 'одземи пристап',
 	'mwoauthmanagemygrants-grantaccept' => 'Доделено',
-	'mwoauthmanagemygrants-update-text' => 'Со овој образец можете да ги измените дозволите доделени на некој прилог (потрошувач на OAuth) за да делува во ваше име.
-* Ако сте му дале посебно овластување за друг збратимен проект, тогаш ќе имате посебни поставки за секој таков проект.', # Fuzzy
-	'mwoauthmanagemygrants-revoke-text' => 'Со овој образец можете да му го одземете пристапотна некој прилог (потрошувач на OAuth) за да делува во ваше име.
+	'mwoauthmanagemygrants-update-text' => 'Со овој образец можете да ги измените дозволите доделени на некој прилог за да делува во ваше име.
+* Ако сте му дале посебно овластување за друг збратимен проект, тогаш ќе имате посебни поставки за секој таков проект.',
+	'mwoauthmanagemygrants-revoke-text' => 'Со овој образец можете да му го одземете пристапот на некој прилог за да делува во ваше име.
 * Ако сте му дале посебно овластување за друг збратимен проект, тогаш ќе имате посебни поставки за секој таков проект.
-* Ако сакате целосно да му го одземете пристапот на прилогот, тоа направете го за секој од проектите за кои сте го овластиле.', # Fuzzy
-	'mwoauthmanagemygrants-confirm-legend' => 'Раководење со шифра за кориснички пристап', # Fuzzy
+* Ако сакате целосно да му го одземете пристапот на прилогот, тоа направете го за секој од проектите за кои сте го овластиле.',
+	'mwoauthmanagemygrants-confirm-legend' => 'Раководење со поврзан прилог',
 	'mwoauthmanagemygrants-update' => 'Измени доделувања',
 	'mwoauthmanagemygrants-renounce' => 'Одземи дозвола',
 	'mwoauthmanagemygrants-action' => 'Смени статус:',
@@ -3913,6 +3918,39 @@ $messages['roa-tara'] = array(
 	'mwoauthmanageconsumers-showexpired' => 'Richieste scadute',
 	'mwoauthmanageconsumers-main' => 'Prengepàle',
 	'mwoauthmanageconsumers-reason' => 'Mutive:',
+);
+
+/** Russian (русский)
+ * @author Okras
+ */
+$messages['ru'] = array(
+	'mwoauth-desc' => 'API авторизации OAuth 1.0a',
+	'mwoauth-missing-field' => 'Отсутствует значение для поля «$1»',
+	'mwoauth-field-hidden' => '(эта информация скрыта)',
+	'mwoauth-field-private' => '(эта информация является конфиденциальной)',
+	'mwoauth-consumer-allwikis' => 'Все проекты на этом сайте',
+	'mwoauth-consumer-stage' => 'Текущее состояние:',
+	'mwoauth-consumer-email' => 'Контактный адрес электронной почты:',
+	'mwoauth-consumer-restrictions' => 'Ограничения на использование:',
+	'mwoauth-consumer-restrictions-json' => 'Ограничения на использование (JSON):',
+	'mwoauth-consumer-reason' => 'Причина:',
+	'mwoauth-consumer-email-unconfirmed' => 'Адрес электронной почты вашей учетной записи еще не был подтверждён.',
+	'mwoauthconsumerregistration-stage' => 'Состояние',
+	'mwoauthconsumerregistration-lastchange' => 'Последнее изменение',
+	'mwoauthmanageconsumers-description' => 'Описание',
+	'mwoauthmanageconsumers-lastchange' => 'Последнее изменение',
+	'mwoauthmanageconsumers-action' => 'Изменить состояние:',
+	'mwoauthmanageconsumers-reason' => 'Причина:',
+	'mwoauthlistconsumers-view' => 'подробности',
+	'mwoauthlistconsumers-basicgrantsonly' => '(только базовый доступ)',
+	'mwoauthlistconsumers-status' => 'Состояние',
+	'mwoauthmanagemygrants-action' => 'Изменить состояние:',
+	'mwoauth-invalid-authorization-title' => 'Ошибка авторизации OAuth',
+	'mwoauth-form-button-approve' => 'Разрешить',
+	'mwoauth-form-button-cancel' => 'Отменить',
+	'mwoauth-error' => 'Ошибка OAuth',
+	'mwoauth-grants-heading' => 'Запросить разрешения:',
+	'mwoauth-grant-group-email' => 'Отправить письмо',
 );
 
 /** Slovak (slovenčina)
