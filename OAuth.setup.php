@@ -12,9 +12,7 @@ class MWOAuthSetup {
 	 * @param $redactedFunctionArgs Array $redactedFunctionArgs
 	 * @return void
 	 */
-	public static function defineSourcePaths(
-		array &$classes, array &$messagesFiles, array &$redactedFunctionArgs
-	) {
+	public static function defineSourcePaths( array &$classes, array &$messagesFiles ) {
 		$dir = __DIR__;
 
 		# Basic directory layout
@@ -84,18 +82,6 @@ class MWOAuthSetup {
 
 		# Schema changes
 		$classes['MWOAuthUpdaterHooks'] = "$schemaDir/MWOAuthUpdater.hooks.php";
-
-		# Indicate functions with arguments that need redaction
-		$redactedFunctionArgs += array(
-			'MWOAuthDAO::setField' => 1, # $value could be a secret
-			'MWOAuthUtils::hmacDBSecret' => 0,
-			'OAuthConsumer::__construct' => 1,
-			'OAuthToken::__construct' => 1,
-			'OAuthRequest::set_parameter' => 1, # $value could be the nonce
-			'OAuthServer::check_nonce' => 2,
-			'OAuthDataStore::lookup_nonce' => 2,
-			'OAuthUtil::urlencode_rfc3986' => 0, # Value being encoded may contain secrets
-		);
 	}
 
 	/**
