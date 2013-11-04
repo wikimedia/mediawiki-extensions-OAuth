@@ -4170,11 +4170,13 @@ Alla värden här skriver över eventuella tidigare värden. Lämna inte tomma f
 	'mwoauthlistconsumers-status-disabled' => 'inaktiverade',
 	'mwoauthlistconsumers-status-rejected' => 'avvisad',
 	'mwoauthlistconsumers-status-expired' => 'utgången',
-	'oauthmanagemygrants' => 'Hantera konto OAuthsbidrag', # Fuzzy
-	'mwoauthmanagemygrants-text' => 'Denna sida listar alla applikationer som kan använda ditt konto. För varje sådan applikation är dess tillträde begränsat av de behörigheter vilka du auktoriserade när du valde att låta den agera åt dina vägnar. Om du separat auktoriserar en konsument att tillgå olika systerprojekt åt dina vägnar kommer du se separat konfiguration för varje sådant projekt nedan.', # Fuzzy
+	'oauthmanagemygrants' => 'Hantera anslutna applikationer',
+	'mwoauthmanagemygrants-text' => 'Denna sida listar alla applikationer som kan använda ditt konto. För varje sådan applikation är dess tillträde begränsat av de behörigheter vilka du auktoriserade när du valde att låta den agera åt dina vägnar. Om du separat auktoriserar en applikation att tillgå olika systerprojekt åt dina vägnar kommer du se separat konfiguration för varje sådant projekt nedan.
+
+Ansluta applikationer kan få tillgång till ditt konto via OAuth-protokollet. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Läs mer om ansluta applikationer])</span>',
 	'mwoauthmanagemygrants-notloggedin' => 'Du måste vara inloggad för att komma åt denna sida.',
 	'mwoauthmanagemygrants-navigation' => 'Navigering:',
-	'mwoauthmanagemygrants-showlist' => 'Accepterad konsumentlista', # Fuzzy
+	'mwoauthmanagemygrants-showlist' => 'Ansluten applikationslista',
 	'mwoauthmanagemygrants-none' => 'Inga applikationer är för närvarande anslutna till ditt konto.',
 	'mwoauthmanagemygrants-user' => 'Utgivare',
 	'mwoauthmanagemygrants-description' => 'Beskrivning',
@@ -4191,7 +4193,7 @@ Alla värden här skriver över eventuella tidigare värden. Lämna inte tomma f
 	'mwoauthmanagemygrants-revoke-text' => 'Använd formuläret nedan för att återkalla åtkomst för en applikation (OAuth konsument) att agera åt dina vägnar.
 * Om du separat har auktoriserat en applikation för att få åtkomst till ett annat systerprojekt åt dina vägnar så kommer du att ha separata konfigurationer för varje enskilt projekt för den applikationen.
 * Om du helt vill återkalla åtkomst till en applikation, se till att återkalla den från alla projekt där du accepterat den.',
-	'mwoauthmanagemygrants-confirm-legend' => 'Hantera konsumentåtkomst-token', # Fuzzy
+	'mwoauthmanagemygrants-confirm-legend' => 'Hantera ansluten applikation',
 	'mwoauthmanagemygrants-update' => 'Uppdatera bidrag',
 	'mwoauthmanagemygrants-renounce' => 'Avauktorisera',
 	'mwoauthmanagemygrants-action' => 'Ändra status:',
