@@ -27,7 +27,7 @@ class MWOAuthUIHooks {
 				'raw' => true,
 				'default' => Linker::linkKnown(
 					SpecialPage::getTitleFor( 'OAuthManageMyGrants' ),
-					wfMessage( 'mwoauth-prefs-managegrantslink', $count )->escaped()
+					wfMessage( 'mwoauth-prefs-managegrantslink' )->numParams( $count )->escaped()
 				)
 			),
 		);
