@@ -38,9 +38,9 @@ To complete the process, provide this verification value to the application: \'\
 	'mwoauth-consumer-callbackurl' => 'OAuth "callback" URL:',
 	'mwoauth-consumer-grantsneeded' => 'Applicable grants:',
 	'mwoauth-consumer-required-grant' => 'Applicable to consumer',
-	'mwoauth-consumer-wiki' => 'Applicable wiki:',
-	'mwoauth-consumer-wiki-thiswiki' => 'Current wiki ($1)',
-	'mwoauth-consumer-wiki-other' => 'Specific wiki',
+	'mwoauth-consumer-wiki' => 'Applicable project:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Current project ($1)',
+	'mwoauth-consumer-wiki-other' => 'Specific project',
 	'mwoauth-consumer-restrictions' => 'Usage restrictions:',
 	'mwoauth-consumer-restrictions-json' => 'Usage restrictions (JSON):',
 	'mwoauth-consumer-rsakey' => 'Public RSA key:',
@@ -81,7 +81,7 @@ A few recommendations and remarks:
 * Versions are of the form "major.minor.release" (the last two being optional) and increase as grant changes are needed.
 * Please provide a public RSA key (in PEM format) if possible; otherwise a (less secure) secret token will have to be used.
 * Use the JSON restrictions field to limit access of this consumer to IP addresses in those CIDR ranges.
-* You can use a wiki ID to restrict the consumer to a single wiki on this site (use "*" for all wikis).
+* You can use a wiki ID to restrict the consumer to a single project on this site (use "*" for all projects).
 * The email address provided must match that of your account (which must have been confirmed).',
 	'mwoauthconsumerregistration-update-text' => 'Use the form below to update aspects of an OAuth consumer you control.
 
@@ -159,15 +159,15 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthmanageconsumers-search-name' => 'consumers with this name',
 	'mwoauthmanageconsumers-search-publisher' => 'consumers by this user',
 
-	'oauthlistconsumers' => 'List OAuth consumers',
-	'mwoauthlistconsumers-legend' => 'Browse OAuth consumers',
+	'oauthlistconsumers' => 'List OAuth applications',
+	'mwoauthlistconsumers-legend' => 'Browse OAuth applications',
 	'mwoauthlistconsumers-view' => 'details',
-	'mwoauthlistconsumers-none' => 'No consumers found meeting this criteria.',
+	'mwoauthlistconsumers-none' => 'No applications found meeting this criteria.',
 	'mwoauthlistconsumers-name' => 'Application name',
 	'mwoauthlistconsumers-version' => 'Consumer version',
 	'mwoauthlistconsumers-user' => 'Publisher',
 	'mwoauthlistconsumers-description' => 'Description',
-	'mwoauthlistconsumers-wiki' => 'Applicable wiki',
+	'mwoauthlistconsumers-wiki' => 'Applicable project',
 	'mwoauthlistconsumers-callbackurl' => 'OAuth "callback URL"',
 	'mwoauthlistconsumers-grants' => 'Applicable grants',
 	'mwoauthlistconsumers-basicgrantsonly' => '(basic access only)',
@@ -180,7 +180,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthlistconsumers-status-expired' => 'expired',
 
 	'oauthmanagemygrants' => 'Manage connected applications',
-	'mwoauthmanagemygrants-text' => 'This page lists any applications that can use your account. For any such application, the scope of its access is limited by the permissions that you granted to the application when you authorized it to act on your behalf. If you separately authorized an application to access different "sister" projects on your behalf, then you will see separate configuration for each such project below.
+	'mwoauthmanagemygrants-text' => 'This page lists any applications that can use your account. For any such application, the scope of its access is limited by the permissions that you granted to the application when you authorized it to act on your behalf. If you separately authorized an application to access different sister projects on your behalf, then you will see separate configuration for each such project below.
 
 Connected applications access your account by using the OAuth protocol. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Learn more about connected applications])</span>',
 	'mwoauthmanagemygrants-notloggedin' => 'You have to be logged in to access this page.',
@@ -189,7 +189,7 @@ Connected applications access your account by using the OAuth protocol. <span cl
 	'mwoauthmanagemygrants-none' => 'No applications are currently connected to your account.',
 	'mwoauthmanagemygrants-user' => 'Publisher',
 	'mwoauthmanagemygrants-description' => 'Description',
-	'mwoauthmanagemygrants-wikiallowed' => 'Allowed on wiki',
+	'mwoauthmanagemygrants-wikiallowed' => 'Allowed on project',
 	'mwoauthmanagemygrants-grants' => 'Applicable grants',
 	'mwoauthmanagemygrants-grantsallowed' => 'Grants allowed',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Applicable grants allowed:',
@@ -197,9 +197,9 @@ Connected applications access your account by using the OAuth protocol. <span cl
 	'mwoauthmanagemygrants-revoke' => 'revoke access',
 	'mwoauthmanagemygrants-grantaccept' => 'Granted',
 	'mwoauthmanagemygrants-update-text' => 'Use the form below to modify the permissions granted to an application to act on your behalf.
-* If you separately authorized an application to access different "sister site" projects on your behalf, then you will have separate configuration for each such project for that application.',
+* If you separately authorized an application to access different sister projects on your behalf, then you will have separate configuration for each such project for that application.',
 	'mwoauthmanagemygrants-revoke-text' => 'Use the form below to revoke access for an application to act on your behalf.
-* If you separately authorized an application to access different "sister site" projects on your behalf, then you will have separate configuration for each such project for that application.
+* If you separately authorized an application to access different sister projects on your behalf, then you will have separate configuration for each such project for that application.
 * If you want to totally revoke access to an application, be sure to revoke it from all projects that you accepted it on.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Manage connected application',
 	'mwoauthmanagemygrants-update' => 'Update grants',
