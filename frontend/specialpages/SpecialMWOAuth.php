@@ -121,6 +121,31 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				case 'grants':
 					$this->showGrantRightsTables();
 					break;
+				case 'identify':
+					$format = 'json'; // we only return JWT, so we assume json
+					$server = MWOAuthUtils::newMWOAuthServer();
+					$oauthRequest = MWOAuthRequest::fromRequest( $request );
+					// verify_request throws an exception if anything isn't verified
+					list( $consumer, $token ) = $server->verify_request( $oauthRequest );
+
+					$wiki = wfWikiID();
+					$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+					$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $token->key );
+					// Access token is for this wiki
+					if ( $access->get( 'wiki' ) !== '*' && $access->get( 'wiki' ) !== $wiki ) {
+						throw new MWOAuthException(
+							'mwoauth-invalid-authorization-wrong-wiki',
+							array( $wiki )
+						);
+					}
+					$localUser = MWOAuthUtils::getLocalUserFromCentralId( $access->get( 'userId' ) );
+					if ( !$localUser || !$localUser->isLoggedIn() ) {
+						throw new MWOAuthException( 'mwoauth-invalid-authorization-invalid-user' );
+					}
+
+					// We know the identity of the user who granted the authorization
+					$this->outputJWT( $localUser, $consumer, $oauthRequest, $format );
+					break;
 				default:
 					$format = $request->getVal( 'format', 'html' );
 					$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
@@ -178,6 +203,47 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$this->getOutput()->addReturnTo( Title::newMainPage() );
 	}
 
+	/**
+	 * Make statements about the user, and sign the json with
+	 * a key shared with the Consumer.
+	 * @param User $user the user who is the subject of this request
+	 * @param OAuthConsumer $consumer
+	 */
+	protected function outputJWT( $user, $consumer, $request, $format ) {
+		global $wgCanonicalServer;
+		$statement = array();
+
+		// Include some of the OpenID Connect attributes
+		// http://openid.net/specs/openid-connect-core-1_0.html (draft 14)
+		// Issuer Identifier for the Issuer of the response.
+		$statement['iss'] = $wgCanonicalServer;
+		// Subject identifier. A locally unique and never reassigned identifier.
+		$statement['sub'] = MWOAuthUtils::getCentralIdFromLocalUser( $user );
+		// Audience(s) that this ID Token is intended for.
+		$statement['aud'] = $consumer->key;
+		// Expiration time on or after which the ID Token MUST NOT be accepted for processing.
+		$statement['exp'] = wfTimestamp() + 100;
+		// Time at which the JWT was issued.
+		$statement['iat'] = wfTimestamp();
+		// String value used to associate a Client session with an ID Token, and to mitigate
+		// replay attacks. The value is passed through unmodified from the Authorization Request.
+		$statement['nonce'] = $request->get_parameter( 'oauth_nonce' );
+		// TODO: Add auth_time, if we start tracking last login timestamp
+
+		// Include some MediaWiki info about the user
+		if ( !$user->isHidden() ) {
+			$statement['username'] = $user->getName();
+			$statement['editcount'] = intval( $user->getEditCount() );
+			$statement['confirmed_email'] = $user->isEmailConfirmed();
+			$statement['blocked'] = $user->isBlocked();
+			$statement['registered'] = $user->getRegistration();
+			$statement['groups'] = $user->getEffectiveGroups();
+			$statement['rights'] = array_values( array_unique( $user->getRights() ) );
+		}
+
+		$JWT = JWT::encode( $statement, $consumer->secret );
+		$this->showResponse( $JWT, $format );
+	}
 
 	protected function handleAuthorizationForm( $requestToken, $consumerKey ) {
 		$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );

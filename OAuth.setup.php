@@ -76,6 +76,7 @@ class MWOAuthSetup {
 		$classes['OAuthServer'] = "$libDir/OAuth.php";
 		$classes['OAuthDataStore'] = "$libDir/OAuth.php";
 		$classes['OAuthUtil'] = "$libDir/OAuth.php";
+		$classes['JWT'] = "$libDir/JWT.php";
 
 		# Storage
 		$classes['MWOAuthDataStore'] = "$backendDir/MWOAuthDataStore.php";
