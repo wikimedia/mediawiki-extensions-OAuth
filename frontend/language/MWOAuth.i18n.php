@@ -1580,6 +1580,8 @@ Para completar el proceso, proporciona este valor de comprobación a la aplcaci�
  */
 $messages['fa'] = array(
 	'mwoauth-field-hidden' => '(این اطلاعات پنهان است)',
+	'mwoauth-prefs-managegrants' => 'برنامه‌های متصل:',
+	'mwoauth-prefs-managegrantslink' => 'مدیریت $1 {{PLURAL:$1|برنامهٔ}} متصل',
 );
 
 /** Finnish (suomi)
