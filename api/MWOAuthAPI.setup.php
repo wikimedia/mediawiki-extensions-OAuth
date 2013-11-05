@@ -52,7 +52,7 @@ class MWOAuthAPISetup {
 			$context = RequestContext::getMain();
 			$request = $context->getRequest();
 			$title = $context->getTitle();
-			if ( !MWOAuthUtils::hasOAuthHeaders( $request ) || $title->isSpecial( 'MWOAuth' ) ) {
+			if ( !MWOAuthUtils::hasOAuthHeaders( $request ) || $title->isSpecial( 'OAuth' ) ) {
 				$result = null;
 			} else {
 				try {
