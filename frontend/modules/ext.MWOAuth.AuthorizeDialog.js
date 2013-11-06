@@ -22,6 +22,8 @@
 					$(this).parents( ".ui-dialog:first" )
 						.find( ".ui-dialog-content" ).css( "padding", "20px" );
 					$(this).css( "maxHeight", 0.9 * $( window ).height() );
+					$(this).css( "background-color", '#FFF' );
+					$(this).css( "border", '1px #CCC' );
 					$(this).dialog( 'option', 'modal', true );
 				}
 			} );

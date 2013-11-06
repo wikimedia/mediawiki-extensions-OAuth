@@ -1,6 +1,7 @@
 
 #mw-mwoauth-authorize-form {
 	font-size: 1em;
+	color: #333;
 }
 
 #mw-mwoauth-authorize-form > a {
@@ -9,6 +10,12 @@
 
 #mw-mwoauth-authorize-form > p {
 	font-size: 1.4em;
+	padding-left: 1em;
+}
+
+#mw-mwoauth-authorize-form > ul {
+	padding-top: .5em;
+	line-height: 1em;
 }
 
 span.mw-mwoauth-authorize-form-grantgroup {

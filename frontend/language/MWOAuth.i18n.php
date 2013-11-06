@@ -244,12 +244,10 @@ Connected applications access your account by using the OAuth protocol. <span cl
 
 '''$2''' would like to do the following actions on your behalf on all projects of this site:
 
-
 $4",
 	'mwoauth-form-description-onewiki' => "Hi $1,
 
 '''$2''' would like to do the following actions on your behalf on ''$4'':
-
 
 $5",
 	'mwoauth-form-description-allwikis-nogrants' => "Hi $1,
