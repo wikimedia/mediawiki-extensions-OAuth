@@ -471,4 +471,18 @@ class MWOAuthUtils {
 
 		return $wgOAuthSecretKey ? hash_hmac( 'sha1', $secret, $wgOAuthSecretKey ) : $secret;
 	}
+
+	/**
+	 * Generate a link to Special:OAuth/grants for a particular grant name.
+	 * This should be used to link end users to a full description of what
+	 * rights they are giving when they authorize a grant.
+	 * @param string $grant the grant name
+	 * @return string (proto-relative) HTML link
+	 */
+	public static function getGrantsLink( $grant ) {
+		return Linker::linkKnown(
+			SpecialPage::getTitleFor( 'OAuth', 'grants', $grant ),
+			htmlspecialchars( self::grantName( $grant ) )
+		);
+	}
 }

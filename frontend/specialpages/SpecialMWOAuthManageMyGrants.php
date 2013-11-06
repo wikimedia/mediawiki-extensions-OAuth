@@ -157,7 +157,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 				'usedOnWiki' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-wiki',
-					'default' => $cmr->get( 'wiki', 'MWOAuthUtils::getWikiIdName' )
+					'default' => $cmra->get( 'wiki', 'MWOAuthUtils::getWikiIdName' )
 				),
 				'grants'  => array(
 					'type' => 'checkmatrix',
@@ -166,23 +166,12 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 						$this->msg( 'mwoauthmanagemygrants-grantaccept' )->escaped() => 'grant'
 					),
 					'rows' => array_combine(
-						array_map( 'htmlspecialchars',
-							MWOAuthUtils::grantNames( $cmr->get( 'grants' ) ) ),
+						array_map( 'MWOAuthUtils::getGrantsLink', $cmr->get( 'grants' ) ),
 						$cmr->get( 'grants' )
 					),
 					'default' => array_map(
 						function( $g ) { return "grant-$g"; },
 						$cmra->get( 'grants' )
-					),
-					'tooltips' => array_combine(
-						array_map( 'MWOAuthUtils::grantName', MWOAuthUtils::getValidGrants() ),
-						array_map(
-							function( $rights ) use ( $lang ) {
-								return $lang->semicolonList( array_map(
-									'User::getRightDescription', $rights ) );
-							},
-							MWOAuthUtils::getRightsByGrant()
-						)
 					),
 					'force-options-on' => array_map(
 						function( $g ) { return "grant-$g"; },
