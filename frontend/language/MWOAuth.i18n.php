@@ -2820,7 +2820,7 @@ $5",
  * @author Shirayuki
  */
 $messages['ja'] = array(
-	'oauth' => 'OAuth', # Fuzzy
+	'oauth' => 'OAuth',
 	'mwoauth-desc' => 'OAuth 1.0a API 認証',
 	'mwoauth-missing-field' => '「$1」フィールドの値がありません',
 	'mwoauth-invalid-field' => '「$1」フィールドに指定した値は無効です',
@@ -2854,7 +2854,7 @@ $messages['ja'] = array(
 	'mwoauth-invalid-access-token' => '指定したキーのアクセス トークンは存在しません。',
 	'mwoauth-invalid-access-wrongwiki' => 'ウィキ「$1」のみで使用できるコンシューマーです。',
 	'mwoauth-consumer-stage-disabled' => '無効',
-	'oauthconsumerregistration' => 'OAuth コンシューマー登録', # Fuzzy
+	'oauthconsumerregistration' => 'OAuth コンシューマー登録',
 	'mwoauthconsumerregistration-notloggedin' => 'このページにアクセスするにはログインしてください。',
 	'mwoauthconsumerregistration-navigation' => 'ナビゲーション:',
 	'mwoauthconsumerregistration-list' => '自分のコンシューマー一覧',
@@ -3329,6 +3329,7 @@ $messages['mk'] = array(
 	'mwoauth-invalid-access-token' => 'Не постои пристапна шифра со таков клуч.',
 	'mwoauth-invalid-access-wrongwiki' => 'Потрошувачот може да се користи само на викито „$1“.',
 	'mwoauth-consumer-conflict' => 'Некои ги изменил атрибутети на овој потрошувач додека го разгледувавте. Обидете се повторно. Може да го погледате и дневникот на измени.',
+	'mwoauth-consumer-grantshelp' => 'Секое доделување дава пристап до список до наведени права што веќе ги има корисничката сметка. Повеќе ќе најдете на [[Special:OAuth/grants|табелата со доделувања]].',
 	'mwoauth-consumer-stage-proposed' => 'предложен',
 	'mwoauth-consumer-stage-rejected' => 'одбиен',
 	'mwoauth-consumer-stage-expired' => 'истечен',
@@ -3562,6 +3563,8 @@ $5",
 	'action-mwoauthproposeconsumer' => 'предлагање на потрошувачи на OAuth',
 	'action-mwoauthupdateownconsumer' => 'измена на потрошувачи на OAuth',
 	'action-mwoauthviewsuppressed' => 'преглед на скриени потрошувачи на OAuth',
+	'mwoauth-listgrantrights-summary' => 'Ова е список на доделувања на OAuth, секое со своите права. Корисниците можат да овластуваат прилози што ќе ги користат сметки, но со ограничувања во дозволите што им се доделени. Покрај ова, прилогот што делува во име на корисникот е ограничен на нештата на кои има права самиот корисник.
+Може да најтете [[{{MediaWiki:Listgrouprights-helppage}}|уште информации]] за поединечните права.',
 	'mwoauth-listgrants-grant' => 'Доделување',
 	'mwoauth-listgrants-rights' => 'Права',
 );
@@ -4357,9 +4360,9 @@ $messages['uk'] = array(
 	'mwoauth-consumer-callbackurl' => 'URL "зворотнього виклику" OAuth :',
 	'mwoauth-consumer-grantsneeded' => 'Придатні гранти:',
 	'mwoauth-consumer-required-grant' => 'Застосовні до споживача',
-	'mwoauth-consumer-wiki' => 'Придатні вікі:', # Fuzzy
-	'mwoauth-consumer-wiki-thiswiki' => 'Поточне вікі ($1)', # Fuzzy
-	'mwoauth-consumer-wiki-other' => 'Конкретне вікі', # Fuzzy
+	'mwoauth-consumer-wiki' => 'Придатний проект:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Поточний проект ($1)',
+	'mwoauth-consumer-wiki-other' => 'Конкретний проект',
 	'mwoauth-consumer-restrictions' => 'Обмеження на використання:',
 	'mwoauth-consumer-restrictions-json' => 'Обмеження на користування (JSON):',
 	'mwoauth-consumer-rsakey' => 'Відкритий ключ RSA:',
@@ -4379,6 +4382,7 @@ $messages['uk'] = array(
 	'mwoauth-invalid-access-token' => 'Немає маркера доступу з даним ключем.',
 	'mwoauth-invalid-access-wrongwiki' => 'Споживач може використовуватися тільки на вікі "$1".',
 	'mwoauth-consumer-conflict' => 'Хтось змінив параметри даного споживача, якого ви дивилися. Будь ласка, спробуйте ще раз. Ви можете перевірити журнал змін.',
+	'mwoauth-consumer-grantshelp' => 'Кожен грант надає доступ до перерахованих прав користувача, які вже має обліковий запис користувача. Подивіться на ([[Special:OAuth/grants|таблицю грантів]]) для отримання додаткової інформації.',
 	'mwoauth-consumer-stage-proposed' => 'запропоновано',
 	'mwoauth-consumer-stage-rejected' => 'відхилено',
 	'mwoauth-consumer-stage-expired' => 'застаріле',
@@ -4398,8 +4402,8 @@ $messages['uk'] = array(
 * Версії мають форму "major.minor.release" (останні дві необов\'язкові) і вони збільшуються, якщо необхідні зміни дозволів.
 * Будь ласка, вкажіть відкритий ключ RSA (у форматі PEM), якщо можливо; в іншому випадку (менш безпечно) таємний маркер повинен використовуватися.
 * Використовуйте обмеження поля JSON  для обмеження доступу споживача до IP-адрес в тих  діапазонах CIDR.
-* Ви можете використовувати ідентифікатор вікі, аби обмежувати споживача в одному вікі-проекті на цьому сайті (використовуйте "*" для всіх вікі).
-* Надана адреса електронної пошти повинна збігатися з вашим обліковим записом (який повинен бути підтвердженим).', # Fuzzy
+* Ви можете використовувати ідентифікатор вікі, аби обмежувати споживача в одному проекті на цьому сайті (використовуйте "*" для всіх проектів).
+* Надана адреса електронної пошти повинна збігатися з вашим обліковим записом (який повинен бути підтвердженим).',
 	'mwoauthconsumerregistration-update-text' => 'Використовуйте форму нижче, щоб оновити аспекти споживача OAuth, які ви контролюєте.
 
 Всі значення тут будуть переписувати будь-які попередні. Не залишайте порожні поля, якщо ви не маєте наміру вилучити ці значення.',
@@ -4474,15 +4478,15 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'mwoauthmanageconsumers-success-reanable' => 'Споживач вже повторно увімкнений.',
 	'mwoauthmanageconsumers-search-name' => 'споживачі з цим іменем',
 	'mwoauthmanageconsumers-search-publisher' => 'споживачі даного користувача',
-	'oauthlistconsumers' => 'Список споживачів OAuth', # Fuzzy
-	'mwoauthlistconsumers-legend' => 'Перегляд OAuth споживачів', # Fuzzy
+	'oauthlistconsumers' => 'Список програм OAuth',
+	'mwoauthlistconsumers-legend' => 'Перегляд програм OAuth',
 	'mwoauthlistconsumers-view' => 'подробиці',
-	'mwoauthlistconsumers-none' => 'Не знайдено жодного споживача за цим критерієм.', # Fuzzy
+	'mwoauthlistconsumers-none' => 'Не знайдено жодної програми за цим критерієм.',
 	'mwoauthlistconsumers-name' => 'Назва програми',
 	'mwoauthlistconsumers-version' => 'Споживча версія',
 	'mwoauthlistconsumers-user' => 'Видавець',
 	'mwoauthlistconsumers-description' => 'Опис',
-	'mwoauthlistconsumers-wiki' => 'Застосовне вікі', # Fuzzy
+	'mwoauthlistconsumers-wiki' => 'Придатний проект',
 	'mwoauthlistconsumers-callbackurl' => 'URL "зворотнього виклику" OAuth',
 	'mwoauthlistconsumers-grants' => 'Застосовні ґранти',
 	'mwoauthlistconsumers-basicgrantsonly' => '(тільки для базового доступу)',
@@ -4501,7 +4505,7 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'mwoauthmanagemygrants-none' => 'Жодна програма зараз не підключена до вашого облікового запису.',
 	'mwoauthmanagemygrants-user' => 'Видавець',
 	'mwoauthmanagemygrants-description' => 'Опис',
-	'mwoauthmanagemygrants-wikiallowed' => 'Дозволено на вікі', # Fuzzy
+	'mwoauthmanagemygrants-wikiallowed' => 'Дозволено на проекті',
 	'mwoauthmanagemygrants-grants' => 'Застосовні ґранти',
 	'mwoauthmanagemygrants-grantsallowed' => 'Ґранти, які дозволили',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Застосовні гранти дозволено:',
@@ -4509,10 +4513,10 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'mwoauthmanagemygrants-revoke' => 'скасувати доступ',
 	'mwoauthmanagemygrants-grantaccept' => 'Надано',
 	'mwoauthmanagemygrants-update-text' => 'Використовуйте форму нижче, щоб змінювати дозволи надані застосунку діяти від вашого імені.
- * Якщо ви окремо уповноважили додаток для доступу до різних "сестринських сайтів" проектів від вашого імені, то у вас буде окрема конфігурація для кожного такого проекту для цього застосунку.', # Fuzzy
+ * Якщо ви окремо уповноважили додаток для доступу до різних сестринських сайтів проектів від вашого імені, то у вас буде окрема конфігурація для кожного такого проекту для цього застосунку.',
 	'mwoauthmanagemygrants-revoke-text' => 'Використовуйте форму нижче, щоб скасувати доступ для програми, щоб діяти від вашого імені.
-* Якщо ви окремо авторизували програму для доступу до різних "сестринських сайтів" проектів від вашого імені, то ви будете мати окремі налаштування для кожного такого проекту для даного додатка.
-* Якщо ви хочете повністю заборонити доступ до додатку, переконайтеся, що відкликали його з усіх проектів,у які ви прийняли його.', # Fuzzy
+* Якщо ви окремо авторизували програму для доступу до різних сестринських сайтів проектів від вашого імені, то ви будете мати окремі налаштування для кожного такого проекту для даного додатка.
+* Якщо ви хочете повністю заборонити доступ до додатку, переконайтеся, що відкликали його з усіх проектів,у які ви прийняли його.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Управління підключеною програмою',
 	'mwoauthmanagemygrants-update' => 'Оновити ґранти',
 	'mwoauthmanagemygrants-renounce' => 'Скасувати авторизацію',
@@ -4614,6 +4618,10 @@ $5',
 	'action-mwoauthproposeconsumer' => 'пропонувати нових споживачів OAuth',
 	'action-mwoauthupdateownconsumer' => 'оновити споживачів OAuth, яких ви контролюєте',
 	'action-mwoauthviewsuppressed' => 'переглянути пригнічених споживачів OAuth',
+	'mwoauth-listgrantrights-summary' => "Нижче наведено список OAuth грантів, з їхнім пов'язаним доступом до прав користувача. Користувачі можуть дозволити програмам використовувати свій обліковий запис, але з обмеженими правами на основі грантів користувача наданих до заяви. Програма діє від імені користувача, однак насправді не може використовувати права, які користувач не має.
+Там може бути [[{{MediaWiki:Listgrouprights-helppage}}|додаткова інформація]] про індивідуальні права.",
+	'mwoauth-listgrants-grant' => 'Грант',
+	'mwoauth-listgrants-rights' => 'Права',
 );
 
 /** Vietnamese (Tiếng Việt)
@@ -4790,6 +4798,7 @@ $messages['yi'] = array(
  * @author Liuxinyu970226
  * @author Qiyue2001
  * @author Shirayuki
+ * @author Xiaomingyan
  */
 $messages['zh-hans'] = array(
 	'mwoauth-invalid-field-generic' => '提供的值无效',
@@ -4838,7 +4847,7 @@ $messages['zh-hans'] = array(
 	'mwoauth-grant-blockusers' => '封禁与解封用户',
 	'mwoauth-grant-createaccount' => '注册账户',
 	'mwoauth-grant-createeditmovepage' => '创建、编辑与移动页面',
-	'mwoauth-grant-editmycssjs' => '编辑您自己的用户CSS/JS',
+	'mwoauth-grant-editmycssjs' => '编辑你自己的用户CSS/JS',
 	'mwoauth-grant-editmywatchlist' => '编辑您的监视列表',
 	'mwoauth-grant-editpage' => '编辑存在的页面',
 	'mwoauth-grant-editprotected' => '编辑受保护页面',
