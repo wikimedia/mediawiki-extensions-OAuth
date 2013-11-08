@@ -280,8 +280,8 @@ $5",
 	'mwoauth-grant-createaccount' => 'Create accounts',
 	'mwoauth-grant-createeditmovepage' => 'Create, edit, and move pages',
 	'mwoauth-grant-delete' => 'Delete pages, revisions, and log entries',
-	'mwoauth-grant-editinterface' => 'Edit the MediaWiki namespace and user CSS/JS',
-	'mwoauth-grant-editmycssjs' => 'Edit your own user CSS/JS',
+	'mwoauth-grant-editinterface' => 'Edit the MediaWiki namespace and user CSS/JavaScript',
+	'mwoauth-grant-editmycssjs' => 'Edit your own user CSS/JavaScript',
 	'mwoauth-grant-editmywatchlist' => 'Edit your watchlist',
 	'mwoauth-grant-editpage' => 'Edit existing pages',
 	'mwoauth-grant-editprotected' => 'Edit protected pages',
@@ -475,7 +475,7 @@ See also:
 	'mwoauthconsumerregistration-notloggedin' => 'Used if not blocked, not read-only and not logged in.',
 	'mwoauthconsumerregistration-navigation' => 'Used in page subtitle.
 {{Identical|Navigation}}',
-	'mwoauthconsumerregistration-propose' => 'Used in page subtitle link text',
+	'mwoauthconsumerregistration-propose' => 'Text for the link that developers follow to request that their application is accepted as an OAuth application on this site.',
 	'mwoauthconsumerregistration-list' => 'Used in page subtitle link text',
 	'mwoauthconsumerregistration-main' => 'Used as label for "View all" link.
 
