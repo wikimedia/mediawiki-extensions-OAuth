@@ -156,7 +156,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 				),
 				'usedOnWiki' => array(
 					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-wiki',
+					'label-message' => 'mwoauthmanagemygrants-wikiallowed',
 					'default' => $cmra->get( 'wiki', 'MWOAuthUtils::getWikiIdName' )
 				),
 				'grants'  => array(
@@ -286,7 +286,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		);
 
 		foreach ( $data as $msg => $val ) {
-			$r .= '<p>' . $this->msg( $msg )->escaped() . ': ' . htmlspecialchars( $val ) . '</p>';
+			$r .= '<p>' . $this->msg( $msg )->escaped() . ' ' . htmlspecialchars( $val ) . '</p>';
 		}
 		$r .= '</li>';
 
