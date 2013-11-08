@@ -485,4 +485,15 @@ class MWOAuthUtils {
 			htmlspecialchars( self::grantName( $grant ) )
 		);
 	}
+
+	/**
+	 * Run hook to override a message keys that might need to be changed
+	 * across all sites in this cluster.
+	 * @param string $msgKey the Message key
+	 * @return string the Message key to use
+	 */
+	public static function getSiteMessage( $msgKey ) {
+		wfRunHooks( 'OAuthReplaceMessage', &$msgKey );
+		return $msgKey;
+	}
 }
