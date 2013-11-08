@@ -234,7 +234,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$form->addButton( 'accept',
 			wfMessage( 'mwoauth-form-button-approve' )->text(), null,
 			array( 'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-constructive' ) );
-		$form->addFooterText( wfMessage( 'mwoauth-form-privacypolicy-link' )->parse() );
+
+		$privacyMessage = MWOAuthUtils::getSiteMessage( 'mwoauth-form-privacypolicy-link' );
+		$form->addFooterText( wfMessage( $privacyMessage )->parse() );
 
 		$this->getOutput()->addHtml(
 			'<div id="mw-mwoauth-authorize-dialog" class="mw-ui-container">' );
