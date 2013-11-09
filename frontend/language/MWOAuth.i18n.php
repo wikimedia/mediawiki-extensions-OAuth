@@ -767,9 +767,7 @@ Followed by the following radio boxes:
 	'mwoauthconsumer-consumer-logpagetext' => 'Description of the OAuth consumer log.',
 	'mwoauth-bad-request-missing-params' => 'Error message when MediaWiki makes an error during the authorization process, and fails to send all the required url parameters',
 	'mwoauth-bad-request-invalid-action' => 'Error, when the 3rd-party OAuth developers sends users to a bad authorization url',
-	'mwoauthserver-invalid-user' => 'Error when the user attempts to use OAuth, but they do not have a unified (SUL) account, which is required',
 	'mwoauth-bad-request-invalid-action-contact' => 'Error, when the 3rd-party OAuth developers sends users to a bad authorization url, but we know which application made the request and we can link the user to a page to contact the developer',
-	'mwoauthserver-bad-consumer-key' => 'Generic error for users when a 3rd-party OAuth developer sends users to an invalid url',
 	'mwoauthdatastore-access-token-not-found' => 'Error message when an invalid access token was submitted',
 	'mwoauthdatastore-request-token-not-found' => 'Error message when an invalid request token was submitted',
 	'mwoauthdatastore-bad-token' => 'Error message when an invalid token was submitted',
@@ -777,9 +775,10 @@ Followed by the following radio boxes:
 	'mwoauthdatastore-invalid-token-type' => 'Error message when an invalid page was requested',
 	'mwoauthgrants-general-error' => 'Generic error, when something unexpected happened while processing the OAuth request',
 	'mwoauthserver-bad-consumer' => 'Error message when an invalid consumer identifier was submitted',
+	'mwoauthserver-bad-consumer-key' => 'Generic error for users when a 3rd-party OAuth developer sends users to an invalid url',
 	'mwoauthserver-insufficient-rights' => 'Error message that the user does not have the required rights to perform this request',
 	'mwoauthserver-invalid-request-token' => 'Error message when an invalid request token was submitted',
-	'mwoauthserver-invalid-user-hookabort' => 'Used as error message.',
+	'mwoauthserver-invalid-user' => 'Error when the user attempts to use OAuth, but they do not have a unified (SUL) account, which is required',
 	'mwoauth-invalid-authorization-title' => 'Title of the error page when the Authorization header is invalid',
 	'mwoauth-invalid-authorization' => 'Text of the error page when the Authorization header is invalid. Parameters are:
 * $1 - Specific error message from the OAuth layer, probably not localized',
@@ -787,7 +786,10 @@ Followed by the following radio boxes:
 * $1 - wiki id',
 	'mwoauth-invalid-authorization-invalid-user' => "Text of the error page when the Authorization header is for a user that doesn't exist",
 	'mwoauth-invalid-authorization-wrong-user' => 'Text of the error page when the Authorization header is for the wrong user',
-	'mwoauth-invalid-authorization-not-approved' => "Text of the error page when the Authorization header is for a consumer that isn't approved",
+	'mwoauth-invalid-authorization-not-approved' => "Text of the error page when the Authorization header is for a consumer that isn't approved.
+
+Parameters:
+* $1 - ...",
 	'mwoauth-invalid-authorization-blocked-user' => 'Text of the error page when Authorization header is for a user who is blocked',
 	'mwoauth-form-description-allwikis' => 'Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf.
 
@@ -838,7 +840,7 @@ See also:
 
 See also:
 * {{msg-mw|Mwoauth-form-button-cancel}}
-{{Identical|Approve}}',
+{{Identical|Allow}}',
 	'mwoauth-form-button-cancel' => 'Button label, indicating the user wants to cancel granting access.
 
 See also:
@@ -869,7 +871,8 @@ See also:
 * {{msg-mw|Mwoauth-grant-viewdeleted}}
 * {{msg-mw|Mwoauth-grant-viewmywatchlist}}',
 	'mwoauth-grants-nogrants' => 'Warning message that the OAuth consumer has not requested any permissions',
-	'mwoauth-acceptance-cancelled' => 'Message shown when an OAuth authorization request is declined',
+	'mwoauth-acceptance-cancelled' => 'Message shown when an OAuth authorization request is declined. Parameters:
+* $1 - ...',
 	'mwoauth-grant-group-page-interaction' => '{{Related|Mwoauth-grant-group}}',
 	'mwoauth-grant-group-file-interaction' => '{{Related|Mwoauth-grant-group}}',
 	'mwoauth-grant-group-watchlist-interaction' => '{{Related|Mwoauth-grant-group}}',
@@ -958,7 +961,7 @@ See also:
 $messages['ar'] = array(
 	'mwoauth-prefs-managegrantslink' => 'إدارة التطبيقات التي يمكنها استخدام حسابك', # Fuzzy
 	'mwoauth-consumer-wiki-thiswiki' => 'الويكي الحالية ($1)', # Fuzzy
-	'mwoauth-consumer-wiki-other' => 'ويكي محددة', # Fuzzy
+	'mwoauth-consumer-wiki-other' => 'مشروع معين',
 	'mwoauthlistconsumers-view' => 'التفاصيل',
 	'mwoauthlistconsumers-name' => 'اسم التطبيق',
 	'mwoauthlistconsumers-description' => 'الوصف',
@@ -1038,6 +1041,7 @@ $messages['br'] = array(
 	'mwoauthlistconsumers-status-approved' => 'aprouet',
 	'mwoauthlistconsumers-status-disabled' => 'diweredekaet',
 	'mwoauthlistconsumers-status-rejected' => 'distaolet',
+	'mwoauth-listgrants-rights' => 'Gwirioù',
 );
 
 /** Catalan (català)
@@ -1045,6 +1049,13 @@ $messages['br'] = array(
  */
 $messages['ca'] = array(
 	'mwoauthlistconsumers-view' => 'detalls',
+);
+
+/** Chechen (нохчийн)
+ * @author Умар
+ */
+$messages['ce'] = array(
+	'mwoauth-listgrants-rights' => 'Бакъонаш',
 );
 
 /** Czech (čeština)
@@ -1400,7 +1411,7 @@ Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen.
 	'mwoauthmanageconsumers-reenable' => 'Bestätigt',
 	'mwoauthmanageconsumers-reason' => 'Grund:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Verbraucherstatus aktualisieren',
-	'mwoauthmanageconsumers-viewing' => '„$1“ betrachtet derzeit diesen Verbraucher',
+	'mwoauthmanageconsumers-viewing' => '{{GENDER:$1|Der Benutzer|Die Benutzerin}} „$1“ betrachtet derzeit diesen Verbraucher',
 	'mwoauthmanageconsumers-success-approved' => 'Der Antrag wurde bestätigt.',
 	'mwoauthmanageconsumers-success-rejected' => 'Der Antrag wurde abgelehnt.',
 	'mwoauthmanageconsumers-success-disabled' => 'Der Verbraucher wurde deaktiviert.',
@@ -1433,10 +1444,10 @@ Verbundene Anwendungen greifen auf dein Benutzerkonto durch Verwendung eines OAu
 	'mwoauthmanagemygrants-notloggedin' => 'Du musst angemeldet sein, um auf diese Seite zugreifen zu können.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
 	'mwoauthmanagemygrants-showlist' => 'Liste verbundener Anwendungen',
-	'mwoauthmanagemygrants-none' => 'Derzeit sind keine Anwendungen mit deinem Benutzerkonto verbunden.',
-	'mwoauthmanagemygrants-user' => 'Herausgeber',
+	'mwoauthmanagemygrants-none' => 'Es sind keine Anwendungen mit deinem Benutzerkonto verbunden.',
+	'mwoauthmanagemygrants-user' => 'Herausgeber:',
 	'mwoauthmanagemygrants-description' => 'Beschreibung',
-	'mwoauthmanagemygrants-wikiallowed' => 'Erlaubt auf Projekt',
+	'mwoauthmanagemygrants-wikiallowed' => 'Erlaubt auf Projekt:',
 	'mwoauthmanagemygrants-grants' => 'Anwendbare Berechtigungen',
 	'mwoauthmanagemygrants-grantsallowed' => 'Erlaubte Berechtigungen:',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Erlaubte anwendbare Berechtigungen:',
@@ -1463,23 +1474,43 @@ Verbundene Anwendungen greifen auf dein Benutzerkonto durch Verwendung eines OAu
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|reaktivierte}} einen OAuth-Verbraucher von $3 (Verbraucherschlüssel $4)',
 	'mwoauthconsumer-consumer-logpage' => 'OAuth-Verbraucher-Logbuch',
 	'mwoauthconsumer-consumer-logpagetext' => 'Logbuch von Bestätigungen, Ablehnungen und Deaktivierungen registrierter OAuth-Verbraucher.',
-	'mwoauth-bad-request' => 'In deiner OAuth-Anfrage gab es einen Fehler.',
+	'mwoauth-bad-request-missing-params' => 'Leider ist etwas mit der Konfiguration dieser verbundenen Anwendung schief gelaufen. <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Kontaktiere den Support]</span>, um Hilfe bei der Behebung zu erhalten.
+
+<span class="plainlinks mw-mwoautherror-details">Fehlende Parameter, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>',
+	'mwoauth-bad-request-invalid-action' => 'Leider ist etwas schief gelaufen. Du wirst den Anwendungsautor kontaktieren müssen, um Hilfe für dieses Problem zu erhalten.
+
+<span class="plainlinks mw-mwoautherror-details">Unbekannte URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>',
+	'mwoauth-bad-request-invalid-action-contact' => 'Leider ist etwas schief gelaufen. Du wirst den Anwendungsautor [$1 kontaktieren] müssen, um Hilfe für dieses Problem zu erhalten.
+
+<span class="plainlinks mw-mwoautherror-details">Unbekannte URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
 	'mwoauthdatastore-access-token-not-found' => 'Für diesen Autorisierungstoken wurde keine bestätigte Berechtigung gefunden',
-	'mwoauthdatastore-request-token-not-found' => 'Für diesen Token wurde keine Anfrage gefunden',
+	'mwoauthdatastore-request-token-not-found' => 'Bei der Verbindung dieser Anwendung ist leider etwas schief gelaufen.
+Gehe zurück und versuche, dein Benutzerkonto erneut zu verbinden oder kontaktiere den Anwendungsautor.
+
+<span class="plainlinks mw-mwoautherror-details">OAuth-Token nicht gefunden, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
 	'mwoauthdatastore-bad-token' => 'Es wurde kein Token gefunden, der deiner Anfrage entspricht.',
 	'mwoauthdatastore-bad-verifier' => 'Der angegebene Verifikationscode war nicht gültig',
 	'mwoauthdatastore-invalid-token-type' => 'Der angeforderte Tokentyp ist ungültig',
 	'mwoauthgrants-general-error' => 'In deiner OAuth-Anfrage gab es einen Fehler',
-	'mwoauthserver-bad-consumer' => 'Für den angegebenen Schlüssel wurde kein bestätigter Verbraucher gefunden',
-	'mwoauthserver-insufficient-rights' => 'Du hast keine ausreichenden Rechte, um diese Aktion auszuführen.',
+	'mwoauthserver-bad-consumer' => '$1 ist nicht mehr als verbundene Anwendung bestätigt. Um Hilfe zu erhalten, [$2 kontaktiere] den Anwendungsautor.
+
+<span class="plainlinks mw-mwoautherror-details">Verbundene OAuth-Anwendung nicht bestätigt, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
+	'mwoauthserver-bad-consumer-key' => 'Bei der Verbindung dieser Anwendung ist leider etwas schief gelaufen.
+
+<span class="plainlinks mw-mwoautherror-details">Unbekannter OAuth-Schlüssel, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>',
+	'mwoauthserver-insufficient-rights' => 'Dein Benutzerkonto ist nicht berechtigt, verbundene Anwendungen zu verwenden. Kontaktiere deinen Websiteadministrator, um den Grund herauszufinden.
+
+<span class="plainlinks mw-mwoautherror-details">Nicht ausreichende OAuth-Benutzerrechte, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Deine Anfrage enthält einen ungültigen Token',
-	'mwoauthserver-invalid-user-hookabort' => 'Dieser Benutzer kann nicht OAuth benutzen',
+	'mwoauthserver-invalid-user' => 'Um verbundene Anwendungen auf dieser Website zu verwenden, musst du ein Benutzerkonto für alle Projekte besitzen. Falls du ein Benutzerkonto auf allen Projekten besitzt, kannst du versuchen, $1 erneut zu verbinden.
+
+<span class="plainlinks mw-mwoautherror-details">Einheitliche Anmeldung erforderlich, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>',
 	'mwoauth-invalid-authorization-title' => 'OAuth-Autorisierungsfehler',
 	'mwoauth-invalid-authorization' => 'Die Autorisierungsheader in deiner Anfrage sind nicht gültig: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'Die Autorisierungsheader in deiner Anfrage sind nicht gültig für $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen Benutzer, der hier nicht vorhanden ist.',
 	'mwoauth-invalid-authorization-wrong-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen anderen Benutzer',
-	'mwoauth-invalid-authorization-not-approved' => 'Die Autorisierungsheader in deiner Anfrage sind für einen OAuth-Verbraucher, der derzeit nicht bestätigt ist.',
+	'mwoauth-invalid-authorization-not-approved' => 'Die Anwendung, die du verbinden willst, scheint nicht korrekt konfiguriert zu sein. Kontaktiere für Hilfe den Autor von $1.',
 	'mwoauth-invalid-authorization-blocked-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen Benutzer, der gesperrt ist.',
 	'mwoauth-form-description-allwikis' => "Hallo $1,
 
@@ -1502,11 +1533,10 @@ $5",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Datenschutzrichtlinie]]',
 	'mwoauth-form-button-approve' => 'Erlauben',
 	'mwoauth-form-button-cancel' => 'Abbrechen',
-	'mwoauth-authorize-form-invalid-user' => 'Dieses Benutzerkonto kann nicht OAuth verwenden, da das Konto auf diesem Wiki und das Konto auf dem zentralen OAuth-Wiki nicht verknüpft sind.',
-	'mwoauth-error' => 'OAuth-Fehler',
+	'mwoauth-error' => 'Anwendungsverbindungsfehler',
 	'mwoauth-grants-heading' => 'Angeforderte Berechtigungen:',
 	'mwoauth-grants-nogrants' => 'Die Anwendung hat keine Berechtigungen beantragt.',
-	'mwoauth-acceptance-cancelled' => 'Du hast diese Anfrage zur Autorisierung eines OAuth-Verbrauchers abgebrochen.',
+	'mwoauth-acceptance-cancelled' => 'Du hast dich entschieden, dass $1 nicht auf dein Benutzerkonto zugreifen darf. $1 wird nicht laufen, bis du den Zugriff erlaubt hast. Du kannst zu $1 zurückgehen oder deine verbundenen Anwendungen [[Special:OAuthManageMyGrants|verwalten]].',
 	'mwoauth-grant-group-page-interaction' => 'Mit Seiten interagieren',
 	'mwoauth-grant-group-file-interaction' => 'Mit Medien interagieren',
 	'mwoauth-grant-group-watchlist-interaction' => 'Mit deiner Beobachtungsliste interagieren',
@@ -1630,7 +1660,7 @@ $messages['fi'] = array(
 	'mwoauth-prefs-managegrants' => 'Liitetyt sovellukset:',
 	'mwoauth-consumer-user' => 'Julkaisija',
 	'mwoauth-consumer-wiki-thiswiki' => 'Nykyinen wiki ($1)', # Fuzzy
-	'mwoauthmanagemygrants-none' => 'Yhtään sovellusta ei ole tällä hetkellä liitetty tunnukseesi.',
+	'mwoauthmanagemygrants-none' => 'Yhtään sovellusta ei ole tällä hetkellä liitetty tunnukseesi.', # Fuzzy
 	'mwoauth-grant-group-customization' => 'Mukautus ja asetukset',
 );
 
@@ -1777,7 +1807,7 @@ Il vous a été assigné un jeton de consommateur '''$1''' et un jeton secret ''
 	'mwoauthmanageconsumers-reenable' => 'Approuvé',
 	'mwoauthmanageconsumers-reason' => 'Motif :',
 	'mwoauthmanageconsumers-confirm-submit' => 'Mettre à jour l’état du consommateur',
-	'mwoauthmanageconsumers-viewing' => 'L’utilisateur « $1 » est actuellement en train de visualiser ce consommateur',
+	'mwoauthmanageconsumers-viewing' => 'L’utilisateur « $1 » est actuellement en train de visualiser ce consommateur', # Fuzzy
 	'mwoauthmanageconsumers-success-approved' => 'La requête a été approuvée.',
 	'mwoauthmanageconsumers-success-rejected' => 'La requête a été rejetée.',
 	'mwoauthmanageconsumers-success-disabled' => 'Le consommateur a été désactivé.',
@@ -1810,10 +1840,10 @@ Les applications connectées accèdent à votre compte en utilisant le protocole
 	'mwoauthmanagemygrants-notloggedin' => 'Vous devez être connecté pour accéder à cette page.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation :',
 	'mwoauthmanagemygrants-showlist' => 'Liste des applications connectées',
-	'mwoauthmanagemygrants-none' => 'Aucune application n’est pour le moment connectée à votre compte.',
-	'mwoauthmanagemygrants-user' => 'Éditeur',
+	'mwoauthmanagemygrants-none' => 'Aucune application n’est pour le moment connectée à votre compte.', # Fuzzy
+	'mwoauthmanagemygrants-user' => 'Éditeur', # Fuzzy
 	'mwoauthmanagemygrants-description' => 'Description',
-	'mwoauthmanagemygrants-wikiallowed' => 'Autorisé sur le projet',
+	'mwoauthmanagemygrants-wikiallowed' => 'Autorisé sur le projet', # Fuzzy
 	'mwoauthmanagemygrants-grants' => 'Droits applicables',
 	'mwoauthmanagemygrants-grantsallowed' => 'Droits accordés :',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Droits applicables accordés :',
@@ -1840,23 +1870,21 @@ Les applications connectées accèdent à votre compte en utilisant le protocole
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|a réactivé}} un consommateur OAuth proposé par $3 (clé du consommateur $4)',
 	'mwoauthconsumer-consumer-logpage' => 'journal du consommateur OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Journal des approbations, rejets et désactivations de consommateurs OAuth enregistrés.',
-	'mwoauth-bad-request' => 'Il y a eu une erreur dans votre demande OAuth.',
 	'mwoauthdatastore-access-token-not-found' => 'Aucun droit approuvé n’a été trouvé pour ce jeton d’autorisation.',
-	'mwoauthdatastore-request-token-not-found' => 'Aucune demande n’a été trouvée pour ce jeton.',
+	'mwoauthdatastore-request-token-not-found' => 'Aucune demande n’a été trouvée pour ce jeton.', # Fuzzy
 	'mwoauthdatastore-bad-token' => 'Aucun jeton correspondant à votre demande n’a été trouvé',
 	'mwoauthdatastore-bad-verifier' => 'Le code de vérification fourni n’était pas valide',
 	'mwoauthdatastore-invalid-token-type' => 'Le type de jeton demandé n’est pas valide',
 	'mwoauthgrants-general-error' => 'Il y a eu une erreur dans votre demande OAuth',
-	'mwoauthserver-bad-consumer' => 'Aucun consommateur approuvé n’a été trouvé pour la clé fournie',
-	'mwoauthserver-insufficient-rights' => 'Vous n’avez pas les droits suffisants pour effectuer cette action',
+	'mwoauthserver-bad-consumer' => 'Aucun consommateur approuvé n’a été trouvé pour la clé fournie', # Fuzzy
+	'mwoauthserver-insufficient-rights' => 'Vous n’avez pas les droits suffisants pour effectuer cette action', # Fuzzy
 	'mwoauthserver-invalid-request-token' => 'Jeton non valide dans votre demande',
-	'mwoauthserver-invalid-user-hookabort' => 'Cet utilisateur ne peut pas utiliser OAuth',
 	'mwoauth-invalid-authorization-title' => 'Erreur d’autorisation OAuth',
 	'mwoauth-invalid-authorization' => 'Les entêtes d’autorisation dans votre requête ne sont pas valides : $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'Les entêtes d’autorisation dans votre requête ne sont pas valides pour $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'Les entêtes d’autorisation dans votre requête concernent un utilisateur qui n’existe pas ici',
 	'mwoauth-invalid-authorization-wrong-user' => 'Les entêtes d’autorisation dans votre requête concernent un autre utilisateur',
-	'mwoauth-invalid-authorization-not-approved' => 'Les entêtes d’autorisation dans votre requête concernent un consommateur OAuth qui n’est pas approuvé pour le moment',
+	'mwoauth-invalid-authorization-not-approved' => 'Les entêtes d’autorisation dans votre requête concernent un consommateur OAuth qui n’est pas approuvé pour le moment', # Fuzzy
 	'mwoauth-invalid-authorization-blocked-user' => 'Les entêtes d’autorisation dans votre requête concernent un utilisateur qui est bloqué',
 	'mwoauth-form-description-allwikis' => "Bonjour $1,
 
@@ -1879,11 +1907,10 @@ $5",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Politique de confidentialité]]',
 	'mwoauth-form-button-approve' => 'Autoriser',
 	'mwoauth-form-button-cancel' => 'Annuler',
-	'mwoauth-authorize-form-invalid-user' => 'Ce compte utilisateur ne peut pas utiliser OAuth, parce que le compte de ce wiki et le compte du wiki central OAuth ne sont pas liés.',
-	'mwoauth-error' => 'Erreur OAuth',
+	'mwoauth-error' => 'Erreur OAuth', # Fuzzy
 	'mwoauth-grants-heading' => 'Droits requis :',
 	'mwoauth-grants-nogrants' => 'L’application n’a demandé aucun droit.',
-	'mwoauth-acceptance-cancelled' => 'Vous avez annulé cette demande d’autoriser un consommateur OAuth à agir en votre nom.',
+	'mwoauth-acceptance-cancelled' => 'Vous avez annulé cette demande d’autoriser un consommateur OAuth à agir en votre nom.', # Fuzzy
 	'mwoauth-grant-group-page-interaction' => 'Interagir avec des pages',
 	'mwoauth-grant-group-file-interaction' => 'Interagir avec des médias',
 	'mwoauth-grant-group-watchlist-interaction' => 'Interagir avec votre liste de suivi',
@@ -2272,7 +2299,7 @@ $messages['he'] = array(
 	'mwoauthmanageconsumers-reenable' => 'אושר',
 	'mwoauthmanageconsumers-reason' => 'סיבה:',
 	'mwoauthmanageconsumers-confirm-submit' => 'עדכון מצב צרכן',
-	'mwoauthmanageconsumers-viewing' => 'משתמש "$1" רואה כעת את הצרכן',
+	'mwoauthmanageconsumers-viewing' => 'משתמש "$1" רואה כעת את הצרכן', # Fuzzy
 	'mwoauthmanageconsumers-success-approved' => 'הבקשה אושרה',
 	'mwoauthmanageconsumers-success-rejected' => 'הבקשה נדחתה',
 	'mwoauthmanageconsumers-success-disabled' => 'צרכן בוטל',
@@ -2280,7 +2307,7 @@ $messages['he'] = array(
 	'mwoauthmanagemygrants-notloggedin' => 'יש להיות מחובר כדי לגשת לדף זה.',
 	'mwoauthmanagemygrants-navigation' => 'ניווט:',
 	'mwoauthmanagemygrants-showlist' => 'רשימת צרכנים שהתקבלו', # Fuzzy
-	'mwoauthmanagemygrants-user' => 'מפרסם',
+	'mwoauthmanagemygrants-user' => 'מפרסם', # Fuzzy
 	'mwoauthmanagemygrants-description' => 'תיאור',
 	'mwoauthmanagemygrants-review' => 'ניהול גישה',
 	'mwoauthmanagemygrants-action' => 'שינוי מצב:',
@@ -2293,16 +2320,14 @@ $messages['he'] = array(
 	'logentry-mwoauthconsumer-reject' => '$1 {{GENDER:$2|rejected}} צרכן OAuth על ידי $3 (מפתח צרכן $4)',
 	'logentry-mwoauthconsumer-disable' => '$1 {{GENDER:$2|disabled}} צרכן OAuth על ידי $3 (מפתח צרכן $4)',
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|re-enabled}} צרכן OAuth על ידי $3 (מפתח צרכן $4)',
-	'mwoauth-bad-request' => 'אירעה שגיאה בבקשת OAuth.',
-	'mwoauthdatastore-request-token-not-found' => 'לא נמצאה בקשה לאסימון זה.',
+	'mwoauthdatastore-request-token-not-found' => 'לא נמצאה בקשה לאסימון זה.', # Fuzzy
 	'mwoauthdatastore-bad-token' => 'לא נמצא אסימון מתאים לבקשתך.',
 	'mwoauthdatastore-bad-verifier' => 'קוד האימות שסופק לא חוקי.',
 	'mwoauthdatastore-invalid-token-type' => 'האסימון המבוקש אינו תקין.',
 	'mwoauthgrants-general-error' => 'אירעה שגיאה בבקשת OAuth.',
-	'mwoauthserver-bad-consumer' => 'לא נמצא צרכן מאושר עבור המפתח שסופק.',
-	'mwoauthserver-insufficient-rights' => 'אין לך הרשאות לביצוע את פעולה זו.',
+	'mwoauthserver-bad-consumer' => 'לא נמצא צרכן מאושר עבור המפתח שסופק.', # Fuzzy
+	'mwoauthserver-insufficient-rights' => 'אין לך הרשאות לביצוע את פעולה זו.', # Fuzzy
 	'mwoauthserver-invalid-request-token' => 'אסימון לא חוקי בבקשתך.',
-	'mwoauthserver-invalid-user-hookabort' => 'משתמש זה לא יכול להשתמש בOAuth.',
 	'mwoauth-invalid-authorization-title' => 'שגיאת אימות OAuth',
 	'mwoauth-form-description-allwikis' => 'שלום $1
 
@@ -2322,10 +2347,9 @@ $5',
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Privacy Policy]]',
 	'mwoauth-form-button-approve' => 'לאפשר',
 	'mwoauth-form-button-cancel' => 'ביטול',
-	'mwoauth-authorize-form-invalid-user' => 'משתמש זה לא יכול להשתמש בOAuth בגלל שחשבונו בויקי זה וחשבונו בויקי OAuth המרכזי אינם מקושרים.',
-	'mwoauth-error' => 'שגיאת OAuth',
+	'mwoauth-error' => 'שגיאת OAuth', # Fuzzy
 	'mwoauth-grants-heading' => 'הרשאות מבוקשות:',
-	'mwoauth-acceptance-cancelled' => 'ביטלת את הבקשה לאשר את הצרכן OAuth לפעול מטעמך.',
+	'mwoauth-acceptance-cancelled' => 'ביטלת את הבקשה לאשר את הצרכן OAuth לפעול מטעמך.', # Fuzzy
 	'mwoauth-grant-group-page-interaction' => 'פעילות בדפים',
 	'mwoauth-grant-group-file-interaction' => 'פעילות במדיה',
 	'mwoauth-grant-group-watchlist-interaction' => 'פעילות ברשימת מעקב',
@@ -2691,7 +2715,7 @@ Ti è stato assegnato il token cliente '''$1''' e il token segreto '''$2'''. ''R
 	'mwoauthmanageconsumers-reenable' => 'Approvato',
 	'mwoauthmanageconsumers-reason' => 'Motivo:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Aggiorna stato cliente',
-	'mwoauthmanageconsumers-viewing' => 'L\'utente "$1" sta attualmente vedendo questo cliente',
+	'mwoauthmanageconsumers-viewing' => 'L\'utente "$1" sta attualmente vedendo questo cliente', # Fuzzy
 	'mwoauthmanageconsumers-success-approved' => 'La richiesta è stata approvata.',
 	'mwoauthmanageconsumers-success-rejected' => 'La richiesta è stata respinta.',
 	'mwoauthmanageconsumers-success-disabled' => 'Il cliente è stato disabilitato.',
@@ -2724,10 +2748,10 @@ Le applicazioni connesse accedono alla tua utenza usando il protocollo OAuth. <s
 	'mwoauthmanagemygrants-notloggedin' => "Devi effettuare l'accesso per accedere a questa pagina.",
 	'mwoauthmanagemygrants-navigation' => 'Navigazione:',
 	'mwoauthmanagemygrants-showlist' => 'Elenco applicazioni connesse',
-	'mwoauthmanagemygrants-none' => 'Nessuna applicazione è attualmente collegata alla tua utenza.',
-	'mwoauthmanagemygrants-user' => 'Editore',
+	'mwoauthmanagemygrants-none' => 'Nessuna applicazione è attualmente collegata alla tua utenza.', # Fuzzy
+	'mwoauthmanagemygrants-user' => 'Editore', # Fuzzy
 	'mwoauthmanagemygrants-description' => 'Descrizione',
-	'mwoauthmanagemygrants-wikiallowed' => 'Consentito su progetto',
+	'mwoauthmanagemygrants-wikiallowed' => 'Consentito su progetto', # Fuzzy
 	'mwoauthmanagemygrants-grants' => 'Assegnazioni applicabili',
 	'mwoauthmanagemygrants-grantsallowed' => 'Diritti consentiti',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Assegnazioni applicabili consentite:',
@@ -2749,23 +2773,21 @@ Le applicazioni connesse accedono alla tua utenza usando il protocollo OAuth. <s
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|ha riabilitato}} un cliente OAuth di $3 (chiave cliente $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Clienti OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Registro dei clienti OAuth approvati, respinti o disabilitati.',
-	'mwoauth-bad-request' => "C'è un errore nella tua richiesta OAuth.",
 	'mwoauthdatastore-access-token-not-found' => 'Non è stata trovata alcuna assegnazione approvata per il token di autorizzazione.',
-	'mwoauthdatastore-request-token-not-found' => 'Non è stata trovata alcuna richiesta per il token.',
+	'mwoauthdatastore-request-token-not-found' => 'Non è stata trovata alcuna richiesta per il token.', # Fuzzy
 	'mwoauthdatastore-bad-token' => 'Non è stato trovato alcun token che corrisponde alla tua richiesta.',
 	'mwoauthdatastore-bad-verifier' => 'Il codice di verifica fornito non è valido.',
 	'mwoauthdatastore-invalid-token-type' => 'Il tipo di token richiesto non è valido.',
 	'mwoauthgrants-general-error' => "C'è un errore nella tua richiesta OAuth.",
-	'mwoauthserver-bad-consumer' => 'Non è stato trovato alcun cliente autorizzato per la chiave fornita.',
-	'mwoauthserver-insufficient-rights' => 'Non hai i diritti sufficienti per eseguire questa azione.',
+	'mwoauthserver-bad-consumer' => 'Non è stato trovato alcun cliente autorizzato per la chiave fornita.', # Fuzzy
+	'mwoauthserver-insufficient-rights' => 'Non hai i diritti sufficienti per eseguire questa azione.', # Fuzzy
 	'mwoauthserver-invalid-request-token' => 'Token non valido nella tua richiesta.',
-	'mwoauthserver-invalid-user-hookabort' => 'Questo utente non può utilizzare OAuth.',
 	'mwoauth-invalid-authorization-title' => 'Errore autorizzazione OAuth',
 	'mwoauth-invalid-authorization' => "L'intestazione dell'autorizzazione nella tua richiesta non è valida: $1",
 	'mwoauth-invalid-authorization-wrong-wiki' => "L'intestazione dell'autorizzazione nella tua richiesta non è valida per $1",
 	'mwoauth-invalid-authorization-invalid-user' => "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un utente che non esiste qui",
 	'mwoauth-invalid-authorization-wrong-user' => "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un altro utente",
-	'mwoauth-invalid-authorization-not-approved' => "L'intestazione dell'autorizzazione nella tua richiesta è per un cliente OAuth che non è attualmente approvato",
+	'mwoauth-invalid-authorization-not-approved' => "L'intestazione dell'autorizzazione nella tua richiesta è per un cliente OAuth che non è attualmente approvato", # Fuzzy
 	'mwoauth-invalid-authorization-blocked-user' => "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un utente che è bloccato",
 	'mwoauth-form-description-allwikis' => "Ciao $1,
 
@@ -2787,11 +2809,10 @@ $5",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Politica relativa alla privacy]]',
 	'mwoauth-form-button-approve' => 'Consenti',
 	'mwoauth-form-button-cancel' => 'Annulla',
-	'mwoauth-authorize-form-invalid-user' => "Questo account non può usare OAuth, perché l'utenza su questo wiki e quella sul wiki OAuth centrale non sono collegate.",
-	'mwoauth-error' => 'Errore OAuth',
+	'mwoauth-error' => 'Errore OAuth', # Fuzzy
 	'mwoauth-grants-heading' => 'Autorizzazioni richieste:',
 	'mwoauth-grants-nogrants' => "L'applicazione non ha richiesto alcuna autorizzazione.",
-	'mwoauth-acceptance-cancelled' => 'Hai annullato la richiesta di autorizzazione per il cliente OAuth di agire per tuo conto.',
+	'mwoauth-acceptance-cancelled' => 'Hai annullato la richiesta di autorizzazione per il cliente OAuth di agire per tuo conto.', # Fuzzy
 	'mwoauth-grant-group-page-interaction' => 'Interagisce con le pagine',
 	'mwoauth-grant-group-file-interaction' => 'Interagisce con i file multimediali',
 	'mwoauth-grant-group-watchlist-interaction' => 'Interagisce con i tuoi osservati speciali',
@@ -2911,7 +2932,7 @@ $messages['ja'] = array(
 	'mwoauthmanageconsumers-disable' => '無効',
 	'mwoauthmanageconsumers-reason' => '理由:',
 	'mwoauthmanageconsumers-confirm-submit' => 'コンシューマーの状態を更新',
-	'mwoauthmanageconsumers-viewing' => '利用者「$1」が現在このコンシューマーを閲覧中です',
+	'mwoauthmanageconsumers-viewing' => '{{GENDER:$1|利用者}}「$1」が現在このコンシューマーを閲覧中です',
 	'mwoauthmanageconsumers-success-approved' => 'リクエストを承認しました。',
 	'mwoauthmanageconsumers-success-rejected' => 'リクエストを却下しました。',
 	'mwoauthmanageconsumers-success-disabled' => 'コンシューマーを無効にしました。',
@@ -2941,8 +2962,8 @@ Connected applications access your account by using the OAuth protocol. <span cl
 	'mwoauthmanagemygrants-notloggedin' => 'このページにアクセスするにはログインしてください。',
 	'mwoauthmanagemygrants-navigation' => 'ナビゲーション:',
 	'mwoauthmanagemygrants-showlist' => '接続済みアプリケーション一覧',
-	'mwoauthmanagemygrants-none' => '現在、あなたのアカウントに接続されているアプリケーションはありません',
-	'mwoauthmanagemygrants-user' => '発行者',
+	'mwoauthmanagemygrants-none' => 'あなたのアカウントに接続されているアプリケーションはありません。',
+	'mwoauthmanagemygrants-user' => '発行者:',
 	'mwoauthmanagemygrants-description' => '説明',
 	'mwoauthmanagemygrants-review' => 'アクセスを管理',
 	'mwoauthmanagemygrants-revoke' => 'アクセスを取り消す',
@@ -2961,15 +2982,13 @@ Connected applications access your account by using the OAuth protocol. <span cl
 	'mwoauthdatastore-bad-token' => '該当するトークンは見つかりませんでした。',
 	'mwoauthdatastore-bad-verifier' => '指定した認証コードは無効でした。',
 	'mwoauthgrants-general-error' => 'OAuth リクエストでエラーが発生しました。',
-	'mwoauthserver-insufficient-rights' => 'あなたにはこの操作を実行する権限がありません。',
+	'mwoauthserver-insufficient-rights' => 'あなたにはこの操作を実行する権限がありません。', # Fuzzy
 	'mwoauthserver-invalid-request-token' => 'リクエストに無効なトークンがあります。',
-	'mwoauthserver-invalid-user-hookabort' => 'この利用者は OAuth を使用できません。',
 	'mwoauth-invalid-authorization-title' => 'OAuth 認証エラー',
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|プライバシー・ポリシー]]',
 	'mwoauth-form-button-approve' => '許可',
 	'mwoauth-form-button-cancel' => 'キャンセル',
-	'mwoauth-authorize-form-invalid-user' => 'このウィキと中央管理 OAuth ウィキの利用者アカウントがリンクされていないため、このアカウントでは OAuth を使用できません。',
-	'mwoauth-error' => 'OAuth エラー',
+	'mwoauth-error' => 'アプリケーション接続エラー',
 	'mwoauth-grant-group-email' => 'メールの送信',
 	'mwoauth-grant-group-customization' => 'カスタマイズと個人設定',
 	'mwoauth-grant-group-other' => 'その他の活動',
@@ -3227,8 +3246,8 @@ $messages['lb'] = array(
 	'mwoauth-consumer-stage' => 'Aktuelle Status:',
 	'mwoauth-consumer-email' => 'Kontakt-E-Mail-Adress:',
 	'mwoauth-consumer-description' => 'Beschreiwung vum Programm:',
-	'mwoauth-consumer-wiki-thiswiki' => 'Aktuell Wiki ($1)', # Fuzzy
-	'mwoauth-consumer-wiki-other' => 'Spezifesch Wiki', # Fuzzy
+	'mwoauth-consumer-wiki-thiswiki' => 'Aktuelle Projet ($1)',
+	'mwoauth-consumer-wiki-other' => 'Spezifesche Projet',
 	'mwoauth-consumer-reason' => 'Grond:',
 	'mwoauth-consumer-email-unconfirmed' => "D'E-Mail-Adress vun Ärem Benotzerkont gouf nach net confirméiert.",
 	'mwoauth-consumer-not-disabled' => 'De Konsument ass elo net desaktivéiert',
@@ -3259,25 +3278,23 @@ $messages['lb'] = array(
 	'mwoauthlistconsumers-view' => 'Detailer',
 	'mwoauthlistconsumers-name' => 'Numm vun der Applicatioun',
 	'mwoauthlistconsumers-description' => 'Beschreiwung',
-	'mwoauthlistconsumers-wiki' => 'Applicabel Wiki', # Fuzzy
+	'mwoauthlistconsumers-wiki' => 'Applicabele Projet',
 	'mwoauthlistconsumers-status-proposed' => 'proposéiert',
 	'mwoauthlistconsumers-status-disabled' => 'desaktivéiert',
 	'mwoauthmanagemygrants-notloggedin' => 'Dir musst ageloggt si fir op dës Säit ze kommen.',
 	'mwoauthmanagemygrants-navigation' => 'Navigatioun:',
 	'mwoauthmanagemygrants-description' => 'Beschreiwung',
-	'mwoauthmanagemygrants-wikiallowed' => 'Op der Wiki erlaabt', # Fuzzy
+	'mwoauthmanagemygrants-wikiallowed' => 'Um Projet erlaabt:',
 	'mwoauthmanagemygrants-grantaccept' => 'Accordéiert',
 	'mwoauthmanagemygrants-update' => 'Rechter aktualiséieren',
 	'mwoauthmanagemygrants-renounce' => 'Autorisatioun ewechhuelen',
 	'mwoauthmanagemygrants-action' => 'Status änneren:',
-	'mwoauthserver-invalid-user-hookabort' => 'Dëse Benotzer däerf OAuth net benotzen.',
 	'mwoauth-invalid-authorization-title' => "OAuth Autorisatioun's-Feeler",
 	'mwoauth-invalid-authorization-blocked-user' => "D'Autorisatiounen an Ärer Ufro si fir ee Benotzer dee gespaart ass",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Dateschutzrichtlinnen]]',
 	'mwoauth-form-button-approve' => 'Erlaben',
 	'mwoauth-form-button-cancel' => 'Ofbriechen',
-	'mwoauth-authorize-form-invalid-user' => 'Dëse Benotzerkont kann OAuth net benotzen, well de Benotzerkont op dëser Wiki an de Benotzerkont op der zentraler OAuth Wiki net matenee verbonn sinn.',
-	'mwoauth-error' => 'OAuth Feeler',
+	'mwoauth-error' => 'Verbinndungsfeeler vun der Software',
 	'mwoauth-grants-heading' => 'Ugefroten Autorisatiounen:',
 	'mwoauth-grant-group-page-interaction' => 'Mat Säiten interagéieren',
 	'mwoauth-grant-group-watchlist-interaction' => 'Mat Ärer Iwwerwaachungslëscht interagéieren',
@@ -3300,6 +3317,7 @@ $messages['lb'] = array(
 	'mwoauth-grant-viewdeleted' => 'Geläschten Informatioune kucken',
 	'mwoauth-grant-viewmywatchlist' => 'Kuckt Är Iwwerwaachungslëscht',
 	'mwoauth-oauth-exception' => 'Am OAuth-Protokoll ass e Feeler geschitt: $1',
+	'mwoauth-listgrants-rights' => 'Rechter',
 );
 
 /** Macedonian (македонски)
@@ -3436,7 +3454,7 @@ $messages['mk'] = array(
 	'mwoauthmanageconsumers-reenable' => 'Одобрено',
 	'mwoauthmanageconsumers-reason' => 'Причина:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Измени потр. статус',
-	'mwoauthmanageconsumers-viewing' => 'Корисникот „$1“ во моментов го гледа потрошувачов',
+	'mwoauthmanageconsumers-viewing' => 'Корисникот „$1“ во моментов го гледа потрошувачов', # Fuzzy
 	'mwoauthmanageconsumers-success-approved' => 'Барањето е одобрено.',
 	'mwoauthmanageconsumers-success-rejected' => 'Барањето е одбиено.',
 	'mwoauthmanageconsumers-success-disabled' => 'Потрошувачот е оневозможен.',
@@ -3469,10 +3487,10 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-notloggedin' => 'Треба да сте најавени за да ја отворите страницата.',
 	'mwoauthmanagemygrants-navigation' => 'Навигација:',
 	'mwoauthmanagemygrants-showlist' => 'Список на поврзани прилози',
-	'mwoauthmanagemygrants-none' => 'Нема потрошувачи поврзани со вашата сметка.',
-	'mwoauthmanagemygrants-user' => 'Издавач',
+	'mwoauthmanagemygrants-none' => 'Нема потрошувачи поврзани со вашата сметка.', # Fuzzy
+	'mwoauthmanagemygrants-user' => 'Издавач:',
 	'mwoauthmanagemygrants-description' => 'Опис',
-	'mwoauthmanagemygrants-wikiallowed' => 'Дозволен на проектот',
+	'mwoauthmanagemygrants-wikiallowed' => 'Дозволен на проектот:',
 	'mwoauthmanagemygrants-grants' => 'Применливи доделувања',
 	'mwoauthmanagemygrants-grantsallowed' => 'Дозволени доделувања:',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Дозволени применливи доделувања:',
@@ -3499,23 +3517,21 @@ $messages['mk'] = array(
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|преовозможи}} потрошувач на OAuth со $3 (потрошувачки клуч $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Потрошувачки дневник за OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Дневник на одобрувања, одбивања и оневозможувања на регистрирани потрошувачи на OAuth.',
-	'mwoauth-bad-request' => 'Се јави грешка во барањето за OAuth.',
 	'mwoauthdatastore-access-token-not-found' => 'Не пронајдов одобрено доделување со таа повластена шифра',
-	'mwoauthdatastore-request-token-not-found' => 'Не пронајдов барање со таа шифра',
+	'mwoauthdatastore-request-token-not-found' => 'Не пронајдов барање со таа шифра', # Fuzzy
 	'mwoauthdatastore-bad-token' => 'Не пронајдов барање што одговара на бараното',
 	'mwoauthdatastore-bad-verifier' => 'Укажаниот потврден код е неважечки',
 	'mwoauthdatastore-invalid-token-type' => 'Побараниот тип на шифра е неважечки.',
 	'mwoauthgrants-general-error' => 'Се појави грешка во барањето за OAuth',
-	'mwoauthserver-bad-consumer' => 'Нема одобрен потрошувач со таков клуч',
-	'mwoauthserver-insufficient-rights' => 'Ги немате потребните права за да го извршите ова дејство.',
+	'mwoauthserver-bad-consumer' => 'Нема одобрен потрошувач со таков клуч', # Fuzzy
+	'mwoauthserver-insufficient-rights' => 'Ги немате потребните права за да го извршите ова дејство.', # Fuzzy
 	'mwoauthserver-invalid-request-token' => 'Неважечкa шифра во барањето.',
-	'mwoauthserver-invalid-user-hookabort' => 'Корисникот не може да користи OAuth',
 	'mwoauth-invalid-authorization-title' => 'Грешка со овластувањето во OAuth',
 	'mwoauth-invalid-authorization' => 'Овластителните заглавија во вашето барање се неисправни: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'Овластителните заглавија во вашето барање се неисправни за $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'Овластителните заглавија во вашето барање се однесуваат на корисникот што тука не постои',
 	'mwoauth-invalid-authorization-wrong-user' => 'Овластителните заглавија во вашето барање се однесуваат на друг корисник',
-	'mwoauth-invalid-authorization-not-approved' => 'Овластителните заглавија во вашето барање се однесуваат на потрошувач на OAuth што во моментов не е одобрен',
+	'mwoauth-invalid-authorization-not-approved' => 'Овластителните заглавија во вашето барање се однесуваат на потрошувач на OAuth што во моментов не е одобрен', # Fuzzy
 	'mwoauth-invalid-authorization-blocked-user' => 'Овластителните заглавија во вашето барање се однесуваат на корисник што е блокиран',
 	'mwoauth-form-description-allwikis' => "Здраво $1,
 
@@ -3538,11 +3554,10 @@ $5",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Заштита на личните податоци]]',
 	'mwoauth-form-button-approve' => 'Дозволи',
 	'mwoauth-form-button-cancel' => 'Откажи',
-	'mwoauth-authorize-form-invalid-user' => 'Оваа корисничка сметка не може да користи OAuth бидејќи не е поврзана со сметката на OAuth.',
-	'mwoauth-error' => 'Грешка во OAuth',
+	'mwoauth-error' => 'Грешка во OAuth', # Fuzzy
 	'mwoauth-grants-heading' => 'Побарани дозволи:',
 	'mwoauth-grants-nogrants' => 'Прилогот нема побарано ниедна дозвола.',
-	'mwoauth-acceptance-cancelled' => 'Го имате откажано ова барање за овластување на потрошувач на OAuth да делува ваше име.',
+	'mwoauth-acceptance-cancelled' => 'Го имате откажано ова барање за овластување на потрошувач на OAuth да делува ваше име.', # Fuzzy
 	'mwoauth-grant-group-page-interaction' => 'Опходување со страници',
 	'mwoauth-grant-group-file-interaction' => 'Опходување со слики и снимки',
 	'mwoauth-grant-group-watchlist-interaction' => 'Опходување со списокот на набљудувања',
@@ -3889,10 +3904,10 @@ $messages['oc'] = array(
 	'mwoauthmanageconsumers-reenable' => 'Aprovat',
 	'mwoauthmanageconsumers-reason' => 'Motiu :',
 	'mwoauthmanagemygrants-navigation' => 'Navigacion :',
-	'mwoauthmanagemygrants-user' => 'Editor',
+	'mwoauthmanagemygrants-user' => 'Editor', # Fuzzy
 	'mwoauthmanagemygrants-description' => 'Descripcion',
 	'mwoauthmanagemygrants-wikiallowed' => 'Autorizat sul wiki', # Fuzzy
-	'mwoauth-error' => 'Error OAuth',
+	'mwoauth-error' => 'Error OAuth', # Fuzzy
 	'mwoauth-grant-blockusers' => 'Blocar e desblocar los utilizaires',
 	'mwoauth-grant-patrol' => 'Marcar de paginas coma patrolhadas',
 );
@@ -3974,36 +3989,57 @@ $messages['roa-tara'] = array(
 );
 
 /** Russian (русский)
+ * @author Kaganer
  * @author Okras
  */
 $messages['ru'] = array(
 	'mwoauth-desc' => 'API авторизации OAuth 1.0a',
 	'mwoauth-missing-field' => 'Отсутствует значение для поля «$1»',
+	'mwoauth-invalid-field' => 'Недопустимое значение для поля «$1»',
+	'mwoauth-invalid-field-generic' => 'Недопустимое значение',
 	'mwoauth-field-hidden' => '(эта информация скрыта)',
 	'mwoauth-field-private' => '(эта информация является конфиденциальной)',
+	'mwoauth-prefs-managegrants' => 'Подключенные приложения:',
+	'mwoauth-prefs-managegrantslink' => 'Управление $1 {{PLURAL:$1|подключенным приложением|подключенными приложениями}}',
 	'mwoauth-consumer-allwikis' => 'Все проекты на этом сайте',
 	'mwoauth-consumer-stage' => 'Текущее состояние:',
 	'mwoauth-consumer-email' => 'Контактный адрес электронной почты:',
+	'mwoauth-consumer-wiki' => 'Применимо к проекту:',
+	'mwoauth-consumer-wiki-other' => 'Конкретный проект',
 	'mwoauth-consumer-restrictions' => 'Ограничения на использование:',
 	'mwoauth-consumer-restrictions-json' => 'Ограничения на использование (JSON):',
 	'mwoauth-consumer-reason' => 'Причина:',
 	'mwoauth-consumer-email-unconfirmed' => 'Адрес электронной почты вашей учетной записи еще не был подтверждён.',
 	'mwoauthconsumerregistration-stage' => 'Состояние',
 	'mwoauthconsumerregistration-lastchange' => 'Последнее изменение',
+	'mwoauthmanageconsumers-showproposed' => 'Предлагаемые запросы',
+	'mwoauthmanageconsumers-showrejected' => 'Отклонённые запросы',
+	'mwoauthmanageconsumers-showexpired' => 'Устаревшие запросы',
 	'mwoauthmanageconsumers-description' => 'Описание',
 	'mwoauthmanageconsumers-lastchange' => 'Последнее изменение',
 	'mwoauthmanageconsumers-action' => 'Изменить состояние:',
 	'mwoauthmanageconsumers-reason' => 'Причина:',
 	'mwoauthlistconsumers-view' => 'подробности',
+	'mwoauthlistconsumers-wiki' => 'Применимо к проекту',
 	'mwoauthlistconsumers-basicgrantsonly' => '(только базовый доступ)',
 	'mwoauthlistconsumers-status' => 'Состояние',
+	'oauthmanagemygrants' => 'Управление подключенными приложениями',
+	'mwoauthmanagemygrants-showlist' => 'Список подключенных приложений',
+	'mwoauthmanagemygrants-none' => 'Ещё нет приложений, подключенных к вашей учётной записи.',
+	'mwoauthmanagemygrants-description' => 'Описание',
+	'mwoauthmanagemygrants-wikiallowed' => 'Допускается на проекте:',
 	'mwoauthmanagemygrants-action' => 'Изменить состояние:',
 	'mwoauth-invalid-authorization-title' => 'Ошибка авторизации OAuth',
 	'mwoauth-form-button-approve' => 'Разрешить',
 	'mwoauth-form-button-cancel' => 'Отменить',
-	'mwoauth-error' => 'Ошибка OAuth',
+	'mwoauth-error' => 'Ошибка подключения приложения',
 	'mwoauth-grants-heading' => 'Запросить разрешения:',
 	'mwoauth-grant-group-email' => 'Отправить письмо',
+	'mwoauth-grant-uploadfile' => 'Загрузить новые файлы',
+	'mwoauth-grant-viewdeleted' => 'Просмотреть удаленную информацию',
+	'mwoauth-grant-viewmywatchlist' => 'Просмотреть свой список наблюдения',
+	'mwoauth-oauth-exception' => 'Произошла ошибка в протоколе OAuth: $1',
+	'mwoauth-listgrants-rights' => 'Права',
 );
 
 /** Slovak (slovenčina)
@@ -4198,7 +4234,7 @@ Alla värden här skriver över eventuella tidigare värden. Lämna inte tomma f
 	'mwoauthmanageconsumers-reenable' => 'Godkänd',
 	'mwoauthmanageconsumers-reason' => 'Orsak:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Uppdatera konsumentstatus',
-	'mwoauthmanageconsumers-viewing' => 'Användare "$1"  tittar på denna konsument för tillfället',
+	'mwoauthmanageconsumers-viewing' => 'Användare "$1"  tittar på denna konsument för tillfället', # Fuzzy
 	'mwoauthmanageconsumers-success-approved' => 'Begäran har godkänts.',
 	'mwoauthmanageconsumers-success-rejected' => 'Begäran har avslagits.',
 	'mwoauthmanageconsumers-success-disabled' => 'Konsumenten har inaktiverats.',
@@ -4231,8 +4267,8 @@ Ansluta applikationer kan få tillgång till ditt konto via OAuth-protokollet. <
 	'mwoauthmanagemygrants-notloggedin' => 'Du måste vara inloggad för att komma åt denna sida.',
 	'mwoauthmanagemygrants-navigation' => 'Navigering:',
 	'mwoauthmanagemygrants-showlist' => 'Ansluten applikationslista',
-	'mwoauthmanagemygrants-none' => 'Inga applikationer är för närvarande anslutna till ditt konto.',
-	'mwoauthmanagemygrants-user' => 'Utgivare',
+	'mwoauthmanagemygrants-none' => 'Inga applikationer är för närvarande anslutna till ditt konto.', # Fuzzy
+	'mwoauthmanagemygrants-user' => 'Utgivare', # Fuzzy
 	'mwoauthmanagemygrants-description' => 'Beskrivning',
 	'mwoauthmanagemygrants-wikiallowed' => 'Tillåten på wiki', # Fuzzy
 	'mwoauthmanagemygrants-grants' => 'Tillämpliga stipendier',
@@ -4262,23 +4298,21 @@ Ansluta applikationer kan få tillgång till ditt konto via OAuth-protokollet. <
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|Återaktiverade}} en OAuthkonsument av $3 (konsumentnyckel $4)',
 	'mwoauthconsumer-consumer-logpage' => 'OAuthkonsumentslogg',
 	'mwoauthconsumer-consumer-logpagetext' => 'Logg över godkännanden, avslag och inaktivering av registrerade OAuthkonsumenter.',
-	'mwoauth-bad-request' => 'Det uppstod ett fel i din OAuthbegäran.',
 	'mwoauthdatastore-access-token-not-found' => 'Inget godkänt bidrag har hittats för den auktoriseringstoken.',
-	'mwoauthdatastore-request-token-not-found' => 'Ingen begäran hittades för den token.',
+	'mwoauthdatastore-request-token-not-found' => 'Ingen begäran hittades för den token.', # Fuzzy
 	'mwoauthdatastore-bad-token' => 'Ingen token hittades som matchade din begäran.',
 	'mwoauthdatastore-bad-verifier' => 'Verifikationskoden som givits var inte giltig.',
 	'mwoauthdatastore-invalid-token-type' => 'Den begärda tokentypen är ogiltig.',
 	'mwoauthgrants-general-error' => 'Det uppstod ett fel i din OAuthbegäran.',
-	'mwoauthserver-bad-consumer' => 'Ingen godkänd konsument hittas för den nyckel du angav.',
-	'mwoauthserver-insufficient-rights' => 'Du har inte tillräcklig behörighet för att utföra denna åtgärd.',
+	'mwoauthserver-bad-consumer' => 'Ingen godkänd konsument hittas för den nyckel du angav.', # Fuzzy
+	'mwoauthserver-insufficient-rights' => 'Du har inte tillräcklig behörighet för att utföra denna åtgärd.', # Fuzzy
 	'mwoauthserver-invalid-request-token' => 'Ogiltig token i din begäran.',
-	'mwoauthserver-invalid-user-hookabort' => 'Denna användare kan inte använda OAuth.',
 	'mwoauth-invalid-authorization-title' => 'OAuth auktoriseringsfel',
 	'mwoauth-invalid-authorization' => 'Auktoriseringsrubriker i din begäran är inte giltiga: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'De auktoriserade rubrikerna i din begäran är inte giltiga för $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'Auktoriseringsrubrikerna i din begäran är för användare som inte existerar här',
 	'mwoauth-invalid-authorization-wrong-user' => 'Auktoriseringsrubrikerna i din begäran är för en annan användare',
-	'mwoauth-invalid-authorization-not-approved' => 'Auktoriseringsrubrikerna i din begäran är för en OAuthkonsument som för närvarande inte är godkänd',
+	'mwoauth-invalid-authorization-not-approved' => 'Auktoriseringsrubrikerna i din begäran är för en OAuthkonsument som för närvarande inte är godkänd', # Fuzzy
 	'mwoauth-invalid-authorization-blocked-user' => 'Auktoriseringsrubrikerna i din begäran är för en användare som är blockerad',
 	'mwoauth-form-description-allwikis' => "Hej $1,
 '''$2''' skulle vilja göra följande åtgärder åt dina vägnar på alla projekt på denna sida:
@@ -4298,11 +4332,10 @@ $5",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Integritetspolicy]]',
 	'mwoauth-form-button-approve' => 'Tillåt',
 	'mwoauth-form-button-cancel' => 'Avbryt',
-	'mwoauth-authorize-form-invalid-user' => 'Detta användarkonto kan inte nyttja OAuth då kontot på denna wiki och kontot på den centrala OAuth wikin inte är sammankopplade.',
-	'mwoauth-error' => 'OAuth error',
+	'mwoauth-error' => 'OAuth error', # Fuzzy
 	'mwoauth-grants-heading' => 'Begärda tillstånd:',
 	'mwoauth-grants-nogrants' => 'Ansökan har inte begärt något tillstånd.',
-	'mwoauth-acceptance-cancelled' => 'Du har avbrutit denna begäran att auktorisera en OAuthkonsument att agera åt dina vägnar.',
+	'mwoauth-acceptance-cancelled' => 'Du har avbrutit denna begäran att auktorisera en OAuthkonsument att agera åt dina vägnar.', # Fuzzy
 	'mwoauth-grant-group-page-interaction' => 'Interagera med sidor',
 	'mwoauth-grant-group-file-interaction' => 'Interagera med media',
 	'mwoauth-grant-group-watchlist-interaction' => 'Interagera med din bevakningslista',
@@ -4493,7 +4526,7 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'mwoauthmanageconsumers-reenable' => 'Затверджено',
 	'mwoauthmanageconsumers-reason' => 'Причина:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Оновити статус споживача',
-	'mwoauthmanageconsumers-viewing' => 'Користувач " $1 " в даний час переглядає цього споживача',
+	'mwoauthmanageconsumers-viewing' => '{{GENDER:$1|Користувач|Користувачка}} "$1" в даний час переглядає цього споживача',
 	'mwoauthmanageconsumers-success-approved' => 'Запит був схвалений.',
 	'mwoauthmanageconsumers-success-rejected' => 'Запит був відхилений.',
 	'mwoauthmanageconsumers-success-disabled' => 'Споживач вже вимкнений.',
@@ -4524,10 +4557,10 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'mwoauthmanagemygrants-notloggedin' => 'Ви повинні увійти в систему для доступу до цієї сторінки.',
 	'mwoauthmanagemygrants-navigation' => 'Навігація:',
 	'mwoauthmanagemygrants-showlist' => 'Список підключених програм',
-	'mwoauthmanagemygrants-none' => 'Жодна програма зараз не підключена до вашого облікового запису.',
-	'mwoauthmanagemygrants-user' => 'Видавець',
+	'mwoauthmanagemygrants-none' => 'Жодна програма не підключена до вашого облікового запису.',
+	'mwoauthmanagemygrants-user' => 'Видавець:',
 	'mwoauthmanagemygrants-description' => 'Опис',
-	'mwoauthmanagemygrants-wikiallowed' => 'Дозволено на проекті',
+	'mwoauthmanagemygrants-wikiallowed' => 'Дозволено на проекті:',
 	'mwoauthmanagemygrants-grants' => 'Застосовні ґранти',
 	'mwoauthmanagemygrants-grantsallowed' => 'Ґранти, які дозволили',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Застосовні гранти дозволено:',
@@ -4554,23 +4587,42 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|повторно увімкнув|повторно увімкнула}} споживача OAuth на $3 (ключ споживача $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Журнал споживача OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Журнал затвердження, відхилення і вимкнення зареєстрованих споживачів OAuth.',
-	'mwoauth-bad-request' => 'Помилка у вашому запиті на OAuth.',
+	'mwoauth-bad-request-missing-params' => 'На жаль, щось пішло не так при налаштуванні цієї підключеної програми. <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Contact support]</span> для отримання допомоги по виправленню.
+
+<span class="plainlinks mw-mwoautherror-details">Пропущені параметри OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>',
+	'mwoauth-bad-request-invalid-action' => 'Вибачте, щось пішло не так. Вам потрібно зв\'язатися з  автором програми для допомоги з цього питання.
+
+<span class="plainlinks mw-mwoautherror-details">Unknown URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>',
+	'mwoauth-bad-request-invalid-action-contact' => 'Вибачте, щось пішло не так. Вам потрібно зв\'язатися з  автором програми [$1]  для допомоги з цього питання.
+
+<span class="plainlinks mw-mwoautherror-details">Unknown URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
 	'mwoauthdatastore-access-token-not-found' => 'Не знайдено схваленого ґранту для цього маркера авторизації.',
-	'mwoauthdatastore-request-token-not-found' => 'Не знайдено запиту для цього маркера.',
+	'mwoauthdatastore-request-token-not-found' => 'На жаль, щось пішло невірно при підключенні цієї програми. Поверніться назад та спробуйте підключити ваш профіль знову або зв\'яжіться з автором програми.
+
+<span class="plainlinks mw-mwoautherror-details">Маркер OAuth не знайдений, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
 	'mwoauthdatastore-bad-token' => 'Не знайдено маркера, відповідного вашому запиту.',
 	'mwoauthdatastore-bad-verifier' => 'Наданий код підтвердження недійсний.',
 	'mwoauthdatastore-invalid-token-type' => 'Неприпустимий маркер запитаного типу.',
 	'mwoauthgrants-general-error' => 'Помилка у вашому запиті на OAuth.',
-	'mwoauthserver-bad-consumer' => 'Не знайдено затвердженого споживача для наданого ключа.',
-	'mwoauthserver-insufficient-rights' => 'У вас не вистачає прав для виконання цієї дії.',
+	'mwoauthserver-bad-consumer' => '$1 більше не схвалена як підключена програма, [$2 зв\'яжіться] з автором програми за допомогою.
+
+<span class="plainlinks mw-mwoautherror-details">Підключена програма OAuth  не схвалена, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
+	'mwoauthserver-bad-consumer-key' => 'На жаль, щось пішло не так при підключенні цієї програми.
+
+<span class="plainlinks mw-mwoautherror-details">Невідомий ключ OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>',
+	'mwoauthserver-insufficient-rights' => 'Вашому профілю не дозволено використовувати підключені програми, зв\'яжіться з адміністратором вашого сайту для з\'ясування причин.
+
+<span class="plainlinks mw-mwoautherror-details">Недостатні права користувача OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Неприпустимий маркер у вашому запиті.',
-	'mwoauthserver-invalid-user-hookabort' => 'Цей користувач не може використовувати OAuth.',
+	'mwoauthserver-invalid-user' => 'Для використання підключених програм на сайті вам потрібно мати профіль на всі проекти. Коли у вас є обліковий запис на усі проекти, можете спробувати знову підключити $1.
+
+<span class="plainlinks mw-mwoautherror-details">Необхідний єдиний вхід, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>',
 	'mwoauth-invalid-authorization-title' => 'Помилка авторизації OAuth',
 	'mwoauth-invalid-authorization' => 'Неприпустимі заголовки авторизації у вашому запиті:$1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'Неприпустимі заголовки авторизації у вашому запиті для $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'Не існують заголовки авторизації у вашому запиті для користувача',
 	'mwoauth-invalid-authorization-wrong-user' => 'Заголовки авторизації у вашому запиті призначені для іншого користувача',
-	'mwoauth-invalid-authorization-not-approved' => 'Заголовки авторизації у вашому запитів призначені для ще незатвердженого споживача OAuth',
+	'mwoauth-invalid-authorization-not-approved' => "Програма, якою ви намагаєтеся з'єднатися, схоже, налаштована неправильно, зверніться до автора $1.",
 	'mwoauth-invalid-authorization-blocked-user' => 'Заголовки авторизації у вашому запитів призначені для заблокованого користувача',
 	'mwoauth-form-description-allwikis' => "Привіт $1,
 
@@ -4593,11 +4645,10 @@ $5',
 	'mwoauth-form-privacypolicy-link' => ' [[{{ns:Project}}:Privacy policy|Privacy Policy]]',
 	'mwoauth-form-button-approve' => 'Дозволити',
 	'mwoauth-form-button-cancel' => 'Скасувати',
-	'mwoauth-authorize-form-invalid-user' => "Цей обліковий запис користувача не може використовувати OAuth, тому що облікового запису на цій вікі і обліковий запис у вікі OAuth не пов'язані.",
-	'mwoauth-error' => 'Помилка OAuth',
+	'mwoauth-error' => 'Помилка підключення застосунку',
 	'mwoauth-grants-heading' => 'Потрібні дозволи:',
 	'mwoauth-grants-nogrants' => 'Програма не вимагає жодних дозволів.',
-	'mwoauth-acceptance-cancelled' => 'Ви скасували цей запит авторизації OAuth, щоб діяти від вашого імені.',
+	'mwoauth-acceptance-cancelled' => 'Ви вже вибрали не надавати $1 доступу до вашого профілю. $1 не буде працювати без вашого дозволу. Ви можете повернутися до $1 або до [[Special:OAuthManageMyGrants|управління]] вашими підключеними програмами.',
 	'mwoauth-grant-group-page-interaction' => 'Взаємодіяти з сторінками',
 	'mwoauth-grant-group-file-interaction' => 'Взаємодіяти з медіа',
 	'mwoauth-grant-group-watchlist-interaction' => 'Взаємодіяти з вашим списком спостереження',
@@ -4852,16 +4903,20 @@ $messages['zh-hans'] = array(
 	'mwoauthlistconsumers-status' => '状态',
 	'mwoauth-consumer-stage-any' => '任何',
 	'mwoauthlistconsumers-status-proposed' => '建议',
+	'mwoauthlistconsumers-status-approved' => '批准',
 	'mwoauthlistconsumers-status-disabled' => '停用',
-	'mwoauthmanagemygrants-none' => '当前没有应用程序连接到您的帐户。',
+	'mwoauthmanagemygrants-none' => '当前没有应用程序连接到您的帐户。', # Fuzzy
 	'mwoauthmanagemygrants-description' => '描述',
 	'mwoauthmanagemygrants-review' => '管理访问',
 	'mwoauthmanagemygrants-grantaccept' => '授权',
 	'mwoauthmanagemygrants-update' => '更新补助',
 	'mwoauthmanagemygrants-renounce' => '取消授权',
-	'mwoauth-bad-request' => '您的OAuth请求有错误。',
-	'mwoauthserver-invalid-user-hookabort' => '此用户不能使用。',
 	'mwoauth-invalid-authorization-title' => 'OAuth认证错误',
+	'mwoauth-form-description-onewiki' => "您好$1，
+
+'''$2'''很想关注您在''$4''的各种琐事：
+
+$5",
 	'mwoauth-form-button-approve' => '允许',
 	'mwoauth-form-button-cancel' => '取消',
 	'mwoauth-grant-group-email' => '发送电邮',
