@@ -152,7 +152,7 @@ You have been assigned a consumer token of \'\'\'$1\'\'\' and a secret token of 
 	'mwoauthmanageconsumers-reenable' => 'Approved',
 	'mwoauthmanageconsumers-reason' => 'Reason:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Update consumer status',
-	'mwoauthmanageconsumers-viewing' => 'User "$1" is currently viewing this consumer',
+	'mwoauthmanageconsumers-viewing' => '{{GENDER:$1|User}} "$1" is currently viewing this consumer',
 	'mwoauthmanageconsumers-success-approved' => 'Request has been approved.',
 	'mwoauthmanageconsumers-success-rejected' => 'Request has been rejected.',
 	'mwoauthmanageconsumers-success-disabled' => 'Consumer has been disabled.',
