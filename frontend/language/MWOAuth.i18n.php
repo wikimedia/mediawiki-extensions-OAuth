@@ -187,7 +187,7 @@ Connected applications access your account by using the OAuth protocol. <span cl
 	'mwoauthmanagemygrants-notloggedin' => 'You have to be logged in to access this page.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
 	'mwoauthmanagemygrants-showlist' => 'Connected application list',
-	'mwoauthmanagemygrants-none' => 'There aren\'t any applications connected to your account.',
+	'mwoauthmanagemygrants-none' => 'There are no applications connected to your account.',
 	'mwoauthmanagemygrants-user' => 'Publisher:',
 	'mwoauthmanagemygrants-description' => 'Description',
 	'mwoauthmanagemygrants-wikiallowed' => 'Allowed on project:',
@@ -238,24 +238,24 @@ Go back and try to connect your account again, or contact the application author
 	'mwoauthdatastore-bad-verifier' => 'The verification code provided was not valid.',
 	'mwoauthdatastore-invalid-token-type' => 'The requested token type is invalid.',
 	'mwoauthgrants-general-error' => 'There was an error in your OAuth request.',
-	'mwoauthserver-bad-consumer' => '$1 is no longer approved as a Connected App, [$2 contact] the application author for help.
+	'mwoauthserver-bad-consumer' => '"$1" is no longer approved as a Connected App, [$2 contact] the application author for help.
 
 <span class="plainlinks mw-mwoautherror-details">Connected OAuth app not approved, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
 	'mwoauthserver-bad-consumer-key' => 'Sorry, something went wrong connecting this application.
 
 <span class="plainlinks mw-mwoautherror-details">Unknown OAuth key, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>',
-	'mwoauthserver-insufficient-rights' => 'Your account isn\'t allowed to use Connected Apps, contact your site administrator to find out why.
+	'mwoauthserver-insufficient-rights' => 'Your account is not allowed to use Connected Apps, contact your site administrator to find out why.
 
 <span class="plainlinks mw-mwoautherror-details">Insufficient OAuth user rights, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Invalid token in your request.',
-	'mwoauthserver-invalid-user' => 'To use Connected Apps on this site, you must have an account across all projects. When you have an account on all projects, you can try to connect $1 again.
+	'mwoauthserver-invalid-user' => 'To use Connected Apps on this site, you must have an account across all projects. When you have an account on all projects, you can try to connect "$1" again.
 
 <span class="plainlinks mw-mwoautherror-details">Unified login needed, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>',
 
 	'mwoauth-invalid-authorization-title' => 'OAuth authorization error',
 	'mwoauth-invalid-authorization' => 'The authorization headers in your request are not valid: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'The authorization headers in your request are not valid for $1',
-	'mwoauth-invalid-authorization-invalid-user' => 'The authorization headers in your request are for a user that doesn\'t exist here',
+	'mwoauth-invalid-authorization-invalid-user' => 'The authorization headers in your request are for a user that does not exist here',
 	'mwoauth-invalid-authorization-wrong-user' => 'The authorization headers in your request are for a different user',
 	'mwoauth-invalid-authorization-not-approved' => 'The app your trying to connect seems to be set up incorrectly, contact the author of $1 for help.',
 	'mwoauth-invalid-authorization-blocked-user' => 'The authorization headers in your request are for a user who is blocked',
@@ -284,7 +284,7 @@ $5",
 	'mwoauth-error' => 'Application Connection Error',
 	'mwoauth-grants-heading' => 'Requested permissions:',
 	'mwoauth-grants-nogrants' => 'The application has not requested any permissions.',
-	'mwoauth-acceptance-cancelled' => 'You\'ve chosen not to allow $1 to access your account. $1 will not work unless you allow it access. You can go back to $1 or [[Special:OAuthManageMyGrants|manage]] your connected apps.',
+	'mwoauth-acceptance-cancelled' => 'You have chosen not to allow "$1" to access your account. "$1" will not work unless you allow it access. You can go back to "$1" or [[Special:OAuthManageMyGrants|manage]] your connected apps.',
 
 	'mwoauth-grant-group-page-interaction' => 'Interact with pages',
 	'mwoauth-grant-group-file-interaction' => 'Interact with media',
