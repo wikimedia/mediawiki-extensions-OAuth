@@ -1670,6 +1670,7 @@ $messages['fi'] = array(
  * @author Jean-Frédéric
  * @author Linedwell
  * @author Louperivois
+ * @author VIGNERON
  * @author Wyz
  */
 $messages['fr'] = array(
@@ -1807,7 +1808,7 @@ Il vous a été assigné un jeton de consommateur '''$1''' et un jeton secret ''
 	'mwoauthmanageconsumers-reenable' => 'Approuvé',
 	'mwoauthmanageconsumers-reason' => 'Motif :',
 	'mwoauthmanageconsumers-confirm-submit' => 'Mettre à jour l’état du consommateur',
-	'mwoauthmanageconsumers-viewing' => 'L’utilisateur « $1 » est actuellement en train de visualiser ce consommateur', # Fuzzy
+	'mwoauthmanageconsumers-viewing' => '{{GENDER:$1|L’utilisateur|L’utilisatrice}} « $1 » est actuellement en train de visualiser ce consommateur',
 	'mwoauthmanageconsumers-success-approved' => 'La requête a été approuvée.',
 	'mwoauthmanageconsumers-success-rejected' => 'La requête a été rejetée.',
 	'mwoauthmanageconsumers-success-disabled' => 'Le consommateur a été désactivé.',
@@ -1840,10 +1841,10 @@ Les applications connectées accèdent à votre compte en utilisant le protocole
 	'mwoauthmanagemygrants-notloggedin' => 'Vous devez être connecté pour accéder à cette page.',
 	'mwoauthmanagemygrants-navigation' => 'Navigation :',
 	'mwoauthmanagemygrants-showlist' => 'Liste des applications connectées',
-	'mwoauthmanagemygrants-none' => 'Aucune application n’est pour le moment connectée à votre compte.', # Fuzzy
-	'mwoauthmanagemygrants-user' => 'Éditeur', # Fuzzy
+	'mwoauthmanagemygrants-none' => 'Il n’y a aucune application connectée à votre compte.',
+	'mwoauthmanagemygrants-user' => 'Éditeur ː',
 	'mwoauthmanagemygrants-description' => 'Description',
-	'mwoauthmanagemygrants-wikiallowed' => 'Autorisé sur le projet', # Fuzzy
+	'mwoauthmanagemygrants-wikiallowed' => 'Autorisé sur le projet ː',
 	'mwoauthmanagemygrants-grants' => 'Droits applicables',
 	'mwoauthmanagemygrants-grantsallowed' => 'Droits accordés :',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Droits applicables accordés :',
@@ -1907,10 +1908,10 @@ $5",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Politique de confidentialité]]',
 	'mwoauth-form-button-approve' => 'Autoriser',
 	'mwoauth-form-button-cancel' => 'Annuler',
-	'mwoauth-error' => 'Erreur OAuth', # Fuzzy
+	'mwoauth-error' => 'Erreur de connexion de l’application',
 	'mwoauth-grants-heading' => 'Droits requis :',
 	'mwoauth-grants-nogrants' => 'L’application n’a demandé aucun droit.',
-	'mwoauth-acceptance-cancelled' => 'Vous avez annulé cette demande d’autoriser un consommateur OAuth à agir en votre nom.', # Fuzzy
+	'mwoauth-acceptance-cancelled' => 'Vous avez choisi de ne pas autoriser $1 à accéder à votre compte. $1 ne fonctionnera pas à moins que vous lui autorisiez l’accès. Vous pouvez revenir à $1 ou [[Special:OAuthManageMyGrants|gérer]] vos applications connectées.',
 	'mwoauth-grant-group-page-interaction' => 'Interagir avec des pages',
 	'mwoauth-grant-group-file-interaction' => 'Interagir avec des médias',
 	'mwoauth-grant-group-watchlist-interaction' => 'Interagir avec votre liste de suivi',
@@ -3454,7 +3455,7 @@ $messages['mk'] = array(
 	'mwoauthmanageconsumers-reenable' => 'Одобрено',
 	'mwoauthmanageconsumers-reason' => 'Причина:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Измени потр. статус',
-	'mwoauthmanageconsumers-viewing' => 'Корисникот „$1“ во моментов го гледа потрошувачов', # Fuzzy
+	'mwoauthmanageconsumers-viewing' => '{{GENDER:$1|Корисникот}} „$1“ во моментов го гледа потрошувачов',
 	'mwoauthmanageconsumers-success-approved' => 'Барањето е одобрено.',
 	'mwoauthmanageconsumers-success-rejected' => 'Барањето е одбиено.',
 	'mwoauthmanageconsumers-success-disabled' => 'Потрошувачот е оневозможен.',
@@ -3487,7 +3488,7 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-notloggedin' => 'Треба да сте најавени за да ја отворите страницата.',
 	'mwoauthmanagemygrants-navigation' => 'Навигација:',
 	'mwoauthmanagemygrants-showlist' => 'Список на поврзани прилози',
-	'mwoauthmanagemygrants-none' => 'Нема потрошувачи поврзани со вашата сметка.', # Fuzzy
+	'mwoauthmanagemygrants-none' => 'Нема прилози поврзани со вашата сметка.',
 	'mwoauthmanagemygrants-user' => 'Издавач:',
 	'mwoauthmanagemygrants-description' => 'Опис',
 	'mwoauthmanagemygrants-wikiallowed' => 'Дозволен на проектот:',
@@ -3554,7 +3555,7 @@ $5",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Заштита на личните податоци]]',
 	'mwoauth-form-button-approve' => 'Дозволи',
 	'mwoauth-form-button-cancel' => 'Откажи',
-	'mwoauth-error' => 'Грешка во OAuth', # Fuzzy
+	'mwoauth-error' => 'Грешка во поврзувањето со прилогот',
 	'mwoauth-grants-heading' => 'Побарани дозволи:',
 	'mwoauth-grants-nogrants' => 'Прилогот нема побарано ниедна дозвола.',
 	'mwoauth-acceptance-cancelled' => 'Го имате откажано ова барање за овластување на потрошувач на OAuth да делува ваше име.', # Fuzzy
@@ -4234,7 +4235,7 @@ Alla värden här skriver över eventuella tidigare värden. Lämna inte tomma f
 	'mwoauthmanageconsumers-reenable' => 'Godkänd',
 	'mwoauthmanageconsumers-reason' => 'Orsak:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Uppdatera konsumentstatus',
-	'mwoauthmanageconsumers-viewing' => 'Användare "$1"  tittar på denna konsument för tillfället', # Fuzzy
+	'mwoauthmanageconsumers-viewing' => '{{GENDER:$1|Användaren}} "$1"  tittar på denna konsument för tillfället',
 	'mwoauthmanageconsumers-success-approved' => 'Begäran har godkänts.',
 	'mwoauthmanageconsumers-success-rejected' => 'Begäran har avslagits.',
 	'mwoauthmanageconsumers-success-disabled' => 'Konsumenten har inaktiverats.',
@@ -4268,9 +4269,9 @@ Ansluta applikationer kan få tillgång till ditt konto via OAuth-protokollet. <
 	'mwoauthmanagemygrants-navigation' => 'Navigering:',
 	'mwoauthmanagemygrants-showlist' => 'Ansluten applikationslista',
 	'mwoauthmanagemygrants-none' => 'Inga applikationer är för närvarande anslutna till ditt konto.', # Fuzzy
-	'mwoauthmanagemygrants-user' => 'Utgivare', # Fuzzy
+	'mwoauthmanagemygrants-user' => 'Utgivare:',
 	'mwoauthmanagemygrants-description' => 'Beskrivning',
-	'mwoauthmanagemygrants-wikiallowed' => 'Tillåten på wiki', # Fuzzy
+	'mwoauthmanagemygrants-wikiallowed' => 'Tillåten på projekt:',
 	'mwoauthmanagemygrants-grants' => 'Tillämpliga stipendier',
 	'mwoauthmanagemygrants-grantsallowed' => 'Stipendier tillåtna',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Tillämpliga bidrag accepteras:',
@@ -4298,6 +4299,9 @@ Ansluta applikationer kan få tillgång till ditt konto via OAuth-protokollet. <
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|Återaktiverade}} en OAuthkonsument av $3 (konsumentnyckel $4)',
 	'mwoauthconsumer-consumer-logpage' => 'OAuthkonsumentslogg',
 	'mwoauthconsumer-consumer-logpagetext' => 'Logg över godkännanden, avslag och inaktivering av registrerade OAuthkonsumenter.',
+	'mwoauth-bad-request-invalid-action-contact' => 'Tyvärr, någonting gick fel. Du måste [$1 kontakta] applikationens upphovsman för att få hjälp med detta.
+
+<span class="plainlinks mw-mwoautherror-details">Okänd webbadress, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
 	'mwoauthdatastore-access-token-not-found' => 'Inget godkänt bidrag har hittats för den auktoriseringstoken.',
 	'mwoauthdatastore-request-token-not-found' => 'Ingen begäran hittades för den token.', # Fuzzy
 	'mwoauthdatastore-bad-token' => 'Ingen token hittades som matchade din begäran.',
