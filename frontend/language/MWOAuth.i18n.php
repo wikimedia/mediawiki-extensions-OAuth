@@ -60,7 +60,7 @@ To complete the process, provide this verification value to the application: \'\
 	'mwoauth-invalid-access-token' => 'No access token exists with the given key.',
 	'mwoauth-invalid-access-wrongwiki' => 'The consumer can only be used on wiki "$1".',
 	'mwoauth-consumer-conflict' => 'Someone changed the attributes of this consumer as you viewed it. Please try again. You may want to check the change log.',
-	'mwoauth-consumer-grantshelp' => 'Each grant gives access to listed user rights that a user account already has. See the ([[Special:OAuth/grants|table of grants]]) for more information.',
+	'mwoauth-consumer-grantshelp' => 'Each grant gives access to listed user rights that a user account already has. See the [[Special:OAuth/grants|table of grants]] for more information.',
 
 	'mwoauth-consumer-stage-proposed' => 'proposed',
 	'mwoauth-consumer-stage-rejected' => 'rejected',
