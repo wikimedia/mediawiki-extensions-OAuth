@@ -341,6 +341,7 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 );
 
 /** Message documentation (Message documentation)
+ * @author Amire80
  * @author Raymond
  * @author Shirayuki
  * @author Siebrand
@@ -872,7 +873,7 @@ See also:
 * {{msg-mw|Mwoauth-grant-viewmywatchlist}}',
 	'mwoauth-grants-nogrants' => 'Warning message that the OAuth consumer has not requested any permissions',
 	'mwoauth-acceptance-cancelled' => 'Message shown when an OAuth authorization request is declined. Parameters:
-* $1 - ...',
+* $1 - consumer name',
 	'mwoauth-grant-group-page-interaction' => '{{Related|Mwoauth-grant-group}}',
 	'mwoauth-grant-group-file-interaction' => '{{Related|Mwoauth-grant-group}}',
 	'mwoauth-grant-group-watchlist-interaction' => '{{Related|Mwoauth-grant-group}}',
@@ -1322,7 +1323,7 @@ Um den Prozess abzuschließen, gib diesen Verifizierungswert an die Anwendung we
 	'mwoauth-invalid-access-token' => 'Es ist kein Zugriffstoken mit dem angegebenen Schlüssel vorhanden.',
 	'mwoauth-invalid-access-wrongwiki' => 'Der Verbraucher kann nur auf dem Wiki „$1“ verwendet werden.',
 	'mwoauth-consumer-conflict' => 'Ein anderer hat bereits die Attribute dieses Verbrauchers geändert. Bitte erneut versuchen. Du kannst auch das Änderungs-Logbuch überprüfen.',
-	'mwoauth-consumer-grantshelp' => 'Jede Berechtigung ermöglicht einen Zugriff auf gelistete Benutzerrechte, die das Benutzerkonto bereits hat. Siehe die [[Special:OAuth/grants|tabellarische Übersicht]] für mehr Informationen.',
+	'mwoauth-consumer-grantshelp' => 'Jede Berechtigung ermöglicht einen Zugriff auf gelistete Benutzerrechte, die das Benutzerkonto bereits hat. Siehe die [[Special:OAuth/grants|tabellarische Übersicht]] für mehr Informationen.', # Fuzzy
 	'mwoauth-consumer-stage-proposed' => 'geplant',
 	'mwoauth-consumer-stage-rejected' => 'abgelehnt',
 	'mwoauth-consumer-stage-expired' => 'abgelaufen',
@@ -1629,11 +1630,20 @@ $messages['es'] = array(
 
 Para completar el proceso, proporciona este valor de comprobación a la aplcación: '''$1'''",
 	'mwoauth-invalid-field-generic' => 'Se ha proporcionado un valor no válido',
+	'mwoauth-prefs-managegrantslink' => 'Gestionar $1 {{PLURAL:$1|aplicación conectada|aplicaciones conectadas}}',
 	'mwoauth-consumer-allwikis' => 'Todos los proyectos en este sitio',
+	'mwoauthmanagemygrants-text' => 'Esta página muestra las aplicaciones que pueden utilizar tu cuenta. Para cualquier aplicación, el alcance de su acceso está limitado por los permisos que se le otorgaron al momento de autorizarla. Si has autorizado una aplicación para que acceda a varios proyectos en tu nombre, verás ajustes separados a continuación por cada uno de los proyectos.
+
+Las aplicaciones conectadas acceden a tu cuenta mediante el protocolo OAuth. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Más información sobre las aplicaciones conectadas])</span>',
+	'mwoauthmanagemygrants-showlist' => 'Lista de aplicaciones conectadas',
 	'mwoauthmanagemygrants-review' => 'administrar el acceso',
 	'mwoauthmanagemygrants-grantaccept' => 'Concedido',
+	'mwoauthmanagemygrants-confirm-legend' => 'Gestionar aplicación conectada',
 	'mwoauthmanagemygrants-update' => 'Actualizar permisos',
 	'mwoauthmanagemygrants-renounce' => 'No autorizado',
+	'mwoauth-bad-request-missing-params' => 'Ha ocurrido un error al configurar esta aplicación conectada. <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Ponte en contacto con el equipo de asistencia]</span> para corregir el problema.
+
+<span class="plainlinks mw-mwoautherror-details">Faltan parámetros de OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>',
 	'mwoauth-form-button-approve' => 'Permitir',
 	'mwoauth-form-button-cancel' => 'Cancelar',
 	'mwoauth-grant-group-page-interaction' => 'Interactuar con páginas',
@@ -1670,6 +1680,7 @@ $messages['fi'] = array(
  * @author Jean-Frédéric
  * @author Linedwell
  * @author Louperivois
+ * @author Ltrlg
  * @author VIGNERON
  * @author Wyz
  */
@@ -1719,7 +1730,7 @@ Pour terminer le processus, veuillez fournir cette valeur de vérification à l�
 	'mwoauth-invalid-access-token' => 'Aucun jeton d’accès n’existe pour la clé fournie',
 	'mwoauth-invalid-access-wrongwiki' => 'Le consommateur ne peut être utilisé que sur le wiki « $1 ».',
 	'mwoauth-consumer-conflict' => 'Quelqu’un a modifié les attributs de ce consommateur pendant que vous le consultiez. Veuillez réessayer. Vous pouvez aussi vérifier le journal des modifications.',
-	'mwoauth-consumer-grantshelp' => 'Chaque droit accorde l’accès aux droits d&utilisateur listés qu’un compte utilisateur possède déjà. Voyez le ([[Special:OAuth/grants|tableau des droits]]) pour plus d’information.',
+	'mwoauth-consumer-grantshelp' => 'Chaque droit accorde l’accès aux droits d&utilisateur listés qu’un compte utilisateur possède déjà. Voyez le ([[Special:OAuth/grants|tableau des droits]]) pour plus d’information.', # Fuzzy
 	'mwoauth-consumer-stage-proposed' => 'proposé',
 	'mwoauth-consumer-stage-rejected' => 'rejeté',
 	'mwoauth-consumer-stage-expired' => 'expiré',
@@ -1871,6 +1882,9 @@ Les applications connectées accèdent à votre compte en utilisant le protocole
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|a réactivé}} un consommateur OAuth proposé par $3 (clé du consommateur $4)',
 	'mwoauthconsumer-consumer-logpage' => 'journal du consommateur OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Journal des approbations, rejets et désactivations de consommateurs OAuth enregistrés.',
+	'mwoauth-bad-request-invalid-action-contact' => 'Désolé, quelque chose s’est mal passé. Vous aurez besoin de [$1 contacter] l’auteur de l’application pour obtenir de l’aide.
+
+<span class="plainlinks mw-mwoautherror-détail">URL inconnue, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
 	'mwoauthdatastore-access-token-not-found' => 'Aucun droit approuvé n’a été trouvé pour ce jeton d’autorisation.',
 	'mwoauthdatastore-request-token-not-found' => 'Aucune demande n’a été trouvée pour ce jeton.', # Fuzzy
 	'mwoauthdatastore-bad-token' => 'Aucun jeton correspondant à votre demande n’a été trouvé',
@@ -2216,15 +2230,22 @@ $5",
 );
 
 /** Hebrew (עברית)
+ * @author Amire80
  * @author אור שפירא
  */
 $messages['he'] = array(
+	'mwoauth-desc' => 'אישור כניסה עם API של OAuth 1.0a',
+	'mwoauth-verified' => "עכשיו היישום הזה מורשה להתחבר למדיה־ויקי בשמך.
+
+כדי להשלים את התהליך, יש לתת את ערך האימות הבא ליישום: '''$1'''",
 	'mwoauth-missing-field' => 'חסר ערך עבור שדה "$1"',
 	'mwoauth-invalid-field' => 'ערך לא חוקי עבור שדה "$1"',
 	'mwoauth-invalid-field-generic' => 'סופק ערך לא חוקי',
 	'mwoauth-field-hidden' => '(מידע זה מוסתר)',
 	'mwoauth-field-private' => '(מידע זה הוא פרטי)',
-	'mwoauth-prefs-managegrants' => 'גישת צרכן OAuth:', # Fuzzy
+	'mwoauth-grant-generic' => 'חבילת ההרשאות "$1"',
+	'mwoauth-prefs-managegrants' => 'יישומים מחוברים:',
+	'mwoauth-prefs-managegrantslink' => 'ניהול {{PLURAL:$1|היישום המחובר|$1 היישומים המחוברים}}',
 	'mwoauth-consumer-allwikis' => 'כל הפרויקטים באתר זה',
 	'mwoauth-consumer-key' => 'מפתח צרכן:',
 	'mwoauth-consumer-name' => 'שם היישום:',
@@ -2232,7 +2253,13 @@ $messages['he'] = array(
 	'mwoauth-consumer-user' => 'מפרסם:',
 	'mwoauth-consumer-stage' => 'מצב נוכחי:',
 	'mwoauth-consumer-email' => 'כתובת דוא"ל נוכחית:',
-	'mwoauth-consumer-wiki-other' => 'ויקי מסויים', # Fuzzy
+	'mwoauth-consumer-description' => 'תיאור היישום:',
+	'mwoauth-consumer-callbackurl' => 'כתובת מענה (callback) של OAuth:',
+	'mwoauth-consumer-grantsneeded' => 'זיכיונות מתאימים:',
+	'mwoauth-consumer-required-grant' => 'חל על צרכן',
+	'mwoauth-consumer-wiki' => 'מיזם מתאים:',
+	'mwoauth-consumer-wiki-thiswiki' => 'מיזם נוכחי ($1):',
+	'mwoauth-consumer-wiki-other' => 'מיזם מסויים',
 	'mwoauth-consumer-restrictions' => 'מגבלות שימוש:',
 	'mwoauth-consumer-restrictions-json' => 'מגבלות השימוש (JSON):',
 	'mwoauth-consumer-rsakey' => 'המפתח הציבורי RSA:',
@@ -2244,16 +2271,22 @@ $messages['he'] = array(
 	'mwoauth-consumer-alreadyexists' => 'צרכן עם שילוב שם/גרסה/מפרסם זה כבר קיים',
 	'mwoauth-consumer-alreadyexistsversion' => 'צרכן עם שילוב שם/מפרסם זה כבר קיים בגרסה שווה או גבוהה ("$1")',
 	'mwoauth-consumer-not-accepted' => 'אין אפשרות לעדכן מידע עבור בקשת צרכן ממתינה',
+	'mwoauth-consumer-not-proposed' => 'הצרכן אינו מוצע כעת',
 	'mwoauth-consumer-not-disabled' => 'הצרכן אינו מבוטל כרגע',
 	'mwoauth-consumer-not-approved' => 'הצרכן לא מאושר (ייתכן שהוא מבוטל)',
+	'mwoauth-missing-consumer-key' => 'לא ניתן מפתח צרכן',
 	'mwoauth-invalid-consumer-key' => 'אין צרכן עם מפתח זה.',
 	'mwoauth-invalid-access-token' => 'אין אסימון גישה עם המפתח.',
+	'mwoauth-invalid-access-wrongwiki' => 'הצרכן יכול לשמש רק בוויקי "$1".',
+	'mwoauth-consumer-conflict' => 'מישהו שינה את המאפיינים של הצרכן הזה בזמן שצפית בו. נא לנסות שוב. אפשר לבדוק את יומן השינויים.',
+	'mwoauth-consumer-grantshelp' => "כל זיכיון נותן גישה להרשאות המשתמש הרשומות שכבר ניתנו לחשבון משתמש. ר' את ([[Special:OAuth/grants|טבלת הזיכיונות]]) למידע נוסף.", # Fuzzy
 	'mwoauth-consumer-stage-proposed' => 'מוצע',
 	'mwoauth-consumer-stage-rejected' => 'נדחה',
 	'mwoauth-consumer-stage-expired' => 'פג תוקף',
 	'mwoauth-consumer-stage-approved' => 'אושר',
 	'mwoauth-consumer-stage-disabled' => 'בוטל',
-	'oauthconsumerregistration' => 'רישום צרכן OAuth', # Fuzzy
+	'mwoauth-consumer-stage-suppressed' => 'מועלם',
+	'oauthconsumerregistration' => 'רישום צרכן OAuth',
 	'mwoauthconsumerregistration-notloggedin' => 'עליך להיות מחובר כדי לגשת לדף זה.',
 	'mwoauthconsumerregistration-navigation' => 'ניווט:',
 	'mwoauthconsumerregistration-propose' => 'הצעת צרכן חדש.',
@@ -2262,6 +2295,16 @@ $messages['he'] = array(
 	'mwoauthconsumerregistration-update-text' => 'השתמש בטופס שלהלן כדי לעדכן את פרטי צרכן OAuth.
 
 כל הערכים כאן יחליפו את כל הקודמים. אין להשאיר שדות ריקים אלא אם כן אתם מתכוונים לנקות את הערכים האלה.',
+	'mwoauthconsumerregistration-maintext' => 'הדף הזה מאפשר למפתחים להציע ולעדכן יישומים שיהיו צרכני OAuth ברישום של האתר הזה.
+
+מכאן אפשר:
+* [[Special:OAuthConsumerRegistration/propose|לבקש אסימון בשביל צרכן חדש]].
+* [[Special:OAuthConsumerRegistration/list|לנהל את הצרכנים הנוכחיים שלך]].
+
+למידע נוסף על OAuth, נא לראות את [//www.mediawiki.org/wiki/Extension:OAuth התיעוד של ההרחבה].',
+	'mwoauthconsumerregistration-propose-legend' => 'יישום צרכן OAuth חדש',
+	'mwoauthconsumerregistration-update-legend' => 'עדכון יישום צרכן OAuth',
+	'mwoauthconsumerregistration-propose-submit' => 'הצעת צרכן',
 	'mwoauthconsumerregistration-update-submit' => 'עדכון צרכן',
 	'mwoauthconsumerregistration-none' => 'אין שליטה על שום צרכן OAuth.',
 	'mwoauthconsumerregistration-name' => 'צרכן',
@@ -2273,13 +2316,26 @@ $messages['he'] = array(
 	'mwoauthconsumerregistration-lastchange' => 'שינוי אחרון',
 	'mwoauthconsumerregistration-manage' => 'ניהול',
 	'mwoauthconsumerregistration-resetsecretkey' => 'אפס מפתח סודי לערך חדש',
+	'mwoauthconsumerregistration-proposed' => "ההצעה שלך לצרכן OAuth חדש התקלבה.
+
+הוקצה לך אסימון הצרכן '''$1''' והאסימון הסודי '''$2'''. נא לרשום אותם במקום שזמין לך.",
 	'mwoauthconsumerregistration-updated' => 'רישום צרכן OAuth שלך עודכן בהצלחה.',
-	'oauthmanageconsumers' => 'ניהול צרכני OAuth', # Fuzzy
+	'mwoauthconsumerregistration-secretreset' => "ניתן לך אסימון הצרכן הסודי '''$1'''. נא לרשום אותם במקום שזמין לך.",
+	'oauthmanageconsumers' => 'ניהול צרכני OAuth',
 	'mwoauthmanageconsumers-notloggedin' => 'עליך להיות מחובר כדי לגשת לדף זה.',
 	'mwoauthmanageconsumers-type' => 'תורים:',
+	'mwoauthmanageconsumers-showproposed' => 'בקשות שהוצעו',
 	'mwoauthmanageconsumers-showrejected' => 'בקשות שנדחו',
 	'mwoauthmanageconsumers-showexpired' => 'בקשות שפג תוקפן',
 	'mwoauthmanageconsumers-main' => 'ראשי',
+	'mwoauthmanageconsumers-maintext' => "הדף הזה מיועד לטיפול בבקשות יישומים צרכנים של OAuth (ר' http://oauth.net) וניהול צרכני OAuth מוּכרים.",
+	'mwoauthmanageconsumers-queues' => 'בחירת תור אישור צרכן להלן:',
+	'mwoauthmanageconsumers-q-proposed' => 'תור בקשות צרכן',
+	'mwoauthmanageconsumers-q-rejected' => 'תור בקשות צרכן שנדחן',
+	'mwoauthmanageconsumers-q-expired' => 'תור בקשות צרכן שפגו',
+	'mwoauthmanageconsumers-lists' => 'נא לבחור מצב צרכן מתחוך רשימה להלן:',
+	'mwoauthmanageconsumers-l-approved' => 'רשימת הצרכנים שאושרו',
+	'mwoauthmanageconsumers-l-disabled' => 'רשימת הצרכנים הכבויים',
 	'mwoauthmanageconsumers-none-proposed' => 'אין צרכנים ברשימה זו.',
 	'mwoauthmanageconsumers-none-rejected' => 'אין צרכנים ברשימה זו.',
 	'mwoauthmanageconsumers-none-expired' => 'אין צרכנים ברשימה זו.',
@@ -2291,26 +2347,61 @@ $messages['he'] = array(
 	'mwoauthmanageconsumers-email' => 'שליחת דוא"ל',
 	'mwoauthmanageconsumers-consumerkey' => 'מפתח צרכן',
 	'mwoauthmanageconsumers-lastchange' => 'שינוי אחרון',
+	'mwoauthmanageconsumers-review' => 'סקירה/ניהול',
 	'mwoauthmanageconsumers-confirm-text' => 'טופס זה מיועד לאשר, לבטל, או לאפשר צרכן זה.',
 	'mwoauthmanageconsumers-confirm-legend' => 'ניהול צרכן OAuth',
 	'mwoauthmanageconsumers-action' => 'שינוי מצב:',
 	'mwoauthmanageconsumers-approve' => 'אושר',
 	'mwoauthmanageconsumers-reject' => 'נדחה',
+	'mwoauthmanageconsumers-rsuppress' => 'דחויים ומועלמים',
 	'mwoauthmanageconsumers-disable' => 'בוטל',
+	'mwoauthmanageconsumers-dsuppress' => 'כבויים ומועלמים',
 	'mwoauthmanageconsumers-reenable' => 'אושר',
 	'mwoauthmanageconsumers-reason' => 'סיבה:',
 	'mwoauthmanageconsumers-confirm-submit' => 'עדכון מצב צרכן',
-	'mwoauthmanageconsumers-viewing' => 'משתמש "$1" רואה כעת את הצרכן', # Fuzzy
+	'mwoauthmanageconsumers-viewing' => '{{GENDER:$1|המשתמש|המשתמשת}} "$1" מופה כעת בצרכן הזה',
 	'mwoauthmanageconsumers-success-approved' => 'הבקשה אושרה',
 	'mwoauthmanageconsumers-success-rejected' => 'הבקשה נדחתה',
 	'mwoauthmanageconsumers-success-disabled' => 'צרכן בוטל',
 	'mwoauthmanageconsumers-success-reanable' => 'צרכן אופשר מחדש',
+	'mwoauthmanageconsumers-search-name' => 'צרכנים עם השם הזה',
+	'mwoauthmanageconsumers-search-publisher' => 'צרכנים שיצר המשתמש הזה',
+	'oauthlistconsumers' => 'רשימות יישומי OAuth',
+	'mwoauthlistconsumers-legend' => 'עיון ביישומי OAuth',
+	'mwoauthlistconsumers-view' => 'פרטים',
+	'mwoauthlistconsumers-none' => 'לא נמצאו יישומים שמתאימים לתנאים האלה.',
+	'mwoauthlistconsumers-name' => 'שם היישום',
+	'mwoauthlistconsumers-version' => 'גרסת צרכן',
+	'mwoauthlistconsumers-user' => 'מפרסם',
+	'mwoauthlistconsumers-description' => 'תיאור',
+	'mwoauthlistconsumers-wiki' => 'מיזם מתאים',
+	'mwoauthlistconsumers-callbackurl' => 'כתובת מענה של OAuth',
+	'mwoauthlistconsumers-grants' => 'זיכיונות מתאימים',
+	'mwoauthlistconsumers-basicgrantsonly' => '(רק גישה בסיסית)',
+	'mwoauthlistconsumers-status' => 'מצב',
+	'mwoauth-consumer-stage-any' => 'הכול',
+	'mwoauthlistconsumers-status-proposed' => 'מוצע',
+	'mwoauthlistconsumers-status-approved' => 'מאושר',
+	'mwoauthlistconsumers-status-disabled' => 'כבוי',
+	'mwoauthlistconsumers-status-rejected' => 'דחוי',
+	'mwoauthlistconsumers-status-expired' => 'פג־תוקף',
+	'oauthmanagemygrants' => 'ניהול יישומים מחוברים',
 	'mwoauthmanagemygrants-notloggedin' => 'יש להיות מחובר כדי לגשת לדף זה.',
 	'mwoauthmanagemygrants-navigation' => 'ניווט:',
-	'mwoauthmanagemygrants-showlist' => 'רשימת צרכנים שהתקבלו', # Fuzzy
-	'mwoauthmanagemygrants-user' => 'מפרסם', # Fuzzy
+	'mwoauthmanagemygrants-showlist' => 'רשימת היישומים המחוברים',
+	'mwoauthmanagemygrants-none' => 'לא מחובר שום יישום לחשבון שלך.',
+	'mwoauthmanagemygrants-user' => 'מפרסם:',
 	'mwoauthmanagemygrants-description' => 'תיאור',
+	'mwoauthmanagemygrants-wikiallowed' => 'מורשה במיזם:',
+	'mwoauthmanagemygrants-grants' => 'זיכיונות מתאימים',
+	'mwoauthmanagemygrants-grantsallowed' => 'זיכיונות מותרים',
+	'mwoauthmanagemygrants-applicablegrantsallowed' => 'זיכיונות מתאימים מותרים:',
 	'mwoauthmanagemygrants-review' => 'ניהול גישה',
+	'mwoauthmanagemygrants-revoke' => 'שלילת גישה',
+	'mwoauthmanagemygrants-grantaccept' => 'ניתן זיכיון',
+	'mwoauthmanagemygrants-confirm-legend' => 'ניהול יישום מחובר',
+	'mwoauthmanagemygrants-update' => 'עדכון זיכיונות',
+	'mwoauthmanagemygrants-renounce' => 'שלילת אישור',
 	'mwoauthmanagemygrants-action' => 'שינוי מצב:',
 	'mwoauthmanagemygrants-confirm-submit' => 'מצב עדכון אסימון גישה',
 	'mwoauthmanagemygrants-success-update' => 'אסימון הגישה עבור צרכן זה עודכן.',
@@ -2321,6 +2412,9 @@ $messages['he'] = array(
 	'logentry-mwoauthconsumer-reject' => '$1 {{GENDER:$2|rejected}} צרכן OAuth על ידי $3 (מפתח צרכן $4)',
 	'logentry-mwoauthconsumer-disable' => '$1 {{GENDER:$2|disabled}} צרכן OAuth על ידי $3 (מפתח צרכן $4)',
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|re-enabled}} צרכן OAuth על ידי $3 (מפתח צרכן $4)',
+	'mwoauthconsumer-consumer-logpage' => 'יומן צרכן OAuth',
+	'mwoauthconsumer-consumer-logpagetext' => 'יומן של אישורים, שלילות וכיבויים של צרכני OAuth רשומים.',
+	'mwoauthdatastore-access-token-not-found' => 'לא נמצא שום זיכיון מאושר עבור אסימון האישור הזה.',
 	'mwoauthdatastore-request-token-not-found' => 'לא נמצאה בקשה לאסימון זה.', # Fuzzy
 	'mwoauthdatastore-bad-token' => 'לא נמצא אסימון מתאים לבקשתך.',
 	'mwoauthdatastore-bad-verifier' => 'קוד האימות שסופק לא חוקי.',
@@ -2330,6 +2424,10 @@ $messages['he'] = array(
 	'mwoauthserver-insufficient-rights' => 'אין לך הרשאות לביצוע את פעולה זו.', # Fuzzy
 	'mwoauthserver-invalid-request-token' => 'אסימון לא חוקי בבקשתך.',
 	'mwoauth-invalid-authorization-title' => 'שגיאת אימות OAuth',
+	'mwoauth-invalid-authorization' => 'כותרות האישור בבקשה שלך אינן תקניות: $1',
+	'mwoauth-invalid-authorization-wrong-wiki' => 'כותרות האישור בבקשה שלך אינן תקינות עבור $1',
+	'mwoauth-invalid-authorization-invalid-user' => 'כותרות האישור בבקשה שלך הן עבור משתמש שאינו קיים כאן',
+	'mwoauth-invalid-authorization-wrong-user' => 'כותרות האישור בבקשה שלך מיועדות למשתמש אחר',
 	'mwoauth-form-description-allwikis' => 'שלום $1
 
 "$2" מעוניין לבצע בשמך את הפעולות הבאות בכל הפרויקטים:
@@ -2348,9 +2446,9 @@ $5',
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Privacy Policy]]',
 	'mwoauth-form-button-approve' => 'לאפשר',
 	'mwoauth-form-button-cancel' => 'ביטול',
-	'mwoauth-error' => 'שגיאת OAuth', # Fuzzy
+	'mwoauth-error' => 'שגיאה בחיבור היישום',
 	'mwoauth-grants-heading' => 'הרשאות מבוקשות:',
-	'mwoauth-acceptance-cancelled' => 'ביטלת את הבקשה לאשר את הצרכן OAuth לפעול מטעמך.', # Fuzzy
+	'mwoauth-acceptance-cancelled' => 'בחרת לא לאפשר ל{{GRAMMAR:תחילית|$1}} לגשת לחשבון שלך. $1 לא יעבוד אלא אם כן תיתן לו גישה. ניתן לחזור על $1 או [[Special:OAuthManageMyGrants|לנהל]] את היישומים המחוברים שלך.',
 	'mwoauth-grant-group-page-interaction' => 'פעילות בדפים',
 	'mwoauth-grant-group-file-interaction' => 'פעילות במדיה',
 	'mwoauth-grant-group-watchlist-interaction' => 'פעילות ברשימת מעקב',
@@ -2373,6 +2471,10 @@ $5',
 	'mwoauth-grant-viewdeleted' => 'צפייה במידע שנמחק',
 	'mwoauth-grant-viewmywatchlist' => 'צפייה ברשימת מעקב',
 	'mwoauth-oauth-exception' => 'אירעה שגיאה בפרוטוקול OAuth:$1',
+	'mwoauth-listgrantrights-summary' => 'להלן רשימת זיכיונות של OAuth, עם הגישות להרשאות משתמש שמשויכות אליהן. משתמשים יכולים לאשר ליישומים להשתמש בחשבון שלהם, אבל עם הרשאות מוגבלות בהתאם לזיכיון שהשמשתמש נתן ליישום. יישום שפועל בשמו של המשתמש אינו יכול להשתמש בהרשאות שאין למשתמש.
+ייתכן שיש [[{{MediaWiki:Listgrouprights-helppage}}|מידע נוסף]] על הרשאות פרטניות.',
+	'mwoauth-listgrants-grant' => 'זיכיון',
+	'mwoauth-listgrants-rights' => 'הרשאות',
 );
 
 /** Interlingua (interlingua)
@@ -2716,7 +2818,7 @@ Ti è stato assegnato il token cliente '''$1''' e il token segreto '''$2'''. ''R
 	'mwoauthmanageconsumers-reenable' => 'Approvato',
 	'mwoauthmanageconsumers-reason' => 'Motivo:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Aggiorna stato cliente',
-	'mwoauthmanageconsumers-viewing' => 'L\'utente "$1" sta attualmente vedendo questo cliente', # Fuzzy
+	'mwoauthmanageconsumers-viewing' => '{{GENDER:$1|L\'utente}} "$1" sta attualmente vedendo questo cliente',
 	'mwoauthmanageconsumers-success-approved' => 'La richiesta è stata approvata.',
 	'mwoauthmanageconsumers-success-rejected' => 'La richiesta è stata respinta.',
 	'mwoauthmanageconsumers-success-disabled' => 'Il cliente è stato disabilitato.',
@@ -2749,10 +2851,10 @@ Le applicazioni connesse accedono alla tua utenza usando il protocollo OAuth. <s
 	'mwoauthmanagemygrants-notloggedin' => "Devi effettuare l'accesso per accedere a questa pagina.",
 	'mwoauthmanagemygrants-navigation' => 'Navigazione:',
 	'mwoauthmanagemygrants-showlist' => 'Elenco applicazioni connesse',
-	'mwoauthmanagemygrants-none' => 'Nessuna applicazione è attualmente collegata alla tua utenza.', # Fuzzy
-	'mwoauthmanagemygrants-user' => 'Editore', # Fuzzy
+	'mwoauthmanagemygrants-none' => 'Non ci sono applicazioni collegate alla tua utenza.',
+	'mwoauthmanagemygrants-user' => 'Editore:',
 	'mwoauthmanagemygrants-description' => 'Descrizione',
-	'mwoauthmanagemygrants-wikiallowed' => 'Consentito su progetto', # Fuzzy
+	'mwoauthmanagemygrants-wikiallowed' => 'Consentito su progetto:',
 	'mwoauthmanagemygrants-grants' => 'Assegnazioni applicabili',
 	'mwoauthmanagemygrants-grantsallowed' => 'Diritti consentiti',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Assegnazioni applicabili consentite:',
@@ -2810,7 +2912,7 @@ $5",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Politica relativa alla privacy]]',
 	'mwoauth-form-button-approve' => 'Consenti',
 	'mwoauth-form-button-cancel' => 'Annulla',
-	'mwoauth-error' => 'Errore OAuth', # Fuzzy
+	'mwoauth-error' => "Errore di connessione dell'applicazione",
 	'mwoauth-grants-heading' => 'Autorizzazioni richieste:',
 	'mwoauth-grants-nogrants' => "L'applicazione non ha richiesto alcuna autorizzazione.",
 	'mwoauth-acceptance-cancelled' => 'Hai annullato la richiesta di autorizzazione per il cliente OAuth di agire per tuo conto.', # Fuzzy
@@ -3370,7 +3472,7 @@ $messages['mk'] = array(
 	'mwoauth-invalid-access-token' => 'Не постои пристапна шифра со таков клуч.',
 	'mwoauth-invalid-access-wrongwiki' => 'Потрошувачот може да се користи само на викито „$1“.',
 	'mwoauth-consumer-conflict' => 'Некои ги изменил атрибутети на овој потрошувач додека го разгледувавте. Обидете се повторно. Може да го погледате и дневникот на измени.',
-	'mwoauth-consumer-grantshelp' => 'Секое доделување дава пристап до список до наведени права што веќе ги има корисничката сметка. Повеќе ќе најдете на [[Special:OAuth/grants|табелата со доделувања]].',
+	'mwoauth-consumer-grantshelp' => 'Секое доделување дава пристап до список до наведени права што веќе ги има корисничката сметка. Повеќе ќе најдете на [[Special:OAuth/grants|табелата со доделувања]].', # Fuzzy
 	'mwoauth-consumer-stage-proposed' => 'предложен',
 	'mwoauth-consumer-stage-rejected' => 'одбиен',
 	'mwoauth-consumer-stage-expired' => 'истечен',
@@ -4441,7 +4543,7 @@ $messages['uk'] = array(
 	'mwoauth-invalid-access-token' => 'Немає маркера доступу з даним ключем.',
 	'mwoauth-invalid-access-wrongwiki' => 'Споживач може використовуватися тільки на вікі "$1".',
 	'mwoauth-consumer-conflict' => 'Хтось змінив параметри даного споживача, якого ви дивилися. Будь ласка, спробуйте ще раз. Ви можете перевірити журнал змін.',
-	'mwoauth-consumer-grantshelp' => 'Кожен грант надає доступ до перерахованих прав користувача, які вже має обліковий запис користувача. Подивіться на ([[Special:OAuth/grants|таблицю грантів]]) для отримання додаткової інформації.',
+	'mwoauth-consumer-grantshelp' => 'Кожен грант надає доступ до перерахованих прав користувача, які вже має обліковий запис користувача. Подивіться на ([[Special:OAuth/grants|таблицю грантів]]) для отримання додаткової інформації.', # Fuzzy
 	'mwoauth-consumer-stage-proposed' => 'запропоновано',
 	'mwoauth-consumer-stage-rejected' => 'відхилено',
 	'mwoauth-consumer-stage-expired' => 'застаріле',
