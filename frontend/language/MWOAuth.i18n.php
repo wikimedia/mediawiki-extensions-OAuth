@@ -257,7 +257,7 @@ Go back and try to connect your account again, or contact the application author
 	'mwoauth-invalid-authorization-wrong-wiki' => 'The authorization headers in your request are not valid for $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'The authorization headers in your request are for a user that does not exist here',
 	'mwoauth-invalid-authorization-wrong-user' => 'The authorization headers in your request are for a different user',
-	'mwoauth-invalid-authorization-not-approved' => 'The app your trying to connect seems to be set up incorrectly, contact the author of $1 for help.',
+	'mwoauth-invalid-authorization-not-approved' => 'The app that you are trying to connect seems to be set up incorrectly. Contact the author of "$1" for help.',
 	'mwoauth-invalid-authorization-blocked-user' => 'The authorization headers in your request are for a user who is blocked',
 
 	'mwoauth-form-description-allwikis' => "Hi $1,
