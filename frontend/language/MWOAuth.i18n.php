@@ -1061,6 +1061,7 @@ $messages['ca'] = array(
  * @author Умар
  */
 $messages['ce'] = array(
+	'mwoauth-grant-group-email' => 'ДӀадахьийта кехат',
 	'mwoauth-listgrants-rights' => 'Бакъонаш',
 );
 
@@ -2305,7 +2306,7 @@ $messages['he'] = array(
 	'mwoauth-invalid-access-token' => 'אין אסימון גישה עם המפתח.',
 	'mwoauth-invalid-access-wrongwiki' => 'הצרכן יכול לשמש רק בוויקי "$1".',
 	'mwoauth-consumer-conflict' => 'מישהו שינה את המאפיינים של הצרכן הזה בזמן שצפית בו. נא לנסות שוב. אפשר לבדוק את יומן השינויים.',
-	'mwoauth-consumer-grantshelp' => "כל זיכיון נותן גישה להרשאות המשתמש הרשומות שכבר ניתנו לחשבון משתמש. ר' את ([[Special:OAuth/grants|טבלת הזיכיונות]]) למידע נוסף.", # Fuzzy
+	'mwoauth-consumer-grantshelp' => "כל זיכיון נותן גישה להרשאות המשתמש הרשומות שכבר ניתנו לחשבון משתמש. ר' את הדף [[Special:OAuth/grants|טבלת הזיכיונות]] למידע נוסף.",
 	'mwoauth-consumer-stage-proposed' => 'מוצע',
 	'mwoauth-consumer-stage-rejected' => 'נדחה',
 	'mwoauth-consumer-stage-expired' => 'פג תוקף',
@@ -2779,6 +2780,7 @@ Per completare il processo, inserisci questo valore per la verifica nel'applicaz
 	'mwoauth-invalid-access-token' => 'Non esiste alcun token di accesso con la chiave specificata.',
 	'mwoauth-invalid-access-wrongwiki' => 'Il cliente può essere utilizzato solo nel wiki "$1".',
 	'mwoauth-consumer-conflict' => 'Qualcuno ha cambiato gli attributi di questo cliente, come si visto. Per favore riprova. Si consiglia di controllare il registro delle modifiche.',
+	'mwoauth-consumer-grantshelp' => "Ogni concessione dà accesso ai diritti elencati per cui l'utenza già dispone. Vedi la [[Special:OAuth/grants|tabella delle assegnazioni]] per ulteriori informazioni.",
 	'mwoauth-consumer-stage-proposed' => 'proposto',
 	'mwoauth-consumer-stage-rejected' => 'respinto',
 	'mwoauth-consumer-stage-expired' => 'scaduto',
@@ -2910,6 +2912,11 @@ Le applicazioni connesse accedono alla tua utenza usando il protocollo OAuth. <s
 	'mwoauthmanagemygrants-review' => 'gestisci accesso',
 	'mwoauthmanagemygrants-revoke' => "revoca l'accesso",
 	'mwoauthmanagemygrants-grantaccept' => 'Assegnazioni',
+	'mwoauthmanagemygrants-update-text' => "Utilizza il seguente modulo per modificare le autorizzazioni concesse a un'applicazione di agire per vostro conto.
+* Se autorizzi separatamente a un'applicazione di accedere a diversi progetti fratelli per tuo conto, allora si avrà una configurazione separata per ciascuno di tali progetti per quell'applicazione.",
+	'mwoauthmanagemygrants-revoke-text' => "Utilizza il seguente modulo per revocare le autorizzazioni concesse a un'applicazione di agire per vostro conto.
+* Se autorizzi separatamente a un'applicazione di accedere a diversi progetti fratelli per tuo conto, allora si avrà una configurazione separata per ciascuno di tali progetti per quell'applicazione.
+* Se vuoi revocare totalmente l'accesso ad un'applicazione, assicurati di revocarlo da tutti i progetti per cui l'hai accettata",
 	'mwoauthmanagemygrants-confirm-legend' => 'Gestione applicazione connessa',
 	'mwoauthmanagemygrants-update' => 'Aggiorna le assegnazioni',
 	'mwoauthmanagemygrants-renounce' => "Rimuovi l'autorizzazione",
@@ -2925,21 +2932,42 @@ Le applicazioni connesse accedono alla tua utenza usando il protocollo OAuth. <s
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|ha riabilitato}} un cliente OAuth di $3 (chiave cliente $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Clienti OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Registro dei clienti OAuth approvati, respinti o disabilitati.',
+	'mwoauth-bad-request-missing-params' => 'Spiacenti, qualcosa è andato storto nella configurazione della connessione per questa applicazione. <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Contatta il supporto]</span> per avere aiuto su come correggere.
+
+<span class="plainlinks mw-mwoautherror-details">OAuth parametri mancanti, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>',
+	'mwoauth-bad-request-invalid-action' => 'Spiacenti, qualcosa è andato storto, dovresti contattare l\'autore dell\'applicazione per avere aiuto su come correggere.
+
+<span class="plainlinks mw-mwoautherror-details">URL sconosciuto, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>',
+	'mwoauth-bad-request-invalid-action-contact' => 'Spiacenti, qualcosa è andato storto, dovresti [$1 contattare] l\'autore dell\'applicazione per avere aiuto su come correggere.
+
+<span class="plainlinks mw-mwoautherror-details">URL sconosciuto, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
 	'mwoauthdatastore-access-token-not-found' => 'Non è stata trovata alcuna assegnazione approvata per il token di autorizzazione.',
-	'mwoauthdatastore-request-token-not-found' => 'Non è stata trovata alcuna richiesta per il token.', # Fuzzy
+	'mwoauthdatastore-request-token-not-found' => 'Spiacenti, qualcosa è andato storto, durante la connessione a questa applicazione. Torna indietro e prova a connetterti nuovamente, o contattare l\'autore dell\'applicazione.
+
+<span class="plainlinks mw-mwoautherror-details">Token OAuth non trovato, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
 	'mwoauthdatastore-bad-token' => 'Non è stato trovato alcun token che corrisponde alla tua richiesta.',
 	'mwoauthdatastore-bad-verifier' => 'Il codice di verifica fornito non è valido.',
 	'mwoauthdatastore-invalid-token-type' => 'Il tipo di token richiesto non è valido.',
 	'mwoauthgrants-general-error' => "C'è un errore nella tua richiesta OAuth.",
-	'mwoauthserver-bad-consumer' => 'Non è stato trovato alcun cliente autorizzato per la chiave fornita.', # Fuzzy
-	'mwoauthserver-insufficient-rights' => 'Non hai i diritti sufficienti per eseguire questa azione.', # Fuzzy
+	'mwoauthserver-bad-consumer' => '"$1" non è più un\'applicazione approvata, dovresti [$2 contattare] l\'autore dell\'applicazione per avere aiuto.
+
+<span class="plainlinks mw-mwoautherror-details">Applicazione non approvata, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
+	'mwoauthserver-bad-consumer-key' => 'Spiacenti, qualcosa è andato storto, durante la connessione a questa applicazione.
+
+<span class="plainlinks mw-mwoautherror-details">Chiave OAuth sconosciuta, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>',
+	'mwoauthserver-insufficient-rights' => 'Non è consentito alla tua utenza di usare le applicazioni, contatta l\'amministratore del sito per capirne il motivo.
+
+<span class="plainlinks mw-mwoautherror-details">Diritti utente OAuth insufficienti, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Token non valido nella tua richiesta.',
+	'mwoauthserver-invalid-user' => 'Per usare le applicazioni connesse su questo sito, è obbligatoria un\'utenza unificata fra tutti i progetti. Una volta che avrai l\'utenza su tutti i progetti, prova a connetterti a "$1" nuovamente.
+
+<span class="plainlinks mw-mwoautherror-details">Necessaria l\'utenza globale, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>',
 	'mwoauth-invalid-authorization-title' => 'Errore autorizzazione OAuth',
 	'mwoauth-invalid-authorization' => "L'intestazione dell'autorizzazione nella tua richiesta non è valida: $1",
 	'mwoauth-invalid-authorization-wrong-wiki' => "L'intestazione dell'autorizzazione nella tua richiesta non è valida per $1",
 	'mwoauth-invalid-authorization-invalid-user' => "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un utente che non esiste qui",
 	'mwoauth-invalid-authorization-wrong-user' => "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un altro utente",
-	'mwoauth-invalid-authorization-not-approved' => "L'intestazione dell'autorizzazione nella tua richiesta è per un cliente OAuth che non è attualmente approvato", # Fuzzy
+	'mwoauth-invalid-authorization-not-approved' => 'L\'applicazione a cui stai tentando di connetterti sembra essere impostata in modo errato. Contatta l\'autore di "$1" per avere aiuto.',
 	'mwoauth-invalid-authorization-blocked-user' => "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un utente che è bloccato",
 	'mwoauth-form-description-allwikis' => "Ciao $1,
 
@@ -2964,7 +2992,7 @@ $5",
 	'mwoauth-error' => "Errore di connessione dell'applicazione",
 	'mwoauth-grants-heading' => 'Autorizzazioni richieste:',
 	'mwoauth-grants-nogrants' => "L'applicazione non ha richiesto alcuna autorizzazione.",
-	'mwoauth-acceptance-cancelled' => 'Hai annullato la richiesta di autorizzazione per il cliente OAuth di agire per tuo conto.', # Fuzzy
+	'mwoauth-acceptance-cancelled' => 'Hai scelto di non consentire a "$1" ad accedere alla tua utenza. "$1" non funzionerà a meno che non gli permetti l\'accesso. Puoi tornare a "$1" o nella [[Special:OAuthManageMyGrants|gestione]] delle tue applicazioni connesse.',
 	'mwoauth-grant-group-page-interaction' => 'Interagisce con le pagine',
 	'mwoauth-grant-group-file-interaction' => 'Interagisce con i file multimediali',
 	'mwoauth-grant-group-watchlist-interaction' => 'Interagisce con i tuoi osservati speciali',
@@ -3007,6 +3035,8 @@ $5",
 	'action-mwoauthproposeconsumer' => 'proporre nuovi clienti OAuth',
 	'action-mwoauthupdateownconsumer' => 'aggiornare clienti OAuth che controlli',
 	'action-mwoauthviewsuppressed' => 'visualizzare clienti OAuth soppressi',
+	'mwoauth-listgrantrights-summary' => "Di seguito è riportato un elenco delle concessioni OAuth, con i loro diritti utente associati. Gli utenti possono autorizzare le applicazioni a utilizzare la propria utenza, ma con autorizzazioni limitate in base alle assegnazioni che l'utente ha dato all'applicazione. Tuttavia, un'applicazione che agisce per conto di un utente non può effettivamente utilizzare i diritti di cui l'utente non dispone.
+Potresti trovare [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazioni]] sui diritti individuali.",
 	'mwoauth-listgrants-grant' => 'Assegnazioni',
 	'mwoauth-listgrants-rights' => 'Diritti',
 );
