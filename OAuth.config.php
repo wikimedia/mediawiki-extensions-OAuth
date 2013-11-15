@@ -132,6 +132,7 @@ $wgMWOAuthGrantPermissions['createaccount']['createaccount'] = true;
 
 /** @var Array Map of grants to their UI grouping */
 $wgMWOAuthGrantPermissionGroups = array(
+	// Hidden grants are implicitly present
 	'useoauth'            => 'hidden',
 
 	'editpage'            => 'page-interaction',

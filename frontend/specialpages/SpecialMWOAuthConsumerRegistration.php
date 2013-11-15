@@ -57,7 +57,8 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$this->setHeaders();
 		$this->getOutput()->disallowUserJs();
 		$this->getOutput()->addModules( 'ext.MWOAuth.WikiSelect' );
-		$this->getOutput()->addJsConfigVars( 'wgOAuthWikiList', array_values( MWOAuthUtils::getAllWikiNames() ) );
+		$this->getOutput()->addJsConfigVars( 'wgOAuthWikiList',
+			array_values( MWOAuthUtils::getAllWikiNames() ) );
 
 		$block = $user->getBlock();
 		if ( $block ) {
@@ -143,6 +144,10 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 								},
 								MWOAuthUtils::getRightsByGrant()
 							)
+						),
+						'force-options-on' => array_map(
+							function( $g ) { return "grant-$g"; },
+							MWOAuthUtils::getHiddenGrants()
 						),
 						'validation-callback' => null // different format
 					),

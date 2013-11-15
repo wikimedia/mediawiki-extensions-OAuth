@@ -190,7 +190,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					'registration'       => $now,
 					'stage'              => MWOAuthConsumer::STAGE_PROPOSED,
 					'stageTimestamp'     => $now,
-					'grants'             => FormatJSON::decode( $this->vals['grants'], true ),
+					'grants'             => array_unique( array_merge(
+						MWOAuthUtils::getHiddenGrants(), // implied grants
+						FormatJSON::decode( $this->vals['grants'], true )
+					) ),
 					'restrictions'       => FormatJSON::decode( $this->vals['restrictions'], true ),
 					'deleted'            => 0
 				) + $this->vals
