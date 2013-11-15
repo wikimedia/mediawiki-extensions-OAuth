@@ -201,13 +201,22 @@ class MWOAuthAPISetup {
 	}
 
 	/**
-	 * Called to check if everyone has a particular user right
-	 *
+	 * Called to check if everyone has a particular user right. This hook is only reached
+	 * if the right is assigned to '*' on the wiki, so we can safely return true for
+	 * everything in $wgMWOAuthGrantPermissions['useoauth'], since most Consumers should
+	 * include that grant.
 	 * @param string $right
 	 * @return boolean
 	 */
 	public static function onUserIsEveryoneAllowed( $right ) {
-		/** @todo: If we implement a "default" grant, return true for rights granted there. */
+		$implicitGrants = MWOAuthUtils::getHiddenGrants();
+		foreach ( $implicitGrants as $grant ) {
+			$grantRights = MWOAuthUtils::getGrantRights( $grant );
+			if ( in_array( $right, $grantRights ) ) {
+				return true;
+			}
+		}
+
 		return false;
 	}
 
