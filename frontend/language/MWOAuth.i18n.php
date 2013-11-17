@@ -4184,6 +4184,7 @@ $messages['ru'] = array(
 	'mwoauth-prefs-managegrants' => 'Подключенные приложения:',
 	'mwoauth-prefs-managegrantslink' => 'Управление $1 {{PLURAL:$1|подключенным приложением|подключенными приложениями}}',
 	'mwoauth-consumer-allwikis' => 'Все проекты на этом сайте',
+	'mwoauth-consumer-name' => 'Название приложения:',
 	'mwoauth-consumer-stage' => 'Текущее состояние:',
 	'mwoauth-consumer-email' => 'Контактный адрес электронной почты:',
 	'mwoauth-consumer-wiki' => 'Применимо к проекту:',
@@ -4302,6 +4303,7 @@ $messages['sr-el'] = array(
 );
 
 /** Swedish (svenska)
+ * @author Ainali
  * @author Eihpossophie
  * @author Jopparn
  * @author Skalman
@@ -4563,6 +4565,7 @@ $5",
 	'action-mwoauthproposeconsumer' => 'Föreslå nya OAuthkonsument',
 	'action-mwoauthupdateownconsumer' => 'Uppdatera OAuthkonsumenter du kontrollerar',
 	'action-mwoauthviewsuppressed' => 'Visa upphävda OAuthkonsumenter',
+	'mwoauth-listgrants-rights' => 'Rättigheter',
 );
 
 /** Turkish (Türkçe)
