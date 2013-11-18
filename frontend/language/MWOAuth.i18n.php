@@ -768,7 +768,10 @@ Followed by the following radio boxes:
 	'mwoauthconsumer-consumer-logpagetext' => 'Description of the OAuth consumer log.',
 	'mwoauth-bad-request-missing-params' => 'Error message when MediaWiki makes an error during the authorization process, and fails to send all the required url parameters',
 	'mwoauth-bad-request-invalid-action' => 'Error, when the 3rd-party OAuth developers sends users to a bad authorization url',
-	'mwoauth-bad-request-invalid-action-contact' => 'Error, when the 3rd-party OAuth developers sends users to a bad authorization url, but we know which application made the request and we can link the user to a page to contact the developer',
+	'mwoauth-bad-request-invalid-action-contact' => 'Error, when the 3rd-party OAuth developers sends users to a bad authorization url, but we know which application made the request and we can link the user to a page to contact the developer.
+
+Parameters:
+* $1 - URL',
 	'mwoauthdatastore-access-token-not-found' => 'Error message when an invalid access token was submitted',
 	'mwoauthdatastore-request-token-not-found' => 'Error message when an invalid request token was submitted',
 	'mwoauthdatastore-bad-token' => 'Error message when an invalid token was submitted',
@@ -957,7 +960,9 @@ See also:
 {{Identical|Grant}}',
 	'mwoauth-listgrants-rights' => 'Used as table header for the grant/rights mapping table.
 {{Identical|Right}}',
-	'mwoauth-listgrantrights-right-display' => 'Used to format rights descriptions on the grant/rights mapping table',
+	'mwoauth-listgrantrights-right-display' => 'Used to format rights descriptions on the grant/rights mapping table. Parameters:
+* $1 - ...
+* $2 - ...',
 );
 
 /** Arabic (العربية)
@@ -998,9 +1003,9 @@ $messages['ast'] = array(
 	'mwoauth-consumer-callbackurl' => 'URL de "callback" OAuth:',
 	'mwoauth-consumer-grantsneeded' => 'Concesiones aplicables:',
 	'mwoauth-consumer-required-grant' => 'Aplicable al consumidor',
-	'mwoauth-consumer-wiki' => 'Wiki aplicable:', # Fuzzy
-	'mwoauth-consumer-wiki-thiswiki' => 'Wiki actual ($1)', # Fuzzy
-	'mwoauth-consumer-wiki-other' => 'Wiki específica', # Fuzzy
+	'mwoauth-consumer-wiki' => 'Proyeutu aplicable:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Proyeutu actual ($1)',
+	'mwoauth-consumer-wiki-other' => 'Proyeutu específicu',
 	'mwoauth-consumer-restrictions' => "Torgues d'usu:",
 	'mwoauth-consumer-restrictions-json' => "Torgues d'usu (JSON):",
 	'mwoauth-consumer-rsakey' => 'Clave pública RSA:',
@@ -3706,7 +3711,12 @@ $messages['mk'] = array(
 	'mwoauthdatastore-invalid-token-type' => 'Побараниот тип на шифра е неважечки.',
 	'mwoauthgrants-general-error' => 'Се појави грешка во барањето за OAuth',
 	'mwoauthserver-bad-consumer' => 'Нема одобрен потрошувач со таков клуч', # Fuzzy
-	'mwoauthserver-insufficient-rights' => 'Ги немате потребните права за да го извршите ова дејство.', # Fuzzy
+	'mwoauthserver-bad-consumer-key' => 'Нажалост, нешто не е во ред со прилогот.
+
+<span class="plainlinks mw-mwoautherror-details">Непознат клуч за OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>',
+	'mwoauthserver-insufficient-rights' => 'На вашата сметка не ѝ е дозволено да користи Поврзани прилози. Обратете се кај администраторот на мрежното место за да дознаете зошто.
+
+<span class="plainlinks mw-mwoautherror-details">Недоволни кориснички права за OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Неважечкa шифра во барањето.',
 	'mwoauth-invalid-authorization-title' => 'Грешка со овластувањето во OAuth',
 	'mwoauth-invalid-authorization' => 'Овластителните заглавија во вашето барање се неисправни: $1',
