@@ -1609,16 +1609,16 @@ A few recommendations and remarks:
 * Versions are of the form "major.minor.release" (the last two being optional) and increase as grant changes are needed.
 * Please provide a public RSA key (in PEM format) if possible; otherwise a (less secure) secret token will have to be used.
 * Use the JSON restrictions field to limit access of this consumer to IP addresses in those CIDR ranges.
-* You can use a wiki ID to restrict the consumer to a single wiki on this site (use "*" for all wikis).
-* The email address provided must match that of your account (which must have been confirmed).', # Fuzzy
+* You can use a wiki ID to restrict the consumer to a single project on this site (use "*" for all projects).
+* The email address provided must match that of your account (which must have been confirmed).',
 	'mwoauthmanagemygrants-text' => 'This page lists any applications that can use your account. For any such application, the scope of its access is limited by the permissions that you granted to the application when you authorised it to act on your behalf. If you separately authorised an application to access different "sister" projects on your behalf, then you will see separate configuration for each such project below.
 
 Connected applications access your account by using the OAuth protocol. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Learn more about connected applications])</span>',
 	'mwoauthmanagemygrants-update-text' => 'Use the form below to modify the permissions granted to an application to act on your behalf.
-* If you separately authorised an application to access different "sister site" projects on your behalf, then you will have separate configuration for each such project for that application.', # Fuzzy
+* If you separately authorised an application to access different sister projects on your behalf, then you will have separate configuration for each such project for that application.',
 	'mwoauthmanagemygrants-revoke-text' => 'Use the form below to revoke access for an application to act on your behalf.
-* If you separately authorised an application to access different "sister site" projects on your behalf, then you will have separate configuration for each such project for that application.
-* If you want to totally revoke access to an application, be sure to revoke it from all projects that you accepted it on.', # Fuzzy
+* If you separately authorised an application to access different sister projects on your behalf, then you will have separate configuration for each such project for that application.
+* If you want to totally revoke access to an application, be sure to revoke it from all projects that you accepted it on.',
 	'mwoauthmanagemygrants-renounce' => 'Deauthorise',
 	'mwoauthdatastore-access-token-not-found' => 'No approved grant was found for that authorisation token',
 	'mwoauth-invalid-authorization-title' => 'OAuth authorisation error',
@@ -1626,7 +1626,7 @@ Connected applications access your account by using the OAuth protocol. <span cl
 	'mwoauth-invalid-authorization-wrong-wiki' => 'The authorisation headers in your request are not valid for $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'The authorisation headers in your request are for a user that does not exist here',
 	'mwoauth-invalid-authorization-wrong-user' => 'The authorisation headers in your request are for a different user',
-	'mwoauth-invalid-authorization-not-approved' => 'The authorisation headers in your request are for an OAuth consumer that is not currently approved', # Fuzzy
+	'mwoauth-invalid-authorization-not-approved' => 'The app that you are trying to connect seems to be set up incorrectly. Contact the author of "$1" for help.',
 	'mwoauth-invalid-authorization-blocked-user' => 'The authorisation headers in your request are for a user who is blocked',
 	'mwoauth-acceptance-cancelled' => 'You have chosen not to allow "$1" to access your account. "$1" will not work unless you allow it access. You can go back to "$1" or [[Special:OAuthManageMyGrants|manage]] your connected apps.',
 	'mwoauth-grant-group-customization' => 'Customisation and preferences',
@@ -2324,6 +2324,15 @@ $messages['he'] = array(
 	'mwoauthconsumerregistration-propose' => 'הצעת צרכן חדש.',
 	'mwoauthconsumerregistration-list' => 'רשימת הצרכנים שלי',
 	'mwoauthconsumerregistration-main' => 'ראשי',
+	'mwoauthconsumerregistration-propose-text' => 'המפתחים צריכים להשתמש בטופס להלן כדי להציע צרכן OAuth חדש (ר\' את [//www.mediawiki.org/wiki/Extension:OAuth תיעוד ההרחבה] לפרטים נוספים). אחרי שליחת הטופס הזה יישלח אליך אסימון שהיישום שלך ישתמש בו כדי להזדהות בפני מדיה־ויקי. מנהל OAuth יצטרך לאשר את הפנייה שלך לפני שהיא תאושר על־ידי משתמשים אחרים.
+
+מספר עצות והערות:
+* מומלץ להשתמש בכמה שפחות זיכיונות. מומלץ להימנע שאינם נחוצים כעת.
+* הגרסאות נכתבות בצורה "major.minor.release" (לא חובה לכתוב את שני החלקים האחרונים) ועולים בכל פעם שהזיכיונות משתנים.
+* נא לספק מפתח RSA ציבורי (בתסדיר PEM) אם אפשר; אחרת ישמש אסימון סודי אחור (מאובטח פחות).
+* נא להשתמש בשדה ה־restrictions ב־JSON כדי להגביל את הגישה של הצרכן הזה לכתובות IP בטווחי ה־CIDR האלה.
+* באפשרותך להשתמש במזהה ויקי כדי להגביל את הצרכן למיזם אחד באתר הזה (אפשר להשתמש ב־"*" לכל המיזמים).
+* כתובת הדוא"ל שניתנה צריכה לתאום לכתובת של החשבון שלך (שצריכה להיות מאומתת).',
 	'mwoauthconsumerregistration-update-text' => 'השתמש בטופס שלהלן כדי לעדכן את פרטי צרכן OAuth.
 
 כל הערכים כאן יחליפו את כל הקודמים. אין להשאיר שדות ריקים אלא אם כן אתם מתכוונים לנקות את הערכים האלה.',
