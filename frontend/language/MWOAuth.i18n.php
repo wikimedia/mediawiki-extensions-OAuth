@@ -2427,6 +2427,9 @@ $messages['he'] = array(
 	'mwoauthlistconsumers-status-rejected' => 'דחוי',
 	'mwoauthlistconsumers-status-expired' => 'פג־תוקף',
 	'oauthmanagemygrants' => 'ניהול יישומים מחוברים',
+	'mwoauthmanagemygrants-text' => 'בדף הזה נמצאת רשימה של כל היישומים שיכולים להשתמש בחשבון שלך. לכל יישום כזה טווח הגישה מוגבל בהרשאות שנתת לך כאשר אישרת לה לפעול בשמך. אם נתת אישור נפרד ליישום לגשת בשמך למיזמים אחרים, תראה את ההגדרות הנפרדות לכל מיזם כזה להלן.
+
+היישומים המחוברים ניגשים לחשבון שלך באמצעות פרוטוקול OAuth. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth מידע נוסף על יישומים מחוברים])</span>',
 	'mwoauthmanagemygrants-notloggedin' => 'יש להיות מחובר כדי לגשת לדף זה.',
 	'mwoauthmanagemygrants-navigation' => 'ניווט:',
 	'mwoauthmanagemygrants-showlist' => 'רשימת היישומים המחוברים',
@@ -2440,6 +2443,11 @@ $messages['he'] = array(
 	'mwoauthmanagemygrants-review' => 'ניהול גישה',
 	'mwoauthmanagemygrants-revoke' => 'שלילת גישה',
 	'mwoauthmanagemygrants-grantaccept' => 'ניתן זיכיון',
+	'mwoauthmanagemygrants-update-text' => 'אפשר להשתמש בטופס להלן כדי לשנות את ההרשאות שניתנו לאפליקלציות לפעול בשמך.
+* אם נתת אישור נפרד ליישום לגשת בשמך למיזמים אחרים, יהיו לך הגדרות נפרדות בכל מיזם ליישום כזה.',
+	'mwoauthmanagemygrants-revoke-text' => 'אפשר להשתמש בטופס להלן כדי לשלול מיישום גישה לפעול בשמך.
+* אם נתת אישור נפרד ליישום לגשת בשמך למיזמים אחרים, יהיו לך הגדרות נפרדות בכל מיזם ליישום כזה.
+* אם ברצונך לשלול לחלוטין גישה ליישום, יש לשלול אותה מכל המיזמים שבהם קיבלת אותה.',
 	'mwoauthmanagemygrants-confirm-legend' => 'ניהול יישום מחובר',
 	'mwoauthmanagemygrants-update' => 'עדכון זיכיונות',
 	'mwoauthmanagemygrants-renounce' => 'שלילת אישור',
@@ -2455,15 +2463,37 @@ $messages['he'] = array(
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|re-enabled}} צרכן OAuth על ידי $3 (מפתח צרכן $4)',
 	'mwoauthconsumer-consumer-logpage' => 'יומן צרכן OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'יומן של אישורים, שלילות וכיבויים של צרכני OAuth רשומים.',
+	'mwoauth-bad-request-missing-params' => 'סליחה, משהו השתבש עם הגדרות היישום המחובר. <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth נא ליצור קשר עם התמיכה]</span> כדי לקבל עזרה בתיקון.
+
+<span class="plainlinks mw-mwoautherror-details">חסרים פרמטרים ל־OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>',
+	'mwoauth-bad-request-invalid-action' => 'סליחה, משהו השתבש ויש ליצור קשיר עם יוצר היישום כדי לקבל עזרה עם זה.
+
+<span class="plainlinks mw-mwoautherror-details">כתובת בלתי ידועה, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>',
+	'mwoauth-bad-request-invalid-action-contact' => 'סליחה, משהו השתבש. יש [$1 ליצור קשר] עם יוצר היישום כדי לקבל עזרה עם זה.
+
+<span class="plainlinks mw-mwoautherror-details">כתובת לא ידועה, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
 	'mwoauthdatastore-access-token-not-found' => 'לא נמצא שום זיכיון מאושר עבור אסימון האישור הזה.',
-	'mwoauthdatastore-request-token-not-found' => 'לא נמצאה בקשה לאסימון זה.', # Fuzzy
+	'mwoauthdatastore-request-token-not-found' => 'סליחה, משהו השתבש עם היישום הזה.
+נא לחזור ולנסות להתחבר שוב לחשבונך או ליצור קשר עם יוצר היישום.
+
+<span class="plainlinks mw-mwoautherror-details">לא נמצא אסימון OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
 	'mwoauthdatastore-bad-token' => 'לא נמצא אסימון מתאים לבקשתך.',
 	'mwoauthdatastore-bad-verifier' => 'קוד האימות שסופק לא חוקי.',
 	'mwoauthdatastore-invalid-token-type' => 'האסימון המבוקש אינו תקין.',
 	'mwoauthgrants-general-error' => 'אירעה שגיאה בבקשת OAuth.',
-	'mwoauthserver-bad-consumer' => 'לא נמצא צרכן מאושר עבור המפתח שסופק.', # Fuzzy
-	'mwoauthserver-insufficient-rights' => 'אין לך הרשאות לביצוע את פעולה זו.', # Fuzzy
+	'mwoauthserver-bad-consumer' => '"$1" כבר לא נתמך בתור יישום מחבור. נא [$2 ליצור קשר] עם מחבר היישום כדי לקבל עזרה.
+
+<span class="plainlinks mw-mwoautherror-details">יישום ה־OAuth אינו מאושר, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
+	'mwoauthserver-bad-consumer-key' => 'סליחה, משהו השתבש עם היישום הזה.
+
+<span class="plainlinks mw-mwoautherror-details">מפתח OAuth לא ידוע, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>',
+	'mwoauthserver-insufficient-rights' => 'לחשבון שלך אין אישור להשתמש ביישומים מחוברים. נא ליצור קשר עם מנהל האתר שלך כדי להבין למה.
+
+<span class="plainlinks mw-mwoautherror-details">הרשאות משתמש OAuth לא מספיקות, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'אסימון לא חוקי בבקשתך.',
+	'mwoauthserver-invalid-user' => 'כדי להשתמש ביישומים מחוברים באתר הזה, צריך להיות לך חשבון בכל המיזמים. כאשר יהיה לך חשבון בכל המיזמים, אפשר לנסות לחבר את "$1" שוב.
+
+<span class="plainlinks mw-mwoautherror-details">דרושה כניסה מאוחדת, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>',
 	'mwoauth-invalid-authorization-title' => 'שגיאת אימות OAuth',
 	'mwoauth-invalid-authorization' => 'כותרות האישור בבקשה שלך אינן תקניות: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'כותרות האישור בבקשה שלך אינן תקינות עבור $1',
@@ -4044,7 +4074,7 @@ $messages['oc'] = array(
 	'mwoauth-consumer-callbackurl' => 'URl « de rapèl » per OAuth :',
 	'mwoauth-consumer-grantsneeded' => 'Dreches aplicables :',
 	'mwoauth-consumer-required-grant' => 'Aplicable al consomator',
-	'mwoauth-consumer-wiki' => 'Wiki aplicable :', # Fuzzy
+	'mwoauth-consumer-wiki' => 'Projècte aplicable :',
 	'mwoauth-consumer-restrictions' => 'Limitacions d’utilizacion :',
 	'mwoauth-consumer-restrictions-json' => 'Limitacions d’utilizacion (JSON) :',
 	'mwoauth-consumer-rsakey' => 'Clau RSA publica :',
@@ -4105,10 +4135,10 @@ $messages['oc'] = array(
 	'mwoauthmanageconsumers-reenable' => 'Aprovat',
 	'mwoauthmanageconsumers-reason' => 'Motiu :',
 	'mwoauthmanagemygrants-navigation' => 'Navigacion :',
-	'mwoauthmanagemygrants-user' => 'Editor', # Fuzzy
+	'mwoauthmanagemygrants-user' => 'Editor :',
 	'mwoauthmanagemygrants-description' => 'Descripcion',
-	'mwoauthmanagemygrants-wikiallowed' => 'Autorizat sul wiki', # Fuzzy
-	'mwoauth-error' => 'Error OAuth', # Fuzzy
+	'mwoauthmanagemygrants-wikiallowed' => 'Autorizat sul projècte :',
+	'mwoauth-error' => 'Error de connexion de l’aplicacion',
 	'mwoauth-grant-blockusers' => 'Blocar e desblocar los utilizaires',
 	'mwoauth-grant-patrol' => 'Marcar de paginas coma patrolhadas',
 );
@@ -4206,6 +4236,8 @@ $messages['ru'] = array(
 	'mwoauth-consumer-name' => 'Название приложения:',
 	'mwoauth-consumer-stage' => 'Текущее состояние:',
 	'mwoauth-consumer-email' => 'Контактный адрес электронной почты:',
+	'mwoauth-consumer-description' => 'Описание приложения:',
+	'mwoauth-consumer-callbackurl' => 'URL-адрес «обратного вызова» OAuth:',
 	'mwoauth-consumer-wiki' => 'Применимо к проекту:',
 	'mwoauth-consumer-wiki-other' => 'Конкретный проект',
 	'mwoauth-consumer-restrictions' => 'Ограничения на использование:',
@@ -4215,6 +4247,7 @@ $messages['ru'] = array(
 	'mwoauthconsumerregistration-stage' => 'Состояние',
 	'mwoauthconsumerregistration-lastchange' => 'Последнее изменение',
 	'mwoauthconsumerregistration-resetsecretkey' => 'Сбросить секретный ключ, установив новое значение',
+	'mwoauthmanageconsumers-notloggedin' => 'Вы должны войти в систему для доступа к этой странице.',
 	'mwoauthmanageconsumers-type' => 'Очереди:',
 	'mwoauthmanageconsumers-showproposed' => 'Предлагаемые запросы',
 	'mwoauthmanageconsumers-showrejected' => 'Отклонённые запросы',
@@ -4223,8 +4256,12 @@ $messages['ru'] = array(
 	'mwoauthmanageconsumers-lastchange' => 'Последнее изменение',
 	'mwoauthmanageconsumers-action' => 'Изменить состояние:',
 	'mwoauthmanageconsumers-reason' => 'Причина:',
+	'mwoauthmanageconsumers-success-approved' => 'Запрос был одобрен.',
+	'mwoauthmanageconsumers-success-rejected' => 'Запрос был отклонён.',
 	'mwoauthlistconsumers-view' => 'подробности',
+	'mwoauthlistconsumers-description' => 'Описание',
 	'mwoauthlistconsumers-wiki' => 'Применимо к проекту',
+	'mwoauthlistconsumers-callbackurl' => '«URL-адрес обратного вызова» OAuth:',
 	'mwoauthlistconsumers-basicgrantsonly' => '(только базовый доступ)',
 	'mwoauthlistconsumers-status' => 'Состояние',
 	'oauthmanagemygrants' => 'Управление подключенными приложениями',
@@ -4928,7 +4965,7 @@ $messages['vi'] = array(
 	'mwoauth-consumer-description' => 'Miêu tả ứng dụng:',
 	'mwoauth-consumer-callbackurl' => 'URL “gọi lại” OAuth:',
 	'mwoauth-consumer-grantsneeded' => 'Các quyền có liên quan:',
-	'mwoauth-consumer-wiki' => 'Wiki có liên quan:',
+	'mwoauth-consumer-wiki' => 'Dự án có liên quan:',
 	'mwoauth-consumer-restrictions' => 'Hạn chế sử dụng:',
 	'mwoauth-consumer-restrictions-json' => 'Hạn chế sử dụng (JSON):',
 	'mwoauth-consumer-rsakey' => 'Chìa khóa RSA công cộng:',
@@ -4978,15 +5015,15 @@ $messages['vi'] = array(
 	'mwoauthlistconsumers-name' => 'Tên ứng dụng',
 	'mwoauthlistconsumers-user' => 'Nhà xuất bản',
 	'mwoauthlistconsumers-description' => 'Miêu tả',
-	'mwoauthlistconsumers-wiki' => 'Wiki có liên quan',
+	'mwoauthlistconsumers-wiki' => 'Dự án có liên quan',
 	'mwoauthlistconsumers-callbackurl' => '“URL gọi lại” OAuth',
 	'mwoauthlistconsumers-basicgrantsonly' => '(chỉ truy cập cơ bản)',
 	'mwoauthlistconsumers-status' => 'Trạng thái',
 	'mwoauthmanagemygrants-notloggedin' => 'Bạn phải đăng nhập để truy cấp trang này.',
 	'mwoauthmanagemygrants-navigation' => 'Điều hướng:',
-	'mwoauthmanagemygrants-user' => 'Nhà xuất bản',
+	'mwoauthmanagemygrants-user' => 'Nhà xuất bản:',
 	'mwoauthmanagemygrants-description' => 'Miêu tả',
-	'mwoauthmanagemygrants-wikiallowed' => 'Được cho phép trên wiki',
+	'mwoauthmanagemygrants-wikiallowed' => 'Được cho phép trong dự án:',
 	'mwoauthmanagemygrants-grants' => 'Các quyền có liên quan',
 	'mwoauthmanagemygrants-grantsallowed' => 'Các quyền được cấp',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Các quyền được cấp có liên quan:',
@@ -4994,20 +5031,24 @@ $messages['vi'] = array(
 	'mwoauthmanagemygrants-update' => 'Cập nhật các dấu hiệu được cấp',
 	'mwoauthmanagemygrants-action' => 'Thay đổi trạng thái:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Cập nhật trạng thái của dấu hiệu truy cập',
-	'mwoauth-bad-request' => 'Có lỗi trong yêu cầu OAuth của bạn.',
-	'mwoauthdatastore-request-token-not-found' => 'Không tìm thấy yêu cầu ứng với dấu hiệu này.',
+	'mwoauthdatastore-request-token-not-found' => 'Rất tiếc, có trục trặc khi kết nối với ứng dụng này.
+Hãy quay lại và thử kết nối với tài khoản của bạn lần nữa hoặc liên lạc với nhà phát triển của ứng dụng.
+
+<span class="plainlinks mw-mwoautherror-details">Không tìm thấy dấu hiệu OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
 	'mwoauthdatastore-bad-token' => 'Không tìm thấy dấu hiệu ứng với yêu cầu của bạn.',
 	'mwoauthdatastore-bad-verifier' => 'Mã xác minh được cung cấp là không hợp lệ.',
 	'mwoauthdatastore-invalid-token-type' => 'Đã yêu cầu kiểu dấu hiệu không hợp lệ.',
 	'mwoauthgrants-general-error' => 'Có lỗi trong yêu cầu OAuth của bạn.',
-	'mwoauthserver-insufficient-rights' => 'Bạn không có đủ quyền để thực hiện thao tác này.',
+	'mwoauthserver-insufficient-rights' => 'Bạn không có đủ quyền để thực hiện thao tác này.
+
+Tài khoản của bạn không được phép sử dụng tính năng Ứng dụng Kết nối. Hãy liên lạc với quản lý viên trang Web của bạn để tìm hiểu lý do tại sao.
+
+<span class="plainlinks mw-mwoautherror-details">Người dùng không đủ quyền OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Dấu hiệu không hợp lệ trong yêu cầu của bạn.',
-	'mwoauthserver-invalid-user-hookabort' => 'Người dùng này không thể dùng OAuth.',
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Quy định quyền riêng tư]]',
 	'mwoauth-form-button-approve' => 'Cho phép',
 	'mwoauth-form-button-cancel' => 'Hủy bỏ',
-	'mwoauth-authorize-form-invalid-user' => 'Tài khoản người dùng này không thể sử dụng OAuth vì tài khoản trên wiki này không được liên kết với tài khoản trên wiki OAuth trung ương.',
-	'mwoauth-error' => 'Lỗi OAuth',
+	'mwoauth-error' => 'Lỗi Kết nối với Ứng dụng',
 	'mwoauth-grants-heading' => 'Các quyền được yêu cầu:',
 	'mwoauth-grants-nogrants' => 'Ứng dụng không yêu cầu quyền nào.',
 	'mwoauth-grant-group-page-interaction' => 'Tương tác với trang',
