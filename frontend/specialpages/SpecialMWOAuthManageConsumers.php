@@ -163,7 +163,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 			$out->addHTML(
 				'<li>' .
 				"<$tag>" .
-				Linker::makeKnownLinkObj(
+				Linker::linkKnown(
 					$this->getTitle( $stageKey ),
 					// Messages: mwoauthmanageconsumers-q-proposed, mwoauthmanageconsumers-q-rejected,
 					// mwoauthmanageconsumers-q-expired
@@ -180,7 +180,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		foreach ( $keyStageMapL as $stageKey => $stage ) {
 			$out->addHTML(
 				'<li>' .
-				Linker::makeKnownLinkObj(
+				Linker::linkKnown(
 					$this->getTitle( $stageKey ),
 					// Messages: mwoauthmanageconsumers-l-approved, mwoauthmanageconsumers-l-disabled
 					$this->msg( 'mwoauthmanageconsumers-l-' . $stageKey )->escaped()
