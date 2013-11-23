@@ -463,11 +463,11 @@ Followed by the textarea or the message {{msg-mw|Mwoauthmanageconsumers-field-hi
 	'mwoauth-consumer-alreadyexistsversion' => 'Used as failure message. Parameters:
 * $1 - current consumer version number',
 	'mwoauth-consumer-not-accepted' => 'Unused at this time.',
-	'mwoauth-consumer-not-proposed' => 'Used as failure message.
+	'mwoauth-consumer-not-proposed' => 'Used as failure message when approving or rejecting the consumer.
 
 See also:
 * {{msg-mw|Mwoauth-consumer-not-disabled}}',
-	'mwoauth-consumer-not-disabled' => 'Used as failure message.
+	'mwoauth-consumer-not-disabled' => 'Used as failure message when re-enabling the consumer.
 
 See also:
 * {{msg-mw|Mwoauth-consumer-not-proposed}}',
@@ -1037,6 +1037,21 @@ $messages['ast'] = array(
 	'mwoauthconsumerregistration-propose' => 'Proponer un consumidor nuevu',
 	'mwoauthconsumerregistration-list' => 'La mio llista de consumidores',
 	'mwoauthconsumerregistration-main' => 'Principal',
+);
+
+/** Bengali (বাংলা)
+ * @author Aftab1995
+ */
+$messages['bn'] = array(
+	'mwoauth-prefs-managegrants' => 'সংযুক্ত অ্যাপগুলি:',
+	'mwoauth-prefs-managegrantslink' => 'সংযুক্ত $1টি {{PLURAL:$1|অ্যাপ্লিকেশন}} পরিচালনা করুন',
+	'mwoauthconsumerregistration-main' => 'প্রধান',
+	'mwoauthconsumerregistration-description' => 'বিবরণ',
+	'mwoauthconsumerregistration-stage' => 'অবস্থা',
+	'mwoauthconsumerregistration-lastchange' => 'সর্বশেষ পরিবর্তন',
+	'mwoauthmanageconsumers-main' => 'প্রধান',
+	'mwoauthmanageconsumers-reason' => 'কারণ:',
+	'mwoauth-grant-editmywatchlist' => 'আপনার নজরতালিকা সম্পাদনা করুন',
 );
 
 /** Breton (brezhoneg)
@@ -1643,6 +1658,7 @@ $messages['es'] = array(
 
 Para completar el proceso, proporciona este valor de comprobación a la aplcación: '''$1'''",
 	'mwoauth-invalid-field-generic' => 'Se ha proporcionado un valor no válido',
+	'mwoauth-prefs-managegrants' => 'Aplicaciones conectadas:',
 	'mwoauth-prefs-managegrantslink' => 'Gestionar $1 {{PLURAL:$1|aplicación conectada|aplicaciones conectadas}}',
 	'mwoauth-consumer-allwikis' => 'Todos los proyectos en este sitio',
 	'mwoauthmanagemygrants-text' => 'Esta página muestra las aplicaciones que pueden utilizar tu cuenta. Para cualquier aplicación, el alcance de su acceso está limitado por los permisos que se le otorgaron al momento de autorizarla. Si has autorizado una aplicación para que acceda a varios proyectos en tu nombre, verás ajustes separados a continuación por cada uno de los proyectos.
@@ -1677,13 +1693,25 @@ $messages['fa'] = array(
 
 /** Finnish (suomi)
  * @author Nike
+ * @author Pxos
  * @author Stryn
  */
 $messages['fi'] = array(
 	'mwoauth-prefs-managegrants' => 'Liitetyt sovellukset:',
-	'mwoauth-consumer-user' => 'Julkaisija',
-	'mwoauth-consumer-wiki-thiswiki' => 'Nykyinen wiki ($1)', # Fuzzy
+	'mwoauth-consumer-user' => 'Julkaisija:',
+	'mwoauth-consumer-stage' => 'Nykyinen status:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Nykyinen projekti ($1)',
+	'mwoauth-consumer-stage-proposed' => 'ehdotettu',
+	'mwoauth-consumer-stage-rejected' => 'hylätty',
+	'mwoauth-consumer-stage-expired' => 'vanhentunut',
+	'mwoauth-consumer-stage-approved' => 'hyväksytty',
+	'mwoauth-consumer-stage-disabled' => 'poistettu käytöstä',
+	'mwoauth-consumer-stage-suppressed' => 'häivytetty',
+	'oauthlistconsumers' => 'Luettele OAuth-sovellukset',
+	'mwoauthlistconsumers-legend' => 'Selaa OAuth-sovelluksia',
+	'mwoauthlistconsumers-name' => 'Sovelluksen nimi',
 	'mwoauthmanagemygrants-none' => 'Yhtään sovellusta ei ole tällä hetkellä liitetty tunnukseesi.', # Fuzzy
+	'mwoauthmanagemygrants-user' => 'Julkaisija:',
 	'mwoauth-grant-group-customization' => 'Mukautus ja asetukset',
 );
 
@@ -3087,10 +3115,14 @@ Potresti trovare [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazioni
 
 /** Japanese (日本語)
  * @author Shirayuki
+ * @author Whym
  */
 $messages['ja'] = array(
 	'oauth' => 'OAuth',
 	'mwoauth-desc' => 'OAuth 1.0a API 認証',
+	'mwoauth-verified' => "このアプリケーションがあなたに代わって MediaWiki にアクセスすることが許可されました。
+
+この手続きを完了するには次の検証トークンをアプリケーションに提供してください: '''$1'''",
 	'mwoauth-missing-field' => '「$1」フィールドの値がありません',
 	'mwoauth-invalid-field' => '「$1」フィールドに指定した値は無効です',
 	'mwoauth-invalid-field-generic' => '指定した値は無効です',
@@ -3118,18 +3150,27 @@ $messages['ja'] = array(
 	'mwoauth-consumer-email-unconfirmed' => 'アカウントのメールアドレスがまだ確認されていません。',
 	'mwoauth-consumer-email-mismatched' => '指定したメールアドレスは、アカウントのものと一致しません。',
 	'mwoauth-consumer-alreadyexists' => 'この名前/バージョン/発行者の組み合わせを持つコンシューマーは既に存在します',
+	'mwoauth-consumer-not-proposed' => 'このコンシューマーは現在提案されていません。',
+	'mwoauth-consumer-not-disabled' => 'このコンシューマーは現在無効化されていません',
+	'mwoauth-consumer-not-approved' => 'このコンシューマーは承認されていません (無効化された可能性があります)。',
 	'mwoauth-missing-consumer-key' => 'コンシューマー キーを指定していません。',
 	'mwoauth-invalid-consumer-key' => '指定したキーのコンシューマーは存在しません。',
 	'mwoauth-invalid-access-token' => '指定したキーのアクセス トークンは存在しません。',
 	'mwoauth-invalid-access-wrongwiki' => 'ウィキ「$1」のみで使用できるコンシューマーです。',
+	'mwoauth-consumer-stage-proposed' => '提案中',
+	'mwoauth-consumer-stage-rejected' => '却下済み',
+	'mwoauth-consumer-stage-expired' => '期限切れ',
+	'mwoauth-consumer-stage-approved' => '承認済',
 	'mwoauth-consumer-stage-disabled' => '無効',
 	'oauthconsumerregistration' => 'OAuth コンシューマー登録',
 	'mwoauthconsumerregistration-notloggedin' => 'このページにアクセスするにはログインしてください。',
 	'mwoauthconsumerregistration-navigation' => 'ナビゲーション:',
+	'mwoauthconsumerregistration-propose' => '新しいコンシューマーの提案',
 	'mwoauthconsumerregistration-list' => '自分のコンシューマー一覧',
 	'mwoauthconsumerregistration-main' => 'メイン',
 	'mwoauthconsumerregistration-update-legend' => 'OAuth コンシューマー アプリケーションの更新',
 	'mwoauthconsumerregistration-update-submit' => 'コンシューマーを更新',
+	'mwoauthconsumerregistration-none' => 'あなたが制御できる Oauth コンシューマーはありません。',
 	'mwoauthconsumerregistration-name' => 'コンシューマー',
 	'mwoauthconsumerregistration-user' => '発行者',
 	'mwoauthconsumerregistration-description' => '説明',
@@ -3143,7 +3184,12 @@ $messages['ja'] = array(
 	'mwoauthmanageconsumers-type' => 'キュー:',
 	'mwoauthmanageconsumers-main' => 'メイン',
 	'mwoauthmanageconsumers-queues' => '以下からコンシューマー確認のキューを選択:',
+	'mwoauthmanageconsumers-q-proposed' => '提案中のコンシューマー依頼のキュー',
+	'mwoauthmanageconsumers-q-rejected' => '却下済みのコンシューマー依頼のキュー',
+	'mwoauthmanageconsumers-q-expired' => '期限切れのコンシューマー依頼のキュー',
 	'mwoauthmanageconsumers-lists' => '以下からコンシューマーの状態の一覧を選択:',
+	'mwoauthmanageconsumers-l-approved' => '承認済みのコンシューマーの一覧',
+	'mwoauthmanageconsumers-l-disabled' => '無効化されたコンシューマーの一覧',
 	'mwoauthmanageconsumers-none-approved' => 'この条件に該当するコンシューマーはありません。',
 	'mwoauthmanageconsumers-none-disabled' => 'この条件に該当するコンシューマーはありません。',
 	'mwoauthmanageconsumers-name' => 'コンシューマー',
@@ -3155,7 +3201,10 @@ $messages['ja'] = array(
 	'mwoauthmanageconsumers-confirm-text' => 'このフォームでは、このコンシューマーを承認、却下、無効化、再有効化できます。',
 	'mwoauthmanageconsumers-confirm-legend' => 'OAuth コンシューマーの管理',
 	'mwoauthmanageconsumers-action' => '状態の変更:',
+	'mwoauthmanageconsumers-approve' => '承認済',
+	'mwoauthmanageconsumers-reject' => '却下済み',
 	'mwoauthmanageconsumers-disable' => '無効',
+	'mwoauthmanageconsumers-reenable' => '承認済',
 	'mwoauthmanageconsumers-reason' => '理由:',
 	'mwoauthmanageconsumers-confirm-submit' => 'コンシューマーの状態を更新',
 	'mwoauthmanageconsumers-viewing' => '{{GENDER:$1|利用者}}「$1」が現在このコンシューマーを閲覧中です',
@@ -3194,6 +3243,7 @@ Connected applications access your account by using the OAuth protocol. <span cl
 	'mwoauthmanagemygrants-review' => 'アクセスを管理',
 	'mwoauthmanagemygrants-revoke' => 'アクセスを取り消す',
 	'mwoauthmanagemygrants-confirm-legend' => '接続済みアプリケーションの管理',
+	'mwoauthmanagemygrants-renounce' => '認証解除',
 	'mwoauthmanagemygrants-action' => '状態の変更:',
 	'mwoauthmanagemygrants-confirm-submit' => 'アクセス トークンの状態を更新',
 	'mwoauthmanagemygrants-success-update' => 'このコンシューマーのアクセス トークンを更新しました。',
@@ -3887,6 +3937,72 @@ Untuk melengkapkan proses ini, berikan nilai penentusahan ini kepada aplikasi: '
 	'mwoauth-field-private' => '(maklumat ini adalah peribadi)',
 );
 
+/** Norwegian Bokmål (norsk bokmål)
+ * @author Danmichaelo
+ */
+$messages['nb'] = array(
+	'mwoauth-desc' => 'OAuth 1.0a API-autorisering',
+	'mwoauth-consumer-user' => 'Utgiver:',
+	'mwoauth-consumer-stage' => 'Nåværende status:',
+	'mwoauth-consumer-email' => 'E-postadresse',
+	'mwoauth-consumer-wiki-thiswiki' => 'Nåværende prosjekt ($1)',
+	'mwoauth-consumer-wiki-other' => 'Spesifikt prosjekt',
+	'mwoauth-consumer-restrictions' => 'Bruksbegrensninger:',
+	'mwoauth-consumer-restrictions-json' => 'Bruksbegrensninger (JSON):',
+	'mwoauth-consumer-rsakey' => 'Offentlig RSA-nøkkel:',
+	'mwoauth-consumer-stage-proposed' => 'foreslått',
+	'mwoauth-consumer-stage-rejected' => 'avslått',
+	'mwoauth-consumer-stage-expired' => 'utgått',
+	'mwoauth-consumer-stage-approved' => 'godkjent',
+	'mwoauth-consumer-stage-disabled' => 'deaktivert',
+	'mwoauthconsumerregistration-notloggedin' => 'Du må logge inn for å vise denne siden.',
+	'mwoauthconsumerregistration-navigation' => 'Navigasjon:',
+	'mwoauthmanageconsumers-name' => 'Kunde',
+	'mwoauthmanageconsumers-user' => 'Utgiver',
+	'mwoauthmanageconsumers-description' => 'Beskrivelse',
+	'mwoauthmanageconsumers-email' => 'E-postadresse',
+	'mwoauthmanageconsumers-consumerkey' => 'Kundenøkkel',
+	'mwoauthmanageconsumers-lastchange' => 'Siste endring',
+	'mwoauthmanageconsumers-action' => 'Endre status:',
+	'mwoauthmanageconsumers-approve' => 'Godkjent',
+	'mwoauthmanageconsumers-reject' => 'Avslått',
+	'mwoauthmanageconsumers-disable' => 'Deaktivert',
+	'mwoauthmanageconsumers-reason' => 'Årsak:',
+	'mwoauthmanageconsumers-confirm-submit' => 'Oppdater kundestatus',
+	'mwoauthmanageconsumers-success-rejected' => 'Forespørselen har blitt avslått.',
+	'mwoauthmanageconsumers-success-disabled' => 'Kunden har blitt deaktivert.',
+	'mwoauthmanageconsumers-success-reanable' => 'Kunden har blitt reaktivert.',
+	'mwoauthmanageconsumers-search-name' => 'kunder med dette navn',
+	'mwoauthmanageconsumers-search-publisher' => 'kunder for denne brukeren',
+	'oauthlistconsumers' => 'Liste over OAuth-applikasjoner',
+	'mwoauthlistconsumers-legend' => 'Bla i OAuth-applikasjoner',
+	'mwoauthlistconsumers-view' => 'detaljer',
+	'mwoauthlistconsumers-name' => 'Applikasjonsnavn',
+	'mwoauthlistconsumers-version' => 'Kundeversjon',
+	'mwoauthlistconsumers-user' => 'Utgiver',
+	'mwoauthlistconsumers-description' => 'Beskrivelse',
+	'mwoauthlistconsumers-wiki' => 'Applikasjonsprosjekt',
+	'mwoauthlistconsumers-callbackurl' => 'OAuth «callback-URL»',
+	'mwoauthlistconsumers-status' => 'Status',
+	'mwoauth-consumer-stage-any' => 'alle',
+	'mwoauthlistconsumers-status-proposed' => 'foreslåtte',
+	'mwoauthlistconsumers-status-approved' => 'godkjente',
+	'mwoauthlistconsumers-status-disabled' => 'deaktiverte',
+	'mwoauthlistconsumers-status-rejected' => 'avslåtte',
+	'mwoauthlistconsumers-status-expired' => 'utgåtte',
+	'oauthmanagemygrants' => 'Behandle tilkoblede applikasjoner',
+	'mwoauthmanagemygrants-notloggedin' => 'Du må være innlogget for å vise denne siden.',
+	'mwoauthmanagemygrants-navigation' => 'Navigering:',
+	'mwoauthmanagemygrants-showlist' => 'Liste over tilkoblede applikasjoner',
+	'mwoauthmanagemygrants-none' => 'Det er ingen applikasjoner tilknyttet kontoen din.',
+	'mwoauthmanagemygrants-user' => 'Utgiver:',
+	'mwoauthmanagemygrants-description' => 'Beskrivelse',
+	'mwoauthmanagemygrants-wikiallowed' => 'Tillatt på prosjektet:',
+	'mwoauthmanagemygrants-action' => 'Endre status:',
+	'mwoauth-form-button-approve' => 'Godkjenn',
+	'mwoauth-form-button-cancel' => 'Avbryt',
+);
+
 /** Low Saxon (Netherlands) (Nedersaksies)
  * @author Servien
  */
@@ -4162,8 +4278,11 @@ $messages['ps'] = array(
 
 /** Portuguese (português)
  * @author Dannyps
+ * @author Lijealso
  */
 $messages['pt'] = array(
+	'mwoauth-prefs-managegrants' => 'Aplicativos conectados:',
+	'mwoauth-prefs-managegrantslink' => 'Gerir $1 {{PLURAL:$1|aplicativo|aplicativos}} conectados',
 	'mwoauth-form-button-approve' => 'Sim, permitir', # Fuzzy
 	'mwoauth-grants-heading' => 'Permissões solicitadas:',
 );
@@ -4509,7 +4628,7 @@ Ansluta applikationer kan få tillgång till ditt konto via OAuth-protokollet. <
 	'mwoauthmanagemygrants-notloggedin' => 'Du måste vara inloggad för att komma åt denna sida.',
 	'mwoauthmanagemygrants-navigation' => 'Navigering:',
 	'mwoauthmanagemygrants-showlist' => 'Ansluten applikationslista',
-	'mwoauthmanagemygrants-none' => 'Inga applikationer är för närvarande anslutna till ditt konto.', # Fuzzy
+	'mwoauthmanagemygrants-none' => 'Det finns inga applikationer anslutna till ditt konto.',
 	'mwoauthmanagemygrants-user' => 'Utgivare:',
 	'mwoauthmanagemygrants-description' => 'Beskrivning',
 	'mwoauthmanagemygrants-wikiallowed' => 'Tillåten på projekt:',
@@ -5121,18 +5240,61 @@ $messages['yi'] = array(
  * @author Liuxinyu970226
  * @author Qiyue2001
  * @author Shirayuki
+ * @author Shizhao
  * @author Xiaomingyan
  */
 $messages['zh-hans'] = array(
+	'mwoauth-desc' => 'OAuth 1.0a API授权',
+	'mwoauth-verified' => "现在该应用以允许以您的名义访问MediaWiki。
+
+要完成这个过程，请为该应用提供这个校验值：'''$1'''",
+	'mwoauth-missing-field' => '缺少值为" $1 "字段',
+	'mwoauth-invalid-field' => '为"$1"字段提供的值无效',
 	'mwoauth-invalid-field-generic' => '提供的值无效',
 	'mwoauth-field-hidden' => '（这些信息已被隐藏）',
-	'mwoauth-field-private' => '（这些信息不是公开的）',
-	'mwoauth-prefs-managegrants' => '连接的应用程序：',
+	'mwoauth-field-private' => '（这些信息是不公开的）',
+	'mwoauth-grant-generic' => '" $1 "权利束',
+	'mwoauth-prefs-managegrants' => '已连接的应用：',
+	'mwoauth-prefs-managegrantslink' => '管理$1{{PLURAL:$1|个|个}}应用',
 	'mwoauth-consumer-allwikis' => '本站的所有项目',
+	'mwoauth-consumer-key' => 'Consumer key:',
+	'mwoauth-consumer-name' => '应用名称：',
+	'mwoauth-consumer-version' => 'Consumer版本:',
+	'mwoauth-consumer-user' => '发布者：',
 	'mwoauth-consumer-stage' => '当前状态：',
+	'mwoauth-consumer-email' => '联系人电子邮件地址：',
+	'mwoauth-consumer-description' => '应用说明：',
+	'mwoauth-consumer-callbackurl' => 'OAuth"回调"URL：',
+	'mwoauth-consumer-grantsneeded' => '应用授权：',
+	'mwoauth-consumer-wiki' => '适用项目：',
+	'mwoauth-consumer-wiki-thiswiki' => '当前项目 ( $1 )',
+	'mwoauth-consumer-wiki-other' => '具体项目',
+	'mwoauth-consumer-restrictions' => '使用限制：',
+	'mwoauth-consumer-restrictions-json' => '使用限制(JSON) ：',
+	'mwoauth-consumer-rsakey' => 'RSA公钥：',
+	'mwoauth-consumer-accesstoken' => '访问令牌：',
 	'mwoauth-consumer-reason' => '原因：',
+	'mwoauth-consumer-email-unconfirmed' => '您的帐户的电子邮件地址尚未得到确认。',
+	'mwoauth-consumer-email-mismatched' => '提供的电子邮件地址必须与您的帐户相匹配。',
+	'mwoauth-consumer-stage-proposed' => '建议',
+	'mwoauth-consumer-stage-rejected' => '拒绝',
+	'mwoauth-consumer-stage-expired' => '过期',
+	'mwoauth-consumer-stage-approved' => '批准',
+	'mwoauth-consumer-stage-disabled' => '禁用',
+	'mwoauth-consumer-stage-suppressed' => '压制',
+	'mwoauthconsumerregistration-notloggedin' => '您必须登录后才能访问此页。',
+	'mwoauthconsumerregistration-navigation' => '导航：',
+	'mwoauthconsumerregistration-user' => '发布者',
 	'mwoauthconsumerregistration-description' => '说明',
+	'mwoauthconsumerregistration-email' => '联系人电子邮件',
 	'mwoauthconsumerregistration-stage' => '状态',
+	'mwoauthconsumerregistration-lastchange' => '最后更改',
+	'mwoauthconsumerregistration-manage' => '管理',
+	'mwoauthmanageconsumers-notloggedin' => '您必须登录后才能访问此页。',
+	'mwoauthmanageconsumers-type' => '队列：',
+	'mwoauthmanageconsumers-showproposed' => '拟议的请求',
+	'mwoauthmanageconsumers-showrejected' => '被拒绝的请求',
+	'mwoauthmanageconsumers-showexpired' => '过期的请求',
 	'mwoauthmanageconsumers-action' => '更改状态：',
 	'mwoauthmanageconsumers-approve' => '已批准',
 	'mwoauthmanageconsumers-reject' => '已回绝',
