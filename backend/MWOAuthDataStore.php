@@ -16,7 +16,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	}
 
 	/**
-	 * Get an MWOAuthConsuer from the consumer's key
+	 * Get an MWOAuthConsumer from the consumer's key
 	 *
 	 * @param String $consumerKey the string value of the Consumer's key
 	 * @return MWOAuthConsumer
@@ -153,7 +153,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	}
 
 	/**
-	 * Return the string representing the Consumers's public RSA key
+	 * Return the string representing the Consumer's public RSA key
 	 *
 	 * @param String $consumerKey the string value of the Consumer's key
 	 * @return String|null
