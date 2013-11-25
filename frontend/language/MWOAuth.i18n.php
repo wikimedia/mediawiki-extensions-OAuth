@@ -1735,7 +1735,7 @@ $messages['fi'] = array(
 	'oauthlistconsumers' => 'Luettele OAuth-sovellukset',
 	'mwoauthlistconsumers-legend' => 'Selaa OAuth-sovelluksia',
 	'mwoauthlistconsumers-name' => 'Sovelluksen nimi',
-	'oauthmanagemygrants' => 'Manage connected applications',
+	'oauthmanagemygrants' => 'Yhdistettyjen sovellusten hallinta',
 	'mwoauthmanagemygrants-none' => 'Yhtään sovellusta ei ole tällä hetkellä liitetty tunnukseesi.', # Fuzzy
 	'mwoauthmanagemygrants-user' => 'Julkaisija:',
 	'mwoauth-grant-group-customization' => 'Mukautus ja asetukset',
@@ -4231,6 +4231,7 @@ $messages['nds-nl'] = array(
 
 /** Dutch (Nederlands)
  * @author Hansmuller
+ * @author SPQRobin
  * @author Siebrand
  * @author Sjoerddebruin
  */
@@ -4250,8 +4251,8 @@ $messages['nl'] = array(
 	'mwoauth-consumer-callbackurl' => 'URL voor OAuth-"callback":',
 	'mwoauth-consumer-grantsneeded' => 'Van toepassing zijnde rechten:',
 	'mwoauth-consumer-required-grant' => 'Van toepassing op consumer',
-	'mwoauth-consumer-wiki' => 'Van toepassing op wiki:',
-	'mwoauth-consumer-wiki-other' => 'Specifieke wiki',
+	'mwoauth-consumer-wiki' => 'Van toepassing op wiki:', # Fuzzy
+	'mwoauth-consumer-wiki-other' => 'Specifiek project',
 	'mwoauth-consumer-restrictions' => 'Gebruiksbeperkingen:',
 	'mwoauth-consumer-restrictions-json' => 'Gebruiksbeperkingen (JSON):',
 	'mwoauth-consumer-rsakey' => 'Openbare SSH-sleutel:',
@@ -4276,7 +4277,7 @@ Een paar aanbevelingen en opmerkingen:
 * Gebruik als mogelijk een RSA-sleutel (in PEM-opmaak); als dat niet mogelijk is, wordt u een (minder veilig) geheim token toegewezen;
 * Gebruik het veld JSON-beperkingen om de toegang voor deze consumer te beperken tot IP-adressen in de opgegeven CIDR-bereiken;
 * U kunt een wiki-ID gebruiken om de consumer te beperken tot één enkele wiki op deze site (gebruik "*" voor alle wiki\'s);
-* Het e-mailadres moet overeenkomen met dat van uw gebruiker (en het e-mailadres moet zijn bevestigd).',
+* Het e-mailadres moet overeenkomen met dat van uw gebruiker (en het e-mailadres moet zijn bevestigd).', # Fuzzy
 	'mwoauthconsumerregistration-propose-legend' => 'Nieuwe OAuthconsumertoepassing',
 	'mwoauthconsumerregistration-update-legend' => 'OAuthconsumertoepassing bijwerken',
 	'mwoauthconsumerregistration-propose-submit' => 'Consumer voorstellen',
@@ -4315,18 +4316,20 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauthmanageconsumers-reenable' => 'Goedgekeurd',
 	'mwoauthmanageconsumers-reason' => 'Reden:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Consumerstatus bijwerken',
-	'mwoauthmanageconsumers-viewing' => 'Gebruiker "$1" bekijkt op dit moment deze consumer',
+	'mwoauthmanageconsumers-viewing' => 'Gebruiker "$1" bekijkt op dit moment deze consumer', # Fuzzy
 	'mwoauthmanageconsumers-success-approved' => 'Het verzoek is goedgekeurd.',
 	'mwoauthmanageconsumers-success-rejected' => 'Het verzoek is afgewezen.',
 	'mwoauthmanageconsumers-success-disabled' => 'De consumer is uitgeschakeld.',
 	'mwoauthmanageconsumers-success-reanable' => 'De consumer is opnieuw ingeschakeld.',
+	'mwoauthlistconsumers-view' => 'details',
+	'mwoauthlistconsumers-description' => 'Beschrijving',
 	'oauthmanagemygrants' => 'OAuthrechten van gebruiker beheren', # Fuzzy
 	'mwoauthmanagemygrants-navigation' => 'Navigatie:',
 	'mwoauthmanagemygrants-showlist' => 'Geaccepteerde consumerlijst', # Fuzzy
 	'mwoauthmanagemygrants-none' => 'Er zijn geen consumers die toegang hebben namens uw gebruiker.', # Fuzzy
-	'mwoauthmanagemygrants-user' => 'Uitgever',
+	'mwoauthmanagemygrants-user' => 'Uitgever', # Fuzzy
 	'mwoauthmanagemygrants-description' => 'Beschrijving',
-	'mwoauthmanagemygrants-wikiallowed' => 'Toegestaan op wiki',
+	'mwoauthmanagemygrants-wikiallowed' => 'Toegestaan op project:',
 	'mwoauthmanagemygrants-grants' => 'Van toepassing zijnde rechten',
 	'mwoauthmanagemygrants-grantsallowed' => 'Toegestane rechten:',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Van toepassing zijnde rechten toegestaan:',
@@ -4341,17 +4344,16 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauthmanagemygrants-success-renounce' => 'Het toegangstoken voor deze consumer is verwijderd.',
 	'mwoauthconsumer-consumer-logpage' => 'OAuthconsumerlogboek',
 	'mwoauthconsumer-consumer-logpagetext' => 'Logboek met goedkeuringen, afwijzingen en uitschakelingen van geregistreerde OAuthconsumers.',
-	'mwoauth-bad-request' => 'Er is een fout opgetreden in uw OAthverzoek.',
-	'mwoauthdatastore-request-token-not-found' => 'Er is geen verzoek aangetroffen voor dat token',
+	'mwoauthdatastore-request-token-not-found' => 'Er is geen verzoek aangetroffen voor dat token', # Fuzzy
 	'mwoauthdatastore-bad-token' => 'Er is geen token gevonden dat hoort bij uw verzoek',
 	'mwoauthdatastore-bad-verifier' => 'De verificatiecode die is opgegeven is niet geldig',
 	'mwoauthdatastore-invalid-token-type' => 'Het verzoektokentype is ongeldig',
 	'mwoauthgrants-general-error' => 'Er is een fout opgetreden in uw OAthverzoek',
-	'mwoauthserver-bad-consumer' => 'Er is geen goedgekeurde consumer voor de opgegeven sleutel',
-	'mwoauthserver-insufficient-rights' => 'U hebt onvoldoende rechten om deze handeling uit te voeren',
+	'mwoauthserver-bad-consumer' => 'Er is geen goedgekeurde consumer voor de opgegeven sleutel', # Fuzzy
+	'mwoauthserver-insufficient-rights' => 'U hebt onvoldoende rechten om deze handeling uit te voeren', # Fuzzy
 	'mwoauthserver-invalid-request-token' => 'Ongeldig token in uw verzoek',
-	'mwoauthserver-invalid-user-hookabort' => 'Deze gebruiker kan OAuth niet gebruiken',
 	'mwoauth-form-button-approve' => 'Toestaan',
+	'mwoauth-form-button-cancel' => 'Annuleren',
 	'mwoauth-grants-heading' => 'Aangevraagde rechten:',
 	'mwoauth-grants-nogrants' => 'De toepassing heeft geen rechten aangevraagd.',
 	'mwoauth-grant-blockusers' => 'Gebruikers (de)blokkeren',
@@ -4383,6 +4385,15 @@ Een paar aanbevelingen en opmerkingen:
 	'action-mwoauthproposeconsumer' => 'nieuwe OAuthconsumers voor te stellen',
 	'action-mwoauthupdateownconsumer' => 'OAuthconsumers bij te werken',
 	'action-mwoauthviewsuppressed' => 'onderdrukte OAuthconsumers te bekijken',
+);
+
+/** Norwegian Nynorsk (norsk nynorsk)
+ * @author Njardarlogar
+ */
+$messages['nn'] = array(
+	'mwoauth-prefs-managegrants' => 'Tilkopla småprogram:',
+	'mwoauth-prefs-managegrantslink' => 'Handsam {{PLURAL:$1|eitt tilknytt småprogram|$1 tilknytte småprogram}}',
+	'mwoauthmanagemygrants-none' => 'Det finst ingen småprogram knytte til kontoen din.',
 );
 
 /** Occitan (occitan)
@@ -4478,11 +4489,14 @@ $messages['oc'] = array(
 
 /** Polish (polski)
  * @author Chrumps
+ * @author Rzuwig
  * @author Ty221
  */
 $messages['pl'] = array(
+	'mwoauth-prefs-managegrantslink' => 'Zarządzaj $1 {{PLURAL:$1|włączoną aplikacją|włączonymi aplikacjami}}',
 	'mwoauth-consumer-reason' => 'Powód:',
 	'mwoauthmanageconsumers-reason' => 'Powód:',
+	'oauthmanagemygrants' => 'Zarządzaj włączonymi aplikacjami',
 	'mwoauth-grant-group-customization' => 'Dostosowywanie i preferencje',
 );
 
@@ -4971,6 +4985,7 @@ $messages['tr'] = array(
 
 /** Ukrainian (українська)
  * @author Andriykopanytsia
+ * @author Base
  * @author Ата
  */
 $messages['uk'] = array(
@@ -5149,8 +5164,8 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'mwoauthmanagemygrants-review' => 'управління доступом',
 	'mwoauthmanagemygrants-revoke' => 'скасувати доступ',
 	'mwoauthmanagemygrants-grantaccept' => 'Надано',
-	'mwoauthmanagemygrants-update-text' => 'Використовуйте форму нижче, щоб змінювати дозволи надані застосунку діяти від вашого імені.
- * Якщо ви окремо уповноважили додаток для доступу до різних сестринських сайтів проектів від вашого імені, то у вас буде окрема конфігурація для кожного такого проекту для цього застосунку.',
+	'mwoauthmanagemygrants-update-text' => 'Використовуйте форму нижче, щоб змінювати дозволи надані додатку діяти від Вашого імені.
+* Якщо Ви окремо уповноважили додаток для доступу до різних сестринських сайтів проектів від вашого імені, то у Вас буде окрема конфігурація для кожного такого проекту для цього додатку.',
 	'mwoauthmanagemygrants-revoke-text' => 'Використовуйте форму нижче, щоб скасувати доступ для програми, щоб діяти від вашого імені.
 * Якщо ви окремо авторизували програму для доступу до різних сестринських сайтів проектів від вашого імені, то ви будете мати окремі налаштування для кожного такого проекту для даного додатка.
 * Якщо ви хочете повністю заборонити доступ до додатку, переконайтеся, що відкликали його з усіх проектів,у які ви прийняли його.',
