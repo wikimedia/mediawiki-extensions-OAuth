@@ -10,7 +10,7 @@ $messages = array();
 
 $messages['en'] = array(
 	'oauth' => 'OAuth',
-	'mwoauth-desc' => 'OAuth 1.0a API Authorization',
+	'mwoauth-desc' => 'Allows usage of OAuth 1.0a for API authorization',
 
 	'mwoauth-verified' => 'The application is now allowed to access MediaWiki on your behalf.
 

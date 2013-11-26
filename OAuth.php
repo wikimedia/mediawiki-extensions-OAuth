@@ -25,7 +25,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 $wgExtensionCredits['other'][] = array(
 	'path'           => __FILE__,
-	'name'           => 'OAuth 1.0a API authentication',
+	'name'           => 'OAuth',
 	'descriptionmsg' => 'mwoauth-desc',
 	'author'         => array( 'Aaron Schulz' ),
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:OAuth',
