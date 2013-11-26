@@ -986,7 +986,7 @@ $messages['ar'] = array(
  * @author Xuacu
  */
 $messages['ast'] = array(
-	'mwoauth-desc' => 'Autenticación API OAuth 1.0a',
+	'mwoauth-desc' => 'Autenticación API OAuth 1.0a', # Fuzzy
 	'mwoauth-missing-field' => 'Falta el valor del campu "$1"',
 	'mwoauth-invalid-field' => 'Diose un valor inválidu pal campu "$1"',
 	'mwoauth-field-hidden' => '(esta información ta tapecida)',
@@ -1329,7 +1329,7 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
  * @author Se4598
  */
 $messages['de'] = array(
-	'mwoauth-desc' => 'OAuth-1.0a-API-Authentifikation',
+	'mwoauth-desc' => 'OAuth-1.0a-API-Authentifikation', # Fuzzy
 	'mwoauth-verified' => "Die Anwendung ist jetzt berechtigt, in deinem Namen auf MediaWiki zuzugreifen.
 
 Um den Prozess abzuschließen, gib diesen Verifizierungswert an die Anwendung weiter: '''$1'''",
@@ -1341,7 +1341,7 @@ Um den Prozess abzuschließen, gib diesen Verifizierungswert an die Anwendung we
 	'mwoauth-grant-generic' => 'Rechtegruppe „$1“',
 	'mwoauth-prefs-managegrants' => 'Verbundene Anwendungen:',
 	'mwoauth-prefs-managegrantslink' => '{{PLURAL:$1|Eine verbundene Anwendung|$1 verbundene Anwendungen}} verwalten',
-	'mwoauth-consumer-allwikis' => 'Alle Projekte auf dieser Website',
+	'mwoauth-consumer-allwikis' => 'Alle Projekte dieser Website',
 	'mwoauth-consumer-key' => 'Verbraucherschlüssel:',
 	'mwoauth-consumer-name' => 'Anwendungsname:',
 	'mwoauth-consumer-version' => 'Verbraucherversion:',
@@ -1566,10 +1566,9 @@ Gehe zurück und versuche, dein Benutzerkonto erneut zu verbinden oder kontaktie
 	'mwoauth-invalid-authorization-blocked-user' => 'Die Autorisierungsheader in deiner Anfrage sind für einen Benutzer, der gesperrt ist.',
 	'mwoauth-form-description-allwikis' => "Hallo $1,
 
-'''$2''' will die folgenden Aktionen auf allen Projekten auf dieser Website in deinem Namen ausführen:
+'''$2''' will die folgenden Aktionen auf allen Projekten dieser Website in deinem Namen ausführen:
 
-
-$4",
+$4.",
 	'mwoauth-form-description-onewiki' => "Hallo $1,
 
 '''$2''' will die folgenden Aktionen auf ''$4'' in deinem Namen ausführen:
@@ -1641,7 +1640,7 @@ Es gibt [[{{MediaWiki:Listgrouprights-helppage}}|zusätzliche Informationen]] ü
  * @author Shirayuki
  */
 $messages['en-gb'] = array(
-	'mwoauth-desc' => 'OAuth 1.0a API Authorisation',
+	'mwoauth-desc' => 'OAuth 1.0a API Authorisation', # Fuzzy
 	'mwoauthconsumerregistration-propose-text' => 'Developers should use the form below to propose a new OAuth consumer (see the [//www.mediawiki.org/wiki/Extension:OAuth extension documentation] for more details). After submitting this form, you will receive a token that your application will use to identify itself to MediaWiki. An OAuth administrator will need to approve your application before it can be authorised by other users.
 
 A few recommendations and remarks:
@@ -1705,6 +1704,30 @@ Las aplicaciones conectadas acceden a tu cuenta mediante el protocolo OAuth. <sp
 	'mwoauth-grant-createaccount' => 'Crear cuentas',
 	'mwoauth-grant-sendemail' => 'Enviar un correo electrónico a otros usuarios',
 	'mwoauth-oauth-exception' => 'Ha ocurrido un error en el protocolo OAuth: $1',
+);
+
+/** Estonian (eesti)
+ * @author Pikne
+ */
+$messages['et'] = array(
+	'mwoauth-prefs-managegrants' => 'Ühendatud rakendused:',
+	'mwoauth-prefs-managegrantslink' => 'Halda {{PLURAL:$1|üht|$1}} ühendatud rakendust',
+	'mwoauth-consumer-name' => 'Rakenduse nimi:',
+	'mwoauth-consumer-user' => 'Väljaandja:',
+	'mwoauth-consumer-stage' => 'Praegune olek:',
+	'oauthlistconsumers' => 'OAuthi-rakenduste loend',
+	'mwoauthlistconsumers-legend' => 'OAuthi-rakenduste sirvimine',
+	'mwoauthlistconsumers-view' => 'üksikasjad',
+	'mwoauthlistconsumers-status' => 'Olek',
+	'mwoauth-consumer-stage-any' => 'ükskõik',
+	'mwoauthlistconsumers-status-proposed' => 'ettepanek',
+	'mwoauthlistconsumers-status-approved' => 'kinnitatud',
+	'mwoauthlistconsumers-status-disabled' => 'keelatud',
+	'mwoauthlistconsumers-status-rejected' => 'tagasilükatud',
+	'mwoauthlistconsumers-status-expired' => 'iganenud',
+	'oauthmanagemygrants' => 'Ühendatud rakenduste haldamine',
+	'mwoauthmanagemygrants-navigation' => 'Navigeerimine:',
+	'mwoauthmanagemygrants-showlist' => 'Ühendatud rakenduste loend',
 );
 
 /** Persian (فارسی)
@@ -2320,7 +2343,7 @@ $5",
  * @author אור שפירא
  */
 $messages['he'] = array(
-	'mwoauth-desc' => 'אישור כניסה עם API של OAuth 1.0a',
+	'mwoauth-desc' => 'אישור כניסה עם API של OAuth 1.0a', # Fuzzy
 	'mwoauth-verified' => "עכשיו היישום הזה מורשה להתחבר למדיה־ויקי בשמך.
 
 כדי להשלים את התהליך, יש לתת את ערך האימות הבא ליישום: '''$1'''",
@@ -3153,7 +3176,7 @@ Potresti trovare [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazioni
  */
 $messages['ja'] = array(
 	'oauth' => 'OAuth',
-	'mwoauth-desc' => 'OAuth 1.0a API 認証',
+	'mwoauth-desc' => 'OAuth 1.0a API 認証', # Fuzzy
 	'mwoauth-verified' => "このアプリケーションがあなたに代わって MediaWiki にアクセスすることが許可されました。
 
 この手続きを完了するには次の検証トークンをアプリケーションに提供してください: '''$1'''",
@@ -3938,7 +3961,7 @@ $5",
  * @author Santhosh.thottingal
  */
 $messages['ml'] = array(
-	'mwoauth-desc' => 'ഒഓത് 1.0എ എ.പി.ഐ. അനുമതി',
+	'mwoauth-desc' => 'ഒഓത് 1.0എ എ.പി.ഐ. അനുമതി', # Fuzzy
 	'mwoauth-verified' => "ഈ സൗകര്യം ഇപ്പോൾ താങ്കളുടെ പേരിൽ മീഡിയവിക്കി എടുക്കാൻ അനുംതി നൽകുന്നു.
 
 പ്രക്രിയ പൂർണ്ണമാക്കാൻ, ഈ സാധൂകരണ വില അപേക്ഷയിൽ നൽകുക: '''$1'''",
@@ -4020,7 +4043,7 @@ Untuk melengkapkan proses ini, berikan nilai penentusahan ini kepada aplikasi: '
  * @author Danmichaelo
  */
 $messages['nb'] = array(
-	'mwoauth-desc' => 'OAuth 1.0a API-autorisering',
+	'mwoauth-desc' => 'OAuth 1.0a API-autorisering', # Fuzzy
 	'mwoauth-verified' => "Applikasjonen har nå tilgang til MediaWiki på dine vegne.
 
 For å fullføre prosessen, vennligst angi verifikasjonsverdien til applikasjonen: '''$1'''",
@@ -4029,18 +4052,21 @@ For å fullføre prosessen, vennligst angi verifikasjonsverdien til applikasjone
 	'mwoauth-invalid-field-generic' => 'Ugyldig verdi angitt',
 	'mwoauth-field-hidden' => '(denne informasjonen er skjult)',
 	'mwoauth-field-private' => '(denne informasjonen er privat)',
+	'mwoauth-grant-generic' => 'Rettighetspakken «$1»',
 	'mwoauth-prefs-managegrants' => 'Tilkoblede apper:',
 	'mwoauth-prefs-managegrantslink' => 'Håndter $1 {{PLURAL:$1|tilkoblet app|tilkoblede apper}}',
-	'mwoauth-consumer-allwikis' => 'Alle prosjekter på denne siden',
+	'mwoauth-consumer-allwikis' => 'Ikke begrenset til prosjekt',
 	'mwoauth-consumer-key' => 'Konsumentnøkkel:',
 	'mwoauth-consumer-name' => 'Applikasjonsnavn:',
-	'mwoauth-consumer-version' => 'Konsumentversjon:',
+	'mwoauth-consumer-version' => 'Versjon:',
 	'mwoauth-consumer-user' => 'Utgiver:',
-	'mwoauth-consumer-stage' => 'Nåværende status:',
+	'mwoauth-consumer-stage' => 'Status:',
 	'mwoauth-consumer-email' => 'E-postadresse',
-	'mwoauth-consumer-description' => 'Applikasjonsbeskrivelse:',
+	'mwoauth-consumer-description' => 'Beskrivelse av appen:',
 	'mwoauth-consumer-callbackurl' => 'OAuth «callback»-URL:',
 	'mwoauth-consumer-grantsneeded' => 'Tilgjengelige tildelinger:',
+	'mwoauth-consumer-required-grant' => 'Tilgjengelig for konsumentappen',
+	'mwoauth-consumer-wiki' => 'Begrens til prosjekt:',
 	'mwoauth-consumer-wiki-thiswiki' => 'Nåværende prosjekt ($1)',
 	'mwoauth-consumer-wiki-other' => 'Spesifikt prosjekt',
 	'mwoauth-consumer-restrictions' => 'Bruksbegrensninger:',
@@ -4053,10 +4079,16 @@ For å fullføre prosessen, vennligst angi verifikasjonsverdien til applikasjone
 	'mwoauth-consumer-email-mismatched' => 'Den oppgitte e-postadressen må stemme med den som er koblet til kontoen din.',
 	'mwoauth-consumer-alreadyexists' => 'Det eksisterer allerede en konsument med denne kombinasjonen av navn/versjon/utgiver.',
 	'mwoauth-consumer-alreadyexistsversion' => 'Det eksisterer allerede en konsument med denne kombinasjonen av navn/utgiver, med en lik eller høyere versjon («$1»)',
+	'mwoauth-consumer-not-accepted' => 'Kan ikke oppdatere informasjon om en pågående konsumentsøknad',
+	'mwoauth-consumer-not-proposed' => 'Konsumenten er ikke foreslått',
+	'mwoauth-consumer-not-disabled' => 'Denne konsumenten er ikke deaktivert på det nåværende tidspunkt',
+	'mwoauth-consumer-not-approved' => 'Denne konsumenten er godkjent (den kan ha vært deaktivert)',
 	'mwoauth-missing-consumer-key' => 'Ingen konsumentnøkkel ble gitt.',
 	'mwoauth-invalid-consumer-key' => 'Det eksisterer ingen konsument med den gitte nøkkelen.',
 	'mwoauth-invalid-access-token' => 'Det eksisterer ingen tilgangstoken med den gitte nøkkelen.',
 	'mwoauth-invalid-access-wrongwiki' => 'Konsumenten kan kun brukes på wikien «$1».',
+	'mwoauth-consumer-conflict' => 'Noen endret attributtene til denne konsumenten mens du så på den. Vennligst prøv igjen. Se evt. i endringsloggen.',
+	'mwoauth-consumer-grantshelp' => 'Hver tildeling gir tilgang til en eller flere brukerrettigheter som brukeren allerede har. Se [[Special:OAuth/grants|tabell over tildelinger]] for mer informasjon.',
 	'mwoauth-consumer-stage-proposed' => 'foreslått',
 	'mwoauth-consumer-stage-rejected' => 'avslått',
 	'mwoauth-consumer-stage-expired' => 'utgått',
@@ -4069,6 +4101,22 @@ For å fullføre prosessen, vennligst angi verifikasjonsverdien til applikasjone
 	'mwoauthconsumerregistration-propose' => 'Foreslå ny konsument',
 	'mwoauthconsumerregistration-list' => 'Min konsumentliste',
 	'mwoauthconsumerregistration-main' => 'Hovedside',
+	'mwoauthconsumerregistration-propose-text' => 'Utviklere kan bruke skjemaet under for å søke om en ny OAuth-konsument (se [//www.mediawiki.org/wiki/Extension:OAuth dokumentasjonen for MediaWiki-tillegget] for flere detaljer). Etter at skjemaet er sendt inn, vil du få et token som applikasjonen kan bruke for å identifisere seg for MediaWiki. En OAuth-administrator må godkjenne søknaden før applikasjonen kan brukes av andre brukere.
+
+Noen anbefalinger:
+* Prøv å bruke så få rettighetstildelinger som mulig. Unngå tildelinger som strengt tatt ikke er nødvendige.
+* Versjonsnumre følger formen «major.minor.release» (de siste to er valgfrie) og øker når endringer i tildelinger er nødvendige.
+* Bruk JSON-bruksbegrensningsfeltet for å begrense konsumentapplikasjonen til IP-adresser i en bestemt CIDR-rekke.
+* Du kan begrense applikasjonen til et bestemt prosjekt.
+* E-postadressen du oppgir må være den samme som er knyttet til brukerkontoen din (og denne må være bekreftet).',
+	'mwoauthconsumerregistration-update-text' => 'Bruk skjemaet under for å oppdatere innstillinger for en OAuth-konsument du kontrollerer.',
+	'mwoauthconsumerregistration-maintext' => 'Denne siden er for å la utviklere foreslå og oppdatere OAuth-konsumentapplikasjoner i registeret.
+
+Herfra kan du
+* [[Special:OAuthConsumerRegistration/propose|Søke om et token for en ny konsumentapplikasjon]].
+* [[Special:OAuthConsumerRegistration/list|Håndtere dine eksisterende konsumentapplikasjoner]].
+
+For mer informasjon om OAuth, se [//www.mediawiki.org/wiki/Extension:OAuth dokumentasjonen for MediaWiki-tillegget].',
 	'mwoauthconsumerregistration-propose-legend' => 'Ny OAuth-konsumentapplikasjon',
 	'mwoauthconsumerregistration-update-legend' => 'Oppdater OAuth-konsumentapplikasjon',
 	'mwoauthconsumerregistration-propose-submit' => 'Foreslå konsument',
@@ -4081,22 +4129,53 @@ For å fullføre prosessen, vennligst angi verifikasjonsverdien til applikasjone
 	'mwoauthconsumerregistration-consumerkey' => 'Konsumentnøkkel',
 	'mwoauthconsumerregistration-stage' => 'Status',
 	'mwoauthconsumerregistration-lastchange' => 'Siste endring',
+	'mwoauthconsumerregistration-manage' => 'håndter',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Tilbakestill den hemmelige nøkkelen til en ny verdi',
+	'mwoauthconsumerregistration-proposed' => "Forespørselen din om en OAuth-konsument har blitt levert.
+
+Du har fått tildelt et konsumenttoken '''$1''' og et hemmelig token '''$2'''. ''Vennligst ta vare på disse til fremtidig bruk.''",
+	'mwoauthconsumerregistration-updated' => 'Ditt OAuth-konsumentregister ble oppdatert.',
+	'mwoauthconsumerregistration-secretreset' => "Du har fått tildelt et hemmelig konsumenttoken '''$1'''. ''Vennligst ta vare på denne til fremtidig bruk.''",
 	'oauthmanageconsumers' => 'Håndter OAuth-konsumenter',
 	'mwoauthmanageconsumers-notloggedin' => 'Du må være innlogget for å vise denne siden.',
 	'mwoauthmanageconsumers-type' => 'Køer:',
+	'mwoauthmanageconsumers-showproposed' => 'Ubehandlede søknader',
+	'mwoauthmanageconsumers-showrejected' => 'Avslåtte søknader',
+	'mwoauthmanageconsumers-showexpired' => 'Utgåtte søknader',
+	'mwoauthmanageconsumers-main' => 'Hovedside',
+	'mwoauthmanageconsumers-maintext' => 'Denne siden er til for å behandle OAuth-konsumentapplikasjonforespørsler (se http://oauth.net) og håndtere etablerte OAuth-konsumenter.',
+	'mwoauthmanageconsumers-queues' => 'Velg en konsumentsøknadskø under:',
+	'mwoauthmanageconsumers-q-proposed' => 'Kø av ubehandlede konsumentsøknader',
+	'mwoauthmanageconsumers-q-rejected' => 'Kø av avslåtte konsumentsøknader',
+	'mwoauthmanageconsumers-q-expired' => 'Kø av utgåtte konsumentsøknader',
+	'mwoauthmanageconsumers-lists' => 'Velg en konsumentstatusliste under:',
+	'mwoauthmanageconsumers-l-approved' => 'Liste over godkjente konsumenter',
+	'mwoauthmanageconsumers-l-disabled' => 'Liste over deaktiverte konsumenter',
+	'mwoauthmanageconsumers-none-proposed' => 'Ingen foreslåtte konsumenter i denne listen.',
+	'mwoauthmanageconsumers-none-rejected' => 'Ingen foreslåtte konsumenter i denne listen.',
+	'mwoauthmanageconsumers-none-expired' => 'Ingen foreslåtte konsumenter i denne listen.',
+	'mwoauthmanageconsumers-none-approved' => 'Ingen konsumenter oppfyller disse kriteriene.',
+	'mwoauthmanageconsumers-none-disabled' => 'Ingen konsumenter oppfyller disse kriteriene.',
 	'mwoauthmanageconsumers-name' => 'Kunde',
 	'mwoauthmanageconsumers-user' => 'Utgiver',
 	'mwoauthmanageconsumers-description' => 'Beskrivelse',
 	'mwoauthmanageconsumers-email' => 'E-postadresse',
 	'mwoauthmanageconsumers-consumerkey' => 'Kundenøkkel',
 	'mwoauthmanageconsumers-lastchange' => 'Siste endring',
+	'mwoauthmanageconsumers-review' => 'behandle/håndter',
+	'mwoauthmanageconsumers-confirm-text' => 'Bruk dette skjemaet for å godkjenne, avslå, deaktivere eller gjenaktivere denne konsumenten.',
 	'mwoauthmanageconsumers-confirm-legend' => 'Håndter OAuth-konsument',
 	'mwoauthmanageconsumers-action' => 'Endre status:',
 	'mwoauthmanageconsumers-approve' => 'Godkjent',
 	'mwoauthmanageconsumers-reject' => 'Avslått',
+	'mwoauthmanageconsumers-rsuppress' => 'Avslått eller undertrykket',
 	'mwoauthmanageconsumers-disable' => 'Deaktivert',
+	'mwoauthmanageconsumers-dsuppress' => 'Deaktivert og undertrykket',
+	'mwoauthmanageconsumers-reenable' => 'Godkjent',
 	'mwoauthmanageconsumers-reason' => 'Årsak:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Oppdater kundestatus',
+	'mwoauthmanageconsumers-viewing' => '{{GENDER:$1|Brukeren}} "$1" ser for øyeblikket på denne konsumenten',
+	'mwoauthmanageconsumers-success-approved' => 'Søknaden har blitt godkjent.',
 	'mwoauthmanageconsumers-success-rejected' => 'Forespørselen har blitt avslått.',
 	'mwoauthmanageconsumers-success-disabled' => 'Kunden har blitt deaktivert.',
 	'mwoauthmanageconsumers-success-reanable' => 'Kunden har blitt reaktivert.',
@@ -4105,22 +4184,28 @@ For å fullføre prosessen, vennligst angi verifikasjonsverdien til applikasjone
 	'oauthlistconsumers' => 'Liste over OAuth-applikasjoner',
 	'mwoauthlistconsumers-legend' => 'Bla i OAuth-applikasjoner',
 	'mwoauthlistconsumers-view' => 'detaljer',
+	'mwoauthlistconsumers-none' => 'Ingen applikasjoner oppfyller disse kriteriene.',
 	'mwoauthlistconsumers-name' => 'Applikasjonsnavn',
 	'mwoauthlistconsumers-version' => 'Kundeversjon',
 	'mwoauthlistconsumers-user' => 'Utgiver',
 	'mwoauthlistconsumers-description' => 'Beskrivelse',
-	'mwoauthlistconsumers-wiki' => 'Applikasjonsprosjekt',
+	'mwoauthlistconsumers-wiki' => 'Begrenset til prosjekt',
 	'mwoauthlistconsumers-callbackurl' => 'OAuth «callback-URL»',
+	'mwoauthlistconsumers-grants' => 'Tilgjengelige tildelinger:',
+	'mwoauthlistconsumers-basicgrantsonly' => '(kun grunnleggende tilgang)',
 	'mwoauthlistconsumers-status' => 'Status',
 	'mwoauth-consumer-stage-any' => 'alle',
-	'mwoauthlistconsumers-status-proposed' => 'foreslåtte',
-	'mwoauthlistconsumers-status-approved' => 'godkjente',
-	'mwoauthlistconsumers-status-disabled' => 'deaktiverte',
-	'mwoauthlistconsumers-status-rejected' => 'avslåtte',
-	'mwoauthlistconsumers-status-expired' => 'utgåtte',
+	'mwoauthlistconsumers-status-proposed' => 'foreslått',
+	'mwoauthlistconsumers-status-approved' => 'godkjent',
+	'mwoauthlistconsumers-status-disabled' => 'deaktivert',
+	'mwoauthlistconsumers-status-rejected' => 'avslått',
+	'mwoauthlistconsumers-status-expired' => 'utgått',
 	'oauthmanagemygrants' => 'Behandle tilkoblede applikasjoner',
+	'mwoauthmanagemygrants-text' => 'Denne siden lister opp alle applikasjoner som kan bruke kontoen din. Hver applikasjons tilgang er begrenset til de rettigheter du har godkjent. Hvis du uavhengig har godkjent en applikasjon for bruk på flere søsterprosjekter, vil du se uavhengige konfigurasjonsmuligheter for hvert prosjekt under.
+
+Applikasjonene har tilgang til kontoen din over OAuth-protokollen. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Lær mer om tilkoblede applikasjoner])</span>',
 	'mwoauthmanagemygrants-notloggedin' => 'Du må være innlogget for å vise denne siden.',
-	'mwoauthmanagemygrants-navigation' => 'Navigering:',
+	'mwoauthmanagemygrants-navigation' => 'Navigasjon:',
 	'mwoauthmanagemygrants-showlist' => 'Liste over tilkoblede applikasjoner',
 	'mwoauthmanagemygrants-none' => 'Det er ingen applikasjoner tilknyttet kontoen din.',
 	'mwoauthmanagemygrants-user' => 'Utgiver:',
@@ -4134,6 +4219,9 @@ For å fullføre prosessen, vennligst angi verifikasjonsverdien til applikasjone
 	'mwoauthmanagemygrants-grantaccept' => 'Bevilget',
 	'mwoauthmanagemygrants-update-text' => 'Bruk skjemaet under for å tilpasse hvilke typer tilgang du vil tildele applikasjon for å handle på dine vegne.
 * Hvis du har gitt applikasjonen tilgang på tvers av søsterprosjekter, må konfigurasjonen gjøres separat for hvert prosjekt.',
+	'mwoauthmanagemygrants-revoke-text' => 'Bruk skjemaet under for å tilbakekalle en applikasjons tilgang til å handle på dine vegne.
+* Hvis du uavhengig har godkjent en applikasjon for bruk på ulike søsterprosjekter, vil du se en egen konfigurasjon for hvert prosjekt.
+* For å fullstendig tilbakekalle en applikasjons tilgang, sørg for at du tilbakekaller tilgangen fra alle prosjekter der du har godkjent den.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Håndter tilkoblet applikasjon',
 	'mwoauthmanagemygrants-update' => 'Oppdater tildelinger',
 	'mwoauthmanagemygrants-renounce' => 'Avautorisér',
@@ -4158,10 +4246,38 @@ For å fullføre prosessen, vennligst angi verifikasjonsverdien til applikasjone
 	'mwoauth-bad-request-invalid-action-contact' => 'Beklager, noe gikk galt. Du må [$1 kontakte] utvikleren av applikasjonen for hjelp til å løse dette.
 
 <span class="plainlinks mw-mwoautherror-details">Ukjent URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
+	'mwoauthdatastore-access-token-not-found' => 'Ingen godkjente tildelinger ble funnet for dette autorisasjonstokenet.',
+	'mwoauthdatastore-request-token-not-found' => 'Beklager, noe gikk galt ved tilkobling av denne applikasjonen.
+Gå tilbake og prøv å koble til kontoen igjen, eller kontakt applikasjonsutvikleren.
+
+<span class="plainlinks mw-mwoautherror-details">OAuth-token ble ikke funnet, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
+	'mwoauthdatastore-bad-token' => 'Det ble ikke funnet noe token som matchet forespørselen din.',
+	'mwoauthdatastore-bad-verifier' => 'Den angitte verifikasjonskoden var ikke gyldig.',
+	'mwoauthdatastore-invalid-token-type' => 'Den forespurte tokentypen er ugyldig.',
+	'mwoauthgrants-general-error' => 'Det var en feil i OAuth-forespørselen.',
+	'mwoauthserver-bad-consumer' => '«$1» er ikke lenger en godkjent app, [$2 kontakt] apputvikleren for hjelp.
+
+<span class="plainlinks mw-mwoautherror-details">Tilkoblet OAuth-app er ikke godkjent, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
+	'mwoauthserver-bad-consumer-key' => 'Beklager, noe gikk galt under tilkoblingen til denne applikasjonen.
+
+<span class="plainlinks mw-mwoautherror-details">Ukjent OAuth-nøkkel, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>',
+	'mwoauthserver-insufficient-rights' => 'Kontoen din har ikke tilgang til å bruke tilkoblede applikasjoner, kontakt din sideadministrator for å finne ut hvorfor.
+
+<span class="plainlinks mw-mwoautherror-details">Utilstrekkelige OAuth-brukerrettigheter, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
+	'mwoauthserver-invalid-request-token' => 'Ugyldig token i forespørselen din.',
+	'mwoauthserver-invalid-user' => "For å bruke tilkoblede applikasjoner på denne siden, må du ha en konto som fungerer på alle prosjektene (''unified login''). Når du har fått en slik konto kan du prøve å koble til «\$1» igjen.
+
+<span class=\"plainlinks mw-mwoautherror-details\">Trenger ''unified login'', [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
 	'mwoauth-invalid-authorization-title' => 'OAuth-autoriseringsfeil',
+	'mwoauth-invalid-authorization' => 'Autorisasjonsheaderne i forespørselen er ikke gyldige: $1',
+	'mwoauth-invalid-authorization-wrong-wiki' => 'Autorisasjonsheaderne i forespørselen er ikke gyldige for $1',
+	'mwoauth-invalid-authorization-invalid-user' => 'Autorisasjonsheaderne i forespørselen tilhører en bruker som ikke eksisterer her',
+	'mwoauth-invalid-authorization-wrong-user' => 'Autorisasjonsheaderne i forespørselen tilhører en annen bruker',
+	'mwoauth-invalid-authorization-not-approved' => 'Appen du prøver å koble til ser ikke ut til å være satt opp riktig. Kontakt utvikleren av «$1» for hjelp.',
+	'mwoauth-invalid-authorization-blocked-user' => 'Autorisasjonsheaderne i forespørselen tilhører en bruker som er blokkert.',
 	'mwoauth-form-description-allwikis' => "Hei $1,
 
-'''$2''' ønsker tillatelse til å utføre følgende handlinger på dine vegne på alle prosjekter på denne siden:
+'''$2''' ønsker tillatelse til å utføre følgende handlinger på dine vegne på alle prosjekter på dette nettstedet:
 
 $4",
 	'mwoauth-form-description-onewiki' => "Hei $1,
@@ -4171,10 +4287,10 @@ $4",
 $5",
 	'mwoauth-form-description-allwikis-nogrants' => "Hei $1,
 
-'''$2''' ønsker grunnleggende rettigheter på dine vegne på alle prosjekter på denne siden.",
+'''$2''' ønsker grunnleggende rettigheter på dine vegne på alle prosjekter på dette nettstedet.",
 	'mwoauth-form-description-onewiki-nogrants' => "Hei $1,
 
-'''$2''' ønsker grunnleggende rettigheter på dine vegne på ''$4''.",
+'''$2''' ønsker tilgang til grunnleggende rettigheter på dine vegne på ''$4''.",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Personvern]]',
 	'mwoauth-form-button-approve' => 'Godkjenn',
 	'mwoauth-form-button-cancel' => 'Avbryt',
@@ -4182,40 +4298,50 @@ $5",
 	'mwoauth-grants-heading' => 'Ønskede rettigheter:',
 	'mwoauth-grants-nogrants' => 'Applikasjonen har ikke bedt om noen rettigheter.',
 	'mwoauth-acceptance-cancelled' => 'Du har valgt å ikke gi «$1» tilgang til kontoen din. «$1» vil ikke fungere uten denne tilgangen. Du kan velge å gå tilbake til «$1» eller [[Special:OAuthManageMyGrants|håndtere]] dine tilkoblede apper.',
-	'mwoauth-grant-blockusers' => 'Blokker og avblokker brukere',
-	'mwoauth-grant-createaccount' => 'Opprett kontoer',
-	'mwoauth-grant-createeditmovepage' => 'Opprett, rediger og flytt sider',
-	'mwoauth-grant-delete' => 'Slett sider, revisjoner og logginnlegg',
-	'mwoauth-grant-editinterface' => 'Rediger MediaWiki-navnerommet og CSS/JavaScript i brukernavnerommet',
-	'mwoauth-grant-editmycssjs' => 'Rediger din egen CSS/JavaScript',
-	'mwoauth-grant-editmywatchlist' => 'Rediger overvåkningslisten din',
-	'mwoauth-grant-editpage' => 'Rediger eksisterende sider',
-	'mwoauth-grant-editprotected' => 'Rediger beskyttede sider',
+	'mwoauth-grant-group-page-interaction' => 'Interagere med sider',
+	'mwoauth-grant-group-file-interaction' => 'Interagere med media',
+	'mwoauth-grant-group-watchlist-interaction' => 'Interagere med overvåkningslisten din',
+	'mwoauth-grant-group-email' => 'Sende e-post',
+	'mwoauth-grant-group-high-volume' => 'Utføre høyvolumaktivitet',
+	'mwoauth-grant-group-customization' => 'Tilpasninger og innstillinger',
+	'mwoauth-grant-group-administration' => 'Utføre administrative handlinger',
+	'mwoauth-grant-group-other' => 'Andre ting',
+	'mwoauth-grant-blockusers' => 'Blokkere og avblokkere brukere',
+	'mwoauth-grant-createaccount' => 'Opprette kontoer',
+	'mwoauth-grant-createeditmovepage' => 'Opprette, redigere og flytte sider',
+	'mwoauth-grant-delete' => 'Slette sider, revisjoner og logginnlegg',
+	'mwoauth-grant-editinterface' => 'Redigere i MediaWiki-navnerommet og CSS/JavaScript i brukernavnerommet',
+	'mwoauth-grant-editmycssjs' => 'Redigere din egen CSS/JavaScript',
+	'mwoauth-grant-editmywatchlist' => 'Redigere overvåkningslisten din',
+	'mwoauth-grant-editpage' => 'Redigere eksisterende sider',
+	'mwoauth-grant-editprotected' => 'Redigere beskyttede sider',
 	'mwoauth-grant-highvolume' => 'Høyvolumredigering',
-	'mwoauth-grant-oversight' => 'Skjule brukere og undertrykk revisjoner',
-	'mwoauth-grant-patrol' => 'Patruljer sideendringer',
-	'mwoauth-grant-protect' => 'Beskytt og avbeskytt sider',
-	'mwoauth-grant-rollback' => 'Tilbakestill sideendringer',
-	'mwoauth-grant-sendemail' => 'Send e-post til andre brukere',
-	'mwoauth-grant-uploadeditmovefile' => 'Last opp, erstatt, og flytt filer',
-	'mwoauth-grant-uploadfile' => 'Last opp nye filer',
+	'mwoauth-grant-oversight' => 'Skjule brukere og undertrykke revisjoner',
+	'mwoauth-grant-patrol' => 'Patruljere sideendringer',
+	'mwoauth-grant-protect' => 'Beskytte og avbeskytte sider',
+	'mwoauth-grant-rollback' => 'Tilbakestille sideendringer',
+	'mwoauth-grant-sendemail' => 'Sende e-post til andre brukere',
+	'mwoauth-grant-uploadeditmovefile' => 'Laste opp, erstatte, og flytte filer',
+	'mwoauth-grant-uploadfile' => 'Laste opp nye filer',
 	'mwoauth-grant-useoauth' => 'Grunnleggende rettigheter',
-	'mwoauth-grant-viewdeleted' => 'Vis slettet informasjon',
+	'mwoauth-grant-viewdeleted' => 'Vise slettet informasjon',
 	'mwoauth-grant-viewmywatchlist' => 'Vise overvåkningslisten din',
 	'mwoauth-oauth-exception' => 'Det oppsto en feil i OAuth-protokollen: $1',
 	'mwoauth-callback-not-oob' => 'oauth_callback må angis, og må settes lik «oob» (skiftsensitiv)',
 	'right-mwoauthproposeconsumer' => 'Foreslå nye OAuth-konsumenter',
-	'right-mwoauthupdateownconsumer' => 'Oppdater OAuth-konsumenter du kontrollerer',
-	'right-mwoauthmanageconsumer' => 'Håndter OAuth-konsumenter',
+	'right-mwoauthupdateownconsumer' => 'Oppdatere OAuth-konsumenter du kontrollerer',
+	'right-mwoauthmanageconsumer' => 'Håndtere OAuth-konsumenter',
 	'right-mwoauthsuppress' => 'Underslå OAuth-konsumenter',
-	'right-mwoauthviewsuppressed' => 'Vis underslåtte OAuth-konsumenter',
-	'right-mwoauthviewprivate' => 'Vis private OAuth-data',
-	'right-mwoauthmanagemygrants' => 'Håndter OAuth-tildelinger',
+	'right-mwoauthviewsuppressed' => 'Vise underslåtte OAuth-konsumenter',
+	'right-mwoauthviewprivate' => 'Vise private OAuth-data',
+	'right-mwoauthmanagemygrants' => 'Håndtere OAuth-tildelinger',
 	'action-mwoauthmanageconsumer' => 'håndter OAuth-konsumenter',
 	'action-mwoauthmanagemygrants' => 'håndter dine OAuth-tildelinger',
 	'action-mwoauthproposeconsumer' => 'foreslå nye OAuth-konsumenter',
 	'action-mwoauthupdateownconsumer' => 'oppdater OAuth-konsumenter du kontrollerer',
 	'action-mwoauthviewsuppressed' => 'vis underslåtte OAuth-konsumenter',
+	'mwoauth-listgrantrights-summary' => 'Følgende er en liste over OAuth-tildelinger og hvilke brukerrettigheter de gir tilgang til. Brukere kan autorisere applikasjoner til å bruke kontoen deres, med rettigheter begrenset til de gitt av tildelingene brukeren har godkjent. En applikasjon som handler på vegne av en bruker kan imidlertid aldri benytte seg av rettigheter brukeren ikke selv har.
+Det kan finnes [[{{MediaWiki:Listgrouprights-helppage}}|ytterligere informasjon]] om de ulike rettighetene.',
 	'mwoauth-listgrants-grant' => 'Tildeling',
 	'mwoauth-listgrants-rights' => 'Rettigheter',
 );
@@ -4236,7 +4362,7 @@ $messages['nds-nl'] = array(
  * @author Sjoerddebruin
  */
 $messages['nl'] = array(
-	'mwoauth-desc' => 'Authenticatie via de OAuth 1.0a API',
+	'mwoauth-desc' => 'Authenticatie via de OAuth 1.0a API', # Fuzzy
 	'mwoauth-missing-field' => 'Waarde voor het veld "$1" ontbreekt',
 	'mwoauth-invalid-field' => 'Er is een ongeldige waarde opgegeven voor het veld "$1"',
 	'mwoauth-field-hidden' => '(deze gegevens zijn verborgen)',
@@ -4400,7 +4526,7 @@ $messages['nn'] = array(
  * @author Cedric31
  */
 $messages['oc'] = array(
-	'mwoauth-desc' => 'API d’autentificacion OAuth 1.0a',
+	'mwoauth-desc' => 'API d’autentificacion OAuth 1.0a', # Fuzzy
 	'mwoauth-missing-field' => 'Valor mancanta pel camp « $1 »',
 	'mwoauth-invalid-field' => 'Valor invalida provesida pel camp « $1 »',
 	'mwoauth-field-hidden' => '(aquesta informacion es amagada)',
@@ -4571,10 +4697,11 @@ $messages['roa-tara'] = array(
 
 /** Russian (русский)
  * @author Kaganer
+ * @author Midnight Gambler
  * @author Okras
  */
 $messages['ru'] = array(
-	'mwoauth-desc' => 'API авторизации OAuth 1.0a',
+	'mwoauth-desc' => 'API авторизации OAuth 1.0a', # Fuzzy
 	'mwoauth-missing-field' => 'Отсутствует значение для поля «$1»',
 	'mwoauth-invalid-field' => 'Недопустимое значение для поля «$1»',
 	'mwoauth-invalid-field-generic' => 'Недопустимое значение',
@@ -4614,6 +4741,7 @@ $messages['ru'] = array(
 	'mwoauthlistconsumers-callbackurl' => '«URL-адрес обратного вызова» OAuth:',
 	'mwoauthlistconsumers-basicgrantsonly' => '(только базовый доступ)',
 	'mwoauthlistconsumers-status' => 'Состояние',
+	'mwoauth-consumer-stage-any' => 'любой',
 	'oauthmanagemygrants' => 'Управление подключенными приложениями',
 	'mwoauthmanagemygrants-showlist' => 'Список подключенных приложений',
 	'mwoauthmanagemygrants-none' => 'Ещё нет приложений, подключенных к вашей учётной записи.',
@@ -4626,6 +4754,7 @@ $messages['ru'] = array(
 	'mwoauth-error' => 'Ошибка подключения приложения',
 	'mwoauth-grants-heading' => 'Запросить разрешения:',
 	'mwoauth-grant-group-email' => 'Отправить письмо',
+	'mwoauth-grant-editmywatchlist' => 'Редактировать ваш список наблюдения',
 	'mwoauth-grant-uploadfile' => 'Загрузить новые файлы',
 	'mwoauth-grant-viewdeleted' => 'Просмотреть удаленную информацию',
 	'mwoauth-grant-viewmywatchlist' => 'Просмотреть свой список наблюдения',
@@ -4695,17 +4824,22 @@ $5",
 $messages['sr-ec'] = array(
 	'mwoauth-field-hidden' => '(ова информација је скривена)',
 	'mwoauth-field-private' => '(ова информација је приватна)',
+	'mwoauth-prefs-managegrants' => 'Повезане апликације:',
 	'mwoauthlistconsumers-view' => 'детаљи',
 	'mwoauthlistconsumers-name' => 'Име апликације',
 	'mwoauthlistconsumers-user' => 'Издавач',
 	'mwoauthlistconsumers-description' => 'Опис',
 	'mwoauthlistconsumers-status' => 'Статус',
+	'oauthmanagemygrants' => 'Управљање повезаним апликацијама',
+	'mwoauthmanagemygrants-showlist' => 'Списак повезаних аликација',
+	'mwoauthmanagemygrants-none' => 'Нема апликација повезаних са вашим налогом.',
 );
 
 /** Serbian (Latin script) (srpski (latinica)‎)
  * @author Milicevic01
  */
 $messages['sr-el'] = array(
+	'mwoauth-prefs-managegrants' => 'Povezane aplikacije:',
 	'mwoauthlistconsumers-description' => 'Opis',
 	'mwoauthlistconsumers-status' => 'Status',
 );
@@ -4718,7 +4852,7 @@ $messages['sr-el'] = array(
  * @author WikiPhoenix
  */
 $messages['sv'] = array(
-	'mwoauth-desc' => 'OAuth 1.0a API-tillstånd',
+	'mwoauth-desc' => 'OAuth 1.0a API-tillstånd', # Fuzzy
 	'mwoauth-missing-field' => 'Saknar värde för "$1"-fältet',
 	'mwoauth-invalid-field' => 'Ogiltigt värde angett för "$1"-fältet',
 	'mwoauth-invalid-field-generic' => 'Ogiltigt värde angivet',
@@ -4989,7 +5123,7 @@ $messages['tr'] = array(
  * @author Ата
  */
 $messages['uk'] = array(
-	'mwoauth-desc' => 'OAuth 1.0a API авторизація',
+	'mwoauth-desc' => 'OAuth 1.0a API авторизація', # Fuzzy
 	'mwoauth-verified' => "Цій програмі зараз дозволений доступ до Медіавікі від вашого імені.
 
 Для завершення процесу надайте це перевірене значення програмі: '''$1'''",
@@ -5477,7 +5611,7 @@ $messages['yi'] = array(
  * @author Xiaomingyan
  */
 $messages['zh-hans'] = array(
-	'mwoauth-desc' => 'OAuth 1.0a API授权',
+	'mwoauth-desc' => 'OAuth 1.0a API授权', # Fuzzy
 	'mwoauth-verified' => "现在该应用以允许以您的名义访问MediaWiki。
 
 要完成这个过程，请为该应用提供这个校验值：'''$1'''",
@@ -5487,7 +5621,7 @@ $messages['zh-hans'] = array(
 	'mwoauth-field-hidden' => '（这些信息已被隐藏）',
 	'mwoauth-field-private' => '（这些信息是不公开的）',
 	'mwoauth-grant-generic' => '" $1 "权利束',
-	'mwoauth-prefs-managegrants' => '已连接的应用：',
+	'mwoauth-prefs-managegrants' => '连接的应用：',
 	'mwoauth-prefs-managegrantslink' => '管理$1{{PLURAL:$1|个|个}}应用',
 	'mwoauth-consumer-allwikis' => '本站的所有项目',
 	'mwoauth-consumer-key' => 'Consumer key:',
@@ -5556,8 +5690,8 @@ $messages['zh-hans'] = array(
 	'oauthmanagemygrants' => '管理连接的应用程序',
 	'mwoauthmanagemygrants-notloggedin' => '您必须登录后才能访问此页。',
 	'mwoauthmanagemygrants-navigation' => '导航：',
-	'mwoauthmanagemygrants-showlist' => '连接的应用列表',
-	'mwoauthmanagemygrants-none' => '当前没有应用程序连接到您的帐户。',
+	'mwoauthmanagemygrants-showlist' => '连接的应用程序列表',
+	'mwoauthmanagemygrants-none' => '没有应用程序连接至你的账户。',
 	'mwoauthmanagemygrants-user' => '发布者：',
 	'mwoauthmanagemygrants-description' => '描述',
 	'mwoauthmanagemygrants-wikiallowed' => '允许在项目上使用：',
