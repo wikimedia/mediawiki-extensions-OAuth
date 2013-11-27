@@ -1329,7 +1329,7 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
  * @author Se4598
  */
 $messages['de'] = array(
-	'mwoauth-desc' => 'OAuth-1.0a-API-Authentifikation', # Fuzzy
+	'mwoauth-desc' => 'Ermöglicht die Verwendung von OAuth 1.0a zur API-Autorisierung',
 	'mwoauth-verified' => "Die Anwendung ist jetzt berechtigt, in deinem Namen auf MediaWiki zuzugreifen.
 
 Um den Prozess abzuschließen, gib diesen Verifizierungswert an die Anwendung weiter: '''$1'''",
@@ -1640,7 +1640,7 @@ Es gibt [[{{MediaWiki:Listgrouprights-helppage}}|zusätzliche Informationen]] ü
  * @author Shirayuki
  */
 $messages['en-gb'] = array(
-	'mwoauth-desc' => 'OAuth 1.0a API Authorisation', # Fuzzy
+	'mwoauth-desc' => 'Allows usage of OAuth 1.0a for API authorisation',
 	'mwoauthconsumerregistration-propose-text' => 'Developers should use the form below to propose a new OAuth consumer (see the [//www.mediawiki.org/wiki/Extension:OAuth extension documentation] for more details). After submitting this form, you will receive a token that your application will use to identify itself to MediaWiki. An OAuth administrator will need to approve your application before it can be authorised by other users.
 
 A few recommendations and remarks:
@@ -2343,7 +2343,7 @@ $5",
  * @author אור שפירא
  */
 $messages['he'] = array(
-	'mwoauth-desc' => 'אישור כניסה עם API של OAuth 1.0a', # Fuzzy
+	'mwoauth-desc' => 'מאפשרת שימוש ב־OAuth 1.0a לאישור ב־API',
 	'mwoauth-verified' => "עכשיו היישום הזה מורשה להתחבר למדיה־ויקי בשמך.
 
 כדי להשלים את התהליך, יש לתת את ערך האימות הבא ליישום: '''$1'''",
@@ -3176,7 +3176,7 @@ Potresti trovare [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazioni
  */
 $messages['ja'] = array(
 	'oauth' => 'OAuth',
-	'mwoauth-desc' => 'OAuth 1.0a API 認証', # Fuzzy
+	'mwoauth-desc' => 'API 認証に OAuth 1.0a を使用できるようにする',
 	'mwoauth-verified' => "このアプリケーションがあなたに代わって MediaWiki にアクセスすることが許可されました。
 
 この手続きを完了するには次の検証トークンをアプリケーションに提供してください: '''$1'''",
@@ -3579,7 +3579,7 @@ $messages['ko'] = array(
  * @author Robby
  */
 $messages['lb'] = array(
-	'mwoauth-desc' => 'OAuth 1.0a API Autorisatioun',
+	'mwoauth-desc' => 'De Gebrauch vun OAuth 1.0a fir API Autorisatiounerlaben',
 	'mwoauth-missing-field' => 'De Wäert fir d\'Feld "$1" feelt',
 	'mwoauth-invalid-field-generic' => 'Net valabele Wäert uginn',
 	'mwoauth-field-hidden' => '(dës Informatioun ass verstoppt)',
@@ -3667,7 +3667,7 @@ $messages['lb'] = array(
  * @author Bjankuloski06
  */
 $messages['mk'] = array(
-	'mwoauth-desc' => 'Заверка со прилогот OAuth 1.0a',
+	'mwoauth-desc' => 'Овозможува употреба на OAuth 1.0a за заверка на прилози (API)',
 	'mwoauth-verified' => "На прилогот не му е дозволен пристап до МедијаВики во ваше име.
 
 За да ја довршите постапката, на прилогот укажете му ја следнава контролна вредност: '''$1'''",
@@ -4699,9 +4699,11 @@ $messages['roa-tara'] = array(
  * @author Kaganer
  * @author Midnight Gambler
  * @author Okras
+ * @author Rubin
+ * @author Yurik
  */
 $messages['ru'] = array(
-	'mwoauth-desc' => 'API авторизации OAuth 1.0a', # Fuzzy
+	'mwoauth-desc' => 'Позволяет использование OAuth 1.0a для API авторизации',
 	'mwoauth-missing-field' => 'Отсутствует значение для поля «$1»',
 	'mwoauth-invalid-field' => 'Недопустимое значение для поля «$1»',
 	'mwoauth-invalid-field-generic' => 'Недопустимое значение',
@@ -4716,6 +4718,7 @@ $messages['ru'] = array(
 	'mwoauth-consumer-description' => 'Описание приложения:',
 	'mwoauth-consumer-callbackurl' => 'URL-адрес «обратного вызова» OAuth:',
 	'mwoauth-consumer-wiki' => 'Применимо к проекту:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Текущий проект ($1)',
 	'mwoauth-consumer-wiki-other' => 'Конкретный проект',
 	'mwoauth-consumer-restrictions' => 'Ограничения на использование:',
 	'mwoauth-consumer-restrictions-json' => 'Ограничения на использование (JSON):',
@@ -4754,7 +4757,12 @@ $messages['ru'] = array(
 	'mwoauth-error' => 'Ошибка подключения приложения',
 	'mwoauth-grants-heading' => 'Запросить разрешения:',
 	'mwoauth-grant-group-email' => 'Отправить письмо',
+	'mwoauth-grant-blockusers' => 'Блокировать и разблокировать пользователей',
+	'mwoauth-grant-createaccount' => 'Создавать учетные записи',
 	'mwoauth-grant-editmywatchlist' => 'Редактировать ваш список наблюдения',
+	'mwoauth-grant-editpage' => 'Редактировать существующие страницы',
+	'mwoauth-grant-editprotected' => 'Редактировать защищенные страницы',
+	'mwoauth-grant-protect' => 'Защищать и снимать защиту со страниц',
 	'mwoauth-grant-uploadfile' => 'Загрузить новые файлы',
 	'mwoauth-grant-viewdeleted' => 'Просмотреть удаленную информацию',
 	'mwoauth-grant-viewmywatchlist' => 'Просмотреть свой список наблюдения',
@@ -5111,9 +5119,20 @@ $5",
 );
 
 /** Turkish (Türkçe)
+ * @author Incelemeelemani
  * @author Rapsar
  */
 $messages['tr'] = array(
+	'mwoauth-prefs-managegrants' => 'Bağlı uygulamalar:',
+	'mwoauth-prefs-managegrantslink' => '$1 bağlı {{PLURAL:$1|uygulamayı|uygulamaları}} yönet',
+	'mwoauthconsumerregistration-navigation' => 'Navigasyon:',
+	'oauthmanagemygrants' => 'Bağlı uygulamaları yönet',
+	'mwoauthmanagemygrants-text' => 'Bu sayfada hesabınızda kullanılan uygulamaların listesi bulunmaktadır. Bu tür uygulamalar, söz konusu uygulamaya izin verdiğiniz ölçüde sizin adınıza hareket etmeye yetkilidir. Eğer bir uygulama sizin adınıza farklı kardeş projelere erişmek için yetkilendirildiği taktirde, uygulama ile ilgili bölümün altında diğer projeler için yetkilendirme ayarlarını da görebilirsiniz.
+
+Bağlı uygulamalar OAuth protokolünü kullanarak, hesaplarınıza erişim sağlar. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Bağlı uygulamalar hakkında daha fazla bilgi alın])</span>',
+	'mwoauthmanagemygrants-showlist' => 'Bağlı uygulama listesi',
+	'mwoauthmanagemygrants-none' => 'Hesabınıza bağlı herhangi bir uygulama yoktur.',
+	'mwoauthmanagemygrants-confirm-legend' => 'Bağlı uygulama yönetimi',
 	'mwoauth-form-button-approve' => 'Evet, izin ver', # Fuzzy
 );
 
@@ -5123,7 +5142,7 @@ $messages['tr'] = array(
  * @author Ата
  */
 $messages['uk'] = array(
-	'mwoauth-desc' => 'OAuth 1.0a API авторизація', # Fuzzy
+	'mwoauth-desc' => 'Дозволяє використовувати OAuth 1.0a для API авторизації',
 	'mwoauth-verified' => "Цій програмі зараз дозволений доступ до Медіавікі від вашого імені.
 
 Для завершення процесу надайте це перевірене значення програмі: '''$1'''",
