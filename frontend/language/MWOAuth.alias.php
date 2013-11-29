@@ -27,6 +27,15 @@ $specialPageAliases['de'] = array(
 	'OAuth' => array( 'OAuth' ),
 );
 
+/** Persian (فارسی) */
+$specialPageAliases['fa'] = array(
+	'OAuthConsumerRegistration' => array( 'ثبت_OAuth' ),
+	'OAuthManageConsumers' => array( 'مدیریت_مصرف‌کننده‌های_OAuth' ),
+	'OAuthListConsumers' => array( 'فهرست_مصرف‌کننده‌های_OAuth' ),
+	'OAuthManageMyGrants' => array( 'مدیریت_اعطاهای_OAuth_من' ),
+	'OAuth' => array( 'OAuth', 'MWOAuth' ),
+);
+
 /** Korean (한국어) */
 $specialPageAliases['ko'] = array(
 	'OAuthConsumerRegistration' => array( 'OAuth컨슈머등록', 'OAuth등록' ),
