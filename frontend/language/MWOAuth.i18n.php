@@ -1006,9 +1006,13 @@ $messages['ar'] = array(
  * @author Xuacu
  */
 $messages['ast'] = array(
-	'mwoauth-desc' => 'Autenticación API OAuth 1.0a', # Fuzzy
+	'mwoauth-desc' => 'Permite usar OAuth 1.0a pa la identificación de la API',
+	'mwoauth-verified' => "Agora, esta aplicación tien permisu pa acceder a MediaWiki nel so nome.
+
+Pa completar el procesu, de-y esti valor de comprobación a la aplicación: '''$1'''",
 	'mwoauth-missing-field' => 'Falta el valor del campu "$1"',
 	'mwoauth-invalid-field' => 'Diose un valor inválidu pal campu "$1"',
+	'mwoauth-invalid-field-generic' => 'Dióse un valor inválidu',
 	'mwoauth-field-hidden' => '(esta información ta tapecida)',
 	'mwoauth-field-private' => '(esta información ye privada)',
 	'mwoauth-grant-generic' => 'Conxuntu de drechos "$1"',
@@ -1047,6 +1051,7 @@ $messages['ast'] = array(
 	'mwoauth-invalid-access-token' => "Nun esiste dengún pase d'accesu cola clave dada.",
 	'mwoauth-invalid-access-wrongwiki' => 'El consumidor solo pue usase na wiki «$1».',
 	'mwoauth-consumer-conflict' => "Dalguién camudó los atributos d'esti consumidor mentanto lu vía. Por favor, vuelva a intentalo. Pue comprobar el rexistru de cambios.",
+	'mwoauth-consumer-grantshelp' => "Cada concesión da accesu a los permisos d'usuariu de la llista qu'una cuenta d'usuariu yá tenga. Vea la [[Special:OAuth/grants|tabla de concesiones]] pa más información.",
 	'mwoauth-consumer-stage-proposed' => 'propuestu',
 	'mwoauth-consumer-stage-rejected' => 'refugáu',
 	'mwoauth-consumer-stage-expired' => 'caducáu',
@@ -1059,6 +1064,39 @@ $messages['ast'] = array(
 	'mwoauthconsumerregistration-propose' => 'Proponer un consumidor nuevu',
 	'mwoauthconsumerregistration-list' => 'La mio llista de consumidores',
 	'mwoauthconsumerregistration-main' => 'Principal',
+	'mwoauthconsumerregistration-propose-text' => "Los desendolcadores tendríen d'usar el formulariu de más abaxo pa proponer un nuevu consumidor d'OAuth (vea la [//www.mediawiki.org/wiki/Extension:OAuth documentación de la estensión] pa más detalles). Dempués d'unviar esti formulariu, recibirá un pase qu'usará la so aplicación pa identificase con MediaWiki. Un alministrador d'OAuth tendrá d'aprobar la so aplicación enantes de qu'otros usuarios puedan autorizala.
+
+Delles recomendaciones y comentarios:
+* Intente usar les mínimes concesiones posibles. Evite les concesiones que nun se necesiten realmente nesti momentu.
+* Les versiones tienen la forma \"mayor.menor.versión\" (les dos últimes son opcionales) y s'incrementen según se necesiten cambios na concesión.
+* Por favor, ufra una clave pública RSA (en formatu PEM) si ye posible; d'otra manera tendrá d'usase un pase secretu (menos seguru).
+* Use'l campu JSON de restricciones pa llendar l'accesu d'esti consumidor a direiciones IP d'esos rangos CIDR.
+* Pue usar una ID de wiki pa restrinxir el consumidor a un único proyeutu d'esti sitiu (use \"*\" pa tolos proyeutos).
+* La direición de corréu dada tien de casar cola de la so cuenta (que tien de tar confirmada).",
+	'mwoauthconsumerregistration-update-text' => "Utilice'l formulariu d'abaxo p'anovar aspeutos d'un consumidor d'OAuth que controle.
+
+Tolos valores d'equí sobreescribirán a cualquiera anterior. Nun dexe campos baleros a menos que quiera llimpiar eses valores.",
+	'mwoauthconsumerregistration-maintext' => "Esta páxina ye pa permitir que los desendolcadores propongan y anueven les aplicaciones consumidores d'OAuth del rexistru d'esti sitiu.
+
+Dende equí, pue:
+* [[Special:OAuthConsumerRegistration/propose|Solicitar un pase pa un consumidor nuevu]].
+* [[Special:OAuthConsumerRegistration/list|Alministrar los consumidores esistentes]].
+
+Pa más información tocante a OAuth, vea la [//www.mediawiki.org/wiki/Extension:OAuth documentación de la estensión].",
+	'mwoauthconsumerregistration-propose-legend' => "Nueva aplicación consumidora d'OAuth",
+	'mwoauthconsumerregistration-update-legend' => "Anovar una aplicación consumidora d'OAuth",
+	'mwoauthconsumerregistration-propose-submit' => 'Proponer un consumidor',
+	'mwoauthconsumerregistration-update-submit' => 'Anovar un consumidor',
+	'mwoauthconsumerregistration-none' => "Nun controla nengún consumidor d'OAuth.",
+	'mwoauthconsumerregistration-name' => 'Consumidor',
+	'mwoauthconsumerregistration-user' => 'Editor',
+	'mwoauthconsumerregistration-description' => 'Descripción',
+	'mwoauthconsumerregistration-email' => 'Corréu de contactu',
+	'mwoauthconsumerregistration-consumerkey' => 'Clave del consumidor',
+	'mwoauthconsumerregistration-stage' => 'Estáu',
+	'mwoauthconsumerregistration-lastchange' => 'Cambéu postreru',
+	'mwoauthconsumerregistration-manage' => 'alministrar',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Reaniciar la clave secreta a un valor nuevu',
 );
 
 /** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
@@ -1906,13 +1944,18 @@ $messages['fa'] = array(
 	'mwoauthlistconsumers-grants' => 'اعطاهای اجرا شدنی',
 	'mwoauthlistconsumers-basicgrantsonly' => '(فقط دسترسی پایه)',
 	'mwoauthlistconsumers-status' => 'وضعیت',
-	'mwoauth-consumer-stage-any' => 'هر',
+	'mwoauth-consumer-stage-any' => 'همه',
 	'mwoauthlistconsumers-status-proposed' => 'پیشنهاد شده',
 	'mwoauthlistconsumers-status-approved' => 'تأیید شده',
 	'mwoauthlistconsumers-status-disabled' => 'غیرفعال شد',
 	'mwoauthlistconsumers-status-rejected' => 'رد شده',
 	'mwoauthlistconsumers-status-expired' => 'منقضی شده',
 	'oauthmanagemygrants' => 'مدیریت برنامه‌های کاربردی متصل',
+	'mwoauthmanagemygrants-text' => 'در این صفحه فهرست همه برنامه‌های کاربردیی که از کاربری شما می‌تواند برای ویرایش استفاده کند فهرست شده‌است. هدف از اجازه‌ای که به برنامه داده‌اید که به جای شما ویرایش کند، محدودسازی دامنه عملکرد آن برنامه به جای شما است. اگر به صورت جداگانه برای پروژه‌های خواهر دسترسی به برنامه‌های کاربردی داده‌اید، تنظیمات دسترسی‌ها را به صورت مجزا در پائین مشاهده خواهید کرد.
+
+
+ارتباط با کاربری شما بر پایه پروتکل OAuth می‌باشد.<span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth یادگیری بیشتر در مورد برنامه های کاربردی متصل])</span>',
+	'mwoauthmanagemygrants-notloggedin' => 'برای دسترسی به این صفحه باید وارد سامانه شوید.',
 	'mwoauthmanagemygrants-navigation' => 'ناوبری:',
 	'mwoauthmanagemygrants-showlist' => 'فهرست برنامه‌های متصل',
 	'mwoauthmanagemygrants-none' => 'هیچ برنامه‌ای به حسابتان متصل نیست.',
@@ -1946,6 +1989,21 @@ $messages['fa'] = array(
 	'mwoauth-bad-request-invalid-action-contact' => 'پوزش، خطایی رخ داد. برای [$1 تماس]  با برنامه‌نویس برای کمک به آدرس زیر مراجعه کنید.
 
 <span class="plainlinks mw-mwoautherror-details">Unknown URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
+	'mwoauthdatastore-access-token-not-found' => 'هیچ اعطای تائید برای رمز اختیار یافت نشد.',
+	'mwoauthdatastore-bad-token' => 'هیچ نشانه مطابق درخواست شما یافت نشد.',
+	'mwoauthdatastore-bad-verifier' => 'کد تأیید صحت ارائه‌شده معتبر نیست.',
+	'mwoauthdatastore-invalid-token-type' => 'نوع رمز درخواستی نامعتبر است.',
+	'mwoauthgrants-general-error' => 'خطایی در درخواست OAuth شما وجود داشت.',
+	'mwoauthserver-bad-consumer' => '" $1 " دیگر یک برنامه وصل تایید شده نیست، برای کمک با نویسندهٔ برنامه [ $2  تماس بگیرید].
+N!<span class="plainlinks mw-mwoautherror-details">نرم افزار متصل‌شدهٔ OAuth مورد تایید نیست، [https://www.mediawiki.org/wiki/Help:OAuth و اشتباهات #E005 E005]</span>',
+	'mwoauthserver-bad-consumer-key' => 'با عرض پوزش، مشکلی در طی اتصال این برنامه پیش‌آمد.
+N!<span class="plainlinks mw-mwoautherror-details">کلید ناشناخته OAuth، [https://www.mediawiki.org/wiki/Help:OAuth و اشتباهات #E006 E006]</span>',
+	'mwoauthserver-invalid-request-token' => 'علامت نامعتبر در درخواست شما.',
+	'mwoauth-invalid-authorization-title' => 'خطای مجوز OAuth',
+	'mwoauth-invalid-authorization' => 'سرصفحه‌های اختیار در درخواست شما، معتبر نیستند: $1',
+	'mwoauth-invalid-authorization-wrong-wiki' => 'سرصفحه‌های اختیار در درخواست شما، برای $1 معتبر نیستند',
+	'mwoauth-invalid-authorization-invalid-user' => 'سرصفحه‌های اختیار در درخواست شما، برای کاربری ناموجود است.',
+	'mwoauth-invalid-authorization-wrong-user' => 'سرصفحه‌های اختیار در درخواست شما، برای کاربر متفاوت است.',
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|سیاست حریم شخصی]]',
 	'mwoauth-form-button-approve' => 'اجازه می‌دهد',
 	'mwoauth-form-button-cancel' => 'انصراف',
@@ -5111,6 +5169,9 @@ $messages['sr-el'] = array(
 	'mwoauth-prefs-managegrants' => 'Povezane aplikacije:',
 	'mwoauthlistconsumers-description' => 'Opis',
 	'mwoauthlistconsumers-status' => 'Status',
+	'oauthmanagemygrants' => 'Upravljanje povezanim aplikacijama',
+	'mwoauthmanagemygrants-showlist' => 'Spisak povezanih alikacija',
+	'mwoauthmanagemygrants-none' => 'Nema aplikacija povezanih sa vašim nalogom.',
 );
 
 /** Swedish (svenska)
