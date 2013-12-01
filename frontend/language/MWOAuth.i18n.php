@@ -5793,6 +5793,8 @@ $messages['vi'] = array(
 	'mwoauth-consumer-callbackurl' => 'URL “gọi lại” OAuth:',
 	'mwoauth-consumer-grantsneeded' => 'Các quyền có liên quan:',
 	'mwoauth-consumer-wiki' => 'Dự án có liên quan:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Dự án hiện tại ($1)',
+	'mwoauth-consumer-wiki-other' => 'Dự án cụ thể',
 	'mwoauth-consumer-restrictions' => 'Hạn chế sử dụng:',
 	'mwoauth-consumer-restrictions-json' => 'Hạn chế sử dụng (JSON):',
 	'mwoauth-consumer-rsakey' => 'Chìa khóa RSA công cộng:',
@@ -5872,6 +5874,7 @@ Tài khoản của bạn không được phép sử dụng tính năng Ứng d�
 
 <span class="plainlinks mw-mwoautherror-details">Người dùng không đủ quyền OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Dấu hiệu không hợp lệ trong yêu cầu của bạn.',
+	'mwoauth-invalid-authorization-title' => 'Lỗi xác minh OAuth',
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Quy định quyền riêng tư]]',
 	'mwoauth-form-button-approve' => 'Cho phép',
 	'mwoauth-form-button-cancel' => 'Hủy bỏ',
