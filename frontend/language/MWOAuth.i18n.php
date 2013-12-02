@@ -4680,11 +4680,19 @@ $messages['nds-nl'] = array(
  * @author Sjoerddebruin
  */
 $messages['nl'] = array(
-	'mwoauth-desc' => 'Authenticatie via de OAuth 1.0a API', # Fuzzy
+	'mwoauth-desc' => 'Maakt het mogelijk OAuth 1.0a te gebruik voor API-toestemming',
+	'mwoauth-verified' => "De toepassing heeft nu namens u toegang tot MediaWiki.
+
+Geef deze controlewaarde op in de toepassing om het proces te voltooien: '''$1'''",
 	'mwoauth-missing-field' => 'Waarde voor het veld "$1" ontbreekt',
 	'mwoauth-invalid-field' => 'Er is een ongeldige waarde opgegeven voor het veld "$1"',
+	'mwoauth-invalid-field-generic' => 'Er is een ongeldige waarde opgegeven',
 	'mwoauth-field-hidden' => '(deze gegevens zijn verborgen)',
 	'mwoauth-field-private' => '(deze gegevens zijn privé)',
+	'mwoauth-grant-generic' => 'Rechtengroep "$1"',
+	'mwoauth-prefs-managegrants' => 'Gekoppelde apps:',
+	'mwoauth-prefs-managegrantslink' => '$1 gekoppelde {{PLURAL:$1|toepassing|toepassingen}} beheren',
+	'mwoauth-consumer-allwikis' => 'Alle projecten op deze site',
 	'mwoauth-consumer-key' => 'Consumersleutel:',
 	'mwoauth-consumer-name' => 'Naam toepassing:',
 	'mwoauth-consumer-version' => 'Consumerversie:',
@@ -4695,7 +4703,8 @@ $messages['nl'] = array(
 	'mwoauth-consumer-callbackurl' => 'URL voor OAuth-"callback":',
 	'mwoauth-consumer-grantsneeded' => 'Van toepassing zijnde rechten:',
 	'mwoauth-consumer-required-grant' => 'Van toepassing op consumer',
-	'mwoauth-consumer-wiki' => 'Van toepassing op wiki:', # Fuzzy
+	'mwoauth-consumer-wiki' => 'Van toepassing op project:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Huidig project ($1)',
 	'mwoauth-consumer-wiki-other' => 'Specifiek project',
 	'mwoauth-consumer-restrictions' => 'Gebruiksbeperkingen:',
 	'mwoauth-consumer-restrictions-json' => 'Gebruiksbeperkingen (JSON):',
@@ -4703,16 +4712,32 @@ $messages['nl'] = array(
 	'mwoauth-consumer-secretkey' => 'Geheim token consumer:',
 	'mwoauth-consumer-accesstoken' => 'Toegangstoken:',
 	'mwoauth-consumer-reason' => 'Reden:',
+	'mwoauth-consumer-email-unconfirmed' => 'Het e-mailadres van uw gebruiker is nog niet bevestigd.',
+	'mwoauth-consumer-email-mismatched' => 'Het opgegeven e-mailadres moet overeenkomen met dat van uw gebruiker.',
+	'mwoauth-consumer-alreadyexists' => 'Er bestaat al een toepassing met deze combinatie van naam, versie en uitgever',
+	'mwoauth-consumer-alreadyexistsversion' => 'Er bestaat al een toepassing met deze combinatie van naam en uitgever met een versie die gelijk of hoger is ("$1")',
+	'mwoauth-consumer-not-accepted' => 'Het was niet mogelijk om gegevens van een openstaand toepassingsverzoek bij te werken',
+	'mwoauth-consumer-not-proposed' => 'De toepassing wordt op dit moment niet voorgesteld',
+	'mwoauth-consumer-not-disabled' => 'De toepassing is op dit moment niet uitgeschakeld',
+	'mwoauth-consumer-not-approved' => 'De toepassing is niet goedgekeurd (deze kan uitgeschakeld zijn)',
+	'mwoauth-missing-consumer-key' => 'Er is geen toepassingssleutel opgegeven.',
+	'mwoauth-invalid-consumer-key' => 'Er bestaat geen toepassing met deze sleutel.',
 	'mwoauth-invalid-access-token' => 'Er bestaat geen toegangstoken met de opgegeven sleutel.',
+	'mwoauth-invalid-access-wrongwiki' => 'De toepassing kan alleen gebruikt worden op de wiki "$1".',
+	'mwoauth-consumer-conflict' => 'Iemand heeft de eigenschappen van deze toepassing aangepast terwijl u deze aan het bekijken was. U kunt het wijzigingenlogboek bekijken.',
+	'mwoauth-consumer-grantshelp' => 'Iedere toestemming geeft toegang tot de opgegeven gebruikersrechten die een gebruiker al heeft. Zie de [[Special:OAuth/grants|tabel met toestemmingen]] voor meer informatie.',
 	'mwoauth-consumer-stage-proposed' => 'voorgesteld',
 	'mwoauth-consumer-stage-rejected' => 'afgewezen',
 	'mwoauth-consumer-stage-expired' => 'vervallen',
 	'mwoauth-consumer-stage-approved' => 'goedgekeurd',
 	'mwoauth-consumer-stage-disabled' => 'uitgeschakeld',
 	'mwoauth-consumer-stage-suppressed' => 'onderdrukt',
+	'oauthconsumerregistration' => 'Registratie van OAuth-toepassingen',
+	'mwoauthconsumerregistration-notloggedin' => 'U moet aangemeld zijn om toegang te krijgen tot deze pagina.',
 	'mwoauthconsumerregistration-navigation' => 'Navigatie:',
 	'mwoauthconsumerregistration-propose' => 'Nieuwe consumer voorstellen',
 	'mwoauthconsumerregistration-list' => 'Uw consumerlijst',
+	'mwoauthconsumerregistration-main' => 'Startpagina',
 	'mwoauthconsumerregistration-propose-text' => 'Ontwikkelaars moeten het onderstaande formulier gebruiken om een nieuwe OAuthconsumer voor te stellen (zie de [//www.mediawiki.org/wiki/Extension:OAuth documentatie van de uitbreiding] voor meer details). Na het indienden van dit formulier ontvangt u een token dat uw programma gaat gebruiken om zichzelf te identificeren bij MediaWiki. Een OAuthbeheerder moet uw aanvraag goedkeuren voor het door andere gebruikers kan worden toegestaan.
 
 Een paar aanbevelingen en opmerkingen:
@@ -4720,8 +4745,8 @@ Een paar aanbevelingen en opmerkingen:
 * Versies hebben de opmaak "groot.klein.release" (de laatste twee elementen zijn optioneel) en moeten oplopen als er wijzigingen voor de toestemmingen nodig zijn;
 * Gebruik als mogelijk een RSA-sleutel (in PEM-opmaak); als dat niet mogelijk is, wordt u een (minder veilig) geheim token toegewezen;
 * Gebruik het veld JSON-beperkingen om de toegang voor deze consumer te beperken tot IP-adressen in de opgegeven CIDR-bereiken;
-* U kunt een wiki-ID gebruiken om de consumer te beperken tot één enkele wiki op deze site (gebruik "*" voor alle wiki\'s);
-* Het e-mailadres moet overeenkomen met dat van uw gebruiker (en het e-mailadres moet zijn bevestigd).', # Fuzzy
+* U kunt een wiki-ID gebruiken om de consumer te beperken tot één enkel project op deze site (gebruik "*" voor alle projecten);
+* Het e-mailadres moet overeenkomen met dat van uw gebruiker (en het e-mailadres moet zijn bevestigd).',
 	'mwoauthconsumerregistration-propose-legend' => 'Nieuwe OAuthconsumertoepassing',
 	'mwoauthconsumerregistration-update-legend' => 'OAuthconsumertoepassing bijwerken',
 	'mwoauthconsumerregistration-propose-submit' => 'Consumer voorstellen',
@@ -4734,14 +4759,23 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauthconsumerregistration-stage' => 'Status',
 	'mwoauthconsumerregistration-lastchange' => 'Laatste wijziging',
 	'mwoauthconsumerregistration-manage' => 'beheren',
-	'oauthmanageconsumers' => 'OAuthconsumers beheren', # Fuzzy
+	'oauthmanageconsumers' => 'OAuth-toepassingen beheren',
 	'mwoauthmanageconsumers-type' => 'Wachtrijen:',
 	'mwoauthmanageconsumers-showproposed' => 'Voorgestelde verzoeken',
 	'mwoauthmanageconsumers-showrejected' => 'Afgewezen verzoeken',
 	'mwoauthmanageconsumers-showexpired' => 'Verlopen aanvragen',
+	'mwoauthmanageconsumers-main' => 'Startpagina',
+	'mwoauthmanageconsumers-q-proposed' => 'Wachtrij met voorgestelde toepassingsverzoeken',
+	'mwoauthmanageconsumers-q-rejected' => 'Wachtrij met afgewezen toepassingsverzoeken',
+	'mwoauthmanageconsumers-q-expired' => 'Wachtrij met verlopen toepassingsverzoeken',
 	'mwoauthmanageconsumers-lists' => 'Selecteer een consumerstatus uit de onderstaande lijst:',
+	'mwoauthmanageconsumers-l-approved' => 'Wachtrij met goedgekeurde toepassingen',
+	'mwoauthmanageconsumers-l-disabled' => 'Lijst met uitgeschakelde toepassingen',
+	'mwoauthmanageconsumers-none-proposed' => 'Geen voorgestelde toepassingen.',
+	'mwoauthmanageconsumers-none-rejected' => 'Geen voorgestelde toepassingen.',
 	'mwoauthmanageconsumers-none-expired' => 'Geen voorgestelde consumers in deze lijst.',
 	'mwoauthmanageconsumers-none-approved' => 'Er zijn geen consumers die aan deze voorwaarden voldoen.',
+	'mwoauthmanageconsumers-none-disabled' => 'Er zijn geen toepassingen die aan de criteria voldoen.',
 	'mwoauthmanageconsumers-name' => 'Consumer',
 	'mwoauthmanageconsumers-user' => 'Uitgever',
 	'mwoauthmanageconsumers-description' => 'Beschrijving',
@@ -4760,26 +4794,46 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauthmanageconsumers-reenable' => 'Goedgekeurd',
 	'mwoauthmanageconsumers-reason' => 'Reden:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Consumerstatus bijwerken',
-	'mwoauthmanageconsumers-viewing' => 'Gebruiker "$1" bekijkt op dit moment deze consumer', # Fuzzy
+	'mwoauthmanageconsumers-viewing' => '{{GENDER:$1|Gebruiker}} "$1" bekijkt op dit moment deze toepassing',
 	'mwoauthmanageconsumers-success-approved' => 'Het verzoek is goedgekeurd.',
 	'mwoauthmanageconsumers-success-rejected' => 'Het verzoek is afgewezen.',
 	'mwoauthmanageconsumers-success-disabled' => 'De consumer is uitgeschakeld.',
 	'mwoauthmanageconsumers-success-reanable' => 'De consumer is opnieuw ingeschakeld.',
+	'mwoauthmanageconsumers-search-name' => 'toepassingen met deze naam',
+	'mwoauthmanageconsumers-search-publisher' => 'toepassingen van deze gebruiker',
+	'oauthlistconsumers' => 'Lijst met OAuth-toepassingen',
+	'mwoauthlistconsumers-legend' => 'OAuth-toepassingen bekijken',
 	'mwoauthlistconsumers-view' => 'details',
+	'mwoauthlistconsumers-none' => 'Er zijn geen toepassingen die aan de criteria voldoen.',
+	'mwoauthlistconsumers-name' => 'Naam toepassing',
+	'mwoauthlistconsumers-version' => 'Versie toepassing',
+	'mwoauthlistconsumers-user' => 'Uitgever',
 	'mwoauthlistconsumers-description' => 'Beschrijving',
-	'oauthmanagemygrants' => 'OAuthrechten van gebruiker beheren', # Fuzzy
+	'mwoauthlistconsumers-wiki' => 'Van toepassing op project',
+	'mwoauthlistconsumers-callbackurl' => 'OAuth callback-URL',
+	'mwoauthlistconsumers-grants' => 'Toestemmingen',
+	'mwoauthlistconsumers-basicgrantsonly' => '(alleen basistoegang)',
+	'mwoauthlistconsumers-status' => 'Status',
+	'mwoauth-consumer-stage-any' => 'alle',
+	'mwoauthlistconsumers-status-proposed' => 'voorgesteld',
+	'mwoauthlistconsumers-status-approved' => 'goedgekeurd',
+	'mwoauthlistconsumers-status-disabled' => 'uitgeschakeld',
+	'mwoauthlistconsumers-status-rejected' => 'afgewezen',
+	'mwoauthlistconsumers-status-expired' => 'vervallen',
+	'oauthmanagemygrants' => 'Gekoppelde toepassingen beheren',
 	'mwoauthmanagemygrants-navigation' => 'Navigatie:',
-	'mwoauthmanagemygrants-showlist' => 'Geaccepteerde consumerlijst', # Fuzzy
-	'mwoauthmanagemygrants-none' => 'Er zijn geen consumers die toegang hebben namens uw gebruiker.', # Fuzzy
-	'mwoauthmanagemygrants-user' => 'Uitgever', # Fuzzy
+	'mwoauthmanagemygrants-showlist' => 'Lijst met gekoppelde toepassingen',
+	'mwoauthmanagemygrants-none' => 'Er zijn geen toepassingen die toegang hebben namens uw gebruiker.',
+	'mwoauthmanagemygrants-user' => 'Uitgever:',
 	'mwoauthmanagemygrants-description' => 'Beschrijving',
 	'mwoauthmanagemygrants-wikiallowed' => 'Toegestaan op project:',
 	'mwoauthmanagemygrants-grants' => 'Van toepassing zijnde rechten',
 	'mwoauthmanagemygrants-grantsallowed' => 'Toegestane rechten:',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Van toepassing zijnde rechten toegestaan:',
 	'mwoauthmanagemygrants-review' => 'toegang beheren',
+	'mwoauthmanagemygrants-revoke' => 'toegang intrekken',
 	'mwoauthmanagemygrants-grantaccept' => 'Toegestaan',
-	'mwoauthmanagemygrants-confirm-legend' => 'consumertoegangstoken beheren', # Fuzzy
+	'mwoauthmanagemygrants-confirm-legend' => 'Gekoppelde toepassing beheren',
 	'mwoauthmanagemygrants-update' => 'Toegang bijwerken',
 	'mwoauthmanagemygrants-renounce' => 'Machtiging intrekken',
 	'mwoauthmanagemygrants-action' => 'Statuswijziging:',
@@ -4788,13 +4842,20 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauthmanagemygrants-success-renounce' => 'Het toegangstoken voor deze consumer is verwijderd.',
 	'mwoauthconsumer-consumer-logpage' => 'OAuthconsumerlogboek',
 	'mwoauthconsumer-consumer-logpagetext' => 'Logboek met goedkeuringen, afwijzingen en uitschakelingen van geregistreerde OAuthconsumers.',
-	'mwoauthdatastore-request-token-not-found' => 'Er is geen verzoek aangetroffen voor dat token', # Fuzzy
+	'mwoauthdatastore-request-token-not-found' => 'Er is helaas iets mis gegaan tijdens het koppelen van deze toepassing.
+Ga terug, en probeer de koppeling opnieuw tot stand te brengen of neem contact op met de uitgever.
+
+<span class="plainlinks mw-mwoautherror-details">OAuth-token niet gevonden, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
 	'mwoauthdatastore-bad-token' => 'Er is geen token gevonden dat hoort bij uw verzoek',
 	'mwoauthdatastore-bad-verifier' => 'De verificatiecode die is opgegeven is niet geldig',
 	'mwoauthdatastore-invalid-token-type' => 'Het verzoektokentype is ongeldig',
 	'mwoauthgrants-general-error' => 'Er is een fout opgetreden in uw OAthverzoek',
-	'mwoauthserver-bad-consumer' => 'Er is geen goedgekeurde consumer voor de opgegeven sleutel', # Fuzzy
-	'mwoauthserver-insufficient-rights' => 'U hebt onvoldoende rechten om deze handeling uit te voeren', # Fuzzy
+	'mwoauthserver-bad-consumer' => '"$1" is niet langer toegestaan als gekoppelde toepassing, voor hulp kunt u [$2 contact opnemen] met de uitgever van de toepassing.
+
+<span class="plainlinks mw-mwoautherror-details">Gekoppelde OAuth-toepassing niet toegestaan, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
+	'mwoauthserver-insufficient-rights' => 'Uw gebruiker mag geen toepassingen koppelen. Neem contact op met de beheerder als u wilt weten waarom dit zo is.
+
+<span class="plainlinks mw-mwoautherror-details">Onvoldoende gebruikersrechten voor OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Ongeldig token in uw verzoek',
 	'mwoauth-form-button-approve' => 'Toestaan',
 	'mwoauth-form-button-cancel' => 'Annuleren',
@@ -4829,6 +4890,8 @@ Een paar aanbevelingen en opmerkingen:
 	'action-mwoauthproposeconsumer' => 'nieuwe OAuthconsumers voor te stellen',
 	'action-mwoauthupdateownconsumer' => 'OAuthconsumers bij te werken',
 	'action-mwoauthviewsuppressed' => 'onderdrukte OAuthconsumers te bekijken',
+	'mwoauth-listgrants-grant' => 'Toestemming',
+	'mwoauth-listgrants-rights' => 'Rechten',
 );
 
 /** Norwegian Nynorsk (norsk nynorsk)
@@ -4939,8 +5002,19 @@ $messages['oc'] = array(
 $messages['pl'] = array(
 	'mwoauth-prefs-managegrants' => 'Włączone aplikacje:',
 	'mwoauth-prefs-managegrantslink' => 'Zarządzaj $1 {{PLURAL:$1|włączoną aplikacją|włączonymi aplikacjami}}',
+	'mwoauth-consumer-name' => 'Nazwa aplikacji:',
+	'mwoauth-consumer-user' => 'Wydawca:',
+	'mwoauth-consumer-stage' => 'Aktualny status:',
 	'mwoauth-consumer-reason' => 'Powód:',
+	'mwoauth-consumer-stage-proposed' => 'proponowane',
+	'mwoauth-consumer-stage-rejected' => 'odrzucone',
+	'mwoauth-consumer-stage-expired' => 'przeterminowane',
+	'mwoauth-consumer-stage-approved' => 'zatwierdzone',
+	'mwoauth-consumer-stage-disabled' => 'wyłączone',
 	'mwoauthmanageconsumers-reason' => 'Powód:',
+	'oauthlistconsumers' => 'Lista aplikacji OAuth',
+	'mwoauthlistconsumers-legend' => 'Przegląd aplikacji OAuth',
+	'mwoauth-consumer-stage-any' => 'dowolny',
 	'oauthmanagemygrants' => 'Zarządzaj włączonymi aplikacjami',
 	'mwoauth-grant-group-customization' => 'Dostosowywanie i preferencje',
 );
@@ -5182,7 +5256,7 @@ $messages['sr-el'] = array(
  * @author WikiPhoenix
  */
 $messages['sv'] = array(
-	'mwoauth-desc' => 'OAuth 1.0a API-tillstånd', # Fuzzy
+	'mwoauth-desc' => 'Tillåter användning av OAuth 1.0a för API-tillstånd',
 	'mwoauth-missing-field' => 'Saknar värde för "$1"-fältet',
 	'mwoauth-invalid-field' => 'Ogiltigt värde angett för "$1"-fältet',
 	'mwoauth-invalid-field-generic' => 'Ogiltigt värde angivet',

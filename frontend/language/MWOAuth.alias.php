@@ -49,6 +49,7 @@ $specialPageAliases['ko'] = array(
 $specialPageAliases['mk'] = array(
 	'OAuthConsumerRegistration' => array( 'МВOAuthРегистрацијаПотрошувач' ),
 	'OAuthManageConsumers' => array( 'МВOAuthРаководењеПотрошувач' ),
+	'OAuthListConsumers' => array( 'OAuthНаведиПотрошувачи' ),
 	'OAuthManageMyGrants' => array( 'OAuthРаководењеМоиДоделувања' ),
 	'OAuth' => array( 'OAuth' ),
 );
