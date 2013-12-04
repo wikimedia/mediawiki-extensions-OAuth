@@ -1158,6 +1158,15 @@ Dióse-y el pase de consumidor '''$1''' ya'l pase secretu '''$2'''. ''Por favor,
 	'mwoauthlistconsumers-wiki' => 'Proyeutu aplicable',
 	'mwoauthlistconsumers-callbackurl' => 'URL de "callback" OAuth',
 	'mwoauthlistconsumers-grants' => 'Concesiones aplicables',
+	'mwoauthlistconsumers-basicgrantsonly' => '(sólo accesu basicu)',
+	'mwoauthlistconsumers-status' => 'Estáu',
+	'mwoauth-consumer-stage-any' => 'cualesquiera',
+	'mwoauthlistconsumers-status-proposed' => 'propuesta',
+	'mwoauthlistconsumers-status-approved' => 'aprobada',
+	'mwoauthlistconsumers-status-disabled' => 'desactivada',
+	'mwoauthlistconsumers-status-rejected' => 'refugada',
+	'mwoauthlistconsumers-status-expired' => 'caducada',
+	'oauthmanagemygrants' => 'Alministrar les aplicaciones coneutaes',
 );
 
 /** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
@@ -1753,6 +1762,13 @@ $5",
 Es gibt [[{{MediaWiki:Listgrouprights-helppage}}|zusätzliche Informationen]] über einzelne Rechte.',
 	'mwoauth-listgrants-grant' => 'Berechtigung',
 	'mwoauth-listgrants-rights' => 'Berechtigungen',
+);
+
+/** Zazaki (Zazaki)
+ * @author Marmase
+ */
+$messages['diq'] = array(
+	'mwoauth-prefs-managegrantslink' => '$1 ya greyın {{PLURAL:$1|dezgi|dezgan}} idare ke',
 );
 
 /** British English (British English)
@@ -5078,6 +5094,8 @@ $messages['pl'] = array(
 	'mwoauth-consumer-stage-any' => 'dowolny',
 	'oauthmanagemygrants' => 'Zarządzaj włączonymi aplikacjami',
 	'mwoauth-grant-group-customization' => 'Dostosowywanie i preferencje',
+	'right-mwoauthmanageconsumer' => 'Zarządzanie konsumentami OAuth',
+	'action-mwoauthmanageconsumer' => 'zarządzanie konsumentami OAuth',
 );
 
 /** Pashto (پښتو)
