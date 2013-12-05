@@ -969,6 +969,7 @@ Refers to {{msg-mw|Listgrouprights-helppage}}.',
 
 /** Arabic (العربية)
  * @author Claw eg
+ * @author Ibrahim.ID
  * @author Tarawneh
  * @author مشعل الحربي
  */
@@ -994,6 +995,9 @@ $messages['ar'] = array(
 	'mwoauth-consumer-description' => 'وصف للتطبيق:',
 	'mwoauth-consumer-wiki-thiswiki' => 'الويكي الحالية ($1)', # Fuzzy
 	'mwoauth-consumer-wiki-other' => 'مشروع معين',
+	'mwoauth-consumer-reason' => 'السبب:',
+	'mwoauth-consumer-email-unconfirmed' => 'بريدك الألكتروني لم يتم تفعيله بعد.',
+	'mwoauth-consumer-email-mismatched' => 'يجب أن يتطابق البريد الإلكتروني مع الحساب الخاص بك.',
 	'mwoauthconsumerregistration-main' => 'الرئيسي',
 	'mwoauthlistconsumers-view' => 'التفاصيل',
 	'mwoauthlistconsumers-name' => 'اسم التطبيق',
@@ -2031,7 +2035,7 @@ $messages['fa'] = array(
 	'mwoauthmanagemygrants-text' => 'در این صفحه فهرست همه برنامه‌های کاربردیی که از کاربری شما می‌تواند برای ویرایش استفاده کند فهرست شده‌است. هدف از اجازه‌ای که به برنامه داده‌اید که به جای شما ویرایش کند، محدودسازی دامنه عملکرد آن برنامه به جای شما است. اگر به صورت جداگانه برای پروژه‌های خواهر دسترسی به برنامه‌های کاربردی داده‌اید، تنظیمات دسترسی‌ها را به صورت مجزا در پائین مشاهده خواهید کرد.
 
 
-ارتباط با کاربری شما بر پایه پروتکل OAuth می‌باشد.<span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth یادگیری بیشتر در مورد برنامه های کاربردی متصل])</span>',
+ارتباط با کاربری شما بر پایه پروتکل OAuth است.<span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth یادگیری بیشتر در مورد برنامه های کاربردی متصل])</span>',
 	'mwoauthmanagemygrants-notloggedin' => 'برای دسترسی به این صفحه باید وارد سامانه شوید.',
 	'mwoauthmanagemygrants-navigation' => 'ناوبری:',
 	'mwoauthmanagemygrants-showlist' => 'فهرست برنامه‌های متصل',
@@ -4255,13 +4259,27 @@ $messages['mk'] = array(
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|преовозможи}} потрошувач на OAuth со $3 (потрошувачки клуч $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Потрошувачки дневник за OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Дневник на одобрувања, одбивања и оневозможувања на регистрирани потрошувачи на OAuth.',
+	'mwoauth-bad-request-missing-params' => 'Нажалост, се јави проблем при поставувањето на прилогот. Обратете се на <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth местото за поддршка]</span> за да дознаете како да го решите.
+
+<span class="plainlinks mw-mwoautherror-details">OAuth без параметри, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>',
+	'mwoauth-bad-request-invalid-action' => 'Нажалост, се јави проблем при поставувањето на прилогот. Обратете се кај неговиот автор за да го решите.
+
+<span class="plainlinks mw-mwoautherror-details">Непозната URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>',
+	'mwoauth-bad-request-invalid-action-contact' => 'Нажалост, се јави некаков проблем. Ќе треба да се [$1 обратите] кај авторот на прилогот за да го решите.
+
+<span class="plainlinks mw-mwoautherror-details">Непозната URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
 	'mwoauthdatastore-access-token-not-found' => 'Не пронајдов одобрено доделување со таа повластена шифра',
-	'mwoauthdatastore-request-token-not-found' => 'Не пронајдов барање со таа шифра', # Fuzzy
+	'mwoauthdatastore-request-token-not-found' => 'Нажалост, се јави проблем при поврзувањето на прилогот.
+Вратете се и пробајте одново, или пак обратете се кај неговиот автор.
+
+<span class="plainlinks mw-mwoautherror-details">Не е пронајдена шифрата за OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
 	'mwoauthdatastore-bad-token' => 'Не пронајдов барање што одговара на бараното',
 	'mwoauthdatastore-bad-verifier' => 'Укажаниот потврден код е неважечки',
 	'mwoauthdatastore-invalid-token-type' => 'Побараниот тип на шифра е неважечки.',
 	'mwoauthgrants-general-error' => 'Се појави грешка во барањето за OAuth',
-	'mwoauthserver-bad-consumer' => 'Нема одобрен потрошувач со таков клуч', # Fuzzy
+	'mwoauthserver-bad-consumer' => '„$1“ повеќе не е одобрен како поврзан прилог. Ако ви треба помош, [$2 обратете се] кај неговиот автор.
+
+<span class="plainlinks mw-mwoautherror-details">Неодобрен поврзан прилог на OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
 	'mwoauthserver-bad-consumer-key' => 'Нажалост, нешто не е во ред со прилогот.
 
 <span class="plainlinks mw-mwoautherror-details">Непознат клуч за OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>',
@@ -4269,12 +4287,15 @@ $messages['mk'] = array(
 
 <span class="plainlinks mw-mwoautherror-details">Недоволни кориснички права за OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Неважечкa шифра во барањето.',
+	'mwoauthserver-invalid-user' => 'За да користите поврзани прилози на ова мрежно место, ќе мора да имате сметка на сите проекти (обединета сметка). Обидете се повторно да го поврзете „$1“ кога ќе направите таква сметка.
+
+<span class="plainlinks mw-mwoautherror-details">Се бара обединета сметка, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>',
 	'mwoauth-invalid-authorization-title' => 'Грешка со овластувањето во OAuth',
 	'mwoauth-invalid-authorization' => 'Овластителните заглавија во вашето барање се неисправни: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'Овластителните заглавија во вашето барање се неисправни за $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'Овластителните заглавија во вашето барање се однесуваат на корисникот што тука не постои',
 	'mwoauth-invalid-authorization-wrong-user' => 'Овластителните заглавија во вашето барање се однесуваат на друг корисник',
-	'mwoauth-invalid-authorization-not-approved' => 'Овластителните заглавија во вашето барање се однесуваат на потрошувач на OAuth што во моментов не е одобрен', # Fuzzy
+	'mwoauth-invalid-authorization-not-approved' => 'Прилогот што сакате да го поврзете е исправно поставен. За помоп, обратете се кај авторот на „$1“.',
 	'mwoauth-invalid-authorization-blocked-user' => 'Овластителните заглавија во вашето барање се однесуваат на корисник што е блокиран',
 	'mwoauth-form-description-allwikis' => "Здраво $1,
 
@@ -4300,7 +4321,7 @@ $5",
 	'mwoauth-error' => 'Грешка во поврзувањето со прилогот',
 	'mwoauth-grants-heading' => 'Побарани дозволи:',
 	'mwoauth-grants-nogrants' => 'Прилогот нема побарано ниедна дозвола.',
-	'mwoauth-acceptance-cancelled' => 'Го имате откажано ова барање за овластување на потрошувач на OAuth да делува ваше име.', # Fuzzy
+	'mwoauth-acceptance-cancelled' => 'Одбравте на „$1“ да не му дозволите пристап на вашата сметка. „$1“ ќе работи само ако му дадете дозвола. Можете да се вратите на „$1“ или пак да направите [[Special:OAuthManageMyGrants|нагодувања]] на поврзаните прилози.',
 	'mwoauth-grant-group-page-interaction' => 'Опходување со страници',
 	'mwoauth-grant-group-file-interaction' => 'Опходување со слики и снимки',
 	'mwoauth-grant-group-watchlist-interaction' => 'Опходување со списокот на набљудувања',
@@ -5079,6 +5100,7 @@ $messages['oc'] = array(
 $messages['pl'] = array(
 	'mwoauth-prefs-managegrants' => 'Włączone aplikacje:',
 	'mwoauth-prefs-managegrantslink' => 'Zarządzaj $1 {{PLURAL:$1|włączoną aplikacją|włączonymi aplikacjami}}',
+	'mwoauth-consumer-allwikis' => 'Wszystkie projekty na tej stronie',
 	'mwoauth-consumer-name' => 'Nazwa aplikacji:',
 	'mwoauth-consumer-user' => 'Wydawca:',
 	'mwoauth-consumer-stage' => 'Aktualny status:',
@@ -5093,7 +5115,16 @@ $messages['pl'] = array(
 	'mwoauthlistconsumers-legend' => 'Przegląd aplikacji OAuth',
 	'mwoauth-consumer-stage-any' => 'dowolny',
 	'oauthmanagemygrants' => 'Zarządzaj włączonymi aplikacjami',
+	'mwoauthmanagemygrants-user' => 'Wydawca:',
+	'mwoauthmanagemygrants-wikiallowed' => 'Dozwolone w projekcie:',
+	'mwoauthmanagemygrants-review' => 'zarządzanie dostępem',
+	'mwoauthmanagemygrants-revoke' => 'usunięcie dostępu',
+	'mwoauthmanagemygrants-update' => 'Aktualizuj',
+	'mwoauthmanagemygrants-renounce' => 'Anuluj dostęp',
 	'mwoauth-grant-group-customization' => 'Dostosowywanie i preferencje',
+	'mwoauth-grant-createeditmovepage' => 'Tworzenie, edycja i przenoszenie stron',
+	'mwoauth-grant-editpage' => 'Edytowanie istniejących stron',
+	'mwoauth-grant-useoauth' => 'Podstawowe uprawnienia',
 	'right-mwoauthmanageconsumer' => 'Zarządzanie konsumentami OAuth',
 	'action-mwoauthmanageconsumer' => 'zarządzanie konsumentami OAuth',
 );
