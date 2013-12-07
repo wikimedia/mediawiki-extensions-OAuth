@@ -1223,6 +1223,10 @@ $messages['ca'] = array(
  * @author Умар
  */
 $messages['ce'] = array(
+	'mwoauth-prefs-managegrantslink' => 'ТӀетесна $1 {{PLURAL:$1|тӀетохаран урхалладар|тӀетохаршан урхалладар}}',
+	'oauthmanagemygrants' => 'ТӀетесна тӀетохаршан урхалладар',
+	'mwoauthmanagemygrants-showlist' => 'ТӀетесна тӀетохаршан могӀа',
+	'mwoauthmanagemygrants-none' => 'Хьан декъашхочун дӀаяздаран хӀинца яц тӀетесна тӀетохарш.',
 	'mwoauth-grant-group-email' => 'ДӀадахьийта кехат',
 	'mwoauth-listgrants-rights' => 'Бакъонаш',
 );
@@ -1246,7 +1250,7 @@ $messages['ckb'] = array(
  * @author Mormegil
  */
 $messages['cs'] = array(
-	'mwoauth-desc' => 'Autorizace pomocí rozhraní OAuth 1.0a',
+	'mwoauth-desc' => 'Autorizace pomocí rozhraní OAuth 1.0a', # Fuzzy
 	'mwoauth-missing-field' => 'Chybějící hodnota pole „$1“',
 	'mwoauth-invalid-field' => 'Uvedena neplatná hodnota pole „$1“',
 	'mwoauth-field-hidden' => '(tato informace je skryta)',
@@ -1264,7 +1268,7 @@ $messages['cs'] = array(
 	'mwoauth-consumer-callbackurl' => 'URL pro OAuth „callback“:',
 	'mwoauth-consumer-grantsneeded' => 'Použitelná oprávnění:',
 	'mwoauth-consumer-required-grant' => 'Použitelné konzumentem',
-	'mwoauth-consumer-wiki' => 'Použitelná wiki:',
+	'mwoauth-consumer-wiki' => 'Použitelná wiki:', # Fuzzy
 	'mwoauth-consumer-restrictions' => 'Omezení užití:',
 	'mwoauth-consumer-restrictions-json' => 'Omezení užití (JSON):',
 	'mwoauth-consumer-rsakey' => 'Veřejný RSA klíč:',
@@ -1366,7 +1370,7 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'mwoauthmanageconsumers-reenable' => 'Schválený',
 	'mwoauthmanageconsumers-reason' => 'Důvod:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Aktualizovat stav konzumenta',
-	'mwoauthmanageconsumers-viewing' => 'Tohoto konzumenta si v současné chvíli prohlíží {{GENDER:$1|uživatel|uživatelka}} „$1“.',
+	'mwoauthmanageconsumers-viewing' => 'Tohoto konzumenta si v současné chvíli prohlíží {{GENDER:$1|uživatel|uživatelka}} „$1“.', # Fuzzy
 	'mwoauthmanageconsumers-success-approved' => 'Žádost byla schválena.',
 	'mwoauthmanageconsumers-success-rejected' => 'Žádost byla zamítnuta.',
 	'mwoauthmanageconsumers-success-disabled' => 'Konzument byl zakázán.',
@@ -1376,9 +1380,9 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'mwoauthmanagemygrants-navigation' => 'Navigace:',
 	'mwoauthmanagemygrants-showlist' => 'Seznam schválených konzumentů', # Fuzzy
 	'mwoauthmanagemygrants-none' => 'Žádný konzument nemá jménem vašeho účtu přístup.', # Fuzzy
-	'mwoauthmanagemygrants-user' => 'Vydavatel',
+	'mwoauthmanagemygrants-user' => 'Vydavatel', # Fuzzy
 	'mwoauthmanagemygrants-description' => 'Popis',
-	'mwoauthmanagemygrants-wikiallowed' => 'Povoleno na wiki',
+	'mwoauthmanagemygrants-wikiallowed' => 'Povoleno na wiki', # Fuzzy
 	'mwoauthmanagemygrants-grants' => 'Použitelná oprávnění',
 	'mwoauthmanagemygrants-grantsallowed' => 'Přidělená oprávnění',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Přidělená použitelná oprávnění:',
@@ -1399,27 +1403,24 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'logentry-mwoauthconsumer-reenable' => '$1 znovu {{GENDER:$2|povolil|povolila}} konzumenta OAuth uživatele $3 (klíč konzumenta $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Kniha konzumentů OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Protokol schválení, zamítnutí a zákazů registrovaných konzumentů OAuth.',
-	'mwoauth-bad-request' => 'Ve vašem OAuth požadavku byla chyba.',
 	'mwoauthdatastore-access-token-not-found' => 'K tomuto schválenému autorizačnímu tokenu nebylo nalezeno žádné schválené oprávnění.',
-	'mwoauthdatastore-request-token-not-found' => 'Pro tento token nebyl nalezen žádný požadavek.',
+	'mwoauthdatastore-request-token-not-found' => 'Pro tento token nebyl nalezen žádný požadavek.', # Fuzzy
 	'mwoauthdatastore-bad-token' => 'Žádný token odpovídající vašemu požadavku nebyl nalezen.',
 	'mwoauthdatastore-bad-verifier' => 'Poskytnutý ověřovací kód nebyl platný.',
 	'mwoauthdatastore-invalid-token-type' => 'Požadovaný typ tokenu není platný.',
 	'mwoauthgrants-general-error' => 'Ve vašem OAuth požadavku byla chyba.',
-	'mwoauthserver-bad-consumer' => 'K poskytnutému klíči nebyl nalezen žádný schválený konzument.',
-	'mwoauthserver-insufficient-rights' => 'K provedení této akce nemáte dostatečná oprávnění.',
+	'mwoauthserver-bad-consumer' => 'K poskytnutému klíči nebyl nalezen žádný schválený konzument.', # Fuzzy
+	'mwoauthserver-insufficient-rights' => 'K provedení této akce nemáte dostatečná oprávnění.', # Fuzzy
 	'mwoauthserver-invalid-request-token' => 'Váš požadavek obsahuje neplatný token.',
-	'mwoauthserver-invalid-user-hookabort' => 'Tento uživatel nemůže používat OAuth.',
 	'mwoauth-invalid-authorization-title' => 'Chyba autorizace OAuth',
 	'mwoauth-invalid-authorization' => 'Autorizační hlavičky ve vašem požadavku nejsou platné: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'Autorizační hlavičky ve vašem požadavku nejsou pro $1 platné',
 	'mwoauth-invalid-authorization-invalid-user' => 'Autorizační hlavičky ve vašem požadavku jsou pro uživatele, který zde neexistuje',
 	'mwoauth-invalid-authorization-wrong-user' => 'Autorizační hlavičky ve vašem požadavku jsou pro jiného uživatele',
-	'mwoauth-invalid-authorization-not-approved' => 'Autorizační hlavičky ve vašem požadavku jsou pro konzumenta OAuth, který momentálně není schválen',
+	'mwoauth-invalid-authorization-not-approved' => 'Autorizační hlavičky ve vašem požadavku jsou pro konzumenta OAuth, který momentálně není schválen', # Fuzzy
 	'mwoauth-invalid-authorization-blocked-user' => 'Autorizační hlavičky ve vašem požadavku jsou pro uživatele, který je zablokován',
 	'mwoauth-form-button-approve' => 'Ano, dovolit', # Fuzzy
-	'mwoauth-authorize-form-invalid-user' => 'Tento uživatelský účet nemůže používat OAuth, protože účet na této wiki není propojen s účtem na ústřední wiki OAuth.',
-	'mwoauth-error' => 'Chyba OAuth',
+	'mwoauth-error' => 'Chyba OAuth', # Fuzzy
 	'mwoauth-grants-heading' => 'Vyžadovaná oprávnění:',
 	'mwoauth-grants-nogrants' => 'Tato aplikace nevyžaduje žádná oprávnění.',
 	'mwoauth-grant-blockusers' => 'Blokovat uživatele', # Fuzzy
@@ -2487,7 +2488,7 @@ Il peut y avoir [[{{MediaWiki:Listgrouprights-helppage}}|plus d’information]] 
  * @author Toliño
  */
 $messages['gl'] = array(
-	'mwoauth-desc' => 'Autenticación API OAuth 1.0a',
+	'mwoauth-desc' => 'Autenticación API OAuth 1.0a', # Fuzzy
 	'mwoauth-verified' => "Agora, esta aplicación ten permitido acceder a MediaWiki no seu nome.
 
 Para completar o proceso, achegue este valor de verificación á aplicación: '''$1'''",
@@ -2616,7 +2617,7 @@ Asignóuselle o pase de consumidor '''$1''' e o pase secreto '''$2'''. ''Garde e
 	'mwoauthmanageconsumers-reenable' => 'Aprobado',
 	'mwoauthmanageconsumers-reason' => 'Motivo:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Actualizar o estado do consumidor',
-	'mwoauthmanageconsumers-viewing' => 'O usuario "$1" está vendo este consumidor nestes intres',
+	'mwoauthmanageconsumers-viewing' => 'O usuario "$1" está vendo este consumidor nestes intres', # Fuzzy
 	'mwoauthmanageconsumers-success-approved' => 'Aprobouse a solicitude.',
 	'mwoauthmanageconsumers-success-rejected' => 'Rexeitouse a solicitude.',
 	'mwoauthmanageconsumers-success-disabled' => 'Desactivouse o consumidor.',
@@ -2626,7 +2627,7 @@ Asignóuselle o pase de consumidor '''$1''' e o pase secreto '''$2'''. ''Garde e
 	'mwoauthmanagemygrants-navigation' => 'Navegación:',
 	'mwoauthmanagemygrants-showlist' => 'Lista de consumidores aceptados', # Fuzzy
 	'mwoauthmanagemygrants-none' => 'Ningún consumidor ten acceso á súa conta.', # Fuzzy
-	'mwoauthmanagemygrants-user' => 'Editor',
+	'mwoauthmanagemygrants-user' => 'Editor', # Fuzzy
 	'mwoauthmanagemygrants-description' => 'Descrición',
 	'mwoauthmanagemygrants-wikiallowed' => 'Permitido no wiki', # Fuzzy
 	'mwoauthmanagemygrants-grants' => 'Concesións aplicables',
@@ -2649,23 +2650,21 @@ Asignóuselle o pase de consumidor '''$1''' e o pase secreto '''$2'''. ''Garde e
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|reactivou}} un consumidor OAuth de $3 (clave de consumidor $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Rexistro de consumidores OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Rexistro de aprobacións, rexeitamentos e desactivacións dos consumidores OAuth rexistrados.',
-	'mwoauth-bad-request' => 'Houbo un erro na súa solicitude OAuth.',
 	'mwoauthdatastore-access-token-not-found' => 'Non se atopou ningunha concesión aprobada para ese pase de autorización',
-	'mwoauthdatastore-request-token-not-found' => 'Non se atopou ningunha solicitude para ese pase',
+	'mwoauthdatastore-request-token-not-found' => 'Non se atopou ningunha solicitude para ese pase', # Fuzzy
 	'mwoauthdatastore-bad-token' => 'Non se atopou ningún pase que coincidise coa solicitude',
 	'mwoauthdatastore-bad-verifier' => 'O código de verificación achegado non é válido',
 	'mwoauthdatastore-invalid-token-type' => 'O tipo de pase solicitado non é válido',
 	'mwoauthgrants-general-error' => 'Houbo un erro na súa solicitude OAuth',
-	'mwoauthserver-bad-consumer' => 'Non se atopou ningún consumidor aprobado para a clave achegada',
-	'mwoauthserver-insufficient-rights' => 'Non ten os dereitos necesarios para levar a cabo esta acción',
+	'mwoauthserver-bad-consumer' => 'Non se atopou ningún consumidor aprobado para a clave achegada', # Fuzzy
+	'mwoauthserver-insufficient-rights' => 'Non ten os dereitos necesarios para levar a cabo esta acción', # Fuzzy
 	'mwoauthserver-invalid-request-token' => 'Pase non válido na súa solicitude',
-	'mwoauthserver-invalid-user-hookabort' => 'Este usuario non pode utilizar OAuth',
 	'mwoauth-invalid-authorization-title' => 'Erro de autorización OAuth',
 	'mwoauth-invalid-authorization' => 'As cabeceiras de autorización da súa solicitude non son válidas: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'As cabeceiras de autorización da súa solicitude non son válidas para $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario que non existe aquí',
 	'mwoauth-invalid-authorization-wrong-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario diferente',
-	'mwoauth-invalid-authorization-not-approved' => 'As cabeceiras de autorización da súa solicitude son para un consumidor OAuth que non está aprobado actualmente',
+	'mwoauth-invalid-authorization-not-approved' => 'As cabeceiras de autorización da súa solicitude son para un consumidor OAuth que non está aprobado actualmente', # Fuzzy
 	'mwoauth-invalid-authorization-blocked-user' => 'As cabeceiras de autorización da súa solicitude son para un usuario que está bloqueado',
 	'mwoauth-form-description-allwikis' => "Boas $1:
 
@@ -2688,11 +2687,10 @@ $5",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Política de protección de datos]]',
 	'mwoauth-form-button-approve' => 'Permitir',
 	'mwoauth-form-button-cancel' => 'Cancelar',
-	'mwoauth-authorize-form-invalid-user' => 'Esta conta de usuario non pode utilizar OAuth porque non están ligadas a conta neste wiki e a conta no wiki central de OAuth.',
-	'mwoauth-error' => 'Erro OAuth',
+	'mwoauth-error' => 'Erro OAuth', # Fuzzy
 	'mwoauth-grants-heading' => 'Permisos solicitados:',
 	'mwoauth-grants-nogrants' => 'A aplicación non solicitou ningún permiso.',
-	'mwoauth-acceptance-cancelled' => 'Cancelou esta solicitude de autorización para que o consumidor OAuth actúe no seu nome.',
+	'mwoauth-acceptance-cancelled' => 'Cancelou esta solicitude de autorización para que o consumidor OAuth actúe no seu nome.', # Fuzzy
 	'mwoauth-grant-group-page-interaction' => 'Interactuar coas páxinas',
 	'mwoauth-grant-group-file-interaction' => 'Interactuar cos ficheiros multimedia',
 	'mwoauth-grant-group-watchlist-interaction' => 'Interactuar coa súa lista de vixilancia',
@@ -3059,7 +3057,7 @@ $messages['hr'] = array(
  * @author McDutchie
  */
 $messages['ia'] = array(
-	'mwoauth-desc' => 'Authentication via le API de OAuth 1.0a',
+	'mwoauth-desc' => 'Authentication via le API de OAuth 1.0a', # Fuzzy
 	'mwoauth-missing-field' => 'Manca un valor pro le campo "$1"',
 	'mwoauth-invalid-field' => 'Valor non valide fornite pro le campo "$1"',
 	'mwoauth-field-hidden' => '(iste information es celate)',
@@ -3077,7 +3075,7 @@ $messages['ia'] = array(
 	'mwoauth-consumer-callbackurl' => 'URL de retorno pro OAuth:',
 	'mwoauth-consumer-grantsneeded' => 'Concessiones applicabile:',
 	'mwoauth-consumer-required-grant' => 'Applicabile al consumitor',
-	'mwoauth-consumer-wiki' => 'Wiki applicabile:',
+	'mwoauth-consumer-wiki' => 'Wiki applicabile:', # Fuzzy
 	'mwoauth-consumer-restrictions' => 'Limitationes de uso:',
 	'mwoauth-consumer-restrictions-json' => 'Limitationes de uso (JSON):',
 	'mwoauth-consumer-rsakey' => 'Clave RSA public:',
@@ -3173,7 +3171,7 @@ Le systema te ha assignate un indicio de consumitor '''$1''' e un indicio secret
 	'mwoauthmanageconsumers-reenable' => 'Approbate',
 	'mwoauthmanageconsumers-reason' => 'Motivo:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Actualisar stato de consumitor',
-	'mwoauthmanageconsumers-viewing' => 'Le usator "$1" actualmente visualisa iste consumitor',
+	'mwoauthmanageconsumers-viewing' => 'Le usator "$1" actualmente visualisa iste consumitor', # Fuzzy
 	'mwoauthmanageconsumers-success-approved' => 'Le requesta ha essite approbate.',
 	'mwoauthmanageconsumers-success-rejected' => 'Le requesta ha essite rejectate.',
 	'mwoauthmanageconsumers-success-disabled' => 'Le consumitor ha essite disactivate.',
@@ -3182,9 +3180,9 @@ Le systema te ha assignate un indicio de consumitor '''$1''' e un indicio secret
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
 	'mwoauthmanagemygrants-showlist' => 'Lista de consumitores acceptate', # Fuzzy
 	'mwoauthmanagemygrants-none' => 'Nulle consumitor ha accesso in nomine de tu conto.', # Fuzzy
-	'mwoauthmanagemygrants-user' => 'Editor',
+	'mwoauthmanagemygrants-user' => 'Editor', # Fuzzy
 	'mwoauthmanagemygrants-description' => 'Description',
-	'mwoauthmanagemygrants-wikiallowed' => 'Permittite in wiki',
+	'mwoauthmanagemygrants-wikiallowed' => 'Permittite in wiki', # Fuzzy
 	'mwoauthmanagemygrants-grants' => 'Concessiones applicabile',
 	'mwoauthmanagemygrants-grantsallowed' => 'Concessiones permittite',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Concessiones applicabile permittite:',
@@ -3205,23 +3203,21 @@ Le systema te ha assignate un indicio de consumitor '''$1''' e un indicio secret
 	'logentry-mwoauthconsumer-reenable' => '$1 reactivava un consumitor OAuth per $3 (clave de consumitor $4)', # Fuzzy
 	'mwoauthconsumer-consumer-logpage' => 'Registro de consumitores OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Registro de approbation, rejection e disactivation de consumitores OAuth registrate.',
-	'mwoauth-bad-request' => 'Il habeva un error in le requesta OAuth.',
 	'mwoauthdatastore-access-token-not-found' => 'Nulle concession approbate ha essite trovate pro iste indicio de autorisation.',
-	'mwoauthdatastore-request-token-not-found' => 'Nulle requesta ha essite trovate pro iste indicio.',
+	'mwoauthdatastore-request-token-not-found' => 'Nulle requesta ha essite trovate pro iste indicio.', # Fuzzy
 	'mwoauthdatastore-bad-token' => 'Nulle indicio ha essite trovate que corresponde a tu requesta.',
 	'mwoauthdatastore-bad-verifier' => 'Le codice de verification fornite non es valide.',
 	'mwoauthdatastore-invalid-token-type' => 'Le typo de indicio requestate non es valide.',
 	'mwoauthgrants-general-error' => 'Il habeva un error in tu requesta OAuth.',
-	'mwoauthserver-bad-consumer' => 'Nulle consumitor approbate ha essite trovate pro le clave fornite.',
-	'mwoauthserver-insufficient-rights' => 'Tu non ha derectos sufficiente pro exequer iste action.',
+	'mwoauthserver-bad-consumer' => 'Nulle consumitor approbate ha essite trovate pro le clave fornite.', # Fuzzy
+	'mwoauthserver-insufficient-rights' => 'Tu non ha derectos sufficiente pro exequer iste action.', # Fuzzy
 	'mwoauthserver-invalid-request-token' => 'Il ha un indicio non valide in tu requesta.',
-	'mwoauthserver-invalid-user-hookabort' => 'Iste usator non pote usar OAuth.',
 	'mwoauth-invalid-authorization-title' => 'Error de autorisation OAuth',
 	'mwoauth-invalid-authorization' => 'Le capites de autorisation in tu requesta non es valide: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'Le capites de autorisation in tu requesta non es valide pro $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'Le capites de autorisation in tu requesta es pro un usator que non existe hic',
 	'mwoauth-invalid-authorization-wrong-user' => 'Le capites de autorisation in tu requesta es pro un altere usator',
-	'mwoauth-invalid-authorization-not-approved' => 'Le capites de autorisation in tu requesta es pro un consumitor OAuth que non es actualmente approbate',
+	'mwoauth-invalid-authorization-not-approved' => 'Le capites de autorisation in tu requesta es pro un consumitor OAuth que non es actualmente approbate', # Fuzzy
 	'mwoauth-form-button-approve' => 'Si, autorisar', # Fuzzy
 	'mwoauth-grants-heading' => 'Permissiones requestate:',
 	'mwoauth-grants-nogrants' => 'Le application non ha requestate alcun permission.',
@@ -3776,7 +3772,7 @@ $messages['ka'] = array(
  * @author 아라
  */
 $messages['ko'] = array(
-	'mwoauth-desc' => 'OAuth 1.0a API 인증',
+	'mwoauth-desc' => 'OAuth 1.0a API 인증', # Fuzzy
 	'mwoauth-missing-field' => '"$1" 필드에 대한 값이 없습니다',
 	'mwoauth-invalid-field' => '"$1" 필드에 제공한 값이 잘못되었습니다',
 	'mwoauth-invalid-field-generic' => '제공한 값이 잘못되었습니다',
@@ -3795,7 +3791,7 @@ $messages['ko'] = array(
 	'mwoauth-consumer-callbackurl' => 'OAuth "콜백" URL:',
 	'mwoauth-consumer-grantsneeded' => '적용할 수 있는 부여:',
 	'mwoauth-consumer-required-grant' => '컨슈머에게 적용할 수 있음',
-	'mwoauth-consumer-wiki' => '적용할 수 있는 위키:',
+	'mwoauth-consumer-wiki' => '적용할 수 있는 위키:', # Fuzzy
 	'mwoauth-consumer-restrictions' => '사용 제한:',
 	'mwoauth-consumer-restrictions-json' => '사용 제한 (JSON):',
 	'mwoauth-consumer-rsakey' => '공개 RSA 키:',
@@ -3876,7 +3872,7 @@ $messages['ko'] = array(
 	'mwoauthmanageconsumers-reenable' => '승인됨',
 	'mwoauthmanageconsumers-reason' => '이유:',
 	'mwoauthmanageconsumers-confirm-submit' => '컨슈머 상태 업데이트',
-	'mwoauthmanageconsumers-viewing' => '"$1" 사용자는 현재 이 컨슈머를 보는 중입니다',
+	'mwoauthmanageconsumers-viewing' => '"$1" 사용자는 현재 이 컨슈머를 보는 중입니다', # Fuzzy
 	'mwoauthmanageconsumers-success-approved' => '요청이 승인되었습니다.',
 	'mwoauthmanageconsumers-success-rejected' => '요청이 거부되었습니다.',
 	'mwoauthmanageconsumers-success-disabled' => '컨슈머가 비활성화되었습니다.',
@@ -3886,9 +3882,9 @@ $messages['ko'] = array(
 	'mwoauthmanagemygrants-navigation' => '둘러보기:',
 	'mwoauthmanagemygrants-showlist' => '허락된 컨슈머 목록', # Fuzzy
 	'mwoauthmanagemygrants-none' => '컨슈머가 당신의 계정을 대신하여 접근할 수 없습니다.', # Fuzzy
-	'mwoauthmanagemygrants-user' => '게시자',
+	'mwoauthmanagemygrants-user' => '게시자', # Fuzzy
 	'mwoauthmanagemygrants-description' => '설명',
-	'mwoauthmanagemygrants-wikiallowed' => '위키에 허용됨',
+	'mwoauthmanagemygrants-wikiallowed' => '위키에 허용됨', # Fuzzy
 	'mwoauthmanagemygrants-grants' => '적용할 수 있는 부여',
 	'mwoauthmanagemygrants-grantsallowed' => '허용된 부여',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => '적용할 수 있는 허용된 부여:',
@@ -3909,28 +3905,25 @@ $messages['ko'] = array(
 	'logentry-mwoauthconsumer-reenable' => '$1 사용자가 $3에 의해 OAuth 컨슈머를 {{GENDER:$2|다시 활성화했습니다}} (컨슈머 키 $4)',
 	'mwoauthconsumer-consumer-logpage' => 'OAuth 컨슈머 기록',
 	'mwoauthconsumer-consumer-logpagetext' => 'OAuth 컨슈머에 등록된 승인, 거부와 비활성화의 기록입니다.',
-	'mwoauth-bad-request' => 'OAuth 요청에 오류가 있습니다.',
 	'mwoauthdatastore-access-token-not-found' => '인증 토큰에 대한 승인된 부여를 찾을 수 없습니다.',
-	'mwoauthdatastore-request-token-not-found' => '해당 요청에 대한 요청을 찾을 수 없습니다.',
+	'mwoauthdatastore-request-token-not-found' => '해당 요청에 대한 요청을 찾을 수 없습니다.', # Fuzzy
 	'mwoauthdatastore-bad-token' => '요청과 일치하는 토큰을 찾을 수 없습니다.',
 	'mwoauthdatastore-bad-verifier' => '제공한 인증 코드는 올바르지 않습니다.',
 	'mwoauthdatastore-invalid-token-type' => '요청한 토큰 유형이 잘못되었습니다.',
 	'mwoauthgrants-general-error' => 'OAuth 요청에 오류가 있습니다.',
-	'mwoauthserver-bad-consumer' => '제공한 키에 대한 승인된 컨슈머를 찾을 수 없습니다.',
-	'mwoauthserver-insufficient-rights' => '이 작업을 수행할 수 있는 충분한 권한이 없습니다.',
+	'mwoauthserver-bad-consumer' => '제공한 키에 대한 승인된 컨슈머를 찾을 수 없습니다.', # Fuzzy
+	'mwoauthserver-insufficient-rights' => '이 작업을 수행할 수 있는 충분한 권한이 없습니다.', # Fuzzy
 	'mwoauthserver-invalid-request-token' => '요청에 잘못된 토큰이 있습니다.',
-	'mwoauthserver-invalid-user-hookabort' => '이 사용자는 OAuth를 사용할 수 없습니다.',
 	'mwoauth-invalid-authorization-title' => 'OAuth 인증 오류',
 	'mwoauth-invalid-authorization' => '요청에 있는 인증 헤더가 올바르지 않습니다: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => '요청에 있는 인증 헤더가 $1에 대해 올바르지 않습니다',
 	'mwoauth-invalid-authorization-invalid-user' => '요청에 있는 인증 헤더가 여기에서 존재하지 않는 사용자를 위한 것입니다',
 	'mwoauth-invalid-authorization-wrong-user' => '요청에 있는 인증 헤더가 다른 사용자를 위한 것입니다',
-	'mwoauth-invalid-authorization-not-approved' => '요청에 있는 인증 헤더가 현재 승인되지 않은 OAuth 컨슈머를 위한 것입니다',
+	'mwoauth-invalid-authorization-not-approved' => '요청에 있는 인증 헤더가 현재 승인되지 않은 OAuth 컨슈머를 위한 것입니다', # Fuzzy
 	'mwoauth-invalid-authorization-blocked-user' => '요청에 있는 인증 헤더가 차단된 사용자를 위한 것입니다',
 	'mwoauth-form-button-approve' => '허용합니다',
 	'mwoauth-form-button-cancel' => '취소합니다.',
-	'mwoauth-authorize-form-invalid-user' => '이 사용자 계정은 계정이 이 위키에 있고,중앙 OAuth가 링크되지 않았기 때문에 OAuth를 사용할 수 없습니다.',
-	'mwoauth-error' => 'OAuth 오류',
+	'mwoauth-error' => 'OAuth 오류', # Fuzzy
 	'mwoauth-grants-heading' => '요청된 권한:',
 	'mwoauth-grants-nogrants' => '애플리케이션은 권한을 요청하지 않았습니다.',
 	'mwoauth-grant-group-email' => '이메일 보내기',
@@ -4420,7 +4413,7 @@ $messages['ml'] = array(
  * @author V.narsikar
  */
 $messages['mr'] = array(
-	'mwoauth-prefs-managegrantslink' => 'या खात्याचे वतीने अनुदानांचे व्यवस्थापन करा',
+	'mwoauth-prefs-managegrantslink' => 'या खात्याचे वतीने अनुदानांचे व्यवस्थापन करा', # Fuzzy
 	'mwoauth-consumer-email-unconfirmed' => 'तुमचा विपत्र (ई-मेल) पत्ता अद्याप प्रमाणित झाला नाही.',
 	'mwoauth-consumer-email-mismatched' => 'आपल्या खात्याचा विपत्रपत्ता दिलेल्या विपत्रपत्त्याशी जुळावयास हवा.',
 	'mwoauth-grant-blockusers' => 'सदस्य प्रतिबंधन', # Fuzzy
@@ -4444,7 +4437,7 @@ $messages['mr'] = array(
  * @author Anakmalaysia
  */
 $messages['ms'] = array(
-	'mwoauth-desc' => 'Kelulusan OAuth 1.0a API',
+	'mwoauth-desc' => 'Kelulusan OAuth 1.0a API', # Fuzzy
 	'mwoauth-verified' => "Aplikasi ini kini dibenarkan untuk mengakses MediaWiki bagi pihak anda.
 
 Untuk melengkapkan proses ini, berikan nilai penentusahan ini kepada aplikasi: '''$1'''",
@@ -4845,10 +4838,21 @@ Een paar aanbevelingen en opmerkingen:
 * Gebruik het veld JSON-beperkingen om de toegang voor deze consumer te beperken tot IP-adressen in de opgegeven CIDR-bereiken;
 * U kunt een wiki-ID gebruiken om de consumer te beperken tot één enkel project op deze site (gebruik "*" voor alle projecten);
 * Het e-mailadres moet overeenkomen met dat van uw gebruiker (en het e-mailadres moet zijn bevestigd).',
+	'mwoauthconsumerregistration-update-text' => 'Gebruik het onderstaande formulier om bepaalde aspecten van de OAuthtoepassing die u beheert bij te werken.
+
+Alle waarden hier overschrijven eerdere waarden. Laat velden niet leeg, tenzij u inderdaad waarden wilt verwijderen.',
+	'mwoauthconsumerregistration-maintext' => 'Op deze pagina kunnen ontwikkelaars OAuthtoepassingen voorstellen en bijwerken in het register van deze site.
+
+Vanaf hier kunt u:
+* [[Special:OAuthConsumerRegistration/propose|Een token aanvragen voor een nieuwe toepassing]];
+* [[Special:OAuthConsumerRegistration/list|Uw lijst met bestaande toepassing beheren]].
+
+Voor meer informatie over OAuth kunt u de [https://www.mediawiki.org/wiki/Extension:OAuth uitbreidingsdocumentatie] raadplegen.',
 	'mwoauthconsumerregistration-propose-legend' => 'Nieuwe OAuthconsumertoepassing',
 	'mwoauthconsumerregistration-update-legend' => 'OAuthconsumertoepassing bijwerken',
 	'mwoauthconsumerregistration-propose-submit' => 'Consumer voorstellen',
 	'mwoauthconsumerregistration-update-submit' => 'Consumer bijwerken',
+	'mwoauthconsumerregistration-none' => 'U hebt geen controle over OAuthapplicaties.',
 	'mwoauthconsumerregistration-name' => 'Consumer',
 	'mwoauthconsumerregistration-user' => 'Uitgever',
 	'mwoauthconsumerregistration-description' => 'Beschrijving',
@@ -4857,12 +4861,21 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauthconsumerregistration-stage' => 'Status',
 	'mwoauthconsumerregistration-lastchange' => 'Laatste wijziging',
 	'mwoauthconsumerregistration-manage' => 'beheren',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Geheime sleutel op een nieuwe waarde instellen',
+	'mwoauthconsumerregistration-proposed' => 'Uw OAuthapplicatieverzoek is geregistreerd.
+
+U hebt het applicatietoken <strong>$1</strong> toegewezen gekregen en een geheim token <strong>$2</strong>. <em>Bewaar deze gegevens zorgvuldig.</em>',
+	'mwoauthconsumerregistration-updated' => 'Uw OAuthapplicatieregister is bijgewerkt.',
+	'mwoauthconsumerregistration-secretreset' => 'U hebt het geheime applicatietoken <strong>$1</strong>toegewezen gekregen. <em>Bewaar deze gegevens zorgvuldig.</em>',
 	'oauthmanageconsumers' => 'OAuth-toepassingen beheren',
+	'mwoauthmanageconsumers-notloggedin' => 'U moet aangemeld zijn om toegang te krijgen tot deze pagina.',
 	'mwoauthmanageconsumers-type' => 'Wachtrijen:',
 	'mwoauthmanageconsumers-showproposed' => 'Voorgestelde verzoeken',
 	'mwoauthmanageconsumers-showrejected' => 'Afgewezen verzoeken',
 	'mwoauthmanageconsumers-showexpired' => 'Verlopen aanvragen',
 	'mwoauthmanageconsumers-main' => 'Startpagina',
+	'mwoauthmanageconsumers-maintext' => 'Deze pagina is bedoeld voor het afhandelen van OAuthapplicatieverzoeken en het beheren van geregistreerde OAuthapplicaties. Zie http://oauth.net voor meer informatie over OAuth.',
+	'mwoauthmanageconsumers-queues' => 'Kies hieronder een wachtrij voor applicatiebevestiging:',
 	'mwoauthmanageconsumers-q-proposed' => 'Wachtrij met voorgestelde toepassingsverzoeken',
 	'mwoauthmanageconsumers-q-rejected' => 'Wachtrij met afgewezen toepassingsverzoeken',
 	'mwoauthmanageconsumers-q-expired' => 'Wachtrij met verlopen toepassingsverzoeken',
@@ -4919,6 +4932,10 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauthlistconsumers-status-rejected' => 'afgewezen',
 	'mwoauthlistconsumers-status-expired' => 'vervallen',
 	'oauthmanagemygrants' => 'Gekoppelde toepassingen beheren',
+	'mwoauthmanagemygrants-text' => 'Op deze pagina worden alle toepassingen weergegeven die toegang hebben tot uw gebruiker. Iedere toepassing kan alleen dat doen waar u de toepassing voor hebt gemachtigd. Als u toepassingen afzonderlijk toegang hebt gegevens tot uw gebruikers op zusterprojecten, dan ziet u hieronder afzonderlijke instellingen voor elk project.
+
+Gekoppelde toepassingen hebben toegang tot uw gebruiker via het protocol OAuth. <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Meer over gekoppelde toepassingen]</span>.',
+	'mwoauthmanagemygrants-notloggedin' => 'U moet aangemeld zijn om toegang te krijgen tot deze pagina.',
 	'mwoauthmanagemygrants-navigation' => 'Navigatie:',
 	'mwoauthmanagemygrants-showlist' => 'Lijst met gekoppelde toepassingen',
 	'mwoauthmanagemygrants-none' => 'Er zijn geen toepassingen die toegang hebben namens uw gebruiker.',
@@ -4931,6 +4948,11 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauthmanagemygrants-review' => 'toegang beheren',
 	'mwoauthmanagemygrants-revoke' => 'toegang intrekken',
 	'mwoauthmanagemygrants-grantaccept' => 'Toegestaan',
+	'mwoauthmanagemygrants-update-text' => 'Gebruik het onderstaande formulier om de rechten te wijzigen die worden gegeven aan een toepassing om namens u te handelen.
+* Als u toepassingen afzonderlijk toegang hebt gegevens tot uw gebruikers op zusterprojecten, dan heeft u afzonderlijke instellingen voor elk project voor een toepassing.',
+	'mwoauthmanagemygrants-revoke-text' => 'Gebruik het onderstaande formulier om toegang voor een toepassing om namen u te handelen in te trekken.
+* Als u toepassingen afzonderlijk toegang hebt gegevens tot uw gebruikers op zusterprojecten, dan heeft u afzonderlijke instellingen voor elk project voor een toepassing.
+* Als u alle rechten voor toepassing wilt intrekken, zorg er dan voor dat u deze op alle projecten waar u toegang hebt verstrekt weer intrekt.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Gekoppelde toepassing beheren',
 	'mwoauthmanagemygrants-update' => 'Toegang bijwerken',
 	'mwoauthmanagemygrants-renounce' => 'Machtiging intrekken',
@@ -4938,6 +4960,12 @@ Een paar aanbevelingen en opmerkingen:
 	'mwoauthmanagemygrants-confirm-submit' => 'Toegangstokenstatus bijwerken',
 	'mwoauthmanagemygrants-success-update' => 'Het toegangstoken voor deze consumer is bijgewerkt.',
 	'mwoauthmanagemygrants-success-renounce' => 'Het toegangstoken voor deze consumer is verwijderd.',
+	'logentry-mwoauthconsumer-propose' => '$1 {{GENDER:$2|heeft}} een OAuthtoepassing voorgesteld (toepassingssleutel $4)',
+	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|heeft}} een OAuthtoepassing bijgewerkt (toepassingssleutel $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 {{GENDER:$2|heeft}} een OAuthtoepassing goedgekeurd van $3 (toepassingssleutel $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 {{GENDER:$2|heeft}} een OAuthtoepassing afgekeurd van $3 (toepassingssleutel $4)',
+	'logentry-mwoauthconsumer-disable' => '$1 {{GENDER:$2|heeft}} een OAuthtoepassing uitgeschakeld van $3 (toepassingssleutel $4)',
+	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|heeft}} een OAuthtoepassing opnieuw ingeschakeld van $3 (toepassingssleutel $4)',
 	'mwoauthconsumer-consumer-logpage' => 'OAuthconsumerlogboek',
 	'mwoauthconsumer-consumer-logpagetext' => 'Logboek met goedkeuringen, afwijzingen en uitschakelingen van geregistreerde OAuthconsumers.',
 	'mwoauthdatastore-request-token-not-found' => 'Er is helaas iets mis gegaan tijdens het koppelen van deze toepassing.
@@ -4955,6 +4983,7 @@ Ga terug, en probeer de koppeling opnieuw tot stand te brengen of neem contact o
 
 <span class="plainlinks mw-mwoautherror-details">Onvoldoende gebruikersrechten voor OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Ongeldig token in uw verzoek',
+	'mwoauth-invalid-authorization-title' => 'Autorisatiefout van OAuth',
 	'mwoauth-form-button-approve' => 'Toestaan',
 	'mwoauth-form-button-cancel' => 'Annuleren',
 	'mwoauth-grants-heading' => 'Aangevraagde rechten:',
@@ -5126,6 +5155,7 @@ $messages['pl'] = array(
 	'mwoauth-grant-editpage' => 'Edytowanie istniejących stron',
 	'mwoauth-grant-useoauth' => 'Podstawowe uprawnienia',
 	'right-mwoauthmanageconsumer' => 'Zarządzanie konsumentami OAuth',
+	'right-mwoauthmanagemygrants' => 'Zarządzanie włączonymi aplikacjami OAuth',
 	'action-mwoauthmanageconsumer' => 'zarządzanie konsumentami OAuth',
 );
 
@@ -5162,7 +5192,7 @@ $messages['pt-br'] = array(
  * @author Joetaras
  */
 $messages['roa-tara'] = array(
-	'mwoauth-desc' => 'OAuth 1.0a API de autendicazione',
+	'mwoauth-desc' => 'OAuth 1.0a API de autendicazione', # Fuzzy
 	'mwoauth-missing-field' => 'Valore zumbate pu cambe "$1"',
 	'mwoauth-invalid-field' => 'Valore date invalide pu cambe "$1"',
 	'mwoauth-field-hidden' => "(sta 'mbormazione jè scunnute)",
@@ -5174,7 +5204,7 @@ $messages['roa-tara'] = array(
 	'mwoauth-consumer-stage' => 'State de mò:',
 	'mwoauth-consumer-email' => 'Indirizze email de condatte:',
 	'mwoauth-consumer-description' => "Descrizione de l'applicazione:",
-	'mwoauth-consumer-wiki' => 'Uicchi applicabbile:',
+	'mwoauth-consumer-wiki' => 'Uicchi applicabbile:', # Fuzzy
 	'mwoauth-consumer-restrictions' => 'Ause le restriziune:',
 	'mwoauth-consumer-rsakey' => 'Chiave pubblche RSA:',
 	'mwoauth-consumer-reason' => 'Mutive:',
