@@ -1223,11 +1223,27 @@ $messages['ca'] = array(
  * @author Умар
  */
 $messages['ce'] = array(
+	'mwoauth-prefs-managegrants' => 'ТӀетесна тӀетохарш:',
 	'mwoauth-prefs-managegrantslink' => 'ТӀетесна $1 {{PLURAL:$1|тӀетохаран урхалладар|тӀетохаршан урхалладар}}',
+	'mwoauth-consumer-allwikis' => 'ХӀокху сайтан массо проекташ',
+	'mwoauth-consumer-name' => 'ТӀетохаран цӀе:',
+	'mwoauth-consumer-stage' => 'Карара хьал:',
+	'mwoauth-consumer-wiki' => 'Проектан лело мега:',
+	'mwoauthconsumerregistration-stage' => 'Хьал',
+	'oauthlistconsumers' => 'ТеӀетохаршан могӀа',
+	'mwoauthlistconsumers-wiki' => 'Проектан лело мега',
+	'mwoauthlistconsumers-callbackurl' => '«URL-адрес юха кхайкхаман» OAuth:',
+	'mwoauthlistconsumers-basicgrantsonly' => '(базан тӀекхачар бен)',
+	'mwoauthlistconsumers-status' => 'Хьал',
 	'oauthmanagemygrants' => 'ТӀетесна тӀетохаршан урхалладар',
 	'mwoauthmanagemygrants-showlist' => 'ТӀетесна тӀетохаршан могӀа',
 	'mwoauthmanagemygrants-none' => 'Хьан декъашхочун дӀаяздаран хӀинца яц тӀетесна тӀетохарш.',
 	'mwoauth-grant-group-email' => 'ДӀадахьийта кехат',
+	'mwoauth-grant-editmywatchlist' => 'Хьан тергаме могӀам табар',
+	'mwoauth-grant-editpage' => 'Тае йолуш йолу агӀо',
+	'mwoauth-grant-editprotected' => 'ГӀоралла дина агӀонаш таяр',
+	'mwoauth-grant-uploadfile' => 'Чуяха керла файлаш',
+	'mwoauth-grant-viewmywatchlist' => 'Шен тергаме могӀаме хьажар',
 	'mwoauth-listgrants-rights' => 'Бакъонаш',
 );
 
@@ -1250,14 +1266,19 @@ $messages['ckb'] = array(
  * @author Mormegil
  */
 $messages['cs'] = array(
-	'mwoauth-desc' => 'Autorizace pomocí rozhraní OAuth 1.0a', # Fuzzy
+	'mwoauth-desc' => 'Umožňuje využití OAuth 1.0a pro autorizaci přístupu k API',
+	'mwoauth-verified' => "Tato aplikace má nyní oprávnění přistupovat k MediaWiki vaším jménem.
+
+Pro dokončení procesu poskytněte aplikaci tuto ověřovací hodnotu: '''$1'''",
 	'mwoauth-missing-field' => 'Chybějící hodnota pole „$1“',
 	'mwoauth-invalid-field' => 'Uvedena neplatná hodnota pole „$1“',
+	'mwoauth-invalid-field-generic' => 'Zadána neplatná hodnota',
 	'mwoauth-field-hidden' => '(tato informace je skryta)',
 	'mwoauth-field-private' => '(tato informace je soukromá)',
 	'mwoauth-grant-generic' => 'Balíček oprávnění „$1“',
-	'mwoauth-prefs-managegrants' => 'Přístup konzumentů OAuth:', # Fuzzy
-	'mwoauth-prefs-managegrantslink' => 'Spravovat oprávnění k jednání jménem tohoto účtu', # Fuzzy
+	'mwoauth-prefs-managegrants' => 'Připojené aplikace:',
+	'mwoauth-prefs-managegrantslink' => 'Spravovat $1 {{PLURAL:$1|připojenou aplikaci|připojené aplikace}}',
+	'mwoauth-consumer-allwikis' => 'Všechny projekty na tomto webu',
 	'mwoauth-consumer-key' => 'Klíč konzumenta:',
 	'mwoauth-consumer-name' => 'Název aplikace:',
 	'mwoauth-consumer-version' => 'Verze konzumenta:',
@@ -1268,7 +1289,9 @@ $messages['cs'] = array(
 	'mwoauth-consumer-callbackurl' => 'URL pro OAuth „callback“:',
 	'mwoauth-consumer-grantsneeded' => 'Použitelná oprávnění:',
 	'mwoauth-consumer-required-grant' => 'Použitelné konzumentem',
-	'mwoauth-consumer-wiki' => 'Použitelná wiki:', # Fuzzy
+	'mwoauth-consumer-wiki' => 'Použitelný projekt:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Tento projekt ($1)',
+	'mwoauth-consumer-wiki-other' => 'Konkrétní projekt',
 	'mwoauth-consumer-restrictions' => 'Omezení užití:',
 	'mwoauth-consumer-restrictions-json' => 'Omezení užití (JSON):',
 	'mwoauth-consumer-rsakey' => 'Veřejný RSA klíč:',
@@ -1283,30 +1306,33 @@ $messages['cs'] = array(
 	'mwoauth-consumer-not-proposed' => 'Tento konzument není momentálně navržen',
 	'mwoauth-consumer-not-disabled' => 'Tento konzument není momentálně zakázán',
 	'mwoauth-consumer-not-approved' => 'Tento konzument není schválen (mohl být zakázán)',
+	'mwoauth-missing-consumer-key' => 'Nebyl poskytnut klíč konzumenta.',
 	'mwoauth-invalid-consumer-key' => 'Žádný konzument s daným klíčem neexistuje.',
 	'mwoauth-invalid-access-token' => 'Žádný přístupový token s daným klíčem neexistuje.',
+	'mwoauth-invalid-access-wrongwiki' => 'Tohoto konzumenta lze používat pouze na projektu „$1“.',
 	'mwoauth-consumer-conflict' => 'Zatímco jste si tohoto konzumenta {{GENDER:|prohlížel|prohlížela|prohlíželi}}, někdo změnil jeho atributy. Možná si budete chtít prohlédnout protokol změn.',
+	'mwoauth-consumer-grantshelp' => 'Každé oprávnění přiděluje přístup k uvedeným uživatelským právům, která příslušný uživatelský účet již má. Více informací najdete v [[Special:OAuth/grants|tabulce oprávnění]].',
 	'mwoauth-consumer-stage-proposed' => 'navržený',
 	'mwoauth-consumer-stage-rejected' => 'odmítnutý',
 	'mwoauth-consumer-stage-expired' => 'propadlý',
 	'mwoauth-consumer-stage-approved' => 'schválený',
 	'mwoauth-consumer-stage-disabled' => 'zakázaný',
 	'mwoauth-consumer-stage-suppressed' => 'utajený',
-	'oauthconsumerregistration' => 'Registrace konzumenta OAuth', # Fuzzy
+	'oauthconsumerregistration' => 'Registrace konzumenta OAuth',
 	'mwoauthconsumerregistration-notloggedin' => 'Pro přístup k této stránce musíte být přihlášen(a).',
 	'mwoauthconsumerregistration-navigation' => 'Navigace:',
 	'mwoauthconsumerregistration-propose' => 'Navrhnout nového konzumenta',
 	'mwoauthconsumerregistration-list' => 'Seznam mých konzumentů',
 	'mwoauthconsumerregistration-main' => 'Hlavní',
-	'mwoauthconsumerregistration-propose-text' => 'Pomocí níže zobrazeného formuláře můžete navrhnout nového konzumenta OAuth (vizte http://oauth.net).
+	'mwoauthconsumerregistration-propose-text' => 'Vývojáři by měli níže zobrazený formulář k navržení nového konzumenta OAuth (podrobnosti najdete v [//www.mediawiki.org/wiki/Extension:OAuth?uselang=cs dokumentaci rozšíření]). Po odeslání tohoto formuláře obdržíte token, pomocí kterého se vaše aplikace bude identifikovat MediaWiki. Před tím, než budou ostatní uživatelé moci vaši aplikaci autorizovat, bude ji nejprve muset schválit některý správce OAuth.
 
 Několik doporučení a poznámek:
 * Snažte se použít co nejméně oprávnění. Vyhněte se těm, která ve skutečnosti zatím nepotřebujete.
 * Verze má tvar „major.minor.release“ (poslední dvě části jsou nepovinné) a zvyšuje se, když jsou potřeba změny oprávnění.
 * Pokud je to možné, poskytněte veřejný klíč RSA (ve formátu PEM); v opačném případě se musí používat (méně bezpečný) tajný token.
 * Pomocí omezení v JSON můžete omezit tomuto konzumentu přístup jen na IP adresy v daných rozsazích CIDR.
-* Pomocí ID wiki můžete omezit tohoto konzumenta na jedinou wiki na tomto serveru (pro všechny wiki uveďte „*“).
-* Zadaná e-mailová adresa musí odpovídat té na vašem uživatelském účtu (která musí být ověřena).', # Fuzzy
+* Pomocí ID wiki můžete omezit tohoto konzumenta na jediný projekt na tomto serveru (pro všechny projekty uveďte „*“).
+* Zadaná e-mailová adresa musí odpovídat té na vašem uživatelském účtu (která musí být ověřena).',
 	'mwoauthconsumerregistration-update-text' => 'Pomocí níže uvedeného formuláře můžete změnit vlastnosti konzumenta OAuth, kterého spravujete.
 
 Všechny uvedené hodnoty přepíšou ty původní. Neponechávejte žádná pole prázdná, pokud nechcete jejich hodnoty smazat.',
@@ -1332,7 +1358,7 @@ Můžete zde [[Special:OAuthConsumerRegistration/propose|navrhnout nového konzu
 Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zaznamenejte si je pro budoucí použití.''",
 	'mwoauthconsumerregistration-updated' => 'Vaše registrace konzumenta OAuth byla úspěšně upravena.',
 	'mwoauthconsumerregistration-secretreset' => "Byl vám přidělen tajný token konzumenta '''$1'''. ''Zaznamenejte si ho pro budoucí použití.''",
-	'oauthmanageconsumers' => 'Správa konzumentů OAuth', # Fuzzy
+	'oauthmanageconsumers' => 'Správa konzumentů OAuth',
 	'mwoauthmanageconsumers-notloggedin' => 'Pro přístup k této stránce musíte být přihlášen(a).',
 	'mwoauthmanageconsumers-type' => 'Fronty:',
 	'mwoauthmanageconsumers-showproposed' => 'Navržené žádosti',
@@ -1370,27 +1396,57 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'mwoauthmanageconsumers-reenable' => 'Schválený',
 	'mwoauthmanageconsumers-reason' => 'Důvod:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Aktualizovat stav konzumenta',
-	'mwoauthmanageconsumers-viewing' => 'Tohoto konzumenta si v současné chvíli prohlíží {{GENDER:$1|uživatel|uživatelka}} „$1“.', # Fuzzy
+	'mwoauthmanageconsumers-viewing' => 'Tohoto konzumenta si v současné chvíli prohlíží {{GENDER:$1|uživatel|uživatelka}} „$1“.',
 	'mwoauthmanageconsumers-success-approved' => 'Žádost byla schválena.',
 	'mwoauthmanageconsumers-success-rejected' => 'Žádost byla zamítnuta.',
 	'mwoauthmanageconsumers-success-disabled' => 'Konzument byl zakázán.',
 	'mwoauthmanageconsumers-success-reanable' => 'Konzument byl znovu povolen.',
-	'oauthmanagemygrants' => 'Správa přístupových oprávnění OAuth', # Fuzzy
+	'mwoauthmanageconsumers-search-name' => 'konzumenti s tímto názvem',
+	'mwoauthmanageconsumers-search-publisher' => 'konzumenti tohoto uživatele',
+	'oauthlistconsumers' => 'Seznam aplikací OAuth',
+	'mwoauthlistconsumers-legend' => 'Procházet aplikace OAuth',
+	'mwoauthlistconsumers-view' => 'podrobnosti',
+	'mwoauthlistconsumers-none' => 'Nenalezena žádná aplikace odpovídající těmto kritériím.',
+	'mwoauthlistconsumers-name' => 'Název aplikace',
+	'mwoauthlistconsumers-version' => 'Verze konzumenta',
+	'mwoauthlistconsumers-user' => 'Vydavatel',
+	'mwoauthlistconsumers-description' => 'Popis',
+	'mwoauthlistconsumers-wiki' => 'Použitelný projekt',
+	'mwoauthlistconsumers-callbackurl' => 'URL pro OAuth „callback“',
+	'mwoauthlistconsumers-grants' => 'Použitelná oprávnění',
+	'mwoauthlistconsumers-basicgrantsonly' => '(pouze základní přístup)',
+	'mwoauthlistconsumers-status' => 'Stav',
+	'mwoauth-consumer-stage-any' => 'všechny',
+	'mwoauthlistconsumers-status-proposed' => 'navržený',
+	'mwoauthlistconsumers-status-approved' => 'schválený',
+	'mwoauthlistconsumers-status-disabled' => 'zakázaný',
+	'mwoauthlistconsumers-status-rejected' => 'odmítnutý',
+	'mwoauthlistconsumers-status-expired' => 'propadlý',
+	'oauthmanagemygrants' => 'Správa připojených aplikací',
+	'mwoauthmanagemygrants-text' => 'Tato stránka obsahuje seznam aplikací, které mohou využívat váš účet. U každé takové aplikace je rozsah jejího přístupu omezen oprávněními, která jste aplikaci {{GENDER:|přidělil|přidělila|přidělili}} v okamžiku, kdy jste jí {{GENDER:|dovolil|dovolila|dovolili}} jednat vaším jménem. Pokud jste aplikaci {{GENDER:|dovolil|dovolila|dovolili}} jednat vaším jménem nezávisle na různých sesterských projektech, uvidíte níže oddělené konfigurace pro každý takový projekt.
+
+Připojené aplikace přistupují k vašemu účtu pomocí protokolu OAuth. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth?uselang=cs Více informací o připojených aplikacích])</span>',
 	'mwoauthmanagemygrants-notloggedin' => 'Pro přístup k této stránce musíte být přihlášen(a).',
 	'mwoauthmanagemygrants-navigation' => 'Navigace:',
-	'mwoauthmanagemygrants-showlist' => 'Seznam schválených konzumentů', # Fuzzy
-	'mwoauthmanagemygrants-none' => 'Žádný konzument nemá jménem vašeho účtu přístup.', # Fuzzy
-	'mwoauthmanagemygrants-user' => 'Vydavatel', # Fuzzy
+	'mwoauthmanagemygrants-showlist' => 'Seznam připojených aplikací',
+	'mwoauthmanagemygrants-none' => 'K vašemu účtu nejsou připojeny žádné aplikace.',
+	'mwoauthmanagemygrants-user' => 'Vydavatel:',
 	'mwoauthmanagemygrants-description' => 'Popis',
-	'mwoauthmanagemygrants-wikiallowed' => 'Povoleno na wiki', # Fuzzy
+	'mwoauthmanagemygrants-wikiallowed' => 'Povoleno na projektu:',
 	'mwoauthmanagemygrants-grants' => 'Použitelná oprávnění',
 	'mwoauthmanagemygrants-grantsallowed' => 'Přidělená oprávnění',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Přidělená použitelná oprávnění:',
-	'mwoauthmanagemygrants-review' => 'zkontrolovat/spravovat přístup', # Fuzzy
-	'mwoauthmanagemygrants-grantaccept' => 'Přiděleno konzumentovi', # Fuzzy
-	'mwoauthmanagemygrants-confirm-legend' => 'Správa přístupového tokenu konzumenta', # Fuzzy
-	'mwoauthmanagemygrants-update' => 'Aktualizovat oprávnění přístupového tokenu', # Fuzzy
-	'mwoauthmanagemygrants-renounce' => 'Zrušit oprávnění a smazat přístupový token', # Fuzzy
+	'mwoauthmanagemygrants-review' => 'spravovat přístup',
+	'mwoauthmanagemygrants-revoke' => 'odebrat přístup',
+	'mwoauthmanagemygrants-grantaccept' => 'Přiděleno',
+	'mwoauthmanagemygrants-update-text' => 'Pomocí níže zobrazeného formuláře můžete změnit oprávnění přidělená aplikaci, aby mohla jednat vaším jménem.
+* Pokud jste aplikaci {{GENDER:|dovolil|dovolila|dovolili}} jednat vaším jménem nezávisle na různých sesterských projektech, budete pro tuto aplikaci mít oddělené konfigurace pro každý takový projekt.',
+	'mwoauthmanagemygrants-revoke-text' => 'Pomocí níže zobrazeného formuláře můžete odvolat oprávnění aplikaci jednat vaším jménem.
+* Pokud jste aplikaci {{GENDER:|dovolil|dovolila|dovolili}} jednat vaším jménem nezávisle na různých sesterských projektech, budete pro tuto aplikaci mít oddělené konfigurace pro každý takový projekt.
+* Pokud chcete aplikaci oprávnění zcela odebrat, ujistěte se, že jste jí oprávnění {{GENDER:|odebral|odebrala|odebrali}} pro všechny projekty, na kterých jste ji {{GENDER:|schválil|schválila|schválili}}.',
+	'mwoauthmanagemygrants-confirm-legend' => 'Správa připojené aplikace',
+	'mwoauthmanagemygrants-update' => 'Aktualizovat oprávnění',
+	'mwoauthmanagemygrants-renounce' => 'Zrušit autorizaci',
 	'mwoauthmanagemygrants-action' => 'Změnit stav:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Aktualizovat stav přístupového tokenu',
 	'mwoauthmanagemygrants-success-update' => 'Přístupový token tohoto konzumenta byl aktualizován.',
@@ -1403,27 +1459,77 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'logentry-mwoauthconsumer-reenable' => '$1 znovu {{GENDER:$2|povolil|povolila}} konzumenta OAuth uživatele $3 (klíč konzumenta $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Kniha konzumentů OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Protokol schválení, zamítnutí a zákazů registrovaných konzumentů OAuth.',
+	'mwoauth-bad-request-missing-params' => 'Omlouváme se, ale při konfiguraci této připojené aplikace se něco rozbilo. Pro pomoc s řešením <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth?uselang=cs kontaktujte podporu]</span>.
+
+<span class="plainlinks mw-mwoautherror-details">Chybí parametry OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E001 E001]</span>',
+	'mwoauth-bad-request-invalid-action' => 'Omlouváme se, něco se rozbilo, pro pomoc s řešením budete muset kontaktovat autora aplikace.
+
+<span class="plainlinks mw-mwoautherror-details">Neznámé URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E002 E002]</span>',
+	'mwoauth-bad-request-invalid-action-contact' => 'Omlouváme se, něco se rozbilo. Pro pomoc s řešením budete muset [$1 kontaktovat] autora aplikace.
+
+<span class="plainlinks mw-mwoautherror-details">Neznámé URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E003 E003]</span>',
 	'mwoauthdatastore-access-token-not-found' => 'K tomuto schválenému autorizačnímu tokenu nebylo nalezeno žádné schválené oprávnění.',
-	'mwoauthdatastore-request-token-not-found' => 'Pro tento token nebyl nalezen žádný požadavek.', # Fuzzy
+	'mwoauthdatastore-request-token-not-found' => 'Omlouváme se, ale při připojování této aplikace se něco rozbilo.
+Vraťte se a zkuste znovu připojit svůj účet, nebo kontaktujte autora aplikace.
+
+<span class="plainlinks mw-mwoautherror-details">OAuth token nebyl nalezen, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E004 E004]</span>',
 	'mwoauthdatastore-bad-token' => 'Žádný token odpovídající vašemu požadavku nebyl nalezen.',
 	'mwoauthdatastore-bad-verifier' => 'Poskytnutý ověřovací kód nebyl platný.',
 	'mwoauthdatastore-invalid-token-type' => 'Požadovaný typ tokenu není platný.',
 	'mwoauthgrants-general-error' => 'Ve vašem OAuth požadavku byla chyba.',
-	'mwoauthserver-bad-consumer' => 'K poskytnutému klíči nebyl nalezen žádný schválený konzument.', # Fuzzy
-	'mwoauthserver-insufficient-rights' => 'K provedení této akce nemáte dostatečná oprávnění.', # Fuzzy
+	'mwoauthserver-bad-consumer' => '„$1“ už není schválená Připojená aplikace, pro pomoc [$2 kontaktujte] autora aplikace.
+
+<span class="plainlinks mw-mwoautherror-details">Připojená OAuth aplikace není schválena, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E005 E005]</span>',
+	'mwoauthserver-bad-consumer-key' => 'Omlouváme se, ale při připojování této aplikace se něco rozbilo.
+
+<span class="plainlinks mw-mwoautherror-details">Neznámý klíč OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E006 E006]</span>',
+	'mwoauthserver-insufficient-rights' => 'Váš účet nemá dovoleno využívat Připojené aplikace, pro zjištění důvodů kontaktujte správce vašeho serveru.
+
+<span class="plainlinks mw-mwoautherror-details">Nedostatečná práva uživatele OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Váš požadavek obsahuje neplatný token.',
+	'mwoauthserver-invalid-user' => 'Abyste na tomto serveru {{GENDER:|mohl|mohla|mohli}} používat Připojené aplikace, musíte mít účet sjednocený přes všechny projekty. Jakmile budete mít sjednocený účet, můžete zkusit znovu připojit aplikaci „$1“.
+
+<span class="plainlinks mw-mwoautherror-details">Vyžadován sjednocený účet, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E008 E008]</span>',
 	'mwoauth-invalid-authorization-title' => 'Chyba autorizace OAuth',
 	'mwoauth-invalid-authorization' => 'Autorizační hlavičky ve vašem požadavku nejsou platné: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'Autorizační hlavičky ve vašem požadavku nejsou pro $1 platné',
 	'mwoauth-invalid-authorization-invalid-user' => 'Autorizační hlavičky ve vašem požadavku jsou pro uživatele, který zde neexistuje',
 	'mwoauth-invalid-authorization-wrong-user' => 'Autorizační hlavičky ve vašem požadavku jsou pro jiného uživatele',
-	'mwoauth-invalid-authorization-not-approved' => 'Autorizační hlavičky ve vašem požadavku jsou pro konzumenta OAuth, který momentálně není schválen', # Fuzzy
+	'mwoauth-invalid-authorization-not-approved' => 'Aplikace, kterou chcete připojit, byla zřejmě chybně nastavena. Pro pomoc kontaktujte autora aplikace „$1“.',
 	'mwoauth-invalid-authorization-blocked-user' => 'Autorizační hlavičky ve vašem požadavku jsou pro uživatele, který je zablokován',
-	'mwoauth-form-button-approve' => 'Ano, dovolit', # Fuzzy
-	'mwoauth-error' => 'Chyba OAuth', # Fuzzy
+	'mwoauth-form-description-allwikis' => "{{GENDER:$1|Uživateli|Uživatelko}} $1,
+
+aplikace '''$2''' by chtěla vaším jménem na všech projektech tohoto webu provádět následující aktivity:
+
+$4",
+	'mwoauth-form-description-onewiki' => "{{GENDER:$1|Uživateli|Uživatelko}} $1,
+
+aplikace '''$2''' by chtěla vaším jménem na ''{{grammar:6sg|$4}}'' provádět následující aktivity:
+
+$5",
+	'mwoauth-form-description-allwikis-nogrants' => "{{GENDER:$1|Uživateli|Uživatelko}} $1,
+
+aplikace '''$2''' by chtěla získat základní přístup vaším jménem na všechny projekty tohoto webu.",
+	'mwoauth-form-description-onewiki-nogrants' => "{{GENDER:$1|Uživateli|Uživatelko}} $1,
+
+aplikace '''$2''' by chtěla získat základní přístup vaším jménem na ''{{grammar:6sg|$4}}''.",
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Ochrana osobních údajů]]',
+	'mwoauth-form-button-approve' => 'Dovolit',
+	'mwoauth-form-button-cancel' => 'Storno',
+	'mwoauth-error' => 'Chyba připojení aplikace',
 	'mwoauth-grants-heading' => 'Vyžadovaná oprávnění:',
 	'mwoauth-grants-nogrants' => 'Tato aplikace nevyžaduje žádná oprávnění.',
-	'mwoauth-grant-blockusers' => 'Blokovat uživatele', # Fuzzy
+	'mwoauth-acceptance-cancelled' => '{{GENDER:|Rozhodl|Rozhodla|Rozhodli}} jste se nedovolit aplikaci „$1“ přístup k vašemu účtu. „$1“ nebude fungovat, dokud jí přístup nedovolíte. Můžete jít zpět na „$1“, nebo [[Special:OAuthManageMyGrants|spravovat]] vaše připojené aplikace.',
+	'mwoauth-grant-group-page-interaction' => 'Interakce se stránkami',
+	'mwoauth-grant-group-file-interaction' => 'Interakce se soubory',
+	'mwoauth-grant-group-watchlist-interaction' => 'Interakce s vaším seznamem sledovaných stránek',
+	'mwoauth-grant-group-email' => 'Rozesílání e-mailů',
+	'mwoauth-grant-group-high-volume' => 'Velkoobjemové činnosti',
+	'mwoauth-grant-group-customization' => 'Nastavení a přizpůsobení',
+	'mwoauth-grant-group-administration' => 'Provádění správcovských činností',
+	'mwoauth-grant-group-other' => 'Různé činnosti',
+	'mwoauth-grant-blockusers' => 'Blokovat a odblokovávat uživatele',
+	'mwoauth-grant-createaccount' => 'Zakládat účty',
 	'mwoauth-grant-createeditmovepage' => 'Zakládat, editovat a přesouvat stránky',
 	'mwoauth-grant-delete' => 'Mazat stránky, revize a protokolovací záznamy',
 	'mwoauth-grant-editinterface' => 'Editovat jmenný prostor MediaWiki a uživatelské CSS/JS',
@@ -1433,15 +1539,16 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'mwoauth-grant-editprotected' => 'Editovat zamčené stránky',
 	'mwoauth-grant-highvolume' => 'Hromadné editace',
 	'mwoauth-grant-oversight' => 'Skrývat uživatele a utajovat revize',
-	'mwoauth-grant-patrol' => 'Patrolovat', # Fuzzy
+	'mwoauth-grant-patrol' => 'Patrolovat změny stránek',
 	'mwoauth-grant-protect' => 'Zamykat a odemykat stránky',
-	'mwoauth-grant-rollback' => 'Vracet editace zpět', # Fuzzy
-	'mwoauth-grant-sendemail' => 'Posílat e-maily', # Fuzzy
+	'mwoauth-grant-rollback' => 'Vracet editace zpět',
+	'mwoauth-grant-sendemail' => 'Posílat e-maily ostatním uživatelům',
 	'mwoauth-grant-uploadeditmovefile' => 'Načítat, nahrazovat a přesouvat soubory',
 	'mwoauth-grant-uploadfile' => 'Načítat nové soubory',
 	'mwoauth-grant-useoauth' => 'Základní oprávnění',
 	'mwoauth-grant-viewdeleted' => 'Prohlížet si smazané údaje',
 	'mwoauth-grant-viewmywatchlist' => 'Prohlížet si váš seznam sledovaných stránek',
+	'mwoauth-oauth-exception' => 'V protokolu OAuth došlo k chybě: $1',
 	'mwoauth-callback-not-oob' => 'oauth_callback musí být nastaven, a to na hodnotu „oob“ (malými písmeny)',
 	'right-mwoauthproposeconsumer' => 'Navrhování nových konzumentů OAuth',
 	'right-mwoauthupdateownconsumer' => 'Upravování konzumentů OAuth, které spravujete',
@@ -1455,6 +1562,10 @@ Byl vám přidělen token konzumenta '''$1''' a tajný token '''$2'''. ''Zazname
 	'action-mwoauthproposeconsumer' => 'navrhovat nové konzumenty OAuth',
 	'action-mwoauthupdateownconsumer' => 'upravovat konzumenty OAuth, které spravujete',
 	'action-mwoauthviewsuppressed' => 'prohlížet si utajené konzumenty OAuth',
+	'mwoauth-listgrantrights-summary' => 'Následující seznam obsahuje oprávnění OAuth s odpovídajícím přístupem k uživatelským právům. Uživatelé mohou aplikace autorizovat k využití jejich účtu, ale s omezenými právy na základě oprávnění, která uživatel aplikaci přidělil. Aplikace konající jménem uživatele ale nemůže využít oprávnění, která uživatel nemá.
+K jednotlivým oprávněním mohou existovat [[{{MediaWiki:Listgrouprights-helppage}}|doplňující informace]].',
+	'mwoauth-listgrants-grant' => 'Oprávnění OAuth',
+	'mwoauth-listgrants-rights' => 'Uživatelská práva',
 );
 
 /** German (Deutsch)
@@ -4968,6 +5079,16 @@ Gekoppelde toepassingen hebben toegang tot uw gebruiker via het protocol OAuth. 
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|heeft}} een OAuthtoepassing opnieuw ingeschakeld van $3 (toepassingssleutel $4)',
 	'mwoauthconsumer-consumer-logpage' => 'OAuthconsumerlogboek',
 	'mwoauthconsumer-consumer-logpagetext' => 'Logboek met goedkeuringen, afwijzingen en uitschakelingen van geregistreerde OAuthconsumers.',
+	'mwoauth-bad-request-missing-params' => 'Er is helaas iets mis gegaan tijdens instellen van deze gekoppelde toepassing. <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Zoek ondersteuning]</span> om hulp te krijgen bij het oplossen van dit probleem.
+
+<span class="plainlinks mw-mwoautherror-details">Parameters voor OAuth ontbreken, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>',
+	'mwoauth-bad-request-invalid-action' => 'Er is helaas iets mis gegaan. U moet contact opnemen met de uitgever van de toepassing om dit probleem op te lossen.
+
+<span class="plainlinks mw-mwoautherror-details">Onbekende URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>',
+	'mwoauth-bad-request-invalid-action-contact' => 'Er is helaas iets mis gegaan. U moet [$1 contact opnemen] met de uitgever van de toepassing om dit probleem op te lossen.
+
+<span class="plainlinks mw-mwoautherror-details">Onbekende URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
+	'mwoauthdatastore-access-token-not-found' => 'Er is geen goedgekeurde toestemming gevonden voor dit autorisatietoken.',
 	'mwoauthdatastore-request-token-not-found' => 'Er is helaas iets mis gegaan tijdens het koppelen van deze toepassing.
 Ga terug, en probeer de koppeling opnieuw tot stand te brengen of neem contact op met de uitgever.
 
@@ -4979,18 +5100,59 @@ Ga terug, en probeer de koppeling opnieuw tot stand te brengen of neem contact o
 	'mwoauthserver-bad-consumer' => '"$1" is niet langer toegestaan als gekoppelde toepassing, voor hulp kunt u [$2 contact opnemen] met de uitgever van de toepassing.
 
 <span class="plainlinks mw-mwoautherror-details">Gekoppelde OAuth-toepassing niet toegestaan, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
+	'mwoauthserver-bad-consumer-key' => 'Er is helaas iets mis gegaan tijdens het koppelen van deze toepassing.
+
+<span class="plainlinks mw-mwoautherror-details">Onbekende sleutel voor OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>',
 	'mwoauthserver-insufficient-rights' => 'Uw gebruiker mag geen toepassingen koppelen. Neem contact op met de beheerder als u wilt weten waarom dit zo is.
 
 <span class="plainlinks mw-mwoautherror-details">Onvoldoende gebruikersrechten voor OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Ongeldig token in uw verzoek',
+	'mwoauthserver-invalid-user' => 'Om gebruik te kunnen maken van gekoppelde toepassingen op deze site, moet u een gebruiker hebben op alle projecten. Als u een gebruikers hebt op alle projecten, kunt u "$1" opnieuw proberen te koppelen.
+
+<span class="plainlinks mw-mwoautherror-details">Samengevoegd aanmelden noodzakelijk, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>',
 	'mwoauth-invalid-authorization-title' => 'Autorisatiefout van OAuth',
+	'mwoauth-invalid-authorization' => 'De autorisatieheaders in uw verzoek zijn niet geldig: $1',
+	'mwoauth-invalid-authorization-wrong-wiki' => 'De autorisatieheaders in uw verzoek zijn niet geldig voor $1',
+	'mwoauth-invalid-authorization-invalid-user' => 'De autorisatieheaders in uw verzoek zijn voor een gebruiker die hier niet bestaat',
+	'mwoauth-invalid-authorization-wrong-user' => 'De autorisatieheaders in uw verzoek zijn voor een andere gebruiker',
+	'mwoauth-invalid-authorization-not-approved' => 'De toepassing die u probeert te koppelen lijkt onjuist te zijn opgezet. Neem contact op met de uitgever van "$1" voor hulp.',
+	'mwoauth-invalid-authorization-blocked-user' => 'De autorisatieheaders in uw verzoek zijn voor een gebruiker die is geblokkeerd',
+	'mwoauth-form-description-allwikis' => 'Hallo $1,
+
+<strong>$2</strong> wil de volgende handelingen namens u kunnen uitvoeren op alle projecten van deze site:
+
+$4',
+	'mwoauth-form-description-onewiki' => 'Hallo $1,
+
+<strong>$2</strong> wil de volgende handelingen namens u kunnen uitvoeren op <em>$4</em>:
+
+$5',
+	'mwoauth-form-description-allwikis-nogrants' => 'Hallo $1,
+
+<strong>$2</strong> wil namens u basistoegang hebben tot alle projecten van deze site.',
+	'mwoauth-form-description-onewiki-nogrants' => 'Hallo $1,
+
+<strong>$2</strong> wil namens u basistoegang hebben tot <em>$4</em>.',
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Privacybeleid]]',
 	'mwoauth-form-button-approve' => 'Toestaan',
 	'mwoauth-form-button-cancel' => 'Annuleren',
+	'mwoauth-error' => 'Fout bij koppelen toepassing',
 	'mwoauth-grants-heading' => 'Aangevraagde rechten:',
 	'mwoauth-grants-nogrants' => 'De toepassing heeft geen rechten aangevraagd.',
+	'mwoauth-acceptance-cancelled' => 'U hebt gekozen "$1" geen toegang te geven tot uw gebruiker. "$1" werkt niet, tenzij u de toepassing toegang geeft. U kunt teruggaan naar "$1" of uw gekoppelde toepassingen [[Special:OAuthManageMyGrants|beheren]].',
+	'mwoauth-grant-group-page-interaction' => "Werken met pagina's",
+	'mwoauth-grant-group-file-interaction' => 'Werken met media',
+	'mwoauth-grant-group-watchlist-interaction' => 'Werken met uw volglijst',
+	'mwoauth-grant-group-email' => 'E-mail verzenden',
+	'mwoauth-grant-group-high-volume' => 'Activiteiten met hoog volume uitvoeren',
+	'mwoauth-grant-group-customization' => 'Aanpassingen en voorkeuren',
+	'mwoauth-grant-group-administration' => 'Beheerdershandelingen uitvoeren',
+	'mwoauth-grant-group-other' => 'Diverse handelingen',
 	'mwoauth-grant-blockusers' => 'Gebruikers (de)blokkeren',
+	'mwoauth-grant-createaccount' => 'Gebruikers aanmaken',
 	'mwoauth-grant-createeditmovepage' => "Pagina's aanmaken, bewerken en hernoemen",
 	'mwoauth-grant-delete' => "Pagina's, wijzigingen en vermeldingen in het logboek verwijderen",
+	'mwoauth-grant-editinterface' => 'De naamruimte MediaWiki en CSS en JavaScript van gebruikers bewerken',
 	'mwoauth-grant-editmycssjs' => 'Uw eigen CSS/JavaScript bewerken',
 	'mwoauth-grant-editmywatchlist' => 'Uw eigen volglijst bewerken',
 	'mwoauth-grant-editpage' => "Bestaande pagina's bewerken",
@@ -5006,17 +5168,22 @@ Ga terug, en probeer de koppeling opnieuw tot stand te brengen of neem contact o
 	'mwoauth-grant-useoauth' => 'Grondrechten',
 	'mwoauth-grant-viewdeleted' => 'Verwijderde gegevens bekijken',
 	'mwoauth-grant-viewmywatchlist' => 'Uw volglijst bekijken',
+	'mwoauth-oauth-exception' => 'Er is een fout opgetreden in het OAuth-protocol: $1',
+	'mwoauth-callback-not-oob' => 'oauth_callback moet worden ingesteld, en moet worden ingesteld op "oob" (hoofdlettergevoelig)',
 	'right-mwoauthproposeconsumer' => 'Nieuwe OAuthconsumers voorstellen',
 	'right-mwoauthupdateownconsumer' => 'OAuthconsumers bijwerken',
 	'right-mwoauthmanageconsumer' => 'OAuthconsumers beheren',
 	'right-mwoauthsuppress' => 'OAuthconsumers onderdrukken',
 	'right-mwoauthviewsuppressed' => 'Onderdrukte OAuthconsumers bekijken',
+	'right-mwoauthviewprivate' => 'Beschermde OAuthgegevens bekijken',
 	'right-mwoauthmanagemygrants' => 'OAuthbevoegdheden beheren',
 	'action-mwoauthmanageconsumer' => 'OAuthconsumers te beheren',
 	'action-mwoauthmanagemygrants' => 'uw OAuthbevoegdheden te beheren',
 	'action-mwoauthproposeconsumer' => 'nieuwe OAuthconsumers voor te stellen',
 	'action-mwoauthupdateownconsumer' => 'OAuthconsumers bij te werken',
 	'action-mwoauthviewsuppressed' => 'onderdrukte OAuthconsumers te bekijken',
+	'mwoauth-listgrantrights-summary' => 'Hieronder staat een lijst met OAuthtoestemmingen en de bijbehorende gebruikersrechten. Gebruikers kunnen toepassingen machtigen voor toegang tot hun gebruikers, maar met beperkte rechten gebaseerd op de toestemmingen die de gebruiker aan de toepassing heeft gegeven. Een toepassing die namens een gebruiker handelt, kan nooit rechten gebruiken die een gebruiker niet heeft.
+Er zijn mogelijk [[{{MediaWiki:Listgrouprights-helppage}}|aanvullende  gegevens]] over individuele rechten.',
 	'mwoauth-listgrants-grant' => 'Toestemming',
 	'mwoauth-listgrants-rights' => 'Rechten',
 );
