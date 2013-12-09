@@ -5441,6 +5441,8 @@ $messages['ru'] = array(
 	'mwoauthmanageconsumers-success-approved' => 'Запрос был одобрен.',
 	'mwoauthmanageconsumers-success-rejected' => 'Запрос был отклонён.',
 	'mwoauthlistconsumers-view' => 'подробности',
+	'mwoauthlistconsumers-none' => 'Приложений по этим критериям не найдено.',
+	'mwoauthlistconsumers-name' => 'Название приложения',
 	'mwoauthlistconsumers-description' => 'Описание',
 	'mwoauthlistconsumers-wiki' => 'Применимо к проекту',
 	'mwoauthlistconsumers-callbackurl' => '«URL-адрес обратного вызова» OAuth:',
@@ -5465,7 +5467,10 @@ $messages['ru'] = array(
 	'mwoauth-grant-editpage' => 'Редактировать существующие страницы',
 	'mwoauth-grant-editprotected' => 'Редактировать защищенные страницы',
 	'mwoauth-grant-protect' => 'Защищать и снимать защиту со страниц',
+	'mwoauth-grant-sendemail' => 'Отправлять электронную почту другим участникам',
+	'mwoauth-grant-uploadeditmovefile' => 'Загружать, заменять и переименовывать файлы',
 	'mwoauth-grant-uploadfile' => 'Загрузить новые файлы',
+	'mwoauth-grant-useoauth' => 'Основные права',
 	'mwoauth-grant-viewdeleted' => 'Просмотреть удаленную информацию',
 	'mwoauth-grant-viewmywatchlist' => 'Просмотреть свой список наблюдения',
 	'mwoauth-oauth-exception' => 'Произошла ошибка в протоколе OAuth: $1',
@@ -5543,6 +5548,8 @@ $messages['sr-ec'] = array(
 	'oauthmanagemygrants' => 'Управљање повезаним апликацијама',
 	'mwoauthmanagemygrants-showlist' => 'Списак повезаних аликација',
 	'mwoauthmanagemygrants-none' => 'Нема апликација повезаних са вашим налогом.',
+	'mwoauth-grant-uploadeditmovefile' => 'Отпремите, замените и преместите датотеке',
+	'mwoauth-grant-useoauth' => 'Основна права',
 );
 
 /** Serbian (Latin script) (srpski (latinica)‎)
