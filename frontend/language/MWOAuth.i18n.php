@@ -1263,6 +1263,7 @@ $messages['ckb'] = array(
 );
 
 /** Czech (čeština)
+ * @author Matěj Suchánek
  * @author Mormegil
  */
 $messages['cs'] = array(
@@ -1277,7 +1278,7 @@ Pro dokončení procesu poskytněte aplikaci tuto ověřovací hodnotu: '''$1'''
 	'mwoauth-field-private' => '(tato informace je soukromá)',
 	'mwoauth-grant-generic' => 'Balíček oprávnění „$1“',
 	'mwoauth-prefs-managegrants' => 'Připojené aplikace:',
-	'mwoauth-prefs-managegrantslink' => 'Spravovat $1 {{PLURAL:$1|připojenou aplikaci|připojené aplikace}}',
+	'mwoauth-prefs-managegrantslink' => 'Spravovat $1 {{PLURAL:$1|připojenou aplikaci|připojené aplikace|připojených aplikací}}',
 	'mwoauth-consumer-allwikis' => 'Všechny projekty na tomto webu',
 	'mwoauth-consumer-key' => 'Klíč konzumenta:',
 	'mwoauth-consumer-name' => 'Název aplikace:',
