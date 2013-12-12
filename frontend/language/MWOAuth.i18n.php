@@ -2849,6 +2849,7 @@ $5",
 
 /** Hebrew (עברית)
  * @author Amire80
+ * @author Guycn2
  * @author אור שפירא
  */
 $messages['he'] = array(
@@ -2877,7 +2878,7 @@ $messages['he'] = array(
 	'mwoauth-consumer-required-grant' => 'חל על צרכן',
 	'mwoauth-consumer-wiki' => 'מיזם מתאים:',
 	'mwoauth-consumer-wiki-thiswiki' => 'מיזם נוכחי ($1):',
-	'mwoauth-consumer-wiki-other' => 'מיזם מסויים',
+	'mwoauth-consumer-wiki-other' => 'מיזם מסוים',
 	'mwoauth-consumer-restrictions' => 'מגבלות שימוש:',
 	'mwoauth-consumer-restrictions-json' => 'מגבלות השימוש (JSON):',
 	'mwoauth-consumer-rsakey' => 'המפתח הציבורי RSA:',
@@ -2905,7 +2906,7 @@ $messages['he'] = array(
 	'mwoauth-consumer-stage-disabled' => 'בוטל',
 	'mwoauth-consumer-stage-suppressed' => 'מועלם',
 	'oauthconsumerregistration' => 'רישום צרכן OAuth',
-	'mwoauthconsumerregistration-notloggedin' => 'עליך להיות מחובר כדי לגשת לדף זה.',
+	'mwoauthconsumerregistration-notloggedin' => 'עליכם להיות מחוברים כדי לגשת לדף זה.',
 	'mwoauthconsumerregistration-navigation' => 'ניווט:',
 	'mwoauthconsumerregistration-propose' => 'הצעת צרכן חדש.',
 	'mwoauthconsumerregistration-list' => 'רשימת הצרכנים שלי',
@@ -2919,7 +2920,7 @@ $messages['he'] = array(
 * נא להשתמש בשדה ה־restrictions ב־JSON כדי להגביל את הגישה של הצרכן הזה לכתובות IP בטווחי ה־CIDR האלה.
 * באפשרותך להשתמש במזהה ויקי כדי להגביל את הצרכן למיזם אחד באתר הזה (אפשר להשתמש ב־"*" לכל המיזמים).
 * כתובת הדוא"ל שניתנה צריכה לתאום לכתובת של החשבון שלך (שצריכה להיות מאומתת).',
-	'mwoauthconsumerregistration-update-text' => 'השתמש בטופס שלהלן כדי לעדכן את פרטי צרכן OAuth.
+	'mwoauthconsumerregistration-update-text' => 'השתמשו בטופס שלהלן כדי לעדכן את פרטי צרכן OAuth.
 
 כל הערכים כאן יחליפו את כל הקודמים. אין להשאיר שדות ריקים אלא אם כן אתם מתכוונים לנקות את הערכים האלה.',
 	'mwoauthconsumerregistration-maintext' => 'הדף הזה מאפשר למפתחים להציע ולעדכן יישומים שיהיו צרכני OAuth ברישום של האתר הזה.
@@ -2949,7 +2950,7 @@ $messages['he'] = array(
 	'mwoauthconsumerregistration-updated' => 'רישום צרכן OAuth שלך עודכן בהצלחה.',
 	'mwoauthconsumerregistration-secretreset' => "ניתן לך אסימון הצרכן הסודי '''$1'''. נא לרשום אותם במקום שזמין לך.",
 	'oauthmanageconsumers' => 'ניהול צרכני OAuth',
-	'mwoauthmanageconsumers-notloggedin' => 'עליך להיות מחובר כדי לגשת לדף זה.',
+	'mwoauthmanageconsumers-notloggedin' => 'עליכם להיות מחוברים כדי לגשת לדף זה.',
 	'mwoauthmanageconsumers-type' => 'תורים:',
 	'mwoauthmanageconsumers-showproposed' => 'בקשות שהוצעו',
 	'mwoauthmanageconsumers-showrejected' => 'בקשות שנדחו',
@@ -2960,7 +2961,7 @@ $messages['he'] = array(
 	'mwoauthmanageconsumers-q-proposed' => 'תור בקשות צרכן',
 	'mwoauthmanageconsumers-q-rejected' => 'תור בקשות צרכן שנדחן',
 	'mwoauthmanageconsumers-q-expired' => 'תור בקשות צרכן שפגו',
-	'mwoauthmanageconsumers-lists' => 'נא לבחור מצב צרכן מתחוך רשימה להלן:',
+	'mwoauthmanageconsumers-lists' => 'נא לבחור מצב צרכן מתוך רשימה להלן:',
 	'mwoauthmanageconsumers-l-approved' => 'רשימת הצרכנים שאושרו',
 	'mwoauthmanageconsumers-l-disabled' => 'רשימת הצרכנים הכבויים',
 	'mwoauthmanageconsumers-none-proposed' => 'אין צרכנים ברשימה זו.',
@@ -3016,7 +3017,7 @@ $messages['he'] = array(
 	'mwoauthmanagemygrants-text' => 'בדף הזה נמצאת רשימה של כל היישומים שיכולים להשתמש בחשבון שלך. לכל יישום כזה טווח הגישה מוגבל בהרשאות שנתת לך כאשר אישרת לה לפעול בשמך. אם נתת אישור נפרד ליישום לגשת בשמך למיזמים אחרים, תראה את ההגדרות הנפרדות לכל מיזם כזה להלן.
 
 היישומים המחוברים ניגשים לחשבון שלך באמצעות פרוטוקול OAuth. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth מידע נוסף על יישומים מחוברים])</span>',
-	'mwoauthmanagemygrants-notloggedin' => 'יש להיות מחובר כדי לגשת לדף זה.',
+	'mwoauthmanagemygrants-notloggedin' => 'עליכם להיות מחוברים כדי לגשת לדף זה.',
 	'mwoauthmanagemygrants-navigation' => 'ניווט:',
 	'mwoauthmanagemygrants-showlist' => 'רשימת היישומים המחוברים',
 	'mwoauthmanagemygrants-none' => 'לא מחובר שום יישום לחשבון שלך.',
