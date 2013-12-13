@@ -36,6 +36,11 @@ $specialPageAliases['fa'] = array(
 	'OAuth' => array( 'OAuth', 'MWOAuth' ),
 );
 
+/** Galician (galego) */
+$specialPageAliases['gl'] = array(
+	'OAuthManageMyGrants' => array( 'Administrar_as_concesión_de_conta_OAuth' ),
+);
+
 /** Korean (한국어) */
 $specialPageAliases['ko'] = array(
 	'OAuthConsumerRegistration' => array( 'OAuth컨슈머등록', 'OAuth등록' ),
@@ -52,4 +57,10 @@ $specialPageAliases['mk'] = array(
 	'OAuthListConsumers' => array( 'OAuthНаведиПотрошувачи' ),
 	'OAuthManageMyGrants' => array( 'OAuthРаководењеМоиДоделувања' ),
 	'OAuth' => array( 'OAuth' ),
+);
+
+/** Simplified Chinese (中文（简体）‎) */
+$specialPageAliases['zh-hans'] = array(
+	'OAuthConsumerRegistration' => array( 'OAuth消费者注册', 'OAuth注册' ),
+	'OAuthListConsumers' => array( 'OAuth消费者列表' ),
 );
