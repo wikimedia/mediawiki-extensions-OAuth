@@ -3679,6 +3679,7 @@ Potresti trovare [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazioni
 );
 
 /** Japanese (日本語)
+ * @author Fryed-peach
  * @author Shirayuki
  * @author Whym
  */
@@ -3739,9 +3740,11 @@ $messages['ja'] = array(
 	'mwoauthconsumerregistration-name' => 'コンシューマー',
 	'mwoauthconsumerregistration-user' => '発行者',
 	'mwoauthconsumerregistration-description' => '説明',
+	'mwoauthconsumerregistration-email' => '連絡先メールアドレス',
 	'mwoauthconsumerregistration-consumerkey' => 'コンシューマー キー',
 	'mwoauthconsumerregistration-stage' => '状態',
 	'mwoauthconsumerregistration-lastchange' => '最新の変更',
+	'mwoauthconsumerregistration-manage' => '管理',
 	'mwoauthconsumerregistration-updated' => 'あなたの OAuth コンシューマー レジストリを更新しました。',
 	'mwoauthconsumerregistration-secretreset' => "「'''$1'''」のコンシューマー秘密トークンを割り当てました。''今後のためこれを記録しておいてください。''",
 	'oauthmanageconsumers' => 'OAuthコンシューマー管理', # Fuzzy
@@ -3787,7 +3790,7 @@ $messages['ja'] = array(
 	'mwoauthlistconsumers-version' => 'コンシューマーのバージョン',
 	'mwoauthlistconsumers-user' => '発行者',
 	'mwoauthlistconsumers-description' => '説明',
-	'mwoauthlistconsumers-callbackurl' => 'OAuth「コールバック URL」',
+	'mwoauthlistconsumers-callbackurl' => 'OAuth コールバック URL',
 	'mwoauthlistconsumers-basicgrantsonly' => '(基本的なアクセスのみ)',
 	'mwoauthlistconsumers-status' => '状態',
 	'mwoauth-consumer-stage-any' => 'すべて',
