@@ -5411,6 +5411,9 @@ $messages['roa-tara'] = array(
  */
 $messages['ru'] = array(
 	'mwoauth-desc' => 'Позволяет использование OAuth 1.0a для API авторизации',
+	'mwoauth-verified' => "Приложению теперь разрешён доступ к МедиаВики от вашего имени.
+
+Для завершения процесса, предоставьте приложению это проверочное значение: ''' $1 '''",
 	'mwoauth-missing-field' => 'Отсутствует значение для поля «$1»',
 	'mwoauth-invalid-field' => 'Недопустимое значение для поля «$1»',
 	'mwoauth-invalid-field-generic' => 'Недопустимое значение',
@@ -5431,6 +5434,7 @@ $messages['ru'] = array(
 	'mwoauth-consumer-restrictions-json' => 'Ограничения на использование (JSON):',
 	'mwoauth-consumer-reason' => 'Причина:',
 	'mwoauth-consumer-email-unconfirmed' => 'Адрес электронной почты вашей учетной записи еще не был подтверждён.',
+	'mwoauth-consumer-email-mismatched' => 'Указанный адрес электронной почты должен совпадать с адресом вашей учётной записи.',
 	'mwoauthconsumerregistration-stage' => 'Состояние',
 	'mwoauthconsumerregistration-lastchange' => 'Последнее изменение',
 	'mwoauthconsumerregistration-resetsecretkey' => 'Сбросить секретный ключ, установив новое значение',
