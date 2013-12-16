@@ -1310,7 +1310,7 @@ Pro dokončení procesu poskytněte aplikaci tuto ověřovací hodnotu: '''$1'''
 	'mwoauth-missing-consumer-key' => 'Nebyl poskytnut klíč konzumenta.',
 	'mwoauth-invalid-consumer-key' => 'Žádný konzument s daným klíčem neexistuje.',
 	'mwoauth-invalid-access-token' => 'Žádný přístupový token s daným klíčem neexistuje.',
-	'mwoauth-invalid-access-wrongwiki' => 'Tohoto konzumenta lze používat pouze na projektu „$1“.',
+	'mwoauth-invalid-access-wrongwiki' => 'Tohoto konzumenta lze používat pouze na projektu „$1“.', # Fuzzy
 	'mwoauth-consumer-conflict' => 'Zatímco jste si tohoto konzumenta {{GENDER:|prohlížel|prohlížela|prohlíželi}}, někdo změnil jeho atributy. Možná si budete chtít prohlédnout protokol změn.',
 	'mwoauth-consumer-grantshelp' => 'Každé oprávnění přiděluje přístup k uvedeným uživatelským právům, která příslušný uživatelský účet již má. Více informací najdete v [[Special:OAuth/grants|tabulce oprávnění]].',
 	'mwoauth-consumer-stage-proposed' => 'navržený',
@@ -1333,7 +1333,7 @@ Několik doporučení a poznámek:
 * Pokud je to možné, poskytněte veřejný klíč RSA (ve formátu PEM); v opačném případě se musí používat (méně bezpečný) tajný token.
 * Pomocí omezení v JSON můžete omezit tomuto konzumentu přístup jen na IP adresy v daných rozsazích CIDR.
 * Pomocí ID wiki můžete omezit tohoto konzumenta na jediný projekt na tomto serveru (pro všechny projekty uveďte „*“).
-* Zadaná e-mailová adresa musí odpovídat té na vašem uživatelském účtu (která musí být ověřena).',
+* Zadaná e-mailová adresa musí odpovídat té na vašem uživatelském účtu (která musí být ověřena).', # Fuzzy
 	'mwoauthconsumerregistration-update-text' => 'Pomocí níže uvedeného formuláře můžete změnit vlastnosti konzumenta OAuth, kterého spravujete.
 
 Všechny uvedené hodnoty přepíšou ty původní. Neponechávejte žádná pole prázdná, pokud nechcete jejich hodnoty smazat.',
@@ -1617,7 +1617,7 @@ Um den Prozess abzuschließen, gib diesen Verifizierungswert an die Anwendung we
 	'mwoauth-missing-consumer-key' => 'Es wurde kein Verbraucherschlüssel angegeben.',
 	'mwoauth-invalid-consumer-key' => 'Es ist kein Verbraucher mit dem angegebenen Schlüssel vorhanden.',
 	'mwoauth-invalid-access-token' => 'Es ist kein Zugriffstoken mit dem angegebenen Schlüssel vorhanden.',
-	'mwoauth-invalid-access-wrongwiki' => 'Der Verbraucher kann nur auf dem Wiki „$1“ verwendet werden.',
+	'mwoauth-invalid-access-wrongwiki' => 'Der Verbraucher kann nur auf dem Projekt „$1“ verwendet werden.',
 	'mwoauth-consumer-conflict' => 'Ein anderer hat bereits die Attribute dieses Verbrauchers geändert. Bitte erneut versuchen. Du kannst auch das Änderungs-Logbuch überprüfen.',
 	'mwoauth-consumer-grantshelp' => 'Jede Berechtigung ermöglicht einen Zugriff auf gelistete Benutzerrechte, die das Benutzerkonto bereits hat. Siehe die [[Special:OAuth/grants|tabellarische Übersicht]] für mehr Informationen.',
 	'mwoauth-consumer-stage-proposed' => 'geplant',
@@ -1639,7 +1639,7 @@ Hier einige Empfehlungen und Bemerkungen:
 * Versionen haben die Form „Hauptversion.Nebenversion.Release“ (die letzten zwei sind optional) und steigen mit der Notwendigkeit von Berechtigungsänderungen an.
 * Bitte gib einen öffentlichen RSA-Schlüssel an (im PEM-Format), falls möglich. Anderenfalls muss ein wenig sicherer Geheimtoken benutzt werden.
 * Verwende das JSON-Beschränkungsfeld, um den Zugriff dieses Verbrauchers auf IP-Adressen in diesen CIDR-Bereichen zu beschränken.
-* Du kannst eine Wikikennung verwenden, um den Verbraucher auf ein einzelnes Projekt auf dieser Website zu beschränken (verwende „*“ für alle Projekte).
+* Du kannst eine Projektkennung verwenden, um den Verbraucher auf ein einzelnes Projekt auf dieser Website zu beschränken (verwende „*“ für alle Projekte).
 * Die angegebene E-Mail-Adresse muss mit der deines Benutzerkontos übereinstimmen und bestätigt sein.',
 	'mwoauthconsumerregistration-update-text' => 'Verwende das unten stehende Formular, um Aspekte eines von dir kontrollierten OAuth-Verbrauchers zu aktualisieren.
 
@@ -2896,7 +2896,7 @@ $messages['he'] = array(
 	'mwoauth-missing-consumer-key' => 'לא ניתן מפתח צרכן',
 	'mwoauth-invalid-consumer-key' => 'אין צרכן עם מפתח זה.',
 	'mwoauth-invalid-access-token' => 'אין אסימון גישה עם המפתח.',
-	'mwoauth-invalid-access-wrongwiki' => 'הצרכן יכול לשמש רק בוויקי "$1".',
+	'mwoauth-invalid-access-wrongwiki' => 'הצרכן יכול לשמש רק בוויקי "$1".', # Fuzzy
 	'mwoauth-consumer-conflict' => 'מישהו שינה את המאפיינים של הצרכן הזה בזמן שצפית בו. נא לנסות שוב. אפשר לבדוק את יומן השינויים.',
 	'mwoauth-consumer-grantshelp' => "כל זיכיון נותן גישה להרשאות המשתמש הרשומות שכבר ניתנו לחשבון משתמש. ר' את הדף [[Special:OAuth/grants|טבלת הזיכיונות]] למידע נוסף.",
 	'mwoauth-consumer-stage-proposed' => 'מוצע',
@@ -2919,7 +2919,7 @@ $messages['he'] = array(
 * נא לספק מפתח RSA ציבורי (בתסדיר PEM) אם אפשר; אחרת ישמש אסימון סודי אחור (מאובטח פחות).
 * נא להשתמש בשדה ה־restrictions ב־JSON כדי להגביל את הגישה של הצרכן הזה לכתובות IP בטווחי ה־CIDR האלה.
 * באפשרותך להשתמש במזהה ויקי כדי להגביל את הצרכן למיזם אחד באתר הזה (אפשר להשתמש ב־"*" לכל המיזמים).
-* כתובת הדוא"ל שניתנה צריכה לתאום לכתובת של החשבון שלך (שצריכה להיות מאומתת).',
+* כתובת הדוא"ל שניתנה צריכה לתאום לכתובת של החשבון שלך (שצריכה להיות מאומתת).', # Fuzzy
 	'mwoauthconsumerregistration-update-text' => 'השתמשו בטופס שלהלן כדי לעדכן את פרטי צרכן OAuth.
 
 כל הערכים כאן יחליפו את כל הקודמים. אין להשאיר שדות ריקים אלא אם כן אתם מתכוונים לנקות את הערכים האלה.',
@@ -3722,7 +3722,7 @@ $messages['ja'] = array(
 	'mwoauth-missing-consumer-key' => 'コンシューマー キーを指定していません。',
 	'mwoauth-invalid-consumer-key' => '指定したキーのコンシューマーは存在しません。',
 	'mwoauth-invalid-access-token' => '指定したキーのアクセス トークンは存在しません。',
-	'mwoauth-invalid-access-wrongwiki' => 'ウィキ「$1」のみで使用できるコンシューマーです。',
+	'mwoauth-invalid-access-wrongwiki' => 'プロジェクト「$1」のみで使用できるコンシューマーです。',
 	'mwoauth-consumer-stage-proposed' => '提案中',
 	'mwoauth-consumer-stage-rejected' => '却下済み',
 	'mwoauth-consumer-stage-expired' => '期限切れ',
@@ -5907,7 +5907,7 @@ $messages['uk'] = array(
 	'mwoauth-missing-consumer-key' => 'Немає наданого ключа споживача.',
 	'mwoauth-invalid-consumer-key' => 'Не існує споживача з даним ключем.',
 	'mwoauth-invalid-access-token' => 'Немає маркера доступу з даним ключем.',
-	'mwoauth-invalid-access-wrongwiki' => 'Споживач може використовуватися тільки на вікі "$1".',
+	'mwoauth-invalid-access-wrongwiki' => 'Споживач може використовуватися тільки на проекті "$1".',
 	'mwoauth-consumer-conflict' => 'Хтось змінив параметри даного споживача, якого ви дивилися. Будь ласка, спробуйте ще раз. Ви можете перевірити журнал змін.',
 	'mwoauth-consumer-grantshelp' => 'Кожен грант надає доступ до перерахованих прав користувача, які вже має обліковий запис користувача. Подивіться на [[Special:OAuth/grants|таблицю грантів]] для отримання додаткової інформації.',
 	'mwoauth-consumer-stage-proposed' => 'запропоновано',
@@ -5929,7 +5929,7 @@ $messages['uk'] = array(
 * Версії мають форму "major.minor.release" (останні дві необов\'язкові) і вони збільшуються, якщо необхідні зміни дозволів.
 * Будь ласка, вкажіть відкритий ключ RSA (у форматі PEM), якщо можливо; в іншому випадку (менш безпечно) таємний маркер повинен використовуватися.
 * Використовуйте обмеження поля JSON  для обмеження доступу споживача до IP-адрес в тих  діапазонах CIDR.
-* Ви можете використовувати ідентифікатор вікі, аби обмежувати споживача в одному проекті на цьому сайті (використовуйте "*" для всіх проектів).
+* Ви можете використовувати ідентифікатор проекту, аби обмежувати споживача в одному проекті на цьому сайті (використовуйте "*" для всіх проектів).
 * Надана адреса електронної пошти повинна збігатися з вашим обліковим записом (який повинен бути підтвердженим).',
 	'mwoauthconsumerregistration-update-text' => 'Використовуйте форму нижче, щоб оновити аспекти споживача OAuth, які ви контролюєте.
 
@@ -6366,7 +6366,7 @@ $messages['zh-hans'] = array(
 	'mwoauth-field-private' => '（这些信息是不公开的）',
 	'mwoauth-grant-generic' => '" $1 "权利束',
 	'mwoauth-prefs-managegrants' => '连接的应用：',
-	'mwoauth-prefs-managegrantslink' => '管理$1{{PLURAL:$1|个|个}}应用',
+	'mwoauth-prefs-managegrantslink' => '管理$1个连接的{{PLURAL:$1|应用程序}}',
 	'mwoauth-consumer-allwikis' => '本站的所有项目',
 	'mwoauth-consumer-key' => 'Consumer key:',
 	'mwoauth-consumer-name' => '应用名称：',

@@ -18,6 +18,14 @@ $specialPageAliases['en'] = array(
 	'OAuth' => array( 'OAuth', 'MWOAuth' ),
 );
 
+/** Arabic (العربية) */
+$specialPageAliases['ar'] = array(
+	'OAuthConsumerRegistration' => array( 'تسجيل_مستهلك_أو_أوث', 'تسجيل_أو_أوث' ),
+	'OAuthManageConsumers' => array( 'التحكم_بمستهلكي_أو_أوث' ),
+	'OAuthListConsumers' => array( 'عرض_مستهلكي_أو_أوث' ),
+	'OAuthManageMyGrants' => array( 'التحكم_بممنوحاتي_أو_أوث', 'ممنوحات_أو_أوث' ),
+);
+
 /** German (Deutsch) */
 $specialPageAliases['de'] = array(
 	'OAuthConsumerRegistration' => array( 'Verbraucherregistrierung' ),
