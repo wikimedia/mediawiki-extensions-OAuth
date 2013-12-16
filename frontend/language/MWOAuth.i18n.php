@@ -58,7 +58,7 @@ To complete the process, provide this verification value to the application: \'\
 	'mwoauth-missing-consumer-key' => 'No consumer key was provided.',
 	'mwoauth-invalid-consumer-key' => 'No consumer exists with the given key.',
 	'mwoauth-invalid-access-token' => 'No access token exists with the given key.',
-	'mwoauth-invalid-access-wrongwiki' => 'The consumer can only be used on wiki "$1".',
+	'mwoauth-invalid-access-wrongwiki' => 'The consumer can only be used on project "$1".',
 	'mwoauth-consumer-conflict' => 'Someone changed the attributes of this consumer as you viewed it. Please try again. You may want to check the change log.',
 	'mwoauth-consumer-grantshelp' => 'Each grant gives access to listed user rights that a user account already has. See the [[Special:OAuth/grants|table of grants]] for more information.',
 
@@ -82,7 +82,7 @@ A few recommendations and remarks:
 * Versions are of the form "major.minor.release" (the last two being optional) and increase as grant changes are needed.
 * Please provide a public RSA key (in PEM format) if possible; otherwise a (less secure) secret token will have to be used.
 * Use the JSON restrictions field to limit access of this consumer to IP addresses in those CIDR ranges.
-* You can use a wiki ID to restrict the consumer to a single project on this site (use "*" for all projects).
+* You can use a project ID to restrict the consumer to a single project on this site (use "*" for all projects).
 * The email address provided must match that of your account (which must have been confirmed).',
 	'mwoauthconsumerregistration-update-text' => 'Use the form below to update aspects of an OAuth consumer you control.
 
