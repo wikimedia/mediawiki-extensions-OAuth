@@ -49,6 +49,12 @@ $specialPageAliases['gl'] = array(
 	'OAuthManageMyGrants' => array( 'Administrar_as_concesión_de_conta_OAuth' ),
 );
 
+/** Hebrew (עברית) */
+$specialPageAliases['he'] = array(
+	'OAuthListConsumers' => array( 'יישומי_OAuth', 'רשימות_יישומי_OAuth' ),
+	'OAuthManageMyGrants' => array( 'ניהול_יישומים', 'ניהול_יישומים_מחוברים' ),
+);
+
 /** Korean (한국어) */
 $specialPageAliases['ko'] = array(
 	'OAuthConsumerRegistration' => array( 'OAuth컨슈머등록', 'OAuth등록' ),

@@ -1900,7 +1900,7 @@ A few recommendations and remarks:
 * Versions are of the form "major.minor.release" (the last two being optional) and increase as grant changes are needed.
 * Please provide a public RSA key (in PEM format) if possible; otherwise a (less secure) secret token will have to be used.
 * Use the JSON restrictions field to limit access of this consumer to IP addresses in those CIDR ranges.
-* You can use a wiki ID to restrict the consumer to a single project on this site (use "*" for all projects).
+* You can use a project ID to restrict the consumer to a single project on this site (use "*" for all projects).
 * The email address provided must match that of your account (which must have been confirmed).',
 	'mwoauthmanagemygrants-text' => 'This page lists any applications that can use your account. For any such application, the scope of its access is limited by the permissions that you granted to the application when you authorised it to act on your behalf. If you separately authorised an application to access different "sister" projects on your behalf, then you will see separate configuration for each such project below.
 
@@ -2896,7 +2896,7 @@ $messages['he'] = array(
 	'mwoauth-missing-consumer-key' => 'לא ניתן מפתח צרכן',
 	'mwoauth-invalid-consumer-key' => 'אין צרכן עם מפתח זה.',
 	'mwoauth-invalid-access-token' => 'אין אסימון גישה עם המפתח.',
-	'mwoauth-invalid-access-wrongwiki' => 'הצרכן יכול לשמש רק בוויקי "$1".', # Fuzzy
+	'mwoauth-invalid-access-wrongwiki' => 'הצרכן יכול לשמש רק במיזם "$1".',
 	'mwoauth-consumer-conflict' => 'מישהו שינה את המאפיינים של הצרכן הזה בזמן שצפית בו. נא לנסות שוב. אפשר לבדוק את יומן השינויים.',
 	'mwoauth-consumer-grantshelp' => "כל זיכיון נותן גישה להרשאות המשתמש הרשומות שכבר ניתנו לחשבון משתמש. ר' את הדף [[Special:OAuth/grants|טבלת הזיכיונות]] למידע נוסף.",
 	'mwoauth-consumer-stage-proposed' => 'מוצע',
@@ -2918,8 +2918,8 @@ $messages['he'] = array(
 * הגרסאות נכתבות בצורה "major.minor.release" (לא חובה לכתוב את שני החלקים האחרונים) ועולים בכל פעם שהזיכיונות משתנים.
 * נא לספק מפתח RSA ציבורי (בתסדיר PEM) אם אפשר; אחרת ישמש אסימון סודי אחור (מאובטח פחות).
 * נא להשתמש בשדה ה־restrictions ב־JSON כדי להגביל את הגישה של הצרכן הזה לכתובות IP בטווחי ה־CIDR האלה.
-* באפשרותך להשתמש במזהה ויקי כדי להגביל את הצרכן למיזם אחד באתר הזה (אפשר להשתמש ב־"*" לכל המיזמים).
-* כתובת הדוא"ל שניתנה צריכה לתאום לכתובת של החשבון שלך (שצריכה להיות מאומתת).', # Fuzzy
+* באפשרותך להשתמש במזהה מיזם כדי להגביל את הצרכן למיזם אחד באתר הזה (אפשר להשתמש ב־"*" לכל המיזמים).
+* כתובת הדוא"ל שניתנה צריכה לתאום לכתובת של החשבון שלך (שצריכה להיות מאומתת).',
 	'mwoauthconsumerregistration-update-text' => 'השתמשו בטופס שלהלן כדי לעדכן את פרטי צרכן OAuth.
 
 כל הערכים כאן יחליפו את כל הקודמים. אין להשאיר שדות ריקים אלא אם כן אתם מתכוונים לנקות את הערכים האלה.',
@@ -5619,7 +5619,7 @@ $messages['sv'] = array(
 	'mwoauth-missing-consumer-key' => 'Ingen konsumentnyckel angavs.',
 	'mwoauth-invalid-consumer-key' => 'Ingen konsument finns med den nyckel.',
 	'mwoauth-invalid-access-token' => 'Ingen åtkomst-token finns med den nyckeln.',
-	'mwoauth-invalid-access-wrongwiki' => 'Konsumenten kan endast användas på wiki "$1".',
+	'mwoauth-invalid-access-wrongwiki' => 'Konsumenten kan endast användas på projektet "$1".',
 	'mwoauth-consumer-conflict' => 'Någon ändrat attributen för denna konsument när du tittade på den. Vänligen försök igen. Du kanske vill ta en titt på ändringsloggen.',
 	'mwoauth-consumer-stage-proposed' => 'föreslagna',
 	'mwoauth-consumer-stage-rejected' => 'avvisade',
@@ -6353,9 +6353,10 @@ $messages['yi'] = array(
  * @author Shirayuki
  * @author Shizhao
  * @author Xiaomingyan
+ * @author Yfdyh000
  */
 $messages['zh-hans'] = array(
-	'mwoauth-desc' => 'OAuth 1.0a API授权', # Fuzzy
+	'mwoauth-desc' => '允许使用OAuth 1.0a用作API授权',
 	'mwoauth-verified' => "现在该应用以允许以您的名义访问MediaWiki。
 
 要完成这个过程，请为该应用提供这个校验值：'''$1'''",
@@ -6365,8 +6366,8 @@ $messages['zh-hans'] = array(
 	'mwoauth-field-hidden' => '（这些信息已被隐藏）',
 	'mwoauth-field-private' => '（这些信息是不公开的）',
 	'mwoauth-grant-generic' => '" $1 "权利束',
-	'mwoauth-prefs-managegrants' => '连接的应用：',
-	'mwoauth-prefs-managegrantslink' => '管理$1个连接的{{PLURAL:$1|应用程序}}',
+	'mwoauth-prefs-managegrants' => '已连接应用：',
+	'mwoauth-prefs-managegrantslink' => '管理$1个已连接的应用程序',
 	'mwoauth-consumer-allwikis' => '本站的所有项目',
 	'mwoauth-consumer-key' => 'Consumer key:',
 	'mwoauth-consumer-name' => '应用名称：',
@@ -6377,16 +6378,19 @@ $messages['zh-hans'] = array(
 	'mwoauth-consumer-description' => '应用说明：',
 	'mwoauth-consumer-callbackurl' => 'OAuth"回调"URL：',
 	'mwoauth-consumer-grantsneeded' => '应用授权：',
+	'mwoauth-consumer-required-grant' => '适用于最终用户',
 	'mwoauth-consumer-wiki' => '适用项目：',
 	'mwoauth-consumer-wiki-thiswiki' => '当前项目 ( $1 )',
 	'mwoauth-consumer-wiki-other' => '具体项目',
 	'mwoauth-consumer-restrictions' => '使用限制：',
 	'mwoauth-consumer-restrictions-json' => '使用限制(JSON) ：',
 	'mwoauth-consumer-rsakey' => 'RSA公钥：',
+	'mwoauth-consumer-secretkey' => '最终用户的私密令牌：',
 	'mwoauth-consumer-accesstoken' => '访问令牌：',
 	'mwoauth-consumer-reason' => '原因：',
 	'mwoauth-consumer-email-unconfirmed' => '您的帐户的电子邮件地址尚未得到确认。',
 	'mwoauth-consumer-email-mismatched' => '提供的电子邮件地址必须与您的帐户相匹配。',
+	'mwoauth-consumer-alreadyexists' => '最终用户与此名称/版本/发布者的组合已经存在',
 	'mwoauth-consumer-stage-proposed' => '建议',
 	'mwoauth-consumer-stage-rejected' => '拒绝',
 	'mwoauth-consumer-stage-expired' => '过期',
@@ -6431,11 +6435,11 @@ $messages['zh-hans'] = array(
 	'mwoauthlistconsumers-status-disabled' => '停用',
 	'mwoauthlistconsumers-status-rejected' => '拒绝',
 	'mwoauthlistconsumers-status-expired' => '已过期',
-	'oauthmanagemygrants' => '管理连接的应用程序',
+	'oauthmanagemygrants' => '管理已连接的应用程序',
 	'mwoauthmanagemygrants-notloggedin' => '您必须登录后才能访问此页。',
 	'mwoauthmanagemygrants-navigation' => '导航：',
-	'mwoauthmanagemygrants-showlist' => '连接的应用程序列表',
-	'mwoauthmanagemygrants-none' => '没有应用程序连接至你的账户。',
+	'mwoauthmanagemygrants-showlist' => '已连接应用的列表',
+	'mwoauthmanagemygrants-none' => '还没有应用程序连接到你的账户。',
 	'mwoauthmanagemygrants-user' => '发布者：',
 	'mwoauthmanagemygrants-description' => '描述',
 	'mwoauthmanagemygrants-wikiallowed' => '允许在项目上使用：',
