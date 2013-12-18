@@ -2330,7 +2330,7 @@ Pour terminer le processus, veuillez fournir cette valeur de vérification à l�
 	'mwoauth-missing-consumer-key' => 'Aucune clé de consommateur n’a été fournie.',
 	'mwoauth-invalid-consumer-key' => 'Aucun consommateur n’existe avec la clé fournie.',
 	'mwoauth-invalid-access-token' => 'Aucun jeton d’accès n’existe pour la clé fournie',
-	'mwoauth-invalid-access-wrongwiki' => 'Le consommateur ne peut être utilisé que sur le wiki « $1 ».',
+	'mwoauth-invalid-access-wrongwiki' => 'Le consommateur ne peut être utilisé que sur le projet « $1 ».',
 	'mwoauth-consumer-conflict' => 'Quelqu’un a modifié les attributs de ce consommateur pendant que vous le consultiez. Veuillez réessayer. Vous pouvez aussi vérifier le journal des modifications.',
 	'mwoauth-consumer-grantshelp' => 'Chaque droit accorde l’accès aux droits d&utilisateur listés qu’un compte utilisateur possède déjà. Voyez le [[Special:OAuth/grants|tableau des droits]] pour plus d’information.',
 	'mwoauth-consumer-stage-proposed' => 'proposé',
@@ -2352,7 +2352,7 @@ Quelques recommandations et remarques :
 * Les versions sont de la forme « majeure.mineure.révision » (les deux derniers étant facultatifs) et augmentent quand des modifications de droit sont nécessaires.
 * Veuillez fournir une clé publique RSA (au format PEM) si possible ; sinon, un jeton secret (moins sécurisé) vous sera assigné.
 * Utilisez le champ limitations JSON pour limiter l’accès de ce consommateur aux adresses IP dans ces plages de CIDR.
-* Vous pouvez utiliser un ID de wiki pour limiter ce consommateur à un unique projet de ce site (utilisez "*" pour tous les projets).
+* Vous pouvez utiliser un ID de projet pour limiter ce consommateur à un unique projet de ce site (utilisez "*" pour tous les projets).
 * L’adresse de courriel fournie doit correspondre à celle de votre compte (qui doit avoir été confirmée).',
 	'mwoauthconsumerregistration-update-text' => 'Utilisez le formulaire ci-dessous pour mettre à jour les aspects d’un consommateur OAuth que vous contrôlez.
 
