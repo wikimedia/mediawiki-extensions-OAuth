@@ -3141,7 +3141,7 @@ $5',
 	'mwoauth-oauth-exception' => 'אירעה שגיאה בפרוטוקול OAuth:$1',
 	'mwoauth-callback-not-oob' => 'הפרמטר oauth_callback צריך להיות מוגדר והערך שלו חייב להיות "oob" (תלוי־רישיות)',
 	'right-mwoauthproposeconsumer' => 'הצעת צרכני OAuth חדשים',
-	'right-mwoauthupdateownconsumer' => 'עדכון צרכני OAuth שבשליטתך',
+	'right-mwoauthupdateownconsumer' => 'עדכון צרכני OAuth שבשליטת המשתמש עצמו',
 	'right-mwoauthmanageconsumer' => 'ניהול צרכני OAuth',
 	'right-mwoauthsuppress' => 'העלמת צרכני OAuth',
 	'right-mwoauthviewsuppressed' => 'הצגת צרכני OAuth מועלמים',
@@ -3415,7 +3415,7 @@ Per completare il processo, inserisci questo valore per la verifica nel'applicaz
 	'mwoauth-missing-consumer-key' => 'Non è stata fornita alcuna chiave cliente.',
 	'mwoauth-invalid-consumer-key' => 'Non esiste alcun cliente con la chiave specificata.',
 	'mwoauth-invalid-access-token' => 'Non esiste alcun token di accesso con la chiave specificata.',
-	'mwoauth-invalid-access-wrongwiki' => 'Il cliente può essere utilizzato solo nel wiki "$1".',
+	'mwoauth-invalid-access-wrongwiki' => 'Il cliente può essere utilizzato solo nel progetto "$1".',
 	'mwoauth-consumer-conflict' => 'Qualcuno ha cambiato gli attributi di questo cliente, come si visto. Per favore riprova. Si consiglia di controllare il registro delle modifiche.',
 	'mwoauth-consumer-grantshelp' => "Ogni concessione dà accesso ai diritti elencati per cui l'utenza già dispone. Vedi la [[Special:OAuth/grants|tabella delle assegnazioni]] per ulteriori informazioni.",
 	'mwoauth-consumer-stage-proposed' => 'proposto',
@@ -3437,7 +3437,7 @@ Alcune raccomandazioni e osservazioni:
 * le versioni sono nella forma \"major.minor.release\" (gli ultimi due sono opzionali) ed aumentala nel caso siano necessarie ulteriori assegnazioni di diritti
 * fornisce una chiave RSA pubblica (in formato PEM) se possibile; altrimenti dovrà essere utilizzato un token segreto (meno sicuro)
 * utilizza il campo di restrizioni JSON per limitare l'accesso di questo cliente da indirizzi IP in tali intervalli CIDR
-* è possibile utilizzare un ID wiki per limitare il cliente ad un singolo progetto su questo sito (usa \"*\" per tutti i progetti)
+* è possibile utilizzare un ID progetto per limitare il cliente ad un singolo progetto su questo sito (usa \"*\" per tutti i progetti)
 * l'indirizzo email fornito deve corrispondere a quello della tua utenza (che deve essere confermato).",
 	'mwoauthconsumerregistration-update-text' => 'Utilizza il modulo qui sotto per aggiornare gli aspetti di un cliente OAuth che controlli.
 
@@ -4930,7 +4930,7 @@ Geef deze controlewaarde op in de toepassing om het proces te voltooien: '''$1''
 	'mwoauth-missing-consumer-key' => 'Er is geen toepassingssleutel opgegeven.',
 	'mwoauth-invalid-consumer-key' => 'Er bestaat geen toepassing met deze sleutel.',
 	'mwoauth-invalid-access-token' => 'Er bestaat geen toegangstoken met de opgegeven sleutel.',
-	'mwoauth-invalid-access-wrongwiki' => 'De toepassing kan alleen gebruikt worden op de wiki "$1".',
+	'mwoauth-invalid-access-wrongwiki' => 'De toepassing kan alleen gebruikt worden op het project "$1".',
 	'mwoauth-consumer-conflict' => 'Iemand heeft de eigenschappen van deze toepassing aangepast terwijl u deze aan het bekijken was. U kunt het wijzigingenlogboek bekijken.',
 	'mwoauth-consumer-grantshelp' => 'Iedere toestemming geeft toegang tot de opgegeven gebruikersrechten die een gebruiker al heeft. Zie de [[Special:OAuth/grants|tabel met toestemmingen]] voor meer informatie.',
 	'mwoauth-consumer-stage-proposed' => 'voorgesteld',
@@ -4945,14 +4945,14 @@ Geef deze controlewaarde op in de toepassing om het proces te voltooien: '''$1''
 	'mwoauthconsumerregistration-propose' => 'Nieuwe consumer voorstellen',
 	'mwoauthconsumerregistration-list' => 'Uw consumerlijst',
 	'mwoauthconsumerregistration-main' => 'Startpagina',
-	'mwoauthconsumerregistration-propose-text' => 'Ontwikkelaars moeten het onderstaande formulier gebruiken om een nieuwe OAuthconsumer voor te stellen (zie de [//www.mediawiki.org/wiki/Extension:OAuth documentatie van de uitbreiding] voor meer details). Na het indienden van dit formulier ontvangt u een token dat uw programma gaat gebruiken om zichzelf te identificeren bij MediaWiki. Een OAuthbeheerder moet uw aanvraag goedkeuren voor het door andere gebruikers kan worden toegestaan.
+	'mwoauthconsumerregistration-propose-text' => 'Ontwikkelaars moeten het onderstaande formulier gebruiken om een nieuwe OAuthtoepassing voor te stellen (zie de [//www.mediawiki.org/wiki/Extension:OAuth documentatie van de uitbreiding] voor meer details). Na het indienden van dit formulier ontvangt u een token dat uw programma gaat gebruiken om zichzelf te identificeren bij MediaWiki. Een OAuthbeheerder moet uw aanvraag goedkeuren voor het door andere gebruikers kan worden toegestaan.
 
 Een paar aanbevelingen en opmerkingen:
 * Probeer zo min mogelijk bevoegdheden te gebruiken  Vermijd bevoegdheden die niet echt nodig zijn;
 * Versies hebben de opmaak "groot.klein.release" (de laatste twee elementen zijn optioneel) en moeten oplopen als er wijzigingen voor de toestemmingen nodig zijn;
 * Gebruik als mogelijk een RSA-sleutel (in PEM-opmaak); als dat niet mogelijk is, wordt u een (minder veilig) geheim token toegewezen;
-* Gebruik het veld JSON-beperkingen om de toegang voor deze consumer te beperken tot IP-adressen in de opgegeven CIDR-bereiken;
-* U kunt een wiki-ID gebruiken om de consumer te beperken tot één enkel project op deze site (gebruik "*" voor alle projecten);
+* Gebruik het veld JSON-beperkingen om de toegang voor deze toepassing te beperken tot IP-adressen in de opgegeven CIDR-bereiken;
+* U kunt een project-ID gebruiken om de toepassing te beperken tot één enkel project op deze site (gebruik "*" voor alle projecten);
 * Het e-mailadres moet overeenkomen met dat van uw gebruiker (en het e-mailadres moet zijn bevestigd).',
 	'mwoauthconsumerregistration-update-text' => 'Gebruik het onderstaande formulier om bepaalde aspecten van de OAuthtoepassing die u beheert bij te werken.
 
@@ -5335,6 +5335,7 @@ $messages['pl'] = array(
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  */
 $messages['ps'] = array(
+	'mwoauth-prefs-managegrants' => 'اړيکمن کاريالونه:',
 	'mwoauth-grant-blockusers' => 'په کارنانو بنديز لگول او بنديز ليرې کول',
 );
 
