@@ -1572,6 +1572,7 @@ K jednotlivým oprávněním mohou existovat [[{{MediaWiki:Listgrouprights-helpp
 /** German (Deutsch)
  * @author Metalhead64
  * @author Se4598
+ * @author Wnme
  */
 $messages['de'] = array(
 	'mwoauth-desc' => 'Ermöglicht die Verwendung von OAuth 1.0a zur API-Autorisierung',
@@ -1626,7 +1627,7 @@ Um den Prozess abzuschließen, gib diesen Verifizierungswert an die Anwendung we
 	'mwoauth-consumer-stage-approved' => 'bestätigt',
 	'mwoauth-consumer-stage-disabled' => 'deaktiviert',
 	'mwoauth-consumer-stage-suppressed' => 'unterdrückt',
-	'oauthconsumerregistration' => 'OAuth-Verbraucherregistrierung',
+	'oauthconsumerregistration' => 'OAuth-Anwendungsregistrierung',
 	'mwoauthconsumerregistration-notloggedin' => 'Du musst angemeldet sein, um auf diese Seite zugreifen zu können.',
 	'mwoauthconsumerregistration-navigation' => 'Navigation:',
 	'mwoauthconsumerregistration-propose' => 'Neuen Verbraucher planen',
@@ -1644,18 +1645,18 @@ Hier einige Empfehlungen und Bemerkungen:
 	'mwoauthconsumerregistration-update-text' => 'Verwende das unten stehende Formular, um Aspekte eines von dir kontrollierten OAuth-Verbrauchers zu aktualisieren.
 
 Alle Werte hier überschreiben alle vorherigen. Hinterlasse keine leeren Felder, außer du beabsichtigst, diese Werte zu löschen.',
-	'mwoauthconsumerregistration-maintext' => 'Diese Seite dient der Planung und Aktualisierung von OAuth-Verbraucheranwendungen in der Websiteregistrierung durch Entwickler.
+	'mwoauthconsumerregistration-maintext' => 'Diese Seite dient zum Vorschlagen und Aktualisieren von OAuth-Anwendungen in der Websiteregistrierung durch Entwickler.
 
-Du kannst von hier
-* [[Special:OAuthConsumerRegistration/propose|einen Token für einen neuen Verbraucher anfordern]] oder
-* [[Special:OAuthConsumerRegistration/list|deine vorhandenen Verbraucher verwalten]].
+Du kannst hier
+* [[Special:OAuthConsumerRegistration/propose|einen Token für eine neue Anwendunge anfordern]] oder
+* [[Special:OAuthConsumerRegistration/list|deine vorhandenen Anwendungen verwalten]].
 
 Für mehr Informationen über OAuth, siehe die [//www.mediawiki.org/wiki/Extension:OAuth Erweiterungsdokumentation].',
 	'mwoauthconsumerregistration-propose-legend' => 'Neue OAuth-Verbraucheranwendung',
 	'mwoauthconsumerregistration-update-legend' => 'OAuth-Verbraucheranwendung aktualisieren',
 	'mwoauthconsumerregistration-propose-submit' => 'Verbraucher planen',
 	'mwoauthconsumerregistration-update-submit' => 'Verbraucher aktualisieren',
-	'mwoauthconsumerregistration-none' => 'Du kontrollierst keine OAuth-Verbraucher.',
+	'mwoauthconsumerregistration-none' => 'Du kontrollierst keine OAuth-Anwendungen.',
 	'mwoauthconsumerregistration-name' => 'Verbraucher',
 	'mwoauthconsumerregistration-user' => 'Herausgeber',
 	'mwoauthconsumerregistration-description' => 'Beschreibung',
@@ -1670,14 +1671,14 @@ Für mehr Informationen über OAuth, siehe die [//www.mediawiki.org/wiki/Extensi
 Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen. ''Bitte diese für die Zukunft aufbewahren.''",
 	'mwoauthconsumerregistration-updated' => 'Deine OAuth-Verbraucherregistrierung wurde erfolgreich aktualisiert.',
 	'mwoauthconsumerregistration-secretreset' => "Dir wurde der geheime Verbrauchertoken '''$1''' zugeordnet. ''Bitte diesen für die Zukunft aufbewahren.''",
-	'oauthmanageconsumers' => 'OAuth-Verbraucher verwalten',
+	'oauthmanageconsumers' => 'OAuth-Anwendungen verwalten',
 	'mwoauthmanageconsumers-notloggedin' => 'Du musst angemeldet sein, um auf diese Seite zugreifen zu können.',
 	'mwoauthmanageconsumers-type' => 'Warteschlangen:',
 	'mwoauthmanageconsumers-showproposed' => 'Geplante Anträge',
 	'mwoauthmanageconsumers-showrejected' => 'Abgelehnte Anträge',
 	'mwoauthmanageconsumers-showexpired' => 'Abgelaufene Anträge',
 	'mwoauthmanageconsumers-main' => 'Start',
-	'mwoauthmanageconsumers-maintext' => 'Diese Seite ist gedacht zur Abwicklung von OAuth-Verbraucheranwendungsanträgen (siehe http://oauth.net) und zum Verwalten von bestehenden OAuth-Verbrauchern.',
+	'mwoauthmanageconsumers-maintext' => 'Diese Seite ist zur Abwicklung von OAuth-Anwendungsanträgen (siehe http://oauth.net) und zum Verwalten von bestehenden OAuth-Anwendungen gedacht.',
 	'mwoauthmanageconsumers-queues' => 'Wähle von unten eine Verbraucherbestätigungswarteschlange aus:',
 	'mwoauthmanageconsumers-q-proposed' => 'Warteschlange geplanter Verbraucheranträge',
 	'mwoauthmanageconsumers-q-rejected' => 'Warteschlange abgelehnter Verbraucheranträge',
@@ -1698,7 +1699,7 @@ Dir wurde der Verbrauchertoken '''$1''' und der Geheimtoken '''$2''' zugewiesen.
 	'mwoauthmanageconsumers-lastchange' => 'Letzte Änderung',
 	'mwoauthmanageconsumers-review' => 'überprüfen/verwalten',
 	'mwoauthmanageconsumers-confirm-text' => 'Benutze dieses Formular, um diesen Verbraucher zu bestätigen, abzulehnen, zu deaktivieren oder zu reaktivieren.',
-	'mwoauthmanageconsumers-confirm-legend' => 'OAuth-Verbraucher verwalten',
+	'mwoauthmanageconsumers-confirm-legend' => 'OAuth-Anwendung verwalten',
 	'mwoauthmanageconsumers-action' => 'Status ändern:',
 	'mwoauthmanageconsumers-approve' => 'Bestätigt',
 	'mwoauthmanageconsumers-reject' => 'Abgelehnt',
@@ -1769,7 +1770,7 @@ Verbundene Anwendungen greifen auf dein Benutzerkonto durch Verwendung eines OAu
 	'logentry-mwoauthconsumer-reject' => '$1 {{GENDER:$2|lehnte}} einen OAuth-Verbraucher von $3 ab (Verbraucherschlüssel $4)',
 	'logentry-mwoauthconsumer-disable' => '$1 deaktivierte einen OAuth-Verbraucher von $3 (Verbraucherschlüssel $4)',
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|reaktivierte}} einen OAuth-Verbraucher von $3 (Verbraucherschlüssel $4)',
-	'mwoauthconsumer-consumer-logpage' => 'OAuth-Verbraucher-Logbuch',
+	'mwoauthconsumer-consumer-logpage' => 'OAuth-Anwendungs-Logbuch',
 	'mwoauthconsumer-consumer-logpagetext' => 'Logbuch von Bestätigungen, Ablehnungen und Deaktivierungen registrierter OAuth-Verbraucher.',
 	'mwoauth-bad-request-missing-params' => 'Leider ist etwas mit der Konfiguration dieser verbundenen Anwendung schief gelaufen. <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Kontaktiere den Support]</span>, um Hilfe bei der Behebung zu erhalten.
 
@@ -1863,18 +1864,18 @@ $5",
 	'mwoauth-grant-viewmywatchlist' => 'Deine Beobachtungsliste ansehen',
 	'mwoauth-oauth-exception' => 'Im OAuth-Protokoll ist ein Fehler aufgetreten: $1',
 	'mwoauth-callback-not-oob' => 'oauth_callback muss auf „oob“ festgelegt sein (Groß-/Kleinschreibung beachten)',
-	'right-mwoauthproposeconsumer' => 'Neue OAuth-Verbraucher planen',
-	'right-mwoauthupdateownconsumer' => 'OAuth-Verbraucher aktualisieren',
-	'right-mwoauthmanageconsumer' => 'OAuth-Verbraucher verwalten',
-	'right-mwoauthsuppress' => 'OAuth-Verbraucher unterdrücken',
-	'right-mwoauthviewsuppressed' => 'Unterdrückte OAuth-Verbraucher ansehen',
+	'right-mwoauthproposeconsumer' => 'Neue OAuth-Anwendungen vorschlagen',
+	'right-mwoauthupdateownconsumer' => 'OAuth-Anwendungen aktualisieren',
+	'right-mwoauthmanageconsumer' => 'OAuth-Anwendungen verwalten',
+	'right-mwoauthsuppress' => 'OAuth-Anwendungen unterdrücken',
+	'right-mwoauthviewsuppressed' => 'Unterdrückte OAuth-Anwendungen ansehen',
 	'right-mwoauthviewprivate' => 'Private OAuth-Daten ansehen',
 	'right-mwoauthmanagemygrants' => 'OAuth-Berechtigungen verwalten',
-	'action-mwoauthmanageconsumer' => 'OAuth-Verbraucher zu verwalten',
+	'action-mwoauthmanageconsumer' => 'OAuth-Anwendungen zu verwalten',
 	'action-mwoauthmanagemygrants' => 'deine OAuth-Berechtigungen zu verwalten',
-	'action-mwoauthproposeconsumer' => 'neue OAuth-Verbraucher zu planen',
-	'action-mwoauthupdateownconsumer' => 'OAuth-Verbraucher zu aktualisieren',
-	'action-mwoauthviewsuppressed' => 'unterdrückte OAuth-Verbraucher anzusehen',
+	'action-mwoauthproposeconsumer' => 'neue OAuth-Anwendungen vorzuschlagen',
+	'action-mwoauthupdateownconsumer' => 'OAuth-Anwendungen zu aktualisieren, die du kontrollierst',
+	'action-mwoauthviewsuppressed' => 'unterdrückte OAuth-Anwendungen anzusehen',
 	'mwoauth-listgrantrights-summary' => 'Es folgt eine Liste mit OAuth-Berechtigungen mit ihrem verknüpften Zugriff auf Benutzerrechte. Benutzer können Anwendungen autorisieren, um ihr Benutzerkonto zu verwenden, aber mit beschränkten Berechtigungen basierend auf den Rechten, die der Benutzer der Anwendung gegeben hat. Eine Anwendung agiert im Namen eines Benutzers, die keine Rechte verwenden kann, die der Benutzer nicht hat.
 Es gibt [[{{MediaWiki:Listgrouprights-helppage}}|zusätzliche Informationen]] über einzelne Rechte.',
 	'mwoauth-listgrants-grant' => 'Berechtigung',
@@ -2593,6 +2594,14 @@ $5",
 Il peut y avoir [[{{MediaWiki:Listgrouprights-helppage}}|plus d’information]] sur les droits individuels.',
 	'mwoauth-listgrants-grant' => 'Accorder',
 	'mwoauth-listgrants-rights' => 'Droits',
+);
+
+/** Western Frisian (Frysk)
+ * @author Kening Aldgilles
+ */
+$messages['fy'] = array(
+	'mwoauth-form-button-cancel' => 'Ofbrekke',
+	'mwoauth-grant-group-email' => 'E-mail stjoere',
 );
 
 /** Galician (galego)
@@ -5342,12 +5351,145 @@ $messages['ps'] = array(
 /** Portuguese (português)
  * @author Dannyps
  * @author Lijealso
+ * @author Vitorvicentevalente
  */
 $messages['pt'] = array(
+	'mwoauth-desc' => 'Permite o uso do OAuth 1.0a para autorização de API',
+	'mwoauth-verified' => "O aplicativo possui permissão para aceder ao MediaWiki através da sua conta.
+
+Para concluir o processo, proceda à verificação para o aplicativo através deste valor: '''$1'''",
+	'mwoauth-missing-field' => 'Valor em falta para o campo "$1"',
+	'mwoauth-invalid-field' => 'Valor inválido fornecido para o campo "$1"',
+	'mwoauth-invalid-field-generic' => 'Valor fornecido inválido',
+	'mwoauth-field-hidden' => '(esta informação está oculta)',
+	'mwoauth-field-private' => '(esta informação é confidencial)',
 	'mwoauth-prefs-managegrants' => 'Aplicativos conectados:',
 	'mwoauth-prefs-managegrantslink' => 'Gerir $1 {{PLURAL:$1|aplicativo|aplicativos}} conectados',
-	'mwoauth-form-button-approve' => 'Sim, permitir', # Fuzzy
+	'mwoauth-consumer-allwikis' => 'Todos os projectos neste sítio',
+	'mwoauth-consumer-key' => 'Chave de utilizador:',
+	'mwoauth-consumer-name' => 'Nome do aplicativo:',
+	'mwoauth-consumer-version' => 'Versão:',
+	'mwoauth-consumer-user' => 'Editor:',
+	'mwoauth-consumer-stage' => 'Estado actual:',
+	'mwoauth-consumer-email' => 'Endereço de e-mail:',
+	'mwoauth-consumer-description' => 'Descrição do aplicativo:',
+	'mwoauth-consumer-wiki-thiswiki' => 'Projecto actual ($1)',
+	'mwoauth-consumer-wiki-other' => 'Projecto específico',
+	'mwoauth-consumer-restrictions' => 'Restrições de uso:',
+	'mwoauth-consumer-restrictions-json' => 'Restrições de uso (JSON)',
+	'mwoauth-consumer-reason' => 'Motivo:',
+	'mwoauth-consumer-email-unconfirmed' => 'O seu endereço de correio electrónico ainda não foi confirmado.',
+	'mwoauth-consumer-email-mismatched' => 'O endereço de correio electrónico fornecido deve coincidir com o da sua conta.',
+	'mwoauth-consumer-stage-rejected' => 'rejeitado',
+	'mwoauth-consumer-stage-expired' => 'expirado',
+	'mwoauth-consumer-stage-approved' => 'aprovado',
+	'mwoauth-consumer-stage-disabled' => 'desactivado',
+	'mwoauth-consumer-stage-suppressed' => 'suprimido',
+	'mwoauthconsumerregistration-notloggedin' => 'Precisa de estar ligado à sua conta para aceder a esta página.',
+	'mwoauthconsumerregistration-navigation' => 'Navegação:',
+	'mwoauthconsumerregistration-main' => 'Principal',
+	'mwoauthconsumerregistration-user' => 'Editor',
+	'mwoauthconsumerregistration-description' => 'Descrição',
+	'mwoauthconsumerregistration-email' => 'E-mail de contacto',
+	'mwoauthconsumerregistration-stage' => 'Estado',
+	'mwoauthconsumerregistration-lastchange' => 'Última alteração',
+	'mwoauthconsumerregistration-manage' => 'gerir',
+	'mwoauthconsumerregistration-resetsecretkey' => 'Redefinir chave secreta para um novo valor',
+	'mwoauthmanageconsumers-notloggedin' => 'Precisa de estar ligado à sua conta para aceder a esta página.',
+	'mwoauthmanageconsumers-showproposed' => 'Pedidos propostos',
+	'mwoauthmanageconsumers-showrejected' => 'Pedidos rejeitados',
+	'mwoauthmanageconsumers-showexpired' => 'Pedidos expirados',
+	'mwoauthmanageconsumers-main' => 'Principal',
+	'mwoauthmanageconsumers-user' => 'Editor',
+	'mwoauthmanageconsumers-description' => 'Descrição',
+	'mwoauthmanageconsumers-email' => 'E-mail de contacto',
+	'mwoauthmanageconsumers-consumerkey' => 'Chave de utilizador',
+	'mwoauthmanageconsumers-lastchange' => 'Última alteração',
+	'mwoauthmanageconsumers-review' => 'rever/gerir',
+	'mwoauthmanageconsumers-action' => 'Alterar estado:',
+	'mwoauthmanageconsumers-approve' => 'Aprovado',
+	'mwoauthmanageconsumers-reject' => 'Rejeitado',
+	'mwoauthmanageconsumers-rsuppress' => 'Rejeitado e suprimido',
+	'mwoauthmanageconsumers-disable' => 'Desactivado',
+	'mwoauthmanageconsumers-dsuppress' => 'Desactivado e suprimido',
+	'mwoauthmanageconsumers-reenable' => 'Aprovado',
+	'mwoauthmanageconsumers-reason' => 'Motivo:',
+	'mwoauthmanageconsumers-success-approved' => 'O pedido foi aprovado.',
+	'mwoauthmanageconsumers-success-rejected' => 'O pedido foi rejeitado.',
+	'oauthlistconsumers' => 'Listar aplicativos OAuth',
+	'mwoauthlistconsumers-legend' => 'Procurar aplicativos OAuth',
+	'mwoauthlistconsumers-view' => 'detalhes',
+	'mwoauthlistconsumers-none' => 'Não foram encontrados aplicativos com estes critérios.',
+	'mwoauthlistconsumers-name' => 'Nome do aplicativo',
+	'mwoauthlistconsumers-version' => 'Versão',
+	'mwoauthlistconsumers-user' => 'Editor',
+	'mwoauthlistconsumers-description' => 'Descrição',
+	'mwoauthlistconsumers-wiki' => 'Projecto aplicável',
+	'mwoauthlistconsumers-basicgrantsonly' => '(apenas acesso básico)',
+	'mwoauthlistconsumers-status' => 'Estado',
+	'mwoauth-consumer-stage-any' => 'qualquer',
+	'mwoauthlistconsumers-status-proposed' => 'proposto',
+	'mwoauthlistconsumers-status-approved' => 'aprovado',
+	'mwoauthlistconsumers-status-disabled' => 'desactivado',
+	'mwoauthlistconsumers-status-rejected' => 'rejeitado',
+	'mwoauthlistconsumers-status-expired' => 'expirado',
+	'oauthmanagemygrants' => 'Gerir aplicativos conectados',
+	'mwoauthmanagemygrants-text' => 'Esta página lista todos os aplicativos que podem usar a sua conta. Para qualquer pedido, o âmbito do seu acesso é limitado por permissões que você concede ao aplicativo quando o autoriza a aceder à sua conta. Se autorizou separadamente o acesso de um aplicativo em seu nome em diferentes projectos irmãos, terá então uma configuração separada para cada projecto abaixo.
+
+Os aplicativos conectados à sua conta utilizam o protocolo OAuth. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Saiba mais])</span>',
+	'mwoauthmanagemygrants-notloggedin' => 'Precisa de estar ligado à sua conta para aceder a esta página.',
+	'mwoauthmanagemygrants-navigation' => 'Navegação:',
+	'mwoauthmanagemygrants-showlist' => 'Lista de aplicativos conectados',
+	'mwoauthmanagemygrants-none' => 'Não existem aplicativos ligados à sua conta.',
+	'mwoauthmanagemygrants-user' => 'Editor:',
+	'mwoauthmanagemygrants-description' => 'Descrição',
+	'mwoauthmanagemygrants-wikiallowed' => 'Permitido no projecto:',
+	'mwoauthmanagemygrants-review' => 'gerir acesso',
+	'mwoauthmanagemygrants-revoke' => 'revogar acesso',
+	'mwoauthmanagemygrants-grantaccept' => 'Concedido',
+	'mwoauthmanagemygrants-update-text' => 'Utilize o formulário abaixo para modificar as permissões concedidas a um aplicativo para aceder à sua conta.
+* Se autorizou separadamente um aplicativo em diferentes projectos irmãos, irá de seguida configurar esse aplicativo para cada projecto em separado.',
+	'mwoauthmanagemygrants-revoke-text' => 'Utilize o formulário abaixo para revogar o acesso a um aplicativo que esteja a aceder à sua conta.
+* Se autorizou separadamente um aplicativo em diferentes projectos irmãos, irá de seguida configurar esse aplicativo para cada projecto em separado.
+* Se deseja revogar o acesso total de um aplicativo, certifique-se que revoga em todos os projectos em que o autorizou.',
+	'mwoauthmanagemygrants-confirm-legend' => 'Gerir aplicativos conectados',
+	'mwoauthmanagemygrants-action' => 'Alterar estado:',
+	'mwoauthdatastore-bad-verifier' => 'O código de verificação fornecido não era válido.',
+	'mwoauthgrants-general-error' => 'Ocorreu um erro no seu pedido OAuth.',
+	'mwoauth-invalid-authorization-title' => 'Erro de autorização OAuth',
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Política de privacidade|Política de privacidade]]', # Fuzzy
+	'mwoauth-form-button-approve' => 'Permitir',
+	'mwoauth-form-button-cancel' => 'Cancelar',
+	'mwoauth-error' => 'Erro de conexão do aplicativo',
 	'mwoauth-grants-heading' => 'Permissões solicitadas:',
+	'mwoauth-grants-nogrants' => 'Este aplicativo não solicitou quaisquer permissões.',
+	'mwoauth-acceptance-cancelled' => 'Escolheu que o aplicativo "$1" não pode aceder à sua conta. "$1" não irá funcionar a menos que permita o seu acesso. Pode regressar a "$1" ou [[Special:OAuthManageMyGrants|gerir]] os seus aplicativos conectados.',
+	'mwoauth-grant-group-page-interaction' => 'Interagir com páginas',
+	'mwoauth-grant-group-file-interaction' => 'Interagir com multimédia',
+	'mwoauth-grant-group-watchlist-interaction' => 'Interagir com a sua lista de vigiados',
+	'mwoauth-grant-group-email' => 'Enviar correio electrónico',
+	'mwoauth-grant-group-customization' => 'Personalização e preferências',
+	'mwoauth-grant-group-administration' => 'Executar acções administrativas',
+	'mwoauth-grant-group-other' => 'Actividade diversa',
+	'mwoauth-grant-blockusers' => 'Bloquear e desbloquear utilizadores',
+	'mwoauth-grant-createaccount' => 'Criar contas',
+	'mwoauth-grant-createeditmovepage' => 'Criar, editar e mover páginas',
+	'mwoauth-grant-editmywatchlist' => 'Editar a sua lista de vigiados',
+	'mwoauth-grant-editpage' => 'Editar páginas existentes',
+	'mwoauth-grant-editprotected' => 'Editar páginas protegidas',
+	'mwoauth-grant-oversight' => 'Ocultar utilizadores e edições suprimidas',
+	'mwoauth-grant-patrol' => 'Patrulhar alterações a páginas',
+	'mwoauth-grant-protect' => 'Proteger e desproteger páginas',
+	'mwoauth-grant-rollback' => 'Reverter alterações a páginas',
+	'mwoauth-grant-sendemail' => 'Enviar correio electrónico a outros utilizadores',
+	'mwoauth-grant-uploadeditmovefile' => 'Carregar, substituir e mover ficheiros',
+	'mwoauth-grant-uploadfile' => 'Carregar novos ficheiros',
+	'mwoauth-grant-viewdeleted' => 'Ver informação eliminada',
+	'mwoauth-grant-viewmywatchlist' => 'Ver a sua lista de vigiados',
+	'mwoauth-oauth-exception' => 'Ocorreu um erro no protocolo OAuth: $1',
+	'right-mwoauthviewprivate' => 'Ver dados privados do OAuth',
+	'mwoauth-listgrants-grant' => 'Conceder',
+	'mwoauth-listgrants-rights' => 'Privilégios',
 );
 
 /** Brazilian Portuguese (português do Brasil)
