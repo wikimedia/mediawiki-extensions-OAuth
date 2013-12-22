@@ -1263,6 +1263,7 @@ $messages['ckb'] = array(
 );
 
 /** Czech (čeština)
+ * @author Matěj Grabovský
  * @author Matěj Suchánek
  * @author Mormegil
  */
@@ -1310,7 +1311,7 @@ Pro dokončení procesu poskytněte aplikaci tuto ověřovací hodnotu: '''$1'''
 	'mwoauth-missing-consumer-key' => 'Nebyl poskytnut klíč konzumenta.',
 	'mwoauth-invalid-consumer-key' => 'Žádný konzument s daným klíčem neexistuje.',
 	'mwoauth-invalid-access-token' => 'Žádný přístupový token s daným klíčem neexistuje.',
-	'mwoauth-invalid-access-wrongwiki' => 'Tohoto konzumenta lze používat pouze na projektu „$1“.', # Fuzzy
+	'mwoauth-invalid-access-wrongwiki' => 'Tohoto konzumenta lze používat pouze na projektu „$1“.',
 	'mwoauth-consumer-conflict' => 'Zatímco jste si tohoto konzumenta {{GENDER:|prohlížel|prohlížela|prohlíželi}}, někdo změnil jeho atributy. Možná si budete chtít prohlédnout protokol změn.',
 	'mwoauth-consumer-grantshelp' => 'Každé oprávnění přiděluje přístup k uvedeným uživatelským právům, která příslušný uživatelský účet již má. Více informací najdete v [[Special:OAuth/grants|tabulce oprávnění]].',
 	'mwoauth-consumer-stage-proposed' => 'navržený',
@@ -1325,15 +1326,15 @@ Pro dokončení procesu poskytněte aplikaci tuto ověřovací hodnotu: '''$1'''
 	'mwoauthconsumerregistration-propose' => 'Navrhnout nového konzumenta',
 	'mwoauthconsumerregistration-list' => 'Seznam mých konzumentů',
 	'mwoauthconsumerregistration-main' => 'Hlavní',
-	'mwoauthconsumerregistration-propose-text' => 'Vývojáři by měli níže zobrazený formulář k navržení nového konzumenta OAuth (podrobnosti najdete v [//www.mediawiki.org/wiki/Extension:OAuth?uselang=cs dokumentaci rozšíření]). Po odeslání tohoto formuláře obdržíte token, pomocí kterého se vaše aplikace bude identifikovat MediaWiki. Před tím, než budou ostatní uživatelé moci vaši aplikaci autorizovat, bude ji nejprve muset schválit některý správce OAuth.
+	'mwoauthconsumerregistration-propose-text' => 'Vývojáři by měli používat níže zobrazený formulář k navržení nového konzumenta OAuth (podrobnosti najdete v [//www.mediawiki.org/wiki/Extension:OAuth?uselang=cs dokumentaci rozšíření]). Po odeslání tohoto formuláře obdržíte token, pomocí kterého se vaše aplikace bude identifikovat MediaWiki. Předtím, než budou moci ostatní uživatelé autorizovat vaši aplikaci, bude ji muset schválit některý správce OAuth.
 
 Několik doporučení a poznámek:
-* Snažte se použít co nejméně oprávnění. Vyhněte se těm, která ve skutečnosti zatím nepotřebujete.
+* Snažte se používat co nejméně oprávnění. Vyhněte se těm, která ve skutečnosti zatím nepotřebujete.
 * Verze má tvar „major.minor.release“ (poslední dvě části jsou nepovinné) a zvyšuje se, když jsou potřeba změny oprávnění.
-* Pokud je to možné, poskytněte veřejný klíč RSA (ve formátu PEM); v opačném případě se musí používat (méně bezpečný) tajný token.
+* Pokud je to možné, poskytněte veřejný klíč RSA (ve formátu PEM), jinak se musí používat (méně bezpečný) tajný token.
 * Pomocí omezení v JSON můžete omezit tomuto konzumentu přístup jen na IP adresy v daných rozsazích CIDR.
 * Pomocí ID wiki můžete omezit tohoto konzumenta na jediný projekt na tomto serveru (pro všechny projekty uveďte „*“).
-* Zadaná e-mailová adresa musí odpovídat té na vašem uživatelském účtu (která musí být ověřena).', # Fuzzy
+* Zadaná e-mailová adresa musí odpovídat té na vašem uživatelském účtu (která musí být ověřena).',
 	'mwoauthconsumerregistration-update-text' => 'Pomocí níže uvedeného formuláře můžete změnit vlastnosti konzumenta OAuth, kterého spravujete.
 
 Všechny uvedené hodnoty přepíšou ty původní. Neponechávejte žádná pole prázdná, pokud nechcete jejich hodnoty smazat.',
@@ -1648,7 +1649,7 @@ Alle Werte hier überschreiben alle vorherigen. Hinterlasse keine leeren Felder,
 	'mwoauthconsumerregistration-maintext' => 'Diese Seite dient zum Vorschlagen und Aktualisieren von OAuth-Anwendungen in der Websiteregistrierung durch Entwickler.
 
 Du kannst hier
-* [[Special:OAuthConsumerRegistration/propose|einen Token für eine neue Anwendunge anfordern]] oder
+* [[Special:OAuthConsumerRegistration/propose|einen Token für eine neue Anwendung anfordern]] oder
 * [[Special:OAuthConsumerRegistration/list|deine vorhandenen Anwendungen verwalten]].
 
 Für mehr Informationen über OAuth, siehe die [//www.mediawiki.org/wiki/Extension:OAuth Erweiterungsdokumentation].',
@@ -1865,7 +1866,7 @@ $5",
 	'mwoauth-oauth-exception' => 'Im OAuth-Protokoll ist ein Fehler aufgetreten: $1',
 	'mwoauth-callback-not-oob' => 'oauth_callback muss auf „oob“ festgelegt sein (Groß-/Kleinschreibung beachten)',
 	'right-mwoauthproposeconsumer' => 'Neue OAuth-Anwendungen vorschlagen',
-	'right-mwoauthupdateownconsumer' => 'OAuth-Anwendungen aktualisieren',
+	'right-mwoauthupdateownconsumer' => 'Kontrollierte OAuth-Anwendungen aktualisieren',
 	'right-mwoauthmanageconsumer' => 'OAuth-Anwendungen verwalten',
 	'right-mwoauthsuppress' => 'OAuth-Anwendungen unterdrücken',
 	'right-mwoauthviewsuppressed' => 'Unterdrückte OAuth-Anwendungen ansehen',
@@ -1874,7 +1875,7 @@ $5",
 	'action-mwoauthmanageconsumer' => 'OAuth-Anwendungen zu verwalten',
 	'action-mwoauthmanagemygrants' => 'deine OAuth-Berechtigungen zu verwalten',
 	'action-mwoauthproposeconsumer' => 'neue OAuth-Anwendungen vorzuschlagen',
-	'action-mwoauthupdateownconsumer' => 'OAuth-Anwendungen zu aktualisieren, die du kontrollierst',
+	'action-mwoauthupdateownconsumer' => 'kontrollierte OAuth-Anwendungen zu aktualisieren',
 	'action-mwoauthviewsuppressed' => 'unterdrückte OAuth-Anwendungen anzusehen',
 	'mwoauth-listgrantrights-summary' => 'Es folgt eine Liste mit OAuth-Berechtigungen mit ihrem verknüpften Zugriff auf Benutzerrechte. Benutzer können Anwendungen autorisieren, um ihr Benutzerkonto zu verwenden, aber mit beschränkten Berechtigungen basierend auf den Rechten, die der Benutzer der Anwendung gegeben hat. Eine Anwendung agiert im Namen eines Benutzers, die keine Rechte verwenden kann, die der Benutzer nicht hat.
 Es gibt [[{{MediaWiki:Listgrouprights-helppage}}|zusätzliche Informationen]] über einzelne Rechte.',
@@ -6316,6 +6317,7 @@ $5',
  * @author Minh Nguyen
  */
 $messages['vi'] = array(
+	'mwoauth-desc' => 'Cho phép sử dụng OAuth 1.0a để xác minh khi truy cập API',
 	'mwoauth-verified' => "Ứng dụng hiện được phép truy cập MediaWiki thay mặt bạn.
 
 Để hoàn thành quá trình này, xin hãy nhập giá trị xác minh này vào ứng dụng: '''$1'''",
@@ -6327,6 +6329,7 @@ $messages['vi'] = array(
 	'mwoauth-grant-generic' => 'Gói quyền “$1”',
 	'mwoauth-prefs-managegrants' => 'Ứng dụng kết nối:',
 	'mwoauth-prefs-managegrantslink' => 'Quản lý $1 ứng dụng kết nối',
+	'mwoauth-consumer-allwikis' => 'Tất cả các dự án trên mạng này',
 	'mwoauth-consumer-name' => 'Tên ứng dụng:',
 	'mwoauth-consumer-user' => 'Nhà xuất bản:',
 	'mwoauth-consumer-stage' => 'Trạng thái hiện tại:',
@@ -6390,8 +6393,17 @@ $messages['vi'] = array(
 	'mwoauthlistconsumers-callbackurl' => '“URL gọi lại” OAuth',
 	'mwoauthlistconsumers-basicgrantsonly' => '(chỉ truy cập cơ bản)',
 	'mwoauthlistconsumers-status' => 'Trạng thái',
+	'mwoauth-consumer-stage-any' => 'bất cứ',
+	'mwoauthlistconsumers-status-proposed' => 'đề xuất',
+	'mwoauthlistconsumers-status-approved' => 'chấp nhận',
+	'mwoauthlistconsumers-status-disabled' => 'tắt',
+	'mwoauthlistconsumers-status-rejected' => 'từ chối',
+	'mwoauthlistconsumers-status-expired' => 'hết hạn',
+	'oauthmanagemygrants' => 'Quản lý các ứng dụng kết nối',
 	'mwoauthmanagemygrants-notloggedin' => 'Bạn phải đăng nhập để truy cấp trang này.',
 	'mwoauthmanagemygrants-navigation' => 'Điều hướng:',
+	'mwoauthmanagemygrants-showlist' => 'Danh sách các ứng dụng kết nối',
+	'mwoauthmanagemygrants-none' => 'Không có ứng dụng nào được kết nối với tài khoản của bạn.',
 	'mwoauthmanagemygrants-user' => 'Nhà xuất bản:',
 	'mwoauthmanagemygrants-description' => 'Miêu tả',
 	'mwoauthmanagemygrants-wikiallowed' => 'Được cho phép trong dự án:',
@@ -6399,7 +6411,10 @@ $messages['vi'] = array(
 	'mwoauthmanagemygrants-grantsallowed' => 'Các quyền được cấp',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Các quyền được cấp có liên quan:',
 	'mwoauthmanagemygrants-review' => 'quản lý truy cập',
+	'mwoauthmanagemygrants-revoke' => 'thu hồi quyền truy cập',
+	'mwoauthmanagemygrants-grantaccept' => 'Cấp quyền',
 	'mwoauthmanagemygrants-update' => 'Cập nhật các dấu hiệu được cấp',
+	'mwoauthmanagemygrants-renounce' => 'Rút quyền',
 	'mwoauthmanagemygrants-action' => 'Thay đổi trạng thái:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Cập nhật trạng thái của dấu hiệu truy cập',
 	'mwoauthdatastore-request-token-not-found' => 'Rất tiếc, có trục trặc khi kết nối với ứng dụng này.
@@ -6455,6 +6470,7 @@ Tài khoản của bạn không được phép sử dụng tính năng Ứng d�
 	'right-mwoauthviewprivate' => 'Xem dữ liệu riêng OAuth',
 	'right-mwoauthmanagemygrants' => 'Quản lý các quyền OAuth được cấp',
 	'action-mwoauthmanagemygrants' => 'quản lý các quyền OAuth mà bạn cấp',
+	'mwoauth-listgrants-rights' => 'Quyền',
 );
 
 /** Volapük (Volapük)
