@@ -1183,6 +1183,7 @@ $messages['be-tarask'] = array(
 
 /** Bengali (বাংলা)
  * @author Aftab1995
+ * @author Gitartha.bordoloi
  */
 $messages['bn'] = array(
 	'mwoauth-prefs-managegrants' => 'সংযুক্ত অ্যাপগুলি:',
@@ -2859,6 +2860,7 @@ $5",
 
 /** Hebrew (עברית)
  * @author Amire80
+ * @author GilCahana
  * @author Guycn2
  * @author אור שפירא
  */
@@ -3024,7 +3026,7 @@ $messages['he'] = array(
 	'mwoauthlistconsumers-status-rejected' => 'דחוי',
 	'mwoauthlistconsumers-status-expired' => 'פג־תוקף',
 	'oauthmanagemygrants' => 'ניהול יישומים מחוברים',
-	'mwoauthmanagemygrants-text' => 'בדף הזה נמצאת רשימה של כל היישומים שיכולים להשתמש בחשבון שלך. לכל יישום כזה טווח הגישה מוגבל בהרשאות שנתת לך כאשר אישרת לה לפעול בשמך. אם נתת אישור נפרד ליישום לגשת בשמך למיזמים אחרים, תראה את ההגדרות הנפרדות לכל מיזם כזה להלן.
+	'mwoauthmanagemygrants-text' => 'בדף הזה נמצאת רשימה של כל היישומים שיכולים להשתמש בחשבון שלך. לכל יישום כזה טווח הגישה מוגבל בהרשאות שנתת לו כאשר אישרת לו לפעול בשמך. אם נתת אישור נפרד ליישום לגשת בשמך למיזמים אחרים, תראה את ההגדרות הנפרדות לכל מיזם כזה להלן.
 
 היישומים המחוברים ניגשים לחשבון שלך באמצעות פרוטוקול OAuth. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth מידע נוסף על יישומים מחוברים])</span>',
 	'mwoauthmanagemygrants-notloggedin' => 'עליכם להיות מחוברים כדי לגשת לדף זה.',
@@ -5989,9 +5991,21 @@ $5",
  * @author Rapsar
  */
 $messages['tr'] = array(
+	'mwoauth-desc' => 'OAuth 1.0a kullanımı için API yetkilendirme kullanımı',
 	'mwoauth-prefs-managegrants' => 'Bağlı uygulamalar:',
 	'mwoauth-prefs-managegrantslink' => '$1 bağlı {{PLURAL:$1|uygulamayı|uygulamaları}} yönet',
+	'mwoauth-consumer-name' => 'Uygulama adı:',
+	'mwoauth-consumer-user' => 'Yayıncı:',
+	'mwoauth-consumer-stage' => 'Geçerli durumu:',
+	'mwoauth-consumer-stage-proposed' => 'önerilen',
+	'mwoauth-consumer-stage-rejected' => 'reddedilen',
+	'mwoauth-consumer-stage-expired' => 'süresi dolmuş',
+	'mwoauth-consumer-stage-approved' => 'onaylı',
+	'mwoauth-consumer-stage-disabled' => 'devre dışı',
+	'mwoauth-consumer-stage-suppressed' => 'bastırılmış',
 	'mwoauthconsumerregistration-navigation' => 'Navigasyon:',
+	'oauthlistconsumers' => 'Yetkilendirilen uygulamalar listesi',
+	'mwoauthlistconsumers-legend' => 'Yetkilendirilen uygulamalara göz atın',
 	'oauthmanagemygrants' => 'Bağlı uygulamaları yönet',
 	'mwoauthmanagemygrants-text' => 'Bu sayfada hesabınızda kullanılan uygulamaların listesi bulunmaktadır. Bu tür uygulamalar, söz konusu uygulamaya izin verdiğiniz ölçüde sizin adınıza hareket etmeye yetkilidir. Eğer bir uygulama sizin adınıza farklı kardeş projelere erişmek için yetkilendirildiği taktirde, uygulama ile ilgili bölümün altında diğer projeler için yetkilendirme ayarlarını da görebilirsiniz.
 
