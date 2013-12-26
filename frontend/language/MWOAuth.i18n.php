@@ -1229,6 +1229,7 @@ $messages['ce'] = array(
 	'mwoauth-consumer-allwikis' => 'ХӀокху сайтан массо проекташ',
 	'mwoauth-consumer-name' => 'ТӀетохаран цӀе:',
 	'mwoauth-consumer-stage' => 'Карара хьал:',
+	'mwoauth-consumer-description' => 'Цуьнах лаьцна:',
 	'mwoauth-consumer-wiki' => 'Проектан лело мега:',
 	'mwoauthconsumerregistration-stage' => 'Хьал',
 	'oauthlistconsumers' => 'ТеӀетохаршан могӀа',
