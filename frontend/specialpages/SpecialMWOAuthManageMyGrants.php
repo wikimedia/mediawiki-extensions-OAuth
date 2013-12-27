@@ -80,7 +80,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$listLinks = array();
 		if ( $acceptanceId ) {
 			$listLinks[] = Linker::linkKnown(
-				$this->getTitle(),
+				$this->getPageTitle(),
 				$this->msg( 'mwoauthmanagemygrants-showlist' )->escaped() );
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthmanagemygrants-showlist' )->escaped();
@@ -263,11 +263,11 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 
 		$links = array();
 		$links[] = Linker::linkKnown(
-			$this->getTitle( 'update/' . $cmra->get( 'id' ) ),
+			$this->getPageTitle( 'update/' . $cmra->get( 'id' ) ),
 			$this->msg( 'mwoauthmanagemygrants-review' )->escaped()
 		);
 		$links[] = Linker::linkKnown(
-			$this->getTitle( 'revoke/' . $cmra->get( 'id' ) ),
+			$this->getPageTitle( 'revoke/' . $cmra->get( 'id' ) ),
 			$this->msg( 'mwoauthmanagemygrants-revoke' )->escaped()
 		);
 		$reviewLinks = $this->getLanguage()->pipeList( $links );
