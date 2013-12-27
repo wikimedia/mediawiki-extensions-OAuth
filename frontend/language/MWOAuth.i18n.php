@@ -1179,6 +1179,8 @@ Dióse-y el pase de consumidor '''$1''' ya'l pase secretu '''$2'''. ''Por favor,
 $messages['be-tarask'] = array(
 	'oauthlistconsumers' => 'Сьпіс праграмаў OAuth',
 	'oauthmanagemygrants' => 'Кіраваньне падключанымі праграмамі',
+	'right-mwoauthproposeconsumer' => 'прапаноўваць новых спажыўцоў OAuth',
+	'action-mwoauthproposeconsumer' => 'прапанову новых спажыўцоў OAuth',
 );
 
 /** Bengali (বাংলা)
@@ -4231,7 +4233,7 @@ $messages['mk'] = array(
 	'mwoauth-missing-consumer-key' => 'Нема укажано потрошувачки клуч.',
 	'mwoauth-invalid-consumer-key' => 'Не постои потрошувач со таков клуч.',
 	'mwoauth-invalid-access-token' => 'Не постои пристапна шифра со таков клуч.',
-	'mwoauth-invalid-access-wrongwiki' => 'Потрошувачот може да се користи само на викито „$1“.',
+	'mwoauth-invalid-access-wrongwiki' => 'Потрошувачот може да се користи само на проектот „$1“.',
 	'mwoauth-consumer-conflict' => 'Некои ги изменил атрибутети на овој потрошувач додека го разгледувавте. Обидете се повторно. Може да го погледате и дневникот на измени.',
 	'mwoauth-consumer-grantshelp' => 'Секое доделување дава пристап до список до наведени права што веќе ги има корисничката сметка. Повеќе ќе најдете на [[Special:OAuth/grants|табелата со доделувања]].',
 	'mwoauth-consumer-stage-proposed' => 'предложен',
@@ -4499,7 +4501,7 @@ $5",
  * @author Santhosh.thottingal
  */
 $messages['ml'] = array(
-	'mwoauth-desc' => 'ഒഓത് 1.0എ എ.പി.ഐ. അനുമതി', # Fuzzy
+	'mwoauth-desc' => 'ഒഓത് 1.0എ എ.പി.ഐ. അനുമതി ഉപയോഗിക്കാൻ അനുവദിക്കുന്നു',
 	'mwoauth-verified' => "ഈ സൗകര്യം ഇപ്പോൾ താങ്കളുടെ പേരിൽ മീഡിയവിക്കി എടുക്കാൻ അനുംതി നൽകുന്നു.
 
 പ്രക്രിയ പൂർണ്ണമാക്കാൻ, ഈ സാധൂകരണ വില അപേക്ഷയിൽ നൽകുക: '''$1'''",
@@ -4533,6 +4535,16 @@ $messages['ml'] = array(
 	'mwoauth-consumer-reason' => 'കാരണം:',
 	'mwoauth-consumer-email-unconfirmed' => 'താങ്കളുടെ അംഗത്വ ഇമെയിൽ ഇതുവരെ സ്ഥിരീകരിച്ചിട്ടില്ല.',
 	'mwoauth-consumer-email-mismatched' => 'നൽകിയിരിക്കുന്ന ഇമെയിൽ വിലാസം താങ്കളുടെ അംഗത്വത്തിന്റേതുമായി ചേർച്ചയുള്ളതാവണം.',
+	'mwoauth-consumer-alreadyexists' => 'ഈ പേര്/പതിപ്പ്/പ്രസാധകർ മിശ്രം നിലവിലുള്ള ഒരു ഉപഭോക്താവ്',
+	'mwoauth-consumer-alreadyexistsversion' => 'ഇതിനു തുല്യമായതോ പുതിയതായതോ ആയ പതിപ്പിൽ ("$1") പേര്/പ്രസാധകർ മിശ്രം നിലവിലുള്ള ഒരു ഉപഭോക്താവ്',
+	'mwoauth-consumer-not-accepted' => 'പണികൾ അവശേഷിക്കുന്ന ഉപഭോക്തൃ അഭ്യർത്ഥന സംബന്ധിച്ച വിവരങ്ങൾ പുതുക്കാൻ കഴിയില്ല',
+	'mwoauth-consumer-not-proposed' => 'ഉപഭോക്താവ് ഇപ്പോൾ നിർദ്ദേശിച്ചിട്ടില്ല',
+	'mwoauth-consumer-not-disabled' => 'ഉപഭോക്താവ് ഇപ്പോൽ പ്രവർത്തനരഹിതമല്ല',
+	'mwoauth-consumer-not-approved' => 'ഉപഭോക്താവിനെ അംഗീകരിച്ചിട്ടില്ല (നിർജ്ജീവവുമായിരിക്കാം)',
+	'mwoauth-missing-consumer-key' => 'ഉപഭോക്തൃചാവിയൊന്നും നൽകിയിട്ടില്ല.',
+	'mwoauth-invalid-consumer-key' => 'നൽകിയിരിക്കുന്ന ചാവിക്ക് അനുയോജ്യമായ ഉപഭോക്താവ് ഇല്ല.',
+	'mwoauth-invalid-access-token' => 'നൽകിയിരിക്കുന്ന ചാവിക്ക് യോജിച്ച പ്രവേശന ചീട്ട് നിലവിലില്ല.',
+	'mwoauth-invalid-access-wrongwiki' => 'ഉപഭോക്തവിനെ "$1" പദ്ധതിയിൽ മാത്രമേ ഉപയോഗിക്കാനാവൂ.',
 	'mwoauthmanagemygrants-user' => 'പ്രസാധക(ൻ)', # Fuzzy
 	'mwoauth-form-button-cancel' => 'റദ്ദാക്കുക',
 	'mwoauth-grant-sendemail' => 'ഇമെയിൽ അയയ്ക്കുക', # Fuzzy
