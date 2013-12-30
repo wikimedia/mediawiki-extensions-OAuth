@@ -342,14 +342,14 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$listLinks = array();
 		if ( $consumerKey || $action !== 'propose' ) {
 			$listLinks[] = Linker::linkKnown(
-				$this->getTitle( 'propose' ),
+				$this->getPageTitle( 'propose' ),
 				$this->msg( 'mwoauthconsumerregistration-propose' )->escaped() );
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthconsumerregistration-propose' )->escaped();
 		}
 		if ( $consumerKey || $action !== 'list' ) {
 			$listLinks[] = Linker::linkKnown(
-				$this->getTitle( 'list' ),
+				$this->getPageTitle( 'list' ),
 				$this->msg( 'mwoauthconsumerregistration-list' )->escaped() );
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthconsumerregistration-list' )->escaped();
@@ -358,7 +358,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$linkHtml = $this->getLanguage()->pipeList( $listLinks );
 
 		$viewall = $this->msg( 'parentheses' )->rawParams( Linker::linkKnown(
-			$this->getTitle(), $this->msg( 'mwoauthconsumerregistration-main' )->escaped() ) );
+			$this->getPageTitle(), $this->msg( 'mwoauthconsumerregistration-main' )->escaped() ) );
 
 		$this->getOutput()->setSubtitle(
 			"<strong>" . $this->msg( 'mwoauthconsumerregistration-navigation' )->escaped() .
@@ -375,7 +375,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
 
 		$link = Linker::linkKnown(
-			$this->getTitle( 'update/' . $cmr->get( 'consumerKey' ) ),
+			$this->getPageTitle( 'update/' . $cmr->get( 'consumerKey' ) ),
 			$this->msg( 'mwoauthconsumerregistration-manage' )->escaped()
 		);
 

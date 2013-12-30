@@ -103,21 +103,21 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		$listLinks = array();
 		if ( $consumerKey || $this->stage !== MWOAuthConsumer::STAGE_PROPOSED ) {
 			$listLinks[] = Linker::linkKnown(
-				$this->getTitle( 'proposed' ),
+				$this->getPageTitle( 'proposed' ),
 				$this->msg( 'mwoauthmanageconsumers-showproposed' )->escaped() );
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthmanageconsumers-showproposed' )->escaped();
 		}
 		if ( $consumerKey || $this->stage !== MWOAuthConsumer::STAGE_REJECTED ) {
 			$listLinks[] = Linker::linkKnown(
-				$this->getTitle( 'rejected' ),
+				$this->getPageTitle( 'rejected' ),
 				$this->msg( 'mwoauthmanageconsumers-showrejected' )->escaped() );
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthmanageconsumers-showrejected' )->escaped();
 		}
 		if ( $consumerKey || $this->stage !== MWOAuthConsumer::STAGE_EXPIRED ) {
 			$listLinks[] = Linker::linkKnown(
-				$this->getTitle( 'expired' ),
+				$this->getPageTitle( 'expired' ),
 				$this->msg( 'mwoauthmanageconsumers-showexpired' )->escaped() );
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthmanageconsumers-showexpired' )->escaped();
@@ -126,7 +126,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		$linkHtml = $this->getLanguage()->pipeList( $listLinks );
 
 		$viewall = $this->msg( 'parentheses' )->rawParams( Linker::linkKnown(
-			$this->getTitle(), $this->msg( 'mwoauthmanageconsumers-main' )->escaped() ) );
+			$this->getPageTitle(), $this->msg( 'mwoauthmanageconsumers-main' )->escaped() ) );
 
 		$this->getOutput()->setSubtitle(
 			"<strong>" . $this->msg( 'mwoauthmanageconsumers-type' )->escaped() .
@@ -164,7 +164,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 				'<li>' .
 				"<$tag>" .
 				Linker::linkKnown(
-					$this->getTitle( $stageKey ),
+					$this->getPageTitle( $stageKey ),
 					// Messages: mwoauthmanageconsumers-q-proposed, mwoauthmanageconsumers-q-rejected,
 					// mwoauthmanageconsumers-q-expired
 					$this->msg( 'mwoauthmanageconsumers-q-' . $stageKey )->escaped()
@@ -181,7 +181,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 			$out->addHTML(
 				'<li>' .
 				Linker::linkKnown(
-					$this->getTitle( $stageKey ),
+					$this->getPageTitle( $stageKey ),
 					// Messages: mwoauthmanageconsumers-l-approved, mwoauthmanageconsumers-l-disabled
 					$this->msg( 'mwoauthmanageconsumers-l-' . $stageKey )->escaped()
 				) .
@@ -442,7 +442,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
 
 		$link = Linker::linkKnown(
-			$this->getTitle( "{$stageKey}/{$cmrKey}" ),
+			$this->getPageTitle( "{$stageKey}/{$cmrKey}" ),
 			$this->msg( 'mwoauthmanageconsumers-review' )->escaped()
 		);
 

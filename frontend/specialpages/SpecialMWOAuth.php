@@ -57,7 +57,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					// TODO? Test that $requestToken exists in memcache
 					if ( $user->isAnon() ) {
 						// Redirect to login page
-						$query['returnto'] = $this->getTitle( 'authorize' )->getPrefixedText();
+						$query['returnto'] = $this->getPageTitle( 'authorize' )->getPrefixedText();
 						$query['returntoquery'] = wfArrayToCgi( array(
 							'oauth_token'        => $requestToken,
 							'oauth_consumer_key' => $consumerKey

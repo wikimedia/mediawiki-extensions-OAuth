@@ -185,7 +185,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			),
 			$this->getContext()
 		);
-		$form->setAction( $this->getTitle()->getFullUrl() ); // always go back to listings
+		$form->setAction( $this->getPageTitle()->getFullUrl() ); // always go back to listings
 		$form->setSubmitCallback( function() { return false; } );
 		$form->setMethod( 'get' );
 		$form->setSubmitTextMsg( 'go' );
@@ -238,7 +238,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 
 		$links = array();
 		$links[] = Linker::linkKnown(
-			$this->getTitle( "view/{$cmrKey}" ),
+			$this->getPageTitle( "view/{$cmrKey}" ),
 			$this->msg( 'mwoauthlistconsumers-view' )->escaped(),
 			array(),
 			$this->getRequest()->getValues( 'name', 'publisher', 'stage' ) // stick
