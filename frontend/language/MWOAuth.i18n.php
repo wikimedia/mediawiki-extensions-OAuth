@@ -1006,6 +1006,14 @@ $messages['ar'] = array(
 	'mwoauthlistconsumers-status-disabled' => 'معطل',
 );
 
+/** Assamese (অসমীয়া)
+ * @author Gitartha.bordoloi
+ */
+$messages['as'] = array(
+	'mwoauth-prefs-managegrantslink' => 'সংযুক্ত $1 {{PLURAL:$1|এপ্লিকেছনৰ|এপ্লিকেছনসমূহৰ}} পৰিচালনা কৰক',
+	'oauthmanagemygrants' => 'সংযোজিত এপ্লিকেছনসমূহৰ ব্যৱস্থাপনা কৰক',
+);
+
 /** Asturian (asturianu)
  * @author Xuacu
  */
@@ -1982,6 +1990,7 @@ $messages['et'] = array(
 	'oauthlistconsumers' => 'OAuthi-rakenduste loend',
 	'mwoauthlistconsumers-legend' => 'OAuthi-rakenduste sirvimine',
 	'mwoauthlistconsumers-view' => 'üksikasjad',
+	'mwoauthlistconsumers-name' => 'Rakenduse nimi',
 	'mwoauthlistconsumers-user' => 'Väljaandja',
 	'mwoauthlistconsumers-description' => 'Kirjeldus',
 	'mwoauthlistconsumers-wiki' => 'Rakendamise projekt',
@@ -2002,6 +2011,8 @@ Rakendused kasutavad ühenduseks sinu kontoga OAuthi protokolli. <span class="pl
 	'mwoauthmanagemygrants-none' => 'Puuduvad sinu kontoga ühendatud rakendused.',
 	'mwoauthmanagemygrants-user' => 'Väljaandja:',
 	'mwoauthmanagemygrants-description' => 'Kirjeldus',
+	'mwoauth-form-button-approve' => 'Luba',
+	'mwoauth-form-button-cancel' => 'Loobu',
 	'mwoauth-grant-group-page-interaction' => 'Interaktsioon lehekülgedega',
 );
 
@@ -2054,7 +2065,7 @@ $messages['fa'] = array(
 	'mwoauth-missing-consumer-key' => 'کلید مصرف‌کننده‌ای فراهم نشده‌است.',
 	'mwoauth-invalid-consumer-key' => 'مصرف‌کننده‌ای با کلید داده‌شده موجود نیست.',
 	'mwoauth-invalid-access-token' => 'نشان عدم دسترسی با کلید داده موجود است.',
-	'mwoauth-invalid-access-wrongwiki' => 'مصرف‌کننده فقط می‌تواند در ویکی «$1» استفاده شود.',
+	'mwoauth-invalid-access-wrongwiki' => 'مصرف‌کننده فقط می‌تواند در پروژه «$1» استفاده شود.',
 	'mwoauth-consumer-conflict' => 'یک نفر خصوصیات این مصرف‌کننده را از زمانی که شما دیدید، تغییر داده است. لطفاً دوباره تلاش کنید. شاید لازم باشد سیاهه تغییرات را مشاهده کنید.',
 	'mwoauth-consumer-grantshelp' => 'هر اعطا امکان دسترسی به فهرست دسترسی‌های کاربران را می دهد. برای اطلاعات بیشتر [[Special:OAuth/grants|جدول اعطاها]] را مشاهده کنید.',
 	'mwoauth-consumer-stage-proposed' => 'پیشنهاد شده',
@@ -4545,6 +4556,8 @@ $messages['ml'] = array(
 	'mwoauth-invalid-consumer-key' => 'നൽകിയിരിക്കുന്ന ചാവിക്ക് അനുയോജ്യമായ ഉപഭോക്താവ് ഇല്ല.',
 	'mwoauth-invalid-access-token' => 'നൽകിയിരിക്കുന്ന ചാവിക്ക് യോജിച്ച പ്രവേശന ചീട്ട് നിലവിലില്ല.',
 	'mwoauth-invalid-access-wrongwiki' => 'ഉപഭോക്തവിനെ "$1" പദ്ധതിയിൽ മാത്രമേ ഉപയോഗിക്കാനാവൂ.',
+	'oauthlistconsumers' => 'ഓഓത് ആപ്ലിക്കേഷനുകൾ പട്ടികയായി കാണിക്കുക',
+	'oauthmanagemygrants' => 'ബന്ധപ്പെടുത്തിയിട്ടുള്ള ആപ്ലിക്കേഷനുകൾ കൈകാര്യം ചെയ്യുക',
 	'mwoauthmanagemygrants-user' => 'പ്രസാധക(ൻ)', # Fuzzy
 	'mwoauth-form-button-cancel' => 'റദ്ദാക്കുക',
 	'mwoauth-grant-sendemail' => 'ഇമെയിൽ അയയ്ക്കുക', # Fuzzy
