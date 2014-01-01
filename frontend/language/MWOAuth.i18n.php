@@ -1978,23 +1978,31 @@ Las aplicaciones conectadas acceden a tu cuenta mediante el protocolo OAuth. <sp
 $messages['et'] = array(
 	'mwoauth-prefs-managegrants' => 'Ühendatud rakendused:',
 	'mwoauth-prefs-managegrantslink' => 'Halda {{PLURAL:$1|üht|$1}} ühendatud rakendust',
+	'mwoauth-consumer-allwikis' => 'Kõigis selle võrgukoha projektides',
 	'mwoauth-consumer-name' => 'Rakenduse nimi:',
 	'mwoauth-consumer-version' => 'Tarvitusversioon:',
 	'mwoauth-consumer-user' => 'Väljaandja:',
 	'mwoauth-consumer-stage' => 'Praegune olek:',
+	'mwoauth-consumer-description' => 'Rakenduse kirjeldus:',
 	'mwoauth-consumer-callbackurl' => 'OAuthi tagasisuunamis-URL:',
+	'mwoauth-consumer-grantsneeded' => 'Rakenduse volitused:',
+	'mwoauth-invalid-access-token' => 'Antud võtmega juurdepääsuluba puudub.',
 	'mwoauth-consumer-stage-proposed' => 'ettepanek',
 	'mwoauth-consumer-stage-rejected' => 'tagasilükatud',
 	'mwoauth-consumer-stage-expired' => 'iganenud',
 	'mwoauth-consumer-stage-approved' => 'kinnitatud',
+	'mwoauth-consumer-stage-disabled' => 'keelatud',
 	'oauthlistconsumers' => 'OAuthi-rakenduste loend',
 	'mwoauthlistconsumers-legend' => 'OAuthi-rakenduste sirvimine',
 	'mwoauthlistconsumers-view' => 'üksikasjad',
 	'mwoauthlistconsumers-name' => 'Rakenduse nimi',
+	'mwoauthlistconsumers-version' => 'Tarvitusversioon',
 	'mwoauthlistconsumers-user' => 'Väljaandja',
 	'mwoauthlistconsumers-description' => 'Kirjeldus',
 	'mwoauthlistconsumers-wiki' => 'Rakendamise projekt',
+	'mwoauthlistconsumers-callbackurl' => 'Rakenduse internetiaadress',
 	'mwoauthlistconsumers-grants' => 'Rakenduse load',
+	'mwoauthlistconsumers-basicgrantsonly' => '(ainult põhijuurdepääs)',
 	'mwoauthlistconsumers-status' => 'Olek',
 	'mwoauth-consumer-stage-any' => 'ükskõik',
 	'mwoauthlistconsumers-status-proposed' => 'ettepanek',
@@ -2011,9 +2019,78 @@ Rakendused kasutavad ühenduseks sinu kontoga OAuthi protokolli. <span class="pl
 	'mwoauthmanagemygrants-none' => 'Puuduvad sinu kontoga ühendatud rakendused.',
 	'mwoauthmanagemygrants-user' => 'Väljaandja:',
 	'mwoauthmanagemygrants-description' => 'Kirjeldus',
+	'mwoauthmanagemygrants-wikiallowed' => 'Lubatud järgmises projektis:',
+	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Rakenduse lubatud volitused:',
+	'mwoauthmanagemygrants-review' => 'halda juurdepääsu',
+	'mwoauthmanagemygrants-revoke' => 'tühista juurdepääs',
+	'mwoauthmanagemygrants-grantaccept' => 'Volitatud',
+	'mwoauthmanagemygrants-update-text' => 'Kasuta seda vormi, et muuta sinu nimel toimivate rakenduste volitusi.
+* Kui volitasid rakenduse enda nimel kasutuse eri sõsarprojektides eraldi, siis on sellel rakendusel neis projektides eraldi häälestus.',
+	'mwoauthmanagemygrants-revoke-text' => 'Kasuta seda vormi, et tühistada sinu nimel toimivate rakenduste volitused.
+* Kui volitasid rakenduse enda nimel kasutuse eri sõsarprojektides eraldi, siis on sellel rakendusel neis projektides eraldi häälestus.
+* Kui tahad rakenduse volitused täielikult tühistada, pead tühistama selle juurdepääsu kõigis projektides, kus selle tarvitusega nõustusid.',
+	'mwoauthmanagemygrants-confirm-legend' => 'Ühendatud rakenduse haldamine',
+	'mwoauthmanagemygrants-update' => 'Uuenda volitusi',
+	'mwoauthmanagemygrants-renounce' => 'Tühista volitused',
+	'mwoauthmanagemygrants-success-update' => 'Selle tarvituse juurdepääsuluba on uuendatud.',
+	'mwoauth-form-description-allwikis' => "Tere, $1.
+
+'''$2''' vajab luba, et teha sinu nimel kõigis selle võrgukoha projektides järgmisi toiminguid:
+
+$4",
+	'mwoauth-form-description-onewiki' => "Tere, $1.
+
+'''$2''' vajab luba, et teha sinu nimel võrgukohas ''$4'' järgmisi toiminguid:
+
+$5",
+	'mwoauth-form-description-allwikis-nogrants' => "Tere, $1.
+
+'''$2''' vajab luba põhijuurdepääsuks sinu nimel kõigis selle võrgukoha projektides.",
+	'mwoauth-form-description-onewiki-nogrants' => "Tere, $1.
+
+'''$2''' vajab luba põhijuurdepääsuks sinu nimel võrgukohas $4.",
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Privaatsus]]',
 	'mwoauth-form-button-approve' => 'Luba',
 	'mwoauth-form-button-cancel' => 'Loobu',
 	'mwoauth-grant-group-page-interaction' => 'Interaktsioon lehekülgedega',
+	'mwoauth-grant-group-file-interaction' => 'Interaktsioon meediafailidega',
+	'mwoauth-grant-group-watchlist-interaction' => 'Interaktsioon sinu jälgimisloendiga',
+	'mwoauth-grant-group-email' => 'E-kirja saatmine',
+	'mwoauth-grant-group-high-volume' => 'Suuremahuline tegevus',
+	'mwoauth-grant-group-customization' => 'Kohandamine ja eelistused',
+	'mwoauth-grant-group-administration' => 'Administraatori toimingud',
+	'mwoauth-grant-group-other' => 'Mitmesugused toimingud',
+	'mwoauth-grant-blockusers' => 'Kasutajate blokeerimine ja blokeeringute eemaldamine',
+	'mwoauth-grant-createaccount' => 'Kontode loomine',
+	'mwoauth-grant-createeditmovepage' => 'Lehekülgede alustamine, redigeerimine ja teisaldamine',
+	'mwoauth-grant-delete' => 'Lehekülgede, redaktsioonide ja logisissekannete kustutamine',
+	'mwoauth-grant-editinterface' => 'MediaWiki nimeruumi ning kasutaja CSSi ja JavaScripti redigeerimine',
+	'mwoauth-grant-editmycssjs' => 'Oma CSSi või JavaScripti muutmine',
+	'mwoauth-grant-editmywatchlist' => 'Oma jälgimisloendi muutmine',
+	'mwoauth-grant-editpage' => 'Olemasolevate lehekülgede redigeerimine',
+	'mwoauth-grant-editprotected' => 'Kaitstud lehekülgede redigeerimine',
+	'mwoauth-grant-highvolume' => 'Suuremahuline redigeerimine',
+	'mwoauth-grant-patrol' => 'Lehekülgede muudatuste kontroll',
+	'mwoauth-grant-protect' => 'Lehekülgede kaitsmine ja kaitse eemaldamine',
+	'mwoauth-grant-rollback' => 'Lehekülgede muudatuste tühistamine',
+	'mwoauth-grant-sendemail' => 'Kasutajatele e-kirjade saatmine',
+	'mwoauth-grant-uploadeditmovefile' => 'Failide üleslaadimine, asendamine ja teisaldamine',
+	'mwoauth-grant-uploadfile' => 'Uute failide üleslaadimine',
+	'mwoauth-grant-useoauth' => 'Põhiõigused',
+	'mwoauth-grant-viewdeleted' => 'Kustutatud teabe vaatamine',
+	'mwoauth-grant-viewmywatchlist' => 'Oma jälgimisloendi vaatamine',
+	'right-mwoauthproposeconsumer' => 'Esitada uusi OAuthi-rakendusi',
+	'right-mwoauthupdateownconsumer' => 'Uuendada OAuthi-rakendusi, mida valdad',
+	'right-mwoauthmanageconsumer' => 'Hallata OAuthi-rakendusi',
+	'right-mwoauthmanagemygrants' => 'Hallata OAuthi-volitusi',
+	'action-mwoauthmanageconsumer' => 'OAuthi-rakendusi hallata',
+	'action-mwoauthmanagemygrants' => 'oma OAuthi-volitusi hallata',
+	'action-mwoauthproposeconsumer' => 'esitada uusi OAuthi-rakendusi',
+	'action-mwoauthupdateownconsumer' => 'uuendada OAuthi-rakendusi, mida valdad',
+	'mwoauth-listgrantrights-summary' => 'See on OAuthi-volituste ja neile vastavate kasutajaõiguste loend. Kasutaja saab volitada rakenduse tarvituse enda nimel, aga vaid kasutaja valitud volituste piires. Rakenduse abil ei saa kasutaja nimel siiski kasutada õigusi, mida kasutajal pole.
+Üksikute õiguste kohta võib leiduda [[{{MediaWiki:Listgrouprights-helppage}}|lisateavet]].',
+	'mwoauth-listgrants-grant' => 'Volitus',
+	'mwoauth-listgrants-rights' => 'Õigused',
 );
 
 /** Persian (فارسی)
@@ -4649,7 +4726,7 @@ For å fullføre prosessen, vennligst angi verifikasjonsverdien til applikasjone
 	'mwoauth-missing-consumer-key' => 'Ingen konsumentnøkkel ble gitt.',
 	'mwoauth-invalid-consumer-key' => 'Det eksisterer ingen konsument med den gitte nøkkelen.',
 	'mwoauth-invalid-access-token' => 'Det eksisterer ingen tilgangstoken med den gitte nøkkelen.',
-	'mwoauth-invalid-access-wrongwiki' => 'Konsumenten kan kun brukes på wikien «$1».',
+	'mwoauth-invalid-access-wrongwiki' => 'Konsumenten kan kun brukes på prosjektet «$1».',
 	'mwoauth-consumer-conflict' => 'Noen endret attributtene til denne konsumenten mens du så på den. Vennligst prøv igjen. Se evt. i endringsloggen.',
 	'mwoauth-consumer-grantshelp' => 'Hver tildeling gir tilgang til en eller flere brukerrettigheter som brukeren allerede har. Se [[Special:OAuth/grants|tabell over tildelinger]] for mer informasjon.',
 	'mwoauth-consumer-stage-proposed' => 'foreslått',
@@ -5575,6 +5652,7 @@ $messages['roa-tara'] = array(
 );
 
 /** Russian (русский)
+ * @author Illythr
  * @author Kaganer
  * @author Midnight Gambler
  * @author Okras
@@ -5631,6 +5709,9 @@ $messages['ru'] = array(
 	'mwoauthlistconsumers-status' => 'Состояние',
 	'mwoauth-consumer-stage-any' => 'любой',
 	'oauthmanagemygrants' => 'Управление подключенными приложениями',
+	'mwoauthmanagemygrants-text' => 'На этой странице перечислены все приложения, которые могут использовать вашу учетную запись. Область доступа каждого такого приложения ограничена разрешениями, которые Вы ему предоставили для действий от Вашего имени. Если Вы предоставили приложению доступ к Вашей учётной записи на различных родственных проектах, то вы можете просмотреть отдельные настройки для каждого такого проекта ниже.
+
+Подключенные приложения получают доступ к Вашей учетной записи с помощью протокола OAuth. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Узнать больше о подключаемых приложениях])</span>',
 	'mwoauthmanagemygrants-showlist' => 'Список подключенных приложений',
 	'mwoauthmanagemygrants-none' => 'Ещё нет приложений, подключенных к вашей учётной записи.',
 	'mwoauthmanagemygrants-description' => 'Описание',
