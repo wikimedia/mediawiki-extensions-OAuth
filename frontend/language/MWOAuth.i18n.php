@@ -206,6 +206,7 @@ Connected applications access your account by using the OAuth protocol. <span cl
 	'mwoauthmanagemygrants-confirm-submit' => 'Update access token status',
 	'mwoauthmanagemygrants-success-update' => 'The access token for this consumer has been updated.',
 	'mwoauthmanagemygrants-success-renounce' => 'The access token for this consumer has been deleted.',
+	'mwoauthmanagemygrants-useoauth-tooltip' => 'Why can\'t I update this grant? This grant gives your connected application basic permissions which it requires to function properly. If you don\'t want this connected application to have these rights, you should revoke the application\'s access.',
 
 	'logentry-mwoauthconsumer-propose' => '$1 {{GENDER:$2|proposed}} an OAuth consumer (consumer key $4)',
 	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|updated}} an OAuth consumer (consumer key $4)',
@@ -753,6 +754,7 @@ Followed by the following radio boxes:
 	'mwoauthmanagemygrants-confirm-submit' => 'Used as label for the Submit button',
 	'mwoauthmanagemygrants-success-update' => 'Message shown when grants for an OAuth consumer are updated by a user',
 	'mwoauthmanagemygrants-success-renounce' => 'Message shown when grants for an OAuth consumer are totally revoked',
+	'mwoauthmanagemygrants-useoauth-tooltip' => 'Message for the tooltip shown next to the disabled "Basic rights" checkbox on [[Special:OAuthManageMyGrants]], explaining why the checkbox cannot be modified.',
 	'logentry-mwoauthconsumer-propose' => '{{logentry}}',
 	'logentry-mwoauthconsumer-update' => '{{logentry}}
 * $4 - consumer key',

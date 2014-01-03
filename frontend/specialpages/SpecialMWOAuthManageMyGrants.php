@@ -173,6 +173,9 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 						function( $g ) { return "grant-$g"; },
 						$cmra->get( 'grants' )
 					),
+					'tooltips' => array(
+						MWOAuthUtils::getGrantsLink( 'useoauth' ) => $this->msg( 'mwoauthmanagemygrants-useoauth-tooltip' )->text(),
+					),
 					'force-options-on' => array_map(
 						function( $g ) { return "grant-$g"; },
 						( $type === 'revoke' )
