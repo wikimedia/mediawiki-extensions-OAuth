@@ -1235,7 +1235,7 @@ $messages['ca'] = array(
  */
 $messages['ce'] = array(
 	'mwoauth-prefs-managegrants' => 'ТӀетесна тӀетохарш:',
-	'mwoauth-prefs-managegrantslink' => 'ТӀетесна $1 {{PLURAL:$1|тӀетохаран урхалладар|тӀетохаршан урхалладар}}',
+	'mwoauth-prefs-managegrantslink' => 'ТӀетесна $1 {{PLURAL:$1|1=тӀетохаран урхалладар|тӀетохаршан урхалладар}}', # Fuzzy
 	'mwoauth-consumer-allwikis' => 'ХӀокху сайтан массо проекташ',
 	'mwoauth-consumer-name' => 'ТӀетохаран цӀе:',
 	'mwoauth-consumer-stage' => 'Карара хьал:',
@@ -5670,7 +5670,7 @@ $messages['ru'] = array(
 	'mwoauth-field-hidden' => '(эта информация скрыта)',
 	'mwoauth-field-private' => '(эта информация является конфиденциальной)',
 	'mwoauth-prefs-managegrants' => 'Подключенные приложения:',
-	'mwoauth-prefs-managegrantslink' => 'Управление $1 {{PLURAL:$1|подключенным приложением|подключенными приложениями}}',
+	'mwoauth-prefs-managegrantslink' => 'Управление $1 {{PLURAL:$1|1=подключенным приложением|подключенными приложениями}}', # Fuzzy
 	'mwoauth-consumer-allwikis' => 'Все проекты на этом сайте',
 	'mwoauth-consumer-name' => 'Название приложения:',
 	'mwoauth-consumer-stage' => 'Текущее состояние:',
@@ -6140,7 +6140,7 @@ $messages['uk'] = array(
 	'mwoauth-field-private' => '(ця інформація є конфіденційною)',
 	'mwoauth-grant-generic' => 'Пучок прав "$1"',
 	'mwoauth-prefs-managegrants' => 'Підключені додатки:',
-	'mwoauth-prefs-managegrantslink' => "Управляти $1 {{PLURAL:$1|з'єднаною програмою|з'єднаними програмами}}",
+	'mwoauth-prefs-managegrantslink' => "Управляти $1 {{PLURAL:$1|1=з'єднаною програмою|з'єднаними програмами}}",
 	'mwoauth-consumer-allwikis' => 'Всі проекти на цьому сайті',
 	'mwoauth-consumer-key' => 'Ключ споживача:',
 	'mwoauth-consumer-name' => 'Назва програми:',
