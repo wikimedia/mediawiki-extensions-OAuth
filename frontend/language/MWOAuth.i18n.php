@@ -1185,6 +1185,8 @@ Dióse-y el pase de consumidor '''$1''' ya'l pase secretu '''$2'''. ''Por favor,
  * @author Red Winged Duck
  */
 $messages['be-tarask'] = array(
+	'mwoauth-prefs-managegrants' => 'Падключаныя дадаткі:',
+	'mwoauth-prefs-managegrantslink' => 'Кіраваць $1 {{PLURAL:$1|падключаным дадаткам|падключанымі дадаткамі}}',
 	'oauthlistconsumers' => 'Сьпіс праграмаў OAuth',
 	'oauthmanagemygrants' => 'Кіраваньне падключанымі праграмамі',
 	'right-mwoauthproposeconsumer' => 'прапаноўваць новых спажыўцоў OAuth',
