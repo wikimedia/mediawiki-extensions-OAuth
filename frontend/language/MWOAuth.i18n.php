@@ -1764,11 +1764,8 @@ Verbundene Anwendungen greifen auf dein Benutzerkonto durch Verwendung eines OAu
 	'mwoauthmanagemygrants-review' => 'Zugriff verwalten',
 	'mwoauthmanagemygrants-revoke' => 'Zugriff entziehen',
 	'mwoauthmanagemygrants-grantaccept' => 'Gewährt',
-	'mwoauthmanagemygrants-update-text' => 'Benutze das unten stehende Formular, um die gewährten Berechtigungen für eine Anwendung zu ändern, die auf deinen Namen handelt.
-* Falls du eine Anwendung separat autorisiert hast, um auf unterschiedliche Schwesterprojekte zuzugreifen, dann wirst du separate Konfigurationen für jedes dieser Projekte haben.',
-	'mwoauthmanagemygrants-revoke-text' => 'Benutze das unten stehende Formular, um den Zugriff für eine Anwendung zu entziehen, die auf deinen Namen handelt.
-* Falls du eine Anwendung separat autorisiert hast, um auf unterschiedliche Schwesterprojekte zuzugreifen, dann wirst du separate Konfigurationen für jedes dieser Projekte haben.
-* Wenn du den Zugriff für eine Anwendung vollständig entziehen willst, stelle sicher, dass du ihn von allen Projekten entfernst, auf denen du die Berechtigungen erteilt hast.',
+	'mwoauthmanagemygrants-update-text' => 'Benutze das unten stehende Formular, um die gewährten Berechtigungen für eine Anwendung zu ändern, die auf deinen Namen handelt.',
+	'mwoauthmanagemygrants-revoke-text' => 'Benutze das unten stehende Formular, um den Zugriff für eine Anwendung zu entziehen, die auf deinen Namen handelt.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Verbundene Anwendung verwalten',
 	'mwoauthmanagemygrants-update' => 'Berechtigungen aktualisieren',
 	'mwoauthmanagemygrants-renounce' => 'Deautorisieren',
@@ -2024,10 +2021,10 @@ Rakendused kasutavad ühenduseks sinu kontoga OAuthi protokolli. <span class="pl
 	'mwoauthmanagemygrants-revoke' => 'tühista juurdepääs',
 	'mwoauthmanagemygrants-grantaccept' => 'Volitatud',
 	'mwoauthmanagemygrants-update-text' => 'Kasuta seda vormi, et muuta sinu nimel toimivate rakenduste volitusi.
-* Kui volitasid rakenduse enda nimel kasutuse eri sõsarprojektides eraldi, siis on sellel rakendusel neis projektides eraldi häälestus.',
+* Kui volitasid rakenduse enda nimel kasutuse eri sõsarprojektides eraldi, siis on sellel rakendusel neis projektides eraldi häälestus.', # Fuzzy
 	'mwoauthmanagemygrants-revoke-text' => 'Kasuta seda vormi, et tühistada sinu nimel toimivate rakenduste volitused.
 * Kui volitasid rakenduse enda nimel kasutuse eri sõsarprojektides eraldi, siis on sellel rakendusel neis projektides eraldi häälestus.
-* Kui tahad rakenduse volitused täielikult tühistada, pead tühistama selle juurdepääsu kõigis projektides, kus selle tarvitusega nõustusid.',
+* Kui tahad rakenduse volitused täielikult tühistada, pead tühistama selle juurdepääsu kõigis projektides, kus selle tarvitusega nõustusid.', # Fuzzy
 	'mwoauthmanagemygrants-confirm-legend' => 'Ühendatud rakenduse haldamine',
 	'mwoauthmanagemygrants-update' => 'Uuenda volitusi',
 	'mwoauthmanagemygrants-renounce' => 'Tühista volitused',
@@ -2557,11 +2554,8 @@ Les applications connectées accèdent à votre compte en utilisant le protocole
 	'mwoauthmanagemygrants-review' => 'gérer l’accès',
 	'mwoauthmanagemygrants-revoke' => 'révoquer l’accès',
 	'mwoauthmanagemygrants-grantaccept' => 'Accordé',
-	'mwoauthmanagemygrants-update-text' => 'Utiliser le formulaire ci-dessous pour modifier les droits accordés à une application pour agir en votre nom.
-* Si vous autorisez séparément une application à accéder à différents projets frères en votre nom, alors vous aurez une configuration distincte pour chacun de ces projets pour cette application.',
-	'mwoauthmanagemygrants-revoke-text' => 'Utiliser le formulaire ci-dessous pour révoquer le droit, pour une application, d’agir en votre nom.
-* Si vous avez autorisé séparément une application à accéder à différents projets frères en votre nom, alors vous aurez une configuration distincte pour chacun de ces projets pour cette application.
-* Si vous voulez révoquer complètement l’accès pour une application, assurez-vous de le révoquer pour tous les projets sur lesquels vous l’avez acceptée.',
+	'mwoauthmanagemygrants-update-text' => 'Utiliser le formulaire ci-dessous pour modifier les droits accordés à une application pour agir en votre nom.',
+	'mwoauthmanagemygrants-revoke-text' => 'Utiliser le formulaire ci-dessous pour révoquer le droit, pour une application, d’agir en votre nom.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Gérer les applications connectées',
 	'mwoauthmanagemygrants-update' => 'Mettre à jour les droits',
 	'mwoauthmanagemygrants-renounce' => 'Ne plus autoriser',
@@ -4450,11 +4444,8 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-review' => 'раковод. со пристап',
 	'mwoauthmanagemygrants-revoke' => 'одземи пристап',
 	'mwoauthmanagemygrants-grantaccept' => 'Доделено',
-	'mwoauthmanagemygrants-update-text' => 'Со овој образец можете да ги измените дозволите доделени на некој прилог за да делува во ваше име.
-* Ако сте му дале посебно овластување за друг збратимен проект, тогаш ќе имате посебни поставки за секој таков проект.',
-	'mwoauthmanagemygrants-revoke-text' => 'Со овој образец можете да му го одземете пристапот на некој прилог за да делува во ваше име.
-* Ако сте му дале посебно овластување за друг збратимен проект, тогаш ќе имате посебни поставки за секој таков проект.
-* Ако сакате целосно да му го одземете пристапот на прилогот, тоа направете го за секој од проектите за кои сте го овластиле.',
+	'mwoauthmanagemygrants-update-text' => 'Со овој образец можете да ги измените дозволите доделени на некој прилог за да делува во ваше име.',
+	'mwoauthmanagemygrants-revoke-text' => 'Со овој образец можете да му го одземете пристапот на некој прилог за да делува во ваше име.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Раководење со поврзан прилог',
 	'mwoauthmanagemygrants-update' => 'Измени доделувања',
 	'mwoauthmanagemygrants-renounce' => 'Одземи дозвола',
@@ -4857,10 +4848,10 @@ Applikasjonene har tilgang til kontoen din over OAuth-protokollen. <span class="
 	'mwoauthmanagemygrants-revoke' => 'tilbakekall tilgang',
 	'mwoauthmanagemygrants-grantaccept' => 'Bevilget',
 	'mwoauthmanagemygrants-update-text' => 'Bruk skjemaet under for å tilpasse hvilke typer tilgang du vil tildele applikasjon for å handle på dine vegne.
-* Hvis du har gitt applikasjonen tilgang på tvers av søsterprosjekter, må konfigurasjonen gjøres separat for hvert prosjekt.',
+* Hvis du har gitt applikasjonen tilgang på tvers av søsterprosjekter, må konfigurasjonen gjøres separat for hvert prosjekt.', # Fuzzy
 	'mwoauthmanagemygrants-revoke-text' => 'Bruk skjemaet under for å tilbakekalle en applikasjons tilgang til å handle på dine vegne.
 * Hvis du uavhengig har godkjent en applikasjon for bruk på ulike søsterprosjekter, vil du se en egen konfigurasjon for hvert prosjekt.
-* For å fullstendig tilbakekalle en applikasjons tilgang, sørg for at du tilbakekaller tilgangen fra alle prosjekter der du har godkjent den.',
+* For å fullstendig tilbakekalle en applikasjons tilgang, sørg for at du tilbakekaller tilgangen fra alle prosjekter der du har godkjent den.', # Fuzzy
 	'mwoauthmanagemygrants-confirm-legend' => 'Håndter tilkoblet applikasjon',
 	'mwoauthmanagemygrants-update' => 'Oppdater tildelinger',
 	'mwoauthmanagemygrants-renounce' => 'Avautorisér',
@@ -5430,6 +5421,7 @@ $messages['pl'] = array(
 	'mwoauthlistconsumers-legend' => 'Przegląd aplikacji OAuth',
 	'mwoauth-consumer-stage-any' => 'dowolny',
 	'oauthmanagemygrants' => 'Zarządzaj włączonymi aplikacjami',
+	'mwoauthmanagemygrants-none' => 'Nie ma aplikacji związanych z Twoim kontem.',
 	'mwoauthmanagemygrants-user' => 'Wydawca:',
 	'mwoauthmanagemygrants-wikiallowed' => 'Dozwolone w projekcie:',
 	'mwoauthmanagemygrants-review' => 'zarządzanie dostępem',
@@ -5987,7 +5979,7 @@ Ansluta applikationer kan få tillgång till ditt konto via OAuth-protokollet. <
 	'mwoauthmanagemygrants-revoke' => 'återkalla åtkomst',
 	'mwoauthmanagemygrants-grantaccept' => 'Beviljas',
 	'mwoauthmanagemygrants-update-text' => 'Använd formuläret nedan för att ändra de behörigheter som beviljats för en applikation att agera åt dina vägnar.
-* Om du separat auktoriserat en applikation för att tillgå olika systerprojekt åt dina vägnar har du separata konfigurationer för varje sådant projekt för den applikationen.',
+* Om du separat auktoriserat en applikation för att tillgå olika systerprojekt åt dina vägnar har du separata konfigurationer för varje sådant projekt för den applikationen.', # Fuzzy
 	'mwoauthmanagemygrants-revoke-text' => 'Använd formuläret nedan för att återkalla åtkomst för en applikation (OAuth konsument) att agera åt dina vägnar.
 * Om du separat har auktoriserat en applikation för att få åtkomst till ett annat systerprojekt åt dina vägnar så kommer du att ha separata konfigurationer för varje enskilt projekt för den applikationen.
 * Om du helt vill återkalla åtkomst till en applikation, se till att återkalla den från alla projekt där du accepterat den.', # Fuzzy
@@ -6303,11 +6295,8 @@ For more information about OAuth, please see the [//www.mediawiki.org/wiki/Exten
 	'mwoauthmanagemygrants-review' => 'управління доступом',
 	'mwoauthmanagemygrants-revoke' => 'скасувати доступ',
 	'mwoauthmanagemygrants-grantaccept' => 'Надано',
-	'mwoauthmanagemygrants-update-text' => 'Використовуйте форму нижче, щоб змінювати дозволи надані додатку діяти від Вашого імені.
-* Якщо Ви окремо уповноважили додаток для доступу до різних сестринських сайтів проектів від вашого імені, то у Вас буде окрема конфігурація для кожного такого проекту для цього додатку.',
-	'mwoauthmanagemygrants-revoke-text' => 'Використовуйте форму нижче, щоб скасувати доступ для програми, щоб діяти від вашого імені.
-* Якщо ви окремо авторизували програму для доступу до різних сестринських сайтів проектів від вашого імені, то ви будете мати окремі налаштування для кожного такого проекту для даного додатка.
-* Якщо ви хочете повністю заборонити доступ до додатку, переконайтеся, що відкликали його з усіх проектів,у які ви прийняли його.',
+	'mwoauthmanagemygrants-update-text' => 'Використовуйте форму нижче, щоб змінювати дозволи надані програмі діяти від Вашого імені.',
+	'mwoauthmanagemygrants-revoke-text' => 'Використовуйте форму нижче, щоб скасувати доступ для програми, щоб діяти від вашого імені.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Управління підключеною програмою',
 	'mwoauthmanagemygrants-update' => 'Оновити ґранти',
 	'mwoauthmanagemygrants-renounce' => 'Скасувати авторизацію',
