@@ -1058,7 +1058,7 @@ Pa completar el procesu, de-y esti valor de comprobación a la aplicación: '''$
 	'mwoauth-missing-consumer-key' => 'Nun se dio nenguna clave de consumidor.',
 	'mwoauth-invalid-consumer-key' => 'Nun esiste dengún consumidor cola clave dada.',
 	'mwoauth-invalid-access-token' => "Nun esiste dengún pase d'accesu cola clave dada.",
-	'mwoauth-invalid-access-wrongwiki' => 'El consumidor solo pue usase na wiki «$1».',
+	'mwoauth-invalid-access-wrongwiki' => 'El consumidor solo pue usase nel proyeutu «$1».',
 	'mwoauth-consumer-conflict' => "Dalguién camudó los atributos d'esti consumidor mentanto lu vía. Por favor, vuelva a intentalo. Pue comprobar el rexistru de cambios.",
 	'mwoauth-consumer-grantshelp' => "Cada concesión da accesu a los permisos d'usuariu de la llista qu'una cuenta d'usuariu yá tenga. Vea la [[Special:OAuth/grants|tabla de concesiones]] pa más información.",
 	'mwoauth-consumer-stage-proposed' => 'propuestu',
@@ -1080,7 +1080,7 @@ Delles recomendaciones y comentarios:
 * Les versiones tienen la forma \"mayor.menor.versión\" (les dos últimes son opcionales) y s'incrementen según se necesiten cambios na concesión.
 * Por favor, ufra una clave pública RSA (en formatu PEM) si ye posible; d'otra manera tendrá d'usase un pase secretu (menos seguru).
 * Use'l campu JSON de restricciones pa llendar l'accesu d'esti consumidor a direiciones IP d'esos rangos CIDR.
-* Pue usar una ID de wiki pa restrinxir el consumidor a un único proyeutu d'esti sitiu (use \"*\" pa tolos proyeutos).
+* Pue usar una ID de proyeutu pa restrinxir el consumidor a un único proyeutu d'esti sitiu (use \"*\" pa tolos proyeutos).
 * La direición de corréu dada tien de casar cola de la so cuenta (que tien de tar confirmada).",
 	'mwoauthconsumerregistration-update-text' => "Utilice'l formulariu d'abaxo p'anovar aspeutos d'un consumidor d'OAuth que controle.
 
@@ -2373,6 +2373,7 @@ $messages['fi'] = array(
  * @author Linedwell
  * @author Louperivois
  * @author Ltrlg
+ * @author McDutchie
  * @author VIGNERON
  * @author Wyz
  */
@@ -2607,7 +2608,7 @@ Revenez en arrière et essayez de reconnecter votre compte, ou contactez l’aut
 	'mwoauth-invalid-authorization-wrong-wiki' => 'Les entêtes d’autorisation dans votre requête ne sont pas valides pour $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'Les entêtes d’autorisation dans votre requête concernent un utilisateur qui n’existe pas ici',
 	'mwoauth-invalid-authorization-wrong-user' => 'Les entêtes d’autorisation dans votre requête concernent un autre utilisateur',
-	'mwoauth-invalid-authorization-not-approved' => 'L’application à laquelle vous essayez de cous connecter semble mal paramétrée, contactez l’auteur de $1 pour de l’aide.',
+	'mwoauth-invalid-authorization-not-approved' => 'L’application à laquelle vous essayez de vous connecter semble mal paramétrée, contactez l’auteur de $1 pour de l’aide.',
 	'mwoauth-invalid-authorization-blocked-user' => 'Les entêtes d’autorisation dans votre requête concernent un utilisateur qui est bloqué',
 	'mwoauth-form-description-allwikis' => "Bonjour $1,
 
@@ -3266,17 +3267,17 @@ $messages['hr'] = array(
  * @author McDutchie
  */
 $messages['ia'] = array(
-	'mwoauth-desc' => 'Authentication via le API de OAuth 1.0a', # Fuzzy
+	'mwoauth-desc' => 'Permitte usar OAuth 1.0a pro autorisation via API',
 	'mwoauth-missing-field' => 'Manca un valor pro le campo "$1"',
 	'mwoauth-invalid-field' => 'Valor non valide fornite pro le campo "$1"',
 	'mwoauth-field-hidden' => '(iste information es celate)',
 	'mwoauth-field-private' => '(iste information es private)',
 	'mwoauth-grant-generic' => 'gruppo de derectos "$1"',
-	'mwoauth-prefs-managegrants' => 'Accesso de consumitor OAuth:', # Fuzzy
-	'mwoauth-prefs-managegrantslink' => 'gerer concessiones in nomine de iste conto', # Fuzzy
+	'mwoauth-prefs-managegrants' => 'Applicationes connectite:',
+	'mwoauth-prefs-managegrantslink' => 'Gerer $1 {{PLURAL:$1|application|applicationes}} connectite',
 	'mwoauth-consumer-key' => 'Clave de consumitor:',
 	'mwoauth-consumer-name' => 'Nomine del application:',
-	'mwoauth-consumer-version' => 'Version major:', # Fuzzy
+	'mwoauth-consumer-version' => 'Version del consumitor:',
 	'mwoauth-consumer-user' => 'Editor:',
 	'mwoauth-consumer-stage' => 'Stato actual:',
 	'mwoauth-consumer-email' => 'Adresse de e-mail de contacto:',
@@ -3284,7 +3285,7 @@ $messages['ia'] = array(
 	'mwoauth-consumer-callbackurl' => 'URL de retorno pro OAuth:',
 	'mwoauth-consumer-grantsneeded' => 'Concessiones applicabile:',
 	'mwoauth-consumer-required-grant' => 'Applicabile al consumitor',
-	'mwoauth-consumer-wiki' => 'Wiki applicabile:', # Fuzzy
+	'mwoauth-consumer-wiki' => 'Projecto applicabile:',
 	'mwoauth-consumer-restrictions' => 'Limitationes de uso:',
 	'mwoauth-consumer-restrictions-json' => 'Limitationes de uso (JSON):',
 	'mwoauth-consumer-rsakey' => 'Clave RSA public:',
@@ -3305,19 +3306,20 @@ $messages['ia'] = array(
 	'mwoauth-consumer-stage-approved' => 'approbate',
 	'mwoauth-consumer-stage-disabled' => 'disactivate',
 	'mwoauth-consumer-stage-suppressed' => 'supprimite',
-	'oauthconsumerregistration' => 'Registration de consumitores OAuth', # Fuzzy
+	'oauthconsumerregistration' => 'Registration de consumitor OAuth',
 	'mwoauthconsumerregistration-navigation' => 'Navigation:',
 	'mwoauthconsumerregistration-propose' => 'Proponer nove consumitor',
 	'mwoauthconsumerregistration-list' => 'Mi lista de consumitores',
 	'mwoauthconsumerregistration-main' => 'Principal',
-	'mwoauthconsumerregistration-propose-text' => 'Usa le formulario hic infra pro proponer un nove consumitor OAuth (vide http://oauth.net).
+	'mwoauthconsumerregistration-propose-text' => 'Programmatores deberea usar le formulario hic infra pro proponer un nove consumitor OAuth (vide le [//www.mediawiki.org/wiki/Extension:OAuth documentation del extension] pro plus detalios). Post haber submittite iste formulario, tu recipera un indicio le qual tu application usara pro identificar se pro MediaWiki. Un administrator de OAuth debera approbar tu application ante que illo pote esser autorisate per altere usatores.
 
 Ecce alcun recommendationes e remarcas:
 * Concede le minus derectos possibile. Evita concessiones que non es necessari in iste momento.
-* Forni un clave RSA si possibile; alteremente un indicio secrete (e minus secur) te essera assignate.
+* Le versiones es in forma "major.minor.edition" (le ultime duo es optional) e augmenta a mesura que cambiamentos de concession es necessari.
+* Forni un clave RSA (in formato PEM) si possibile; alteremente un indicio secrete (e minus secur) te essera assignate.
 * Usa le campo de restrictiones JSON pro limitar le accesso de iste consumitor al adresses IP in iste rangos CIDR.
-* Tu pote usar un ID de wiki pro limitar le consumitor a un singule wiki in iste sito (usa "*" pro tote le wikis).
-* Le adresse de e-mail fornite debe esser identic a illo de tu conto (le qual debe esser confirmate).', # Fuzzy
+* Tu pote usar un ID de projecto pro limitar le consumitor a un singule projecto in iste sito (usa "*" pro tote le projectos).
+* Le adresse de e-mail fornite debe esser identic a illo de tu conto (que debe esser confirmate).',
 	'mwoauthconsumerregistration-update-text' => 'Le formulario sequente permitte actualisar aspectos de un consumitor OAuth que tu controla.
 
 Tote le valores hic superscribera omne previe valores. Non lassa campos vacue si tu non ha le intention de rader iste valores.',
@@ -3343,7 +3345,7 @@ Ab hic, tu pote [[Special:OAuthConsumerRegistration/propose|proponer un nove con
 Le systema te ha assignate un indicio de consumitor '''$1''' e un indicio secrete '''$2'''. ''Per favor conserva istes pro referentia futur.''",
 	'mwoauthconsumerregistration-updated' => 'Le registration de consumitor OAuth ha essite actualisate con successo.',
 	'mwoauthconsumerregistration-secretreset' => "Le systema te ha assignate un indicio secrete de consumitor '''$1'''. ''Per favor conserva lo pro referentia futur.''",
-	'oauthmanageconsumers' => 'Gerer consumitores OAuth', # Fuzzy
+	'oauthmanageconsumers' => 'Gerer consumitores OAuth',
 	'mwoauthmanageconsumers-type' => 'Caudas:',
 	'mwoauthmanageconsumers-showproposed' => 'Requestas proponite',
 	'mwoauthmanageconsumers-showrejected' => 'Requestas rejectate',
@@ -3380,57 +3382,64 @@ Le systema te ha assignate un indicio de consumitor '''$1''' e un indicio secret
 	'mwoauthmanageconsumers-reenable' => 'Approbate',
 	'mwoauthmanageconsumers-reason' => 'Motivo:',
 	'mwoauthmanageconsumers-confirm-submit' => 'Actualisar stato de consumitor',
-	'mwoauthmanageconsumers-viewing' => 'Le usator "$1" actualmente visualisa iste consumitor', # Fuzzy
+	'mwoauthmanageconsumers-viewing' => 'Le {{GENDER:$1|usator}} "$1" actualmente visualisa iste consumitor',
 	'mwoauthmanageconsumers-success-approved' => 'Le requesta ha essite approbate.',
 	'mwoauthmanageconsumers-success-rejected' => 'Le requesta ha essite rejectate.',
 	'mwoauthmanageconsumers-success-disabled' => 'Le consumitor ha essite disactivate.',
 	'mwoauthmanageconsumers-success-reanable' => 'Le consumitor ha essite reactivate.',
-	'oauthmanagemygrants' => 'Gerer concessiones de conto OAuth', # Fuzzy
+	'oauthmanagemygrants' => 'Gerer applicationes connectite',
 	'mwoauthmanagemygrants-navigation' => 'Navigation:',
-	'mwoauthmanagemygrants-showlist' => 'Lista de consumitores acceptate', # Fuzzy
-	'mwoauthmanagemygrants-none' => 'Nulle consumitor ha accesso in nomine de tu conto.', # Fuzzy
-	'mwoauthmanagemygrants-user' => 'Editor', # Fuzzy
+	'mwoauthmanagemygrants-showlist' => 'Lista de applicationes connectite',
+	'mwoauthmanagemygrants-none' => 'Nulle application es connectite a tu conto.',
+	'mwoauthmanagemygrants-user' => 'Editor:',
 	'mwoauthmanagemygrants-description' => 'Description',
-	'mwoauthmanagemygrants-wikiallowed' => 'Permittite in wiki', # Fuzzy
+	'mwoauthmanagemygrants-wikiallowed' => 'Permittite in projecto:',
 	'mwoauthmanagemygrants-grants' => 'Concessiones applicabile',
 	'mwoauthmanagemygrants-grantsallowed' => 'Concessiones permittite',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Concessiones applicabile permittite:',
-	'mwoauthmanagemygrants-review' => 'revider/gerer accesso', # Fuzzy
-	'mwoauthmanagemygrants-grantaccept' => 'Concedite al consumitor', # Fuzzy
-	'mwoauthmanagemygrants-confirm-legend' => 'Gerer indicio de accesso de consumitor', # Fuzzy
-	'mwoauthmanagemygrants-update' => 'Actualisar concessiones de indicio de accesso', # Fuzzy
-	'mwoauthmanagemygrants-renounce' => 'Disautorisar e deler indicio de accesso', # Fuzzy
+	'mwoauthmanagemygrants-review' => 'gerer accesso',
+	'mwoauthmanagemygrants-grantaccept' => 'Concedite',
+	'mwoauthmanagemygrants-confirm-legend' => 'Gerer application connectite',
+	'mwoauthmanagemygrants-update' => 'Actualisar concessiones',
+	'mwoauthmanagemygrants-renounce' => 'Disautorisar',
 	'mwoauthmanagemygrants-action' => 'Cambiar stato:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Actualisar le stato de indicio de accesso',
 	'mwoauthmanagemygrants-success-update' => 'Le indicio de accesso pro iste consumitor ha essite actualisate.',
 	'mwoauthmanagemygrants-success-renounce' => 'Le indicio de accesso pro iste consumitor ha essite delite.',
-	'logentry-mwoauthconsumer-propose' => '$1 proponeva un consumitor OAuth (clave de consumitor $4)', # Fuzzy
-	'logentry-mwoauthconsumer-update' => '$1 actualisava un consumitor OAuth (clave de consumitor $4)', # Fuzzy
-	'logentry-mwoauthconsumer-approve' => '$1 approbava un consumitor OAuth per $3 (clave de consumitor $4)', # Fuzzy
-	'logentry-mwoauthconsumer-reject' => '$1 rejectava un consumitor OAuth per $3 (clave de consumitor $4)', # Fuzzy
+	'logentry-mwoauthconsumer-propose' => '$1 $2proponeva un consumitor OAuth (clave de consumitor $4)',
+	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|actualisava}} un consumitor OAuth (clave de consumitor $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 {{GENDER:$2|approbava}} un consumitor OAuth per $3 (clave de consumitor $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 {{GENDER:$2|rejectava}} un consumitor OAuth per $3 (clave de consumitor $4)',
 	'logentry-mwoauthconsumer-disable' => '$1 disactivava un consumitor OAuth per $3 (clave de consumitor $4)',
-	'logentry-mwoauthconsumer-reenable' => '$1 reactivava un consumitor OAuth per $3 (clave de consumitor $4)', # Fuzzy
+	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|reactivava}} un consumitor OAuth per $3 (clave de consumitor $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Registro de consumitores OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Registro de approbation, rejection e disactivation de consumitores OAuth registrate.',
 	'mwoauthdatastore-access-token-not-found' => 'Nulle concession approbate ha essite trovate pro iste indicio de autorisation.',
-	'mwoauthdatastore-request-token-not-found' => 'Nulle requesta ha essite trovate pro iste indicio.', # Fuzzy
+	'mwoauthdatastore-request-token-not-found' => 'Un error ha occurrite durante le tentativa de connecter iste application.
+Retorna e reproba connecter tu conto, o contacta le autor del application.
+
+<span class="plainlinks mw-mwoautherror-details">Indicio OAuth non trovate, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
 	'mwoauthdatastore-bad-token' => 'Nulle indicio ha essite trovate que corresponde a tu requesta.',
 	'mwoauthdatastore-bad-verifier' => 'Le codice de verification fornite non es valide.',
 	'mwoauthdatastore-invalid-token-type' => 'Le typo de indicio requestate non es valide.',
 	'mwoauthgrants-general-error' => 'Il habeva un error in tu requesta OAuth.',
-	'mwoauthserver-bad-consumer' => 'Nulle consumitor approbate ha essite trovate pro le clave fornite.', # Fuzzy
-	'mwoauthserver-insufficient-rights' => 'Tu non ha derectos sufficiente pro exequer iste action.', # Fuzzy
+	'mwoauthserver-bad-consumer' => '"$1" non plus es approbate como application connectite. [$2 Contacta] le autor del application pro adjuta.
+
+<span class="plainlinks mw-mwoautherror-details">Application OAuth connectite non approbate, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
+	'mwoauthserver-insufficient-rights' => 'Tu conto non es autorisate a connecter applicationes. Contacta le administrator del sito pro saper proque.
+
+<span class="plainlinks mw-mwoautherror-details">Derectos de usator OAuth insufficiente, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Il ha un indicio non valide in tu requesta.',
 	'mwoauth-invalid-authorization-title' => 'Error de autorisation OAuth',
 	'mwoauth-invalid-authorization' => 'Le capites de autorisation in tu requesta non es valide: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'Le capites de autorisation in tu requesta non es valide pro $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'Le capites de autorisation in tu requesta es pro un usator que non existe hic',
 	'mwoauth-invalid-authorization-wrong-user' => 'Le capites de autorisation in tu requesta es pro un altere usator',
-	'mwoauth-invalid-authorization-not-approved' => 'Le capites de autorisation in tu requesta es pro un consumitor OAuth que non es actualmente approbate', # Fuzzy
-	'mwoauth-form-button-approve' => 'Si, autorisar', # Fuzzy
+	'mwoauth-invalid-authorization-not-approved' => 'Le application que tu tenta connecter sembla mal configurate. Contacta le autor de "$1" pro adjuta.',
+	'mwoauth-form-button-approve' => 'Autorisar',
 	'mwoauth-grants-heading' => 'Permissiones requestate:',
 	'mwoauth-grants-nogrants' => 'Le application non ha requestate alcun permission.',
-	'mwoauth-grant-blockusers' => 'Blocar usatores', # Fuzzy
+	'mwoauth-grant-blockusers' => 'Blocar e disblocar usatores',
 	'mwoauth-grant-createeditmovepage' => 'Crear, modificar e renominar paginas',
 	'mwoauth-grant-delete' => 'Deler paginas, versiones e entratas de registro',
 	'mwoauth-grant-editinterface' => 'Modificar le spatio de nomines MediaWiki e le CSS/JS de usatores',
@@ -3440,10 +3449,10 @@ Le systema te ha assignate un indicio de consumitor '''$1''' e un indicio secret
 	'mwoauth-grant-editprotected' => 'Modificar paginas protegite',
 	'mwoauth-grant-highvolume' => 'Modification in massa',
 	'mwoauth-grant-oversight' => 'Celar usatores e supprimer versiones',
-	'mwoauth-grant-patrol' => 'Patruliar', # Fuzzy
+	'mwoauth-grant-patrol' => 'Patruliar cambiamentos in paginas',
 	'mwoauth-grant-protect' => 'Proteger e disproteger paginas',
-	'mwoauth-grant-rollback' => 'Revocar', # Fuzzy
-	'mwoauth-grant-sendemail' => 'Inviar e-mail', # Fuzzy
+	'mwoauth-grant-rollback' => 'Revocar cambiamentos in paginas',
+	'mwoauth-grant-sendemail' => 'Inviar e-mail a altere usatores',
 	'mwoauth-grant-uploadeditmovefile' => 'Actualisar, reimplaciar e renominar files',
 	'mwoauth-grant-uploadfile' => 'Incargar nove files',
 	'mwoauth-grant-useoauth' => 'Derectos de base',
@@ -5648,6 +5657,7 @@ $messages['roa-tara'] = array(
  * @author Midnight Gambler
  * @author Okras
  * @author Rubin
+ * @author Rubin16
  * @author Yurik
  */
 $messages['ru'] = array(
@@ -5661,7 +5671,7 @@ $messages['ru'] = array(
 	'mwoauth-field-hidden' => '(эта информация скрыта)',
 	'mwoauth-field-private' => '(эта информация является конфиденциальной)',
 	'mwoauth-prefs-managegrants' => 'Подключенные приложения:',
-	'mwoauth-prefs-managegrantslink' => 'Управление $1 {{PLURAL:$1|1=подключенным приложением|подключенными приложениями}}', # Fuzzy
+	'mwoauth-prefs-managegrantslink' => 'Управление {{PLURAL:$1|$1 подключённым приложением|$1 подключёнными приложениями|1=подключённым приложением}}',
 	'mwoauth-consumer-allwikis' => 'Все проекты на этом сайте',
 	'mwoauth-consumer-name' => 'Название приложения:',
 	'mwoauth-consumer-stage' => 'Текущее состояние:',
