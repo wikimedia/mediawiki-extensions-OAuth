@@ -5425,6 +5425,7 @@ $messages['pl'] = array(
 	'mwoauth-consumer-stage-expired' => 'przeterminowane',
 	'mwoauth-consumer-stage-approved' => 'zatwierdzone',
 	'mwoauth-consumer-stage-disabled' => 'wyłączone',
+	'oauthconsumerregistration' => 'Rejestracja konsumenta OAuth',
 	'mwoauthmanageconsumers-reason' => 'Powód:',
 	'oauthlistconsumers' => 'Lista aplikacji OAuth',
 	'mwoauthlistconsumers-legend' => 'Przegląd aplikacji OAuth',
