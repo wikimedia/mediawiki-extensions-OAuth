@@ -4856,11 +4856,8 @@ Applikasjonene har tilgang til kontoen din over OAuth-protokollen. <span class="
 	'mwoauthmanagemygrants-review' => 'håndter tilgang',
 	'mwoauthmanagemygrants-revoke' => 'tilbakekall tilgang',
 	'mwoauthmanagemygrants-grantaccept' => 'Bevilget',
-	'mwoauthmanagemygrants-update-text' => 'Bruk skjemaet under for å tilpasse hvilke typer tilgang du vil tildele applikasjon for å handle på dine vegne.
-* Hvis du har gitt applikasjonen tilgang på tvers av søsterprosjekter, må konfigurasjonen gjøres separat for hvert prosjekt.', # Fuzzy
-	'mwoauthmanagemygrants-revoke-text' => 'Bruk skjemaet under for å tilbakekalle en applikasjons tilgang til å handle på dine vegne.
-* Hvis du uavhengig har godkjent en applikasjon for bruk på ulike søsterprosjekter, vil du se en egen konfigurasjon for hvert prosjekt.
-* For å fullstendig tilbakekalle en applikasjons tilgang, sørg for at du tilbakekaller tilgangen fra alle prosjekter der du har godkjent den.', # Fuzzy
+	'mwoauthmanagemygrants-update-text' => 'Bruk skjemaet under for å tilpasse hvilke typer tilgang du vil tildele applikasjon for å handle på dine vegne.',
+	'mwoauthmanagemygrants-revoke-text' => 'Bruk skjemaet under for å tilbakekalle en applikasjons tilgang til å handle på dine vegne.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Håndter tilkoblet applikasjon',
 	'mwoauthmanagemygrants-update' => 'Oppdater tildelinger',
 	'mwoauthmanagemygrants-renounce' => 'Avautorisér',
