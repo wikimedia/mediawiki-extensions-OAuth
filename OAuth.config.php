@@ -78,6 +78,8 @@ $wgMWOAuthGrantPermissions['editmycssjs'] = $wgMWOAuthGrantPermissions['editpage
 $wgMWOAuthGrantPermissions['editmycssjs']['editmyusercss'] = true;
 $wgMWOAuthGrantPermissions['editmycssjs']['editmyuserjs'] = true;
 
+$wgMWOAuthGrantPermissions['editmyoptions']['editmyoptions'] = true;
+
 $wgMWOAuthGrantPermissions['editinterface'] = $wgMWOAuthGrantPermissions['editpage'];
 $wgMWOAuthGrantPermissions['editinterface']['editinterface'] = true;
 $wgMWOAuthGrantPermissions['editinterface']['editusercss'] = true;
@@ -149,6 +151,7 @@ $wgMWOAuthGrantPermissionGroups = array(
 	'editviewmywatchlist' => 'watchlist-interaction',
 
 	'editmycssjs'         => 'customization',
+	'editmyoptions'       => 'customization',
 
 	'editinterface'       => 'administration',
 	'rollback'            => 'administration',
