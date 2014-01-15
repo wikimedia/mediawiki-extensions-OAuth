@@ -2022,11 +2022,8 @@ Rakendused kasutavad ühenduseks sinu kontoga OAuthi protokolli. <span class="pl
 	'mwoauthmanagemygrants-review' => 'halda juurdepääsu',
 	'mwoauthmanagemygrants-revoke' => 'tühista juurdepääs',
 	'mwoauthmanagemygrants-grantaccept' => 'Volitatud',
-	'mwoauthmanagemygrants-update-text' => 'Kasuta seda vormi, et muuta sinu nimel toimivate rakenduste volitusi.
-* Kui volitasid rakenduse enda nimel kasutuse eri sõsarprojektides eraldi, siis on sellel rakendusel neis projektides eraldi häälestus.', # Fuzzy
-	'mwoauthmanagemygrants-revoke-text' => 'Kasuta seda vormi, et tühistada sinu nimel toimivate rakenduste volitused.
-* Kui volitasid rakenduse enda nimel kasutuse eri sõsarprojektides eraldi, siis on sellel rakendusel neis projektides eraldi häälestus.
-* Kui tahad rakenduse volitused täielikult tühistada, pead tühistama selle juurdepääsu kõigis projektides, kus selle tarvitusega nõustusid.', # Fuzzy
+	'mwoauthmanagemygrants-update-text' => 'Kasuta seda vormi, et muuta sinu nimel toimivate rakenduste volitusi.',
+	'mwoauthmanagemygrants-revoke-text' => 'Kasuta seda vormi, et tühistada sinu nimel toimivate rakenduste volitused.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Ühendatud rakenduse haldamine',
 	'mwoauthmanagemygrants-update' => 'Uuenda volitusi',
 	'mwoauthmanagemygrants-renounce' => 'Tühista volitused',
@@ -4270,6 +4267,7 @@ $messages['lb'] = array(
 	'mwoauth-grant-createaccount' => 'Benotzerkonten opmaachen',
 	'mwoauth-grant-editinterface' => 'MediaWiki-Nummraum a Benotzer CSS/JS änneren',
 	'mwoauth-grant-editmycssjs' => 'Ären eegene Benotzer CSS/JS änneren',
+	'mwoauth-grant-editmyoptions' => 'Ännert Är eege Benotzerastellungen',
 	'mwoauth-grant-editmywatchlist' => 'Ännert Är Iwwerwaachungslëscht',
 	'mwoauth-grant-editpage' => 'Säiten déi et gëtt änneren',
 	'mwoauth-grant-editprotected' => 'Gespaarte Säiten änneren',
@@ -4660,6 +4658,7 @@ $messages['mr'] = array(
 	'mwoauth-grant-delete' => 'पाने, आवृत्त्या व नोंदी वगळा',
 	'mwoauth-grant-editinterface' => 'मिडियाविकि नामविश्व व सदस्यांची CSS/JS संपादा',
 	'mwoauth-grant-editmycssjs' => 'आपले स्वतःचे CSS/JS पान संपादित करा',
+	'mwoauth-grant-editmyoptions' => "आपल्या स्वत:चा 'पसंतीक्रम' संपादा",
 	'mwoauth-grant-editmywatchlist' => 'आपली निरीक्षणयादी संपादित करा',
 	'mwoauth-grant-editprotected' => 'संपादनांपासून सुरक्षित असलेली पाने',
 	'mwoauth-grant-highvolume' => 'अत्त्युच्च-जागा घेणारे संपादन',
