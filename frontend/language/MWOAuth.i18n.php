@@ -905,6 +905,8 @@ See also:
 
 "JS" stands for "JavaScript".
 {{Related|Mwoauth-grant}}',
+	'mwoauth-grant-editmyoptions' => 'Name for OAuth grant "editmyoptions".
+{{Related|Mwoauth-grant}}',
 	'mwoauth-grant-editmywatchlist' => 'Name for OAuth grant "editmywatchlist".
 {{Related|Mwoauth-grant}}
 {{Identical|Edit your watchlist}}',
@@ -1917,11 +1919,6 @@ A few recommendations and remarks:
 	'mwoauthmanagemygrants-text' => 'This page lists any applications that can use your account. For any such application, the scope of its access is limited by the permissions that you granted to the application when you authorised it to act on your behalf. If you separately authorised an application to access different "sister" projects on your behalf, then you will see separate configuration for each such project below.
 
 Connected applications access your account by using the OAuth protocol. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Learn more about connected applications])</span>',
-	'mwoauthmanagemygrants-update-text' => 'Use the form below to modify the permissions granted to an application to act on your behalf.
-* If you separately authorised an application to access different sister projects on your behalf, then you will have separate configuration for each such project for that application.',
-	'mwoauthmanagemygrants-revoke-text' => 'Use the form below to revoke access for an application to act on your behalf.
-* If you separately authorised an application to access different sister projects on your behalf, then you will have separate configuration for each such project for that application.
-* If you want to totally revoke access to an application, be sure to revoke it from all projects that you accepted it on.',
 	'mwoauthmanagemygrants-renounce' => 'Deauthorise',
 	'mwoauthdatastore-access-token-not-found' => 'No approved grant was found for that authorisation token',
 	'mwoauth-invalid-authorization-title' => 'OAuth authorisation error',
@@ -3953,6 +3950,7 @@ Connected applications access your account by using the OAuth protocol. <span cl
 	'mwoauth-grant-delete' => 'ページ、版、記録項目を削除',
 	'mwoauth-grant-editinterface' => 'MediaWiki 名前空間および利用者 CSS/JavaScript を編集',
 	'mwoauth-grant-editmycssjs' => '自身の利用者 CSS/JavaScript を編集',
+	'mwoauth-grant-editmyoptions' => '自身の個人設定を編集',
 	'mwoauth-grant-editmywatchlist' => '自身のウォッチリストを編集',
 	'mwoauth-grant-editpage' => '既存のページを編集',
 	'mwoauth-grant-editprotected' => '保護されたページを編集',
