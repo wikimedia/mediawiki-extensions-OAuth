@@ -3994,6 +3994,7 @@ $messages['ka'] = array(
 
 /** Korean (한국어)
  * @author Hym411
+ * @author Priviet
  * @author 아라
  */
 $messages['ko'] = array(
@@ -4146,9 +4147,10 @@ $messages['ko'] = array(
 	'mwoauth-invalid-authorization-wrong-user' => '요청에 있는 인증 헤더가 다른 사용자를 위한 것입니다',
 	'mwoauth-invalid-authorization-not-approved' => '요청에 있는 인증 헤더가 현재 승인되지 않은 OAuth 컨슈머를 위한 것입니다', # Fuzzy
 	'mwoauth-invalid-authorization-blocked-user' => '요청에 있는 인증 헤더가 차단된 사용자를 위한 것입니다',
+	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:개인 정보 정책|개인 정보 정책]]', # Fuzzy
 	'mwoauth-form-button-approve' => '허용합니다',
 	'mwoauth-form-button-cancel' => '취소합니다.',
-	'mwoauth-error' => 'OAuth 오류', # Fuzzy
+	'mwoauth-error' => '응용 프로그램 연결 오류',
 	'mwoauth-grants-heading' => '요청된 권한:',
 	'mwoauth-grants-nogrants' => '애플리케이션은 권한을 요청하지 않았습니다.',
 	'mwoauth-grant-group-email' => '이메일 보내기',
@@ -5415,6 +5417,7 @@ $messages['oc'] = array(
  * @author Chrumps
  * @author Rzuwig
  * @author Ty221
+ * @author Vuh
  */
 $messages['pl'] = array(
 	'mwoauth-prefs-managegrants' => 'Włączone aplikacje:',
@@ -5444,6 +5447,7 @@ $messages['pl'] = array(
 	'mwoauthmanagemygrants-renounce' => 'Anuluj dostęp',
 	'mwoauth-grant-group-customization' => 'Dostosowywanie i preferencje',
 	'mwoauth-grant-createeditmovepage' => 'Tworzenie, edycja i przenoszenie stron',
+	'mwoauth-grant-editmyoptions' => 'Edytuj swoje preferencje',
 	'mwoauth-grant-editpage' => 'Edytowanie istniejących stron',
 	'mwoauth-grant-useoauth' => 'Podstawowe uprawnienia',
 	'right-mwoauthmanageconsumer' => 'Zarządzanie konsumentami OAuth',
@@ -6752,6 +6756,7 @@ $5",
 	'mwoauth-grant-createaccount' => '注册账户',
 	'mwoauth-grant-createeditmovepage' => '创建、编辑与移动页面',
 	'mwoauth-grant-editmycssjs' => '编辑你自己的用户CSS/JS',
+	'mwoauth-grant-editmyoptions' => '编辑您自己的用户首选项',
 	'mwoauth-grant-editmywatchlist' => '编辑您的监视列表',
 	'mwoauth-grant-editpage' => '编辑存在的页面',
 	'mwoauth-grant-editprotected' => '编辑受保护页面',
