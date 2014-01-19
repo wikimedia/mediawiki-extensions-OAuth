@@ -1971,6 +1971,7 @@ Las aplicaciones conectadas acceden a tu cuenta mediante el protocolo OAuth. <sp
  * @author Pikne
  */
 $messages['et'] = array(
+	'mwoauth-desc' => 'Võimaldab kasutada OAuth 1.0a-d API-volitamiseks.',
 	'mwoauth-prefs-managegrants' => 'Ühendatud rakendused:',
 	'mwoauth-prefs-managegrantslink' => '{{PLURAL:$1|Halda üht ühendatud rakendust|Halda $1 ühendatud rakendust|0=Puuduvad}}',
 	'mwoauth-consumer-allwikis' => 'Kõigis selle võrgukoha projektides',
@@ -2026,6 +2027,13 @@ Rakendused kasutavad ühenduseks sinu kontoga OAuthi protokolli. <span class="pl
 	'mwoauthmanagemygrants-renounce' => 'Tühista volitused',
 	'mwoauthmanagemygrants-success-update' => 'Selle tarvituse juurdepääsuluba on uuendatud.',
 	'mwoauthmanagemygrants-success-renounce' => 'Selle tarvituse juurdepääsuluba on kustutatud.',
+	'mwoauthdatastore-request-token-not-found' => 'Selle rakendusega läks kahjuks midagi valesti.
+Mine tagasi ja ürita uuesti oma kontot ühendada või võta ühendust rakenduse autoriga.
+
+<span class="plainlinks mw-mwoautherror-details">OAuthi-luba ei leitud, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
+	'mwoauthserver-bad-consumer-key' => 'Selle rakendusega läks kahjuks midagi valesti.
+
+<span class="plainlinks mw-mwoautherror-details">Tundmatu OAuthi-võti, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>',
 	'mwoauth-form-description-allwikis' => "Tere, $1.
 
 '''$2''' vajab luba, et teha sinu nimel kõigis selle võrgukoha projektides järgmisi toiminguid:
@@ -3133,11 +3141,8 @@ $messages['he'] = array(
 	'mwoauthmanagemygrants-review' => 'ניהול גישה',
 	'mwoauthmanagemygrants-revoke' => 'שלילת גישה',
 	'mwoauthmanagemygrants-grantaccept' => 'ניתן זיכיון',
-	'mwoauthmanagemygrants-update-text' => 'אפשר להשתמש בטופס להלן כדי לשנות את ההרשאות שניתנו לאפליקלציות לפעול בשמך.
-* אם נתת אישור נפרד ליישום לגשת בשמך למיזמים אחרים, יהיו לך הגדרות נפרדות בכל מיזם ליישום כזה.',
-	'mwoauthmanagemygrants-revoke-text' => 'אפשר להשתמש בטופס להלן כדי לשלול מיישום גישה לפעול בשמך.
-* אם נתת אישור נפרד ליישום לגשת בשמך למיזמים אחרים, יהיו לך הגדרות נפרדות בכל מיזם ליישום כזה.
-* אם ברצונך לשלול לחלוטין גישה ליישום, יש לשלול אותה מכל המיזמים שבהם קיבלת אותה.',
+	'mwoauthmanagemygrants-update-text' => 'הטופס להלן משמש לשינוי ההרשאות שניתנו ליישום לפעול בשמך.',
+	'mwoauthmanagemygrants-revoke-text' => 'הטופס להלן משמש לשלילת ההרשאות שניתנו ליישום לפעול בשמך.',
 	'mwoauthmanagemygrants-confirm-legend' => 'ניהול יישום מחובר',
 	'mwoauthmanagemygrants-update' => 'עדכון זיכיונות',
 	'mwoauthmanagemygrants-renounce' => 'שלילת אישור',
@@ -3227,6 +3232,7 @@ $5',
 	'mwoauth-grant-delete' => 'מחיקת דפים, גרסאות ויומנים',
 	'mwoauth-grant-editinterface' => 'עריכת שם מדיה-ויקי ומשתמש CSS/JS',
 	'mwoauth-grant-editmycssjs' => 'עריכת CSS/JS של המשתמש שלך',
+	'mwoauth-grant-editmyoptions' => 'עריכת ההעדפות שלך',
 	'mwoauth-grant-editmywatchlist' => 'עריכת רשימת המעקב שלך',
 	'mwoauth-grant-editpage' => 'עריכת דפים קיימים',
 	'mwoauth-grant-editprotected' => 'עריכת דפים מוגנים',
@@ -4000,6 +4006,7 @@ $messages['ka'] = array(
  */
 $messages['ko'] = array(
 	'mwoauth-desc' => 'OAuth 1.0a API 인증의 사용을 허용',
+	'mwoauth-verified' => "프로세스를 완성하기 위해서는 이 증명값을 이 응용프로그램에 입력해야 합니다: '''$1'''",
 	'mwoauth-missing-field' => '"$1" 필드에 대한 값이 없습니다',
 	'mwoauth-invalid-field' => '"$1" 필드에 제공한 값이 잘못되었습니다',
 	'mwoauth-invalid-field-generic' => '제공한 값이 잘못되었습니다',
@@ -4008,6 +4015,7 @@ $messages['ko'] = array(
 	'mwoauth-grant-generic' => '"$1" 권한 번들',
 	'mwoauth-prefs-managegrants' => '연결된 애플리케이션:',
 	'mwoauth-prefs-managegrantslink' => '$1개의 연결된 애플리케이션 관리',
+	'mwoauth-consumer-allwikis' => '이 사이트의 모든 프로젝트',
 	'mwoauth-consumer-key' => '컨슈머 키:',
 	'mwoauth-consumer-name' => '애플리케이션 이름:',
 	'mwoauth-consumer-version' => '컨슈머 버전:',
@@ -4019,6 +4027,8 @@ $messages['ko'] = array(
 	'mwoauth-consumer-grantsneeded' => '적용할 수 있는 부여:',
 	'mwoauth-consumer-required-grant' => '컨슈머에게 적용할 수 있음',
 	'mwoauth-consumer-wiki' => '적용할 수 있는 프로젝트:',
+	'mwoauth-consumer-wiki-thiswiki' => '현재 프로젝트($1)',
+	'mwoauth-consumer-wiki-other' => '특정 프로젝트',
 	'mwoauth-consumer-restrictions' => '사용 제한:',
 	'mwoauth-consumer-restrictions-json' => '사용 제한 (JSON):',
 	'mwoauth-consumer-rsakey' => '공개 RSA 키:',
@@ -4033,8 +4043,10 @@ $messages['ko'] = array(
 	'mwoauth-consumer-not-proposed' => '컨슈머가 현재 제안되어 있지 않습니다',
 	'mwoauth-consumer-not-disabled' => '컨슈머가 현재 비활성화되어 있지 않습니다',
 	'mwoauth-consumer-not-approved' => '컨슈머가 현재 승인되어 있지 않습니다 (비활성화되었을 수 있습니다)',
+	'mwoauth-missing-consumer-key' => '컨슈머 키가 입력되지 않습니다.',
 	'mwoauth-invalid-consumer-key' => '주어진 키로 된 컨슈머가 존재하지 않습니다.',
 	'mwoauth-invalid-access-token' => '주어진 키로 된 접근 토큰이 존재하지 않습니다.',
+	'mwoauth-invalid-access-wrongwiki' => '컨슈머는 "$1" 프로젝트에서만 사용할 수 있습니다.',
 	'mwoauth-consumer-stage-proposed' => '제안됨',
 	'mwoauth-consumer-stage-rejected' => '거부됨',
 	'mwoauth-consumer-stage-expired' => '만료됨',
@@ -4104,6 +4116,27 @@ $messages['ko'] = array(
 	'mwoauthmanageconsumers-success-rejected' => '요청이 거부되었습니다.',
 	'mwoauthmanageconsumers-success-disabled' => '컨슈머가 비활성화되었습니다.',
 	'mwoauthmanageconsumers-success-reanable' => '컨슈머가 다시 활성화되었습니다.',
+	'mwoauthmanageconsumers-search-name' => '이 이름을 가진 컨슈머',
+	'mwoauthmanageconsumers-search-publisher' => '이 사용자의 컨슈머',
+	'oauthlistconsumers' => 'OAuth 응용 프로그램 목록',
+	'mwoauthlistconsumers-legend' => 'OAuth 응용 프로그램 찾아보기',
+	'mwoauthlistconsumers-view' => '자세한 사항',
+	'mwoauthlistconsumers-none' => '이 기준에 부합하는 응용 프로그램을 찾을 수 없습니다.',
+	'mwoauthlistconsumers-name' => '응용 프로그램 이름',
+	'mwoauthlistconsumers-version' => '컨슈머 버전',
+	'mwoauthlistconsumers-user' => '게시자',
+	'mwoauthlistconsumers-description' => '설명',
+	'mwoauthlistconsumers-wiki' => '적용할 수 있는 프로젝트',
+	'mwoauthlistconsumers-callbackurl' => 'OAuth "콜백 URL"',
+	'mwoauthlistconsumers-grants' => '적용할 수 있는 부여',
+	'mwoauthlistconsumers-basicgrantsonly' => '(기본 액세스의 경우에만)',
+	'mwoauthlistconsumers-status' => '상태',
+	'mwoauth-consumer-stage-any' => '모두',
+	'mwoauthlistconsumers-status-proposed' => '제안됨',
+	'mwoauthlistconsumers-status-approved' => '승인됨',
+	'mwoauthlistconsumers-status-disabled' => '비활성화됨',
+	'mwoauthlistconsumers-status-rejected' => '거부됨',
+	'mwoauthlistconsumers-status-expired' => '만료됨',
 	'oauthmanagemygrants' => '연결된 응용 프로그램 관리',
 	'mwoauthmanagemygrants-notloggedin' => '이 페이지에 접근하려면 로그인해야 합니다.',
 	'mwoauthmanagemygrants-navigation' => '둘러보기:',
@@ -4116,6 +4149,7 @@ $messages['ko'] = array(
 	'mwoauthmanagemygrants-grantsallowed' => '허용된 부여',
 	'mwoauthmanagemygrants-applicablegrantsallowed' => '적용할 수 있는 허용된 부여:',
 	'mwoauthmanagemygrants-review' => '접근 관리',
+	'mwoauthmanagemygrants-revoke' => '접근 취소',
 	'mwoauthmanagemygrants-grantaccept' => '컨슈머 부여됨',
 	'mwoauthmanagemygrants-confirm-legend' => '연결된 응용프로그램 관리',
 	'mwoauthmanagemygrants-update' => '접근 토큰 업데이트',
@@ -4161,6 +4195,9 @@ $messages['ko'] = array(
 	'mwoauth-error' => '응용 프로그램 연결 오류',
 	'mwoauth-grants-heading' => '요청된 권한:',
 	'mwoauth-grants-nogrants' => '애플리케이션은 권한을 요청하지 않았습니다.',
+	'mwoauth-grant-group-page-interaction' => '문서로 상호 작용',
+	'mwoauth-grant-group-file-interaction' => '미디어로 상호 작용',
+	'mwoauth-grant-group-watchlist-interaction' => '당신의 주시문서로 상호작용',
 	'mwoauth-grant-group-email' => '이메일 보내기',
 	'mwoauth-grant-group-high-volume' => '대량의 작업을 수행',
 	'mwoauth-grant-group-customization' => '사용자 최적화 및 환경 설정',
@@ -4172,6 +4209,7 @@ $messages['ko'] = array(
 	'mwoauth-grant-delete' => '문서, 판 및 기록 항목 삭제',
 	'mwoauth-grant-editinterface' => '미디어위키 이름공간과 사용자 CSS/JS 편집',
 	'mwoauth-grant-editmycssjs' => '자신의 사용자 CSS/JS 편집하기',
+	'mwoauth-grant-editmyoptions' => '사용자 환경 설정 편집하기',
 	'mwoauth-grant-editmywatchlist' => '내 주시문서 목록 편집하기',
 	'mwoauth-grant-editpage' => '기존 문서 편집하기',
 	'mwoauth-grant-editprotected' => '보호된 문서 편집하기',
@@ -4200,6 +4238,8 @@ $messages['ko'] = array(
 	'action-mwoauthproposeconsumer' => '새 OAuth 컨슈머 제안',
 	'action-mwoauthupdateownconsumer' => '내가 제어할 수 있는 OAuth 컨슈머 업데이트',
 	'action-mwoauthviewsuppressed' => '억제된 OAuth 컨슈머 보기',
+	'mwoauth-listgrants-grant' => '부여',
+	'mwoauth-listgrants-rights' => '권한',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
