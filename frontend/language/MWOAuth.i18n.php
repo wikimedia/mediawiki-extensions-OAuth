@@ -1196,6 +1196,7 @@ $messages['be-tarask'] = array(
 /** Bengali (বাংলা)
  * @author Aftab1995
  * @author Gitartha.bordoloi
+ * @author Tauhid16
  */
 $messages['bn'] = array(
 	'mwoauth-prefs-managegrants' => 'সংযুক্ত অ্যাপগুলি:',
@@ -1206,6 +1207,7 @@ $messages['bn'] = array(
 	'mwoauthconsumerregistration-lastchange' => 'সর্বশেষ পরিবর্তন',
 	'mwoauthmanageconsumers-main' => 'প্রধান',
 	'mwoauthmanageconsumers-reason' => 'কারণ:',
+	'mwoauth-grant-editmyoptions' => 'আপনি আপনার পছন্দসমূহ সম্পাদনা করুন',
 	'mwoauth-grant-editmywatchlist' => 'আপনার নজরতালিকা সম্পাদনা করুন',
 );
 
@@ -4047,6 +4049,8 @@ $messages['ko'] = array(
 	'mwoauth-invalid-consumer-key' => '주어진 키로 된 컨슈머가 존재하지 않습니다.',
 	'mwoauth-invalid-access-token' => '주어진 키로 된 접근 토큰이 존재하지 않습니다.',
 	'mwoauth-invalid-access-wrongwiki' => '컨슈머는 "$1" 프로젝트에서만 사용할 수 있습니다.',
+	'mwoauth-consumer-conflict' => '누군가 당신이 보기 전에 이 고객의 속성을 바꿨습니다. 다시 시도해주세요. 바뀜 기록을 확인하실 수 있습니다.',
+	'mwoauth-consumer-grantshelp' => '각각 부여된 값은 목록에서 사용자 계정을 이미 갖고 있는 사용자 권한에 접근할 수 있는 권한을 줍니다. [[Special:OAuth/grants|table of grants]]에서 더 자세한 정보를 얻을 수 있습니다.',
 	'mwoauth-consumer-stage-proposed' => '제안됨',
 	'mwoauth-consumer-stage-rejected' => '거부됨',
 	'mwoauth-consumer-stage-expired' => '만료됨',
@@ -4059,6 +4063,26 @@ $messages['ko'] = array(
 	'mwoauthconsumerregistration-propose' => '새 컨슈머 제안',
 	'mwoauthconsumerregistration-list' => '내 컨슈머 목록',
 	'mwoauthconsumerregistration-main' => '주요',
+	'mwoauthconsumerregistration-propose-text' => '개발자는 다음 양식을 사용하여 새로운 OAuth 고객을 제안해야합니다.(잣한 정보는 [//www.mediawiki.org/wiki/Extension:OAuth 확장 기능 문서]를 참조하세요) 이 양식을 제출하고 나면 당신의 지원서가 미디어위키에서 식별될 수 있도록 토큰을 받게 됩니다. OAuth 관리자는 다른 사용자가권한을 받기 전에 지원서를 승인해야 합니다.
+
+몇 가지 추천 사항과 제안:
+* 부여된 권한을 가능한 사용하도록 해주세요.
+* 버전은 "major.minor.release" 양식이며(마지막 2가지는 선택 사항) 권한 변경이 필요하므로 증가시켜주세요.
+* 가능하면 공개 RSA 키(PEM 포맷)을 입력해주세요; 아니면 비밀 토큰(덜 안전함)을 사용해야 합니다.
+* JSON 제한 필드를 사용하여 고객이 CIDR 범위에서 
+IP 주소에 접근하는 것을 제한해주세요.
+* 프로젝트 ID를 사용하여 고객이 이 사이트의 하나의 프로젝트에 접근하는 것 제한합니다.
+* 제공된 이메일 주소가 당신의 계정와 일치해야 합니다.(확인받아야 합니다)',
+	'mwoauthconsumerregistration-update-text' => '아래의 양식을 사용하여 당신이 관리하는 OAuth 고객의 속성을 업데이트하세요. 
+
+여기의 모든 값은 이전 값을 덮어쓸 것입니다. 이 값을 지우려고 하지 않는다면 빈 필드는 비워두세요.',
+	'mwoauthconsumerregistration-maintext' => '이 문서는 개발자가 제안하고 이 사이트의 레지스트리에서 OAuth 고객 응용 프로그램을 업데이트할 수 있도록 합니다.
+
+여기서 할 수 있는 작업:
+* [[Special:OAuthConsumerRegistration/propose|새로운 고객에게 토큰을 요청]].
+* [[Special:OAuthConsumerRegistration/list|기존 고객 관리]].
+
+OAuth에 대한 더 자세한 정보를 얻으려면 [//www.mediawiki.org/wiki/Extension:OAuth 확장 기능 문서]를 참조하세요.',
 	'mwoauthconsumerregistration-propose-legend' => '새 OAuth 컨슈머 애플리케이션',
 	'mwoauthconsumerregistration-update-legend' => 'OAuth 컨슈머 애플리케이션 업데이트',
 	'mwoauthconsumerregistration-propose-submit' => '컨슈머 제안',
@@ -4073,7 +4097,12 @@ $messages['ko'] = array(
 	'mwoauthconsumerregistration-lastchange' => '마지막으로 바뀜',
 	'mwoauthconsumerregistration-manage' => '관리',
 	'mwoauthconsumerregistration-resetsecretkey' => '비밀 키를 새 값으로 재설정',
+	'mwoauthconsumerregistration-proposed' => "당신의 OAuth 고객 요청을 받았습니다.
+
+'''\$1''' 고객 토큰과 '''\$2''' 비밀 토큰을 재할당했습니다.
+\"나중에 참조하기 위해서 이것을 기록해주세요.\"",
 	'mwoauthconsumerregistration-updated' => 'OAuth 컨슈머 등록을 성공적으로 업데이트했습니다.',
+	'mwoauthconsumerregistration-secretreset' => "고객에게 '''\$1'''의 비밀 토큰을 할당했습니다. \"나중에 참조하기 위해서 이것을 기록해주세요.\"",
 	'oauthmanageconsumers' => 'OAuth 컨슈머 관리',
 	'mwoauthmanageconsumers-notloggedin' => '이 페이지에 접근하려면 로그인해야 합니다.',
 	'mwoauthmanageconsumers-type' => '대기열:',
@@ -4081,6 +4110,7 @@ $messages['ko'] = array(
 	'mwoauthmanageconsumers-showrejected' => '거부된 요청',
 	'mwoauthmanageconsumers-showexpired' => '만료된 요청',
 	'mwoauthmanageconsumers-main' => '주요',
+	'mwoauthmanageconsumers-maintext' => '이 문서는 OAuth(see http://oauth.net)를 다루는 고객 지원서 요청과 인증된 OAuth 고객 관리용입니다.',
 	'mwoauthmanageconsumers-queues' => '아래에서 컨슈머 확인 대기열을 선택하세요:',
 	'mwoauthmanageconsumers-q-proposed' => '제안된 컨슈머 요청의 대기열',
 	'mwoauthmanageconsumers-q-rejected' => '거부된 컨슈머 요청의 대기열',
@@ -4166,6 +4196,15 @@ $messages['ko'] = array(
 	'logentry-mwoauthconsumer-reenable' => '$1 사용자가 $3에 의해 OAuth 컨슈머를 {{GENDER:$2|다시 활성화했습니다}} (컨슈머 키 $4)',
 	'mwoauthconsumer-consumer-logpage' => 'OAuth 컨슈머 기록',
 	'mwoauthconsumer-consumer-logpagetext' => 'OAuth 컨슈머에 등록된 승인, 거부와 비활성화의 기록입니다.',
+	'mwoauth-bad-request-missing-params' => '죄송합니다. 연결된 응용 프로그램을 설정하는 도중 문제가 발생했습니다. <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Contact support]</span>에서 고치는 데 도움을 받을 수 있습니다.
+
+<span class="plainlinks mw-mwoautherror-details">OAuth 매개변수 없음, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>',
+	'mwoauth-bad-request-invalid-action' => '죄송합니다. 문제가 발생했습니다. 도움을 받으려면 다음의 링크에서 응용 프로그램 작성자와 연락하세요.
+
+<span class="plainlinks mw-mwoautherror-details">Unknown URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>',
+	'mwoauth-bad-request-invalid-action-contact' => '죄송합니다. 문제가 발생했습니다. 도움을 받으려면 다음의 링크에서 응용 프로그램 작성자와 [$1 연락]하세요.
+
+<span class="plainlinks mw-mwoautherror-details">Unknown URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
 	'mwoauthdatastore-access-token-not-found' => '인증 토큰에 대한 승인된 부여를 찾을 수 없습니다.',
 	'mwoauthdatastore-request-token-not-found' => '죄송합니다. 해당 응용 프로그램에 연결하는 도중 문제가 발생하였습니다.
 뒤로 돌아가셔서 계정에 연결을 다시 시도하시거나 응용 프로그램 작성자와 연락해보십시요.
@@ -4178,10 +4217,16 @@ $messages['ko'] = array(
 	'mwoauthserver-bad-consumer' => '"$1" 프로그램은 더 이상 승인된 연결 응용 프로그램이 아니며 응용 프로그램 작성자에게 도움을 [$2 요청해주세요].
 
 <span class="plainlinks mw-mwoautherror-details">연결된 OAuth 앱이 승인되지 않음,[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
+	'mwoauthserver-bad-consumer-key' => '죄송합니다. 이 응용 프로그램과 연결하는 도중 문제가 발생했습니다.
+
+<span class="plainlinks mw-mwoautherror-details">Unknown OAuth key, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>',
 	'mwoauthserver-insufficient-rights' => '당신의 계정은 연결된 응용 프로그램을 사용하는 것이 허용되지 않으며 사이트관리자에게 문의하세요.
 
 <span class="plainlinks mw-mwoautherror-details">OAuth 사용자 권한 부족, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => '요청에 잘못된 토큰이 있습니다.',
+	'mwoauthserver-invalid-user' => '이 사이트에서 연결된 응용 프로그램을 사용하려면 모든 프로젝트에서 계정을 가지고 있어야 합니다. 모든 프로젝트에서 계정을 취득하고 나면 "$1"에 다시 연결해주세요.
+
+<span class="plainlinks mw-mwoautherror-details">Unified login needed, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>',
 	'mwoauth-invalid-authorization-title' => 'OAuth 인증 오류',
 	'mwoauth-invalid-authorization' => '요청에 있는 인증 헤더가 올바르지 않습니다: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => '요청에 있는 인증 헤더가 $1에 대해 올바르지 않습니다',
@@ -4189,6 +4234,28 @@ $messages['ko'] = array(
 	'mwoauth-invalid-authorization-wrong-user' => '요청에 있는 인증 헤더가 다른 사용자를 위한 것입니다',
 	'mwoauth-invalid-authorization-not-approved' => '연결하려는 응용 프로그램이 정확하지 않습니다. "$1"의 작성자에게 도움을 요청하세요.',
 	'mwoauth-invalid-authorization-blocked-user' => '요청에 있는 인증 헤더가 차단된 사용자를 위한 것입니다',
+	'mwoauth-form-description-allwikis' => "$1 님, 안녕하세요.
+
+
+'''$2''' 프로그램이 당신을 대신하여 이 사이트의 모든 프로젝트에 대해 다음 명령을 수행하려고 합니다:
+
+
+$4",
+	'mwoauth-form-description-onewiki' => "$1 님, 안녕하세요.
+
+
+'''$2''' 프로그램이 당신을 대신하여 ''$4'' 위키에 다음 명령을 수행하려고 합니다:
+
+
+$5",
+	'mwoauth-form-description-allwikis-nogrants' => "$1 님, 안녕하세요.
+
+
+'''$2''' 프로그램이 당신을 대신하여 이 사이트의 모든 프로젝트에 기본 접근하려고 합니다.",
+	'mwoauth-form-description-onewiki-nogrants' => "$1 님, 안녕하세요.
+
+
+'''$2''' 프로그램이 당신을 대신하여 ''$4'' 위키에 기본 접근하려고 합니다.",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|개인 정보 정책]]',
 	'mwoauth-form-button-approve' => '허용합니다',
 	'mwoauth-form-button-cancel' => '취소합니다.',
