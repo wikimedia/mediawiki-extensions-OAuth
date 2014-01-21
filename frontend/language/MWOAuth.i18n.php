@@ -2383,6 +2383,7 @@ $messages['fi'] = array(
 
 /** French (français)
  * @author Crochet.david
+ * @author Dr Brains
  * @author Gomoko
  * @author Jean-Frédéric
  * @author Linedwell
@@ -2585,7 +2586,7 @@ Les applications connectées accèdent à votre compte en utilisant le protocole
 	'logentry-mwoauthconsumer-reject' => '$1 {{GENDER:$2|a rejeté}} un consommateur OAuth proposé par $3 (clé du consommateur $4)',
 	'logentry-mwoauthconsumer-disable' => '$1 a désactivé un consommateur OAuth proposé par $3 (clé du consommateur $4)',
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|a réactivé}} un consommateur OAuth proposé par $3 (clé du consommateur $4)',
-	'mwoauthconsumer-consumer-logpage' => 'journal du consommateur OAuth',
+	'mwoauthconsumer-consumer-logpage' => 'Journal du consommateur OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'Journal des approbations, rejets et désactivations de consommateurs OAuth enregistrés.',
 	'mwoauth-bad-request-missing-params' => 'Désolé,quelque chose s’est mal passé lors de la configuration de cette application connectée. <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Contactez le support]</span> pour vous aider à le corriger.
 
@@ -4181,6 +4182,8 @@ OAuth에 대한 더 자세한 정보를 얻으려면 [//www.mediawiki.org/wiki/E
 	'mwoauthmanagemygrants-review' => '접근 관리',
 	'mwoauthmanagemygrants-revoke' => '접근 취소',
 	'mwoauthmanagemygrants-grantaccept' => '컨슈머 부여됨',
+	'mwoauthmanagemygrants-update-text' => '이 양식을 사용해서 당신을 대신하여 응용 프로그램에 부여한 권한을 수정하세요',
+	'mwoauthmanagemygrants-revoke-text' => '아래 양식을 사용하여 당신을 대신하여 응용 프로그램에 접근할 권한을 회수하세요.',
 	'mwoauthmanagemygrants-confirm-legend' => '연결된 응용프로그램 관리',
 	'mwoauthmanagemygrants-update' => '접근 토큰 업데이트',
 	'mwoauthmanagemygrants-renounce' => '접근 토큰 인증 해제',
@@ -4262,6 +4265,7 @@ $5",
 	'mwoauth-error' => '응용 프로그램 연결 오류',
 	'mwoauth-grants-heading' => '요청된 권한:',
 	'mwoauth-grants-nogrants' => '애플리케이션은 권한을 요청하지 않았습니다.',
+	'mwoauth-acceptance-cancelled' => '"$1" 고객이 당신의 계정에 접근하지 못하도록 선택했습니다. 접근할 수 없으면 "$1" 고객이 제대로 동작하지 못할 수도 있습니다. "$1"에 돌아가거나 연결된 응용 프로그램을 [[Special:OAuthManageMyGrants|관리]]해주세요.',
 	'mwoauth-grant-group-page-interaction' => '문서로 상호 작용',
 	'mwoauth-grant-group-file-interaction' => '미디어로 상호 작용',
 	'mwoauth-grant-group-watchlist-interaction' => '당신의 주시문서로 상호작용',
