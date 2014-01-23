@@ -1246,7 +1246,9 @@ $messages['ce'] = array(
 	'mwoauth-consumer-description' => 'Цуьнах лаьцна:',
 	'mwoauth-consumer-wiki' => 'Проектан лело мега:',
 	'mwoauthconsumerregistration-stage' => 'Хьал',
+	'mwoauthmanageconsumers-description' => 'Цуьнах лаьцна',
 	'oauthlistconsumers' => 'ТеӀетохаршан могӀа',
+	'mwoauthlistconsumers-description' => 'Цуьнах лаьцна',
 	'mwoauthlistconsumers-wiki' => 'Проектан лело мега',
 	'mwoauthlistconsumers-callbackurl' => '«URL-адрес юха кхайкхаман» OAuth:',
 	'mwoauthlistconsumers-basicgrantsonly' => '(базан тӀекхачар бен)',
@@ -1254,6 +1256,7 @@ $messages['ce'] = array(
 	'oauthmanagemygrants' => 'ТӀетесна тӀетохаршан урхалладар',
 	'mwoauthmanagemygrants-showlist' => 'ТӀетесна тӀетохаршан могӀа',
 	'mwoauthmanagemygrants-none' => 'Хьан декъашхочун дӀаяздаран хӀинца яц тӀетесна тӀетохарш.',
+	'mwoauthmanagemygrants-description' => 'Цуьнах лаьцна',
 	'mwoauth-grant-group-email' => 'ДӀадахьийта кехат',
 	'mwoauth-grant-editmywatchlist' => 'Хьан тергаме могӀам табар',
 	'mwoauth-grant-editpage' => 'Тае йолуш йолу агӀо',
@@ -4169,6 +4172,10 @@ OAuth에 대한 더 자세한 정보를 얻으려면 [//www.mediawiki.org/wiki/E
 	'mwoauthlistconsumers-status-rejected' => '거부됨',
 	'mwoauthlistconsumers-status-expired' => '만료됨',
 	'oauthmanagemygrants' => '연결된 응용 프로그램 관리',
+	'mwoauthmanagemygrants-text' => '이 문서는 당신의 계정을 사용할 수 있는 모든 응용 프로그램을 나열합니다.
+당신을 대신하여 응용 프로그램에 부여한 권한이 이 응용 프로그램 접근의 범위를 제한합니다. 만약 당신이 자매 프로젝트에 접근하기 위해서 당신을 대신해 응용프로그램에 권한을 개별적으로 부여한다면 아래 각각의 프로젝트들에 대한 개별 설정을 볼 수 있습니다.
+
+연결된 응용 프로그램들은 OAuth 프로토콜을 사용하여 계정에 접근합니다. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth 연결된 응용 프로그램에 대해서 알아보세요])</span>',
 	'mwoauthmanagemygrants-notloggedin' => '이 페이지에 접근하려면 로그인해야 합니다.',
 	'mwoauthmanagemygrants-navigation' => '둘러보기:',
 	'mwoauthmanagemygrants-showlist' => '연결된 응용 프로그램 목록',
@@ -4309,6 +4316,8 @@ $5",
 	'action-mwoauthproposeconsumer' => '새 OAuth 컨슈머 제안',
 	'action-mwoauthupdateownconsumer' => '내가 제어할 수 있는 OAuth 컨슈머 업데이트',
 	'action-mwoauthviewsuppressed' => '억제된 OAuth 컨슈머 보기',
+	'mwoauth-listgrantrights-summary' => '다음은 사용자 권한에 관련된 접근 권한을 통해 부여된 OAuth 부여 목록입니다. 사용자는 자신의 계정에 대해 권한을 부여 할 수 있지만, 사용자가 응용 프로그램에 부여한 권한 설정에 따라 제한이 있습니다. 사용자를 대신하여 동작하는 응용 프로그램은 사용자가 갖고 있지 않은 권한은 사용할 수 없습니다. 
+각각의 권한에 대한 [[{{MediaWiki:Listgrouprights-helppage}}|추가 정보]]가 있습니다.',
 	'mwoauth-listgrants-grant' => '부여',
 	'mwoauth-listgrants-rights' => '권한',
 );
@@ -5076,6 +5085,7 @@ $5",
 	'mwoauth-grant-delete' => 'Slette sider, revisjoner og logginnlegg',
 	'mwoauth-grant-editinterface' => 'Redigere i MediaWiki-navnerommet og CSS/JavaScript i brukernavnerommet',
 	'mwoauth-grant-editmycssjs' => 'Redigere din egen CSS/JavaScript',
+	'mwoauth-grant-editmyoptions' => 'Rediger dine egne innstillinger',
 	'mwoauth-grant-editmywatchlist' => 'Redigere overvåkningslisten din',
 	'mwoauth-grant-editpage' => 'Redigere eksisterende sider',
 	'mwoauth-grant-editprotected' => 'Redigere beskyttede sider',
@@ -5815,6 +5825,8 @@ $messages['ru'] = array(
 	'mwoauth-consumer-reason' => 'Причина:',
 	'mwoauth-consumer-email-unconfirmed' => 'Адрес электронной почты вашей учетной записи еще не был подтверждён.',
 	'mwoauth-consumer-email-mismatched' => 'Указанный адрес электронной почты должен совпадать с адресом вашей учётной записи.',
+	'mwoauthconsumerregistration-navigation' => 'Навигацияː',
+	'mwoauthconsumerregistration-description' => 'Описание',
 	'mwoauthconsumerregistration-stage' => 'Состояние',
 	'mwoauthconsumerregistration-lastchange' => 'Последнее изменение',
 	'mwoauthconsumerregistration-resetsecretkey' => 'Сбросить секретный ключ, установив новое значение',
@@ -6192,6 +6204,7 @@ $5",
 	'mwoauth-grant-delete' => 'Ta bort sidor, revideringar och loggposter',
 	'mwoauth-grant-editinterface' => 'Redigera MediaWiki-namnrymden och CSS/JS för användaren',
 	'mwoauth-grant-editmycssjs' => 'Redigera din CSS/JS för din egen användare',
+	'mwoauth-grant-editmyoptions' => 'Redigera dina egna användarinställningar',
 	'mwoauth-grant-editmywatchlist' => 'Redigera din bevakningslista',
 	'mwoauth-grant-editpage' => 'Redigera befintliga sidor',
 	'mwoauth-grant-editprotected' => 'Redigera skyddade sidor',
@@ -6564,6 +6577,7 @@ $5',
 
 /** Vietnamese (Tiếng Việt)
  * @author Minh Nguyen
+ * @author Withoutaname
  */
 $messages['vi'] = array(
 	'mwoauth-desc' => 'Cho phép sử dụng OAuth 1.0a để xác minh khi truy cập API',
@@ -6700,6 +6714,7 @@ Tài khoản của bạn không được phép sử dụng tính năng Ứng d�
 	'mwoauth-grant-delete' => 'Xóa trang, phiên bản, và mục nhật ký',
 	'mwoauth-grant-editinterface' => 'Sửa không gian tên MediaWiki và CSS/JS cá nhân',
 	'mwoauth-grant-editmycssjs' => 'Sửa đổi CSS/JS cá nhân của bạn',
+	'mwoauth-grant-editmyoptions' => 'Sửa đổi tùy chọn của bạn',
 	'mwoauth-grant-editmywatchlist' => 'Sửa danh sách theo dõi của bạn',
 	'mwoauth-grant-editpage' => 'Sửa đổi các trang đã tồn tại',
 	'mwoauth-grant-editprotected' => 'Sửa đội các trang bị khóa',
