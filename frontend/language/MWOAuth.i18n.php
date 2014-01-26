@@ -373,12 +373,14 @@ See also:
 * $1 - grant name
 
 Defined grants (grant name refers: blockusers, createeditmovepage, ...):
+* {{msg-mw|Mwoauth-grant-checkuser}}
 * {{msg-mw|Mwoauth-grant-blockusers}}
 * {{msg-mw|Mwoauth-grant-createaccount}}
 * {{msg-mw|Mwoauth-grant-createeditmovepage}}
 * {{msg-mw|Mwoauth-grant-delete}}
 * {{msg-mw|Mwoauth-grant-editinterface}}
 * {{msg-mw|Mwoauth-grant-editmycssjs}}
+* {{msg-mw|Mwoauth-grant-editmyoptions}}
 * {{msg-mw|Mwoauth-grant-editmywatchlist}}
 * {{msg-mw|Mwoauth-grant-editpage}}
 * {{msg-mw|Mwoauth-grant-editprotected}}
@@ -4173,13 +4175,16 @@ OAuth에 대한 더 자세한 정보를 얻으려면 [//www.mediawiki.org/wiki/E
 	'mwoauthlistconsumers-status-expired' => '만료됨',
 	'oauthmanagemygrants' => '연결된 응용 프로그램 관리',
 	'mwoauthmanagemygrants-text' => '이 문서는 당신의 계정을 사용할 수 있는 모든 응용 프로그램을 나열합니다.
-당신을 대신하여 응용 프로그램에 부여한 권한이 이 응용 프로그램 접근의 범위를 제한합니다. 만약 당신이 자매 프로젝트에 접근하기 위해서 당신을 대신해 응용프로그램에 권한을 개별적으로 부여한다면 아래 각각의 프로젝트들에 대한 개별 설정을 볼 수 있습니다.
+응용 프로그램이 당신을 대신하여 인증할 때 응용 프로그램 부여한 권한이 접근 범위를 제한합니다. 
+
+
+만약 응용프로그램이 당신을 대신해 자매 프로젝트에 접근하도록 하기 위해서 응용프로그램에 개별적으로 권한을 부여한다면  각각의 프로젝트들에 대한 개별 설정이 아래에 보일 것 입니다.
 
 연결된 응용 프로그램들은 OAuth 프로토콜을 사용하여 계정에 접근합니다. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth 연결된 응용 프로그램에 대해서 알아보세요])</span>',
 	'mwoauthmanagemygrants-notloggedin' => '이 페이지에 접근하려면 로그인해야 합니다.',
 	'mwoauthmanagemygrants-navigation' => '둘러보기:',
 	'mwoauthmanagemygrants-showlist' => '연결된 응용 프로그램 목록',
-	'mwoauthmanagemygrants-none' => '계정ㅇ 연결된 응용 프로그램이 없습니다.',
+	'mwoauthmanagemygrants-none' => '계정에 연결된 응용 프로그램이 없습니다.',
 	'mwoauthmanagemygrants-user' => '게시자:',
 	'mwoauthmanagemygrants-description' => '설명',
 	'mwoauthmanagemygrants-wikiallowed' => '프로젝트에 허용됨:',
