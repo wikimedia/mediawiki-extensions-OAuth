@@ -1181,6 +1181,39 @@ Dióse-y el pase de consumidor '''$1''' ya'l pase secretu '''$2'''. ''Por favor,
 	'mwoauthlistconsumers-status-rejected' => 'refugada',
 	'mwoauthlistconsumers-status-expired' => 'caducada',
 	'oauthmanagemygrants' => 'Alministrar les aplicaciones coneutaes',
+	'mwoauthmanagemygrants-text' => "Esta páxina recueye toles aplicaciones que puen usar la so cuenta. Pa cualquier aplicación, l'ámbitu d'accesu ta llendáu polos permisos que-y concediera cuando la autorizó a actuar nel so nome. Si autorizó separadamente a una aplicación l'accesu nel so nome a otros proyeutos rellacionaos, más abaxo verá configuraciones separaes pa caún d'esos proyeutos.
+
+Les aplicaciones coneutaes anicien sesión na so cuenta usando'l protocolu OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Más información sobro aplicaciones coneutaes])</span>",
+	'mwoauthmanagemygrants-notloggedin' => "Tien d'aniciar sesión pa entrar nesta páxina.",
+	'mwoauthmanagemygrants-navigation' => 'Navegación:',
+	'mwoauthmanagemygrants-showlist' => "Llista d'aplicaciones coneutaes",
+	'mwoauthmanagemygrants-none' => 'Nun tien aplicaciones coneutaes cola so cuenta.',
+	'mwoauthmanagemygrants-user' => 'Editorial:',
+	'mwoauthmanagemygrants-description' => 'Descripción',
+	'mwoauthmanagemygrants-wikiallowed' => 'Permitida nel proyeutu:',
+	'mwoauthmanagemygrants-grants' => 'Permisos aplicables',
+	'mwoauthmanagemygrants-grantsallowed' => 'Permisos concedíos',
+	'mwoauthmanagemygrants-applicablegrantsallowed' => 'Permisos aplicables concedíos:',
+	'mwoauthmanagemygrants-review' => "alministrar l'accesu",
+	'mwoauthmanagemygrants-revoke' => 'torgar accesu',
+	'mwoauthmanagemygrants-grantaccept' => 'Permitíu',
+	'mwoauthmanagemygrants-update-text' => "Use'l formulariu de más abaxo pa camudar los permisos concedíos a una aplicación p'actuar nel so nome.",
+	'mwoauthmanagemygrants-revoke-text' => "Use'l formulariu de más abaxo pa torgar l'accesu a una aplicación p'actuar nel so nome.",
+	'mwoauthmanagemygrants-confirm-legend' => 'Alministrar aplicación coneutada',
+	'mwoauthmanagemygrants-update' => 'Anovar permisos',
+	'mwoauthmanagemygrants-renounce' => 'Desautorizar',
+	'mwoauthmanagemygrants-action' => "Cambiar l'estáu:",
+	'mwoauthmanagemygrants-confirm-submit' => "Anovar l'estáu del pase d'accesu",
+	'mwoauthmanagemygrants-success-update' => "Anovóse'l pase d'accesu d'esti consumidor.",
+	'mwoauthmanagemygrants-success-renounce' => "Desanicióse'l pase d'accesu d'esti consumidor.",
+	'logentry-mwoauthconsumer-propose' => '$1 {{GENDER:$2|propunxo}} un consumidor OAuth (clave de consumidor $4)',
+	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|anovó}} un consumidor OAuth (clave de consumidor $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 {{GENDER:$2|aprobó}} un consumidor OAuth pa $3 (clave de consumidor $4)',
+	'logentry-mwoauthconsumer-reject' => '$1 {{GENDER:$2|refugó}} un consumidor OAuth pa $3 (clave de consumidor $4)',
+	'logentry-mwoauthconsumer-disable' => '$1 {{GENDER:$2|desactivó}} un consumidor OAuth pa $3 (clave de consumidor $4)',
+	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|reactivó}} un consumidor OAuth pa $3 (clave de consumidor $4)',
+	'mwoauthconsumer-consumer-logpage' => 'Rexistru de consumidor OAuth',
+	'mwoauthconsumer-consumer-logpagetext' => "Rexistru d'aprobaciones, refugos y desactivaciones de los consumidores OAuth rexistraos.",
 );
 
 /** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
@@ -4082,7 +4115,7 @@ IP 주소에 접근하는 것을 제한해주세요.
 	'mwoauthconsumerregistration-update-text' => '아래의 양식을 사용하여 당신이 관리하는 OAuth 고객의 속성을 업데이트하세요. 
 
 여기의 모든 값은 이전 값을 덮어쓸 것입니다. 이 값을 지우려고 하지 않는다면 빈 필드는 비워두세요.',
-	'mwoauthconsumerregistration-maintext' => '이 문서는 개발자가 제안하고 이 사이트의 레지스트리에서 OAuth 고객 응용 프로그램을 업데이트할 수 있도록 합니다.
+	'mwoauthconsumerregistration-maintext' => '이 문서는 개발자가 제안하고 이 사이트의 레지스트리에서 OAuth 컨슈머 응용 프로그램을 업데이트할 수 있도록 합니다.
 
 여기서 할 수 있는 작업:
 * [[Special:OAuthConsumerRegistration/propose|새로운 고객에게 토큰을 요청]].
@@ -4105,7 +4138,7 @@ OAuth에 대한 더 자세한 정보를 얻으려면 [//www.mediawiki.org/wiki/E
 	'mwoauthconsumerregistration-resetsecretkey' => '비밀 키를 새 값으로 재설정',
 	'mwoauthconsumerregistration-proposed' => "당신의 OAuth 고객 요청을 받았습니다.
 
-'''\$1''' 고객 토큰과 '''\$2''' 비밀 토큰을 재할당했습니다.
+'''\$1''' 컨슈머 토큰과 '''\$2''' 비밀 토큰을 재할당했습니다.
 \"나중에 참조하기 위해서 이것을 기록해주세요.\"",
 	'mwoauthconsumerregistration-updated' => 'OAuth 컨슈머 등록을 성공적으로 업데이트했습니다.',
 	'mwoauthconsumerregistration-secretreset' => "고객에게 '''\$1'''의 비밀 토큰을 할당했습니다. \"나중에 참조하기 위해서 이것을 기록해주세요.\"",
@@ -4116,7 +4149,7 @@ OAuth에 대한 더 자세한 정보를 얻으려면 [//www.mediawiki.org/wiki/E
 	'mwoauthmanageconsumers-showrejected' => '거부된 요청',
 	'mwoauthmanageconsumers-showexpired' => '만료된 요청',
 	'mwoauthmanageconsumers-main' => '주요',
-	'mwoauthmanageconsumers-maintext' => '이 문서는 OAuth(see http://oauth.net)를 다루는 고객 지원서 요청과 인증된 OAuth 고객 관리용입니다.',
+	'mwoauthmanageconsumers-maintext' => '이 문서는 OAuth(see http://oauth.net)를 다루는 컨슈머 지원서 요청과 인증된 OAuth 고객 관리용입니다.',
 	'mwoauthmanageconsumers-queues' => '아래에서 컨슈머 확인 대기열을 선택하세요:',
 	'mwoauthmanageconsumers-q-proposed' => '제안된 컨슈머 요청의 대기열',
 	'mwoauthmanageconsumers-q-rejected' => '거부된 컨슈머 요청의 대기열',
@@ -4175,7 +4208,7 @@ OAuth에 대한 더 자세한 정보를 얻으려면 [//www.mediawiki.org/wiki/E
 	'mwoauthlistconsumers-status-expired' => '만료됨',
 	'oauthmanagemygrants' => '연결된 응용 프로그램 관리',
 	'mwoauthmanagemygrants-text' => '이 문서는 당신의 계정을 사용할 수 있는 모든 응용 프로그램을 나열합니다.
-응용 프로그램이 당신을 대신하여 인증할 때 응용 프로그램 부여한 권한이 접근 범위를 제한합니다. 
+응용 프로그램이 당신을 대신하여 인증할 때 응용 프로그램에 부여한 권한이 접근 범위를 제한합니다. 
 
 
 만약 응용프로그램이 당신을 대신해 자매 프로젝트에 접근하도록 하기 위해서 응용프로그램에 개별적으로 권한을 부여한다면  각각의 프로젝트들에 대한 개별 설정이 아래에 보일 것 입니다.
