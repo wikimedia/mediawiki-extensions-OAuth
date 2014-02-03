@@ -1214,6 +1214,10 @@ Les aplicaciones coneutaes anicien sesión na so cuenta usando'l protocolu OAuth
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|reactivó}} un consumidor OAuth pa $3 (clave de consumidor $4)',
 	'mwoauthconsumer-consumer-logpage' => 'Rexistru de consumidor OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => "Rexistru d'aprobaciones, refugos y desactivaciones de los consumidores OAuth rexistraos.",
+	'mwoauthdatastore-bad-token' => "Nun s'alcontró dengún pase que case cola so solicitú",
+	'mwoauthdatastore-bad-verifier' => 'El códigu de comprobación que se dio nun ye válidu',
+	'mwoauthdatastore-invalid-token-type' => 'O tipu de pase solicitáu ye inválidu.',
+	'mwoauthgrants-general-error' => 'Hebo un error na so solicitú OAuth.',
 );
 
 /** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
@@ -2395,9 +2399,12 @@ N!<span class="plainlinks mw-mwoautherror-details">کلید ناشناخته OAu
  */
 $messages['fi'] = array(
 	'mwoauth-prefs-managegrants' => 'Liitetyt sovellukset:',
+	'mwoauth-prefs-managegrantslink' => 'Hallinnoi $1 {{PLURAL:$1|yhdistettyä sovellusta}}',
+	'mwoauth-consumer-name' => 'Sovelluksen nimi:',
 	'mwoauth-consumer-user' => 'Julkaisija:',
 	'mwoauth-consumer-stage' => 'Nykyinen status:',
 	'mwoauth-consumer-wiki-thiswiki' => 'Nykyinen projekti ($1)',
+	'mwoauth-consumer-reason' => 'Syy:',
 	'mwoauth-consumer-stage-proposed' => 'ehdotettu',
 	'mwoauth-consumer-stage-rejected' => 'hylätty',
 	'mwoauth-consumer-stage-expired' => 'vanhentunut',
