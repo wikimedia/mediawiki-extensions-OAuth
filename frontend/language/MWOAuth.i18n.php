@@ -1277,6 +1277,7 @@ $messages['ca'] = array(
  * @author Умар
  */
 $messages['ce'] = array(
+	'mwoauth-desc' => 'OAuth 1.0a лелича йиш хуьлуьйту API чудаха',
 	'mwoauth-prefs-managegrants' => 'ТӀетесна тӀетохарш:',
 	'mwoauth-prefs-managegrantslink' => 'ТӀетесна $1 {{PLURAL:$1|1=тӀетохаран урхалладар|тӀетохаршан урхалладар}}', # Fuzzy
 	'mwoauth-consumer-allwikis' => 'ХӀокху сайтан массо проекташ',
@@ -1297,6 +1298,7 @@ $messages['ce'] = array(
 	'mwoauthmanagemygrants-none' => 'Хьан декъашхочун дӀаяздаран хӀинца яц тӀетесна тӀетохарш.',
 	'mwoauthmanagemygrants-description' => 'Цуьнах лаьцна',
 	'mwoauth-grant-group-email' => 'ДӀадахьийта кехат',
+	'mwoauth-grant-editmyoptions' => 'Табе хьай гӀирс',
 	'mwoauth-grant-editmywatchlist' => 'Хьан тергаме могӀам табар',
 	'mwoauth-grant-editpage' => 'Тае йолуш йолу агӀо',
 	'mwoauth-grant-editprotected' => 'ГӀоралла дина агӀонаш таяр',
@@ -5912,6 +5914,11 @@ $messages['ru'] = array(
 	'mwoauth-grant-group-email' => 'Отправить письмо',
 	'mwoauth-grant-blockusers' => 'Блокировать и разблокировать пользователей',
 	'mwoauth-grant-createaccount' => 'Создавать учетные записи',
+	'mwoauth-grant-createeditmovepage' => 'Создание, правка и переименование страниц',
+	'mwoauth-grant-delete' => 'Удаление страниц, правок и записей журнала',
+	'mwoauth-grant-editinterface' => 'Правка пространства имён MediaWiki и пользовательских CSS/JavaScript',
+	'mwoauth-grant-editmycssjs' => 'Правка собственных пользовательских CSS/JavaScript',
+	'mwoauth-grant-editmyoptions' => 'Правка собственных пользовательских настроек',
 	'mwoauth-grant-editmywatchlist' => 'Редактировать ваш список наблюдения',
 	'mwoauth-grant-editpage' => 'Редактировать существующие страницы',
 	'mwoauth-grant-editprotected' => 'Редактировать защищенные страницы',
@@ -6923,9 +6930,12 @@ $messages['zh-hans'] = array(
 	'mwoauthlistconsumers-status-rejected' => '拒绝',
 	'mwoauthlistconsumers-status-expired' => '已过期',
 	'oauthmanagemygrants' => '管理已连接的应用程序',
+	'mwoauthmanagemygrants-text' => '此页面列出了可以使用您的账户的所有应用程序。这些应用程序的可访问范围取决于您授予这些应用程序可代表您操作时所允许的限制条件。如果您单独授予一个应用程序可代表您访问不同的姊妹项目，那么您将会在下面看到每个项目的单独配置。
+
+已连接的应用程序将通过 OAuth 协议访问您的账户。<span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth详细了解有关已连接的应用程序])</span>',
 	'mwoauthmanagemygrants-notloggedin' => '您必须登录后才能访问此页。',
 	'mwoauthmanagemygrants-navigation' => '导航：',
-	'mwoauthmanagemygrants-showlist' => '已连接应用的列表',
+	'mwoauthmanagemygrants-showlist' => '已连接的应用程序列表',
 	'mwoauthmanagemygrants-none' => '还没有应用程序连接到你的账户。',
 	'mwoauthmanagemygrants-user' => '发布者：',
 	'mwoauthmanagemygrants-description' => '描述',
