@@ -274,7 +274,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			);
 		}
 
-		$this->getOutput()->addModuleStyles( array( 'mediawiki.ui', 'ext.MWOAuth.AuthorizeForm' ) );
+		$this->getOutput()->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.MWOAuth.AuthorizeForm' ) );
 		$this->getOutput()->addModules( 'ext.MWOAuth.AuthorizeDialog' );
 
 		// Check if this user has authorized grants for this consumer previously
