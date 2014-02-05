@@ -6627,6 +6627,13 @@ $5',
 	'mwoauth-listgrants-rights' => 'Права',
 );
 
+/** Uzbek (oʻzbekcha)
+ * @author Sociologist
+ */
+$messages['uz'] = array(
+	'mwoauth-prefs-managegrants' => 'Yoqilgan dasturlar:',
+);
+
 /** Vietnamese (Tiếng Việt)
  * @author Minh Nguyen
  * @author Withoutaname
