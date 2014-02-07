@@ -5591,6 +5591,7 @@ $messages['oc'] = array(
 
 /** Polish (polski)
  * @author Chrumps
+ * @author Peter Bowman
  * @author Rzuwig
  * @author Ty221
  * @author Vuh
@@ -5626,6 +5627,8 @@ $messages['pl'] = array(
 	'mwoauth-grant-editmyoptions' => 'Edytuj swoje preferencje',
 	'mwoauth-grant-editpage' => 'Edytowanie istniejących stron',
 	'mwoauth-grant-useoauth' => 'Podstawowe uprawnienia',
+	'right-mwoauthproposeconsumer' => 'Proponowanie nowych konsumentów OAuth',
+	'right-mwoauthupdateownconsumer' => 'Aktualizowanie kontrolowanych konsumentów OAuth',
 	'right-mwoauthmanageconsumer' => 'Zarządzanie konsumentami OAuth',
 	'right-mwoauthmanagemygrants' => 'Zarządzanie włączonymi aplikacjami OAuth',
 	'action-mwoauthmanageconsumer' => 'zarządzanie konsumentami OAuth',
