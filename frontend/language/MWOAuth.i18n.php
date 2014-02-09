@@ -5630,6 +5630,7 @@ $messages['pl'] = array(
 	'right-mwoauthproposeconsumer' => 'Proponowanie nowych konsumentów OAuth',
 	'right-mwoauthupdateownconsumer' => 'Aktualizowanie kontrolowanych konsumentów OAuth',
 	'right-mwoauthmanageconsumer' => 'Zarządzanie konsumentami OAuth',
+	'right-mwoauthviewprivate' => 'Podgląd prywatnych danych OAuth',
 	'right-mwoauthmanagemygrants' => 'Zarządzanie włączonymi aplikacjami OAuth',
 	'action-mwoauthmanageconsumer' => 'zarządzanie konsumentami OAuth',
 );
