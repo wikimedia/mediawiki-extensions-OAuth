@@ -3729,6 +3729,7 @@ Le applicazioni connesse accedono alla tua utenza usando il protocollo OAuth. <s
 	'mwoauthmanagemygrants-confirm-submit' => 'Aggiorna lo stato del token di accesso',
 	'mwoauthmanagemygrants-success-update' => 'Il token di accesso per questo cliente è stato aggiornato.',
 	'mwoauthmanagemygrants-success-renounce' => 'Il token di accesso per questo cliente è stato cancellato.',
+	'mwoauthmanagemygrants-useoauth-tooltip' => "Perché non posso aggiornare questa assegnazione? Questa concessione offre le autorizzazioni di base per l'applicazione connessa che sono richieste per funzionare correttamente. Se non si desidera che questa applicazione connessa abbia questi diritti, si dovrebbe revocare l'accesso all'applicazione.",
 	'logentry-mwoauthconsumer-propose' => '$1 {{GENDER:$2|ha proposto}} un cliente OAuth (chiave cliente $4)',
 	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|ha aggiornato}} un cliente OAuth (chiave cliente $4)',
 	'logentry-mwoauthconsumer-approve' => '$1 {{GENDER:$2|ha approvato}} un cliente OAuth di $3 (chiave cliente $4)',
@@ -4224,7 +4225,7 @@ OAuth에 대한 더 자세한 정보를 얻으려면 [//www.mediawiki.org/wiki/E
 응용 프로그램이 당신을 대신하여 인증할 때 응용 프로그램에 부여한 권한이 접근 범위를 제한합니다. 
 
 
-만약 응용프로그램이 당신을 대신해 자매 프로젝트에 접근하도록 하기 위해서 응용프로그램에 개별적으로 권한을 부여한다면  각각의 프로젝트들에 대한 개별 설정이 아래에 보일 것 입니다.
+만약 응용프로그램이 당신을 대신해 자매 프로젝트에 접근하도록 하기 위해서 응용프로그램에 개별적으로 권한을 부여한다면  각각의 프로젝트들에 대한 개별 설정이 아래에 보일 것입니다.
 
 연결된 응용 프로그램들은 OAuth 프로토콜을 사용하여 계정에 접근합니다. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth 연결된 응용 프로그램에 대해서 알아보세요])</span>',
 	'mwoauthmanagemygrants-notloggedin' => '이 페이지에 접근하려면 로그인해야 합니다.',
@@ -4249,6 +4250,7 @@ OAuth에 대한 더 자세한 정보를 얻으려면 [//www.mediawiki.org/wiki/E
 	'mwoauthmanagemygrants-confirm-submit' => '접근 토큰 상태 업데이트',
 	'mwoauthmanagemygrants-success-update' => '이 컨슈머에 대한 접근 토큰이 업데이트되었습니다.',
 	'mwoauthmanagemygrants-success-renounce' => '이 컨슈머에 대한 접근 토큰이 삭제되었습니다.',
+	'mwoauthmanagemygrants-useoauth-tooltip' => '권한 부여를 왜 업데이트할 수 없나요? 이 권한 부여는 당신의 연결된 응용 프로그램에 제대로 작동하기 위해 필요한 기본 권한을 부여합니다. 만약 당신이 이 연결된 응용 프로그램에 이 권한을 부여하고 싶지 않다면 응용 프로그램의 접근을 취소해야합니다.',
 	'logentry-mwoauthconsumer-propose' => '$1 사용자가 OAuth 컨슈머를 {{GENDER:$2|제안했습니다}} (컨슈머 키 $4)',
 	'logentry-mwoauthconsumer-update' => '$1 사용자가 OAuth 컨슈머를 {{GENDER:$2|업데이트했습니다}} (컨슈머 키 $4)',
 	'logentry-mwoauthconsumer-approve' => '$1 사용자가 $3에 의해 OAuth 컨슈머를 {{GENDER:$2|승인했습니다}} (컨슈머 키 $4)',
@@ -4648,6 +4650,7 @@ $messages['mk'] = array(
 	'mwoauthmanagemygrants-confirm-submit' => 'Измени статус на пристап. шифра',
 	'mwoauthmanagemygrants-success-update' => 'Пристапната шифра на овој потрошувач е изменета.',
 	'mwoauthmanagemygrants-success-renounce' => 'Пристапната шифра на овој потрошувач е избришана.',
+	'mwoauthmanagemygrants-useoauth-tooltip' => 'Зошто не можам да го подновам ова доделување? Ова доделување му ги дава на поврзаниот прилог потребните дозволи за да работи како што треба. Ако не сакате да ги има тие права, треба да му го одземете пристапот.',
 	'logentry-mwoauthconsumer-propose' => '$1 {{GENDER:$2|предложи}} потрошувач на OAuth (потрошувачки клуч $4)',
 	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|измени}} потрошувач на OAuth (потрошувачки клуч $4)',
 	'logentry-mwoauthconsumer-approve' => '$1 {{GENDER:$2|одобри}} потрошувач на OAuth со $3 (потрошувачки клуч $4)',
