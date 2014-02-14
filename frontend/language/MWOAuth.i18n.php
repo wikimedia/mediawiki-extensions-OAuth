@@ -5885,6 +5885,7 @@ $messages['ru'] = array(
 	'mwoauth-consumer-email-mismatched' => 'Указанный адрес электронной почты должен совпадать с адресом вашей учётной записи.',
 	'mwoauthconsumerregistration-navigation' => 'Навигацияː',
 	'mwoauthconsumerregistration-description' => 'Описание',
+	'mwoauthconsumerregistration-email' => 'Контактный адрес электронной почты',
 	'mwoauthconsumerregistration-stage' => 'Состояние',
 	'mwoauthconsumerregistration-lastchange' => 'Последнее изменение',
 	'mwoauthconsumerregistration-resetsecretkey' => 'Сбросить секретный ключ, установив новое значение',
@@ -5894,6 +5895,7 @@ $messages['ru'] = array(
 	'mwoauthmanageconsumers-showrejected' => 'Отклонённые запросы',
 	'mwoauthmanageconsumers-showexpired' => 'Устаревшие запросы',
 	'mwoauthmanageconsumers-description' => 'Описание',
+	'mwoauthmanageconsumers-email' => 'Контактный адрес электронной почты',
 	'mwoauthmanageconsumers-lastchange' => 'Последнее изменение',
 	'mwoauthmanageconsumers-action' => 'Изменить состояние:',
 	'mwoauthmanageconsumers-reason' => 'Причина:',
@@ -5912,6 +5914,7 @@ $messages['ru'] = array(
 	'mwoauthmanagemygrants-text' => 'На этой странице перечислены все приложения, которые могут использовать вашу учетную запись. Область доступа каждого такого приложения ограничена разрешениями, которые вы ему предоставили для действий от вашего имени. Если вы предоставили приложению доступ к вашей учётной записи на различных родственных проектах, то вы можете просмотреть отдельные настройки для каждого такого проекта ниже.
 
 Подключенные приложения получают доступ к вашей учетной записи с помощью протокола OAuth. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Узнать больше о подключаемых приложениях])</span>',
+	'mwoauthmanagemygrants-navigation' => 'Навигацияː',
 	'mwoauthmanagemygrants-showlist' => 'Список подключенных приложений',
 	'mwoauthmanagemygrants-none' => 'Ещё нет приложений, подключенных к вашей учётной записи.',
 	'mwoauthmanagemygrants-description' => 'Описание',
@@ -6035,6 +6038,7 @@ $messages['sr-el'] = array(
  * @author Ainali
  * @author Eihpossophie
  * @author Jopparn
+ * @author Lokal Profil
  * @author Skalman
  * @author WikiPhoenix
  */
@@ -6085,7 +6089,7 @@ $messages['sv'] = array(
 	'mwoauth-consumer-stage-approved' => 'godkända',
 	'mwoauth-consumer-stage-disabled' => 'inaktiverade',
 	'mwoauth-consumer-stage-suppressed' => 'undertryckta',
-	'oauthconsumerregistration' => 'OAuth konsumentenregistrering', # Fuzzy
+	'oauthconsumerregistration' => 'Registrering för OAuth-konsumenter',
 	'mwoauthconsumerregistration-notloggedin' => 'Du behöver vara inloggad för att komma åt denna sida.',
 	'mwoauthconsumerregistration-navigation' => 'Navigering:',
 	'mwoauthconsumerregistration-propose' => 'Föreslå ny kund',
@@ -6111,7 +6115,7 @@ Alla värden här skriver över eventuella tidigare värden. Lämna inte tomma f
 	'mwoauthconsumerregistration-proposed' => "Du har tilldelats konsumenttoken av '''$1''' och en hemlig token av '''$2'''. ''Vänligen anteckna dessa för framtida bruk.''",
 	'mwoauthconsumerregistration-updated' => 'Ditt OAuth konsumentregister uppdaterades framgångsrikt',
 	'mwoauthconsumerregistration-secretreset' => "Du har blivit tilldelad en konsumenttoken av '''$1'''. ''Vänligen anteckna detta för framtida bruk.''",
-	'oauthmanageconsumers' => 'Hantera OAuthkonsumenter', # Fuzzy
+	'oauthmanageconsumers' => 'Hantera OAuth-konsumenter',
 	'mwoauthmanageconsumers-notloggedin' => 'Du behöver vara inloggad för att komma åt denna sida.',
 	'mwoauthmanageconsumers-type' => 'Köer:',
 	'mwoauthmanageconsumers-showproposed' => 'Föreslagna ansökningar',
@@ -6156,10 +6160,10 @@ Alla värden här skriver över eventuella tidigare värden. Lämna inte tomma f
 	'mwoauthmanageconsumers-success-reanable' => 'Konsumenten har återaktiverats.',
 	'mwoauthmanageconsumers-search-name' => 'Konsument med detta namn',
 	'mwoauthmanageconsumers-search-publisher' => 'Konsumenter av denna användare',
-	'oauthlistconsumers' => 'Lista OAuthkonsumenter', # Fuzzy
-	'mwoauthlistconsumers-legend' => 'Sök efter OAuthkonsumenter', # Fuzzy
+	'oauthlistconsumers' => 'Lista OAuth-applikationer',
+	'mwoauthlistconsumers-legend' => 'Sök efter OAuth-applikationer',
 	'mwoauthlistconsumers-view' => 'detaljer',
-	'mwoauthlistconsumers-none' => 'Inget konsumenter hittade som uppfyller detta kriterium.', # Fuzzy
+	'mwoauthlistconsumers-none' => 'Inga applikationer hittades som uppfyller detta kriterium.',
 	'mwoauthlistconsumers-name' => 'Applikationsnamn',
 	'mwoauthlistconsumers-version' => 'Konsumentversion',
 	'mwoauthlistconsumers-user' => 'Utgivare',
