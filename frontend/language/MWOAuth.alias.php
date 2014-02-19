@@ -24,6 +24,16 @@ $specialPageAliases['ar'] = array(
 	'OAuthManageConsumers' => array( 'التحكم_بمستهلكي_أو_أوث' ),
 	'OAuthListConsumers' => array( 'عرض_مستهلكي_أو_أوث' ),
 	'OAuthManageMyGrants' => array( 'التحكم_بممنوحاتي_أو_أوث', 'ممنوحات_أو_أوث' ),
+	'OAuth' => array( 'أو_أوث', 'مو_أو_أوث' ),
+);
+
+/** Egyptian Spoken Arabic (مصرى) */
+$specialPageAliases['arz'] = array(
+	'OAuthConsumerRegistration' => array( 'تسجيل_او_اوت', 'تسجيل_مستهلك_او_اوت' ),
+	'OAuthManageConsumers' => array( 'التحكم_بمستهلكى_او_اوت' ),
+	'OAuthListConsumers' => array( 'عرض_مستهلكين_او_اوت' ),
+	'OAuthManageMyGrants' => array( 'التحكم-بممنوحاتى_او_اوت', 'ممنوحات_او_اوت' ),
+	'OAuth' => array( 'او-اوت', 'مو_او_اوت' ),
 );
 
 /** German (Deutsch) */
@@ -76,5 +86,7 @@ $specialPageAliases['mk'] = array(
 /** Simplified Chinese (中文（简体）‎) */
 $specialPageAliases['zh-hans'] = array(
 	'OAuthConsumerRegistration' => array( 'OAuth消费者注册', 'OAuth注册' ),
+	'OAuthManageConsumers' => array( 'OAuth管理消费者' ),
 	'OAuthListConsumers' => array( 'OAuth消费者列表' ),
+	'OAuthManageMyGrants' => array( 'OAuth管理我的补助', 'OAuth补助' ),
 );
