@@ -2208,9 +2208,22 @@ $messages['fa'] = array(
 	'mwoauthconsumerregistration-propose' => 'پیشنهاد مصرف کننده جدید',
 	'mwoauthconsumerregistration-list' => 'فهرست مصرف‌کننده من',
 	'mwoauthconsumerregistration-main' => 'اصلی',
+	'mwoauthconsumerregistration-propose-text' => 'توسعه‌دهندگان باید از فرم زیر برای پاسخ به یک مصرف‌کنندهٔ جدید اُآت استفاده کنند (مشاهدهٔ [//www.mediawiki.org/wiki/Extension:OAuth extension documentation] برای جزئیات بیشتر). پس از ارائهٔ این فرم، شما نشانه‌ای دریافت خواهید کرد که درخواست شما برای شناسایی خود به مدیاویکی مورد استفاده قرار خواهد گرفت. سرپرست اُآت نیاز به تأیید درخواست شما دارد قبل از اینکه بتواند توسط کاربران دیگر تصویب شود.
+چند توصیه و اظهار:
+*سعی به استفاده ممکن به اندازهٔ کمک‌های مالی اندک. اجتناب از کمک‌هایی که اکنون در حقیقت مورد نیاز نیستند.
+*نسخه‌ها فرم "اصلی،فرعی،آزاد" هستند (آخرین دو اختیاری بودن) و افزایش به اندازهٔ تغییرات کمک مورد نیاز هستند.
+*لطفاً یک کلید عمومی آر‌اس‌ای (در فرمت پی‌ای‌ام) اگر ممکن است ارائه کنید؛ در غیر این‌ صورت یک نشانهٔ سری (امنیت کمتر) باید مورد استفاده قرار گیرد.
+*از زمینهٔ محدودیت‌های جی‌سون برای محدود کردن دسترسی این مصرف‌کننده به آدرس آی‌پی در آن محدوده‌های سی‌آی‌دی‌آر استفاده کنید.
+*شما می‌توانید از یک شناسهٔ پروژه برای محدود کردن مصرف‌کننده به یک پروژه‌ٔ تک در این سایت استفاده کنید (برای همهٔ پروژه‌ها از "*" استفاده کنید).
+*آدرس رایانامهٔ ارائه شده باید با حساب رایانامهٔ حساب شما مطابقت داشته باشد (که باید تأیید شده‌باشد).',
 	'mwoauthconsumerregistration-update-text' => 'فرم زیر را برای بروزرسانی جوانب مصرف‌کنندگان OAuth که شما کنترل می‌کنید، استفاده کنید.
 
 همه مقادیر برروی مقادیر گذشته ذخیره می‌شوند. هیچ مقداری را خالی نگذارید مگر اینکه قصد پاک کردن آن مقادیر را داشته باشید.',
+	'mwoauthconsumerregistration-maintext' => 'این صفحه برای اجازه دادن به اهداف توسعه‌دهندگان است و به‌روز رسانی درخواست‌های مصرف‌کنندهٔ آُآت در ثبت این سایت است.
+از اینجا، شما می توانید:
+* [[Special:OAuthConsumerRegistration/propose|درخوایت یک نشانه برای مصرف‌کنندهٔ جدید]].
+* [[Special:OAuthConsumerRegistration/list|مدیریت مصرف‌کنندگان موجود خود]].
+برای اطلاعات بیشتر دربارهٔ‌ اُآت، لطفاً [//www.mediawiki.org/wiki/Extension:OAuth extension documentation] را مشاهده کنید.',
 	'mwoauthconsumerregistration-propose-legend' => 'برنامهٔ مصرف‌کننده جدید OAuth',
 	'mwoauthconsumerregistration-update-legend' => 'به‌روزرسانی برنامهٔ مصرف‌کننده OAuth',
 	'mwoauthconsumerregistration-propose-submit' => 'پشیناهد مصرف‌کننده',
@@ -2225,7 +2238,11 @@ $messages['fa'] = array(
 	'mwoauthconsumerregistration-lastchange' => 'آخرین تغییر',
 	'mwoauthconsumerregistration-manage' => 'مدیریت',
 	'mwoauthconsumerregistration-resetsecretkey' => 'بازنشانی کلید رمز به مقداری جدید',
+	'mwoauthconsumerregistration-proposed' => "درخواست مصرف کننده OAuth شما دریافت شده‌است.
+شما نشانهٔ مصرف کنندهٔ '''$1''' و یک نشانهٔ سری '''$2''' را تعیین کرده‌اید.
+''لطفاً این‌ها را برای منابع آینده ضبط کنید.''",
 	'mwoauthconsumerregistration-updated' => 'ثبت OAuth شما با موفقیت به‌روزرسانی شد.',
+	'mwoauthconsumerregistration-secretreset' => "شما یک نشانهٔ سری مصرف‌کنندهٔ '''$1''' را تعیین کرده‌اید. ''لطفاً این را برای منبع آینده ضبط کنید.''",
 	'oauthmanageconsumers' => 'مدیریت مصرف‌کننده‌های OAuth',
 	'mwoauthmanageconsumers-notloggedin' => 'شما برای دسترسی به این صفحه باید وارد شده باشید.',
 	'mwoauthmanageconsumers-type' => 'صف:',
@@ -2233,6 +2250,7 @@ $messages['fa'] = array(
 	'mwoauthmanageconsumers-showrejected' => 'درخواست‌های رد شده',
 	'mwoauthmanageconsumers-showexpired' => 'درخواست‌های منقضی‌شده',
 	'mwoauthmanageconsumers-main' => 'اصلی',
+	'mwoauthmanageconsumers-maintext' => 'این صفحه برای کنترل درخواست‌های برنامهٔ مصرف‌کننده (مشاهدهٔ  http://oauth.net) و مدیریت تآٔسیس مصرف‌کنند‌گان آُآت است.',
 	'mwoauthmanageconsumers-queues' => 'یک صف تأیید مصرف‌کننده از زیر انتخاب کنید:',
 	'mwoauthmanageconsumers-q-proposed' => 'به صف‌کردن درخواست پینشهاد مصرف‌کننده',
 	'mwoauthmanageconsumers-q-rejected' => 'صف درخواست‌های رده شده مصرف‌کننده',
@@ -2307,6 +2325,8 @@ $messages['fa'] = array(
 	'mwoauthmanagemygrants-review' => 'مدیریت دسترسی',
 	'mwoauthmanagemygrants-revoke' => 'لغو دسترسی',
 	'mwoauthmanagemygrants-grantaccept' => 'اعطا',
+	'mwoauthmanagemygrants-update-text' => 'استفاده از فرم زیر برای تغییر مجوز‌های اعطا شده به برنامه برای عمل از طرف شما.',
+	'mwoauthmanagemygrants-revoke-text' => 'استفاده از فرم زیر برای لغو دسترسی برای درخواست به عمل از طرف شما.',
 	'mwoauthmanagemygrants-confirm-legend' => 'مدیریت برنامه‌های متصل',
 	'mwoauthmanagemygrants-update' => 'اعطای بارگذاری',
 	'mwoauthmanagemygrants-renounce' => 'برداشتن ثبت',
@@ -2314,6 +2334,7 @@ $messages['fa'] = array(
 	'mwoauthmanagemygrants-confirm-submit' => 'به‌روزرسانی وضعیت رمز دسترسی',
 	'mwoauthmanagemygrants-success-update' => 'رمز دسترسی برای این مصرف‌کننده به‌روز شد.',
 	'mwoauthmanagemygrants-success-renounce' => 'رمز دسترسی برای این مصرف‌کننده حذف  شد.',
+	'mwoauthmanagemygrants-useoauth-tooltip' => 'چرا من نمی‌توانم این کمک را به روز کنم؟ این کمک به درخواست متصل شما مجوزهای اساسی می‌دهد که نیاز به عملکرد مناسب می‌دهد. اگز شما این درخواست متصل را برای داشتن این حقوق نمی‌خواهید، شما باید دسترسی برنامه را لغو کنید.',
 	'logentry-mwoauthconsumer-propose' => '$1 {{GENDER:$2|پیشنهاد }} یک مصرف‌کننده  OAuth داد  (کد مصرف‌کننده $4)',
 	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|به‌روز کرد}} یک مصرف‌کننده  OAuth با  (کد مصرف‌کننده $4)',
 	'logentry-mwoauthconsumer-approve' => '$1  یک مصرف‌کننده  OAuth  برای  $3 {{GENDER:$2|تائید کرد}}  (کد مصرف‌کننده $4)',
@@ -2322,6 +2343,8 @@ $messages['fa'] = array(
 	'logentry-mwoauthconsumer-reenable' => '$1  یک مصرف‌کننده  OAuth  برای  $3 {{GENDER:$2|دوباره فعال کرد}}  (کد مصرف‌کننده $4)',
 	'mwoauthconsumer-consumer-logpage' => 'سیاهه مصرف OAuth',
 	'mwoauthconsumer-consumer-logpagetext' => 'سیاههٔ تائیدها، ردها و غیرفعال‌سازی مصرف‌کنندگان رد شده OAuth.',
+	'mwoauth-bad-request-missing-params' => 'با عرض پوزش،‌ چیزی با پیکربندی این برنامهٔ متصل اشتباه شده. کمک گرفتن برای نصب آن <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Contact support]</span>.
+<span class="plainlinks mw-mwoautherror-details">پارامترهای گم‌شدهٔ اُآت, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>',
 	'mwoauth-bad-request-invalid-action' => 'پوزش، خطایی رخ داد. برای تماس با برنامه‌نویس برای کمک به آدرس زیر مراجعه کنید.
 
 <span class="plainlinks mw-mwoautherror-details">Unknown URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>',
@@ -2329,6 +2352,9 @@ $messages['fa'] = array(
 
 <span class="plainlinks mw-mwoautherror-details">Unknown URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
 	'mwoauthdatastore-access-token-not-found' => 'هیچ اعطای تائید برای رمز اختیار یافت نشد.',
+	'mwoauthdatastore-request-token-not-found' => 'با عرض پوزش، چیزی با اتصال این برنامه اشتباه شده.
+بازگردید و برای اتصال حسابتان دوباره امتحان کنید، یا با نویسندهٔ برنامه در تماس باشید.
+<span class="plainlinks mw-mwoautherror-details"> نشانهٔ آُآت پیدا نشد، [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
 	'mwoauthdatastore-bad-token' => 'هیچ نشانه مطابق درخواست شما یافت نشد.',
 	'mwoauthdatastore-bad-verifier' => 'کد تأیید صحت ارائه‌شده معتبر نیست.',
 	'mwoauthdatastore-invalid-token-type' => 'نوع رمز درخواستی نامعتبر است.',
@@ -2337,18 +2363,35 @@ $messages['fa'] = array(
 N!<span class="plainlinks mw-mwoautherror-details">نرم افزار متصل‌شدهٔ OAuth مورد تایید نیست، [https://www.mediawiki.org/wiki/Help:OAuth و اشتباهات #E005 E005]</span>',
 	'mwoauthserver-bad-consumer-key' => 'با عرض پوزش، مشکلی در طی اتصال این برنامه پیش‌آمد.
 N!<span class="plainlinks mw-mwoautherror-details">کلید ناشناخته OAuth، [https://www.mediawiki.org/wiki/Help:OAuth و اشتباهات #E006 E006]</span>',
+	'mwoauthserver-insufficient-rights' => 'حساب شما اجازهٔ استفاده از برنامه‌های متصل را ندارد، با سرپرست سایت خود برای فهمیدن چرا، در تماس باشید.
+<span class="plainlinks mw-mwoautherror-details"> حقوق ناکافی کاربر اُآت،[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'علامت نامعتبر در درخواست شما.',
+	'mwoauthserver-invalid-user' => 'برای استفاده از برنامه‌های متصل در این سایت، شما باید یک حساب کاربری در سراسر پروژه‌ها داشته باشید. هنگامی که شما یک حساب در همهٔ پروژه‌ها داشته‌باشید، می‌توانید برای اتصال "$1" مجدد امتحان کنید.
+<span class="plainlinks mw-mwoautherror-details">ورود به سیستم یکپارچهٔ مورد نیاز،[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>',
 	'mwoauth-invalid-authorization-title' => 'خطای مجوز OAuth',
 	'mwoauth-invalid-authorization' => 'سرصفحه‌های اختیار در درخواست شما، معتبر نیستند: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'سرصفحه‌های اختیار در درخواست شما، برای $1 معتبر نیستند',
 	'mwoauth-invalid-authorization-invalid-user' => 'سرصفحه‌های اختیار در درخواست شما، برای کاربری ناموجود است.',
 	'mwoauth-invalid-authorization-wrong-user' => 'سرصفحه‌های اختیار در درخواست شما، برای کاربر متفاوت است.',
+	'mwoauth-invalid-authorization-not-approved' => 'برنامه‌ای شما سعی به اتصال به آن را دارید، به نظر می‌رسد به‌درستی تنظیم نشده‌است. برای کمک با نویسندهٔ "$1" در تماس باشید.',
+	'mwoauth-invalid-authorization-blocked-user' => 'سرفصل‌های مجاز در درخواست شما برای کاربری است که مسدود شده‌است',
+	'mwoauth-form-description-allwikis' => "سلام $1،
+'''$2''' دوست داشت عملیات زیر را از طرف شما در همهٔ پروژه‌های این سایت انجام دهد:
+$4",
+	'mwoauth-form-description-onewiki' => "سلام $1،
+'''$2''' دوست داشت عملیات زیر را از طرف شما در ''$4'' انجام دهد: 
+$5",
+	'mwoauth-form-description-allwikis-nogrants' => "سلام $1، 
+'''$2''' دوست داشت دسترسی  اساسی از طرف شما در همهٔ پروژه‌های سایت داشته‌باشد.",
+	'mwoauth-form-description-onewiki-nogrants' => "سلام $1،
+'''$2''' دوست داشت دسترسی اساسی از طرف شما در ''$4'' داشته‌باشد.",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|سیاست حریم شخصی]]',
 	'mwoauth-form-button-approve' => 'اجازه می‌دهد',
 	'mwoauth-form-button-cancel' => 'انصراف',
 	'mwoauth-error' => 'خطای اتصال برنامه کاربردی',
 	'mwoauth-grants-heading' => 'دسترسی‌های درخواست شده:',
 	'mwoauth-grants-nogrants' => 'برنامه نیازمند هیچ دسترسی نخواسته است.',
+	'mwoauth-acceptance-cancelled' => 'شما انتخاب کرده‌اید که به "$1" برای دسترسی به حساب شما اجازه ندهید. "$1" کار نخواهد کرد مگر اینکه اجازهٔ دسترسی دهید. شما می‌توانید به "$1" بازگردید یا [[Special:OAuthManageMyGrants|مدیریت]] برنامه‌های متصل خود.',
 	'mwoauth-grant-group-page-interaction' => 'تعامل با صفحات',
 	'mwoauth-grant-group-file-interaction' => 'تعامل با رسانه',
 	'mwoauth-grant-group-watchlist-interaction' => 'تعامل با فهرست پیگیری‌های شما',
@@ -2379,6 +2422,7 @@ N!<span class="plainlinks mw-mwoautherror-details">کلید ناشناخته OAu
 	'mwoauth-grant-viewdeleted' => 'مشاهدهٔ اطلاعات حذف',
 	'mwoauth-grant-viewmywatchlist' => 'مشاهدۀ فهرست پیگیری‌هایتان',
 	'mwoauth-oauth-exception' => 'خطایی در پروتکل OAuth رخ داد :$1',
+	'mwoauth-callback-not-oob' => 'oauth_callback باید تنظیم شود، و باید به "اوب" تنظیم شود (حساس به مورد)',
 	'right-mwoauthproposeconsumer' => 'پیشنهاد مصرف‌کننده جدید OAuth',
 	'right-mwoauthupdateownconsumer' => 'به‌روزرسانی مصرف‌کننده‌های OAuth که شما کنرتل می‌کنید',
 	'right-mwoauthmanageconsumer' => 'مدیریت مصرف‌کننده‌های OAuth',
@@ -5979,6 +6023,13 @@ $messages['ru'] = array(
 	'mwoauth-listgrants-rights' => 'Права',
 );
 
+/** Scots (Scots)
+ * @author John Reid
+ */
+$messages['sco'] = array(
+	'mwoauthmanagemygrants-useoauth-tooltip' => "Why can Ah no update this graunt? This graunt gi'es yer connected application basic permeessions that it requires fer tae function properly. Gif ye dinna want this connected application tae hae these richts, ye shid revoke the application's access.",
+);
+
 /** Slovak (slovenčina)
  * @author Kusavica
  */
@@ -6230,9 +6281,7 @@ Ansluta applikationer kan få tillgång till ditt konto via OAuth-protokollet. <
 	'mwoauthmanagemygrants-grantaccept' => 'Beviljas',
 	'mwoauthmanagemygrants-update-text' => 'Använd formuläret nedan för att ändra de behörigheter som beviljats för en applikation att agera åt dina vägnar.
 * Om du separat auktoriserat en applikation för att tillgå olika systerprojekt åt dina vägnar har du separata konfigurationer för varje sådant projekt för den applikationen.', # Fuzzy
-	'mwoauthmanagemygrants-revoke-text' => 'Använd formuläret nedan för att återkalla åtkomst för en applikation (OAuth konsument) att agera åt dina vägnar.
-* Om du separat har auktoriserat en applikation för att få åtkomst till ett annat systerprojekt åt dina vägnar så kommer du att ha separata konfigurationer för varje enskilt projekt för den applikationen.
-* Om du helt vill återkalla åtkomst till en applikation, se till att återkalla den från alla projekt där du accepterat den.', # Fuzzy
+	'mwoauthmanagemygrants-revoke-text' => 'Använd formuläret nedan för att återkalla åtkomst för en applikation att agera åt dina vägnar.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Hantera ansluten applikation',
 	'mwoauthmanagemygrants-update' => 'Uppdatera bidrag',
 	'mwoauthmanagemygrants-renounce' => 'Avauktorisera',

@@ -90,3 +90,11 @@ $specialPageAliases['zh-hans'] = array(
 	'OAuthListConsumers' => array( 'OAuth消费者列表' ),
 	'OAuthManageMyGrants' => array( 'OAuth管理我的补助', 'OAuth补助' ),
 );
+
+/** Traditional Chinese (中文（繁體）‎) */
+$specialPageAliases['zh-hant'] = array(
+	'OAuthConsumerRegistration' => array( 'OAuth消費者註冊' ),
+	'OAuthManageConsumers' => array( 'OAuth消費者管理' ),
+	'OAuthListConsumers' => array( 'OAuth消費者列表' ),
+	'OAuthManageMyGrants' => array( 'OAuth消費者補助' ),
+);
