@@ -5245,6 +5245,7 @@ $messages['nds-nl'] = array(
 );
 
 /** Dutch (Nederlands)
+ * @author Arent
  * @author Hansmuller
  * @author SPQRobin
  * @author Siebrand
@@ -5523,7 +5524,7 @@ $5',
 	'mwoauth-grant-delete' => "Pagina's, wijzigingen en vermeldingen in het logboek verwijderen",
 	'mwoauth-grant-editinterface' => 'De naamruimte MediaWiki en CSS en JavaScript van gebruikers bewerken',
 	'mwoauth-grant-editmycssjs' => 'Uw eigen CSS/JavaScript bewerken',
-	'mwoauth-grant-editmyoptions' => 'Je eigen voorkeuren instellen',
+	'mwoauth-grant-editmyoptions' => 'Eigen voorkeuren instellen',
 	'mwoauth-grant-editmywatchlist' => 'Uw eigen volglijst bewerken',
 	'mwoauth-grant-editpage' => "Bestaande pagina's bewerken",
 	'mwoauth-grant-editprotected' => "Beveiligde pagina's bewerken",
@@ -6831,10 +6832,20 @@ $messages['vi'] = array(
 	'mwoauthmanagemygrants-review' => 'quản lý truy cập',
 	'mwoauthmanagemygrants-revoke' => 'thu hồi quyền truy cập',
 	'mwoauthmanagemygrants-grantaccept' => 'Cấp quyền',
+	'mwoauthmanagemygrants-confirm-legend' => 'Quản lý ứng dụng kết nối',
 	'mwoauthmanagemygrants-update' => 'Cập nhật các dấu hiệu được cấp',
 	'mwoauthmanagemygrants-renounce' => 'Rút quyền',
 	'mwoauthmanagemygrants-action' => 'Thay đổi trạng thái:',
 	'mwoauthmanagemygrants-confirm-submit' => 'Cập nhật trạng thái của dấu hiệu truy cập',
+	'mwoauth-bad-request-missing-params' => 'Rất tiếc, đã xảy ra lỗi khi thiết lập ứng dụng kết nối này. Hãy <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth xin trợ giúp]</span> để sửa nó.
+
+<span class="plainlinks mw-mwoautherror-details">OAuth thiếu tham số, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=vi#E001 E001]</span>',
+	'mwoauth-bad-request-invalid-action' => 'Rất tiếc, đã xảy ra lỗi. Xin vui lòng liên lạc với tác giả ứng dụng để xin trợ giúp.
+
+<span class="plainlinks mw-mwoautherror-details">URL bất ngờ, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=vi#E002 E002]</span>',
+	'mwoauth-bad-request-invalid-action-contact' => 'Rất tiếc, đã xảy ra lỗi. Xin vui lòng [$1 liên lạc] với tác giả ứng dụng để xin trợ giúp.
+
+<span class="plainlinks mw-mwoautherror-details">URL bất ngờ, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=vi#E003 E003]</span>',
 	'mwoauthdatastore-request-token-not-found' => 'Rất tiếc, có trục trặc khi kết nối với ứng dụng này.
 Hãy quay lại và thử kết nối với tài khoản của bạn lần nữa hoặc liên lạc với nhà phát triển của ứng dụng.
 
@@ -6843,23 +6854,50 @@ Hãy quay lại và thử kết nối với tài khoản của bạn lần nữa
 	'mwoauthdatastore-bad-verifier' => 'Mã xác minh được cung cấp là không hợp lệ.',
 	'mwoauthdatastore-invalid-token-type' => 'Đã yêu cầu kiểu dấu hiệu không hợp lệ.',
 	'mwoauthgrants-general-error' => 'Có lỗi trong yêu cầu OAuth của bạn.',
+	'mwoauthserver-bad-consumer' => '“$1” không còn được chấp nhận là một Ứng dụng Kết nối. Hãy [$2 liên lạc] với tác giả ứng dụng để xin trợ giúp.
+
+<span class="plainlinks mw-mwoautherror-details">Ứng dụng kết nối OAuth không được chấp nhận, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=vi#E005 E005]</span>',
+	'mwoauthserver-bad-consumer-key' => 'Rất tiếc, đã xảy ra lỗi khi kết nối với ứng dụng này.
+
+<span class="plainlinks mw-mwoautherror-details">Chìa khóa OAuth bất ngờ, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=vi#E006 E006]</span>',
 	'mwoauthserver-insufficient-rights' => 'Bạn không có đủ quyền để thực hiện thao tác này.
 
 Tài khoản của bạn không được phép sử dụng tính năng Ứng dụng Kết nối. Hãy liên lạc với quản lý viên trang Web của bạn để tìm hiểu lý do tại sao.
 
 <span class="plainlinks mw-mwoautherror-details">Người dùng không đủ quyền OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Dấu hiệu không hợp lệ trong yêu cầu của bạn.',
+	'mwoauthserver-invalid-user' => 'Để sử dụng Ứng dụng Kết nối trên trang Web này, bạn cần phải có tài khoản trên tất cả các dự án. Khi nào bạn có tài khoản trên tất cả các dự án, xin hãy thử lại kết nối với “$1”.
+
+<span class="plainlinks mw-mwoautherror-details">Cần đăng nhập thống nhất, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=vi#E008 E008]</span>',
 	'mwoauth-invalid-authorization-title' => 'Lỗi xác minh OAuth',
+	'mwoauth-form-description-allwikis' => "Xin chào $1,
+
+'''$2''' muốn thực hiện các tác vụ sau thay mặt cho bạn trên tất cả các dự án của trang Web này:
+
+$4",
+	'mwoauth-form-description-onewiki' => "Xin chào $1,
+
+'''$2''' muốn thực hiện các tác vụ sau thay mặt cho bạn trên ''$4'':
+
+$5",
+	'mwoauth-form-description-allwikis-nogrants' => "Xin chào $1,
+
+'''$2''' muốn có quyền truy cập cơ bản thay mặt cho bạn trên tất cả các dự án của trang Web này.",
+	'mwoauth-form-description-onewiki-nogrants' => "Xin chào $1,
+
+'''$2''' muốn có quyền truy cập cơ bản thay mặt cho bạn trên ''$4''.",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Quy định quyền riêng tư]]',
 	'mwoauth-form-button-approve' => 'Cho phép',
 	'mwoauth-form-button-cancel' => 'Hủy bỏ',
 	'mwoauth-error' => 'Lỗi Kết nối với Ứng dụng',
 	'mwoauth-grants-heading' => 'Các quyền được yêu cầu:',
 	'mwoauth-grants-nogrants' => 'Ứng dụng không yêu cầu quyền nào.',
+	'mwoauth-acceptance-cancelled' => 'Bạn đã quyết định không cho phép “$1” truy cập tài khoản của bạn. “$1” chỉ hoạt động nếu bạn cho phép truy cập. Bạn có thể trở lại “$1” hoặc [[Special:OAuthManageMyGrants|quản lý]] các ứng dụng kết nối của bạn.',
 	'mwoauth-grant-group-page-interaction' => 'Tương tác với trang',
 	'mwoauth-grant-group-file-interaction' => 'Tương tác với tập tin',
 	'mwoauth-grant-group-watchlist-interaction' => 'Tương tác với danh sách theo dõi của bạn',
 	'mwoauth-grant-group-email' => 'Gửi thư điện tử',
+	'mwoauth-grant-group-high-volume' => 'Hoạt động với tần số cao',
 	'mwoauth-grant-group-customization' => 'Tùy biến và tùy chọn',
 	'mwoauth-grant-group-administration' => 'Thực hiện các hành động bảo quản',
 	'mwoauth-grant-group-other' => 'Hoạt động khác',
@@ -7120,6 +7158,8 @@ $5",
 	'right-mwoauthviewsuppressed' => '查看已阻止的OAuth消费者',
 	'right-mwoauthviewprivate' => '查看私有OAuth数据',
 	'action-mwoauthmanageconsumer' => '管理OAuth消费者',
+	'action-mwoauthproposeconsumer' => '提议新的OAuth消费者',
+	'action-mwoauthupdateownconsumer' => '更新您控制的OAuth消费者',
 	'mwoauth-listgrants-grant' => '捐赠',
 	'mwoauth-listgrants-rights' => '权限',
 );
