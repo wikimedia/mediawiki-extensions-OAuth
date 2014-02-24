@@ -6280,8 +6280,7 @@ Ansluta applikationer kan få tillgång till ditt konto via OAuth-protokollet. <
 	'mwoauthmanagemygrants-review' => 'hantera åtkomst',
 	'mwoauthmanagemygrants-revoke' => 'återkalla åtkomst',
 	'mwoauthmanagemygrants-grantaccept' => 'Beviljas',
-	'mwoauthmanagemygrants-update-text' => 'Använd formuläret nedan för att ändra de behörigheter som beviljats för en applikation att agera åt dina vägnar.
-* Om du separat auktoriserat en applikation för att tillgå olika systerprojekt åt dina vägnar har du separata konfigurationer för varje sådant projekt för den applikationen.', # Fuzzy
+	'mwoauthmanagemygrants-update-text' => 'Använd formuläret nedan för att ändra de behörigheter som beviljats för en applikation att agera åt dina vägnar.',
 	'mwoauthmanagemygrants-revoke-text' => 'Använd formuläret nedan för att återkalla åtkomst för en applikation att agera åt dina vägnar.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Hantera ansluten applikation',
 	'mwoauthmanagemygrants-update' => 'Uppdatera bidrag',
@@ -6302,20 +6301,28 @@ Ansluta applikationer kan få tillgång till ditt konto via OAuth-protokollet. <
 
 <span class="plainlinks mw-mwoautherror-details">Okänd webbadress, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
 	'mwoauthdatastore-access-token-not-found' => 'Inget godkänt bidrag har hittats för den auktoriseringstoken.',
-	'mwoauthdatastore-request-token-not-found' => 'Ingen begäran hittades för den token.', # Fuzzy
+	'mwoauthdatastore-request-token-not-found' => 'Tyvärr uppstod ett fel med anslutning till denna app.
+Gå tillbaka och försök ansluta igen, eller kontakta appens skapare.
+
+<span class="plainlinks mw-mwoautherror-details">Ingen OAuth-token hittades, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
 	'mwoauthdatastore-bad-token' => 'Ingen token hittades som matchade din begäran.',
 	'mwoauthdatastore-bad-verifier' => 'Verifikationskoden som givits var inte giltig.',
 	'mwoauthdatastore-invalid-token-type' => 'Den begärda tokentypen är ogiltig.',
 	'mwoauthgrants-general-error' => 'Det uppstod ett fel i din OAuthbegäran.',
-	'mwoauthserver-bad-consumer' => 'Ingen godkänd konsument hittas för den nyckel du angav.', # Fuzzy
-	'mwoauthserver-insufficient-rights' => 'Du har inte tillräcklig behörighet för att utföra denna åtgärd.', # Fuzzy
+	'mwoauthserver-bad-consumer' => '"$1" är inte längre godkänd som en Ansluten App, [$2 kontakta] appens skapare för hjälp.
+
+
+<span class="plainlinks mw-mwoautherror-details">Ansluten OAuth-app ej godkänd, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
+	'mwoauthserver-insufficient-rights' => 'Ditt konto kan inte använda Anslutna Appar, kontakta din webbsidans administratör för att få reda på varför.
+
+<span class="plainlinks mw-mwoautherror-details">Otillräckliga OAuth-användarrättigheter, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Ogiltig token i din begäran.',
 	'mwoauth-invalid-authorization-title' => 'OAuth auktoriseringsfel',
 	'mwoauth-invalid-authorization' => 'Auktoriseringsrubriker i din begäran är inte giltiga: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'De auktoriserade rubrikerna i din begäran är inte giltiga för $1',
 	'mwoauth-invalid-authorization-invalid-user' => 'Auktoriseringsrubrikerna i din begäran är för användare som inte existerar här',
 	'mwoauth-invalid-authorization-wrong-user' => 'Auktoriseringsrubrikerna i din begäran är för en annan användare',
-	'mwoauth-invalid-authorization-not-approved' => 'Auktoriseringsrubrikerna i din begäran är för en OAuthkonsument som för närvarande inte är godkänd', # Fuzzy
+	'mwoauth-invalid-authorization-not-approved' => 'Appen du försöker ansluta verkar vara felaktigt inställd. Kontakta skaparen av "$1" för hjälp.',
 	'mwoauth-invalid-authorization-blocked-user' => 'Auktoriseringsrubrikerna i din begäran är för en användare som är blockerad',
 	'mwoauth-form-description-allwikis' => "Hej $1,
 '''$2''' skulle vilja göra följande åtgärder åt dina vägnar på alla projekt på denna sida:
@@ -6335,10 +6342,10 @@ $5",
 	'mwoauth-form-privacypolicy-link' => '[[{{ns:Project}}:Privacy policy|Integritetspolicy]]',
 	'mwoauth-form-button-approve' => 'Tillåt',
 	'mwoauth-form-button-cancel' => 'Avbryt',
-	'mwoauth-error' => 'OAuth error', # Fuzzy
+	'mwoauth-error' => 'Anslutningsfel för applikationen',
 	'mwoauth-grants-heading' => 'Begärda tillstånd:',
 	'mwoauth-grants-nogrants' => 'Ansökan har inte begärt något tillstånd.',
-	'mwoauth-acceptance-cancelled' => 'Du har avbrutit denna begäran att auktorisera en OAuthkonsument att agera åt dina vägnar.', # Fuzzy
+	'mwoauth-acceptance-cancelled' => 'Du har valt att inte tillåta "$1" åtkomst till ditt konto. "$1" kommer inte att fungera om du inte ger den åtkomst. Du kan gå tillbaka till "$1" eller [[Special:OAuthManageMyGrants|hantera]] dina anslutna appar.',
 	'mwoauth-grant-group-page-interaction' => 'Interagera med sidor',
 	'mwoauth-grant-group-file-interaction' => 'Interagera med media',
 	'mwoauth-grant-group-watchlist-interaction' => 'Interagera med din bevakningslista',
