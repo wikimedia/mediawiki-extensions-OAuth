@@ -2076,6 +2076,7 @@ Rakendused kasutavad ühenduseks sinu kontoga OAuthi protokolli. <span class="pl
 	'mwoauthmanagemygrants-renounce' => 'Tühista volitused',
 	'mwoauthmanagemygrants-success-update' => 'Selle tarvituse juurdepääsuluba on uuendatud.',
 	'mwoauthmanagemygrants-success-renounce' => 'Selle tarvituse juurdepääsuluba on kustutatud.',
+	'mwoauthmanagemygrants-useoauth-tooltip' => 'Miks ma ei saa seda volitust uuendada? Sellega on ühendatud rakendusele antud põhilised õigused, mida on vaja, et rakendus õigesti toimiks. Kui sa ei taha, et ühendatud rakendusel oleks need õigused, siis peaksid tühistama selle rakenduse juurdepääsu.',
 	'mwoauthdatastore-request-token-not-found' => 'Selle rakendusega läks kahjuks midagi valesti.
 Mine tagasi ja ürita uuesti oma kontot ühendada või võta ühendust rakenduse autoriga.
 
