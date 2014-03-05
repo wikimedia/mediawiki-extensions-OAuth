@@ -83,6 +83,12 @@ $specialPageAliases['mk'] = array(
 	'OAuth' => array( 'OAuth' ),
 );
 
+/** Swedish (svenska) */
+$specialPageAliases['sv'] = array(
+	'OAuthListConsumers' => array( 'OAuth-applikationer' ),
+	'OAuthManageMyGrants' => array( 'Anslutna_applikationer' ),
+);
+
 /** Simplified Chinese (中文（简体）‎) */
 $specialPageAliases['zh-hans'] = array(
 	'OAuthConsumerRegistration' => array( 'OAuth消费者注册', 'OAuth注册' ),
