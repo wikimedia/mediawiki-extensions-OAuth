@@ -2368,8 +2368,8 @@ N!<span class="plainlinks mw-mwoautherror-details">کلید ناشناخته OAu
 	'mwoauthserver-insufficient-rights' => 'حساب شما اجازهٔ استفاده از برنامه‌های متصل را ندارد، با سرپرست سایت خود برای فهمیدن چرا، در تماس باشید.
 <span class="plainlinks mw-mwoautherror-details"> حقوق ناکافی کاربر اُآت،[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'علامت نامعتبر در درخواست شما.',
-	'mwoauthserver-invalid-user' => 'برای استفاده از برنامه‌های متصل در این سایت، شما باید یک حساب کاربری در سراسر پروژه‌ها داشته باشید. هنگامی که شما یک حساب در همهٔ پروژه‌ها داشته‌باشید، می‌توانید برای اتصال "$1" مجدد امتحان کنید.
-<span class="plainlinks mw-mwoautherror-details">ورود به سیستم یکپارچهٔ مورد نیاز،[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>',
+	'mwoauthserver-invalid-user' => 'برای استفاده از برنامه‌های متصل در این سایت، شما باید یک حساب کاربری در سراسر پروژه‌ها داشته باشید. هنگامی که شما یک حساب در همهٔ پروژه‌ها داشته‌باشید، می‌توانید برای اتصال «$1» مجدد امتحان کنید.
+<span class="plainlinks mw-mwoautherror-details">ورود به سامانه یکپارچهٔ مورد نیاز،[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>',
 	'mwoauth-invalid-authorization-title' => 'خطای مجوز OAuth',
 	'mwoauth-invalid-authorization' => 'سرصفحه‌های اختیار در درخواست شما، معتبر نیستند: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'سرصفحه‌های اختیار در درخواست شما، برای $1 معتبر نیستند',
@@ -4537,7 +4537,7 @@ $messages['mk'] = array(
 	'mwoauth-invalid-field' => 'Во полето „$1“ е зададена неважечка вредност',
 	'mwoauth-invalid-field-generic' => 'Укажана е неважечка вредност',
 	'mwoauth-field-hidden' => '(оваа информација е скриена)',
-	'mwoauth-field-private' => '(оваа информација е приватна)',
+	'mwoauth-field-private' => '(оваа информација е доверлива)',
 	'mwoauth-grant-generic' => 'Група права „$1“',
 	'mwoauth-prefs-managegrants' => 'Поврзани прилози:',
 	'mwoauth-prefs-managegrantslink' => 'Раководење со $1 {{PLURAL:$1|поврзан прилог|поврзани прилози}}',
@@ -4819,7 +4819,7 @@ $5",
 	'right-mwoauthmanageconsumer' => 'Раководење со потрошувачи на OAuth',
 	'right-mwoauthsuppress' => 'Скривање на потрошувачи на OAuth',
 	'right-mwoauthviewsuppressed' => 'Преглед на скриените потрошувачи на OAuth',
-	'right-mwoauthviewprivate' => 'Преглед на приватни податоци за OAuth',
+	'right-mwoauthviewprivate' => 'Преглед на лични податоци за OAuth',
 	'right-mwoauthmanagemygrants' => 'Раководење со доделувања за OAuth',
 	'action-mwoauthmanageconsumer' => 'раководење со потрошувачи на OAuth',
 	'action-mwoauthmanagemygrants' => 'раководење со вашите доделувања за OAuth',
@@ -6146,11 +6146,15 @@ $messages['sr-el'] = array(
  */
 $messages['sv'] = array(
 	'mwoauth-desc' => 'Tillåter användning av OAuth 1.0a för API-tillstånd',
+	'mwoauth-verified' => "Denna applikation kan nu komma åt MediaWiki för din räkning.
+
+För att slutföra processen, ge detta verifikationsvärde till applikationen: '''$1'''",
 	'mwoauth-missing-field' => 'Saknar värde för "$1"-fältet',
 	'mwoauth-invalid-field' => 'Ogiltigt värde angett för "$1"-fältet',
 	'mwoauth-invalid-field-generic' => 'Ogiltigt värde angivet',
 	'mwoauth-field-hidden' => '(denna information är dold)',
 	'mwoauth-field-private' => '(denna information är privata)',
+	'mwoauth-grant-generic' => 'Rättighetsgrupp "$1"',
 	'mwoauth-prefs-managegrants' => 'Anslutna appar:',
 	'mwoauth-prefs-managegrantslink' => 'Hantera $1 {{PLURAL:$1|ansluten applikation|anslutna applikationer}}',
 	'mwoauth-consumer-allwikis' => 'Alla projekt på denna webbplats',
@@ -6200,6 +6204,13 @@ $messages['sv'] = array(
 	'mwoauthconsumerregistration-update-text' => 'Använd formuläret nedan för att uppdatera delar av en OAuth-konsument du styr.
 
 Alla värden här skriver över eventuella tidigare värden. Lämna inte tomma fält om du inte tänker ta bort dessa värden.',
+	'mwoauthconsumerregistration-maintext' => 'Denna sida är till för att låta utvecklare föreslå och uppdatera OAuth-konsumentapplikationer i webbplatsens register.
+
+Härifrån kan du:
+* [[Special:OAuthConsumerRegistration/propose|Begära en nyckel för en ny konsument]].
+* [[Special:OAuthConsumerRegistration/list|Hantera dina existerande konsumenter]].
+
+För mer information om OAuth, se [//www.mediawiki.org/wiki/Extension:OAuth dokumentationen för tillägget].',
 	'mwoauthconsumerregistration-propose-legend' => 'Ny OAuth-konsumentapplikation',
 	'mwoauthconsumerregistration-update-legend' => 'Uppdatera OAuth-konsumentapplikation',
 	'mwoauthconsumerregistration-propose-submit' => 'Föreslå konsument',
@@ -6315,6 +6326,12 @@ Ansluta applikationer kan få tillgång till ditt konto via OAuth-protokollet. <
 	'logentry-mwoauthconsumer-reenable' => '$1 {{GENDER:$2|Återaktiverade}} en OAuthkonsument av $3 (konsumentnyckel $4)',
 	'mwoauthconsumer-consumer-logpage' => 'OAuthkonsumentslogg',
 	'mwoauthconsumer-consumer-logpagetext' => 'Logg över godkännanden, avslag och inaktivering av registrerade OAuthkonsumenter.',
+	'mwoauth-bad-request-missing-params' => 'Tyvärr gick något fel under konfigurationen av denna anslutna applikation <span class="plainlinks">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Kontakta supporten]</span> för att få hjälp med att fixa det.
+
+<span class="plainlinks mw-mwoautherror-details">OAuth saknar parametrar, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>',
+	'mwoauth-bad-request-invalid-action' => 'Tyvärr, någonting gick fel. Du måste kontakta applikationens upphovsman för att få hjälp med detta.
+
+<span class="plainlinks mw-mwoautherror-details">Okänd webbadress, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>',
 	'mwoauth-bad-request-invalid-action-contact' => 'Tyvärr, någonting gick fel. Du måste [$1 kontakta] applikationens upphovsman för att få hjälp med detta.
 
 <span class="plainlinks mw-mwoautherror-details">Okänd webbadress, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
@@ -6331,10 +6348,16 @@ Gå tillbaka och försök ansluta igen, eller kontakta appens skapare.
 
 
 <span class="plainlinks mw-mwoautherror-details">Ansluten OAuth-app ej godkänd, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>',
+	'mwoauthserver-bad-consumer-key' => 'Tyvärr, någonting gick fel under anslutningen till denna applikationen.
+
+<span class="plainlinks mw-mwoautherror-details">Okänd OAuth-nyckel, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>',
 	'mwoauthserver-insufficient-rights' => 'Ditt konto kan inte använda Anslutna Appar, kontakta din webbsidans administratör för att få reda på varför.
 
 <span class="plainlinks mw-mwoautherror-details">Otillräckliga OAuth-användarrättigheter, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>',
 	'mwoauthserver-invalid-request-token' => 'Ogiltig token i din begäran.',
+	'mwoauthserver-invalid-user' => 'För att använda Anslutna Appar på denna webbplats måste du ha ett konto på alla projekt. När du har ett konto på alla projekt kan du försöka ansluta till "$1" igen.
+
+<span class="plainlinks mw-mwoautherror-details">Gemensam inloggning behövs, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>',
 	'mwoauth-invalid-authorization-title' => 'OAuth auktoriseringsfel',
 	'mwoauth-invalid-authorization' => 'Auktoriseringsrubriker i din begäran är inte giltiga: $1',
 	'mwoauth-invalid-authorization-wrong-wiki' => 'De auktoriserade rubrikerna i din begäran är inte giltiga för $1',
@@ -6407,6 +6430,7 @@ $5",
 	'action-mwoauthproposeconsumer' => 'Föreslå nya OAuthkonsument',
 	'action-mwoauthupdateownconsumer' => 'Uppdatera OAuthkonsumenter du kontrollerar',
 	'action-mwoauthviewsuppressed' => 'Visa upphävda OAuthkonsumenter',
+	'mwoauth-listgrants-grant' => 'Rättighet',
 	'mwoauth-listgrants-rights' => 'Rättigheter',
 );
 
@@ -7016,7 +7040,7 @@ $messages['zh-hans'] = array(
 	'mwoauth-consumer-allwikis' => '本站的所有项目',
 	'mwoauth-consumer-key' => 'Consumer key:',
 	'mwoauth-consumer-name' => '应用名称：',
-	'mwoauth-consumer-version' => 'Consumer版本:',
+	'mwoauth-consumer-version' => 'Consumer version:',
 	'mwoauth-consumer-user' => '发布者：',
 	'mwoauth-consumer-stage' => '当前状态：',
 	'mwoauth-consumer-email' => '联系人电子邮件地址：',
@@ -7036,6 +7060,15 @@ $messages['zh-hans'] = array(
 	'mwoauth-consumer-email-unconfirmed' => '您的帐户的电子邮件地址尚未得到确认。',
 	'mwoauth-consumer-email-mismatched' => '提供的电子邮件地址必须与您的帐户相匹配。',
 	'mwoauth-consumer-alreadyexists' => '最终用户与此名称/版本/发布者的组合已经存在',
+	'mwoauth-consumer-not-proposed' => '该消费者现不被建议',
+	'mwoauth-consumer-not-disabled' => '该消费者现不被启用',
+	'mwoauth-consumer-not-approved' => '该消费者不被许可（或者已被禁用）',
+	'mwoauth-missing-consumer-key' => '没有提供消费者密钥。',
+	'mwoauth-invalid-consumer-key' => '根据提供的密钥不存在相应消费者。',
+	'mwoauth-invalid-access-token' => '根据提供的密钥不存在相应允许令牌。',
+	'mwoauth-invalid-access-wrongwiki' => '这个消费者只被允许在“$1”项目使用。',
+	'mwoauth-consumer-conflict' => '有人更改了您查看的消费者的属性。请再试一次。
+你可能想要检查的更改日志。',
 	'mwoauth-consumer-stage-proposed' => '建议',
 	'mwoauth-consumer-stage-rejected' => '拒绝',
 	'mwoauth-consumer-stage-expired' => '过期',
