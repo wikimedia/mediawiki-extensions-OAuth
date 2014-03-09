@@ -2258,7 +2258,7 @@ $messages['fa'] = array(
 	'mwoauthmanageconsumers-q-rejected' => 'صف درخواست‌های رده شده مصرف‌کننده',
 	'mwoauthmanageconsumers-q-expired' => 'صف درخواست‌های منقضی‌شده مصرف‌کننده',
 	'mwoauthmanageconsumers-lists' => 'انتخاب فهرست وضعیت مصرف‌کننده از پائین:',
-	'mwoauthmanageconsumers-l-approved' => 'فهرست مصرف‌کنندگان در حال حاضر تائید شده',
+	'mwoauthmanageconsumers-l-approved' => 'فهرست مصرف‌کنندگان در حال حاضر تأییدشده',
 	'mwoauthmanageconsumers-l-disabled' => 'فهرست مصرف‌کنندگان در حال حاضر غیر فعال',
 	'mwoauthmanageconsumers-none-proposed' => 'در این فهرست مصرف‌کنندگان وجود ندارد.',
 	'mwoauthmanageconsumers-none-rejected' => 'در این فهرست مصرف‌کنندگان وجود ندارد.',
@@ -2272,7 +2272,7 @@ $messages['fa'] = array(
 	'mwoauthmanageconsumers-consumerkey' => 'کلید مصرف‌کننده',
 	'mwoauthmanageconsumers-lastchange' => 'آخرین تغییر',
 	'mwoauthmanageconsumers-review' => 'بررسی/مدیریت',
-	'mwoauthmanageconsumers-confirm-text' => 'از این فرم برای تائید، رد، غیرفعال یا دوباره فعال کردن این مصرف‌کننده استفاده کنید.',
+	'mwoauthmanageconsumers-confirm-text' => 'از این فرم برای تأیید، رد، غیرفعال یا دوباره فعال‌کردن این مصرف‌کننده استفاده کنید.',
 	'mwoauthmanageconsumers-confirm-legend' => 'مدیریت مصرف OAuth',
 	'mwoauthmanageconsumers-action' => 'تغییر وضعیت:',
 	'mwoauthmanageconsumers-approve' => 'تأیید شده',
@@ -2339,7 +2339,7 @@ $messages['fa'] = array(
 	'mwoauthmanagemygrants-useoauth-tooltip' => 'چرا من نمی‌توانم این کمک را به روز کنم؟ این کمک به درخواست متصل شما مجوزهای اساسی می‌دهد که نیاز به عملکرد مناسب می‌دهد. اگز شما این درخواست متصل را برای داشتن این حقوق نمی‌خواهید، شما باید دسترسی برنامه را لغو کنید.',
 	'logentry-mwoauthconsumer-propose' => '$1 {{GENDER:$2|پیشنهاد }} یک مصرف‌کننده  OAuth داد  (کد مصرف‌کننده $4)',
 	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|به‌روز کرد}} یک مصرف‌کننده  OAuth با  (کد مصرف‌کننده $4)',
-	'logentry-mwoauthconsumer-approve' => '$1  یک مصرف‌کننده  OAuth  برای  $3 {{GENDER:$2|تائید کرد}}  (کد مصرف‌کننده $4)',
+	'logentry-mwoauthconsumer-approve' => '$1 یک مصرف‌کننده OAuth برای $3 {{GENDER:$2|تأیید کرد}} (کد مصرف‌کننده $4)',
 	'logentry-mwoauthconsumer-reject' => '$1  یک مصرف‌کننده  OAuth  برای  $3 {{GENDER:$2|ردکرد}}  (کد مصرف‌کننده $4)',
 	'logentry-mwoauthconsumer-disable' => '$1  یک مصرف‌کننده  OAuth  برای  $3 {{GENDER:$2|غیرفعال کرد}}  (کد مصرف‌کننده $4)',
 	'logentry-mwoauthconsumer-reenable' => '$1  یک مصرف‌کننده  OAuth  برای  $3 {{GENDER:$2|دوباره فعال کرد}}  (کد مصرف‌کننده $4)',
@@ -2353,7 +2353,7 @@ $messages['fa'] = array(
 	'mwoauth-bad-request-invalid-action-contact' => 'پوزش، خطایی رخ داد. برای [$1 تماس]  با برنامه‌نویس برای کمک به آدرس زیر مراجعه کنید.
 
 <span class="plainlinks mw-mwoautherror-details">Unknown URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>',
-	'mwoauthdatastore-access-token-not-found' => 'هیچ اعطای تائید برای رمز اختیار یافت نشد.',
+	'mwoauthdatastore-access-token-not-found' => 'هیچ اعطای تأیید برای رمز اختیار یافت نشد.',
 	'mwoauthdatastore-request-token-not-found' => 'با عرض پوزش، چیزی با اتصال این برنامه اشتباه شده.
 بازگردید و برای اتصال حسابتان دوباره امتحان کنید، یا با نویسندهٔ برنامه در تماس باشید.
 <span class="plainlinks mw-mwoautherror-details"> نشانهٔ آُآت پیدا نشد، [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>',
@@ -4115,6 +4115,14 @@ $messages['ka'] = array(
 	'mwoauthmanagemygrants-confirm-legend' => 'დაკავშირებული აპლიკაციის მართვა',
 );
 
+/** Kazakh (Cyrillic script) (қазақша (кирил)‎)
+ * @author Arystanbek
+ */
+$messages['kk-cyrl'] = array(
+	'mwoauth-prefs-managegrants' => 'Қосылған қосымшалар:',
+	'mwoauth-prefs-managegrantslink' => 'Қосылған $1 қосымшаны басқару',
+);
+
 /** Korean (한국어)
  * @author Hym411
  * @author Priviet
@@ -4434,6 +4442,13 @@ $5",
 각각의 권한에 대한 [[{{MediaWiki:Listgrouprights-helppage}}|추가 정보]]가 있습니다.',
 	'mwoauth-listgrants-grant' => '부여',
 	'mwoauth-listgrants-rights' => '권한',
+);
+
+/** Karachay-Balkar (къарачай-малкъар)
+ * @author Iltever
+ */
+$messages['krc'] = array(
+	'mwoauth-grant-createaccount' => 'Аккаунтла къурау',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -7029,7 +7044,7 @@ $messages['zh-hans'] = array(
 	'mwoauth-verified' => "现在该应用以允许以您的名义访问MediaWiki。
 
 要完成这个过程，请为该应用提供这个校验值：'''$1'''",
-	'mwoauth-missing-field' => '缺少值为" $1 "字段',
+	'mwoauth-missing-field' => '缺少值为“$1”字段',
 	'mwoauth-invalid-field' => '为"$1"字段提供的值无效',
 	'mwoauth-invalid-field-generic' => '提供的值无效',
 	'mwoauth-field-hidden' => '（这些信息已被隐藏）',
@@ -7069,12 +7084,12 @@ $messages['zh-hans'] = array(
 	'mwoauth-invalid-access-wrongwiki' => '这个消费者只被允许在“$1”项目使用。',
 	'mwoauth-consumer-conflict' => '有人更改了您查看的消费者的属性。请再试一次。
 你可能想要检查的更改日志。',
-	'mwoauth-consumer-stage-proposed' => '建议',
-	'mwoauth-consumer-stage-rejected' => '拒绝',
-	'mwoauth-consumer-stage-expired' => '过期',
-	'mwoauth-consumer-stage-approved' => '批准',
-	'mwoauth-consumer-stage-disabled' => '禁用',
-	'mwoauth-consumer-stage-suppressed' => '压制',
+	'mwoauth-consumer-stage-proposed' => '已提议',
+	'mwoauth-consumer-stage-rejected' => '已拒绝',
+	'mwoauth-consumer-stage-expired' => '已过期',
+	'mwoauth-consumer-stage-approved' => '已批准',
+	'mwoauth-consumer-stage-disabled' => '已禁用',
+	'mwoauth-consumer-stage-suppressed' => '已阻止',
 	'oauthconsumerregistration' => 'OAuth消费者登记',
 	'mwoauthconsumerregistration-notloggedin' => '您必须登录后才能访问此页。',
 	'mwoauthconsumerregistration-navigation' => '导航：',
@@ -7102,6 +7117,8 @@ $messages['zh-hans'] = array(
 	'mwoauthmanageconsumers-showrejected' => '被拒绝的请求',
 	'mwoauthmanageconsumers-showexpired' => '过期的请求',
 	'mwoauthmanageconsumers-main' => '主要',
+	'mwoauthmanageconsumers-l-approved' => '现有已批准程序列表',
+	'mwoauthmanageconsumers-l-disabled' => '现有已禁用程序列表',
 	'mwoauthmanageconsumers-name' => '消费者',
 	'mwoauthmanageconsumers-user' => '发布者',
 	'mwoauthmanageconsumers-description' => '说明',
@@ -7175,6 +7192,9 @@ $messages['zh-hans'] = array(
 	'mwoauthgrants-general-error' => '您的OAuth请求中存在错误。',
 	'mwoauthserver-invalid-request-token' => '您的申请中有无效令牌。',
 	'mwoauth-invalid-authorization-title' => 'OAuth认证错误',
+	'mwoauth-form-description-allwikis' => "嗨$1，
+'''$2'''希望在此站点所有您代表的项目中进行如下行为：
+$4",
 	'mwoauth-form-description-onewiki' => "您好$1，
 
 '''$2'''很想关注您在''$4''的各种琐事：
@@ -7219,9 +7239,32 @@ $5",
 	'right-mwoauthsuppress' => '阻止OAuth消费者',
 	'right-mwoauthviewsuppressed' => '查看已阻止的OAuth消费者',
 	'right-mwoauthviewprivate' => '查看私有OAuth数据',
+	'right-mwoauthmanagemygrants' => '管理OAuth补助',
 	'action-mwoauthmanageconsumer' => '管理OAuth消费者',
+	'action-mwoauthmanagemygrants' => '管理您的OAuth补助',
 	'action-mwoauthproposeconsumer' => '提议新的OAuth消费者',
 	'action-mwoauthupdateownconsumer' => '更新您控制的OAuth消费者',
+	'action-mwoauthviewsuppressed' => '查看已阻止的OAuth消费者',
 	'mwoauth-listgrants-grant' => '捐赠',
 	'mwoauth-listgrants-rights' => '权限',
+);
+
+/** Traditional Chinese (中文（繁體）‎)
+ * @author Liuxinyu970226
+ */
+$messages['zh-hant'] = array(
+	'mwoauth-desc' => '允許使用OAuth 1.0a用於API授權',
+	'mwoauth-verified' => "此應用程式現已允許以您的名義連結MediaWiki。
+要完成此過程，提供對應用程式確認值：'''$1'''",
+	'mwoauth-prefs-managegrants' => '已連接應用程式：',
+	'mwoauth-consumer-allwikis' => '此站點所有專案',
+	'mwoauth-consumer-user' => '發佈者：',
+	'mwoauth-consumer-stage' => '目前狀態：',
+	'mwoauth-consumer-email' => '聯絡電郵：',
+	'mwoauth-consumer-description' => '應用程式版本：',
+	'mwoauth-consumer-callbackurl' => 'OAuth「回檔」URL：',
+	'mwoauth-consumer-wiki-thiswiki' => '現有專案（$1）',
+	'mwoauth-consumer-rsakey' => '公開RSA密匙：',
+	'mwoauth-consumer-accesstoken' => '連接令牌：',
+	'mwoauth-consumer-reason' => '原因：',
 );
