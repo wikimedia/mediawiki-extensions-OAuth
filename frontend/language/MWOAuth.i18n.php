@@ -6061,7 +6061,7 @@ $messages['ru'] = array(
  * @author John Reid
  */
 $messages['sco'] = array(
-	'mwoauthmanagemygrants-useoauth-tooltip' => "Why can Ah no update this graunt? This graunt gi'es yer connected application basic permeessions that it requires fer tae function properly. Gif ye dinna want this connected application tae hae these richts, ye shid revoke the application's access.",
+	'mwoauthmanagemygrants-useoauth-tooltip' => "Why can Ah naw update this graunt? This graunt gies yer connected appleecation basic permeessions that it requires fer tae function properlie. Gif ye dinna want this connected appleecation tae hae thir richts, ye shid revoke the appleecation's access.",
 );
 
 /** Slovak (slovenčina)
