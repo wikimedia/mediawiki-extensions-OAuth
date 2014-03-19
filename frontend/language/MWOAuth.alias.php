@@ -94,7 +94,7 @@ $specialPageAliases['zh-hans'] = array(
 	'OAuthConsumerRegistration' => array( 'OAuth消费者注册', 'OAuth注册' ),
 	'OAuthManageConsumers' => array( 'OAuth管理消费者' ),
 	'OAuthListConsumers' => array( 'OAuth消费者列表' ),
-	'OAuthManageMyGrants' => array( 'OAuth管理我的补助', 'OAuth补助' ),
+	'OAuthManageMyGrants' => array( 'OAuth管理我的许可', 'OAuth许可' ),
 );
 
 /** Traditional Chinese (中文（繁體）‎) */
