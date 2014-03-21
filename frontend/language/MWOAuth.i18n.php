@@ -1993,9 +1993,20 @@ $messages['es'] = array(
 
 Para completar el proceso, proporciona este valor de comprobación a la aplcación: '''$1'''",
 	'mwoauth-invalid-field-generic' => 'Se ha proporcionado un valor no válido',
+	'mwoauth-field-hidden' => '(esta información está oculta)',
+	'mwoauth-field-private' => '(esta información es privada)',
 	'mwoauth-prefs-managegrants' => 'Aplicaciones conectadas:',
 	'mwoauth-prefs-managegrantslink' => 'Gestionar $1 {{PLURAL:$1|aplicación conectada|aplicaciones conectadas}}',
 	'mwoauth-consumer-allwikis' => 'Todos los proyectos en este sitio',
+	'mwoauth-consumer-name' => 'Nombre de la aplicación:',
+	'mwoauth-consumer-stage' => 'Estado actual:',
+	'mwoauth-consumer-email' => 'Correo electrónico de contacto:',
+	'mwoauth-consumer-description' => 'Descripción de la aplicación:',
+	'mwoauth-consumer-rsakey' => 'Clave RSA pública:',
+	'mwoauth-consumer-reason' => 'Motivo:',
+	'mwoauthconsumerregistration-main' => 'Principal',
+	'mwoauthmanageconsumers-description' => 'Descripción',
+	'mwoauthmanageconsumers-email' => 'Correo electrónico de contacto',
 	'mwoauthmanagemygrants-text' => 'Esta página muestra las aplicaciones que pueden utilizar tu cuenta. Para cualquier aplicación, el alcance de su acceso está limitado por los permisos que se le otorgaron al momento de autorizarla. Si has autorizado una aplicación para que acceda a varios proyectos en tu nombre, verás ajustes separados a continuación por cada uno de los proyectos.
 
 Las aplicaciones conectadas acceden a tu cuenta mediante el protocolo OAuth. <span class="plainlinks">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Más información sobre las aplicaciones conectadas])</span>',
