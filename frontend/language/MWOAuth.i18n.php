@@ -5458,11 +5458,8 @@ Gekoppelde toepassingen hebben toegang tot uw gebruiker via het protocol OAuth. 
 	'mwoauthmanagemygrants-review' => 'toegang beheren',
 	'mwoauthmanagemygrants-revoke' => 'toegang intrekken',
 	'mwoauthmanagemygrants-grantaccept' => 'Toegestaan',
-	'mwoauthmanagemygrants-update-text' => 'Gebruik het onderstaande formulier om de rechten te wijzigen die worden gegeven aan een toepassing om namens u te handelen.
-* Als u toepassingen afzonderlijk toegang hebt gegevens tot uw gebruikers op zusterprojecten, dan heeft u afzonderlijke instellingen voor elk project voor een toepassing.', # Fuzzy
-	'mwoauthmanagemygrants-revoke-text' => 'Gebruik het onderstaande formulier om toegang voor een toepassing om namen u te handelen in te trekken.
-* Als u toepassingen afzonderlijk toegang hebt gegevens tot uw gebruikers op zusterprojecten, dan heeft u afzonderlijke instellingen voor elk project voor een toepassing.
-* Als u alle rechten voor toepassing wilt intrekken, zorg er dan voor dat u deze op alle projecten waar u toegang hebt verstrekt weer intrekt.', # Fuzzy
+	'mwoauthmanagemygrants-update-text' => 'Gebruik het onderstaande formulier om de rechten te wijzigen die worden gegeven aan een toepassing om namens u te handelen.',
+	'mwoauthmanagemygrants-revoke-text' => 'Gebruik het onderstaande formulier om toegang voor een toepassing om namen u te handelen in te trekken.',
 	'mwoauthmanagemygrants-confirm-legend' => 'Gekoppelde toepassing beheren',
 	'mwoauthmanagemygrants-update' => 'Toegang bijwerken',
 	'mwoauthmanagemygrants-renounce' => 'Machtiging intrekken',
@@ -5470,6 +5467,7 @@ Gekoppelde toepassingen hebben toegang tot uw gebruiker via het protocol OAuth. 
 	'mwoauthmanagemygrants-confirm-submit' => 'Toegangstokenstatus bijwerken',
 	'mwoauthmanagemygrants-success-update' => 'Het toegangstoken voor deze consumer is bijgewerkt.',
 	'mwoauthmanagemygrants-success-renounce' => 'Het toegangstoken voor deze consumer is verwijderd.',
+	'mwoauthmanagemygrants-useoauth-tooltip' => 'Waarom kan ik deze toestemming niet bijwerken? Deze toestemming geeft uw gekoppelde toepassing standaard rechten die nodig zijn om goed te kunnen werken. Als u niet wilt dat deze gekoppelde toepassing deze rechten heeft, trek dan de toegang van de toepassing in.',
 	'logentry-mwoauthconsumer-propose' => '$1 {{GENDER:$2|heeft}} een OAuthtoepassing voorgesteld (toepassingssleutel $4)',
 	'logentry-mwoauthconsumer-update' => '$1 {{GENDER:$2|heeft}} een OAuthtoepassing bijgewerkt (toepassingssleutel $4)',
 	'logentry-mwoauthconsumer-approve' => '$1 {{GENDER:$2|heeft}} een OAuthtoepassing goedgekeurd van $3 (toepassingssleutel $4)',
@@ -7181,7 +7179,7 @@ $messages['zh-hans'] = array(
 	'mwoauthlistconsumers-name' => '应用程序名称',
 	'mwoauthlistconsumers-version' => '消费者版本',
 	'mwoauthlistconsumers-user' => '发布者',
-	'mwoauthlistconsumers-description' => '描述',
+	'mwoauthlistconsumers-description' => '说明',
 	'mwoauthlistconsumers-wiki' => '可用项目',
 	'mwoauthlistconsumers-callbackurl' => 'OAuth“回调URL”',
 	'mwoauthlistconsumers-grants' => '可用补助',
@@ -7202,7 +7200,7 @@ $messages['zh-hans'] = array(
 	'mwoauthmanagemygrants-showlist' => '已连接的应用程序列表',
 	'mwoauthmanagemygrants-none' => '还没有应用程序连接到你的账户。',
 	'mwoauthmanagemygrants-user' => '发布者：',
-	'mwoauthmanagemygrants-description' => '描述',
+	'mwoauthmanagemygrants-description' => '说明',
 	'mwoauthmanagemygrants-wikiallowed' => '允许在项目上使用：',
 	'mwoauthmanagemygrants-grants' => '应用授权：',
 	'mwoauthmanagemygrants-grantsallowed' => '允许授权',
