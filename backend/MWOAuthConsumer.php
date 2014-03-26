@@ -26,6 +26,8 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $id;
 	/** @var string Hex token */
 	protected $consumerKey;
+	/** @var string Name of connected application */
+	protected $name;
 	/** @var integer Publisher user ID (on central wiki) */
 	protected $userId;
 	/** @var string Version used for handshake breaking changes */
@@ -54,6 +56,8 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $stage;
 	/** @var string TS_MW timestamp of last stage change */
 	protected $stageTimestamp;
+	/** @var integer Indicates (if non-zero) this consumer's information is suppressed */
+	protected $deleted;
 
 	/* Stages that registered consumer takes (stored in DB) */
 	const STAGE_PROPOSED = 0;
