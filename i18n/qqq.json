@@ -207,7 +207,7 @@
     "mwoauth-form-description-allwikis-nogrants": "Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.\n\nParameters:\n* $1 - the username\n* $2 - application name\n* $3 - application publisher\nSee also:\n* {{msg-mw|Mwoauth-form-description-allwikis}}\n* {{msg-mw|Mwoauth-form-description-onewiki}}\n* {{msg-mw|Mwoauth-form-description-onewiki-nogrants}}",
     "mwoauth-form-description-onewiki-nogrants": "Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.\n\nParameters:\n* $1 - the username\n* $2 - application name\n* $3 - application publisher\n* $4 - wiki project name\nSee also:\n* {{msg-mw|Mwoauth-form-description-allwikis}}\n* {{msg-mw|Mwoauth-form-description-onewiki}}\n* {{msg-mw|Mwoauth-form-description-onewiki-nogrants}}",
     "mwoauth-form-legal": "Message used for wiki-specific legal notes. Keep this blank.",
-    "mwoauth-form-privacypolicy-link": "{{doc-important|Do not translate <code><nowiki>{{ns:Project}}:Privacy policy</nowiki></code> part.}}",
+    "mwoauth-form-privacypolicy-link": "{{doc-important|Do not translate \u003Ccode\u003E\u003Cnowiki\u003E{{ns:Project}}:Privacy policy\u003C/nowiki\u003E\u003C/code\u003E part.}}",
     "mwoauth-form-button-approve": "Button label, indicating the user wants to allow access.\n\nSee also:\n* {{msg-mw|Mwoauth-form-button-cancel}}\n{{Identical|Allow}}",
     "mwoauth-form-button-cancel": "Button label, indicating the user wants to cancel granting access.\n\nSee also:\n* {{msg-mw|Mwoauth-form-button-approve}}\n{{Identical|Cancel}}",
     "mwoauth-error": "Heading on the page, whenever an OAuth error is presented to a user.",

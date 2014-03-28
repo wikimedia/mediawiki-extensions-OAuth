@@ -119,7 +119,7 @@
     "mwoauthlistconsumers-status-rejected": "却下",
     "mwoauthlistconsumers-status-expired": "期限切れ",
     "oauthmanagemygrants": "接続済みアプリケーションの管理",
-    "mwoauthmanagemygrants-text": "このページでは、あなたのアカウントを使用できるアプリケーションをすべて列挙します。各アプリケーションについて、あなたの代わりに実行することを承認した際に許可した範囲に、そのアプリケーションの権限が制限されています。If you separately authorized an application to access different sister projects on your behalf, then you will see separate configuration for each such project below.\n\nConnected applications access your account by using the OAuth protocol. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Learn more about connected applications])</span>",
+    "mwoauthmanagemygrants-text": "このページでは、あなたのアカウントを使用できるアプリケーションをすべて列挙します。各アプリケーションについて、あなたの代わりに実行することを承認した際に許可した範囲に、そのアプリケーションの権限が制限されています。If you separately authorized an application to access different sister projects on your behalf, then you will see separate configuration for each such project below.\n\nConnected applications access your account by using the OAuth protocol. \u003Cspan class=\"plainlinks\"\u003E([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Learn more about connected applications])\u003C/span\u003E",
     "mwoauthmanagemygrants-notloggedin": "このページにアクセスするにはログインしてください。",
     "mwoauthmanagemygrants-navigation": "ナビゲーション:",
     "mwoauthmanagemygrants-showlist": "接続済みアプリケーション一覧",
@@ -189,5 +189,5 @@
     "action-mwoauthupdateownconsumer": "自分が制御できるOAuthコンシューマーの更新",
     "action-mwoauthviewsuppressed": "秘匿されたOAuthコンシューマーの閲覧",
     "mwoauth-listgrants-rights": "権限",
-    "mwoauth-listgrantrights-right-display": "$1 <code>($2)</code>"
+    "mwoauth-listgrantrights-right-display": "$1 \u003Ccode\u003E($2)\u003C/code\u003E"
 }
