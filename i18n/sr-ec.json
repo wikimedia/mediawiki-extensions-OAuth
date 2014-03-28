@@ -1,0 +1,21 @@
+{
+    "@metadata": {
+        "authors": [
+            "Milicevic01"
+        ]
+    },
+    "mwoauth-field-hidden": "(ова информација је скривена)",
+    "mwoauth-field-private": "(ова информација је приватна)",
+    "mwoauth-prefs-managegrants": "Повезане апликације:",
+    "oauthlistconsumers": "Списак OAuth апликација",
+    "mwoauthlistconsumers-view": "детаљи",
+    "mwoauthlistconsumers-name": "Име апликације",
+    "mwoauthlistconsumers-user": "Издавач",
+    "mwoauthlistconsumers-description": "Опис",
+    "mwoauthlistconsumers-status": "Статус",
+    "oauthmanagemygrants": "Управљање повезаним апликацијама",
+    "mwoauthmanagemygrants-showlist": "Списак повезаних аликација",
+    "mwoauthmanagemygrants-none": "Нема апликација повезаних са вашим налогом.",
+    "mwoauth-grant-uploadeditmovefile": "Отпремите, замените и преместите датотеке",
+    "mwoauth-grant-useoauth": "Основна права"
+}

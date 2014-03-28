@@ -1,0 +1,12 @@
+{
+    "@metadata": {
+        "authors": [
+            "Helder.wiki",
+            "Luckas"
+        ]
+    },
+    "mwoauth-prefs-managegrantslink": "Gerenciar $1 {{PLURAL:$1|aplicativo|aplicativos}} conectados",
+    "mwoauth-form-button-approve": "Permitir",
+    "mwoauth-form-button-cancel": "Cancelar",
+    "mwoauth-grant-createaccount": "Criar contas"
+}

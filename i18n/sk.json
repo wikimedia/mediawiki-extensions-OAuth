@@ -1,0 +1,10 @@
+{
+    "@metadata": {
+        "authors": [
+            "Kusavica"
+        ]
+    },
+    "mwoauth-form-button-approve": "Povoliť",
+    "mwoauth-form-button-cancel": "Zrušiť",
+    "mwoauth-grant-group-email": "Poslať email"
+}

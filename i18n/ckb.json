@@ -1,0 +1,16 @@
+{
+    "@metadata": {
+        "authors": [
+            "Calak"
+        ]
+    },
+    "oauthmanageconsumers": "بەڕێوەبەردنی بەکاربەرانی OAuth",
+    "right-mwoauthproposeconsumer": "پێشنیاری بەکاربەرانی OAuthی نوێ",
+    "right-mwoauthupdateownconsumer": "نوێکردنەوەی بەکاربەرانی OAuthی تاوتوێی دەکەی",
+    "right-mwoauthmanageconsumer": "بەڕێوەبەردنی بەکاربەرانی OAuth",
+    "right-mwoauthmanagemygrants": "بەڕێوەبەردنی مافەکانی OAuth",
+    "action-mwoauthmanageconsumer": "بەڕێوەبەردنی بەکاربەرانی OAuth",
+    "action-mwoauthmanagemygrants": "بەڕێوەبەردنی مافەکانی OAuthەکەت",
+    "action-mwoauthproposeconsumer": "پێشنیاری بەکاربەرانی OAuthی نوێ",
+    "action-mwoauthupdateownconsumer": "نوێکردنەوەی بەکاربەرانی OAuthی تاوتوێی دەکەی"
+}

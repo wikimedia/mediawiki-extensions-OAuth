@@ -1,0 +1,36 @@
+{
+    "@metadata": {
+        "authors": [
+            "Умар"
+        ]
+    },
+    "mwoauth-desc": "OAuth 1.0a лелича йиш хуьлуьйту API чудаха",
+    "mwoauth-prefs-managegrants": "ТӀетесна тӀетохарш:",
+    "mwoauth-prefs-managegrantslink": "ТӀетесна $1 {{PLURAL:$1|1=тӀетохаран урхалладар|тӀетохаршан урхалладар}}",
+    "mwoauth-consumer-allwikis": "ХӀокху сайтан массо проекташ",
+    "mwoauth-consumer-name": "ТӀетохаран цӀе:",
+    "mwoauth-consumer-stage": "Карара хьал:",
+    "mwoauth-consumer-description": "Цуьнах лаьцна:",
+    "mwoauth-consumer-wiki": "Проектан лело мега:",
+    "mwoauthconsumerregistration-stage": "Хьал",
+    "mwoauthmanageconsumers-description": "Цуьнах лаьцна",
+    "mwoauthmanageconsumers-action": "Хийца хьал:",
+    "oauthlistconsumers": "ТеӀетохаршан могӀа",
+    "mwoauthlistconsumers-description": "Цуьнах лаьцна",
+    "mwoauthlistconsumers-wiki": "Проектан лело мега",
+    "mwoauthlistconsumers-callbackurl": "«URL-адрес юха кхайкхаман» OAuth:",
+    "mwoauthlistconsumers-basicgrantsonly": "(базан тӀекхачар бен)",
+    "mwoauthlistconsumers-status": "Хьал",
+    "oauthmanagemygrants": "ТӀетесна тӀетохаршан урхалладар",
+    "mwoauthmanagemygrants-showlist": "ТӀетесна тӀетохаршан могӀа",
+    "mwoauthmanagemygrants-none": "Хьан декъашхочун дӀаяздаран хӀинца яц тӀетесна тӀетохарш.",
+    "mwoauthmanagemygrants-description": "Цуьнах лаьцна",
+    "mwoauth-grant-group-email": "ДӀадахьийта кехат",
+    "mwoauth-grant-editmyoptions": "Табе хьай гӀирс",
+    "mwoauth-grant-editmywatchlist": "Хьан тергаме могӀам табар",
+    "mwoauth-grant-editpage": "Тае йолуш йолу агӀо",
+    "mwoauth-grant-editprotected": "ГӀоралла дина агӀонаш таяр",
+    "mwoauth-grant-uploadfile": "Чуяха керла файлаш",
+    "mwoauth-grant-viewmywatchlist": "Шен тергаме могӀаме хьажар",
+    "mwoauth-listgrants-rights": "Бакъонаш"
+}

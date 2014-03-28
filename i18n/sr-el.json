@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "Milicevic01"
+        ]
+    },
+    "mwoauth-prefs-managegrants": "Povezane aplikacije:",
+    "mwoauthlistconsumers-description": "Opis",
+    "mwoauthlistconsumers-status": "Status",
+    "oauthmanagemygrants": "Upravljanje povezanim aplikacijama",
+    "mwoauthmanagemygrants-showlist": "Spisak povezanih alikacija",
+    "mwoauthmanagemygrants-none": "Nema aplikacija povezanih sa vašim nalogom."
+}

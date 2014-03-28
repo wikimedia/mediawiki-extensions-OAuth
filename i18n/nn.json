@@ -1,0 +1,10 @@
+{
+    "@metadata": {
+        "authors": [
+            "Njardarlogar"
+        ]
+    },
+    "mwoauth-prefs-managegrants": "Tilkopla småprogram:",
+    "mwoauth-prefs-managegrantslink": "Handsam {{PLURAL:$1|eitt tilknytt småprogram|$1 tilknytte småprogram}}",
+    "mwoauthmanagemygrants-none": "Det finst ingen småprogram knytte til kontoen din."
+}

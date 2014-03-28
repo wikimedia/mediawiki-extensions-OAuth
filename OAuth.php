@@ -36,7 +36,7 @@ require( __DIR__ . '/OAuth.config.php' );
 
 # Define were PHP files and i18n files are located
 require( __DIR__ . '/OAuth.setup.php' );
-MWOAuthSetup::defineSourcePaths( $wgAutoloadClasses, $wgExtensionMessagesFiles );
+MWOAuthSetup::defineSourcePaths( $wgAutoloadClasses, $wgExtensionMessagesFiles, $wgMessagesDirs );
 
 # Setup steps that does not depend on configuration
 MWOAuthSetup::unconditionalSetup();

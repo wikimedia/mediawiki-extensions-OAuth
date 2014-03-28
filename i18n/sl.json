@@ -1,0 +1,34 @@
+{
+    "@metadata": {
+        "authors": [
+            "Dbc334",
+            "Eleassar"
+        ]
+    },
+    "mwoauth-consumer-allwikis": "Vsi projekti na tem spletišču",
+    "mwoauthmanagemygrants-review": "upravljaj z dostopom",
+    "mwoauthmanagemygrants-grantaccept": "Donirano",
+    "mwoauthmanagemygrants-update": "Posodobitev donacij",
+    "mwoauthmanagemygrants-renounce": "Deavtoriziraj",
+    "mwoauth-form-description-allwikis": "Pozdravljeni, $1\n\n'''$2''' bi v vašem imenu v vseh projektih tega spletišča rad izvedel naslednje dejanje:\n\n\n$4",
+    "mwoauth-form-description-onewiki": "Pozdravljeni, $1,\n\n'''$2''' bi rad na projektu »$4« v vašem imenu izvedel naslednje dejanje:\n\n\n$5",
+    "mwoauth-form-description-allwikis-nogrants": "Pozdravljeni, $1,\n\n'''$2''' bi v vseh projektih tega spletišča rad imel osnovni dostop v vašem imenu.$2",
+    "mwoauth-form-description-onewiki-nogrants": "Pozdravljeni, $1,\n\n'''$2''' bi v projektu ''$4'' rad imel osnovni dostop v vašem imenu.",
+    "mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|Politika zasebnosti]]",
+    "mwoauth-form-button-approve": "Dovoli",
+    "mwoauth-form-button-cancel": "Prekliči",
+    "mwoauth-acceptance-cancelled": "Odločili ste se, da »$1« na dovolite dostopa do svojega računa. Oseba »$1« ne bo delovala, razen če ji dovolite dostop. Greste lahko nazaj na »$1« ali na[[Special:OAuthManageMyGrants|urejanje]] vaših povezanih aplikacij.",
+    "mwoauth-grant-group-page-interaction": "Interakcija s stranmi",
+    "mwoauth-grant-group-file-interaction": "Interakcija z mediji",
+    "mwoauth-grant-group-watchlist-interaction": "Interakcija z vašim spiskom nadzorov",
+    "mwoauth-grant-group-email": "Pošljite e-pošto",
+    "mwoauth-grant-group-high-volume": "Izvedi visokoštevilsko dejanje",
+    "mwoauth-grant-group-customization": "Prilagoditve in nastavitve",
+    "mwoauth-grant-group-administration": "Izvajanje administrativnih dejanj",
+    "mwoauth-grant-group-other": "Druga dejavnost",
+    "mwoauth-grant-createaccount": "Ustvarite račune",
+    "mwoauth-grant-patrol": "Nadzor sprememb strani",
+    "mwoauth-grant-rollback": "Razveljavitev sprememb strani",
+    "mwoauth-grant-sendemail": "Pošiljanje e-pošte drugim uporabnikom",
+    "mwoauth-oauth-exception": "Napaka v protokolu OAuth: $1"
+}

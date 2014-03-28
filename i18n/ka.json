@@ -1,0 +1,11 @@
+{
+    "@metadata": {
+        "authors": [
+            "David1010"
+        ]
+    },
+    "mwoauth-prefs-managegrants": "დაკავშირებული აპლიკაციები:",
+    "mwoauth-prefs-managegrantslink": "$1 დაკავშირებული {{PLURAL:$1|აპლიკაციის}} მართვა",
+    "oauthmanagemygrants": "დაკავშირებული აპლიკაციების მართვა",
+    "mwoauthmanagemygrants-confirm-legend": "დაკავშირებული აპლიკაციის მართვა"
+}

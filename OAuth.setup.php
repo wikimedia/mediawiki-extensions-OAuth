@@ -7,12 +7,12 @@ class MWOAuthSetup {
 	 * Register source code paths.
 	 * This function must NOT depend on any config vars.
 	 *
-	 * @param $classes Array $classes
-	 * @param $messagesFiles Array $messagesFiles
-	 * @param $redactedFunctionArgs Array $redactedFunctionArgs
+	 * @param array $classes
+	 * @param array $messagesFiles
+	 * @param array $messagesDirs
 	 * @return void
 	 */
-	public static function defineSourcePaths( array &$classes, array &$messagesFiles ) {
+	public static function defineSourcePaths( array &$classes, array &$messagesFiles, array &$messagesDirs ) {
 		$dir = __DIR__;
 
 		# Basic directory layout
@@ -26,7 +26,7 @@ class MWOAuthSetup {
 		$libDir      = "$dir/lib";
 
 		# Main i18n file and special page alias file
-		$messagesFiles['MWOAuth'] = "$langDir/MWOAuth.i18n.php";
+		$messagesDirs['MWOAuth'] = "$dir/i18n";
 		$messagesFiles['MWOAuthAliases'] = "$langDir/MWOAuth.alias.php";
 
 		# Setup classes
