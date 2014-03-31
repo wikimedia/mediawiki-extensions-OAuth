@@ -417,9 +417,19 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 
 	/**
 	 * Update whether this object should be written to the data store
-	 * @param bool pending set to true to mark this object as needing to write its data
+	 * @param bool $pending set to true to mark this object as needing to write its data
 	 */
 	public function setPending( $pending ) {
 		$this->daoPending = $pending;
+	}
+
+	/**
+	 * Update the origin of this object
+	 * @param string $source source of the object
+	 *	'new': Treat this as a new object to the datastore (insert on save)
+	 *	'db': Treat this as already in the datastore (update on save)
+	 */
+	public function updateOrigin( $source ) {
+		$this->daoOrigin = $source;
 	}
 }
