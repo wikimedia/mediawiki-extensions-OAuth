@@ -414,4 +414,12 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	final public function checkChangeToken( RequestContext $context, $oldToken ) {
 		return ( $this->getChangeToken( $context ) === $oldToken );
 	}
+
+	/**
+	 * Update whether this object should be written to the data store
+	 * @param bool pending set to true to mark this object as needing to write its data
+	 */
+	public function setPending( $pending ) {
+		$this->daoPending = $pending;
+	}
 }

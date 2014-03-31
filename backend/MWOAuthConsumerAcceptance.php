@@ -33,7 +33,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	/** @var string Hex token */
 	protected $accessToken;
 	/** @var string Secret HMAC key */
-	protected $secretToken;
+	protected $accessSecret;
 	/** @var array List of grants */
 	protected $grants;
 	/** @var string TS_MW timestamp of acceptance */
