@@ -8,7 +8,7 @@
 CREATE TABLE IF NOT EXISTS /*_*/oauth_registered_consumer (
     -- Immutable fields below:
     -- Consumer ID (1:1 with oarc_consumer_key)
-    oarc_id integer unsigned NOT NULL auto_increment PRIMARY KEY,
+    oarc_id integer unsigned NOT NULL PRIMARY KEY auto_increment,
     -- OAuth consumer key and secret (or RSA key)
     oarc_consumer_key varbinary(32) NOT NULL,
     -- Name of the application
@@ -56,7 +56,7 @@ CREATE INDEX /*i*/oarc_stage_timestamp
 
 -- Grant approvals by users for consumers
 CREATE TABLE IF NOT EXISTS /*_*/oauth_accepted_consumer (
-    oaac_id integer unsigned NOT NULL auto_increment PRIMARY KEY,
+    oaac_id integer unsigned NOT NULL PRIMARY KEY auto_increment,
     -- The name of a wiki or "*"
     oaac_wiki varchar(255) binary NOT NULL,
     -- Key to the user who approved the consumer (on the central wiki)
