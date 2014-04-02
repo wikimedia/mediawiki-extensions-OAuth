@@ -36,6 +36,8 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	}
 
 	public function execute( $par ) {
+		global $wgMWOAuthReadOnly;
+
 		$user = $this->getUser();
 
 		$this->setHeaders();
@@ -52,6 +54,10 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$navigation = explode( '/', $par );
 		$typeKey = isset( $navigation[0] ) ? $navigation[0] : null;
 		$acceptanceId = isset( $navigation[1] ) ? $navigation[1] : null;
+
+		if ( $wgMWOAuthReadOnly && in_array( $typeKey, array( 'update', 'revoke' ) ) ) {
+			throw new ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
+		}
 
 		switch ( $typeKey ) {
 		case 'update':

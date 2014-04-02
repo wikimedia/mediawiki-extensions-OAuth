@@ -187,6 +187,13 @@ $wgMWOauthDisabledApiModules = array(
 );
 
 /**
+ * @var bool prevent write activity to the database. When this is set, consumers cannot
+ * be added or updated, and new authorizations are prohibited. Authorization headers for
+ * existing authorizations will continue to work. Useful for migrating database tables.
+ */
+$wgMWOAuthReadOnly = false;
+
+/**
  * @var string Secret to add to HMAC of token secrets
  * A cryptographically random string, used as an extra protection for secrets stored in the
  * database. This can use the wiki's $wgSecretKey, but in multi-wiki configurations, this needs

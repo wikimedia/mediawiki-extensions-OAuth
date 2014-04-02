@@ -20,10 +20,12 @@ class MWOAuthUtils {
 	 * @return DBConnRef
 	 */
 	public static function getCentralDB( $index ) {
-		global $wgMWOAuthCentralWiki;
+		global $wgMWOAuthCentralWiki, $wgMWOAuthReadOnly;
 
-		return wfGetLB( $wgMWOAuthCentralWiki )->getConnectionRef(
+		$db = wfGetLB( $wgMWOAuthCentralWiki )->getConnectionRef(
 			$index, array(), $wgMWOAuthCentralWiki );
+		$db->daoReadOnly = $wgMWOAuthReadOnly;
+		return $db;
 	}
 
 	/**

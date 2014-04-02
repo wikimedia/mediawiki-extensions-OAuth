@@ -35,7 +35,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgMWOAuthSecureTokenTransfer;
+		global $wgMWOAuthSecureTokenTransfer, $wgMWOAuthReadOnly;
 
 		$request = $this->getRequest();
 		$user = $this->getUser();
@@ -74,6 +74,10 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$navigation = explode( '/', $par );
 		$action = isset( $navigation[0] ) ? $navigation[0] : null;
 		$consumerKey = isset( $navigation[1] ) ? $navigation[1] : null;
+
+		if ( $wgMWOAuthReadOnly && $action !== 'list' ) {
+			throw new ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
+		}
 
 		switch ( $action ) {
 		case 'propose':

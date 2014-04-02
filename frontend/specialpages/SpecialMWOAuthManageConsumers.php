@@ -39,6 +39,8 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	}
 
 	public function execute( $par ) {
+		global $wgMWOAuthReadOnly;
+
 		$user = $this->getUser();
 
 		$this->setHeaders();
@@ -49,6 +51,10 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 			return;
 		} elseif ( !$user->isAllowed( 'mwoauthmanageconsumer' ) ) {
 			throw new PermissionsError( 'mwoauthmanageconsumer' );
+		}
+
+		if ( $wgMWOAuthReadOnly ) {
+			throw new ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
 		}
 
 		// Format is Special:OAuthManageConsumers[/<stage>[/<consumer key>]]

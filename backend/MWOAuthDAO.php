@@ -145,6 +145,9 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	public function save( DBConnRef $dbw ) {
 		$uniqueId = $this->getIdValue();
 		$idColumn = static::getIdColumn();
+		if ( $dbw->daoReadOnly ) {
+			throw new MWException( get_class( $this ) . ": tried to save while db is read-only" );
+		}
 		if ( $this->daoOrigin === 'db' ) {
 			if ( $this->daoPending ) {
 				wfDebug( get_class( $this ) . ': performing DB update; object changed.' );
@@ -184,6 +187,9 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	public function delete( DBConnRef $dbw ) {
 		$uniqueId = $this->getIdValue();
 		$idColumn = static::getIdColumn();
+		if ( $dbw->daoReadOnly ) {
+			throw new MWException( get_class( $this ) . ": tried to delete while db is read-only" );
+		}
 		if ( $this->daoOrigin === 'db' ) {
 			$dbw->delete(
 				static::getTable(),

@@ -5,6 +5,7 @@
     "oauth": "OAuth",
     "mwoauth-desc": "Allows usage of OAuth 1.0a for API authorization",
     "mwoauth-verified": "The application is now allowed to access MediaWiki on your behalf.\n\nTo complete the process, provide this verification value to the application: '''$1'''",
+    "mwoauth-db-readonly": "The OAuth database is temporarily locked. Please try again in a few minutes.",
     "mwoauth-missing-field": "Missing value for \"$1\" field",
     "mwoauth-invalid-field": "Invalid value provided for \"$1\" field",
     "mwoauth-invalid-field-generic": "Invalid value provided",

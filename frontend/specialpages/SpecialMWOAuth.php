@@ -27,7 +27,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	}
 
 	public function execute( $subpage ) {
-		global $wgMWOAuthSecureTokenTransfer;
+		global $wgMWOAuthSecureTokenTransfer, $wgMWOAuthReadOnly;
 
 		$this->setHeaders();
 
@@ -36,6 +36,10 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$format = $request->getVal( 'format', 'raw' );
 
 		try {
+			if ( $wgMWOAuthReadOnly && !in_array( $subpage, array( 'verified', 'grants', 'identify' ) ) ) {
+				throw new MWOAuthException( 'mwoauth-db-readonly' );
+			}
+
 			switch ( $subpage ) {
 				case 'initiate':
 					$oauthServer = MWOAuthUtils::newMWOAuthServer();
