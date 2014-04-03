@@ -8,6 +8,7 @@
     },
     "mwoauth-desc": "Umožňuje využití OAuth 1.0a pro autorizaci přístupu k API",
     "mwoauth-verified": "Tato aplikace má nyní oprávnění přistupovat k MediaWiki vaším jménem.\n\nPro dokončení procesu poskytněte aplikaci tuto ověřovací hodnotu: '''$1'''",
+    "mwoauth-db-readonly": "Databáze OAuth je dočasně uzamčena. Zkuste to prosím znovu za několik minut.",
     "mwoauth-missing-field": "Chybějící hodnota pole „$1“",
     "mwoauth-invalid-field": "Uvedena neplatná hodnota pole „$1“",
     "mwoauth-invalid-field-generic": "Zadána neplatná hodnota",
