@@ -5,11 +5,13 @@
             "Hansmuller",
             "SPQRobin",
             "Siebrand",
-            "Sjoerddebruin"
+            "Sjoerddebruin",
+            "Southparkfan"
         ]
     },
     "mwoauth-desc": "Maakt het mogelijk OAuth 1.0a te gebruik voor API-toestemming",
     "mwoauth-verified": "De toepassing heeft nu namens u toegang tot MediaWiki.\n\nGeef deze controlewaarde op in de toepassing om het proces te voltooien: '''$1'''",
+    "mwoauth-db-readonly": "De OAuth database is tijdelijk vergrendeld. Probeer het over enkele minuten opnieuw.",
     "mwoauth-missing-field": "Waarde voor het veld \"$1\" ontbreekt",
     "mwoauth-invalid-field": "Er is een ongeldige waarde opgegeven voor het veld \"$1\"",
     "mwoauth-invalid-field-generic": "Er is een ongeldige waarde opgegeven",
