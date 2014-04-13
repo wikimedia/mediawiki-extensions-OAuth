@@ -8,11 +8,13 @@
             "Shirayuki",
             "Shizhao",
             "Xiaomingyan",
-            "Yfdyh000"
+            "Yfdyh000",
+            "Simon Shek"
         ]
     },
     "mwoauth-desc": "允许使用OAuth 1.0a用作API授权",
     "mwoauth-verified": "现在该应用以允许以您的名义访问MediaWiki。\n\n要完成这个过程，请为该应用提供这个校验值：'''$1'''",
+    "mwoauth-db-readonly": "OAuth数据库暂时锁定。请几分钟后重试。",
     "mwoauth-missing-field": "缺少值为“$1”字段",
     "mwoauth-invalid-field": "为\"$1\"字段提供的值无效",
     "mwoauth-invalid-field-generic": "提供的值无效",
@@ -108,6 +110,7 @@
     "mwoauthmanageconsumers-reenable": "已批准",
     "mwoauthmanageconsumers-reason": "原因：",
     "mwoauthmanageconsumers-confirm-submit": "更新消费者状态",
+    "mwoauthmanageconsumers-viewing": "{{GENDER:$1|用户}}“$1”当前正在查看此消费者",
     "mwoauthmanageconsumers-success-approved": "请求已批准。",
     "mwoauthmanageconsumers-success-rejected": "请求已被拒绝。",
     "mwoauthmanageconsumers-success-disabled": "消费者已禁用。",
@@ -133,7 +136,7 @@
     "mwoauthlistconsumers-status-rejected": "拒绝",
     "mwoauthlistconsumers-status-expired": "已过期",
     "oauthmanagemygrants": "管理已连接的应用程序",
-    "mwoauthmanagemygrants-text": "此页面列出了可以使用您的账户的所有应用程序。这些应用程序的可访问范围取决于您授予这些应用程序可代表您操作时所允许的限制条件。如果您单独授予一个应用程序可代表您访问不同的姊妹项目，那么您将会在下面看到每个项目的单独配置。\n\n已连接的应用程序将通过 OAuth 协议访问您的账户。<span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth详细了解有关已连接的应用程序])</span>",
+    "mwoauthmanagemygrants-text": "此页面列出了可以使用您的账户的所有应用程序。这些应用程序的可访问范围取决于您授予这些应用程序可代表您操作时所允许的限制条件。如果您单独授予一个应用程序可代表您访问不同的姊妹项目，那么您将会在下面看到每个项目的单独配置。\n\n已连接的应用程序将通过 OAuth 协议访问您的账户。<span class=\"plainlinks\">（[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth 详细了解有关已连接的应用程序]）</span>",
     "mwoauthmanagemygrants-notloggedin": "您必须登录后才能访问此页。",
     "mwoauthmanagemygrants-navigation": "导航：",
     "mwoauthmanagemygrants-showlist": "已连接的应用程序列表",
