@@ -4,5 +4,7 @@
             "Iltever"
         ]
     },
+    "mwoauth-prefs-managegrantslink": "$1 джандырылгъан {{PLURAL:$1|къошакъ программаны}} джюрютюу",
+    "oauthmanagemygrants": "Джандырылгъан къошакъ программаланы джюрютюу",
     "mwoauth-grant-createaccount": "Аккаунтла къурау"
 }
