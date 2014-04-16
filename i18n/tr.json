@@ -1,29 +1,29 @@
 {
-    "@metadata": {
-        "authors": [
-            "Incelemeelemani",
-            "Rapsar"
-        ]
-    },
-    "mwoauth-desc": "OAuth 1.0a kullanımı için API yetkilendirme kullanımı",
-    "mwoauth-prefs-managegrants": "Bağlı uygulamalar:",
-    "mwoauth-prefs-managegrantslink": "$1 bağlı {{PLURAL:$1|uygulamayı|uygulamaları}} yönet",
-    "mwoauth-consumer-name": "Uygulama adı:",
-    "mwoauth-consumer-user": "Yayıncı:",
-    "mwoauth-consumer-stage": "Geçerli durumu:",
-    "mwoauth-consumer-stage-proposed": "önerilen",
-    "mwoauth-consumer-stage-rejected": "reddedilen",
-    "mwoauth-consumer-stage-expired": "süresi dolmuş",
-    "mwoauth-consumer-stage-approved": "onaylı",
-    "mwoauth-consumer-stage-disabled": "devre dışı",
-    "mwoauth-consumer-stage-suppressed": "bastırılmış",
-    "mwoauthconsumerregistration-navigation": "Navigasyon:",
-    "oauthlistconsumers": "Yetkilendirilen uygulamalar listesi",
-    "mwoauthlistconsumers-legend": "Yetkilendirilen uygulamalara göz atın",
-    "oauthmanagemygrants": "Bağlı uygulamaları yönet",
-    "mwoauthmanagemygrants-text": "Bu sayfada hesabınızda kullanılan uygulamaların listesi bulunmaktadır. Bu tür uygulamalar, söz konusu uygulamaya izin verdiğiniz ölçüde sizin adınıza hareket etmeye yetkilidir. Eğer bir uygulama sizin adınıza farklı kardeş projelere erişmek için yetkilendirildiği taktirde, uygulama ile ilgili bölümün altında diğer projeler için yetkilendirme ayarlarını da görebilirsiniz.\n\nBağlı uygulamalar OAuth protokolünü kullanarak, hesaplarınıza erişim sağlar. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Bağlı uygulamalar hakkında daha fazla bilgi alın])</span>",
-    "mwoauthmanagemygrants-showlist": "Bağlı uygulama listesi",
-    "mwoauthmanagemygrants-none": "Hesabınıza bağlı herhangi bir uygulama yoktur.",
-    "mwoauthmanagemygrants-confirm-legend": "Bağlı uygulama yönetimi",
-    "mwoauth-form-button-approve": "Evet, izin ver"
+	"@metadata": {
+		"authors": [
+			"Incelemeelemani",
+			"Rapsar"
+		]
+	},
+	"mwoauth-desc": "OAuth 1.0a kullanımı için API yetkilendirme kullanımı",
+	"mwoauth-prefs-managegrants": "Bağlı uygulamalar:",
+	"mwoauth-prefs-managegrantslink": "$1 bağlı {{PLURAL:$1|uygulamayı|uygulamaları}} yönet",
+	"mwoauth-consumer-name": "Uygulama adı:",
+	"mwoauth-consumer-user": "Yayıncı:",
+	"mwoauth-consumer-stage": "Geçerli durumu:",
+	"mwoauth-consumer-stage-proposed": "önerilen",
+	"mwoauth-consumer-stage-rejected": "reddedilen",
+	"mwoauth-consumer-stage-expired": "süresi dolmuş",
+	"mwoauth-consumer-stage-approved": "onaylı",
+	"mwoauth-consumer-stage-disabled": "devre dışı",
+	"mwoauth-consumer-stage-suppressed": "bastırılmış",
+	"mwoauthconsumerregistration-navigation": "Navigasyon:",
+	"oauthlistconsumers": "Yetkilendirilen uygulamalar listesi",
+	"mwoauthlistconsumers-legend": "Yetkilendirilen uygulamalara göz atın",
+	"oauthmanagemygrants": "Bağlı uygulamaları yönet",
+	"mwoauthmanagemygrants-text": "Bu sayfada hesabınızda kullanılan uygulamaların listesi bulunmaktadır. Bu tür uygulamalar, söz konusu uygulamaya izin verdiğiniz ölçüde sizin adınıza hareket etmeye yetkilidir. Eğer bir uygulama sizin adınıza farklı kardeş projelere erişmek için yetkilendirildiği taktirde, uygulama ile ilgili bölümün altında diğer projeler için yetkilendirme ayarlarını da görebilirsiniz.\n\nBağlı uygulamalar OAuth protokolünü kullanarak, hesaplarınıza erişim sağlar. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Bağlı uygulamalar hakkında daha fazla bilgi alın])</span>",
+	"mwoauthmanagemygrants-showlist": "Bağlı uygulama listesi",
+	"mwoauthmanagemygrants-none": "Hesabınıza bağlı herhangi bir uygulama yoktur.",
+	"mwoauthmanagemygrants-confirm-legend": "Bağlı uygulama yönetimi",
+	"mwoauth-form-button-approve": "Evet, izin ver"
 }

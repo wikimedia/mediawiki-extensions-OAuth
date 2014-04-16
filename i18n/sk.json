@@ -1,12 +1,12 @@
 {
-    "@metadata": {
-        "authors": [
-            "Kusavica",
-            "Sudo77(new)"
-        ]
-    },
-    "mwoauth-prefs-managegrants": "Pripojené aplikácie:",
-    "mwoauth-form-button-approve": "Povoliť",
-    "mwoauth-form-button-cancel": "Zrušiť",
-    "mwoauth-grant-group-email": "Poslať email"
+	"@metadata": {
+		"authors": [
+			"Kusavica",
+			"Sudo77(new)"
+		]
+	},
+	"mwoauth-prefs-managegrants": "Pripojené aplikácie:",
+	"mwoauth-form-button-approve": "Povoliť",
+	"mwoauth-form-button-cancel": "Zrušiť",
+	"mwoauth-grant-group-email": "Poslať email"
 }

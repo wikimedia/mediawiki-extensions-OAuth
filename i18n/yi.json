@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "פוילישער"
-        ]
-    },
-    "mwoauth-consumer-version": "קאנסומענט ווערסיע:",
-    "mwoauth-consumer-email-unconfirmed": "אייער קאנטע ע־פאסט אדרעס איז נאך נישט געווארן באשטעטיגט."
+	"@metadata": {
+		"authors": [
+			"פוילישער"
+		]
+	},
+	"mwoauth-consumer-version": "קאנסומענט ווערסיע:",
+	"mwoauth-consumer-email-unconfirmed": "אייער קאנטע ע־פאסט אדרעס איז נאך נישט געווארן באשטעטיגט."
 }

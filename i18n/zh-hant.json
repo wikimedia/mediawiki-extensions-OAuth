@@ -1,20 +1,20 @@
 {
-    "@metadata": {
-        "authors": [
-            "Liuxinyu970226"
-        ]
-    },
-    "mwoauth-desc": "允許使用OAuth 1.0a用於API授權",
-    "mwoauth-verified": "此應用程式現已允許以您的名義連結MediaWiki。\n要完成此過程，提供對應用程式確認值：'''$1'''",
-    "mwoauth-prefs-managegrants": "已連接應用程式：",
-    "mwoauth-consumer-allwikis": "此站點所有專案",
-    "mwoauth-consumer-user": "發佈者：",
-    "mwoauth-consumer-stage": "目前狀態：",
-    "mwoauth-consumer-email": "聯絡電郵：",
-    "mwoauth-consumer-description": "應用程式版本：",
-    "mwoauth-consumer-callbackurl": "OAuth「回檔」URL：",
-    "mwoauth-consumer-wiki-thiswiki": "現有專案（$1）",
-    "mwoauth-consumer-rsakey": "公開RSA密匙：",
-    "mwoauth-consumer-accesstoken": "連接令牌：",
-    "mwoauth-consumer-reason": "原因："
+	"@metadata": {
+		"authors": [
+			"Liuxinyu970226"
+		]
+	},
+	"mwoauth-desc": "允許使用OAuth 1.0a用於API授權",
+	"mwoauth-verified": "此應用程式現已允許以您的名義連結MediaWiki。\n要完成此過程，提供對應用程式確認值：'''$1'''",
+	"mwoauth-prefs-managegrants": "已連接應用程式：",
+	"mwoauth-consumer-allwikis": "此站點所有專案",
+	"mwoauth-consumer-user": "發佈者：",
+	"mwoauth-consumer-stage": "目前狀態：",
+	"mwoauth-consumer-email": "聯絡電郵：",
+	"mwoauth-consumer-description": "應用程式版本：",
+	"mwoauth-consumer-callbackurl": "OAuth「回檔」URL：",
+	"mwoauth-consumer-wiki-thiswiki": "現有專案（$1）",
+	"mwoauth-consumer-rsakey": "公開RSA密匙：",
+	"mwoauth-consumer-accesstoken": "連接令牌：",
+	"mwoauth-consumer-reason": "原因："
 }

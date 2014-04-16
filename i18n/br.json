@@ -1,17 +1,17 @@
 {
-    "@metadata": {
-        "authors": [
-            "Y-M D"
-        ]
-    },
-    "mwoauthlistconsumers-view": "munudoù",
-    "mwoauthlistconsumers-name": "Anv ar poellad",
-    "mwoauthlistconsumers-user": "Embanner",
-    "mwoauthlistconsumers-description": "Deskrivadur",
-    "mwoauthlistconsumers-status": "Statud",
-    "mwoauthlistconsumers-status-proposed": "kinniget",
-    "mwoauthlistconsumers-status-approved": "aprouet",
-    "mwoauthlistconsumers-status-disabled": "diweredekaet",
-    "mwoauthlistconsumers-status-rejected": "distaolet",
-    "mwoauth-listgrants-rights": "Gwirioù"
+	"@metadata": {
+		"authors": [
+			"Y-M D"
+		]
+	},
+	"mwoauthlistconsumers-view": "munudoù",
+	"mwoauthlistconsumers-name": "Anv ar poellad",
+	"mwoauthlistconsumers-user": "Embanner",
+	"mwoauthlistconsumers-description": "Deskrivadur",
+	"mwoauthlistconsumers-status": "Statud",
+	"mwoauthlistconsumers-status-proposed": "kinniget",
+	"mwoauthlistconsumers-status-approved": "aprouet",
+	"mwoauthlistconsumers-status-disabled": "diweredekaet",
+	"mwoauthlistconsumers-status-rejected": "distaolet",
+	"mwoauth-listgrants-rights": "Gwirioù"
 }

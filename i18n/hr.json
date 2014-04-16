@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "MaGa"
-        ]
-    },
-    "mwoauth-prefs-managegrants": "Povezane aplikacije",
-    "mwoauth-prefs-managegrantslink": "Upravljaj s ukupno $1 {{PLURAL:$1|aplikacijom|aplikacije|aplikacija}}"
+	"@metadata": {
+		"authors": [
+			"MaGa"
+		]
+	},
+	"mwoauth-prefs-managegrants": "Povezane aplikacije",
+	"mwoauth-prefs-managegrantslink": "Upravljaj s ukupno $1 {{PLURAL:$1|aplikacijom|aplikacije|aplikacija}}"
 }

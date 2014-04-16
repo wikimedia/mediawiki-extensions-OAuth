@@ -1,14 +1,14 @@
 {
-    "@metadata": {
-        "authors": [
-            "Helder.wiki",
-            "Luckas",
-            "Cybermandrake"
-        ]
-    },
-    "mwoauth-prefs-managegrantslink": "Gerenciar $1 {{PLURAL:$1|aplicativo|aplicativos}} conectados",
-    "mwoauthmanageconsumers-type": "Filas:",
-    "mwoauth-form-button-approve": "Permitir",
-    "mwoauth-form-button-cancel": "Cancelar",
-    "mwoauth-grant-createaccount": "Criar contas"
+	"@metadata": {
+		"authors": [
+			"Helder.wiki",
+			"Luckas",
+			"Cybermandrake"
+		]
+	},
+	"mwoauth-prefs-managegrantslink": "Gerenciar $1 {{PLURAL:$1|aplicativo|aplicativos}} conectados",
+	"mwoauthmanageconsumers-type": "Filas:",
+	"mwoauth-form-button-approve": "Permitir",
+	"mwoauth-form-button-cancel": "Cancelar",
+	"mwoauth-grant-createaccount": "Criar contas"
 }
