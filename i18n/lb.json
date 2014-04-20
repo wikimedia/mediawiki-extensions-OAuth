@@ -5,6 +5,7 @@
 		]
 	},
 	"mwoauth-desc": "De Gebrauch vun OAuth 1.0a fir API Autorisatiounerlaben",
+	"mwoauth-db-readonly": "D'OAuth-Datebank ass temporär gespaart. Probéiert w.e.g. an e puer Minutte nach eng Kéier.",
 	"mwoauth-missing-field": "De Wäert fir d'Feld \"$1\" feelt",
 	"mwoauth-invalid-field-generic": "Net valabele Wäert uginn",
 	"mwoauth-field-hidden": "(dës Informatioun ass verstoppt)",
