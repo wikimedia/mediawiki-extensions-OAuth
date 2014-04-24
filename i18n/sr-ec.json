@@ -43,6 +43,7 @@
 	"mwoauthlistconsumers-name": "Име апликације",
 	"mwoauthlistconsumers-user": "Издавач",
 	"mwoauthlistconsumers-description": "Опис",
+	"mwoauthlistconsumers-basicgrantsonly": "(само основни приступ)",
 	"mwoauthlistconsumers-status": "Статус",
 	"mwoauth-consumer-stage-any": "било који",
 	"mwoauthlistconsumers-status-approved": "одобрено",
