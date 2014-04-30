@@ -10,16 +10,19 @@
 			"Rubin16",
 			"Yurik",
 			"Iltever",
-			"Meshkov.a"
+			"Meshkov.a",
+			"Lockal"
 		]
 	},
 	"mwoauth-desc": "Позволяет использование OAuth 1.0a для API авторизации",
 	"mwoauth-verified": "Приложению теперь разрешён доступ к МедиаВики от вашего имени.\n\nДля завершения процесса, предоставьте приложению это проверочное значение: ''' $1 '''",
+	"mwoauth-db-readonly": "База данных OAuth временно заблокирована. Повторите действие через несколько минут.",
 	"mwoauth-missing-field": "Отсутствует значение для поля «$1»",
 	"mwoauth-invalid-field": "Недопустимое значение для поля «$1»",
 	"mwoauth-invalid-field-generic": "Недопустимое значение",
 	"mwoauth-field-hidden": "(эта информация скрыта)",
 	"mwoauth-field-private": "(эта информация является конфиденциальной)",
+	"mwoauth-grant-generic": "Набор прав «$1»",
 	"mwoauth-prefs-managegrants": "Подключенные приложения:",
 	"mwoauth-prefs-managegrantslink": "Управление {{PLURAL:$1|$1 подключённым приложением|$1 подключёнными приложениями|1=подключённым приложением}}",
 	"mwoauth-consumer-allwikis": "Все проекты на этом сайте",

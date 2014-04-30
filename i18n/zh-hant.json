@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Liuxinyu970226"
+			"Liuxinyu970226",
+			"Cwlin0416"
 		]
 	},
 	"mwoauth-desc": "允許使用OAuth 1.0a用於API授權",
@@ -16,5 +17,11 @@
 	"mwoauth-consumer-wiki-thiswiki": "現有專案（$1）",
 	"mwoauth-consumer-rsakey": "公開RSA密匙：",
 	"mwoauth-consumer-accesstoken": "連接令牌：",
-	"mwoauth-consumer-reason": "原因："
+	"mwoauth-consumer-reason": "原因：",
+	"mwoauthconsumerregistration-stage": "狀態",
+	"mwoauthconsumerregistration-lastchange": "最新變更",
+	"mwoauth-form-button-approve": "允許",
+	"mwoauth-form-button-cancel": "取消",
+	"mwoauth-grant-group-email": "發送電子郵件",
+	"mwoauth-grant-createaccount": "建立帳號"
 }
