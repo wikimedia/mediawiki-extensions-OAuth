@@ -45,6 +45,12 @@ $specialPageAliases['de'] = array(
 	'OAuth' => array( 'OAuth' ),
 );
 
+/** Estonian (eesti) */
+$specialPageAliases['et'] = array(
+	'OAuthListConsumers' => array( 'OAuthi-rakenduste_loend' ),
+	'OAuthManageMyGrants' => array( 'OAuthi-volitused' ),
+);
+
 /** Persian (فارسی) */
 $specialPageAliases['fa'] = array(
 	'OAuthConsumerRegistration' => array( 'ثبت_OAuth' ),
