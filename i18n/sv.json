@@ -38,7 +38,7 @@
 	"mwoauth-consumer-restrictions-json": "Användningsbegränsningar (JSON):",
 	"mwoauth-consumer-rsakey": "Offentlig RSA-nyckel:",
 	"mwoauth-consumer-secretkey": "Konsumentens hemliga token:",
-	"mwoauth-consumer-accesstoken": "Åtkomst-token:",
+	"mwoauth-consumer-accesstoken": "Åtkomstnyckel:",
 	"mwoauth-consumer-reason": "Orsak:",
 	"mwoauth-consumer-email-unconfirmed": "Din e-postadress till kontot har ännu inte bekräftats.",
 	"mwoauth-consumer-email-mismatched": "Den angivna e-postadressen måste matcha den som är kopplad till ditt konto.",
