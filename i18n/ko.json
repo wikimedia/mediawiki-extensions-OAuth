@@ -179,7 +179,7 @@
 	"logentry-mwoauthconsumer-reenable": "$1 사용자가 $3에 의해 OAuth 컨슈머를 {{GENDER:$2|다시 활성화했습니다}} (컨슈머 키 $4)",
 	"mwoauthconsumer-consumer-logpage": "OAuth 컨슈머 기록",
 	"mwoauthconsumer-consumer-logpagetext": "OAuth 컨슈머에 등록된 승인, 거부와 비활성화의 기록입니다.",
-	"mwoauth-bad-request-missing-params": "죄송합니다. 연결된 응용 프로그램을 설정하는 도중 문제가 발생했습니다. <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Contact support]</span>에서 고치는 데 도움을 받을 수 있습니다.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth 매개변수 없음, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>",
+	"mwoauth-bad-request-missing-params": "죄송합니다, 이 연결된 애플리케이션을 구성하는 데 뭔가 잘못되었습니다. <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth 연락 지원]</span>에서 고치는 데 도움을 받으세요.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth 변수 없음, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>",
 	"mwoauth-bad-request-invalid-action": "죄송합니다. 문제가 발생했습니다. 도움을 받으려면 다음의 링크에서 응용 프로그램 작성자와 연락하세요.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unknown URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>",
 	"mwoauth-bad-request-invalid-action-contact": "죄송합니다. 문제가 발생했습니다. 도움을 받으려면 다음의 링크에서 응용 프로그램 작성자와 [$1 연락]하세요.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unknown URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>",
 	"mwoauthdatastore-access-token-not-found": "인증 토큰에 대한 승인된 부여를 찾을 수 없습니다.",
