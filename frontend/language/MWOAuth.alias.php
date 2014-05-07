@@ -95,6 +95,11 @@ $specialPageAliases['sv'] = array(
 	'OAuthManageMyGrants' => array( 'Anslutna_applikationer' ),
 );
 
+/** Yiddish (ייִדיש) */
+$specialPageAliases['yi'] = array(
+	'OAuthManageMyGrants' => array( 'פארוואלטן_פראיעקטן' ),
+);
+
 /** Simplified Chinese (中文（简体）‎) */
 $specialPageAliases['zh-hans'] = array(
 	'OAuthConsumerRegistration' => array( 'OAuth消费者注册', 'OAuth注册' ),
