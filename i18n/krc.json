@@ -4,7 +4,23 @@
 			"Iltever"
 		]
 	},
+	"mwoauth-prefs-managegrants": "Ишлеген къошакъ программала:",
 	"mwoauth-prefs-managegrantslink": "$1 джандырылгъан {{PLURAL:$1|къошакъ программаны}} джюрютюу",
+	"mwoauthmanageconsumers-user": "Басмагъа чыгъаргъан",
+	"mwoauthmanageconsumers-description": "Ачыкълау",
+	"mwoauthmanageconsumers-email": "Контактлы e-mail адрес",
+	"mwoauthmanageconsumers-consumerkey": "Клиентни идентификатору",
+	"mwoauthmanageconsumers-lastchange": "Ахыр тюрлениу",
+	"mwoauthmanageconsumers-reject": "Къабыл этилмеди",
+	"mwoauthmanageconsumers-disable": "Джукъланыбды",
+	"mwoauthmanageconsumers-reason": "Чурум:",
+	"mwoauthlistconsumers-view": "айгъакълаула",
+	"mwoauthlistconsumers-status": "Статус",
+	"mwoauthlistconsumers-status-rejected": "къабыл этилмеди",
 	"oauthmanagemygrants": "Джандырылгъан къошакъ программаланы джюрютюу",
-	"mwoauth-grant-createaccount": "Аккаунтла къурау"
+	"mwoauthmanagemygrants-user": "Басмагъа чыгъаргъан:",
+	"mwoauthmanagemygrants-description": "Ачыкълау",
+	"mwoauth-grant-group-email": "E-mail джибер",
+	"mwoauth-grant-createaccount": "Аккаунтла къурау",
+	"mwoauth-listgrants-rights": "Онгла"
 }
