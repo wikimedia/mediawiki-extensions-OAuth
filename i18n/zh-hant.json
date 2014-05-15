@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Liuxinyu970226",
-			"Cwlin0416"
+			"Cwlin0416",
+			"Justincheng12345"
 		]
 	},
 	"mwoauth-desc": "允許使用OAuth 1.0a用於API授權",
@@ -20,6 +21,7 @@
 	"mwoauth-consumer-reason": "原因：",
 	"mwoauthconsumerregistration-stage": "狀態",
 	"mwoauthconsumerregistration-lastchange": "最新變更",
+	"oauthmanagemygrants": "管理已連接的應用程式",
 	"mwoauth-form-button-approve": "允許",
 	"mwoauth-form-button-cancel": "取消",
 	"mwoauth-grant-group-email": "發送電子郵件",
