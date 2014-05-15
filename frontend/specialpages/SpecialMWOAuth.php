@@ -228,7 +228,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		// Expiration time on or after which the ID Token MUST NOT be accepted for processing.
 		$statement['exp'] = wfTimestamp() + 100;
 		// Time at which the JWT was issued.
-		$statement['iat'] = wfTimestamp();
+		$statement['iat'] = (int)wfTimestamp();
 		// String value used to associate a Client session with an ID Token, and to mitigate
 		// replay attacks. The value is passed through unmodified from the Authorization Request.
 		$statement['nonce'] = $request->get_parameter( 'oauth_nonce' );
