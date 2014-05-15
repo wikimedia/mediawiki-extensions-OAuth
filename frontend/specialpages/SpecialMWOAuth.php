@@ -148,7 +148,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					}
 
 					// We know the identity of the user who granted the authorization
-					$this->outputJWT( $localUser, $consumer, $oauthRequest, $format );
+					$this->outputJWT( $localUser, $consumer, $oauthRequest, $format, $access );
 					break;
 				default:
 					$format = $request->getVal( 'format', 'html' );
@@ -212,8 +212,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	 * a key shared with the Consumer.
 	 * @param User $user the user who is the subject of this request
 	 * @param OAuthConsumer $consumer
+	 * @param MWOAuthConsumerAcceptance $access
 	 */
-	protected function outputJWT( $user, $consumer, $request, $format ) {
+	protected function outputJWT( $user, $consumer, $request, $format, $access ) {
 		global $wgCanonicalServer;
 		$statement = array();
 
@@ -243,6 +244,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			$statement['registered'] = $user->getRegistration();
 			$statement['groups'] = $user->getEffectiveGroups();
 			$statement['rights'] = array_values( array_unique( $user->getRights() ) );
+			$statement['grants'] = $access->get( 'grants' );
 		}
 
 		$JWT = JWT::encode( $statement, $consumer->secret );
