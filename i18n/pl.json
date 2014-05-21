@@ -5,7 +5,8 @@
 			"Peter Bowman",
 			"Rzuwig",
 			"Ty221",
-			"Vuh"
+			"Vuh",
+			"WTM"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Włączone aplikacje:",
@@ -45,6 +46,7 @@
 	"mwoauthmanagemygrants-update": "Aktualizuj",
 	"mwoauthmanagemygrants-renounce": "Anuluj dostęp",
 	"mwoauth-invalid-authorization-title": "Błąd autoryzacji OAuth",
+	"mwoauth-form-button-approve": "Zezwól",
 	"mwoauth-form-button-cancel": "Anuluj",
 	"mwoauth-grant-group-email": "Wyślij e‐mail",
 	"mwoauth-grant-group-customization": "Dostosowywanie i preferencje",

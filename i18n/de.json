@@ -3,7 +3,8 @@
 		"authors": [
 			"Metalhead64",
 			"Se4598",
-			"Wnme"
+			"Wnme",
+			"Kghbln"
 		]
 	},
 	"mwoauth-desc": "Ermöglicht die Verwendung von OAuth 1.0a zur API-Autorisierung",
@@ -16,7 +17,7 @@
 	"mwoauth-field-private": "(diese Information ist privat)",
 	"mwoauth-grant-generic": "Rechtegruppe „$1“",
 	"mwoauth-prefs-managegrants": "Verbundene Anwendungen:",
-	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|Eine verbundene Anwendung|$1 verbundene Anwendungen}} verwalten",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|Verbundene Anwendung verwalten ($1)|Verbundene Anwendungen verwalten ($1)}}",
 	"mwoauth-consumer-allwikis": "Alle Projekte dieser Website",
 	"mwoauth-consumer-key": "Verbraucherschlüssel:",
 	"mwoauth-consumer-name": "Anwendungsname:",
