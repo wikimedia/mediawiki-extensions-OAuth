@@ -9,7 +9,8 @@
 			"Shizhao",
 			"Xiaomingyan",
 			"Yfdyh000",
-			"Simon Shek"
+			"Simon Shek",
+			"Mywood"
 		]
 	},
 	"mwoauth-desc": "允许使用OAuth 1.0a用作API授权",
@@ -184,14 +185,14 @@
 	"mwoauthgrants-general-error": "您的OAuth请求中存在错误。",
 	"mwoauthserver-bad-consumer": "“$1”不再被批准作为可连接的应用程序，[$2 联系]应用程序作者获得帮助。\n<span class=\"plainlinks mw-mwoautherror-details\">已连接的OAuth应用程序未获批准，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>",
 	"mwoauthserver-bad-consumer-key": "抱歉，此程序连接时出现一些错误。\n<span class=\"plainlinks mw-mwoautherror-details\">未知的OAuth密钥，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>",
-	"mwoauthserver-insufficient-rights": "您的账户未被允许使用连接程序，联系您的站点管理员以寻找原因。\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth用户权限不够，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
+	"mwoauthserver-insufficient-rights": "您的账户不允许使用连接的应用程序，请联系您的网站管理员了解原因。\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth用户权限不足，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "您的申请中有无效令牌。",
 	"mwoauth-invalid-authorization-title": "OAuth认证错误",
 	"mwoauth-invalid-authorization": "您申请中的授权标头无效：$1",
 	"mwoauth-invalid-authorization-wrong-wiki": "您申请中的授权标头对于$1无效",
 	"mwoauth-form-description-allwikis": "嗨$1，\n'''$2'''希望在此站点所有您代表的项目中进行如下行为：\n$4",
 	"mwoauth-form-description-onewiki": "您好$1，\n\n'''$2'''很想关注您在''$4''的各种琐事：\n\n$5",
-	"mwoauth-form-description-allwikis-nogrants": "嗨$1，'''$2'''希望拥有本站点您感兴趣的所有项目的基本连接。",
+	"mwoauth-form-description-allwikis-nogrants": "你好，$1，\n\n'''$2'''想要拥有你在本网站所有项目上的基本访问权限。",
 	"mwoauth-form-description-onewiki-nogrants": "嗨$1，'''$2'''希望获取您在''$4''的一些简单信息。",
 	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|隐私政策]]",
 	"mwoauth-form-button-approve": "允许",
