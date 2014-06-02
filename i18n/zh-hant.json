@@ -25,5 +25,6 @@
 	"mwoauth-form-button-approve": "允許",
 	"mwoauth-form-button-cancel": "取消",
 	"mwoauth-grant-group-email": "發送電子郵件",
+	"mwoauth-grant-group-administration": "執行管理操作",
 	"mwoauth-grant-createaccount": "建立帳號"
 }

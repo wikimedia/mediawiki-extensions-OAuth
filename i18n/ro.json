@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Minisarm"
+		]
+	},
+	"mwoauth-prefs-managegrants": "Aplicații conectate:",
+	"mwoauth-prefs-managegrantslink": "Administrează {{PLURAL:$1|$1 aplicație conectată|$1 aplicații conectate|$1 de aplicații conectate}}"
+}
