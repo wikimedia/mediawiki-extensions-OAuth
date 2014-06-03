@@ -155,6 +155,7 @@
 	"mwoauth-form-button-approve": "Autorisar",
 	"mwoauth-grants-heading": "Permissiones requestate:",
 	"mwoauth-grants-nogrants": "Le application non ha requestate alcun permission.",
+	"mwoauth-grant-group-administration": "Exequer actiones administrative",
 	"mwoauth-grant-blockusers": "Blocar e disblocar usatores",
 	"mwoauth-grant-createeditmovepage": "Crear, modificar e renominar paginas",
 	"mwoauth-grant-delete": "Deler paginas, versiones e entratas de registro",
