@@ -180,6 +180,7 @@
 	"mwoauthconsumer-consumer-logpagetext": "已登记OAuth消费者的批准、拒绝和禁用日志。",
 	"mwoauth-bad-request-invalid-action": "抱歉，出现一些错误，您需要联系应用程序作者以获取帮助。\n<span class=\"plainlinks mw-mwoautherror-details\">未知URL，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>",
 	"mwoauth-bad-request-invalid-action-contact": "抱歉，出现一些错误。您需要[$1 联络]应用程序作者以获取帮助。\n<span class=\"plainlinks mw-mwoautherror-details\">未知URL，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>",
+	"mwoauthdatastore-request-token-not-found": "抱歉，连接此应用程序时出错。返回并重新尝试连接您的账户，或联络应用程序开发者。<span class=\"plainlinks mw-mwoautherror-details\">找不到OAuth令牌，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
 	"mwoauthdatastore-bad-token": "找不到与您的请求相匹配的令牌。",
 	"mwoauthdatastore-bad-verifier": "提交的验证代码无效。",
 	"mwoauthdatastore-invalid-token-type": "请求令牌的类型无效。",
