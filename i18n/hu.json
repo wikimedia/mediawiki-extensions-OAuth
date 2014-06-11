@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Csega"
 		]
 	},
 	"mwoauth-missing-field": "Hiányzik a(z) „$1” mező értéke",
@@ -10,7 +11,7 @@
 	"mwoauth-field-hidden": "(ez az információ el van rejtve)",
 	"mwoauth-field-private": "(ez az információ titkos)",
 	"mwoauth-prefs-managegrants": "Összekapcsolt alkalmazások:",
-	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|Egy|$1}} összekapcsolt alkalmazás kezelése",
+	"mwoauth-prefs-managegrantslink": "$1 összekapcsolt {{PLURAL:$1|alkalmazás|alkalmazás}} kezelése",
 	"mwoauth-consumer-allwikis": "Összes projekt ezen a weboldalon",
 	"mwoauth-consumer-name": "Alkalmazás neve:",
 	"mwoauth-consumer-user": "Közzétevő:",
@@ -18,6 +19,6 @@
 	"mwoauth-consumer-description": "Alkalmazás leírása:",
 	"mwoauth-consumer-grantsneeded": "Alkalmazás engedélyei:",
 	"mwoauth-consumer-wiki-thiswiki": "Jelenlegi projekt ($1)",
-	"mwoauthconsumerregistration-notloggedin": "A lap megtekintéséhez be kell lépned.",
+	"mwoauthconsumerregistration-notloggedin": "A lap megtekintéséhez be kell jelentkezned.",
 	"mwoauthconsumerregistration-navigation": "Navigáció:"
 }
