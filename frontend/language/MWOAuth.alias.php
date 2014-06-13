@@ -89,6 +89,13 @@ $specialPageAliases['mk'] = array(
 	'OAuth' => array( 'OAuth' ),
 );
 
+/** Dutch (Nederlands) */
+$specialPageAliases['nl'] = array(
+	'OAuthConsumerRegistration' => array( 'OAuthGebruikerRegistratie' ),
+	'OAuthManageConsumers' => array( 'OAuthBeheerGebruikers' ),
+	'OAuthListConsumers' => array( 'OAuthLijstGebruikers' ),
+);
+
 /** Swedish (svenska) */
 $specialPageAliases['sv'] = array(
 	'OAuthListConsumers' => array( 'OAuth-applikationer' ),
