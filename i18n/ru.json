@@ -11,7 +11,8 @@
 			"Yurik",
 			"Iltever",
 			"Meshkov.a",
-			"Lockal"
+			"Lockal",
+			"NBS"
 		]
 	},
 	"mwoauth-desc": "Позволяет использование OAuth 1.0a для API авторизации",
@@ -85,6 +86,7 @@
 	"mwoauthmanageconsumers-reason": "Причина:",
 	"mwoauthmanageconsumers-success-approved": "Запрос был одобрен.",
 	"mwoauthmanageconsumers-success-rejected": "Запрос был отклонён.",
+	"oauthlistconsumers": "Список OAuth-приложений",
 	"mwoauthlistconsumers-view": "подробности",
 	"mwoauthlistconsumers-none": "Приложений по этим критериям не найдено.",
 	"mwoauthlistconsumers-name": "Название приложения",
