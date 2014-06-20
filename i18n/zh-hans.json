@@ -25,7 +25,7 @@
 	"mwoauth-prefs-managegrants": "连接应用：",
 	"mwoauth-prefs-managegrantslink": "管理$1个连接的应用程序",
 	"mwoauth-consumer-allwikis": "本站的所有项目",
-	"mwoauth-consumer-key": "Consumer key:",
+	"mwoauth-consumer-key": "消费者密钥：",
 	"mwoauth-consumer-name": "应用名称：",
 	"mwoauth-consumer-version": "消费者版本：",
 	"mwoauth-consumer-user": "发布者：",
@@ -164,7 +164,7 @@
 	"mwoauthmanagemygrants-revoke": "移除授权",
 	"mwoauthmanagemygrants-grantaccept": "授权",
 	"mwoauthmanagemygrants-confirm-legend": "管理连接的应用程序",
-	"mwoauthmanagemygrants-update": "更新补助",
+	"mwoauthmanagemygrants-update": "更新授权",
 	"mwoauthmanagemygrants-renounce": "取消授权",
 	"mwoauthmanagemygrants-action": "更新状态：",
 	"mwoauthmanagemygrants-confirm-submit": "更新授权令牌状态",
@@ -250,6 +250,6 @@
 	"action-mwoauthproposeconsumer": "提议新的OAuth消费者",
 	"action-mwoauthupdateownconsumer": "更新您控制的OAuth消费者",
 	"action-mwoauthviewsuppressed": "查看已阻止的OAuth消费者",
-	"mwoauth-listgrants-grant": "捐赠",
+	"mwoauth-listgrants-grant": "授权",
 	"mwoauth-listgrants-rights": "权限"
 }
