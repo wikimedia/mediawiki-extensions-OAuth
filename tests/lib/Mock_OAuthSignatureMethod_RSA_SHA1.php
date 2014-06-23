@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * A mock implementation of OAuthSignatureMethod_RSA_SHA1
  * Always returns the signatures described in 

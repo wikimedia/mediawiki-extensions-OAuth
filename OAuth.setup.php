@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * Class containing basic setup functions.
  */
@@ -30,59 +33,59 @@ class MWOAuthSetup {
 		$messagesFiles['MWOAuthAliases'] = "$langDir/MWOAuth.alias.php";
 
 		# Setup classes
-		$classes['MWOAuthAPISetup'] = "$apiDir/MWOAuthAPI.setup.php";
-		$classes['MWOAuthUISetup'] = "$frontendDir/MWOAuthUI.setup.php";
-		$classes['MWOAuthUIHooks'] = "$frontendDir/MWOAuthUI.hooks.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthAPISetup'] = "$apiDir/MWOAuthAPI.setup.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthUISetup'] = "$frontendDir/MWOAuthUI.setup.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthUIHooks'] = "$frontendDir/MWOAuthUI.hooks.php";
 
 		# Special pages
-		$classes['SpecialMWOAuth'] = "$specialsDir/SpecialMWOAuth.php";
-		$classes['SpecialMWOAuthConsumerRegistration'] =
+		$classes['MediaWiki\Extensions\OAuth\SpecialMWOAuth'] = "$specialsDir/SpecialMWOAuth.php";
+		$classes['MediaWiki\Extensions\OAuth\SpecialMWOAuthConsumerRegistration'] =
 			"$specialsDir/SpecialMWOAuthConsumerRegistration.php";
-		$classes['SpecialMWOAuthManageConsumers'] =
+		$classes['MediaWiki\Extensions\OAuth\SpecialMWOAuthManageConsumers'] =
 			"$specialsDir/SpecialMWOAuthManageConsumers.php";
-		$classes['SpecialMWOAuthManageMyGrants'] =
+		$classes['MediaWiki\Extensions\OAuth\SpecialMWOAuthManageMyGrants'] =
 			"$specialsDir/SpecialMWOAuthManageMyGrants.php";
-		$classes['SpecialMWOAuthListConsumers'] =
+		$classes['MediaWiki\Extensions\OAuth\SpecialMWOAuthListConsumers'] =
 			"$specialsDir/SpecialMWOAuthListConsumers.php";
 
 		# Utility functions
-		$classes['MWOAuthUtils'] = "$backendDir/MWOAuthUtils.php";
-		$classes['MWOAuthException'] = "$backendDir/MWOAuthException.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthUtils'] = "$backendDir/MWOAuthUtils.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthException'] = "$backendDir/MWOAuthException.php";
 
 		# Data access objects
-		$classes['MWOAuthDAO'] = "$backendDir/MWOAuthDAO.php";
-		$classes['MWOAuthToken'] = "$backendDir/MWOAuthToken.php";
-		$classes['MWOAuthConsumer'] = "$backendDir/MWOAuthConsumer.php";
-		$classes['MWOAuthConsumerAcceptance'] = "$backendDir/MWOAuthConsumerAcceptance.php";
-		$classes['MWOAuthRequest'] = "$backendDir/MWOAuthRequest.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthDAO'] = "$backendDir/MWOAuthDAO.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthToken'] = "$backendDir/MWOAuthToken.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthConsumer'] = "$backendDir/MWOAuthConsumer.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance'] = "$backendDir/MWOAuthConsumerAcceptance.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthRequest'] = "$backendDir/MWOAuthRequest.php";
 
 		# Control logic
-		$classes['MWOAuthDAOAccessControl'] = "$controlDir/MWOAuthDAOAccessControl.php";
-		$classes['MWOAuthSubmitControl'] = "$controlDir/MWOAuthSubmitControl.php";
-		$classes['MWOAuthConsumerSubmitControl'] = "$controlDir/MWOAuthConsumerSubmitControl.php";
-		$classes['MWOAuthConsumerAcceptanceSubmitControl'] =
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthDAOAccessControl'] = "$controlDir/MWOAuthDAOAccessControl.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthSubmitControl'] = "$controlDir/MWOAuthSubmitControl.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthConsumerSubmitControl'] = "$controlDir/MWOAuthConsumerSubmitControl.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptanceSubmitControl'] =
 			"$controlDir/MWOAuthConsumerAcceptanceSubmitControl.php";
-		$classes['MWOAuthServer'] = "$backendDir/MWOAuthServer.php"; // "MWOAuth1Protocol"?
-		$classes['MWOAuthSignatureMethod_RSA_SHA1'] = "$backendDir/MWOAuthSignatureMethod.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthServer'] = "$backendDir/MWOAuthServer.php"; // "MWOAuth1Protocol"?
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthSignatureMethod_RSA_SHA1'] = "$backendDir/MWOAuthSignatureMethod.php";
 
 		# Library
-		$classes['OAuthException'] = "$libDir/OAuth.php";
-		$classes['OAuthConsumer'] = "$libDir/OAuth.php";
-		$classes['OAuthToken'] = "$libDir/OAuth.php";
-		$classes['OAuthSignatureMethod'] = "$libDir/OAuth.php";
-		$classes['OAuthSignatureMethod_HMAC_SHA1'] = "$libDir/OAuth.php";
-		$classes['OAuthSignatureMethod_RSA_SHA1'] = "$libDir/OAuth.php";
-		$classes['OAuthRequest'] = "$libDir/OAuth.php";
-		$classes['OAuthServer'] = "$libDir/OAuth.php";
-		$classes['OAuthDataStore'] = "$libDir/OAuth.php";
-		$classes['OAuthUtil'] = "$libDir/OAuth.php";
+		$classes['MediaWiki\Extensions\OAuth\OAuthException'] = "$libDir/OAuth.php";
+		$classes['MediaWiki\Extensions\OAuth\OAuthConsumer'] = "$libDir/OAuth.php";
+		$classes['MediaWiki\Extensions\OAuth\OAuthToken'] = "$libDir/OAuth.php";
+		$classes['MediaWiki\Extensions\OAuth\OAuthSignatureMethod'] = "$libDir/OAuth.php";
+		$classes['MediaWiki\Extensions\OAuth\OAuthSignatureMethod_HMAC_SHA1'] = "$libDir/OAuth.php";
+		$classes['MediaWiki\Extensions\OAuth\OAuthSignatureMethod_RSA_SHA1'] = "$libDir/OAuth.php";
+		$classes['MediaWiki\Extensions\OAuth\OAuthRequest'] = "$libDir/OAuth.php";
+		$classes['MediaWiki\Extensions\OAuth\OAuthServer'] = "$libDir/OAuth.php";
+		$classes['MediaWiki\Extensions\OAuth\OAuthDataStore'] = "$libDir/OAuth.php";
+		$classes['MediaWiki\Extensions\OAuth\OAuthUtil'] = "$libDir/OAuth.php";
 		$classes['JWT'] = "$libDir/JWT.php";
 
 		# Storage
-		$classes['MWOAuthDataStore'] = "$backendDir/MWOAuthDataStore.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthDataStore'] = "$backendDir/MWOAuthDataStore.php";
 
 		# Schema changes
-		$classes['MWOAuthUpdaterHooks'] = "$schemaDir/MWOAuthUpdater.hooks.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthUpdaterHooks'] = "$schemaDir/MWOAuthUpdater.hooks.php";
 	}
 
 	/**
@@ -93,10 +96,10 @@ class MWOAuthSetup {
 	public static function unconditionalSetup() {
 		global $wgHooks;
 
-		$wgHooks['LoadExtensionSchemaUpdates'][] = 'MWOAuthUpdaterHooks::addSchemaUpdates';
+		$wgHooks['LoadExtensionSchemaUpdates'][] = 'MediaWiki\Extensions\OAuth\MWOAuthUpdaterHooks::addSchemaUpdates';
 		$wgHooks['UnitTestsList'][] = function( array &$files ) {
-			$directoryIterator = new RecursiveDirectoryIterator( __DIR__ . '/tests/' );
-			foreach ( new RecursiveIteratorIterator( $directoryIterator ) as $fileInfo ) {
+			$directoryIterator = new \RecursiveDirectoryIterator( __DIR__ . '/tests/' );
+			foreach ( new \RecursiveIteratorIterator( $directoryIterator ) as $fileInfo ) {
 				if ( substr( $fileInfo->getFilename(), -8 ) === 'Test.php' ) {
 					$files[] = $fileInfo->getPathname();
 				}

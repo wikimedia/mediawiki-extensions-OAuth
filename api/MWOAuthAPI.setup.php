@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * Class containing hooked functions for an OAuth environment
  */
@@ -33,9 +36,9 @@ class MWOAuthAPISetup {
 		$msg = wfMessage( $msgKey, $params );
 		if ( defined( 'MW_API' ) ) {
 			$msg = $msg->inLanguage( 'en' )->useDatabase( false )->plain();
-			return new UsageException( $msg, $msgKey );
+			return new \UsageException( $msg, $msgKey );
 		} else {
-			return new ErrorPageError( 'mwoauth-invalid-authorization-title', $msg );
+			return new \ErrorPageError( 'mwoauth-invalid-authorization-title', $msg );
 		}
 	}
 
@@ -49,7 +52,7 @@ class MWOAuthAPISetup {
 	private static function getOAuthAccessToken() {
 		static $result = false;
 		if ( $result === false ) {
-			$context = RequestContext::getMain();
+			$context = \RequestContext::getMain();
 			$request = $context->getRequest();
 			$title = $context->getTitle();
 			if ( !MWOAuthUtils::hasOAuthHeaders( $request ) || $title->isSpecial( 'OAuth' ) ) {
@@ -76,12 +79,12 @@ class MWOAuthAPISetup {
 	 *
 	 * We need to validate the OAuth credentials, and tag this user object.
 	 *
-	 * @param User $user
+	 * @param \User $user
 	 * @param boolean|null &$result Set to a boolean to skip the normal loading
-	 * @throws MWException
+	 * @throws \MWException
 	 * @return boolean
 	 */
-	public static function onUserLoadFromSession( User $user, &$result ) {
+	public static function onUserLoadFromSession( \User $user, &$result ) {
 		global $wgMemc, $wgBlockDisablesLogin;
 
 		$user->oAuthSessionData = array();
@@ -131,18 +134,18 @@ class MWOAuthAPISetup {
 				// Setup a session for this OAuth user, so edit tokens work.
 				// Preserve the session ID used so clients can ignore cookies.
 				$key = wfMemcKey( 'oauthsessionid', $access->get( 'id' ) );
-				$sessionId = $wgMemc->get( $key ) ?: MWCryptRand::generateHex( 32, true );
+				$sessionId = $wgMemc->get( $key ) ?: \MWCryptRand::generateHex( 32, true );
 				$wgMemc->set( $key, $sessionId, 3600 ); // create/renew
 				wfSetupSession( $sessionId ); // create/reuse this "anonymous" session
-				Hooks::register( 'AfterFinalPageOutput', function( $out ) {
+				\Hooks::register( 'AfterFinalPageOutput', function( $out ) {
 					// Just in case, make sure this is not a valid login session for sanity
-					RequestContext::getMain()->getRequest()->setSessionData( 'wsUserID', 0 );
+					\RequestContext::getMain()->getRequest()->setSessionData( 'wsUserID', 0 );
 					header_remove( 'Set-Cookie' ); // no real use for these
 				} );
 
 				$result = true;
 			}
-		} catch( ErrorPageError $ex ) {
+		} catch( \ErrorPageError $ex ) {
 			// We can't throw an ErrorPageError from UserLoadFromSession,
 			// because OutputPage needs a User object and it wouldn't be
 			// available yet. The UserLoadAfterLoadFromSession hook function
@@ -165,10 +168,10 @@ class MWOAuthAPISetup {
 	 *
 	 * @throws ErrorPageError
 	 * @throws MWException
-	 * @param User $user
+	 * @param \User $user
 	 * @return boolean
 	 */
-	public static function onUserLoadAfterLoadFromSession( User $user ) {
+	public static function onUserLoadAfterLoadFromSession( \User $user ) {
 		// If there was an exception that couldn't be thrown from
 		// UserLoadFromSession, throw it now.
 		if ( isset( $user->oAuthSessionData['exception'] ) ) {
@@ -189,11 +192,11 @@ class MWOAuthAPISetup {
 	/**
 	 * Called when the user's rights are being fetched
 	 *
-	 * @param User $user
+	 * @param \User $user
 	 * @param array &$rights current rights list
 	 * @return boolean
 	 */
-	public static function onUserGetRights( User $user, array &$rights ) {
+	public static function onUserGetRights( \User $user, array &$rights ) {
 		if ( isset( $user->oAuthSessionData['rights'] ) ) {
 			$rights = array_intersect( $rights, $user->oAuthSessionData['rights'] );
 		}
@@ -225,12 +228,12 @@ class MWOAuthAPISetup {
 	 *
 	 * Modules such as ApiLogin and ApiLogout make no sense with OAuth.
 	 *
-	 * @param ApiBase $module
-	 * @param User $user
+	 * @param \ApiBase $module
+	 * @param \User $user
 	 * @param string|array &$message
 	 * @return boolean
 	 */
-	public static function onApiCheckCanExecute( ApiBase $module, User $user, &$message ) {
+	public static function onApiCheckCanExecute( \ApiBase $module, \User $user, &$message ) {
 		global $wgMWOauthDisabledApiModules;
 
 		if ( !isset( $user->oAuthSessionData['accesstoken'] ) ) {
@@ -240,7 +243,7 @@ class MWOAuthAPISetup {
 		foreach ( $wgMWOauthDisabledApiModules as $badModule ) {
 			if ( $module instanceof $badModule ) {
 				// Awful interface, API.
-				ApiBase::$messageMap['mwoauth-api-module-disabled'] = array(
+				\ApiBase::$messageMap['mwoauth-api-module-disabled'] = array(
 					'code' => 'mwoauth-api-module-disabled',
 					'info' => 'The "$1" module is not available with OAuth.',
 				);
@@ -264,7 +267,7 @@ class MWOAuthAPISetup {
 			$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 			$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $accesstoken->key );
 			$consumerId = $access->get( 'consumerId' );
-			ChangeTags::addTags(
+			\ChangeTags::addTags(
 				"OAuth CID: $consumerId",
 				$rc->mAttribs['rc_id'],
 				$rc->mAttribs['rc_this_oldid'],
@@ -280,7 +283,7 @@ class MWOAuthAPISetup {
 	 * @return boolean
 	 */
 	public static function onCentralAuthAbortCentralAuthToken() {
-		$request = RequestContext::getMain()->getRequest();
+		$request = \RequestContext::getMain()->getRequest();
 		if ( MWOAuthUtils::hasOAuthHeaders( $request ) ) {
 			return false;
 		}

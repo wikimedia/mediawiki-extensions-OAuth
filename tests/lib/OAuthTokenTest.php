@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * The MIT License
  *
@@ -28,7 +31,7 @@ require_once __DIR__ . '/common.php';
 /**
  * @group OAuth
  */
-class OAuthTokenTest extends PHPUnit_Framework_TestCase {
+class OAuthTokenTest extends \PHPUnit_Framework_TestCase {
 	public function testSerialize() {
 		$token = new OAuthToken('token', 'secret');
 		$this->assertEquals('oauth_token=token&oauth_token_secret=secret', $token->to_string());

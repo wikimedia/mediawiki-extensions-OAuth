@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /*
  (c) Aaron Schulz 2013, GPL
 
@@ -22,7 +25,7 @@
  * Special page for listing consumers this user granted access to and
  * for manage the specific grants given or revoking access for the consumer
  */
-class SpecialMWOAuthManageMyGrants extends SpecialPage {
+class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 	protected static $stageKeyMap = array(
 		MWOAuthConsumer::STAGE_PROPOSED => 'proposed',
 		MWOAuthConsumer::STAGE_REJECTED => 'rejected',
@@ -47,7 +50,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			$this->getOutput()->addWikiMsg( 'mwoauthmanagemygrants-notloggedin' );
 			return;
 		} elseif ( !$user->isAllowed( 'mwoauthmanagemygrants' ) ) {
-			throw new PermissionsError( 'mwoauthmanagemygrants' );
+			throw new \PermissionsError( 'mwoauthmanagemygrants' );
 		}
 
 		// Format is Special:OAuthManageMyGrants[/list|/manage/<accesstoken>]
@@ -56,7 +59,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$acceptanceId = isset( $navigation[1] ) ? $navigation[1] : null;
 
 		if ( $wgMWOAuthReadOnly && in_array( $typeKey, array( 'update', 'revoke' ) ) ) {
-			throw new ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
+			throw new \ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
 		}
 
 		switch ( $typeKey ) {
@@ -85,7 +88,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	protected function addSubtitleLinks( $acceptanceId ) {
 		$listLinks = array();
 		if ( $acceptanceId ) {
-			$listLinks[] = Linker::linkKnown(
+			$listLinks[] = \Linker::linkKnown(
 				$this->getPageTitle(),
 				$this->msg( 'mwoauthmanagemygrants-showlist' )->escaped() );
 		} else {
@@ -104,7 +107,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	 *
 	 * @param string $acceptanceId
 	 * @param string $type One of (update,revoke)
-	 * @throws PermissionsError
+	 * @throws \PermissionsError
 	 */
 	protected function handleConsumerForm( $acceptanceId, $type ) {
 		$user = $this->getUser();
@@ -127,7 +130,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromId( $dbr, $cmra->get( 'consumerId' ) ), $this->getContext() );
 		if ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
-			throw new PermissionsError( 'mwoauthviewsuppressed' );
+			throw new \PermissionsError( 'mwoauthviewsuppressed' );
 		}
 
 		$this->getOutput()->addModuleStyles( 'mediawiki.ui.button' );
@@ -141,7 +144,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 
 		$data = array( 'action' => $action );
 		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), $data, $dbr );
-		$form = new HTMLForm(
+		$form = new \HTMLForm(
 			$control->registerValidators( array(
 				'name' => array(
 					'type' => 'info',
@@ -153,7 +156,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 				'user' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-user',
-					'default' => $cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' )
+					'default' => $cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' )
 				),
 				'description' => array(
 					'type' => 'info',
@@ -163,7 +166,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 				'usedOnWiki' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauthmanagemygrants-wikiallowed',
-					'default' => $cmra->get( 'wiki', 'MWOAuthUtils::getWikiIdName' )
+					'default' => $cmra->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
 				),
 				'grants'  => array(
 					'type' => 'checkmatrix',
@@ -172,7 +175,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 						$this->msg( 'mwoauthmanagemygrants-grantaccept' )->escaped() => 'grant'
 					),
 					'rows' => array_combine(
-						array_map( 'MWOAuthUtils::getGrantsLink', $cmr->get( 'grants' ) ),
+						array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getGrantsLink', $cmr->get( 'grants' ) ),
 						$cmr->get( 'grants' )
 					),
 					'default' => array_map(
@@ -198,9 +201,9 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
-			function( array $data, IContextSource $context ) use ( $action ) {
+			function( array $data, \IContextSource $context ) use ( $action ) {
 				$data['action'] = $action;
-				$data['grants'] = FormatJSON::encode( // adapt form to controller
+				$data['grants'] = \FormatJSON::encode( // adapt form to controller
 					preg_replace( '/^grant-/', '', $data['grants'] ) );
 
 				$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
@@ -231,7 +234,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			$this->msg( "mwoauthmanagemygrants-$type-text" )->parseAsBlock() );
 
 		$status = $form->show();
-		if ( $status instanceof Status && $status->isOk() ) {
+		if ( $status instanceof \Status && $status->isOk() ) {
 			// Messages: mwoauthmanagemygrants-success-update, mwoauthmanagemygrants-success-renounce
 			$this->getOutput()->addWikiMsg( "mwoauthmanagemygrants-success-$action" );
 			$this->getOutput()->returnToMain();
@@ -262,7 +265,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	 * @param sdtclass $row
 	 * @return string
 	 */
-	public function formatRow( DBConnRef $db, $row ) {
+	public function formatRow( \DBConnRef $db, $row ) {
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
 		$cmra = MWOAuthDAOAccessControl::wrap(
@@ -271,11 +274,11 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
 
 		$links = array();
-		$links[] = Linker::linkKnown(
+		$links[] = \Linker::linkKnown(
 			$this->getPageTitle( 'update/' . $cmra->get( 'id' ) ),
 			$this->msg( 'mwoauthmanagemygrants-review' )->escaped()
 		);
-		$links[] = Linker::linkKnown(
+		$links[] = \Linker::linkKnown(
 			$this->getPageTitle( 'revoke/' . $cmra->get( 'id' ) ),
 			$this->msg( 'mwoauthmanagemygrants-revoke' )->escaped()
 		);
@@ -289,9 +292,9 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$r .= "<strong>{$encName}</strong> (<strong>$reviewLinks</strong>)";
 		$data = array(
 			'mwoauthmanagemygrants-user' => $cmr->get( 'userId',
-				'MWOAuthUtils::getCentralUserNameFromId' ),
+				'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' ),
 			'mwoauthmanagemygrants-wikiallowed' => $cmra->get( 'wiki',
-				'MWOAuthUtils::getWikiIdName' )
+				'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
 		);
 
 		foreach ( $data as $msg => $val ) {
@@ -308,7 +311,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
  *
  * @TODO: use UserCache
  */
-class MWOAuthManageMyGrantsPager extends ReverseChronologicalPager {
+class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	public $mForm, $mConds;
 
 	function __construct( $form, $conds, $centralUserId ) {

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * A simple utils class for methods needed
  * during some of the tests

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * A mock store for testing
  */

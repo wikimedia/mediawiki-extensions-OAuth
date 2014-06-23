@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * Migrate oauth_registered_consumer and oauth_accepted_consumer tables to a
  * new database with minimal downtime. This script assumes relatively small tables
@@ -22,7 +25,7 @@ if ( getenv( 'MW_INSTALL_PATH' ) ) {
 
 require_once( "$IP/maintenance/Maintenance.php" );
 
-class MigrateCentralWiki extends Maintenance {
+class MigrateCentralWiki extends \Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Migrate central wiki from one wiki to another. OAuth should be in Read Only mode while this is running.";
@@ -39,10 +42,10 @@ class MigrateCentralWiki extends Maintenance {
 
 		if ( $table === 'oauth_registered_consumer' ) {
 			$idKey = 'oarc_id';
-			$cmrClass = 'MWOAuthConsumer';
+			$cmrClass = 'MediaWiki\Extensions\OAuth\MWOAuthConsumer';
 		} elseif ( $table === 'oauth_accepted_consumer' ) {
 			$idKey = 'oaac_id';
-			$cmrClass = 'MWOAuthConsumerAcceptance';
+			$cmrClass = 'MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance';
 		} else {
 			$this->error( "Invalid table name. Must be one of 'oauth_registered_consumer' or 'oauth_accepted_consumer'.\n", 1 );
 		}
@@ -85,5 +88,5 @@ class MigrateCentralWiki extends Maintenance {
 
 }
 
-$maintClass = "MigrateCentralWiki";
+$maintClass = "MediaWiki\Extensions\OAuth\MigrateCentralWiki";
 require_once( RUN_MAINTENANCE_IF_MAIN );

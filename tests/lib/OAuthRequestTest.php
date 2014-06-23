@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * The MIT License
  *
@@ -37,7 +40,7 @@ require_once __DIR__ . '/common.php';
  *
  * @group OAuth
  */
-class OAuthRequestTest extends PHPUnit_Framework_TestCase {
+class OAuthRequestTest extends \PHPUnit_Framework_TestCase {
 	public function testCanGetSingleParameter() {
 		// Yes, a awesomely boring test.. But if this doesn't work, the other tests is unreliable
 		$request = new OAuthRequest('', '', array('test'=>'foo'));
@@ -262,7 +265,7 @@ class OAuthRequestTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testWontBuildHeaderWithArrayInput() {
-		$this->setExpectedException('OAuthException');
+		$this->setExpectedException('MediaWiki\Extensions\OAuth\OAuthException');
 		OAuthTestUtils::build_request('POST', 'http://example.com', 'oauth_foo=bar&oauth_foo=baz');
 		OAuthRequest::from_request()->to_header();
 	}

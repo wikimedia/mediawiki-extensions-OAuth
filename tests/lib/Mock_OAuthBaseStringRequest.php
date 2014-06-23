@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * A very simple class that you can pass a base-string, and then have it returned again.
  * Used for testing the signature-methods

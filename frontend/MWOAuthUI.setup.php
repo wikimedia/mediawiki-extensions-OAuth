@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * Class containing hooked functions for an OAuth environment
  */
@@ -11,14 +14,14 @@ class MWOAuthUISetup {
 	public static function unconditionalSetup() {
 		global $wgSpecialPages, $wgSpecialPageGroups, $wgHooks, $wgResourceModules;
 
-		$wgSpecialPages['OAuth'] = 'SpecialMWOAuth';
-		$wgSpecialPages['OAuthManageMyGrants'] = 'SpecialMWOAuthManageMyGrants';
+		$wgSpecialPages['OAuth'] = 'MediaWiki\Extensions\OAuth\SpecialMWOAuth';
+		$wgSpecialPages['OAuthManageMyGrants'] = 'MediaWiki\Extensions\OAuth\SpecialMWOAuthManageMyGrants';
 		$wgSpecialPageGroups['OAuthManageMyGrants'] = 'users';
-		$wgSpecialPages['OAuthListConsumers'] = 'SpecialMWOAuthListConsumers';
+		$wgSpecialPages['OAuthListConsumers'] = 'MediaWiki\Extensions\OAuth\SpecialMWOAuthListConsumers';
 		$wgSpecialPageGroups['OAuthListConsumers'] = 'users';
 
-		$wgHooks['GetPreferences'][] = 'MWOAuthUIHooks::onGetPreferences';
-		$wgHooks['MessagesPreLoad'][] = 'MWOAuthUIHooks::onMessagesPreLoad';
+		$wgHooks['GetPreferences'][] = 'MediaWiki\Extensions\OAuth\MWOAuthUIHooks::onGetPreferences';
+		$wgHooks['MessagesPreLoad'][] = 'MediaWiki\Extensions\OAuth\MWOAuthUIHooks::onMessagesPreLoad';
 
 		$wgResourceModules['ext.MWOAuth.BasicStyles'] = array(
 			'styles'        => array( 'ext.MWOAuth.BasicStyles.css' ),
@@ -54,9 +57,9 @@ class MWOAuthUISetup {
 		global $wgLogTypes, $wgLogNames, $wgLogHeaders, $wgLogActionsHandlers;
 
 		if ( MWOAuthUtils::isCentralWiki() ) {
-			$wgSpecialPages['OAuthConsumerRegistration'] = 'SpecialMWOAuthConsumerRegistration';
+			$wgSpecialPages['OAuthConsumerRegistration'] = 'MediaWiki\Extensions\OAuth\SpecialMWOAuthConsumerRegistration';
 			$wgSpecialPageGroups['OAuthConsumerRegistration'] = 'users';
-			$wgSpecialPages['OAuthManageConsumers'] = 'SpecialMWOAuthManageConsumers';
+			$wgSpecialPages['OAuthManageConsumers'] = 'MediaWiki\Extensions\OAuth\SpecialMWOAuthManageConsumers';
 			$wgSpecialPageGroups['OAuthManageConsumers'] = 'users';
 
 			$wgLogTypes[] = 'mwoauthconsumer';

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Extensions\OAuth;
+
 class MWOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
 	/** OAuthDataStore */
 	protected $store;

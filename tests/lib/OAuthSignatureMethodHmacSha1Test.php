@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * The MIT License
  *
@@ -29,7 +32,7 @@ require_once __DIR__ . '/Mock_OAuthBaseStringRequest.php';
 /**
  * @group OAuth
  */
-class OAuthSignatureMethodHmacSha1Test extends PHPUnit_Framework_TestCase {
+class OAuthSignatureMethodHmacSha1Test extends \PHPUnit_Framework_TestCase {
 	private $method;
 
 	public function setUp() {
