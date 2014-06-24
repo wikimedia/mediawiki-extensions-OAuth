@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * @ingroup Maintenance
  */
@@ -11,7 +14,7 @@ if ( getenv( 'MW_INSTALL_PATH' ) ) {
 require( __DIR__ . '/../lib/OAuth.php' );
 require_once( "$IP/maintenance/Maintenance.php" );
 
-class TestOAuthConsumer extends Maintenance {
+class TestOAuthConsumer extends \Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Test an OAuth consumer";

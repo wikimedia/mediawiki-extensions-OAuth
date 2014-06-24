@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /*
  (c) Chris Steipp, Aaron Schulz 2013, GPL
 
@@ -21,7 +24,7 @@
 /**
  * Page that handles OAuth consumer authorization and token exchange
  */
-class SpecialMWOAuth extends UnlistedSpecialPage {
+class SpecialMWOAuth extends \UnlistedSpecialPage {
 	function __construct() {
 		parent::__construct( 'OAuth' );
 	}
@@ -66,7 +69,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 							'oauth_token'        => $requestToken,
 							'oauth_consumer_key' => $consumerKey
 						) );
-						$loginPage = SpecialPage::getTitleFor( 'UserLogin' );
+						$loginPage = \SpecialPage::getTitleFor( 'UserLogin' );
 						$url = $loginPage->getLocalURL( $query );
 						$this->getOutput()->redirect( $url );
 					} else {
@@ -210,7 +213,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	/**
 	 * Make statements about the user, and sign the json with
 	 * a key shared with the Consumer.
-	 * @param User $user the user who is the subject of this request
+	 * @param \User $user the user who is the subject of this request
 	 * @param OAuthConsumer $consumer
 	 * @param MWOAuthConsumerAcceptance $access
 	 */
@@ -287,7 +290,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$existing = $oauthServer->getCurrentAuthorization( $user, $cmr->getDAO(), wfWikiId() );
 
 		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), array(), $dbr );
-		$form = new HTMLForm(
+		$form = new \HTMLForm(
 			$control->registerValidators( array(
 				'action' => array(
 					'type'    => 'hidden',
@@ -311,9 +314,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
-			function( array $data, IContextSource $context ) use ( $control ) {
+			function( array $data, \IContextSource $context ) use ( $control ) {
 				if ( $context->getRequest()->getCheck( 'cancel' ) ) { // sanity
-					throw new MWException( 'Received request for a form cancellation.' );
+					throw new \MWException( 'Received request for a form cancellation.' );
 				}
 				$control->setInputParameters( $data );
 				return $control->submit();
@@ -330,13 +333,13 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$params = array(
 			$this->getUser()->getName(),
 			$cmr->get( 'name' ),
-			$cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' ),
+			$cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' ),
 		);
 		if ( $cmr->get( 'wiki' ) === '*' ) {
 			$msgKey .= '-allwikis';
 		} else {
 			$msgKey .= '-onewiki';
-			$params[] = $cmr->get( 'wiki', 'MWOAuthUtils::getWikiIdName' );
+			$params[] = $cmr->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' );
 		}
 		$grantsText = $this->getGrantsWikiText( $cmr->get( 'grants' ) );
 		if ( $grantsText === "\n" ) {
@@ -362,7 +365,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			'<div id="mw-mwoauth-authorize-dialog" class="mw-ui-container">' );
 		$status = $form->show();
 		$this->getOutput()->addHtml( '</div>' );
-		if ( $status instanceof Status && $status->isOk() ) {
+		if ( $status instanceof \Status && $status->isOk() ) {
 			// Redirect to callback url
 			$this->getOutput()->redirect( $status->value['result']['callbackUrl'] );
 		}
@@ -381,20 +384,20 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			$s .= "*<span class=\"mw-mwoauth-authorize-form-grantgroup\">" .
 				wfMessage( "mwoauth-grant-group-$group" )->text() . "</span>\n";
 			$s .= ":" . $this->getLanguage()->semicolonList(
-				array_map( 'MWOAuthUtils::grantName', $grants ) ) . "\n";
+				array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::grantName', $grants ) ) . "\n";
 		}
 		return "$s\n";
 	}
 
 	/**
-	 * @param Message $message to return to the user
+	 * @param \Message $message to return to the user
 	 * @param string $format the format of the response: html, raw, or json
 	 */
 	private function showError( $message, $format ) {
 		if ( $format == 'raw' ) {
 			$this->showResponse( 'Error: ' .$message->escaped(), 'raw' );
 		} elseif ( $format == 'json' ) {
-			$error = FormatJSON::encode( array( 'error' => $message->getKey() ) );
+			$error = \FormatJSON::encode( array( 'error' => $message->getKey() ) );
 			$this->showResponse( $error, 'json' );
 		} elseif ( $format == 'html' ) {
 			$this->getOutput()->showErrorPage( 'mwoauth-error', $message );
@@ -412,24 +415,24 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			$return .= '&oauth_callback_confirmed=true';
 			$this->showResponse( $return, 'raw' );
 		} elseif ( $format == 'json' ) {
-			$this->showResponse( FormatJSON::encode( $token ), 'json' );
+			$this->showResponse( \FormatJSON::encode( $token ), 'json' );
 		} elseif ( $format == 'html' ) {
-			$html = Html::element(
+			$html = \Html::element(
 				'li',
 				array(),
 				'oauth_token = ' . OAuthUtil::urlencode_rfc3986( $token->key )
 			);
-			$html .= Html::element(
+			$html .= \Html::element(
 				'li',
 				array(),
 				'oauth_token_secret = ' . OAuthUtil::urlencode_rfc3986( $token->secret )
 			);
-			$html .= Html::element(
+			$html .= \Html::element(
 				'li',
 				array(),
 				'oauth_callback_confirmed = true'
 			);
-			$html = Html::rawElement( 'ul', array(), $html );
+			$html = \Html::rawElement( 'ul', array(), $html );
 			$this->showResponse( $html, 'html' );
 		}
 	}
@@ -470,11 +473,11 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$out->addWikiMsg( 'mwoauth-listgrantrights-summary' );
 
 		$out->addHTML(
-			Html::openElement( 'table',
+			\Html::openElement( 'table',
 				array( 'class' => 'wikitable mw-oauth-listgrouprights-table' ) ) .
 				'<tr>' .
-				Html::element( 'th', null, $this->msg( 'mwoauth-listgrants-grant' )->text() ) .
-				Html::element( 'th', null, $this->msg( 'mwoauth-listgrants-rights' )->text() ) .
+				\Html::element( 'th', null, $this->msg( 'mwoauth-listgrants-grant' )->text() ) .
+				\Html::element( 'th', null, $this->msg( 'mwoauth-listgrants-rights' )->text() ) .
 				'</tr>'
 		);
 
@@ -484,7 +487,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			foreach ( $rights as $permission => $granted ) {
 				$descs[] = $this->msg(
 					'listgrouprights-right-display',
-					User::getRightDescription( $permission ),
+					\User::getRightDescription( $permission ),
 					'<span class="mw-oaith-listgrantrights-right-name">' . $permission . '</span>'
 				)->parse();
 			}
@@ -495,13 +498,13 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				$grantCellHtml = '<ul><li>' . implode( "</li>\n<li>", $descs ) . '</li></ul>';
 			}
 
-			$id = Sanitizer::escapeId( $grant );
-			$out->addHTML( Html::rawElement( 'tr', array( 'id' => $id ),
+			$id = \Sanitizer::escapeId( $grant );
+			$out->addHTML( \Html::rawElement( 'tr', array( 'id' => $id ),
 				"<td>" . wfMessage( "mwoauth-grant-$grant" )->escaped() . "</td>" .
 				"<td>" . $grantCellHtml . '</td>'
 			) );
 		}
 
-		$out->addHTML( Html::closeElement( 'table' ) );
+		$out->addHTML( \Html::closeElement( 'table' ) );
 	}
 }

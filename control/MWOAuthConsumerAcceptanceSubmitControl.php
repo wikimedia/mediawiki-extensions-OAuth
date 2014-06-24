@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /*
  (c) Aaron Schulz 2013, GPL
 
@@ -35,7 +38,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 	 * @param array $params
 	 * @param DBConnRef $dbw Result of MWOAuthUtils::getCentralDB( DB_MASTER )
 	 */
-	public function __construct( IContextSource $context, array $params, DBConnRef $dbw ) {
+	public function __construct( \IContextSource $context, array $params, \DBConnRef $dbw ) {
 		parent::__construct( $context, $params );
 		$this->dbw = $dbw;
 	}
@@ -50,7 +53,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			'update'   => array(
 				'acceptanceId' => '/^\d+$/',
 				'grants'      => function( $s ) {
-					$grants = FormatJSON::decode( $s, true );
+					$grants = \FormatJSON::decode( $s, true );
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
 				}
 			),
@@ -117,7 +120,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			}
 			$cmr = MWOAuthConsumer::newFromId( $dbw, $cmra->get( 'consumerId' ) );
 
-			$grants = FormatJSON::decode( $this->vals['grants'], true ); // requested grants
+			$grants = \FormatJSON::decode( $this->vals['grants'], true ); // requested grants
 			$grants = array_unique( array_merge(
 				MWOAuthUtils::getHiddenGrants(), // implied grants
 				array_intersect( $grants, $cmr->get( 'grants' ) ) // applicable requested grants

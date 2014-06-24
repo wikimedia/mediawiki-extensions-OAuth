@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Extensions\OAuth;
+
 class MWOAuthDataStore extends OAuthDataStore {
 	/** @var DBConnRef DB for the consumer/grant registry */
 	protected $centralDB;
@@ -10,7 +12,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @param DBConnRef $centralDB Central DB slave
 	 * @param BagOStuff $cache
 	 */
-	public function __construct( DBConnRef $centralDB, BagOStuff $cache ) {
+	public function __construct( \DBConnRef $centralDB, \BagOStuff $cache ) {
 		$this->centralDB = $centralDB;
 		$this->cache = $cache;
 	}
@@ -91,8 +93,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 */
 	public static function newToken() {
 		return new MWOAuthToken(
-			MWCryptRand::generateHex( 32, false ), // the key doesn't need to be unpredictable
-			MWCryptRand::generateHex( 32, true )
+			\MWCryptRand::generateHex( 32, false ), // the key doesn't need to be unpredictable
+			\MWCryptRand::generateHex( 32, true )
 		);
 	}
 

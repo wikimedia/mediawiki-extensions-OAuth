@@ -1,4 +1,9 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
+use MWException;
+
 /**
  * Static utility functions for OAuth
  *
@@ -32,7 +37,7 @@ class MWOAuthUtils {
 	 * @param DBConnRef $db
 	 * @return array
 	 */
-	public static function getConsumerStateCounts( DBConnRef $db ) {
+	public static function getConsumerStateCounts( \DBConnRef $db ) {
 		$res = $db->select( 'oauth_registered_consumer',
 			array( 'oarc_stage', 'count' => 'COUNT(*)' ),
 			array(),
@@ -60,7 +65,7 @@ class MWOAuthUtils {
 	 * @return Array of apache headers and their values
 	 */
 	public static function getHeaders() {
-		$request = RequestContext::getMain()->getRequest();
+		$request = \RequestContext::getMain()->getRequest();
 		$headers = $request->getAllHeaders();
 
 		$out = array();
@@ -80,7 +85,7 @@ class MWOAuthUtils {
 	 * @param WebRequest $request the MediaWiki request
 	 * @return Boolean (true if a header was found)
 	 */
-	public static function hasOAuthHeaders( WebRequest $request ) {
+	public static function hasOAuthHeaders( \WebRequest $request ) {
 		$header = $request->getHeader( 'Authorization' );
 		if ( $header !== false && substr( $header, 0, 6 ) == 'OAuth ' ) {
 			return true;
@@ -104,7 +109,7 @@ class MWOAuthUtils {
 	 * @param DBConnRef $dbw
 	 * @return void
 	 */
-	public static function runAutoMaintenance( DBConnRef $dbw ) {
+	public static function runAutoMaintenance( \DBConnRef $dbw ) {
 		global $wgMWOAuthRequestExpirationAge;
 
 		if ( $wgMWOAuthRequestExpirationAge <= 0 ) {
@@ -168,7 +173,7 @@ class MWOAuthUtils {
 	 * @return array Array of corresponding grant descriptions
 	 */
 	public static function grantNames( array $grants ) {
-		return array_map( 'MWOAuthUtils::grantName', $grants );
+		return array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::grantName', $grants );
 	}
 
 	/**
@@ -254,7 +259,7 @@ class MWOAuthUtils {
 			return false;
 		}
 		foreach ( $restrictions['IPAddresses'] as $ip ) {
-			if ( !IP::isIPAddress( $ip ) ) {
+			if ( !\IP::isIPAddress( $ip ) ) {
 				return false;
 			}
 		}
@@ -272,7 +277,7 @@ class MWOAuthUtils {
 		if ( $wikiId === '*' ) {
 			return wfMessage( 'mwoauth-consumer-allwikis' )->text();
 		} else {
-			$host = WikiMap::getWikiName( $wikiId );
+			$host = \WikiMap::getWikiName( $wikiId );
 			if ( strpos( $host, '.' ) ) {
 				return $host; // e.g. "en.wikipedia.org"
 			} else {
@@ -319,16 +324,16 @@ class MWOAuthUtils {
 	 * Given a central wiki user ID, get a central user name
 	 *
 	 * @param integer $userId
-	 * @param bool|User $audience show hidden names based on this user, or false for public
-	 * @throws MWException
+	 * @param bool|\User $audience show hidden names based on this user, or false for public
+	 * @throws \MWException
 	 * @return string|bool User name, false if not found, empty string if name is hidden
 	 */
 	public static function getCentralUserNameFromId( $userId, $audience = false ) {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
-			if ( !Hooks::isRegistered( 'OAuthGetUserNamesFromCentralIds' ) ) {
-				throw new MWException( "No handler for 'OAuthGetUserNamesFromCentralIds' hook" );
+			if ( !\Hooks::isRegistered( 'OAuthGetUserNamesFromCentralIds' ) ) {
+				throw new \MWException( "No handler for 'OAuthGetUserNamesFromCentralIds' hook" );
 			}
 			$namesById = array( $userId => null );
 			wfRunHooks( 'OAuthGetUserNamesFromCentralIds',
@@ -341,13 +346,13 @@ class MWOAuthUtils {
 			$name = $namesById[$userId];
 			if ( $name === null ) {
 				// The extension didn't handle the id
-				throw new MWException( 'Could not lookup name from ID via hook.' );
+				throw new \MWException( 'Could not lookup name from ID via hook.' );
 			}
 		} else {
 			$name = '';
-			$user = User::newFromId( $userId );
+			$user = \User::newFromId( $userId );
 			if ( !$user->isHidden()
-				|| ( $audience instanceof User && $audience->isAllowed( 'hideuser' ) )
+				|| ( $audience instanceof \User && $audience->isAllowed( 'hideuser' ) )
 			) {
 				$name = $user->getName();
 			}
@@ -360,15 +365,15 @@ class MWOAuthUtils {
 	 * Given a central wiki user ID, get a local User object
 	 *
 	 * @param integer $userId
-	 * @throws MWException
+	 * @throws \MWException
 	 * @return User|bool User or false if not found
 	 */
 	public static function getLocalUserFromCentralId( $userId ) {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
-			if ( !Hooks::isRegistered( 'OAuthGetLocalUserFromCentralId' ) ) {
-				throw new MWException( "No handler for 'OAuthGetLocalUserFromCentralId' hook" );
+			if ( !\Hooks::isRegistered( 'OAuthGetLocalUserFromCentralId' ) ) {
+				throw new \MWException( "No handler for 'OAuthGetLocalUserFromCentralId' hook" );
 			}
 			$user = null;
 			// Let extensions check that central wiki user ID is attached to a global account
@@ -377,10 +382,10 @@ class MWOAuthUtils {
 				array( $userId, $wgMWOAuthCentralWiki, &$user, $wgMWOAuthSharedUserSource ) );
 			// If there is no local user, the extension should set the user to false
 			if ( $user === null ) {
-				throw new MWException( 'Could not lookup user from ID via hook.' );
+				throw new \MWException( 'Could not lookup user from ID via hook.' );
 			}
 		} else {
-			$user = User::newFromId( $userId );
+			$user = \User::newFromId( $userId );
 		}
 
 		return $user;
@@ -389,19 +394,19 @@ class MWOAuthUtils {
 	/**
 	 * Given a local User object, get the user ID for that user on the central wiki
 	 *
-	 * @param User $user
-	 * @throws MWException
+	 * @param \User $user
+	 * @throws \MWException
 	 * @return integer|bool ID or false if not found
 	 */
-	public static function getCentralIdFromLocalUser( User $user ) {
+	public static function getCentralIdFromLocalUser( \User $user ) {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
 			if ( isset( $user->oAuthUserData['centralId'] ) ) {
 				$id = $user->oAuthUserData['centralId'];
 			} else {
-				if ( !Hooks::isRegistered( 'OAuthGetCentralIdFromLocalUser' ) ) {
-					throw new MWException( "No handler for 'OAuthGetCentralIdFromLocalUser' hook" );
+				if ( !\Hooks::isRegistered( 'OAuthGetCentralIdFromLocalUser' ) ) {
+					throw new \MWException( "No handler for 'OAuthGetCentralIdFromLocalUser' hook" );
 				}
 				$id = null;
 				// Let CentralAuth check that $user is attached to a global account and
@@ -410,7 +415,7 @@ class MWOAuthUtils {
 					array( $user, $wgMWOAuthCentralWiki, &$id, $wgMWOAuthSharedUserSource ) );
 				// If there is no such user, the extension should set the ID to false
 				if ( $id === null ) {
-					throw new MWException( 'Could not lookup ID for user via hook.' );
+					throw new \MWException( 'Could not lookup ID for user via hook.' );
 				}
 				// Process cache the result to avoid queries
 				$user->oAuthUserData['centralId'] = $id;
@@ -427,15 +432,15 @@ class MWOAuthUtils {
 	 * function MUST NOT be used to determine if a user is attached on the central
 	 * wiki. It's only intended to resolve the central id of a username.
 	 * @param string $username
-	 * @throws MWException
+	 * @throws \MWException
 	 * @return integer|bool ID or false if not found
 	 */
 	public static function getCentralIdFromUserName( $username ) {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
-			if ( !Hooks::isRegistered( 'OAuthGetCentralIdFromUserName' ) ) {
-				throw new MWException( "No handler for 'OAuthGetCentralIdFromLocalUser' hook" );
+			if ( !\Hooks::isRegistered( 'OAuthGetCentralIdFromUserName' ) ) {
+				throw new \MWException( "No handler for 'OAuthGetCentralIdFromLocalUser' hook" );
 			}
 
 			$id = null;
@@ -444,12 +449,12 @@ class MWOAuthUtils {
 			wfRunHooks( 'OAuthGetCentralIdFromUserName',
 				array( $username, $wgMWOAuthCentralWiki, &$id, $wgMWOAuthSharedUserSource ) );
 			if ( $id === null ) {
-				throw new MWException( 'Could not lookup ID for user via hook.' );
+				throw new \MWException( 'Could not lookup ID for user via hook.' );
 			}
 		} else {
 			$id = false;
-			$user = User::newFromName( $username );
-			if ( $user instanceof User && $user->getId() > 0 ) {
+			$user = \User::newFromName( $username );
+			if ( $user instanceof \User && $user->getId() > 0 ) {
 				$id = $user->getId();
 			}
 		}
@@ -482,8 +487,8 @@ class MWOAuthUtils {
 	 * @return string (proto-relative) HTML link
 	 */
 	public static function getGrantsLink( $grant ) {
-		return Linker::linkKnown(
-			SpecialPage::getTitleFor( 'OAuth', 'grants', $grant ),
+		return \Linker::linkKnown(
+			\SpecialPage::getTitleFor( 'OAuth', 'grants', $grant ),
 			htmlspecialchars( self::grantName( $grant ) )
 		);
 	}
@@ -511,12 +516,12 @@ class MWOAuthUtils {
 		$url = false;
 
 		if ( $wgMWOAuthSharedUserIDs ) {
-			$url = WikiMap::getForeignURL(
+			$url = \WikiMap::getForeignURL(
 				$wgMWOAuthCentralWiki,
 				"User_talk:$username"
 			);
 		} else {
-			$url = Title::makeTitleSafe( NS_USER_TALK, $username )->getFullURL();
+			$url = \Title::makeTitleSafe( NS_USER_TALK, $username )->getFullURL();
 		}
 		return $url;
 	}

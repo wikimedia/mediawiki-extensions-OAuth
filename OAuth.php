@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /*
  (c) Aaron Schulz 2013, GPL
 
@@ -54,5 +57,5 @@ $wgExtensionFunctions[] = function() {
 		// There is actually a central wiki, requiring global user IDs via hook
 		$wgMWOAuthSharedUserIDs = true;
 	}
-	MWOAuthUISetup::conditionalSetup();
+	\MediaWiki\Extensions\OAuth\MWOAuthUISetup::conditionalSetup();
 };

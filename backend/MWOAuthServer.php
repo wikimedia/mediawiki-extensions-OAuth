@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Extensions\OAuth;
+
 class MWOAuthServer extends OAuthServer {
 	/**
 	 * Process a request_token request returns the request token on success. This
@@ -95,7 +97,7 @@ class MWOAuthServer extends OAuthServer {
 		}
 
 		foreach ( $restrictions['IPAddresses'] as $range ) {
-			if ( IP::isInRange( $requestIP, $range ) ) {
+			if ( \IP::isInRange( $requestIP, $range ) ) {
 				return true;
 			}
 		}
@@ -109,12 +111,12 @@ class MWOAuthServer extends OAuthServer {
 	 * generate the callback URL where we will redirect our user back to the consumer.
 	 * @param String $consumerKey
 	 * @param String $requestTokenKey
-	 * @param User $mwUser user authorizing the request (local user)
+	 * @param \User $mwUser user authorizing the request (local user)
 	 * @param bool $update update the grants/wiki to those requested by consumer
 	 * @return String the callback URL to redirect the user
 	 * @throws MWOAuthException
 	 */
-	public function authorize( $consumerKey, $requestTokenKey, User $mwUser, $update ) {
+	public function authorize( $consumerKey, $requestTokenKey, \User $mwUser, $update ) {
 		// Check that user and consumer are in good standing
 		if ( $mwUser->isBlocked() ) {
 			throw new MWOAuthException( 'mwoauthserver-insufficient-rights' );
@@ -141,7 +143,7 @@ class MWOAuthServer extends OAuthServer {
 		// ** Generate a new access token if this is a new authorization
 		// * Resave request token with the access token
 
-		$verifyCode = MWCryptRand::generateHex( 32, true );
+		$verifyCode = \MWCryptRand::generateHex( 32, true );
 		$requestToken = $this->data_store->lookup_token( $consumer, 'request', $requestTokenKey );
 		if ( !$requestToken || !( $requestToken instanceof MWOAuthToken ) ) {
 			throw new MWOAuthException( 'mwoauthserver-invalid-request-token' );
@@ -210,13 +212,13 @@ class MWOAuthServer extends OAuthServer {
 	 * Users might want more grants on some wikis than on "*". Note that the reverse would not
 	 * make sense, since the consumer could just use the "*" acceptance if it has more grants.
 	 *
-	 * @param User $mwUser (local wiki user) User who may or may not have authorizations
+	 * @param \User $mwUser (local wiki user) User who may or may not have authorizations
 	 * @param MWOAuthConsumer $consumer
 	 * @param string $wikiId
 	 * @throws MWOAuthException
 	 * @return MWOAuthConsumerAcceptance
 	 */
-	public function getCurrentAuthorization( User $mwUser, $consumer, $wikiId ) {
+	public function getCurrentAuthorization( \User $mwUser, $consumer, $wikiId ) {
 		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );

@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * The MIT License
  *
@@ -29,7 +32,7 @@ require_once __DIR__ . '/common.php';
  * Tests of OAuthUtil
  * @group OAuth
  */
-class OAuthUtilTest extends PHPUnit_Framework_TestCase {
+class OAuthUtilTest extends \PHPUnit_Framework_TestCase {
 	public function testUrlencode() {
 		// Tests taken from
 		// http://wiki.oauth.net/TestCases ("Parameter Encoding")
@@ -48,7 +51,7 @@ class OAuthUtilTest extends PHPUnit_Framework_TestCase {
 
 		// A few tests to ensure code-coverage
 		$this->assertEquals( '', OAuthUtil::urlencode_rfc3986(NULL));
-		$this->assertEquals( '', OAuthUtil::urlencode_rfc3986(new stdClass()));
+		$this->assertEquals( '', OAuthUtil::urlencode_rfc3986(new \stdClass()));
 	}
 
 	public function testUrldecode() {

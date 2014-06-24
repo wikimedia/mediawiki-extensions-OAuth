@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Extensions\OAuth;
+
 class MWOAuthException extends OAuthException {
 	public $msg, $params;
 

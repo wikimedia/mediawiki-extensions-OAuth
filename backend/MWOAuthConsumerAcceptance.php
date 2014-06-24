@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /*
  (c) Aaron Schulz 2013, GPL
 
@@ -70,12 +73,12 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param \DBConnRef $db
 	 * @param string $token Access token
 	 * @param integer $flags MWOAuthConsumerAcceptance::READ_* bitfield
 	 * @return MWOAuthConsumerAcceptance|bool
 	 */
-	public static function newFromToken( DBConnRef $db, $token, $flags = 0 ) {
+	public static function newFromToken( \DBConnRef $db, $token, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
 			array( 'oaac_access_token' => $token ),
@@ -93,7 +96,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param \DBConnRef $db
 	 * @param String $userId of user who authorized (central wiki's id)
 	 * @param MWOAuthConsumer $consumer
 	 * @param String $wiki wiki associated with the acceptance
@@ -101,7 +104,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	 * @return MWOAuthConsumerAcceptance|bool
 	 */
 	public static function newFromUserConsumerWiki(
-		DBConnRef $db, $userId, $consumer, $wiki, $flags = 0
+		\DBConnRef $db, $userId, $consumer, $wiki, $flags = 0
 	) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
@@ -129,19 +132,19 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		$this->grants = (array)$this->grants; // sanity
 	}
 
-	protected function encodeRow( DBConnRef $db, $row ) {
-		$row['oaac_grants'] = FormatJSON::encode( $row['oaac_grants'] );
+	protected function encodeRow( \DBConnRef $db, $row ) {
+		$row['oaac_grants'] = \FormatJSON::encode( $row['oaac_grants'] );
 		$row['oaac_accepted'] = $db->timestamp( $row['oaac_accepted'] );
 		return $row;
 	}
 
-	protected function decodeRow( DBConnRef $db, $row ) {;
-		$row['oaac_grants'] = FormatJSON::decode( $row['oaac_grants'], true );
+	protected function decodeRow( \DBConnRef $db, $row ) {;
+		$row['oaac_grants'] = \FormatJSON::decode( $row['oaac_grants'], true );
 		$row['oaac_accepted'] = wfTimestamp( TS_MW, $row['oaac_accepted'] );
 		return $row;
 	}
 
-	protected function userCanSee( $name, RequestContext $context ) {
+	protected function userCanSee( $name, \RequestContext $context ) {
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $context->getUser() );
 		if ( $this->userId != $centralUserId
 			&& !$context->getUser()->isAllowed( 'mwoauthviewprivate' )
@@ -152,7 +155,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		}
 	}
 
-	protected function userCanSeePrivate( $name, RequestContext $context ) {
+	protected function userCanSeePrivate( $name, \RequestContext $context ) {
 		if ( !$context->getUser()->isAllowed( 'mwoauthviewprivate' ) ) {
 			return $context->msg( 'mwoauth-field-private' );
 		} else {
@@ -160,7 +163,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		}
 	}
 
-	protected function userCanSeeSecret( $name, RequestContext $context ) {
+	protected function userCanSeeSecret( $name, \RequestContext $context ) {
 		return $context->msg( 'mwoauth-field-private' );
 	}
 }

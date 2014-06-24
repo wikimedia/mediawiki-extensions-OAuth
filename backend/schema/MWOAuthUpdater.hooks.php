@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * Class containing updater functions for an OAuth environment
  */
@@ -7,7 +10,7 @@ class MWOAuthUpdaterHooks {
 	 * @param DatabaseUpdater $updater
 	 * @return bool
 	 */
-	public static function addSchemaUpdates( DatabaseUpdater $updater ) {
+	public static function addSchemaUpdates( \DatabaseUpdater $updater ) {
 		if ( !MWOAuthUtils::isCentralWiki() ) {
 			return true; // no tables to add
 		}

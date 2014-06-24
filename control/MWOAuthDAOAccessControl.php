@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /*
  (c) Aaron Schulz 2013, GPL
 
@@ -21,34 +24,34 @@
 /**
  * Wrapper of an MWOAuthDAO that handles authorization to view fields
  */
-class MWOAuthDAOAccessControl extends ContextSource {
+class MWOAuthDAOAccessControl extends \ContextSource {
 	/** @var MWOAuthDAO */
 	protected $dao;
-	/** @var RequestContext */
+	/** @var \RequestContext */
 	protected $context;
 
 	/**
 	 * @param MWOAuthDAO $dao
-	 * @param RequestContext $context
+	 * @param \RequestContext $context
 	 */
-	final protected function __construct( MWOAuthDAO $dao, RequestContext $context ) {
+	final protected function __construct( MWOAuthDAO $dao, \RequestContext $context ) {
 		$this->dao = $dao;
 		$this->context = $context;
 	}
 
 	/**
 	 * @param MWOAuthDAO $dao
-	 * @param RequestContext $context
-	 * @throws Exception
+	 * @param \RequestContext $context
+	 * @throws \Exception
 	 * @return MWOAuthDAOAccessControl
 	 */
-	final public static function wrap( $dao, RequestContext $context ) {
+	final public static function wrap( $dao, \RequestContext $context ) {
 		if ( $dao instanceof MWOAuthDAO ) {
 			return new static( $dao, $context );
 		} elseif ( $dao === null || $dao === false ) {
 			return $dao;
 		} else {
-			throw new Exception( "Expected MWOAuthDAO object, null, or false." );
+			throw new \Exception( "Expected MWOAuthDAO object, null, or false." );
 		}
 	}
 

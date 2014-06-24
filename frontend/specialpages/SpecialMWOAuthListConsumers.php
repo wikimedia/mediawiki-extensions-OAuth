@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /*
  (c) Aaron Schulz 2013, GPL
 
@@ -22,7 +25,7 @@
  * Special page for listing the queue of consumer requests and managing
  * their approval/rejection and also for listing approved/disabled consumers
  */
-class SpecialMWOAuthListConsumers extends SpecialPage {
+class SpecialMWOAuthListConsumers extends \SpecialPage {
 	protected static $stageKeyMap = array(
 		MWOAuthConsumer::STAGE_PROPOSED => 'proposed',
 		MWOAuthConsumer::STAGE_REJECTED => 'rejected',
@@ -89,7 +92,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			}
 			$s .= "*<strong>" . wfMessage( "mwoauth-grant-group-$group" )->text() . "</strong>\n";
 			$s .= ":" . $this->getLanguage()->semicolonList(
-				array_map( 'MWOAuthUtils::grantName', $grants ) ) . "\n";
+				array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::grantName', $grants ) ) . "\n";
 		}
 		if ( $s == '' ) {
 			$s = wfMessage( 'mwoauthlistconsumers-basicgrantsonly' )->text();
@@ -106,7 +109,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 				$cmr->get( 'version' )
 			),
 			'mwoauthlistconsumers-user' => htmlspecialchars(
-				$cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' )
+				$cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' )
 			),
 			'mwoauthlistconsumers-status' => htmlspecialchars(
 				wfMessage( "mwoauthlistconsumers-status-$stageKey" )
@@ -115,7 +118,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 				$cmr->get( 'description' )
 			),
 			'mwoauthlistconsumers-wiki' => htmlspecialchars(
-				$cmr->get( 'wiki', 'MWOAuthUtils::getWikiIdName' )
+				$cmr->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
 			),
 			'mwoauthlistconsumers-callbackurl' => htmlspecialchars(
 				$cmr->get( 'callbackUrl' )
@@ -132,13 +135,13 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 
 		if ( MWOAuthUtils::isCentralWiki() ) {
 			// Show all of the status updates
-			$logPage = new LogPage( 'mwoauthconsumer' );
-			$out->addHTML( Xml::element( 'h2', null, $logPage->getName()->text() ) );
-			LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '',
+			$logPage = new \LogPage( 'mwoauthconsumer' );
+			$out->addHTML( \Xml::element( 'h2', null, $logPage->getName()->text() ) );
+			\LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '',
 				array(
 					'conds' => array(
 					'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ),
-					'flags' => LogEventsList::NO_EXTRA_USER_LINKS
+					'flags' => \LogEventsList::NO_EXTRA_USER_LINKS
 				)
 			);
 		}
@@ -148,7 +151,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 	 * Show a form for the paged list of consumers
 	 */
 	protected function showConsumerListForm() {
-		$form = new HTMLForm(
+		$form = new \HTMLForm(
 			array(
 				'name' => array(
 					'name'     => 'name',
@@ -229,7 +232,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 	 * @param sdtclass $row
 	 * @return string
 	 */
-	public function formatRow( DBConnRef $db, $row ) {
+	public function formatRow( \DBConnRef $db, $row ) {
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
 
@@ -237,15 +240,15 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
 
 		$links = array();
-		$links[] = Linker::linkKnown(
+		$links[] = \Linker::linkKnown(
 			$this->getPageTitle( "view/{$cmrKey}" ),
 			$this->msg( 'mwoauthlistconsumers-view' )->escaped(),
 			array(),
 			$this->getRequest()->getValues( 'name', 'publisher', 'stage' ) // stick
 		);
 		if ( $this->getUser()->isAllowed( 'mwoauthmanageconsumer' ) ) {
-			$links[] = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'OAuthManageConsumers', "{$stageKey}/{$cmrKey}" ),
+			$links[] = \Linker::linkKnown(
+				\SpecialPage::getTitleFor( 'OAuthManageConsumers', "{$stageKey}/{$cmrKey}" ),
 				$this->msg( 'mwoauthmanageconsumers-review' )->escaped()
 			);
 		}
@@ -264,14 +267,14 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		$lang = $this->getLanguage();
 		$data = array(
 			'mwoauthlistconsumers-user' => htmlspecialchars(
-				$cmr->get( 'userId', 'MWOAuthUtils::getCentralUserNameFromId' )
+				$cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' )
 			),
 			'mwoauthlistconsumers-description' => htmlspecialchars(
 				$cmr->get( 'description', function( $s ) use ( $lang ) {
 					return $lang->truncate( $s, 10024 ); } )
 			),
 			'mwoauthlistconsumers-wiki' => htmlspecialchars(
-				$cmr->get( 'wiki', 'MWOAuthUtils::getWikiIdName' )
+				$cmr->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
 			),
 			'mwoauthlistconsumers-status' => htmlspecialchars(
 				wfMessage( "mwoauthlistconsumers-status-$stageKey" )
@@ -293,7 +296,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
  *
  * @TODO: use UserCache
  */
-class MWOAuthListConsumersPager extends AlphabeticPager {
+class MWOAuthListConsumersPager extends \AlphabeticPager {
 	public $mForm, $mConds;
 
 	function __construct( $form, $conds, $name, $centralUserID, $stage ) {

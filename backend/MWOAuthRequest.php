@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * @file
  * @ingroup OAuth
@@ -31,7 +34,7 @@ class MWOAuthRequest extends OAuthRequest {
 		return $this->sourceIP;
 	}
 
-	public static function fromRequest( WebRequest $request ) {
+	public static function fromRequest( \WebRequest $request ) {
 		$httpMethod = strtoupper( $request->getMethod() );
 		$httpUrl = $request->getFullRequestURL();
 

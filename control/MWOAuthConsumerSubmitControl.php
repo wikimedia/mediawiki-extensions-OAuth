@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /*
  (c) Aaron Schulz 2013, GPL
 
@@ -27,15 +30,15 @@
  * @TODO: improve error messages
  */
 class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
-	/** @var DBConnRef */
+	/** @var \DBConnRef */
 	protected $dbw;
 
 	/**
 	 * @param IContextSource $context
 	 * @param array $params
-	 * @param DBConnRef $dbw Result of MWOAuthUtils::getCentralDB( DB_MASTER )
+	 * @param \DBConnRef $dbw Result of MWOAuthUtils::getCentralDB( DB_MASTER )
 	 */
-	public function __construct( IContextSource $context, array $params, DBConnRef $dbw ) {
+	public function __construct( \IContextSource $context, array $params, \DBConnRef $dbw ) {
 		parent::__construct( $context, $params );
 		$this->dbw = $dbw;
 	}
@@ -65,7 +68,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					return wfParseUrl( $s ) !== null; },
 				'description'  => '/^.*$/s',
 				'email'        => function( $s ) {
-					return Sanitizer::validateEmail( $s ); },
+					return \Sanitizer::validateEmail( $s ); },
 				'wiki'         => function( $s ) {
 					global $wgConf;
 					return ( $s === '*'
@@ -73,11 +76,11 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 						|| array_search( $s, MWOAuthUtils::getAllWikiNames() ) !== false
 					); },
 				'grants'       => function( $s ) {
-					$grants = FormatJSON::decode( $s, true );
+					$grants = \FormatJSON::decode( $s, true );
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
 				},
 				'restrictions' => function( $s ) {
-					$res = FormatJSON::decode( $s, true );
+					$res = \FormatJSON::decode( $s, true );
 					return is_array( $res ) && MWOAuthUtils::restrictionsAreValid( $res );
 				},
 				'rsaKey'       => $validateRsaKey,
@@ -85,7 +88,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			'update'      => array(
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
 				'restrictions' => function( $s ) {
-					$res = FormatJSON::decode( $s, true );
+					$res = \FormatJSON::decode( $s, true );
 					return is_array( $res ) && MWOAuthUtils::restrictionsAreValid( $res );
 				},
 				'rsaKey'       => $validateRsaKey,
@@ -182,25 +185,25 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$cmr = MWOAuthConsumer::newFromArray(
 				array(
 					'id'                 => null, // auto-increment
-					'consumerKey'        => MWCryptRand::generateHex( 32 ),
+					'consumerKey'        => \MWCryptRand::generateHex( 32 ),
 					'userId'             => $centralUserId,
 					'email'              => $user->getEmail(),
 					'emailAuthenticated' => $now, // see above
-					'secretKey'          => MWCryptRand::generateHex( 32 ),
+					'secretKey'          => \MWCryptRand::generateHex( 32 ),
 					'registration'       => $now,
 					'stage'              => MWOAuthConsumer::STAGE_PROPOSED,
 					'stageTimestamp'     => $now,
 					'grants'             => array_unique( array_merge(
 						MWOAuthUtils::getHiddenGrants(), // implied grants
-						FormatJSON::decode( $this->vals['grants'], true )
+						\FormatJSON::decode( $this->vals['grants'], true )
 					) ),
-					'restrictions'       => FormatJSON::decode( $this->vals['restrictions'], true ),
+					'restrictions'       => \FormatJSON::decode( $this->vals['restrictions'], true ),
 					'deleted'            => 0
 				) + $this->vals
 			);
 			$cmr->save( $dbw );
 
-			$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'propose' );
+			$logEntry = new \ManualLogEntry( 'mwoauthconsumer', 'propose' );
 			$logEntry->setPerformer( $user );
 			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 			$logEntry->setComment( $this->vals['description'] );
@@ -233,15 +236,15 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			$cmr->setFields( array(
 				'rsaKey'       => $this->vals['rsaKey'],
-				'restrictions' => FormatJSON::decode( $this->vals['restrictions'], true ),
+				'restrictions' => \FormatJSON::decode( $this->vals['restrictions'], true ),
 				'secretKey'    => $this->vals['resetSecret']
-					? MWCryptRand::generateHex( 32 )
+					? \MWCryptRand::generateHex( 32 )
 					: $cmr->get( 'secretKey' )
 			) );
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
-				$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'update' );
+				$logEntry = new \ManualLogEntry( 'mwoauthconsumer', 'update' );
 				$logEntry->setPerformer( $user );
 				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 				$logEntry->setComment( $this->vals['reason'] );
@@ -280,7 +283,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
-				$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'approve' );
+				$logEntry = new \ManualLogEntry( 'mwoauthconsumer', 'approve' );
 				$logEntry->setPerformer( $user );
 				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 				$logEntry->setComment( $this->vals['reason'] );
@@ -319,7 +322,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
-				$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'reject' );
+				$logEntry = new \ManualLogEntry( 'mwoauthconsumer', 'reject' );
 				$logEntry->setPerformer( $user );
 				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 				$logEntry->setComment( $this->vals['reason'] );
@@ -360,7 +363,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
-				$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'disable' );
+				$logEntry = new \ManualLogEntry( 'mwoauthconsumer', 'disable' );
 				$logEntry->setPerformer( $user );
 				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 				$logEntry->setComment( $this->vals['reason'] );
@@ -397,7 +400,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
-				$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'reenable' );
+				$logEntry = new \ManualLogEntry( 'mwoauthconsumer', 'reenable' );
 				$logEntry->setPerformer( $user );
 				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 				$logEntry->setComment( $this->vals['reason'] );
@@ -415,12 +418,12 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param \DBConnRef $db
 	 * @param int $userId
 	 * @return Title
 	 */
-	protected function getLogTitle( DBConnRef $db, $userId ) {
+	protected function getLogTitle( \DBConnRef $db, $userId ) {
 		$name = MWOAuthUtils::getCentralUserNameFromId( $userId );
-		return Title::makeTitleSafe( NS_USER, $name );
+		return \Title::makeTitleSafe( NS_USER, $name );
 	}
 }

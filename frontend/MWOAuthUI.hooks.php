@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /**
  * Class containing GUI even handler functions for an OAuth environment
  */
@@ -25,8 +28,8 @@ class MWOAuthUIHooks {
 				'label-message' => 'mwoauth-prefs-managegrants',
 				'type' => 'info',
 				'raw' => true,
-				'default' => Linker::linkKnown(
-					SpecialPage::getTitleFor( 'OAuthManageMyGrants' ),
+				'default' => \Linker::linkKnown(
+					\SpecialPage::getTitleFor( 'OAuthManageMyGrants' ),
 					wfMessage( 'mwoauth-prefs-managegrantslink' )->numParams( $count )->escaped()
 				)
 			),
@@ -56,7 +59,7 @@ class MWOAuthUIHooks {
 
 		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 		$cmr = MWOAuthDAOAccessControl::wrap(
-			MWOAuthConsumer::newFromId( $dbr, $m[1] ), RequestContext::getMain()
+			MWOAuthConsumer::newFromId( $dbr, $m[1] ), \RequestContext::getMain()
 		);
 		if ( !$cmr ) {
 			// Invalid consumer, skip it
@@ -66,7 +69,7 @@ class MWOAuthUIHooks {
 		if ( $m[2] ) {
 			$message = htmlspecialchars( $cmr->get( 'description' ) );
 		} else {
-			$target = SpecialPage::getTitleFor( 'OAuthListConsumers',
+			$target = \SpecialPage::getTitleFor( 'OAuthListConsumers',
 				'view/' . $cmr->get( 'consumerKey' )
 			);
 			$encName = wfEscapeWikiText( $cmr->get( 'name', function( $s ) use ( $cmr ) {

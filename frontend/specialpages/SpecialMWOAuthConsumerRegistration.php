@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /*
  (c) Aaron Schulz 2013, GPL
 
@@ -21,7 +24,7 @@
 /**
  * Page that has registration request form and consumer update form
  */
-class SpecialMWOAuthConsumerRegistration extends SpecialPage {
+class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 	protected static $stageKeyMap = array(
 		MWOAuthConsumer::STAGE_PROPOSED => 'proposed',
 		MWOAuthConsumer::STAGE_REJECTED => 'rejected',
@@ -62,7 +65,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 		$block = $user->getBlock();
 		if ( $block ) {
-			throw new UserBlockedError( $block );
+			throw new \UserBlockedError( $block );
 		} elseif ( wfReadOnly() ) {
 			throw new ReadOnlyError();
 		} elseif ( !$this->getUser()->isLoggedIn() ) {
@@ -82,12 +85,12 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		switch ( $action ) {
 		case 'propose':
 			if ( !$user->isAllowed( 'mwoauthproposeconsumer' ) ) {
-				throw new PermissionsError( 'mwoauthproposeconsumer' );
+				throw new \PermissionsError( 'mwoauthproposeconsumer' );
 			}
 
 			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), array(), $dbw );
-			$form = new HTMLForm(
+			$form = new \HTMLForm(
 				$control->registerValidators( array(
 					'name' => array(
 						'type' => 'text',
@@ -136,15 +139,15 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 							$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
 						),
 						'rows' => array_combine(
-							array_map( 'MWOAuthUtils::getGrantsLink', MWOAuthUtils::getValidGrants() ),
+							array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getGrantsLink', MWOAuthUtils::getValidGrants() ),
 							MWOAuthUtils::getValidGrants()
 						),
 						'tooltips' => array_combine(
-							array_map( 'MWOAuthUtils::grantName', MWOAuthUtils::getValidGrants() ),
+							array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::grantName', MWOAuthUtils::getValidGrants() ),
 							array_map(
 								function( $rights ) use ( $lang ) {
 									return $lang->semicolonList( array_map(
-										'User::getRightDescription', $rights ) );
+										'\User::getRightDescription', $rights ) );
 								},
 								MWOAuthUtils::getRightsByGrant()
 							)
@@ -159,7 +162,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 						'type' => 'textarea',
 						'label-message' => 'mwoauth-consumer-restrictions-json',
 						'required' => true,
-						'default' => FormatJSON::encode( MWOAuthConsumer::newRestrictions() ),
+						'default' => \FormatJSON::encode( MWOAuthConsumer::newRestrictions() ),
 						'rows' => 5
 					),
 					'rsaKey' => array(
@@ -177,8 +180,8 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				$this->getContext()
 			);
 			$form->setSubmitCallback(
-				function( array $data, IContextSource $context ) use ( $control ) {
-					$data['grants'] = FormatJSON::encode( // adapt form to controller
+				function( array $data, \IContextSource $context ) use ( $control ) {
+					$data['grants'] = \FormatJSON::encode( // adapt form to controller
 						preg_replace( '/^grant-/', '', $data['grants'] ) );
 
 					$control->setInputParameters( $data );
@@ -191,7 +194,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				$this->msg( 'mwoauthconsumerregistration-propose-text' )->parseAsBlock() );
 
 			$status = $form->show();
-			if ( $status instanceof Status && $status->isOk() ) {
+			if ( $status instanceof \Status && $status->isOk() ) {
 				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-proposed',
 					$status->value['result']->get( 'consumerKey' ),
 					MWOAuthUtils::hmacDBSecret( $status->value['result']->get( 'secretKey' ) ) );
@@ -200,7 +203,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			break;
 		case 'update':
 			if ( !$user->isAllowed( 'mwoauthupdateownconsumer' ) ) {
-				throw new PermissionsError( 'mwoauthupdateownconsumer' );
+				throw new \PermissionsError( 'mwoauthupdateownconsumer' );
 			}
 
 			$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
@@ -210,7 +213,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 				break;
 			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
-				throw new PermissionsError( 'mwoauthviewsuppressed' );
+				throw new \PermissionsError( 'mwoauthviewsuppressed' );
 			} elseif ( $cmr->get( 'userId' ) !== $centralUserId ) {
 				// Do not show private information to other users
 				$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
@@ -220,7 +223,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), array(), $dbw );
-			$form = new HTMLForm(
+			$form = new \HTMLForm(
 				$control->registerValidators( array(
 					'nameShown' => array(
 						'type' => 'info',
@@ -243,7 +246,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 						'type' => 'textarea',
 						'label-message' => 'mwoauth-consumer-restrictions-json',
 						'required' => true,
-						'default' => FormatJSON::encode( $cmr->getDAO()->get( 'restrictions' ) ),
+						'default' => \FormatJSON::encode( $cmr->getDAO()->get( 'restrictions' ) ),
 						'rows' => 5
 					),
 					'resetSecret' => array(
@@ -279,7 +282,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				$this->getContext()
 			);
 			$form->setSubmitCallback(
-				function( array $data, IContextSource $context ) use ( $control ) {
+				function( array $data, \IContextSource $context ) use ( $control ) {
 					$control->setInputParameters( $data );
 					return $control->submit();
 				}
@@ -290,7 +293,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				$this->msg( 'mwoauthconsumerregistration-update-text' )->parseAsBlock() );
 
 			$status = $form->show();
-			if ( $status instanceof Status && $status->isOk() ) {
+			if ( $status instanceof \Status && $status->isOk() ) {
 				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-updated' );
 				$curSecretKey = $status->value['result']->get( 'secretKey' );
 				if ( $oldSecretKey !== $curSecretKey ) { // token reset?
@@ -301,13 +304,13 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			} else {
 				$out = $this->getOutput();
 				// Show all of the status updates
-				$logPage = new LogPage( 'mwoauthconsumer' );
-				$out->addHTML( Xml::element( 'h2', null, $logPage->getName()->text() ) );
-				LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '',
+				$logPage = new \LogPage( 'mwoauthconsumer' );
+				$out->addHTML( \Xml::element( 'h2', null, $logPage->getName()->text() ) );
+				\LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '',
 					array(
 						'conds'  => array( 'ls_field' => 'OAuthConsumer',
 							'ls_value' => $cmr->get( 'consumerKey' ) ),
-						'flags'  => LogEventsList::NO_EXTRA_USER_LINKS
+						'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS
 					)
 				);
 			}
@@ -345,14 +348,14 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	protected function addSubtitleLinks( $action, $consumerKey ) {
 		$listLinks = array();
 		if ( $consumerKey || $action !== 'propose' ) {
-			$listLinks[] = Linker::linkKnown(
+			$listLinks[] = \Linker::linkKnown(
 				$this->getPageTitle( 'propose' ),
 				$this->msg( 'mwoauthconsumerregistration-propose' )->escaped() );
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthconsumerregistration-propose' )->escaped();
 		}
 		if ( $consumerKey || $action !== 'list' ) {
-			$listLinks[] = Linker::linkKnown(
+			$listLinks[] = \Linker::linkKnown(
 				$this->getPageTitle( 'list' ),
 				$this->msg( 'mwoauthconsumerregistration-list' )->escaped() );
 		} else {
@@ -361,7 +364,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 		$linkHtml = $this->getLanguage()->pipeList( $listLinks );
 
-		$viewall = $this->msg( 'parentheses' )->rawParams( Linker::linkKnown(
+		$viewall = $this->msg( 'parentheses' )->rawParams( \Linker::linkKnown(
 			$this->getPageTitle(), $this->msg( 'mwoauthconsumerregistration-main' )->escaped() ) );
 
 		$this->getOutput()->setSubtitle(
@@ -370,15 +373,15 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param \DBConnRef $db
 	 * @param sdtclass $row
 	 * @return string
 	 */
-	public function formatRow( DBConnRef $db, $row ) {
+	public function formatRow( \DBConnRef $db, $row ) {
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
 
-		$link = Linker::linkKnown(
+		$link = \Linker::linkKnown(
 			$this->getPageTitle( 'update/' . $cmr->get( 'consumerKey' ) ),
 			$this->msg( 'mwoauthconsumerregistration-manage' )->escaped()
 		);
@@ -391,12 +394,12 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		// Show last log entry (@TODO: title namespace?)
 		// @TODO: inject DB
 		$logHtml = '';
-		LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '',
+		\LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '',
 			array(
 				'conds'  => array(
 					'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ),
 				'lim'    => 1,
-				'flags'  => LogEventsList::NO_EXTRA_USER_LINKS
+				'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS
 			)
 		);
 
@@ -444,7 +447,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
  *
  * @TODO: use UserCache
  */
-class MWOAuthListMyConsumersPager extends ReverseChronologicalPager {
+class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
 	public $mForm, $mConds;
 
 	function __construct( $form, $conds, $centralUserId ) {

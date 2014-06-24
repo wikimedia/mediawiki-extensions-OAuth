@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extensions\OAuth;
+
 /*
  (c) Aaron Schulz 2013, GPL
 
@@ -21,7 +24,7 @@
 /**
  * Handle the logic of submitting a client request
  */
-abstract class MWOAuthSubmitControl extends ContextSource {
+abstract class MWOAuthSubmitControl extends \ContextSource {
 	/** @var RequestContext */
 	protected $context;
 	/** @var Array (field name => value) */
@@ -31,7 +34,7 @@ abstract class MWOAuthSubmitControl extends ContextSource {
 	 * @param IContextSource $context
 	 * @param array $params
 	 */
-	public function __construct( IContextSource $context, array $params ) {
+	public function __construct( \IContextSource $context, array $params ) {
 		$this->context = $context;
 		$this->vals = $params;
 	}
@@ -71,7 +74,7 @@ abstract class MWOAuthSubmitControl extends ContextSource {
 		}
 
 		$status = $this->processAction( $action );
-		if ( $status instanceof Status ) {
+		if ( $status instanceof \Status ) {
 			return $status;
 		} else {
 			throw new MWException( "Submission action '$action' not handled." );
@@ -194,7 +197,7 @@ abstract class MWOAuthSubmitControl extends ContextSource {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
-		$status = Status::newFatal( $this->context->msg( $msg, $params ) );
+		$status = \Status::newFatal( $this->context->msg( $msg, $params ) );
 		$status->value = array( 'error' => $error, 'result' => null );
 		return $status;
 	}
@@ -204,6 +207,6 @@ abstract class MWOAuthSubmitControl extends ContextSource {
 	 * @return Status
 	 */
 	protected function success( $value = null ) {
-		return Status::newGood( array( 'error' => null, 'result' => $value ) );
+		return \Status::newGood( array( 'error' => null, 'result' => $value ) );
 	}
 }

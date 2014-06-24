@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Extensions\OAuth;
+
 class MWOAuthToken extends OAuthToken {
 	// Keep the verification code here
 	protected $code;
