@@ -85,28 +85,28 @@ class OAuthServerTest extends \PHPUnit_Framework_TestCase {
 		$this->server->verify_request( $request );
 	}
 
-	public function testRejectRequestWithMissingParameters() {
+	public function requiredParameterProvider() {
 		// The list of required parameters is taken from
 		// Chapter 7 ("Accessing Protected Resources")
-
-		$required_parameters = array(
-			'oauth_consumer_key',
-			'oauth_token',
-			'oauth_signature_method',
-			'oauth_signature',
-			'oauth_timestamp',
-			'oauth_nonce'
+		return array(
+		   array( 'oauth_consumer_key' ),
+		   array( 'oauth_token' ),
+		   array( 'oauth_signature_method' ),
+		   array( 'oauth_signature' ),
+		   array( 'oauth_timestamp' ),
+		   array( 'oauth_nonce' ),
 		);
+	}
 
-		foreach( $required_parameters AS $required ) {
-			$request = OAuthRequest::from_consumer_and_token( $this->consumer, $this->access_token, 'POST', 'http://example.com');
-			$request->sign_request( $this->plaintext, $this->consumer, $this->access_token );
-			try {
-				$request->unset_parameter( $required );
-				$this->server->verify_request($request);
-				$this->fail('Allowed a request without `' . $required . '`');
-			} catch( OAuthException $e ) { /* expected */ }
-		}
+	/**
+	 * @expectedException MediaWiki\Extensions\OAuth\OAuthException
+	 * @dataProvider requiredParameterProvider
+	 */
+	public function testRejectRequestWithMissingParameters( $required ) {
+		$request = OAuthRequest::from_consumer_and_token( $this->consumer, $this->access_token, 'POST', 'http://example.com');
+		$request->sign_request( $this->plaintext, $this->consumer, $this->access_token );
+		$request->unset_parameter( $required );
+		$this->server->verify_request($request);
 	}
 
 	public function testRejectPastTimestamp() {
