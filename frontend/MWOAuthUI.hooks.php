@@ -35,7 +35,11 @@ class MWOAuthUIHooks {
 			),
 		);
 
-		$preferences = wfArrayInsertAfter( $preferences, $prefInsert, 'usergroups' );
+		if  ( array_key_exists( 'usergroups', $preferences ) ) {
+			$preferences = wfArrayInsertAfter( $preferences, $prefInsert, 'usergroups' );
+		} else {
+			$preferences += $prefInsert;
+		}
 
 		return true;
 	}
