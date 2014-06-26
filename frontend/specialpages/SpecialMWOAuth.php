@@ -207,7 +207,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			'mwoauth-acceptance-cancelled',
 			$cmr->get( 'name' )
 		);
-		$this->getOutput()->addReturnTo( Title::newMainPage() );
+		$this->getOutput()->addReturnTo( \Title::newMainPage() );
 	}
 
 	/**
