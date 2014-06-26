@@ -32,7 +32,7 @@ class MWOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
 	/**
 	 * Get the public certificate, used to verify the request. In our case, we get
 	 * the Consumer's key, and lookup the registered cert from the datastore.
-	 * @param OAuthRequest request recieved by the server, that we're going to verify
+	 * @param OAuthRequest $request request recieved by the server, that we're going to verify
 	 * @return String representing the public certificate
 	 */
 	protected function fetch_public_cert( &$request ) {

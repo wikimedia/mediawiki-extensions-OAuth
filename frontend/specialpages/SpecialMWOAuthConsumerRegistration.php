@@ -67,7 +67,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		if ( $block ) {
 			throw new \UserBlockedError( $block );
 		} elseif ( wfReadOnly() ) {
-			throw new ReadOnlyError();
+			throw new \ReadOnlyError();
 		} elseif ( !$this->getUser()->isLoggedIn() ) {
 			$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-notloggedin' );
 			return;
@@ -79,7 +79,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		$consumerKey = isset( $navigation[1] ) ? $navigation[1] : null;
 
 		if ( $wgMWOAuthReadOnly && $action !== 'list' ) {
-			throw new ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
+			throw new \ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
 		}
 
 		switch ( $action ) {
@@ -467,7 +467,7 @@ class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
 	}
 
 	/**
-	 * @return Title
+	 * @return \Title
 	 */
 	function getTitle() {
 		return $this->mForm->getFullTitle();

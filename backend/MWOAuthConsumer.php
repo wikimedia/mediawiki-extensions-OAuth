@@ -112,7 +112,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param \DBConnRef $db
 	 * @param string $key
 	 * @param integer $flags MWOAuthConsumer::READ_* bitfield
 	 * @return MWOAuthConsumer|bool
@@ -203,7 +203,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	/**
 	 * Check if the consumer is still pending approval and is owned by $user
 	 *
-	 * @param User $user
+	 * @param \User $user
 	 * @return boolean
 	 */
 	public function isPendingAndOwnedBy( \User $user ) {

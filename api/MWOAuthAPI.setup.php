@@ -28,7 +28,7 @@ class MWOAuthAPISetup {
 	 *
 	 * @param string $msgKey Key for the error message
 	 * Varargs: normal message parameters.
-	 * @return MWException
+	 * @return \MWException
 	 */
 	private static function makeException( $msgKey /* ... */ ) {
 		$params = func_get_args();
@@ -45,8 +45,8 @@ class MWOAuthAPISetup {
 	/**
 	 * Validate the OAuth headers and fetch the access token
 	 *
-	 * @throws UsageException if the headers are invalid and MW_API is defined
-	 * @throws ErrorPageError if the headers are invalid and MW_API is not defined
+	 * @throws \UsageException if the headers are invalid and MW_API is defined
+	 * @throws \ErrorPageError if the headers are invalid and MW_API is not defined
 	 * @return OAuthToken|null
 	 */
 	private static function getOAuthAccessToken() {
@@ -166,8 +166,8 @@ class MWOAuthAPISetup {
 	 *
 	 * If UserLoadFromSession couldn't throw an ErrorPageError, throw it now.
 	 *
-	 * @throws ErrorPageError
-	 * @throws MWException
+	 * @throws \ErrorPageError
+	 * @throws \MWException
 	 * @param \User $user
 	 * @return boolean
 	 */
@@ -182,7 +182,7 @@ class MWOAuthAPISetup {
 		if ( self::getOAuthAccessToken() !== null &&
 			!isset( $user->oAuthSessionData['accesstoken'] )
 		) {
-			throw new MWException( __METHOD__ . ': OAuth headers are present, but the ' .
+			throw new \MWException( __METHOD__ . ': OAuth headers are present, but the ' .
 				__CLASS__ . '::onUserLoadFromSession hook function was not called' );
 		}
 
@@ -258,7 +258,7 @@ class MWOAuthAPISetup {
 	/**
 	 * Record the fact that OAuth was used for anything added to RecentChanges.
 	 *
-	 * @param RecentChange $rc
+	 * @param \RecentChange $rc
 	 * @return boolean true
 	 */
 	public static function onRecentChange_save( $rc ) {

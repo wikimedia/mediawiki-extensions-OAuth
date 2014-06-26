@@ -22,7 +22,7 @@ class MWOAuthUtils {
 
 	/**
 	 * @param integer $index DB_MASTER/DB_SLAVE
-	 * @return DBConnRef
+	 * @return \DBConnRef
 	 */
 	public static function getCentralDB( $index ) {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthReadOnly;
@@ -34,7 +34,7 @@ class MWOAuthUtils {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param \DBConnRef $db
 	 * @return array
 	 */
 	public static function getConsumerStateCounts( \DBConnRef $db ) {
@@ -82,7 +82,7 @@ class MWOAuthUtils {
 
 	/**
 	 * Test this request for an OAuth Authorization header
-	 * @param WebRequest $request the MediaWiki request
+	 * @param \WebRequest $request the MediaWiki request
 	 * @return Boolean (true if a header was found)
 	 */
 	public static function hasOAuthHeaders( \WebRequest $request ) {
@@ -106,7 +106,7 @@ class MWOAuthUtils {
 
 
 	/**
-	 * @param DBConnRef $dbw
+	 * @param \DBConnRef $dbw
 	 * @return void
 	 */
 	public static function runAutoMaintenance( \DBConnRef $dbw ) {
@@ -289,7 +289,7 @@ class MWOAuthUtils {
 	/**
 	 * Get the pretty names of all local wikis
 	 *
-	 * @return associative array of local wiki names indexed by wiki ID
+	 * @return array associative array of local wiki names indexed by wiki ID
 	 */
 	public static function getAllWikiNames() {
 		global $wgConf;
@@ -366,7 +366,7 @@ class MWOAuthUtils {
 	 *
 	 * @param integer $userId
 	 * @throws \MWException
-	 * @return User|bool User or false if not found
+	 * @return \User|bool User or false if not found
 	 */
 	public static function getLocalUserFromCentralId( $userId ) {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
@@ -512,8 +512,6 @@ class MWOAuthUtils {
 	 */
 	public static function getCentralUserTalk( $username ) {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
-
-		$url = false;
 
 		if ( $wgMWOAuthSharedUserIDs ) {
 			$url = \WikiMap::getForeignURL(

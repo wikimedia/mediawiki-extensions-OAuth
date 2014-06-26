@@ -29,7 +29,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	private $daoPending = true; // boolean; whether fields changed or the field is new
 
 	/**
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	final protected function __construct() {
 		$fields = array_keys( static::getFieldPermissionChecks() );
@@ -64,7 +64,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @param integer $id
 	 * @param integer $flags MWOAuthDAO::READ_* bitfield
 	 * @return MWOAuthDAO|bool Returns false if not found
-	 * @throws DBError
+	 * @throws \DBError
 	 */
 	final public static function newFromId( \DBConnRef $db, $id, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
@@ -88,7 +88,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 *
 	 * @param string $name
 	 * @return mixed
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	final public function get( $name ) {
 		if ( !static::hasField( $name ) ) {
@@ -103,7 +103,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @param string $name
 	 * @param mixed $value
 	 * @return mixed The old value
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	final public function setField( $name, $value ) {
 		$old = $this->setFields( array( $name => $value ) );
@@ -143,7 +143,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	/**
 	 * @param \DBConnRef $dbw
 	 * @return bool
-	 * @throws DBError
+	 * @throws \DBError
 	 */
 	public function save( \DBConnRef $dbw ) {
 		$uniqueId = $this->getIdValue();
@@ -185,7 +185,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	/**
 	 * @param \DBConnRef $dbw
 	 * @return bool
-	 * @throws DBError
+	 * @throws \MWException
 	 */
 	public function delete( \DBConnRef $dbw ) {
 		$uniqueId = $this->getIdValue();
@@ -215,7 +215,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 *   - table          : a table name
 	 *   - fieldColumnMap : a map of field names to column names
 	 *
-	 * @throws Exception
+	 * @throws \Exception
 	 * @return array
 	 */
 	protected static function getSchema() {
@@ -303,7 +303,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 
 	/**
 	 * @param array $values
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	final protected function loadFromValues( array $values ) {
 		foreach ( static::getFieldColumnMap() as $field => $column ) {
@@ -381,8 +381,8 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 *
 	 * @param string $name
 	 * @param \RequestContext $context
-	 * @return Message|true Returns on success or a Message if the user lacks access
-	 * @throws Exception
+	 * @return \Message|true Returns on success or a Message if the user lacks access
+	 * @throws \Exception
 	 */
 	final public function userCanAccess( $name, \RequestContext $context ) {
 		$map = static::getFieldPermissionChecks();

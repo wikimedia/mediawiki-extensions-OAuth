@@ -3,14 +3,14 @@
 namespace MediaWiki\Extensions\OAuth;
 
 class MWOAuthDataStore extends OAuthDataStore {
-	/** @var DBConnRef DB for the consumer/grant registry */
+	/** @var \DBConnRef DB for the consumer/grant registry */
 	protected $centralDB;
-	/** @var BagOStuff Cache for Tokens and Nonces */
+	/** @var \BagOStuff Cache for Tokens and Nonces */
 	protected $cache;
 
 	/**
-	 * @param DBConnRef $centralDB Central DB slave
-	 * @param BagOStuff $cache
+	 * @param \DBConnRef $centralDB Central DB slave
+	 * @param \BagOStuff $cache
 	 */
 	public function __construct( \DBConnRef $centralDB, \BagOStuff $cache ) {
 		$this->centralDB = $centralDB;

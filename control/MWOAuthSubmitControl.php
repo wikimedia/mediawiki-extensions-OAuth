@@ -25,13 +25,13 @@ namespace MediaWiki\Extensions\OAuth;
  * Handle the logic of submitting a client request
  */
 abstract class MWOAuthSubmitControl extends \ContextSource {
-	/** @var RequestContext */
+	/** @var \RequestContext */
 	protected $context;
 	/** @var Array (field name => value) */
 	protected $vals;
 
 	/**
-	 * @param IContextSource $context
+	 * @param \IContextSource $context
 	 * @param array $params
 	 */
 	public function __construct( \IContextSource $context, array $params ) {
@@ -52,8 +52,8 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	 * This will check basic permissions, validate the action and paramters
 	 * and route the submission handling to the internal subclass function.
 	 *
-	 * @throws MWException
-	 * @return Status
+	 * @throws \MWException
+	 * @return \Status
 	 */
 	public function submit() {
 		$status = $this->checkBasePermissions();
@@ -77,7 +77,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 		if ( $status instanceof \Status ) {
 			return $status;
 		} else {
-			throw new MWException( "Submission action '$action' not handled." );
+			throw new \MWException( "Submission action '$action' not handled." );
 		}
 	}
 
@@ -107,6 +107,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	 * @param string $field
 	 * @param string $value
 	 * @param array $allValues
+	 * @throws \MWException
 	 * @return boolean|string
 	 */
 	public function validateFieldInternal( $field, $value, $allValues ) {
@@ -116,7 +117,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 			$allValues['action'] = $this->vals['action']; // injected
 		}
 		if ( !isset( $allValues['action'] ) ) {
-			throw new MWException( "No form action defined; cannot validate fields." );
+			throw new \MWException( "No form action defined; cannot validate fields." );
 		}
 		$validators = $this->getRequiredFields();
 		if ( !isset( $validators[$allValues['action']][$field] ) ) {
@@ -144,7 +145,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	/**
 	 * Check action-independent permissions against the user for this submission
 	 *
-	 * @return Status
+	 * @return \Status
 	 */
 	abstract protected function checkBasePermissions();
 
@@ -152,7 +153,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	 * Check that the action is valid and that the required fields are valid
 	 *
 	 * @param array $required (field => regex or callback)
-	 * @return Status
+	 * @return \Status
 	 */
 	protected function validateFields( array $required ) {
 		foreach ( $required as $field => $validator ) {
@@ -189,7 +190,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	 * @param string $error API error key
 	 * @param string $msg Message key
 	 * @param mixed ... Additional arguments used as message parameters
-	 * @return Status
+	 * @return \Status
 	 */
 	protected function failure( $error, $msg /*, params */ ) {
 		$params = array_slice( func_get_args(), 2 );
@@ -204,7 +205,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 
 	/**
 	 * @param mixed $value
-	 * @return Status
+	 * @return \Status
 	 */
 	protected function success( $value = null ) {
 		return \Status::newGood( array( 'error' => null, 'result' => $value ) );

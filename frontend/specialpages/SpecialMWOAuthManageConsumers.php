@@ -543,7 +543,7 @@ class MWOAuthManageConsumersPager extends \ReverseChronologicalPager {
 	}
 
 	/**
-	 * @return Title
+	 * @return \Title
 	 */
 	function getTitle() {
 		return $this->mForm->getFullTitle();

@@ -69,7 +69,7 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 	 * @param string $name
 	 * @param callback $sCallback Optional callback to apply to result on access success
 	 * @return mixed Returns a Message on access failure
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	final public function get( $name, $sCallback = null ) {
 		$msg = $this->dao->userCanAccess( $name, $this->context );

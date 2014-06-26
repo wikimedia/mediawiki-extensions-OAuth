@@ -261,7 +261,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param \DBConnRef $db
 	 * @param sdtclass $row
 	 * @return string
 	 */
@@ -332,7 +332,7 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	}
 
 	/**
-	 * @return Title
+	 * @return \Title
 	 */
 	function getTitle() {
 		return $this->mForm->getFullTitle();

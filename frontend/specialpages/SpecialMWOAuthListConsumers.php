@@ -64,7 +64,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 * Show the form to approve/reject/disable/re-enable consumers
 	 *
 	 * @param string $consumerKey
-	 * @throws PermissionsError
+	 * @throws \PermissionsError
 	 */
 	protected function showConsumerInfo( $consumerKey ) {
 		$user = $this->getUser();
@@ -81,7 +81,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			$out->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 			return;
 		} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
-			throw new PermissionsError( 'mwoauthviewsuppressed' );
+			throw new \PermissionsError( 'mwoauthviewsuppressed' );
 		}
 
 		// @TODO: this is similar to getGrantsWikiText()
@@ -228,7 +228,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param \DBConnRef $db
 	 * @param sdtclass $row
 	 * @return string
 	 */
@@ -335,7 +335,7 @@ class MWOAuthListConsumersPager extends \AlphabeticPager {
 	}
 
 	/**
-	 * @return Title
+	 * @return \Title
 	 */
 	function getTitle() {
 		return $this->mForm->getFullTitle();

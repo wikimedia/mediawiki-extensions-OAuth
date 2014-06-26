@@ -7,7 +7,7 @@ namespace MediaWiki\Extensions\OAuth;
  */
 class MWOAuthUpdaterHooks {
 	/**
-	 * @param DatabaseUpdater $updater
+	 * @param \DatabaseUpdater $updater
 	 * @return bool
 	 */
 	public static function addSchemaUpdates( \DatabaseUpdater $updater ) {

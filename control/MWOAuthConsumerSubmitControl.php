@@ -34,7 +34,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	protected $dbw;
 
 	/**
-	 * @param IContextSource $context
+	 * @param \IContextSource $context
 	 * @param array $params
 	 * @param \DBConnRef $dbw Result of MWOAuthUtils::getCentralDB( DB_MASTER )
 	 */
@@ -132,7 +132,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			return $this->failure( 'readonly', 'readonlytext', wfReadOnlyReason() );
 		} elseif ( !MWOAuthUtils::isCentralWiki() ) { // sanity
 			// This logs consumer changes to the local logging table on the central wiki
-			throw new MWException( "This can only be used from the OAuth management wiki." );
+			throw new \MWException( "This can only be used from the OAuth management wiki." );
 		}
 		return $this->success();
 	}
@@ -420,7 +420,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	/**
 	 * @param \DBConnRef $db
 	 * @param int $userId
-	 * @return Title
+	 * @return \Title
 	 */
 	protected function getLogTitle( \DBConnRef $db, $userId ) {
 		$name = MWOAuthUtils::getCentralUserNameFromId( $userId );

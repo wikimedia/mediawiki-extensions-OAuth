@@ -6,6 +6,12 @@ namespace MediaWiki\Extensions\OAuth;
  * Class containing GUI even handler functions for an OAuth environment
  */
 class MWOAuthUIHooks {
+	/**
+	 * @param \User $user
+	 * @param $preferences
+	 * @return bool
+	 * @throws \MWException
+	 */
 	public static function onGetPreferences( $user, &$preferences ) {
 		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 		$conds = array(
