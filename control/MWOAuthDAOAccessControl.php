@@ -42,7 +42,7 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 	/**
 	 * @param MWOAuthDAO $dao
 	 * @param \RequestContext $context
-	 * @throws \Exception
+	 * @throws \MWException
 	 * @return MWOAuthDAOAccessControl
 	 */
 	final public static function wrap( $dao, \RequestContext $context ) {
@@ -51,7 +51,7 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 		} elseif ( $dao === null || $dao === false ) {
 			return $dao;
 		} else {
-			throw new \Exception( "Expected MWOAuthDAO object, null, or false." );
+			throw new \MWException( "Expected MWOAuthDAO object, null, or false." );
 		}
 	}
 

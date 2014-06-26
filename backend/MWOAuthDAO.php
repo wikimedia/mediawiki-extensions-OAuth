@@ -29,12 +29,12 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	private $daoPending = true; // boolean; whether fields changed or the field is new
 
 	/**
-	 * @throws \Exception
+	 * @throws \MWException
 	 */
 	final protected function __construct() {
 		$fields = array_keys( static::getFieldPermissionChecks() );
 		if ( array_diff( $fields, $this->getFieldNames() ) ) {
-			throw new \Exception( "Invalid field(s) defined in access check methods." );
+			throw new \MWException( "Invalid field(s) defined in access check methods." );
 		}
 	}
 
@@ -88,11 +88,11 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 *
 	 * @param string $name
 	 * @return mixed
-	 * @throws \Exception
+	 * @throws \MWException
 	 */
 	final public function get( $name ) {
 		if ( !static::hasField( $name ) ) {
-			throw new \Exception( "Object has no '$name' field." );
+			throw new \MWException( "Object has no '$name' field." );
 		}
 		return $this->$name;
 	}
@@ -114,14 +114,14 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * Set the values for a set of fields
 	 *
 	 * @param array $values (field => value) map
-	 * @throws Exception
+	 * @throws \MWException
 	 * @return array Map of old values
 	 */
 	final public function setFields( array $values ) {
 		$old = array();
 		foreach ( $values as $name => $value ) {
 			if ( !static::hasField( $name )  ) {
-				throw new \Exception( "Object has no '$name' field." );
+				throw new \MWException( "Object has no '$name' field." );
 			}
 			$old[$name] = $this->$name;
 			$this->$name = $value;
@@ -215,12 +215,12 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 *   - table          : a table name
 	 *   - fieldColumnMap : a map of field names to column names
 	 *
-	 * @throws \Exception
+	 * @throws \MWException
 	 * @return array
 	 */
 	protected static function getSchema() {
 		// Note: declaring this abstract raises E_STRICT
-		throw new \Exception( "getSchema() not defined in " . get_class() );
+		throw new \MWException( "getSchema() not defined in " . get_class() );
 	}
 
 	/**
@@ -234,12 +234,12 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @see MWOAuthDAO::userCanAccess()
 	 * @see MWOAuthDAOAccessControl
 	 *
-	 * @throws \Exception
+	 * @throws \MWException
 	 * @return array Map of (field name => name of method that checks access)
 	 */
 	protected static function getFieldPermissionChecks() {
 		// Note: declaring this abstract raises E_STRICT
-		throw new \Exception( "getFieldPermissionChecks() not defined in " . get_class() );
+		throw new \MWException( "getFieldPermissionChecks() not defined in " . get_class() );
 	}
 
 	/**
@@ -303,12 +303,12 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 
 	/**
 	 * @param array $values
-	 * @throws \Exception
+	 * @throws \MWException
 	 */
 	final protected function loadFromValues( array $values ) {
 		foreach ( static::getFieldColumnMap() as $field => $column ) {
 			if ( !array_key_exists( $field, $values ) ) {
-				throw new \Exception( get_class( $this ) . " requires '$field' field." );
+				throw new \MWException( get_class( $this ) . " requires '$field' field." );
 			}
 			$this->$field = $values[$field];
 		}
