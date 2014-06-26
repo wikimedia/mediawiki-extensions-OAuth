@@ -45,7 +45,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 $data = curl_exec( $ch );
 
 if( !$data ) {
-	'Curl error: ' . curl_error( $ch );
+	echo 'Curl error: ' . curl_error( $ch );
 }
 
 echo "Returned: $data\n\n";
@@ -78,7 +78,7 @@ curl_setopt( $ch, CURLOPT_HEADER, 0 );
 curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 $data = curl_exec( $ch );
 if( !$data ) {
-	'Curl error: ' . curl_error( $ch );
+	echo 'Curl error: ' . curl_error( $ch );
 }
 
 echo "Returned: $data\n\n";
