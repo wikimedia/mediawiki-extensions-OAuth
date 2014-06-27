@@ -45,6 +45,8 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $email;
 	/** @var string TS_MW timestamp of when email address was confirmed */
 	protected $emailAuthenticated;
+	/** @var int User accepted the developer agreement */
+	protected $developerAgreement;
 	/** @var string Wiki ID the application can be used on (or "*" for all) */
 	protected $wiki;
 	/** @var string TS_MW timestamp of proposal */
@@ -85,6 +87,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 				'description'        => 'oarc_description',
 				'email'              => 'oarc_email',
 				'emailAuthenticated' => 'oarc_email_authenticated',
+				'developerAgreement' => 'oarc_developer_agreement',
 				'wiki'               => 'oarc_wiki',
 				'grants'             => 'oarc_grants',
 				'registration'       => 'oarc_registration',

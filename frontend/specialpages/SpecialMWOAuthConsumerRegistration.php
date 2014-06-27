@@ -195,6 +195,11 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'default' => '',
 						'rows' => 5
 					),
+					'agreement' => array(
+						'type' => 'check',
+						'label-message' => 'mwoauth-consumer-developer-agreement',
+						'required' => true,
+					),
 					'action' => array(
 						'type'    => 'hidden',
 						'default' => 'propose'

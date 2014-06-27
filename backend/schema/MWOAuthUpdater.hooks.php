@@ -31,6 +31,14 @@ class MWOAuthUpdaterHooks {
 				true
 			) );
 
+			$updater->addExtensionUpdate( array(
+				'addField',
+				'oauth_registered_consumer',
+				'oarc_developer_agreement',
+				"$base/developer_agreement.sql",
+				true
+			) );
+
 		} elseif ( $dbType == 'postgres' ) {
 			//$base = "$base/postgres";
 

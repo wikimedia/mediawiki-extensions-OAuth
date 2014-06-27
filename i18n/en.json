@@ -36,6 +36,7 @@
 	"mwoauth-consumer-secretkey": "Consumer secret token:",
 	"mwoauth-consumer-accesstoken": "Access token:",
 	"mwoauth-consumer-reason": "Reason:",
+	"mwoauth-consumer-developer-agreement": "By submitting this application, you acknowledge that we reserve the right to disable your application, remove or restrict you or your application's access to this site, and pursue any other course of action we deem appropriate if we believe, in our sole judgment, that you or your application are violating any policy, guideline, and guiding principle of the this site. We can change this Application Policy at any time without prior notice, at our sole discretion and as we deem necessary. Your continued use of OAuth constitutes acceptance of those changes.",
 	"mwoauth-consumer-email-unconfirmed": "Your account email address has not yet been confirmed.",
 	"mwoauth-consumer-email-mismatched": "Provided email address must match that of your account.",
 	"mwoauth-consumer-alreadyexists": "A consumer with this name/version/publisher combination already exists",
