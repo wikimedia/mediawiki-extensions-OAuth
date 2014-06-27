@@ -250,7 +250,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$statement['grants'] = $access->get( 'grants' );
 		}
 
-		$JWT = JWT::encode( $statement, $consumer->secret );
+		$JWT = \JWT::encode( $statement, $consumer->secret );
 		$this->showResponse( $JWT, $format );
 	}
 
