@@ -7,7 +7,7 @@
 			"Siebrand"
 		]
 	},
-	"oauth": "Title of MWOAuth page",
+	"oauth": "Title of MWOAuth page.\n{{Identical|OAuth}}",
 	"mwoauth-desc": "Used as subtitle.",
 	"mwoauth-verified": "Displayed to the user when the consumer does not have a callback URL, to provide the verification token that the consumer needs to complete the authorization process.\n\nParameters:\n* $1 - verification token\n* $2 - (Unused) request token (the app should already have this)",
 	"mwoauth-db-readonly": "Error displayed when an admin has temporarily make OAuth read-only",
