@@ -10,7 +10,8 @@
 			"Xiaomingyan",
 			"Yfdyh000",
 			"Simon Shek",
-			"Mywood"
+			"Mywood",
+			"Impersonator 1"
 		]
 	},
 	"mwoauth-desc": "允许使用OAuth 1.0a用作API授权",
@@ -83,6 +84,7 @@
 	"mwoauthconsumerregistration-lastchange": "最后更改",
 	"mwoauthconsumerregistration-manage": "管理",
 	"mwoauthconsumerregistration-resetsecretkey": "将密钥重置为一个新值",
+	"mwoauthconsumerregistration-proposed": "您的OAuth消费者请求已收到。您已分配了'''$1'''的消费者令牌和'''$2'''的私有令牌。''请记录这些内容以便以后参考。''",
 	"mwoauthconsumerregistration-updated": "您的OAuth消费者注册已成功更新。",
 	"oauthmanageconsumers": "管理OAuth消费者",
 	"mwoauthmanageconsumers-notloggedin": "您必须登录后才能访问此页。",
