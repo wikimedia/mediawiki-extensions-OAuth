@@ -38,7 +38,7 @@
 	"mwoauthmanageconsumers-success-approved": "Zahtev je odobren.",
 	"mwoauthmanageconsumers-success-rejected": "Zahtev je odbijen.",
 	"oauthlistconsumers": "Spisak OAuth aplikacija",
-	"mwoauthlistconsumers-legend": "Vidi OAuth aplikacije",
+	"mwoauthlistconsumers-legend": "Pregledaj OAuth aplikacije",
 	"mwoauthlistconsumers-view": "detalji",
 	"mwoauthlistconsumers-name": "Ime aplikacije",
 	"mwoauthlistconsumers-user": "Izdavač",
