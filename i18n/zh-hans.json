@@ -172,6 +172,7 @@
 	"mwoauthmanagemygrants-confirm-submit": "更新授权令牌状态",
 	"mwoauthmanagemygrants-success-update": "已更新此应用的授权令牌。",
 	"mwoauthmanagemygrants-success-renounce": "已删除此应用的授权令牌。",
+	"mwoauthmanagemygrants-useoauth-tooltip": "为何我不能更新此功能？此功能向您提供可连接应用基本权限，它要求功能正常。如果您不希望此可连接应用拥有这些权限，您需要移除应用访问权。",
 	"logentry-mwoauthconsumer-propose": "$1{{GENDER:$2|提议了}}一位OAuth消费者（消费者密钥$4）",
 	"logentry-mwoauthconsumer-update": "$1{{GENDER:$2|更新了}}一位OAuth消费者（消费者密钥$4）",
 	"logentry-mwoauthconsumer-approve": "$1{{GENDER:$2|批准了}}由$3做出的一位OAuth消费者（消费者密钥$4）",
