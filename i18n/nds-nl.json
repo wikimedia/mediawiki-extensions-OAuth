@@ -6,5 +6,6 @@
 	},
 	"mwoauthconsumerregistration-navigation": "Navigasie:",
 	"mwoauthconsumerregistration-main": "Veurblad",
-	"mwoauthconsumerregistration-stage": "Staotus"
+	"mwoauthconsumerregistration-stage": "Staotus",
+	"oauthlistconsumers": "Lieste mit OAuth-toepassingen"
 }
