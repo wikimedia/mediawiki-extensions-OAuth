@@ -48,9 +48,12 @@
 	"mwoauth-consumer-email-mismatched": "Указанный адрес электронной почты должен совпадать с адресом вашей учётной записи.",
 	"mwoauth-missing-consumer-key": "Идентификатор клиента не был представлен.",
 	"mwoauth-consumer-conflict": "Кто-то изменил атрибуты клиента, пока вы их смотрели. Пожалуйста, попробуйте еще раз. Возможно, стоит проверить журнал изменений.",
+	"mwoauth-consumer-stage-proposed": "предложен",
 	"mwoauth-consumer-stage-rejected": "отклонен",
 	"mwoauth-consumer-stage-expired": "истек",
 	"mwoauth-consumer-stage-approved": "подтвержден",
+	"mwoauth-consumer-stage-disabled": "отключен",
+	"mwoauth-consumer-stage-suppressed": "подавлен",
 	"oauthconsumerregistration": "Регистрация клиента OAuth",
 	"mwoauthconsumerregistration-notloggedin": "Вы должны войти в систему для доступа к этой странице.",
 	"mwoauthconsumerregistration-navigation": "Навигацияː",
@@ -74,6 +77,7 @@
 	"mwoauthmanageconsumers-showrejected": "Отклонённые запросы",
 	"mwoauthmanageconsumers-showexpired": "Устаревшие запросы",
 	"mwoauthmanageconsumers-main": "Главная",
+	"mwoauthmanageconsumers-name": "Клиент",
 	"mwoauthmanageconsumers-user": "Издатель",
 	"mwoauthmanageconsumers-description": "Описание",
 	"mwoauthmanageconsumers-email": "Контактный адрес электронной почты",
@@ -129,5 +133,6 @@
 	"mwoauth-grant-viewdeleted": "Просмотреть удаленную информацию",
 	"mwoauth-grant-viewmywatchlist": "Просмотреть свой список наблюдения",
 	"mwoauth-oauth-exception": "Произошла ошибка в протоколе OAuth: $1",
+	"mwoauth-listgrants-grant": "Грант",
 	"mwoauth-listgrants-rights": "Права"
 }
