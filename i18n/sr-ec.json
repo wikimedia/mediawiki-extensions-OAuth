@@ -65,6 +65,7 @@
 	"mwoauthmanagemygrants-update": "Примени",
 	"mwoauthmanagemygrants-renounce": "Скини овлашћења",
 	"mwoauthmanagemygrants-action": "Измени статус:",
+	"mwoauth-form-description-allwikis-nogrants": "Здраво $1,\n\n'''$2''' жели да добије основни приступ у ваше име на свим пројектима овог сајта.",
 	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|Политика приватности]]",
 	"mwoauth-form-button-approve": "Дозволи",
 	"mwoauth-form-button-cancel": "Откажи",
