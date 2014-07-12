@@ -67,6 +67,8 @@ $specialPageAliases['gl'] = array(
 
 /** Hebrew (עברית) */
 $specialPageAliases['he'] = array(
+	'OAuthConsumerRegistration' => array( 'רישום_צרכן_OAuth' ),
+	'OAuthManageConsumers' => array( 'ניהול_צרכני_OAuth' ),
 	'OAuthListConsumers' => array( 'יישומי_OAuth', 'רשימות_יישומי_OAuth' ),
 	'OAuthManageMyGrants' => array( 'ניהול_יישומים', 'ניהול_יישומים_מחוברים' ),
 );
