@@ -11,7 +11,8 @@
 			"Yfdyh000",
 			"Simon Shek",
 			"Mywood",
-			"Impersonator 1"
+			"Impersonator 1",
+			"LNDDYL"
 		]
 	},
 	"mwoauth-desc": "允许使用OAuth 1.0a用作API授权",
@@ -24,7 +25,7 @@
 	"mwoauth-field-private": "（这些信息是不公开的）",
 	"mwoauth-grant-generic": "\" $1 \"权利束",
 	"mwoauth-prefs-managegrants": "连接应用：",
-	"mwoauth-prefs-managegrantslink": "管理$1个连接的应用程序",
+	"mwoauth-prefs-managegrantslink": "管理$1个连接的{{PLURAL:$1|应用程序}}",
 	"mwoauth-consumer-allwikis": "本站的所有项目",
 	"mwoauth-consumer-key": "消费者密钥：",
 	"mwoauth-consumer-name": "应用名称：",

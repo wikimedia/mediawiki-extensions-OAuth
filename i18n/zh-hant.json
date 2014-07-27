@@ -3,12 +3,14 @@
 		"authors": [
 			"Liuxinyu970226",
 			"Cwlin0416",
-			"Justincheng12345"
+			"Justincheng12345",
+			"LNDDYL"
 		]
 	},
 	"mwoauth-desc": "允許使用OAuth 1.0a用於API授權",
 	"mwoauth-verified": "此應用程式現已允許以您的名義連結MediaWiki。\n要完成此過程，提供對應用程式確認值：'''$1'''",
 	"mwoauth-prefs-managegrants": "已連接應用程式：",
+	"mwoauth-prefs-managegrantslink": "管理$1個已連接的{{PLURAL:$1|應用程式}}",
 	"mwoauth-consumer-allwikis": "此站點所有專案",
 	"mwoauth-consumer-user": "發佈者：",
 	"mwoauth-consumer-stage": "目前狀態：",
@@ -22,9 +24,23 @@
 	"mwoauthconsumerregistration-stage": "狀態",
 	"mwoauthconsumerregistration-lastchange": "最新變更",
 	"oauthmanagemygrants": "管理已連接的應用程式",
+	"mwoauthmanagemygrants-showlist": "已連接的應用程式清單",
+	"mwoauthmanagemygrants-none": "還沒有應用程式連接至你的帳戶。",
+	"mwoauthmanagemygrants-confirm-legend": "管理已連接的應用程式",
+	"mwoauthdatastore-request-token-not-found": "抱歉，連接此應用程式時出錯。返回並重新嘗試連接您的帳戶，或聯繫應用程式開發人員。<span class=\"plainlinks mw-mwoautherror-details\">未找到OAuth的token，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
+	"mwoauthserver-bad-consumer": "“$1”不再被批准作爲可連接的應用程式，[$2 聯繫]應用程式作者獲取協助。\n<span class=\"plainlinks mw-mwoautherror-details\">已連接的OAuth應用程式未獲批准，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>",
+	"mwoauth-invalid-authorization-not-approved": "您嘗試連接的應用程式似乎設定有誤。請聯繫作者“$1”獲取協助。",
 	"mwoauth-form-button-approve": "允許",
 	"mwoauth-form-button-cancel": "取消",
-	"mwoauth-grant-group-email": "發送電子郵件",
+	"mwoauth-error": "應用程式連接錯誤",
+	"mwoauth-grant-group-email": "傳送電子郵件",
 	"mwoauth-grant-group-administration": "執行管理操作",
-	"mwoauth-grant-createaccount": "建立帳號"
+	"mwoauth-grant-blockusers": "封鎖與解封使用者",
+	"mwoauth-grant-createaccount": "建立帳號",
+	"mwoauth-grant-createeditmovepage": "建立、編輯與移動頁面",
+	"mwoauth-grant-delete": "刪除頁面、修訂與日誌記錄",
+	"mwoauth-grant-editinterface": "編輯 MediaWiki 命名空間與使用者 CSS/JavaScript",
+	"mwoauth-grant-editmyoptions": "編輯自己的偏好設定",
+	"mwoauth-grant-editmywatchlist": "編輯您的監視清單",
+	"mwoauth-grant-editpage": "編輯現有頁面"
 }
