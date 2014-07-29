@@ -115,6 +115,7 @@
 	"mwoauth-error": "Ошибка подключения приложения",
 	"mwoauth-grants-heading": "Запросить разрешения:",
 	"mwoauth-grant-group-email": "Отправить письмо",
+	"mwoauth-grant-group-customization": "Настройки и предпочтения",
 	"mwoauth-grant-blockusers": "Блокировать и разблокировать пользователей",
 	"mwoauth-grant-createaccount": "Создавать учетные записи",
 	"mwoauth-grant-createeditmovepage": "Создание, правка и переименование страниц",
