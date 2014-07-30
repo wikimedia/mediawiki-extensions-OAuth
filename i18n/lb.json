@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Les Meloures"
 		]
 	},
 	"mwoauth-desc": "De Gebrauch vun OAuth 1.0a fir API Autorisatiounerlaben",
@@ -83,7 +84,7 @@
 	"mwoauth-grant-editmyoptions": "Ännert Är eege Benotzerastellungen",
 	"mwoauth-grant-editmywatchlist": "Ännert Är Iwwerwaachungslëscht",
 	"mwoauth-grant-editpage": "Säiten déi et gëtt änneren",
-	"mwoauth-grant-editprotected": "Gespaarte Säiten änneren",
+	"mwoauth-grant-editprotected": "Gespaart Säiten änneren",
 	"mwoauth-grant-oversight": "Benotzer verstoppen a Versioune läschen",
 	"mwoauth-grant-patrol": "Ännerungen op Säiten iwwerwaachen",
 	"mwoauth-grant-protect": "Säite spären an entspären",
