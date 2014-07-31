@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Fitoschido",
-			"Ovruni"
+			"Ovruni",
+			"Macofe"
 		]
 	},
 	"mwoauth-verified": "La aplicación ahora puede acceder a MediaWiki en tu nombre.\n\nPara completar el proceso, proporciona este valor de comprobación a la aplcación: '''$1'''",
