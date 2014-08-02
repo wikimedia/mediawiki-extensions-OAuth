@@ -12,7 +12,8 @@
 			"Simon Shek",
 			"Mywood",
 			"Impersonator 1",
-			"LNDDYL"
+			"LNDDYL",
+			"NigelSoft"
 		]
 	},
 	"mwoauth-desc": "允许使用OAuth 1.0a用作API授权",
@@ -71,7 +72,7 @@
 	"mwoauthconsumerregistration-propose": "提议新消费者",
 	"mwoauthconsumerregistration-list": "我的消费者列表",
 	"mwoauthconsumerregistration-main": "主要",
-	"mwoauthconsumerregistration-propose-text": "开发者应使用下面的表单提议新的OAuth程序（更多信息参见[//www.mediawiki.org/wiki/Extension:OAuth extension 文档]）。提交表单后，您将收到与您应用程序相关的token，它用于验证身份。OAuth管理员会审核并可能通过您的提议，之后您的程序才能正常访问。",
+	"mwoauthconsumerregistration-propose-text": "开发者应使用下面的表单提议新的OAuth程序（更多信息请参见[//www.mediawiki.org/wiki/Extension:OAuth 该扩展插件文档]）。提交表单后，您将收到与您应用程序相关的令牌，它用于验证身份。OAuth管理员会审核并可能通过您的提议，之后您的程序才能正常访问。",
 	"mwoauthconsumerregistration-propose-legend": "新OAuth消费者应用程序",
 	"mwoauthconsumerregistration-update-legend": "更新OAuth消费者应用程序",
 	"mwoauthconsumerregistration-propose-submit": "提议消费者",

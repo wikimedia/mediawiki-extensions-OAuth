@@ -25,8 +25,8 @@
 	"mwoauthlistconsumers-basicgrantsonly": "(csak alapvető hozzáférés)",
 	"mwoauth-form-description-allwikis": "Helló $1,\n\n'''$2''' szeretné a következő műveleteket a nevedben végrehajtani az összes projektben:\n\n$4",
 	"mwoauth-form-description-onewiki": "Helló $1,\n\n'''$2''' szeretné a következő műveleteket a nevedben végrehajtani a(z) ''$4'' wikin:\n\n$5",
-	"mwoauth-form-description-allwikis-nogrants": "Helló $1,\n\n'''$2''' szeretne alapvető hozzáférést a nevedben ezen a wikin.",
-	"mwoauth-form-description-onewiki-nogrants": "Helló $1,\n\n'''$2''' szeretne alapvető hozzáférést a nevedben a(z) $4 wikin.",
+	"mwoauth-form-description-allwikis-nogrants": "Helló $1,\n\n'''$2''' szeretne alapvető hozzáférést a nevedben az oldal összes projektjéhez.",
+	"mwoauth-form-description-onewiki-nogrants": "Helló $1,\n\n'''$2''' szeretne alapvető hozzáférést a nevedben a(z) ''$4'' wikin.",
 	"mwoauth-form-button-approve": "Engedélyezés",
 	"mwoauth-form-button-cancel": "Mégse",
 	"mwoauth-grant-useoauth": "Alapvető jogok"
