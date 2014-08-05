@@ -35,7 +35,7 @@
 	"mwoauth-consumer-stage": "当前状态：",
 	"mwoauth-consumer-email": "联系人电子邮件地址：",
 	"mwoauth-consumer-description": "应用说明：",
-	"mwoauth-consumer-callbackurl": "OAuth\"回调\"URL：",
+	"mwoauth-consumer-callbackurl": "OAuth“回调”URL：",
 	"mwoauth-consumer-grantsneeded": "应用授权：",
 	"mwoauth-consumer-required-grant": "适用于最终用户",
 	"mwoauth-consumer-wiki": "适用项目：",
