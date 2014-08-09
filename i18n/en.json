@@ -183,6 +183,7 @@
     "mwoauthdatastore-access-token-not-found": "No approved grant was found for that authorization token.",
     "mwoauthdatastore-request-token-not-found": "Sorry, something went wrong connecting this application.\nGo back and try to connect your account again, or contact the application author.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth token not found, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
     "mwoauthdatastore-bad-token": "No token was found matching your request.",
+    "mwoauthdatastore-bad-source-ip": "The request came from an invalid IP address.",
     "mwoauthdatastore-bad-verifier": "The verification code provided was not valid.",
     "mwoauthdatastore-invalid-token-type": "The requested token type is invalid.",
     "mwoauthgrants-general-error": "There was an error in your OAuth request.",

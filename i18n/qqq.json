@@ -188,6 +188,7 @@
 	"mwoauthdatastore-access-token-not-found": "Error message when an invalid access token was submitted",
 	"mwoauthdatastore-request-token-not-found": "Error message when an invalid request token was submitted",
 	"mwoauthdatastore-bad-token": "Error message when an invalid token was submitted",
+	"mwoauthdatastore-bad-source-ip": "Error message when a request comes from an IP address which is not among those whitelisted",
 	"mwoauthdatastore-bad-verifier": "Error message when an invalid verification code was submitted",
 	"mwoauthdatastore-invalid-token-type": "Error message when an invalid page was requested",
 	"mwoauthgrants-general-error": "Generic error, when something unexpected happened while processing the OAuth request",
