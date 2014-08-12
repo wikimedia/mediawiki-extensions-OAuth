@@ -82,27 +82,27 @@ class MWOAuthServer extends OAuthServer {
 
 	/**
 	 * Ensure the request comes from an approved IP address, if IP restriction has been
-	 * setup by the Consumer.
+	 * setup by the Consumer. It throws an exception if IP address is invalid.
 	 *
 	 * @param MWOAuthConsumer $consumer
 	 * @param MWOAuthRequest $request
-	 * @return bool
+	 * @throws MWOAuthException
 	 */
 	private function checkSourceIP( $consumer, $request ) {
 		$restrictions = $consumer->get( 'restrictions' );
 		$requestIP = $request->getSourceIP();
 
 		if ( !isset( $restrictions['IPAddresses'] ) ) {
-			return true; // sanity; should not happen
+			throw new MWOAuthException( 'bad-source-ip' ); // sanity; should not happen
 		}
 
 		foreach ( $restrictions['IPAddresses'] as $range ) {
 			if ( \IP::isInRange( $requestIP, $range ) ) {
-				return true;
+				return;
 			}
 		}
 
-		return false;
+		throw new MWOAuthException( 'bad-source-ip' );
 	}
 
 	/**
