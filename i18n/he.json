@@ -187,6 +187,7 @@
 	"mwoauthdatastore-access-token-not-found": "לא נמצא שום זיכיון מאושר עבור אסימון האישור הזה.",
 	"mwoauthdatastore-request-token-not-found": "סליחה, משהו השתבש עם היישום הזה.\nנא לחזור ולנסות להתחבר שוב לחשבונך או ליצור קשר עם יוצר היישום.\n\n<span class=\"plainlinks mw-mwoautherror-details\">לא נמצא אסימון OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
 	"mwoauthdatastore-bad-token": "לא נמצא אסימון מתאים לבקשתך.",
+	"mwoauthdatastore-bad-source-ip": "הבקשה הגיעה מכתובת IP בלתי־תקינה.",
 	"mwoauthdatastore-bad-verifier": "קוד האימות שסופק לא חוקי.",
 	"mwoauthdatastore-invalid-token-type": "האסימון המבוקש אינו תקין.",
 	"mwoauthgrants-general-error": "אירעה שגיאה בבקשת OAuth.",

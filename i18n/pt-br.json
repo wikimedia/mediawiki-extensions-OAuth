@@ -3,11 +3,13 @@
 		"authors": [
 			"Helder.wiki",
 			"Luckas",
-			"Cybermandrake"
+			"Cybermandrake",
+			"Rodrigo codignoli"
 		]
 	},
 	"mwoauth-prefs-managegrantslink": "Gerenciar $1 {{PLURAL:$1|aplicativo|aplicativos}} conectados",
 	"mwoauthmanageconsumers-type": "Filas:",
+	"mwoauthdatastore-bad-source-ip": "O pedido veio de um endereço de IP invalido",
 	"mwoauth-form-button-approve": "Permitir",
 	"mwoauth-form-button-cancel": "Cancelar",
 	"mwoauth-grant-createaccount": "Criar contas"

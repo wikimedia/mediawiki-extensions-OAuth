@@ -64,6 +64,7 @@
 	"mwoauthmanagemygrants-update": "Rechter aktualiséieren",
 	"mwoauthmanagemygrants-renounce": "Autorisatioun ewechhuelen",
 	"mwoauthmanagemygrants-action": "Status änneren:",
+	"mwoauthdatastore-bad-source-ip": "D'Ufro koum vun enger net autoriséierter IP-Adress.",
 	"mwoauthgrants-general-error": "An Ärer OAuth-Ufro war e Feeler.",
 	"mwoauth-invalid-authorization-title": "OAuth Autorisatioun's-Feeler",
 	"mwoauth-invalid-authorization-blocked-user": "D'Autorisatiounen an Ärer Ufro si fir ee Benotzer dee gespaart ass",

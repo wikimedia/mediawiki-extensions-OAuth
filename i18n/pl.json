@@ -64,6 +64,7 @@
 	"mwoauthmanagemygrants-update": "Aktualizuj",
 	"mwoauthmanagemygrants-renounce": "Anuluj dostęp",
 	"mwoauthmanagemygrants-action": "Zmień status",
+	"mwoauthdatastore-bad-source-ip": "Wniosek pochodzi z nieprawidłowego adresu IP.",
 	"mwoauth-invalid-authorization-title": "Błąd autoryzacji OAuth",
 	"mwoauth-form-button-approve": "Zezwól",
 	"mwoauth-form-button-cancel": "Anuluj",

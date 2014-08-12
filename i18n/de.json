@@ -188,6 +188,7 @@
 	"mwoauthdatastore-access-token-not-found": "Für diesen Autorisierungstoken wurde keine bestätigte Berechtigung gefunden",
 	"mwoauthdatastore-request-token-not-found": "Bei der Verbindung dieser Anwendung ist leider etwas schief gelaufen.\nGehe zurück und versuche, dein Benutzerkonto erneut zu verbinden oder kontaktiere den Anwendungsautor.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth-Token nicht gefunden, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
 	"mwoauthdatastore-bad-token": "Es wurde kein Token gefunden, der deiner Anfrage entspricht.",
+	"mwoauthdatastore-bad-source-ip": "Die Anfrage kam von einer ungültigen IP-Adresse.",
 	"mwoauthdatastore-bad-verifier": "Der angegebene Verifikationscode war nicht gültig",
 	"mwoauthdatastore-invalid-token-type": "Der angeforderte Tokentyp ist ungültig",
 	"mwoauthgrants-general-error": "In deiner OAuth-Anfrage gab es einen Fehler",

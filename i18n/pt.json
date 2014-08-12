@@ -99,6 +99,7 @@
 	"mwoauthmanagemygrants-revoke-text": "Utilize o formulário abaixo para revogar o acesso a um aplicativo que esteja a aceder à sua conta.",
 	"mwoauthmanagemygrants-confirm-legend": "Gerir aplicativos conectados",
 	"mwoauthmanagemygrants-action": "Alterar estado:",
+	"mwoauthdatastore-bad-source-ip": "O pedido partiu de um endereço de IP inválido.",
 	"mwoauthdatastore-bad-verifier": "O código de verificação fornecido não era válido.",
 	"mwoauthgrants-general-error": "Ocorreu um erro no seu pedido OAuth.",
 	"mwoauth-invalid-authorization-title": "Erro de autorização OAuth",

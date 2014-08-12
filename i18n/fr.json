@@ -193,6 +193,7 @@
 	"mwoauthdatastore-access-token-not-found": "Aucun droit approuvé n’a été trouvé pour ce jeton d’autorisation.",
 	"mwoauthdatastore-request-token-not-found": "Désolé, quelque chose s’est mal passé lors de la connexion de l’application.\nRevenez en arrière et essayez de reconnecter votre compte, ou contactez l’auteur de l’application.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Jeton OAuth introuvable, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
 	"mwoauthdatastore-bad-token": "Aucun jeton correspondant à votre demande n’a été trouvé",
+	"mwoauthdatastore-bad-source-ip": "La requête provient d’une adresse IP non valide.",
 	"mwoauthdatastore-bad-verifier": "Le code de vérification fourni n’était pas valide",
 	"mwoauthdatastore-invalid-token-type": "Le type de jeton demandé n’est pas valide",
 	"mwoauthgrants-general-error": "Il y a eu une erreur dans votre demande OAuth",

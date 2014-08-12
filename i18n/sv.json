@@ -189,6 +189,7 @@
 	"mwoauthdatastore-access-token-not-found": "Inget godkänt behörigheter har hittats för den auktoriseringstoken.",
 	"mwoauthdatastore-request-token-not-found": "Tyvärr uppstod ett fel med anslutning till denna app.\nGå tillbaka och försök ansluta igen, eller kontakta appens skapare.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Ingen OAuth-token hittades, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
 	"mwoauthdatastore-bad-token": "Ingen token hittades som matchade din begäran.",
+	"mwoauthdatastore-bad-source-ip": "Begäran kom från en ogiltig IP-adress.",
 	"mwoauthdatastore-bad-verifier": "Verifikationskoden som givits var inte giltig.",
 	"mwoauthdatastore-invalid-token-type": "Den begärda tokentypen är ogiltig.",
 	"mwoauthgrants-general-error": "Det uppstod ett fel i din OAuthbegäran.",

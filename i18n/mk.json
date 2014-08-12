@@ -184,6 +184,7 @@
 	"mwoauthdatastore-access-token-not-found": "Не пронајдов одобрено доделување со таа повластена шифра",
 	"mwoauthdatastore-request-token-not-found": "Нажалост, се јави проблем при поврзувањето на прилогот.\nВратете се и пробајте одново, или пак обратете се кај неговиот автор.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Не е пронајдена шифрата за OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
 	"mwoauthdatastore-bad-token": "Не пронајдов барање што одговара на бараното",
+	"mwoauthdatastore-bad-source-ip": "Барањето дојде од неважечка IP-адреса.",
 	"mwoauthdatastore-bad-verifier": "Укажаниот потврден код е неважечки",
 	"mwoauthdatastore-invalid-token-type": "Побараниот тип на шифра е неважечки.",
 	"mwoauthgrants-general-error": "Се појави грешка во барањето за OAuth",
