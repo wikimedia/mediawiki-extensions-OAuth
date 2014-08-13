@@ -263,6 +263,10 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE ); // @TODO: lazy handle
 		$oauthServer = MWOAuthUtils::newMWOAuthServer();
 
+		if ( !$consumerKey ) {
+			$consumerKey = $oauthServer->getConsumerKey( $requestToken );
+		}
+
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
 			$this->getContext()

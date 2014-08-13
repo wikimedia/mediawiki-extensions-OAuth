@@ -4,6 +4,16 @@ namespace MediaWiki\Extensions\OAuth;
 
 class MWOAuthServer extends OAuthServer {
 	/**
+	 * Return a consumer key associated with the given request token.
+	 *
+	 * @param MWOAuthToken $requestToken the request token
+	 * @return String the consumer key
+	 */
+	public function getConsumerKey( $requestToken ) {
+		return $this->data_store->getConsumerKey( $requestToken );
+	}
+
+	/**
 	 * Process a request_token request returns the request token on success. This
 	 * also checks the IP restriction, which the OAuthServer method did not.
 	 *
@@ -28,18 +38,58 @@ class MWOAuthServer extends OAuthServer {
 
 		$this->check_signature( $request, $consumer, $token );
 
-		// In MediaWiki, we require the callback to be established at registration
-		// OAuth 1.0a (rfc5849, section 2.1) specifies that oauth_callback is required
-		// for the temporary credentials, and "If the client is unable to receive callbacks
-		// or a callback URI has been established via other means, the parameter value MUST
-		// be set to "oob" (case sensitive), to indicate an out-of-band configuration."
 		$callback = $request->get_parameter( 'oauth_callback' );
-		if ( $callback !== 'oob' ) {
-			throw new MWOAuthException( 'callback-not-oob' );
-		}
+
+		$this->checkCallback( $consumer, $callback );
+
 		$new_token = $this->data_store->new_request_token( $consumer, $callback );
 		$new_token->oauth_callback_confirmed = 'true';
 		return $new_token;
+	}
+
+	/**
+	 * Ensure the callback is "oob" or that it is a strict string prefix of a
+	 * registered callback. It throws an exception if callback is invalid.
+	 *
+	 * In MediaWiki, we require the callback to be established at registration.
+	 * OAuth 1.0a (rfc5849, section 2.1) specifies that oauth_callback is required
+	 * for the temporary credentials, and "If the client is unable to receive callbacks
+	 * or a callback URI has been established via other means, the parameter value MUST
+	 * be set to "oob" (case sensitive), to indicate an out-of-band configuration."
+	 * Otherwise, client can provide a callback, which must be a strict string prefix of
+	 * a registered callback. We verify at registration that registered callback is a
+	 * valid URI, so also one matching the prefix probably is, but we verify anyway.
+	 *
+	 * @param MWOAuthConsumer $consumer
+	 * @param string $callback
+	 * @throws MWOAuthException
+	 */
+	private function checkCallback( $consumer, $callback ) {
+		if ( !$consumer->get( 'callbackIsPrefix' ) ) {
+			if ( $callback !== 'oob' ) {
+				throw new MWOAuthException( 'callback-not-oob' );
+			}
+
+			return;
+		}
+
+		if ( !$callback ) {
+			throw new MWOAuthException( 'callback-not-oob-or-prefix' );
+		}
+		if ( $callback === 'oob' ) {
+			return;
+		}
+
+		if ( wfParseUrl( $callback ) === null ) {
+			throw new MWOAuthException( 'callback-not-oob-or-prefix' );
+		}
+
+		$consumerCallback = $consumer->get( 'callbackUrl' );
+		if ( substr( $callback, 0, strlen( $consumerCallback ) ) !== $consumerCallback ) {
+			throw new MWOAuthException( 'callback-not-oob-or-prefix' );
+		}
+
+		return;
 	}
 
 	/**
@@ -197,7 +247,7 @@ class MWOAuthServer extends OAuthServer {
 		$requestToken->addAccessKey( $accessToken->key );
 		$this->data_store->updateRequestToken( $requestToken, $consumer );
 		wfDebugLog( 'OAuth', "Verification code {$requestToken->getVerifyCode()} for $requestTokenKey (client: $consumerKey)" );
-		return $consumer->generateCallbackUrl( $requestToken->getVerifyCode(), $requestTokenKey );
+		return $consumer->generateCallbackUrl( $this->data_store, $requestToken->getVerifyCode(), $requestTokenKey );
 	}
 
 	/**

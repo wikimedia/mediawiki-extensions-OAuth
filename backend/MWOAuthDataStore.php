@@ -102,16 +102,53 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * Generate a new token (attached to this consumer), save it in the cache, and return it
 	 *
 	 * @param MWOAuthConsumer|OAuthConsumer $consumer
-	 * @param null $callback
+	 * @param string $callback
 	 * @return MWOAuthToken
 	 */
-	public function new_request_token( $consumer, $callback = null ) {
+	public function new_request_token( $consumer, $callback = 'oob' ) {
 		$token = MWOAuthDataStore::newToken();
-		$cacheKey = MWOAuthUtils::getCacheKey( 'token', $consumer->key, 'request', $token->key );
-		$this->cache->add( $cacheKey, $token, 600 ); //10 minutes. Kindof arbitray.
+		$cacheConsumerKey = MWOAuthUtils::getCacheKey( 'consumer', 'request', $token->key );
+		$cacheTokenKey = MWOAuthUtils::getCacheKey( 'token', $consumer->key, 'request', $token->key );
+		$cacheCallbackKey = MWOAuthUtils::getCacheKey( 'callback', $consumer->key, 'request', $token->key );
+		$this->cache->add( $cacheConsumerKey, $consumer->key, 600 ); //10 minutes. Kindof arbitray.
+		$this->cache->add( $cacheTokenKey, $token, 600 ); //10 minutes. Kindof arbitray.
+		$this->cache->add( $cacheCallbackKey, $callback, 600 ); //10 minutes. Kindof arbitray.
 		wfDebugLog( 'OAuth', __METHOD__ .
-			": New request token {$token->key} for {$consumer->key}" );
+			": New request token {$token->key} for {$consumer->key} with callback {$callback}" );
 		return $token;
+	}
+
+	/**
+	 * Return a consumer key associated with the given request token.
+	 *
+	 * @param MWOAuthToken $requestToken the request token
+	 * @return String the consumer key
+	 */
+	public function getConsumerKey( $requestToken ) {
+		$cacheKey = MWOAuthUtils::getCacheKey( 'consumer', 'request', $requestToken );
+		$consumerKey = $this->cache->get( $cacheKey );
+		return $consumerKey;
+	}
+
+	/**
+	 * Return a stored callback URL parameter given by the consumer in /initiate.
+	 * It throws an exception if callback URL parameter does not exist in the cache.
+	 * A stored callback URL parameter is deleted from the cache once read for the first
+	 * time.
+	 *
+	 * @param string the consumer key
+	 * @param string $requestKey original request key from /initiate
+	 * @throws MWOAuthException
+	 * @return String the stored callback URL parameter
+	 */
+	public function getCallbackUrl( $consumerKey, $requestKey ) {
+		$cacheKey = MWOAuthUtils::getCacheKey( 'callback', $consumerKey, 'request', $requestKey );
+		$callback = $this->cache->get( $cacheKey );
+		if ( $callback === null || !is_string( $callback ) ) {
+			throw new MWOAuthException( 'mwoauthdatastore-callback-not-found' );
+		}
+		$this->cache->delete( $cacheKey );
+		return $callback;
 	}
 
 	/**
