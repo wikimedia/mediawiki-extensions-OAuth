@@ -54,7 +54,7 @@ class MWOAuthRequest extends OAuthRequest {
 			) === 0
 		) {
 			$postData = OAuthUtil::parse_parameters( $request->getRawPostString() );
-			wfDebugLog( 'OAuth', __METHOD__ . ": Post String = $postData" );
+			wfDebugLog( 'OAuth', __METHOD__ . ': Post String = ' . implode( ',', $postData ) );
 			$parameters = array_merge( $parameters, $postData );
 		}
 
