@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pikne"
+			"Pikne",
+			"Boxmein"
 		]
 	},
 	"mwoauth-desc": "Võimaldab kasutada OAuth 1.0a-d API-volitamiseks.",
@@ -60,6 +61,7 @@
 	"mwoauthmanagemygrants-success-renounce": "Selle tarvituse juurdepääsuluba on kustutatud.",
 	"mwoauthmanagemygrants-useoauth-tooltip": "Miks ma ei saa seda volitust uuendada? Sellega on ühendatud rakendusele antud põhilised õigused, mida on vaja, et rakendus õigesti toimiks. Kui sa ei taha, et ühendatud rakendusel oleks need õigused, siis peaksid tühistama selle rakenduse juurdepääsu.",
 	"mwoauthdatastore-request-token-not-found": "Selle rakendusega läks kahjuks midagi valesti.\nMine tagasi ja ürita uuesti oma kontot ühendada või võta ühendust rakenduse autoriga.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuthi-luba ei leitud, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
+	"mwoauthdatastore-bad-source-ip": "Taotlus saadeti ebakorrektselt IP-aadressilt.",
 	"mwoauthserver-bad-consumer-key": "Selle rakendusega läks kahjuks midagi valesti.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Tundmatu OAuthi-võti, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>",
 	"mwoauth-form-description-allwikis": "Tere, $1.\n\n'''$2''' vajab luba, et teha sinu nimel kõigis selle võrgukoha projektides järgmisi toiminguid:\n\n$4",
 	"mwoauth-form-description-onewiki": "Tere, $1.\n\n'''$2''' vajab luba, et teha sinu nimel võrgukohas ''$4'' järgmisi toiminguid:\n\n$5",

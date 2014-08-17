@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pginer"
+			"Pginer",
+			"Fitoschido"
 		]
 	},
-	"mwoauthlistconsumers-view": "detalls"
+	"mwoauthlistconsumers-view": "detalls",
+	"mwoauthdatastore-bad-source-ip": "La sol·licitud provenia d’una adreça IP no vàlida."
 }

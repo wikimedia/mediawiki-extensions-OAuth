@@ -186,6 +186,7 @@
 	"mwoauthdatastore-access-token-not-found": "K tomuto schválenému autorizačnímu tokenu nebylo nalezeno žádné schválené oprávnění.",
 	"mwoauthdatastore-request-token-not-found": "Omlouváme se, ale při připojování této aplikace se něco rozbilo.\nVraťte se a zkuste znovu připojit svůj účet, nebo kontaktujte autora aplikace.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth token nebyl nalezen, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E004 E004]</span>",
 	"mwoauthdatastore-bad-token": "Žádný token odpovídající vašemu požadavku nebyl nalezen.",
+	"mwoauthdatastore-bad-source-ip": "Požadavek přišel z neplatné IP adresy.",
 	"mwoauthdatastore-bad-verifier": "Poskytnutý ověřovací kód nebyl platný.",
 	"mwoauthdatastore-invalid-token-type": "Požadovaný typ tokenu není platný.",
 	"mwoauthgrants-general-error": "Ve vašem OAuth požadavku byla chyba.",

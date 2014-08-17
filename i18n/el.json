@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Indoril"
+			"Indoril",
+			"Geraki"
 		]
 	},
-	"mwoauth-db-readonly": "Το OAuth βάση δεδομένων είναι προσωρινά κλειδωμένη. Παρακαλούμε δοκιμάστε ξανά σε λίγα λεπτά."
+	"mwoauth-db-readonly": "Το OAuth βάση δεδομένων είναι προσωρινά κλειδωμένη. Παρακαλούμε δοκιμάστε ξανά σε λίγα λεπτά.",
+	"mwoauthdatastore-bad-source-ip": "Η αίτηση ήρθε από μια μη έγκυρη διεύθυνση IP."
 }

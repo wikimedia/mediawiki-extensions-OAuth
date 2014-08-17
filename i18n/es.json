@@ -3,7 +3,8 @@
 		"authors": [
 			"Fitoschido",
 			"Ovruni",
-			"Macofe"
+			"Macofe",
+			"Amitie 10g"
 		]
 	},
 	"mwoauth-verified": "La aplicación ahora puede acceder a MediaWiki en tu nombre.\n\nPara completar el proceso, proporciona este valor de comprobación a la aplcación: '''$1'''",
@@ -89,6 +90,7 @@
 	"mwoauthmanagemygrants-renounce": "No autorizado",
 	"mwoauthmanagemygrants-action": "Cambiar el estado:",
 	"mwoauth-bad-request-missing-params": "Ha ocurrido un error al configurar esta aplicación conectada. <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Ponte en contacto con el equipo de asistencia]</span> para corregir el problema.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Faltan parámetros de OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>",
+	"mwoauthdatastore-bad-source-ip": "La solicitud proviene de una dirección IP inválida.",
 	"mwoauthdatastore-bad-verifier": "El código de verificación proporcionado no es válido.",
 	"mwoauthdatastore-invalid-token-type": "El tipo de ficha solicitado no es válido.",
 	"mwoauthgrants-general-error": "Hay un error en la solicitud de OAuth.",

@@ -82,7 +82,7 @@
 	"mwoauthconsumerregistration-manage": "管理",
 	"mwoauthconsumerregistration-resetsecretkey": "重設密秘金鑰為新的值",
 	"mwoauthconsumerregistration-proposed": "您的 OAuth Consumer 請求已被接受。\n\n您已被分配了一組 Consumer 密鑰(Token) '''$1'''，與秘密密鑰(Secret Token) '''$2'''。''請將妥善保存這些資訊供未來參考使用。''",
-	"mwoauthconsumerregistration-updated": "已成功更新您的 OAuth Consumer 登錄資訊。",
+	"mwoauthconsumerregistration-updated": "已成功更新您的 OAuth Consumer 登入資訊。",
 	"mwoauthconsumerregistration-secretreset": "您已被分配了一組 Consumer 密鑰(Token) '''$1'''。''請將妥善保存這些資訊供未來參考使用。''",
 	"oauthmanageconsumers": "管理 OAuth Consumer",
 	"mwoauthmanageconsumers-notloggedin": "您必須登入以存取此頁面。",
