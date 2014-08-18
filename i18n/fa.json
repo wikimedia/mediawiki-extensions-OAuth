@@ -4,7 +4,8 @@
 			"Armin1392",
 			"Ebraminio",
 			"Reza1615",
-			"Taha"
+			"Taha",
+			"Omid.koli"
 		]
 	},
 	"mwoauth-desc": "استفاده از رابط برنامه‌نویسی هویت‌سنجی OAuth ۱.۰ اجازه می‌دهد",
@@ -186,6 +187,7 @@
 	"mwoauthdatastore-access-token-not-found": "هیچ اعطای تأیید برای رمز اختیار یافت نشد.",
 	"mwoauthdatastore-request-token-not-found": "با عرض پوزش، چیزی در اتصال به این برنامه اشتباه شده‌است.\nبازگردید و برای اتصال حسابتان دوباره امتحان کنید یا با نویسندهٔ برنامه تماس حاصل کنید.\n\n<span class=\"plainlinks mw-mwoautherror-details\"> نشانهٔ OAuth یافت نشد، [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
 	"mwoauthdatastore-bad-token": "هیچ نشانه مطابق درخواست شما یافت نشد.",
+	"mwoauthdatastore-bad-source-ip": "درخواست از یک IP نامعتبر",
 	"mwoauthdatastore-bad-verifier": "کد تأیید صحت ارائه‌شده معتبر نیست.",
 	"mwoauthdatastore-invalid-token-type": "نوع رمز درخواستی نامعتبر است.",
 	"mwoauthgrants-general-error": "خطایی در درخواست OAuth شما وجود داشت.",
