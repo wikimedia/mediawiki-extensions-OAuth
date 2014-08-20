@@ -184,6 +184,7 @@
 	"mwoauthdatastore-access-token-not-found": "Non è stata trovata alcuna assegnazione approvata per il token di autorizzazione.",
 	"mwoauthdatastore-request-token-not-found": "Spiacenti, qualcosa è andato storto, durante la connessione a questa applicazione. Torna indietro e prova a connetterti nuovamente, o contattare l'autore dell'applicazione.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Token OAuth non trovato, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
 	"mwoauthdatastore-bad-token": "Non è stato trovato alcun token che corrisponde alla tua richiesta.",
+	"mwoauthdatastore-bad-source-ip": "La richiesta proviene da un indirizzo IP non valido.",
 	"mwoauthdatastore-bad-verifier": "Il codice di verifica fornito non è valido.",
 	"mwoauthdatastore-invalid-token-type": "Il tipo di token richiesto non è valido.",
 	"mwoauthgrants-general-error": "C'è un errore nella tua richiesta OAuth.",
