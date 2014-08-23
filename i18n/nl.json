@@ -189,6 +189,7 @@
 	"mwoauthdatastore-access-token-not-found": "Er is geen goedgekeurde toestemming gevonden voor dit autorisatietoken.",
 	"mwoauthdatastore-request-token-not-found": "Er is helaas iets mis gegaan tijdens het koppelen van deze toepassing.\nGa terug, en probeer de koppeling opnieuw tot stand te brengen of neem contact op met de uitgever.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth-token niet gevonden, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
 	"mwoauthdatastore-bad-token": "Er is geen token gevonden dat hoort bij uw verzoek",
+	"mwoauthdatastore-bad-source-ip": "Het verzoek kwam van een ongeldig IP-adres.",
 	"mwoauthdatastore-bad-verifier": "De verificatiecode die is opgegeven is niet geldig",
 	"mwoauthdatastore-invalid-token-type": "Het verzoektokentype is ongeldig",
 	"mwoauthgrants-general-error": "Er is een fout opgetreden in uw OAthverzoek",
