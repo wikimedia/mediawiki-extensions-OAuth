@@ -4,7 +4,8 @@
 			"Amire80",
 			"Raymond",
 			"Shirayuki",
-			"Siebrand"
+			"Siebrand",
+			"Liuxinyu970226"
 		]
 	},
 	"oauth": "Title of MWOAuth page.\n{{Identical|OAuth}}",
@@ -148,7 +149,7 @@
 	"mwoauthlistconsumers-status-approved": "{{Related|Mwoauthlistconsumers-status}}\n{{Identical|Approved}}",
 	"mwoauthlistconsumers-status-disabled": "{{Related|Mwoauthlistconsumers-status}}\n{{Identical|Disabled}}",
 	"mwoauthlistconsumers-status-rejected": "{{Related|Mwoauthlistconsumers-status}}\n{{Identical|Rejected}}",
-	"mwoauthlistconsumers-status-expired": "{{Related|Mwoauthlistconsumers-status}}",
+	"mwoauthlistconsumers-status-expired": "{{Related|Mwoauthlistconsumers-status}}\n{{Identical|Expired}}",
 	"oauthmanagemygrants": "{{doc-special|MWOAuthManageMyGrants}}",
 	"mwoauthmanagemygrants-text": "Explanatory text for Special:OAuthManageMyGrants page",
 	"mwoauthmanagemygrants-notloggedin": "Used in [[Special:OAuthManageMyGrants]] if the user is not logged in.",

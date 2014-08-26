@@ -184,6 +184,7 @@
 	"mwoauthdatastore-access-token-not-found": "Ingen godkjente tildelinger ble funnet for dette autorisasjonstokenet.",
 	"mwoauthdatastore-request-token-not-found": "Beklager, noe gikk galt ved tilkobling av denne applikasjonen.\nGå tilbake og prøv å koble til kontoen igjen, eller kontakt applikasjonsutvikleren.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth-token ble ikke funnet, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
 	"mwoauthdatastore-bad-token": "Det ble ikke funnet noe token som matchet forespørselen din.",
+	"mwoauthdatastore-bad-source-ip": "Forespørselen kom fra en ugyldig IP-adresse.",
 	"mwoauthdatastore-bad-verifier": "Den angitte verifikasjonskoden var ikke gyldig.",
 	"mwoauthdatastore-invalid-token-type": "Den forespurte tokentypen er ugyldig.",
 	"mwoauthgrants-general-error": "Det var en feil i OAuth-forespørselen.",
