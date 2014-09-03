@@ -5,12 +5,17 @@
 			"Fohanno"
 		]
 	},
+	"mwoauth-field-hidden": "(kuzhet eo an titour-mañ)",
+	"mwoauth-field-private": "(prevez eo an titour-mañ)",
 	"mwoauth-prefs-managegrants": "Arloadoù kevreet :",
+	"mwoauth-consumer-allwikis": "An holl raktresoù war al lec'hienn-mañ",
 	"mwoauth-consumer-name": "Anv an arload :",
 	"mwoauth-consumer-user": "Embanner :",
 	"mwoauth-consumer-description": "Deskrivadur an arload :",
+	"mwoauth-consumer-wiki-other": "Raktres difer",
 	"mwoauth-consumer-reason": "Abeg :",
 	"mwoauth-consumer-email-unconfirmed": "Chomlec'h postel ho kont n'eo ket bet kadarnaet c'hoazh.",
+	"mwoauth-consumer-stage-proposed": "kinniget",
 	"mwoauth-consumer-stage-rejected": "distaolet",
 	"mwoauth-consumer-stage-expired": "aet d'e dermen",
 	"mwoauth-consumer-stage-approved": "aprouet",
@@ -40,6 +45,7 @@
 	"mwoauthlistconsumers-user": "Embanner",
 	"mwoauthlistconsumers-description": "Deskrivadur",
 	"mwoauthlistconsumers-status": "Statud",
+	"mwoauth-consumer-stage-any": "forzh pehini",
 	"mwoauthlistconsumers-status-proposed": "kinniget",
 	"mwoauthlistconsumers-status-approved": "aprouet",
 	"mwoauthlistconsumers-status-disabled": "diweredekaet",
@@ -60,6 +66,8 @@
 	"mwoauth-grant-editpage": "Aoañ pajennoù a zo anezho dija",
 	"mwoauth-grant-editprotected": "Aozañ pajennoù gwarezet",
 	"mwoauth-grant-sendemail": "Kas ur postel d'an implijerien all",
+	"mwoauth-grant-useoauth": "Gwirioù diazez",
+	"mwoauth-grant-viewdeleted": "Gwelet an titouroù dilamet",
 	"mwoauth-grant-viewmywatchlist": "Gwelet ho roll evezhiañ",
 	"mwoauth-listgrants-rights": "Gwirioù"
 }
