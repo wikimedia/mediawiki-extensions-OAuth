@@ -30,7 +30,7 @@ $wgExtensionCredits['other'][] = array(
 	'path'           => __FILE__,
 	'name'           => 'OAuth',
 	'descriptionmsg' => 'mwoauth-desc',
-	'author'         => array( 'Aaron Schulz' ),
+	'author'         => array( 'Aaron Schulz', 'Chris Steipp', 'Brad Jorsch' ),
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:OAuth',
 );
 
