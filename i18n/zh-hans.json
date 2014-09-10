@@ -170,6 +170,7 @@
 	"mwoauthmanagemygrants-review": "管理访问",
 	"mwoauthmanagemygrants-revoke": "移除授权",
 	"mwoauthmanagemygrants-grantaccept": "授权",
+	"mwoauthmanagemygrants-revoke-text": "使用下面的表单撤销应用程序以您的名义访问站点的权利。",
 	"mwoauthmanagemygrants-confirm-legend": "管理连接的应用程序",
 	"mwoauthmanagemygrants-update": "更新授权",
 	"mwoauthmanagemygrants-renounce": "取消授权",
