@@ -179,6 +179,7 @@
 	"mwoauthdatastore-invalid-token-type": "請求的密鑰類型無效。",
 	"mwoauthserver-bad-consumer": "“$1”不再被批准作爲可連接的應用程式，[$2 聯繫]應用程式作者獲取協助。\n<span class=\"plainlinks mw-mwoautherror-details\">已連接的OAuth應用程式未獲批准，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>",
 	"mwoauthserver-invalid-request-token": "您請求中的密鑰無效。",
+	"mwoauth-invalid-authorization-title": "OAuth 認証錯誤",
 	"mwoauth-invalid-authorization-not-approved": "您嘗試連接的應用程式似乎設定有誤。請聯繫作者“$1”獲取協助。",
 	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|私隱政策]]",
 	"mwoauth-form-button-approve": "允許",
