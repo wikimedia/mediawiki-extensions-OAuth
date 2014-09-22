@@ -13,7 +13,8 @@
 			"Mywood",
 			"Impersonator 1",
 			"LNDDYL",
-			"NigelSoft"
+			"NigelSoft",
+			"Duolaimi"
 		]
 	},
 	"mwoauth-desc": "允许使用OAuth 1.0a用作API授权",
@@ -170,7 +171,7 @@
 	"mwoauthmanagemygrants-review": "管理访问",
 	"mwoauthmanagemygrants-revoke": "移除授权",
 	"mwoauthmanagemygrants-grantaccept": "授权",
-	"mwoauthmanagemygrants-revoke-text": "使用下面的表单撤销应用程序以您的名义访问站点的权利。",
+	"mwoauthmanagemygrants-revoke-text": "使用下面的表格撤销应用程序以您的名义的访问权限。",
 	"mwoauthmanagemygrants-confirm-legend": "管理连接的应用程序",
 	"mwoauthmanagemygrants-update": "更新授权",
 	"mwoauthmanagemygrants-renounce": "取消授权",
@@ -201,7 +202,7 @@
 	"mwoauthserver-bad-consumer-key": "抱歉，此程序连接时出现一些错误。\n<span class=\"plainlinks mw-mwoautherror-details\">未知的OAuth密钥，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>",
 	"mwoauthserver-insufficient-rights": "您的账户不允许使用连接的应用程序，请联系您的网站管理员了解原因。\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth用户权限不足，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "您的申请中有无效令牌。",
-	"mwoauthserver-invalid-user": "要使用此站点连接的程序，您必须拥有跨所有项目的账户。当您在所有项目上拥有账户后，您才能再次尝试连接“$1”。\n<span class=\"plainlinks mw-mwoautherror-details\">需要统一登录，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
+	"mwoauthserver-invalid-user": "要使用此网站连接的程序，您必须拥有跨所有项目的账户。当您在所有项目上拥有账户后，您才能再次尝试连接“$1”。\n<span class=\"plainlinks mw-mwoautherror-details\">需要统一登录，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
 	"mwoauth-invalid-authorization-title": "OAuth认证错误",
 	"mwoauth-invalid-authorization": "您申请中的授权标头无效：$1",
 	"mwoauth-invalid-authorization-wrong-wiki": "您申请中的授权标头对于$1无效",
@@ -209,7 +210,7 @@
 	"mwoauth-invalid-authorization-wrong-user": "您的请求的授权标头用于另一用户",
 	"mwoauth-invalid-authorization-not-approved": "您尝试连接的应用程序似乎设置不正确。请联络作者“$1”获得帮助。",
 	"mwoauth-invalid-authorization-blocked-user": "您请求的许可表头来自被封禁用户",
-	"mwoauth-form-description-allwikis": "嗨$1，'''$2'''希望帮助您在此站点所有项目进行如下操作：\n\n$4",
+	"mwoauth-form-description-allwikis": "嗨$1，\n\n'''$2'''想要用您的身份在本网站的所有项目上执行以下操作：\n\n$4",
 	"mwoauth-form-description-onewiki": "您好$1，\n\n'''$2'''很想帮助您在''$4''做以下事情：\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "你好，$1，\n\n'''$2'''想要拥有你在本网站所有项目上的基本访问权限。",
 	"mwoauth-form-description-onewiki-nogrants": "嗨$1，'''$2'''希望获取您在''$4''的基本访问权。",
