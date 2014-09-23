@@ -6,7 +6,8 @@
 			"Reza1615",
 			"Taha",
 			"Omid.koli",
-			"Alirezaaa"
+			"Alirezaaa",
+			"Calak"
 		]
 	},
 	"oauth": "OAuth",
@@ -207,8 +208,8 @@
 	"mwoauth-invalid-authorization-blocked-user": "سرفصل‌های مجاز در درخواست شما برای کاربری است که مسدود شده‌است",
 	"mwoauth-form-description-allwikis": "سلام $1،\n\n'''$2''' دوست دارد اعمال زیر را در همهٔ پروژه‌های این وب‌گاه از طرف شما انجام دهد:\n\n$4",
 	"mwoauth-form-description-onewiki": "سلام $1،\n\n'''$2''' دوست دارد اعمال زیر را در ''$4'' از طرف شما انجام دهد:\n\n$5",
-	"mwoauth-form-description-allwikis-nogrants": "سلام $1، \n'''$2''' دوست داشت دسترسی  اساسی از طرف شما در همهٔ پروژه‌های سایت داشته‌باشد.",
-	"mwoauth-form-description-onewiki-nogrants": "سلام $1،\n\n'''$2''' دوست دارد دسترسی ساده‌ای از طرف شما در ''$4'' داشته‌باشد.",
+	"mwoauth-form-description-allwikis-nogrants": "درود $1،\n\n'''$2''' دوست دارد که دسترسی ابتدایی از طرف شما در همهٔ پروژه‌های این وب‌گاه داشته‌باشد.",
+	"mwoauth-form-description-onewiki-nogrants": "سلام $1،\n\n'''$2''' دوست دارد دسترسی ابتدایی از طرف شما در ''$4'' داشته‌باشد.",
 	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|سیاست حریم شخصی]]",
 	"mwoauth-form-button-approve": "پذیرفتن",
 	"mwoauth-form-button-cancel": "انصراف",
