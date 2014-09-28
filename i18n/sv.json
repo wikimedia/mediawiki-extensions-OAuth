@@ -172,7 +172,7 @@
 	"mwoauthmanagemygrants-renounce": "Avauktorisera",
 	"mwoauthmanagemygrants-action": "Ändra status:",
 	"mwoauthmanagemygrants-confirm-submit": "Uppdatera åtkomsttokenstatus",
-	"mwoauthmanagemygrants-success-update": "Åtkomst-nyckel för denna konsument har uppdaterats.",
+	"mwoauthmanagemygrants-success-update": "Åtkomst-nyckeln för denna konsument har tagits bort.",
 	"mwoauthmanagemygrants-success-renounce": "Åtkomst-nyckeln för denna konsument har tagits bort.",
 	"mwoauthmanagemygrants-useoauth-tooltip": "Varför kan jag inte uppdatera denna behörighet? Denna behörighet ger dina anslutna applikationer grundläggande behörighet vilket den kräver för att  kunna fungera korrekt. Om du inte vill att den anslutna applikationen ska ha dessa rättigheter bör du återkalla applikationens åtkomst.",
 	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|Föreslog}} en OAuthkonsument (konsumentnyckel $4)",
