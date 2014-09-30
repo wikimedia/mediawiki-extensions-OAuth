@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Tacsipacsi",
-			"Csega"
+			"Csega",
+			"Dorgan"
 		]
 	},
 	"mwoauth-db-readonly": "Az OAuth adatbázis ideiglenesen le van zárva. Próbálkozz újra pár perc múlva.",
@@ -22,7 +23,9 @@
 	"mwoauth-consumer-wiki-thiswiki": "Jelenlegi projekt ($1)",
 	"mwoauthconsumerregistration-notloggedin": "A lap megtekintéséhez be kell jelentkezned.",
 	"mwoauthconsumerregistration-navigation": "Navigáció:",
+	"oauthlistconsumers": "OAuth alkalmazások listája",
 	"mwoauthlistconsumers-basicgrantsonly": "(csak alapvető hozzáférés)",
+	"oauthmanagemygrants": "Összekapcsolt alkalmazások kezelése",
 	"mwoauth-form-description-allwikis": "Helló $1,\n\n'''$2''' szeretné a következő műveleteket a nevedben végrehajtani az összes projektben:\n\n$4",
 	"mwoauth-form-description-onewiki": "Helló $1,\n\n'''$2''' szeretné a következő műveleteket a nevedben végrehajtani a(z) ''$4'' wikin:\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Helló $1,\n\n'''$2''' szeretne alapvető hozzáférést a nevedben az oldal összes projektjéhez.",
