@@ -40,13 +40,6 @@ class MWOAuthUISetup {
 			'remoteExtPath' => 'OAuth/frontend/modules',
 			'messages'      => array( 'mwoauth-desc' )
 		);
-		$wgResourceModules['ext.MWOAuth.WikiSelect'] = array(
-			'scripts'       => array( 'ext.MWOAuth.WikiSelect.js' ),
-			'dependencies'  => array( 'jquery.ui.autocomplete' ),
-			'localBasePath' => dirname( __FILE__ ) . '/modules',
-			'remoteExtPath' => 'OAuth/frontend/modules',
-			'messages'      => array( 'mwoauth-desc' )
-		);
 	}
 
 	/**
