@@ -4,7 +4,8 @@
 			"Dannyps",
 			"Lijealso",
 			"Vitorvicentevalente",
-			"Helder.wiki"
+			"Helder.wiki",
+			"He7d3r"
 		]
 	},
 	"mwoauth-desc": "Permite o uso do OAuth 1.0a para autorização de API",
@@ -28,6 +29,7 @@
 	"mwoauth-consumer-wiki-other": "Projecto específico",
 	"mwoauth-consumer-restrictions": "Restrições de uso:",
 	"mwoauth-consumer-restrictions-json": "Restrições de uso (JSON)",
+	"mwoauth-consumer-accesstoken": "Chave de acesso:",
 	"mwoauth-consumer-reason": "Motivo:",
 	"mwoauth-consumer-email-unconfirmed": "O seu endereço de correio electrónico ainda não foi confirmado.",
 	"mwoauth-consumer-email-mismatched": "O endereço de correio electrónico fornecido deve coincidir com o da sua conta.",
