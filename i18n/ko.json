@@ -3,7 +3,8 @@
 		"authors": [
 			"Hym411",
 			"Priviet",
-			"아라"
+			"아라",
+			"Revi"
 		]
 	},
 	"mwoauth-desc": "OAuth 1.0a API 인증의 사용을 허용",
@@ -220,7 +221,7 @@
 	"mwoauth-grant-group-administration": "관리 기능 수행",
 	"mwoauth-grant-group-other": "기타 활동",
 	"mwoauth-grant-blockusers": "사용자 차단 또는 차단 해제",
-	"mwoauth-grant-createaccount": "계정 생성",
+	"mwoauth-grant-createaccount": "계정 만들기",
 	"mwoauth-grant-createeditmovepage": "문서 만들기, 편집 및 옮기기",
 	"mwoauth-grant-delete": "문서, 판 및 기록 항목 삭제",
 	"mwoauth-grant-editinterface": "미디어위키 이름공간과 사용자 CSS/JS 편집",
