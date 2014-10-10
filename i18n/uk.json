@@ -3,7 +3,8 @@
 		"authors": [
 			"Andriykopanytsia",
 			"Base",
-			"Ата"
+			"Ата",
+			"Olion"
 		]
 	},
 	"mwoauth-desc": "Дозволяє використовувати OAuth 1.0a для API авторизації",
@@ -186,6 +187,7 @@
 	"mwoauthdatastore-access-token-not-found": "Не знайдено схваленого ґранту для цього маркера авторизації.",
 	"mwoauthdatastore-request-token-not-found": "На жаль, щось пішло невірно при підключенні цієї програми. Поверніться назад та спробуйте підключити ваш профіль знову або зв'яжіться з автором програми.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Маркер OAuth не знайдений, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
 	"mwoauthdatastore-bad-token": "Не знайдено маркера, відповідного вашому запиту.",
+	"mwoauthdatastore-bad-source-ip": "Запит надійшов з неприпустимої IP-адреси.",
 	"mwoauthdatastore-bad-verifier": "Наданий код підтвердження недійсний.",
 	"mwoauthdatastore-invalid-token-type": "Неприпустимий маркер запитаного типу.",
 	"mwoauthgrants-general-error": "Помилка у вашому запиті на OAuth.",
