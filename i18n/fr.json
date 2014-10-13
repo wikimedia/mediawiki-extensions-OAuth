@@ -10,7 +10,8 @@
 			"Ltrlg",
 			"McDutchie",
 			"VIGNERON",
-			"Wyz"
+			"Wyz",
+			"Fitoschido"
 		]
 	},
 	"mwoauth-desc": "Autorise l’utilisation de OAuth 1.0a pour l’authentification de l’API",
@@ -160,9 +161,9 @@
 	"mwoauthmanagemygrants-navigation": "Navigation :",
 	"mwoauthmanagemygrants-showlist": "Liste des applications connectées",
 	"mwoauthmanagemygrants-none": "Il n’y a aucune application connectée à votre compte.",
-	"mwoauthmanagemygrants-user": "Éditeur ː",
+	"mwoauthmanagemygrants-user": "Éditeur :",
 	"mwoauthmanagemygrants-description": "Description",
-	"mwoauthmanagemygrants-wikiallowed": "Autorisé sur le projet ː",
+	"mwoauthmanagemygrants-wikiallowed": "Autorisé sur le projet :",
 	"mwoauthmanagemygrants-grants": "Droits applicables",
 	"mwoauthmanagemygrants-grantsallowed": "Droits accordés :",
 	"mwoauthmanagemygrants-applicablegrantsallowed": "Droits applicables accordés :",
