@@ -36,6 +36,7 @@ class MWOAuthSetup {
 		$classes['MediaWiki\Extensions\OAuth\MWOAuthAPISetup'] = "$apiDir/MWOAuthAPI.setup.php";
 		$classes['MediaWiki\Extensions\OAuth\MWOAuthUISetup'] = "$frontendDir/MWOAuthUI.setup.php";
 		$classes['MediaWiki\Extensions\OAuth\MWOAuthUIHooks'] = "$frontendDir/MWOAuthUI.hooks.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthHooks'] = "$backendDir/MWOAuth.hooks.php";
 
 		# Special pages
 		$classes['MediaWiki\Extensions\OAuth\SpecialMWOAuth'] = "$specialsDir/SpecialMWOAuth.php";
@@ -96,6 +97,8 @@ class MWOAuthSetup {
 	public static function unconditionalSetup() {
 		global $wgHooks;
 
+		$wgHooks['MergeAccountFromTo'][] = 'MediaWiki\Extensions\OAuth\MWOAuthHooks::onMergeAccountFromTo';
+		$wgHooks['CentralAuthGlobalUserMerged'][] = 'MediaWiki\Extensions\OAuth\MWOAuthHooks::onCentralAuthGlobalUserMerged';
 		$wgHooks['LoadExtensionSchemaUpdates'][] = 'MediaWiki\Extensions\OAuth\MWOAuthUpdaterHooks::addSchemaUpdates';
 		$wgHooks['UnitTestsList'][] = function( array &$files ) {
 			$directoryIterator = new \RecursiveDirectoryIterator( __DIR__ . '/tests/' );
