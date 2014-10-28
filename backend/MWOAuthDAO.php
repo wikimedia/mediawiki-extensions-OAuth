@@ -409,8 +409,11 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 				$map[$field] = null; // don't convey this information
 			}
 		}
-		return hash_hmac( 'sha1', serialize( $map ),
-			$context->getUser()->getEditToken( $this->getIdValue(), $context->getRequest() ) );
+		return hash_hmac(
+			'sha1',
+			serialize( $map ),
+			"{$context->getUser()->getId()}#{$this->getIdValue()}"
+		);
 	}
 
 	/**
