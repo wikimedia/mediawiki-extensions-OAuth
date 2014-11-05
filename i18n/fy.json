@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kening Aldgilles"
+			"Kening Aldgilles",
+			"Robin0van0der0vliet"
 		]
 	},
-	"mwoauth-form-button-cancel": "Ofbrekke",
+	"mwoauthconsumerregistration-navigation": "Navigaasje:",
+	"mwoauthmanagemygrants-navigation": "Navigaasje:",
+	"mwoauth-form-button-cancel": "Annulearje",
 	"mwoauth-grant-group-email": "E-mail stjoere"
 }
