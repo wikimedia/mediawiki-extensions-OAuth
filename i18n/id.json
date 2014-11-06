@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Raynasution"
+			"Raynasution",
+			"Ilham151096"
 		]
 	},
+	"mwoauth-prefs-managegrants": "Aplkasi tersambung:",
+	"oauthmanagemygrants": "Kelola aplikasi tersambung",
 	"mwoauth-grant-group-administration": "Lakukan tindakan administratif"
 }
