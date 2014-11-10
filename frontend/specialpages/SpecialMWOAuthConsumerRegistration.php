@@ -85,6 +85,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				throw new \PermissionsError( 'mwoauthproposeconsumer' );
 			}
 
+			$allWikis = MWOAuthUtils::getAllWikiNames();
+
 			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), array(), $dbw );
 			$form = new \HTMLForm(
@@ -118,12 +120,12 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'required' => true
 					),
 					'wiki' => array(
-						'type' => 'autocompleteselect',
+						'type' => $allWikis ? 'autocompleteselect' : 'select',
 						'options' => array(
 							wfMessage( 'mwoauth-consumer-allwikis' )->escaped() => '*',
 							wfMessage( 'mwoauth-consumer-wiki-thiswiki', wfWikiID() )->escaped() => wfWikiID()
 						),
-						'autocomplete' => array_flip( MWOAuthUtils::getAllWikiNames() ),
+						'autocomplete' => array_flip( $allWikis ),
 						'other' => wfMessage( 'mwoauth-consumer-wiki-other' )->escaped(),
 						'label-message' => 'mwoauth-consumer-wiki',
 						'required' => true,
