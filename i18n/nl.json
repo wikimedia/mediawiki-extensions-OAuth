@@ -16,7 +16,7 @@
 	"mwoauth-invalid-field": "Er is een ongeldige waarde opgegeven voor het veld \"$1\"",
 	"mwoauth-invalid-field-generic": "Er is een ongeldige waarde opgegeven",
 	"mwoauth-field-hidden": "(deze gegevens zijn verborgen)",
-	"mwoauth-field-private": "(deze gegevens zijn privé)",
+	"mwoauth-field-private": "(deze gegevens zijn persoonlijk)",
 	"mwoauth-grant-generic": "Rechtengroep \"$1\"",
 	"mwoauth-prefs-managegrants": "Gekoppelde apps:",
 	"mwoauth-prefs-managegrantslink": "$1 gekoppelde {{PLURAL:$1|toepassing|toepassingen}} beheren",
