@@ -6,7 +6,7 @@ namespace MediaWiki\Extensions\OAuth;
  * Class containing hooked functions for an OAuth environment
  */
 class MWOAuthHooks {
-	public static function onMergeAccountFromTo( User $oUser, User $nUser ) {
+	public static function onMergeAccountFromTo( \User $oUser, \User $nUser ) {
 		global $wgMWOAuthSharedUserIDs;
 
 		if ( !$wgMWOAuthSharedUserIDs ) {
