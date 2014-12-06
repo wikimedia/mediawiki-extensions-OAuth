@@ -19,10 +19,19 @@ class MWOAuthUpdaterHooks {
 		$dbType = $updater->getDB()->getType();
 
 		if ( $dbType == 'mysql' or $dbType == 'sqlite' ) {
-			$base = "$base/mysql";
+			$base = "$base/$dbType";
 
 			$updater->addExtensionTable( 'oauth_registered_consumer', "$base/OAuth.sql" );
-		} elseif ( $updater->getDB()->getType() == 'postgres' ) {
+
+			$updater->addExtensionUpdate( array(
+				'addField',
+				'oauth_registered_consumer',
+				'oarc_callback_is_prefix',
+				"$base/callback_is_prefix.sql",
+				true
+			) );
+
+		} elseif ( $dbType == 'postgres' ) {
 			//$base = "$base/postgres";
 
 			// @TODO

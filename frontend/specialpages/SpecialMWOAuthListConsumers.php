@@ -123,6 +123,9 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			'mwoauthlistconsumers-callbackurl' => htmlspecialchars(
 				$cmr->get( 'callbackUrl' )
 			),
+			'mwoauthlistconsumers-callbackisprefix' => htmlspecialchars(
+				$cmr->get( 'callbackIsPrefix' )
+			),
 			'mwoauthlistconsumers-grants' => $out->parseInline( $s ),
 		);
 

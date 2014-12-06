@@ -114,6 +114,11 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'label-message' => 'mwoauth-consumer-callbackurl',
 						'required' => true
 					),
+					'callbackIsPrefix' => array(
+						'type' => 'check',
+						'label-message' => 'mwoauth-consumer-callbackisprefix',
+						'required' => true
+					),
 					'email' => array(
 						'type' => 'text',
 						'label-message' => 'mwoauth-consumer-email',

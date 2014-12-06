@@ -300,6 +300,11 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 					'label-message' => 'mwoauth-consumer-callbackurl',
 					'default' => $cmr->get( 'callbackUrl' )
 				),
+				'callbackIsPrefix' => array(
+					'type' => 'info',
+					'label-message' => 'mwoauth-consumer-callbackisprefix',
+					'default' => $cmr->get( 'callbackIsPrefix' )
+				),
 				'grants'  => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-grantsneeded',

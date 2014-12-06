@@ -37,6 +37,8 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $version;
 	/** @var string OAuth callback URL for authorization step*/
 	protected $callbackUrl;
+	/** @var int OAuth callback URL is a prefix and we allow all URLs which have callbackUrl as the prefix */
+	protected $callbackIsPrefix;
 	/** @var string Application description */
 	protected $description;
 	/** @var string Publisher email address */
@@ -79,6 +81,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 				'userId'             => 'oarc_user_id',
 				'version'            => 'oarc_version',
 				'callbackUrl'        => 'oarc_callback_url',
+				'callbackIsPrefix'   => 'oarc_callback_is_prefix',
 				'description'        => 'oarc_description',
 				'email'              => 'oarc_email',
 				'emailAuthenticated' => 'oarc_email_authenticated',
@@ -99,15 +102,16 @@ class MWOAuthConsumer extends MWOAuthDAO {
 
 	protected static function getFieldPermissionChecks() {
 		return array(
-			'name'            => 'userCanSee',
-			'userId'          => 'userCanSee',
-			'version'         => 'userCanSee',
-			'callbackUrl'     => 'userCanSee',
-			'description'     => 'userCanSee',
-			'rsaKey'          => 'userCanSee',
-			'email'           => 'userCanSeeEmail',
-			'secretKey'       => 'userCanSeeSecret',
-			'restrictions'    => 'userCanSeePrivate',
+			'name'             => 'userCanSee',
+			'userId'           => 'userCanSee',
+			'version'          => 'userCanSee',
+			'callbackUrl'      => 'userCanSee',
+			'callbackIsPrefix' => 'userCanSee',
+			'description'      => 'userCanSee',
+			'rsaKey'           => 'userCanSee',
+			'email'            => 'userCanSeeEmail',
+			'secretKey'        => 'userCanSeeSecret',
+			'restrictions'     => 'userCanSeePrivate',
 		);
 	}
 
@@ -189,12 +193,19 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
+	 * @param MWOAuthDataStore $dataStore
 	 * @param string $verifyCode verification code
 	 * @param string $requestKey original request key from /initiate
 	 * @return string the url for redirection
 	 */
-	public function generateCallbackUrl( $verifyCode, $requestKey ) {
-		return wfAppendQuery( $this->callbackUrl, array(
+	public function generateCallbackUrl( $dataStore, $verifyCode, $requestKey ) {
+		$callback = $dataStore->getCallbackUrl( $this->key, $requestKey );
+
+		if ( $callback === 'oob' ) {
+		  $callback = $this->get( 'callbackUrl' );
+		}
+
+		return wfAppendQuery( $callback, array(
 			'oauth_verifier' => $verifyCode,
 			'oauth_token'    => $requestKey
 		) );
