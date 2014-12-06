@@ -76,6 +76,7 @@
 	"mwoauthconsumerregistration-main": "主要",
 	"mwoauthconsumerregistration-propose-text": "开发者应使用下面的表单提议新的OAuth应用程序（更多信息请参见[//www.mediawiki.org/wiki/Extension:OAuth 该扩展插件文档]）。提交表单后，您将收到与您应用程序相关的令牌，它用于验证身份。OAuth管理员会审核并可能通过您的提议，之后您的程序才能正常访问。\n\n一些建议与提醒：\n* 如果可能，尝试使用较少的功能，避免目前不需要的功能。\n* 版本应存在于表单“major.minor.release”（最新的两个作为选项）并在需要时增加功能。\n* 如果可能，请提供RSA公钥（PEM格式）；否则（低安全的）私钥将被使用。\n* 使用JSON限制字段限制此应用程序对在一些CIDR段的IP地址的访问。\n* 您可使用项目ID限制应用程序访问此网站的单一项目（使用“ * ”访问所有项目）。\n* 提供的电子邮件必须匹配您的账户（并且必须进行确认）。",
 	"mwoauthconsumerregistration-update-text": "使用下面的表格更新您控制的OAuth消费者的相位。此处所有的值将覆盖之前的一个。不要将字段留空，除非您要清除这些值。",
+	"mwoauthconsumerregistration-maintext": "此页面用于让开发人员在此网站的注册信息中提议和更新OAuth consumer应用程序在。\n\n在此，您可以：\n* [[Special:OAuthConsumerRegistration/propose|申请一个新consumer的令牌]]。\n* [[Special:OAuthConsumerRegistration/list|管理您现有的consumer]]。\n\n关于OAuth的更多信息，请参见[//www.mediawiki.org/wiki/Extension:OAuth 扩展程序的说明文档]。",
 	"mwoauthconsumerregistration-propose-legend": "新OAuth消费者应用程序",
 	"mwoauthconsumerregistration-update-legend": "更新OAuth消费者应用程序",
 	"mwoauthconsumerregistration-propose-submit": "提议消费者",
@@ -172,6 +173,7 @@
 	"mwoauthmanagemygrants-review": "管理访问",
 	"mwoauthmanagemygrants-revoke": "移除授权",
 	"mwoauthmanagemygrants-grantaccept": "授权",
+	"mwoauthmanagemygrants-update-text": "使用以下表单修改授予给代表您的操作的应用程序的权限。",
 	"mwoauthmanagemygrants-revoke-text": "使用下面的表格撤销应用程序以您的名义的访问权限。",
 	"mwoauthmanagemygrants-confirm-legend": "管理连接的应用程序",
 	"mwoauthmanagemygrants-update": "更新授权",
@@ -235,7 +237,7 @@
 	"mwoauth-grant-createeditmovepage": "创建、编辑与移动页面",
 	"mwoauth-grant-delete": "删除页面、修改和日志记录",
 	"mwoauth-grant-editinterface": "编辑MediaWiki名字空间和用户CSS/JavaScript",
-	"mwoauth-grant-editmycssjs": "编辑你自己的用户CSS/JS",
+	"mwoauth-grant-editmycssjs": "编辑你自己的用户CSS/JavaScript",
 	"mwoauth-grant-editmyoptions": "编辑您自己的用户首选项",
 	"mwoauth-grant-editmywatchlist": "编辑您的监视列表",
 	"mwoauth-grant-editpage": "编辑存在的页面",
@@ -265,6 +267,7 @@
 	"action-mwoauthproposeconsumer": "提议新的OAuth应用程序",
 	"action-mwoauthupdateownconsumer": "更新您控制的OAuth应用程序",
 	"action-mwoauthviewsuppressed": "查看已阻止的OAuth应用程序",
+	"mwoauth-listgrantrights-summary": "以下是OAuth功能的列表，并与用户权限的访问权相关。用户可以授予应用程序访问它们的账户，但限定于用户授予应用程序的功能权限。代表一位用户的应用程序不能使用用户没有的权限。\n这里可能有关于个别权限的[[{{MediaWiki:Listgrouprights-helppage}}|额外信息]]。",
 	"mwoauth-listgrants-grant": "授权",
 	"mwoauth-listgrants-rights": "权限"
 }
