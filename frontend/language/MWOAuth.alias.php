@@ -119,8 +119,8 @@ $specialPageAliases['zh-hans'] = array(
 
 /** Traditional Chinese (中文（繁體）‎) */
 $specialPageAliases['zh-hant'] = array(
-	'OAuthConsumerRegistration' => array( 'OAuth消費者註冊' ),
-	'OAuthManageConsumers' => array( 'OAuth消費者管理' ),
-	'OAuthListConsumers' => array( 'OAuth消費者清單' ),
-	'OAuthManageMyGrants' => array( 'OAuth消費者授權' ),
+	'OAuthConsumerRegistration' => array( 'OAuth 使用者註冊' ),
+	'OAuthManageConsumers' => array( 'OAuth 使用者管理' ),
+	'OAuthListConsumers' => array( 'OAuth 使用者清單' ),
+	'OAuthManageMyGrants' => array( 'OAuth 使用者授權' ),
 );
