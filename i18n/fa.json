@@ -236,7 +236,7 @@
 	"mwoauth-grant-editpage": "ویرایش صفحات موجود",
 	"mwoauth-grant-editprotected": "ویرایش صفحه حفاظت شده",
 	"mwoauth-grant-highvolume": "ویرایش با حجم بالا",
-	"mwoauth-grant-oversight": "پنهان‌کردن ویرایش‌ها",
+	"mwoauth-grant-oversight": "پنهان کردن ویرایش‌ها",
 	"mwoauth-grant-patrol": "تغییرات گشت صفحات",
 	"mwoauth-grant-protect": "حفاظت و عدم حفاظت صفحات",
 	"mwoauth-grant-rollback": "واگردانی  تغییرات صفحات",
