@@ -73,6 +73,7 @@
 	"mwoauthmanagemygrants-description": "Цуьнах лаьцна",
 	"mwoauthmanagemygrants-wikiallowed": "Магийна проектехь:",
 	"mwoauthmanagemygrants-confirm-legend": "ТӀетесна тӀетохаршан урхалладар",
+	"mwoauth-form-description-allwikis-nogrants": "Маршалла $1,\n\n'''$2''' хьан цӀарца больхбан хьан дӀаяздаран чугӀо.",
 	"mwoauth-form-button-approve": "Магаде",
 	"mwoauth-form-button-cancel": "Цаоьшу",
 	"mwoauth-grants-heading": "Магийтар деха:",
