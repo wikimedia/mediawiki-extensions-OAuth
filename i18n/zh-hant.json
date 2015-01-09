@@ -4,7 +4,8 @@
 			"Liuxinyu970226",
 			"Cwlin0416",
 			"Justincheng12345",
-			"LNDDYL"
+			"LNDDYL",
+			"Waihorace"
 		]
 	},
 	"mwoauth-desc": "允許使用 OAuth 1.0a 作為 API 認証程式",
@@ -178,14 +179,19 @@
 	"mwoauthconsumer-consumer-logpage": "OAuth Consumer 日誌",
 	"mwoauthdatastore-access-token-not-found": "查無該認証密鑰已核准的授權資訊。",
 	"mwoauthdatastore-request-token-not-found": "抱歉，連接此應用程式時出錯。返回並重新嘗試連接您的帳號，或聯繫應用程式開發人員。<span class=\"plainlinks mw-mwoautherror-details\">未找到 OAuth 的 token，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
+	"mwoauthdatastore-bad-verifier": "提交的驗證碼無效。",
 	"mwoauthdatastore-invalid-token-type": "請求的密鑰類型無效。",
+	"mwoauthgrants-general-error": "您的OAuth請求中存在錯誤。",
 	"mwoauthserver-bad-consumer": "“$1”不再被批准作爲可連接的應用程式，[$2 聯繫]應用程式作者獲取協助。\n<span class=\"plainlinks mw-mwoautherror-details\">已連接的OAuth應用程式未獲批准，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>",
 	"mwoauthserver-invalid-request-token": "您請求中的密鑰無效。",
 	"mwoauthserver-invalid-user": "要使用此網站已連接的應用程式，您必須擁有跨所有專案的帳號。當您在所有專案上擁有帳號後，您才能再次嘗試連接 \"$1\" 。\n<span class=\"plainlinks mw-mwoautherror-details\">需要統一登入，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
 	"mwoauth-invalid-authorization-title": "OAuth 認証錯誤",
+	"mwoauth-invalid-authorization": "您申請中的授權標頭無效：$1",
 	"mwoauth-invalid-authorization-not-approved": "您嘗試連接的應用程式似乎設定有誤。請聯繫作者 \"$1\" 取得協助。",
 	"mwoauth-form-description-allwikis": "$1 您好，\n\n'''$2''' 想要以您的身分在此網站的所有專案上執行以下動作：\n\n$4",
+	"mwoauth-form-description-onewiki": "$1您好，\n\n'''$2'''想使用你的身份在''$4''做以下事情：\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "$1 您好，\n\n'''$2''' 想要擁有你在此網站所有專案上的基本存取權身分。",
+	"mwoauth-form-description-onewiki-nogrants": "$1您好，\n\n'''$2'''想使用您的身份在''$4''獲得基本使用權。",
 	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|隱私政策]]",
 	"mwoauth-form-button-approve": "允許",
 	"mwoauth-form-button-cancel": "取消",
@@ -236,6 +242,7 @@
 	"action-mwoauthproposeconsumer": "提出申請新的 OAuth Consumer",
 	"action-mwoauthupdateownconsumer": "更新你管控的 OAuth Consumer",
 	"action-mwoauthviewsuppressed": "檢示已禁止使用的 OAuth Consumer",
+	"mwoauth-listgrantrights-summary": "以下是OAuth功能的列表，並與用戶權限相關連。用戶可以授權應用程式使用他們的帳戶，但限於用戶授予應用程式的權限。同時，應用程式亦不能使用用戶本身沒有的權限。\n您可能可以在[[{{MediaWiki:Listgrouprights-helppage}}|這裡]]取得個別權限的額外資料。",
 	"mwoauth-listgrants-grant": "授權",
 	"mwoauth-listgrants-rights": "權限"
 }
