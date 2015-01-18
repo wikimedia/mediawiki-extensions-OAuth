@@ -70,7 +70,7 @@
 	"mwoauthgrants-general-error": "An Ärer OAuth-Ufro war e Feeler.",
 	"mwoauth-invalid-authorization-title": "OAuth Autorisatioun's-Feeler",
 	"mwoauth-invalid-authorization-blocked-user": "D'Autorisatiounen an Ärer Ufro si fir ee Benotzer dee gespaart ass",
-	"mwoauth-form-description-allwikis": "Moie(n) $1,\n\n'''$2''' wëllt dës Aktiounen an Ärem Numm op alle Projete vun dësem Site maachen:\n\n$5",
+	"mwoauth-form-description-allwikis": "Bonjour $1,\n\n'''$2''' wëllt dës Aktiounen an Ärem Numm op alle Projete vun dësem Site maachen:\n\n$4",
 	"mwoauth-form-description-onewiki": "Moie(n) $1,\n\n'''$2''' wëllt dës Aktiounen an Ärem Numm op ''$4'' maachen:\n\n$5",
 	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|Dateschutzrichtlinnen]]",
 	"mwoauth-form-button-approve": "Erlaben",
