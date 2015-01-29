@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Subi"
+		]
+	},
+	"mwoauth-consumer-reason": "Arrazoia:",
+	"mwoauthconsumerregistration-lastchange": "Azken aldaketa",
+	"mwoauthconsumerregistration-manage": "kudeatu",
+	"mwoauthmanageconsumers-description": "Deskribapena",
+	"mwoauthmanageconsumers-lastchange": "Azken aldaketa",
+	"mwoauthmanageconsumers-reason": "Arrazoia:",
+	"mwoauthlistconsumers-view": "xehetasunak",
+	"mwoauthmanagemygrants-description": "Deskribapena",
+	"mwoauth-grant-uploadfile": "Igotako fitxategi berriak"
+}
