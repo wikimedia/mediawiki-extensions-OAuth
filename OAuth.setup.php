@@ -107,6 +107,8 @@ class MWOAuthSetup {
 		global $wgHooks;
 
 		$wgHooks['ChangeTagCanCreate'][] = 'MediaWiki\Extensions\OAuth\MWOAuthHooks::onChangeTagCanCreate';
+		$wgHooks['ListDefinedTags'][] = array( 'MediaWiki\Extensions\OAuth\MWOAuthHooks::getUsedConsumerTags', false );
+		$wgHooks['ChangeTagsListActive'][] = array( 'MediaWiki\Extensions\OAuth\MWOAuthHooks::getUsedConsumerTags', true );
 		$wgHooks['MergeAccountFromTo'][] = 'MediaWiki\Extensions\OAuth\MWOAuthHooks::onMergeAccountFromTo';
 		$wgHooks['CentralAuthGlobalUserMerged'][] = 'MediaWiki\Extensions\OAuth\MWOAuthHooks::onCentralAuthGlobalUserMerged';
 		$wgHooks['LoadExtensionSchemaUpdates'][] = 'MediaWiki\Extensions\OAuth\MWOAuthUpdaterHooks::addSchemaUpdates';
