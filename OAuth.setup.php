@@ -38,15 +38,23 @@ class MWOAuthSetup {
 		$classes['MediaWiki\Extensions\OAuth\MWOAuthUIHooks'] = "$frontendDir/MWOAuthUI.hooks.php";
 		$classes['MediaWiki\Extensions\OAuth\MWOAuthHooks'] = "$backendDir/MWOAuth.hooks.php";
 
-		# Special pages
+		# Special pages and pagers
 		$classes['MediaWiki\Extensions\OAuth\SpecialMWOAuth'] = "$specialsDir/SpecialMWOAuth.php";
 		$classes['MediaWiki\Extensions\OAuth\SpecialMWOAuthConsumerRegistration'] =
 			"$specialsDir/SpecialMWOAuthConsumerRegistration.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthListMyConsumersPager'] =
+			"$specialsDir/SpecialMWOAuthConsumerRegistration.php";
 		$classes['MediaWiki\Extensions\OAuth\SpecialMWOAuthManageConsumers'] =
+			"$specialsDir/SpecialMWOAuthManageConsumers.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthManageConsumersPager'] =
 			"$specialsDir/SpecialMWOAuthManageConsumers.php";
 		$classes['MediaWiki\Extensions\OAuth\SpecialMWOAuthManageMyGrants'] =
 			"$specialsDir/SpecialMWOAuthManageMyGrants.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthManageMyGrantsPager'] =
+			"$specialsDir/SpecialMWOAuthManageMyGrants.php";
 		$classes['MediaWiki\Extensions\OAuth\SpecialMWOAuthListConsumers'] =
+			"$specialsDir/SpecialMWOAuthListConsumers.php";
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthListConsumersPager'] =
 			"$specialsDir/SpecialMWOAuthListConsumers.php";
 
 		# Utility functions
@@ -75,6 +83,7 @@ class MWOAuthSetup {
 		$classes['MediaWiki\Extensions\OAuth\OAuthToken'] = "$libDir/OAuth.php";
 		$classes['MediaWiki\Extensions\OAuth\OAuthSignatureMethod'] = "$libDir/OAuth.php";
 		$classes['MediaWiki\Extensions\OAuth\OAuthSignatureMethod_HMAC_SHA1'] = "$libDir/OAuth.php";
+		$classes['MediaWiki\Extensions\OAuth\OAuthSignatureMethod_PLAINTEXT'] = "$libDir/OAuth.php";
 		$classes['MediaWiki\Extensions\OAuth\OAuthSignatureMethod_RSA_SHA1'] = "$libDir/OAuth.php";
 		$classes['MediaWiki\Extensions\OAuth\OAuthRequest'] = "$libDir/OAuth.php";
 		$classes['MediaWiki\Extensions\OAuth\OAuthServer'] = "$libDir/OAuth.php";
