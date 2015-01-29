@@ -32,6 +32,7 @@ $wgExtensionCredits['other'][] = array(
 	'descriptionmsg' => 'mwoauth-desc',
 	'author'         => array( 'Aaron Schulz', 'Chris Steipp', 'Brad Jorsch' ),
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:OAuth',
+	'license-name'   => 'GPL-2.0+',
 );
 
 # Load default config variables
