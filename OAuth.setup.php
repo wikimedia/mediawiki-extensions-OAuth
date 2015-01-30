@@ -106,6 +106,7 @@ class MWOAuthSetup {
 	public static function unconditionalSetup() {
 		global $wgHooks;
 
+		$wgHooks['ChangeTagCanCreate'][] = 'MediaWiki\Extensions\OAuth\MWOAuthHooks::onChangeTagCanCreate';
 		$wgHooks['MergeAccountFromTo'][] = 'MediaWiki\Extensions\OAuth\MWOAuthHooks::onMergeAccountFromTo';
 		$wgHooks['CentralAuthGlobalUserMerged'][] = 'MediaWiki\Extensions\OAuth\MWOAuthHooks::onCentralAuthGlobalUserMerged';
 		$wgHooks['LoadExtensionSchemaUpdates'][] = 'MediaWiki\Extensions\OAuth\MWOAuthUpdaterHooks::addSchemaUpdates';

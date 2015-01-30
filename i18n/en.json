@@ -260,5 +260,6 @@
     "mwoauth-listgrantrights-summary": "The following is a list of OAuth grants, with their associated access to user rights. Users can authorize applications to use their account, but with limited permissions based on the grants the user gave to the application. An application acting on behalf of a user cannot actually use rights that the user does not have however.\nThere may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] about individual rights.",
     "mwoauth-listgrants-grant": "Grant",
     "mwoauth-listgrants-rights": "Rights",
-    "mwoauth-listgrantrights-right-display": "$1 <code>($2)</code>"
+    "mwoauth-listgrantrights-right-display": "$1 <code>($2)</code>",
+    "mwoauth-tag-reserved": "Tags beginning with <code>OAuth CID:</code> are reserved for use by OAuth."
 }

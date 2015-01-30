@@ -6,6 +6,25 @@ namespace MediaWiki\Extensions\OAuth;
  * Class containing hooked functions for an OAuth environment
  */
 class MWOAuthHooks {
+	/**
+	 * Reserve all change tags beginning with 'OAuth CID:' (case-insensitive) so
+	 * that the user may not create them
+	 *
+	 * @todo Also consume ListDefinedTags and ChangeTagsListActive hooks in a
+	 * sensible way, so OAuth tags don't appear undefined and inactive on Special:Tags
+	 *
+	 * @param string $tag
+	 * @param \User $user
+	 * @param \Status $status
+	 * @return bool
+	 */
+	public static function onChangeTagCanCreate( $tag, \User $user, \Status &$status ) {
+		if ( strpos( strtolower( $tag ), 'oauth cid:' ) === 0 ) {
+			$status->fatal( 'mwoauth-tag-reserved' );
+		}
+		return true;
+	}
+
 	public static function onMergeAccountFromTo( \User $oUser, \User $nUser ) {
 		global $wgMWOAuthSharedUserIDs;
 

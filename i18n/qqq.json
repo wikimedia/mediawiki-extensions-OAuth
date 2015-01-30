@@ -266,5 +266,6 @@
 	"mwoauth-listgrantrights-summary": "Explanatory text shown at the top of the grant/rights mapping table.\n\nRefers to {{msg-mw|Listgrouprights-helppage}}.",
 	"mwoauth-listgrants-grant": "Used as table header for the grant/rights mapping table.\n{{Identical|Grant}}",
 	"mwoauth-listgrants-rights": "Used as table header for the grant/rights mapping table.\n{{Identical|Right}}",
-	"mwoauth-listgrantrights-right-display": "Used to format rights descriptions on the grant/rights mapping table. Parameters:\n* $1 - ...\n* $2 - ..."
+	"mwoauth-listgrantrights-right-display": "Used to format rights descriptions on the grant/rights mapping table. Parameters:\n* $1 - ...\n* $2 - ...",
+	"mwoauth-tag-reserved": "Error message displayed on [[Special:Tags]] when a user attempts to manually create a change tag reserved by OAuth."
 }
