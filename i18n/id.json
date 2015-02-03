@@ -2,10 +2,34 @@
 	"@metadata": {
 		"authors": [
 			"Raynasution",
-			"Ilham151096"
+			"Ilham151096",
+			"Iwan Novirion"
 		]
 	},
+	"mwoauth-invalid-field": "Terjadi nilai tidak valid untuk bidang \"$1\"",
+	"mwoauth-invalid-field-generic": "Terjadi nilai tidak valid",
+	"mwoauth-field-hidden": "(informasi ini tersembunyi)",
+	"mwoauth-field-private": "(informasi ini pribadi)",
+	"mwoauth-grant-generic": "\"$1\" bundel hak akses",
 	"mwoauth-prefs-managegrants": "Aplkasi tersambung:",
+	"mwoauth-prefs-managegrantslink": "Kelola $1 {{PLURAL:$1|aplikasi}} terhubung",
+	"mwoauth-consumer-allwikis": "Semua proyek di situs ini",
+	"mwoauth-consumer-key": "Kunci konsumen:",
+	"mwoauth-consumer-name": "Nama aplikasi:",
+	"mwoauth-consumer-version": "Versi konsumen:",
+	"mwoauth-consumer-user": "Pengembang:",
+	"mwoauth-consumer-stage": "Status terkini:",
+	"mwoauth-consumer-email": "Alamat surel:",
+	"mwoauth-consumer-description": "Deskripsi aplikasi:",
+	"mwoauthconsumerregistration-navigation": "Navigasi:",
+	"mwoauthmanageconsumers-search-publisher": "konsumen dari pengguna ini",
+	"mwoauthlistconsumers-user": "Pengembang",
 	"oauthmanagemygrants": "Kelola aplikasi tersambung",
+	"mwoauthmanagemygrants-text": "Halaman ini berisi daftar aplikasi yang dapat menggunakan akun Anda. Aplikasi-aplikasi tersebut, ruang lingkup aksesnya terbatas pada hak akses yang Anda berikan saat Anda memberi wewenang untuk bertindak atas nama Anda. Jika Anda secara terpisah memberi wewenang pada aplikasi untuk mengakses proyek wiki yang berbeda atas nama Anda, maka Anda akan melihat konfigurasi terpisah untuk setiap proyek seperti di bawah ini.\n\nAplikasi yang terhubung mengakses akun Anda dengan menggunakan protokol OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Pelajari lebih lanjut mengenai aplikasi yang terhubung])</span>",
+	"mwoauthmanagemygrants-navigation": "Navigasi:",
+	"mwoauthmanagemygrants-showlist": "Daftar aplikasi tersambung",
+	"mwoauthmanagemygrants-wikiallowed": "Diizinkan pada proyek:",
+	"mwoauthmanagemygrants-review": "kelola akses",
+	"mwoauthmanagemygrants-confirm-legend": "Kelola aplikasi terhubung",
 	"mwoauth-grant-group-administration": "Lakukan tindakan administratif"
 }
