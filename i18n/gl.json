@@ -161,7 +161,7 @@
 	"mwoauth-invalid-authorization-wrong-wiki": "As cabeceiras de autorización da súa solicitude non son válidas para $1",
 	"mwoauth-invalid-authorization-invalid-user": "As cabeceiras de autorización da súa solicitude son para un usuario que non existe aquí",
 	"mwoauth-invalid-authorization-wrong-user": "As cabeceiras de autorización da súa solicitude son para un usuario diferente",
-	"mwoauth-invalid-authorization-not-approved": "As cabeceiras de autorización da súa solicitude son para un consumidor OAuth que non está aprobado actualmente",
+	"mwoauth-invalid-authorization-not-approved": "Parece que a aplicación que está tentando conectar non está correctamente configurada. Contacte co autor de \"$1\" para solicitar axuda.",
 	"mwoauth-invalid-authorization-blocked-user": "As cabeceiras de autorización da súa solicitude son para un usuario que está bloqueado",
 	"mwoauth-form-description-allwikis": "Boas $1:\n\n'''$2''' quere realizar as seguintes accións no seu nome en todos os proxectos deste sitio:\n\n\n$4",
 	"mwoauth-form-description-onewiki": "Boas $1:\n\n'''$2''' quere realizar as seguintes accións no seu nome en ''$4'':\n\n\n$5",

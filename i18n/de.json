@@ -263,5 +263,6 @@
 	"action-mwoauthviewsuppressed": "unterdrückte OAuth-Anwendungen anzusehen",
 	"mwoauth-listgrantrights-summary": "Es folgt eine Liste mit OAuth-Berechtigungen mit ihrem verknüpften Zugriff auf Benutzerrechte. Benutzer können Anwendungen autorisieren, um ihr Benutzerkonto zu verwenden, aber mit beschränkten Berechtigungen basierend auf den Rechten, die der Benutzer der Anwendung gegeben hat. Eine Anwendung agiert im Namen eines Benutzers, die keine Rechte verwenden kann, die der Benutzer nicht hat.\nEs gibt [[{{MediaWiki:Listgrouprights-helppage}}|zusätzliche Informationen]] über einzelne Rechte.",
 	"mwoauth-listgrants-grant": "Berechtigung",
-	"mwoauth-listgrants-rights": "Berechtigungen"
+	"mwoauth-listgrants-rights": "Berechtigungen",
+	"mwoauth-tag-reserved": "Markierungen, die mit <code>OAuth CID:</code> beginnen, sind für die Verwendung durch OAuth reserviert."
 }
