@@ -259,5 +259,6 @@
 	"action-mwoauthviewsuppressed": "преглед на скриени потрошувачи на OAuth",
 	"mwoauth-listgrantrights-summary": "Ова е список на доделувања на OAuth, секое со своите права. Корисниците можат да овластуваат извршници што ќе ги користат сметки, но со ограничувања во дозволите што им се доделени. Покрај ова, извршникот што делува во име на корисникот е ограничен на нештата на кои има права самиот корисник.\nМоже да најдете [[{{MediaWiki:Listgrouprights-helppage}}|уште информации]] за поединечните права.",
 	"mwoauth-listgrants-grant": "Доделување",
-	"mwoauth-listgrants-rights": "Права"
+	"mwoauth-listgrants-rights": "Права",
+	"mwoauth-tag-reserved": "Ознаките што почнуваат со <code>OAuth CID:</code> се резервирани за употреба од OAuth."
 }

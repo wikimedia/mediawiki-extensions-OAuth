@@ -138,5 +138,6 @@
 	"mwoauth-oauth-exception": "Ocorreu um erro no protocolo OAuth: $1",
 	"right-mwoauthviewprivate": "Ver dados privados do OAuth",
 	"mwoauth-listgrants-grant": "Conceder",
-	"mwoauth-listgrants-rights": "Privilégios"
+	"mwoauth-listgrants-rights": "Privilégios",
+	"mwoauth-tag-reserved": "O uso de etiquetas iniciadas por <code>OAuth CID:</code> está reservada para o OAuth."
 }

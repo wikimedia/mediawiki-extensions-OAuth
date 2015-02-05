@@ -272,5 +272,6 @@
 	"action-mwoauthviewsuppressed": "查看已阻止的OAuth应用程序",
 	"mwoauth-listgrantrights-summary": "以下是OAuth功能的列表，并与用户权限的访问权相关。用户可以授予应用程序访问它们的账户，但限定于用户授予应用程序的功能权限。代表一位用户的应用程序不能使用用户没有的权限。\n这里可能有关于个别权限的[[{{MediaWiki:Listgrouprights-helppage}}|额外信息]]。",
 	"mwoauth-listgrants-grant": "授权",
-	"mwoauth-listgrants-rights": "权限"
+	"mwoauth-listgrants-rights": "权限",
+	"mwoauth-tag-reserved": "以<code>OAuth CID:</code>开头的标签被OAuth保留使用。"
 }

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Elisardojm",
-			"Toliño"
+			"Toliño",
+			"Fisterraeomar"
 		]
 	},
 	"mwoauth-desc": "Permite o uso do OAuth 1.0a para autorización de API",
@@ -215,5 +216,6 @@
 	"action-mwoauthmanagemygrants": "administrar as súas concesións OAuth",
 	"action-mwoauthproposeconsumer": "propoñer novos consumidores OAuth",
 	"action-mwoauthupdateownconsumer": "actualizar os consumidores OAuth que vostede controle",
-	"action-mwoauthviewsuppressed": "ver os consumidores OAuth eliminados"
+	"action-mwoauthviewsuppressed": "ver os consumidores OAuth eliminados",
+	"mwoauth-tag-reserved": "As etiquetas que comezan con <code>OAuth CID:</code> están reservadas para OAuth."
 }
