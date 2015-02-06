@@ -132,6 +132,10 @@ $wgMWOAuthGrantPermissions['sendemail']['sendemail'] = true;
 
 $wgMWOAuthGrantPermissions['createaccount']['createaccount'] = true;
 
+/* Do not alter these grants! They're specially handled. */
+$wgMWOAuthGrantPermissions['authonly'] = array();
+$wgMWOAuthGrantPermissions['authonlyprivate'] = array();
+
 /** @var Array Map of grants to their UI grouping */
 $wgMWOAuthGrantPermissionGroups = array(
 	// Hidden grants are implicitly present
@@ -162,6 +166,9 @@ $wgMWOAuthGrantPermissionGroups = array(
 	'createaccount'       => 'administration',
 
 	'highvolume'          => 'high-volume',
+
+	'authonly'            => 'authentication',
+	'authonlyprivate'     => 'authentication',
 );
 
 /** @var integer Seconds after which an idle consumer request is marked as "expired" */

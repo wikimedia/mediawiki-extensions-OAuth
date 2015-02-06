@@ -26,6 +26,7 @@ namespace MediaWiki\Extensions\OAuth;
  * for manage the specific grants given or revoking access for the consumer
  */
 class SpecialMWOAuthManageMyGrants extends \SpecialPage {
+	private static $irrevocableGrants = null;
 	protected static $stageKeyMap = array(
 		MWOAuthConsumer::STAGE_PROPOSED => 'proposed',
 		MWOAuthConsumer::STAGE_REJECTED => 'rejected',
@@ -184,12 +185,14 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 					),
 					'tooltips' => array(
 						MWOAuthUtils::getGrantsLink( 'useoauth' ) => $this->msg( 'mwoauthmanagemygrants-useoauth-tooltip' )->text(),
+						MWOAuthUtils::getGrantsLink( 'authonly' ) => $this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
+						MWOAuthUtils::getGrantsLink( 'authonlyprivate' ) => $this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
 					),
 					'force-options-on' => array_map(
 						function( $g ) { return "grant-$g"; },
 						( $type === 'revoke' )
 							? MWOAuthUtils::getValidGrants()
-							: MWOAuthUtils::getHiddenGrants()
+							: self::irrevocableGrants()
 					),
 					'validation-callback' => null // different format
 				),
@@ -274,10 +277,12 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
 
 		$links = array();
-		$links[] = \Linker::linkKnown(
-			$this->getPageTitle( 'update/' . $cmra->get( 'id' ) ),
-			$this->msg( 'mwoauthmanagemygrants-review' )->escaped()
-		);
+		if ( array_diff( $cmr->get( 'grants' ), self::irrevocableGrants() ) ) {
+			$links[] = \Linker::linkKnown(
+				$this->getPageTitle( 'update/' . $cmra->get( 'id' ) ),
+				$this->msg( 'mwoauthmanagemygrants-review' )->escaped()
+			);
+		}
 		$links[] = \Linker::linkKnown(
 			$this->getPageTitle( 'revoke/' . $cmra->get( 'id' ) ),
 			$this->msg( 'mwoauthmanagemygrants-revoke' )->escaped()
@@ -303,6 +308,16 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		$r .= '</li>';
 
 		return $r;
+	}
+
+	private static function irrevocableGrants() {
+		if ( self::$irrevocableGrants === null ) {
+			self::$irrevocableGrants = array_merge(
+				MWOAuthUtils::getHiddenGrants(),
+				array( 'authonly', 'authonlyprivate' )
+			);
+		}
+		return self::$irrevocableGrants;
 	}
 }
 

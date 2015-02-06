@@ -87,6 +87,13 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 			$allWikis = MWOAuthUtils::getAllWikiNames();
 
+			// 'authonly' and 'authonlyprivate' are specially handled, don't
+			// include them in the normal list of grants.
+			$showGrants = array_diff(
+				MWOAuthUtils::getValidGrants(),
+				array( 'authonly', 'authonlyprivate' )
+			);
+
 			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), array(), $dbw );
 			$form = new \HTMLForm(
@@ -136,25 +143,36 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'required' => true,
 						'default' => '*'
 					),
+					'granttype'  => array(
+						'type' => 'radio',
+						'options-messages' => array(
+							'mwoauth-grant-authonly' => 'authonly',
+							'mwoauth-grant-authonlyprivate' => 'authonlyprivate',
+							'mwoauth-granttype-normal' => 'normal',
+						),
+						'label-message' => 'mwoauth-consumer-granttypes',
+						'default' => 'normal',
+					),
 					'grants'  => array(
 						'type' => 'checkmatrix',
 						'label-message' => 'mwoauth-consumer-grantsneeded',
 						'help-message' => 'mwoauth-consumer-grantshelp',
+						'hide-if' => array( '!==', 'wpgranttype', 'normal' ),
 						'columns' => array(
 							$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
 						),
 						'rows' => array_combine(
-							array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getGrantsLink', MWOAuthUtils::getValidGrants() ),
-							MWOAuthUtils::getValidGrants()
+							array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getGrantsLink', $showGrants ),
+							$showGrants
 						),
 						'tooltips' => array_combine(
-							array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::grantName', MWOAuthUtils::getValidGrants() ),
+							array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::grantName', $showGrants ),
 							array_map(
 								function( $rights ) use ( $lang ) {
 									return $lang->semicolonList( array_map(
 										'\User::getRightDescription', $rights ) );
 								},
-								MWOAuthUtils::getRightsByGrant()
+								array_intersect_key( MWOAuthUtils::getRightsByGrant(), array_flip( $showGrants ) )
 							)
 						),
 						'force-options-on' => array_map(
