@@ -262,5 +262,6 @@
 	"action-mwoauthviewsuppressed": "להציג צרכני OAuth מועלמים",
 	"mwoauth-listgrantrights-summary": "להלן רשימת זיכיונות של OAuth, עם הגישות להרשאות משתמש שמשויכות אליהן. משתמשים יכולים לאשר ליישומים להשתמש בחשבון שלהם, אבל עם הרשאות מוגבלות בהתאם לזיכיון שהשמשתמש נתן ליישום. יישום שפועל בשמו של המשתמש אינו יכול להשתמש בהרשאות שאין למשתמש.\nייתכן שיש [[{{MediaWiki:Listgrouprights-helppage}}|מידע נוסף]] על הרשאות פרטניות.",
 	"mwoauth-listgrants-grant": "זיכיון",
-	"mwoauth-listgrants-rights": "הרשאות"
+	"mwoauth-listgrants-rights": "הרשאות",
+	"mwoauth-tag-reserved": "תגים שמתחילים ב־<code dir=\"ltr\">OAuth CID:</code> שמורים לשימוש על־ידי OAuth."
 }
