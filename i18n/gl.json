@@ -51,7 +51,7 @@
 	"mwoauth-consumer-stage-approved": "aprobado",
 	"mwoauth-consumer-stage-disabled": "desactivado",
 	"mwoauth-consumer-stage-suppressed": "suprimido",
-	"oauthconsumerregistration": "Rexistro de consumidores OAuth",
+	"oauthconsumerregistration": "Rexistro de consumidor OAuth",
 	"mwoauthconsumerregistration-notloggedin": "Debe acceder ao sistema para acceder a esta páxina.",
 	"mwoauthconsumerregistration-navigation": "Navegación:",
 	"mwoauthconsumerregistration-propose": "Propoñer un novo consumidor",
