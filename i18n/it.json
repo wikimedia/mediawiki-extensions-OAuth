@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"Ricordisamoa"
 		]
 	},
 	"mwoauth-desc": "Consente l'utilizzo di OAuth 1.0a per le API di autorizzazione",
@@ -217,7 +218,7 @@
 	"mwoauth-grant-group-email": "Invia email",
 	"mwoauth-grant-group-high-volume": "Esegue azioni massive",
 	"mwoauth-grant-group-customization": "Personalizzazione e preferenze",
-	"mwoauth-grant-group-administration": "Esegue azioni adminstrative",
+	"mwoauth-grant-group-administration": "Esegue azioni amministrative",
 	"mwoauth-grant-group-other": "Attività varie",
 	"mwoauth-grant-blockusers": "Blocca e sblocca utenti",
 	"mwoauth-grant-createaccount": "Crea un'utenza",
