@@ -219,13 +219,13 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		$form->suppressDefaultSubmit();
 		if ( $type === 'revoke' ) {
 			$form->addButton( 'renounce',
-				$this->msg( 'mwoauthmanagemygrants-renounce' )->escaped(),
+				$this->msg( 'mwoauthmanagemygrants-renounce' )->text(),
 				null,
 				array( 'class' => 'mw-ui-button mw-ui-destructive' )
 			);
 		} else {
 			$form->addButton( 'update',
-				$this->msg( 'mwoauthmanagemygrants-update' )->escaped(),
+				$this->msg( 'mwoauthmanagemygrants-update' )->text(),
 				null,
 				array( 'class' => 'mw-ui-button mw-ui-primary' )
 			);
