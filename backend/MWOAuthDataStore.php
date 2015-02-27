@@ -46,6 +46,9 @@ class MWOAuthDataStore extends OAuthDataStore {
 				$token_type,
 				$token
 			) );
+			if ( $returnToken === '**USED**' ) {
+				throw new MWOAuthException( 'mwoauthdatastore-request-token-already-used' );
+			}
 			if ( $token === null || !( $returnToken instanceof MWOAuthToken ) ) {
 				throw new MWOAuthException( 'mwoauthdatastore-request-token-not-found' );
 			}
@@ -174,7 +177,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 		$cacheKey = MWOAuthUtils::getCacheKey( 'token',
 			$consumer->get( 'consumerKey' ), 'request', $token->key );
 		$accessToken = $this->lookup_token( $consumer, 'access', $token->getAccessKey() );
-		$this->cache->delete( $cacheKey );
+		$this->cache->set( $cacheKey, '**USED**' , 600 );
 		wfDebugLog( 'OAuth', __METHOD__ .
 			": New access token {$accessToken->key} for {$consumer->key}" );
 		return $accessToken;
