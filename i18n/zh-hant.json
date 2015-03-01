@@ -242,7 +242,7 @@
 	"action-mwoauthproposeconsumer": "提出申請新的 OAuth Consumer",
 	"action-mwoauthupdateownconsumer": "更新你管控的 OAuth Consumer",
 	"action-mwoauthviewsuppressed": "檢示已禁止使用的 OAuth Consumer",
-	"mwoauth-listgrantrights-summary": "以下是OAuth功能的列表，並與用戶權限相關連。用戶可以授權應用程式使用他們的帳戶，但限於用戶授予應用程式的權限。同時，應用程式亦不能使用用戶本身沒有的權限。\n您可能可以在[[{{MediaWiki:Listgrouprights-helppage}}|這裡]]取得個別權限的額外資料。",
+	"mwoauth-listgrantrights-summary": "以下是 OAuth 功能的清單，並與使用者權限相關連。使用者可以授權應用程式使用他們的帳號，但限於使用者授予應用程式的權限。同時，應用程式亦不能使用使用者本身沒有的權限。\n您可能可以在[[{{MediaWiki:Listgrouprights-helppage}}|這裡]]取得個別權限的額外資料。",
 	"mwoauth-listgrants-grant": "授權",
 	"mwoauth-listgrants-rights": "權限"
 }
