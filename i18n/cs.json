@@ -187,6 +187,7 @@
 	"mwoauth-bad-request-invalid-action-contact": "Omlouváme se, něco se rozbilo. Pro pomoc s řešením budete muset [$1 kontaktovat] autora aplikace.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Neznámé URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E003 E003]</span>",
 	"mwoauthdatastore-access-token-not-found": "K tomuto schválenému autorizačnímu tokenu nebylo nalezeno žádné schválené oprávnění.",
 	"mwoauthdatastore-request-token-not-found": "Omlouváme se, ale při připojování této aplikace se něco rozbilo.\nVraťte se a zkuste znovu připojit svůj účet, nebo kontaktujte autora aplikace.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth token nebyl nalezen, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E004 E004]</span>",
+	"mwoauthdatastore-request-token-already-used": "Tento požadavek byl již dokončen a nelze ho odeslat podruhé. Vraťte se do aplikace a zkuste svůj účet připojit znovu nebo se obraťte na autora aplikace.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth token již použit, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauthdatastore-bad-token": "Žádný token odpovídající vašemu požadavku nebyl nalezen.",
 	"mwoauthdatastore-bad-source-ip": "Požadavek přišel z neplatné IP adresy.",
 	"mwoauthdatastore-bad-verifier": "Poskytnutý ověřovací kód nebyl platný.",
@@ -260,5 +261,6 @@
 	"action-mwoauthviewsuppressed": "prohlížet si utajené konzumenty OAuth",
 	"mwoauth-listgrantrights-summary": "Následující seznam obsahuje oprávnění OAuth s odpovídajícím přístupem k uživatelským právům. Uživatelé mohou aplikace autorizovat k využití jejich účtu, ale s omezenými právy na základě oprávnění, která uživatel aplikaci přidělil. Aplikace konající jménem uživatele ale nemůže využít oprávnění, která uživatel nemá.\nK jednotlivým oprávněním mohou existovat [[{{MediaWiki:Listgrouprights-helppage}}|doplňující informace]].",
 	"mwoauth-listgrants-grant": "Oprávnění OAuth",
-	"mwoauth-listgrants-rights": "Uživatelská práva"
+	"mwoauth-listgrants-rights": "Uživatelská práva",
+	"mwoauth-tag-reserved": "Značky začínající <code>OAuth CID:</code> jsou vyhrazeny pro OAuth."
 }
