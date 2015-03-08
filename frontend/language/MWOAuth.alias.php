@@ -82,6 +82,11 @@ $specialPageAliases['ko'] = array(
 	'OAuth' => array( 'MWO인증' ),
 );
 
+/** Luxembourgish (Lëtzebuergesch) */
+$specialPageAliases['lb'] = array(
+	'OAuthManageMyGrants' => array( 'Meng_OAuth-Autorisatioune_geréieren' ),
+);
+
 /** Macedonian (македонски) */
 $specialPageAliases['mk'] = array(
 	'OAuthConsumerRegistration' => array( 'МВOAuthРегистрацијаПотрошувач' ),
