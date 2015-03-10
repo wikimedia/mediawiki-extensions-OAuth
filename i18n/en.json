@@ -190,7 +190,7 @@
 	"mwoauthdatastore-bad-verifier": "The verification code provided was not valid.",
 	"mwoauthdatastore-invalid-token-type": "The requested token type is invalid.",
 	"mwoauthgrants-general-error": "There was an error in your OAuth request.",
-	"mwoauthserver-bad-consumer": "\"$1\" is no longer approved as a Connected App, [$2 contact] the application author for help.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Connected OAuth app not approved, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>",
+	"mwoauthserver-bad-consumer": "\"$1\" is not approved as a Connected App. [$2 Contact] the application author for help.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Connected OAuth app not approved, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>",
 	"mwoauthserver-bad-consumer-key": "Sorry, something went wrong connecting this application.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unknown OAuth key, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>",
 	"mwoauthserver-insufficient-rights": "Your account is not allowed to use Connected Apps, contact your site administrator to find out why.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Insufficient OAuth user rights, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "Invalid token in your request.",
