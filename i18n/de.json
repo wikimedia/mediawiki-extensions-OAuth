@@ -195,7 +195,7 @@
 	"mwoauthdatastore-bad-verifier": "Der angegebene Verifikationscode war nicht gültig",
 	"mwoauthdatastore-invalid-token-type": "Der angeforderte Tokentyp ist ungültig",
 	"mwoauthgrants-general-error": "In deiner OAuth-Anfrage gab es einen Fehler",
-	"mwoauthserver-bad-consumer": "$1 ist nicht mehr als verbundene Anwendung bestätigt. Um Hilfe zu erhalten, [$2 kontaktiere] den Anwendungsautor.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Verbundene OAuth-Anwendung nicht bestätigt, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>",
+	"mwoauthserver-bad-consumer": "„$1“ ist nicht als verbundene Anwendung bestätigt. Um Hilfe zu erhalten, [$2 kontaktiere] den Anwendungsautor.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Verbundene OAuth-Anwendung nicht bestätigt, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>",
 	"mwoauthserver-bad-consumer-key": "Bei der Verbindung dieser Anwendung ist leider etwas schief gelaufen.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unbekannter OAuth-Schlüssel, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>",
 	"mwoauthserver-insufficient-rights": "Dein Benutzerkonto ist nicht berechtigt, verbundene Anwendungen zu verwenden. Kontaktiere deinen Websiteadministrator, um den Grund herauszufinden.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Nicht ausreichende OAuth-Benutzerrechte, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "Deine Anfrage enthält einen ungültigen Token",

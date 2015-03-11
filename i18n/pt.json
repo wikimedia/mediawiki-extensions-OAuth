@@ -102,6 +102,7 @@
 	"mwoauthmanagemygrants-revoke-text": "Utilize o formulário abaixo para revogar o acesso a um aplicativo que esteja a aceder à sua conta.",
 	"mwoauthmanagemygrants-confirm-legend": "Gerir aplicativos conectados",
 	"mwoauthmanagemygrants-action": "Alterar estado:",
+	"mwoauthdatastore-request-token-already-used": "Este pedido já foi concluído e não pode ser apresentado novamente.\nRetroceda para a aplicação e tente iniciar sessão novamente, ou contate o autor da aplicação.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Chave OAuth já usada, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauthdatastore-bad-source-ip": "O pedido partiu de um endereço de IP inválido.",
 	"mwoauthdatastore-bad-verifier": "O código de verificação fornecido não era válido.",
 	"mwoauthgrants-general-error": "Ocorreu um erro no seu pedido OAuth.",
