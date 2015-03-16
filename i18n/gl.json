@@ -3,7 +3,8 @@
 		"authors": [
 			"Elisardojm",
 			"Toliño",
-			"Fisterraeomar"
+			"Fisterraeomar",
+			"Banjo"
 		]
 	},
 	"mwoauth-desc": "Permite o uso do OAuth 1.0a para autorización de API",
@@ -120,6 +121,14 @@
 	"mwoauthmanageconsumers-success-rejected": "Rexeitouse a solicitude.",
 	"mwoauthmanageconsumers-success-disabled": "Desactivouse o consumidor.",
 	"mwoauthmanageconsumers-success-reanable": "Reactivouse o consumidor.",
+	"mwoauthlistconsumers-view": "detalles",
+	"mwoauthlistconsumers-description": "Descrición",
+	"mwoauthlistconsumers-wiki": "Proxecto aplicable",
+	"mwoauthlistconsumers-status": "Estado",
+	"mwoauth-consumer-stage-any": "calquera",
+	"mwoauthlistconsumers-status-approved": "aprobado",
+	"mwoauthlistconsumers-status-disabled": "desactivado",
+	"mwoauthlistconsumers-status-rejected": "rexeitado",
 	"oauthmanagemygrants": "Administrar as aplicacións conectadas",
 	"mwoauthmanagemygrants-notloggedin": "Debe acceder ao sistema para acceder a esta páxina.",
 	"mwoauthmanagemygrants-navigation": "Navegación:",
@@ -217,5 +226,6 @@
 	"action-mwoauthproposeconsumer": "propoñer novos consumidores OAuth",
 	"action-mwoauthupdateownconsumer": "actualizar os consumidores OAuth que vostede controle",
 	"action-mwoauthviewsuppressed": "ver os consumidores OAuth eliminados",
+	"mwoauth-listgrants-rights": "Dereitos",
 	"mwoauth-tag-reserved": "As etiquetas que comezan con <code>OAuth CID:</code> están reservadas para OAuth."
 }

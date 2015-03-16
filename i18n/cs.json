@@ -193,7 +193,7 @@
 	"mwoauthdatastore-bad-verifier": "Poskytnutý ověřovací kód nebyl platný.",
 	"mwoauthdatastore-invalid-token-type": "Požadovaný typ tokenu není platný.",
 	"mwoauthgrants-general-error": "Ve vašem OAuth požadavku byla chyba.",
-	"mwoauthserver-bad-consumer": "„$1“ už není schválená Připojená aplikace, pro pomoc [$2 kontaktujte] autora aplikace.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Připojená OAuth aplikace není schválena, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E005 E005]</span>",
+	"mwoauthserver-bad-consumer": "„$1“ není schválená Připojená aplikace. Pro pomoc [$2 kontaktujte] autora aplikace.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Připojená OAuth aplikace není schválena, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E005 E005]</span>",
 	"mwoauthserver-bad-consumer-key": "Omlouváme se, ale při připojování této aplikace se něco rozbilo.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Neznámý klíč OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E006 E006]</span>",
 	"mwoauthserver-insufficient-rights": "Váš účet nemá dovoleno využívat Připojené aplikace, pro zjištění důvodů kontaktujte správce vašeho serveru.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Nedostatečná práva uživatele OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "Váš požadavek obsahuje neplatný token.",
