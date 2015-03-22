@@ -3,7 +3,8 @@
 		"authors": [
 			"Aftab1995",
 			"Gitartha.bordoloi",
-			"Tauhid16"
+			"Tauhid16",
+			"Aftabuzzaman"
 		]
 	},
 	"mwoauth-prefs-managegrants": "সংযুক্ত অ্যাপগুলি:",
@@ -26,6 +27,7 @@
 	"mwoauthmanageconsumers-disable": "নিস্ক্রিয়",
 	"mwoauthmanageconsumers-reenable": "অনুমোদিত",
 	"mwoauthmanageconsumers-reason": "কারণ:",
+	"oauthlistconsumers": "ওআউথ অ্যাপ্লিকেশনের তালিকা",
 	"mwoauthlistconsumers-view": "বিস্তারিত",
 	"mwoauthlistconsumers-user": "প্রকাশক",
 	"mwoauthlistconsumers-description": "বিবরণ",
@@ -36,6 +38,7 @@
 	"mwoauthlistconsumers-status-disabled": "নিস্ক্রিয়",
 	"mwoauthlistconsumers-status-rejected": "প্রত্যাখ্যাত",
 	"mwoauthlistconsumers-status-expired": "মেয়াদোত্তীর্ণ",
+	"oauthmanagemygrants": "সংযুক্ত অ্যাপ্লিকেশন পরিচালনা",
 	"mwoauthmanagemygrants-user": "প্রকাশক:",
 	"mwoauthmanagemygrants-description": "বিবরণ",
 	"mwoauth-form-description-allwikis-nogrants": "হাই $1,\n\n'''$2''' এই সাইটের সব প্রকল্পে আপনার পক্ষে মৌলিক প্রবেশাধিকার নিতে চায়।",

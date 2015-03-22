@@ -5,5 +5,7 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "Ferbünjen werktjüügen:",
+	"mwoauth-prefs-managegrantslink": "Ferbünjen {{PLURAL:$1|werktjüch|werktjüügen}} ferwalte ($1)",
+	"oauthlistconsumers": "List faan OAuth-werktjüügen",
 	"oauthmanagemygrants": "Ferbünjen werktjüügen ferwalte"
 }
