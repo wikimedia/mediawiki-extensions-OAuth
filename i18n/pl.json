@@ -96,6 +96,8 @@
 	"mwoauth-grant-protect": "Zabezpieczanie i odbezpieczanie stron",
 	"mwoauth-grant-rollback": "Wycofywanie zmian na stronach",
 	"mwoauth-grant-sendemail": "Wysyłanie e‐maili do innych użytkowników",
+	"mwoauth-grant-uploadeditmovefile": "Przesyłanie, zamiana i przenoszenie plików",
+	"mwoauth-grant-uploadfile": "Przesyłanie nowych plików",
 	"mwoauth-grant-useoauth": "Podstawowe uprawnienia",
 	"mwoauth-grant-viewmywatchlist": "Zobacz listę obserwowanych",
 	"right-mwoauthproposeconsumer": "Proponowanie nowych konsumentów OAuth",
