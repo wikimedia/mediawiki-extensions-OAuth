@@ -24,6 +24,7 @@ span.mw-mwoauth-authorize-form-grantgroup {
 }
 
 input.mw-mwoauth-authorize-button {
+	float: right;
 	margin-left: .7em;
 	margin-right: .7em;
 	margin-bottom: .5em;
