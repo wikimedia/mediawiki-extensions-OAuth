@@ -94,6 +94,7 @@
 				"ext.MWOAuth.AuthorizeDialog.js"
 			],
 			"dependencies": [
+				"oojs-ui-core",
 				"oojs-ui-windows"
 			],
 			"messages": [

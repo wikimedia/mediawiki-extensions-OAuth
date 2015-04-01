@@ -22,6 +22,33 @@
 		font-weight: bold;
 		font-size: 1.2em;
 	}
+
+	.mw-htmlform-ooui-header {
+		margin-top: 0;
+	}
+
+	.client-js .mw-body-content & {
+		display: none; /* no flicker */
+	}
+
+	.mw-htmlform-submit-buttons {
+		display: inline-block;
+		margin-right: 1em;
+	}
+
+	.oo-ui-messageDialog-text & { /* stylelint-disable-line no-descending-specificity */
+		.mw-htmlform-submit-buttons {
+			float: right;
+			margin-right: 0;
+			margin-top: 0;
+		}
+
+		&:after {
+			content: '';
+			clear: both;
+			display: block;
+		}
+	}
 }
 
 input.mw-mwoauth-authorize-button {
@@ -29,16 +56,4 @@ input.mw-mwoauth-authorize-button {
 	margin-left: 0.7em;
 	margin-right: 0.7em;
 	margin-bottom: 0.5em;
-}
-
-#mw-mwoauth-authorize-dialog {
-	.client-js .mw-body-content & {
-		display: none; /* no flicker */
-	}
-
-	.oo-ui-messageDialog-text &:after {
-		content: '';
-		clear: both;
-		display: block;
-	}
 }

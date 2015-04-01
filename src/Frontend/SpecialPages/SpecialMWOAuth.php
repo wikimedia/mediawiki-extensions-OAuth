@@ -36,6 +36,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 use MediaWiki\Extension\OAuth\UserStatementProvider;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Permissions\GrantsLocalization;
+use OOUI;
 use Psr\Log\LoggerInterface;
 use WikiMap;
 
@@ -447,16 +448,11 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			return;
 		}
 
-		$output->addModuleStyles(
-			[ 'mediawiki.ui', 'mediawiki.ui.button', 'ext.MWOAuth.Styles' ]
-		);
-		$output->addModules( 'ext.MWOAuth.AuthorizeDialog' );
-
 		$control = new ConsumerAcceptanceSubmitControl(
 			$this->getContext(), [], Utils::getCentralDB( DB_PRIMARY ), $this->oauthVersion
 		);
 
-		$form = \HTMLForm::factory( 'table',
+		$form = \HTMLForm::factory( 'ooui',
 			$control->registerValidators( $this->getRequestValidators( [
 				'existing' => $existing,
 				'consumerKey' => $consumerKey,
@@ -528,24 +524,35 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			'value' => $this->msg( 'mwoauth-form-button-approve' )->text(),
 			'id' => 'mw-mwoauth-accept',
 			'attribs' => [
-				'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-progressive'
-			]
+				'class' => 'mw-mwoauth-authorize-button'
+			],
+			'flags' => [ 'primary', 'progressive' ],
 		] );
 		$form->addButton( [
 			'name' => 'cancel',
 			'value' => $this->msg( 'mwoauth-form-button-cancel' )->text(),
 			'attribs' => [
-				'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-quiet'
-			]
+				'class' => 'mw-mwoauth-authorize-button'
+			],
+			'framed' => false,
 		] );
 
 		$form->addFooterText( $this->getSkin()->footerLink( 'privacy', 'privacypage' ) );
 
-		$output->addHTML(
-			'<div id="mw-mwoauth-authorize-dialog" class="mw-ui-container">' );
-		$status = $form->show();
+		$out = $this->getOutput();
+		$out->enableOOUI();
+		$out->addModuleStyles( 'ext.MWOAuth.AuthorizeForm' );
+		$out->addModules( 'ext.MWOAuth.AuthorizeDialog' );
 
-		$output->addHTML( '</div>' );
+		$form->prepareForm();
+		$status = $form->tryAuthorizedSubmit();
+
+		$out->addHtml( new OOUI\PanelLayout( [
+			'id' => 'mw-mwoauth-authorize-panel',
+			'expanded' => false,
+			'content' => new OOUI\HtmlSnippet( $form->getHTML( $status ) ),
+		] ) );
+
 		if ( $status instanceof \Status && $status->isOK() ) {
 			if ( $this->oauthVersion === Consumer::OAUTH_VERSION_2 ) {
 				$this->redirectToREST( [
