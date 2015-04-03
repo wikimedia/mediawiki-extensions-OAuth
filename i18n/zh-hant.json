@@ -222,7 +222,7 @@
 	"mwoauth-grant-patrol": "巡邏頁面的變更",
 	"mwoauth-grant-protect": "保護與取消保護頁面",
 	"mwoauth-grant-rollback": "還原頁面的變更",
-	"mwoauth-grant-sendemail": "傳送電子郵件給其他使用者",
+	"mwoauth-grant-sendemail": "傳送電子郵件聯絡其他使用者",
 	"mwoauth-grant-uploadeditmovefile": "上傳、取代與移動檔案",
 	"mwoauth-grant-uploadfile": "上傳新檔案",
 	"mwoauth-grant-useoauth": "基本權限",

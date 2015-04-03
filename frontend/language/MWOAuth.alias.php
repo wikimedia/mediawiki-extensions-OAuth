@@ -87,6 +87,11 @@ $specialPageAliases['lb'] = array(
 	'OAuthManageMyGrants' => array( 'Meng_OAuth-Autorisatioune_geréieren' ),
 );
 
+/** لوری (لوری) */
+$specialPageAliases['lrc'] = array(
+	'OAuth' => array( 'قسم_حردن،_قسم_حردن' ),
+);
+
 /** Macedonian (македонски) */
 $specialPageAliases['mk'] = array(
 	'OAuthConsumerRegistration' => array( 'МВOAuthРегистрацијаПотрошувач' ),
