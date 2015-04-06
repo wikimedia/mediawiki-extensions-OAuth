@@ -191,7 +191,7 @@
 	"mwoauthdatastore-bad-verifier": "Укажаниот потврден код е неважечки",
 	"mwoauthdatastore-invalid-token-type": "Побараниот тип на шифра е неважечки.",
 	"mwoauthgrants-general-error": "Се појави грешка во барањето за OAuth",
-	"mwoauthserver-bad-consumer": "„$1“ повеќе не е одобрен како поврзан извршник. Ако ви треба помош, [$2 обратете се] кај неговиот автор.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Неодобрен поврзан извршник на OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>",
+	"mwoauthserver-bad-consumer": "„$1“ не е одобрен како поврзан извршник. Ако ви треба помош, [$2 обратете се] кај неговиот автор.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Неодобрен поврзан извршник на OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>",
 	"mwoauthserver-bad-consumer-key": "Нажалост, нешто не е во ред со извршникот.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Непознат клуч за OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>",
 	"mwoauthserver-insufficient-rights": "На вашата сметка не ѝ е дозволено да користи Поврзани извршници. Обратете се кај администраторот на мрежното место за да дознаете зошто.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Недоволни кориснички права за OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "Неважечкa шифра во барањето.",
