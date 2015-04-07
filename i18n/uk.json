@@ -4,7 +4,8 @@
 			"Andriykopanytsia",
 			"Base",
 			"Ата",
-			"Olion"
+			"Olion",
+			"Piramidion"
 		]
 	},
 	"mwoauth-desc": "Дозволяє використовувати OAuth 1.0a для API авторизації",
@@ -245,8 +246,8 @@
 	"mwoauth-grant-viewmywatchlist": "Перегляд списку спостереження",
 	"mwoauth-oauth-exception": "Сталася помилка у протоколі OAuth:$1",
 	"mwoauth-callback-not-oob": "oauth_callback мусить бути заданим і слід задати \"oob\" (з урахуванням регістру)",
-	"right-mwoauthproposeconsumer": "Запропонувати нових споживачів OAuth",
-	"right-mwoauthupdateownconsumer": "Оновлення споживачів OAuth, яких ви контролюєте",
+	"right-mwoauthproposeconsumer": "пропонування нових споживачів OAuth",
+	"right-mwoauthupdateownconsumer": "оновлення споживачів OAuth, яких ви контролюєте",
 	"right-mwoauthmanageconsumer": "Управління споживачами OAuth",
 	"right-mwoauthsuppress": "Придушити споживачів OAuth",
 	"right-mwoauthviewsuppressed": "Перегляд пригнічених споживачів OAuth",
