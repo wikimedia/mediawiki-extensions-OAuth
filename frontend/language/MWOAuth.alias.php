@@ -36,6 +36,14 @@ $specialPageAliases['arz'] = array(
 	'OAuth' => array( 'او-اوت', 'مو_او_اوت' ),
 );
 
+/** Western Balochi (بلوچی رخشانی) */
+$specialPageAliases['bgn'] = array(
+	'OAuthConsumerRegistration' => array( 'سبت_کورتین' ),
+	'OAuthManageConsumers' => array( 'OAuth_ئی_مسرپ_کنۆکانی_مدیریت' ),
+	'OAuthListConsumers' => array( 'OAuth_ئی_مسرپ_کنۆکانی_لیست' ),
+	'OAuthManageMyGrants' => array( 'نی_OAuth_ئی_بخش_یی_مدیریت' ),
+);
+
 /** German (Deutsch) */
 $specialPageAliases['de'] = array(
 	'OAuthConsumerRegistration' => array( 'Verbraucherregistrierung' ),
