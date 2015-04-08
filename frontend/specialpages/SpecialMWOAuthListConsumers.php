@@ -257,9 +257,6 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		}
 		$links = $this->getLanguage()->pipeList( $links );
 
-		$time = $this->getLanguage()->timeanddate(
-			wfTimestamp( TS_MW, $cmr->get( 'registration' ) ), true );
-
 		$encStageKey = htmlspecialchars( $stageKey ); // sanity
 		$r = "<li class=\"mw-mwoauthlistconsumers-{$encStageKey}\">";
 
