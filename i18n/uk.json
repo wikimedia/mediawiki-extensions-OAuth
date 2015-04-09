@@ -252,7 +252,7 @@
 	"right-mwoauthsuppress": "Придушити споживачів OAuth",
 	"right-mwoauthviewsuppressed": "Перегляд пригнічених споживачів OAuth",
 	"right-mwoauthviewprivate": "Переглянути приватні дані OAuth",
-	"right-mwoauthmanagemygrants": "Керувати грантами OAuth",
+	"right-mwoauthmanagemygrants": "керування грантами OAuth",
 	"action-mwoauthmanageconsumer": "управляти споживачами OAuth",
 	"action-mwoauthmanagemygrants": "управляти вашими ґрантами OAuth",
 	"action-mwoauthproposeconsumer": "пропонувати нових споживачів OAuth",

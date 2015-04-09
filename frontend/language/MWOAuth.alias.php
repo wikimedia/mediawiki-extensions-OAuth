@@ -97,7 +97,7 @@ $specialPageAliases['lb'] = array(
 
 /** لوری (لوری) */
 $specialPageAliases['lrc'] = array(
-	'OAuth' => array( 'قسم_حردن،_قسم_حردن' ),
+	'OAuth' => array( 'قسم_حردن' ),
 );
 
 /** Macedonian (македонски) */
