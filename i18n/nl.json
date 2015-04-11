@@ -10,7 +10,7 @@
 			"Servien"
 		]
 	},
-	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a te gebruik voor API-toestemming",
+	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a te gebruiken voor API-toestemming",
 	"mwoauth-verified": "De toepassing heeft nu namens u toegang tot MediaWiki.\n\nGeef deze controlewaarde op in de toepassing om het proces te voltooien: '''$1'''",
 	"mwoauth-db-readonly": "De OAuthdatabase is tijdelijk vergrendeld. Probeer het over enkele minuten opnieuw.",
 	"mwoauth-missing-field": "Waarde voor het veld \"$1\" ontbreekt",
