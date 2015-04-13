@@ -362,8 +362,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			wfMessage( 'mwoauth-form-button-approve' )->text(), null,
 			array( 'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-constructive' ) );
 
-		$privacyMessage = MWOAuthUtils::getSiteMessage( 'mwoauth-form-privacypolicy-link' );
-		$form->addFooterText( wfMessage( $privacyMessage )->parse() );
+		$form->addFooterText( $this->getSkin()->privacyLink() );
 
 		$this->getOutput()->addHtml(
 			'<div id="mw-mwoauth-authorize-dialog" class="mw-ui-container">' );

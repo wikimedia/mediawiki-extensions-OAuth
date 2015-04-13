@@ -206,7 +206,6 @@
 	"mwoauth-form-description-allwikis-nogrants": "Hi $1,\n\nIn order to complete your request, '''$2''' needs permission to access information on all projects of this site on your behalf. No changes will be made with your account.",
 	"mwoauth-form-description-onewiki-nogrants": "Hi $1,\n\nIn order to complete your request, '''$2''' needs permission to access information on ''$4'' on your behalf. No changes will be made with your account.",
 	"mwoauth-form-legal": "",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|Privacy Policy]]",
 	"mwoauth-form-button-approve": "Allow",
 	"mwoauth-form-button-cancel": "Cancel",
 	"mwoauth-error": "Application Connection Error",
