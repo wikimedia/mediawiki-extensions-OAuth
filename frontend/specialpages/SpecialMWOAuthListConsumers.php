@@ -142,7 +142,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 * Show a form for the paged list of consumers
 	 */
 	protected function showConsumerListForm() {
-		$form = new \HTMLForm(
+		$form = \HTMLForm::factory( 'ooui',
 			[
 				'name' => [
 					'name'     => 'name',

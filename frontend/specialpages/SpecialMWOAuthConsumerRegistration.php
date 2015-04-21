@@ -87,7 +87,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), [], $dbw );
-			$form = new \HTMLForm(
+			$form = \HTMLForm::factory( 'ooui',
 				$control->registerValidators( [
 					'name' => [
 						'type' => 'text',
@@ -264,7 +264,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), [], $dbw );
-			$form = new \HTMLForm(
+			$form = \HTMLForm::factory( 'ooui',
 				$control->registerValidators( [
 					'nameShown' => [
 						'type' => 'info',

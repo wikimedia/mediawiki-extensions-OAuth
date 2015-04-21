@@ -142,7 +142,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 
 		$data = [ 'action' => $action ];
 		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), $data, $dbr );
-		$form = new \HTMLForm(
+		$form = \HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
 				'name' => [
 					'type' => 'info',
@@ -223,17 +223,17 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		];
 		$form->suppressDefaultSubmit();
 		if ( $type === 'revoke' ) {
-			$form->addButton( 'renounce',
-				$this->msg( 'mwoauthmanagemygrants-renounce' )->text(),
-				null,
-				[ 'class' => 'mw-ui-button mw-ui-destructive' ]
-			);
+			$form->addButton( [
+				'name' => 'renounce',
+				'value' => $this->msg( 'mwoauthmanagemygrants-renounce' )->text(),
+				'flags' => [ 'primary', 'destructive' ],
+			] );
 		} else {
-			$form->addButton( 'update',
-				$this->msg( 'mwoauthmanagemygrants-update' )->text(),
-				null,
-				[ 'class' => 'mw-ui-button mw-ui-progressive' ]
-			);
+			$form->addButton( [
+				'name' => 'update',
+				'value' => $this->msg( 'mwoauthmanagemygrants-update' )->text(),
+				'flags' => [ 'primary', 'progressive' ],
+			] );
 		}
 		$form->addPreText(
 			$this->msg( "mwoauthmanagemygrants-$type-text" )->parseAsBlock() );

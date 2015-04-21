@@ -248,7 +248,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 		$control = new MWOAuthConsumerSubmitControl( $this->getContext(), [], $dbw );
 		$restrictions = $cmr->get( 'restrictions' );
-		$form = new \HTMLForm(
+		$form = \HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
 				'consumerKeyShown' => [
 					'type' => 'info',

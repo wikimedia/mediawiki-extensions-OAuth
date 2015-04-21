@@ -344,7 +344,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$this->getOutput()->addModules( 'ext.MWOAuth.AuthorizeDialog' );
 
 		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), [], $dbr );
-		$form = new \HTMLForm(
+		$form = \HTMLForm::factory( 'table',
 			$control->registerValidators( [
 				'action' => [
 					'type'    => 'hidden',
