@@ -123,6 +123,8 @@
 	"mwoauthmanageconsumers-success-rejected": "Rexeitouse a solicitude.",
 	"mwoauthmanageconsumers-success-disabled": "Desactivouse o consumidor.",
 	"mwoauthmanageconsumers-success-reanable": "Reactivouse o consumidor.",
+	"oauthlistconsumers": "Listar aplicacións OAuth",
+	"mwoauthlistconsumers-legend": "Explorar aplicacións OAuth",
 	"mwoauthlistconsumers-view": "detalles",
 	"mwoauthlistconsumers-name": "Nome da aplicación",
 	"mwoauthlistconsumers-version": "Versión do consumidor",
