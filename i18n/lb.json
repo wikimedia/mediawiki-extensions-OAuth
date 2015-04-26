@@ -13,6 +13,7 @@
 	"mwoauth-field-hidden": "(dës Informatioun ass verstoppt)",
 	"mwoauth-field-private": "(dës Informatioun ass privat)",
 	"mwoauth-prefs-managegrants": "Connectéiert Applikatiounen:",
+	"mwoauth-prefs-managegrantslink": "Connectéiert {{PLURAL:$1|Applicatioun|Applicatioune}} geréieren ($1)",
 	"mwoauth-consumer-allwikis": "All Projeten op dësem Site",
 	"mwoauth-consumer-name": "Numm vun der Applicatioun:",
 	"mwoauth-consumer-stage": "Aktuelle Status:",

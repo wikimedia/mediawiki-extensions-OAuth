@@ -92,7 +92,10 @@ $specialPageAliases['ko'] = array(
 
 /** Luxembourgish (Lëtzebuergesch) */
 $specialPageAliases['lb'] = array(
-	'OAuthManageMyGrants' => array( 'Meng_OAuth-Autorisatioune_geréieren' ),
+	'OAuthConsumerRegistration' => array( 'OAuth-Registratioun_vu_Konsumenten' ),
+	'OAuthManageConsumers' => array( 'OAuth_Gestioun_vu_Konsumenten' ),
+	'OAuthListConsumers' => array( 'OAuth_Lëscht_vu_Konsumenten' ),
+	'OAuthManageMyGrants' => array( 'Meng_OAuth_Autorisatioune_geréieren' ),
 );
 
 /** لوری (لوری) */
