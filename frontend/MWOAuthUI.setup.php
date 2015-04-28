@@ -24,11 +24,13 @@ class MWOAuthUISetup {
 		$wgHooks['MessagesPreLoad'][] = 'MediaWiki\Extensions\OAuth\MWOAuthUIHooks::onMessagesPreLoad';
 
 		$wgResourceModules['ext.MWOAuth.BasicStyles'] = array(
+			'position'		=> 'top',
 			'styles'        => array( 'ext.MWOAuth.BasicStyles.css' ),
 			'localBasePath' => dirname( __FILE__ ) . '/modules',
 			'remoteExtPath' => 'OAuth/frontend/modules'
 		);
 		$wgResourceModules['ext.MWOAuth.AuthorizeForm'] = array(
+			'position'		=> 'top',
 			'styles'        => array('ext.MWOAuth.AuthorizeForm.css' ),
 			'localBasePath' => dirname( __FILE__ ) . '/modules',
 			'remoteExtPath' => 'OAuth/frontend/modules'
