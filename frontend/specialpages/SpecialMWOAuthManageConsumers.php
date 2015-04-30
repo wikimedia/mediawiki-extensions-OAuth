@@ -208,8 +208,6 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 * @throws \PermissionsError
 	 */
 	protected function handleConsumerForm( $consumerKey ) {
-		global $wgMemc;
-
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
@@ -406,9 +404,6 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 					'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS
 				)
 			);
-			// Set a key to who is looking at this request
-			$key = wfMemcKey( 'mwoauth', 'manageconsumers', 'view', $cmr->get( 'id' ) );
-			$wgMemc->set( $key, $user->getID(), 60 * 5 );
 		}
 	}
 
@@ -439,8 +434,6 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 * @return string
 	 */
 	public function formatRow( \DBConnRef $db, $row ) {
-		global $wgMemc;
-
 		static $stageActionMap = array(
 			MWOAuthConsumer::STAGE_PROPOSED => 'propose',
 			MWOAuthConsumer::STAGE_REJECTED => 'reject',
@@ -480,14 +473,6 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 				'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS
 			)
 		);
-
-		// Check if someone is viewing this request now
-		$key = wfMemcKey( 'mwoauth', 'manageconsumers', 'view', $cmr->get( 'id' ) );
-		$value = $wgMemc->get( $key );
-		if ( $value ) {
-			$r .= ' <b>' . $this->msg( 'mwoauthmanageconsumers-viewing',
-				\User::whoIs( $value ) )->parse() . '</b>';
-		}
 
 		$lang = $this->getLanguage();
 		$data = array(
