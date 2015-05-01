@@ -4,7 +4,8 @@
 			"Fitoschido",
 			"Ovruni",
 			"Macofe",
-			"Amitie 10g"
+			"Amitie 10g",
+			"MarcoAurelio"
 		]
 	},
 	"mwoauth-verified": "La aplicación ahora puede acceder a MediaWiki en tu nombre.\n\nPara completar el proceso, proporciona este valor de comprobación a la aplcación: '''$1'''",
@@ -115,7 +116,7 @@
 	"mwoauth-grant-group-other": "Actividades diversas",
 	"mwoauth-grant-blockusers": "Bloquear y desbloquear usuarios",
 	"mwoauth-grant-createaccount": "Crear cuentas",
-	"mwoauth-grant-createeditmovepage": "Crear, editar y renombrar páginas",
+	"mwoauth-grant-createeditmovepage": "Modificar páginas",
 	"mwoauth-grant-delete": "Borrar páginas, revisiones y entradas del registro",
 	"mwoauth-grant-editinterface": "Editar el espacio de nombres MediaWiki y el CSS/JavaScript de usuarios",
 	"mwoauth-grant-editmycssjs": "Editar tu CSS y/o JavaScript",
