@@ -87,6 +87,7 @@
 	"mwoauth-grant-group-other": "Verschidden Aktivitéiten",
 	"mwoauth-grant-blockusers": "Benotzer spären an hir Spär ophiewen",
 	"mwoauth-grant-createaccount": "Benotzerkonten opmaachen",
+	"mwoauth-grant-createeditmovepage": "Ännerungen op Säite maachen",
 	"mwoauth-grant-editinterface": "MediaWiki-Nummraum a Benotzer CSS/JS änneren",
 	"mwoauth-grant-editmycssjs": "Ären eegene Benotzer CSS/JS änneren",
 	"mwoauth-grant-editmyoptions": "Ännert Är eege Benotzerastellungen",

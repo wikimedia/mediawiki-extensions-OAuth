@@ -124,7 +124,6 @@
 	"mwoauthmanageconsumers-reenable": "Bestätigt",
 	"mwoauthmanageconsumers-reason": "Grund:",
 	"mwoauthmanageconsumers-confirm-submit": "Verbraucherstatus aktualisieren",
-	"mwoauthmanageconsumers-viewing": "{{GENDER:$1|Der Benutzer|Die Benutzerin}} „$1“ betrachtet derzeit diesen Verbraucher",
 	"mwoauthmanageconsumers-success-approved": "Der Antrag wurde bestätigt.",
 	"mwoauthmanageconsumers-success-rejected": "Der Antrag wurde abgelehnt.",
 	"mwoauthmanageconsumers-success-disabled": "Der Verbraucher wurde deaktiviert.",

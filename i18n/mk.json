@@ -120,7 +120,6 @@
 	"mwoauthmanageconsumers-reenable": "Одобрено",
 	"mwoauthmanageconsumers-reason": "Причина:",
 	"mwoauthmanageconsumers-confirm-submit": "Измени потр. статус",
-	"mwoauthmanageconsumers-viewing": "{{GENDER:$1|Корисникот}} „$1“ во моментов го гледа потрошувачов",
 	"mwoauthmanageconsumers-success-approved": "Барањето е одобрено.",
 	"mwoauthmanageconsumers-success-rejected": "Барањето е одбиено.",
 	"mwoauthmanageconsumers-success-disabled": "Потрошувачот е оневозможен.",

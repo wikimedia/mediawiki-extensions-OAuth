@@ -56,7 +56,6 @@
 	"mwoauthmanageconsumers-dsuppress": "Desactivada y suprimida",
 	"mwoauthmanageconsumers-reenable": "Aprobada",
 	"mwoauthmanageconsumers-reason": "Motivo:",
-	"mwoauthmanageconsumers-viewing": "{{GENDER:$1|El usuario|La usuaria}} «$1» está visualizando este consumidor",
 	"mwoauthmanageconsumers-success-approved": "Se aprobó la solicitud.",
 	"mwoauthmanageconsumers-success-rejected": "Se rechazó la solicitud.",
 	"oauthlistconsumers": "Lista de aplicaciones OAuth",

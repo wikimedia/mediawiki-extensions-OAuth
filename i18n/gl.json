@@ -121,7 +121,6 @@
 	"mwoauthmanageconsumers-reenable": "Aprobado",
 	"mwoauthmanageconsumers-reason": "Motivo:",
 	"mwoauthmanageconsumers-confirm-submit": "Actualizar o estado do consumidor",
-	"mwoauthmanageconsumers-viewing": "{{GENDER:$1|O usuario|A usuaria}} \"$1\" está vendo este consumidor nestes intres",
 	"mwoauthmanageconsumers-success-approved": "Aprobouse a solicitude.",
 	"mwoauthmanageconsumers-success-rejected": "Rexeitouse a solicitude.",
 	"mwoauthmanageconsumers-success-disabled": "Desactivouse o consumidor.",

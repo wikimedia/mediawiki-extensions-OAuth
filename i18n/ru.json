@@ -12,7 +12,8 @@
 			"Iltever",
 			"Meshkov.a",
 			"Lockal",
-			"NBS"
+			"NBS",
+			"Marina Melik-Adamyan"
 		]
 	},
 	"mwoauth-desc": "Позволяет использование OAuth 1.0a для API авторизации",
@@ -111,7 +112,6 @@
 	"mwoauthmanageconsumers-reenable": "Одобрено",
 	"mwoauthmanageconsumers-reason": "Причина:",
 	"mwoauthmanageconsumers-confirm-submit": "Обновление состояния клиента",
-	"mwoauthmanageconsumers-viewing": "{{GENDER:$1|Участник}} «$1» в настоящее наблюдает за этим клиентом",
 	"mwoauthmanageconsumers-success-approved": "Запрос был одобрен.",
 	"mwoauthmanageconsumers-success-rejected": "Запрос был отклонён.",
 	"mwoauthmanageconsumers-success-disabled": "Клиент был отключён.",
@@ -162,6 +162,8 @@
 	"mwoauthmanagemygrants-success-update": "Код доступа для этого клиента был обновлён.",
 	"mwoauthmanagemygrants-success-renounce": "Код доступа для этого клиента был удалён.",
 	"mwoauth-invalid-authorization-title": "Ошибка авторизации OAuth",
+	"mwoauth-form-description-allwikis": "Здравствуйте, $1!\n\nДля того, чтобы завершить ваш запрос, \"$2\" необходимо разрешение на выполнение следующих действий от Вашего имени на всех проектах этого сайта:\n\n$4",
+	"mwoauth-form-description-onewiki": "Здравствуйте $1!\n\nДля того, чтобы завершить Ваш запрос, \"$2\" необходимо разрешение на выполнение следующих действий от Вашего имени на \"$4:\n\n$5",
 	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|Политика конфиденциальности]]",
 	"mwoauth-form-button-approve": "Разрешить",
 	"mwoauth-form-button-cancel": "Отменить",
@@ -177,7 +179,7 @@
 	"mwoauth-grant-group-other": "Разная активность",
 	"mwoauth-grant-blockusers": "Блокировка и разблокировка учётных записей",
 	"mwoauth-grant-createaccount": "Создание учётных записей",
-	"mwoauth-grant-createeditmovepage": "Создание, правка и переименование страниц",
+	"mwoauth-grant-createeditmovepage": "Вносить изменения в страницы",
 	"mwoauth-grant-delete": "Удаление страниц, правок и записей журнала",
 	"mwoauth-grant-editinterface": "Правка пространства имён MediaWiki и пользовательских CSS/JavaScript",
 	"mwoauth-grant-editmycssjs": "Правка собственных пользовательских CSS/JavaScript",
