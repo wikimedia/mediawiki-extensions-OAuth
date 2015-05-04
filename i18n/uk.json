@@ -123,7 +123,6 @@
 	"mwoauthmanageconsumers-reenable": "Затверджено",
 	"mwoauthmanageconsumers-reason": "Причина:",
 	"mwoauthmanageconsumers-confirm-submit": "Оновити статус споживача",
-	"mwoauthmanageconsumers-viewing": "{{GENDER:$1|Користувач|Користувачка}} \"$1\" в даний час переглядає цього споживача",
 	"mwoauthmanageconsumers-success-approved": "Запит був схвалений.",
 	"mwoauthmanageconsumers-success-rejected": "Запит був відхилений.",
 	"mwoauthmanageconsumers-success-disabled": "Споживач вже вимкнений.",

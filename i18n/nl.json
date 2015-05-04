@@ -125,7 +125,6 @@
 	"mwoauthmanageconsumers-reenable": "Goedgekeurd",
 	"mwoauthmanageconsumers-reason": "Reden:",
 	"mwoauthmanageconsumers-confirm-submit": "Consumerstatus bijwerken",
-	"mwoauthmanageconsumers-viewing": "{{GENDER:$1|Gebruiker}} \"$1\" bekijkt op dit moment deze toepassing",
 	"mwoauthmanageconsumers-success-approved": "Het verzoek is goedgekeurd.",
 	"mwoauthmanageconsumers-success-rejected": "Het verzoek is afgewezen.",
 	"mwoauthmanageconsumers-success-disabled": "De consumer is uitgeschakeld.",

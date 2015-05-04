@@ -120,7 +120,6 @@
 	"mwoauthmanageconsumers-reenable": "Approvato",
 	"mwoauthmanageconsumers-reason": "Motivo:",
 	"mwoauthmanageconsumers-confirm-submit": "Aggiorna stato cliente",
-	"mwoauthmanageconsumers-viewing": "{{GENDER:$1|L'utente}} \"$1\" sta attualmente vedendo questo cliente",
 	"mwoauthmanageconsumers-success-approved": "La richiesta è stata approvata.",
 	"mwoauthmanageconsumers-success-rejected": "La richiesta è stata respinta.",
 	"mwoauthmanageconsumers-success-disabled": "Il cliente è stato disabilitato.",

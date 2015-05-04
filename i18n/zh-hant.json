@@ -121,7 +121,6 @@
 	"mwoauthmanageconsumers-reenable": "已批准",
 	"mwoauthmanageconsumers-reason": "原因：",
 	"mwoauthmanageconsumers-confirm-submit": "更新 Consumer 狀態",
-	"mwoauthmanageconsumers-viewing": "{{GENDER:$1|User}} \"$1\" 目前正檢視此 Consumer",
 	"mwoauthmanageconsumers-success-approved": "已核准請求。",
 	"mwoauthmanageconsumers-success-rejected": "已拒絕請求。",
 	"mwoauthmanageconsumers-success-disabled": "已停用 Consumer。",

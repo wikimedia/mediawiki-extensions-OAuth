@@ -125,7 +125,6 @@
 	"mwoauthmanageconsumers-reenable": "Used as label for the radio box.\n{{Related|Mwoauthmanageconsumers}}\n{{Identical|Approved}}",
 	"mwoauthmanageconsumers-reason": "Used as label for the \"Reason\" input box.\n{{Identical|Reason}}",
 	"mwoauthmanageconsumers-confirm-submit": "Used as label for the Submit button.",
-	"mwoauthmanageconsumers-viewing": "Parameters:\n* $1 - username",
 	"mwoauthmanageconsumers-success-approved": "Used as success message.\n{{Related|Mwoauthmanageconsumers-success}}",
 	"mwoauthmanageconsumers-success-rejected": "Used as success message.\n{{Related|Mwoauthmanageconsumers-success}}",
 	"mwoauthmanageconsumers-success-disabled": "Used as success message.\n{{Related|Mwoauthmanageconsumers-success}}",

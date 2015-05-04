@@ -126,7 +126,6 @@
 	"mwoauthmanageconsumers-reenable": "تأییدشده",
 	"mwoauthmanageconsumers-reason": "دلیل:",
 	"mwoauthmanageconsumers-confirm-submit": "به‌روز رسانی وضعیت مصرف‌کننده",
-	"mwoauthmanageconsumers-viewing": "{{GENDER:$1|کاربر}} \" $1 \" در حال مشاهدهٔ این مصرف‌کننده است",
 	"mwoauthmanageconsumers-success-approved": "درخواست تأیید شد.",
 	"mwoauthmanageconsumers-success-rejected": "درخواست رد شده است.",
 	"mwoauthmanageconsumers-success-disabled": "مصرف‌کننده غیر فعال شده است.",
