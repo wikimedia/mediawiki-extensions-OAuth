@@ -209,7 +209,6 @@
 	"mwoauth-form-description-onewiki": "שלום $1,\n\nכדי לבצע את בקשך, היישום '''$2''' זקוק להרשאות לעשות בשמך את הפעולות הבאות במיזם \"$4\":\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "שלום $1,\n\nכדי לבצע את בקשך, היישום '''$2''' זקוק להרשאה לקבל גישה למידע בכל המיזמים בשמך. זה לא יעשה שום שינוי בחשבון שלך.",
 	"mwoauth-form-description-onewiki-nogrants": "שלום $1,\n\nכדי לבצע את בקשך, היישום '''$2''' זקוק להרשאה לקבל גישה למידע באתר \"$4\" בשמך. זה לא יעשה שום שינוי בחשבון שלך.",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|Privacy Policy]]",
 	"mwoauth-form-button-approve": "לאפשר",
 	"mwoauth-form-button-cancel": "ביטול",
 	"mwoauth-error": "שגיאה בחיבור היישום",

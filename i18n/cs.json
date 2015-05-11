@@ -208,7 +208,6 @@
 	"mwoauth-form-description-onewiki": "{{GENDER:$1|Uživateli|Uživatelko}} $1,\n\nAby mohla dokončit váš požadavek, potřebuje aplikace '''$2''' svolení, aby mohla vaším jménem na ''{{grammar:6sg|$4}}'' provádět následující aktivity:\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "{{GENDER:$1|Uživateli|Uživatelko}} $1,\n\nAby mohla dokončit váš požadavek, potřebuje aplikace '''$2''' svolení, aby mohla vaším jménem přistupovat k informacím na všech projektech tohoto webu. Vaším jménem nebudou prováděny žádné změny.",
 	"mwoauth-form-description-onewiki-nogrants": "{{GENDER:$1|Uživateli|Uživatelko}} $1,\n\naplikace '''$2''' by chtěla získat základní přístup vaším jménem na ''{{grammar:6sg|$4}}''.\n\nAby mohla dokončit váš požadavek, potřebuje aplikace '''$2''' svolení, aby mohla vaším jménem přistupovat k informacím na ''{{grammar:6sg|$4}}''. Vaším jménem nebudou prováděny žádné změny.",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|Ochrana osobních údajů]]",
 	"mwoauth-form-button-approve": "Dovolit",
 	"mwoauth-form-button-cancel": "Storno",
 	"mwoauth-error": "Chyba připojení aplikace",

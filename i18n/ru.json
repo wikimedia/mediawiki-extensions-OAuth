@@ -164,7 +164,6 @@
 	"mwoauth-invalid-authorization-title": "Ошибка авторизации OAuth",
 	"mwoauth-form-description-allwikis": "Здравствуйте, $1!\n\nДля того, чтобы завершить ваш запрос, \"$2\" необходимо разрешение на выполнение следующих действий от Вашего имени на всех проектах этого сайта:\n\n$4",
 	"mwoauth-form-description-onewiki": "Здравствуйте $1!\n\nДля того, чтобы завершить Ваш запрос, \"$2\" необходимо разрешение на выполнение следующих действий от Вашего имени на \"$4:\n\n$5",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|Политика конфиденциальности]]",
 	"mwoauth-form-button-approve": "Разрешить",
 	"mwoauth-form-button-cancel": "Отменить",
 	"mwoauth-error": "Ошибка подключения приложения",

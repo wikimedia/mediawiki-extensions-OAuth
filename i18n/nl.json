@@ -209,7 +209,6 @@
 	"mwoauth-form-description-onewiki": "Hallo $1,\n\n<strong>$2</strong> wil de volgende handelingen namens u kunnen uitvoeren op <em>$4</em>:\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Hallo $1,\n\n<strong>$2</strong> wil namens u basistoegang hebben tot alle projecten van deze site.",
 	"mwoauth-form-description-onewiki-nogrants": "Hallo $1,\n\n<strong>$2</strong> wil namens u basistoegang hebben tot <em>$4</em>.",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|Privacybeleid]]",
 	"mwoauth-form-button-approve": "Toestaan",
 	"mwoauth-form-button-cancel": "Annuleren",
 	"mwoauth-error": "Fout bij koppelen toepassing",

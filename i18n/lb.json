@@ -73,7 +73,6 @@
 	"mwoauth-invalid-authorization-blocked-user": "D'Autorisatiounen an Ärer Ufro si fir ee Benotzer dee gespaart ass",
 	"mwoauth-form-description-allwikis": "Bonjour $1,\n\nFir Är Ufro ofzeschléissen, brauch '''$2''' d'Autorisatioun fir dës Aktiounen an Ärem Numm op alle Projete vun dësem Site ze maachen:\n\n$4",
 	"mwoauth-form-description-onewiki": "Bonjour $1,\n\nFir Är Ufro ofzeschléisse brauch '''$2''' d'Autorisatioun fir dës Aktiounen an Ärem Numm op ''$4'' ze maachen:\n\n$5",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|Dateschutzrichtlinnen]]",
 	"mwoauth-form-button-approve": "Erlaben",
 	"mwoauth-form-button-cancel": "Ofbriechen",
 	"mwoauth-error": "Verbinndungsfeeler vun der Software",

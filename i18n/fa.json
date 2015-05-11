@@ -210,7 +210,6 @@
 	"mwoauth-form-description-onewiki": "درود $1،\n\n'''$2''' خواهان انجام این اعمال از طرف شما در ''$4'' است:\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "درود $1،\n\n'''$2''' خواهان اخذ دسترسی اولیه‌ای از طرف شما در همهٔ پروژه‌های این وب‌گاه است.",
 	"mwoauth-form-description-onewiki-nogrants": "درود $1،\n\n'''$2''' خواهان اخذ دسترسی اولیه‌ای از طرف شما در ''$4'' است.",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|سیاست حریم شخصی]]",
 	"mwoauth-form-button-approve": "پذیرفتن",
 	"mwoauth-form-button-cancel": "انصراف",
 	"mwoauth-error": "خطای اتصال برنامه کاربردی",

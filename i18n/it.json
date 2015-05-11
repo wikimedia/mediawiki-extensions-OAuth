@@ -204,7 +204,6 @@
 	"mwoauth-form-description-onewiki": "Ciao $1,\n\n'''$2''' vorrebbe eseguire le seguenti azioni per tuo conto su ''$4'':\n\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Ciao $1,\n\n'''$2''' vorrebbe avere l'accesso di base per tuo conto su tutti i progetti di questo sito.",
 	"mwoauth-form-description-onewiki-nogrants": "Ciao $1,\n\n'''$2''' vorrebbe avere l'accesso di base per tuo conto su ''$4''.",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|Politica relativa alla privacy]]",
 	"mwoauth-form-button-approve": "Consenti",
 	"mwoauth-form-button-cancel": "Annulla",
 	"mwoauth-error": "Errore di connessione dell'applicazione",

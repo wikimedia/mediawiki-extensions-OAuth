@@ -207,7 +207,6 @@
 	"mwoauth-form-description-onewiki": "Привіт $1,\n\n\"'$2\"' хотіла б зробити наступні дії від вашого імені на \"$4\":\n\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Привіт $1,\n\n'''$2''' хотів би мати базовий доступ від вашого імені на всі проекти з цього сайту.",
 	"mwoauth-form-description-onewiki-nogrants": "Привіт $1,\n\n'''$2''' хотів би мати базовий доступ від вашого імені на  ''$4''.",
-	"mwoauth-form-privacypolicy-link": " [[{{ns:Project}}:Privacy policy|Privacy Policy]]",
 	"mwoauth-form-button-approve": "Дозволити",
 	"mwoauth-form-button-cancel": "Скасувати",
 	"mwoauth-error": "Помилка підключення застосунку",

@@ -191,7 +191,6 @@
 	"mwoauth-form-description-onewiki": "$1您好，\n\n'''$2'''想使用你的身份在''$4''做以下事情：\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "$1 您好，\n\n'''$2''' 想要擁有你在此網站所有專案上的基本存取權身分。",
 	"mwoauth-form-description-onewiki-nogrants": "$1您好，\n\n'''$2'''想使用您的身份在''$4''獲得基本使用權。",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|隱私政策]]",
 	"mwoauth-form-button-approve": "允許",
 	"mwoauth-form-button-cancel": "取消",
 	"mwoauth-error": "應用程式連接錯誤",

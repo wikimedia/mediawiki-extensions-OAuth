@@ -107,7 +107,6 @@
 	"mwoauthdatastore-bad-verifier": "O código de verificação fornecido não era válido.",
 	"mwoauthgrants-general-error": "Ocorreu um erro no seu pedido OAuth.",
 	"mwoauth-invalid-authorization-title": "Erro de autorização OAuth",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|Política de privacidade]]",
 	"mwoauth-form-button-approve": "Permitir",
 	"mwoauth-form-button-cancel": "Cancelar",
 	"mwoauth-error": "Erro de conexão do aplicativo",
