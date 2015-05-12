@@ -203,23 +203,29 @@ class MWOAuthAPISetup {
 	}
 
 	/**
-	 * Called to check if everyone has a particular user right. This hook is only reached
-	 * if the right is assigned to '*' on the wiki, so we can safely return true for
-	 * everything in $wgMWOAuthGrantPermissions['useoauth'], since most Consumers should
-	 * include that grant.
+	 * Called to check if everyone has a particular user right. If OAuth is in
+	 * use, we need to see what grants are actually allowed to the current client.
 	 * @param string $right
 	 * @return boolean
 	 */
 	public static function onUserIsEveryoneAllowed( $right ) {
-		$implicitGrants = MWOAuthUtils::getHiddenGrants();
-		foreach ( $implicitGrants as $grant ) {
-			$grantRights = MWOAuthUtils::getGrantRights( $grant );
-			if ( in_array( $right, $grantRights ) ) {
+		try {
+			$accesstoken = self::getOAuthAccessToken();
+			if ( $accesstoken === null ) {
 				return true;
 			}
-		}
 
-		return false;
+			$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+			$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $accesstoken->key );
+			$grantRights = MWOAuthUtils::getGrantRights( $access->get( 'grants' ) );
+			return in_array( $right, $grantRights );
+		} catch ( \UsageException $ex ) {
+			// Assume no OAuth is in use.
+			return true;
+		} catch ( \ErrorPageError $ex ) {
+			// Assume no OAuth is in use.
+			return true;
+		}
 	}
 
 	/**

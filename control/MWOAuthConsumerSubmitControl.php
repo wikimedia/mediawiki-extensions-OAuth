@@ -75,6 +75,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 						|| in_array( $s, $wgConf->getLocalDatabases() )
 						|| array_search( $s, MWOAuthUtils::getAllWikiNames() ) !== false
 					); },
+				'granttype'    => '/^(authonly|authonlyprivate|normal)$/',
 				'grants'       => function( $s ) {
 					$grants = \FormatJSON::decode( $s, true );
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
@@ -181,6 +182,23 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					'mwoauth-consumer-alreadyexistsversion', $curVer );
 			}
 
+			// Handle grant types
+			$grants = array();
+			switch( $this->vals['granttype'] ) {
+				case 'authonly':
+					$grants = array( 'authonly' );
+					break;
+				case 'authonlyprivate':
+					$grants = array( 'authonlyprivate' );
+					break;
+				case 'normal':
+					$grants = array_unique( array_merge(
+						MWOAuthUtils::getHiddenGrants(), // implied grants
+						\FormatJSON::decode( $this->vals['grants'], true )
+					) );
+					break;
+			}
+
 			$now = wfTimestampNow();
 			$cmr = MWOAuthConsumer::newFromArray(
 				array(
@@ -193,10 +211,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					'registration'       => $now,
 					'stage'              => MWOAuthConsumer::STAGE_PROPOSED,
 					'stageTimestamp'     => $now,
-					'grants'             => array_unique( array_merge(
-						MWOAuthUtils::getHiddenGrants(), // implied grants
-						\FormatJSON::decode( $this->vals['grants'], true )
-					) ),
+					'grants'             => $grants,
 					'restrictions'       => \FormatJSON::decode( $this->vals['restrictions'], true ),
 					'deleted'            => 0
 				) + $this->vals

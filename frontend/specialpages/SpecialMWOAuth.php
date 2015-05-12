@@ -54,17 +54,18 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					$this->returnToken( $token, $format );
 					break;
 				case 'authorize':
+				case 'authenticate':
 					$format = 'html'; // for exceptions
 					$requestToken = $request->getVal( 'requestToken',
 						$request->getVal( 'oauth_token' ) );
 					$consumerKey = $request->getVal( 'consumerKey',
 						$request->getVal( 'oauth_consumer_key' ) );
-					wfDebugLog( 'OAuth', __METHOD__ . ": doing 'authorize' with " .
+					wfDebugLog( 'OAuth', __METHOD__ . ": doing '$subpage' with " .
 						"'$requestToken' '$consumerKey' for '{$user->getName()}'" );
 					// TODO? Test that $requestToken exists in memcache
 					if ( $user->isAnon() ) {
 						// Redirect to login page
-						$query['returnto'] = $this->getPageTitle( 'authorize' )->getPrefixedText();
+						$query['returnto'] = $this->getPageTitle( $subpage )->getPrefixedText();
 						$query['returntoquery'] = wfArrayToCgi( array(
 							'oauth_token'        => $requestToken,
 							'oauth_consumer_key' => $consumerKey
@@ -78,7 +79,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 							$this->showCancelPage();
 						} else {
 							// Show form and redirect on submission for authorization
-							$this->handleAuthorizationForm( $requestToken, $consumerKey );
+							$this->handleAuthorizationForm(
+								$requestToken, $consumerKey, $subpage === 'authenticate'
+							);
 						}
 					}
 					break;
@@ -248,13 +251,20 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$statement['groups'] = $user->getEffectiveGroups();
 			$statement['rights'] = array_values( array_unique( $user->getRights() ) );
 			$statement['grants'] = $access->get( 'grants' );
+
+			if ( in_array( 'authonlyprivate', $statement['grants'] ) ||
+				in_array( 'viewmyprivateinfo', MWOAuthUtils::getGrantRights( $statement['grants'] ) )
+			) {
+				$statement['realname'] = $user->getRealName();
+				$statement['email'] = $user->getEmail();
+			}
 		}
 
 		$JWT = \JWT::encode( $statement, $consumer->secret );
 		$this->showResponse( $JWT, $format );
 	}
 
-	protected function handleAuthorizationForm( $requestToken, $consumerKey ) {
+	protected function handleAuthorizationForm( $requestToken, $consumerKey, $authenticate ) {
 		$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
 
 		$user = $this->getUser();
@@ -287,11 +297,29 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			);
 		}
 
-		$this->getOutput()->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.MWOAuth.AuthorizeForm' ) );
-		$this->getOutput()->addModules( 'ext.MWOAuth.AuthorizeDialog' );
-
 		// Check if this user has authorized grants for this consumer previously
 		$existing = $oauthServer->getCurrentAuthorization( $user, $cmr->getDAO(), wfWikiId() );
+
+		// If only authentication was requested, and the existing authorization
+		// matches, and the only grants are 'authonly' or 'authonlyprivate',
+		// then don't bother prompting the user about it.
+		if ( $existing && $authenticate &&
+			$existing->get( 'wiki' ) === $cmr->get( 'wiki' ) &&
+			$existing->get( 'grants' ) === $cmr->get( 'grants' ) &&
+			!array_diff( $existing->get( 'grants' ), array( 'authonly', 'authonlyprivate' ) )
+		) {
+			$callback = $oauthServer->authorize(
+				$consumerKey,
+				$requestToken,
+				$user,
+				false
+			);
+			$this->getOutput()->redirect( $callback );
+			return;
+		}
+
+		$this->getOutput()->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.MWOAuth.AuthorizeForm' ) );
+		$this->getOutput()->addModules( 'ext.MWOAuth.AuthorizeDialog' );
 
 		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), array(), $dbr );
 		$form = new \HTMLForm(

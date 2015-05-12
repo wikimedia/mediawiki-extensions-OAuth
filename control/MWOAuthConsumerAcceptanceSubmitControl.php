@@ -121,9 +121,12 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			$cmr = MWOAuthConsumer::newFromId( $dbw, $cmra->get( 'consumerId' ) );
 
 			$grants = \FormatJSON::decode( $this->vals['grants'], true ); // requested grants
-			$grants = array_unique( array_merge(
-				MWOAuthUtils::getHiddenGrants(), // implied grants
-				array_intersect( $grants, $cmr->get( 'grants' ) ) // applicable requested grants
+			$grants = array_unique( array_intersect(
+				array_merge(
+					MWOAuthUtils::getHiddenGrants(), // implied grants
+					$grants // requested grants
+				),
+				 $cmr->get( 'grants' ) // Only keep the applicable ones
 			) );
 
 			$cmra->setFields( array(
