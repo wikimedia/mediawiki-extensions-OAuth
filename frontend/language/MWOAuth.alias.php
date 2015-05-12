@@ -27,7 +27,7 @@ $specialPageAliases['ar'] = array(
 	'OAuth' => array( 'أو_أوث', 'مو_أو_أوث' ),
 );
 
-/** Egyptian Spoken Arabic (مصرى) */
+/** Egyptian Arabic (مصرى) */
 $specialPageAliases['arz'] = array(
 	'OAuthConsumerRegistration' => array( 'تسجيل_او_اوت', 'تسجيل_مستهلك_او_اوت' ),
 	'OAuthManageConsumers' => array( 'التحكم_بمستهلكى_او_اوت' ),
@@ -98,7 +98,7 @@ $specialPageAliases['lb'] = array(
 	'OAuthManageMyGrants' => array( 'Meng_OAuth_Autorisatioune_geréieren' ),
 );
 
-/** لوری (لوری) */
+/** لوری مینجایی (لوری مینجایی) */
 $specialPageAliases['lrc'] = array(
 	'OAuth' => array( 'قسم_حردن' ),
 );
