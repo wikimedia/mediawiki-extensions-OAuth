@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Incelemeelemani",
-			"Rapsar"
+			"Rapsar",
+			"Demircimehmed"
 		]
 	},
 	"mwoauth-desc": "OAuth 1.0a kullanımı için API yetkilendirme kullanımı",
@@ -11,6 +12,7 @@
 	"mwoauth-consumer-name": "Uygulama adı:",
 	"mwoauth-consumer-user": "Yayıncı:",
 	"mwoauth-consumer-stage": "Geçerli durumu:",
+	"mwoauth-consumer-granttypes": "İstenilen hibe türleri:",
 	"mwoauth-consumer-stage-proposed": "önerilen",
 	"mwoauth-consumer-stage-rejected": "reddedilen",
 	"mwoauth-consumer-stage-expired": "süresi dolmuş",
@@ -25,5 +27,10 @@
 	"mwoauthmanagemygrants-showlist": "Bağlı uygulama listesi",
 	"mwoauthmanagemygrants-none": "Hesabınıza bağlı herhangi bir uygulama yoktur.",
 	"mwoauthmanagemygrants-confirm-legend": "Bağlı uygulama yönetimi",
-	"mwoauth-form-button-approve": "Evet, izin ver"
+	"mwoauthmanagemygrants-authonly-tooltip": "Bu hibeyi neden güncelleyemiyorum? Eğer bu bağlı uygulamanın bu haklara sahip olmasını istemiyorsanız, uygulamanının erişimini iptal etmelisiniz.",
+	"mwoauth-form-button-approve": "Evet, izin ver",
+	"mwoauth-granttype-normal": "Özel izinler için yetki talep et.",
+	"mwoauth-grant-group-authentication": "Kimlik doğrulama için OAuth kullan",
+	"mwoauth-grant-authonly": "Yalnızca kimlik doğrulaması, API erişimi yok.",
+	"mwoauth-grant-authonlyprivate": "Special:OAuth/identify üzerinden sadece gerçek adınız ve e posta adresinizle erişebilirsiniz. API erişimi yok."
 }

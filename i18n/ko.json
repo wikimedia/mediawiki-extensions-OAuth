@@ -4,7 +4,8 @@
 			"Hym411",
 			"Priviet",
 			"아라",
-			"Revi"
+			"Revi",
+			"LiteHell"
 		]
 	},
 	"mwoauth-desc": "OAuth 1.0a API 인증의 사용을 허용",
@@ -121,7 +122,6 @@
 	"mwoauthmanageconsumers-reenable": "승인됨",
 	"mwoauthmanageconsumers-reason": "이유:",
 	"mwoauthmanageconsumers-confirm-submit": "컨슈머 상태 업데이트",
-	"mwoauthmanageconsumers-viewing": "\"$1\" {{GENDER:$1|사용자}}는 현재 이 컨슈머를 보는 중입니다",
 	"mwoauthmanageconsumers-success-approved": "요청이 승인되었습니다.",
 	"mwoauthmanageconsumers-success-rejected": "요청이 거부되었습니다.",
 	"mwoauthmanageconsumers-success-disabled": "컨슈머가 비활성화되었습니다.",
@@ -205,7 +205,6 @@
 	"mwoauth-form-description-onewiki": "$1 님, 안녕하세요.\n\n\n'''$2''' 프로그램이 당신을 대신하여 ''$4'' 위키에 다음 명령을 수행하려고 합니다:\n\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "$1 님, 안녕하세요.\n\n\n'''$2''' 프로그램이 당신을 대신하여 이 사이트의 모든 프로젝트에 기본 접근하려고 합니다.",
 	"mwoauth-form-description-onewiki-nogrants": "$1 님, 안녕하세요.\n\n\n'''$2''' 프로그램이 당신을 대신하여 ''$4'' 위키에 기본 접근하려고 합니다.",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|개인 정보 정책]]",
 	"mwoauth-form-button-approve": "허용합니다",
 	"mwoauth-form-button-cancel": "취소합니다.",
 	"mwoauth-error": "애플리케이션 연결 오류",
@@ -219,6 +218,7 @@
 	"mwoauth-grant-group-high-volume": "대량의 작업을 수행",
 	"mwoauth-grant-group-customization": "사용자 최적화 및 환경 설정",
 	"mwoauth-grant-group-administration": "관리 기능 수행",
+	"mwoauth-grant-group-authentication": "인증을 위해 OAuth 사용",
 	"mwoauth-grant-group-other": "기타 활동",
 	"mwoauth-grant-blockusers": "사용자 차단 또는 차단 해제",
 	"mwoauth-grant-createaccount": "계정 만들기",
@@ -241,6 +241,7 @@
 	"mwoauth-grant-useoauth": "기본 권한",
 	"mwoauth-grant-viewdeleted": "삭제된 정보 보기",
 	"mwoauth-grant-viewmywatchlist": "내 주시문서 목록 보기",
+	"mwoauth-grant-authonly": "인증 전용, API 접근 불가",
 	"mwoauth-oauth-exception": "OAuth 프로토콜에 오류가 발생했습니다: $1",
 	"mwoauth-callback-not-oob": "oauth_callback은 \"oob\"로 설정해야 합니다 (대소문자 구분)",
 	"right-mwoauthproposeconsumer": "새 OAuth 컨슈머 제안",

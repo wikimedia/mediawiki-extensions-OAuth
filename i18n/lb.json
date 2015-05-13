@@ -83,6 +83,7 @@
 	"mwoauth-grant-group-high-volume": "Massenaktivitéiten ausféieren",
 	"mwoauth-grant-group-customization": "Upassungen an Astellungen",
 	"mwoauth-grant-group-administration": "Administrativ Aktioune maachen",
+	"mwoauth-grant-group-authentication": "Benotzt OAuth fir d'Authentifikatioun",
 	"mwoauth-grant-group-other": "Verschidden Aktivitéiten",
 	"mwoauth-grant-blockusers": "Benotzer spären an hir Spär ophiewen",
 	"mwoauth-grant-createaccount": "Benotzerkonten opmaachen",
@@ -103,6 +104,7 @@
 	"mwoauth-grant-useoauth": "Basisrechter",
 	"mwoauth-grant-viewdeleted": "Geläscht Fichieren a Säite weisen",
 	"mwoauth-grant-viewmywatchlist": "Kuckt Är Iwwerwaachungslëscht",
+	"mwoauth-grant-authonly": "Nëmmen Authentifikatioun, keen API Zougang",
 	"mwoauth-oauth-exception": "Am OAuth-Protokoll ass e Feeler geschitt: $1",
 	"mwoauth-listgrants-rights": "Rechter"
 }
