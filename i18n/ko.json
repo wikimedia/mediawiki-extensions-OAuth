@@ -27,6 +27,7 @@
 	"mwoauth-consumer-email": "연락처 이메일 주소:",
 	"mwoauth-consumer-description": "애플리케이션 설명:",
 	"mwoauth-consumer-callbackurl": "OAuth \"콜백\" URL:",
+	"mwoauth-consumer-granttypes": "요청된 승인 유쳥들:",
 	"mwoauth-consumer-grantsneeded": "적용할 수 있는 부여:",
 	"mwoauth-consumer-required-grant": "컨슈머에게 적용할 수 있음",
 	"mwoauth-consumer-wiki": "적용할 수 있는 프로젝트:",
