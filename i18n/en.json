@@ -249,7 +249,7 @@
 	"mwoauth-grant-authonlyprivate": "Authentication only with access to real name and email address via Special:OAuth/identify, no API access.",
 	"mwoauth-oauth-exception": "An error occurred in the OAuth protocol: $1",
 	"mwoauth-callback-not-oob": "oauth_callback must be set, and must be set to \"oob\" (case-sensitive)",
-	"mwoauth-callback-not-oob-or-prefix": "oauth_callback must be set, and must be set to \"oob\" (case-sensitive), or be a prefix of a configured callback.",
+	"mwoauth-callback-not-oob-or-prefix": "oauth_callback must be set, and must be set to \"oob\" (case-sensitive), or the configured callback must be a prefix of the supplied callback.",
 	"right-mwoauthproposeconsumer": "Propose new OAuth consumers",
 	"right-mwoauthupdateownconsumer": "Update OAuth consumers you control",
 	"right-mwoauthmanageconsumer": "Manage OAuth consumers",

@@ -48,17 +48,18 @@ class MWOAuthServer extends OAuthServer {
 	}
 
 	/**
-	 * Ensure the callback is "oob" or that it is a strict string prefix of a
-	 * registered callback. It throws an exception if callback is invalid.
+	 * Ensure the callback is "oob" or that the registered callback is a strict string
+	 * prefix of the supplied callback. It throws an exception if callback is invalid.
 	 *
 	 * In MediaWiki, we require the callback to be established at registration.
 	 * OAuth 1.0a (rfc5849, section 2.1) specifies that oauth_callback is required
 	 * for the temporary credentials, and "If the client is unable to receive callbacks
 	 * or a callback URI has been established via other means, the parameter value MUST
 	 * be set to "oob" (case sensitive), to indicate an out-of-band configuration."
-	 * Otherwise, client can provide a callback, which must be a strict string prefix of
-	 * a registered callback. We verify at registration that registered callback is a
-	 * valid URI, so also one matching the prefix probably is, but we verify anyway.
+	 * Otherwise, client can provide a callback and the configured callback must be
+	 * a prefix of the supplied callback. We verify at registration that registered
+	 * callback is a valid URI, so also one matching the prefix probably is, but
+	 * we verify anyway.
 	 *
 	 * @param MWOAuthConsumer $consumer
 	 * @param string $callback
