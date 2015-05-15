@@ -44,7 +44,7 @@
 	"mwoauth-form-description-allwikis-nogrants": "হাই $1,\n\n'''$2''' এই সাইটের সব প্রকল্পে আপনার পক্ষে মৌলিক প্রবেশাধিকার নিতে চায়।",
 	"mwoauth-grant-group-email": "ইমেইল পাঠান",
 	"mwoauth-grant-createaccount": "অ্যাকাউন্ট তৈরি করুন",
-	"mwoauth-grant-editmyoptions": "আপনি আপনার পছন্দসমূহ সম্পাদনা করুন",
+	"mwoauth-grant-editmyoptions": "আপনার ব্যবহারকারী পছন্দসমূহ সম্পাদনা করুন",
 	"mwoauth-grant-editmywatchlist": "আপনার নজরতালিকা সম্পাদনা করুন",
 	"mwoauth-listgrants-rights": "অধিকার"
 }

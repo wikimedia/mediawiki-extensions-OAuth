@@ -98,7 +98,7 @@ $specialPageAliases['lb'] = array(
 	'OAuthManageMyGrants' => array( 'Meng_OAuth_Autorisatioune_geréieren' ),
 );
 
-/** لوری مینجایی (لوری مینجایی) */
+/** Northern Luri (لوری مینجایی) */
 $specialPageAliases['lrc'] = array(
 	'OAuth' => array( 'قسم_حردن' ),
 );

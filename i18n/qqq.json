@@ -5,7 +5,8 @@
 			"Raymond",
 			"Shirayuki",
 			"Siebrand",
-			"Liuxinyu970226"
+			"Liuxinyu970226",
+			"Mormegil"
 		]
 	},
 	"oauth": "Title of MWOAuth page.\n{{Identical|OAuth}}",
@@ -177,7 +178,7 @@
 	"mwoauthmanagemygrants-success-update": "Message shown when grants for an OAuth consumer are updated by a user",
 	"mwoauthmanagemygrants-success-renounce": "Message shown when grants for an OAuth consumer are totally revoked",
 	"mwoauthmanagemygrants-useoauth-tooltip": "Message for the tooltip shown next to the disabled checkbox for the \"useoauth\" grant on [[Special:OAuthManageMyGrants]], explaining why the checkbox cannot be modified.",
-	"mwoauthmanagemygrants-authonly-tooltip": "Message for the tooltip shown next to the disabled checkboxes for the \"authonly\" and \"authonlyprivate\" grants on [[Special:OAuthManageMyGrants]], explaining why the checkbox cannot be modified.",
+	"mwoauthmanagemygrants-authonly-tooltip": "Message for the tooltip shown next to the disabled checkboxes for the \"authonly\" and \"authonlyprivate\" grants on [[Special:OAuthManageMyGrants]], explaining why the checkbox cannot be modified.\n\nCf. {{msg-mw|Mwoauthmanagemygrants-useoauth-tooltip}}",
 	"logentry-mwoauthconsumer-propose": "{{logentry}}",
 	"logentry-mwoauthconsumer-update": "{{logentry}}\n* $4 - consumer key",
 	"logentry-mwoauthconsumer-approve": "{{logentry}}\n* $4 - consumer key",
