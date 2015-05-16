@@ -12,13 +12,11 @@ class MWOAuthUISetup {
 	 * @return void
 	 */
 	public static function unconditionalSetup() {
-		global $wgSpecialPages, $wgSpecialPageGroups, $wgHooks, $wgResourceModules;
+		global $wgSpecialPages, $wgHooks, $wgResourceModules;
 
 		$wgSpecialPages['OAuth'] = 'MediaWiki\Extensions\OAuth\SpecialMWOAuth';
 		$wgSpecialPages['OAuthManageMyGrants'] = 'MediaWiki\Extensions\OAuth\SpecialMWOAuthManageMyGrants';
-		$wgSpecialPageGroups['OAuthManageMyGrants'] = 'users';
 		$wgSpecialPages['OAuthListConsumers'] = 'MediaWiki\Extensions\OAuth\SpecialMWOAuthListConsumers';
-		$wgSpecialPageGroups['OAuthListConsumers'] = 'users';
 
 		$wgHooks['GetPreferences'][] = 'MediaWiki\Extensions\OAuth\MWOAuthUIHooks::onGetPreferences';
 		$wgHooks['MessagesPreLoad'][] = 'MediaWiki\Extensions\OAuth\MWOAuthUIHooks::onMessagesPreLoad';
@@ -48,14 +46,12 @@ class MWOAuthUISetup {
 	 * @return void
 	 */
 	public static function conditionalSetup() {
-		global $wgSpecialPages, $wgSpecialPageGroups;
+		global $wgSpecialPages;
 		global $wgLogTypes, $wgLogNames, $wgLogHeaders, $wgLogActionsHandlers;
 
 		if ( MWOAuthUtils::isCentralWiki() ) {
 			$wgSpecialPages['OAuthConsumerRegistration'] = 'MediaWiki\Extensions\OAuth\SpecialMWOAuthConsumerRegistration';
-			$wgSpecialPageGroups['OAuthConsumerRegistration'] = 'users';
 			$wgSpecialPages['OAuthManageConsumers'] = 'MediaWiki\Extensions\OAuth\SpecialMWOAuthManageConsumers';
-			$wgSpecialPageGroups['OAuthManageConsumers'] = 'users';
 
 			$wgLogTypes[] = 'mwoauthconsumer';
 			$wgLogNames['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpage';

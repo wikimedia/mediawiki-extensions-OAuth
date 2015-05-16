@@ -319,6 +319,10 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		}
 		return self::$irrevocableGrants;
 	}
+
+	protected function getGroupName() {
+		return 'users';
+	}
 }
 
 /**

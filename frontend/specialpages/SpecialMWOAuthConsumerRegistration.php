@@ -463,6 +463,10 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 		return $r;
 	}
+
+	protected function getGroupName() {
+		return 'users';
+	}
 }
 
 /**
