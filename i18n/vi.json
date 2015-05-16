@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Minh Nguyen",
-			"Withoutaname"
+			"Withoutaname",
+			"KhangND"
 		]
 	},
 	"mwoauth-desc": "Cho phép sử dụng OAuth 1.0a để xác minh khi truy cập API",
@@ -26,6 +27,7 @@
 	"mwoauth-consumer-description": "Miêu tả ứng dụng:",
 	"mwoauth-consumer-callbackurl": "URL “gọi lại” OAuth:",
 	"mwoauth-consumer-callbackisprefix": "Cho phép trình tiêu dùng định rõ một hàm gọi lại và sử dụng địa chỉ URL “gọi lại” bên trên là một tiền tố yêu cầu.",
+	"mwoauth-consumer-granttypes": "Các phân quyền được yêu cầu:",
 	"mwoauth-consumer-grantsneeded": "Các quyền có liên quan:",
 	"mwoauth-consumer-required-grant": "Thích hợp với tiêu dùng",
 	"mwoauth-consumer-wiki": "Dự án có liên quan:",
@@ -145,7 +147,6 @@
 	"mwoauth-form-description-onewiki": "Xin chào $1,\n\n'''$2''' muốn thực hiện các tác vụ sau thay mặt cho bạn trên ''$4'':\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Xin chào $1,\n\n'''$2''' muốn có quyền truy cập cơ bản thay mặt cho bạn trên tất cả các dự án của trang Web này.",
 	"mwoauth-form-description-onewiki-nogrants": "Xin chào $1,\n\n'''$2''' muốn có quyền truy cập cơ bản thay mặt cho bạn trên ''$4''.",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|Quy định quyền riêng tư]]",
 	"mwoauth-form-button-approve": "Cho phép",
 	"mwoauth-form-button-cancel": "Hủy bỏ",
 	"mwoauth-error": "Lỗi Kết nối với Ứng dụng",

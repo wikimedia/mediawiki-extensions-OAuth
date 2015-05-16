@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Indunil Chamara"
+			"Indunil Chamara",
+			"Susith Chandira Gts"
 		]
 	},
-	"mwoauthdatastore-bad-source-ip": "වලංගු නොවන IP address එකකින් ඉල්ලීම ලැබී ඇත"
+	"mwoauthdatastore-bad-source-ip": "වලංගු නොවන IP address එකකින් ඉල්ලීම ලැබී ඇත",
+	"mwoauth-grant-editmyoptions": "ඔබගේ අභිරුචියන් සංස්කරණය කරන්න"
 }
