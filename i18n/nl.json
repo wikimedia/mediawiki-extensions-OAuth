@@ -242,7 +242,7 @@
 	"mwoauth-grant-uploadeditmovefile": "Bestanden uploaden, vervangen en hernoemen",
 	"mwoauth-grant-uploadfile": "Nieuwe bestanden uploaden",
 	"mwoauth-grant-useoauth": "Basisrechten",
-	"mwoauth-grant-viewdeleted": "Verwijderde gegevens bekijken",
+	"mwoauth-grant-viewdeleted": "Verwijderde bestanden en pagina's bekijken",
 	"mwoauth-grant-viewmywatchlist": "Uw volglijst bekijken",
 	"mwoauth-oauth-exception": "Er is een fout opgetreden in het OAuth-protocol: $1",
 	"mwoauth-callback-not-oob": "oauth_callback moet worden ingesteld, en moet worden ingesteld op \"oob\" (hoofdlettergevoelig)",

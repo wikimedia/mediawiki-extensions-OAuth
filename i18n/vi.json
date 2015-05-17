@@ -3,7 +3,8 @@
 		"authors": [
 			"Minh Nguyen",
 			"Withoutaname",
-			"KhangND"
+			"KhangND",
+			"Dinhxuanduyet"
 		]
 	},
 	"mwoauth-desc": "Cho phép sử dụng OAuth 1.0a để xác minh khi truy cập API",
@@ -166,8 +167,8 @@
 	"mwoauth-grant-createeditmovepage": "Tạo, sửa, và di chuyển trang",
 	"mwoauth-grant-delete": "Xóa trang, phiên bản, và mục nhật ký",
 	"mwoauth-grant-editinterface": "Sửa không gian tên MediaWiki và CSS/JS cá nhân",
-	"mwoauth-grant-editmycssjs": "Sửa đổi CSS/JS cá nhân của bạn",
-	"mwoauth-grant-editmyoptions": "Sửa đổi tùy chọn của bạn",
+	"mwoauth-grant-editmycssjs": "Sửa đổi CSS/JavaSript cá nhân của bạn",
+	"mwoauth-grant-editmyoptions": "Sửa đổi tùy chọn cá nhân của bạn",
 	"mwoauth-grant-editmywatchlist": "Sửa danh sách theo dõi của bạn",
 	"mwoauth-grant-editpage": "Sửa đổi các trang đã tồn tại",
 	"mwoauth-grant-editprotected": "Sửa đội các trang bị khóa",
@@ -180,8 +181,9 @@
 	"mwoauth-grant-uploadeditmovefile": "Tải lên, thay thế, và di chuyển tập tin",
 	"mwoauth-grant-uploadfile": "Tải lên tập tin mới",
 	"mwoauth-grant-useoauth": "Quyền cơ bản",
-	"mwoauth-grant-viewdeleted": "Xem thông tin bị xóa",
+	"mwoauth-grant-viewdeleted": "Xem các trang và tập tin đã xóa.",
 	"mwoauth-grant-viewmywatchlist": "Xem danh sách theo dõi của bạn",
+	"mwoauth-grant-authonlyprivate": "Xác thực chỉ có quyền truy cập vào tên thật và địa chỉ email thông qua Special: OAuth/identify, không có quyền truy cập API.",
 	"mwoauth-oauth-exception": "Đã xuất hiện lỗi trong giao thức OAuth: $1",
 	"mwoauth-callback-not-oob": "oauth_callback phải được xác định là “oob” (phải là chữ thường)",
 	"right-mwoauthproposeconsumer": "Đề xuất tiêu dùng OAuth mới",
