@@ -253,7 +253,7 @@
 	"mwoauth-grant-authonlyprivate": "Nur Authentifikation mit Zugriff auf den bürgerlichen Namen und die E-Mail-Adresse über Special:OAuth/identify, keinen API-Zugriff.",
 	"mwoauth-oauth-exception": "Im OAuth-Protokoll ist ein Fehler aufgetreten: $1",
 	"mwoauth-callback-not-oob": "oauth_callback muss auf „oob“ festgelegt sein (Groß-/Kleinschreibung beachten)",
-	"mwoauth-callback-not-oob-or-prefix": "oauth_callback muss auf „oob“ festgelegt (Groß-/Kleinschreibung beachten) oder ein Präfix eines konfigurierten Callbacks sein.",
+	"mwoauth-callback-not-oob-or-prefix": "oauth_callback muss auf „oob“ festgelegt (Groß-/Kleinschreibung beachten) oder der konfigurierte Callback muss ein Präfix des angegebenen Callbacks sein.",
 	"right-mwoauthproposeconsumer": "Neue OAuth-Anwendungen vorschlagen",
 	"right-mwoauthupdateownconsumer": "Kontrollierte OAuth-Anwendungen aktualisieren",
 	"right-mwoauthmanageconsumer": "OAuth-Anwendungen verwalten",

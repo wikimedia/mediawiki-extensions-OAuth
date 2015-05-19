@@ -13,7 +13,8 @@
 			"Meshkov.a",
 			"Lockal",
 			"NBS",
-			"Marina Melik-Adamyan"
+			"Marina Melik-Adamyan",
+			"Дмитрий"
 		]
 	},
 	"mwoauth-desc": "Позволяет использование OAuth 1.0a для API авторизации",
@@ -175,6 +176,7 @@
 	"mwoauth-grant-group-high-volume": "Выполнение действий с высокой интенсивностью",
 	"mwoauth-grant-group-customization": "Настройки и предпочтения",
 	"mwoauth-grant-group-administration": "Выполнение административных действий",
+	"mwoauth-grant-group-authentication": "Использовать oauth для аутентификации",
 	"mwoauth-grant-group-other": "Разная активность",
 	"mwoauth-grant-blockusers": "Блокировка и разблокировка учётных записей",
 	"mwoauth-grant-createaccount": "Создание учётных записей",
@@ -197,6 +199,7 @@
 	"mwoauth-grant-useoauth": "Основные права",
 	"mwoauth-grant-viewdeleted": "Просмотр удалённых файлов и страниц",
 	"mwoauth-grant-viewmywatchlist": "Просмотр своего списка наблюдения",
+	"mwoauth-grant-authonly": "Только аутентификация, нет доступа к API.",
 	"mwoauth-oauth-exception": "Произошла ошибка в протоколе OAuth: $1",
 	"mwoauth-callback-not-oob": "oauth_callback должен быть установлен и иметь значение «oob» (с учётом регистра)",
 	"right-mwoauthproposeconsumer": "предложение новых клиентских OAuth-приложений",
