@@ -256,7 +256,7 @@
 	"mwoauth-grant-authonlyprivate": "Name for OAuth grant \"authonlyprivate\".\n{{Related|Mwoauth-grant}}",
 	"mwoauth-oauth-exception": "Used as failure message. Parameters:\n* $1 - Exception message text",
 	"mwoauth-callback-not-oob": "Warning that the OAuth developer failed to include the required \"oauth_callback\" parameter, which must be set to the case-sensitive string \"oob\"",
-	"mwoauth-callback-not-oob-or-prefix": "Warning that the OAuth developer failed to include the required \"oauth_callback\" parameter, which must be set to the case-sensitive string \"oob\", or be a strict (character by character) prefix of what was configured at a consumer registration time.",
+	"mwoauth-callback-not-oob-or-prefix": "Warning that the OAuth developer failed to include the required \"oauth_callback\" parameter, which must be set to the case-sensitive string \"oob\", or the callback which was configured at a consumer registration time must be a strict (character by character) prefix of the supplied value.",
 	"right-mwoauthproposeconsumer": "{{doc-right|mwoauthproposeconsumer}}",
 	"right-mwoauthupdateownconsumer": "{{doc-right|mwoauthupdateownconsumer}}",
 	"right-mwoauthmanageconsumer": "{{doc-right|mwoauthmanageconsumer}}\n{{Identical|Manage OAuth consumer}}",

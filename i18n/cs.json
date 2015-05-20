@@ -251,6 +251,7 @@
 	"mwoauth-grant-authonlyprivate": "Jen autentizace s přístupem ke skutečnému jménu a e-mailové adrese prostřednictvím Special:OAuth/identify, bez přístupu k API.",
 	"mwoauth-oauth-exception": "V protokolu OAuth došlo k chybě: $1",
 	"mwoauth-callback-not-oob": "oauth_callback musí být nastaven, a to na hodnotu „oob“ (malými písmeny)",
+	"mwoauth-callback-not-oob-or-prefix": "Musí být nastaven oauth_callback a buď musí mít hodnotu „oob“ (citlivé na velikost písmen), nebo musí být nakonfigurovaný callback prefixem uvedeného callbacku.",
 	"right-mwoauthproposeconsumer": "Navrhování nových konzumentů OAuth",
 	"right-mwoauthupdateownconsumer": "Upravování konzumentů OAuth, které spravujete",
 	"right-mwoauthmanageconsumer": "Správa konzumentů OAuth",

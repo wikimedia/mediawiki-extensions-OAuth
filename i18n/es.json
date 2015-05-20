@@ -6,7 +6,8 @@
 			"Macofe",
 			"Amitie 10g",
 			"MarcoAurelio",
-			"Ryo567"
+			"Ryo567",
+			"Csbotero"
 		]
 	},
 	"mwoauth-verified": "La aplicación ahora puede acceder a MediaWiki en tu nombre.\n\nPara completar el proceso, proporciona este valor de comprobación a la aplcación: '''$1'''",
@@ -25,6 +26,7 @@
 	"mwoauth-consumer-stage": "Estado actual:",
 	"mwoauth-consumer-email": "Correo electrónico de contacto:",
 	"mwoauth-consumer-description": "Descripción de la aplicación:",
+	"mwoauth-consumer-granttypes": "Tipo de subvenciones que se solicitan:",
 	"mwoauth-consumer-wiki-thiswiki": "Proyecto actual ($1)",
 	"mwoauth-consumer-wiki-other": "Proyecto específico",
 	"mwoauth-consumer-restrictions": "Restricciones de uso:",
@@ -110,7 +112,7 @@
 	"mwoauthmanagemygrants-navigation": "Navegación:",
 	"mwoauthmanagemygrants-showlist": "Lista de aplicaciones conectadas",
 	"mwoauthmanagemygrants-none": "No hay aplicaciones conectadas con tu cuenta.",
-	"mwoauthmanagemygrants-user": "Publicadorː",
+	"mwoauthmanagemygrants-user": "Editor:",
 	"mwoauthmanagemygrants-description": "Descripción",
 	"mwoauthmanagemygrants-wikiallowed": "Permitida en el proyecto:",
 	"mwoauthmanagemygrants-applicablegrantsallowed": "Concesiones correspondientes permitidas:",
@@ -122,6 +124,7 @@
 	"mwoauthmanagemygrants-update": "Actualizar permisos",
 	"mwoauthmanagemygrants-renounce": "No autorizado",
 	"mwoauthmanagemygrants-action": "Cambiar el estado:",
+	"mwoauthmanagemygrants-authonly-tooltip": "¿Por qué no puedo actualizar esta subvención? Si usted no desea que esta aplicación conectada tenga este derecho, debe revocar el acceso a la aplicación.",
 	"mwoauth-bad-request-missing-params": "Ha ocurrido un error al configurar esta aplicación conectada. <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Ponte en contacto con el equipo de asistencia]</span> para corregir el problema.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Faltan parámetros de OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>",
 	"mwoauthdatastore-request-token-already-used": "Esta solicitud ya se ha completado y no puede volver a presentarse.\nVuelve a la aplicación y prueba conectarte a tu cuenta de nuevo, o ponte en contacto con el autor.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth token already used, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauthdatastore-bad-source-ip": "La solicitud proviene de una dirección IP inválida.",
@@ -168,6 +171,7 @@
 	"mwoauth-grant-viewmywatchlist": "Ver tu lista de seguimiento",
 	"mwoauth-grant-authonly": "Sólo autenticación, sin acceso a la API.",
 	"mwoauth-oauth-exception": "Ha ocurrido un error en el protocolo OAuth: $1",
+	"mwoauth-callback-not-oob-or-prefix": "oauth_callback debe ser conjunto y se debe establecerse en \"oob\" (sensible a mayúsculas) o la configuración de devolución de llamada debe ser un prefijo de devolución de llamada.",
 	"mwoauth-listgrants-grant": "Conceder",
 	"mwoauth-listgrants-rights": "Derechos",
 	"mwoauth-tag-reserved": "Las etiquetas que comienzan con <code>OAuth CID:</code> están reservadas para que las use OAuth."
