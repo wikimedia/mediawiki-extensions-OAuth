@@ -242,7 +242,7 @@
 	"mwoauth-grant-authonly": "Só autenticación, sen acceso á API.",
 	"mwoauth-oauth-exception": "Ocorreu un erro no protocolo OAuth: $1",
 	"mwoauth-callback-not-oob": "oauth_callback debe estar definido e ter o valor \"oob\" (distingue entre maiúsculas e minúsculas)",
-	"mwoauth-callback-not-oob-or-prefix": "oauth_callback debe estar definido e ter o valor \"oob\" (distingue entre maiúsculas e minúsculas) ou ser un prefixo dunha chamada de retorno configurada.",
+	"mwoauth-callback-not-oob-or-prefix": "oauth_callback debe estar definido e ter o valor \"oob\" (distingue entre maiúsculas e minúsculas) ou a chamada de retorno configurada debe ser un prefixo da chamada de retorno indicada.",
 	"right-mwoauthproposeconsumer": "Propoñer novos consumidores OAuth",
 	"right-mwoauthupdateownconsumer": "Actualizar os consumidores OAuth que vostede controle",
 	"right-mwoauthmanageconsumer": "Administrar os consumidores OAuth",
