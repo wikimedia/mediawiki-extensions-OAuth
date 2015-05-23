@@ -252,7 +252,7 @@
 	"mwoauth-grant-authonlyprivate": "בדיקת זהות רק עם גישה לשם אמתי וכתובת דוא\"ל דרך Special:OAuth/identify, ללא גישת API.",
 	"mwoauth-oauth-exception": "אירעה שגיאה בפרוטוקול OAuth:$1",
 	"mwoauth-callback-not-oob": "הפרמטר oauth_callback צריך להיות מוגדר והערך שלו חייב להיות \"oob\" (תלוי־רישיות)",
-	"mwoauth-callback-not-oob-or-prefix": "יש להגדיר את oauth_callback לערך \"oob\" (תלוי רישיות), או להיות תחילית של מענה מוגדר.",
+	"mwoauth-callback-not-oob-or-prefix": "יש להגדיר את oauth_callback לערך \"oob\" (תלוי רישיות), או שהמענה המוגדר צריך להיות תחילית של המענה שניתן.",
 	"right-mwoauthproposeconsumer": "הצעת צרכני OAuth חדשים",
 	"right-mwoauthupdateownconsumer": "עדכון צרכני OAuth שבשליטת המשתמש עצמו",
 	"right-mwoauthmanageconsumer": "ניהול צרכני OAuth",

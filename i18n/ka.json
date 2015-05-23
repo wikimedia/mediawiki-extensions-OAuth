@@ -30,6 +30,8 @@
 	"mwoauthconsumerregistration-stage": "სტატუსი",
 	"mwoauthconsumerregistration-lastchange": "ბოლო ცვლილება",
 	"mwoauthconsumerregistration-manage": "მართვა",
+	"mwoauthmanageconsumers-showrejected": "უარყოფილი თხოვნები",
+	"mwoauthmanageconsumers-showexpired": "ვადაგასული თხოვნები",
 	"mwoauthmanageconsumers-main": "მთავარი",
 	"mwoauthmanageconsumers-name": "კლიენტი",
 	"mwoauthmanageconsumers-user": "გამომქვეყნებელი",
@@ -66,5 +68,7 @@
 	"mwoauthmanagemygrants-action": "სტატუსის შეცვლა:",
 	"mwoauth-form-button-approve": "ნების დართვა",
 	"mwoauth-form-button-cancel": "გაუქმება",
-	"mwoauth-grant-group-email": "ელ.ფოსტის გაგზავნა"
+	"mwoauth-grant-group-email": "ელ.ფოსტის გაგზავნა",
+	"mwoauth-grant-editmyoptions": "თქვენი საკუთარი კონფიგურაციის რედაქტირება",
+	"mwoauth-grant-editmywatchlist": "თქვენი კონტროლის სიის რედაქტირება"
 }

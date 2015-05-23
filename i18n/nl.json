@@ -7,7 +7,8 @@
 			"Siebrand",
 			"Sjoerddebruin",
 			"Southparkfan",
-			"Servien"
+			"Servien",
+			"Robin0van0der0vliet"
 		]
 	},
 	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a te gebruiken voor API-toestemming",
@@ -222,6 +223,7 @@
 	"mwoauth-grant-group-high-volume": "Activiteiten met hoog volume uitvoeren",
 	"mwoauth-grant-group-customization": "Aanpassingen en voorkeuren",
 	"mwoauth-grant-group-administration": "Beheerdershandelingen uitvoeren",
+	"mwoauth-grant-group-authentication": "OAuth gebruiken voor authenticatie",
 	"mwoauth-grant-group-other": "Diverse handelingen",
 	"mwoauth-grant-blockusers": "Gebruikers (de)blokkeren",
 	"mwoauth-grant-createaccount": "Gebruikers aanmaken",
@@ -244,6 +246,7 @@
 	"mwoauth-grant-useoauth": "Basisrechten",
 	"mwoauth-grant-viewdeleted": "Verwijderde bestanden en pagina's bekijken",
 	"mwoauth-grant-viewmywatchlist": "Uw volglijst bekijken",
+	"mwoauth-grant-authonly": "Alleen authenticatie, geen API-toegang",
 	"mwoauth-oauth-exception": "Er is een fout opgetreden in het OAuth-protocol: $1",
 	"mwoauth-callback-not-oob": "oauth_callback moet worden ingesteld, en moet worden ingesteld op \"oob\" (hoofdlettergevoelig)",
 	"right-mwoauthproposeconsumer": "Nieuwe OAuthconsumers voorstellen",

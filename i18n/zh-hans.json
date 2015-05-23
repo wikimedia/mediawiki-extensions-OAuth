@@ -262,7 +262,7 @@
 	"mwoauth-grant-authonlyprivate": "身份验证只通过Special:OAuth/identify访问真实姓名和电子邮件地址，没有API访问权。",
 	"mwoauth-oauth-exception": "OAuth 协议发生错误：$1",
 	"mwoauth-callback-not-oob": "oauth_callback必须设置且必须设置为“oob”（区分大小写）",
-	"mwoauth-callback-not-oob-or-prefix": "oauth_callback 必须设定，并且必须设置为“oob”（大小写敏感）或者一个已配置的回调的前缀。",
+	"mwoauth-callback-not-oob-or-prefix": "oauth_callback 必须设定，并且必须设置为“oob”（大小写敏感），或者配置回调必须是提供回调的一个前缀。",
 	"right-mwoauthproposeconsumer": "提议新的OAuth消费者",
 	"right-mwoauthupdateownconsumer": "更新您控制的OAuth消费者",
 	"right-mwoauthmanageconsumer": "管理OAuth消费者",
