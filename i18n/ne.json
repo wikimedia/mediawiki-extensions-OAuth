@@ -1,10 +1,22 @@
 {
 	"@metadata": {
 		"authors": [
-			"Nirjal stha"
+			"Nirjal stha",
+			"NehalDaveND"
 		]
 	},
 	"mwoauth-consumer-granttypes": "निवेदन गरिएको अनुदानको प्रकारः",
+	"mwoauth-consumer-reason": "कारण:",
+	"mwoauth-consumer-email-unconfirmed": "तपाईको इमेल ठेगाना प्रमाणित भयो।",
+	"mwoauthconsumerregistration-main": "मुख्य",
+	"mwoauthconsumerregistration-stage": "स्थिति",
+	"mwoauthmanageconsumers-main": "मुख्य",
+	"mwoauthmanageconsumers-description": "विवरण",
+	"mwoauthmanageconsumers-reason": "कारण:",
+	"mwoauthlistconsumers-view": "विवरणहरू",
+	"mwoauthlistconsumers-status": "स्थिति",
+	"mwoauthmanagemygrants-description": "विवरण",
+	"mwoauth-form-button-cancel": "रद्द गर्ने",
 	"mwoauth-granttype-normal": "विशेष अनुमति अधिकारको लागी निवेदन गर्नुहोस् ।",
 	"mwoauth-grant-createeditmovepage": "पृष्ठहरूमा परिवर्तन गर्नुहोस्",
 	"mwoauth-grant-editmycssjs": "तपाईको प्रयोगकर्ता CSS/JavaScript सम्पादन गर्नुहोस्",
