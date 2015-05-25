@@ -527,6 +527,7 @@ class OAuthServer {
 	protected $version = '1.0'; // hi blaine
 	protected $signature_methods = array();
 
+	/** @var OAuthDataStore */
 	protected $data_store;
 
 	function __construct( $data_store ) {
