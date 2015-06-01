@@ -115,7 +115,7 @@
 	"mwoauthmanageconsumers-consumerkey": "کلید مصرف‌کننده",
 	"mwoauthmanageconsumers-lastchange": "آخرین تغییر",
 	"mwoauthmanageconsumers-review": "بررسی/مدیریت",
-	"mwoauthmanageconsumers-confirm-text": "از این فرم برای تأیید، رد، غیرفعال یا دوباره فعال‌کردن این مصرف‌کننده استفاده کنید.",
+	"mwoauthmanageconsumers-confirm-text": "از این فرم برای تأیید، رد، غیرفعال یا دوباره فعال کردن این مصرف‌کننده استفاده کنید.",
 	"mwoauthmanageconsumers-confirm-legend": "مدیریت مصرف OAuth",
 	"mwoauthmanageconsumers-action": "تغییر وضعیت:",
 	"mwoauthmanageconsumers-approve": "تأییدشده",
