@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Beta16",
-			"Ricordisamoa"
+			"Ricordisamoa",
+			"Alexmar983"
 		]
 	},
 	"mwoauth-desc": "Consente l'utilizzo di OAuth 1.0a per le API di autorizzazione",
@@ -237,7 +238,7 @@
 	"mwoauth-grant-uploadeditmovefile": "Carica, sostituisce e sposta i file",
 	"mwoauth-grant-uploadfile": "Carica nuovi file",
 	"mwoauth-grant-useoauth": "Diritti di base",
-	"mwoauth-grant-viewdeleted": "Vede le informazioni cancellate",
+	"mwoauth-grant-viewdeleted": "Vedi i file e le pagine cancellati",
 	"mwoauth-grant-viewmywatchlist": "Vedi i tuoi osservati speciali",
 	"mwoauth-oauth-exception": "Si è verificato un errore nel protocollo OAuth: $1",
 	"mwoauth-callback-not-oob": "oauth_callback deve essere impostato a \"oob\" (in minuscolo)",
