@@ -2,11 +2,11 @@
  * OAuth JavaScript
  * @author Aaron Schulz 2013
  */
-( function( mw, $ ) {
-	"use strict";
+( function ( mw, $ ) {
+	'use strict';
 
 	var mwoauth = {
-		'init' : function () {
+		'init': function () {
 			var form = $( '#mw-mwoauth-authorize-dialog' );
 			form.find( '.mw-htmlform-submit-buttons' ).addClass( 'mw-ui-flush-right' );
 			form.dialog( {
@@ -18,21 +18,21 @@
 				open: function () {
 					$( window ).scrollTop( 0 );
 				},
-				create: function() {
-					$(this).parents( ".ui-dialog:first" )
-						.find( ".ui-dialog-content" ).css( "padding", "20px" );
-					$(this).css( "maxHeight", 0.9 * $( window ).height() );
-					$(this).css( "background-color", '#FFF' );
-					$(this).css( "border", '1px #CCC' );
-					$(this).dialog( 'option', 'modal', true );
+				create: function () {
+					$( this ).parents( '.ui-dialog:first' )
+						.find( '.ui-dialog-content' ).css( 'padding', '20px' );
+					$( this ).css( 'maxHeight', 0.9 * $( window ).height() );
+					$( this ).css( 'background-color', '#FFF' );
+					$( this ).css( 'border', '1px #CCC' );
+					$( this ).dialog( 'option', 'modal', true );
 				}
 			} );
 		}
 	};
 
-// Perform some onload events:
-$( document ).ready( function () {
-	mwoauth.init();
-} );
+	// Perform some onload events:
+	$( document ).ready( function () {
+		mwoauth.init();
+	} );
 
 })( mediaWiki, jQuery );
