@@ -85,6 +85,9 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					return is_array( $res ) && MWOAuthUtils::restrictionsAreValid( $res );
 				},
 				'rsaKey'       => $validateRsaKey,
+				'agreement'    => function( $s ) {
+					return ( $s == true );
+				},
 			),
 			'update'      => array(
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
@@ -207,6 +210,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					'userId'             => $centralUserId,
 					'email'              => $user->getEmail(),
 					'emailAuthenticated' => $now, // see above
+					'developerAgreement' => 1,
 					'secretKey'          => \MWCryptRand::generateHex( 32 ),
 					'registration'       => $now,
 					'stage'              => MWOAuthConsumer::STAGE_PROPOSED,
