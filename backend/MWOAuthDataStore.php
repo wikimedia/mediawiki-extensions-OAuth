@@ -54,6 +54,11 @@ class MWOAuthDataStore extends OAuthDataStore {
 			if ( !$cmra ) {
 				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found' );
 			}
+			// Ensure the cmra's consumer matches the expected consumer (T103023)
+			$mwconsumer = $this->lookup_consumer( $consumer->key );
+			if ( $mwconsumer->get( 'id') !== $cmra->get( 'consumerId') ) {
+				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found' );
+			}
 			$secret = MWOAuthUtils::hmacDBSecret( $cmra->get( 'accessSecret' ) );
 			$returnToken = new MWOAuthToken( $cmra->get( 'accessToken' ), $secret );
 		} else {
