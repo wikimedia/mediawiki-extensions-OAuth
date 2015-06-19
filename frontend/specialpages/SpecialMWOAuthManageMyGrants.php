@@ -294,7 +294,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		} ) );
 
 		$r = '<li class="mw-mwoauthmanagemygrants-list-item">';
-		$r .= "<strong>{$encName}</strong> (<strong>$reviewLinks</strong>)";
+		$r .= "<strong dir='ltr'>{$encName}</strong> (<strong>$reviewLinks</strong>)";
 		$data = array(
 			'mwoauthmanagemygrants-user' => $cmr->get( 'userId',
 				'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' ),
