@@ -41,6 +41,7 @@
 	"mwoauth-consumer-secretkey": "Geheimer Verbrauchertoken:",
 	"mwoauth-consumer-accesstoken": "Zugriffstoken:",
 	"mwoauth-consumer-reason": "Grund:",
+	"mwoauth-consumer-developer-agreement": "Durch die Übermittlung dieser Anwendung bestätigst du, dass wir uns das Recht vorbehalten, deine Anwendung zu deaktivieren, entfernen oder den Zugriff deiner Anwendung auf diese Website beschränken können und verfolgen andere Kurse von Aktionen, von denen wir in unserer Beurteilung glauben, dass du oder deine Anwendung eine Richtlinie oder ein führendes Prinzip dieser Website verletzt. Wir können diese Anwendungsrichtlinie jederzeit ohne vorherige Ankündigung nach unserem Ermessen ändern und wie wir es für notwendig erachten. Deine fortgesetzte Verwendung von OAuth stellt eine Akzeptanz dieser Änderungen dar.",
 	"mwoauth-consumer-email-unconfirmed": "Die E-Mail-Adresse deines Benutzerkontos wurde noch nicht bestätigt.",
 	"mwoauth-consumer-email-mismatched": "Die angegebene E-Mail-Adresse muss mit der deines Benutzerkontos übereinstimmen.",
 	"mwoauth-consumer-alreadyexists": "Ein Verbraucher mit dieser Namen-/Versions-/Herausgeberkombination ist bereits vorhanden",

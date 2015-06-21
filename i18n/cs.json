@@ -39,6 +39,7 @@
 	"mwoauth-consumer-secretkey": "Tajný token konzumenta:",
 	"mwoauth-consumer-accesstoken": "Přístupový token:",
 	"mwoauth-consumer-reason": "Důvod:",
+	"mwoauth-consumer-developer-agreement": "Odesláním této žádosti berete na vědomí, že si vyhrazujeme právo vaši aplikaci vypnout, odebrat či omezit vám či vaší aplikaci přístup k tomuto webu nebo provést libovolné jiné opatření, které budeme považovat za vhodné, pokud se budeme domnívat, čistě podle svého uvážení, že vy nebo vaše aplikace porušujete jakékoli pravidlo, doporučení či zvyklost na tomto webu. Tato Pravidla aplikací můžeme kdykoli změnit bez předchozího upozornění, dle našeho výhradního rozhodnutí, jakkoli budeme považovat za potřebné. Pokračováním ve využívání OAuth vyjadřujete s takovými změnami souhlas.",
 	"mwoauth-consumer-email-unconfirmed": "E-mailová adresa vašeho uživatelského účtu dosud nebyla potvrzena.",
 	"mwoauth-consumer-email-mismatched": "Uvedená e-mailová adresa musí odpovídat té ve vašem uživatelském účtu.",
 	"mwoauth-consumer-alreadyexists": "Konzument s touto kombinací název/verze/vydavatel již existuje",
