@@ -249,7 +249,7 @@
 	"mwoauth-grant-authonlyprivate": "Само заверка, со пристап до вистинското име и е-пошта преку Special:OAuth/identify. Без пристап за извршник.",
 	"mwoauth-oauth-exception": "Се појави грешка во протоколот на OAuth: $1",
 	"mwoauth-callback-not-oob": "oauth_callback мора да е поставено на „oob“ (строго со мали букви)",
-	"mwoauth-callback-not-oob-or-prefix": "Мора да е зададено oauth_callback и да биде наместено на „oob“ (разликува големи/мали букви), или пак да биде претставка на поставен повратен повик.",
+	"mwoauth-callback-not-oob-or-prefix": "Мора да е зададено oauth_callback и да биде наместено на „oob“ (разликува големи/мали букви), или пак поставениот повратен повик мора да  да биде претставка на поставен повратен повик.",
 	"right-mwoauthproposeconsumer": "Предлагање на нови потрошувачи на OAuth",
 	"right-mwoauthupdateownconsumer": "Измена на потрошувачи на OAuth",
 	"right-mwoauthmanageconsumer": "Раководење со потрошувачи на OAuth",
