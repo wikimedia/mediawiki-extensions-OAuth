@@ -6,7 +6,8 @@
 			"Shirayuki",
 			"Siebrand",
 			"Liuxinyu970226",
-			"Mormegil"
+			"Mormegil",
+			"Tgr"
 		]
 	},
 	"oauth": "Title of MWOAuth page.\n{{Identical|OAuth}}",
@@ -43,7 +44,7 @@
 	"mwoauth-consumer-secretkey": "Used as label for the textarea.",
 	"mwoauth-consumer-accesstoken": "Unused at this time.",
 	"mwoauth-consumer-reason": "Used as label for the \"Reason\" value.\n{{Identical|Reason}}",
-	"mwoauth-consumer-developer-agreement": "Aggreement shown on application form, indicating that the app author understands their reponsibilities by submitting this form.",
+	"mwoauth-consumer-developer-agreement": "Agreement shown on application form, indicating that the app author understands their responsibilities by submitting this form.",
 	"mwoauth-consumer-email-unconfirmed": "Used as failure message when taking some action which requires email-confirmation.",
 	"mwoauth-consumer-email-mismatched": "Used as failure message when taking some action.",
 	"mwoauth-consumer-alreadyexists": "Used as failure message.",
