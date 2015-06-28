@@ -3,7 +3,8 @@
 		"authors": [
 			"Fryed-peach",
 			"Shirayuki",
-			"Whym"
+			"Whym",
+			"Sujiniku"
 		]
 	},
 	"oauth": "OAuth",
@@ -96,7 +97,6 @@
 	"mwoauthmanageconsumers-reenable": "承認済",
 	"mwoauthmanageconsumers-reason": "理由:",
 	"mwoauthmanageconsumers-confirm-submit": "コンシューマーの状態を更新",
-	"mwoauthmanageconsumers-viewing": "{{GENDER:$1|利用者}}「$1」が現在このコンシューマーを閲覧中です",
 	"mwoauthmanageconsumers-success-approved": "リクエストを承認しました。",
 	"mwoauthmanageconsumers-success-rejected": "リクエストを却下しました。",
 	"mwoauthmanageconsumers-success-disabled": "コンシューマーを無効にしました。",
@@ -148,7 +148,6 @@
 	"mwoauthserver-insufficient-rights": "あなたにはこの操作を実行する権限がありません。",
 	"mwoauthserver-invalid-request-token": "リクエストに無効なトークンがあります。",
 	"mwoauth-invalid-authorization-title": "OAuth 認証エラー",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|プライバシー・ポリシー]]",
 	"mwoauth-form-button-approve": "許可",
 	"mwoauth-form-button-cancel": "キャンセル",
 	"mwoauth-error": "アプリケーション接続エラー",
@@ -157,11 +156,11 @@
 	"mwoauth-grant-group-other": "その他の活動",
 	"mwoauth-grant-blockusers": "利用者をブロック/ブロック解除",
 	"mwoauth-grant-createaccount": "アカウントを作成",
-	"mwoauth-grant-createeditmovepage": "ページを作成/編集/移動",
+	"mwoauth-grant-createeditmovepage": "ページの変更を作成",
 	"mwoauth-grant-delete": "ページ、版、記録項目を削除",
 	"mwoauth-grant-editinterface": "MediaWiki 名前空間および利用者 CSS/JavaScript を編集",
 	"mwoauth-grant-editmycssjs": "自身の利用者 CSS/JavaScript を編集",
-	"mwoauth-grant-editmyoptions": "自身の個人設定を編集",
+	"mwoauth-grant-editmyoptions": "あなたの個人設定を編集",
 	"mwoauth-grant-editmywatchlist": "自身のウォッチリストを編集",
 	"mwoauth-grant-editpage": "既存のページを編集",
 	"mwoauth-grant-editprotected": "保護されたページを編集",
@@ -173,7 +172,7 @@
 	"mwoauth-grant-uploadeditmovefile": "ファイルをアップロード/置き換え/移動",
 	"mwoauth-grant-uploadfile": "新しいファイルをアップロード",
 	"mwoauth-grant-useoauth": "基本的な権限",
-	"mwoauth-grant-viewdeleted": "削除された情報を閲覧",
+	"mwoauth-grant-viewdeleted": "削除されたファイルとページを閲覧",
 	"mwoauth-grant-viewmywatchlist": "自身のウォッチリストを閲覧",
 	"mwoauth-oauth-exception": "OAuth プロトコルでエラーが発生しました: $1",
 	"mwoauth-callback-not-oob": "oauth_callback に「oob」を設定してください (大文字小文字を区別)",
