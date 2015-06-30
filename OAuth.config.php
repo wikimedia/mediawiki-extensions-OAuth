@@ -60,7 +60,6 @@ $wgMWOAuthGrantPermissions['useoauth']['purge'] = true;
 $wgMWOAuthGrantPermissions['useoauth']['read'] = true;
 $wgMWOAuthGrantPermissions['useoauth']['skipcaptcha'] = true;
 $wgMWOAuthGrantPermissions['useoauth']['torunblocked'] = true;
-$wgMWOAuthGrantPermissions['useoauth']['unblockself'] = true;
 $wgMWOAuthGrantPermissions['useoauth']['writeapi'] = true;
 
 $wgMWOAuthGrantPermissions['highvolume']['bot'] = true;
