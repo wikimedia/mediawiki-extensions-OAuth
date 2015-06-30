@@ -28,7 +28,7 @@ class MWOAuthAPISetup {
 	 *
 	 * @param string $msgKey Key for the error message
 	 * Varargs: normal message parameters.
-	 * @return \MWException
+	 * @return \UsageException|\ErrorPageError
 	 */
 	private static function makeException( $msgKey /* ... */ ) {
 		$params = func_get_args();
