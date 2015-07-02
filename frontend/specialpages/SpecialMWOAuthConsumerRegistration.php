@@ -25,14 +25,6 @@ namespace MediaWiki\Extensions\OAuth;
  * Page that has registration request form and consumer update form
  */
 class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
-	protected static $stageKeyMap = array(
-		MWOAuthConsumer::STAGE_PROPOSED => 'proposed',
-		MWOAuthConsumer::STAGE_REJECTED => 'rejected',
-		MWOAuthConsumer::STAGE_EXPIRED  => 'expired',
-		MWOAuthConsumer::STAGE_APPROVED => 'approved',
-		MWOAuthConsumer::STAGE_DISABLED => 'disabled',
-	);
-
 	public function __construct() {
 		parent::__construct( 'OAuthConsumerRegistration' );
 	}
@@ -439,7 +431,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		$time = $this->getLanguage()->timeanddate(
 			wfTimestamp( TS_MW, $cmr->get( 'registration' ) ), true );
 
-		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
+		$stageKey = MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )];
 		$encStageKey = htmlspecialchars( $stageKey ); // sanity
 		// Show last log entry (@TODO: title namespace?)
 		// @TODO: inject DB
