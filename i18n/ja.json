@@ -120,7 +120,7 @@
 	"mwoauthlistconsumers-status-rejected": "却下",
 	"mwoauthlistconsumers-status-expired": "期限切れ",
 	"oauthmanagemygrants": "接続済みアプリケーションの管理",
-	"mwoauthmanagemygrants-text": "このページでは、あなたのアカウントを使用できるアプリケーションをすべて列挙します。各アプリケーションについて、あなたの代わりに実行することを承認した際に許可した範囲に、そのアプリケーションの権限が制限されています。If you separately authorized an application to access different sister projects on your behalf, then you will see separate configuration for each such project below.\n\nConnected applications access your account by using the OAuth protocol. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Learn more about connected applications])</span>",
+	"mwoauthmanagemygrants-text": "このページでは、あなたのアカウントを使用できるアプリケーションをすべて列挙します。各アプリケーションについて、あなたの代わりに実行することを承認した際に許可した範囲に、そのアプリケーションの権限が制限されています。If you separately authorized an application to access different sister projects on your behalf, then you will see separate configuration for each such project below.\n\n接続されたアプリケーションは、OAuth プロトコル を使って、あなたのアカウントにアクセスします。<span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Learn more about connected applications])</span>",
 	"mwoauthmanagemygrants-notloggedin": "このページにアクセスするにはログインしてください。",
 	"mwoauthmanagemygrants-navigation": "ナビゲーション:",
 	"mwoauthmanagemygrants-showlist": "接続済みアプリケーション一覧",
