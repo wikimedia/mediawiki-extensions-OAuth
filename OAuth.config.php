@@ -56,6 +56,11 @@ $wgAvailableRights[] = 'mwoauthmanagemygrants';
 
 $wgGroupPermissions['user']['mwoauthmanagemygrants'] = true;
 
+$wgDefaultUserOptions['echo-subscriptions-web-oauth-owner'] = true;
+$wgDefaultUserOptions['echo-subscriptions-email-oauth-owner'] = true;
+$wgDefaultUserOptions['echo-subscriptions-web-oauth-admin'] = true;
+$wgDefaultUserOptions['echo-subscriptions-email-oauth-admin'] = true;
+
 /** @var bool Require HTTPs for user transactions that might send out secret tokens */
 $wgMWOAuthSecureTokenTransfer = true; // RfC compliance
 
@@ -79,6 +84,11 @@ $wgMWOAuthReadOnly = false;
  * to be the same for all wikis.
  */
 $wgOAuthSecretKey = $wgSecretKey;
+
+/**
+ * @var string[] User groups to notify about new consumers that need to be reviewed.
+ */
+$wgOAuthGroupsToNotify = [];
 
 # End of configuration variables.
 # ########

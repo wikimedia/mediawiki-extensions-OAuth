@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_registered_consumer (
     oarc_consumer_key varbinary(32) NOT NULL,
     -- Name of the application
     oarc_name varchar(128) binary NOT NULL,
-    -- Key to the user who proposed the application
+    -- (Central) user id of the user who proposed the application
     oarc_user_id integer unsigned NOT NULL,
     -- Version of the application
     oarc_version varbinary(32) NOT NULL,

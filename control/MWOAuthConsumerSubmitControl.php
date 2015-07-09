@@ -30,6 +30,13 @@ namespace MediaWiki\Extensions\OAuth;
  * @TODO: improve error messages
  */
 class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
+	/**
+	 * Names of the actions that can be performed on a consumer. These are the same as the
+	 * options in getRequiredFields().
+	 * @var array
+	 */
+	public static $actions = array( 'propose', 'update', 'approve', 'reject', 'disable', 'reenable' );
+
 	/** @var \DBConnRef */
 	protected $dbw;
 
@@ -241,18 +248,12 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			);
 			$cmr->save( $dbw );
 
-			$logEntry = new \ManualLogEntry(
-				'mwoauthconsumer',
-				$cmr->get( 'ownerOnly' ) ? 'create-owner-only' : 'propose'
-			);
-			$logEntry->setPerformer( $user );
-			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
-			$logEntry->setComment( $this->vals['description'] );
-			$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
-			$logEntry->setRelations( array(
-				'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
-			) );
-			$logEntry->insert( $dbw );
+			if ( $cmr->get( 'ownerOnly' ) ) {
+				$this->makeLogEntry( $dbw, $cmr, 'create-owner-only', $user, $this->vals['description'] );
+			} else {
+				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['description'] );
+				$this->notify( $cmr, $user, $action,  null );
+			}
 
 			// If it's owner-only, automatically accept it for the user too.
 			$cmra = null;
@@ -302,15 +303,8 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
-				$logEntry = new \ManualLogEntry( 'mwoauthconsumer', 'update' );
-				$logEntry->setPerformer( $user );
-				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
-				$logEntry->setComment( $this->vals['reason'] );
-				$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
-				$logEntry->setRelations( array(
-					'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
-				) );
-				$logEntry->insert( $dbw );
+				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
+				$this->notify( $cmr, $user, $action,  $this->vals['reason'] );
 			}
 
 			$cmra = null;
@@ -366,17 +360,8 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
-				$logEntry = new \ManualLogEntry( 'mwoauthconsumer', 'approve' );
-				$logEntry->setPerformer( $user );
-				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
-				$logEntry->setComment( $this->vals['reason'] );
-				$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
-				$logEntry->setRelations( array(
-					'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
-				) );
-				$logEntry->insert( $dbw );
-
-				// @TODO: email/notifications?
+				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
+				$this->notify( $cmr, $user, $action,  $this->vals['reason'] );
 			}
 
 			return $this->success( $cmr );
@@ -405,17 +390,8 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
-				$logEntry = new \ManualLogEntry( 'mwoauthconsumer', 'reject' );
-				$logEntry->setPerformer( $user );
-				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
-				$logEntry->setComment( $this->vals['reason'] );
-				$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
-				$logEntry->setRelations( array(
-					'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
-				) );
-				$logEntry->insert( $dbw );
-
-				// @TODO: email/notifications?
+				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
+				$this->notify( $cmr, $user, $action,  $this->vals['reason'] );
 			}
 
 			return $this->success( $cmr );
@@ -446,17 +422,8 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
-				$logEntry = new \ManualLogEntry( 'mwoauthconsumer', 'disable' );
-				$logEntry->setPerformer( $user );
-				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
-				$logEntry->setComment( $this->vals['reason'] );
-				$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
-				$logEntry->setRelations( array(
-					'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
-				) );
-				$logEntry->insert( $dbw );
-
-				// @TODO: email/notifications?
+				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
+				$this->notify( $cmr, $user, $action,  $this->vals['reason'] );
 			}
 
 			return $this->success( $cmr );
@@ -483,17 +450,8 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
-				$logEntry = new \ManualLogEntry( 'mwoauthconsumer', 'reenable' );
-				$logEntry->setPerformer( $user );
-				$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
-				$logEntry->setComment( $this->vals['reason'] );
-				$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
-				$logEntry->setRelations( array(
-					'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
-				) );
-				$logEntry->insert( $dbw );
-
-				// @TODO: email/notifications?
+				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
+				$this->notify( $cmr, $user, $action,  $this->vals['reason'] );
 			}
 
 			return $this->success( $cmr );
@@ -508,5 +466,51 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	protected function getLogTitle( \DBConnRef $db, $userId ) {
 		$name = MWOAuthUtils::getCentralUserNameFromId( $userId );
 		return \Title::makeTitleSafe( NS_USER, $name );
+	}
+
+	/**
+	 * @param \DBConnRef $dbw
+	 * @param MWOAuthConsumer $cmr
+	 * @param string $action
+	 * @param \User $performer
+	 * @param string $comment
+	 */
+	protected function makeLogEntry( $dbw, MWOAuthConsumer $cmr, $action, \User $performer, $comment ) {
+		$logEntry = new \ManualLogEntry( 'mwoauthconsumer', $action );
+		$logEntry->setPerformer( $performer );
+		$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
+		$logEntry->setComment( $comment );
+		$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
+		$logEntry->setRelations( array(
+			'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
+		) );
+		$logEntry->insert( $dbw );
+	}
+
+	/**
+	 * @param MWOAuthConsumer $cmr Consumer which was the subject of the action
+	 * @param \User $user User who performed the action
+	 * @param string $actionType Action type
+	 * @param string $comment
+	 * @throws \MWException
+	 */
+	protected function notify( $cmr, $user, $actionType, $comment ) {
+		if ( !in_array( $actionType, self::$actions, true ) ) {
+			throw new \MWException( "Invalid action type: $actionType" );
+		}
+		if ( !class_exists( '\EchoEvent' ) ) {
+			return;
+		}
+
+		\EchoEvent::create( [
+			'type' => 'oauth-app-' . $actionType,
+			'agent' => $user,
+			'extra' => [
+				'action' => $actionType,
+				'app-key' => $cmr->get( 'consumerKey' ),
+				'owner-id' => $cmr->get( 'userId' ),
+				'comment' => $comment,
+			],
+		] );
 	}
 }

@@ -77,6 +77,10 @@ class MWOAuthSetup {
 		$classes['MediaWiki\Extensions\OAuth\MWOAuthServer'] = "$backendDir/MWOAuthServer.php"; // "MWOAuth1Protocol"?
 		$classes['MediaWiki\Extensions\OAuth\MWOAuthSignatureMethod_RSA_SHA1'] = "$backendDir/MWOAuthSignatureMethod.php";
 
+		# Echo
+		$classes['MediaWiki\Extensions\OAuth\EchoOAuthStageChangePresentationModel'] =
+			"$frontendDir/EchoOAuthStageChangePresentationModel.php";
+
 		# Library
 		$classes['MediaWiki\Extensions\OAuth\OAuthException'] = "$libDir/OAuth.php";
 		$classes['MediaWiki\Extensions\OAuth\OAuthConsumer'] = "$libDir/OAuth.php";

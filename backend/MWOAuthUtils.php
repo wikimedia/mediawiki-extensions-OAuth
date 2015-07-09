@@ -2,8 +2,9 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use EchoEvent;
 use Hooks;
-use MWException;
+use User;
 
 /**
  * Static utility functions for OAuth
@@ -458,4 +459,55 @@ class MWOAuthUtils {
 		return \MWGrants::grantsAreValid( $grants );
 	}
 
+	/**
+	 * Given an OAuth consumer stage change event, find out who needs to be notified.
+	 * Will be used as an EchoAttributeManager::ATTR_LOCATORS callback.
+	 * @param EchoEvent $event
+	 * @return User[]
+	 */
+	public static function locateUsersToNotify( EchoEvent $event ) {
+		$agent = $event->getAgent();
+		$owner = MWOAuthUtils::getLocalUserFromCentralId( $event->getExtraParam( 'owner-id' ) );
+
+		$users = [];
+		switch ( $event->getType() ) {
+			case 'oauth-app-propose':
+				// notify OAuth admins about new proposed apps
+				$oauthAdmins = self::getOAuthAdmins();
+				foreach ( $oauthAdmins as $admin ) {
+					if ( $admin->equals( $owner ) ) {
+						continue;
+					}
+					$users[$admin->getId()] = $admin;
+				}
+				break;
+			case 'oauth-app-update':
+			case 'oauth-app-approve':
+			case 'oauth-app-reject':
+			case 'oauth-app-disable':
+			case 'oauth-app-reenable':
+				// notify owner if someone else changed the status of the app
+				if ( !$owner->equals( $agent ) ) {
+					$users[$owner->getId()] = $owner;
+				}
+				break;
+		}
+		return $users;
+	}
+
+	/**
+	 * Return a list of all OAuth admins (or the first 5000 in the unlikely case that there is more
+	 * than that).
+	 * Should be called on the central OAuth wiki.
+	 * @return User[]
+	 */
+	protected static function getOAuthAdmins() {
+		global $wgOAuthGroupsToNotify;
+
+		if ( !$wgOAuthGroupsToNotify ) {
+			return [];
+		}
+
+		return iterator_to_array( User::findUsersByGroup( $wgOAuthGroupsToNotify ) );
+	}
 }

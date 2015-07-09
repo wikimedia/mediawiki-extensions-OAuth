@@ -38,7 +38,8 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $consumerKey;
 	/** @var string Name of connected application */
 	protected $name;
-	/** @var integer Publisher user ID (on central wiki) */
+	/** @var integer Publisher's central user ID. $wgMWOAuthSharedUserIDs defines which central ID
+	 *    provider to use. */
 	protected $userId;
 	/** @var string Version used for handshake breaking changes */
 	protected $version;
