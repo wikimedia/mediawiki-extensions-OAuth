@@ -21,6 +21,7 @@ class MWOAuthAPISetup {
 		$wgHooks['ApiCheckCanExecute'][] = __CLASS__ . '::onApiCheckCanExecute';
 		$wgHooks['RecentChange_save'][] = __CLASS__ . '::onRecentChange_save';
 		$wgHooks['CentralAuthAbortCentralAuthToken'][] = __CLASS__ . '::onCentralAuthAbortCentralAuthToken';
+		$wgHooks['TestCanonicalRedirect'][] = __CLASS__ . '::onTestCanonicalRedirect';
 	}
 
 	/**
@@ -289,6 +290,21 @@ class MWOAuthAPISetup {
 	 */
 	public static function onCentralAuthAbortCentralAuthToken() {
 		$request = \RequestContext::getMain()->getRequest();
+		if ( MWOAuthUtils::hasOAuthHeaders( $request ) ) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Prevent redirects to canonical titles, since that's not what the OAuth
+	 * request signed.
+	 * @param WebRequest $request
+	 * @param Title $title
+	 * @param OutputPage $output
+	 * @return bool
+	 */
+	public static function onTestCanonicalRedirect( $request, $title, $output ) {
 		if ( MWOAuthUtils::hasOAuthHeaders( $request ) ) {
 			return false;
 		}
