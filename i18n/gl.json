@@ -40,6 +40,7 @@
 	"mwoauth-consumer-secretkey": "Pase secreto do consumidor:",
 	"mwoauth-consumer-accesstoken": "Pase de acceso:",
 	"mwoauth-consumer-reason": "Motivo:",
+	"mwoauth-consumer-developer-agreement": "Ao enviar esta aplicación, vostede acepta que reservamos o dereito a desactivar a súa aplicación, a retirar ou restrinxir o acceso ao sitio a vostede ou á súa aplicación, e a realizar calquera outro tipo de acción que vexamos apropiada se cremos, ao noso xuízo, que vostede ou a súa aplicación están a violar algunha política, norma ou principio deste sitio. Podemos cambiar esta política de aplicacións en calquera momento sen aviso previo, segundo o noso criterio e cando o estimemos necesario. Se vostede continúa usando OAuth significa que acepta eses cambios.",
 	"mwoauth-consumer-email-unconfirmed": "Aínda non se confirmou o enderezo de correo electrónico da súa conta.",
 	"mwoauth-consumer-email-mismatched": "O enderezo de correo electrónico achegado debe coincidir co da súa conta.",
 	"mwoauth-consumer-alreadyexists": "Xa existe un consumidor con esa combinación de nome/versión/editor",
