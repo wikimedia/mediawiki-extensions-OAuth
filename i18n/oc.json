@@ -103,7 +103,14 @@
 	"mwoauthmanagemygrants-description": "Descripcion",
 	"mwoauthmanagemygrants-wikiallowed": "Autorizat sul projècte :",
 	"mwoauthmanagemygrants-grantaccept": "Acordat",
+	"mwoauthmanagemygrants-confirm-legend": "Gerir las aplicacions connectadas",
 	"mwoauth-error": "Error de connexion de l’aplicacion",
 	"mwoauth-grant-blockusers": "Blocar e desblocar los utilizaires",
-	"mwoauth-grant-patrol": "Marcar de paginas coma patrolhadas"
+	"mwoauth-grant-patrol": "Marcar de paginas coma patrolhadas",
+	"right-mwoauthproposeconsumer": "prepausar de consomidors OAuth novèls",
+	"right-mwoauthupdateownconsumer": "Metre a jorn los consomidors OAuth",
+	"right-mwoauthmanagemygrants": "Gerir los dreches OAuth",
+	"action-mwoauthmanagemygrants": "Gerir vòstres dreches OAuth",
+	"action-mwoauthproposeconsumer": "prepausar de consomidors OAuth novèls",
+	"action-mwoauthupdateownconsumer": "Metre a jorn los consomidors OAuth"
 }
