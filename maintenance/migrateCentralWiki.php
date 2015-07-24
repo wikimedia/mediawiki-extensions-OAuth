@@ -32,10 +32,10 @@ class MigrateCentralWiki extends \Maintenance {
 		$this->addOption( 'old', 'Previous central wiki', true, true );
 		$this->addOption( 'target', 'New central wiki', true, true );
 		$this->addOption( 'table', 'Table name (oauth_registered_consumer or oauth_accepted_consumer)', true, true );
+		$this->setBatchSize( 200 );
 	}
 
 	public function execute() {
-
 		$oldWiki = $this->getOption( 'old' );
 		$targetWiki = $this->getOption( 'target' );
 		$table = $this->getOption( 'table' );
@@ -43,15 +43,18 @@ class MigrateCentralWiki extends \Maintenance {
 		if ( $table === 'oauth_registered_consumer' ) {
 			$idKey = 'oarc_id';
 			$cmrClass = 'MediaWiki\Extensions\OAuth\MWOAuthConsumer';
+			$type = 'consumer';
 		} elseif ( $table === 'oauth_accepted_consumer' ) {
 			$idKey = 'oaac_id';
 			$cmrClass = 'MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance';
+			$type = 'grant';
 		} else {
 			$this->error( "Invalid table name. Must be one of 'oauth_registered_consumer' or 'oauth_accepted_consumer'.\n", 1 );
 		}
 
 		$oldDb = wfGetLB( $oldWiki )->getConnectionRef( DB_MASTER, array(), $oldWiki );
 		$targetDb = wfGetLB( $targetWiki )->getConnectionRef( DB_MASTER, array(), $targetWiki );
+		$targetDb->daoReadOnly = false;
 
 		$newMax = $targetDb->selectField(
 			$table,
@@ -71,8 +74,8 @@ class MigrateCentralWiki extends \Maintenance {
 			$this->output( "No new rows.\n" );
 		}
 
-		for ( $currentId = $newMax + 1; $currentId <= $oldMax; ++$currentId ) {
-			$this->output( "Migrating grant $currentId..." );
+		for ( $currentId = $newMax + 1, $i = 1; $currentId <= $oldMax; ++$currentId, ++$i ) {
+			$this->output( "Migrating $type $currentId..." );
 			$cmr = $cmrClass::newFromId( $oldDb, $currentId );
 			if ( $cmr ) {
 				$cmr->updateOrigin( 'new' );
@@ -81,6 +84,10 @@ class MigrateCentralWiki extends \Maintenance {
 				$this->output( "done.\n" );
 			} else {
 				$this->output( "missing.\n" );
+			}
+
+			if ( $this->mBatchSize && $i % $this->mBatchSize === 0 ) {
+				wfWaitForSlaves( null, $targetWiki );
 			}
 		}
 
