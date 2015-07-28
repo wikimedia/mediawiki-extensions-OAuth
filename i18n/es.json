@@ -136,7 +136,7 @@
 	"mwoauthmanagemygrants-update-text": "Utiliza el formulario siguiente para modificar los permisos concedidos a una aplicación para que actúe en tu nombre.",
 	"mwoauthmanagemygrants-confirm-legend": "Gestionar aplicación conectada",
 	"mwoauthmanagemygrants-update": "Actualizar permisos",
-	"mwoauthmanagemygrants-renounce": "No autorizado",
+	"mwoauthmanagemygrants-renounce": "Desautorizar",
 	"mwoauthmanagemygrants-action": "Cambiar el estado:",
 	"mwoauthmanagemygrants-authonly-tooltip": "¿Por qué no puedo actualizar esta subvención? Si usted no desea que esta aplicación conectada tenga este derecho, debe revocar el acceso a la aplicación.",
 	"mwoauth-bad-request-missing-params": "Ha ocurrido un error al configurar esta aplicación conectada. <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Ponte en contacto con el equipo de asistencia]</span> para corregir el problema.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Faltan parámetros de OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>",
