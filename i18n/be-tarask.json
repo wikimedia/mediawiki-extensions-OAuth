@@ -9,5 +9,6 @@
 	"oauthlistconsumers": "Сьпіс праграмаў OAuth",
 	"oauthmanagemygrants": "Кіраваньне падключанымі праграмамі",
 	"right-mwoauthproposeconsumer": "прапаноўваць новых спажыўцоў OAuth",
+	"right-mwoauthupdateownconsumer": "абнаўленьне кантраляваных вамі OAuth-дадаткаў",
 	"action-mwoauthproposeconsumer": "прапанову новых спажыўцоў OAuth"
 }
