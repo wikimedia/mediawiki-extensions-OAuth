@@ -4,7 +4,8 @@
 			"Claw eg",
 			"Ibrahim.ID",
 			"Tarawneh",
-			"مشعل الحربي"
+			"مشعل الحربي",
+			"محمد أحمد عبد الفتاح"
 		]
 	},
 	"mwoauth-verified": "تم السماح لهذا التطبيق بالولوج الى الميدياويكي نيابة عنك.\n\nلإتمام هذه العملية، الرجاء نقل رمز التأكيد الى التطبيق : '''$1'''",
@@ -30,9 +31,11 @@
 	"mwoauth-consumer-email-unconfirmed": "بريدك الألكتروني لم يتم تفعيله بعد.",
 	"mwoauth-consumer-email-mismatched": "يجب أن يتطابق البريد الإلكتروني مع الحساب الخاص بك.",
 	"mwoauthconsumerregistration-main": "الرئيسي",
+	"oauthlistconsumers": "عرض قائمة تطبيقات OAuth",
 	"mwoauthlistconsumers-view": "التفاصيل",
 	"mwoauthlistconsumers-name": "اسم التطبيق",
 	"mwoauthlistconsumers-description": "الوصف",
 	"mwoauthlistconsumers-status-proposed": "مقترح",
-	"mwoauthlistconsumers-status-disabled": "معطل"
+	"mwoauthlistconsumers-status-disabled": "معطل",
+	"mwoauthmanagemygrants-showlist": "قائمة التطبيقات المتصلة"
 }
