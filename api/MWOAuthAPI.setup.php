@@ -6,6 +6,8 @@ namespace MediaWiki\Extensions\OAuth;
  * Class containing hooked functions for an OAuth environment
  */
 class MWOAuthAPISetup {
+	const TTL_REFRESH_WINDOW = 600; // refresh if expiring in 10 minutes
+
 	/**
 	 * This function must NOT depend on any config vars
 	 *
@@ -85,7 +87,7 @@ class MWOAuthAPISetup {
 	 * @return boolean
 	 */
 	public static function onUserLoadFromSession( \User $user, &$result ) {
-		global $wgMemc, $wgBlockDisablesLogin;
+		global $wgBlockDisablesLogin, $wgObjectCacheSessionExpiry;
 
 		$user->oAuthSessionData = array();
 		try {
@@ -133,10 +135,25 @@ class MWOAuthAPISetup {
 
 				// Setup a session for this OAuth user, so edit tokens work.
 				// Preserve the session ID used so clients can ignore cookies.
-				$key = wfMemcKey( 'oauthsessionid', $access->get( 'id' ) );
-				$sessionId = $wgMemc->get( $key ) ?: \MWCryptRand::generateHex( 32, true );
-				$wgMemc->set( $key, $sessionId, 3600 ); // create/renew
-				wfSetupSession( $sessionId ); // create/reuse this "anonymous" session
+				$cache = self::getSessionCache();
+				$key = wfMemcKey( 'oauthsessionid', 'v1', $access->get( 'id' ) );
+				$session = $cache->get( $key );
+
+				$now = microtime( true );
+				if ( $session == false ) {
+					// Initialize the a new session
+					$session = array(
+						'id'      => \MWCryptRand::generateHex( 32, true ),
+						'expires' => $now + $wgObjectCacheSessionExpiry
+					);
+					$cache->set( $key, $session, $wgObjectCacheSessionExpiry );
+				} elseif ( $session['expires'] < ( $now + self::TTL_REFRESH_WINDOW ) ) {
+					// Renew the session since it will otherwise expire soon
+					$session['expires'] = $now + $wgObjectCacheSessionExpiry;
+					$cache->set( $key, $session, $wgObjectCacheSessionExpiry );
+				}
+
+				wfSetupSession( $session['id'] ); // create/reuse this "anonymous" session
 				\Hooks::register( 'AfterFinalPageOutput', function( $out ) {
 					// Just in case, make sure this is not a valid login session for sanity
 					\RequestContext::getMain()->getRequest()->setSessionData( 'wsUserID', 0 );
@@ -156,6 +173,17 @@ class MWOAuthAPISetup {
 		}
 
 		return true;
+	}
+
+	/**
+	 * @return \BagOStuff
+	 */
+	private static function getSessionCache() {
+		global $wgSessionsInObjectCache, $wgSessionCacheType;
+
+		return $wgSessionsInObjectCache
+			? \ObjectCache::getInstance( $wgSessionCacheType )
+			: \ObjectCache::getMainStashInstance();
 	}
 
 	/**
