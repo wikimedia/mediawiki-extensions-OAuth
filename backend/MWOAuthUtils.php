@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use Hooks;
 use MWException;
 
 /**
@@ -336,7 +337,7 @@ class MWOAuthUtils {
 				throw new \MWException( "No handler for 'OAuthGetUserNamesFromCentralIds' hook" );
 			}
 			$namesById = array( $userId => null );
-			wfRunHooks( 'OAuthGetUserNamesFromCentralIds',
+			Hooks::run( 'OAuthGetUserNamesFromCentralIds',
 				array( $wgMWOAuthCentralWiki,
 					&$namesById,
 					$audience,
@@ -378,7 +379,7 @@ class MWOAuthUtils {
 			$user = null;
 			// Let extensions check that central wiki user ID is attached to a global account
 			// and that return the user on this wiki that is attached to that global account
-			wfRunHooks( 'OAuthGetLocalUserFromCentralId',
+			Hooks::run( 'OAuthGetLocalUserFromCentralId',
 				array( $userId, $wgMWOAuthCentralWiki, &$user, $wgMWOAuthSharedUserSource ) );
 			// If there is no local user, the extension should set the user to false
 			if ( $user === null ) {
@@ -411,7 +412,7 @@ class MWOAuthUtils {
 				$id = null;
 				// Let CentralAuth check that $user is attached to a global account and
 				// that the foreign local account on the central wiki is also attached to it
-				wfRunHooks( 'OAuthGetCentralIdFromLocalUser',
+				Hooks::run( 'OAuthGetCentralIdFromLocalUser',
 					array( $user, $wgMWOAuthCentralWiki, &$id, $wgMWOAuthSharedUserSource ) );
 				// If there is no such user, the extension should set the ID to false
 				if ( $id === null ) {
@@ -446,7 +447,7 @@ class MWOAuthUtils {
 			$id = null;
 			// Let CentralAuth check that $user is attached to a global account and
 			// that the foreign local account on the central wiki is also attached to it
-			wfRunHooks( 'OAuthGetCentralIdFromUserName',
+			Hooks::run( 'OAuthGetCentralIdFromUserName',
 				array( $username, $wgMWOAuthCentralWiki, &$id, $wgMWOAuthSharedUserSource ) );
 			if ( $id === null ) {
 				throw new \MWException( 'Could not lookup ID for user via hook.' );
@@ -500,7 +501,7 @@ class MWOAuthUtils {
 	 * @return string the Message key to use
 	 */
 	public static function getSiteMessage( $msgKey ) {
-		wfRunHooks( 'OAuthReplaceMessage', array( &$msgKey ) );
+		Hooks::run( 'OAuthReplaceMessage', array( &$msgKey ) );
 		return $msgKey;
 	}
 
