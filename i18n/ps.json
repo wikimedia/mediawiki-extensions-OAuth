@@ -5,7 +5,9 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "اړيکمن کاريالونه:",
+	"mwoauth-prefs-managegrantslink": "$1 {{PLURAL:$1|نښلېدلی کاريال|نښلېدلي کاريالونه}} مهارول",
 	"mwoauthlistconsumers-status": "دريځ",
+	"oauthmanagemygrants": "نښلېدلي کاريالونه مهارول",
 	"mwoauth-form-button-cancel": "ناگارل",
 	"mwoauth-grant-blockusers": "په کارنانو بنديز لگول او بنديز ليرې کول"
 }
