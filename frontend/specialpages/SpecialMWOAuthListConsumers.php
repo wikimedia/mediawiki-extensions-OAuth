@@ -239,7 +239,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		);
 		if ( $this->getUser()->isAllowed( 'mwoauthmanageconsumer' ) ) {
 			$links[] = \Linker::linkKnown(
-				\SpecialPage::getTitleFor( 'OAuthManageConsumers', "{$stageKey}/{$cmrKey}" ),
+				\SpecialPage::getTitleFor( 'OAuthManageConsumers', $cmrKey ),
 				$this->msg( 'mwoauthmanageconsumers-review' )->escaped()
 			);
 		}

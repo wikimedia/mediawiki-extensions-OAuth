@@ -68,19 +68,27 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			throw new \ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
 		}
 
-		// Format is Special:OAuthManageConsumers[/<stage>[/<consumer key>]]
+		// Format is Special:OAuthManageConsumers[/<stage>|/<consumer key>]
+		// B/C format is Special:OAuthManageConsumers/<stage>/<consumer key>
+		$stageKey = $consumerKey = null;
 		$navigation = explode( '/', $par );
-		$stageKey = isset( $navigation[0] ) ? $navigation[0] : null;
-		$consumerKey = isset( $navigation[1] ) ? $navigation[1] : null;
-
-		$this->stage = array_search( $stageKey, MWOAuthConsumer::$stageNames, true );
-		if ( $this->stage !== false ) {
-			$this->stageKey = $stageKey;
-			if ( $consumerKey ) {
-				$this->handleConsumerForm( $consumerKey );
+		if ( count( $navigation ) === 2 ) {
+			$this->stage = false;
+			$consumerKey = $navigation[1];
+		} elseif ( count( $navigation ) === 1 && $navigation[0] ) {
+			$this->stage = array_search( $navigation[0], MWOAuthConsumer::$stageNames, true );
+			if ( $this->stage !== false ) {
+				$consumerKey = null;
+				$this->stageKey = $navigation[0];
 			} else {
-				$this->showConsumerList();
+				$consumerKey = $navigation[0];
 			}
+		}
+
+		if ( $consumerKey ) {
+			$this->handleConsumerForm( $consumerKey );
+		} elseif ( $this->stage !== false ) {
+			$this->showConsumerList();
 		} else {
 			$this->showMainHub();
 		}
@@ -194,7 +202,8 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			throw new \PermissionsError( 'mwoauthviewsuppressed' );
 		}
-		$pending = !in_array( $cmr->get( 'stage' ), array(
+		$startingStage = $cmr->get( 'stage' );
+		$pending = !in_array( $startingStage, array(
 			MWOAuthConsumer::STAGE_APPROVED, MWOAuthConsumer::STAGE_DISABLED ) );
 
 		if ( $pending ) {
@@ -374,16 +383,17 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 		$status = $form->show();
 		if ( $status instanceof \Status && $status->isOk() ) {
-			$type = MWOAuthConsumer::$stageNames[$status->value['result']->get( 'stage' )];
+			$oldStageKey = MWOAuthConsumer::$stageNames[$startingStage];
+			$newStageKey = MWOAuthConsumer::$stageNames[$status->value['result']->get( 'stage' )];
 			// Messages: mwoauthmanageconsumers-success-approved, mwoauthmanageconsumers-success-rejected,
 			// mwoauthmanageconsumers-success-disabled
-			$this->getOutput()->addWikiMsg( "mwoauthmanageconsumers-success-$type" );
-			$returnTo = \Title::newFromText( 'Special:OAuthManageConsumers/' . $this->stageKey );
+			$this->getOutput()->addWikiMsg( "mwoauthmanageconsumers-success-$newStageKey" );
+			$returnTo = \Title::newFromText( 'Special:OAuthManageConsumers/' . $oldStageKey );
 			$this->getOutput()->addReturnTo( $returnTo, array(),
 				// Messages: mwoauthmanageconsumers-linkproposed,
 				// mwoauthmanageconsumers-linkrejected, mwoauthmanageconsumers-linkexpired,
 				// mwoauthmanageconsumers-linkapproved, mwoauthmanageconsumers-linkdisabled
-				$this->msg( 'mwoauthmanageconsumers-link' . $this->stageKey )->escaped() );
+				$this->msg( 'mwoauthmanageconsumers-link' . $oldStageKey )->escaped() );
 		} else {
 			$out = $this->getOutput();
 			// Show all of the status updates
@@ -433,7 +443,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$stageKey = MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )];
 
 		$link = \Linker::linkKnown(
-			$this->getPageTitle( "{$stageKey}/{$cmrKey}" ),
+			$this->getPageTitle( $cmrKey ),
 			$this->msg( 'mwoauthmanageconsumers-review' )->escaped()
 		);
 
