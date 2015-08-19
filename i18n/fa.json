@@ -9,7 +9,8 @@
 			"Alirezaaa",
 			"Calak",
 			"Mjbmr",
-			"Dalba"
+			"Dalba",
+			"Mardetanha"
 		]
 	},
 	"oauth": "OAuth",
@@ -249,7 +250,7 @@
 	"mwoauth-oauth-exception": "خطایی در پروتکل OAuth رخ داد :$1",
 	"mwoauth-callback-not-oob": "oauth_callback باید تنظیم شود، و باید به \"اوب\" تنظیم شود (حساس به مورد)",
 	"right-mwoauthproposeconsumer": "پیشنهاد مصرف‌کننده جدید OAuth",
-	"right-mwoauthupdateownconsumer": "به‌روزرسانی مصرف‌کننده‌های OAuth که شما کنرتل می‌کنید",
+	"right-mwoauthupdateownconsumer": "به‌روزرسانی مصرف‌کننده‌های OAuth که شما کنترل می‌کنید",
 	"right-mwoauthmanageconsumer": "مدیریت مصرف‌کننده‌های OAuth",
 	"right-mwoauthsuppress": "توقیف مصرف‌کنندهٔ OAuth",
 	"right-mwoauthviewsuppressed": "مشاهده مصرف‌کننده‌های OAuth توقیف‌شده",
