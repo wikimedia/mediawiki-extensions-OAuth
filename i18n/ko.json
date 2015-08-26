@@ -5,7 +5,8 @@
 			"Priviet",
 			"아라",
 			"Revi",
-			"LiteHell"
+			"LiteHell",
+			"Hwangjy9"
 		]
 	},
 	"mwoauth-desc": "OAuth 1.0a API 인증의 사용을 허용",
@@ -226,7 +227,7 @@
 	"mwoauth-grant-createeditmovepage": "문서 만들기, 편집 및 옮기기",
 	"mwoauth-grant-delete": "문서, 판 및 기록 항목 삭제",
 	"mwoauth-grant-editinterface": "미디어위키 이름공간과 사용자 CSS/JS 편집",
-	"mwoauth-grant-editmycssjs": "자신의 사용자 CSS/JS 편집하기",
+	"mwoauth-grant-editmycssjs": "자신의 사용자 CSS/자바스크립트 편집하기",
 	"mwoauth-grant-editmyoptions": "사용자 환경 설정 편집하기",
 	"mwoauth-grant-editmywatchlist": "내 주시문서 목록 편집하기",
 	"mwoauth-grant-editpage": "기존 문서 편집하기",
