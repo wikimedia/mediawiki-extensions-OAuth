@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ammartivari"
+			"Ammartivari",
+			"Olsi"
 		]
 	},
+	"mwoauth-prefs-managegrants": "Aplikacionet e lidhura",
 	"mwoauth-consumer-reason": "Arsyeja:",
 	"mwoauthmanageconsumers-reason": "Arsyeja:",
 	"mwoauth-grant-blockusers": "Blloko dhe zhblloko përdoruesit"
