@@ -5,7 +5,8 @@
 			"Ibrahim.ID",
 			"Tarawneh",
 			"مشعل الحربي",
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"Meno25"
 		]
 	},
 	"mwoauth-verified": "تم السماح لهذا التطبيق بالولوج الى الميدياويكي نيابة عنك.\n\nلإتمام هذه العملية، الرجاء نقل رمز التأكيد الى التطبيق : '''$1'''",
@@ -37,5 +38,7 @@
 	"mwoauthlistconsumers-description": "الوصف",
 	"mwoauthlistconsumers-status-proposed": "مقترح",
 	"mwoauthlistconsumers-status-disabled": "معطل",
-	"mwoauthmanagemygrants-showlist": "قائمة التطبيقات المتصلة"
+	"oauthmanagemygrants": "التحكم بالتطبيقات المرتبطة",
+	"mwoauthmanagemygrants-showlist": "قائمة التطبيقات المتصلة",
+	"mwoauthmanagemygrants-confirm-legend": "التحكم بالتطبيق المرتبط"
 }
