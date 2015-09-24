@@ -24,7 +24,7 @@
 	"mwoauth-invalid-field": "Недопустимое значение для поля «$1»",
 	"mwoauth-invalid-field-generic": "Недопустимое значение",
 	"mwoauth-field-hidden": "(эта информация скрыта)",
-	"mwoauth-field-private": "(эта информация является конфиденциальной)",
+	"mwoauth-field-private": "(эта информация конфиденциальна)",
 	"mwoauth-grant-generic": "Набор прав «$1»",
 	"mwoauth-prefs-managegrants": "Подключённые приложения:",
 	"mwoauth-prefs-managegrantslink": "Управление {{PLURAL:$1|$1 подключённым приложением|$1 подключёнными приложениями|1=подключённым приложением}}",
