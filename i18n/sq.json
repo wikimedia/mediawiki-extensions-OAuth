@@ -7,9 +7,9 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "Aplikacionet e lidhura:",
-	"mwoauth-prefs-managegrantslink": "Menaxhoni $1 {{PLURAL:$1|aplikacion|aplikacione}} të lidhura",
+	"mwoauth-prefs-managegrantslink": "Menaxho $1 {{PLURAL:$1|aplikacion të lidhur|aplikacione të lidhura}}",
 	"mwoauth-consumer-reason": "Arsyeja:",
 	"mwoauthmanageconsumers-reason": "Arsyeja:",
-	"oauthmanagemygrants": "Menaxhoni aplikacionet e lidhura",
+	"oauthmanagemygrants": "Menaxho aplikacionet e lidhura",
 	"mwoauth-grant-blockusers": "Blloko dhe zhblloko përdoruesit"
 }
