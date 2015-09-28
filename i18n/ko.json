@@ -241,7 +241,7 @@
 	"mwoauth-grant-uploadeditmovefile": "파일 올리기, 바꾸기, 옮기기",
 	"mwoauth-grant-uploadfile": "새 파일 올리기",
 	"mwoauth-grant-useoauth": "기본 권한",
-	"mwoauth-grant-viewdeleted": "삭제된 정보 보기",
+	"mwoauth-grant-viewdeleted": "삭제된 파일과 문서 보기",
 	"mwoauth-grant-viewmywatchlist": "내 주시문서 목록 보기",
 	"mwoauth-grant-authonly": "인증 전용, API 접근 불가",
 	"mwoauth-oauth-exception": "OAuth 프로토콜에 오류가 발생했습니다: $1",

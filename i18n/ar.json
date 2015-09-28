@@ -32,6 +32,8 @@
 	"mwoauth-consumer-email-unconfirmed": "بريدك الألكتروني لم يتم تفعيله بعد.",
 	"mwoauth-consumer-email-mismatched": "يجب أن يتطابق البريد الإلكتروني مع الحساب الخاص بك.",
 	"mwoauthconsumerregistration-main": "الرئيسي",
+	"mwoauthconsumerregistration-description": "الوصف",
+	"mwoauthmanageconsumers-description": "الوصف",
 	"oauthlistconsumers": "عرض قائمة تطبيقات OAuth",
 	"mwoauthlistconsumers-view": "التفاصيل",
 	"mwoauthlistconsumers-name": "اسم التطبيق",
@@ -40,5 +42,6 @@
 	"mwoauthlistconsumers-status-disabled": "معطل",
 	"oauthmanagemygrants": "التحكم بالتطبيقات المرتبطة",
 	"mwoauthmanagemygrants-showlist": "قائمة التطبيقات المتصلة",
+	"mwoauthmanagemygrants-description": "الوصف",
 	"mwoauthmanagemygrants-confirm-legend": "التحكم بالتطبيق المرتبط"
 }
