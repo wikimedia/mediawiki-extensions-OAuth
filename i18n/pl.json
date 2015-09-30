@@ -85,7 +85,7 @@
 	"mwoauth-grant-group-other": "Różne czynności",
 	"mwoauth-grant-blockusers": "Blokowanie i odblokowywanie użytkowników",
 	"mwoauth-grant-createaccount": "Utwórz konta",
-	"mwoauth-grant-createeditmovepage": "Wprowadzanie zmian do stron",
+	"mwoauth-grant-createeditmovepage": "Tworzenie, edycja i przenoszenie stron",
 	"mwoauth-grant-delete": "Usuwanie stron, usuwanie określonych wersji stron i usuwanie wpisów rejestru",
 	"mwoauth-grant-editinterface": "Edycja przestrzeni nazw MediaWiki oraz CSS/JavaScript użytkownika",
 	"mwoauth-grant-editmycssjs": "Edycja swoich plików CSS/JavaScript",

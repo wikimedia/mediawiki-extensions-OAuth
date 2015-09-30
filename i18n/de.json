@@ -231,7 +231,7 @@
 	"mwoauth-grant-group-other": "Verschiedene Aktivitäten",
 	"mwoauth-grant-blockusers": "Benutzer sperren und freigeben",
 	"mwoauth-grant-createaccount": "Benutzerkonten erstellen",
-	"mwoauth-grant-createeditmovepage": "Änderungen an Seiten durchführen",
+	"mwoauth-grant-createeditmovepage": "Seiten erstellen, bearbeiten und verschieben",
 	"mwoauth-grant-delete": "Seiten, Versionen und Logbucheinträge löschen",
 	"mwoauth-grant-editinterface": "MediaWiki-Namensraum und Benutzer-CSS/JS bearbeiten",
 	"mwoauth-grant-editmycssjs": "Dein Benutzer-CSS/JavaScript bearbeiten",
