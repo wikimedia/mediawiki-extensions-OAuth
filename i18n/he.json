@@ -230,7 +230,7 @@
 	"mwoauth-grant-group-other": "פעילות שונה",
 	"mwoauth-grant-blockusers": "חסימה ושחרור משתמשים",
 	"mwoauth-grant-createaccount": "יצירת חשבונות",
-	"mwoauth-grant-createeditmovepage": "עשיית שינויים בדפים",
+	"mwoauth-grant-createeditmovepage": "יצירה, עריכה והעברה של דפים",
 	"mwoauth-grant-delete": "מחיקת דפים, גרסאות ויומנים",
 	"mwoauth-grant-editinterface": "עריכת שם מדיה-ויקי ומשתמש CSS/JS",
 	"mwoauth-grant-editmycssjs": "עריכת CSS/JavaScript של המשתמש שלך",

@@ -156,7 +156,7 @@
 	"mwoauth-grant-group-other": "その他の活動",
 	"mwoauth-grant-blockusers": "利用者をブロック/ブロック解除",
 	"mwoauth-grant-createaccount": "アカウントを作成",
-	"mwoauth-grant-createeditmovepage": "ページの変更を作成",
+	"mwoauth-grant-createeditmovepage": "ページを作成、編集、および移動",
 	"mwoauth-grant-delete": "ページ、版、記録項目を削除",
 	"mwoauth-grant-editinterface": "MediaWiki 名前空間および利用者 CSS/JavaScript を編集",
 	"mwoauth-grant-editmycssjs": "あなた自身の利用者 CSS/JavaScript を編集",

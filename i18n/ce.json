@@ -119,6 +119,7 @@
 	"mwoauth-grant-useoauth": "Коьрта бакъонаш",
 	"mwoauth-grant-viewdeleted": "ДӀабаьхьна хаамашка хьажар",
 	"mwoauth-grant-viewmywatchlist": "Шен тергаме могӀаме хьажар",
+	"mwoauth-callback-not-oob": "oauth_callback хӀоттина хила еза «oob» маьӀна а долуш (регистр лоруш)",
 	"mwoauth-listgrants-grant": "Бакъо",
 	"mwoauth-listgrants-rights": "Бакъонаш"
 }

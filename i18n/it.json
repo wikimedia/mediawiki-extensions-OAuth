@@ -221,7 +221,7 @@
 	"mwoauth-grant-group-other": "Attività varie",
 	"mwoauth-grant-blockusers": "Blocca e sblocca utenti",
 	"mwoauth-grant-createaccount": "Crea un'utenza",
-	"mwoauth-grant-createeditmovepage": "Apportare modifiche alle pagine",
+	"mwoauth-grant-createeditmovepage": "Creare, modificare e spostare le pagine",
 	"mwoauth-grant-delete": "Cancella pagine, versioni, e voci di registro",
 	"mwoauth-grant-editinterface": "Modifica il namespace MediaWiki e i file CSS/JS di altri utenti",
 	"mwoauth-grant-editmycssjs": "Modifica i CSS/JavaScript della tua utenza",

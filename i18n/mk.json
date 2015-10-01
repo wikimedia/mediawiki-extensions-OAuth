@@ -137,7 +137,7 @@
 	"mwoauthlistconsumers-user": "Издавач",
 	"mwoauthlistconsumers-description": "Опис",
 	"mwoauthlistconsumers-wiki": "Применлив проект",
-	"mwoauthlistconsumers-callbackurl": "URL-адреса за повикување на OAuth",
+	"mwoauthlistconsumers-callbackurl": "URL за повикување на OAuth",
 	"mwoauthlistconsumers-callbackisprefix": "Овозможи му на потрошувачот да укаже повратен повик во барањата и погоре да користи URL за повратен повик како задолжителна претставка.",
 	"mwoauthlistconsumers-grants": "Применливи доделувања",
 	"mwoauthlistconsumers-basicgrantsonly": "(само основен пристап)",
