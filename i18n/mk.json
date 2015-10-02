@@ -227,7 +227,7 @@
 	"mwoauth-grant-group-other": "Разни активности",
 	"mwoauth-grant-blockusers": "Блокирање и одблокирање корисници",
 	"mwoauth-grant-createaccount": "Направи сметки",
-	"mwoauth-grant-createeditmovepage": "Правење измени во страници",
+	"mwoauth-grant-createeditmovepage": "Создавање, уредување и преместување страници",
 	"mwoauth-grant-delete": "Бришење на страници, преработки и дневнички записи",
 	"mwoauth-grant-editinterface": "Измена на именскиот простор „МедијаВики“ и кориснички CSS/JS",
 	"mwoauth-grant-editmycssjs": "Уредување на ваш кориснички CSS/JavaScript",

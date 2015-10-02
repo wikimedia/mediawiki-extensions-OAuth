@@ -227,7 +227,7 @@
 	"mwoauth-grant-group-other": "Diverseaktivitet",
 	"mwoauth-grant-blockusers": "Blockera och avblockera användare",
 	"mwoauth-grant-createaccount": "Skapa konton",
-	"mwoauth-grant-createeditmovepage": "Gör ändringar på sidor",
+	"mwoauth-grant-createeditmovepage": "Skapa, redigera och flytta sidor",
 	"mwoauth-grant-delete": "Ta bort sidor, revideringar och loggposter",
 	"mwoauth-grant-editinterface": "Redigera MediaWiki-namnrymden och CSS/JS för användaren",
 	"mwoauth-grant-editmycssjs": "Redigera din CSS/JavaScript för användare",
