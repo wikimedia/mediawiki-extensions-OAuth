@@ -10,6 +10,7 @@
 	"oauthmanagemygrants": "Кіраваньне падключанымі праграмамі",
 	"mwoauthmanagemygrants-navigation": "Навігацыя:",
 	"mwoauthmanagemygrants-showlist": "Сьпіс падключаных праграмаў",
+	"mwoauthmanagemygrants-none": "Няма праграмаў, падключаных да вашага рахунку.",
 	"right-mwoauthproposeconsumer": "прапаноўваць новых спажыўцоў OAuth",
 	"right-mwoauthupdateownconsumer": "абнаўленьне кантраляваных вамі OAuth-дадаткаў",
 	"right-mwoauthmanagemygrants": "кіраваньне OAuth-дазволамі",
