@@ -230,7 +230,7 @@
 	"mwoauth-grant-group-other": "Outras actividades",
 	"mwoauth-grant-blockusers": "Bloquear e desbloquear usuarios",
 	"mwoauth-grant-createaccount": "Crear contas",
-	"mwoauth-grant-createeditmovepage": "Modificar páxinas",
+	"mwoauth-grant-createeditmovepage": "Crear, editar e mover páxinas",
 	"mwoauth-grant-delete": "Borrar páxinas, revisións e entradas de rexistro",
 	"mwoauth-grant-editinterface": "Editar o espazo de nomes MediaWiki e o CSS/JS de usuario",
 	"mwoauth-grant-editmycssjs": "Editar o seu CSS/JavaScript de usuario",
