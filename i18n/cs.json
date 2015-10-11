@@ -3,7 +3,8 @@
 		"authors": [
 			"Matěj Grabovský",
 			"Matěj Suchánek",
-			"Mormegil"
+			"Mormegil",
+			"Cvanca"
 		]
 	},
 	"mwoauth-desc": "Umožňuje využití OAuth 1.0a pro autorizaci přístupu k API",
@@ -229,7 +230,7 @@
 	"mwoauth-grant-group-other": "Různé činnosti",
 	"mwoauth-grant-blockusers": "Blokovat a odblokovávat uživatele",
 	"mwoauth-grant-createaccount": "Zakládat účty",
-	"mwoauth-grant-createeditmovepage": "Provádět změny stránek",
+	"mwoauth-grant-createeditmovepage": "Vytvářet, editovat a přesouvat stránky",
 	"mwoauth-grant-delete": "Mazat stránky, revize a protokolovací záznamy",
 	"mwoauth-grant-editinterface": "Editovat jmenný prostor MediaWiki a uživatelské CSS/JS",
 	"mwoauth-grant-editmycssjs": "Editovat váš uživatelský CSS/JavaScript",
