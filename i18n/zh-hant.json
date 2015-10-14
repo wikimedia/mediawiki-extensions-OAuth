@@ -207,7 +207,7 @@
 	"mwoauth-grant-group-other": "其他活動",
 	"mwoauth-grant-blockusers": "封鎖與解封使用者",
 	"mwoauth-grant-createaccount": "建立帳號",
-	"mwoauth-grant-createeditmovepage": "變更頁面",
+	"mwoauth-grant-createeditmovepage": "建立、編輯與移動頁面",
 	"mwoauth-grant-delete": "刪除頁面、修訂與日誌記錄",
 	"mwoauth-grant-editinterface": "編輯 MediaWiki 命名空間與使用者 CSS/JavaScript",
 	"mwoauth-grant-editmycssjs": "編輯您的使用者 CSS/JavaScript",

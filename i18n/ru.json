@@ -184,7 +184,7 @@
 	"mwoauth-grant-group-other": "Разная активность",
 	"mwoauth-grant-blockusers": "Блокировка и разблокировка учётных записей",
 	"mwoauth-grant-createaccount": "Создание учётных записей",
-	"mwoauth-grant-createeditmovepage": "Вносить изменения в страницы",
+	"mwoauth-grant-createeditmovepage": "Создавать, редактировать и переименовывать страницы",
 	"mwoauth-grant-delete": "Удаление страниц, правок и записей журнала",
 	"mwoauth-grant-editinterface": "Правка пространства имён MediaWiki и пользовательских CSS/JavaScript",
 	"mwoauth-grant-editmycssjs": "Правка ваших пользовательских CSS/JavaScript",
