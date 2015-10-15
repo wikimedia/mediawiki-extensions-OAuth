@@ -105,7 +105,6 @@
 	"mwoauthmanageconsumers-reenable": "Approbate",
 	"mwoauthmanageconsumers-reason": "Motivo:",
 	"mwoauthmanageconsumers-confirm-submit": "Actualisar stato de consumitor",
-	"mwoauthmanageconsumers-viewing": "Le {{GENDER:$1|usator}} \"$1\" actualmente visualisa iste consumitor",
 	"mwoauthmanageconsumers-success-approved": "Le requesta ha essite approbate.",
 	"mwoauthmanageconsumers-success-rejected": "Le requesta ha essite rejectate.",
 	"mwoauthmanageconsumers-success-disabled": "Le consumitor ha essite disactivate.",

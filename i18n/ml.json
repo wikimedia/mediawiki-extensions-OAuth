@@ -54,7 +54,6 @@
 	"oauthlistconsumers": "ഓഓത് ആപ്ലിക്കേഷനുകൾ പട്ടികയായി കാണിക്കുക",
 	"oauthmanagemygrants": "ബന്ധപ്പെടുത്തിയിട്ടുള്ള ആപ്ലിക്കേഷനുകൾ കൈകാര്യം ചെയ്യുക",
 	"mwoauthmanagemygrants-user": "പ്രസാധക(ൻ)",
-	"mwoauth-form-privacypolicy-link": "[[{{ns:Project}}:Privacy policy|സ്വകാര്യതാനയം]]",
 	"mwoauth-form-button-approve": "അനുവദിക്കുക",
 	"mwoauth-form-button-cancel": "റദ്ദാക്കുക",
 	"mwoauth-error": "ആപ്ലിക്കേഷൻ ബന്ധപ്പെടൽ പിഴവ്",
