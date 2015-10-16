@@ -132,6 +132,17 @@ class MWOAuthServer extends OAuthServer {
 	}
 
 	/**
+	 * Wrap the call to the parent function and check that the source IP of
+	 * the request is allowed by this consumer's restrictions.
+	 * @return array
+	 */
+	public function verify_request( &$request ) {
+		list( $consumer, $token ) = parent::verify_request( $request );
+		$this->checkSourceIP( $consumer, $request );
+		return array( $consumer, $token );
+	}
+
+	/**
 	 * Ensure the request comes from an approved IP address, if IP restriction has been
 	 * setup by the Consumer. It throws an exception if IP address is invalid.
 	 *
