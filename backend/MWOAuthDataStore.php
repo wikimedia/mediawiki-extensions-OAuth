@@ -21,7 +21,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * Get an MWOAuthConsumer from the consumer's key
 	 *
 	 * @param String $consumerKey the string value of the Consumer's key
-	 * @return MWOAuthConsumer
+	 * @return MWOAuthConsumer|bool
 	 */
 	public function lookup_consumer( $consumerKey ) {
 		return MWOAuthConsumer::newFromKey( $this->centralDB, $consumerKey );
@@ -59,7 +59,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 			}
 			// Ensure the cmra's consumer matches the expected consumer (T103023)
 			$mwconsumer = $this->lookup_consumer( $consumer->key );
-			if ( $mwconsumer->get( 'id') !== $cmra->get( 'consumerId') ) {
+			if ( !$mwconsumer || $mwconsumer->get( 'id') !== $cmra->get( 'consumerId') ) {
 				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found' );
 			}
 			$secret = MWOAuthUtils::hmacDBSecret( $cmra->get( 'accessSecret' ) );
