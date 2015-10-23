@@ -87,7 +87,7 @@
 	"mwoauth-grant-group-other": "Mitmesugused toimingud",
 	"mwoauth-grant-blockusers": "Kasutajate blokeerimine ja blokeeringute eemaldamine",
 	"mwoauth-grant-createaccount": "Kontode loomine",
-	"mwoauth-grant-createeditmovepage": "Lehekülgedel alustamine, muutmine ja teisaldamine",
+	"mwoauth-grant-createeditmovepage": "Lehekülgede alustamine, muutmine ja teisaldamine",
 	"mwoauth-grant-delete": "Lehekülgede, redaktsioonide ja logisissekannete kustutamine",
 	"mwoauth-grant-editinterface": "MediaWiki nimeruumi ning kasutaja CSSi ja JavaScripti redigeerimine",
 	"mwoauth-grant-editmycssjs": "Oma CSSi või JavaScripti muutmine",
