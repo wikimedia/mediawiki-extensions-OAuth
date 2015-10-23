@@ -125,7 +125,7 @@ class MWOAuthServer extends OAuthServer {
 
 		// Rev A change
 		$verifier = $request->get_parameter( 'oauth_verifier' );
-		wfDebugLog( 'OAuth', __METHOD__ . ": verify code is '$verifier'" );
+		$this->logger->debug( __METHOD__ . ": verify code is '$verifier'" );
 		$new_token = $this->data_store->new_access_token( $token, $consumer, $verifier );
 
 		return $new_token;
@@ -258,7 +258,7 @@ class MWOAuthServer extends OAuthServer {
 
 		$requestToken->addAccessKey( $accessToken->key );
 		$this->data_store->updateRequestToken( $requestToken, $consumer );
-		wfDebugLog( 'OAuth', "Verification code {$requestToken->getVerifyCode()} for $requestTokenKey (client: $consumerKey)" );
+		$this->logger->debug( "Verification code {$requestToken->getVerifyCode()} for $requestTokenKey (client: $consumerKey)" );
 		return $consumer->generateCallbackUrl( $this->data_store, $requestToken->getVerifyCode(), $requestTokenKey );
 	}
 

@@ -2,11 +2,17 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
+
 class MWOAuthDataStore extends OAuthDataStore {
 	/** @var \DBConnRef DB for the consumer/grant registry */
 	protected $centralDB;
 	/** @var \BagOStuff Cache for Tokens and Nonces */
 	protected $cache;
+
+	/** @var \\Psr\\Log\\LoggerInterface */
+	protected $logger;
 
 	/**
 	 * @param \DBConnRef $centralDB Central DB slave
@@ -15,6 +21,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	public function __construct( \DBConnRef $centralDB, \BagOStuff $cache ) {
 		$this->centralDB = $centralDB;
 		$this->cache = $cache;
+		$this->logger = LoggerFactory::getInstance( 'OAuth' );
 	}
 
 	/**
@@ -37,7 +44,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return MWOAuthToken
 	 */
 	public function lookup_token( $consumer, $token_type, $token ) {
-		wfDebugLog( 'OAuth', __METHOD__ . ": Looking up $token_type token '$token'" );
+		$this->logger->debug( __METHOD__ . ": Looking up $token_type token '$token'" );
 
 		if ( $token_type === 'request' ) {
 			$returnToken = $this->cache->get( MWOAuthUtils::getCacheKey(
@@ -87,7 +94,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 		// Set timeout 5 minutes in the future of the timestamp as OAuthServer does. Use the
 		// timestamp so the client can also expire their nonce records after 5 mins.
 		if ( !$this->cache->add( $key, 1, $timestamp + 300 ) ) {
-			wfDebugLog( 'OAuth', "$key exists, so nonce has been used by this consumer+token" );
+			$this->logger->info( "$key exists, so nonce has been used by this consumer+token" );
 			return true;
 		}
 		return false;
@@ -121,7 +128,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 		$this->cache->add( $cacheConsumerKey, $consumer->key, 600 ); //10 minutes. Kindof arbitray.
 		$this->cache->add( $cacheTokenKey, $token, 600 ); //10 minutes. Kindof arbitray.
 		$this->cache->add( $cacheCallbackKey, $callback, 600 ); //10 minutes. Kindof arbitray.
-		wfDebugLog( 'OAuth', __METHOD__ .
+		$this->logger->debug( __METHOD__ .
 			": New request token {$token->key} for {$consumer->key} with callback {$callback}" );
 		return $token;
 	}
@@ -170,7 +177,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return MWOAuthToken the access token
 	 */
 	public function new_access_token( $token, $consumer, $verifier = null ) {
-		wfDebugLog( 'OAuth', __METHOD__ .
+		$this->logger->debug( __METHOD__ .
 			": Getting new access token for token {$token->key}, consumer {$consumer->key}" );
 
 		if ( !$token->getVerifyCode() || !$token->getAccessKey() ) {
@@ -183,7 +190,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 			$consumer->get( 'consumerKey' ), 'request', $token->key );
 		$accessToken = $this->lookup_token( $consumer, 'access', $token->getAccessKey() );
 		$this->cache->set( $cacheKey, '**USED**' , 600 );
-		wfDebugLog( 'OAuth', __METHOD__ .
+		$this->logger->debug( __METHOD__ .
 			": New access token {$accessToken->key} for {$consumer->key}" );
 		return $accessToken;
 	}

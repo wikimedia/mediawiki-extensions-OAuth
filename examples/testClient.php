@@ -30,11 +30,6 @@ if ( PHP_SAPI !== 'cli' ) {
  *   signature and you will get an error.
  */
 
-function wfDebugLog( $method, $msg) {
-	//echo "[$method] $msg\n";
-}
-
-
 require __DIR__ . '/../lib/OAuth.php';
 
 /**
