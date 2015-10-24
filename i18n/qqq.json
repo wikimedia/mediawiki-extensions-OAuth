@@ -194,6 +194,7 @@
 	"mwoauth-bad-request-invalid-action-contact": "Error, when the 3rd-party OAuth developers sends users to a bad authorization url, but we know which application made the request and we can link the user to a page to contact the developer.\n\nParameters:\n* $1 - URL",
 	"mwoauthdatastore-access-token-not-found": "Error message when an invalid access token was submitted",
 	"mwoauthdatastore-request-token-not-found": "Error message when an invalid request token was submitted",
+	"mwoauthdatastore-callback-not-found": "Error message when the callback URL is not found in cache.",
 	"mwoauthdatastore-request-token-already-used": "Error message when a request token that has already been used was resubmitted",
 	"mwoauthdatastore-bad-token": "Error message when an invalid token was submitted",
 	"mwoauthdatastore-bad-source-ip": "Error message when a request comes from an IP address which is not among those whitelisted",
