@@ -191,6 +191,7 @@
 	"mwoauth-bad-request-invalid-action-contact": "Leider ist etwas schief gelaufen. Du wirst den Anwendungsautor [$1 kontaktieren] müssen, um Hilfe für dieses Problem zu erhalten.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unbekannte URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>",
 	"mwoauthdatastore-access-token-not-found": "Für diesen Autorisierungstoken wurde keine bestätigte Berechtigung gefunden",
 	"mwoauthdatastore-request-token-not-found": "Bei der Verbindung dieser Anwendung ist leider etwas schief gelaufen.\nGehe zurück und versuche, dein Benutzerkonto erneut zu verbinden oder kontaktiere den Anwendungsautor.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth-Token nicht gefunden, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
+	"mwoauthdatastore-callback-not-found": "OAuth-Callback-URL nicht im Cache gefunden. Dies ist vermutlich ein Fehler, wie die Anwendung Anfragen an den Server stellt.",
 	"mwoauthdatastore-request-token-already-used": "Diese Anfrage wurde bereits abgeschlossen und kann nicht erneut eingereicht werden.\nGehe zurück zur Anwendung und versuche, dein Benutzerkonto neu zu verbinden oder kontaktiere den Autor der Anwendung.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth-Token bereits verwendet, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauthdatastore-bad-token": "Es wurde kein Token gefunden, der deiner Anfrage entspricht.",
 	"mwoauthdatastore-bad-source-ip": "Die Anfrage kam von einer ungültigen IP-Adresse.",

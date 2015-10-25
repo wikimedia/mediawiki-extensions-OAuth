@@ -187,6 +187,7 @@
 	"mwoauth-bad-request-invalid-action-contact": "Нажалост, се јави некаков проблем. Ќе треба да се [$1 обратите] кај авторот на извршникот за да го решите.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Непозната URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>",
 	"mwoauthdatastore-access-token-not-found": "Не пронајдов одобрено доделување со таа повластена шифра",
 	"mwoauthdatastore-request-token-not-found": "Нажалост, се јави проблем при поврзувањето на извршникот.\nВратете се и пробајте одново, или пак обратете се кај неговиот автор.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Не е пронајдена шифрата за OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
+	"mwoauthdatastore-callback-not-found": "Не најдов URL за одѕив на OAuth во меѓускладот. Ова веројатно е грешка во барањата на извршникот кон опслужувачот.",
 	"mwoauthdatastore-request-token-already-used": "Барањето е веќе извршено и не може да се преподнесе.\nВратете се на извршникот и пробајте пак да се поврзете со вашата сметка, или пак обратете се кај творецот на извршникот.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Веќе искористена OAuth-шифра, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauthdatastore-bad-token": "Не пронајдов барање што одговара на бараното",
 	"mwoauthdatastore-bad-source-ip": "Барањето дојде од неважечка IP-адреса.",

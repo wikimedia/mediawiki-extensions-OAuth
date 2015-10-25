@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Умар"
+			"Умар",
+			"Исмаил Садуев"
 		]
 	},
 	"mwoauth-desc": "OAuth 1.0a лелича йиш хуьлуьйту API чудаха",
@@ -107,7 +108,7 @@
 	"mwoauth-grant-editmycssjs": "Долара CSS/JavaScript нисъяр",
 	"mwoauth-grant-editmyoptions": "Табе хьай гӀирс",
 	"mwoauth-grant-editmywatchlist": "Хьан тергаме могӀам табар",
-	"mwoauth-grant-editpage": "Тае йолуш йолу агӀо",
+	"mwoauth-grant-editpage": "Йолуш йолу агӀонаш таяр",
 	"mwoauth-grant-editprotected": "Ларйина агӀонаш таяр",
 	"mwoauth-grant-highvolume": "Сиха тадарш дар",
 	"mwoauth-grant-patrol": "АгӀонийн хийцамаш патруль яр",

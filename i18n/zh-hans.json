@@ -201,6 +201,7 @@
 	"mwoauth-bad-request-invalid-action-contact": "抱歉，出现一些错误。您需要[$1 联络]应用程序作者以获取帮助。\n<span class=\"plainlinks mw-mwoautherror-details\">未知URL，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>",
 	"mwoauthdatastore-access-token-not-found": "对于那个授权令牌，找不到批准的功能。",
 	"mwoauthdatastore-request-token-not-found": "抱歉，连接此应用程序时出错。返回并重新尝试连接您的账户，或联络应用程序开发者。<span class=\"plainlinks mw-mwoautherror-details\">找不到OAuth令牌，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
+	"mwoauthdatastore-callback-not-found": "缓存中找不到OAuth回调URL。这可能是应用程序向服务器发送请求时出现的错误。",
 	"mwoauthdatastore-request-token-already-used": "此请求已经完成，不能重复提交。\n回到应用程序并再次尝试连接您的账户，或联络应用程序作者。\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth令牌已被使用，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauthdatastore-bad-token": "找不到与您的请求相匹配的令牌。",
 	"mwoauthdatastore-bad-source-ip": "请求来自无效的IP地址。",
