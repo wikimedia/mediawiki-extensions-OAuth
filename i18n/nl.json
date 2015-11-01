@@ -8,7 +8,8 @@
 			"Sjoerddebruin",
 			"Southparkfan",
 			"Servien",
-			"Robin0van0der0vliet"
+			"Robin0van0der0vliet",
+			"Mathonius"
 		]
 	},
 	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a te gebruiken voor API-toestemming",
@@ -152,7 +153,7 @@
 	"mwoauthlistconsumers-status-rejected": "afgewezen",
 	"mwoauthlistconsumers-status-expired": "vervallen",
 	"oauthmanagemygrants": "Gekoppelde toepassingen beheren",
-	"mwoauthmanagemygrants-text": "Op deze pagina worden alle toepassingen weergegeven die toegang hebben tot uw gebruiker. Iedere toepassing kan alleen dat doen waar u de toepassing voor hebt gemachtigd. Als u toepassingen afzonderlijk toegang hebt gegevens tot uw gebruikers op zusterprojecten, dan ziet u hieronder afzonderlijke instellingen voor elk project.\n\nGekoppelde toepassingen hebben toegang tot uw gebruiker via het protocol OAuth. <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Meer over gekoppelde toepassingen]</span>.",
+	"mwoauthmanagemygrants-text": "Op deze pagina worden alle toepassingen weergegeven die toegang hebben tot uw gebruikersaccount. Iedere toepassing kan alleen dat doen waar u de toepassing voor heeft gemachtigd. Als u toepassingen afzonderlijk toegang heeft gegeven tot uw gebruikersaccount op zusterprojecten, dan ziet u hieronder afzonderlijke instellingen voor elk project.\n\nGekoppelde toepassingen hebben toegang tot uw gebruikersaccount via het protocol OAuth. <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Meer over gekoppelde toepassingen]</span>.",
 	"mwoauthmanagemygrants-notloggedin": "U moet aangemeld zijn om toegang te krijgen tot deze pagina.",
 	"mwoauthmanagemygrants-navigation": "Navigatie:",
 	"mwoauthmanagemygrants-showlist": "Lijst met gekoppelde toepassingen",
