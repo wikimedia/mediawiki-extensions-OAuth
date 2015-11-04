@@ -8,10 +8,6 @@ if ( PHP_SAPI !== 'cli' ) {
  * A basic client for overall testing
  */
 
-function wfDebugLog( $method, $msg) {
-	//echo "[$method] $msg\n";
-}
-
 
 require '../lib/OAuth.php';
 
@@ -82,7 +78,3 @@ if( !$data ) {
 }
 
 echo "Returned: $data\n\n";
-
-
-
-

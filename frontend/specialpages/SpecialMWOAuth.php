@@ -21,12 +21,19 @@ namespace MediaWiki\Extensions\OAuth;
  http://www.gnu.org/copyleft/gpl.html
 */
 
+use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
+
 /**
  * Page that handles OAuth consumer authorization and token exchange
  */
 class SpecialMWOAuth extends \UnlistedSpecialPage {
+	/** @var \\Psr\\Log\\LoggerInterface */
+	protected $logger;
+
 	function __construct() {
 		parent::__construct( 'OAuth' );
+		$this->logger = LoggerFactory::getInstance( 'OAuth' );
 	}
 
 	public function execute( $subpage ) {
@@ -47,7 +54,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 				case 'initiate':
 					$oauthServer = MWOAuthUtils::newMWOAuthServer();
 					$oauthRequest = MWOAuthRequest::fromRequest( $request );
-					wfDebugLog( 'OAuth', __METHOD__ . ": Consumer " .
+					$this->logger->debug( __METHOD__ . ": Consumer " .
 						"'{$oauthRequest->getConsumerKey()}' getting temporary credentials" );
 					// fetch_request_token does the version, freshness, and sig checks
 					$token = $oauthServer->fetch_request_token( $oauthRequest );
@@ -60,7 +67,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 						$request->getVal( 'oauth_token' ) );
 					$consumerKey = $request->getVal( 'consumerKey',
 						$request->getVal( 'oauth_consumer_key' ) );
-					wfDebugLog( 'OAuth', __METHOD__ . ": doing '$subpage' with " .
+					$this->logger->debug( __METHOD__ . ": doing '$subpage' with " .
 						"'$requestToken' '$consumerKey' for '{$user->getName()}'" );
 					// TODO? Test that $requestToken exists in memcache
 					if ( $user->isAnon() ) {
@@ -104,7 +111,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					}
 
 					$consumerKey = $oauthRequest->get_parameter( 'oauth_consumer_key' );
-					wfDebugLog( 'OAuth', "/token: '{$consumerKey}' getting temporary credentials" );
+					$this->logger->debug( "/token: '{$consumerKey}' getting temporary credentials" );
 					$token = $oauthServer->fetch_access_token( $oauthRequest );
 					if ( $isRsa ) {
 						// RSA doesn't use the token secret, so don't return one.
@@ -183,10 +190,10 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					}
 			}
 		} catch ( MWOAuthException $exception ) {
-			wfDebugLog( 'OAuth', __METHOD__ . ": Exception " . $exception->getMessage() );
+			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(), array( 'exception' => $exception ) );
 			$this->showError( wfMessage( $exception->msg, $exception->params ), $format );
 		} catch ( OAuthException $exception ) {
-			wfDebugLog( 'OAuth', __METHOD__ . ": Exception " . $exception->getMessage() );
+			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(), array( 'exception' => $exception ) );
 			$this->showError(
 				wfMessage( 'mwoauth-oauth-exception', $exception->getMessage() ),
 				$format

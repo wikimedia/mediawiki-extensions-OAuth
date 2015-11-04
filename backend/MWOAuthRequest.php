@@ -54,7 +54,7 @@ class MWOAuthRequest extends OAuthRequest {
 			) === 0
 		) {
 			$postData = OAuthUtil::parse_parameters( $request->getRawPostString() );
-			wfDebugLog( 'OAuth', __METHOD__ . ': Post String = ' . implode( ',', $postData ) );
+			$this->logger->debug( __METHOD__ . ': Post String = ' . implode( ',', $postData ) );
 			$parameters = array_merge( $parameters, $postData );
 		}
 
@@ -68,7 +68,7 @@ class MWOAuthRequest extends OAuthRequest {
 			);
 			$parameters = array_merge($parameters, $headerParameters);
 		}
-		wfDebugLog( 'OAuth', __METHOD__ . ": parameters:\n" . print_r( $parameters, true) );
+		$this->logger->debug( __METHOD__ . ": parameters:\n" . print_r( $parameters, true) );
 
 		return new self( $httpMethod, $httpUrl, $parameters, $request->getIP() );
 	}

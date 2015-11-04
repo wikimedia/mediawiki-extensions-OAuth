@@ -21,12 +21,18 @@ namespace MediaWiki\Extensions\OAuth;
  http://www.gnu.org/copyleft/gpl.html
 */
 
+use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
+
 /**
  * Representation of a Data Access Object
  */
 abstract class MWOAuthDAO implements \IDBAccessObject {
 	private $daoOrigin = 'new'; // string; object construction origin
 	private $daoPending = true; // boolean; whether fields changed or the field is new
+
+	/** @var \\Psr\\Log\\LoggerInterface */
+	protected $logger;
 
 	/**
 	 * @throws \MWException
@@ -36,6 +42,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 		if ( array_diff( $fields, $this->getFieldNames() ) ) {
 			throw new \MWException( "Invalid field(s) defined in access check methods." );
 		}
+		$this->logger = LoggerFactory::getInstance( 'OAuth' );
 	}
 
 	/**
@@ -153,7 +160,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 		}
 		if ( $this->daoOrigin === 'db' ) {
 			if ( $this->daoPending ) {
-				wfDebug( get_class( $this ) . ': performing DB update; object changed.' );
+				$this->logger->debug( get_class( $this ) . ': performing DB update; object changed.' );
 				$dbw->update(
 					static::getTable(),
 					$this->getRowArray( $dbw ),
@@ -167,11 +174,11 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 				$this->daoPending = false;
 				return $dbw->affectedRows() > 0;
 			} else {
-				wfDebug( get_class( $this ) . ': skipping DB update; object unchanged.' );
+				$this->logger->debug( get_class( $this ) . ': skipping DB update; object unchanged.' );
 				return false; // short-circuit
 			}
 		} else {
-			wfDebug( get_class( $this ) . ': performing DB update; new object.' );
+			$this->logger->debug( get_class( $this ) . ': performing DB update; new object.' );
 			$dbw->insert(
 				static::getTable(),
 				$this->getRowArray( $dbw ),
