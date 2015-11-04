@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Milicevic01"
+			"Milicevic01",
+			"Сербијана"
 		]
 	},
 	"mwoauth-field-hidden": "(ова информација је скривена)",
@@ -74,7 +75,7 @@
 	"mwoauth-grant-group-page-interaction": "Уређивање страница",
 	"mwoauth-grant-group-file-interaction": "Уређивање датотека",
 	"mwoauth-grant-group-watchlist-interaction": "Уређивање вашег списка надгледања",
-	"mwoauth-grant-group-email": "Слање е-порука",
+	"mwoauth-grant-group-email": "Пошаљи имејл",
 	"mwoauth-grant-createaccount": "Отварање налога",
 	"mwoauth-grant-createeditmovepage": "Прављење, уређивање и премештање страница",
 	"mwoauth-grant-delete": "Брисање страница, измена и уноса у дневницима",
