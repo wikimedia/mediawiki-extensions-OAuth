@@ -134,13 +134,11 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'required' => true
 					),
 					'wiki' => array(
-						'type' => $allWikis ? 'autocompleteselect' : 'select',
+						'type' => $allWikis ? 'combobox' : 'select',
 						'options' => array(
 							wfMessage( 'mwoauth-consumer-allwikis' )->escaped() => '*',
 							wfMessage( 'mwoauth-consumer-wiki-thiswiki', wfWikiID() )->escaped() => wfWikiID()
-						),
-						'autocomplete' => array_flip( $allWikis ),
-						'other' => wfMessage( 'mwoauth-consumer-wiki-other' )->escaped(),
+						) + array_flip( $allWikis ),
 						'label-message' => 'mwoauth-consumer-wiki',
 						'required' => true,
 						'default' => '*'
