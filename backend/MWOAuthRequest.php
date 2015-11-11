@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
+
 /**
  * @file
  * @ingroup OAuth
