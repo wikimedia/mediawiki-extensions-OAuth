@@ -4,13 +4,19 @@
 			"Subi"
 		]
 	},
+	"mwoauth-prefs-managegrants": "Lotutako aplikazioak:",
+	"mwoauth-prefs-managegrantslink": "Kudeatu lotutako {{PLURAL:$1|aplikazioa|$1 aplikazioak}}",
+	"mwoauth-consumer-name": "Aplikazioaren izena:",
 	"mwoauth-consumer-reason": "Arrazoia:",
 	"mwoauthconsumerregistration-lastchange": "Azken aldaketa",
 	"mwoauthconsumerregistration-manage": "kudeatu",
 	"mwoauthmanageconsumers-description": "Deskribapena",
 	"mwoauthmanageconsumers-lastchange": "Azken aldaketa",
 	"mwoauthmanageconsumers-reason": "Arrazoia:",
+	"oauthlistconsumers": "Zerrendatu OAuth aplikazioak",
 	"mwoauthlistconsumers-view": "xehetasunak",
+	"mwoauthlistconsumers-name": "Aplikazioaren izena",
+	"oauthmanagemygrants": "Kudeatu lotutako aplikazioak",
 	"mwoauthmanagemygrants-description": "Deskribapena",
 	"mwoauth-grant-uploadfile": "Igotako fitxategi berriak"
 }
