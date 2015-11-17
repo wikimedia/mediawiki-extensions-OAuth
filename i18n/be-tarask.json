@@ -6,6 +6,7 @@
 	},
 	"mwoauth-prefs-managegrants": "Падключаныя дадаткі:",
 	"mwoauth-prefs-managegrantslink": "Кіраваць $1 {{PLURAL:$1|падключаным дадаткам|падключанымі дадаткамі}}",
+	"mwoauth-consumer-name": "Назва праграмы:",
 	"oauthlistconsumers": "Сьпіс праграмаў OAuth",
 	"mwoauthlistconsumers-legend": "Прагляд OAuth-праграмаў",
 	"oauthmanagemygrants": "Кіраваньне падключанымі праграмамі",
