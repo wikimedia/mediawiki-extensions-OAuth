@@ -11,11 +11,11 @@ class MWOAuthHooks {
 	 * that the user may not create them
 	 *
 	 * @param string $tag
-	 * @param \User $user
+	 * @param \User|null $user
 	 * @param \Status $status
 	 * @return bool
 	 */
-	public static function onChangeTagCanCreate( $tag, \User $user, \Status &$status ) {
+	public static function onChangeTagCanCreate( $tag, \User $user = null, \Status &$status ) {
 		if ( strpos( strtolower( $tag ), 'oauth cid:' ) === 0 ) {
 			$status->fatal( 'mwoauth-tag-reserved' );
 		}
