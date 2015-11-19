@@ -142,7 +142,7 @@
 	"mwoauth-form-description-onewiki-nogrants": "नमस्कार $1,\n\nआपली विनंती पूर्ण करण्यास,'''$2'''ला आपल्या वतीने''$4'' वर माहितीस पोहोच करण्यास परवानगी हवी आहे.आपल्या खात्याचे काहीही बदलणार नाही.\n\n\n$4",
 	"mwoauth-form-button-approve": "परवनगी द्या",
 	"mwoauth-form-button-cancel": "रद्द करा",
-	"mwoauth-error": "अनुप्रयुक्ति जुळण्याबाबतची त्रूटी",
+	"mwoauth-error": "अनुप्रयुक्ति जुळण्याबाबतची त्रुटी",
 	"mwoauth-grants-heading": "विनंती केलेल्या परवानग्या:",
 	"mwoauth-grants-nogrants": "या अनुप्रयुक्तिने काहीच परवानग्या मागीतल्या नाहीत.",
 	"mwoauth-grant-group-email": "विपत्र पाठवा",
