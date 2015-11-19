@@ -20,7 +20,8 @@ $wgMWOAuthCentralWiki = false;
  * have a central authentication system but have their own OAuth management, then
  * this can be either true or false. Otherwise it should always be set to false.
  *
- * Setting this to true requires an MWOAuth aware authentication extension.
+ * Setting this to true requires CentralIdLookup or an MWOAuth aware
+ * authentication extension.
  *
  * This value should not be changed after the fact to avoid ambigious IDs.
  * Proper user ID migration should be done before any such changes.
@@ -28,11 +29,19 @@ $wgMWOAuthCentralWiki = false;
 $wgMWOAuthSharedUserIDs = false;
 
 /**
- * @var string Extension to use as the source of shared user IDs if enabled
+ * @var string Source of shared user IDs, if enabled
+ *
+ * If CentralIdLookup is available, this is the $providerId for
+ * CentralIdLookup::factory(). Generally null would be what you want, to use
+ * the default provider.
+ *
+ * If that class is not available or the named provider is not found, this is
+ * passed to the 'OAuthGetUserNamesFromCentralIds', 'OAuthGetLocalUserFromCentralId',
+ * 'OAuthGetCentralIdFromLocalUser', and 'OAuthGetCentralIdFromUserName' hooks.
  *
  * This has no effect if $wgMWOAuthSharedUserIDs is set to false.
  */
-$wgMWOAuthSharedUserSource = false;
+$wgMWOAuthSharedUserSource = null;
 
 /**
  * @var Array Map of (grant => right => boolean)
