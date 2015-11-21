@@ -21,6 +21,7 @@ namespace MediaWiki\Extensions\OAuth;
  http://www.gnu.org/copyleft/gpl.html
 */
 
+use Firebase\JWT\JWT;
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
 
@@ -267,7 +268,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			}
 		}
 
-		$JWT = \JWT::encode( $statement, $consumer->secret );
+		$JWT = JWT::encode( $statement, $consumer->secret );
 		$this->showResponse( $JWT, $format );
 	}
 
