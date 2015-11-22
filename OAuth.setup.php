@@ -89,7 +89,6 @@ class MWOAuthSetup {
 		$classes['MediaWiki\Extensions\OAuth\OAuthServer'] = "$libDir/OAuth.php";
 		$classes['MediaWiki\Extensions\OAuth\OAuthDataStore'] = "$libDir/OAuth.php";
 		$classes['MediaWiki\Extensions\OAuth\OAuthUtil'] = "$libDir/OAuth.php";
-		$classes['JWT'] = "$libDir/JWT.php";
 
 		# Storage
 		$classes['MediaWiki\Extensions\OAuth\MWOAuthDataStore'] = "$backendDir/MWOAuthDataStore.php";

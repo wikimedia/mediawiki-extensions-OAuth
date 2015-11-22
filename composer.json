@@ -1,0 +1,11 @@
+{
+	"name": "mediawiki/oauth",
+	"type": "mediawiki-extension",
+	"description": "Allows usage of OAuth 1.0a for API authorization",
+	"license": "GPL-2.0+",
+	"prefer-stable": true,
+	"require": {
+		"firebase/php-jwt": "2.1.0",
+		"php": ">=5.3.3"
+	}
+}
