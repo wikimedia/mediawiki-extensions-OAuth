@@ -29,6 +29,8 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_registered_consumer (
     oarc_email_authenticated varbinary(14) NULL,
     -- Did the owner accept the developer agreement?
     oarc_developer_agreement tinyint NOT NULL DEFAULT 0,
+    -- Is this consumer owner-only
+    oarc_owner_only tinyint NOT NULL DEFAULT 0,
     -- What wiki this is allowed on (a single wiki or '*' for all)
     oarc_wiki varbinary(32) NOT NULL,
     -- Grants needed for client consumers
