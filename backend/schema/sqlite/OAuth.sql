@@ -19,12 +19,16 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_registered_consumer (
     oarc_version varbinary(32) NOT NULL,
     -- Callback URL
     oarc_callback_url blob NOT NULL,
+    -- Is the consumer allowed to specify a callback URL? (See MWOAuthServer::checkCallback().)
+    oarc_callback_is_prefix tinyblob NULL DEFAULT NULL,
     -- Application description
     oarc_description blob NOT NULL,
     -- Contact email address
     oarc_email varchar(255) binary NOT NULL,
     -- Confirmation of contact email address
     oarc_email_authenticated varbinary(14) NULL,
+    -- Did the owner accept the developer agreement?
+    oarc_developer_agreement tinyint NOT NULL DEFAULT 0,
     -- What wiki this is allowed on (a single wiki or '*' for all)
     oarc_wiki varbinary(32) NOT NULL,
     -- Grants needed for client consumers
