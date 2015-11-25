@@ -206,6 +206,7 @@
 	"mwoauthserver-insufficient-rights": "Error message that the user does not have the required rights to perform this request",
 	"mwoauthserver-invalid-request-token": "Error message when an invalid request token was submitted",
 	"mwoauthserver-invalid-user": "Error when the user attempts to use OAuth, but they do not have a unified (SUL) account, which is required.\n\nParameters:\n* $1 - application name",
+	"mwoauthserver-consumer-no-secret": "Error when a consumer with no secret or RSA was submitted",
 	"mwoauth-invalid-authorization-title": "Title of the error page when the Authorization header is invalid",
 	"mwoauth-invalid-authorization": "Text of the error page when the Authorization header is invalid. Parameters are:\n* $1 - Specific error message from the OAuth layer, probably not localized",
 	"mwoauth-invalid-authorization-wrong-wiki": "Text of the error page when the Authorization header is for the wrong wiki. Parameters are:\n* $1 - wiki id",

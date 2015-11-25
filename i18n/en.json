@@ -198,6 +198,7 @@
 	"mwoauthserver-insufficient-rights": "Your account is not allowed to use Connected Apps, contact your site administrator to find out why.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Insufficient OAuth user rights, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "Invalid token in your request.",
 	"mwoauthserver-invalid-user": "To use Connected Apps on this site, you must have an account across all projects. When you have an account on all projects, you can try to connect \"$1\" again.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unified login needed, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
+	"mwoauthserver-consumer-no-secret": "Sorry, something went wrong connecting this application.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Consumer has no secret key, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauth-invalid-authorization-title": "OAuth authorization error",
 	"mwoauth-invalid-authorization": "The authorization headers in your request are not valid: $1",
 	"mwoauth-invalid-authorization-wrong-wiki": "The authorization headers in your request are not valid for $1",

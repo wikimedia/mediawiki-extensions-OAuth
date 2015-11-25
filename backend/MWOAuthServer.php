@@ -28,7 +28,7 @@ class MWOAuthServer extends OAuthServer {
 
 		// Consumer must have a key for us to verify
 		if ( !$consumer->get( 'secretKey' ) && !$consumer->get( 'rsaKey' ) ) {
-			throw new MWOAuthException( 'invalid-consumer' );
+			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret' );
 		}
 
 		$this->checkSourceIP( $consumer, $request );
@@ -68,26 +68,26 @@ class MWOAuthServer extends OAuthServer {
 	private function checkCallback( $consumer, $callback ) {
 		if ( !$consumer->get( 'callbackIsPrefix' ) ) {
 			if ( $callback !== 'oob' ) {
-				throw new MWOAuthException( 'callback-not-oob' );
+				throw new MWOAuthException( 'mwoauth-callback-not-oob' );
 			}
 
 			return;
 		}
 
 		if ( !$callback ) {
-			throw new MWOAuthException( 'callback-not-oob-or-prefix' );
+			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix' );
 		}
 		if ( $callback === 'oob' ) {
 			return;
 		}
 
 		if ( wfParseUrl( $callback ) === null ) {
-			throw new MWOAuthException( 'callback-not-oob-or-prefix' );
+			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix' );
 		}
 
 		$consumerCallback = $consumer->get( 'callbackUrl' );
 		if ( substr( $callback, 0, strlen( $consumerCallback ) ) !== $consumerCallback ) {
-			throw new MWOAuthException( 'callback-not-oob-or-prefix' );
+			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix' );
 		}
 
 		return;
@@ -108,7 +108,7 @@ class MWOAuthServer extends OAuthServer {
 
 		// Consumer must have a key for us to verify
 		if ( !$consumer->get( 'secretKey' ) && !$consumer->get( 'rsaKey' ) ) {
-			throw new MWOAuthException( 'invalid-consumer' );
+			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret' );
 		}
 
 		$this->checkSourceIP( $consumer, $request );
@@ -118,7 +118,7 @@ class MWOAuthServer extends OAuthServer {
 
 		if ( !$token->secret ) {
 			// This token has a blank secret.. something is wrong
-			throw new MWOAuthException( 'bad-token' );
+			throw new MWOAuthException( 'mwoauthdatastore-bad-token' );
 		}
 
 		$this->check_signature( $request, $consumer, $token );
@@ -155,7 +155,7 @@ class MWOAuthServer extends OAuthServer {
 		$requestIP = $request->getSourceIP();
 
 		if ( !isset( $restrictions['IPAddresses'] ) ) {
-			throw new MWOAuthException( 'bad-source-ip' ); // sanity; should not happen
+			throw new MWOAuthException( 'mwoauthdatastore-bad-source-ip' ); // sanity; should not happen
 		}
 
 		foreach ( $restrictions['IPAddresses'] as $range ) {
@@ -164,7 +164,7 @@ class MWOAuthServer extends OAuthServer {
 			}
 		}
 
-		throw new MWOAuthException( 'bad-source-ip' );
+		throw new MWOAuthException( 'mwoauthdatastore-bad-source-ip' );
 	}
 
 	/**
