@@ -55,7 +55,6 @@ $wgMWOAuthGrantPermissions['useoauth']['editsemiprotected'] = true;
 $wgMWOAuthGrantPermissions['useoauth']['ipblock-exempt'] = true;
 $wgMWOAuthGrantPermissions['useoauth']['nominornewtalk'] = true;
 $wgMWOAuthGrantPermissions['useoauth']['patrolmarks'] = true;
-$wgMWOAuthGrantPermissions['useoauth']['proxyunbannable'] = true;
 $wgMWOAuthGrantPermissions['useoauth']['purge'] = true;
 $wgMWOAuthGrantPermissions['useoauth']['read'] = true;
 $wgMWOAuthGrantPermissions['useoauth']['skipcaptcha'] = true;
