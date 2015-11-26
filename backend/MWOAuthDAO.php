@@ -167,10 +167,6 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 					array( $idColumn => $uniqueId ),
 					__METHOD__
 				);
-				$afield = static::getAutoIncrField();
-				if ( $afield !== null ) { // update field for auto-increment field
-					$this->$afield = $dbw->insertId();
-				}
 				$this->daoPending = false;
 				return $dbw->affectedRows() > 0;
 			} else {
@@ -179,11 +175,16 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 			}
 		} else {
 			$this->logger->debug( get_class( $this ) . ': performing DB update; new object.' );
+			$afield = static::getAutoIncrField();
+			// TODO: $this->$afield = $dbw->nextSequenceValue( ??? )
 			$dbw->insert(
 				static::getTable(),
 				$this->getRowArray( $dbw ),
 				__METHOD__
 			);
+			if ( $afield !== null ) { // update field for auto-increment field
+				$this->$afield = $dbw->insertId();
+			}
 			$this->daoPending = false;
 			return true;
 		}
