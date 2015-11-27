@@ -202,6 +202,7 @@
 	"mwoauthserver-insufficient-rights": "לחשבון שלך אין אישור להשתמש ביישומים מחוברים. נא ליצור קשר עם מנהל האתר שלך כדי להבין למה.\n\n<span class=\"plainlinks mw-mwoautherror-details\">הרשאות משתמש OAuth לא מספיקות, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "אסימון לא חוקי בבקשתך.",
 	"mwoauthserver-invalid-user": "כדי להשתמש ביישומים מחוברים באתר הזה, צריך להיות לך חשבון בכל המיזמים. כאשר יהיה לך חשבון בכל המיזמים, אפשר לנסות לחבר את \"$1\" שוב.\n\n<span class=\"plainlinks mw-mwoautherror-details\">דרושה כניסה מאוחדת, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
+	"mwoauthserver-consumer-no-secret": "סליחה, משהו השתבש בעת ההתחברות עם היישום הזה.\n\n<span class=\"plainlinks mw-mwoautherror-details\">לצרכן אין מפתח סודי, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauth-invalid-authorization-title": "שגיאת אימות OAuth",
 	"mwoauth-invalid-authorization": "כותרות האישור בבקשה שלך אינן תקניות: $1",
 	"mwoauth-invalid-authorization-wrong-wiki": "כותרות האישור בבקשה שלך אינן תקינות עבור $1",

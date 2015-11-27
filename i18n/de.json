@@ -203,6 +203,7 @@
 	"mwoauthserver-insufficient-rights": "Dein Benutzerkonto ist nicht berechtigt, verbundene Anwendungen zu verwenden. Kontaktiere deinen Websiteadministrator, um den Grund herauszufinden.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Nicht ausreichende OAuth-Benutzerrechte, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "Deine Anfrage enthält einen ungültigen Token",
 	"mwoauthserver-invalid-user": "Um verbundene Anwendungen auf dieser Website zu verwenden, musst du ein Benutzerkonto für alle Projekte besitzen. Falls du ein Benutzerkonto auf allen Projekten besitzt, kannst du versuchen, $1 erneut zu verbinden.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Einheitliche Anmeldung erforderlich, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
+	"mwoauthserver-consumer-no-secret": "Leider ist etwas bei der Verbindung dieser Anwendung fehlgeschlagen.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Verbraucher hat keinen geheimen Schlüssel, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauth-invalid-authorization-title": "OAuth-Autorisierungsfehler",
 	"mwoauth-invalid-authorization": "Die Autorisierungsheader in deiner Anfrage sind nicht gültig: $1",
 	"mwoauth-invalid-authorization-wrong-wiki": "Die Autorisierungsheader in deiner Anfrage sind nicht gültig für $1",

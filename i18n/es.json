@@ -155,6 +155,7 @@
 	"mwoauthdatastore-bad-verifier": "El código de verificación proporcionado no es válido.",
 	"mwoauthdatastore-invalid-token-type": "El tipo de ficha solicitado no es válido.",
 	"mwoauthgrants-general-error": "Hay un error en la solicitud de OAuth.",
+	"mwoauthserver-consumer-no-secret": "Algo salió mal al conectar esta aplicación.\n\n<span class=\"plainlinks mw-mwoautherror-details\">El consumidor no tiene una clave secreta, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauth-invalid-authorization-title": "Error de autorización de OAuth",
 	"mwoauth-form-description-allwikis": "Hola, $1:\n\nPara completar tu solicitud, '''$2''' necesita permiso para realizar las acciones siguientes en tu nombre en todos los proyectos de este sitio:\n\n$4",
 	"mwoauth-form-description-onewiki": "Hola, $1:\n\nPara completar tu pedido, '''$2''' necesita permiso para realizar las acciones siguientes en tu nombre en ''$4'':\n\n$5",
