@@ -199,6 +199,7 @@
 	"mwoauthserver-insufficient-rights": "На вашата сметка не ѝ е дозволено да користи Поврзани извршници. Обратете се кај администраторот на мрежното место за да дознаете зошто.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Недоволни кориснички права за OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "Неважечкa шифра во барањето.",
 	"mwoauthserver-invalid-user": "За да користите поврзани извршници на ова мрежно место, ќе мора да имате сметка на сите проекти (обединета сметка). Обидете се повторно да го поврзете „$1“ кога ќе направите таква сметка.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Се бара обединета сметка, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
+	"mwoauthserver-consumer-no-secret": "За жал, нешто не е во ред со поврзувањето со извршникот.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Потрошувачот нема таен клуч, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauth-invalid-authorization-title": "Грешка со овластувањето во OAuth",
 	"mwoauth-invalid-authorization": "Овластителните заглавија во вашето барање се неисправни: $1",
 	"mwoauth-invalid-authorization-wrong-wiki": "Овластителните заглавија во вашето барање се неисправни за $1",

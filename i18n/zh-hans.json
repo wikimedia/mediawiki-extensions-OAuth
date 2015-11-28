@@ -213,6 +213,7 @@
 	"mwoauthserver-insufficient-rights": "您的账户不允许使用连接的应用程序，请联系您的网站管理员了解原因。\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth用户权限不足，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "您的申请中有无效令牌。",
 	"mwoauthserver-invalid-user": "要使用此网站连接的程序，您必须拥有跨所有项目的账户。当您在所有项目上拥有账户后，您才能再次尝试连接“$1”。\n<span class=\"plainlinks mw-mwoautherror-details\">需要统一登录，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
+	"mwoauthserver-consumer-no-secret": "抱歉，此程序连接时出现一些错误。\n\n<span class=\"plainlinks mw-mwoautherror-details\">未知的OAuth密钥，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauth-invalid-authorization-title": "OAuth认证错误",
 	"mwoauth-invalid-authorization": "您申请中的授权标头无效：$1",
 	"mwoauth-invalid-authorization-wrong-wiki": "您申请中的授权标头对于$1无效",
