@@ -210,6 +210,7 @@
 	"mwoauthserver-insufficient-rights": "Votre compte n’est pas autorisé à utiliser les Applications connectées, contactez l’administrateur de votre site pour savoir pourquoi.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Droits utilisateur OAuth insuffisants, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "Jeton non valide dans votre demande",
 	"mwoauthserver-invalid-user": "Pour utiliser les Applications connectées sur ce site, vous devez avoir un compte transverse à tous les projets. Quand vous aurez un compte sur tous les projets, vous pouvez essayer de vous reconnecter à $1.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Connexion unifiée nécessaire, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
+	"mwoauthserver-consumer-no-secret": "Désolé, la connexion à cette application s’est mal passée.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Le consommateur n’a pas de clé secrète, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauth-invalid-authorization-title": "Erreur d’autorisation OAuth",
 	"mwoauth-invalid-authorization": "Les entêtes d’autorisation dans votre requête ne sont pas valides : $1",
 	"mwoauth-invalid-authorization-wrong-wiki": "Les entêtes d’autorisation dans votre requête ne sont pas valides pour $1",
