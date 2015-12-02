@@ -6,6 +6,8 @@
 	},
 	"mwoauth-prefs-managegrants": "اړيکمن کاريالونه:",
 	"mwoauth-prefs-managegrantslink": "$1 {{PLURAL:$1|نښلېدلی کاريال|نښلېدلي کاريالونه}} مهارول",
+	"mwoauth-consumer-allwikis": "په دې ويبځي ټولې پروژې",
+	"oauthlistconsumers": "د OAuth کاريالونو لړليک",
 	"mwoauthlistconsumers-status": "دريځ",
 	"oauthmanagemygrants": "نښلېدلي کاريالونه مهارول",
 	"mwoauth-form-button-cancel": "ناگارل",
