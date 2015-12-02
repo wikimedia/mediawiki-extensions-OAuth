@@ -18,7 +18,7 @@
 	line-height: 1em;
 }
 
-span.mw-mwoauth-authorize-form-grantgroup {
+#mw-mwoauth-authorize-form span.mw-grantgroup {
 	font-weight: bold;
 	font-size: 1.2em;
 }

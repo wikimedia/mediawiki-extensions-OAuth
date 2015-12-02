@@ -82,8 +82,12 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
 				},
 				'restrictions' => function( $s ) {
-					$res = \FormatJSON::decode( $s, true );
-					return is_array( $res ) && MWOAuthUtils::restrictionsAreValid( $res );
+					try {
+						\MWRestrictions::newFromJson( $s );
+						return true;
+					} catch ( \InvalidArgumentException $ex ) {
+						return false;
+					}
 				},
 				'rsaKey'       => $validateRsaKey,
 				'agreement'    => function( $s ) {
@@ -93,8 +97,12 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			'update'      => array(
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
 				'restrictions' => function( $s ) {
-					$res = \FormatJSON::decode( $s, true );
-					return is_array( $res ) && MWOAuthUtils::restrictionsAreValid( $res );
+					try {
+						\MWRestrictions::newFromJson( $s );
+						return true;
+					} catch ( \InvalidArgumentException $ex ) {
+						return false;
+					}
 				},
 				'rsaKey'       => $validateRsaKey,
 				'resetSecret'  => function( $s ) { return is_bool( $s ); },
@@ -200,14 +208,14 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$grants = array();
 			switch( $this->vals['granttype'] ) {
 				case 'authonly':
-					$grants = array( 'authonly' );
+					$grants = array( 'mwoauth-authonly' );
 					break;
 				case 'authonlyprivate':
-					$grants = array( 'authonlyprivate' );
+					$grants = array( 'mwoauth-authonlyprivate' );
 					break;
 				case 'normal':
 					$grants = array_unique( array_merge(
-						MWOAuthUtils::getHiddenGrants(), // implied grants
+						\MWGrants::getHiddenGrants(), // implied grants
 						\FormatJSON::decode( $this->vals['grants'], true )
 					) );
 					break;
@@ -227,7 +235,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					'stage'              => $stage,
 					'stageTimestamp'     => $now,
 					'grants'             => $grants,
-					'restrictions'       => \FormatJSON::decode( $this->vals['restrictions'], true ),
+					'restrictions'       => \MWRestrictions::newFromJson( $this->vals['restrictions'] ),
 					'deleted'            => 0
 				) + $this->vals
 			);
@@ -286,7 +294,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			$cmr->setFields( array(
 				'rsaKey'       => $this->vals['rsaKey'],
-				'restrictions' => \FormatJSON::decode( $this->vals['restrictions'], true ),
+				'restrictions' => \MWRestrictions::newFromJson( $this->vals['restrictions'] ),
 				'secretKey'    => $this->vals['resetSecret']
 					? \MWCryptRand::generateHex( 32 )
 					: $cmr->get( 'secretKey' )

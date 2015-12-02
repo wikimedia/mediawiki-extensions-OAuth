@@ -87,12 +87,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 			$allWikis = MWOAuthUtils::getAllWikiNames();
 
-			// 'authonly' and 'authonlyprivate' are specially handled, don't
-			// include them in the normal list of grants.
-			$showGrants = array_diff(
-				MWOAuthUtils::getValidGrants(),
-				array( 'authonly', 'authonlyprivate' )
-			);
+			$showGrants = \MWGrants::getValidGrants();
 
 			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), array(), $dbw );
@@ -153,8 +148,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 					'granttype'  => array(
 						'type' => 'radio',
 						'options-messages' => array(
-							'mwoauth-grant-authonly' => 'authonly',
-							'mwoauth-grant-authonlyprivate' => 'authonlyprivate',
+							'grant-mwoauth-authonly' => 'authonly',
+							'grant-mwoauth-authonlyprivate' => 'authonlyprivate',
 							'mwoauth-granttype-normal' => 'normal',
 						),
 						'label-message' => 'mwoauth-consumer-granttypes',
@@ -169,22 +164,22 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 							$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
 						),
 						'rows' => array_combine(
-							array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getGrantsLink', $showGrants ),
+							array_map( 'MWGrants::getGrantsLink', $showGrants ),
 							$showGrants
 						),
 						'tooltips' => array_combine(
-							array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::grantName', $showGrants ),
+							array_map( 'MWGrants::getGrantsLink', $showGrants ),
 							array_map(
 								function( $rights ) use ( $lang ) {
 									return $lang->semicolonList( array_map(
 										'\User::getRightDescription', $rights ) );
 								},
-								array_intersect_key( MWOAuthUtils::getRightsByGrant(), array_flip( $showGrants ) )
+								array_intersect_key( \MWGrants::getRightsByGrant(), array_flip( $showGrants ) )
 							)
 						),
 						'force-options-on' => array_map(
 							function( $g ) { return "grant-$g"; },
-							MWOAuthUtils::getHiddenGrants()
+							\MWGrants::getHiddenGrants()
 						),
 						'validation-callback' => null // different format
 					),
@@ -192,7 +187,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'type' => 'textarea',
 						'label-message' => 'mwoauth-consumer-restrictions-json',
 						'required' => true,
-						'default' => \FormatJSON::encode( MWOAuthConsumer::newRestrictions() ),
+						'default' => \MWRestrictions::newDefault()->toJson( true ),
 						'rows' => 5
 					),
 					'rsaKey' => array(
@@ -292,7 +287,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'type' => 'textarea',
 						'label-message' => 'mwoauth-consumer-restrictions-json',
 						'required' => true,
-						'default' => \FormatJSON::encode( $cmr->getDAO()->get( 'restrictions' ) ),
+						'default' => $cmr->getDAO()->get( 'restrictions' )->toJson( true ),
 						'rows' => 5
 					),
 					'resetSecret' => array(

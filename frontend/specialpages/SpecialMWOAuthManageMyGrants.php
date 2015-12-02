@@ -176,7 +176,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 						$this->msg( 'mwoauthmanagemygrants-grantaccept' )->escaped() => 'grant'
 					),
 					'rows' => array_combine(
-						array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getGrantsLink', $cmr->get( 'grants' ) ),
+						array_map( 'MWGrants::getGrantsLink', $cmr->get( 'grants' ) ),
 						$cmr->get( 'grants' )
 					),
 					'default' => array_map(
@@ -184,14 +184,14 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 						$cmra->get( 'grants' )
 					),
 					'tooltips' => array(
-						MWOAuthUtils::getGrantsLink( 'useoauth' ) => $this->msg( 'mwoauthmanagemygrants-useoauth-tooltip' )->text(),
-						MWOAuthUtils::getGrantsLink( 'authonly' ) => $this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
-						MWOAuthUtils::getGrantsLink( 'authonlyprivate' ) => $this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
+						\MWGrants::getGrantsLink( 'basic' ) => $this->msg( 'mwoauthmanagemygrants-basic-tooltip' )->text(),
+						\MWGrants::getGrantsLink( 'mwoauth-authonly' ) => $this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
+						\MWGrants::getGrantsLink( 'mwoauth-authonlyprivate' ) => $this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
 					),
 					'force-options-on' => array_map(
 						function( $g ) { return "grant-$g"; },
 						( $type === 'revoke' )
-							? MWOAuthUtils::getValidGrants()
+							? array_merge( \MWGrants::getValidGrants(), self::irrevocableGrants() )
 							: self::irrevocableGrants()
 					),
 					'validation-callback' => null // different format
@@ -313,8 +313,8 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 	private static function irrevocableGrants() {
 		if ( self::$irrevocableGrants === null ) {
 			self::$irrevocableGrants = array_merge(
-				MWOAuthUtils::getHiddenGrants(),
-				array( 'authonly', 'authonlyprivate' )
+				\MWGrants::getHiddenGrants(),
+				array( 'mwoauth-authonly', 'mwoauth-authonlyprivate' )
 			);
 		}
 		return self::$irrevocableGrants;

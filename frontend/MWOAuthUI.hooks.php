@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use SpecialPage;
+
 /**
  * Class containing GUI even handler functions for an OAuth environment
  */
@@ -88,5 +90,63 @@ class MWOAuthUIHooks {
 			$message = "[[$target|$encName]]";
 		}
 		return false;
+	}
+
+	/**
+	 * Append OAuth-specific grants to Special:ListGrants
+	 * @param SpecialPage $special
+	 * @param string $par
+	 * @return boolean
+	 */
+	public static function onSpecialPageAfterExecute( SpecialPage $special, $par ) {
+		if ( $special->getName() != 'Listgrants' ) {
+			return true;
+		}
+
+		$out = $special->getOutput();
+
+		$out->addWikiMsg( 'mwoauth-listgrants-extra-summary' );
+
+		$out->addHTML(
+			\Html::openElement( 'table',
+			array( 'class' => 'wikitable mw-listgrouprights-table' ) ) .
+			'<tr>' .
+			\Html::element( 'th', null, $special->msg( 'listgrants-grant' )->text() ) .
+			\Html::element( 'th', null, $special->msg( 'listgrants-rights' )->text() ) .
+			'</tr>'
+		);
+
+		$grants = array(
+			'mwoauth-authonly' => array(),
+			'mwoauth-authonlyprivate' => array(),
+		);
+
+		foreach ( $grants as $grant => $rights ) {
+			$descs = array();
+			$rights = array_filter( $rights ); // remove ones with 'false'
+			foreach ( $rights as $permission => $granted ) {
+				$descs[] = $special->msg(
+					'listgrouprights-right-display',
+					\User::getRightDescription( $permission ),
+					'<span class="mw-listgrants-right-name">' . $permission . '</span>'
+				)->parse();
+			}
+			if ( !count( $descs ) ) {
+				$grantCellHtml = '';
+			} else {
+				sort( $descs );
+				$grantCellHtml = '<ul><li>' . implode( "</li>\n<li>", $descs ) . '</li></ul>';
+			}
+
+			$id = \Sanitizer::escapeId( $grant );
+			$out->addHTML( \Html::rawElement( 'tr', array( 'id' => $id ),
+				"<td>" . $special->msg( "grant-$grant" )->escaped() . "</td>" .
+				"<td>" . $grantCellHtml . '</td>'
+			) );
+		}
+
+		$out->addHTML( \Html::closeElement( 'table' ) );
+
+		return true;
 	}
 }

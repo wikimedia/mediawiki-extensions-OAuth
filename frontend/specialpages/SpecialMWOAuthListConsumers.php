@@ -84,20 +84,16 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			throw new \PermissionsError( 'mwoauthviewsuppressed' );
 		}
 
-		// @TODO: this is similar to getGrantsWikiText()
-		$s = '';
-		foreach ( MWOAuthUtils::getGrantGroups( $cmr->get( 'grants' ) ) as $group => $grants ) {
-			if ( $group === 'hidden' ) {
-				continue; // implicitly granted
-			}
-			$s .= "*<strong>" . wfMessage( "mwoauth-grant-group-$group" )->text() . "</strong>\n";
-			$s .= ":" . $this->getLanguage()->semicolonList(
-				array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::grantName', $grants ) ) . "\n";
-		}
-		if ( $s == '' ) {
-			$s = wfMessage( 'mwoauthlistconsumers-basicgrantsonly' )->text();
+		$grants = $cmr->get( 'grants' );
+		if ( $grants === array( 'mwoauth-authonly' ) || $grants === array( 'mwoauth-authonlyprivate' ) ) {
+			$s = $this->msg( 'grant-' . $grants[0] )->text() . "\n";
 		} else {
-			$s .= "\n";
+			$s = \MWGrants::getGrantsWikiText( $grants, $this->getLanguage() );
+			if ( $s == '' ) {
+				$s = $this->msg( 'mwoauthlistconsumers-basicgrantsonly' )->text();
+			} else {
+				$s .= "\n";
+			}
 		}
 
 		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];

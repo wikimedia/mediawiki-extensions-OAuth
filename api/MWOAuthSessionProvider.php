@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
@@ -17,9 +18,9 @@ use WebRequest;
  * returning a bogus SessionInfo and then hooking ApiBeforeMain to throw a
  * fatal exception after MediaWiki is ready to handle it.
  *
- * It also hooks UserGetRights and UserIsEveryoneAllowed for authz purposes
- * (limiting the rights to those included in the grant), and RecentChange_save
- * to tag revisions made via the provider.
+ * It also takes advantage of the getAllowedUserRights() method for authz
+ * purposes (limiting the rights to those included in the grant), and
+ * hooks RecentChange_save to tag revisions made via the provider.
  */
 class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCookie {
 
@@ -28,9 +29,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 
 		parent::__construct( $params );
 
-		$wgHooks['UserGetRights'][] = $this;
 		$wgHooks['ApiCheckCanExecute'][] = $this;
-		$wgHooks['UserIsEveryoneAllowed'][] = $this;
 		$wgHooks['RecentChange_save'][] = $this;
 	}
 
@@ -137,7 +136,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 			'persisted' => $persisted,
 			'metadata' => array(
 				'key' => $accesstoken->key,
-				'rights' => MWOAuthUtils::getGrantRights( $access->get( 'grants' ) ),
+				'rights' => \MWGrants::getGrantRights( $access->get( 'grants' ) ),
 			),
 		) );
 	}
@@ -207,37 +206,18 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 		return null;
 	}
 
-	/**
-	 * Called when the user's rights are being fetched
-	 *
-	 * @param \User $user
-	 * @param array &$rights current rights list
-	 * @return boolean
-	 */
-	public function onUserGetRights( \User $user, array &$rights ) {
-		$data = $this->getSessionData( $user );
+	public function getAllowedUserRights( SessionBackend $backend ) {
+		if ( $backend->getProvider() !== $this ) {
+			throw new \InvalidArgumentException( 'Backend\'s provider isn\'t $this' );
+		}
+		$data = $backend->getProviderMetadata();
 		if ( $data ) {
-			$rights = array_intersect( $rights, $data['rights'] );
-		}
-		return true;
-	}
-
-	/**
-	 * Called to check if everyone has a particular user right. If OAuth is in
-	 * use, we need to see what grants are actually allowed to the current client.
-	 * @param string $right
-	 * @return boolean
-	 */
-	public function onUserIsEveryoneAllowed( $right ) {
-		$data = $this->getSessionData();
-		if ( !$data ) {
-			return true;
+			return $data['rights'];
 		}
 
-		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
-		$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $data['key'] );
-		$grantRights = MWOAuthUtils::getGrantRights( $access->get( 'grants' ) );
-		return in_array( $right, $grantRights );
+		// Should never happen
+		$this->logger->debug( __METHOD__ . ': No provider metadata, returning no rights allowed' );
+		return array();
 	}
 
 	/**

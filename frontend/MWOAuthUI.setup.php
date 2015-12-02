@@ -20,6 +20,7 @@ class MWOAuthUISetup {
 
 		$wgHooks['GetPreferences'][] = 'MediaWiki\Extensions\OAuth\MWOAuthUIHooks::onGetPreferences';
 		$wgHooks['MessagesPreLoad'][] = 'MediaWiki\Extensions\OAuth\MWOAuthUIHooks::onMessagesPreLoad';
+		$wgHooks['SpecialPageAfterExecute'][] = 'MediaWiki\Extensions\OAuth\MWOAuthUIHooks::onSpecialPageAfterExecute';
 
 		$wgResourceModules['ext.MWOAuth.BasicStyles'] = array(
 			'position'		=> 'top',

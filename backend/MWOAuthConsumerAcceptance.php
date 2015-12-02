@@ -133,6 +133,13 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	protected function encodeRow( \DBConnRef $db, $row ) {
+		// For compatibility with other wikis in the farm, un-remap some grants
+		foreach ( MWOAuthConsumer::$mapBackCompatGrants as $old => $new ) {
+			while ( ( $i = array_search( $new, $row['oaac_grants'], true ) ) !== false ) {
+				$row['oaac_grants'][$i] = $old;
+			}
+		}
+
 		$row['oaac_grants'] = \FormatJSON::encode( $row['oaac_grants'] );
 		$row['oaac_accepted'] = $db->timestamp( $row['oaac_accepted'] );
 		return $row;
@@ -141,6 +148,14 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	protected function decodeRow( \DBConnRef $db, $row ) {;
 		$row['oaac_grants'] = \FormatJSON::decode( $row['oaac_grants'], true );
 		$row['oaac_accepted'] = wfTimestamp( TS_MW, $row['oaac_accepted'] );
+
+		// For backwards compatibility, remap some grants
+		foreach ( MWOAuthConsumer::$mapBackCompatGrants as $old => $new ) {
+			while ( ( $i = array_search( $old, $row['oaac_grants'], true ) ) !== false ) {
+				$row['oaac_grants'][$i] = $new;
+			}
+		}
+
 		return $row;
 	}
 

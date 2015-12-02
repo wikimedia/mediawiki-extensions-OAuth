@@ -25,6 +25,13 @@ namespace MediaWiki\Extensions\OAuth;
  * Representation of an OAuth consumer request
  */
 class MWOAuthConsumer extends MWOAuthDAO {
+	/** @var array Backwards-compatibility grant mappings */
+	public static $mapBackCompatGrants = array(
+		'useoauth' => 'basic',
+		'authonly' => 'mwoauth-authonly',
+		'authonlyprivate' => 'mwoauth-authonlyprivate',
+	);
+
 	/** @var integer Unique ID */
 	protected $id;
 	/** @var string Hex token */
@@ -59,7 +66,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $rsaKey;
 	/** @var array List of grants */
 	protected $grants;
-	/** @var array IP restrictions */
+	/** @var \\MWRestrictions IP restrictions */
 	protected $restrictions;
 	/** @var integer MWOAuthConsumer::STAGE_* constant */
 	protected $stage;
@@ -181,13 +188,6 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	/**
 	 * @return array
 	 */
-	public static function newRestrictions() {
-		return array( 'IPAddresses' => array( '0.0.0.0/0', '::/0' ) );
-	}
-
-	/**
-	 * @return array
-	 */
 	public static function getAllStages() {
 		return array(
 			MWOAuthConsumer::STAGE_PROPOSED,
@@ -250,9 +250,16 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	protected function encodeRow( \DBConnRef $db, $row ) {
+		// For compatibility with other wikis in the farm, un-remap some grants
+		foreach ( MWOAuthConsumer::$mapBackCompatGrants as $old => $new ) {
+			while ( ( $i = array_search( $new, $row['oarc_grants'], true ) ) !== false ) {
+				$row['oarc_grants'][$i] = $old;
+			}
+		}
+
 		$row['oarc_registration'] = $db->timestamp( $row['oarc_registration'] );
 		$row['oarc_stage_timestamp'] = $db->timestamp( $row['oarc_stage_timestamp'] );
-		$row['oarc_restrictions'] = \FormatJSON::encode( $row['oarc_restrictions'] );
+		$row['oarc_restrictions'] = $row['oarc_restrictions']->toJson();
 		$row['oarc_grants'] = \FormatJSON::encode( $row['oarc_grants'] );
 		$row['oarc_email_authenticated'] =
 			$db->timestampOrNull( $row['oarc_email_authenticated'] );
@@ -262,10 +269,18 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected function decodeRow( \DBConnRef $db, $row ) {
 		$row['oarc_registration'] = wfTimestamp( TS_MW, $row['oarc_registration'] );
 		$row['oarc_stage_timestamp'] = wfTimestamp( TS_MW, $row['oarc_stage_timestamp'] );
-		$row['oarc_restrictions'] = \FormatJSON::decode( $row['oarc_restrictions'], true );
+		$row['oarc_restrictions'] = \MWRestrictions::newFromJson( $row['oarc_restrictions'] );
 		$row['oarc_grants'] = \FormatJSON::decode( $row['oarc_grants'], true );
 		$row['oarc_email_authenticated'] =
 			wfTimestampOrNull( TS_MW, $row['oarc_email_authenticated'] );
+
+		// For backwards compatibility, remap some grants
+		foreach ( MWOAuthConsumer::$mapBackCompatGrants as $old => $new ) {
+			while ( ( $i = array_search( $old, $row['oarc_grants'], true ) ) !== false ) {
+				$row['oarc_grants'][$i] = $new;
+			}
+		}
+
 		return $row;
 	}
 

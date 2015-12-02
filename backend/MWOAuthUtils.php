@@ -130,145 +130,6 @@ class MWOAuthUtils {
 	}
 
 	/**
-	 * @return array
-	 */
-	public static function getValidGrants() {
-		global $wgMWOAuthGrantPermissions;
-
-		return array_keys( $wgMWOAuthGrantPermissions );
-	}
-
-	/**
-	 * @return array
-	 */
-	public static function getRightsByGrant() {
-		global $wgMWOAuthGrantPermissions;
-
-		$res = array();
-		foreach ( $wgMWOAuthGrantPermissions as $grant => $rights ) {
-			$res[$grant] = array_keys( array_filter( $rights ) );
-		}
-		return $res;
-	}
-
-	/**
-	 * @param string $grant
-	 * @return string Grant description
-	 */
-	public static function grantName( $grant ) {
-		// Give grep a chance to find the usages:
-		// mwoauth-grant-blockusers, mwoauth-grant-createeditmovepage, mwoauth-grant-delete,
-		// mwoauth-grant-editinterface, mwoauth-grant-editmycssjs, mwoauth-grant-editmywatchlist,
-		// mwoauth-grant-editpage, mwoauth-grant-editprotected, mwoauth-grant-highvolume,
-		// mwoauth-grant-oversight, mwoauth-grant-patrol, mwoauth-grant-protect, mwoauth-grant-rollback,
-		// mwoauth-grant-sendemail, mwoauth-grant-uploadeditmovefile, mwoauth-grant-uploadfile,
-		// mwoauth-grant-useoauth, mwoauth-grant-viewdeleted, mwoauth-grant-viewmywatchlist,
-		// mwoauth-grant-createaccount
-		$msg = wfMessage( "mwoauth-grant-$grant" );
-		$msg = $msg->exists() ? $msg : wfMessage( "mwoauth-grant-generic", $grant );
-		return $msg->text();
-	}
-
-	/**
-	 * @param array $grants
-	 * @return array Array of corresponding grant descriptions
-	 */
-	public static function grantNames( array $grants ) {
-		return array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::grantName', $grants );
-	}
-
-	/**
-	 * @param array|string $grants
-	 * @return array
-	 */
-	public static function getGrantRights( $grants ) {
-		global $wgMWOAuthGrantPermissions;
-
-		$rights = array();
-		foreach ( (array)$grants as $grant ) {
-			if ( isset( $wgMWOAuthGrantPermissions[$grant] ) ) {
-				$rights = array_merge( $rights,
-					array_keys( array_filter( $wgMWOAuthGrantPermissions[$grant] ) ) );
-			}
-		}
-		return array_unique( $rights );
-	}
-
-	/**
-	 * @param array $grants
-	 * @return bool
-	 */
-	public static function grantsAreValid( array $grants ) {
-		return array_diff( $grants, self::getValidGrants() ) === array();
-	}
-
-	/**
-	 * @param Array $grants
-	 * @return Array Map of (group => (grant list))
-	 */
-	public static function getGrantGroups( $grantsFilter = null ) {
-		global $wgMWOAuthGrantPermissions, $wgMWOAuthGrantPermissionGroups;
-
-		if ( is_array( $grantsFilter ) ) {
-			$grantsFilter = array_flip( $grantsFilter );
-		}
-
-		$groups = array();
-		foreach ( $wgMWOAuthGrantPermissions as $grant => $rights ) {
-			if ( $grantsFilter !== null && !isset( $grantsFilter[$grant] ) ) {
-				continue;
-			}
-			if ( isset( $wgMWOAuthGrantPermissionGroups[$grant] ) ) {
-				$groups[$wgMWOAuthGrantPermissionGroups[$grant]][] = $grant;
-			} else {
-				$groups['other'][] = $grant;
-			}
-		}
-
-		return $groups;
-	}
-
-	/**
-	 * Get the list of grants that are hidden and should always be granted
-	 *
-	 * @return array
-	 */
-	public static function getHiddenGrants() {
-		global $wgMWOAuthGrantPermissionGroups;
-
-		$grants = array();
-		foreach ( $wgMWOAuthGrantPermissionGroups as $grant => $group ) {
-			if ( $group === 'hidden' ) {
-				$grants[] = $grant;
-			}
-		}
-		return $grants;
-	}
-
-	/**
-	 * @param array $restrictions
-	 * @return bool
-	 */
-	public static function restrictionsAreValid( array $restrictions ) {
-		static $validKeys = array( 'IPAddresses' );
-		static $neededKeys = array( 'IPAddresses' );
-
-		$keys = array_keys( $restrictions );
-		if ( array_diff( $keys, $validKeys ) ) {
-			return false;
-		} elseif ( array_diff( $neededKeys, $keys ) ) {
-			return false;
-		}
-		foreach ( $restrictions['IPAddresses'] as $ip ) {
-			if ( !\IP::isIPAddress( $ip ) ) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	/**
 	 * Get the pretty name of an OAuth wiki ID restriction value
 	 *
 	 * @param string $wikiId A wiki ID or '*'
@@ -534,20 +395,6 @@ class MWOAuthUtils {
 	}
 
 	/**
-	 * Generate a link to Special:OAuth/grants for a particular grant name.
-	 * This should be used to link end users to a full description of what
-	 * rights they are giving when they authorize a grant.
-	 * @param string $grant the grant name
-	 * @return string (proto-relative) HTML link
-	 */
-	public static function getGrantsLink( $grant ) {
-		return \Linker::linkKnown(
-			\SpecialPage::getTitleFor( 'OAuth', 'grants', $grant ),
-			htmlspecialchars( self::grantName( $grant ) )
-		);
-	}
-
-	/**
 	 * Run hook to override a message keys that might need to be changed
 	 * across all sites in this cluster.
 	 * @param string $msgKey the Message key
@@ -577,4 +424,15 @@ class MWOAuthUtils {
 		}
 		return $url;
 	}
+
+	/**
+	 * @param array $grants
+	 * @return bool
+	 */
+	public static function grantsAreValid( array $grants ) {
+		// Remove our special grants before calling the core method
+		$grants = array_diff( $grants, array( 'mwoauth-authonly', 'mwoauth-authonlyprivate' ) );
+		return \MWGrants::grantsAreValid( $grants );
+	}
+
 }

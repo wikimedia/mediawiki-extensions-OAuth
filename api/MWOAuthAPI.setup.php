@@ -143,7 +143,7 @@ class MWOAuthAPISetup {
 				$user->loadFromId();
 				$user->oAuthSessionData += array(
 					'accesstoken' => $accesstoken,
-					'rights' => MWOAuthUtils::getGrantRights( $access->get( 'grants' ) ),
+					'rights' => \MWGrants::getGrantRights( $access->get( 'grants' ) ),
 				);
 
 				// Setup a session for this OAuth user, so edit tokens work.
@@ -259,7 +259,7 @@ class MWOAuthAPISetup {
 
 			$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 			$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $accesstoken->key );
-			$grantRights = MWOAuthUtils::getGrantRights( $access->get( 'grants' ) );
+			$grantRights = \MWGrants::getGrantRights( $access->get( 'grants' ) );
 			return in_array( $right, $grantRights );
 		} catch ( \UsageException $ex ) {
 			// Assume no OAuth is in use.

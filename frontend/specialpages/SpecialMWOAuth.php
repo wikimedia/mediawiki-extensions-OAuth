@@ -137,7 +137,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					);
 					break;
 				case 'grants':
-					$this->showGrantRightsTables();
+					// Backwards compatibility
+					$listGrants = \SpecialPage::getTitleFor( 'ListGrants' );
+					$this->getOutput()->redirect( $listGrants->getFullURL() );
 					break;
 				case 'identify':
 					$format = 'json'; // we only return JWT, so we assume json
@@ -260,8 +262,8 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$statement['rights'] = array_values( array_unique( $user->getRights() ) );
 			$statement['grants'] = $access->get( 'grants' );
 
-			if ( in_array( 'authonlyprivate', $statement['grants'] ) ||
-				in_array( 'viewmyprivateinfo', MWOAuthUtils::getGrantRights( $statement['grants'] ) )
+			if ( in_array( 'mwoauth-authonlyprivate', $statement['grants'] ) ||
+				in_array( 'viewmyprivateinfo', \MWGrants::getGrantRights( $statement['grants'] ) )
 			) {
 				$statement['realname'] = $user->getRealName();
 				$statement['email'] = $user->getEmail();
@@ -307,12 +309,12 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$existing = $oauthServer->getCurrentAuthorization( $user, $cmr->getDAO(), wfWikiId() );
 
 		// If only authentication was requested, and the existing authorization
-		// matches, and the only grants are 'authonly' or 'authonlyprivate',
+		// matches, and the only grants are 'mwoauth-authonly' or 'mwoauth-authonlyprivate',
 		// then don't bother prompting the user about it.
 		if ( $existing && $authenticate &&
 			$existing->get( 'wiki' ) === $cmr->get( 'wiki' ) &&
 			$existing->get( 'grants' ) === $cmr->get( 'grants' ) &&
-			!array_diff( $existing->get( 'grants' ), array( 'authonly', 'authonlyprivate' ) )
+			!array_diff( $existing->get( 'grants' ), array( 'mwoauth-authonly', 'mwoauth-authonlyprivate' ) )
 		) {
 			$callback = $oauthServer->authorize(
 				$consumerKey,
@@ -379,7 +381,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$msgKey .= '-onewiki';
 			$params[] = $cmr->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' );
 		}
-		$grantsText = $this->getGrantsWikiText( $cmr->get( 'grants' ) );
+		$grantsText = \MWGrants::getGrantsWikiText( $cmr->get( 'grants' ), $this->getLanguage() );
 		if ( $grantsText === "\n" ) {
 			$msgKey .= '-nogrants';
 		} else {
@@ -407,24 +409,6 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			// Redirect to callback url
 			$this->getOutput()->redirect( $status->value['result']['callbackUrl'] );
 		}
-	}
-
-	/**
-	 * @param Array $grants list of grants (null is also allowed for no permissions)
-	 * @return string Wikitext
-	 */
-	private function getGrantsWikiText( $grants ) {
-		$s = '';
-		foreach ( MWOAuthUtils::getGrantGroups( $grants ) as $group => $grants ) {
-			if ( $group === 'hidden' ) {
-				continue; // implicitly granted
-			}
-			$s .= "*<span class=\"mw-mwoauth-authorize-form-grantgroup\">" .
-				wfMessage( "mwoauth-grant-group-$group" )->text() . "</span>\n";
-			$s .= ":" . $this->getLanguage()->semicolonList(
-				array_map( 'MediaWiki\Extensions\OAuth\MWOAuthUtils::grantName', $grants ) ) . "\n";
-		}
-		return "$s\n";
 	}
 
 	/**
@@ -503,49 +487,5 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		} elseif ( $format == 'html' ) { // html
 			$out->addHtml( $data );
 		}
-	}
-
-	protected function showGrantRightsTables() {
-		global $wgMWOAuthGrantPermissions;
-
-		$out = $this->getOutput();
-		$out->addModuleStyles( 'mediawiki.special' );
-
-		$out->addWikiMsg( 'mwoauth-listgrantrights-summary' );
-
-		$out->addHTML(
-			\Html::openElement( 'table',
-				array( 'class' => 'wikitable mw-oauth-listgrouprights-table' ) ) .
-				'<tr>' .
-				\Html::element( 'th', null, $this->msg( 'mwoauth-listgrants-grant' )->text() ) .
-				\Html::element( 'th', null, $this->msg( 'mwoauth-listgrants-rights' )->text() ) .
-				'</tr>'
-		);
-
-		foreach ( $wgMWOAuthGrantPermissions as $grant => $rights ) {
-			$descs = array();
-			$rights = array_filter( $rights ); // remove ones with 'false'
-			foreach ( $rights as $permission => $granted ) {
-				$descs[] = $this->msg(
-					'listgrouprights-right-display',
-					\User::getRightDescription( $permission ),
-					'<span class="mw-oaith-listgrantrights-right-name">' . $permission . '</span>'
-				)->parse();
-			}
-			if ( !count( $descs ) ) {
-				$grantCellHtml = '';
-			} else {
-				sort( $descs );
-				$grantCellHtml = '<ul><li>' . implode( "</li>\n<li>", $descs ) . '</li></ul>';
-			}
-
-			$id = \Sanitizer::escapeId( $grant );
-			$out->addHTML( \Html::rawElement( 'tr', array( 'id' => $id ),
-				"<td>" . wfMessage( "mwoauth-grant-$grant" )->escaped() . "</td>" .
-				"<td>" . $grantCellHtml . '</td>'
-			) );
-		}
-
-		$out->addHTML( \Html::closeElement( 'table' ) );
 	}
 }

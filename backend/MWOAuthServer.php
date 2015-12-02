@@ -172,19 +172,9 @@ class MWOAuthServer extends OAuthServer {
 	 */
 	private function checkSourceIP( $consumer, $request ) {
 		$restrictions = $consumer->get( 'restrictions' );
-		$requestIP = $request->getSourceIP();
-
-		if ( !isset( $restrictions['IPAddresses'] ) ) {
-			throw new MWOAuthException( 'mwoauthdatastore-bad-source-ip' ); // sanity; should not happen
+		if ( !$restrictions->checkIP( $request->getSourceIP() ) ) {
+			throw new MWOAuthException( 'mwoauthdatastore-bad-source-ip' );
 		}
-
-		foreach ( $restrictions['IPAddresses'] as $range ) {
-			if ( \IP::isInRange( $requestIP, $range ) ) {
-				return;
-			}
-		}
-
-		throw new MWOAuthException( 'mwoauthdatastore-bad-source-ip' );
 	}
 
 	/**

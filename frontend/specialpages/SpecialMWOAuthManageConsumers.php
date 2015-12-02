@@ -317,7 +317,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-grantsneeded',
 					'default' => $cmr->get( 'grants', function( $grants ) use ( $lang ) {
-						return $lang->semicolonList( MWOAuthUtils::grantNames( $grants ) );
+						return $lang->semicolonList( \MWGrants::grantNames( $grants, $lang ) );
 					} ),
 					'rows' => 5
 				),
@@ -334,7 +334,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 				'restrictions' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-restrictions-json',
-					'default' => $cmr->get( 'restrictions', array( 'FormatJSON', 'encode' ) ),
+					'default' => $cmr->get( 'restrictions' )->toJson( true ),
 					'rows' => 5
 				),
 				'rsaKey' => array(
