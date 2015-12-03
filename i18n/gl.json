@@ -201,6 +201,7 @@
 	"mwoauthserver-insufficient-rights": "A súa conta non ten permiso para usar Apps Conectadas, contacte co administrador do seu sitio.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Insuficientes dereitos de usuario para OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "Pase non válido na súa solicitude",
 	"mwoauthserver-invalid-user": "Para usar Aplicacións conectadas neste sitio, vostede debe ter unha conta en todos os proxectos. Cando teña unha conta en todos os proxectos, vostede pode intentar conectar de novo con \"$1\".\n\n<span class=\"plainlinks mw-mwoautherror-details\">Necesaria conexión unificada, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
+	"mwoauthserver-consumer-no-secret": "Algo foi mal ó conectar esta aplicación.\n\n<span class=\"plainlinks mw-mwoautherror-details\">O consumidor non ten unha clave secreta, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauth-invalid-authorization-title": "Erro de autorización OAuth",
 	"mwoauth-invalid-authorization": "As cabeceiras de autorización da súa solicitude non son válidas: $1",
 	"mwoauth-invalid-authorization-wrong-wiki": "As cabeceiras de autorización da súa solicitude non son válidas para $1",
