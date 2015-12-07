@@ -201,6 +201,7 @@
 	"mwoauthserver-insufficient-rights": "Váš účet nemá dovoleno využívat Připojené aplikace, pro zjištění důvodů kontaktujte správce vašeho serveru.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Nedostatečná práva uživatele OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E007 E007]</span>",
 	"mwoauthserver-invalid-request-token": "Váš požadavek obsahuje neplatný token.",
 	"mwoauthserver-invalid-user": "Abyste na tomto serveru {{GENDER:|mohl|mohla|mohli}} používat Připojené aplikace, musíte mít účet sjednocený přes všechny projekty. Jakmile budete mít sjednocený účet, můžete zkusit znovu připojit aplikaci „$1“.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Vyžadován sjednocený účet, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E008 E008]</span>",
+	"mwoauthserver-consumer-no-secret": "Omlouváme se, ale při připojování této aplikace se něco rozbilo.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Konzument nemá tajný klíč, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E009 E009]</span>",
 	"mwoauth-invalid-authorization-title": "Chyba autorizace OAuth",
 	"mwoauth-invalid-authorization": "Autorizační hlavičky ve vašem požadavku nejsou platné: $1",
 	"mwoauth-invalid-authorization-wrong-wiki": "Autorizační hlavičky ve vašem požadavku nejsou pro $1 platné",
