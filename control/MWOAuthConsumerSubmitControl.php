@@ -64,8 +64,9 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			'propose'     => array(
 				'name'         => '/^.{1,128}$/',
 				'version'      => '/^\d{1,3}(\.\d{1,2}){0,2}(-(dev|alpha|beta))?$/',
-				'callbackUrl'  => function( $s ) {
-					return wfParseUrl( $s ) !== null; },
+				'callbackUrl'  => function( $s, $vals ) {
+					return $vals['ownerOnly'] || wfParseUrl( $s ) !== null;
+				},
 				'description'  => '/^.*$/s',
 				'email'        => function( $s ) {
 					return \Sanitizer::validateEmail( $s ); },
@@ -185,6 +186,16 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					'mwoauth-consumer-alreadyexistsversion', $curVer );
 			}
 
+			// Handle owner-only mode
+			if ( $this->vals['ownerOnly'] ) {
+				$this->vals['callbackUrl'] = \SpecialPage::getTitleFor( 'OAuth', 'verified' )
+					->getLocalUrl();
+				$this->vals['callbackIsPrefix'] = '';
+				$stage = MWOAuthConsumer::STAGE_APPROVED;
+			} else {
+				$stage = MWOAuthConsumer::STAGE_PROPOSED;
+			}
+
 			// Handle grant types
 			$grants = array();
 			switch( $this->vals['granttype'] ) {
@@ -213,7 +224,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					'developerAgreement' => 1,
 					'secretKey'          => \MWCryptRand::generateHex( 32 ),
 					'registration'       => $now,
-					'stage'              => MWOAuthConsumer::STAGE_PROPOSED,
+					'stage'              => $stage,
 					'stageTimestamp'     => $now,
 					'grants'             => $grants,
 					'restrictions'       => \FormatJSON::decode( $this->vals['restrictions'], true ),
@@ -222,7 +233,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			);
 			$cmr->save( $dbw );
 
-			$logEntry = new \ManualLogEntry( 'mwoauthconsumer', 'propose' );
+			$logEntry = new \ManualLogEntry(
+				'mwoauthconsumer',
+				$cmr->get( 'ownerOnly' ) ? 'create-owner-only' : 'propose'
+			);
 			$logEntry->setPerformer( $user );
 			$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 			$logEntry->setComment( $this->vals['description'] );
@@ -232,7 +246,24 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			) );
 			$logEntry->insert( $dbw );
 
-			return $this->success( $cmr );
+			// If it's owner-only, automatically accept it for the user too.
+			$cmra = null;
+			if ( $cmr->get( 'ownerOnly' ) ) {
+				$accessToken = MWOAuthDataStore::newToken();
+				$cmra = MWOAuthConsumerAcceptance::newFromArray( array(
+					'id'           => null,
+					'wiki'         => $cmr->get( 'wiki' ),
+					'userId'       => $centralUserId,
+					'consumerId'   => $cmr->get( 'id' ),
+					'accessToken'  => $accessToken->key,
+					'accessSecret' => $accessToken->secret,
+					'grants'       => $cmr->get( 'grants' ),
+					'accepted'     => $now,
+				) );
+				$cmra->save( $dbw );
+			}
+
+			return $this->success( array( 'consumer' => $cmr, 'acceptance' => $cmra ) );
 		case 'update':
 			if ( !$user->isAllowed( 'mwoauthupdateownconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
@@ -274,7 +305,32 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				$logEntry->insert( $dbw );
 			}
 
-			return $this->success( $cmr );
+			$cmra = null;
+			if ( $cmr->get( 'ownerOnly' ) && $this->vals['resetSecret'] ) {
+				$accessToken = MWOAuthDataStore::newToken();
+				$fields = array(
+					'wiki'         => $cmr->get( 'wiki' ),
+					'userId'       => $centralUserId,
+					'consumerId'   => $cmr->get( 'id' ),
+					'accessSecret' => $accessToken->secret,
+					'grants'       => $cmr->get( 'grants' ),
+				);
+
+				$oauthServer = MWOAuthUtils::newMWOAuthServer();
+				$cmra = $oauthServer->getCurrentAuthorization( $user, $cmr, wfWikiId() );
+				if ( $cmra ) {
+					$cmra->setFields( $fields );
+				} else {
+					$cmra = MWOAuthConsumerAcceptance::newFromArray( $fields + array(
+						'id'           => null,
+						'accessToken'  => $accessToken->key,
+						'accepted'     => wfTimestampNow(),
+					) );
+				}
+				$cmra->save( $dbw );
+			}
+
+			return $this->success( array( 'consumer' => $cmr, 'acceptance' => $cmra ) );
 		case 'approve':
 			if ( !$user->isAllowed( 'mwoauthmanageconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
