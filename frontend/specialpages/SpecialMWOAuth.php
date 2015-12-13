@@ -78,7 +78,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 							'oauth_token'        => $requestToken,
 							'oauth_consumer_key' => $consumerKey
 						) );
-						$loginPage = \SpecialPage::getTitleFor( 'UserLogin' );
+						$loginPage = \SpecialPage::getTitleFor( 'Userlogin' );
 						$url = $loginPage->getLocalURL( $query );
 						$this->getOutput()->redirect( $url );
 					} else {
