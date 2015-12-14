@@ -39,14 +39,6 @@ class MWOAuthUpdaterHooks {
 				true
 			) );
 
-			$updater->addExtensionUpdate( array(
-				'addField',
-				'oauth_registered_consumer',
-				'oarc_owner_only',
-				"$base/owner_only.sql",
-				true
-			) );
-
 		} elseif ( $dbType == 'postgres' ) {
 			//$base = "$base/postgres";
 

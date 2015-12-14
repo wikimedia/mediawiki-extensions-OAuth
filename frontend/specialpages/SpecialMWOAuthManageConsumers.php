@@ -242,21 +242,6 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			}
 		}
 
-		$owner = $cmr->get( 'userId', function( $s ) {
-			$name = MWOAuthUtils::getCentralUserNameFromId( $s );
-			return $name;
-		} );
-
-		$link = \Linker::linkKnown(
-			$title = \SpecialPage::getTitleFor( 'OAuthListConsumers' ),
-			wfMessage( 'mwoauthmanageconsumers-search-publisher' )->escaped(),
-			array(),
-			array( 'publisher' => $owner )
-		);
-		$ownerLink = htmlspecialchars( $owner ) . ' ' .
-			wfMessage( 'parentheses' )->rawParams( $link )->escaped();
-		$ownerOnly = $cmr->get( 'ownerOnly' );
-
 		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 		$control = new MWOAuthConsumerSubmitControl( $this->getContext(), array(), $dbw );
 		$form = new \HTMLForm(
@@ -289,7 +274,17 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 				'user' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-user',
-					'default' => $ownerLink,
+					'default' => $cmr->get( 'userId', function( $s ) {
+						$name = MWOAuthUtils::getCentralUserNameFromId( $s );
+						$link = \Linker::linkKnown(
+							$title = \SpecialPage::getTitleFor( 'OAuthListConsumers' ),
+							wfMessage( 'mwoauthmanageconsumers-search-publisher' )->escaped(),
+							array(),
+							array( 'publisher' => $name )
+						);
+						return htmlspecialchars( $name ) . ' ' .
+							wfMessage( 'parentheses' )->rawParams( $link )->escaped();
+					} ),
 					'raw' => true
 				),
 				'description' => array(
@@ -298,18 +293,13 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 					'default' => $cmr->get( 'description' ),
 					'rows' => 5
 				),
-				'ownerOnly' => array(
-					'type' => $ownerOnly ? 'info' : 'hidden',
-					'label-message' => 'mwoauth-consumer-owner-only-label',
-					'default' => wfMessage( 'mwoauth-consumer-owner-only', $owner )->escaped(),
-				),
 				'callbackUrl' => array(
-					'type' => $ownerOnly ? 'hidden' : 'info',
+					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-callbackurl',
-					'default' => $cmr->get( 'callbackUrl' ),
+					'default' => $cmr->get( 'callbackUrl' )
 				),
 				'callbackIsPrefix' => array(
-					'type' => $ownerOnly ? 'hidden' : 'info',
+					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-callbackisprefix',
 					'default' => $cmr->get( 'callbackIsPrefix' )
 				),

@@ -26,16 +26,6 @@ class MWOAuthServer extends OAuthServer {
 
 		$consumer = $this->get_consumer( $request );
 
-		// Consumer must not be owner-only
-		if ( $consumer->get( 'ownerOnly' ) ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', array(
-				$consumer->get( 'name' ),
-				\SpecialPage::getTitleFor(
-					'OAuthConsumerRegistration', 'update/' . $consumer->get( 'consumerKey' )
-				)
-			) );
-		}
-
 		// Consumer must have a key for us to verify
 		if ( !$consumer->get( 'secretKey' ) && !$consumer->get( 'rsaKey' ) ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret' );
@@ -115,16 +105,6 @@ class MWOAuthServer extends OAuthServer {
 		$this->get_version( $request );
 
 		$consumer = $this->get_consumer( $request );
-
-		// Consumer must not be owner-only
-		if ( $consumer->get( 'ownerOnly' ) ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', array(
-				$consumer->get( 'name' ),
-				\SpecialPage::getTitleFor(
-					'OAuthConsumerRegistration', 'update/' . $consumer->get( 'consumerKey' )
-				)
-			) );
-		}
 
 		// Consumer must have a key for us to verify
 		if ( !$consumer->get( 'secretKey' ) && !$consumer->get( 'rsaKey' ) ) {
@@ -206,7 +186,9 @@ class MWOAuthServer extends OAuthServer {
 		$consumer = $this->data_store->lookup_consumer( $consumerKey );
 		if ( !$consumer || $consumer->get( 'deleted' ) ) {
 			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key' );
-		} elseif ( !$consumer->isUsableBy( $mwUser ) ) {
+		} elseif ( $consumer->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
+			&& !$consumer->isPendingAndOwnedBy( $mwUser ) // let publisher test this
+		) {
 			$owner = MWOAuthUtils::getCentralUserNameFromId(
 				$consumer->get( 'userId' ),
 				$mwUser
@@ -215,13 +197,6 @@ class MWOAuthServer extends OAuthServer {
 				'mwoauthserver-bad-consumer',
 				array( $consumer->get( 'name' ), MWOAuthUtils::getCentralUserTalk( $owner ) )
 			);
-		} elseif ( $consumer->get( 'ownerOnly' ) ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', array(
-				$consumer->get( 'name' ),
-				\SpecialPage::getTitleFor(
-					'OAuthConsumerRegistration', 'update/' . $consumer->get( 'consumerKey' )
-				)
-			) );
 		}
 
 		// Generate and Update the tokens:
