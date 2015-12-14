@@ -242,5 +242,6 @@
 	"action-mwoauthproposeconsumer": "propose new OAuth consumers",
 	"action-mwoauthupdateownconsumer": "update OAuth consumers you control",
 	"action-mwoauthviewsuppressed": "view suppressed OAuth consumers",
-	"mwoauth-tag-reserved": "Tags beginning with <code>OAuth CID:</code> are reserved for use by OAuth."
+	"mwoauth-tag-reserved": "Tags beginning with <code>OAuth CID:</code> are reserved for use by OAuth.",
+	"mwoauth-botpasswords-note": "<strong>Note:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> is more secure than bot passwords and should be preferred whenever the bot supports it."
 }

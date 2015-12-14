@@ -250,5 +250,6 @@
 	"action-mwoauthproposeconsumer": "{{Doc-action|mwoauthproposeconsumer}}",
 	"action-mwoauthupdateownconsumer": "{{Doc-action|mwoauthupdateownconsumer}}",
 	"action-mwoauthviewsuppressed": "{{Doc-action|mwoauthviewsuppressed}}",
-	"mwoauth-tag-reserved": "Error message displayed on [[Special:Tags]] when a user attempts to manually create a change tag reserved by OAuth."
+	"mwoauth-tag-reserved": "Error message displayed on [[Special:Tags]] when a user attempts to manually create a change tag reserved by OAuth.",
+	"mwoauth-botpasswords-note": "Added to the top of [[Special:BotPasswords]] to point out that OAuth is a superior alternative. Parameters:\n* $1 - URL for [[Special:OAuthConsumerRegistration]], which might be on another wiki"
 }

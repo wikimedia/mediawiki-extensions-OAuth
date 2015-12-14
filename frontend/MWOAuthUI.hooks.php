@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use HTMLForm;
 use SpecialPage;
 
 /**
@@ -147,6 +148,29 @@ class MWOAuthUIHooks {
 
 		$out->addHTML( \Html::closeElement( 'table' ) );
 
+		return true;
+	}
+
+	/**
+	 * Add additional text to Special:BotPasswords
+	 * @param string $name Special page name
+	 * @param HTMLForm $form
+	 * @return boolean
+	 */
+	public static function onSpecialPageBeforeFormDisplay( $name, HTMLForm $form ) {
+		global $wgMWOAuthCentralWiki;
+
+		if ( $name === 'BotPasswords' ) {
+			if ( MWOAuthUtils::isCentralWiki() ) {
+				$url = SpecialPage::getTitleFor( 'OAuthConsumerRegistration' )->getFullURL();
+			} else {
+				$url = \WikiMap::getForeignURL(
+					$wgMWOAuthCentralWiki,
+					'Special:OAuthConsumerRegistration' // Cross-wiki, so don't localize
+				);
+			}
+			$form->addPreText( $form->msg( 'mwoauth-botpasswords-note', $url )->parseAsBlock() );
+		}
 		return true;
 	}
 }
