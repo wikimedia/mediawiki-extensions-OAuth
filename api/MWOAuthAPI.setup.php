@@ -115,7 +115,9 @@ class MWOAuthAPISetup {
 
 				// The consumer is approved or owned by $localUser, and is for this wiki.
 				$consumer = MWOAuthConsumer::newFromId( $dbr, $access->get( 'consumerId' ) );
-				if ( !$consumer->isUsableBy( $localUser ) ) {
+				if ( $consumer->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
+					&& !$consumer->isPendingAndOwnedBy( $localUser ) // let publisher test this
+				) {
 					throw self::makeException( 'mwoauth-invalid-authorization-not-approved' );
 				} elseif ( $consumer->get( 'wiki' ) !== '*'
 					&& $consumer->get( 'wiki' ) !== $wiki
@@ -299,15 +301,12 @@ class MWOAuthAPISetup {
 			$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 			$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $accesstoken->key );
 			$consumerId = $access->get( 'consumerId' );
-			$consumer = MWOAuthConsumer::newFromId( $dbr, $consumerId );
-			if ( !$consumer->get( 'ownerOnly' ) ) {
-				\ChangeTags::addTags(
-					"OAuth CID: $consumerId",
-					$rc->mAttribs['rc_id'],
-					$rc->mAttribs['rc_this_oldid'],
-					$rc->mAttribs['rc_logid']
-				);
-			}
+			\ChangeTags::addTags(
+				"OAuth CID: $consumerId",
+				$rc->mAttribs['rc_id'],
+				$rc->mAttribs['rc_this_oldid'],
+				$rc->mAttribs['rc_logid']
+			);
 		}
 		return true;
 	}

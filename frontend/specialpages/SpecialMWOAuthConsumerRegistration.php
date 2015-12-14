@@ -116,22 +116,15 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'required' => true,
 						'rows' => 5
 					),
-					'ownerOnly' => array(
-						'type' => 'check',
-						'label-message' => array( 'mwoauth-consumer-owner-only', $user->getName() ),
-						'help-message' => array( 'mwoauth-consumer-owner-only-help', $user->getName() ),
-					),
 					'callbackUrl' => array(
 						'type' => 'text',
 						'label-message' => 'mwoauth-consumer-callbackurl',
-						'required' => true,
-						'hide-if' => array( '!==', 'ownerOnly', '' ),
+						'required' => true
 					),
 					'callbackIsPrefix' => array(
 						'type' => 'check',
 						'label-message' => 'mwoauth-consumer-callbackisprefix',
-						'required' => true,
-						'hide-if' => array( '!==', 'ownerOnly', '' ),
+						'required' => true
 					),
 					'email' => array(
 						'type' => 'text',
@@ -164,7 +157,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'type' => 'checkmatrix',
 						'label-message' => 'mwoauth-consumer-grantsneeded',
 						'help-message' => 'mwoauth-consumer-grantshelp',
-						'hide-if' => array( '!==', 'granttype', 'normal' ),
+						'hide-if' => array( '!==', 'wpgranttype', 'normal' ),
 						'columns' => array(
 							$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
 						),
@@ -230,20 +223,9 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 			$status = $form->show();
 			if ( $status instanceof \Status && $status->isOk() ) {
-				$cmr = $status->value['result']['consumer'];
-				if ( $cmr->get( 'ownerOnly' ) ) {
-					$cmra = $status->value['result']['acceptance'];
-					$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-created-owner-only',
-						$cmr->get( 'consumerKey' ),
-						MWOAuthUtils::hmacDBSecret( $cmr->get( 'secretKey' ) ),
-						$cmra->get( 'accessToken' ),
-						MWOAuthUtils::hmacDBSecret( $cmra->get( 'accessSecret' ) )
-					);
-				} else {
-					$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-proposed',
-						$cmr->get( 'consumerKey' ),
-						MWOAuthUtils::hmacDBSecret( $cmr->get( 'secretKey' ) ) );
-				}
+				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-proposed',
+					$status->value['result']->get( 'consumerKey' ),
+					MWOAuthUtils::hmacDBSecret( $status->value['result']->get( 'secretKey' ) ) );
 				$this->getOutput()->returnToMain();
 			}
 			break;
@@ -340,22 +322,11 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 			$status = $form->show();
 			if ( $status instanceof \Status && $status->isOk() ) {
-				$cmr = $status->value['result']['consumer'];
 				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-updated' );
-				$curSecretKey = $cmr->get( 'secretKey' );
+				$curSecretKey = $status->value['result']->get( 'secretKey' );
 				if ( $oldSecretKey !== $curSecretKey ) { // token reset?
-					if ( $cmr->get( 'ownerOnly' ) ) {
-						$cmra = $status->value['result']['acceptance'];
-						$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-secretreset-owner-only',
-							$cmr->get( 'consumerKey' ),
-							MWOAuthUtils::hmacDBSecret( $curSecretKey ),
-							$cmra->get( 'accessToken' ),
-							MWOAuthUtils::hmacDBSecret( $cmra->get( 'accessSecret' ) )
-						);
-					} else {
-						$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-secretreset',
-							MWOAuthUtils::hmacDBSecret( $curSecretKey ) );
-					}
+					$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-secretreset',
+						MWOAuthUtils::hmacDBSecret( $curSecretKey ) );
 				}
 				$this->getOutput()->returnToMain();
 			} else {

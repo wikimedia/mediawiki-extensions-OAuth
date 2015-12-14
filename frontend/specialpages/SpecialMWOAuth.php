@@ -291,7 +291,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		);
 		if ( !$cmr ) {
 			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key' );
-		} elseif ( !$cmr->getDAO()->isUsableBy( $user ) ) {
+		} elseif ( $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
+			&& !$cmr->getDAO()->isPendingAndOwnedBy( $user )
+		) {
 			throw new MWOAuthException(
 				'mwoauthserver-bad-consumer',
 				array(

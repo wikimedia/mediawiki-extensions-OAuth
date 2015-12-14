@@ -47,8 +47,6 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $emailAuthenticated;
 	/** @var int User accepted the developer agreement */
 	protected $developerAgreement;
-	/** @var int Consumer is for use by the owner only */
-	protected $ownerOnly;
 	/** @var string Wiki ID the application can be used on (or "*" for all) */
 	protected $wiki;
 	/** @var string TS_MW timestamp of proposal */
@@ -90,7 +88,6 @@ class MWOAuthConsumer extends MWOAuthDAO {
 				'email'              => 'oarc_email',
 				'emailAuthenticated' => 'oarc_email_authenticated',
 				'developerAgreement' => 'oarc_developer_agreement',
-				'ownerOnly'          => 'oarc_owner_only',
 				'wiki'               => 'oarc_wiki',
 				'grants'             => 'oarc_grants',
 				'registration'       => 'oarc_registration',
@@ -218,20 +215,13 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * Check if the consumer is usable by $user
-	 *
-	 * "Usable by $user" includes:
-	 * - Approved for multi-user use
-	 * - Approved for owner-only use and is owned by $user
-	 * - Still pending approval and is owned by $user
+	 * Check if the consumer is still pending approval and is owned by $user
 	 *
 	 * @param \User $user
 	 * @return boolean
 	 */
-	public function isUsableBy( \User $user ) {
-		if ( $this->stage === self::STAGE_APPROVED && !$this->get( 'ownerOnly' ) ) {
-			return true;
-		} elseif ( $this->stage === self::STAGE_PROPOSED || $this->stage === self::STAGE_APPROVED ) {
+	public function isPendingAndOwnedBy( \User $user ) {
+		if ( $this->stage === self::STAGE_PROPOSED ) {
 			$centralId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
 			return ( $centralId && $this->userId === $centralId );
 		}
