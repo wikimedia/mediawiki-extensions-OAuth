@@ -22,7 +22,6 @@ namespace MediaWiki\Extensions\OAuth;
 */
 
 use MediaWiki\Logger\LoggerFactory;
-use Psr\Log\LoggerInterface;
 
 /**
  * Representation of a Data Access Object
@@ -57,7 +56,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 
 	/**
 	 * @param \DBConnRef $db
-	 * @param array|stdClass $row
+	 * @param array|\stdClass $row
 	 * @return MWOAuthDAO
 	 */
 	final public static function newFromRow( \DBConnRef $db, $row ) {
@@ -151,11 +150,12 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @param \DBConnRef $dbw
 	 * @return bool
 	 * @throws \DBError
+	 * @throws \MWException
 	 */
 	public function save( \DBConnRef $dbw ) {
 		$uniqueId = $this->getIdValue();
 		$idColumn = static::getIdColumn();
-		if ( $dbw->daoReadOnly ) {
+		if ( !empty( $dbw->daoReadOnly ) ) {
 			throw new \MWException( get_class( $this ) . ": tried to save while db is read-only" );
 		}
 		if ( $this->daoOrigin === 'db' ) {
@@ -198,7 +198,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	public function delete( \DBConnRef $dbw ) {
 		$uniqueId = $this->getIdValue();
 		$idColumn = static::getIdColumn();
-		if ( $dbw->daoReadOnly ) {
+		if ( !empty( $dbw->daoReadOnly ) ) {
 			throw new \MWException( get_class( $this ) . ": tried to delete while db is read-only" );
 		}
 		if ( $this->daoOrigin === 'db' ) {
@@ -334,7 +334,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 
 	/**
 	 * @param \DBConnRef $db
-	 * @param stdClass|array $row
+	 * @param \stdClass|array $row
 	 * @return void
 	 */
 	final protected function loadFromRow( \DBConnRef $db, $row ) {
