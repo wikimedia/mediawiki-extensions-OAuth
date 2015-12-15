@@ -89,9 +89,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			$cmr = MWOAuthConsumer::newFromKey( $dbw, $this->vals['consumerKey'] );
 			if ( !$cmr ) {
 				return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
-			} elseif ( $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
-				&& !$cmr->isPendingAndOwnedBy( $user ) // let publisher test this
-			) {
+			} elseif ( !$cmr->isUsableBy( $user ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			}
 
