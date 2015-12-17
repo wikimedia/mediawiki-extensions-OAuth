@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ravichandra"
+			"Ravichandra",
+			"Veeven"
 		]
 	},
-	"mwoauth-prefs-managegrants": "అనుసంధానిత అనువర్తనాలు:"
+	"mwoauth-prefs-managegrants": "అనుసంధానిత అనువర్తనాలు:",
+	"mwoauth-consumer-owner-only-label": "యజమాని-మాత్రమే:"
 }

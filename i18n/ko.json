@@ -27,6 +27,8 @@
 	"mwoauth-consumer-user": "게시자:",
 	"mwoauth-consumer-stage": "현재 상태:",
 	"mwoauth-consumer-email": "연락처 이메일 주소:",
+	"mwoauth-consumer-owner-only-label": "소유자 전용:",
+	"mwoauth-consumer-owner-only": "$1 사용자만 사용할 수 있습니다.",
 	"mwoauth-consumer-description": "애플리케이션 설명:",
 	"mwoauth-consumer-callbackurl": "OAuth \"콜백\" URL:",
 	"mwoauth-consumer-granttypes": "요청된 승인 유쳥들:",

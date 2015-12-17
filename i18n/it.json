@@ -24,6 +24,7 @@
 	"mwoauth-consumer-user": "Editore:",
 	"mwoauth-consumer-stage": "Stato attuale:",
 	"mwoauth-consumer-email": "Indirizzo email di contatto:",
+	"mwoauth-consumer-owner-only-label": "Solo proprietario:",
 	"mwoauth-consumer-description": "Descrizione applicazione:",
 	"mwoauth-consumer-callbackurl": "URL di \"callback\" OAuth:",
 	"mwoauth-consumer-grantsneeded": "Assegnazioni applicabili:",
