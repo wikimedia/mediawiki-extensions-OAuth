@@ -14,7 +14,8 @@
 			"Lockal",
 			"NBS",
 			"Marina Melik-Adamyan",
-			"Дмитрий"
+			"Дмитрий",
+			"Metastasis"
 		]
 	},
 	"mwoauth-desc": "Позволяет использование OAuth 1.0a для API авторизации",
@@ -35,6 +36,7 @@
 	"mwoauth-consumer-user": "Издатель:",
 	"mwoauth-consumer-stage": "Текущее состояние:",
 	"mwoauth-consumer-email": "Контактный адрес электронной почты:",
+	"mwoauth-consumer-owner-only-label": "Только для владельца:",
 	"mwoauth-consumer-description": "Описание приложения:",
 	"mwoauth-consumer-callbackurl": "URL-адрес «обратного вызова» OAuth:",
 	"mwoauth-consumer-grantsneeded": "Применимые разрешения:",
