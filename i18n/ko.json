@@ -87,6 +87,7 @@
 	"mwoauthconsumerregistration-manage": "관리",
 	"mwoauthconsumerregistration-resetsecretkey": "비밀 키를 새 값으로 재설정",
 	"mwoauthconsumerregistration-proposed": "당신의 OAuth 고객 요청을 받았습니다.\n\n'''$1''' 컨슈머 토큰과 '''$2''' 비밀 토큰을 재할당했습니다.\n\"나중에 참조하기 위해서 이것을 기록해주세요.\"",
+	"mwoauthconsumerregistration-created-owner-only": "당신의 OAuth 컨슈머가 생성되었습니다.\n당신의 토큰:\n;컨슈머 토큰: $1\n;컨슈머 비밀: $2\n;접근 토큰: $3\n;접근 비밀: $4",
 	"mwoauthconsumerregistration-updated": "OAuth 컨슈머 등록을 성공적으로 업데이트했습니다.",
 	"mwoauthconsumerregistration-secretreset": "고객에게 '''$1'''의 비밀 토큰을 할당했습니다. \"나중에 참조하기 위해서 이것을 기록해주세요.\"",
 	"oauthmanageconsumers": "OAuth 컨슈머 관리",
