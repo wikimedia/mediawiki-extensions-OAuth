@@ -38,6 +38,7 @@
 	"mwoauth-consumer-email": "联系人电子邮件地址：",
 	"mwoauth-consumer-owner-only-label": "仅限主人：",
 	"mwoauth-consumer-owner-only": "此consumer只能被$1使用。",
+	"mwoauth-consumer-owner-only-help": "选择此选项将导致consumer被自动批准，并同意由$1使用。这将不会被其他用户所使用，并且通常出现的授权流将不会运行。使用此consumer做出的操作将不会被标记。",
 	"mwoauth-consumer-description": "应用说明：",
 	"mwoauth-consumer-callbackurl": "OAuth“回调”URL：",
 	"mwoauth-consumer-callbackisprefix": "允许取用者在请求中指定一个回调并使用上面的 \"callback\" URL 作为一个必需的前缀。",
