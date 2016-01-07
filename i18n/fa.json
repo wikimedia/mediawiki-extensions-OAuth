@@ -85,7 +85,7 @@
 	"mwoauthconsumerregistration-email": "ایمیل تماس",
 	"mwoauthconsumerregistration-consumerkey": "کلید مصرف‌کننده",
 	"mwoauthconsumerregistration-stage": "وضعیت",
-	"mwoauthconsumerregistration-lastchange": "آخرین گؤەڕیائل/تغییرات",
+	"mwoauthconsumerregistration-lastchange": "آخرین تغییر",
 	"mwoauthconsumerregistration-manage": "مدیریت",
 	"mwoauthconsumerregistration-resetsecretkey": "بازنشانی کلید رمز به مقداری جدید",
 	"mwoauthconsumerregistration-proposed": "درخواست مصرف کننده OAuth شما دریافت شده‌است.\nشما نشانهٔ مصرف کنندهٔ '''$1''' و یک نشانهٔ سری '''$2''' را تعیین کرده‌اید.\n''لطفاً این‌ها را برای منابع آینده ضبط کنید.''",
