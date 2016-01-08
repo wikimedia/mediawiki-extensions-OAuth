@@ -95,6 +95,9 @@ class MWOAuthSetup {
 
 		# Schema changes
 		$classes['MediaWiki\Extensions\OAuth\MWOAuthUpdaterHooks'] = "$schemaDir/MWOAuthUpdater.hooks.php";
+
+		# Session provider
+		$classes['MediaWiki\Extensions\OAuth\MWOAuthSessionProvider'] = "$apiDir/MWOAuthSessionProvider.php";
 	}
 
 	/**
