@@ -226,8 +226,9 @@
 	"mwoauth-grants-nogrants": "A aplicación non solicitou ningún permiso.",
 	"mwoauth-acceptance-cancelled": "Escolleu que a aplicación \"$1\" non pode acceder á súa conta. \"$1\" non funcionará a menos que lle permita o acceso. Pode regresar a \"$1\" ou [[Special:OAuthManageMyGrants|xestionar]] as súas aplicacións conectadas.",
 	"mwoauth-granttype-normal": "Solicite autorización para permisos específicos.",
-	"grant-mwoauth-authonly": "Só autenticación, sen acceso á API.",
+	"grant-mwoauth-authonly": "Só para autenticación, sen acceso á API.",
 	"grant-mwoauth-authonlyprivate": "Autenticación só con acceso a nome real e dirección de correo electrónico a través de Special:OAuth/identify, sen acceso a API.",
+	"mwoauth-listgrants-extra-summary": "== OAuth-autorizacións específicas ==\n\nEstas autorizacións adicionais son aplicábeis ós consumidores de OAuth.",
 	"mwoauth-oauth-exception": "Ocorreu un erro no protocolo OAuth: $1",
 	"mwoauth-callback-not-oob": "oauth_callback debe estar definido e ter o valor \"oob\" (distingue entre maiúsculas e minúsculas)",
 	"mwoauth-callback-not-oob-or-prefix": "oauth_callback debe estar definido e ter o valor \"oob\" (distingue entre maiúsculas e minúsculas) ou a chamada de retorno configurada debe ser un prefixo da chamada de retorno indicada.",
@@ -243,5 +244,6 @@
 	"action-mwoauthproposeconsumer": "propoñer novos consumidores OAuth",
 	"action-mwoauthupdateownconsumer": "actualizar os consumidores OAuth que vostede controle",
 	"action-mwoauthviewsuppressed": "ver os consumidores OAuth eliminados",
-	"mwoauth-tag-reserved": "As etiquetas que comezan con <code>OAuth CID:</code> están reservadas para OAuth."
+	"mwoauth-tag-reserved": "As etiquetas que comezan con <code>OAuth CID:</code> están reservadas para OAuth.",
+	"mwoauth-botpasswords-note": "<strong>Nota:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> é máis seguro que os contrasinais de bot  e debería preferirse se o bot o permite."
 }

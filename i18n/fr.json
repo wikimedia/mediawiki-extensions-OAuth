@@ -65,7 +65,7 @@
 	"mwoauth-invalid-access-token": "Aucun jeton d’accès n’existe pour la clé fournie",
 	"mwoauth-invalid-access-wrongwiki": "Le consommateur ne peut être utilisé que sur le projet « $1 ».",
 	"mwoauth-consumer-conflict": "Quelqu’un a modifié les attributs de ce consommateur pendant que vous le consultiez. Veuillez réessayer. Vous pouvez aussi vérifier le journal des modifications.",
-	"mwoauth-consumer-grantshelp": "Chaque droit accorde l’accès aux droits d&utilisateur listés qu’un compte utilisateur possède déjà. Voyez le [[Special:ListGrants|tableau des droits]] pour plus d’information.",
+	"mwoauth-consumer-grantshelp": "Chaque droit accorde l’accès aux droits d’utilisateur listés qu’un compte utilisateur possède déjà. Voyez le [[Special:ListGrants|tableau des droits]] pour plus d’information.",
 	"mwoauth-consumer-stage-proposed": "proposé",
 	"mwoauth-consumer-stage-rejected": "rejeté",
 	"mwoauth-consumer-stage-expired": "expiré",
@@ -188,7 +188,7 @@
 	"mwoauthmanagemygrants-confirm-submit": "Mettre à jour l’état du jeton d’accès",
 	"mwoauthmanagemygrants-success-update": "Le jeton d’accès pour ce consommateur a été mis à jour.",
 	"mwoauthmanagemygrants-success-renounce": "Le jeton d’accès pour ce consommateur a été supprimé.",
-	"mwoauthmanagemygrants-basic-tooltip": "Pourquoi ne puis-je pas mettre à jour cette autorisation ? Celle-ci donne à votre application connectée des droits de base dont elle a besoin pour fonctionner correctement. Si vous ne voulez pas que cette application connectée ait ces droits, vous devez révoquer l’accès de cette application.",
+	"mwoauthmanagemygrants-basic-tooltip": "Pourquoi ne puis-je pas mettre à jour cette autorisation ? Celle-ci donne à votre application connectée des droits de base dont elle a besoin pour fonctionner correctement. Si vous ne voulez pas que cette application connectée ait ces droits, vous devriez révoquer son accès.",
 	"mwoauthmanagemygrants-authonly-tooltip": "Pourquoi ne puis-je pas mettre à jour ce droit ? Si vous ne voulez pas que cette application connectée ait ce droit, vous devriez révoquer son accès.",
 	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|a proposé}} un consommateur OAuth (clé du consommateur $4)",
 	"logentry-mwoauthconsumer-update": "$1 {{GENDER:$2|a mis à jour}} un consommateur OAuth (clé du consommateur $4)",
@@ -236,8 +236,9 @@
 	"mwoauth-grants-nogrants": "L’application n’a demandé aucun droit.",
 	"mwoauth-acceptance-cancelled": "Vous avez choisi de ne pas autoriser $1 à accéder à votre compte. $1 ne fonctionnera pas à moins que vous lui autorisiez l’accès. Vous pouvez revenir à $1 ou [[Special:OAuthManageMyGrants|gérer]] vos applications connectées.",
 	"mwoauth-granttype-normal": "Autorisation de requête pour des droits spécifiques.",
-	"grant-mwoauth-authonly": "Pour l'authentification uniquement, pas d'accès aux API.",
+	"grant-mwoauth-authonly": "Pour l’authentification uniquement, pas d’accès à l’API.",
 	"grant-mwoauth-authonlyprivate": "Authentification uniquement avec l’accès au vrai nom et à l’adresse de courriel via Special:OAuth/identify, pas d’accès API.",
+	"mwoauth-listgrants-extra-summary": "== Autorisations spécifiques à OAuth ==\n\nCes droits supplémentaires sont applicables aux consommateurs OAuth.",
 	"mwoauth-oauth-exception": "Une erreur s’est produite dans le protocole OAuth : $1",
 	"mwoauth-callback-not-oob": "oauth_callback doit être défini, et doit valoir \"oob\" (en minuscules)",
 	"mwoauth-callback-not-oob-or-prefix": "oauth_callback doit être positionné, et doit être mis à « oob » (attention à la casse), ou le rappel configuré doit être un préfixe du rappel fourni.",
@@ -253,5 +254,6 @@
 	"action-mwoauthproposeconsumer": "proposer de nouveaux consommateurs OAuth",
 	"action-mwoauthupdateownconsumer": "mettre à jour les consommateurs OAuth",
 	"action-mwoauthviewsuppressed": "afficher les consommateurs OAuth supprimés",
-	"mwoauth-tag-reserved": "Les balises commençant par <code>OAuth CID:</code> sont réservées à une utilisation par OAuth."
+	"mwoauth-tag-reserved": "Les balises commençant par <code>OAuth CID:</code> sont réservées à une utilisation par OAuth.",
+	"mwoauth-botpasswords-note": "<strong>Note :</strong> <span class=\"plainlinks\">[$1 OAuth]</span> est plus sécurisé que les mots de passe de robots et devrait être privilégié si le robot l’accepte."
 }

@@ -24,8 +24,10 @@
 	"mwoauth-consumer-stage": "Stato attuale:",
 	"mwoauth-consumer-email": "Indirizzo email di contatto:",
 	"mwoauth-consumer-owner-only-label": "Solo proprietario:",
+	"mwoauth-consumer-owner-only": "Questo cliente può essere usato solo da $1.",
 	"mwoauth-consumer-description": "Descrizione applicazione:",
 	"mwoauth-consumer-callbackurl": "URL di \"callback\" OAuth:",
+	"mwoauth-consumer-granttypes": "Tipi di assegnazioni che saranno richieste:",
 	"mwoauth-consumer-grantsneeded": "Assegnazioni applicabili:",
 	"mwoauth-consumer-required-grant": "Applicabile al cliente",
 	"mwoauth-consumer-wiki": "Progetti applicabili:",
@@ -211,6 +213,9 @@
 	"mwoauth-grants-heading": "Autorizzazioni richieste:",
 	"mwoauth-grants-nogrants": "L'applicazione non ha richiesto alcuna autorizzazione.",
 	"mwoauth-acceptance-cancelled": "Hai scelto di non consentire a \"$1\" ad accedere alla tua utenza. \"$1\" non funzionerà a meno che non gli permetti l'accesso. Puoi tornare a \"$1\" o nella [[Special:OAuthManageMyGrants|gestione]] delle tue applicazioni connesse.",
+	"grant-mwoauth-authonly": "Solo autenticazione, nessun accesso API.",
+	"grant-mwoauth-authonlyprivate": "Solo autenticazione con accesso al nome reale e indirizzo email tramite Special:OAuth/identify, nessun accesso API.",
+	"mwoauth-listgrants-extra-summary": "== Assegnazioni specifiche OAuth ==\n\nQueste assegnazioni supplementari sono applicabili ai clienti OAuth.",
 	"mwoauth-oauth-exception": "Si è verificato un errore nel protocollo OAuth: $1",
 	"mwoauth-callback-not-oob": "oauth_callback deve essere impostato a \"oob\" (in minuscolo)",
 	"right-mwoauthproposeconsumer": "Propone nuovi clienti OAuth",
@@ -224,5 +229,7 @@
 	"action-mwoauthmanagemygrants": "gestire le tue assegnazioni OAuth",
 	"action-mwoauthproposeconsumer": "proporre nuovi clienti OAuth",
 	"action-mwoauthupdateownconsumer": "aggiornare clienti OAuth che controlli",
-	"action-mwoauthviewsuppressed": "visualizzare clienti OAuth soppressi"
+	"action-mwoauthviewsuppressed": "visualizzare clienti OAuth soppressi",
+	"mwoauth-tag-reserved": "Etichette che iniziano con <code>OAuth CID:</code> sono riservate all'utilizzo da parte di OAuth.",
+	"mwoauth-botpasswords-note": "<strong>Nota:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> è più sicuro delle password bot e dovrebbe essere preferito ogni volta che il bot lo supporta."
 }

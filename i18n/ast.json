@@ -50,7 +50,7 @@
 	"mwoauth-invalid-access-token": "Nun esiste dengún pase d'accesu cola clave dada.",
 	"mwoauth-invalid-access-wrongwiki": "El consumidor solo pue usase nel proyeutu «$1».",
 	"mwoauth-consumer-conflict": "Dalguién camudó los atributos d'esti consumidor mentanto lu vía. Por favor, vuelva a intentalo. Pue comprobar el rexistru de cambios.",
-	"mwoauth-consumer-grantshelp": "Cada concesión da accesu a los permisos d'usuariu de la llista qu'una cuenta d'usuariu yá tenga. Vea la [[Special:ListGrants|tabla de concesiones]] pa más información.",
+	"mwoauth-consumer-grantshelp": "Cada permisu da accesu a los permisos de usuario llistaos que yá tenga la cuenta. Mira la [[Special:ListGrants|tabla de permisos]] pa más información.",
 	"mwoauth-consumer-stage-proposed": "propuestu",
 	"mwoauth-consumer-stage-rejected": "refugáu",
 	"mwoauth-consumer-stage-expired": "caducáu",
