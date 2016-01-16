@@ -67,7 +67,7 @@
 	"mwoauth-invalid-access-token": "根据提供的密钥不存在相应允许令牌。",
 	"mwoauth-invalid-access-wrongwiki": "这个消费者只被允许在“$1”项目使用。",
 	"mwoauth-consumer-conflict": "有人更改了您查看的消费者的属性。请再试一次。\n你可能想要检查的更改日志。",
-	"mwoauth-consumer-grantshelp": "每种功能补助都会访问已存在用户账户的用户权限。更多信息参见[[Special:ListGrants|table of grants]]。",
+	"mwoauth-consumer-grantshelp": "每种功能补助都会访问已存在用户账户的用户权限。参见[[Special:ListGrants|授权表]]以获取更多信息。",
 	"mwoauth-consumer-stage-proposed": "已提议",
 	"mwoauth-consumer-stage-rejected": "已拒绝",
 	"mwoauth-consumer-stage-expired": "已过期",
@@ -240,6 +240,7 @@
 	"mwoauth-granttype-normal": "请求为特定权限授权。",
 	"grant-mwoauth-authonly": "仅限身份验证，没有API访问。",
 	"grant-mwoauth-authonlyprivate": "身份验证只通过Special:OAuth/identify访问真实姓名和电子邮件地址，没有API访问权。",
+	"mwoauth-listgrants-extra-summary": "== OAuth特定授权 ==\n\n这些额外的授权适用于OAuth消费者。",
 	"mwoauth-oauth-exception": "OAuth 协议发生错误：$1",
 	"mwoauth-callback-not-oob": "oauth_callback必须设置且必须设置为“oob”（区分大小写）",
 	"mwoauth-callback-not-oob-or-prefix": "oauth_callback 必须设定，并且必须设置为“oob”（大小写敏感），或者配置回调必须是提供回调的一个前缀。",
@@ -255,5 +256,6 @@
 	"action-mwoauthproposeconsumer": "提议新的OAuth应用程序",
 	"action-mwoauthupdateownconsumer": "更新您控制的OAuth应用程序",
 	"action-mwoauthviewsuppressed": "查看已阻止的OAuth应用程序",
-	"mwoauth-tag-reserved": "以<code>OAuth CID:</code>开头的标签被OAuth保留使用。"
+	"mwoauth-tag-reserved": "以<code>OAuth CID:</code>开头的标签被OAuth保留使用。",
+	"mwoauth-botpasswords-note": "<strong>注意：</strong><span class=\"plainlinks\">[$1 OAuth]</span>比机器人密码更安全，并当机器人支持它时应当首选使用。"
 }
