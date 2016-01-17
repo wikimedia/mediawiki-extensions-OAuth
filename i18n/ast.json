@@ -21,6 +21,8 @@
 	"mwoauth-consumer-user": "Editorial:",
 	"mwoauth-consumer-stage": "Estáu actual:",
 	"mwoauth-consumer-email": "Direición de corréu-e de contautu:",
+	"mwoauth-consumer-owner-only-label": "Sólo el propietariu:",
+	"mwoauth-consumer-owner-only": "Esti consumidor ye sólo pa usar por $1.",
 	"mwoauth-consumer-description": "Descripción de l'aplicación:",
 	"mwoauth-consumer-callbackurl": "URL de \"callback\" OAuth:",
 	"mwoauth-consumer-callbackisprefix": "Permite al consumidor especificar un retornu de llamada nes solicitúes y usar la URL de \"retornu de llamada\" de más arriba como prefixu riquíu.",
