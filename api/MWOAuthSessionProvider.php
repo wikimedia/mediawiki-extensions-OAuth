@@ -156,7 +156,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 				array( 'oarc_user_id' => $id ),
 				__METHOD__
 			);
-			$dbr->delete(
+			$dbw->delete(
 				'oauth_registered_consumer',
 				array( 'oarc_user_id' => $id ),
 				__METHOD__
