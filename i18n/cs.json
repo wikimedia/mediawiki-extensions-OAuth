@@ -187,6 +187,7 @@
 	"logentry-mwoauthconsumer-reject": "$1 {{GENDER:$2|zamítnul|zamítla}} konzumenta OAuth uživatele $3 (klíč konzumenta $4)",
 	"logentry-mwoauthconsumer-disable": "$1 {{GENDER:$2|zakázal|zakázala}} konzumenta OAuth uživatele $3 (klíč konzumenta $4)",
 	"logentry-mwoauthconsumer-reenable": "$1 znovu {{GENDER:$2|povolil|povolila}} konzumenta OAuth uživatele $3 (klíč konzumenta $4)",
+	"logentry-mwoauthconsumer-create-owner-only": "$1 {{GENDER:$2|vytvořil|vytvořila}} soukromého konzumenta OAuth (klíč konzumenta $4)",
 	"mwoauthconsumer-consumer-logpage": "Kniha konzumentů OAuth",
 	"mwoauthconsumer-consumer-logpagetext": "Protokol schválení, zamítnutí a zákazů registrovaných konzumentů OAuth.",
 	"mwoauth-bad-request-missing-params": "Omlouváme se, ale při konfiguraci této připojené aplikace se něco rozbilo. Pro pomoc s řešením <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth?uselang=cs kontaktujte podporu]</span>.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Chybí parametry OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E001 E001]</span>",
@@ -194,6 +195,7 @@
 	"mwoauth-bad-request-invalid-action-contact": "Omlouváme se, něco se rozbilo. Pro pomoc s řešením budete muset [$1 kontaktovat] autora aplikace.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Neznámé URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E003 E003]</span>",
 	"mwoauthdatastore-access-token-not-found": "K tomuto schválenému autorizačnímu tokenu nebylo nalezeno žádné schválené oprávnění.",
 	"mwoauthdatastore-request-token-not-found": "Omlouváme se, ale při připojování této aplikace se něco rozbilo.\nVraťte se a zkuste znovu připojit svůj účet, nebo kontaktujte autora aplikace.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth token nebyl nalezen, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E004 E004]</span>",
+	"mwoauthdatastore-callback-not-found": "Callback URL OAuth nebylo nalezeno v paměti. Bude to asi chyba ve způsobu, jakým aplikace posílá požadavky na server.",
 	"mwoauthdatastore-request-token-already-used": "Tento požadavek byl již dokončen a nelze ho odeslat podruhé. Vraťte se do aplikace a zkuste svůj účet připojit znovu nebo se obraťte na autora aplikace.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth token již použit, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauthdatastore-bad-token": "Žádný token odpovídající vašemu požadavku nebyl nalezen.",
 	"mwoauthdatastore-bad-source-ip": "Požadavek přišel z neplatné IP adresy.",
@@ -206,6 +208,7 @@
 	"mwoauthserver-invalid-request-token": "Váš požadavek obsahuje neplatný token.",
 	"mwoauthserver-invalid-user": "Abyste na tomto serveru {{GENDER:|mohl|mohla|mohli}} používat Připojené aplikace, musíte mít účet sjednocený přes všechny projekty. Jakmile budete mít sjednocený účet, můžete zkusit znovu připojit aplikaci „$1“.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Vyžadován sjednocený účet, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E008 E008]</span>",
 	"mwoauthserver-consumer-no-secret": "Omlouváme se, ale při připojování této aplikace se něco rozbilo.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Konzument nemá tajný klíč, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=cs#E009 E009]</span>",
+	"mwoauthserver-consumer-owner-only": "„$1“ je soukromá propojená aplikace. Chcete-li načíst přístupový token, vizte [[$2]].\n\n<span class=\"plainlinks mw-mwoautherror-details\">Konzument je pouze pro vlastníka, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010 E010]</span>",
 	"mwoauth-invalid-authorization-title": "Chyba autorizace OAuth",
 	"mwoauth-invalid-authorization": "Autorizační hlavičky ve vašem požadavku nejsou platné: $1",
 	"mwoauth-invalid-authorization-wrong-wiki": "Autorizační hlavičky ve vašem požadavku nejsou pro $1 platné",
@@ -241,5 +244,6 @@
 	"action-mwoauthproposeconsumer": "navrhovat nové konzumenty OAuth",
 	"action-mwoauthupdateownconsumer": "upravovat konzumenty OAuth, které spravujete",
 	"action-mwoauthviewsuppressed": "prohlížet si utajené konzumenty OAuth",
-	"mwoauth-tag-reserved": "Značky začínající <code>OAuth CID:</code> jsou vyhrazeny pro OAuth."
+	"mwoauth-tag-reserved": "Značky začínající <code>OAuth CID:</code> jsou vyhrazeny pro OAuth.",
+	"mwoauth-botpasswords-note": "<strong>Poznámka:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> je bezpečnější než hesla pro boty a raději by se mělo používat to, kdykoli to bot podporuje."
 }

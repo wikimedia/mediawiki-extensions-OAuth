@@ -29,6 +29,7 @@
 	"mwoauth-consumer-user": "Uitgever:",
 	"mwoauth-consumer-stage": "Huidige status:",
 	"mwoauth-consumer-email": "E-mailadres voor contact:",
+	"mwoauth-consumer-owner-only-label": "Alleen eigenaar toestaan:",
 	"mwoauth-consumer-description": "Toepassingsbeschrijving:",
 	"mwoauth-consumer-callbackurl": "URL voor OAuth-\"callback\":",
 	"mwoauth-consumer-grantsneeded": "Van toepassing zijnde rechten:",
