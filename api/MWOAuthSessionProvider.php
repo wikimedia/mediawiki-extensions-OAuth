@@ -122,6 +122,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 				$access->get( 'userId' ),
 				$access->get( 'consumerId' ),
 				$access->get( 'accepted' ),
+				$wiki,
 			) ) );
 			$persisted = false;
 		} else {

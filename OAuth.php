@@ -47,8 +47,8 @@ MWOAuthSetup::unconditionalSetup();
 MWOAuthUISetup::unconditionalSetup();
 MWOAuthAPISetup::unconditionalSetup();
 
-# Actually register special pages and set default $wgMWOAuthCentralWiki
-$wgExtensionFunctions[] = function() {
+# Set default $wgMWOAuthCentralWiki, before SessionManager starts
+$wgHooks['SetupAfterCache'][] = function () {
 	global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
 
 	if ( $wgMWOAuthCentralWiki === false ) {
@@ -58,6 +58,10 @@ $wgExtensionFunctions[] = function() {
 		// There is actually a central wiki, requiring global user IDs via hook
 		$wgMWOAuthSharedUserIDs = true;
 	}
+};
+
+# Actually register special pages
+$wgExtensionFunctions[] = function() {
 	\MediaWiki\Extensions\OAuth\MWOAuthUISetup::conditionalSetup();
 };
 
