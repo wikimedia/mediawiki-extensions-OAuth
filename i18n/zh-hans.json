@@ -82,7 +82,7 @@
 	"mwoauthconsumerregistration-main": "主要",
 	"mwoauthconsumerregistration-propose-text": "开发者应使用下面的表单提议新的OAuth应用程序（更多信息请参见[//www.mediawiki.org/wiki/Extension:OAuth 该扩展插件文档]）。提交表单后，您将收到与您应用程序相关的令牌，它用于验证身份。OAuth管理员会审核并可能通过您的提议，之后您的程序才能正常访问。\n\n一些建议与提醒：\n* 如果可能，尝试使用较少的功能，避免目前不需要的功能。\n* 版本应存在于表单“major.minor.release”（最新的两个作为选项）并在需要时增加功能。\n* 如果可能，请提供RSA公钥（PEM格式）；否则（低安全的）私钥将被使用。\n* 使用JSON限制字段限制此应用程序对在一些CIDR段的IP地址的访问。\n* 您可使用项目ID限制应用程序访问此网站的单一项目（使用“ * ”访问所有项目）。\n* 提供的电子邮件必须匹配您的账户（并且必须进行确认）。",
 	"mwoauthconsumerregistration-update-text": "使用下面的表格更新您控制的OAuth消费者的相位。此处所有的值将覆盖之前的一个。不要将字段留空，除非您要清除这些值。",
-	"mwoauthconsumerregistration-maintext": "此页面用于让开发人员在此网站的注册信息中提议和更新OAuth consumer应用程序在。\n\n在此，您可以：\n* [[Special:OAuthConsumerRegistration/propose|申请一个新consumer的令牌]]。\n* [[Special:OAuthConsumerRegistration/list|管理您现有的consumer]]。\n\n关于OAuth的更多信息，请参见[//www.mediawiki.org/wiki/Extension:OAuth 扩展程序的说明文档]。",
+	"mwoauthconsumerregistration-maintext": "此页面用于让开发人员在此网站的注册信息中提议和更新OAuth consumer应用程序。\n\n在此，您可以：\n* [[Special:OAuthConsumerRegistration/propose|申请一个新consumer的令牌]]。\n* [[Special:OAuthConsumerRegistration/list|管理您现有的consumer]]。\n\n关于OAuth的更多信息，请参见[//www.mediawiki.org/wiki/Extension:OAuth 扩展程序的说明文档]。",
 	"mwoauthconsumerregistration-propose-legend": "新OAuth消费者应用程序",
 	"mwoauthconsumerregistration-update-legend": "更新OAuth消费者应用程序",
 	"mwoauthconsumerregistration-propose-submit": "提议消费者",
