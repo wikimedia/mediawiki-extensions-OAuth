@@ -7,7 +7,10 @@ use Psr\Log\LoggerInterface;
 
 class MWOAuthDataStore extends OAuthDataStore {
 	/** @var \DBConnRef DB for the consumer/grant registry */
-	protected $centralDB;
+	protected $centralSlave;
+	/** @var \DBConnRef|null Master DB for repeated lookup in case of replication lag problems;
+	 *    null if there is no separate master and slave DB */
+	protected $centralMaster;
 	/** @var \BagOStuff Cache for Tokens and Nonces */
 	protected $cache;
 
@@ -15,11 +18,16 @@ class MWOAuthDataStore extends OAuthDataStore {
 	protected $logger;
 
 	/**
-	 * @param \DBConnRef $centralDB Central DB slave
+	 * @param \DBConnRef $centralSlave Central DB slave
+	 * @param \DBConnRef|null $centralMaster Central DB master (if different)
 	 * @param \BagOStuff $cache
 	 */
-	public function __construct( \DBConnRef $centralDB, \BagOStuff $cache ) {
-		$this->centralDB = $centralDB;
+	public function __construct( \DBConnRef $centralSlave, $centralMaster, \BagOStuff $cache ) {
+		if ( $centralMaster !== null && !( $centralMaster instanceof \DBConnRef ) ) {
+			throw new \InvalidArgumentException( __METHOD__ . ': $centralMaster must be a DB or null' );
+		}
+		$this->centralSlave = $centralSlave;
+		$this->centralMaster = $centralMaster;
 		$this->cache = $cache;
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
 	}
@@ -31,7 +39,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return MWOAuthConsumer|bool
 	 */
 	public function lookup_consumer( $consumerKey ) {
-		return MWOAuthConsumer::newFromKey( $this->centralDB, $consumerKey );
+		return MWOAuthConsumer::newFromKey( $this->centralSlave, $consumerKey );
 	}
 
 	/**
@@ -60,7 +68,11 @@ class MWOAuthDataStore extends OAuthDataStore {
 				throw new MWOAuthException( 'mwoauthdatastore-request-token-not-found' );
 			}
 		} elseif ( $token_type === 'access' ) {
-			$cmra = MWOAuthConsumerAcceptance::newFromToken( $this->centralDB, $token );
+			$cmra = MWOAuthConsumerAcceptance::newFromToken( $this->centralSlave, $token );
+			if ( !$cmra && $this->centralMaster ) {
+				// try master in case there is replication lag T124942
+				$cmra = MWOAuthConsumerAcceptance::newFromToken( $this->centralMaster, $token );
+			}
 			if ( !$cmra ) {
 				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found' );
 			}
@@ -213,7 +225,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return String|null
 	 */
 	public function getRSAKey( $consumerKey ) {
-		$cmr = MWOAuthConsumer::newFromKey( $this->centralDB, $consumerKey );
+		$cmr = MWOAuthConsumer::newFromKey( $this->centralSlave, $consumerKey );
 		return $cmr ? $cmr->get( 'rsaKey' ) : null;
 	}
 }

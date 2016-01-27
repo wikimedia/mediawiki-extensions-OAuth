@@ -174,7 +174,8 @@ class MWOAuthUtils {
 		global $wgMemc;
 
 		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
-		$store = new MWOAuthDataStore( $dbr, $wgMemc );
+		$dbw = wfGetLB()->getServerCount() > 1 ? MWOAuthUtils::getCentralDB( DB_MASTER ) : null;
+		$store = new MWOAuthDataStore( $dbr, $dbw, $wgMemc );
 		$server = new MWOAuthServer( $store );
 		$server->add_signature_method( new OAuthSignatureMethod_HMAC_SHA1() );
 		$server->add_signature_method( new MWOAuthSignatureMethod_RSA_SHA1( $store ) );
