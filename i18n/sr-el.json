@@ -46,6 +46,7 @@
 	"mwoauthlistconsumers-name": "Ime aplikacije",
 	"mwoauthlistconsumers-user": "Izdavač",
 	"mwoauthlistconsumers-description": "Opis",
+	"mwoauthlistconsumers-wiki": "Dozvoljeno na",
 	"mwoauthlistconsumers-basicgrantsonly": "(samo osnovni pristup)",
 	"mwoauthlistconsumers-status": "Status",
 	"mwoauth-consumer-stage-any": "bilo koji",
@@ -69,18 +70,5 @@
 	"mwoauth-form-description-allwikis-nogrants": "Zdravo $1,\n\n'''$2''' želi da dobije osnovni pristup u vaše ime na svim projektima ovog sajta.",
 	"mwoauth-form-button-approve": "Dozvoli",
 	"mwoauth-form-button-cancel": "Otkaži",
-	"mwoauth-grants-heading": "Tražene dozvole:",
-	"mwoauth-grant-group-page-interaction": "Uređivanje stranica",
-	"mwoauth-grant-group-file-interaction": "Uređivanje datoteka",
-	"mwoauth-grant-group-watchlist-interaction": "Uređivanje vašeg spiska nadgledanja",
-	"mwoauth-grant-group-email": "Slanje e-poruka",
-	"mwoauth-grant-createaccount": "Otvaranje naloga",
-	"mwoauth-grant-createeditmovepage": "Pravljenje, uređivanje i premeštanje stranica",
-	"mwoauth-grant-delete": "Brisanje stranica, izmena i unosa u dnevnicima",
-	"mwoauth-grant-editinterface": "Uređivanje Medijaviki imenskog prostora i korisničkih CSS/JavaScript stranica",
-	"mwoauth-grant-editpage": "Uređivanje postojećih stranica",
-	"mwoauth-grant-uploadeditmovefile": "Otpremanje, zamena i premeštanje datoteka",
-	"mwoauth-grant-uploadfile": "Slanje novih datoteka",
-	"mwoauth-grant-useoauth": "Osnovna prava",
-	"mwoauth-listgrants-rights": "Prava"
+	"mwoauth-grants-heading": "Tražene dozvole:"
 }
