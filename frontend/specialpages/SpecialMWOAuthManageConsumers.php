@@ -259,6 +259,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 		$control = new MWOAuthConsumerSubmitControl( $this->getContext(), array(), $dbw );
+		$restrictions = $cmr->get( 'restrictions' );
 		$form = new \HTMLForm(
 			$control->registerValidators( array(
 				'consumerKeyShown' => array(
@@ -334,7 +335,8 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 				'restrictions' => array(
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-restrictions-json',
-					'default' => $cmr->get( 'restrictions' )->toJson( true ),
+					'default' => $restrictions instanceof \MWRestrictions ?
+						$restrictions->toJson( true ) : $restrictions,
 					'rows' => 5
 				),
 				'rsaKey' => array(
