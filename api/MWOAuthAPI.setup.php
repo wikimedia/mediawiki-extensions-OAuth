@@ -166,6 +166,12 @@ class MWOAuthAPISetup {
 					$cache->set( $key, $session, $wgObjectCacheSessionExpiry );
 				}
 
+				// Close any existing session before opening a new one,
+				// otherwise PHP won't load our session's data into $_SESSION.
+				if ( session_id() !== '' ) {
+					session_write_close();
+				}
+
 				wfSetupSession( $session['id'] ); // create/reuse this "anonymous" session
 				\Hooks::register( 'AfterFinalPageOutput', function( $out ) {
 					// Just in case, make sure this is not a valid login session for sanity
