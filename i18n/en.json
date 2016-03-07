@@ -84,7 +84,7 @@
 	"mwoauthconsumerregistration-resetsecretkey": "Reset the secret key to a new value",
 	"mwoauthconsumerregistration-proposed": "Your OAuth consumer request has been received.\n\nYou have been assigned a consumer token of '''$1''' and a secret token of '''$2'''. ''Please record these for future reference.''",
 	"mwoauthconsumerregistration-created-owner-only": "Your OAuth consumer has been created.\n\nYour tokens are:\n; Consumer token: $1\n; Consumer secret: $2\n; Access token: $3\n; Access secret: $4\n<em>Please record these for future reference.</em>",
-	"mwoauthconsumerregistration-updated": "Your OAuth consumer registry was successfully updated.",
+	"mwoauthconsumerregistration-updated": "Your OAuth consumer registry was updated.",
 	"mwoauthconsumerregistration-secretreset": "You have been assigned a consumer secret token of '''$1'''. ''Please record this for future reference.''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "Your OAuth consumer tokens have been reset. The new tokens are:\n; Consumer token: $1\n; Consumer secret: $2\n; Access token: $3\n; Access secret: $4\n<em>Please record these for future reference.</em>",
 	"oauthmanageconsumers": "Manage OAuth consumers",
