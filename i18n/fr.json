@@ -97,7 +97,7 @@
 	"mwoauthconsumerregistration-resetsecretkey": "Réinitialiser la clé secrète avec une nouvelle valeur",
 	"mwoauthconsumerregistration-proposed": "Votre demande de consommateur OAuth a été reçue.\n\nIl vous a été assigné un jeton de consommateur '''$1''' et un jeton secret '''$2'''. ''Veuillez les conserver pour des besoins ultérieurs.''",
 	"mwoauthconsumerregistration-created-owner-only": "Votre consommateur OAuth a été créé.\n\nVos jetons sont :\n; Jeton du consommateur : $1\n; Secret du consommateur : $2\n; Jeton d’accès : $3\n; Secret d’accès : $4\n<em>Veuillez les conserver pour pouvoir vous y référer ultérieurement.</em>",
-	"mwoauthconsumerregistration-updated": "Votre registre de consommateur OAuth a bien été mis à jour.",
+	"mwoauthconsumerregistration-updated": "Votre registre de consommateur OAuth a été mis à jour.",
 	"mwoauthconsumerregistration-secretreset": "Un jeton secret de consommateur de '''$1''' vous a été assigné. ''Veuillez le conserver pour tout besoin ultérieur.''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "Vos jetons de consommateur OAuth ont été réinitialisés. Les nouveaux jetons sont :\n; Jeton du consommateur : $1\n; Secret du consommateur : $2\n; Jeton d’accès : $3\n; Secret d’accès : $4\n<em>Veuillez les conserver pour pouvoir vous y référer ultérieurement.</em>",
 	"oauthmanageconsumers": "Gérer les consommateurs OAuth",

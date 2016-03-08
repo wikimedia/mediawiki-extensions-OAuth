@@ -89,7 +89,7 @@
 	"mwoauthconsumerregistration-resetsecretkey": "Очистити секретний ключ до нового значення",
 	"mwoauthconsumerregistration-proposed": "Ваш запит споживача OAuth був отриманий.\n\nВам призначений маркер споживача ''$1''' і таємний маркер '''$2'''. \"Будь ласка, запишіть їх для використання в майбутньому.\"",
 	"mwoauthconsumerregistration-created-owner-only": "Вашого споживача OAuth було створено.\n\nОсь Ваші маркери:\n; Маркер споживача: $1\n; Секрет споживача: $2\n; Маркер доступу: $3\n; Секрет доступу: $4\n<em>Будь ласка, запишіть їх для майбутнього використання.</em>",
-	"mwoauthconsumerregistration-updated": "Ваш реєстр споживача OAuth успішно оновлено.",
+	"mwoauthconsumerregistration-updated": "Ваш реєстр споживача OAuth оновлено.",
 	"mwoauthconsumerregistration-secretreset": "Вам призначений секретний маркер споживача '''$1'''. „Будь ласка, запишіть це на майбутнє“.",
 	"mwoauthconsumerregistration-secretreset-owner-only": "Ваші маркери споживача OAuth були обнулені. Ось нові маркери:\n; Маркер споживача: $1\n; Секрет споживача: $2\n; Маркер доступу: $3\n; Секрет доступу: $4\n<em>Будь ласка, запишіть їх для майбутнього використання.</em>",
 	"oauthmanageconsumers": "Управління споживачами OAuth",
