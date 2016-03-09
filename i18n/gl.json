@@ -87,7 +87,7 @@
 	"mwoauthconsumerregistration-resetsecretkey": "Restablecer a clave secreta cun novo valor",
 	"mwoauthconsumerregistration-proposed": "Recibiuse a súa solicitude de consumidor OAuth.\n\nAsignóuselle o pase de consumidor '''$1''' e o pase secreto '''$2'''. ''Garde estes datos para unha futura referencia.''",
 	"mwoauthconsumerregistration-created-owner-only": "O seu consumidor OAuth foi creado.\n\nOs seus identificadores son:\n; Identificador do consumidor: $1\n; Secreto do consumidor: $2\n; Identificador de acceso: $3\n; Secreto de acceso: $4\n<em>Por favor garde esta información para futuras referencias.</em>",
-	"mwoauthconsumerregistration-updated": "Actualizouse correctamente o seu rexistro de consumidor OAuth.",
+	"mwoauthconsumerregistration-updated": "Actualizouse o seu rexistro de consumidor OAuth.",
 	"mwoauthconsumerregistration-secretreset": "Asignóuselle o pase de consumidor '''$1'''. ''Garde estes datos para unha futura referencia.''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "Os identificadores do seu consumidor OAuth foron reinicializados. Os novos identificadores son:\n\nOs seus identificadores son:\n; Identificador do consumidor: $1\n; Secreto do consumidor: $2\n; Identificador de acceso: $3\n; Secreto de acceso: $4\n<em>Por favor garde esta información para futuras referencias.</em>",
 	"oauthmanageconsumers": "Administrar os consumidores OAuth",

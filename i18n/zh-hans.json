@@ -99,7 +99,7 @@
 	"mwoauthconsumerregistration-resetsecretkey": "将密钥重置为一个新值",
 	"mwoauthconsumerregistration-proposed": "您的OAuth消费者请求已收到。您已分配了'''$1'''的消费者令牌和'''$2'''的私有令牌。''请记录这些内容以便以后参考。''",
 	"mwoauthconsumerregistration-created-owner-only": "您的OAuth consumer已创建。\n\n您的令牌是：\n; Consumer令牌：$1\n; Consumer密钥：$2\n; 访问令牌：$3\n; 访问密钥：$4\n<em>请记住上述信息，以便今后参考。</em>",
-	"mwoauthconsumerregistration-updated": "您的OAuth消费者注册已成功更新。",
+	"mwoauthconsumerregistration-updated": "您的OAuth消费者注册已更新。",
 	"mwoauthconsumerregistration-secretreset": "您已分配了'''$1'''的消费者密钥。''请保留好它以供今后参考。''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "您的OAuth consumer已被重置。新的令牌是：\n; Consumer令牌：$1\n; Consumer密钥：$2\n; 访问令牌：$3\n; 访问密钥：$4\n<em>请记住上述信息，以便今后参考。</em>",
 	"oauthmanageconsumers": "管理OAuth消费者",
