@@ -36,7 +36,6 @@
 	"mwoauth-consumer-required-grant": "Застосовні до споживача",
 	"mwoauth-consumer-wiki": "Придатний проект:",
 	"mwoauth-consumer-wiki-thiswiki": "Поточний проект ($1)",
-	"mwoauth-consumer-wiki-other": "Конкретний проект",
 	"mwoauth-consumer-restrictions": "Обмеження на використання:",
 	"mwoauth-consumer-restrictions-json": "Обмеження на користування (JSON):",
 	"mwoauth-consumer-rsakey": "Відкритий ключ RSA:",

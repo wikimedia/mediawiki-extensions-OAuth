@@ -46,7 +46,6 @@
 	"mwoauth-consumer-required-grant": "适用于最终用户",
 	"mwoauth-consumer-wiki": "适用项目：",
 	"mwoauth-consumer-wiki-thiswiki": "当前项目 ( $1 )",
-	"mwoauth-consumer-wiki-other": "具体项目",
 	"mwoauth-consumer-restrictions": "使用限制：",
 	"mwoauth-consumer-restrictions-json": "使用限制(JSON) ：",
 	"mwoauth-consumer-rsakey": "RSA公钥：",

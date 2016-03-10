@@ -44,7 +44,6 @@
 	"mwoauth-consumer-required-grant": "Applicable au consommateur",
 	"mwoauth-consumer-wiki": "Projet applicable :",
 	"mwoauth-consumer-wiki-thiswiki": "Projet actuel ($1)",
-	"mwoauth-consumer-wiki-other": "Projet spécifique",
 	"mwoauth-consumer-restrictions": "Limitations d’utilisation :",
 	"mwoauth-consumer-restrictions-json": "Limitations d’utilisation (JSON) :",
 	"mwoauth-consumer-rsakey": "Clé RSA publique :",
