@@ -26,6 +26,7 @@
 	"mwoauth-consumer-email": "Enderezo de correo electrónico de contacto:",
 	"mwoauth-consumer-owner-only-label": "Reservado ao propietario:",
 	"mwoauth-consumer-owner-only": "Este consumidor só é para uso de $1.",
+	"mwoauth-consumer-owner-only-help": "Seleccionar esta opción provocará que o consumidor se aprobe e acepte para o seu uso por parte de $1 automaticamente. Ningún outro usuario poderá usalo, e o fluxo de autorización habitual non funcionará. As accións feitas empregando este consumidor non se etiquetarán.",
 	"mwoauth-consumer-description": "Descrición da aplicación:",
 	"mwoauth-consumer-callbackurl": "URL de \"chamada de retorno\" do OAuth:",
 	"mwoauth-consumer-callbackisprefix": "Permite ó consumidor especificar un retorno de chamada nas peticións e usar a URL \"retorno de chamada\" de enriba como prefixo requirido.",
