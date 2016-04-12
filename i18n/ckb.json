@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Calak"
+			"Calak",
+			"Sarchia"
 		]
 	},
+	"mwoauth-prefs-managegrants": "بەرنامە لکێنراوەکان",
 	"oauthmanageconsumers": "بەڕێوەبەردنی بەکاربەرانی OAuth",
 	"right-mwoauthproposeconsumer": "پێشنیاری بەکاربەرانی OAuthی نوێ",
 	"right-mwoauthupdateownconsumer": "نوێکردنەوەی بەکاربەرانی OAuthی تاوتوێی دەکەی",
