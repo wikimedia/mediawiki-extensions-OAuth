@@ -189,7 +189,7 @@
 	"mwoauthdatastore-bad-source-ip": "La richiesta proviene da un indirizzo IP non valido.",
 	"mwoauthdatastore-bad-verifier": "Il codice di verifica fornito non è valido.",
 	"mwoauthdatastore-invalid-token-type": "Il tipo di token richiesto non è valido.",
-	"mwoauthgrants-general-error": "C'è un errore nella tua richiesta OAuth.",
+	"mwoauthgrants-general-error": "Si è verificato un errore nella tua richiesta OAuth.",
 	"mwoauthserver-bad-consumer": "\"$1\" non è un'applicazione approvata. [$2 Contatta] l'autore dell'applicazione per avere aiuto.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Applicazione non approvata, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>",
 	"mwoauthserver-bad-consumer-key": "Spiacenti, qualcosa è andato storto, durante la connessione a questa applicazione.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Chiave OAuth sconosciuta, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006 E006]</span>",
 	"mwoauthserver-insufficient-rights": "Non è consentito alla tua utenza di usare le applicazioni, contatta l'amministratore del sito per capirne il motivo.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Diritti utente OAuth insufficienti, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
