@@ -14,7 +14,8 @@
 			"Impersonator 1",
 			"LNDDYL",
 			"NigelSoft",
-			"Duolaimi"
+			"Duolaimi",
+			"Nbdd0121"
 		]
 	},
 	"oauth": "OAuth",
@@ -176,7 +177,7 @@
 	"mwoauthmanagemygrants-wikiallowed": "允许在项目上使用：",
 	"mwoauthmanagemygrants-grants": "应用授权：",
 	"mwoauthmanagemygrants-grantsallowed": "允许授权",
-	"mwoauthmanagemygrants-applicablegrantsallowed": "已允许可用补助：",
+	"mwoauthmanagemygrants-applicablegrantsallowed": "允许的可用授权：",
 	"mwoauthmanagemygrants-review": "管理访问",
 	"mwoauthmanagemygrants-revoke": "移除授权",
 	"mwoauthmanagemygrants-grantaccept": "授权",
