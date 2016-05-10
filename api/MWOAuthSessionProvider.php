@@ -125,9 +125,11 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 				$wiki,
 			) ) );
 			$persisted = false;
+			$forceUse = true;
 		} else {
 			$id = $this->getSessionIdFromCookie( $request );
 			$persisted = $id !== null;
+			$forceUse = false;
 		}
 
 		return new SessionInfo( SessionInfo::MAX_PRIORITY, array(
@@ -135,6 +137,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 			'id' => $id,
 			'userInfo' => UserInfo::newFromUser( $localUser, true ),
 			'persisted' => $persisted,
+			'forceUse' => $forceUse,
 			'metadata' => array(
 				'key' => $accesstoken->key,
 				'rights' => \MWGrants::getGrantRights( $access->get( 'grants' ) ),
