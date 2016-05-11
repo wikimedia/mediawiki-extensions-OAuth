@@ -37,6 +37,10 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function execute( $subpage ) {
 		global $wgMWOAuthSecureTokenTransfer, $wgMWOAuthReadOnly;
 
