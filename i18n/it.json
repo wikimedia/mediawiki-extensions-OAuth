@@ -3,7 +3,8 @@
 		"authors": [
 			"Beta16",
 			"Ricordisamoa",
-			"Alexmar983"
+			"Alexmar983",
+			"Nemo bis"
 		]
 	},
 	"mwoauth-desc": "Consente l'utilizzo di OAuth 1.0a per le API di autorizzazione",
@@ -83,7 +84,7 @@
 	"mwoauthconsumerregistration-resetsecretkey": "Reimposta la chiave segreta ad un nuovo valore",
 	"mwoauthconsumerregistration-proposed": "La tua richiesta per il cliente OAuth è stata ricevuta.\n\nTi è stato assegnato il token cliente '''$1''' e il token segreto '''$2'''. ''Registra questi dati per riferimenti futuri.''",
 	"mwoauthconsumerregistration-updated": "La registrazione del tuo cliente OAuth è stata aggiornata.",
-	"mwoauthconsumerregistration-secretreset": "Ti è stato assegnato il token segreto '''$1'''. ''Registra questi dati per riferimenti futuri.''",
+	"mwoauthconsumerregistration-secretreset": "Ti è stato assegnato il token segreto '''$1'''. ''Prendi nota per farne uso in futuro.''",
 	"oauthmanageconsumers": "Gestione clienti OAuth",
 	"mwoauthmanageconsumers-notloggedin": "Devi effettuare l'accesso per accedere a questa pagina.",
 	"mwoauthmanageconsumers-type": "Code:",
