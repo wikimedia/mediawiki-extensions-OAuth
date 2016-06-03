@@ -22,11 +22,10 @@
 	"mwoauth-consumer-email": "Adreça de corrièr electronic de contacte :",
 	"mwoauth-consumer-description": "Descripcion de l'aplicacion :",
 	"mwoauth-consumer-callbackurl": "URl « de rapèl » per OAuth :",
-	"mwoauth-consumer-grantsneeded": "Dreches aplicables :",
+	"mwoauth-consumer-grantsneeded": "Dreits aplicables :",
 	"mwoauth-consumer-required-grant": "Aplicable al consomator",
 	"mwoauth-consumer-wiki": "Projècte aplicable :",
 	"mwoauth-consumer-wiki-thiswiki": "Projècte actual ($1)",
-	"mwoauth-consumer-wiki-other": "Projècte especific",
 	"mwoauth-consumer-restrictions": "Limitacions d’utilizacion :",
 	"mwoauth-consumer-restrictions-json": "Limitacions d’utilizacion (JSON) :",
 	"mwoauth-consumer-rsakey": "Clau RSA publica :",
@@ -107,8 +106,8 @@
 	"mwoauth-error": "Error de connexion de l’aplicacion",
 	"right-mwoauthproposeconsumer": "prepausar de consomidors OAuth novèls",
 	"right-mwoauthupdateownconsumer": "Metre a jorn los consomidors OAuth",
-	"right-mwoauthmanagemygrants": "Gerir los dreches OAuth",
-	"action-mwoauthmanagemygrants": "Gerir vòstres dreches OAuth",
+	"right-mwoauthmanagemygrants": "Gerir los dreits OAuth",
+	"action-mwoauthmanagemygrants": "Gerir vòstres dreits OAuth",
 	"action-mwoauthproposeconsumer": "prepausar de consomidors OAuth novèls",
 	"action-mwoauthupdateownconsumer": "Metre a jorn los consomidors OAuth"
 }
