@@ -6,5 +6,6 @@
 			"Alp Er Tunqa"
 		]
 	},
-	"mwoauth-prefs-managegrants": "باغلانتی‌سی اوْلان برنامه‌لر:"
+	"mwoauth-prefs-managegrants": "باغلی برنامه‌لر:",
+	"mwoauth-prefs-managegrantslink": "$1 باغلی {{PLURAL:$1|برنامه‌نی}} ایداره ائت"
 }
