@@ -217,7 +217,7 @@
 	"mwoauth-grants-nogrants": "애플리케이션은 권한을 요청하지 않았습니다.",
 	"mwoauth-acceptance-cancelled": "\"$1\" 고객이 당신의 계정에 접근하지 못하도록 선택했습니다. 접근할 수 없으면 \"$1\" 고객이 제대로 동작하지 못할 수도 있습니다. \"$1\"에 돌아가거나 연결된 응용 프로그램을 [[Special:OAuthManageMyGrants|관리]]해주세요.",
 	"mwoauth-granttype-normal": "특정한 권한에 대한 승인 요청.",
-	"grant-mwoauth-authonly": "인증 전용, API 접근 불가",
+	"grant-mwoauth-authonly": "인증 전용, API 접근 불가.",
 	"grant-mwoauth-authonlyprivate": "인증 전용. 특수:OAuth/identify을 통해 사용자 이름과 이메일 주소로 접근. API 접근 불가.",
 	"mwoauth-listgrants-extra-summary": "== OAuth 특정 권한 ==\n\n아래의 추가 부여는 OAuth 사용자들에게 적용됩니다.",
 	"mwoauth-oauth-exception": "OAuth 프로토콜에 오류가 발생했습니다: $1",

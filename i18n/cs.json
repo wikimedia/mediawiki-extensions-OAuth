@@ -4,7 +4,8 @@
 			"Matěj Grabovský",
 			"Matěj Suchánek",
 			"Mormegil",
-			"Cvanca"
+			"Cvanca",
+			"Dvorapa"
 		]
 	},
 	"mwoauth-desc": "Umožňuje využití OAuth 1.0a pro autorizaci přístupu k API",
@@ -245,5 +246,5 @@
 	"action-mwoauthupdateownconsumer": "upravovat konzumenty OAuth, které spravujete",
 	"action-mwoauthviewsuppressed": "prohlížet si utajené konzumenty OAuth",
 	"mwoauth-tag-reserved": "Značky začínající <code>OAuth CID:</code> jsou vyhrazeny pro OAuth.",
-	"mwoauth-botpasswords-note": "<strong>Poznámka:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> je bezpečnější než hesla pro boty a raději by se mělo používat to, kdykoli to bot podporuje."
+	"mwoauth-botpasswords-note": "<strong>Poznámka:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> je bezpečnější než hesla robotů a měl by být preferován, kdykoliv to robot preferuje."
 }
