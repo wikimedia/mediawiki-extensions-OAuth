@@ -33,6 +33,18 @@ class MWOAuthUtils {
 		$db->daoReadOnly = $wgMWOAuthReadOnly;
 		return $db;
 	}
+	/**
+	 * @return \BagOStuff
+	 */
+	public static function getSessionCache() {
+		global $wgSessionsInObjectCache, $wgSessionCacheType;
+
+		// @todo: No need to check $wgSessionsInObjectCache when we drop
+		// support for pre-SessionManager MediaWiki.
+		return $wgSessionsInObjectCache
+			? \ObjectCache::getInstance( $wgSessionCacheType )
+			: \ObjectCache::getMainStashInstance();
+	}
 
 	/**
 	 * @param \DBConnRef $db
@@ -171,11 +183,9 @@ class MWOAuthUtils {
 	 * @return MWOAuthServer with default configurations
 	 */
 	public static function newMWOAuthServer() {
-		global $wgMemc;
-
 		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
 		$dbw = wfGetLB()->getServerCount() > 1 ? MWOAuthUtils::getCentralDB( DB_MASTER ) : null;
-		$store = new MWOAuthDataStore( $dbr, $dbw, $wgMemc );
+		$store = new MWOAuthDataStore( $dbr, $dbw, MWOAuthUtils::getSessionCache() );
 		$server = new MWOAuthServer( $store );
 		$server->add_signature_method( new OAuthSignatureMethod_HMAC_SHA1() );
 		$server->add_signature_method( new MWOAuthSignatureMethod_RSA_SHA1( $store ) );

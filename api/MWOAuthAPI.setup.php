@@ -148,7 +148,7 @@ class MWOAuthAPISetup {
 
 				// Setup a session for this OAuth user, so edit tokens work.
 				// Preserve the session ID used so clients can ignore cookies.
-				$cache = self::getSessionCache();
+				$cache = MWOAuthUtils::getSessionCache();
 				$key = wfMemcKey( 'oauthsessionid', 'v1', $access->get( 'id' ) );
 				$session = $cache->get( $key );
 
@@ -192,17 +192,6 @@ class MWOAuthAPISetup {
 		}
 
 		return true;
-	}
-
-	/**
-	 * @return \BagOStuff
-	 */
-	private static function getSessionCache() {
-		global $wgSessionsInObjectCache, $wgSessionCacheType;
-
-		return $wgSessionsInObjectCache
-			? \ObjectCache::getInstance( $wgSessionCacheType )
-			: \ObjectCache::getMainStashInstance();
 	}
 
 	/**
