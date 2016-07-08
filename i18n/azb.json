@@ -3,9 +3,10 @@
 		"authors": [
 			"Koroğlu",
 			"Ebrahimi-amir",
-			"Alp Er Tunqa"
+			"Alp Er Tunqa",
+			"Ilğım"
 		]
 	},
-	"mwoauth-prefs-managegrants": "باغلی برنامه‌لر:",
-	"mwoauth-prefs-managegrantslink": "$1 باغلی {{PLURAL:$1|برنامه نی}} ایداره ائت"
+	"mwoauth-prefs-managegrants": "باغلی اۇیغولامالار:",
+	"mwoauth-prefs-managegrantslink": "$1 باغلی {{PLURAL:$1|اۇیغولامانی}} ایداره ائت"
 }

@@ -32,7 +32,6 @@
 	"mwoauth-consumer-required-grant": "Применлив потрошувач",
 	"mwoauth-consumer-wiki": "Применлив проект:",
 	"mwoauth-consumer-wiki-thiswiki": "Тековен проект ($1)",
-	"mwoauth-consumer-wiki-other": "Конкретен проект",
 	"mwoauth-consumer-restrictions": "Ограничувања на употребата:",
 	"mwoauth-consumer-restrictions-json": "Ограничувања на употребата (JSON):",
 	"mwoauth-consumer-rsakey": "Јавен RSA-клуч:",
@@ -85,7 +84,7 @@
 	"mwoauthconsumerregistration-resetsecretkey": "Дај нова вредност на тајниот клуч",
 	"mwoauthconsumerregistration-proposed": "Вашето потрошувачко барање за OAuth е примено.\n\nВашата потрошувачка шифра гласи '''$1''', а тајната шифра гласи '''$2'''. ''Зачувајте ги бидејќи може да ви затребаат во иднина.''",
 	"mwoauthconsumerregistration-created-owner-only": "Вашиот потрошувач на OAuth е создаден.\n\nВашите шифри се:\n; Потрошувачка шифра: $1\n; Потрошувачка тајна: $2\n; Пристапна шифра: $3\n; Пристапна тајна: $4\n<em>Зачувајте ги за идна консултација.</em>",
-	"mwoauthconsumerregistration-updated": "Вашиот потрошувачки регистар na OAuth е успешно изменет.",
+	"mwoauthconsumerregistration-updated": "Вашиот потрошувачки регистар na OAuth е изменет.",
 	"mwoauthconsumerregistration-secretreset": "Вашата тајна потрошувачка шифра гласи '''$1'''. ''Зачувајте ја бидејќи може да ви затреба во иднина.''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "Вашите потрошувачки шифри на OAuth се сменети. Еве ги новите:\n\n; Потрошувачка шифра: $1\n; Потрошувачка тајна: $2\n; Пристапна шифра: $3\n; Пристапна тајна: $4\n<em>Зачувајте ги за идна консултација.</em>",
 	"oauthmanageconsumers": "Раководење со потрошувачи на OAuth",
@@ -225,7 +224,8 @@
 	"mwoauth-acceptance-cancelled": "Одбравте на „$1“ да не му дозволите пристап на вашата сметка. „$1“ ќе работи само ако му дадете дозвола. Можете да се вратите на „$1“ или пак да направите [[Special:OAuthManageMyGrants|нагодувања]] на поврзаните извршници.",
 	"mwoauth-granttype-normal": "Побарајте овластување за поединечни дозволи.",
 	"grant-mwoauth-authonly": "Само за заверка. Без пристап за извршник.",
-	"grant-mwoauth-authonlyprivate": "Само заверка, со пристап до вистинското име и е-пошта преку Special:OAuth/identify. Без пристап за извршник.",
+	"grant-mwoauth-authonlyprivate": "Само за заверка, со пристап до вистинското име и е-пошта преку Special:OAuth/identify. Без пристап за извршник.",
+	"mwoauth-listgrants-extra-summary": "== Наменски доделувања за OAuth ==\n\nОвие дополнителни доделувања се применливи само на потрошувачи на OAuth.",
 	"mwoauth-oauth-exception": "Се појави грешка во протоколот на OAuth: $1",
 	"mwoauth-callback-not-oob": "oauth_callback мора да е поставено на „oob“ (строго со мали букви)",
 	"mwoauth-callback-not-oob-or-prefix": "Мора да е зададено oauth_callback и да биде наместено на „oob“ (разликува големи/мали букви), или пак поставениот повратен повик мора да  да биде претставка на поставен повратен повик.",
@@ -241,5 +241,6 @@
 	"action-mwoauthproposeconsumer": "предлагање на потрошувачи на OAuth",
 	"action-mwoauthupdateownconsumer": "измена на потрошувачи на OAuth",
 	"action-mwoauthviewsuppressed": "преглед на скриени потрошувачи на OAuth",
-	"mwoauth-tag-reserved": "Ознаките што почнуваат со <code>OAuth CID:</code> се резервирани за употреба од OAuth."
+	"mwoauth-tag-reserved": "Ознаките што почнуваат со <code>OAuth CID:</code> се резервирани за употреба од OAuth.",
+	"mwoauth-botpasswords-note": "<strong>Напомена:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> е побезбеден од ботовските лозинки и треба да се користи секогаш кога ботот го поддржува."
 }
