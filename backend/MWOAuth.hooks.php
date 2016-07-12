@@ -118,4 +118,26 @@ class MWOAuthHooks {
 
 		return true;
 	}
+
+	public static function onSetupAfterCache() {
+		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
+
+		if ( $wgMWOAuthCentralWiki === false ) {
+			// Treat each wiki as its own "central wiki" as there is no actual one
+			$wgMWOAuthCentralWiki = wfWikiId(); // default
+		} else {
+			// There is actually a central wiki, requiring global user IDs via hook
+			$wgMWOAuthSharedUserIDs = true;
+		}
+	}
+
+	public static function onUnitTestsList( array &$files ) {
+		$directoryIterator = new \RecursiveDirectoryIterator( __DIR__ . '/../tests/' );
+		foreach ( new \RecursiveIteratorIterator( $directoryIterator ) as $fileInfo ) {
+			if ( substr( $fileInfo->getFilename(), -8 ) === 'Test.php' ) {
+				$files[] = $fileInfo->getPathname();
+			}
+		}
+		return true;
+	}
 }

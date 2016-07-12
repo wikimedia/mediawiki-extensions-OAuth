@@ -9,34 +9,6 @@ class MWOAuthAPISetup {
 	const TTL_REFRESH_WINDOW = 600; // refresh if expiring in 10 minutes
 
 	/**
-	 * This function must NOT depend on any config vars
-	 *
-	 * @return void
-	 */
-	public static function unconditionalSetup() {
-		global $wgHooks, $wgSessionProviders;
-
-		if ( class_exists( 'MediaWiki\\Session\\SessionManager' ) ) {
-			$wgSessionProviders['MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider'] = array(
-				'class' => 'MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider',
-				'args' => array()
-			);
-		} else {
-			// @todo: Remove this when we drop support for MW core without SessionManager
-			$wgHooks['UserLoadFromSession'][] = __CLASS__ . '::onUserLoadFromSession';
-			$wgHooks['UserLoadAfterLoadFromSession'][] = __CLASS__ . '::onUserLoadAfterLoadFromSession';
-			$wgHooks['UserGetRights'][] = __CLASS__ . '::onUserGetRights';
-			$wgHooks['UserIsEveryoneAllowed'][] = __CLASS__ . '::onUserIsEveryoneAllowed';
-			$wgHooks['ApiCheckCanExecute'][] = __CLASS__ . '::onApiCheckCanExecute';
-			$wgHooks['RecentChange_save'][] = __CLASS__ . '::onRecentChange_save';
-		}
-
-		$wgHooks['CentralAuthAbortCentralAuthToken'][] = __CLASS__ . '::onCentralAuthAbortCentralAuthToken';
-		$wgHooks['TestCanonicalRedirect'][] = __CLASS__ . '::onTestCanonicalRedirect';
-
-	}
-
-	/**
 	 * @todo: Remove all this when we drop support for MW core without SessionManager
 	 * @{
 	 */

@@ -9,6 +9,7 @@ use SpecialPage;
  * Class containing GUI even handler functions for an OAuth environment
  */
 class MWOAuthUIHooks {
+
 	/**
 	 * @param \User $user
 	 * @param $preferences
