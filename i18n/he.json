@@ -4,7 +4,8 @@
 			"Amire80",
 			"GilCahana",
 			"Guycn2",
-			"אור שפירא"
+			"אור שפירא",
+			"דולב"
 		]
 	},
 	"mwoauth-desc": "מאפשרת שימוש ב־OAuth 1.0a לאישור ב־API",
@@ -190,7 +191,7 @@
 	"mwoauthconsumer-consumer-logpage": "יומן צרכן OAuth",
 	"mwoauthconsumer-consumer-logpagetext": "יומן של אישורים, שלילות וכיבויים של צרכני OAuth רשומים.",
 	"mwoauth-bad-request-missing-params": "סליחה, משהו השתבש עם הגדרות היישום המחובר. <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth נא ליצור קשר עם התמיכה]</span> כדי לקבל עזרה בתיקון.\n\n<span class=\"plainlinks mw-mwoautherror-details\">חסרים פרמטרים ל־OAuth‏, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001 E001]</span>",
-	"mwoauth-bad-request-invalid-action": "סליחה, משהו השתבש ויש ליצור קשיר עם יוצר היישום כדי לקבל עזרה עם זה.\n\n<span class=\"plainlinks mw-mwoautherror-details\">כתובת בלתי ידועה, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>",
+	"mwoauth-bad-request-invalid-action": "סליחה, משהו השתבש ויש ליצור קשר עם יוצר היישום כדי לקבל עזרה עם זה.\n\n<span class=\"plainlinks mw-mwoautherror-details\">כתובת בלתי ידועה, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>",
 	"mwoauth-bad-request-invalid-action-contact": "סליחה, משהו השתבש. יש [$1 ליצור קשר] עם יוצר היישום כדי לקבל עזרה עם זה.\n\n<span class=\"plainlinks mw-mwoautherror-details\">כתובת לא ידועה, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>",
 	"mwoauthdatastore-access-token-not-found": "לא נמצא שום זיכיון מאושר עבור אסימון האישור הזה.",
 	"mwoauthdatastore-request-token-not-found": "סליחה, משהו השתבש עם היישום הזה.\nנא לחזור ולנסות להתחבר שוב לחשבונך או ליצור קשר עם יוצר היישום.\n\n<span class=\"plainlinks mw-mwoautherror-details\">לא נמצא אסימון OAuth‏, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
@@ -215,10 +216,10 @@
 	"mwoauth-invalid-authorization-wrong-user": "כותרות האישור בבקשה שלך מיועדות למשתמש אחר",
 	"mwoauth-invalid-authorization-not-approved": "נראה שהיישום שניסית לחבר מוגדר באופן שגוי. נא ליצור קשר עם היוצר של $1 כדי לקבל עזרה.",
 	"mwoauth-invalid-authorization-blocked-user": "כותרות האישור בבקשה שלך הן עבור משתמש חסום",
-	"mwoauth-form-description-allwikis": "שלום $1,\n\nכדי לבצע את בקשך, היישום '''$2''' זקוק להרשאהלבצע בשמך את הפעולות הבאות באתר הזה:\n\n$4",
-	"mwoauth-form-description-onewiki": "שלום $1,\n\nכדי לבצע את בקשך, היישום '''$2''' זקוק להרשאות לעשות בשמך את הפעולות הבאות במיזם \"$4\":\n\n$5",
-	"mwoauth-form-description-allwikis-nogrants": "שלום $1,\n\nכדי לבצע את בקשך, היישום '''$2''' זקוק להרשאה לקבל גישה למידע בכל המיזמים בשמך. זה לא יעשה שום שינוי בחשבון שלך.",
-	"mwoauth-form-description-onewiki-nogrants": "שלום $1,\n\nכדי לבצע את בקשך, היישום '''$2''' זקוק להרשאה לקבל גישה למידע באתר \"$4\" בשמך. זה לא יעשה שום שינוי בחשבון שלך.",
+	"mwoauth-form-description-allwikis": "שלום $1,\n\nכדי לבצע את בקשתך, היישום '''$2''' זקוק להרשאה לבצע בשמך את הפעולות הבאות באתר הזה:\n\n$4",
+	"mwoauth-form-description-onewiki": "שלום $1,\n\nכדי לבצע את בקשתך, היישום '''$2''' זקוק להרשאות לעשות בשמך את הפעולות הבאות במיזם \"$4\":\n\n$5",
+	"mwoauth-form-description-allwikis-nogrants": "שלום $1,\n\nכדי לבצע את בקשתך, היישום '''$2''' זקוק להרשאה לקבל גישה למידע בכל המיזמים בשמך. זה לא יעשה שום שינוי בחשבון שלך.",
+	"mwoauth-form-description-onewiki-nogrants": "שלום $1,\n\nכדי לבצע את בקשתך, היישום '''$2''' זקוק להרשאה לקבל גישה למידע באתר \"$4\" בשמך. זה לא יעשה שום שינוי בחשבון שלך.",
 	"mwoauth-form-button-approve": "לאפשר",
 	"mwoauth-form-button-cancel": "ביטול",
 	"mwoauth-error": "שגיאה בחיבור היישום",
