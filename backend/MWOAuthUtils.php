@@ -117,16 +117,28 @@ class MWOAuthUtils {
 			return;
 		}
 
-		$cutoff = $dbw->timestamp( time() - $wgMWOAuthRequestExpirationAge );
-		$dbw->onTransactionIdle( function() use ( $dbw, $cutoff ) {
-			$dbw->update( 'oauth_registered_consumer',
-				array( 'oarc_stage' => MWOAuthConsumer::STAGE_EXPIRED,
-					'oarc_stage_timestamp' => $dbw->timestamp() ),
-				array( 'oarc_stage' => MWOAuthConsumer::STAGE_PROPOSED,
-					'oarc_stage_timestamp < ' . $dbw->addQuotes( $cutoff ) ),
-				__METHOD__
-			);
-		} );
+		$cutoff = time() - $wgMWOAuthRequestExpirationAge;
+		\DeferredUpdates::addUpdate(
+			new \AutoCommitUpdate(
+				$dbw,
+				__METHOD__,
+				function ( \IDatabase $dbw ) use ( $cutoff ) {
+					$dbw->update(
+						'oauth_registered_consumer',
+						[
+							'oarc_stage' => MWOAuthConsumer::STAGE_EXPIRED,
+							'oarc_stage_timestamp' => $dbw->timestamp()
+						],
+						[
+							'oarc_stage' => MWOAuthConsumer::STAGE_PROPOSED,
+							'oarc_stage_timestamp < ' .
+								$dbw->addQuotes( $dbw->timestamp( $cutoff ) )
+						],
+						__METHOD__
+					);
+				}
+			)
+		);
 	}
 
 	/**
