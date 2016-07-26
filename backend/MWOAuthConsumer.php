@@ -260,7 +260,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$row['oarc_registration'] = $db->timestamp( $row['oarc_registration'] );
 		$row['oarc_stage_timestamp'] = $db->timestamp( $row['oarc_stage_timestamp'] );
 		$row['oarc_restrictions'] = $row['oarc_restrictions']->toJson();
-		$row['oarc_grants'] = \FormatJSON::encode( $row['oarc_grants'] );
+		$row['oarc_grants'] = \FormatJson::encode( $row['oarc_grants'] );
 		$row['oarc_email_authenticated'] =
 			$db->timestampOrNull( $row['oarc_email_authenticated'] );
 		return $row;
@@ -270,7 +270,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$row['oarc_registration'] = wfTimestamp( TS_MW, $row['oarc_registration'] );
 		$row['oarc_stage_timestamp'] = wfTimestamp( TS_MW, $row['oarc_stage_timestamp'] );
 		$row['oarc_restrictions'] = \MWRestrictions::newFromJson( $row['oarc_restrictions'] );
-		$row['oarc_grants'] = \FormatJSON::decode( $row['oarc_grants'], true );
+		$row['oarc_grants'] = \FormatJson::decode( $row['oarc_grants'], true );
 		$row['oarc_email_authenticated'] =
 			wfTimestampOrNull( TS_MW, $row['oarc_email_authenticated'] );
 

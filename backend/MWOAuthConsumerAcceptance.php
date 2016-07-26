@@ -140,13 +140,13 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 			}
 		}
 
-		$row['oaac_grants'] = \FormatJSON::encode( $row['oaac_grants'] );
+		$row['oaac_grants'] = \FormatJson::encode( $row['oaac_grants'] );
 		$row['oaac_accepted'] = $db->timestamp( $row['oaac_accepted'] );
 		return $row;
 	}
 
 	protected function decodeRow( \DBConnRef $db, $row ) {;
-		$row['oaac_grants'] = \FormatJSON::decode( $row['oaac_grants'], true );
+		$row['oaac_grants'] = \FormatJson::decode( $row['oaac_grants'], true );
 		$row['oaac_accepted'] = wfTimestamp( TS_MW, $row['oaac_accepted'] );
 
 		// For backwards compatibility, remap some grants
