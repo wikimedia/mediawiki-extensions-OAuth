@@ -209,7 +209,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			);
 			$form->setSubmitCallback(
 				function( array $data, \IContextSource $context ) use ( $control ) {
-					$data['grants'] = \FormatJSON::encode( // adapt form to controller
+					$data['grants'] = \FormatJson::encode( // adapt form to controller
 						preg_replace( '/^grant-/', '', $data['grants'] ) );
 
 					$control->setInputParameters( $data );

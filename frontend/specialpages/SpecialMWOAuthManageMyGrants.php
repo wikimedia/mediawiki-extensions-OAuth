@@ -206,7 +206,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		$form->setSubmitCallback(
 			function( array $data, \IContextSource $context ) use ( $action ) {
 				$data['action'] = $action;
-				$data['grants'] = \FormatJSON::encode( // adapt form to controller
+				$data['grants'] = \FormatJson::encode( // adapt form to controller
 					preg_replace( '/^grant-/', '', $data['grants'] ) );
 
 				$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );

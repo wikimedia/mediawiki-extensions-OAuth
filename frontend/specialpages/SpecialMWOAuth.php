@@ -423,7 +423,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		if ( $format == 'raw' ) {
 			$this->showResponse( 'Error: ' .$message->escaped(), 'raw' );
 		} elseif ( $format == 'json' ) {
-			$error = \FormatJSON::encode( array(
+			$error = \FormatJson::encode( array(
 				'error' => $message->getKey(),
 				'message' => $message->text(),
 			) );
@@ -444,7 +444,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$return .= '&oauth_callback_confirmed=true';
 			$this->showResponse( $return, 'raw' );
 		} elseif ( $format == 'json' ) {
-			$this->showResponse( \FormatJSON::encode( $token ), 'json' );
+			$this->showResponse( \FormatJson::encode( $token ), 'json' );
 		} elseif ( $format == 'html' ) {
 			$html = \Html::element(
 				'li',

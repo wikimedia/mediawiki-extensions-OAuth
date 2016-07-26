@@ -78,7 +78,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					); },
 				'granttype'    => '/^(authonly|authonlyprivate|normal)$/',
 				'grants'       => function( $s ) {
-					$grants = \FormatJSON::decode( $s, true );
+					$grants = \FormatJson::decode( $s, true );
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
 				},
 				'restrictions' => function( $s ) {
@@ -216,7 +216,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				case 'normal':
 					$grants = array_unique( array_merge(
 						\MWGrants::getHiddenGrants(), // implied grants
-						\FormatJSON::decode( $this->vals['grants'], true )
+						\FormatJson::decode( $this->vals['grants'], true )
 					) );
 					break;
 			}
