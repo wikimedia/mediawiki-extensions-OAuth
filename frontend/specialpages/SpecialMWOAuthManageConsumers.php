@@ -26,16 +26,24 @@ namespace MediaWiki\Extensions\OAuth;
  * their approval/rejection and also for listing approved/disabled consumers
  */
 class SpecialMWOAuthManageConsumers extends \SpecialPage {
-	protected $stage; // integer; MWOAuthConsumer::STAGE_* constant
-	protected $stageKey; // string
+	/** @var bool|int An MWOAuthConsumer::STAGE_* constant on queue/list subpages, false otherwise*/
+	protected $stage = false;
+	/** @var string A stage key from MWOAuthConsumer::$stageNames */
+	protected $stageKey;
 
-	protected static $stageKeyMap = array(
-		MWOAuthConsumer::STAGE_PROPOSED => 'proposed',
-		MWOAuthConsumer::STAGE_REJECTED => 'rejected',
-		MWOAuthConsumer::STAGE_EXPIRED  => 'expired',
-		MWOAuthConsumer::STAGE_APPROVED => 'approved',
-		MWOAuthConsumer::STAGE_DISABLED => 'disabled',
-	);
+	/**
+	 * Stages which are shown in a queue (they are in an actionable state and can form a backlog)
+	 * @var array
+	 */
+	public static $queueStages = array( MWOAuthConsumer::STAGE_PROPOSED,
+		MWOAuthConsumer::STAGE_REJECTED, MWOAuthConsumer::STAGE_EXPIRED );
+
+	/**
+	 * Stages which cannot form a backlog and are shown in a list
+	 * @var array
+	 */
+	public static $listStages = array( MWOAuthConsumer::STAGE_APPROVED,
+		MWOAuthConsumer::STAGE_DISABLED );
 
 	public function __construct() {
 		parent::__construct( 'OAuthManageConsumers', 'mwoauthmanageconsumer' );
@@ -65,27 +73,8 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$stageKey = isset( $navigation[0] ) ? $navigation[0] : null;
 		$consumerKey = isset( $navigation[1] ) ? $navigation[1] : null;
 
-		switch ( $stageKey ) {
-		// Queue of new consumer requests:
-		case 'proposed':
-			$this->stage = MWOAuthConsumer::STAGE_PROPOSED;
-			break;
-		case 'rejected':
-			$this->stage = MWOAuthConsumer::STAGE_REJECTED;
-			break;
-		case 'expired':
-			$this->stage = MWOAuthConsumer::STAGE_EXPIRED;
-			break;
-		// List of currently and once-approved consumers:
-		case 'approved':
-			$this->stage = MWOAuthConsumer::STAGE_APPROVED;
-			break;
-		case 'disabled':
-			$this->stage = MWOAuthConsumer::STAGE_DISABLED;
-			break;
-		}
-
-		if ( $this->stage !== null ) {
+		$this->stage = array_search( $stageKey, MWOAuthConsumer::$stageNames, true );
+		if ( $this->stage !== false ) {
 			$this->stageKey = $stageKey;
 			if ( $consumerKey ) {
 				$this->handleConsumerForm( $consumerKey );
@@ -110,26 +99,17 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 */
 	protected function addQueueSubtitleLinks( $consumerKey ) {
 		$listLinks = array();
-		if ( $consumerKey || $this->stage !== MWOAuthConsumer::STAGE_PROPOSED ) {
-			$listLinks[] = \Linker::linkKnown(
-				$this->getPageTitle( 'proposed' ),
-				$this->msg( 'mwoauthmanageconsumers-showproposed' )->escaped() );
-		} else {
-			$listLinks[] = $this->msg( 'mwoauthmanageconsumers-showproposed' )->escaped();
-		}
-		if ( $consumerKey || $this->stage !== MWOAuthConsumer::STAGE_REJECTED ) {
-			$listLinks[] = \Linker::linkKnown(
-				$this->getPageTitle( 'rejected' ),
-				$this->msg( 'mwoauthmanageconsumers-showrejected' )->escaped() );
-		} else {
-			$listLinks[] = $this->msg( 'mwoauthmanageconsumers-showrejected' )->escaped();
-		}
-		if ( $consumerKey || $this->stage !== MWOAuthConsumer::STAGE_EXPIRED ) {
-			$listLinks[] = \Linker::linkKnown(
-				$this->getPageTitle( 'expired' ),
-				$this->msg( 'mwoauthmanageconsumers-showexpired' )->escaped() );
-		} else {
-			$listLinks[] = $this->msg( 'mwoauthmanageconsumers-showexpired' )->escaped();
+		foreach ( self::$queueStages as $stage ) {
+			$stageKey = MWOAuthConsumer::$stageNames[$stage];
+			if ( $consumerKey || $this->stageKey !== $stageKey ) {
+				$listLinks[] = \Linker::linkKnown(
+					$this->getPageTitle( $stageKey ),
+					// Messages: mwoauthmanageconsumers-showproposed,
+					// mwoauthmanageconsumers-showrejected, mwoauthmanageconsumers-showexpired,
+					$this->msg( 'mwoauthmanageconsumers-show' . $stageKey )->escaped() );
+			} else {
+				$listLinks[] = $this->msg( 'mwoauthmanageconsumers-show' . $stageKey )->escaped();
+			}
 		}
 
 		$linkHtml = $this->getLanguage()->pipeList( $listLinks );
@@ -149,15 +129,10 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 * @return void
 	 */
 	protected function showMainHub() {
-		static $keyStageMapQ = array(
-			'proposed' => MWOAuthConsumer::STAGE_PROPOSED,
-			'rejected' => MWOAuthConsumer::STAGE_REJECTED,
-			'expired'  => MWOAuthConsumer::STAGE_EXPIRED
-		);
-		static $keyStageMapL = array(
-			'approved' => MWOAuthConsumer::STAGE_APPROVED,
-			'disabled' => MWOAuthConsumer::STAGE_DISABLED,
-		);
+		$keyStageMapQ = array_intersect( array_flip( MWOAuthConsumer::$stageNames ),
+			self::$queueStages );
+		$keyStageMapL = array_intersect( array_flip( MWOAuthConsumer::$stageNames ),
+			self::$listStages );
 
 		$out = $this->getOutput();
 
@@ -354,7 +329,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 					'default' => $cmr->get( 'deleted' )
 						? $this->msg( 'mwoauth-consumer-stage-suppressed' )
 						: $this->msg( 'mwoauth-consumer-stage-' .
-							self::$stageKeyMap[$cmr->get( 'stage' )] )
+							MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )] )
 				),
 				'action' => array(
 					'type' => 'radio',
@@ -399,11 +374,16 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 		$status = $form->show();
 		if ( $status instanceof \Status && $status->isOk() ) {
-			$type = self::$stageKeyMap[$status->value['result']->get( 'stage' )];
+			$type = MWOAuthConsumer::$stageNames[$status->value['result']->get( 'stage' )];
 			// Messages: mwoauthmanageconsumers-success-approved, mwoauthmanageconsumers-success-rejected,
 			// mwoauthmanageconsumers-success-disabled
 			$this->getOutput()->addWikiMsg( "mwoauthmanageconsumers-success-$type" );
-			$this->getOutput()->returnToMain();
+			$returnTo = \Title::newFromText( 'Special:OAuthManageConsumers/' . $this->stageKey );
+			$this->getOutput()->addReturnTo( $returnTo, array(),
+				// Messages: mwoauthmanageconsumers-linkproposed,
+				// mwoauthmanageconsumers-linkrejected, mwoauthmanageconsumers-linkexpired,
+				// mwoauthmanageconsumers-linkapproved, mwoauthmanageconsumers-linkdisabled
+				$this->msg( 'mwoauthmanageconsumers-link' . $this->stageKey )->escaped() );
 		} else {
 			$out = $this->getOutput();
 			// Show all of the status updates
@@ -446,19 +426,11 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 * @return string
 	 */
 	public function formatRow( \DBConnRef $db, $row ) {
-		static $stageActionMap = array(
-			MWOAuthConsumer::STAGE_PROPOSED => 'propose',
-			MWOAuthConsumer::STAGE_REJECTED => 'reject',
-			MWOAuthConsumer::STAGE_EXPIRED  => 'propose',
-			MWOAuthConsumer::STAGE_APPROVED => 'approve',
-			MWOAuthConsumer::STAGE_DISABLED => 'disable',
-		);
-
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
 
 		$cmrKey = $cmr->get( 'consumerKey' );
-		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
+		$stageKey = MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )];
 
 		$link = \Linker::linkKnown(
 			$this->getPageTitle( "{$stageKey}/{$cmrKey}" ),
@@ -478,7 +450,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$logHtml = '';
 		\LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '',
 			array(
-				'action' => $stageActionMap[$cmr->get( 'stage' )],
+				'action' => MWOAuthConsumer::$stageActionNames[$cmr->get( 'stage' )],
 				'conds'  => array(
 					'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ),
 				'lim'    => 1,

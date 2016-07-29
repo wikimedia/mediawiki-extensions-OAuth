@@ -82,6 +82,31 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	const STAGE_EXPIRED  = 3;
 	const STAGE_DISABLED = 4;
 
+	/**
+	 * Maps stage ids to human-readable names which describe them as a state
+	 * @var array
+	 */
+	public static $stageNames = array(
+		MWOAuthConsumer::STAGE_PROPOSED => 'proposed',
+		MWOAuthConsumer::STAGE_REJECTED => 'rejected',
+		MWOAuthConsumer::STAGE_EXPIRED  => 'expired',
+		MWOAuthConsumer::STAGE_APPROVED => 'approved',
+		MWOAuthConsumer::STAGE_DISABLED => 'disabled',
+	);
+
+	/**
+	 * Maps stage ids to human-readable names which describe them as an action (which would result
+	 * in that stage)
+	 * @var array
+	 */
+	public static $stageActionNames = array(
+		MWOAuthConsumer::STAGE_PROPOSED => 'propose',
+		MWOAuthConsumer::STAGE_REJECTED => 'reject',
+		MWOAuthConsumer::STAGE_EXPIRED  => 'propose',
+		MWOAuthConsumer::STAGE_APPROVED => 'approve',
+		MWOAuthConsumer::STAGE_DISABLED => 'disable',
+	);
+
 	protected static function getSchema() {
 		return array(
 			'table'          => 'oauth_registered_consumer',

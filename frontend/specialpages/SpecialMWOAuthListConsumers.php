@@ -26,14 +26,6 @@ namespace MediaWiki\Extensions\OAuth;
  * their approval/rejection and also for listing approved/disabled consumers
  */
 class SpecialMWOAuthListConsumers extends \SpecialPage {
-	protected static $stageKeyMap = array(
-		MWOAuthConsumer::STAGE_PROPOSED => 'proposed',
-		MWOAuthConsumer::STAGE_REJECTED => 'rejected',
-		MWOAuthConsumer::STAGE_EXPIRED  => 'expired',
-		MWOAuthConsumer::STAGE_APPROVED => 'approved',
-		MWOAuthConsumer::STAGE_DISABLED => 'disabled',
-	);
-
 	public function __construct() {
 		parent::__construct( 'OAuthListConsumers' );
 	}
@@ -96,7 +88,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			}
 		}
 
-		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
+		$stageKey = MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )];
 		$data = array(
 			'mwoauthlistconsumers-name' => htmlspecialchars(
 				$cmr->get( 'name' )
@@ -236,7 +228,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
 
 		$cmrKey = $cmr->get( 'consumerKey' );
-		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
+		$stageKey = MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )];
 
 		$links = array();
 		$links[] = \Linker::linkKnown(

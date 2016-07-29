@@ -27,13 +27,6 @@ namespace MediaWiki\Extensions\OAuth;
  */
 class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 	private static $irrevocableGrants = null;
-	protected static $stageKeyMap = array(
-		MWOAuthConsumer::STAGE_PROPOSED => 'proposed',
-		MWOAuthConsumer::STAGE_REJECTED => 'rejected',
-		MWOAuthConsumer::STAGE_EXPIRED  => 'expired',
-		MWOAuthConsumer::STAGE_APPROVED => 'approved',
-		MWOAuthConsumer::STAGE_DISABLED => 'disabled',
-	);
 
 	public function __construct() {
 		parent::__construct( 'OAuthManageMyGrants', 'mwoauthmanagemygrants' );
@@ -240,7 +233,6 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		if ( $status instanceof \Status && $status->isOk() ) {
 			// Messages: mwoauthmanagemygrants-success-update, mwoauthmanagemygrants-success-renounce
 			$this->getOutput()->addWikiMsg( "mwoauthmanagemygrants-success-$action" );
-			$this->getOutput()->returnToMain();
 		}
 	}
 
@@ -273,8 +265,6 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
 		$cmra = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumerAcceptance::newFromRow( $db, $row ), $this->getContext() );
-
-		$stageKey = self::$stageKeyMap[$cmr->get( 'stage' )];
 
 		$links = array();
 		if ( array_diff( $cmr->get( 'grants' ), self::irrevocableGrants() ) ) {
