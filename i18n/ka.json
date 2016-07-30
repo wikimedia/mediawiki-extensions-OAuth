@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"David1010",
-			"Otogi"
+			"Otogi",
+			"MIKHEIL"
 		]
 	},
 	"mwoauth-prefs-managegrants": "დაკავშირებული აპლიკაციები:",
@@ -32,6 +33,9 @@
 	"mwoauthconsumerregistration-manage": "მართვა",
 	"mwoauthmanageconsumers-showrejected": "უარყოფილი თხოვნები",
 	"mwoauthmanageconsumers-showexpired": "ვადაგასული თხოვნები",
+	"mwoauthmanageconsumers-linkproposed": "შეთავაზებული მოთხოვნები",
+	"mwoauthmanageconsumers-linkrejected": "უარყოფილი მოთხოვნები",
+	"mwoauthmanageconsumers-linkapproved": "დადასტურებული მოთხოვნები",
 	"mwoauthmanageconsumers-main": "მთავარი",
 	"mwoauthmanageconsumers-name": "კლიენტი",
 	"mwoauthmanageconsumers-user": "გამომქვეყნებელი",
@@ -67,8 +71,5 @@
 	"mwoauthmanagemygrants-confirm-legend": "დაკავშირებული აპლიკაციის მართვა",
 	"mwoauthmanagemygrants-action": "სტატუსის შეცვლა:",
 	"mwoauth-form-button-approve": "ნების დართვა",
-	"mwoauth-form-button-cancel": "გაუქმება",
-	"mwoauth-grant-group-email": "ელ.ფოსტის გაგზავნა",
-	"mwoauth-grant-editmyoptions": "თქვენი საკუთარი კონფიგურაციის რედაქტირება",
-	"mwoauth-grant-editmywatchlist": "თქვენი კონტროლის სიის რედაქტირება"
+	"mwoauth-form-button-cancel": "გაუქმება"
 }

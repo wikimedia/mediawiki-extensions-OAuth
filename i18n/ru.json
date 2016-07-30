@@ -15,7 +15,8 @@
 			"NBS",
 			"Marina Melik-Adamyan",
 			"Дмитрий",
-			"Metastasis"
+			"Metastasis",
+			"SergeyButkov"
 		]
 	},
 	"mwoauth-desc": "Позволяет использование OAuth 1.0a для API авторизации",
@@ -42,7 +43,6 @@
 	"mwoauth-consumer-required-grant": "Применимо к клиенту",
 	"mwoauth-consumer-wiki": "Применимо к проекту:",
 	"mwoauth-consumer-wiki-thiswiki": "Текущий проект ($1)",
-	"mwoauth-consumer-wiki-other": "Конкретный проект",
 	"mwoauth-consumer-restrictions": "Ограничения на использование:",
 	"mwoauth-consumer-restrictions-json": "Ограничения на использование (JSON):",
 	"mwoauth-consumer-rsakey": "Публичный RSA-ключ:",
@@ -95,6 +95,9 @@
 	"mwoauthmanageconsumers-showproposed": "Предлагаемые запросы",
 	"mwoauthmanageconsumers-showrejected": "Отклонённые запросы",
 	"mwoauthmanageconsumers-showexpired": "Устаревшие запросы",
+	"mwoauthmanageconsumers-linkproposed": "предложенные запросы",
+	"mwoauthmanageconsumers-linkrejected": "отклоненные запросы",
+	"mwoauthmanageconsumers-linkapproved": "одобренные запросы",
 	"mwoauthmanageconsumers-main": "Главная",
 	"mwoauthmanageconsumers-name": "Клиент",
 	"mwoauthmanageconsumers-user": "Издатель",
@@ -161,8 +164,8 @@
 	"mwoauthmanagemygrants-renounce": "Разорвать авторизацию",
 	"mwoauthmanagemygrants-action": "Изменить состояние:",
 	"mwoauthmanagemygrants-confirm-submit": "Обновить состояние кода (токена) доступа",
-	"mwoauthmanagemygrants-success-update": "Код доступа для этого клиента был обновлён.",
-	"mwoauthmanagemygrants-success-renounce": "Код доступа для этого клиента был удалён.",
+	"mwoauthmanagemygrants-success-update": "Настройки для этого приложения были обновлены.",
+	"mwoauthmanagemygrants-success-renounce": "Доступ приложения к вашей учетной записи аннулирован.",
 	"mwoauthdatastore-bad-source-ip": "Запрос пришёл с некорректного IP-адреса.",
 	"mwoauthdatastore-bad-verifier": "Предоставленный проверочный код недействителен.",
 	"mwoauthdatastore-invalid-token-type": "Запрошенный тип токена некорректен.",
