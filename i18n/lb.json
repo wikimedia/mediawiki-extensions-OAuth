@@ -5,7 +5,7 @@
 			"Les Meloures"
 		]
 	},
-	"mwoauth-desc": "De Gebrauch vun OAuth 1.0a fir API Autorisatiounerlaben",
+	"mwoauth-desc": "De Gebrauch vun OAuth 1.0a fir API Autorisatioun erlaben",
 	"mwoauth-verified": "D'Applikatioun ass elo berechtegt op MediaWiki an Ärem Numm zouzegräifen.\n\nFir de Prozess ofzeschléissen, gitt w.e.g. dëse Kontrollwäert un d'Applatioun virun: '''$1'''",
 	"mwoauth-db-readonly": "D'OAuth-Datebank ass temporär gespaart. Probéiert w.e.g. an e puer Minutte nach eng Kéier.",
 	"mwoauth-missing-field": "De Wäert fir d'Feld \"$1\" feelt",
@@ -44,6 +44,8 @@
 	"mwoauthmanageconsumers-linkproposed": "proposéiert Ufroen",
 	"mwoauthmanageconsumers-linkrejected": "refuséiert Ufroen",
 	"mwoauthmanageconsumers-linkexpired": "ofgelafen Ufroen",
+	"mwoauthmanageconsumers-linkapproved": "akzeptéiert Ufroen",
+	"mwoauthmanageconsumers-linkdisabled": "desaktivéiert Ufroen",
 	"mwoauthmanageconsumers-main": "Haapt",
 	"mwoauthmanageconsumers-name": "Konsument",
 	"mwoauthmanageconsumers-description": "Beschreiwung",
