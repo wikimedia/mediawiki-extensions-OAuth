@@ -129,8 +129,8 @@
 		"SpecialPageAfterExecute": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onSpecialPageAfterExecute",
 		"SpecialPageBeforeFormDisplay": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onSpecialPageBeforeFormDisplay",
 		"BeforeCreateEchoEvent": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onBeforeCreateEchoEvent",
-		"CentralAuthAbortCentralAuthToken": "MWOAuthAPISetup::onCentralAuthAbortCentralAuthToken",
-		"TestCanonicalRedirect": "MWOAuthAPISetup::onTestCanonicalRedirect",
+		"CentralAuthAbortCentralAuthToken": "MediaWiki\\Extensions\\OAuth\\MWOAuthAPISetup::onCentralAuthAbortCentralAuthToken",
+		"TestCanonicalRedirect": "MediaWiki\\Extensions\\OAuth\\MWOAuthAPISetup::onTestCanonicalRedirect",
 		"SetupAfterCache": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onSetupAfterCache"
 	},
 	"config": {
