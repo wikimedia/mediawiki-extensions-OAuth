@@ -236,5 +236,6 @@
 	"action-mwoauthupdateownconsumer": "aggiornare clienti OAuth che controlli",
 	"action-mwoauthviewsuppressed": "visualizzare clienti OAuth soppressi",
 	"mwoauth-tag-reserved": "Etichette che iniziano con <code>OAuth CID:</code> sono riservate all'utilizzo da parte di OAuth.",
-	"mwoauth-botpasswords-note": "<strong>Nota:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> è più sicuro delle password bot e dovrebbe essere preferito ogni volta che il bot lo supporta."
+	"mwoauth-botpasswords-note": "<strong>Nota:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> è più sicuro delle password bot e dovrebbe essere preferito ogni volta che il bot lo supporta.",
+	"notification-oauth-app-body": "Motivo: $1"
 }

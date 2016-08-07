@@ -259,5 +259,20 @@
 	"action-mwoauthupdateownconsumer": "mettre à jour les consommateurs OAuth",
 	"action-mwoauthviewsuppressed": "afficher les consommateurs OAuth supprimés",
 	"mwoauth-tag-reserved": "Les balises commençant par <code>OAuth CID:</code> sont réservées à une utilisation par OAuth.",
-	"mwoauth-botpasswords-note": "<strong>Note :</strong> <span class=\"plainlinks\">[$1 OAuth]</span> est plus sécurisé que les mots de passe de robots et devrait être privilégié si le robot l’accepte."
+	"mwoauth-botpasswords-note": "<strong>Note :</strong> <span class=\"plainlinks\">[$1 OAuth]</span> est plus sécurisé que les mots de passe de robots et devrait être privilégié si le robot l’accepte.",
+	"echo-category-title-oauth-owner": "Développement de OAuth",
+	"echo-pref-tooltip-oauth-owner": "M'informer sur les événements liés aux applications OAuth que j'ai créées",
+	"echo-category-title-oauth-admin": "Administrateur de OAuth",
+	"echo-pref-tooltip-oauth-admin": "M'informer sur les événements liés à la revue des applications OAuth",
+	"notification-oauth-app-update-title": "$1 {{GENDER:$2|a actualisé}} l'application OAuth $2",
+	"notification-oauth-app-reject-title": "$1 {{GENDER:$2|a rejeté}} {{GENDER:$3|votre}} application OAuth ($2)",
+	"notification-oauth-app-disable-title": "$1 {{GENDER:$2|a invalidé}} {{GENDER:$3|votre}} application OAuth ($2)",
+	"notification-oauth-app-reenable-title": "$1 {{GENDER:$2|a réactivé}} {{GENDER:$3|votre}} OAuth application ($2)",
+	"notification-oauth-app-propose-primary-link": "Révision de l'application",
+	"notification-oauth-app-update-primary-link": "Revoir l'application",
+	"notification-oauth-app-approve-primary-link": "Voir l'application",
+	"notification-oauth-app-reject-primary-link": "Voir l'application",
+	"notification-oauth-app-disable-primary-link": "Voir l'application",
+	"notification-oauth-app-reenable-primary-link": "Voir l'application",
+	"notification-oauth-app-body": "Raison : $1"
 }

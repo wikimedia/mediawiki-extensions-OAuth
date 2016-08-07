@@ -9,7 +9,8 @@
 			"Southparkfan",
 			"Servien",
 			"Robin0van0der0vliet",
-			"Mathonius"
+			"Mathonius",
+			"MrLeopold"
 		]
 	},
 	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a te gebruiken voor API-toestemming",
@@ -36,7 +37,6 @@
 	"mwoauth-consumer-required-grant": "Van toepassing op consumer",
 	"mwoauth-consumer-wiki": "Van toepassing op project:",
 	"mwoauth-consumer-wiki-thiswiki": "Huidig project ($1)",
-	"mwoauth-consumer-wiki-other": "Specifiek project",
 	"mwoauth-consumer-restrictions": "Gebruiksbeperkingen:",
 	"mwoauth-consumer-restrictions-json": "Gebruiksbeperkingen (JSON):",
 	"mwoauth-consumer-rsakey": "Openbare SSH-sleutel:",
@@ -231,5 +231,28 @@
 	"action-mwoauthmanagemygrants": "uw OAuthbevoegdheden te beheren",
 	"action-mwoauthproposeconsumer": "nieuwe OAuthconsumers voor te stellen",
 	"action-mwoauthupdateownconsumer": "OAuthconsumers bij te werken",
-	"action-mwoauthviewsuppressed": "onderdrukte OAuthconsumers te bekijken"
+	"action-mwoauthviewsuppressed": "onderdrukte OAuthconsumers te bekijken",
+	"echo-category-title-oauth-owner": "OAuth-ontwikkeling",
+	"echo-pref-tooltip-oauth-owner": "Houd me op de hoogte van evenementen die te maken hebben met OAuth-applicaties die ik heb aangemaakt",
+	"echo-category-title-oauth-admin": "OAuth-administrator",
+	"echo-pref-tooltip-oauth-admin": "Houd me op de hoogte van evenementen die te maken hebben met het herzien van OAuth-applicaties",
+	"notification-oauth-app-propose-title": "$1 {{GENDER:$1|stelde}} een nieuwe OAuth-applicatie voor: $2",
+	"notification-oauth-app-update-title": "$1 {{GENDER:$2|is bijgewerkt}} de OAuth-applicatie $2",
+	"notification-oauth-app-approve-title": "$1 {{GENDER:$2|is goedgekeurd}} {{GENDER:$3|uw}} OAuth-applicatie ($2)",
+	"notification-oauth-app-reject-title": "$1 {{GENDER:$2|is afgewezen}} {{GENDER:$3|uw}} OAuth-applicatie ($2)",
+	"notification-oauth-app-disable-title": "$1 {{GENDER:$2|is uitgeschakeld}} {{GENDER:$3|uw}} OAuth-applicatie ($2)",
+	"notification-oauth-app-reenable-title": "$1 {{GENDER:$2|is weer ingeschakeld}} {{GENDER:$3|uw}} OAuth-applicatie ($2)",
+	"notification-oauth-app-propose-subject": "$1 {{GENDER:$1|stelde}} een nieuwe OAuth-applicatie voor op {{SITENAME}}",
+	"notification-oauth-app-update-subject": "$1 {{GENDER:$2|is bijgewerkt}} een OAuth-applicatie op {{SITENAME}}",
+	"notification-oauth-app-approve-subject": "$1 {{GENDER:$2|is goedgekeurd}} {{GENDER:$3|uw}} OAuth-applicatie op {{SITENAME}}",
+	"notification-oauth-app-reject-subject": "$1 {{GENDER:$2|is afgewezen}} {{GENDER:$3|uw}} OAuth-applicatie op {{SITENAME}}",
+	"notification-oauth-app-disable-subject": "$1 {{GENDER:$2|is uitgeschakeld}} {{GENDER:$3|uw}} OAuth-applicatie op {{SITENAME}}",
+	"notification-oauth-app-reenable-subject": "$1 {{GENDER:$2|is weer ingeschakeld}} {{GENDER:$3|uw}} OAuth-applicatie op {{SITENAME}}",
+	"notification-oauth-app-propose-primary-link": "Herzie applicatie",
+	"notification-oauth-app-update-primary-link": "Herzie applicatie",
+	"notification-oauth-app-approve-primary-link": "Bekijk applicatie",
+	"notification-oauth-app-reject-primary-link": "Bekijk applicatie",
+	"notification-oauth-app-disable-primary-link": "Bekijk applicatie",
+	"notification-oauth-app-reenable-primary-link": "Bekijk applicatie",
+	"notification-oauth-app-body": "Reden: $1"
 }

@@ -41,5 +41,9 @@
 	"oauthmanagemygrants": "التحكم بالتطبيقات المرتبطة",
 	"mwoauthmanagemygrants-showlist": "قائمة التطبيقات المتصلة",
 	"mwoauthmanagemygrants-description": "الوصف",
-	"mwoauthmanagemygrants-confirm-legend": "التحكم بالتطبيق المرتبط"
+	"mwoauthmanagemygrants-confirm-legend": "التحكم بالتطبيق المرتبط",
+	"notification-oauth-app-propose-primary-link": "مراجعة التطبيق",
+	"notification-oauth-app-reject-primary-link": "اعرض التطبيق",
+	"notification-oauth-app-disable-primary-link": "اعرض التطبيق",
+	"notification-oauth-app-body": "السبب: $1"
 }

@@ -234,5 +234,13 @@
 	"action-mwoauthproposeconsumer": "새 OAuth 컨슈머 제안",
 	"action-mwoauthupdateownconsumer": "내가 제어할 수 있는 OAuth 컨슈머 업데이트",
 	"action-mwoauthviewsuppressed": "표시하지 않은 OAuth 컨슈머 보기",
-	"mwoauth-botpasswords-note": "<strong>주의:</strong> <span class=\"plainlinks\">[$1 OAuth]</span>가 봇 비밀번호 보다 더 안전하며 봇이 이를 지원하면 이 기능이 더 선호됩니다."
+	"mwoauth-botpasswords-note": "<strong>주의:</strong> <span class=\"plainlinks\">[$1 OAuth]</span>가 봇 비밀번호 보다 더 안전하며 봇이 이를 지원하면 이 기능이 더 선호됩니다.",
+	"echo-category-title-oauth-owner": "OAuth 개발",
+	"notification-oauth-app-propose-primary-link": "앱 평가",
+	"notification-oauth-app-update-primary-link": "앱 평가",
+	"notification-oauth-app-approve-primary-link": "앱 보기",
+	"notification-oauth-app-reject-primary-link": "앱 보기",
+	"notification-oauth-app-disable-primary-link": "앱 보기",
+	"notification-oauth-app-reenable-primary-link": "앱 보기",
+	"notification-oauth-app-body": "이유: $1"
 }
