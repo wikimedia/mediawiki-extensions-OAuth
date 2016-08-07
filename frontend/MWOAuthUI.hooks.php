@@ -183,10 +183,13 @@ class MWOAuthUIHooks {
 	public static function onBeforeCreateEchoEvent( &$notifications, &$notificationCategories, &$icons ) {
 		global $wgOAuthGroupsToNotify;
 
+		if ( !MWOAuthUtils::isCentralWiki() ) {
+			return;
+		}
+
 		$notificationCategories['oauth-owner'] = array(
 			'tooltip' => 'echo-pref-tooltip-oauth-owner',
 		);
-
 		$notificationCategories['oauth-admin'] = array(
 			'tooltip' => 'echo-pref-tooltip-oauth-admin',
 			'usergroups' => $wgOAuthGroupsToNotify,
