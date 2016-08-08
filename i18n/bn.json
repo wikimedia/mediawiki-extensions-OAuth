@@ -74,5 +74,12 @@
 	"mwoauth-form-button-approve": "মঞ্জুর",
 	"mwoauth-form-button-cancel": "বাতিল",
 	"mwoauth-error": "অ্যাপ্লিকেশন সংযোগ ত্রুটি",
-	"mwoauth-grants-heading": "অনুরোধকৃত অনুমতি:"
+	"mwoauth-grants-heading": "অনুরোধকৃত অনুমতি:",
+	"notification-oauth-app-propose-primary-link": "অ্যাপ পর্যালোচনা করুন",
+	"notification-oauth-app-update-primary-link": "অ্যাপ পর্যালোচনা করুন",
+	"notification-oauth-app-approve-primary-link": "অ্যাপ দেখুন",
+	"notification-oauth-app-reject-primary-link": "অ্যাপ দেখুন",
+	"notification-oauth-app-disable-primary-link": "অ্যাপ দেখুন",
+	"notification-oauth-app-reenable-primary-link": "অ্যাপ দেখুন",
+	"notification-oauth-app-body": "কারণ: $1"
 }
