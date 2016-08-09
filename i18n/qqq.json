@@ -278,5 +278,5 @@
 	"notification-oauth-app-reject-primary-link": "Text of the link which appears at the end of the email notification {{msg-mw|notification-oauth-app-reject-email-batch-body}}. It links to the app update page for app owners.",
 	"notification-oauth-app-disable-primary-link": "Text of the link which appears at the end of the email notification {{msg-mw|notification-oauth-app-disable-email-batch-body}}. It links to the app update page for app owners.",
 	"notification-oauth-app-reenable-primary-link": "Text of the link which appears at the end of the email notification {{msg-mw|notification-oauth-app-reenable-email-batch-body}}. It links to the app update page for app owners.",
-	"notification-oauth-app-body": "Text of the body of app stage change notifications. $1 is the reason given by the user who made the change."
+	"notification-oauth-app-body": "Text of the body of app stage change notifications. $1 is the reason given by the user who made the change.\n{{Identical|Reason}}"
 }
