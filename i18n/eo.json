@@ -4,5 +4,6 @@
 			"Robin van der Vliet"
 		]
 	},
-	"mwoauth-form-button-cancel": "Nuligi"
+	"mwoauth-form-button-cancel": "Nuligi",
+	"notification-oauth-app-body": "Kialo: $1"
 }

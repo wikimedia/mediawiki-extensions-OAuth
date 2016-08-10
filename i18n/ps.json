@@ -23,6 +23,9 @@
 	"mwoauthmanagemygrants-user": "خپروونکی:",
 	"mwoauthmanagemygrants-description": "څرگندونه",
 	"mwoauth-form-button-cancel": "ناگارل",
-	"mwoauth-grant-blockusers": "په کارنانو بنديز لگول او بنديز ليرې کول",
-	"mwoauth-grant-delete": "مخونه، بياکتنې، او يادښتليکونه ړنگول"
+	"notification-oauth-app-approve-primary-link": "کاريال کتل",
+	"notification-oauth-app-reject-primary-link": "کاريال کتل",
+	"notification-oauth-app-disable-primary-link": "کاريال کتل",
+	"notification-oauth-app-reenable-primary-link": "کاريال کتل",
+	"notification-oauth-app-body": "سبب: $1"
 }
