@@ -28,7 +28,6 @@
 	"mwoauth-consumer-required-grant": "ग्राहकांना लागू",
 	"mwoauth-consumer-wiki": "लागू असणारा प्रकल्प:",
 	"mwoauth-consumer-wiki-thiswiki": "सध्याचा प्रकल्प ($1)",
-	"mwoauth-consumer-wiki-other": "विशिष्ट प्रकल्प",
 	"mwoauth-consumer-restrictions": "वापराच्या मर्यादा:",
 	"mwoauth-consumer-restrictions-json": "वापराच्या मर्यादा (JSON):",
 	"mwoauth-consumer-rsakey": "पब्लिक आरएसए कळ:",
@@ -69,6 +68,10 @@
 	"mwoauthmanageconsumers-showproposed": "प्रस्तावित विनंत्या",
 	"mwoauthmanageconsumers-showrejected": "नामंजूर विनंत्या",
 	"mwoauthmanageconsumers-showexpired": "मुदतबाह्य विनंत्या",
+	"mwoauthmanageconsumers-linkproposed": "प्रस्तावित विनंत्या",
+	"mwoauthmanageconsumers-linkrejected": "नाकारलेल्या विनंत्या",
+	"mwoauthmanageconsumers-linkexpired": "समाप्त विनंत्या",
+	"mwoauthmanageconsumers-linkapproved": "मंजूर विनंत्या",
 	"mwoauthmanageconsumers-main": "मुख्य",
 	"mwoauthmanageconsumers-l-approved": "सध्या मंजूर ग्राहकांची यादी",
 	"mwoauthmanageconsumers-l-disabled": "सध्या अक्षम असलेल्या ग्राहकांची यादी",
@@ -132,6 +135,7 @@
 	"mwoauthmanagemygrants-update": "अनुदानांना अद्यतन करा",
 	"mwoauthmanagemygrants-renounce": "अधिकार नाकारा",
 	"mwoauthmanagemygrants-action": "स्थिती बदला:",
+	"mwoauthmanagemygrants-success-update": "आपला या अनुप्रयुक्तिसाठीचा पसंतीक्रम अद्यतन करण्यात आलेला आहे.",
 	"mwoauthdatastore-bad-source-ip": "ही विनंती अवैध अंकपत्त्याद्वारे आली आहे.",
 	"mwoauthdatastore-bad-verifier": "पुरविलेला पडताळणी संकेत वैध नाही.",
 	"mwoauthdatastore-invalid-token-type": "विनंती केलेला टोकन प्रकार अवैध आहे.",
@@ -145,5 +149,7 @@
 	"mwoauth-error": "अनुप्रयुक्ति जुळण्याबाबतची त्रुटी",
 	"mwoauth-grants-heading": "विनंती केलेल्या परवानग्या:",
 	"mwoauth-grants-nogrants": "या अनुप्रयुक्तिने काहीच परवानग्या मागीतल्या नाहीत.",
-	"mwoauth-listgrants-extra-summary": "== ओऑथ-विशिष्ट अनुदाने ==\n\nही अतिरिक्त अनुदाने ओऑथ ग्राहकांना लागू आहेत."
+	"mwoauth-listgrants-extra-summary": "== ओऑथ-विशिष्ट अनुदाने ==\n\nही अतिरिक्त अनुदाने ओऑथ ग्राहकांना लागू आहेत.",
+	"notification-oauth-app-disable-primary-link": "ऐप बघा",
+	"notification-oauth-app-body": "कारण: $1"
 }
