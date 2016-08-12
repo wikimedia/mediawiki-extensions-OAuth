@@ -5,5 +5,9 @@
 		]
 	},
 	"mwoauth-form-button-cancel": "Nuligi",
+	"notification-oauth-app-approve-primary-link": "Montri aplikaĵon",
+	"notification-oauth-app-reject-primary-link": "Montri aplikaĵon",
+	"notification-oauth-app-disable-primary-link": "Montri aplikaĵon",
+	"notification-oauth-app-reenable-primary-link": "Montri aplikaĵon",
 	"notification-oauth-app-body": "Kialo: $1"
 }
