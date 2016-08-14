@@ -236,6 +236,7 @@
 	"action-mwoauthviewsuppressed": "표시하지 않은 OAuth 컨슈머 보기",
 	"mwoauth-botpasswords-note": "<strong>주의:</strong> <span class=\"plainlinks\">[$1 OAuth]</span>가 봇 비밀번호 보다 더 안전하며 봇이 이를 지원하면 이 기능이 더 선호됩니다.",
 	"echo-category-title-oauth-owner": "OAuth 개발",
+	"echo-category-title-oauth-admin": "OAuth 관리자",
 	"notification-oauth-app-propose-title": "$1님이 새로운 OAuth 앱을 {{GENDER:$1|제안했습니다}}: $2",
 	"notification-oauth-app-update-title": "$1님이 OAuth 앱 $2을(를) {{GENDER:$2|업데이트했습니다}}",
 	"notification-oauth-app-approve-title": "$1님이 {{GENDER:$3|당신의}} OAuth 앱($2)을 {{GENDER:$2|승인했습니다}}",
