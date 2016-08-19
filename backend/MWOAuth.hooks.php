@@ -11,7 +11,9 @@ class MWOAuthHooks {
 		global $wgOAuthSecretKey, $wgSecretKey, $wgSessionProviders,
 			$wgHooks;
 
-		$wgOAuthSecretKey = $wgSecretKey;
+		if ( empty( $wgOAuthSecretKey ) ) {
+			$wgOAuthSecretKey = $wgSecretKey;
+		}
 
 		$wgHooks['ListDefinedTags'][] =
 			array( 'MediaWiki\Extensions\OAuth\MWOAuthHooks::getUsedConsumerTags', false );
