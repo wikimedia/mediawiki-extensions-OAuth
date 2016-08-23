@@ -94,8 +94,8 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 			}
 			$control = $this;
 			$description['validation-callback'] =
-				function( $value, $allValues ) use ( $control, $field ) {
-					return $control->validateFieldInternal( $field, $value, $allValues );
+				function( $value, $allValues, $form ) use ( $control, $field ) {
+					return $control->validateFieldInternal( $field, $value, $allValues, $form );
 				};
 		}
 		return $descriptors;
@@ -107,10 +107,11 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	 * @param string $field
 	 * @param string $value
 	 * @param array $allValues
+	 * @param \HTMLForm $form
 	 * @throws \MWException
 	 * @return boolean|string
 	 */
-	public function validateFieldInternal( $field, $value, $allValues ) {
+	public function validateFieldInternal( $field, $value, $allValues, $form ) {
 		if ( !isset( $allValues['action'] ) && isset( $this->vals['action'] ) ) {
 			// The action may be derived, especially for multi-button forms.
 			// Such an HTMLForm will not have an action key set in $allValues.
@@ -128,7 +129,24 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 			? preg_match( $validator, $value )
 			: $validator( $value, $allValues );
 		if ( !$isValid ) {
-			return wfMessage( 'mwoauth-invalid-field-generic' )->text();
+			$errorMessage = wfMessage( 'mwoauth-invalid-field-' . $field );
+			if ( !$errorMessage->isDisabled() ) {
+				return $errorMessage->text();
+			}
+
+			$generic = '';
+			if ( $form->getField( $field )->canDisplayErrors() ) {
+				// error can be attached to the field so no need to mention the field name
+				$generic = '-generic';
+			}
+
+			$problem = 'invalid';
+			if ( $value === '' && !$generic ) {
+				$problem = 'missing';
+			}
+
+			// messages: mwoauth-missing-field, mwoauth-invalid-field, mwoauth-invalid-field-generic
+			return wfMessage( "mwoauth-$problem-field$generic", $field )->text();
 		}
 		return true;
 	}
