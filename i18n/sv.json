@@ -33,7 +33,6 @@
 	"mwoauth-consumer-required-grant": "Tillämplig för konsumenten",
 	"mwoauth-consumer-wiki": "Begränsa till projekt:",
 	"mwoauth-consumer-wiki-thiswiki": "Aktuellt projekt ($1)",
-	"mwoauth-consumer-wiki-other": "Specifikt projekt",
 	"mwoauth-consumer-restrictions": "Användningsbegränsningar:",
 	"mwoauth-consumer-restrictions-json": "Användningsbegränsningar (JSON):",
 	"mwoauth-consumer-rsakey": "Offentlig RSA-nyckel:",
@@ -229,5 +228,10 @@
 	"action-mwoauthmanagemygrants": "Hantera dina OAuth-behörigheter",
 	"action-mwoauthproposeconsumer": "Föreslå nya OAuthkonsument",
 	"action-mwoauthupdateownconsumer": "Uppdatera OAuthkonsumenter du kontrollerar",
-	"action-mwoauthviewsuppressed": "Visa upphävda OAuthkonsumenter"
+	"action-mwoauthviewsuppressed": "Visa upphävda OAuthkonsumenter",
+	"notification-oauth-app-approve-primary-link": "Visa app",
+	"notification-oauth-app-reject-primary-link": "Visa app",
+	"notification-oauth-app-disable-primary-link": "Visa app",
+	"notification-oauth-app-reenable-primary-link": "Visa app",
+	"notification-oauth-app-body": "Anledning: $1"
 }
