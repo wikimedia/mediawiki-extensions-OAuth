@@ -29,7 +29,7 @@ class MWOAuthUtils {
 	public static function getCentralDB( $index ) {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthReadOnly;
 
-		$db = wfGetLB( $wgMWOAuthCentralWiki )->getConnectionRef(
+		$db = wfGetLB( $wgMWOAuthCentralWiki )->getLazyConnectionRef(
 			$index, array(), $wgMWOAuthCentralWiki );
 		$db->daoReadOnly = $wgMWOAuthReadOnly;
 		return $db;
