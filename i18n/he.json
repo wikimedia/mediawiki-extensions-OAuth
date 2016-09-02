@@ -253,7 +253,7 @@
 	"mwoauth-tag-reserved": "תגים שמתחילים ב־<code dir=\"ltr\">OAuth CID:</code> שמורים לשימוש על־ידי OAuth.",
 	"mwoauth-botpasswords-note": "<strong>לתשומת לבך:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> בטוח יותר מססמאות בוט ויש להשתמש בו כשהבוט תומך בזה.",
 	"echo-category-title-oauth-owner": "פיתוח OAuth",
-	"echo-pref-tooltip-oauth-owner": "להודיע לי על אירועים שקשורים לפיתוח יישומי OAuth שיצרתי",
+	"echo-pref-tooltip-oauth-owner": "להודיע לי על אירועים הקשורים לפיתוח יישומי OAuth שיצרתי.",
 	"echo-category-title-oauth-admin": "מנהל OAuth",
 	"echo-pref-tooltip-oauth-admin": "להודיע לי על אירועים שקשורים לסקירת יישומי OAuth",
 	"notification-oauth-app-propose-title": "$1 {{GENDER:$1|הציע|הציעה}} יישום OAuth חדש בשם $2",
