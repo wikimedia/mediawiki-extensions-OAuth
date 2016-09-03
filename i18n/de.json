@@ -255,7 +255,7 @@
 	"echo-category-title-oauth-owner": "OAuth-Entwicklung",
 	"echo-pref-tooltip-oauth-owner": "Benachrichtige mich über Ereignisse bezüglich OAuth-Anwendungen, die ich erstellt habe.",
 	"echo-category-title-oauth-admin": "OAuth-Verwaltung",
-	"echo-pref-tooltip-oauth-admin": "Benachrichtige mich über Ereignisse bezüglich der Überprüfung von OAuth-Anwendungen",
+	"echo-pref-tooltip-oauth-admin": "Benachrichtige mich über Ereignisse bezüglich der Überprüfung von OAuth-Anwendungen.",
 	"notification-oauth-app-propose-title": "$1 {{GENDER:$1|plante}} die neue OAuth-Anwendung $2",
 	"notification-oauth-app-update-title": "$1 {{GENDER:$2|aktualisierte}} die OAuth-Anwendung $2",
 	"notification-oauth-app-approve-title": "$1 {{GENDER:$2|bestätigte}} {{GENDER:$3|deine}} OAuth-Anwendung ($2)",

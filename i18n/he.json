@@ -255,7 +255,7 @@
 	"echo-category-title-oauth-owner": "פיתוח OAuth",
 	"echo-pref-tooltip-oauth-owner": "להודיע לי על אירועים הקשורים לפיתוח יישומי OAuth שיצרתי.",
 	"echo-category-title-oauth-admin": "מנהל OAuth",
-	"echo-pref-tooltip-oauth-admin": "להודיע לי על אירועים שקשורים לסקירת יישומי OAuth",
+	"echo-pref-tooltip-oauth-admin": "להודיע לי על אירועים הקשורים לסקירת יישומי OAuth.",
 	"notification-oauth-app-propose-title": "$1 {{GENDER:$1|הציע|הציעה}} יישום OAuth חדש בשם $2",
 	"notification-oauth-app-update-title": "$1 {{GENDER:$2|עדכן|עדכנה}} את יישום ה־OAuth בשם $2",
 	"notification-oauth-app-approve-title": "$1 {{GENDER:$2|אישר|אישרה}} את יישום ה־OAuth {{GENDER:$3|שלך}} ($2)",
