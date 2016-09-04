@@ -150,6 +150,8 @@
 	"mwoauth-grants-heading": "विनंती केलेल्या परवानग्या:",
 	"mwoauth-grants-nogrants": "या अनुप्रयुक्तिने काहीच परवानग्या मागीतल्या नाहीत.",
 	"mwoauth-listgrants-extra-summary": "== ओऑथ-विशिष्ट अनुदाने ==\n\nही अतिरिक्त अनुदाने ओऑथ ग्राहकांना लागू आहेत.",
+	"echo-pref-tooltip-oauth-owner": "मी तयार केलेल्या ओऑथ अनुदानांच्या संबंधित उपक्रमांबद्दल मला सूचित करा.",
+	"echo-pref-tooltip-oauth-admin": "मी तयार केलेल्या ओऑथ अनुदानांच्या पुनरावलोकनाशी  संबंधित उपक्रमांबद्दल मला सूचित करा.",
 	"notification-oauth-app-disable-primary-link": "ऐप बघा",
 	"notification-oauth-app-body": "कारण: $1"
 }
