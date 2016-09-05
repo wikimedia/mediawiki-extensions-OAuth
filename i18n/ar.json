@@ -6,7 +6,8 @@
 			"Tarawneh",
 			"مشعل الحربي",
 			"محمد أحمد عبد الفتاح",
-			"Meno25"
+			"Meno25",
+			"Moud hosny"
 		]
 	},
 	"mwoauth-verified": "تم السماح لهذا التطبيق بالولوج الى الميدياويكي نيابة عنك.\n\nلإتمام هذه العملية، الرجاء نقل رمز التأكيد الى التطبيق : '''$1'''",
@@ -42,6 +43,7 @@
 	"mwoauthmanagemygrants-showlist": "قائمة التطبيقات المتصلة",
 	"mwoauthmanagemygrants-description": "الوصف",
 	"mwoauthmanagemygrants-confirm-legend": "التحكم بالتطبيق المرتبط",
+	"echo-pref-tooltip-oauth-owner": "اخطرني بالأحداث المتعلقة بتطبيقات OAuth التي قمت بإنشاؤها.",
 	"notification-oauth-app-propose-primary-link": "مراجعة التطبيق",
 	"notification-oauth-app-update-primary-link": "مراجعة التطبيق",
 	"notification-oauth-app-reject-primary-link": "اعرض التطبيق",

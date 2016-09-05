@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Papuass"
+		]
+	},
+	"oauthlistconsumers": "OAuth lietotņu saraksts",
+	"mwoauthlistconsumers-legend": "Pārlūkot OAuth lietotnes",
+	"oauthmanagemygrants": "Pārvaldīt piesaistītās lietotnes",
+	"mwoauthmanagemygrants-none": "Tavam kontam nav piesaistītu lietotņu.",
+	"mwoauthmanagemygrants-wikiallowed": "Atļauts projektā:"
+}

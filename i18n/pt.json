@@ -141,7 +141,7 @@
 	"right-mwoauthviewprivate": "Ver dados privados do OAuth",
 	"mwoauth-tag-reserved": "O uso de etiquetas iniciadas por <code>OAuth CID:</code> está reservada para o OAuth.",
 	"echo-category-title-oauth-owner": "Desenvolvimento de OAuth",
-	"echo-pref-tooltip-oauth-owner": "Notifique-me sobre eventos relacionados com aplicações OAuth que tenha criado",
+	"echo-pref-tooltip-oauth-owner": "Notifique-me sobre eventos relacionados com aplicações OAuth que tenha criado.",
 	"echo-category-title-oauth-admin": "Administrador de OAuth",
 	"echo-pref-tooltip-oauth-admin": "Notifique-me sobre eventos relacionados à revisão de aplicações OAuth.",
 	"notification-oauth-app-propose-title": "$1 {{GENDER:$1|propôs}} uma nova aplicação OAuth: $2",
