@@ -11,11 +11,12 @@
 			"Mjbmr",
 			"Dalba",
 			"Mardetanha",
-			"Hosseinblue"
+			"Hosseinblue",
+			"Huji"
 		]
 	},
 	"oauth": "OAuth",
-	"mwoauth-desc": "استفاده از رابط برنامه‌نویسی هویت‌سنجی OAuth ۱.۰ اجازه می‌دهد",
+	"mwoauth-desc": "اجازهٔ استفاده از رابط برنامه‌نویسی هویت‌سنجی OAuth ۱.۰ را می‌دهد",
 	"mwoauth-verified": "این برنامه اجازهٔ دسترسی به مدیاویکی از طرف شما را دارد.\n\nبرای تکمیل این فرایند، مقدار تأیید را برای برنامه فراهم کنید: '''$1'''",
 	"mwoauth-missing-field": "مقدار ناموجود برای مورد \"$1\"",
 	"mwoauth-invalid-field": "مقدار نامعتبر برای مورد \"$1\"",
@@ -37,7 +38,6 @@
 	"mwoauth-consumer-required-grant": "قابل استفاده برای مصرف‌کننده",
 	"mwoauth-consumer-wiki": "پروژه‌های قابل اجرا:",
 	"mwoauth-consumer-wiki-thiswiki": "پروژه فعلی ( $1 )",
-	"mwoauth-consumer-wiki-other": "پروژه‌های خاص",
 	"mwoauth-consumer-restrictions": "محدودیت استفاده از:",
 	"mwoauth-consumer-restrictions-json": "محدودیت استفاده از  (JSON):",
 	"mwoauth-consumer-rsakey": "کلید عمومی RSA:",
