@@ -266,22 +266,14 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), [], $dbw );
 			$form = \HTMLForm::factory( 'ooui',
 				$control->registerValidators( [
-					'nameShown' => [
+					'info' => [
 						'type' => 'info',
-						'label-message' => 'mwoauth-consumer-name',
-						'size' => '45',
-						'default' => $cmr->get( 'name' )
-					],
-					'version' => [
-						'type' => 'info',
-						'label-message' => 'mwoauth-consumer-version',
-						'default' => $cmr->get( 'version' )
-					],
-					'consumerKeyShown' => [
-						'type' => 'info',
-						'label-message' => 'mwoauth-consumer-key',
-						'size' => '40',
-						'default' => $cmr->get( 'consumerKey' )
+						'raw' => true,
+						'default' => MWOAuthUIUtils::generateInfoTable( [
+							'mwoauth-consumer-name' => $cmr->get( 'name' ),
+							'mwoauth-consumer-version' => $cmr->get( 'version' ),
+							'mwoauth-consumer-key' => $cmr->get( 'consumerKey' ),
+						], $this->getContext() ),
 					],
 					'restrictions' => [
 						'type' => 'textarea',

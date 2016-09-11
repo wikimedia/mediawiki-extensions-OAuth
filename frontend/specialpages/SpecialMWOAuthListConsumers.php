@@ -20,6 +20,7 @@ namespace MediaWiki\Extensions\OAuth;
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
+use OOUI\HtmlSnippet;
 
 /**
  * Special page for listing the queue of consumer requests and managing
@@ -90,39 +91,21 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 		$stageKey = MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )];
 		$data = [
-			'mwoauthlistconsumers-name' => htmlspecialchars(
-				$cmr->get( 'name' )
-			),
-			'mwoauthlistconsumers-version' => htmlspecialchars(
-				$cmr->get( 'version' )
-			),
-			'mwoauthlistconsumers-user' => htmlspecialchars(
-				$cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' )
-			),
-			'mwoauthlistconsumers-status' => htmlspecialchars(
-				wfMessage( "mwoauthlistconsumers-status-$stageKey" )
-			),
-			'mwoauthlistconsumers-description' => htmlspecialchars(
-				$cmr->get( 'description' )
-			),
-			'mwoauthlistconsumers-wiki' => htmlspecialchars(
-				$cmr->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
-			),
-			'mwoauthlistconsumers-callbackurl' => htmlspecialchars(
-				$cmr->get( 'callbackUrl' )
-			),
-			'mwoauthlistconsumers-callbackisprefix' => htmlspecialchars(
-				$cmr->get( 'callbackIsPrefix' )
-			),
-			'mwoauthlistconsumers-grants' => $out->parseInline( $s ),
+			'mwoauthlistconsumers-name' => $cmr->get( 'name' ),
+			'mwoauthlistconsumers-version' => $cmr->get( 'version' ),
+			'mwoauthlistconsumers-user' => $cmr->get( 'userId',
+				[ MWOAuthUtils::class, 'getCentralUserNameFromId' ] ),
+			'mwoauthlistconsumers-status' => wfMessage( "mwoauthlistconsumers-status-$stageKey" ),
+			'mwoauthlistconsumers-description' => $cmr->get( 'description' ),
+			'mwoauthlistconsumers-wiki' => $cmr->get( 'wiki',
+				[ MWOAuthUtils::class, 'getWikiIdName' ] ),
+			'mwoauthlistconsumers-callbackurl' => $cmr->get( 'callbackUrl' ),
+			'mwoauthlistconsumers-callbackisprefix' => $cmr->get( 'callbackIsPrefix' ) ?
+				$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
+			'mwoauthlistconsumers-grants' => new HtmlSnippet( $out->parseInline( $s ) ),
 		];
 
-		$r = '';
-		foreach ( $data as $msg => $encValue ) {
-			$r .= '<p><b>' . $this->msg( $msg )->escaped() . '</b>: ' . $encValue . '</p>';
-		}
-
-		$out->addHtml( $r );
+		$out->addHTML( MWOAuthUIUtils::generateInfoTable( $data, $this->getContext() ) );
 
 		if ( MWOAuthUtils::isCentralWiki() ) {
 			// Show all of the status updates

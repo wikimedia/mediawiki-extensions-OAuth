@@ -20,6 +20,7 @@ namespace MediaWiki\Extensions\OAuth;
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
+use OOUI\HtmlSnippet;
 
 /**
  * Special page for listing the queue of consumer requests and managing
@@ -250,99 +251,48 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$restrictions = $cmr->get( 'restrictions' );
 		$form = \HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
-				'consumerKeyShown' => [
+				'info' => [
 					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-key',
-					'default' => $cmr->get( 'consumerKey' ),
-				],
-				'name' => [
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-name',
-					'default' => $cmr->get( 'name', function( $s ) {
-						$link = \Linker::linkKnown(
-							\SpecialPage::getTitleFor( 'OAuthListConsumers' ),
-							wfMessage( 'mwoauthmanageconsumers-search-name' )->escaped(),
-							[],
-							[ 'name' => $s ]
-						);
-						return htmlspecialchars( $s ) . ' ' .
-							wfMessage( 'parentheses' )->rawParams( $link )->escaped();
-					} ),
-					'raw' => true
-				],
-				'version' => [
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-version',
-					'default' => $cmr->get( 'version' )
-				],
-				'user' => [
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-user',
-					'default' => $ownerLink,
-					'raw' => true
-				],
-				'description' => [
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-description',
-					'default' => $cmr->get( 'description' ),
-					'rows' => 5
-				],
-				'ownerOnly' => [
-					'type' => $ownerOnly ? 'info' : 'hidden',
-					'label-message' => 'mwoauth-consumer-owner-only-label',
-					'default' => wfMessage( 'mwoauth-consumer-owner-only', $owner )->escaped(),
-				],
-				'callbackUrl' => [
-					'type' => $ownerOnly ? 'hidden' : 'info',
-					'label-message' => 'mwoauth-consumer-callbackurl',
-					'default' => $cmr->get( 'callbackUrl' ),
-				],
-				'callbackIsPrefix' => [
-					'type' => $ownerOnly ? 'hidden' : 'info',
-					'label-message' => 'mwoauth-consumer-callbackisprefix',
-					'default' => $cmr->get( 'callbackIsPrefix' )
-				],
-				'grants'  => [
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-grantsneeded',
-					'default' => $cmr->get( 'grants', function( $grants ) use ( $lang ) {
-						return $lang->semicolonList( \MWGrants::grantNames( $grants, $lang ) );
-					} ),
-					'rows' => 5
-				],
-				'email' => [
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-email',
-					'default' => $cmr->get( 'email' )
-				],
-				'wiki' => [
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-wiki',
-					'default' => $cmr->get( 'wiki' )
-				],
-				'restrictions' => [
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-restrictions-json',
-					'default' => $restrictions instanceof \MWRestrictions ?
-						$restrictions->toJson( true ) : $restrictions,
-					'rows' => 5
-				],
-				'rsaKey' => [
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-rsakey',
-					'default' => $cmr->get( 'rsaKey' ),
-					'rows' => 5
-				],
-				'stage' => [
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-stage',
-					// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
-					// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
-					// mwoauth-consumer-stage-disabled
-					'default' => $cmr->get( 'deleted' )
-						? $this->msg( 'mwoauth-consumer-stage-suppressed' )
-						: $this->msg( 'mwoauth-consumer-stage-' .
-							MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )] )
+					'raw' => true,
+					'default' => MWOAuthUIUtils::generateInfoTable( [
+						'mwoauth-consumer-key' => $cmr->get( 'consumerKey' ),
+						'mwoauth-consumer-name' => new HtmlSnippet( $cmr->get( 'name', function( $s ) {
+							$link = \Linker::linkKnown(
+								\SpecialPage::getTitleFor( 'OAuthListConsumers' ),
+								$this->msg( 'mwoauthmanageconsumers-search-name' )->escaped(),
+								[],
+								[ 'name' => $s ]
+							);
+							return htmlspecialchars( $s ) . ' ' .
+								   $this->msg( 'parentheses' )->rawParams( $link )->escaped();
+						} ) ),
+						'mwoauth-consumer-version' => $cmr->get( 'version' ),
+						'mwoauth-consumer-user' => new HtmlSnippet( $ownerLink ),
+						'mwoauth-consumer-description' => $cmr->get( 'description' ),
+						'mwoauth-consumer-owner-only-label' => $ownerOnly ?
+							$this->msg( 'mwoauth-consumer-owner-only', $owner ) : null,
+						'mwoauth-consumer-callbackurl' => $ownerOnly ?
+							null : $cmr->get( 'callbackUrl' ),
+						'mwoauth-consumer-callbackisprefix' => $ownerOnly ?
+							null : ( $cmr->get( 'callbackIsPrefix' ) ?
+								$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ) ),
+						'mwoauth-consumer-grantsneeded' =>  $cmr->get( 'grants',
+							function( $grants ) use ( $lang ) {
+								return $lang->semicolonList( \MWGrants::grantNames( $grants, $lang ) );
+							} ),
+						'mwoauth-consumer-email' => $cmr->get( 'email' ),
+						'mwoauth-consumer-wiki' => $cmr->get( 'wiki' ),
+						'mwoauth-consumer-restrictions-json' => $restrictions instanceof \MWRestrictions ?
+							$restrictions->toJson( true ) : $restrictions,
+						'mwoauth-consumer-rsakey' => $cmr->get( 'rsaKey' ),
+						// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
+						// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
+						// mwoauth-consumer-stage-disabled
+						'mwoauth-consumer-stage' => $cmr->get( 'deleted' )
+							? $this->msg( 'mwoauth-consumer-stage-suppressed' )
+							: $this->msg( 'mwoauth-consumer-stage-' .
+								MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )] ),
+					], $this->getContext() ),
 				],
 				'action' => [
 					'type' => 'radio',

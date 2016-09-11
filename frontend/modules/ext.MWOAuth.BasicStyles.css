@@ -46,3 +46,15 @@
 span.mw-grantgroup {
 	font-weight: bold;
 }
+
+.mw-htmlform-field-HTMLInfoField .mw-mwoauth-infotable dt,
+.mw-mwoauth-infotable span.mw-grantgroup {
+	font-weight: normal;
+}
+/* grant descriptions inside an infotable */
+.mw-mwoauth-infotable dl {
+	margin-top: 0;
+}
+dl.mw-mwoauth-infotable dl dd {
+	font-size: 0.9em;
+}

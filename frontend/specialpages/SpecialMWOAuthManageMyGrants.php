@@ -144,28 +144,19 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), $data, $dbr );
 		$form = \HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
-				'name' => [
+				'info' => [
 					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-name',
-					'default' => $cmr->get( 'name',
-						function( $s ) use ( $cmr ) {
+					'raw' => true,
+					'default' => MWOAuthUIUtils::generateInfoTable( [
+						'mwoauth-consumer-name' => $cmr->get( 'name', function( $s ) use ( $cmr ) {
 							return $s . ' [' . $cmr->get( 'version' ) . ']';
-	     } )
-				],
-				'user' => [
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-user',
-					'default' => $cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' )
-				],
-				'description' => [
-					'type' => 'info',
-					'label-message' => 'mwoauth-consumer-description',
-					'default' => $cmr->get( 'description' ),
-				],
-				'usedOnWiki' => [
-					'type' => 'info',
-					'label-message' => 'mwoauthmanagemygrants-wikiallowed',
-					'default' => $cmra->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
+						} ),
+						'mwoauth-consumer-user' => $cmr->get( 'userId',
+							[ MWOAuthUtils::class, 'getCentralUserNameFromId'] ),
+						'mwoauth-consumer-description' => $cmr->get( 'description' ),
+						'mwoauthmanagemygrants-wikiallowed' => $cmra->get( 'wiki',
+							[ MWOAuthUtils::class, 'getWikiIdName' ] ),
+					], $this->getContext() ),
 				],
 				'grants'  => [
 					'type' => 'checkmatrix',
