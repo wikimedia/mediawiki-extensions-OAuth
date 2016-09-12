@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hugo.arg"
+			"Hugo.arg",
+			"Eitvys200"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Susieti programiniai įskiepiai:",
-	"oauthmanagemygrants": "Valdyti pajungtus įskiepius"
+	"oauthmanagemygrants": "Valdyti pajungtus įskiepius",
+	"echo-pref-tooltip-oauth-owner": "Pranešti man apie įvykius, susijusius su OAuth paraiškomis, kurias aš sukūriau.",
+	"echo-pref-tooltip-oauth-admin": "Pranešti man apie įvykius, susijusius su OAuth paraiškų peržiūromis."
 }
