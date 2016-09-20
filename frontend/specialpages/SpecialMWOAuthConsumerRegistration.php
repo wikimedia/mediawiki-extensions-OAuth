@@ -20,6 +20,7 @@ namespace MediaWiki\Extensions\OAuth;
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
+use User;
 
 /**
  * Page that has registration request form and consumer update form
@@ -33,8 +34,18 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		return true;
 	}
 
+	public function userCanExecute( User $user ) {
+		return $user->isEmailConfirmed();
+	}
+
+	function displayRestrictionError() {
+		throw new \PermissionsError( null, ['mwoauthconsumerregistration-need-emailconfirmed'] );
+	}
+
 	public function execute( $par ) {
 		global $wgMWOAuthSecureTokenTransfer, $wgMWOAuthReadOnly;
+
+		$this->checkPermissions();
 
 		$request = $this->getRequest();
 		$user = $this->getUser();
@@ -127,7 +138,10 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 					'email' => [
 						'type' => 'text',
 						'label-message' => 'mwoauth-consumer-email',
-						'required' => true
+						'required' => true,
+						'readonly' => true,
+						'default' => $user->getEmail(),
+						'help-message' => 'mwoauth-consumer-email-help',
 					],
 					'wiki' => [
 						'type' => $allWikis ? 'combobox' : 'select',
@@ -187,6 +201,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 					'rsaKey' => [
 						'type' => 'textarea',
 						'label-message' => 'mwoauth-consumer-rsakey',
+						'help-message' => 'mwoauth-consumer-rsakey-help',
 						'required' => false,
 						'default' => '',
 						'rows' => 5
