@@ -180,11 +180,9 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'validation-callback' => null // different format
 					],
 					'restrictions' => [
-						'type' => 'textarea',
-						'label-message' => 'mwoauth-consumer-restrictions-json',
+						'class' => 'HTMLRestrictionsField',
 						'required' => true,
-						'default' => \MWRestrictions::newDefault()->toJson( true ),
-						'rows' => 5
+						'default' => \MWRestrictions::newDefault(),
 					],
 					'rsaKey' => [
 						'type' => 'textarea',
@@ -276,11 +274,9 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						], $this->getContext() ),
 					],
 					'restrictions' => [
-						'type' => 'textarea',
-						'label-message' => 'mwoauth-consumer-restrictions-json',
+						'class' => 'HTMLRestrictionsField',
 						'required' => true,
-						'default' => $cmr->getDAO()->get( 'restrictions' )->toJson( true ),
-						'rows' => 5
+						'default' => $cmr->getDAO()->get( 'restrictions' ),
 					],
 					'resetSecret' => [
 						'type' => 'check',
