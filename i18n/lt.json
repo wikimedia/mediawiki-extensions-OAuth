@@ -7,7 +7,7 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "Susieti programiniai įskiepiai:",
-	"oauthmanagemygrants": "Susietų programų valdymas",
+	"oauthmanagemygrants": "Tvarkyti susietas programas",
 	"echo-pref-tooltip-oauth-owner": "Pranešti man apie įvykius, susijusius su OAuth paraiškomis, kurias aš sukūriau.",
 	"echo-pref-tooltip-oauth-admin": "Pranešti man apie įvykius, susijusius su OAuth paraiškų peržiūromis."
 }
