@@ -32,6 +32,10 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		parent::__construct( 'OAuthManageMyGrants', 'mwoauthmanagemygrants' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function execute( $par ) {
 		global $wgMWOAuthReadOnly;
 

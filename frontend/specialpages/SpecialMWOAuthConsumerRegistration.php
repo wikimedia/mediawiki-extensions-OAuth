@@ -29,6 +29,10 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		parent::__construct( 'OAuthConsumerRegistration' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function execute( $par ) {
 		global $wgMWOAuthSecureTokenTransfer, $wgMWOAuthReadOnly;
 
