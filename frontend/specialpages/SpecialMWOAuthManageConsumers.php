@@ -49,6 +49,10 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		parent::__construct( 'OAuthManageConsumers', 'mwoauthmanageconsumer' );
 	}
 
+	public function doesWrites() {
+		return true;
+	}
+
 	public function execute( $par ) {
 		global $wgMWOAuthReadOnly;
 
