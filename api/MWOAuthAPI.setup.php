@@ -283,12 +283,7 @@ class MWOAuthAPISetup {
 			$consumerId = $access->get( 'consumerId' );
 			$consumer = MWOAuthConsumer::newFromId( $dbr, $consumerId );
 			if ( !$consumer->get( 'ownerOnly' ) ) {
-				\ChangeTags::addTags(
-					"OAuth CID: $consumerId",
-					$rc->mAttribs['rc_id'],
-					$rc->mAttribs['rc_this_oldid'],
-					$rc->mAttribs['rc_logid']
-				);
+				$rc->addTags( "OAuth CID: $consumerId" );
 			}
 		}
 		return true;
