@@ -397,7 +397,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$form->suppressDefaultSubmit();
 		$form->addButton( 'accept',
 			wfMessage( 'mwoauth-form-button-approve' )->text(), null,
-			array( 'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-constructive',
+			array( 'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-progressive',
 				'id' => 'mw-mwoauth-accept' ) );
 		$form->addButton( 'cancel',
 			wfMessage( 'mwoauth-form-button-cancel' )->text(), null,

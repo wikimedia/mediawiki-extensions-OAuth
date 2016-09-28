@@ -227,7 +227,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 			$form->addButton( 'update',
 				$this->msg( 'mwoauthmanagemygrants-update' )->text(),
 				null,
-				array( 'class' => 'mw-ui-button mw-ui-primary' )
+				array( 'class' => 'mw-ui-button mw-ui-progressive' )
 			);
 		}
 		$form->addPreText(
