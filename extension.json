@@ -131,7 +131,8 @@
 		"BeforeCreateEchoEvent": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onBeforeCreateEchoEvent",
 		"CentralAuthAbortCentralAuthToken": "MediaWiki\\Extensions\\OAuth\\MWOAuthAPISetup::onCentralAuthAbortCentralAuthToken",
 		"TestCanonicalRedirect": "MediaWiki\\Extensions\\OAuth\\MWOAuthAPISetup::onTestCanonicalRedirect",
-		"SetupAfterCache": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onSetupAfterCache"
+		"SetupAfterCache": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onSetupAfterCache",
+		"ApiRsdServiceApis": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onApiRsdServiceApis"
 	},
 	"config": {
 		"MWOAuthCentralWiki": {

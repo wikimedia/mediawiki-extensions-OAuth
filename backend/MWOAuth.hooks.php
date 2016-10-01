@@ -174,4 +174,8 @@ class MWOAuthHooks {
 		}
 		return true;
 	}
+
+	public static function onApiRsdServiceApis( array &$apis ) {
+		$apis['MediaWiki']['settings']['OAuth'] = true;
+	}
 }
