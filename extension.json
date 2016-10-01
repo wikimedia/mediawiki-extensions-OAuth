@@ -125,7 +125,6 @@
 		"MergeAccountFromTo": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onMergeAccountFromTo",
 		"CentralAuthGlobalUserMerged": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onCentralAuthGlobalUserMerged",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extensions\\OAuth\\MWOAuthUpdaterHooks::addSchemaUpdates",
-		"UnitTestsList": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onUnitTestsList",
 		"GetPreferences": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onGetPreferences",
 		"MessagesPreLoad": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onMessagesPreLoad",
 		"SpecialPageAfterExecute": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onSpecialPageAfterExecute",
