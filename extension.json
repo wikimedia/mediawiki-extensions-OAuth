@@ -78,6 +78,8 @@
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthConsumerAcceptance": "backend/MWOAuthConsumerAcceptance.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthRequest": "backend/MWOAuthRequest.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthDAOAccessControl": "control/MWOAuthDAOAccessControl.php",
+		"MediaWiki\\Extensions\\OAuth\\MWOAuthConsumerAccessControl": "control/MWOAuthConsumerAccessControl.php",
+		"MediaWiki\\Extensions\\OAuth\\MWOAuthConsumerAcceptanceAccessControl": "control/MWOAuthConsumerAcceptanceAccessControl.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthSubmitControl": "control/MWOAuthSubmitControl.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthConsumerSubmitControl": "control/MWOAuthConsumerSubmitControl.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthConsumerAcceptanceSubmitControl": "control/MWOAuthConsumerAcceptanceSubmitControl.php",

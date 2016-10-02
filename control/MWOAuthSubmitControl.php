@@ -27,7 +27,7 @@ namespace MediaWiki\Extensions\OAuth;
 abstract class MWOAuthSubmitControl extends \ContextSource {
 	/** @var \RequestContext */
 	protected $context;
-	/** @var Array (field name => value) */
+	/** @var array (field name => value) */
 	protected $vals;
 
 	/**
@@ -156,7 +156,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	 * (which return a boolean) for each action that this controller handles.
 	 * When functions are used, they take (field value, field/value map) as params.
 	 *
-	 * @return Array (action => (field name => validation regex or function))
+	 * @return array (action => (field name => validation regex or function))
 	 */
 	abstract protected function getRequiredFields();
 

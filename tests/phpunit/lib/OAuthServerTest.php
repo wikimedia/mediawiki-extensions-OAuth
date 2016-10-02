@@ -102,7 +102,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @expectedException MediaWiki\Extensions\OAuth\OAuthException
+	 * @expectedException \MediaWiki\Extensions\OAuth\OAuthException
 	 * @dataProvider requiredParameterProvider
 	 */
 	public function testRejectRequestWithMissingParameters( $required ) {

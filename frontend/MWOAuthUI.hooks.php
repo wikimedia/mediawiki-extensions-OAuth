@@ -74,25 +74,21 @@ class MWOAuthUIHooks {
 		}
 
 		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-		$cmr = MWOAuthDAOAccessControl::wrap(
+		$cmrAc = MWOAuthConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromId( $dbr, $m[1] ), \RequestContext::getMain()
 		);
-		if ( !$cmr ) {
+		if ( !$cmrAc ) {
 			// Invalid consumer, skip it
 			return true;
 		}
 
 		if ( $m[2] ) {
-			$message = $cmr->escapeForWikitext( $cmr->get( 'description' ) );
+			$message = $cmrAc->escapeForWikitext( $cmrAc->getDescription() );
 		} else {
 			$target = \SpecialPage::getTitleFor( 'OAuthListConsumers',
-				'view/' . $cmr->get( 'consumerKey' )
+				'view/' . $cmrAc->getConsumerKey()
 			);
-			$encName = wfEscapeWikiText( $cmr->escapeForWikitext( $cmr->get( 'name',
-				function ( $s ) use ( $cmr ) {
-					return $s . ' [' . $cmr->get( 'version' ) . ']';
-				}
-			) ) );
+			$encName = $cmrAc->escapeForWikitext( $cmrAc->getNameAndVersion() );
 			$message = "[[$target|$encName]]";
 		}
 		return false;

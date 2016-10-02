@@ -23,12 +23,13 @@ namespace MediaWiki\Extensions\OAuth;
 
 use Firebase\JWT\JWT;
 use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
 
 /**
  * Page that handles OAuth consumer authorization and token exchange
  */
 class SpecialMWOAuth extends \UnlistedSpecialPage {
-	/** @var \\Psr\\Log\\LoggerInterface */
+	/** @var LoggerInterface */
 	protected $logger;
 
 	public function __construct() {
@@ -175,7 +176,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					$wiki = wfWikiID();
 					$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 					$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $token->key );
-					$localUser = MWOAuthUtils::getLocalUserFromCentralId( $access->get( 'userId' ) );
+					$localUser = MWOAuthUtils::getLocalUserFromCentralId( $access->getUserId() );
 					if ( !$localUser || !$localUser->isLoggedIn() ) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-invalid-user', [
 							\Message::rawParam( \Linker::makeExternalLink(
@@ -190,14 +191,14 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-blocked-user' );
 					}
 					// Access token is for this wiki
-					if ( $access->get( 'wiki' ) !== '*' && $access->get( 'wiki' ) !== $wiki ) {
+					if ( $access->getWiki() !== '*' && $access->getWiki() !== $wiki ) {
 						throw new MWOAuthException(
 							'mwoauth-invalid-authorization-wrong-wiki',
 							[ $wiki ]
 						);
 					} elseif ( !$consumer->isUsableBy( $localUser ) ) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-not-approved',
-							$consumer->get( 'name' ) );
+							$consumer->getName() );
 					}
 
 					// We know the identity of the user who granted the authorization
@@ -206,7 +207,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 				default:
 					$format = $request->getVal( 'format', 'html' );
 					$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-					$cmr = MWOAuthDAOAccessControl::wrap(
+					$cmrAc = MWOAuthConsumerAccessControl::wrap(
 						MWOAuthConsumer::newFromKey(
 							$dbr,
 							$request->getVal( 'oauth_consumer_key', null )
@@ -214,7 +215,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 						$this->getContext()
 					);
 
-					if ( !$cmr ) {
+					if ( !$cmrAc || !$cmrAc->userCanAccess( 'userId' ) ) {
 						$this->showError(
 							$this->msg( 'mwoauth-bad-request-invalid-action',
 								\Linker::makeExternalLink(
@@ -226,8 +227,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 							$format
 						);
 					} else {
-						$owner = MWOAuthUtils::getCentralUserNameFromId(
-							$cmr->get( 'userId' ), $this->getUser() );
+						$owner = $cmrAc->getUserName( $this->getUser() );
 						$this->showError(
 							$this->msg( 'mwoauth-bad-request-invalid-action-contact',
 								MWOAuthUtils::getCentralUserTalk( $owner )
@@ -260,18 +260,18 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$request = $this->getRequest();
 		$consumerKey = $request->getVal( 'consumerKey', $request->getVal( 'oauth_consumer_key' ) );
 		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-		$cmr = MWOAuthDAOAccessControl::wrap(
+		$cmrAc = MWOAuthConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
 			$this->getContext()
 		);
-		if ( !$cmr ) {
+		if ( !$cmrAc ) {
 			throw new MWOAuthException( 'mwoauth-invalid-consumer-key' );
 		}
 
 		$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
 		$this->getOutput()->addWikiMsg(
 			'mwoauth-acceptance-cancelled',
-			$cmr->get( 'name' )
+			$cmrAc->getName()
 		);
 		$this->getOutput()->addReturnTo( \Title::newMainPage() );
 	}
@@ -280,9 +280,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	 * Make statements about the user, and sign the json with
 	 * a key shared with the Consumer.
 	 * @param \User $user the user who is the subject of this request
-	 * @param OAuthConsumer $consumer
+	 * @param MWOAuthConsumer $consumer
 	 * @param MWOAuthRequest $request
-	 * @param string $format
+	 * @param string $format the format of the response: raw, json, or html
 	 * @param MWOAuthConsumerAcceptance $access
 	 */
 	protected function outputJWT( $user, $consumer, $request, $format, $access ) {
@@ -315,7 +315,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$statement['registered'] = $user->getRegistration();
 			$statement['groups'] = $user->getEffectiveGroups();
 			$statement['rights'] = array_values( array_unique( $user->getRights() ) );
-			$statement['grants'] = $access->get( 'grants' );
+			$statement['grants'] = $access->getGrants();
 
 			if ( in_array( 'mwoauth-authonlyprivate', $statement['grants'] ) ||
 				in_array( 'viewmyprivateinfo', \MWGrants::getGrantRights( $statement['grants'] ) )
@@ -335,7 +335,6 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
 
 		$user = $this->getUser();
-		$lang = $this->getLanguage();
 
 		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA ); // @TODO: lazy handle
 		$oauthServer = MWOAuthUtils::newMWOAuthServer();
@@ -344,11 +343,11 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$consumerKey = $oauthServer->getConsumerKey( $requestToken );
 		}
 
-		$cmr = MWOAuthDAOAccessControl::wrap(
+		$cmrAc = MWOAuthConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
 			$this->getContext()
 		);
-		if ( !$cmr ) {
+		if ( !$cmrAc || !$cmrAc->userCanAccess( [ 'name', 'userId', 'grants' ] ) ) {
 			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key', [
 				\Message::rawParam( \Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006',
@@ -356,30 +355,26 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					true
 				) )
 			] );
-		} elseif ( !$cmr->getDAO()->isUsableBy( $user ) ) {
+		} elseif ( !$cmrAc->getDAO()->isUsableBy( $user ) ) {
 			throw new MWOAuthException(
 				'mwoauthserver-bad-consumer',
 				[
-					$cmr->get( 'name' ),
-					MWOAuthUtils::getCentralUserTalk(
-						MWOAuthUtils::getCentralUserNameFromId( $cmr->get( 'userId' ) )
-					)
+					$cmrAc->getName(),
+					MWOAuthUtils::getCentralUserTalk( $cmrAc->getUserName() ),
 				]
 			);
 		}
 
 		// Check if this user has authorized grants for this consumer previously
-		$existing = $oauthServer->getCurrentAuthorization( $user, $cmr->getDAO(), wfWikiId() );
+		$existing = $oauthServer->getCurrentAuthorization( $user, $cmrAc->getDAO(), wfWikiID() );
 
 		// If only authentication was requested, and the existing authorization
 		// matches, and the only grants are 'mwoauth-authonly' or 'mwoauth-authonlyprivate',
 		// then don't bother prompting the user about it.
 		if ( $existing && $authenticate &&
-			$existing->get( 'wiki' ) === $cmr->get( 'wiki' ) &&
-			$existing->get( 'grants' ) === $cmr->get( 'grants' ) &&
-			!array_diff(
-				$existing->get( 'grants' ), [ 'mwoauth-authonly', 'mwoauth-authonlyprivate' ]
-			)
+			$existing->getWiki() === $cmrAc->getDAO()->getWiki() &&
+			$existing->getGrants() === $cmrAc->getDAO()->getGrants() &&
+			 !array_diff( $existing->getGrants(), [ 'mwoauth-authonly', 'mwoauth-authonlyprivate' ] )
 		) {
 			$callback = $oauthServer->authorize(
 				$consumerKey,
@@ -441,20 +436,18 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$msgKey = 'mwoauth-form-description';
 		$params = [
 			$this->getUser()->getName(),
-			$cmr->get( 'name' ),
-			$cmr->get( 'userId',
-				'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' ),
+			$cmrAc->getName(),
+			$cmrAc->getUserName(),
 		];
-		if ( $cmr->get( 'wiki' ) === '*' ) {
+		if ( $cmrAc->getWiki() === '*' ) {
 			$msgKey .= '-allwikis';
 		} else {
 			$msgKey .= '-onewiki';
-			$params[] = $cmr->get( 'wiki',
-				'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' );
+			$params[] = $cmrAc->getWikiName();
 		}
-		$grantsText = \MWGrants::getGrantsWikiText( $cmr->get( 'grants' ), $this->getLanguage() );
+		$grantsText = \MWGrants::getGrantsWikiText( $cmrAc->getGrants(), $this->getLanguage() );
 		if ( $grantsText === "\n" ) {
-			if ( in_array( 'mwoauth-authonlyprivate', $cmr->get( 'grants' ), true ) ) {
+			if ( in_array( 'mwoauth-authonlyprivate', $cmrAc->getGrants(), true ) ) {
 				$msgKey .= '-privateinfo';
 			} else {
 				$msgKey .= '-nogrants';
@@ -476,11 +469,11 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 		$form->addFooterText( $this->getSkin()->privacyLink() );
 
-		$this->getOutput()->addHtml(
+		$this->getOutput()->addHTML(
 			'<div id="mw-mwoauth-authorize-dialog" class="mw-ui-container">' );
 		$status = $form->show();
-		$this->getOutput()->addHtml( '</div>' );
-		if ( $status instanceof \Status && $status->isOk() ) {
+		$this->getOutput()->addHTML( '</div>' );
+		if ( $status instanceof \Status && $status->isOK() ) {
 			// Redirect to callback url
 			$this->getOutput()->redirect( $status->value['result']['callbackUrl'] );
 		}
@@ -561,7 +554,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			}
 			print $data;
 		} elseif ( $format == 'html' ) { // html
-			$out->addHtml( $data );
+			$out->addHTML( $data );
 		}
 	}
 }

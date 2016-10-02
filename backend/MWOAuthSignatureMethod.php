@@ -3,9 +3,9 @@
 namespace MediaWiki\Extensions\OAuth;
 
 class MWOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
-	/** OAuthDataStore */
+	/** @var MWOAuthDataStore */
 	protected $store;
-	/** PEM encoded RSA private key **/
+	/** @var string PEM encoded RSA private key **/
 	private $privateKey;
 
 	/**

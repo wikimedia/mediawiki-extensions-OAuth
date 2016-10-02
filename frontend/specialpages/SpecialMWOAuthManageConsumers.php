@@ -77,7 +77,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 		// Format is Special:OAuthManageConsumers[/<stage>|/<consumer key>]
 		// B/C format is Special:OAuthManageConsumers/<stage>/<consumer key>
-		$stageKey = $consumerKey = null;
+		$consumerKey = null;
 		$navigation = explode( '/', $par );
 		if ( count( $navigation ) === 2 ) {
 			$this->stage = false;
@@ -201,15 +201,15 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-		$cmr = MWOAuthDAOAccessControl::wrap(
+		$cmrAc = MWOAuthConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
-		if ( !$cmr ) {
+		if ( !$cmrAc ) {
 			$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 			return;
-		} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
+		} elseif ( $cmrAc->getDeleted() && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			throw new \PermissionsError( 'mwoauthviewsuppressed' );
 		}
-		$startingStage = $cmr->get( 'stage' );
+		$startingStage = $cmrAc->getStage();
 		$pending = !in_array( $startingStage, [
 			MWOAuthConsumer::STAGE_APPROVED, MWOAuthConsumer::STAGE_DISABLED ] );
 
@@ -233,10 +233,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			}
 		}
 
-		$owner = $cmr->get( 'userId', function ( $s ) {
-			$name = MWOAuthUtils::getCentralUserNameFromId( $s );
-			return $name;
-		} );
+		$owner = $cmrAc->getUserName();
 
 		$link = \Linker::linkKnown(
 			$title = \SpecialPage::getTitleFor( 'OAuthListConsumers' ),
@@ -244,13 +241,13 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			[],
 			[ 'publisher' => $owner ]
 		);
-		$ownerLink = $cmr->escapeForHtml( $owner ) . ' ' .
+		$ownerLink = $cmrAc->escapeForHtml( $owner ) . ' ' .
 			$this->msg( 'parentheses' )->rawParams( $link )->escaped();
-		$ownerOnly = $cmr->get( 'ownerOnly' );
+		$ownerOnly = $cmrAc->getDAO()->getOwnerOnly();
 
 		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 		$control = new MWOAuthConsumerSubmitControl( $this->getContext(), [], $dbw );
-		$restrictions = $cmr->get( 'restrictions' );
+		$restrictions = $cmrAc->getRestrictions();
 		$form = \HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
 				'info' => [
@@ -260,12 +257,12 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 						// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
 						// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
 						// mwoauth-consumer-stage-disabled
-						'mwoauth-consumer-stage' => $cmr->get( 'deleted' )
+						'mwoauth-consumer-stage' => $cmrAc->getDeleted()
 							? $this->msg( 'mwoauth-consumer-stage-suppressed' )
 							: $this->msg( 'mwoauth-consumer-stage-' .
-								MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )] ),
-						'mwoauth-consumer-key' => $cmr->get( 'consumerKey' ),
-						'mwoauth-consumer-name' => new HtmlSnippet( $cmr->get( 'name', function ( $s ) {
+								MWOAuthConsumer::$stageNames[$cmrAc->getStage()] ),
+						'mwoauth-consumer-key' => $cmrAc->getConsumerKey(),
+						'mwoauth-consumer-name' => new HtmlSnippet( $cmrAc->get( 'name', function ( $s ) {
 							$link = \Linker::linkKnown(
 								\SpecialPage::getTitleFor( 'OAuthListConsumers' ),
 								$this->msg( 'mwoauthmanageconsumers-search-name' )->escaped(),
@@ -275,25 +272,25 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 							return htmlspecialchars( $s ) . ' ' .
 								   $this->msg( 'parentheses' )->rawParams( $link )->escaped();
 						} ) ),
-						'mwoauth-consumer-version' => $cmr->get( 'version' ),
+						'mwoauth-consumer-version' => $cmrAc->getVersion(),
 						'mwoauth-consumer-user' => new HtmlSnippet( $ownerLink ),
-						'mwoauth-consumer-description' => $cmr->get( 'description' ),
+						'mwoauth-consumer-description' => $cmrAc->getDescription(),
 						'mwoauth-consumer-owner-only-label' => $ownerOnly ?
 							$this->msg( 'mwoauth-consumer-owner-only', $owner ) : null,
 						'mwoauth-consumer-callbackurl' => $ownerOnly ?
-							null : $cmr->get( 'callbackUrl' ),
+							null : $cmrAc->getCallbackUrl(),
 						'mwoauth-consumer-callbackisprefix' => $ownerOnly ?
-							null : ( $cmr->get( 'callbackIsPrefix' ) ?
+							null : ( $cmrAc->getCallbackIsPrefix() ?
 								$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ) ),
-						'mwoauth-consumer-grantsneeded' => $cmr->get( 'grants',
+						'mwoauth-consumer-grantsneeded' => $cmrAc->get( 'grants',
 							function ( $grants ) use ( $lang ) {
 								return $lang->semicolonList( \MWGrants::grantNames( $grants, $lang ) );
 							} ),
-						'mwoauth-consumer-email' => $cmr->get( 'email' ),
-						'mwoauth-consumer-wiki' => $cmr->get( 'wiki' ),
+						'mwoauth-consumer-email' => $cmrAc->getEmail(),
+						'mwoauth-consumer-wiki' => $cmrAc->getWiki(),
 						'mwoauth-consumer-restrictions-json' => $restrictions instanceof \MWRestrictions ?
 							$restrictions->toJson( true ) : $restrictions,
-						'mwoauth-consumer-rsakey' => $cmr->get( 'rsaKey' ),
+						'mwoauth-consumer-rsakey' => $cmrAc->getRsaKey(),
 					], $this->getContext() ),
 				],
 				'action' => [
@@ -301,20 +298,20 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 					'label-message' => 'mwoauthmanageconsumers-action',
 					'required' => true,
 					'options' => $opts,
-					'default' => '' // no validate on GET
+					'default' => '', // no validate on GET
 				],
 				'reason' => [
 					'type' => 'text',
 					'label-message' => 'mwoauthmanageconsumers-reason',
-					'required' => true
+					'required' => true,
 				],
 				'consumerKey' => [
 					'type' => 'hidden',
-					'default' => $cmr->get( 'consumerKey' )
+					'default' => $cmrAc->getConsumerKey(),
 				],
 				'changeToken' => [
 					'type' => 'hidden',
-					'default' => $cmr->getDAO()->getChangeToken( $this->getContext() )
+					'default' => $cmrAc->getDAO()->getChangeToken( $this->getContext() ),
 				],
 			] ),
 			$this->getContext()
@@ -338,9 +335,11 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			$this->msg( 'mwoauthmanageconsumers-confirm-text' )->parseAsBlock() );
 
 		$status = $form->show();
-		if ( $status instanceof \Status && $status->isOk() ) {
+		if ( $status instanceof \Status && $status->isOK() ) {
+			/** @var MWOAuthConsumer $cmr */
+			$cmr = $status->value['result'];
 			$oldStageKey = MWOAuthConsumer::$stageNames[$startingStage];
-			$newStageKey = MWOAuthConsumer::$stageNames[$status->value['result']->get( 'stage' )];
+			$newStageKey = MWOAuthConsumer::$stageNames[$cmr->getStage()];
 			// Messages: mwoauthmanageconsumers-success-approved, mwoauthmanageconsumers-success-rejected,
 			// mwoauthmanageconsumers-success-disabled
 			$this->getOutput()->addWikiMsg( "mwoauthmanageconsumers-success-$newStageKey" );
@@ -355,13 +354,13 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			// Show all of the status updates
 			$logPage = new \LogPage( 'mwoauthconsumer' );
 			$out->addHTML( \Xml::element( 'h2', null, $logPage->getName()->text() ) );
-			\LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '',
-				[
-					'conds'  => [
-						'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ],
-					'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS
-				]
-			);
+			\LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '', [
+				'conds' => [
+					'ls_field' => 'OAuthConsumer',
+					'ls_value' => $cmrAc->getConsumerKey(),
+				],
+				'flags' => \LogEventsList::NO_EXTRA_USER_LINKS,
+			] );
 		}
 	}
 
@@ -392,11 +391,11 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 * @return string
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
-		$cmr = MWOAuthDAOAccessControl::wrap(
+		$cmrAc = MWOAuthConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
 
-		$cmrKey = $cmr->get( 'consumerKey' );
-		$stageKey = MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )];
+		$cmrKey = $cmrAc->getConsumerKey();
+		$stageKey = MWOAuthConsumer::$stageNames[$cmrAc->getStage()];
 
 		$link = \Linker::linkKnown(
 			$this->getPageTitle( $cmrKey ),
@@ -404,7 +403,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		);
 
 		$time = $this->getLanguage()->timeanddate(
-			wfTimestamp( TS_MW, $cmr->get( 'registration' ) ), true );
+			wfTimestamp( TS_MW, $cmrAc->getRegistration() ), true );
 
 		$encStageKey = htmlspecialchars( $stageKey ); // sanity
 		$r = "<li class='mw-mwoauthmanageconsumers-{$encStageKey}'>";
@@ -414,34 +413,28 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		// Show last log entry (@TODO: title namespace?)
 		// @TODO: inject DB
 		$logHtml = '';
-		\LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '',
-			[
-				'action' => MWOAuthConsumer::$stageActionNames[$cmr->get( 'stage' )],
-				'conds'  => [
-					'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ],
-				'lim'    => 1,
-				'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS
-			]
-		);
+		\LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '', [
+			'action' => MWOAuthConsumer::$stageActionNames[$cmrAc->getStage()],
+			'conds'  => [
+				'ls_field' => 'OAuthConsumer',
+				'ls_value' => $cmrAc->getConsumerKey(),
+			],
+			'lim'    => 1,
+			'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS,
+		] );
 
 		$lang = $this->getLanguage();
 		$data = [
-			'mwoauthmanageconsumers-name' => $cmr->escapeForHtml(
-				$cmr->get( 'name', function ( $s ) use ( $cmr ) {
-					return $s . ' [' . $cmr->get( 'version' ) . ']';
-	   } )
-			),
-			'mwoauthmanageconsumers-user' => $cmr->escapeForHtml(
-				$cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' )
-			),
-			'mwoauthmanageconsumers-description' => $cmr->escapeForHtml(
-				$cmr->get( 'description', function ( $s ) use ( $lang ) {
+			'mwoauthmanageconsumers-name' => $cmrAc->escapeForHtml( $cmrAc->getNameAndVersion() ),
+			'mwoauthmanageconsumers-user' => $cmrAc->escapeForHtml( $cmrAc->getUserName() ),
+			'mwoauthmanageconsumers-description' => $cmrAc->escapeForHtml(
+				$cmrAc->get( 'description', function ( $s ) use ( $lang ) {
 					return $lang->truncateForVisual( $s, 10024 );
-	   } )
+				} )
 			),
-			'mwoauthmanageconsumers-email' => $cmr->escapeForHtml( $cmr->get( 'email' ) ),
-			'mwoauthmanageconsumers-consumerkey' => $cmr->escapeForHtml( $cmr->get( 'consumerKey' ) ),
-			'mwoauthmanageconsumers-lastchange' => $logHtml
+			'mwoauthmanageconsumers-email' => $cmrAc->escapeForHtml( $cmrAc->getEmail() ),
+			'mwoauthmanageconsumers-consumerkey' => $cmrAc->escapeForHtml( $cmrAc->getConsumerKey() ),
+			'mwoauthmanageconsumers-lastchange' => $logHtml,
 		];
 
 		$r .= "<table class='mw-mwoauthmanageconsumers-body' " .
@@ -470,7 +463,11 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
  * @TODO: use UserCache
  */
 class MWOAuthManageConsumersPager extends \ReverseChronologicalPager {
-	public $mForm, $mConds;
+	/** @var SpecialMWOAuthManageConsumers */
+	public $mForm;
+
+	/** @var array */
+	public $mConds;
 
 	public function __construct( $form, $conds, $stage ) {
 		$this->mForm = $form;

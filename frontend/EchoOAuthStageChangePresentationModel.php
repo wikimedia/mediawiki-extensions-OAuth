@@ -114,6 +114,6 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 	 */
 	protected function getConsumerName() {
 		$consumer = $this->getConsumer();
-		return $consumer ? $consumer->get( 'name' ) : false;
+		return $consumer ? $consumer->getName() : false;
 	}
 }

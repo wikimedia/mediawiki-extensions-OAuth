@@ -24,7 +24,10 @@ use Wikimedia\Rdbms\DBConnRef;
 */
 
 /**
- * Representation of an OAuth consumer acceptance
+ * Representation of an OAuth consumer acceptance.
+ * Created when the user clicks through the OAuth authorization dialog, this allows
+ * the specified consumer to perform actions in the name of the user
+ * (subject to the grant and wiki restrictions stored in the acceptance object).
  */
 class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	/** @var int Unique ID */
@@ -112,7 +115,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 			array_values( static::getFieldColumnMap() ),
 			[
 				'oaac_user_id' => (int)$userId,
-				'oaac_consumer_id' => $consumer->get( 'id' ),
+				'oaac_consumer_id' => $consumer->getId(),
 				'oaac_wiki' => (string)$wiki
 			],
 			__METHOD__,
@@ -126,6 +129,73 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Database ID.
+	 * @return int
+	 */
+	public function getId() {
+		return $this->get( 'id' );
+	}
+
+	/**
+	 * Wiki on which the user has authorized the consumer to access their account. Wiki ID or '*'
+	 * for all.
+	 * @return string
+	 */
+	public function getWiki() {
+		return $this->get( 'wiki' );
+	}
+
+	/**
+	 * Central user ID of the authorizing user.
+	 * @return int
+	 */
+	public function getUserId() {
+		return $this->get( 'userId' );
+	}
+
+	/**
+	 * Database ID of the consumer.
+	 * @return int
+	 */
+	public function getConsumerId() {
+		return $this->get( 'consumerId' );
+	}
+
+	/**
+	 * The access token for the OAuth protocol
+	 * @return string
+	 */
+	public function getAccessToken() {
+		return $this->get( 'accessToken' );
+	}
+
+	/**
+	 * Secret key used to derive the access secret for the OAuth protocol.
+	 * The actual access secret will be calculated via MWOAuthUtils::hmacDBSecret() to mitigate
+	 * DB leaks.
+	 * @return string
+	 */
+	public function getAccessSecret() {
+		return $this->get( 'accessSecret' );
+	}
+
+	/**
+	 * The list of grants which have been granted.
+	 * @return string[]
+	 */
+	public function getGrants() {
+		return $this->get( 'grants' );
+	}
+
+	/**
+	 * Date of the authorization, in TS_MW format.
+	 * @return string
+	 */
+	public function getAccepted() {
+		return $this->get( 'accepted' );
 	}
 
 	protected function normalizeValues() {

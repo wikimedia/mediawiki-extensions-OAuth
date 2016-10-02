@@ -96,16 +96,16 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 
 		$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $accesstoken->key );
-		$logData['user'] = MWOAuthUtils::getCentralUserNameFromId( $access->get( 'userId' ), 'raw' );
+		$logData['user'] = MWOAuthUtils::getCentralUserNameFromId( $access->getUserId(), 'raw' );
 
 		// Access token is for this wiki
-		if ( $access->get( 'wiki' ) !== '*' && $access->get( 'wiki' ) !== $wiki ) {
+		if ( $access->getWiki() !== '*' && $access->getWiki() !== $wiki ) {
 			$this->logger->debug( 'OAuth request for wrong wiki from user {user}', $logData );
 			return $this->makeException( 'mwoauth-invalid-authorization-wrong-wiki', $wiki );
 		}
 
 		// There exists a local user
-		$localUser = MWOAuthUtils::getLocalUserFromCentralId( $access->get( 'userId' ) );
+		$localUser = MWOAuthUtils::getLocalUserFromCentralId( $access->getUserId() );
 		if ( !$localUser || !$localUser->isLoggedIn() ) {
 			$this->logger->debug( 'OAuth request for invalid or non-local user {user}', $logData );
 			return $this->makeException( 'mwoauth-invalid-authorization-invalid-user',
@@ -124,13 +124,13 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 		}
 
 		// The consumer is approved or owned by $localUser, and is for this wiki.
-		$consumer = MWOAuthConsumer::newFromId( $dbr, $access->get( 'consumerId' ) );
+		$consumer = MWOAuthConsumer::newFromId( $dbr, $access->getConsumerId() );
 		if ( !$consumer->isUsableBy( $localUser ) ) {
 			$this->logger->debug(
 				'OAuth request for consumer {consumer} not approved by user {user}', $logData
 			);
 			return $this->makeException( 'mwoauth-invalid-authorization-not-approved' );
-		} elseif ( $consumer->get( 'wiki' ) !== '*' && $consumer->get( 'wiki' ) !== $wiki ) {
+		} elseif ( $consumer->getWiki() !== '*' && $consumer->getWiki() !== $wiki ) {
 			$this->logger->debug( 'OAuth request for consumer {consumer} to incorrect wiki', $logData );
 			return $this->makeException( 'mwoauth-invalid-authorization-wrong-wiki', $wiki );
 		}
@@ -140,11 +140,11 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 			// We're not configured to use cookies, so concatenate some of the
 			// internal consumer-acceptance state to generate an ID.
 			$id = $this->hashToSessionId( implode( "\n", [
-				$access->get( 'id' ),
-				$access->get( 'wiki' ),
-				$access->get( 'userId' ),
-				$access->get( 'consumerId' ),
-				$access->get( 'accepted' ),
+				$access->getId(),
+				$access->getWiki(),
+				$access->getUserId(),
+				$access->getConsumerId(),
+				$access->getAccepted(),
 				$wiki,
 			] ) );
 			$persisted = false;
@@ -165,7 +165,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 			'forceUse' => $forceUse,
 			'metadata' => [
 				'key' => $accesstoken->key,
-				'rights' => \MWGrants::getGrantRights( $access->get( 'grants' ) ),
+				'rights' => \MWGrants::getGrantRights( $access->getGrants() ),
 			],
 		] );
 	}
@@ -288,9 +288,9 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 		if ( $data ) {
 			$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 			$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $data['key'] );
-			$consumerId = $access->get( 'consumerId' );
+			$consumerId = $access->getConsumerId();
 			$consumer = MWOAuthConsumer::newFromId( $dbr, $consumerId );
-			if ( !$consumer->get( 'ownerOnly' ) ) {
+			if ( !$consumer->getOwnerOnly() ) {
 				$rc->addTags( "OAuth CID: $consumerId" );
 			}
 		}

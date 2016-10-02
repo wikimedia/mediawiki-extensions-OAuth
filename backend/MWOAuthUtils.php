@@ -72,11 +72,12 @@ class MWOAuthUtils {
 	}
 
 	/**
-	 * Sanitize the output of apache_request_headers because
+	 * Get request headers.
+	 * Sanitizes the output of apache_request_headers because
 	 * we always want the keys to be Cased-Like-This and arh()
 	 * returns the headers in the same case as they are in the
 	 * request
-	 * @return Array of apache headers and their values
+	 * @return array Header name => value
 	 */
 	public static function getHeaders() {
 		$request = \RequestContext::getMain()->getRequest();

@@ -70,16 +70,16 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		}
 
 		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-		$cmr = MWOAuthDAOAccessControl::wrap(
+		$cmrAc = MWOAuthConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
-		if ( !$cmr ) {
+		if ( !$cmrAc ) {
 			$out->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 			return;
-		} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
+		} elseif ( $cmrAc->getDeleted() && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			throw new \PermissionsError( 'mwoauthviewsuppressed' );
 		}
 
-		$grants = $cmr->get( 'grants' );
+		$grants = $cmrAc->getGrants();
 		if ( $grants === [ 'mwoauth-authonly' ] || $grants === [ 'mwoauth-authonlyprivate' ] ) {
 			$s = $this->msg( 'grant-' . $grants[0] )->plain() . "\n";
 		} else {
@@ -91,18 +91,16 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			}
 		}
 
-		$stageKey = MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )];
+		$stageKey = MWOAuthConsumer::$stageNames[$cmrAc->getDAO()->getStage()];
 		$data = [
-			'mwoauthlistconsumers-name' => $cmr->get( 'name' ),
-			'mwoauthlistconsumers-version' => $cmr->get( 'version' ),
-			'mwoauthlistconsumers-user' => $cmr->get( 'userId',
-				[ MWOAuthUtils::class, 'getCentralUserNameFromId' ] ),
+			'mwoauthlistconsumers-name' => $cmrAc->getName(),
+			'mwoauthlistconsumers-version' => $cmrAc->getVersion(),
+			'mwoauthlistconsumers-user' => $cmrAc->getUserName(),
 			'mwoauthlistconsumers-status' => $this->msg( "mwoauthlistconsumers-status-$stageKey" ),
-			'mwoauthlistconsumers-description' => $cmr->get( 'description' ),
-			'mwoauthlistconsumers-wiki' => $cmr->get( 'wiki',
-				[ MWOAuthUtils::class, 'getWikiIdName' ] ),
-			'mwoauthlistconsumers-callbackurl' => $cmr->get( 'callbackUrl' ),
-			'mwoauthlistconsumers-callbackisprefix' => $cmr->get( 'callbackIsPrefix' ) ?
+			'mwoauthlistconsumers-description' => $cmrAc->getDescription(),
+			'mwoauthlistconsumers-wiki' => $cmrAc->getWikiName(),
+			'mwoauthlistconsumers-callbackurl' => $cmrAc->getCallbackUrl(),
+			'mwoauthlistconsumers-callbackisprefix' => $cmrAc->getCallbackIsPrefix() ?
 				$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
 			'mwoauthlistconsumers-grants' => new HtmlSnippet( $out->parseInlineAsInterface( $s ) ),
 		];
@@ -113,13 +111,13 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			// Show all of the status updates
 			$logPage = new \LogPage( 'mwoauthconsumer' );
 			$out->addHTML( \Xml::element( 'h2', null, $logPage->getName()->text() ) );
-			\LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '',
-				[
-					'conds' => [
-					'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ],
-					'flags' => \LogEventsList::NO_EXTRA_USER_LINKS
-				]
-			);
+			\LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '', [
+				'conds' => [
+					'ls_field' => 'OAuthConsumer',
+					'ls_value' => $cmrAc->getConsumerKey(),
+				],
+				'flags' => \LogEventsList::NO_EXTRA_USER_LINKS,
+			] );
 		}
 	}
 
@@ -164,7 +162,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			],
 			$this->getContext()
 		);
-		$form->setAction( $this->getPageTitle()->getFullUrl() ); // always go back to listings
+		$form->setAction( $this->getPageTitle()->getFullURL() ); // always go back to listings
 		$form->setSubmitCallback( function () {
 			return false;
 		} );
@@ -212,11 +210,11 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 * @return string
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
-		$cmr = MWOAuthDAOAccessControl::wrap(
+		$cmrAc = MWOAuthConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
 
-		$cmrKey = $cmr->get( 'consumerKey' );
-		$stageKey = MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )];
+		$cmrKey = $cmrAc->getConsumerKey();
+		$stageKey = MWOAuthConsumer::$stageNames[$cmrAc->getStage()];
 
 		$links = [];
 		$links[] = \Linker::linkKnown(
@@ -236,29 +234,21 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		$encStageKey = htmlspecialchars( $stageKey ); // sanity
 		$r = "<li class=\"mw-mwoauthlistconsumers-{$encStageKey}\">";
 
-		$name = $cmr->get( 'name', function ( $s ) use ( $cmr ) {
-			$escapedName = htmlspecialchars( $s );
-			return $escapedName . ' ' .
-				$this->msg( 'brackets' )->rawParams( $cmr->escapeForHtml( 'version' ) )->escaped();
-	 } );
-		$r .= "<strong>" . $name . '</strong> ' . $this->msg( 'parentheses' )
+		$name = $cmrAc->getNameAndVersion();
+		$r .= '<strong>' . $cmrAc->escapeForHtml( $name ) . '</strong> ' . $this->msg( 'parentheses' )
 				->rawParams( "<strong>{$links}</strong>" )->escaped();
 
 		$lang = $this->getLanguage();
 		$data = [
-			'mwoauthlistconsumers-user' => $cmr->escapeForHtml(
-				$cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' )
-			),
-			'mwoauthlistconsumers-description' => $cmr->escapeForHtml(
-				$cmr->get( 'description', function ( $s ) use ( $lang ) {
+			'mwoauthlistconsumers-user' => $cmrAc->escapeForHtml( $cmrAc->getUserName() ),
+			'mwoauthlistconsumers-description' => $cmrAc->escapeForHtml(
+				$cmrAc->get( 'description', function ( $s ) use ( $lang ) {
 					return $lang->truncateForVisual( $s, 10024 );
-	   } )
+				} )
 			),
-			'mwoauthlistconsumers-wiki' => $cmr->escapeForHtml(
-				$cmr->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
-			),
+			'mwoauthlistconsumers-wiki' => $cmrAc->escapeForHtml( $cmrAc->getWikiName() ),
 			'mwoauthlistconsumers-status' =>
-				$this->msg( "mwoauthlistconsumers-status-$stageKey" )->escaped()
+				$this->msg( "mwoauthlistconsumers-status-$stageKey" )->escaped(),
 		];
 
 		foreach ( $data as $msg => $encValue ) {
@@ -281,7 +271,11 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
  * @TODO: use UserCache
  */
 class MWOAuthListConsumersPager extends \AlphabeticPager {
-	public $mForm, $mConds;
+	/** @var SpecialMWOAuthListConsumers */
+	public $mForm;
+
+	/** @var array */
+	public $mConds;
 
 	public function __construct( $form, $conds, $name, $centralUserID, $stage ) {
 		$this->mForm = $form;

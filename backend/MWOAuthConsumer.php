@@ -24,7 +24,7 @@ use Wikimedia\Rdbms\DBConnRef;
  */
 
 /**
- * Representation of an OAuth consumer request
+ * Representation of an OAuth consumer.
  */
 class MWOAuthConsumer extends MWOAuthDAO {
 	/** @var array Backwards-compatibility grant mappings */
@@ -234,6 +234,188 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
+	 * Internal ID (DB primary key).
+	 * @return int
+	 */
+	public function getId() {
+		return $this->get( 'id' );
+	}
+
+	/**
+	 * Consumer key (32-character hexadecimal string that's used in the OAuth protocol
+	 * and in URLs). This is used as the consumer ID for most external purposes.
+	 * @return string
+	 */
+	public function getConsumerKey() {
+		return $this->get( 'consumerKey' );
+	}
+
+	/**
+	 * Name of the consumer.
+	 * @return string
+	 */
+	public function getName() {
+		return $this->get( 'name' );
+	}
+
+	/**
+	 * Central ID of the owner.
+	 * @return int
+	 */
+	public function getUserId() {
+		return $this->get( 'userId' );
+	}
+
+	/**
+	 * Consumer version. This is mostly meant for humans: different versions of the same
+	 * application have different keys and are handled as different consumers internally.
+	 * @return string
+	 */
+	public function getVersion() {
+		return $this->get( 'version' );
+	}
+
+	/**
+	 * Callback URL (or prefix). The browser will be redirected to this URL at the end of
+	 * an OAuth handshake. See getCallbackIsPrefix() for the interpretation of this field.
+	 * @return string
+	 */
+	public function getCallbackUrl() {
+		return $this->get( 'callbackUrl' );
+	}
+
+	/**
+	 * When true, getCallbackUrl() returns a prefix; the callback URL can be provided by the caller
+	 * as long as the prefix matches. When false, the callback URL will be determined by
+	 * getCallbackUrl().
+	 * @return bool
+	 */
+	public function getCallbackIsPrefix() {
+		return $this->get( 'callbackIsPrefix' );
+	}
+
+	/**
+	 * Description of the consumer. Currently interpreted as plain text; might change to wikitext
+	 * in the future.
+	 * @return string
+	 */
+	public function getDescription() {
+		return $this->get( 'description' );
+	}
+
+	/**
+	 * Email address of the owner.
+	 * @return string
+	 */
+	public function getEmail() {
+		return $this->get( 'email' );
+	}
+
+	/**
+	 * Date of verifying the email, in TS_MW format. In practice this will be the same as
+	 * getRegistration().
+	 * @return string
+	 */
+	public function getEmailAuthenticated() {
+		return $this->get( 'emailAuthenticated' );
+	}
+
+	/**
+	 * Did the user accept the developer agreement (the terms of use checkbox at the bottom of the
+	 * registration form)? Except for very old users, always true.
+	 * @return bool
+	 */
+	public function getDeveloperAgreement() {
+		return $this->get( 'developerAgreement' );
+	}
+
+	/**
+	 * Owner-only consumers will use one-legged flow instead of three-legged (see
+	 * https://github.com/Mashape/mashape-oauth/blob/master/FLOWS.md#oauth-10a-one-legged ); there
+	 * is only one user (who is the same as the owner) and they learn the access token at
+	 * consumer registration time.
+	 * @return bool
+	 */
+	public function getOwnerOnly() {
+		return $this->get( 'ownerOnly' );
+	}
+
+	/**
+	 * The wiki on which the consumer is allowed to access user accounts. A wiki ID or '*' for all.
+	 * @return string
+	 */
+	public function getWiki() {
+		return $this->get( 'wiki' );
+	}
+
+	/**
+	 * The list of grants required by this application.
+	 * @return string[]
+	 */
+	public function getGrants() {
+		return $this->get( 'grants' );
+	}
+
+	/**
+	 * Consumer registration date in TS_MW format.
+	 * @return string
+	 */
+	public function getRegistration() {
+		return $this->get( 'registration' );
+	}
+
+	/**
+	 * Secret key used to derive the consumer secret for HMAC-SHA1 signed OAuth requests.
+	 * The actual consumer secret will be calculated via MWOAuthUtils::hmacDBSecret() to mitigate
+	 * DB leaks.
+	 * @return string
+	 */
+	public function getSecretKey() {
+		return $this->get( 'secretKey' );
+	}
+
+	/**
+	 * Public RSA key for RSA-SHA1 signerd OAuth requests.
+	 * @return string
+	 */
+	public function getRsaKey() {
+		return $this->get( 'rsaKey' );
+	}
+
+	/**
+	 * Application restrictions (such as allowed IPs).
+	 * @return \MWRestrictions
+	 */
+	public function getRestrictions() {
+		return $this->get( 'restrictions' );
+	}
+
+	/**
+	 * Stage at which the consumer is in the review workflow (proposed, approved etc).
+	 * @return int One of the STAGE_* constants
+	 */
+	public function getStage() {
+		return $this->get( 'stage' );
+	}
+
+	/**
+	 * Date at which the consumer was moved to the current stage, in TS_MW format.
+	 * @return string
+	 */
+	public function getStageTimestamp() {
+		return $this->get( 'stageTimestamp' );
+	}
+
+	/**
+	 * Is the consumer suppressed? (There is no plain deletion; the closest equivalent is the
+	 * rejected/disabled stage.)
+	 * @return bool
+	 */
+	public function getDeleted() {
+		return $this->get( 'deleted' );
+	}
+
+	/**
 	 * @param MWOAuthDataStore $dataStore
 	 * @param string $verifyCode verification code
 	 * @param string $requestKey original request key from /initiate
@@ -243,7 +425,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$callback = $dataStore->getCallbackUrl( $this->key, $requestKey );
 
 		if ( $callback === 'oob' ) {
-		  $callback = $this->get( 'callbackUrl' );
+		  $callback = $this->getCallbackUrl();
 		}
 
 		return wfAppendQuery( $callback, [
@@ -264,7 +446,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 * @return bool
 	 */
 	public function isUsableBy( \User $user ) {
-		if ( $this->stage === self::STAGE_APPROVED && !$this->get( 'ownerOnly' ) ) {
+		if ( $this->stage === self::STAGE_APPROVED && !$this->getOwnerOnly() ) {
 			return true;
 		} elseif ( $this->stage === self::STAGE_PROPOSED || $this->stage === self::STAGE_APPROVED ) {
 			$centralId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
@@ -283,6 +465,10 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$this->emailAuthenticated = wfTimestamp( TS_MW, $this->emailAuthenticated );
 		$this->deleted = (int)$this->deleted;
 		$this->grants = (array)$this->grants; // sanity
+		$this->callbackIsPrefix = (bool)$this->callbackIsPrefix;
+		$this->ownerOnly = (bool)$this->ownerOnly;
+		$this->developerAgreement = (bool)$this->developerAgreement;
+		$this->deleted = (bool)$this->deleted;
 	}
 
 	protected function encodeRow( DBConnRef $db, $row ) {
@@ -321,7 +507,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * Magic method so that $consumer->secret and $consumer->key work.
+	 * Magic method so that fields like $consumer->secret and $consumer->key work.
 	 * This allows MWOAuthConsumer to be a replacement for OAuthConsumer
 	 * in lib/OAuth.php without inheriting.
 	 * @param mixed $prop
@@ -332,14 +518,17 @@ class MWOAuthConsumer extends MWOAuthDAO {
 			return $this->consumerKey;
 		} elseif ( $prop === 'secret' ) {
 			return MWOAuthUtils::hmacDBSecret( $this->secretKey );
+		} elseif ( $prop === 'callback_url' ) {
+			return $this->callbackUrl;
 		} else {
-			return $this->$prop;
+			throw new \LogicException( 'Direct property access attempt: ' . $prop );
 		}
 	}
 
 	protected function userCanSee( $name, \RequestContext $context ) {
-		if ( $this->get( 'deleted' )
-			&& !$context->getUser()->isAllowed( 'mwoauthviewsuppressed' ) ) {
+		if ( $this->getDeleted()
+			&& !$context->getUser()->isAllowed( 'mwoauthviewsuppressed' )
+		) {
 			return $context->msg( 'mwoauth-field-hidden' );
 		} else {
 			return true;

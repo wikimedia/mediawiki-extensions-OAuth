@@ -27,14 +27,15 @@ class MWOAuthServer extends OAuthServer {
 	public function fetch_request_token( &$request ) {
 		$this->get_version( $request );
 
+		/** @var MWOAuthConsumer $consumer */
 		$consumer = $this->get_consumer( $request );
 
 		// Consumer must not be owner-only
-		if ( $consumer->get( 'ownerOnly' ) ) {
+		if ( $consumer->getOwnerOnly() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
-				$consumer->get( 'name' ),
+				$consumer->getName(),
 				\SpecialPage::getTitleFor(
-					'OAuthConsumerRegistration', 'update/' . $consumer->get( 'consumerKey' )
+					'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
 				),
 				\Message::rawParam( \Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
@@ -45,7 +46,7 @@ class MWOAuthServer extends OAuthServer {
 		}
 
 		// Consumer must have a key for us to verify
-		if ( !$consumer->get( 'secretKey' ) && !$consumer->get( 'rsaKey' ) ) {
+		if ( !$consumer->getSecretKey() && !$consumer->getRsaKey() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret', [
 				\Message::rawParam( \Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E011',
@@ -93,7 +94,7 @@ class MWOAuthServer extends OAuthServer {
 	 * @throws MWOAuthException
 	 */
 	private function checkCallback( $consumer, $callback ) {
-		if ( !$consumer->get( 'callbackIsPrefix' ) ) {
+		if ( !$consumer->getCallbackIsPrefix() ) {
 			if ( $callback !== 'oob' ) {
 				throw new MWOAuthException( 'mwoauth-callback-not-oob' );
 			}
@@ -113,11 +114,11 @@ class MWOAuthServer extends OAuthServer {
 			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix' );
 		}
 
-		$knownCallback = wfParseUrl( $consumer->get( 'callbackUrl' ) );
+		$knownCallback = wfParseUrl( $consumer->getCallbackUrl() );
 		$exactPath = array_key_exists( 'query', $knownCallback );
 
 		$match =
-			// Protocol can be upgraded from http to http
+			// Protocol can be upgraded from http to https
 			self::looseSchemeMatch( $knownCallback['scheme'], $reqCallback['scheme'] ) &&
 			// Host must match exactly
 			$knownCallback['host'] === $reqCallback['host'] &&
@@ -208,14 +209,15 @@ class MWOAuthServer extends OAuthServer {
 	public function fetch_access_token( &$request ) {
 		$this->get_version( $request );
 
+		/** @var MWOAuthConsumer $consumer */
 		$consumer = $this->get_consumer( $request );
 
 		// Consumer must not be owner-only
-		if ( $consumer->get( 'ownerOnly' ) ) {
+		if ( $consumer->getOwnerOnly() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
-				$consumer->get( 'name' ),
+				$consumer->getName(),
 				\SpecialPage::getTitleFor(
-					'OAuthConsumerRegistration', 'update/' . $consumer->get( 'consumerKey' )
+					'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
 				),
 				\Message::rawParam( \Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
@@ -226,7 +228,7 @@ class MWOAuthServer extends OAuthServer {
 		}
 
 		// Consumer must have a key for us to verify
-		if ( !$consumer->get( 'secretKey' ) && !$consumer->get( 'rsaKey' ) ) {
+		if ( !$consumer->getSecretKey() && !$consumer->getRsaKey() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret', [
 				\Message::rawParam( \Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E011',
@@ -277,7 +279,7 @@ class MWOAuthServer extends OAuthServer {
 	 * @throws MWOAuthException
 	 */
 	private function checkSourceIP( $consumer, $request ) {
-		$restrictions = $consumer->get( 'restrictions' );
+		$restrictions = $consumer->getRestrictions();
 		if ( !$restrictions->checkIP( $request->getSourceIP() ) ) {
 			throw new MWOAuthException( 'mwoauthdatastore-bad-source-ip' );
 		}
@@ -307,8 +309,10 @@ class MWOAuthServer extends OAuthServer {
 				) )
 			] );
 		}
+
+		/** @var MWOAuthConsumer $consumer */
 		$consumer = $this->data_store->lookup_consumer( $consumerKey );
-		if ( !$consumer || $consumer->get( 'deleted' ) ) {
+		if ( !$consumer || $consumer->getDeleted() ) {
 			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key', [
 				\Message::rawParam( \Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006',
@@ -318,12 +322,12 @@ class MWOAuthServer extends OAuthServer {
 			] );
 		} elseif ( !$consumer->isUsableBy( $mwUser ) ) {
 			$owner = MWOAuthUtils::getCentralUserNameFromId(
-				$consumer->get( 'userId' ),
+				$consumer->getUserId(),
 				$mwUser
 			);
 			throw new MWOAuthException(
 				'mwoauthserver-bad-consumer',
-				[ $consumer->get( 'name' ), MWOAuthUtils::getCentralUserTalk( $owner ), \Message::rawParam(
+				[ $consumer->getName(), MWOAuthUtils::getCentralUserTalk( $owner ), \Message::rawParam(
 					\Linker::makeExternalLink(
 						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005',
 						'E005',
@@ -331,11 +335,11 @@ class MWOAuthServer extends OAuthServer {
 					)
 				) ]
 			);
-		} elseif ( $consumer->get( 'ownerOnly' ) ) {
+		} elseif ( $consumer->getOwnerOnly() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
-				$consumer->get( 'name' ),
+				$consumer->getName(),
 				\SpecialPage::getTitleFor(
-					'OAuthConsumerRegistration', 'update/' . $consumer->get( 'consumerKey' )
+					'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
 				),
 				\Message::rawParam( \Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
@@ -362,7 +366,7 @@ class MWOAuthServer extends OAuthServer {
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
 			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
-			throw new MWOAuthException( $userMsg, [ $consumer->get( 'name' ), \Message::rawParam(
+			throw new MWOAuthException( $userMsg, [ $consumer->getName(), \Message::rawParam(
 				\Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
 					'E008',
@@ -375,7 +379,7 @@ class MWOAuthServer extends OAuthServer {
 		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
 
 		// Check if this authorization exists
-		$cmra = $this->getCurrentAuthorization( $mwUser, $consumer, wfWikiId() );
+		$cmra = $this->getCurrentAuthorization( $mwUser, $consumer, wfWikiID() );
 
 		if ( $update ) {
 			// This should be an update to an existing authorization
@@ -384,28 +388,28 @@ class MWOAuthServer extends OAuthServer {
 				throw new MWOAuthException( 'mwoauthserver-invalid-request' );
 			}
 			$cmra->setFields( [
-				'wiki'   => $consumer->get( 'wiki' ),
-				'grants' => $consumer->get( 'grants' )
+				'wiki'   => $consumer->getWiki(),
+				'grants' => $consumer->getGrants()
 			] );
 			$cmra->save( $dbw );
-			$accessToken = new MWOAuthToken( $cmra->get( 'accessToken' ), '' );
+			$accessToken = new MWOAuthToken( $cmra->getAccessToken(), '' );
 		} elseif ( !$cmra ) {
 			// Add the Authorization to the database
 			$accessToken = MWOAuthDataStore::newToken();
 			$cmra = MWOAuthConsumerAcceptance::newFromArray( [
 				'id'           => null,
-				'wiki'         => $consumer->get( 'wiki' ),
+				'wiki'         => $consumer->getWiki(),
 				'userId'       => $centralUserId,
-				'consumerId'   => $consumer->get( 'id' ),
+				'consumerId'   => $consumer->getId(),
 				'accessToken'  => $accessToken->key,
 				'accessSecret' => $accessToken->secret,
-				'grants'       => $consumer->get( 'grants' ),
+				'grants'       => $consumer->getGrants(),
 				'accepted'     => wfTimestampNow()
 			] );
 			$cmra->save( $dbw );
 		} else {
 			// Authorization exists, no updates requested, so no changes to the db
-			$accessToken = new MWOAuthToken( $cmra->get( 'accessToken' ), '' );
+			$accessToken = new MWOAuthToken( $cmra->getAccessToken(), '' );
 		}
 
 		$requestToken->addAccessKey( $accessToken->key );
@@ -441,7 +445,7 @@ class MWOAuthServer extends OAuthServer {
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
 			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
-			throw new MWOAuthException( $userMsg, [ $consumer->get( 'name' ), \Message::rawParam(
+			throw new MWOAuthException( $userMsg, [ $consumer->getName(), \Message::rawParam(
 				\Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
 					'E008',
@@ -450,7 +454,7 @@ class MWOAuthServer extends OAuthServer {
 			) ] );
 		}
 
-		$checkWiki = $consumer->get( 'wiki' ) !== '*' ? $consumer->get( 'wiki' ) : $wikiId;
+		$checkWiki = $consumer->getWiki() !== '*' ? $consumer->getWiki() : $wikiId;
 
 		$cmra = MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
 			$dbr,

@@ -242,21 +242,23 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				$this->msg( 'mwoauthconsumerregistration-propose-text' )->parseAsBlock() );
 
 			$status = $form->show();
-			if ( $status instanceof \Status && $status->isOk() ) {
+			if ( $status instanceof \Status && $status->isOK() ) {
+				/** @var MWOAuthConsumer $cmr */
 				$cmr = $status->value['result']['consumer'];
-				if ( $cmr->get( 'ownerOnly' ) ) {
+				if ( $cmr->getOwnerOnly() ) {
+					/** @var MWOAuthConsumerAcceptance $cmra */
 					$cmra = $status->value['result']['acceptance'];
 					$this->getOutput()->addWikiMsg(
 						'mwoauthconsumerregistration-created-owner-only',
-						$cmr->get( 'consumerKey' ),
-						MWOAuthUtils::hmacDBSecret( $cmr->get( 'secretKey' ) ),
-						$cmra->get( 'accessToken' ),
-						MWOAuthUtils::hmacDBSecret( $cmra->get( 'accessSecret' ) )
+						$cmr->getConsumerKey(),
+						MWOAuthUtils::hmacDBSecret( $cmr->getSecretKey() ),
+						$cmra->getAccessToken(),
+						MWOAuthUtils::hmacDBSecret( $cmra->getAccessSecret() )
 					);
 				} else {
 					$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-proposed',
-						$cmr->get( 'consumerKey' ),
-						MWOAuthUtils::hmacDBSecret( $cmr->get( 'secretKey' ) ) );
+						$cmr->getConsumerKey(),
+						MWOAuthUtils::hmacDBSecret( $cmr->getSecretKey() ) );
 				}
 				$this->getOutput()->returnToMain();
 			}
@@ -267,19 +269,19 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			}
 
 			$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-			$cmr = MWOAuthDAOAccessControl::wrap(
+			$cmrAc = MWOAuthConsumerAccessControl::wrap(
 				MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
-			if ( !$cmr ) {
+			if ( !$cmrAc ) {
 				$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 				break;
-			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
+			} elseif ( $cmrAc->getDAO()->getDeleted() && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 				throw new \PermissionsError( 'mwoauthviewsuppressed' );
-			} elseif ( $cmr->get( 'userId' ) !== $centralUserId ) {
+			} elseif ( $cmrAc->getDAO()->getUserId() !== $centralUserId ) {
 				// Do not show private information to other users
 				$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 				break;
 			}
-			$oldSecretKey = $cmr->getDAO()->get( 'secretKey' );
+			$oldSecretKey = $cmrAc->getDAO()->getSecretKey();
 
 			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), [], $dbw );
@@ -289,15 +291,15 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'type' => 'info',
 						'raw' => true,
 						'default' => MWOAuthUIUtils::generateInfoTable( [
-							'mwoauth-consumer-name' => $cmr->get( 'name' ),
-							'mwoauth-consumer-version' => $cmr->get( 'version' ),
-							'mwoauth-consumer-key' => $cmr->get( 'consumerKey' ),
+							'mwoauth-consumer-name' => $cmrAc->getName(),
+							'mwoauth-consumer-version' => $cmrAc->getVersion(),
+							'mwoauth-consumer-key' => $cmrAc->getConsumerKey(),
 						], $this->getContext() ),
 					],
 					'restrictions' => [
 						'class' => 'HTMLRestrictionsField',
 						'required' => true,
-						'default' => $cmr->getDAO()->get( 'restrictions' ),
+						'default' => $cmrAc->getDAO()->getRestrictions(),
 					],
 					'resetSecret' => [
 						'type' => 'check',
@@ -308,7 +310,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'type' => 'textarea',
 						'label-message' => 'mwoauth-consumer-rsakey',
 						'required' => false,
-						'default' => $cmr->getDAO()->get( 'rsaKey' ),
+						'default' => $cmrAc->getDAO()->getRsaKey(),
 						'rows' => 5
 					],
 					'reason' => [
@@ -318,11 +320,11 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 					],
 					'consumerKey' => [
 						'type' => 'hidden',
-						'default' => $cmr->get( 'consumerKey' )
+						'default' => $cmrAc->getConsumerKey(),
 					],
 					'changeToken' => [
 						'type'    => 'hidden',
-						'default' => $cmr->getDAO()->getChangeToken( $this->getContext() )
+						'default' => $cmrAc->getDAO()->getChangeToken( $this->getContext() ),
 					],
 					'action' => [
 						'type'    => 'hidden',
@@ -343,19 +345,21 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				$this->msg( 'mwoauthconsumerregistration-update-text' )->parseAsBlock() );
 
 			$status = $form->show();
-			if ( $status instanceof \Status && $status->isOk() ) {
+			if ( $status instanceof \Status && $status->isOK() ) {
+				/** @var MWOAuthConsumer $cmr */
 				$cmr = $status->value['result']['consumer'];
 				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-updated' );
-				$curSecretKey = $cmr->get( 'secretKey' );
+				$curSecretKey = $cmr->getSecretKey();
 				if ( $oldSecretKey !== $curSecretKey ) { // token reset?
-					if ( $cmr->get( 'ownerOnly' ) ) {
+					if ( $cmr->getOwnerOnly() ) {
+						/** @var MWOAuthConsumerAcceptance $cmra */
 						$cmra = $status->value['result']['acceptance'];
 						$this->getOutput()->addWikiMsg(
 							'mwoauthconsumerregistration-secretreset-owner-only',
-							$cmr->get( 'consumerKey' ),
+							$cmr->getConsumerKey(),
 							MWOAuthUtils::hmacDBSecret( $curSecretKey ),
-							$cmra->get( 'accessToken' ),
-							MWOAuthUtils::hmacDBSecret( $cmra->get( 'accessSecret' ) )
+							$cmra->getAccessToken(),
+							MWOAuthUtils::hmacDBSecret( $cmra->getAccessSecret() )
 						);
 					} else {
 						$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-secretreset',
@@ -368,13 +372,13 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				// Show all of the status updates
 				$logPage = new \LogPage( 'mwoauthconsumer' );
 				$out->addHTML( \Xml::element( 'h2', null, $logPage->getName()->text() ) );
-				\LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '',
-					[
-						'conds'  => [ 'ls_field' => 'OAuthConsumer',
-							'ls_value' => $cmr->get( 'consumerKey' ) ],
-						'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS
-					]
-				);
+				\LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '', [
+					'conds'  => [
+						'ls_field' => 'OAuthConsumer',
+						'ls_value' => $cmrAc->getConsumerKey(),
+					],
+					'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS,
+				] );
 			}
 			break;
 		case 'list':
@@ -440,53 +444,47 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 	 * @return string
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
-		$cmr = MWOAuthDAOAccessControl::wrap(
+		$cmrAc = MWOAuthConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
 
 		$link = \Linker::linkKnown(
-			$this->getPageTitle( 'update/' . $cmr->get( 'consumerKey' ) ),
+			$this->getPageTitle( 'update/' . $cmrAc->getConsumerKey() ),
 			$this->msg( 'mwoauthconsumerregistration-manage' )->escaped()
 		);
 
 		$time = htmlspecialchars( $this->getLanguage()->timeanddate(
-			wfTimestamp( TS_MW, $cmr->get( 'registration' ) ), true ) );
+			wfTimestamp( TS_MW, $cmrAc->getRegistration() ), true ) );
 
-		$stageKey = MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )];
+		$stageKey = MWOAuthConsumer::$stageNames[$cmrAc->getStage()];
 		$encStageKey = htmlspecialchars( $stageKey ); // sanity
 		// Show last log entry (@TODO: title namespace?)
 		// @TODO: inject DB
 		$logHtml = '';
-		\LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '',
-			[
-				'conds'  => [
-					'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ],
-				'lim'    => 1,
-				'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS
-			]
-		);
+		\LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '', [
+			'conds'  => [
+				'ls_field' => 'OAuthConsumer',
+				'ls_value' => $cmrAc->getConsumerKey(),
+			],
+			'lim'    => 1,
+			'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS,
+		] );
 
 		$lang = $this->getLanguage();
 		$data = [
-			'mwoauthconsumerregistration-name' => $cmr->escapeForHtml(
-				$cmr->get( 'name', function ( $s ) use ( $cmr ) {
-					return $s . ' [' . $cmr->get( 'version' ) . ']';
-	   } )
-			),
+			'mwoauthconsumerregistration-name' => $cmrAc->escapeForHtml( $cmrAc->getNameAndVersion() ),
 			// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
 			// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
 			// mwoauth-consumer-stage-disabled
 			'mwoauthconsumerregistration-stage' =>
 				$this->msg( "mwoauth-consumer-stage-$stageKey" )->escaped(),
-			'mwoauthconsumerregistration-description' => $cmr->escapeForHtml(
-				$cmr->get( 'description', function ( $s ) use ( $lang ) {
+			'mwoauthconsumerregistration-description' => $cmrAc->escapeForHtml(
+				$cmrAc->get( 'description', function ( $s ) use ( $lang ) {
 					return $lang->truncateForVisual( $s, 10024 );
-	   } )
+				} )
 			),
-			'mwoauthconsumerregistration-email' => $cmr->escapeForHtml(
-				$cmr->get( 'email' ) ),
-			'mwoauthconsumerregistration-consumerkey' => $cmr->escapeForHtml(
-				$cmr->get( 'consumerKey' ) ),
-			'mwoauthconsumerregistration-lastchange' => $logHtml
+			'mwoauthconsumerregistration-email' => $cmrAc->escapeForHtml( $cmrAc->getEmail() ),
+			'mwoauthconsumerregistration-consumerkey' => $cmrAc->escapeForHtml( $cmrAc->getConsumerKey() ),
+			'mwoauthconsumerregistration-lastchange' => $logHtml,
 		];
 
 		$r = "<li class='mw-mwoauthconsumerregistration-{$encStageKey}'>";
@@ -517,7 +515,11 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
  * @TODO: use UserCache
  */
 class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
-	public $mForm, $mConds;
+	/** @var SpecialMWOAuthConsumerRegistration */
+	public $mForm;
+
+	/** @var array */
+	public $mConds;
 
 	public function __construct( $form, $conds, $centralUserId ) {
 		$this->mForm = $form;

@@ -94,12 +94,12 @@ class MWOAuthDataStore extends OAuthDataStore {
 			// Ensure the cmra's consumer matches the expected consumer (T103023)
 			$mwconsumer = ( $consumer instanceof MWOAuthConsumer )
 				? $consumer : $this->lookup_consumer( $consumer->key );
-			if ( !$mwconsumer || $mwconsumer->get( 'id' ) !== $cmra->get( 'consumerId' ) ) {
+			if ( !$mwconsumer || $mwconsumer->getId() !== $cmra->getConsumerId() ) {
 				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found' );
 			}
 
-			$secret = MWOAuthUtils::hmacDBSecret( $cmra->get( 'accessSecret' ) );
-			$returnToken = new MWOAuthToken( $cmra->get( 'accessToken' ), $secret );
+			$secret = MWOAuthUtils::hmacDBSecret( $cmra->getAccessSecret() );
+			$returnToken = new MWOAuthToken( $cmra->getAccessToken(), $secret );
 		} else {
 			throw new MWOAuthException( 'mwoauthdatastore-invalid-token-type' );
 		}
@@ -204,7 +204,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * token if the request token is authorized. Should also invalidate the request token.
 	 *
 	 * @param MWOAuthToken $token the request token that started this
-	 * @param OAuthConsumer $consumer
+	 * @param MWOAuthConsumer $consumer
 	 * @param int|null $verifier
 	 * @throws MWOAuthException
 	 * @return MWOAuthToken the access token
@@ -220,7 +220,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 		}
 
 		$cacheKey = MWOAuthUtils::getCacheKey( 'token',
-			$consumer->get( 'consumerKey' ), 'request', $token->key );
+			$consumer->getConsumerKey(), 'request', $token->key );
 		$accessToken = $this->lookup_token( $consumer, 'access', $token->getAccessKey() );
 		$this->cache->set( $cacheKey, '**USED**', 600 );
 		$this->logger->debug( __METHOD__ .
@@ -247,6 +247,6 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 */
 	public function getRSAKey( $consumerKey ) {
 		$cmr = MWOAuthConsumer::newFromKey( $this->centralSlave, $consumerKey );
-		return $cmr ? $cmr->get( 'rsaKey' ) : null;
+		return $cmr ? $cmr->getRsaKey() : null;
 	}
 }

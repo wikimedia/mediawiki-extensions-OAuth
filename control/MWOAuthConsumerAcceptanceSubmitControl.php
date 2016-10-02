@@ -115,8 +115,8 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 				'{user} performed action {action} on consumer {consumer}', [
 					'action' => 'accept',
 					'user' => $user->getName(),
-					'consumer' => $cmr->get( 'consumerKey' ),
-					'target' => MWOAuthUtils::getCentralUserNameFromId( $cmr->get( 'userId' ), 'raw' ),
+					'consumer' => $cmr->getConsumerKey(),
+					'target' => MWOAuthUtils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
 					'comment' => '',
 					'clientip' => $this->getContext()->getRequest()->getIP(),
 				]
@@ -126,10 +126,10 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			$cmra = MWOAuthConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
 			if ( !$cmra ) {
 				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
-			} elseif ( $cmra->get( 'userId' ) !== $centralUserId ) {
+			} elseif ( $cmra->getUserId() !== $centralUserId ) {
 				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 			}
-			$cmr = MWOAuthConsumer::newFromId( $dbw, $cmra->get( 'consumerId' ) );
+			$cmr = MWOAuthConsumer::newFromId( $dbw, $cmra->getConsumerId() );
 
 			$grants = \FormatJson::decode( $this->vals['grants'], true ); // requested grants
 			$grants = array_unique( array_intersect(
@@ -137,21 +137,21 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 					\MWGrants::getHiddenGrants(), // implied grants
 					$grants // requested grants
 				),
-				 $cmr->get( 'grants' ) // Only keep the applicable ones
+				 $cmr->getGrants() // Only keep the applicable ones
 			) );
 
 			LoggerFactory::getInstance( 'OAuth' )->info(
 				'{user} performed action {action} on consumer {consumer}', [
 					'action' => 'update-acceptance',
 					'user' => $user->getName(),
-					'consumer' => $cmr->get( 'consumerKey' ),
-					'target' => MWOAuthUtils::getCentralUserNameFromId( $cmr->get( 'userId' ), 'raw' ),
+					'consumer' => $cmr->getConsumerKey(),
+					'target' => MWOAuthUtils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
 					'comment' => '',
 					'clientip' => $this->getContext()->getRequest()->getIP(),
 				]
 			);
 			$cmra->setFields( [
-				'grants' => array_intersect( $grants, $cmr->get( 'grants' ) ) // sanity
+				'grants' => array_intersect( $grants, $cmr->getGrants() ) // sanity
 			] );
 			$cmra->save( $dbw );
 
@@ -160,7 +160,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			$cmra = MWOAuthConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
 			if ( !$cmra ) {
 				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
-			} elseif ( $cmra->get( 'userId' ) !== $centralUserId ) {
+			} elseif ( $cmra->getUserId() !== $centralUserId ) {
 				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 			}
 
@@ -169,8 +169,8 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 				'{user} performed action {action} on consumer {consumer}', [
 					'action' => 'renounce',
 					'user' => $user->getName(),
-					'consumer' => $cmr->get( 'consumerKey' ),
-					'target' => MWOAuthUtils::getCentralUserNameFromId( $cmr->get( 'userId' ), 'raw' ),
+					'consumer' => $cmr->getConsumerKey(),
+					'target' => MWOAuthUtils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
 					'comment' => '',
 					'clientip' => $this->getContext()->getRequest()->getIP(),
 				]

@@ -41,9 +41,9 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 	}
 
 	/**
-	 * @param MWOAuthDAO $dao
+	 * @param MWOAuthDAO|false|null $dao
 	 * @param \IContextSource $context
-	 * @throws \MWException
+	 * @throws \LogicException
 	 * @return static|null|false
 	 */
 	final public static function wrap( $dao, \IContextSource $context ) {
@@ -52,14 +52,14 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 		} elseif ( $dao === null || $dao === false ) {
 			return $dao;
 		} else {
-			throw new \MWException( "Expected MWOAuthDAO object, null, or false." );
+			throw new \LogicException( "Expected MWOAuthDAO object, null, or false." );
 		}
 	}
 
 	/**
 	 * @return MWOAuthDAO
 	 */
-	final public function getDAO() {
+	public function getDAO() {
 		return $this->dao;
 	}
 
@@ -71,9 +71,9 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 	 */
 	final public function escapeForWikitext( $value ) {
 		if ( $value instanceof Message ) {
-			return $value->plain();
+			return wfEscapeWikiText( $value->plain() );
 		} else {
-			return $value;
+			return wfEscapeWikiText( $value );
 		}
 	}
 
@@ -98,7 +98,6 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 	 * @param string $name
 	 * @param callback|null $sCallback Optional callback to apply to result on access success
 	 * @return mixed Returns a Message on access failure
-	 * @throws \Exception
 	 */
 	final public function get( $name, $sCallback = null ) {
 		$msg = $this->dao->userCanAccess( $name, $this->context );
@@ -108,5 +107,19 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 			$value = $this->dao->get( $name );
 			return $sCallback ? call_user_func( $sCallback, $value ) : $value;
 		}
+	}
+
+	/**
+	 * Check whether the user can access the given field(s).
+	 * @param string|array $names A field name or a list of names.
+	 * @return bool
+	 */
+	final public function userCanAccess( $names ) {
+		foreach ( (array)$names as $name ) {
+			if ( !$this->dao->userCanAccess( $name, $this->context ) ) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

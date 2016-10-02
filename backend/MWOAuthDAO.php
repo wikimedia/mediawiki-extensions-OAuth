@@ -25,6 +25,7 @@ use Wikimedia\Rdbms\DBError;
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Rdbms\DBReadOnlyError;
 
 /**
  * Representation of a Data Access Object
@@ -37,12 +38,12 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	protected $logger;
 
 	/**
-	 * @throws \MWException
+	 * @throws \LogicException
 	 */
 	final protected function __construct() {
 		$fields = array_keys( static::getFieldPermissionChecks() );
 		if ( array_diff( $fields, $this->getFieldNames() ) ) {
-			throw new \MWException( "Invalid field(s) defined in access check methods." );
+			throw new \LogicException( "Invalid field(s) defined in access check methods." );
 		}
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
 	}
@@ -97,11 +98,11 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 *
 	 * @param string $name
 	 * @return mixed
-	 * @throws \MWException
+	 * @throws \LogicException
 	 */
 	final public function get( $name ) {
 		if ( !static::hasField( $name ) ) {
-			throw new \MWException( "Object has no '$name' field." );
+			throw new \LogicException( "Object has no '$name' field." );
 		}
 		return $this->$name;
 	}
@@ -123,14 +124,14 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * Set the values for a set of fields
 	 *
 	 * @param array $values (field => value) map
-	 * @throws \MWException
+	 * @throws \LogicException
 	 * @return array Map of old values
 	 */
 	final public function setFields( array $values ) {
 		$old = [];
 		foreach ( $values as $name => $value ) {
 			if ( !static::hasField( $name ) ) {
-				throw new \MWException( "Object has no '$name' field." );
+				throw new \LogicException( "Object has no '$name' field." );
 			}
 			$old[$name] = $this->$name;
 			$this->$name = $value;
@@ -152,14 +153,13 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	/**
 	 * @param DBConnRef $dbw
 	 * @return bool
-	 * @throws DBError
-	 * @throws \MWException
+	 * @throws DBReadOnlyError
 	 */
 	public function save( DBConnRef $dbw ) {
 		$uniqueId = $this->getIdValue();
 		$idColumn = static::getIdColumn();
 		if ( !empty( $dbw->daoReadOnly ) ) {
-			throw new \MWException( get_class( $this ) . ": tried to save while db is read-only" );
+			throw new DBReadOnlyError( $dbw, get_class() . ": tried to save while db is read-only" );
 		}
 		if ( $this->daoOrigin === 'db' ) {
 			if ( $this->daoPending ) {
@@ -202,13 +202,13 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	/**
 	 * @param DBConnRef $dbw
 	 * @return bool
-	 * @throws \MWException
+	 * @throws DBReadOnlyError
 	 */
 	public function delete( DBConnRef $dbw ) {
 		$uniqueId = $this->getIdValue();
 		$idColumn = static::getIdColumn();
 		if ( !empty( $dbw->daoReadOnly ) ) {
-			throw new \MWException( get_class( $this ) . ": tried to delete while db is read-only" );
+			throw new DBReadOnlyError( $dbw, get_class() . ": tried to delete while db is read-only" );
 		}
 		if ( $this->daoOrigin === 'db' ) {
 			$dbw->delete(
@@ -251,12 +251,12 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @see MWOAuthDAO::userCanAccess()
 	 * @see MWOAuthDAOAccessControl
 	 *
-	 * @throws \MWException
+	 * @throws \LogicException Subclasses must override
 	 * @return array Map of (field name => name of method that checks access)
 	 */
 	protected static function getFieldPermissionChecks() {
 		// Note: declaring this abstract raises E_STRICT
-		throw new \MWException( "getFieldPermissionChecks() not defined in " . get_class() );
+		throw new \LogicException( "getFieldPermissionChecks() not defined in " . get_class() );
 	}
 
 	/**
@@ -399,7 +399,6 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @param string $name
 	 * @param \IContextSource $context
 	 * @return \Message|true Returns on success or a Message if the user lacks access
-	 * @throws \Exception
 	 */
 	final public function userCanAccess( $name, \IContextSource $context ) {
 		$map = static::getFieldPermissionChecks();

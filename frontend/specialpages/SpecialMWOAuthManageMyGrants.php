@@ -82,7 +82,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 	/**
 	 * Show other parent page link
 	 *
-	 * @param string $acceptanceId
+	 * @param string|null $acceptanceId
 	 * @return void
 	 */
 	protected function addSubtitleLinks( $acceptanceId ) {
@@ -120,16 +120,16 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 			return;
 		}
 
-		$cmra = MWOAuthDAOAccessControl::wrap(
+		$cmraAc = MWOAuthConsumerAcceptanceAccessControl::wrap(
 			MWOAuthConsumerAcceptance::newFromId( $dbr, $acceptanceId ), $this->getContext() );
-		if ( !$cmra || $cmra->get( 'userId' ) !== $centralUserId ) {
-			$this->getOutput()->addHtml( $this->msg( 'mwoauth-invalid-access-token' )->escaped() );
+		if ( !$cmraAc || $cmraAc->getUserId() !== $centralUserId ) {
+			$this->getOutput()->addHTML( $this->msg( 'mwoauth-invalid-access-token' )->escaped() );
 			return;
 		}
 
-		$cmr = MWOAuthDAOAccessControl::wrap(
-			MWOAuthConsumer::newFromId( $dbr, $cmra->get( 'consumerId' ) ), $this->getContext() );
-		if ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
+		$cmrAc = MWOAuthConsumerAccessControl::wrap(
+			MWOAuthConsumer::newFromId( $dbr, $cmraAc->getConsumerId() ), $this->getContext() );
+		if ( $cmrAc->getDeleted() && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			throw new \PermissionsError( 'mwoauthviewsuppressed' );
 		}
 
@@ -150,14 +150,10 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 					'type' => 'info',
 					'raw' => true,
 					'default' => MWOAuthUIUtils::generateInfoTable( [
-						'mwoauth-consumer-name' => $cmr->get( 'name', function ( $s ) use ( $cmr ) {
-							return $s . ' [' . $cmr->get( 'version' ) . ']';
-						} ),
-						'mwoauth-consumer-user' => $cmr->get( 'userId',
-							[ MWOAuthUtils::class, 'getCentralUserNameFromId' ] ),
-						'mwoauth-consumer-description' => $cmr->get( 'description' ),
-						'mwoauthmanagemygrants-wikiallowed' => $cmra->get( 'wiki',
-							[ MWOAuthUtils::class, 'getWikiIdName' ] ),
+						'mwoauth-consumer-name' => $cmrAc->getNameAndVersion(),
+						'mwoauth-consumer-user' => $cmrAc->getUserName(),
+						'mwoauth-consumer-description' => $cmrAc->getDescription(),
+						'mwoauthmanagemygrants-wikiallowed' => $cmraAc->getWikiName(),
 					], $this->getContext() ),
 				],
 				'grants'  => [
@@ -167,14 +163,14 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 						$this->msg( 'mwoauthmanagemygrants-grantaccept' )->escaped() => 'grant'
 					],
 					'rows' => array_combine(
-						array_map( 'MWGrants::getGrantsLink', $cmr->get( 'grants' ) ),
-						$cmr->get( 'grants' )
+						array_map( 'MWGrants::getGrantsLink', $cmrAc->getGrants() ),
+						$cmrAc->getGrants()
 					),
 					'default' => array_map(
 						function ( $g ) {
 							return "grant-$g";
 						},
-						$cmra->get( 'grants' )
+						$cmraAc->getGrants()
 					),
 					'tooltips' => [
 						\MWGrants::getGrantsLink( 'basic' ) =>
@@ -196,7 +192,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 				],
 				'acceptanceId' => [
 					'type' => 'hidden',
-					'default' => $cmra->get( 'id' )
+					'default' => $cmraAc->getId(),
 				]
 			] ),
 			$this->getContext()
@@ -214,9 +210,6 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		);
 
 		$form->setWrapperLegendMsg( 'mwoauthmanagemygrants-confirm-legend' );
-		$opts = [
-			'class' => 'mw-htmlform-submit',
-		];
 		$form->suppressDefaultSubmit();
 		if ( $type === 'revoke' ) {
 			$form->addButton( [
@@ -235,9 +228,8 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 			$this->msg( "mwoauthmanagemygrants-$type-text" )->parseAsBlock() );
 
 		$status = $form->show();
-		if ( $status instanceof \Status && $status->isOk() ) {
-			// Messages: mwoauthmanagemygrants-success-update,
-			// mwoauthmanagemygrants-success-renounce
+		if ( $status instanceof \Status && $status->isOK() ) {
+			// Messages: mwoauthmanagemygrants-success-update, mwoauthmanagemygrants-success-renounce
 			$this->getOutput()->addWikiMsg( "mwoauthmanagemygrants-success-$action" );
 		}
 	}
@@ -267,39 +259,35 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 	 * @return string
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
-		$cmr = MWOAuthDAOAccessControl::wrap(
+		$cmrAc = MWOAuthConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
-		$cmra = MWOAuthDAOAccessControl::wrap(
+		$cmraAc = MWOAuthConsumerAcceptanceAccessControl::wrap(
 			MWOAuthConsumerAcceptance::newFromRow( $db, $row ), $this->getContext() );
 
 		$links = [];
-		if ( array_diff( $cmr->get( 'grants' ), self::irrevocableGrants() ) ) {
+		if ( array_diff( $cmrAc->getGrants(), self::irrevocableGrants() ) ) {
 			$links[] = \Linker::linkKnown(
-				$this->getPageTitle( 'update/' . $cmra->get( 'id' ) ),
+				$this->getPageTitle( 'update/' . $cmraAc->getId() ),
 				$this->msg( 'mwoauthmanagemygrants-review' )->escaped()
 			);
 		}
 		$links[] = \Linker::linkKnown(
-			$this->getPageTitle( 'revoke/' . $cmra->get( 'id' ) ),
+			$this->getPageTitle( 'revoke/' . $cmraAc->getId() ),
 			$this->msg( 'mwoauthmanagemygrants-revoke' )->escaped()
 		);
 		$reviewLinks = $this->getLanguage()->pipeList( $links );
 
-		$encName = $cmr->escapeForHtml( $cmr->get( 'name', function ( $s ) use ( $cmr ) {
-			return $s . ' [' . $cmr->get( 'version' ) . ']';
-		} ) );
+		$encName = $cmrAc->escapeForHtml( $cmrAc->getNameAndVersion() );
 
 		$r = '<li class="mw-mwoauthmanagemygrants-list-item">';
 		$r .= "<strong dir='ltr'>{$encName}</strong> (<strong>$reviewLinks</strong>)";
 		$data = [
-			'mwoauthmanagemygrants-user' => $cmr->get( 'userId',
-				'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' ),
-			'mwoauthmanagemygrants-wikiallowed' => $cmra->get( 'wiki',
-				'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
+			'mwoauthmanagemygrants-user' => $cmrAc->getUserName(),
+			'mwoauthmanagemygrants-wikiallowed' => $cmraAc->getWikiName(),
 		];
 
 		foreach ( $data as $msg => $val ) {
-			$r .= '<p>' . $this->msg( $msg )->escaped() . ' ' . $cmr->escapeForHtml( $val ) . '</p>';
+			$r .= '<p>' . $this->msg( $msg )->escaped() . ' ' . $cmrAc->escapeForHtml( $val ) . '</p>';
 		}
 		$r .= '</li>';
 
