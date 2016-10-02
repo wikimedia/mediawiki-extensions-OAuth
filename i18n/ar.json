@@ -7,7 +7,8 @@
 			"مشعل الحربي",
 			"محمد أحمد عبد الفتاح",
 			"Meno25",
-			"Moud hosny"
+			"Moud hosny",
+			"ديفيد"
 		]
 	},
 	"mwoauth-verified": "تم السماح لهذا التطبيق بالولوج الى الميدياويكي نيابة عنك.\n\nلإتمام هذه العملية، الرجاء نقل رمز التأكيد الى التطبيق : '''$1'''",
@@ -37,6 +38,7 @@
 	"mwoauthlistconsumers-view": "التفاصيل",
 	"mwoauthlistconsumers-name": "اسم التطبيق",
 	"mwoauthlistconsumers-description": "الوصف",
+	"mwoauthlistconsumers-status": "الحالة",
 	"mwoauthlistconsumers-status-proposed": "مقترح",
 	"mwoauthlistconsumers-status-disabled": "معطل",
 	"oauthmanagemygrants": "التحكم بالتطبيقات المرتبطة",

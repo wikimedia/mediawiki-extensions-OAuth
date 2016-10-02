@@ -8,7 +8,8 @@
 			"MarcoAurelio",
 			"Ryo567",
 			"Csbotero",
-			"Lemondoge"
+			"Lemondoge",
+			"Dgstranz"
 		]
 	},
 	"mwoauth-desc": "Permite el uso de OAuth 1.0a para la autorización de la API",
@@ -116,6 +117,9 @@
 	"mwoauthlistconsumers-user": "Editor",
 	"mwoauthlistconsumers-description": "Descripción",
 	"mwoauthlistconsumers-wiki": "Proyecto aplicable",
+	"mwoauthlistconsumers-callbackurl": "URL \"''callback''\" de OAuth",
+	"mwoauthlistconsumers-callbackisprefix": "Permite al consumidor especificar un ''callback'' en peticiones y usar la URL \"''callback''\" especificada arriba como prefijo requerido.",
+	"mwoauthlistconsumers-grants": "Permisos aplicables",
 	"mwoauthlistconsumers-basicgrantsonly": "(solo acceso básico)",
 	"mwoauthlistconsumers-status": "Estado",
 	"mwoauth-consumer-stage-any": "cualquiera",
@@ -133,7 +137,7 @@
 	"mwoauthmanagemygrants-user": "Editor:",
 	"mwoauthmanagemygrants-description": "Descripción",
 	"mwoauthmanagemygrants-wikiallowed": "Permitida en el proyecto:",
-	"mwoauthmanagemygrants-applicablegrantsallowed": "Concesiones correspondientes permitidas:",
+	"mwoauthmanagemygrants-applicablegrantsallowed": "Permisos correspondientes permitidos:",
 	"mwoauthmanagemygrants-review": "gestionar el acceso",
 	"mwoauthmanagemygrants-revoke": "revocar el acceso",
 	"mwoauthmanagemygrants-grantaccept": "Concedido",
@@ -142,6 +146,7 @@
 	"mwoauthmanagemygrants-update": "Actualizar permisos",
 	"mwoauthmanagemygrants-renounce": "Desautorizar",
 	"mwoauthmanagemygrants-action": "Cambiar el estado:",
+	"mwoauthmanagemygrants-basic-tooltip": "¿Por qué no puedo actualizar este permiso? Este permiso otorga a tu aplicación conectada unos permisos básicos que necesita para funcionar adecuadamente. Si no quieres que esta aplicación conectada tenga estos permisos, deberías revocar el acceso de esta aplicación.",
 	"mwoauthmanagemygrants-authonly-tooltip": "¿Por qué no puedo actualizar esta subvención? Si no quieres que esta aplicación conectada tenga este permiso, debes revocar el acceso de la aplicación.",
 	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|propuso}} un consumidor OAuth (clave de consumidor $4)",
 	"logentry-mwoauthconsumer-update": "$1 {{GENDER:$2|actualizó}} un consumidor OAuth (clave de consumidor $4)",
