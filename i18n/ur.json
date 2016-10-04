@@ -6,5 +6,6 @@
 	},
 	"mwoauth-prefs-managegrants": "منسلکہ اطلاقیے:",
 	"mwoauth-prefs-managegrantslink": "$1 منسلک {{PLURAL:$1|اطلاقیہ|اطلاقیوں}} کا انتظام",
+	"oauthlistconsumers": "OAuth اطلاقیوں کی فہرست",
 	"right-mwoauthmanagemygrants": "OAuth کے عطیوں کا انتظام"
 }
