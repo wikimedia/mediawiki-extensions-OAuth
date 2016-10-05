@@ -218,6 +218,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
 			$this->getContext()
 		);
+		if ( !$cmr ) {
+			throw new MWOAuthException( 'mwoauth-invalid-consumer-key' );
+		}
 
 		$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
 		$this->getOutput()->addWikiMsg(

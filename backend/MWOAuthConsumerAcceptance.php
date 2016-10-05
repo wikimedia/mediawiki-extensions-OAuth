@@ -81,7 +81,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	public static function newFromToken( \DBConnRef $db, $token, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
-			array( 'oaac_access_token' => $token ),
+			array( 'oaac_access_token' => (string)$token ),
 			__METHOD__,
 			( $flags & self::READ_LOCKING ) ? array( 'FOR UPDATE' ) : array()
 		);
@@ -108,9 +108,10 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
-			array( 'oaac_user_id' => $userId,
+			array(
+				'oaac_user_id' => (int)$userId,
 				'oaac_consumer_id' => $consumer->get( 'id' ),
-				'oaac_wiki' => $wiki
+				'oaac_wiki' => (string)$wiki
 			),
 			__METHOD__,
 			( $flags & self::READ_LOCKING ) ? array( 'FOR UPDATE' ) : array()
