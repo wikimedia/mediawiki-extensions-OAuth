@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Subi"
+			"Subi",
+			"Sator"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Lotutako aplikazioak:",
@@ -18,5 +19,6 @@
 	"mwoauthlistconsumers-name": "Aplikazioaren izena",
 	"oauthmanagemygrants": "Kudeatu lotutako aplikazioak",
 	"mwoauthmanagemygrants-description": "Deskribapena",
-	"mwoauth-grant-uploadfile": "Igotako fitxategi berriak"
+	"mwoauth-form-description-allwikis": "Kaixo $1,\n\nZure eskaera osatze aldera, '''$2'''(e)k baimena behar du zure izenean ondorengo ekintzak egin ahal izateko gune honetako proiektu guzti hauetan:\n\n$4",
+	"mwoauth-form-description-allwikis-nogrants": "Kaixo $1,\n\nZure eskaera osatze aldera, '''$2'''(e)k baimena behar du zure izenean gune honetako proiektu guztien informazioa eskuratzeko. Zure kontuan ez da aldaketarik egingo."
 }
