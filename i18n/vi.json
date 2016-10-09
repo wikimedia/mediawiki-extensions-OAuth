@@ -4,7 +4,8 @@
 			"Minh Nguyen",
 			"Withoutaname",
 			"KhangND",
-			"Dinhxuanduyet"
+			"Dinhxuanduyet",
+			"Macofe"
 		]
 	},
 	"mwoauth-desc": "Cho phép sử dụng OAuth 1.0a để xác minh khi truy cập API",
@@ -166,7 +167,7 @@
 	"echo-category-title-oauth-owner": "Phát triển OAuth",
 	"echo-pref-tooltip-oauth-owner": "Thông báo cho tôi về các sự kiện có liên quan đến ứng dụng OAuth do tôi tạo ra",
 	"echo-category-title-oauth-admin": "Quản lý OAuth",
-	"echo-pref-tooltip-oauth-admin": "Thông báo cho tôi về các sự kiện có liên quan đến xem lại ứng dụng OAuth",
+	"echo-pref-tooltip-oauth-admin": "Thông báo cho tôi về các sự kiện có liên quan đến xem lại ứng dụng OAuth.",
 	"notification-oauth-app-propose-title": "$1 đã đề nghị một ứng dụng OAuth mới: $2",
 	"notification-oauth-app-update-title": "$1 đã cập nhật ứng dụng OAuth $2",
 	"notification-oauth-app-approve-title": "$1 đã chấp nhận ứng dụng OAuth của {{GENDER:$3}}bạn ($2)",

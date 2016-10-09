@@ -10,7 +10,8 @@
 			"Servien",
 			"Robin0van0der0vliet",
 			"Mathonius",
-			"MrLeopold"
+			"MrLeopold",
+			"Macofe"
 		]
 	},
 	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a te gebruiken voor API-toestemming",
@@ -235,9 +236,9 @@
 	"echo-category-title-oauth-owner": "OAuth-ontwikkeling",
 	"echo-pref-tooltip-oauth-owner": "Houd me op de hoogte van evenementen die te maken hebben met OAuth-applicaties die ik heb aangemaakt",
 	"echo-category-title-oauth-admin": "OAuth-administrator",
-	"echo-pref-tooltip-oauth-admin": "Houd me op de hoogte van evenementen die te maken hebben met het herzien van OAuth-applicaties",
+	"echo-pref-tooltip-oauth-admin": "Houd me op de hoogte van evenementen die te maken hebben met het herzien van OAuth-applicaties.",
 	"notification-oauth-app-propose-title": "$1 {{GENDER:$1|stelde}} een nieuwe OAuth-applicatie voor: $2",
-	"notification-oauth-app-update-title": "$1 {{GENDER:$2|is bijgewerkt}} de OAuth-applicatie $2",
+	"notification-oauth-app-update-title": "$1 heeft de OAuth-applicatie $2 {{GENDER:$1|bijgewerkt}}",
 	"notification-oauth-app-approve-title": "$1 {{GENDER:$2|is goedgekeurd}} {{GENDER:$3|uw}} OAuth-applicatie ($2)",
 	"notification-oauth-app-reject-title": "$1 {{GENDER:$2|is afgewezen}} {{GENDER:$3|uw}} OAuth-applicatie ($2)",
 	"notification-oauth-app-disable-title": "$1 {{GENDER:$2|is uitgeschakeld}} {{GENDER:$3|uw}} OAuth-applicatie ($2)",

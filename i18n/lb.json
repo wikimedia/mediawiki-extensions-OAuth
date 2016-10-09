@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Robby",
-			"Les Meloures"
+			"Les Meloures",
+			"Macofe"
 		]
 	},
 	"mwoauth-desc": "De Gebrauch vun OAuth 1.0a fir API Autorisatioun erlaben",
@@ -90,17 +91,17 @@
 	"echo-category-title-oauth-admin": "OAuth Gestioun",
 	"echo-pref-tooltip-oauth-admin": "Mech informéiere iwwer Evenementer a Verbindung mam Nokucke vun OAuth-Applikatiounen.",
 	"notification-oauth-app-propose-title": "$1 huet déi nei OAuth-App $2 {{GENDER:$1|proposéiert}}.",
-	"notification-oauth-app-update-title": "$1 huet d'Auth App $2 {{GENDER:$2|aktualiséiert}}",
-	"notification-oauth-app-approve-title": "$1 huet {{GENDER:$3|Är}} OAuth-App($2) {{GENDER:$2|approuvéiert}}",
-	"notification-oauth-app-reject-title": "$1 huet {{GENDER:$3|Är}} OAuth-App ($2) {{GENDER:$2|refuséiert}}",
-	"notification-oauth-app-disable-title": "$1 huet {{GENDER:$3|Är}} OAuth App ($2) {{GENDER:$2|desaktivéiert}}",
-	"notification-oauth-app-reenable-title": "$1 huet {{GENDER:$3|Är}} OAuth-App ($2) {{GENDER:$2|reaktivéiert}}",
+	"notification-oauth-app-update-title": "$1 huet d'Auth App $2 {{GENDER:$1|aktualiséiert}}",
+	"notification-oauth-app-approve-title": "$1 huet {{GENDER:$3|Är}} OAuth-App($2) {{GENDER:$1|approuvéiert}}",
+	"notification-oauth-app-reject-title": "$1 huet {{GENDER:$3|Är}} OAuth-App ($2) {{GENDER:$1|refuséiert}}",
+	"notification-oauth-app-disable-title": "$1 huet {{GENDER:$3|Är}} OAuth App ($2) {{GENDER:$1|desaktivéiert}}",
+	"notification-oauth-app-reenable-title": "$1 huet {{GENDER:$3|Är}} OAuth-App ($2) {{GENDER:$1|reaktivéiert}}",
 	"notification-oauth-app-propose-subject": "$1 huet eng nei OAuth-App op {{SITENAME}} {{GENDER:$1|proposéiert}}",
-	"notification-oauth-app-update-subject": "$1 huet eng OAuth-App op {{SITENAME}}  {{GENDER:$2|aktualiséiert}}",
-	"notification-oauth-app-approve-subject": "$1 huet {{GENDER:$3|Är}} OAuth-App op {{SITENAME}} {{GENDER:$2|approuvéiert}}",
-	"notification-oauth-app-reject-subject": "$1 huet {{GENDER:$3|Är}} OAuth-App op {{SITENAME}} {{GENDER:$2|refuséiert}}",
-	"notification-oauth-app-disable-subject": "$1 huet {{GENDER:$3|Är}} OAuth-App op {{SITENAME}} {{GENDER:$2|desaktivéiert}}",
-	"notification-oauth-app-reenable-subject": "$1 huet {{GENDER:$3|Är}} OAuth-App op {{SITENAME}} {{GENDER:$2|reeaktivéiert}}",
+	"notification-oauth-app-update-subject": "$1 huet eng OAuth-App op {{SITENAME}}  {{GENDER:$1|aktualiséiert}}",
+	"notification-oauth-app-approve-subject": "$1 huet {{GENDER:$3|Är}} OAuth-App op {{SITENAME}} {{GENDER:$1|approuvéiert}}",
+	"notification-oauth-app-reject-subject": "$1 huet {{GENDER:$3|Är}} OAuth-App op {{SITENAME}} {{GENDER:$1|refuséiert}}",
+	"notification-oauth-app-disable-subject": "$1 huet {{GENDER:$3|Är}} OAuth-App op {{SITENAME}} {{GENDER:$1|desaktivéiert}}",
+	"notification-oauth-app-reenable-subject": "$1 huet {{GENDER:$3|Är}} OAuth-App op {{SITENAME}} {{GENDER:$1|reeaktivéiert}}",
 	"notification-oauth-app-propose-primary-link": "App nokucken",
 	"notification-oauth-app-update-primary-link": "App nokucken",
 	"notification-oauth-app-approve-primary-link": "App weisen",

@@ -7,7 +7,8 @@
 			"Revi",
 			"LiteHell",
 			"Hwangjy9",
-			"Ykhwong"
+			"Ykhwong",
+			"Macofe"
 		]
 	},
 	"mwoauth-desc": "OAuth 1.0a API 인증의 사용을 허용",
@@ -238,7 +239,7 @@
 	"echo-category-title-oauth-owner": "OAuth 개발",
 	"echo-category-title-oauth-admin": "OAuth 관리자",
 	"notification-oauth-app-propose-title": "$1님이 새로운 OAuth 앱을 {{GENDER:$1|제안했습니다}}: $2",
-	"notification-oauth-app-update-title": "$1님이 OAuth 앱 $2을(를) {{GENDER:$2|업데이트했습니다}}",
+	"notification-oauth-app-update-title": "$1님이 OAuth 앱 $2을(를) {{GENDER:$1|업데이트했습니다}}",
 	"notification-oauth-app-approve-title": "$1님이 {{GENDER:$3|당신의}} OAuth 앱($2)을 {{GENDER:$2|승인했습니다}}",
 	"notification-oauth-app-reject-title": "$1님이 {{GENDER:$3|당신의}} OAuth 앱($2)을 {{GENDER:$2|거부했습니다}}",
 	"notification-oauth-app-disable-title": "$1님이 {{GENDER:$3|당신의}} OAuth 앱($2)을 {{GENDER:$2|비활성화했습니다}}",

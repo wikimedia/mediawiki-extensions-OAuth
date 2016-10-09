@@ -5,7 +5,8 @@
 			"Shirayuki",
 			"Whym",
 			"Sujiniku",
-			"Otokoume"
+			"Otokoume",
+			"Macofe"
 		]
 	},
 	"oauth": "OAuth",
@@ -169,7 +170,7 @@
 	"echo-pref-tooltip-oauth-owner": "自身が作成した OAuth アプリケーションについて動きがあったときに通知する。",
 	"echo-pref-tooltip-oauth-admin": "OAuth アプリケーションの再検討について動きがあったときに通知する。",
 	"notification-oauth-app-propose-title": "$1 が 新しい OAuth アプリを{{GENDER:$1|提案しました}}: $2",
-	"notification-oauth-app-update-title": "$1 が OAuth アプリ $2 を{{GENDER:$2|更新しました}}",
+	"notification-oauth-app-update-title": "$1 が OAuth アプリ $2 を{{GENDER:$1|更新しました}}",
 	"notification-oauth-app-approve-title": "$1 が{{GENDER:$3|あなたの}} OAuth アプリ ($2) を{{GENDER:$2|承認しました}}",
 	"notification-oauth-app-reject-title": "$1 が{{GENDER:$3|あなたの}} OAuth アプリ ($2) を{{GENDER:$2|拒否しました}}",
 	"notification-oauth-app-disable-title": "$1 が{{GENDER:$3|あなたの}} OAuth アプリ ($2) を{{GENDER:$2|無効化しました}}",

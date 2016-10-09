@@ -5,7 +5,8 @@
 			"Base",
 			"Ата",
 			"Olion",
-			"Piramidion"
+			"Piramidion",
+			"Macofe"
 		]
 	},
 	"mwoauth-desc": "Дозволяє використовувати OAuth 1.0a для API авторизації",
@@ -257,7 +258,7 @@
 	"echo-category-title-oauth-admin": "Адміністратор OAuth",
 	"echo-pref-tooltip-oauth-admin": "Повідомляти мене про події, пов'язані з оглядом додатків OAuth.",
 	"notification-oauth-app-propose-title": "$1 {{GENDER:$1|запропонував|запропонувала}} новий додаток OAuth: $2",
-	"notification-oauth-app-update-title": "$1 {{GENDER:$2|оновив|оновила}} додаток OAuth $2",
+	"notification-oauth-app-update-title": "$1 {{GENDER:$1|оновив|оновила}} додаток OAuth $2",
 	"notification-oauth-app-approve-title": "$1 {{GENDER:$2|затвердив|затвердила}} {{GENDER:$3|Ваш}} додаток OAuth ($2)",
 	"notification-oauth-app-reject-title": "$1 {{GENDER:$2|відхилив|відхилила}} {{GENDER:$3|Ваш}} додаток OAuth ($2)",
 	"notification-oauth-app-disable-title": "$1 {{GENDER:$2|вимкнув|вимкнула}} {{GENDER:$3|Ваш}} додаток OAuth ($2)",
