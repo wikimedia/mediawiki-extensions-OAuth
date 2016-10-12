@@ -149,7 +149,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * Return a consumer key associated with the given request token.
 	 *
 	 * @param MWOAuthToken $requestToken the request token
-	 * @return String the consumer key
+	 * @return string|false the consumer key or false if nothing is stored for the request token
 	 */
 	public function getConsumerKey( $requestToken ) {
 		$cacheKey = MWOAuthUtils::getCacheKey( 'consumer', 'request', $requestToken );
@@ -163,10 +163,10 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * A stored callback URL parameter is deleted from the cache once read for the first
 	 * time.
 	 *
-	 * @param string the consumer key
+	 * @param string $consumerKey the consumer key
 	 * @param string $requestKey original request key from /initiate
 	 * @throws MWOAuthException
-	 * @return String the stored callback URL parameter
+	 * @return string|false the stored callback URL parameter
 	 */
 	public function getCallbackUrl( $consumerKey, $requestKey ) {
 		$cacheKey = MWOAuthUtils::getCacheKey( 'callback', $consumerKey, 'request', $requestKey );

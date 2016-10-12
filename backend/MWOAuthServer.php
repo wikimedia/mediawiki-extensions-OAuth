@@ -3,11 +3,14 @@
 namespace MediaWiki\Extensions\OAuth;
 
 class MWOAuthServer extends OAuthServer {
+	/** @var MWOAuthDataStore */
+	protected $data_store;
+
 	/**
 	 * Return a consumer key associated with the given request token.
 	 *
 	 * @param MWOAuthToken $requestToken the request token
-	 * @return String the consumer key
+	 * @return string|false the consumer key or false if nothing is stored for the request token
 	 */
 	public function getConsumerKey( $requestToken ) {
 		return $this->data_store->getConsumerKey( $requestToken );

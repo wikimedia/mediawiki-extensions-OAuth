@@ -75,7 +75,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	final public static function newFromId( \DBConnRef $db, $id, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
-			array( static::getIdColumn() => $id ),
+			array( static::getIdColumn() => (int)$id ),
 			__METHOD__,
 			( $flags & self::READ_LOCKING ) ? array( 'FOR UPDATE' ) : array()
 		);

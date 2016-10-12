@@ -163,7 +163,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	public static function newFromKey( \DBConnRef $db, $key, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
-			array( 'oarc_consumer_key' => $key ),
+			array( 'oarc_consumer_key' => (string)$key ),
 			__METHOD__,
 			( $flags & self::READ_LOCKING ) ? array( 'FOR UPDATE' ) : array()
 		);
@@ -190,7 +190,11 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
-			array( 'oarc_name' => $name, 'oarc_version' => $version, 'oarc_user_id' => $userId ),
+			array(
+				'oarc_name' => (string)$name,
+				'oarc_version' => (string)$version,
+				'oarc_user_id' => (int)$userId
+			),
 			__METHOD__,
 			( $flags & self::READ_LOCKING ) ? array( 'FOR UPDATE' ) : array()
 		);
