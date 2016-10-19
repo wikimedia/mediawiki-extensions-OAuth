@@ -42,7 +42,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	}
 
 	public function execute( $subpage ) {
-		global $wgMWOAuthSecureTokenTransfer, $wgMWOAuthReadOnly;
+		global $wgMWOAuthSecureTokenTransfer, $wgMWOAuthReadOnly, $wgBlockDisablesLogin;
 
 		$this->setHeaders();
 
@@ -151,6 +151,8 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					$oauthRequest = MWOAuthRequest::fromRequest( $request );
 					// verify_request throws an exception if anything isn't verified
 					list( $consumer, $token ) = $server->verify_request( $oauthRequest );
+					/** @var MWOAuthConsumer $consumer */
+					/** @var MWOAuthToken $token */
 
 					$wiki = wfWikiID();
 					$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
@@ -161,10 +163,15 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 							'mwoauth-invalid-authorization-wrong-wiki',
 							array( $wiki )
 						);
+					} elseif ( !$consumer->isUsableBy( $user ) ) {
+						throw new MWOAuthException( 'mwoauth-invalid-authorization-not-approved',
+							$consumer->get( 'name' ) );
 					}
 					$localUser = MWOAuthUtils::getLocalUserFromCentralId( $access->get( 'userId' ) );
 					if ( !$localUser || !$localUser->isLoggedIn() ) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-invalid-user' );
+					} elseif ( $localUser->isLocked() || $wgBlockDisablesLogin && $localUser->isBlocked() ) {
+						throw new MWOAuthException( 'mwoauth-invalid-authorization-blocked-user' );
 					}
 
 					// We know the identity of the user who granted the authorization
