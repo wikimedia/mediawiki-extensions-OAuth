@@ -10,6 +10,12 @@
 			"Alan ffm"
 		]
 	},
+	"mwoauth-db-readonly": "Bazy danych OAuth jest tymczasowo zablokowana. Proszę spróbować ponownie za kilka minut.",
+	"mwoauth-missing-field": "Brak wartości dla pola „$1”",
+	"mwoauth-invalid-field": "W polu „$1” podano nieprawidłową wartość",
+	"mwoauth-invalid-field-generic": "Podano nieprawidłową wartość",
+	"mwoauth-field-hidden": "(ta informacja jest ukryta)",
+	"mwoauth-field-private": "(ta informacja jest prywatna)",
 	"mwoauth-prefs-managegrants": "Włączone aplikacje:",
 	"mwoauth-prefs-managegrantslink": "Zarządzaj $1 {{PLURAL:$1|włączoną aplikacją|włączonymi aplikacjami}}",
 	"mwoauth-consumer-allwikis": "Wszystkie projekty na tej witrynie",
@@ -53,6 +59,7 @@
 	"mwoauthlistconsumers-view": "szczegóły",
 	"mwoauthlistconsumers-name": "Nazwa aplikacji",
 	"mwoauthlistconsumers-description": "Opis",
+	"mwoauthlistconsumers-basicgrantsonly": "(tylko podstawowy dostęp)",
 	"mwoauthlistconsumers-status": "Status",
 	"mwoauth-consumer-stage-any": "dowolny",
 	"mwoauthlistconsumers-status-approved": "zatwierdzone",
