@@ -269,7 +269,8 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	protected function normalizeValues() {
-		$this->id = (int)$this->id;
+		// Keep null values since we're constructing w/ them to auto-increment
+		$this->id = is_null( $this->id ) ? null : (int)$this->id;
 		$this->userId = (int)$this->userId;
 		$this->registration = wfTimestamp( TS_MW, $this->registration );
 		$this->stage = (int)$this->stage;
