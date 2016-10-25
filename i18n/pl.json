@@ -89,6 +89,7 @@
 	"mwoauth-form-button-approve": "Zezwól",
 	"mwoauth-form-button-cancel": "Anuluj",
 	"grant-mwoauth-authonly": "Tylko uwierzytelnianie, bez dostępu do API.",
+	"mwoauth-oauth-exception": "Wystąpił błąd w protokole OAuth: $1",
 	"right-mwoauthproposeconsumer": "Proponowanie nowych konsumentów OAuth",
 	"right-mwoauthupdateownconsumer": "Aktualizowanie kontrolowanych konsumentów OAuth",
 	"right-mwoauthmanageconsumer": "Zarządzanie konsumentami OAuth",
