@@ -104,9 +104,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 
 		// The consumer is approved or owned by $localUser, and is for this wiki.
 		$consumer = MWOAuthConsumer::newFromId( $dbr, $access->get( 'consumerId' ) );
-		if ( $consumer->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
-			&& !$consumer->isUsableBy( $localUser ) // let publisher test this
-		) {
+		if ( !$consumer->isUsableBy( $localUser ) ) {
 			return $this->makeException( 'mwoauth-invalid-authorization-not-approved' );
 		} elseif ( $consumer->get( 'wiki' ) !== '*' && $consumer->get( 'wiki' ) !== $wiki ) {
 			return $this->makeException( 'mwoauth-invalid-authorization-wrong-wiki', $wiki );
