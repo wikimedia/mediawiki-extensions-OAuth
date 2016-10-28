@@ -2,24 +2,24 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-/*
- (c) Aaron Schulz 2013, GPL
-
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License along
- with this program; if not, write to the Free Software Foundation, Inc.,
- 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- http://www.gnu.org/copyleft/gpl.html
-*/
+/**
+ * (c) Aaron Schulz 2013, GPL
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 
 use MediaWiki\Logger\LoggerFactory;
 
@@ -75,9 +75,9 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	final public static function newFromId( \DBConnRef $db, $id, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
-			array( static::getIdColumn() => (int)$id ),
+			[ static::getIdColumn() => (int)$id ],
 			__METHOD__,
-			( $flags & self::READ_LOCKING ) ? array( 'FOR UPDATE' ) : array()
+			( $flags & self::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
 		);
 
 		if ( $row ) {
@@ -112,7 +112,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @throws \Exception
 	 */
 	final public function setField( $name, $value ) {
-		$old = $this->setFields( array( $name => $value ) );
+		$old = $this->setFields( [ $name => $value ] );
 		return $old[$name];
 	}
 
@@ -124,9 +124,9 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @return array Map of old values
 	 */
 	final public function setFields( array $values ) {
-		$old = array();
+		$old = [];
 		foreach ( $values as $name => $value ) {
-			if ( !static::hasField( $name )  ) {
+			if ( !static::hasField( $name ) ) {
 				throw new \MWException( "Object has no '$name' field." );
 			}
 			$old[$name] = $this->$name;
@@ -164,7 +164,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 				$dbw->update(
 					static::getTable(),
 					$this->getRowArray( $dbw ),
-					array( $idColumn => $uniqueId ),
+					[ $idColumn => $uniqueId ],
 					__METHOD__
 				);
 				$this->daoPending = false;
@@ -204,7 +204,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 		if ( $this->daoOrigin === 'db' ) {
 			$dbw->delete(
 				static::getTable(),
-				array( $idColumn => $uniqueId ),
+				[ $idColumn => $uniqueId ],
 				__METHOD__
 			);
 			$this->daoPending = true;
@@ -339,7 +339,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 */
 	final protected function loadFromRow( \DBConnRef $db, $row ) {
 		$row = $this->decodeRow( $db, (array)$row );
-		$values = array();
+		$values = [];
 		foreach ( static::getFieldColumnMap() as $field => $column ) {
 			$values[$field] = $row[$column];
 		}
@@ -374,7 +374,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @return array
 	 */
 	final protected function getRowArray( \DBConnRef $db ) {
-		$row = array();
+		$row = [];
 		foreach ( static::getFieldColumnMap() as $field => $column ) {
 			$row[$column] = $this->$field;
 		}
@@ -409,7 +409,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @return string Hex token
 	 */
 	final public function getChangeToken( \RequestContext $context ) {
-		$map = array();
+		$map = [];
 		foreach ( $this->getFieldNames() as $field ) {
 			if ( $this->userCanAccess( $field, $context ) ) {
 				$map[$field] = $this->$field;

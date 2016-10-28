@@ -20,10 +20,10 @@ namespace MediaWiki\Extensions\OAuth;
 if ( getenv( 'MW_INSTALL_PATH' ) ) {
 	$IP = getenv( 'MW_INSTALL_PATH' );
 } else {
-	$IP = dirname(__FILE__).'/../../..';
+	$IP = __DIR__.'/../../..';
 }
 
-require_once( "$IP/maintenance/Maintenance.php" );
+require_once "$IP/maintenance/Maintenance.php";
 
 class MigrateCentralWiki extends \Maintenance {
 	public function __construct() {
@@ -52,21 +52,21 @@ class MigrateCentralWiki extends \Maintenance {
 			$this->error( "Invalid table name. Must be one of 'oauth_registered_consumer' or 'oauth_accepted_consumer'.\n", 1 );
 		}
 
-		$oldDb = wfGetLB( $oldWiki )->getConnectionRef( DB_MASTER, array(), $oldWiki );
-		$targetDb = wfGetLB( $targetWiki )->getConnectionRef( DB_MASTER, array(), $targetWiki );
+		$oldDb = wfGetLB( $oldWiki )->getConnectionRef( DB_MASTER, [], $oldWiki );
+		$targetDb = wfGetLB( $targetWiki )->getConnectionRef( DB_MASTER, [], $targetWiki );
 		$targetDb->daoReadOnly = false;
 
 		$newMax = $targetDb->selectField(
 			$table,
 			"MAX($idKey)",
-			array(),
+			[],
 			__METHOD__
 		);
 
 		$oldMax = $oldDb->selectField(
 			$table,
 			"MAX($idKey)",
-			array(),
+			[],
 			__METHOD__
 		);
 
@@ -90,10 +90,9 @@ class MigrateCentralWiki extends \Maintenance {
 				wfWaitForSlaves( null, $targetWiki );
 			}
 		}
-
 	}
 
 }
 
 $maintClass = "MediaWiki\Extensions\OAuth\MigrateCentralWiki";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

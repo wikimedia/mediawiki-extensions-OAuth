@@ -14,7 +14,7 @@ class MWOAuthUpdaterHooks {
 		if ( !MWOAuthUtils::isCentralWiki() ) {
 			return true; // no tables to add
 		}
-		$base = dirname( __FILE__ );
+		$base = __DIR__;
 
 		$dbType = $updater->getDB()->getType();
 
@@ -23,32 +23,32 @@ class MWOAuthUpdaterHooks {
 
 			$updater->addExtensionTable( 'oauth_registered_consumer', "$base/OAuth.sql" );
 
-			$updater->addExtensionUpdate( array(
+			$updater->addExtensionUpdate( [
 				'addField',
 				'oauth_registered_consumer',
 				'oarc_callback_is_prefix',
 				"$base/callback_is_prefix.sql",
 				true
-			) );
+			] );
 
-			$updater->addExtensionUpdate( array(
+			$updater->addExtensionUpdate( [
 				'addField',
 				'oauth_registered_consumer',
 				'oarc_developer_agreement',
 				"$base/developer_agreement.sql",
 				true
-			) );
+			] );
 
-			$updater->addExtensionUpdate( array(
+			$updater->addExtensionUpdate( [
 				'addField',
 				'oauth_registered_consumer',
 				'oarc_owner_only',
 				"$base/owner_only.sql",
 				true
-			) );
+			] );
 
 		} elseif ( $dbType == 'postgres' ) {
-			//$base = "$base/postgres";
+			// $base = "$base/postgres";
 
 			// @TODO
 		}

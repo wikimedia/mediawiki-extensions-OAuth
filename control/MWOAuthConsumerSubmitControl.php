@@ -2,24 +2,24 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-/*
- (c) Aaron Schulz 2013, GPL
-
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License along
- with this program; if not, write to the Free Software Foundation, Inc.,
- 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- http://www.gnu.org/copyleft/gpl.html
-*/
+/**
+ * (c) Aaron Schulz 2013, GPL
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 
 /**
  * This handles the core logic of approving/disabling consumers
@@ -35,7 +35,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	 * options in getRequiredFields().
 	 * @var array
 	 */
-	public static $actions = array( 'propose', 'update', 'approve', 'reject', 'disable', 'reenable' );
+	public static $actions = [ 'propose', 'update', 'approve', 'reject', 'disable', 'reenable' ];
 
 	/** @var \DBConnRef */
 	protected $dbw;
@@ -66,9 +66,9 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			return true;
 		};
 
-		return array(
+		return [
 			// Proposer (application administrator) actions:
-			'propose'     => array(
+			'propose'     => [
 				'name'         => '/^.{1,128}$/',
 				'version'      => '/^\d{1,3}(\.\d{1,2}){0,2}(-(dev|alpha|beta))?$/',
 				'callbackUrl'  => function( $s, $vals ) {
@@ -76,13 +76,15 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				},
 				'description'  => '/^.*$/s',
 				'email'        => function( $s ) {
-					return \Sanitizer::validateEmail( $s ); },
+					return \Sanitizer::validateEmail( $s );
+	   },
 				'wiki'         => function( $s ) {
 					global $wgConf;
 					return ( $s === '*'
 						|| in_array( $s, $wgConf->getLocalDatabases() )
 						|| array_search( $s, MWOAuthUtils::getAllWikiNames() ) !== false
-					); },
+					);
+	   },
 				'granttype'    => '/^(authonly|authonlyprivate|normal)$/',
 				'grants'       => function( $s ) {
 					$grants = \FormatJson::decode( $s, true );
@@ -100,8 +102,8 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				'agreement'    => function( $s ) {
 					return ( $s == true );
 				},
-			),
-			'update'      => array(
+			],
+			'update'      => [
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
 				'restrictions' => function( $s ) {
 					try {
@@ -112,34 +114,35 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					}
 				},
 				'rsaKey'       => $validateRsaKey,
-				'resetSecret'  => function( $s ) { return is_bool( $s ); },
+				'resetSecret'  => function( $s ) { return is_bool( $s );
+	   },
 				'reason'       => '/^.{0,255}$/',
 				'changeToken'  => '/^[0-9a-f]{40}$/'
-			),
+			],
 			// Approver (project administrator) actions:
-			'approve'     => array(
+			'approve'     => [
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
 				'reason'       => '/^.{0,255}$/',
 				'changeToken'  => '/^[0-9a-f]{40}$/'
-			),
-			'reject'      => array(
-				'consumerKey'  => '/^[0-9a-f]{32}$/',
-				'reason'       => '/^.{0,255}$/',
-				'suppress'     => '/^[01]$/',
-				'changeToken'  => '/^[0-9a-f]{40}$/'
-			),
-			'disable'     => array(
+			],
+			'reject'      => [
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
 				'reason'       => '/^.{0,255}$/',
 				'suppress'     => '/^[01]$/',
 				'changeToken'  => '/^[0-9a-f]{40}$/'
-			),
-			'reenable'    => array(
+			],
+			'disable'     => [
+				'consumerKey'  => '/^[0-9a-f]{32}$/',
+				'reason'       => '/^.{0,255}$/',
+				'suppress'     => '/^[01]$/',
+				'changeToken'  => '/^[0-9a-f]{40}$/'
+			],
+			'reenable'    => [
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
 				'reason'       => '/^.{0,255}$/',
 				'changeToken'  => '/^[0-9a-f]{40}$/'
-			)
-		);
+			]
+		];
 	}
 
 	protected function checkBasePermissions() {
@@ -179,8 +182,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			}
 
 			if ( MWOAuthConsumer::newFromNameVersionUser(
-				$dbw, $this->vals['name'], $this->vals['version'], $centralUserId ) )
-			{
+				$dbw, $this->vals['name'], $this->vals['version'], $centralUserId ) ) {
 				return $this->failure( 'consumer_exists', 'mwoauth-consumer-alreadyexists' );
 			}
 
@@ -192,9 +194,9 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			$curVer = $dbw->selectField( 'oauth_registered_consumer',
 				'oarc_version',
-				array( 'oarc_name' => $this->vals['name'], 'oarc_user_id' => $centralUserId ),
+				[ 'oarc_name' => $this->vals['name'], 'oarc_user_id' => $centralUserId ],
 				__METHOD__,
-				array( 'ORDER BY' => 'oarc_registration DESC', 'FOR UPDATE' )
+				[ 'ORDER BY' => 'oarc_registration DESC', 'FOR UPDATE' ]
 			);
 			if ( $curVer !== false && version_compare( $curVer, $this->vals['version'], '>=' ) ) {
 				return $this->failure( 'consumer_exists',
@@ -212,13 +214,13 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			}
 
 			// Handle grant types
-			$grants = array();
-			switch( $this->vals['granttype'] ) {
+			$grants = [];
+			switch ( $this->vals['granttype'] ) {
 				case 'authonly':
-					$grants = array( 'mwoauth-authonly' );
+					$grants = [ 'mwoauth-authonly' ];
 					break;
 				case 'authonlyprivate':
-					$grants = array( 'mwoauth-authonlyprivate' );
+					$grants = [ 'mwoauth-authonlyprivate' ];
 					break;
 				case 'normal':
 					$grants = array_unique( array_merge(
@@ -230,7 +232,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 
 			$now = wfTimestampNow();
 			$cmr = MWOAuthConsumer::newFromArray(
-				array(
+				[
 					'id'                 => null, // auto-increment
 					'consumerKey'        => \MWCryptRand::generateHex( 32 ),
 					'userId'             => $centralUserId,
@@ -244,7 +246,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					'grants'             => $grants,
 					'restrictions'       => \MWRestrictions::newFromJson( $this->vals['restrictions'] ),
 					'deleted'            => 0
-				) + $this->vals
+				] + $this->vals
 			);
 			$cmr->save( $dbw );
 
@@ -259,7 +261,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$cmra = null;
 			if ( $cmr->get( 'ownerOnly' ) ) {
 				$accessToken = MWOAuthDataStore::newToken();
-				$cmra = MWOAuthConsumerAcceptance::newFromArray( array(
+				$cmra = MWOAuthConsumerAcceptance::newFromArray( [
 					'id'           => null,
 					'wiki'         => $cmr->get( 'wiki' ),
 					'userId'       => $centralUserId,
@@ -268,11 +270,11 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					'accessSecret' => $accessToken->secret,
 					'grants'       => $cmr->get( 'grants' ),
 					'accepted'     => $now,
-				) );
+				] );
 				$cmra->save( $dbw );
 			}
 
-			return $this->success( array( 'consumer' => $cmr, 'acceptance' => $cmra ) );
+			return $this->success( [ 'consumer' => $cmr, 'acceptance' => $cmra ] );
 		case 'update':
 			if ( !$user->isAllowed( 'mwoauthupdateownconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
@@ -284,8 +286,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			} elseif ( $cmr->get( 'userId' ) !== $centralUserId ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			} elseif ( $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
-				&& $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_PROPOSED )
-			{
+				&& $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_PROPOSED ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' ); // sanity
@@ -293,13 +294,13 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
 			}
 
-			$cmr->setFields( array(
+			$cmr->setFields( [
 				'rsaKey'       => $this->vals['rsaKey'],
 				'restrictions' => \MWRestrictions::newFromJson( $this->vals['restrictions'] ),
 				'secretKey'    => $this->vals['resetSecret']
 					? \MWCryptRand::generateHex( 32 )
 					: $cmr->get( 'secretKey' )
-			) );
+			] );
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
@@ -310,29 +311,29 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$cmra = null;
 			if ( $cmr->get( 'ownerOnly' ) && $this->vals['resetSecret'] ) {
 				$accessToken = MWOAuthDataStore::newToken();
-				$fields = array(
+				$fields = [
 					'wiki'         => $cmr->get( 'wiki' ),
 					'userId'       => $centralUserId,
 					'consumerId'   => $cmr->get( 'id' ),
 					'accessSecret' => $accessToken->secret,
 					'grants'       => $cmr->get( 'grants' ),
-				);
+				];
 
 				$oauthServer = MWOAuthUtils::newMWOAuthServer();
 				$cmra = $oauthServer->getCurrentAuthorization( $user, $cmr, wfWikiId() );
 				if ( $cmra ) {
 					$cmra->setFields( $fields );
 				} else {
-					$cmra = MWOAuthConsumerAcceptance::newFromArray( $fields + array(
+					$cmra = MWOAuthConsumerAcceptance::newFromArray( $fields + [
 						'id'           => null,
 						'accessToken'  => $accessToken->key,
 						'accepted'     => wfTimestampNow(),
-					) );
+					] );
 				}
 				$cmra->save( $dbw );
 			}
 
-			return $this->success( array( 'consumer' => $cmr, 'acceptance' => $cmra ) );
+			return $this->success( [ 'consumer' => $cmr, 'acceptance' => $cmra ] );
 		case 'approve':
 			if ( !$user->isAllowed( 'mwoauthmanageconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
@@ -341,11 +342,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$cmr = MWOAuthConsumer::newFromKey( $dbw, $this->vals['consumerKey'] );
 			if ( !$cmr ) {
 				return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
-			} elseif ( !in_array( $cmr->get( 'stage' ), array(
+			} elseif ( !in_array( $cmr->get( 'stage' ), [
 				MWOAuthConsumer::STAGE_PROPOSED,
 				MWOAuthConsumer::STAGE_EXPIRED,
-				MWOAuthConsumer::STAGE_REJECTED ) ) )
-			{
+				MWOAuthConsumer::STAGE_REJECTED ] ) ) {
 				return $this->failure( 'not_proposed', 'mwoauth-consumer-not-proposed' );
 			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
@@ -353,10 +353,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
 			}
 
-			$cmr->setFields( array(
+			$cmr->setFields( [
 				'stage'          => MWOAuthConsumer::STAGE_APPROVED,
 				'stageTimestamp' => wfTimestampNow(),
-				'deleted'        => 0 ) );
+				'deleted'        => 0 ] );
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
@@ -383,10 +383,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
 			}
 
-			$cmr->setFields( array(
+			$cmr->setFields( [
 				'stage'          => MWOAuthConsumer::STAGE_REJECTED,
 				'stageTimestamp' => wfTimestampNow(),
-				'deleted'        => $this->vals['suppress'] ) );
+				'deleted'        => $this->vals['suppress'] ] );
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
@@ -406,8 +406,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			if ( !$cmr ) {
 				return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
 			} elseif ( $cmr->get( 'stage' ) !== MWOAuthConsumer::STAGE_APPROVED
-				&& $cmr->get( 'deleted' ) == $this->vals['suppress'] )
-			{
+				&& $cmr->get( 'deleted' ) == $this->vals['suppress'] ) {
 				return $this->failure( 'not_approved', 'mwoauth-consumer-not-approved' );
 			} elseif ( $cmr->get( 'deleted' ) && !$user->isAllowed( 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
@@ -415,10 +414,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
 			}
 
-			$cmr->setFields( array(
+			$cmr->setFields( [
 				'stage'          => MWOAuthConsumer::STAGE_DISABLED,
 				'stageTimestamp' => wfTimestampNow(),
-				'deleted'        => $this->vals['suppress'] ) );
+				'deleted'        => $this->vals['suppress'] ] );
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
@@ -443,10 +442,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
 			}
 
-			$cmr->setFields( array(
+			$cmr->setFields( [
 				'stage'          => MWOAuthConsumer::STAGE_APPROVED,
 				'stageTimestamp' => wfTimestampNow(),
-				'deleted'        => 0 ) );
+				'deleted'        => 0 ] );
 
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
@@ -480,10 +479,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 		$logEntry->setPerformer( $performer );
 		$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
 		$logEntry->setComment( $comment );
-		$logEntry->setParameters( array( '4:consumer' => $cmr->get( 'consumerKey' ) ) );
-		$logEntry->setRelations( array(
-			'OAuthConsumer' => array( $cmr->get( 'consumerKey' ) )
-		) );
+		$logEntry->setParameters( [ '4:consumer' => $cmr->get( 'consumerKey' ) ] );
+		$logEntry->setRelations( [
+			'OAuthConsumer' => [ $cmr->get( 'consumerKey' ) ]
+		] );
 		$logEntry->insert( $dbw );
 	}
 

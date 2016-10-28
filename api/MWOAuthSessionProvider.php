@@ -24,7 +24,7 @@ use WebRequest;
  */
 class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCookie {
 
-	public function __construct( array $params = array() ) {
+	public function __construct( array $params = [] ) {
 		global $wgHooks;
 
 		parent::__construct( $params );
@@ -56,12 +56,12 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 
 		// Then return an appropriate SessionInfo
 		$id = $this->hashToSessionId( 'bogus' );
-		return new SessionInfo( SessionInfo::MAX_PRIORITY, array(
+		return new SessionInfo( SessionInfo::MAX_PRIORITY, [
 			'provider' => $this,
 			'id' => $id,
 			'userInfo' => UserInfo::newAnonymous(),
 			'persisted' => false,
-		) );
+		] );
 	}
 
 	public function provideSessionInfo( WebRequest $request ) {
@@ -114,14 +114,14 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 		if ( $this->sessionCookieName === null ) {
 			// We're not configured to use cookies, so concatenate some of the
 			// internal consumer-acceptance state to generate an ID.
-			$id = $this->hashToSessionId( join( "\n", array(
+			$id = $this->hashToSessionId( join( "\n", [
 				$access->get( 'id' ),
 				$access->get( 'wiki' ),
 				$access->get( 'userId' ),
 				$access->get( 'consumerId' ),
 				$access->get( 'accepted' ),
 				$wiki,
-			) ) );
+			] ) );
 			$persisted = false;
 			$forceUse = true;
 		} else {
@@ -130,17 +130,17 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 			$forceUse = false;
 		}
 
-		return new SessionInfo( SessionInfo::MAX_PRIORITY, array(
+		return new SessionInfo( SessionInfo::MAX_PRIORITY, [
 			'provider' => $this,
 			'id' => $id,
 			'userInfo' => UserInfo::newFromUser( $localUser, true ),
 			'persisted' => $persisted,
 			'forceUse' => $forceUse,
-			'metadata' => array(
+			'metadata' => [
 				'key' => $accesstoken->key,
 				'rights' => \MWGrants::getGrantRights( $access->get( 'grants' ) ),
-			),
-		) );
+			],
+		] );
 	}
 
 	public function preventSessionsForUser( $username ) {
@@ -155,19 +155,19 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 				'oauth_registered_consumer',
 				'oaac_consumer_id',
 				'oarc_id',
-				array( 'oarc_user_id' => $id ),
+				[ 'oarc_user_id' => $id ],
 				__METHOD__
 			);
 			$dbw->delete(
 				'oauth_registered_consumer',
-				array( 'oarc_user_id' => $id ),
+				[ 'oarc_user_id' => $id ],
 				__METHOD__
 			);
 
 			// Remove any approvals by this user, too
 			$dbw->delete(
 				'oauth_accepted_consumer',
-				array( 'oaac_user_id' => $id ),
+				[ 'oaac_user_id' => $id ],
 				__METHOD__
 			);
 		} catch ( \DBError $e ) {
@@ -178,11 +178,11 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 	}
 
 	public function getVaryHeaders() {
-		return array(
-			'Authorization' => array(
+		return [
+			'Authorization' => [
 				'substr="OAuth "',
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -219,7 +219,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 
 		// Should never happen
 		$this->logger->debug( __METHOD__ . ': No provider metadata, returning no rights allowed' );
-		return array();
+		return [];
 	}
 
 	/**
@@ -247,11 +247,11 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 		foreach ( $wgMWOauthDisabledApiModules as $badModule ) {
 			if ( $module instanceof $badModule ) {
 				// Awful interface, API.
-				\ApiBase::$messageMap['mwoauth-api-module-disabled'] = array(
+				\ApiBase::$messageMap['mwoauth-api-module-disabled'] = [
 					'code' => 'mwoauth-api-module-disabled',
 					'info' => 'The "$1" module is not available with OAuth.',
-				);
-				$message = array( 'mwoauth-api-module-disabled', $module->getModuleName() );
+				];
+				$message = [ 'mwoauth-api-module-disabled', $module->getModuleName() ];
 				return false;
 			}
 		}

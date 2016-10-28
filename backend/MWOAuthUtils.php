@@ -30,7 +30,7 @@ class MWOAuthUtils {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthReadOnly;
 
 		$db = wfGetLB( $wgMWOAuthCentralWiki )->getLazyConnectionRef(
-			$index, array(), $wgMWOAuthCentralWiki );
+			$index, [], $wgMWOAuthCentralWiki );
 		$db->daoReadOnly = $wgMWOAuthReadOnly;
 		return $db;
 	}
@@ -53,18 +53,18 @@ class MWOAuthUtils {
 	 */
 	public static function getConsumerStateCounts( \DBConnRef $db ) {
 		$res = $db->select( 'oauth_registered_consumer',
-			array( 'oarc_stage', 'count' => 'COUNT(*)' ),
-			array(),
+			[ 'oarc_stage', 'count' => 'COUNT(*)' ],
+			[],
 			__METHOD__,
-			array( 'GROUP BY' => 'oarc_stage' )
+			[ 'GROUP BY' => 'oarc_stage' ]
 		);
-		$table = array(
+		$table = [
 			MWOAuthConsumer::STAGE_APPROVED => 0,
 			MWOAuthConsumer::STAGE_DISABLED => 0,
 			MWOAuthConsumer::STAGE_EXPIRED  => 0,
 			MWOAuthConsumer::STAGE_PROPOSED => 0,
 			MWOAuthConsumer::STAGE_REJECTED => 0,
-		);
+		];
 		foreach ( $res as $row ) {
 			$table[(int)$row->oarc_stage] = (int)$row->count;
 		}
@@ -82,12 +82,12 @@ class MWOAuthUtils {
 		$request = \RequestContext::getMain()->getRequest();
 		$headers = $request->getAllHeaders();
 
-		$out = array();
-		foreach ($headers AS $key => $value) {
+		$out = [];
+		foreach ( $headers as $key => $value ) {
 			$key = str_replace(
 				" ",
 				"-",
-				ucwords( strtolower( str_replace( "-", " ", $key) ) )
+				ucwords( strtolower( str_replace( "-", " ", $key ) ) )
 			);
 			$out[$key] = $value;
 		}
@@ -117,7 +117,6 @@ class MWOAuthUtils {
 		$args = func_get_args();
 		return "OAUTH:$wgMWOAuthCentralWiki:" . implode( ':', $args );
 	}
-
 
 	/**
 	 * @param \DBConnRef $dbw
@@ -180,7 +179,7 @@ class MWOAuthUtils {
 	 */
 	public static function getAllWikiNames() {
 		global $wgConf;
-		$wikiNames = array();
+		$wikiNames = [];
 		foreach ( $wgConf->getLocalDatabases() as $dbname ) {
 			$name = self::getWikiIdName( $dbname );
 			if ( $name != $dbname ) {
@@ -232,13 +231,13 @@ class MWOAuthUtils {
 				if ( !\Hooks::isRegistered( 'OAuthGetUserNamesFromCentralIds' ) ) {
 					throw new \MWException( "No handler for 'OAuthGetUserNamesFromCentralIds' hook" );
 				}
-				$namesById = array( $userId => null );
+				$namesById = [ $userId => null ];
 				Hooks::run( 'OAuthGetUserNamesFromCentralIds',
-					array( $wgMWOAuthCentralWiki,
+					[ $wgMWOAuthCentralWiki,
 						&$namesById,
 						$audience,
 						$wgMWOAuthSharedUserSource
-					)
+					]
 				);
 				$name = $namesById[$userId];
 			}
@@ -290,7 +289,7 @@ class MWOAuthUtils {
 				// Let extensions check that central wiki user ID is attached to a global account
 				// and that return the user on this wiki that is attached to that global account
 				Hooks::run( 'OAuthGetLocalUserFromCentralId',
-					array( $userId, $wgMWOAuthCentralWiki, &$user, $wgMWOAuthSharedUserSource ) );
+					[ $userId, $wgMWOAuthCentralWiki, &$user, $wgMWOAuthSharedUserSource ] );
 				// If there is no local user, the extension should set the user to false
 				if ( $user === null ) {
 					throw new \MWException( 'Could not lookup user from ID via hook.' );
@@ -338,7 +337,7 @@ class MWOAuthUtils {
 					// Let CentralAuth check that $user is attached to a global account and
 					// that the foreign local account on the central wiki is also attached to it
 					Hooks::run( 'OAuthGetCentralIdFromLocalUser',
-						array( $user, $wgMWOAuthCentralWiki, &$id, $wgMWOAuthSharedUserSource ) );
+						[ $user, $wgMWOAuthCentralWiki, &$id, $wgMWOAuthSharedUserSource ] );
 					// If there is no such user, the extension should set the ID to false
 					if ( $id === null ) {
 						throw new \MWException( 'Could not lookup ID for user via hook.' );
@@ -385,7 +384,7 @@ class MWOAuthUtils {
 				// Let CentralAuth check that $user is attached to a global account and
 				// that the foreign local account on the central wiki is also attached to it
 				Hooks::run( 'OAuthGetCentralIdFromUserName',
-					array( $username, $wgMWOAuthCentralWiki, &$id, $wgMWOAuthSharedUserSource ) );
+					[ $username, $wgMWOAuthCentralWiki, &$id, $wgMWOAuthSharedUserSource ] );
 				if ( $id === null ) {
 					throw new \MWException( 'Could not lookup ID for user via hook.' );
 				}
@@ -425,7 +424,7 @@ class MWOAuthUtils {
 	 * @return string the Message key to use
 	 */
 	public static function getSiteMessage( $msgKey ) {
-		Hooks::run( 'OAuthReplaceMessage', array( &$msgKey ) );
+		Hooks::run( 'OAuthReplaceMessage', [ &$msgKey ] );
 		return $msgKey;
 	}
 
@@ -455,7 +454,7 @@ class MWOAuthUtils {
 	 */
 	public static function grantsAreValid( array $grants ) {
 		// Remove our special grants before calling the core method
-		$grants = array_diff( $grants, array( 'mwoauth-authonly', 'mwoauth-authonlyprivate' ) );
+		$grants = array_diff( $grants, [ 'mwoauth-authonly', 'mwoauth-authonlyprivate' ] );
 		return \MWGrants::grantsAreValid( $grants );
 	}
 

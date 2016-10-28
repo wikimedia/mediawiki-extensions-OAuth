@@ -2,24 +2,24 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-/*
- (c) Aaron Schulz 2013, GPL
-
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License along
- with this program; if not, write to the Free Software Foundation, Inc.,
- 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- http://www.gnu.org/copyleft/gpl.html
-*/
+/**
+ * (c) Aaron Schulz 2013, GPL
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 
 /**
  * Special page for listing consumers this user granted access to and
@@ -56,7 +56,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		$typeKey = isset( $navigation[0] ) ? $navigation[0] : null;
 		$acceptanceId = isset( $navigation[1] ) ? $navigation[1] : null;
 
-		if ( $wgMWOAuthReadOnly && in_array( $typeKey, array( 'update', 'revoke' ) ) ) {
+		if ( $wgMWOAuthReadOnly && in_array( $typeKey, [ 'update', 'revoke' ] ) ) {
 			throw new \ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
 		}
 
@@ -84,7 +84,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 	 * @return void
 	 */
 	protected function addSubtitleLinks( $acceptanceId ) {
-		$listLinks = array();
+		$listLinks = [];
 		if ( $acceptanceId ) {
 			$listLinks[] = \Linker::linkKnown(
 				$this->getPageTitle(),
@@ -140,64 +140,67 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 			$action = 'update';
 		}
 
-		$data = array( 'action' => $action );
+		$data = [ 'action' => $action ];
 		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), $data, $dbr );
 		$form = new \HTMLForm(
-			$control->registerValidators( array(
-				'name' => array(
+			$control->registerValidators( [
+				'name' => [
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-name',
 					'default' => $cmr->get( 'name',
 						function( $s ) use ( $cmr ) {
-							return $s . ' [' . $cmr->get( 'version' ) . ']'; } )
-				),
-				'user' => array(
+							return $s . ' [' . $cmr->get( 'version' ) . ']';
+	     } )
+				],
+				'user' => [
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-user',
 					'default' => $cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' )
-				),
-				'description' => array(
+				],
+				'description' => [
 					'type' => 'info',
 					'label-message' => 'mwoauth-consumer-description',
 					'default' => $cmr->get( 'description' ),
-				),
-				'usedOnWiki' => array(
+				],
+				'usedOnWiki' => [
 					'type' => 'info',
 					'label-message' => 'mwoauthmanagemygrants-wikiallowed',
 					'default' => $cmra->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
-				),
-				'grants'  => array(
+				],
+				'grants'  => [
 					'type' => 'checkmatrix',
 					'label-message' => 'mwoauthmanagemygrants-applicablegrantsallowed',
-					'columns' => array(
+					'columns' => [
 						$this->msg( 'mwoauthmanagemygrants-grantaccept' )->escaped() => 'grant'
-					),
+					],
 					'rows' => array_combine(
 						array_map( 'MWGrants::getGrantsLink', $cmr->get( 'grants' ) ),
 						$cmr->get( 'grants' )
 					),
 					'default' => array_map(
-						function( $g ) { return "grant-$g"; },
+						function( $g ) { return "grant-$g";
+	     },
 						$cmra->get( 'grants' )
 					),
-					'tooltips' => array(
+					'tooltips' => [
 						\MWGrants::getGrantsLink( 'basic' ) => $this->msg( 'mwoauthmanagemygrants-basic-tooltip' )->text(),
 						\MWGrants::getGrantsLink( 'mwoauth-authonly' ) => $this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
 						\MWGrants::getGrantsLink( 'mwoauth-authonlyprivate' ) => $this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
-					),
+					],
 					'force-options-on' => array_map(
-						function( $g ) { return "grant-$g"; },
+						function( $g ) { return "grant-$g";
+	     },
 						( $type === 'revoke' )
 							? array_merge( \MWGrants::getValidGrants(), self::irrevocableGrants() )
 							: self::irrevocableGrants()
 					),
 					'validation-callback' => null // different format
-				),
-				'acceptanceId' => array(
+				],
+				'acceptanceId' => [
 					'type' => 'hidden',
 					'default' => $cmra->get( 'id' )
-				)
-			) ),
+				]
+			] ),
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
@@ -213,21 +216,21 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		);
 
 		$form->setWrapperLegendMsg( 'mwoauthmanagemygrants-confirm-legend' );
-		$opts = array(
+		$opts = [
 			'class' => 'mw-htmlform-submit',
-		);
+		];
 		$form->suppressDefaultSubmit();
 		if ( $type === 'revoke' ) {
 			$form->addButton( 'renounce',
 				$this->msg( 'mwoauthmanagemygrants-renounce' )->text(),
 				null,
-				array( 'class' => 'mw-ui-button mw-ui-destructive' )
+				[ 'class' => 'mw-ui-button mw-ui-destructive' ]
 			);
 		} else {
 			$form->addButton( 'update',
 				$this->msg( 'mwoauthmanagemygrants-update' )->text(),
 				null,
-				array( 'class' => 'mw-ui-button mw-ui-progressive' )
+				[ 'class' => 'mw-ui-button mw-ui-progressive' ]
 			);
 		}
 		$form->addPreText(
@@ -249,7 +252,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		$this->getOutput()->addWikiMsg( 'mwoauthmanagemygrants-text' );
 
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $this->getUser() );
-		$pager = new MWOAuthManageMyGrantsPager( $this, array(), $centralUserId );
+		$pager = new MWOAuthManageMyGrantsPager( $this, [], $centralUserId );
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addHTML( $pager->getNavigationBar() );
 			$this->getOutput()->addHTML( $pager->getBody() );
@@ -270,7 +273,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		$cmra = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumerAcceptance::newFromRow( $db, $row ), $this->getContext() );
 
-		$links = array();
+		$links = [];
 		if ( array_diff( $cmr->get( 'grants' ), self::irrevocableGrants() ) ) {
 			$links[] = \Linker::linkKnown(
 				$this->getPageTitle( 'update/' . $cmra->get( 'id' ) ),
@@ -289,12 +292,12 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 
 		$r = '<li class="mw-mwoauthmanagemygrants-list-item">';
 		$r .= "<strong dir='ltr'>{$encName}</strong> (<strong>$reviewLinks</strong>)";
-		$data = array(
+		$data = [
 			'mwoauthmanagemygrants-user' => $cmr->get( 'userId',
 				'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' ),
 			'mwoauthmanagemygrants-wikiallowed' => $cmra->get( 'wiki',
 				'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
-		);
+		];
 
 		foreach ( $data as $msg => $val ) {
 			$r .= '<p>' . $this->msg( $msg )->escaped() . ' ' . htmlspecialchars( $val ) . '</p>';
@@ -308,7 +311,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		if ( self::$irrevocableGrants === null ) {
 			self::$irrevocableGrants = array_merge(
 				\MWGrants::getHiddenGrants(),
-				array( 'mwoauth-authonly', 'mwoauth-authonlyprivate' )
+				[ 'mwoauth-authonly', 'mwoauth-authonlyprivate' ]
 			);
 		}
 		return self::$irrevocableGrants;
@@ -385,11 +388,11 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	 * @return array
 	 */
 	function getQueryInfo() {
-		return array(
-			'tables' => array( 'oauth_accepted_consumer', 'oauth_registered_consumer' ),
-			'fields' => array( '*' ),
+		return [
+			'tables' => [ 'oauth_accepted_consumer', 'oauth_registered_consumer' ],
+			'fields' => [ '*' ],
 			'conds'  => $this->mConds
-		);
+		];
 	}
 
 	/**

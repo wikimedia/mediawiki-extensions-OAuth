@@ -11,10 +11,10 @@
 if ( getenv( 'MW_INSTALL_PATH' ) ) {
 	$IP = getenv( 'MW_INSTALL_PATH' );
 } else {
-	$IP = dirname(__FILE__).'/../../..';
+	$IP = __DIR__.'/../../..';
 }
 
-require_once( "$IP/maintenance/Maintenance.php" );
+require_once "$IP/maintenance/Maintenance.php";
 
 class MigrateCentralWikiLogs extends Maintenance {
 	public function __construct() {
@@ -25,22 +25,21 @@ class MigrateCentralWikiLogs extends Maintenance {
 	}
 
 	public function execute() {
-
 		$oldWiki = $this->getOption( 'old' );
 		$targetWiki = wfWikiID();
 
 		$this->output( "Moving OAuth logs from '$oldWiki' to '$targetWiki'\n" );
 
 		// We only read from $oldDb, but we do want to make sure we get the most recent logs.
-		$oldDb = wfGetLB( $oldWiki )->getConnectionRef( DB_MASTER, array(), $oldWiki );
-		$targetDb = wfGetLB( $targetWiki )->getConnectionRef( DB_MASTER, array(), $targetWiki );
+		$oldDb = wfGetLB( $oldWiki )->getConnectionRef( DB_MASTER, [], $oldWiki );
+		$targetDb = wfGetLB( $targetWiki )->getConnectionRef( DB_MASTER, [], $targetWiki );
 
 		$targetMinTS = $targetDb->selectField(
 			'logging',
 			"MIN(log_timestamp)",
-			array(
+			[
 				'log_type' => 'mwoauthconsumer',
-			),
+			],
 			__METHOD__
 		);
 
@@ -50,7 +49,7 @@ class MigrateCentralWikiLogs extends Maintenance {
 		}
 
 		do {
-			$conds = array( 'log_type' => 'mwoauthconsumer' );
+			$conds = [ 'log_type' => 'mwoauthconsumer' ];
 
 			// This assumes that we don't have more than mBatchSize oauth log entries
 			// with the same timestamp. Otherwise this will go into an infinite loop.
@@ -60,15 +59,15 @@ class MigrateCentralWikiLogs extends Maintenance {
 
 			$oldLoggs = $oldDb->select(
 				'logging',
-				array( 'log_id', 'log_action', 'log_timestamp', 'log_user',
+				[ 'log_id', 'log_action', 'log_timestamp', 'log_user',
 					'log_user_text', 'log_comment', 'log_params', 'log_deleted'
-				),
+				],
 				$conds,
 				__METHOD__,
-				array(
+				[
 					'ORDER BY' => 'log_timestamp DESC',
 					'LIMIT' => $this->mBatchSize + 1,
-				)
+				]
 			);
 
 			$rowCount = $oldLoggs->numRows();
@@ -89,7 +88,6 @@ class MigrateCentralWikiLogs extends Maintenance {
 
 			$targetDb->begin();
 			foreach ( $oldLoggs as $key => $row ) {
-
 				// Skip if this is the extra row we selected
 				if ( $key > $this->mBatchSize ) {
 					continue;
@@ -113,13 +111,13 @@ class MigrateCentralWikiLogs extends Maintenance {
 				$logEntry->setTarget( Title::makeTitleSafe( NS_USER, $row->log_user_text ) );
 				$logEntry->setComment( $row->log_comment );
 				$logEntry->setParameters( $params );
-				$logEntry->setRelations( array(
-					'OAuthConsumer' => array( $params['4:consumer'] )
-				) );
-				//ManualLogEntry::insert() calls $dbw->timestamp on the value
+				$logEntry->setRelations( [
+					'OAuthConsumer' => [ $params['4:consumer'] ]
+				] );
+				// ManualLogEntry::insert() calls $dbw->timestamp on the value
 				$logEntry->setTimestamp( $row->log_timestamp );
 				// @TODO: Maybe this will do something some day. Sigh.
-				$logEntry->setDeleted( $row->log_deleted ); 
+				$logEntry->setDeleted( $row->log_deleted );
 				$logEntry->insert( $targetDb );
 			}
 			$targetDb->commit();
@@ -132,4 +130,4 @@ class MigrateCentralWikiLogs extends Maintenance {
 }
 
 $maintClass = "MigrateCentralWikiLogs";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

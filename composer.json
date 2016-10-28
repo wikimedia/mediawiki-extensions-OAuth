@@ -7,5 +7,18 @@
 	"require": {
 		"firebase/php-jwt": "3.0.0",
 		"php": ">=5.3.3"
+	},
+	"require-dev": {
+		"jakub-onderka/php-parallel-lint": "0.9",
+		"mediawiki/mediawiki-codesniffer": "0.8.0-alpha.1"
+	},
+	"scripts": {
+		"test": [
+			"parallel-lint . --exclude vendor",
+			"phpcs -p -s"
+		],
+		"fix": [
+			"phpcbf"
+		]
 	}
 }

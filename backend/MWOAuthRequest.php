@@ -70,9 +70,9 @@ class MWOAuthRequest extends OAuthRequest {
 			$headerParameters = OAuthUtil::split_header(
 				$requestHeaders['Authorization']
 			);
-			$parameters = array_merge($parameters, $headerParameters);
+			$parameters = array_merge( $parameters, $headerParameters );
 		}
-		$logger->debug( __METHOD__ . ": parameters:\n" . print_r( $parameters, true) );
+		$logger->debug( __METHOD__ . ": parameters:\n" . print_r( $parameters, true ) );
 
 		return new self( $httpMethod, $httpUrl, $parameters, $request->getIP() );
 	}

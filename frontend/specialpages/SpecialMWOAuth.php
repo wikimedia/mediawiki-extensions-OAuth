@@ -2,24 +2,24 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-/*
- (c) Chris Steipp, Aaron Schulz 2013, GPL
-
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License along
- with this program; if not, write to the Free Software Foundation, Inc.,
- 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- http://www.gnu.org/copyleft/gpl.html
-*/
+/**
+ * (c) Chris Steipp, Aaron Schulz 2013, GPL
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 
 use Firebase\JWT\JWT;
 use MediaWiki\Logger\LoggerFactory;
@@ -51,7 +51,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$format = $request->getVal( 'format', 'raw' );
 
 		try {
-			if ( $wgMWOAuthReadOnly && !in_array( $subpage, array( 'verified', 'grants', 'identify' ) ) ) {
+			if ( $wgMWOAuthReadOnly && !in_array( $subpage, [ 'verified', 'grants', 'identify' ] ) ) {
 				throw new MWOAuthException( 'mwoauth-db-readonly' );
 			}
 
@@ -78,10 +78,10 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					if ( $user->isAnon() ) {
 						// Redirect to login page
 						$query['returnto'] = $this->getPageTitle( $subpage )->getPrefixedText();
-						$query['returntoquery'] = wfArrayToCgi( array(
+						$query['returntoquery'] = wfArrayToCgi( [
 							'oauth_token'        => $requestToken,
 							'oauth_consumer_key' => $consumerKey
-						) );
+						] );
 						$loginPage = \SpecialPage::getTitleFor( 'Userlogin' );
 						$url = $loginPage->getLocalURL( $query );
 						$this->getOutput()->redirect( $url );
@@ -167,7 +167,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					if ( $access->get( 'wiki' ) !== '*' && $access->get( 'wiki' ) !== $wiki ) {
 						throw new MWOAuthException(
 							'mwoauth-invalid-authorization-wrong-wiki',
-							array( $wiki )
+							[ $wiki ]
 						);
 					} elseif ( !$consumer->isUsableBy( $localUser ) ) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-not-approved',
@@ -204,10 +204,10 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					}
 			}
 		} catch ( MWOAuthException $exception ) {
-			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(), array( 'exception' => $exception ) );
+			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(), [ 'exception' => $exception ] );
 			$this->showError( wfMessage( $exception->msg, $exception->params ), $format );
 		} catch ( OAuthException $exception ) {
-			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(), array( 'exception' => $exception ) );
+			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(), [ 'exception' => $exception ] );
 			$this->showError(
 				wfMessage( 'mwoauth-oauth-exception', $exception->getMessage() ),
 				$format
@@ -246,7 +246,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	 */
 	protected function outputJWT( $user, $consumer, $request, $format, $access ) {
 		global $wgCanonicalServer;
-		$statement = array();
+		$statement = [];
 
 		// Include some of the OpenID Connect attributes
 		// http://openid.net/specs/openid-connect-core-1_0.html (draft 14)
@@ -310,12 +310,12 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		} elseif ( !$cmr->getDAO()->isUsableBy( $user ) ) {
 			throw new MWOAuthException(
 				'mwoauthserver-bad-consumer',
-				array(
+				[
 					$cmr->get( 'name' ),
 					MWOAuthUtils::getCentralUserTalk(
 						MWOAuthUtils::getCentralUserNameFromId( $cmr->get( 'userId' ) )
 					)
-				)
+				]
 			);
 		}
 
@@ -328,7 +328,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		if ( $existing && $authenticate &&
 			$existing->get( 'wiki' ) === $cmr->get( 'wiki' ) &&
 			$existing->get( 'grants' ) === $cmr->get( 'grants' ) &&
-			!array_diff( $existing->get( 'grants' ), array( 'mwoauth-authonly', 'mwoauth-authonlyprivate' ) )
+			!array_diff( $existing->get( 'grants' ), [ 'mwoauth-authonly', 'mwoauth-authonlyprivate' ] )
 		) {
 			$callback = $oauthServer->authorize(
 				$consumerKey,
@@ -340,31 +340,31 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			return;
 		}
 
-		$this->getOutput()->addModuleStyles( array( 'mediawiki.ui', 'mediawiki.ui.button', 'ext.MWOAuth.AuthorizeForm' ) );
+		$this->getOutput()->addModuleStyles( [ 'mediawiki.ui', 'mediawiki.ui.button', 'ext.MWOAuth.AuthorizeForm' ] );
 		$this->getOutput()->addModules( 'ext.MWOAuth.AuthorizeDialog' );
 
-		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), array(), $dbr );
+		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), [], $dbr );
 		$form = new \HTMLForm(
-			$control->registerValidators( array(
-				'action' => array(
+			$control->registerValidators( [
+				'action' => [
 					'type'    => 'hidden',
 					'default' => 'accept',
-				),
-				'confirmUpdate' => array(
+				],
+				'confirmUpdate' => [
 					'type'    => 'hidden',
 					'default' => $existing ? 1 : 0,
-				),
-				'consumerKey' => array(
+				],
+				'consumerKey' => [
 					'name'    => 'consumerKey',
 					'type'    => 'hidden',
 					'default' => $consumerKey,
-				),
-				'requestToken' => array(
+				],
+				'requestToken' => [
 					'name'    => 'requestToken',
 					'type'    => 'hidden',
 					'default' => $requestToken,
-				)
-			) ),
+				]
+			] ),
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
@@ -384,11 +384,11 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		// * mwoauth-form-description-allwikis-nogrants
 		// * mwoauth-form-description-onewiki-nogrants
 		$msgKey = 'mwoauth-form-description';
-		$params = array(
+		$params = [
 			$this->getUser()->getName(),
 			$cmr->get( 'name' ),
 			$cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' ),
-		);
+		];
 		if ( $cmr->get( 'wiki' ) === '*' ) {
 			$msgKey .= '-allwikis';
 		} else {
@@ -407,11 +407,11 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$form->suppressDefaultSubmit();
 		$form->addButton( 'accept',
 			wfMessage( 'mwoauth-form-button-approve' )->text(), null,
-			array( 'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-progressive',
-				'id' => 'mw-mwoauth-accept' ) );
+			[ 'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-progressive',
+				'id' => 'mw-mwoauth-accept' ] );
 		$form->addButton( 'cancel',
 			wfMessage( 'mwoauth-form-button-cancel' )->text(), null,
-			array( 'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-quiet' ) );
+			[ 'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-quiet' ] );
 
 		$form->addFooterText( $this->getSkin()->privacyLink() );
 
@@ -433,10 +433,10 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		if ( $format == 'raw' ) {
 			$this->showResponse( 'Error: ' .$message->escaped(), 'raw' );
 		} elseif ( $format == 'json' ) {
-			$error = \FormatJson::encode( array(
+			$error = \FormatJson::encode( [
 				'error' => $message->getKey(),
 				'message' => $message->text(),
-			) );
+			] );
 			$this->showResponse( $error, 'json' );
 		} elseif ( $format == 'html' ) {
 			$this->getOutput()->showErrorPage( 'mwoauth-error', $message );
@@ -447,7 +447,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	 * @param OAuthToken $token
 	 * @param string $format the format of the response: html, raw, or json
 	 */
-	private function returnToken( OAuthToken $token, $format  ) {
+	private function returnToken( OAuthToken $token, $format ) {
 		if ( $format == 'raw' ) {
 			$return = 'oauth_token=' . OAuthUtil::urlencode_rfc3986( $token->key );
 			$return .= '&oauth_token_secret=' . OAuthUtil::urlencode_rfc3986( $token->secret );
@@ -458,20 +458,20 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		} elseif ( $format == 'html' ) {
 			$html = \Html::element(
 				'li',
-				array(),
+				[],
 				'oauth_token = ' . OAuthUtil::urlencode_rfc3986( $token->key )
 			);
 			$html .= \Html::element(
 				'li',
-				array(),
+				[],
 				'oauth_token_secret = ' . OAuthUtil::urlencode_rfc3986( $token->secret )
 			);
 			$html .= \Html::element(
 				'li',
-				array(),
+				[],
 				'oauth_callback_confirmed = true'
 			);
-			$html = \Html::rawElement( 'ul', array(), $html );
+			$html = \Html::rawElement( 'ul', [], $html );
 			$this->showResponse( $html, 'html' );
 		}
 	}
@@ -480,7 +480,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	 * @param string $data html or string to pass back to the user. Already escaped.
 	 * @param string $format the format of the response: raw, json, or html
 	 */
-	private function showResponse( $data, $format  ) {
+	private function showResponse( $data, $format ) {
 		$out = $this->getOutput();
 		if ( $format == 'raw' || $format == 'json' ) {
 			$this->getOutput()->disable();

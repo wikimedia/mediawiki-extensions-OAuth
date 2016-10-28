@@ -2,24 +2,24 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-/*
- (c) Aaron Schulz 2013, GPL
-
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License along
- with this program; if not, write to the Free Software Foundation, Inc.,
- 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- http://www.gnu.org/copyleft/gpl.html
-*/
+/**
+ * (c) Aaron Schulz 2013, GPL
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 
 /**
  * Special page for listing the queue of consumer requests and managing
@@ -77,7 +77,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		}
 
 		$grants = $cmr->get( 'grants' );
-		if ( $grants === array( 'mwoauth-authonly' ) || $grants === array( 'mwoauth-authonlyprivate' ) ) {
+		if ( $grants === [ 'mwoauth-authonly' ] || $grants === [ 'mwoauth-authonlyprivate' ] ) {
 			$s = $this->msg( 'grant-' . $grants[0] )->text() . "\n";
 		} else {
 			$s = \MWGrants::getGrantsWikiText( $grants, $this->getLanguage() );
@@ -89,7 +89,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		}
 
 		$stageKey = MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )];
-		$data = array(
+		$data = [
 			'mwoauthlistconsumers-name' => htmlspecialchars(
 				$cmr->get( 'name' )
 			),
@@ -115,7 +115,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 				$cmr->get( 'callbackIsPrefix' )
 			),
 			'mwoauthlistconsumers-grants' => $out->parseInline( $s ),
-		);
+		];
 
 		$r = '';
 		foreach ( $data as $msg => $encValue ) {
@@ -129,11 +129,11 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			$logPage = new \LogPage( 'mwoauthconsumer' );
 			$out->addHTML( \Xml::element( 'h2', null, $logPage->getName()->text() ) );
 			\LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '',
-				array(
-					'conds' => array(
-					'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ),
+				[
+					'conds' => [
+					'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ],
 					'flags' => \LogEventsList::NO_EXTRA_USER_LINKS
-				)
+				]
 			);
 		}
 	}
@@ -143,24 +143,24 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 */
 	protected function showConsumerListForm() {
 		$form = new \HTMLForm(
-			array(
-				'name' => array(
+			[
+				'name' => [
 					'name'     => 'name',
 					'type'     => 'text',
 					'label-message' => 'mwoauth-consumer-name',
 					'required' => false,
-				),
-				'publisher' => array(
+				],
+				'publisher' => [
 					'name'     => 'publisher',
 					'type'     => 'text',
 					'label-message' => 'mwoauth-consumer-user',
 					'required' => false
-				),
-				'stage' => array(
+				],
+				'stage' => [
 					'name'     => 'stage',
 					'type'     => 'select',
 					'label-message' => 'mwoauth-consumer-stage',
-					'options'  => array(
+					'options'  => [
 						wfMessage( 'mwoauth-consumer-stage-any' )->escaped() => -1,
 						wfMessage( 'mwoauth-consumer-stage-proposed' )->escaped()
 							=> MWOAuthConsumer::STAGE_PROPOSED,
@@ -172,15 +172,16 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 							=> MWOAuthConsumer::STAGE_DISABLED,
 						wfMessage( 'mwoauth-consumer-stage-expired' )->escaped()
 							=> MWOAuthConsumer::STAGE_EXPIRED
-					),
+					],
 					'default'  => MWOAuthConsumer::STAGE_APPROVED,
 					'required' => false
-				)
-			),
+				]
+			],
 			$this->getContext()
 		);
 		$form->setAction( $this->getPageTitle()->getFullUrl() ); // always go back to listings
-		$form->setSubmitCallback( function() { return false; } );
+		$form->setSubmitCallback( function() { return false;
+	 } );
 		$form->setMethod( 'get' );
 		$form->setSubmitTextMsg( 'go' );
 		$form->setWrapperLegendMsg( 'mwoauthlistconsumers-legend' );
@@ -201,7 +202,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			$centralId = null;
 		}
 
-		$pager = new MWOAuthListConsumersPager( $this, array(), $name, $centralId, $stage );
+		$pager = new MWOAuthListConsumersPager( $this, [], $name, $centralId, $stage );
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addHTML( $pager->getNavigationBar() );
 			$this->getOutput()->addHTML( $pager->getBody() );
@@ -230,11 +231,11 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		$cmrKey = $cmr->get( 'consumerKey' );
 		$stageKey = MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )];
 
-		$links = array();
+		$links = [];
 		$links[] = \Linker::linkKnown(
 			$this->getPageTitle( "view/{$cmrKey}" ),
 			$this->msg( 'mwoauthlistconsumers-view' )->escaped(),
-			array(),
+			[],
 			$this->getRequest()->getValues( 'name', 'publisher', 'stage' ) // stick
 		);
 		if ( $this->getUser()->isAllowed( 'mwoauthmanageconsumer' ) ) {
@@ -251,18 +252,20 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		// We don't have $this in the anonymous function here within PHP 5.3.
 		$out = $this;
 		$name = $cmr->get( 'name', function( $s ) use ( $cmr, $out ) {
-			return $s . ' ' . $out->msg( 'brackets' )->rawParams( $cmr->get( 'version' ) )->plain(); } );
+			return $s . ' ' . $out->msg( 'brackets' )->rawParams( $cmr->get( 'version' ) )->plain();
+	 } );
 		$r .= "<strong>" . htmlspecialchars( $name ) . '</strong> ' . $this->msg( 'parentheses' )
 				->rawParams( "<strong>{$links}</strong>" )->plain();
 
 		$lang = $this->getLanguage();
-		$data = array(
+		$data = [
 			'mwoauthlistconsumers-user' => htmlspecialchars(
 				$cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' )
 			),
 			'mwoauthlistconsumers-description' => htmlspecialchars(
 				$cmr->get( 'description', function( $s ) use ( $lang ) {
-					return $lang->truncate( $s, 10024 ); } )
+					return $lang->truncate( $s, 10024 );
+	   } )
 			),
 			'mwoauthlistconsumers-wiki' => htmlspecialchars(
 				$cmr->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
@@ -270,7 +273,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			'mwoauthlistconsumers-status' => htmlspecialchars(
 				wfMessage( "mwoauthlistconsumers-status-$stageKey" )
 			)
-		);
+		];
 
 		foreach ( $data as $msg => $encValue ) {
 			$r .= '<p>' . $this->msg( $msg )->escaped() . ': ' . $encValue . '</p>';
@@ -370,11 +373,11 @@ class MWOAuthListConsumersPager extends \AlphabeticPager {
 	 * @return array
 	 */
 	function getQueryInfo() {
-		return array(
-			'tables' => array( 'oauth_registered_consumer' ),
-			'fields' => array( '*' ),
+		return [
+			'tables' => [ 'oauth_registered_consumer' ],
+			'fields' => [ '*' ],
 			'conds'  => $this->mConds
-		);
+		];
 	}
 
 	/**

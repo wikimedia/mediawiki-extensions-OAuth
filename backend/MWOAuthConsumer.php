@@ -2,35 +2,35 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-/*
- (c) Aaron Schulz 2013, GPL
-
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License along
- with this program; if not, write to the Free Software Foundation, Inc.,
- 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- http://www.gnu.org/copyleft/gpl.html
-*/
+/**
+ * (c) Aaron Schulz 2013, GPL
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 
 /**
  * Representation of an OAuth consumer request
  */
 class MWOAuthConsumer extends MWOAuthDAO {
 	/** @var array Backwards-compatibility grant mappings */
-	public static $mapBackCompatGrants = array(
+	public static $mapBackCompatGrants = [
 		'useoauth' => 'basic',
 		'authonly' => 'mwoauth-authonly',
 		'authonlyprivate' => 'mwoauth-authonlyprivate',
-	);
+	];
 
 	/** @var integer Unique ID */
 	protected $id;
@@ -87,31 +87,31 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 * Maps stage ids to human-readable names which describe them as a state
 	 * @var array
 	 */
-	public static $stageNames = array(
+	public static $stageNames = [
 		MWOAuthConsumer::STAGE_PROPOSED => 'proposed',
 		MWOAuthConsumer::STAGE_REJECTED => 'rejected',
 		MWOAuthConsumer::STAGE_EXPIRED  => 'expired',
 		MWOAuthConsumer::STAGE_APPROVED => 'approved',
 		MWOAuthConsumer::STAGE_DISABLED => 'disabled',
-	);
+	];
 
 	/**
 	 * Maps stage ids to human-readable names which describe them as an action (which would result
 	 * in that stage)
 	 * @var array
 	 */
-	public static $stageActionNames = array(
+	public static $stageActionNames = [
 		MWOAuthConsumer::STAGE_PROPOSED => 'propose',
 		MWOAuthConsumer::STAGE_REJECTED => 'reject',
 		MWOAuthConsumer::STAGE_EXPIRED  => 'propose',
 		MWOAuthConsumer::STAGE_APPROVED => 'approve',
 		MWOAuthConsumer::STAGE_DISABLED => 'disable',
-	);
+	];
 
 	protected static function getSchema() {
-		return array(
+		return [
 			'table'          => 'oauth_registered_consumer',
-			'fieldColumnMap' => array(
+			'fieldColumnMap' => [
 				'id'                 => 'oarc_id',
 				'consumerKey'        => 'oarc_consumer_key',
 				'name'               => 'oarc_name',
@@ -133,14 +133,14 @@ class MWOAuthConsumer extends MWOAuthDAO {
 				'stage'              => 'oarc_stage',
 				'stageTimestamp'     => 'oarc_stage_timestamp',
 				'deleted'            => 'oarc_deleted'
-			),
+			],
 			'idField'        => 'id',
 			'autoIncrField'  => 'id',
-		);
+		];
 	}
 
 	protected static function getFieldPermissionChecks() {
-		return array(
+		return [
 			'name'             => 'userCanSee',
 			'userId'           => 'userCanSee',
 			'version'          => 'userCanSee',
@@ -151,7 +151,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 			'email'            => 'userCanSeeEmail',
 			'secretKey'        => 'userCanSeeSecret',
 			'restrictions'     => 'userCanSeePrivate',
-		);
+		];
 	}
 
 	/**
@@ -163,9 +163,9 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	public static function newFromKey( \DBConnRef $db, $key, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
-			array( 'oarc_consumer_key' => (string)$key ),
+			[ 'oarc_consumer_key' => (string)$key ],
 			__METHOD__,
-			( $flags & self::READ_LOCKING ) ? array( 'FOR UPDATE' ) : array()
+			( $flags & self::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
 		);
 
 		if ( $row ) {
@@ -190,13 +190,13 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
-			array(
+			[
 				'oarc_name' => (string)$name,
 				'oarc_version' => (string)$version,
 				'oarc_user_id' => (int)$userId
-			),
+			],
 			__METHOD__,
-			( $flags & self::READ_LOCKING ) ? array( 'FOR UPDATE' ) : array()
+			( $flags & self::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
 		);
 
 		if ( $row ) {
@@ -212,20 +212,20 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 * @return array
 	 */
 	public static function newGrants() {
-		return array();
+		return [];
 	}
 
 	/**
 	 * @return array
 	 */
 	public static function getAllStages() {
-		return array(
+		return [
 			MWOAuthConsumer::STAGE_PROPOSED,
 			MWOAuthConsumer::STAGE_REJECTED,
 			MWOAuthConsumer::STAGE_EXPIRED,
 			MWOAuthConsumer::STAGE_APPROVED,
 			MWOAuthConsumer::STAGE_DISABLED,
-		);
+		];
 	}
 
 	/**
@@ -241,10 +241,10 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		  $callback = $this->get( 'callbackUrl' );
 		}
 
-		return wfAppendQuery( $callback, array(
+		return wfAppendQuery( $callback, [
 			'oauth_verifier' => $verifyCode,
 			'oauth_token'    => $requestKey
-		) );
+		] );
 	}
 
 	/**
@@ -332,8 +332,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 
 	protected function userCanSee( $name, \RequestContext $context ) {
 		if ( $this->get( 'deleted' )
-			&& !$context->getUser()->isAllowed( 'mwoauthviewsuppressed' ) )
-		{
+			&& !$context->getUser()->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			return $context->msg( 'mwoauth-field-hidden' );
 		} else {
 			return true;

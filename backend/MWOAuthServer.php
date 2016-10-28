@@ -31,12 +31,12 @@ class MWOAuthServer extends OAuthServer {
 
 		// Consumer must not be owner-only
 		if ( $consumer->get( 'ownerOnly' ) ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', array(
+			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
 				$consumer->get( 'name' ),
 				\SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $consumer->get( 'consumerKey' )
 				)
-			) );
+			] );
 		}
 
 		// Consumer must have a key for us to verify
@@ -47,7 +47,7 @@ class MWOAuthServer extends OAuthServer {
 		$this->checkSourceIP( $consumer, $request );
 
 		// no token required for the initial token request
-		$token = NULL;
+		$token = null;
 
 		$this->check_signature( $request, $consumer, $token );
 
@@ -121,12 +121,12 @@ class MWOAuthServer extends OAuthServer {
 
 		// Consumer must not be owner-only
 		if ( $consumer->get( 'ownerOnly' ) ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', array(
+			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
 				$consumer->get( 'name' ),
 				\SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $consumer->get( 'consumerKey' )
 				)
-			) );
+			] );
 		}
 
 		// Consumer must have a key for us to verify
@@ -162,7 +162,7 @@ class MWOAuthServer extends OAuthServer {
 	public function verify_request( &$request ) {
 		list( $consumer, $token ) = parent::verify_request( $request );
 		$this->checkSourceIP( $consumer, $request );
-		return array( $consumer, $token );
+		return [ $consumer, $token ];
 	}
 
 	/**
@@ -206,15 +206,15 @@ class MWOAuthServer extends OAuthServer {
 			);
 			throw new MWOAuthException(
 				'mwoauthserver-bad-consumer',
-				array( $consumer->get( 'name' ), MWOAuthUtils::getCentralUserTalk( $owner ) )
+				[ $consumer->get( 'name' ), MWOAuthUtils::getCentralUserTalk( $owner ) ]
 			);
 		} elseif ( $consumer->get( 'ownerOnly' ) ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', array(
+			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
 				$consumer->get( 'name' ),
 				\SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $consumer->get( 'consumerKey' )
 				)
-			) );
+			] );
 		}
 
 		// Generate and Update the tokens:
@@ -234,7 +234,7 @@ class MWOAuthServer extends OAuthServer {
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
 			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
-			throw new MWOAuthException( $userMsg, array( $consumer->get( 'name' ) ) );
+			throw new MWOAuthException( $userMsg, [ $consumer->get( 'name' ) ] );
 		}
 
 		// Authorization Token
@@ -249,16 +249,16 @@ class MWOAuthServer extends OAuthServer {
 				// update requested, but no existing key
 				throw new MWOAuthException( 'mwoauthserver-invalid-request' );
 			}
-			$cmra->setFields( array(
+			$cmra->setFields( [
 				'wiki'   => $consumer->get( 'wiki' ),
 				'grants' => $consumer->get( 'grants' )
-			) );
+			] );
 			$cmra->save( $dbw );
 			$accessToken = new MWOAuthToken( $cmra->get( 'accessToken' ), '' );
 		} elseif ( !$cmra ) {
 			// Add the Authorization to the database
 			$accessToken = MWOAuthDataStore::newToken();
-			$cmra = MWOAuthConsumerAcceptance::newFromArray( array(
+			$cmra = MWOAuthConsumerAcceptance::newFromArray( [
 				'id'           => null,
 				'wiki'         => $consumer->get( 'wiki' ),
 				'userId'       => $centralUserId,
@@ -267,7 +267,7 @@ class MWOAuthServer extends OAuthServer {
 				'accessSecret' => $accessToken->secret,
 				'grants'       => $consumer->get( 'grants' ),
 				'accepted'     => wfTimestampNow()
-			) );
+			] );
 			$cmra->save( $dbw );
 		} else {
 			// Authorization exists, no updates requested, so no changes to the db
@@ -304,7 +304,7 @@ class MWOAuthServer extends OAuthServer {
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
 			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
-			throw new MWOAuthException( $userMsg, array( $consumer->get( 'name' ) ) );
+			throw new MWOAuthException( $userMsg, [ $consumer->get( 'name' ) ] );
 		}
 
 		$checkWiki = $consumer->get( 'wiki' ) !== '*' ? $consumer->get( 'wiki' ) : $wikiId;

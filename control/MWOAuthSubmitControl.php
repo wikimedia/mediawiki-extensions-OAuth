@@ -2,24 +2,24 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-/*
- (c) Aaron Schulz 2013, GPL
-
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License along
- with this program; if not, write to the Free Software Foundation, Inc.,
- 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- http://www.gnu.org/copyleft/gpl.html
-*/
+/**
+ * (c) Aaron Schulz 2013, GPL
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 
 /**
  * Handle the logic of submitting a client request
@@ -217,7 +217,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 			$params = $params[0];
 		}
 		$status = \Status::newFatal( $this->context->msg( $msg, $params ) );
-		$status->value = array( 'error' => $error, 'result' => null );
+		$status->value = [ 'error' => $error, 'result' => null ];
 		return $status;
 	}
 
@@ -226,6 +226,6 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	 * @return \Status
 	 */
 	protected function success( $value = null ) {
-		return \Status::newGood( array( 'error' => null, 'result' => $value ) );
+		return \Status::newGood( [ 'error' => null, 'result' => $value ] );
 	}
 }

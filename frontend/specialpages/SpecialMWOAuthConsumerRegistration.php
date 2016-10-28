@@ -2,24 +2,24 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-/*
- (c) Aaron Schulz 2013, GPL
-
- This program is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License along
- with this program; if not, write to the Free Software Foundation, Inc.,
- 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- http://www.gnu.org/copyleft/gpl.html
-*/
+/**
+ * (c) Aaron Schulz 2013, GPL
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ */
 
 /**
  * Page that has registration request form and consumer update form
@@ -86,77 +86,77 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			$showGrants = \MWGrants::getValidGrants();
 
 			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
-			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), array(), $dbw );
+			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), [], $dbw );
 			$form = new \HTMLForm(
-				$control->registerValidators( array(
-					'name' => array(
+				$control->registerValidators( [
+					'name' => [
 						'type' => 'text',
 						'label-message' => 'mwoauth-consumer-name',
 						'size' => '45',
 						'required' => true
-					),
-					'version' => array(
+					],
+					'version' => [
 						'type' => 'text',
 						'label-message' => 'mwoauth-consumer-version',
 						'required' => true,
 						'default' => "1.0"
-					),
-					'description' => array(
+					],
+					'description' => [
 						'type' => 'textarea',
 						'label-message' => 'mwoauth-consumer-description',
 						'required' => true,
 						'rows' => 5
-					),
-					'ownerOnly' => array(
+					],
+					'ownerOnly' => [
 						'type' => 'check',
-						'label-message' => array( 'mwoauth-consumer-owner-only', $user->getName() ),
-						'help-message' => array( 'mwoauth-consumer-owner-only-help', $user->getName() ),
-					),
-					'callbackUrl' => array(
+						'label-message' => [ 'mwoauth-consumer-owner-only', $user->getName() ],
+						'help-message' => [ 'mwoauth-consumer-owner-only-help', $user->getName() ],
+					],
+					'callbackUrl' => [
 						'type' => 'text',
 						'label-message' => 'mwoauth-consumer-callbackurl',
 						'required' => true,
-						'hide-if' => array( '!==', 'ownerOnly', '' ),
-					),
-					'callbackIsPrefix' => array(
+						'hide-if' => [ '!==', 'ownerOnly', '' ],
+					],
+					'callbackIsPrefix' => [
 						'type' => 'check',
 						'label-message' => 'mwoauth-consumer-callbackisprefix',
 						'required' => true,
-						'hide-if' => array( '!==', 'ownerOnly', '' ),
-					),
-					'email' => array(
+						'hide-if' => [ '!==', 'ownerOnly', '' ],
+					],
+					'email' => [
 						'type' => 'text',
 						'label-message' => 'mwoauth-consumer-email',
 						'required' => true
-					),
-					'wiki' => array(
+					],
+					'wiki' => [
 						'type' => $allWikis ? 'combobox' : 'select',
-						'options' => array(
+						'options' => [
 							wfMessage( 'mwoauth-consumer-allwikis' )->escaped() => '*',
 							wfMessage( 'mwoauth-consumer-wiki-thiswiki', wfWikiID() )->escaped() => wfWikiID()
-						) + array_flip( $allWikis ),
+						] + array_flip( $allWikis ),
 						'label-message' => 'mwoauth-consumer-wiki',
 						'required' => true,
 						'default' => '*'
-					),
-					'granttype'  => array(
+					],
+					'granttype'  => [
 						'type' => 'radio',
-						'options-messages' => array(
+						'options-messages' => [
 							'grant-mwoauth-authonly' => 'authonly',
 							'grant-mwoauth-authonlyprivate' => 'authonlyprivate',
 							'mwoauth-granttype-normal' => 'normal',
-						),
+						],
 						'label-message' => 'mwoauth-consumer-granttypes',
 						'default' => 'normal',
-					),
-					'grants'  => array(
+					],
+					'grants'  => [
 						'type' => 'checkmatrix',
 						'label-message' => 'mwoauth-consumer-grantsneeded',
 						'help-message' => 'mwoauth-consumer-grantshelp',
-						'hide-if' => array( '!==', 'granttype', 'normal' ),
-						'columns' => array(
+						'hide-if' => [ '!==', 'granttype', 'normal' ],
+						'columns' => [
 							$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
-						),
+						],
 						'rows' => array_combine(
 							array_map( 'MWGrants::getGrantsLink', $showGrants ),
 							$showGrants
@@ -172,35 +172,36 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 							)
 						),
 						'force-options-on' => array_map(
-							function( $g ) { return "grant-$g"; },
+							function( $g ) { return "grant-$g";
+	      },
 							\MWGrants::getHiddenGrants()
 						),
 						'validation-callback' => null // different format
-					),
-					'restrictions' => array(
+					],
+					'restrictions' => [
 						'type' => 'textarea',
 						'label-message' => 'mwoauth-consumer-restrictions-json',
 						'required' => true,
 						'default' => \MWRestrictions::newDefault()->toJson( true ),
 						'rows' => 5
-					),
-					'rsaKey' => array(
+					],
+					'rsaKey' => [
 						'type' => 'textarea',
 						'label-message' => 'mwoauth-consumer-rsakey',
 						'required' => false,
 						'default' => '',
 						'rows' => 5
-					),
-					'agreement' => array(
+					],
+					'agreement' => [
 						'type' => 'check',
 						'label-message' => 'mwoauth-consumer-developer-agreement',
 						'required' => true,
-					),
-					'action' => array(
+					],
+					'action' => [
 						'type'    => 'hidden',
 						'default' => 'propose'
-					)
-				) ),
+					]
+				] ),
 				$this->getContext()
 			);
 			$form->setSubmitCallback(
@@ -257,63 +258,63 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			$oldSecretKey = $cmr->getDAO()->get( 'secretKey' );
 
 			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
-			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), array(), $dbw );
+			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), [], $dbw );
 			$form = new \HTMLForm(
-				$control->registerValidators( array(
-					'nameShown' => array(
+				$control->registerValidators( [
+					'nameShown' => [
 						'type' => 'info',
 						'label-message' => 'mwoauth-consumer-name',
 						'size' => '45',
 						'default' => $cmr->get( 'name' )
-					),
-					'version' => array(
+					],
+					'version' => [
 						'type' => 'info',
 						'label-message' => 'mwoauth-consumer-version',
 						'default' => $cmr->get( 'version' )
-					),
-					'consumerKeyShown' => array(
+					],
+					'consumerKeyShown' => [
 						'type' => 'info',
 						'label-message' => 'mwoauth-consumer-key',
 						'size' => '40',
 						'default' => $cmr->get( 'consumerKey' )
-					),
-					'restrictions' => array(
+					],
+					'restrictions' => [
 						'type' => 'textarea',
 						'label-message' => 'mwoauth-consumer-restrictions-json',
 						'required' => true,
 						'default' => $cmr->getDAO()->get( 'restrictions' )->toJson( true ),
 						'rows' => 5
-					),
-					'resetSecret' => array(
+					],
+					'resetSecret' => [
 						'type' => 'check',
 						'label-message' => 'mwoauthconsumerregistration-resetsecretkey',
 						'default' => false,
-					),
-					'rsaKey' => array(
+					],
+					'rsaKey' => [
 						'type' => 'textarea',
 						'label-message' => 'mwoauth-consumer-rsakey',
 						'required' => false,
 						'default' => $cmr->getDAO()->get( 'rsaKey' ),
 						'rows' => 5
-					),
-					'reason' => array(
+					],
+					'reason' => [
 						'type' => 'text',
 						'label-message' => 'mwoauth-consumer-reason',
 						'required' => true
-					),
-					'consumerKey' => array(
+					],
+					'consumerKey' => [
 						'type' => 'hidden',
 						'default' => $cmr->get( 'consumerKey' )
-					),
-					'changeToken' => array(
+					],
+					'changeToken' => [
 						'type'    => 'hidden',
 						'default' => $cmr->getDAO()->getChangeToken( $this->getContext() )
-					),
-					'action' => array(
+					],
+					'action' => [
 						'type'    => 'hidden',
 						'default' => 'update'
-					)
-				) ),
+					]
+				] ),
 				$this->getContext()
 			);
 			$form->setSubmitCallback(
@@ -353,16 +354,16 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				$logPage = new \LogPage( 'mwoauthconsumer' );
 				$out->addHTML( \Xml::element( 'h2', null, $logPage->getName()->text() ) );
 				\LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '',
-					array(
-						'conds'  => array( 'ls_field' => 'OAuthConsumer',
-							'ls_value' => $cmr->get( 'consumerKey' ) ),
+					[
+						'conds'  => [ 'ls_field' => 'OAuthConsumer',
+							'ls_value' => $cmr->get( 'consumerKey' ) ],
 						'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS
-					)
+					]
 				);
 			}
 			break;
 		case 'list':
-			$pager = new MWOAuthListMyConsumersPager( $this, array(), $centralUserId );
+			$pager = new MWOAuthListMyConsumersPager( $this, [], $centralUserId );
 			if ( $pager->getNumRows() ) {
 				$this->getOutput()->addHTML( $pager->getNavigationBar() );
 				$this->getOutput()->addHTML( $pager->getBody() );
@@ -392,7 +393,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 	 * @return void
 	 */
 	protected function addSubtitleLinks( $action, $consumerKey ) {
-		$listLinks = array();
+		$listLinks = [];
 		if ( $consumerKey || $action !== 'propose' ) {
 			$listLinks[] = \Linker::linkKnown(
 				$this->getPageTitle( 'propose' ),
@@ -441,19 +442,20 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		// @TODO: inject DB
 		$logHtml = '';
 		\LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '',
-			array(
-				'conds'  => array(
-					'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ),
+			[
+				'conds'  => [
+					'ls_field' => 'OAuthConsumer', 'ls_value' => $cmr->get( 'consumerKey' ) ],
 				'lim'    => 1,
 				'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS
-			)
+			]
 		);
 
 		$lang = $this->getLanguage();
-		$data = array(
+		$data = [
 			'mwoauthconsumerregistration-name' => htmlspecialchars(
 				$cmr->get( 'name', function( $s ) use ( $cmr ) {
-					return $s . ' [' . $cmr->get( 'version' ) . ']'; } )
+					return $s . ' [' . $cmr->get( 'version' ) . ']';
+	   } )
 			),
 			// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
 			// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved, mwoauth-consumer-stage-disabled
@@ -461,14 +463,15 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				$this->msg( "mwoauth-consumer-stage-$stageKey" )->escaped(),
 			'mwoauthconsumerregistration-description' => htmlspecialchars(
 				$cmr->get( 'description', function( $s ) use ( $lang ) {
-					return $lang->truncate( $s, 10024 ); } )
+					return $lang->truncate( $s, 10024 );
+	   } )
 			),
 			'mwoauthconsumerregistration-email' => htmlspecialchars(
 				$cmr->get( 'email' ) ),
 			'mwoauthconsumerregistration-consumerkey' => htmlspecialchars(
 				$cmr->get( 'consumerKey' ) ),
 			'mwoauthconsumerregistration-lastchange' => $logHtml
-		);
+		];
 
 		$r = "<li class='mw-mwoauthconsumerregistration-{$encStageKey}'>";
 		$r .= "<span>$time (<strong>{$link}</strong>)</span>";
@@ -557,11 +560,11 @@ class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
 	 * @return array
 	 */
 	function getQueryInfo() {
-		return array(
-			'tables' => array( 'oauth_registered_consumer' ),
-			'fields' => array( '*' ),
+		return [
+			'tables' => [ 'oauth_registered_consumer' ],
+			'fields' => [ '*' ],
 			'conds'  => $this->mConds
-		);
+		];
 	}
 
 	/**

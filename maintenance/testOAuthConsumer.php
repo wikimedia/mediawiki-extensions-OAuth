@@ -8,11 +8,11 @@ namespace MediaWiki\Extensions\OAuth;
 if ( getenv( 'MW_INSTALL_PATH' ) ) {
 	$IP = getenv( 'MW_INSTALL_PATH' );
 } else {
-	$IP = dirname(__FILE__).'/../../..';
+	$IP = __DIR__.'/../../..';
 }
 
-require( __DIR__ . '/../lib/OAuth.php' );
-require_once( "$IP/maintenance/Maintenance.php" );
+require __DIR__ . '/../lib/OAuth.php';
+require_once "$IP/maintenance/Maintenance.php";
 
 class TestOAuthConsumer extends \Maintenance {
 	public function __construct() {
@@ -46,9 +46,9 @@ class TestOAuthConsumer extends \Maintenance {
 
 		$c = new OAuthConsumer( $consumerKey, $consumerSecret );
 		$parsed = parse_url( $endpoint );
-		$params = array();
+		$params = [];
 		parse_str( $parsed['query'], $params );
-		$req_req = OAuthRequest::from_consumer_and_token( $c, NULL, "GET", $endpoint, $params );
+		$req_req = OAuthRequest::from_consumer_and_token( $c, null, "GET", $endpoint, $params );
 		if ( $rsaKeyFile ) {
 			try {
 				$sig_method = new TestOAuthSignatureMethod_RSA_SHA1( $rsaKeyFile );
@@ -58,14 +58,14 @@ class TestOAuthConsumer extends \Maintenance {
 		} else {
 			$sig_method = new OAuthSignatureMethod_HMAC_SHA1();
 		}
-		$req_req->sign_request( $sig_method, $c, NULL );
+		$req_req->sign_request( $sig_method, $c, null );
 
 		$this->output( "Calling: $req_req\n" );
 
 		$ch = curl_init();
 		curl_setopt( $ch, CURLOPT_URL, (string) $req_req );
 		if ( $this->hasOption( 'useSSL' ) ) {
-			curl_setopt( $ch, CURLOPT_PORT , 443 );
+			curl_setopt( $ch, CURLOPT_PORT, 443 );
 		}
 		if ( $this->hasOption( 'verbose' ) ) {
 			curl_setopt( $ch, CURLOPT_VERBOSE, true );
@@ -108,7 +108,7 @@ class TestOAuthConsumer extends \Maintenance {
 		$ch = curl_init();
 		curl_setopt( $ch, CURLOPT_URL, (string) $acc_req );
 		if ( $this->hasOption( 'useSSL' ) ) {
-			curl_setopt( $ch, CURLOPT_PORT , 443 );
+			curl_setopt( $ch, CURLOPT_PORT, 443 );
 		}
 		if ( $this->hasOption( 'verbose' ) ) {
 			curl_setopt( $ch, CURLOPT_VERBOSE, true );
@@ -161,4 +161,4 @@ class TestOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
 }
 
 $maintClass = "TestOAuthConsumer";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

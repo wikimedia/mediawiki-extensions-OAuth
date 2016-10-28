@@ -18,22 +18,22 @@ class MWOAuthUIHooks {
 	 */
 	public static function onGetPreferences( $user, &$preferences ) {
 		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
-		$conds = array(
+		$conds = [
 			'oaac_consumer_id = oarc_id',
 			'oaac_user_id' => MWOAuthUtils::getCentralIdFromLocalUser( $user ),
-		);
+		];
 		if ( !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			$conds['oarc_deleted'] = 0;
 		}
 		$count = $dbr->selectField(
-			array( 'oauth_accepted_consumer', 'oauth_registered_consumer' ),
+			[ 'oauth_accepted_consumer', 'oauth_registered_consumer' ],
 			'COUNT(*)',
 			$conds,
 			__METHOD__
 		);
 
-		$prefInsert = array( 'mwoauth-prefs-managegrants' =>
-			array(
+		$prefInsert = [ 'mwoauth-prefs-managegrants' =>
+			[
 				'section' => 'personal/info',
 				'label-message' => 'mwoauth-prefs-managegrants',
 				'type' => 'info',
@@ -42,10 +42,10 @@ class MWOAuthUIHooks {
 					\SpecialPage::getTitleFor( 'OAuthManageMyGrants' ),
 					wfMessage( 'mwoauth-prefs-managegrantslink' )->numParams( $count )->escaped()
 				)
-			),
-		);
+			],
+		];
 
-		if  ( array_key_exists( 'usergroups', $preferences ) ) {
+		if ( array_key_exists( 'usergroups', $preferences ) ) {
 			$preferences = wfArrayInsertAfter( $preferences, $prefInsert, 'usergroups' );
 		} else {
 			$preferences += $prefInsert;
@@ -111,20 +111,20 @@ class MWOAuthUIHooks {
 
 		$out->addHTML(
 			\Html::openElement( 'table',
-			array( 'class' => 'wikitable mw-listgrouprights-table' ) ) .
+			[ 'class' => 'wikitable mw-listgrouprights-table' ] ) .
 			'<tr>' .
 			\Html::element( 'th', null, $special->msg( 'listgrants-grant' )->text() ) .
 			\Html::element( 'th', null, $special->msg( 'listgrants-rights' )->text() ) .
 			'</tr>'
 		);
 
-		$grants = array(
-			'mwoauth-authonly' => array(),
-			'mwoauth-authonlyprivate' => array(),
-		);
+		$grants = [
+			'mwoauth-authonly' => [],
+			'mwoauth-authonlyprivate' => [],
+		];
 
 		foreach ( $grants as $grant => $rights ) {
-			$descs = array();
+			$descs = [];
 			$rights = array_filter( $rights ); // remove ones with 'false'
 			foreach ( $rights as $permission => $granted ) {
 				$descs[] = $special->msg(
@@ -141,7 +141,7 @@ class MWOAuthUIHooks {
 			}
 
 			$id = \Sanitizer::escapeId( $grant );
-			$out->addHTML( \Html::rawElement( 'tr', array( 'id' => $id ),
+			$out->addHTML( \Html::rawElement( 'tr', [ 'id' => $id ],
 				"<td>" . $special->msg( "grant-$grant" )->escaped() . "</td>" .
 				"<td>" . $grantCellHtml . '</td>'
 			) );
@@ -187,13 +187,13 @@ class MWOAuthUIHooks {
 			return;
 		}
 
-		$notificationCategories['oauth-owner'] = array(
+		$notificationCategories['oauth-owner'] = [
 			'tooltip' => 'echo-pref-tooltip-oauth-owner',
-		);
-		$notificationCategories['oauth-admin'] = array(
+		];
+		$notificationCategories['oauth-admin'] = [
 			'tooltip' => 'echo-pref-tooltip-oauth-admin',
 			'usergroups' => $wgOAuthGroupsToNotify,
-		);
+		];
 
 		foreach ( MWOAuthConsumerSubmitControl::$actions as $eventName ) {
 			// oauth-app-propose and oauth-app-update notifies admins of the app.
@@ -203,6 +203,6 @@ class MWOAuthUIHooks {
 				EchoOAuthStageChangePresentationModel::getDefinition( $eventName );
 		}
 
-		$icons['oauth'] = array( 'path' => 'OAuth/frontend/assets/echo-icon.png' );
+		$icons['oauth'] = [ 'path' => 'OAuth/frontend/assets/echo-icon.png' ];
 	}
 }

@@ -76,7 +76,7 @@ class MWOAuthAPISetup {
 	public static function onUserLoadFromSession( \User $user, &$result ) {
 		global $wgBlockDisablesLogin, $wgObjectCacheSessionExpiry;
 
-		$user->oAuthSessionData = array();
+		$user->oAuthSessionData = [];
 		try {
 			$accesstoken = self::getOAuthAccessToken();
 			if ( $accesstoken !== null ) {
@@ -113,10 +113,10 @@ class MWOAuthAPISetup {
 				// Ok, use this user!
 				$user->setID( $localUser->getId() );
 				$user->loadFromId();
-				$user->oAuthSessionData += array(
+				$user->oAuthSessionData += [
 					'accesstoken' => $accesstoken,
 					'rights' => \MWGrants::getGrantRights( $access->get( 'grants' ) ),
-				);
+				];
 
 				// Setup a session for this OAuth user, so edit tokens work.
 				// Preserve the session ID used so clients can ignore cookies.
@@ -127,10 +127,10 @@ class MWOAuthAPISetup {
 				$now = microtime( true );
 				if ( $session == false ) {
 					// Initialize the a new session
-					$session = array(
+					$session = [
 						'id'      => \MWCryptRand::generateHex( 32, true ),
 						'expires' => $now + $wgObjectCacheSessionExpiry
-					);
+					];
 					$cache->set( $key, $session, $wgObjectCacheSessionExpiry );
 				} elseif ( $session['expires'] < ( $now + self::TTL_REFRESH_WINDOW ) ) {
 					// Renew the session since it will otherwise expire soon
@@ -153,7 +153,7 @@ class MWOAuthAPISetup {
 
 				$result = true;
 			}
-		} catch( \ErrorPageError $ex ) {
+		} catch ( \ErrorPageError $ex ) {
 			// We can't throw an ErrorPageError from UserLoadFromSession,
 			// because OutputPage needs a User object and it wouldn't be
 			// available yet. The UserLoadAfterLoadFromSession hook function
@@ -257,11 +257,11 @@ class MWOAuthAPISetup {
 		foreach ( $wgMWOauthDisabledApiModules as $badModule ) {
 			if ( $module instanceof $badModule ) {
 				// Awful interface, API.
-				\ApiBase::$messageMap['mwoauth-api-module-disabled'] = array(
+				\ApiBase::$messageMap['mwoauth-api-module-disabled'] = [
 					'code' => 'mwoauth-api-module-disabled',
 					'info' => 'The "$1" module is not available with OAuth.',
-				);
-				$message = array( 'mwoauth-api-module-disabled', $module->getModuleName() );
+				];
+				$message = [ 'mwoauth-api-module-disabled', $module->getModuleName() ];
 				return false;
 			}
 		}
@@ -289,7 +289,7 @@ class MWOAuthAPISetup {
 		return true;
 	}
 
-	/**@}*/
+	/*@}*/
 
 	/**
 	 * Prevent CentralAuth from issuing centralauthtokens if we have

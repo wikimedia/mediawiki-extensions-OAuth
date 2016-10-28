@@ -78,7 +78,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 			}
 			// Ensure the cmra's consumer matches the expected consumer (T103023)
 			$mwconsumer = $this->lookup_consumer( $consumer->key );
-			if ( !$mwconsumer || $mwconsumer->get( 'id') !== $cmra->get( 'consumerId') ) {
+			if ( !$mwconsumer || $mwconsumer->get( 'id' ) !== $cmra->get( 'consumerId' ) ) {
 				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found' );
 			}
 			$secret = MWOAuthUtils::hmacDBSecret( $cmra->get( 'accessSecret' ) );
@@ -137,9 +137,9 @@ class MWOAuthDataStore extends OAuthDataStore {
 		$cacheConsumerKey = MWOAuthUtils::getCacheKey( 'consumer', 'request', $token->key );
 		$cacheTokenKey = MWOAuthUtils::getCacheKey( 'token', $consumer->key, 'request', $token->key );
 		$cacheCallbackKey = MWOAuthUtils::getCacheKey( 'callback', $consumer->key, 'request', $token->key );
-		$this->cache->add( $cacheConsumerKey, $consumer->key, 600 ); //10 minutes. Kindof arbitray.
-		$this->cache->add( $cacheTokenKey, $token, 600 ); //10 minutes. Kindof arbitray.
-		$this->cache->add( $cacheCallbackKey, $callback, 600 ); //10 minutes. Kindof arbitray.
+		$this->cache->add( $cacheConsumerKey, $consumer->key, 600 ); // 10 minutes. Kindof arbitray.
+		$this->cache->add( $cacheTokenKey, $token, 600 ); // 10 minutes. Kindof arbitray.
+		$this->cache->add( $cacheCallbackKey, $callback, 600 ); // 10 minutes. Kindof arbitray.
 		$this->logger->debug( __METHOD__ .
 			": New request token {$token->key} for {$consumer->key} with callback {$callback}" );
 		return $token;
@@ -201,7 +201,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 		$cacheKey = MWOAuthUtils::getCacheKey( 'token',
 			$consumer->get( 'consumerKey' ), 'request', $token->key );
 		$accessToken = $this->lookup_token( $consumer, 'access', $token->getAccessKey() );
-		$this->cache->set( $cacheKey, '**USED**' , 600 );
+		$this->cache->set( $cacheKey, '**USED**', 600 );
 		$this->logger->debug( __METHOD__ .
 			": New access token {$accessToken->key} for {$consumer->key}" );
 		return $accessToken;
