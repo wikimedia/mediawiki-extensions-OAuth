@@ -139,7 +139,7 @@
 	"mwoauth-acceptance-cancelled": "Escolheu que o aplicativo \"$1\" não pode aceder à sua conta. \"$1\" não irá funcionar a menos que permita o seu acesso. Pode regressar a \"$1\" ou [[Special:OAuthManageMyGrants|gerir]] os seus aplicativos conectados.",
 	"mwoauth-granttype-normal": "Solicita autorização para permissões específicas.",
 	"grant-mwoauth-authonly": "Apenas autenticação, sem acesso à API.",
-	"grant-mwoauth-authonlyprivate": "Autenticação somente com acesso ao nome real e ao endereço de correio electrónico através de Special:OAuth/identify, sem acesso à API.",
+	"grant-mwoauth-authonlyprivate": "Autenticação somente com acesso ao nome real e ao endereço de correio eletrónico através de Special:OAuth/identify, sem acesso à API.",
 	"mwoauth-oauth-exception": "Ocorreu um erro no protocolo OAuth: $1",
 	"right-mwoauthviewprivate": "Ver dados privados do OAuth",
 	"mwoauth-tag-reserved": "O uso de etiquetas iniciadas por <code>OAuth CID:</code> está reservada para o OAuth.",
