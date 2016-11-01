@@ -237,13 +237,6 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 			return true;
 		}
 
-		if ( $module instanceof ApiLogin || $module instanceof ApiLogout ) {
-			// With SessionManager, these already disable themselves but for BC
-			// they're still in $wgMWOauthDisabledApiModules for the moment.
-			// @todo: Kill this if-block when we remove support for non-SessionManager.
-			return true;
-		}
-
 		foreach ( $wgMWOauthDisabledApiModules as $badModule ) {
 			if ( $module instanceof $badModule ) {
 				// Awful interface, API.

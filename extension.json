@@ -151,10 +151,7 @@
 			"value": true
 		},
 		"MWOauthDisabledApiModules": {
-			"value": [
-				"ApiLogin",
-				"ApiLogout"
-			]
+			"value": []
 		},
 		"MWOAuthReadOnly": {
 			"value": false

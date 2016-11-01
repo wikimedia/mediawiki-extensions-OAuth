@@ -20,20 +20,10 @@ class MWOAuthHooks {
 		$wgHooks['ChangeTagsListActive'][] =
 			[ 'MediaWiki\Extensions\OAuth\MWOAuthHooks::getUsedConsumerTags', true ];
 
-		if ( class_exists( 'MediaWiki\\Session\\SessionManager' ) ) {
-			$wgSessionProviders['MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider'] = [
-				'class' => 'MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider',
-				'args' => []
-			];
-		} else {
-			// @todo: Remove this when we drop support for MW core without SessionManager
-			$wgHooks['UserLoadFromSession'][] = 'MWOAuthAPISetup::onUserLoadFromSession';
-			$wgHooks['UserLoadAfterLoadFromSession'][] = 'MWOAuthAPISetup::onUserLoadAfterLoadFromSession';
-			$wgHooks['UserGetRights'][] = 'MWOAuthAPISetup::onUserGetRights';
-			$wgHooks['UserIsEveryoneAllowed'][] = 'MWOAuthAPISetup::onUserIsEveryoneAllowed';
-			$wgHooks['ApiCheckCanExecute'][] = 'MWOAuthAPISetup::onApiCheckCanExecute';
-			$wgHooks['RecentChange_save'][] = 'MWOAuthAPISetup::onRecentChange_save';
-		}
+		$wgSessionProviders['MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider'] = [
+			'class' => 'MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider',
+			'args' => []
+		];
 	}
 
 	public static function onExtensionFunctions() {

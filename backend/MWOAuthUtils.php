@@ -38,13 +38,9 @@ class MWOAuthUtils {
 	 * @return \BagOStuff
 	 */
 	public static function getSessionCache() {
-		global $wgSessionsInObjectCache, $wgSessionCacheType;
+		global $wgSessionCacheType;
 
-		// @todo: No need to check $wgSessionsInObjectCache when we drop
-		// support for pre-SessionManager MediaWiki.
-		return $wgSessionsInObjectCache
-			? \ObjectCache::getInstance( $wgSessionCacheType )
-			: \ObjectCache::getMainStashInstance();
+		return \ObjectCache::getInstance( $wgSessionCacheType );
 	}
 
 	/**
@@ -217,33 +213,10 @@ class MWOAuthUtils {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
-			$lookup = null;
-			if ( class_exists( 'CentralIdLookup' ) ) {
-				$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
-			}
-
-			if ( $lookup ) {
-				$name = $lookup->nameFromCentralId( $userId, $audience ?: \CentralIdLookup::AUDIENCE_PUBLIC );
-				if ( $name === null ) {
-					$name = false;
-				}
-			} else {
-				if ( !\Hooks::isRegistered( 'OAuthGetUserNamesFromCentralIds' ) ) {
-					throw new \MWException( "No handler for 'OAuthGetUserNamesFromCentralIds' hook" );
-				}
-				$namesById = [ $userId => null ];
-				Hooks::run( 'OAuthGetUserNamesFromCentralIds',
-					[ $wgMWOAuthCentralWiki,
-						&$namesById,
-						$audience,
-						$wgMWOAuthSharedUserSource
-					]
-				);
-				$name = $namesById[$userId];
-			}
+			$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
+			$name = $lookup->nameFromCentralId( $userId, $audience ?: \CentralIdLookup::AUDIENCE_PUBLIC );
 			if ( $name === null ) {
-				// The extension didn't handle the id
-				throw new \MWException( 'Could not lookup name from ID via hook.' );
+				$name = false;
 			}
 		} else {
 			$name = '';
@@ -269,31 +242,12 @@ class MWOAuthUtils {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
-			$lookup = null;
-			if ( class_exists( 'CentralIdLookup' ) ) {
-				$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
-			}
-
-			if ( $lookup ) {
-				$user = $lookup->localUserFromCentralId( $userId );
-				if ( $user === null ||
-					!$lookup->isAttached( $user ) || !$lookup->isAttached( $user, $wgMWOAuthCentralWiki )
-				) {
-					$user = false;
-				}
-			} else {
-				if ( !\Hooks::isRegistered( 'OAuthGetLocalUserFromCentralId' ) ) {
-					throw new \MWException( "No handler for 'OAuthGetLocalUserFromCentralId' hook" );
-				}
-				$user = null;
-				// Let extensions check that central wiki user ID is attached to a global account
-				// and that return the user on this wiki that is attached to that global account
-				Hooks::run( 'OAuthGetLocalUserFromCentralId',
-					[ $userId, $wgMWOAuthCentralWiki, &$user, $wgMWOAuthSharedUserSource ] );
-				// If there is no local user, the extension should set the user to false
-				if ( $user === null ) {
-					throw new \MWException( 'Could not lookup user from ID via hook.' );
-				}
+			$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
+			$user = $lookup->localUserFromCentralId( $userId );
+			if ( $user === null ||
+				!$lookup->isAttached( $user ) || !$lookup->isAttached( $user, $wgMWOAuthCentralWiki )
+			) {
+				$user = false;
 			}
 		} else {
 			$user = \User::newFromId( $userId );
@@ -316,31 +270,13 @@ class MWOAuthUtils {
 			if ( isset( $user->oAuthUserData['centralId'] ) ) {
 				$id = $user->oAuthUserData['centralId'];
 			} else {
-				$lookup = null;
-				if ( class_exists( 'CentralIdLookup' ) ) {
-					$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
-				}
-				if ( $lookup ) {
-					if ( !$lookup->isAttached( $user ) || !$lookup->isAttached( $user, $wgMWOAuthCentralWiki ) ) {
-						$id = false;
-					} else {
-						$id = $lookup->centralIdFromLocalUser( $user );
-						if ( $id === 0 ) {
-							$id = false;
-						}
-					}
+				$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
+				if ( !$lookup->isAttached( $user ) || !$lookup->isAttached( $user, $wgMWOAuthCentralWiki ) ) {
+					$id = false;
 				} else {
-					if ( !\Hooks::isRegistered( 'OAuthGetCentralIdFromLocalUser' ) ) {
-						throw new \MWException( "No handler for 'OAuthGetCentralIdFromLocalUser' hook" );
-					}
-					$id = null;
-					// Let CentralAuth check that $user is attached to a global account and
-					// that the foreign local account on the central wiki is also attached to it
-					Hooks::run( 'OAuthGetCentralIdFromLocalUser',
-						[ $user, $wgMWOAuthCentralWiki, &$id, $wgMWOAuthSharedUserSource ] );
-					// If there is no such user, the extension should set the ID to false
-					if ( $id === null ) {
-						throw new \MWException( 'Could not lookup ID for user via hook.' );
+					$id = $lookup->centralIdFromLocalUser( $user );
+					if ( $id === 0 ) {
+						$id = false;
 					}
 				}
 				// Process cache the result to avoid queries
@@ -365,29 +301,10 @@ class MWOAuthUtils {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
-			$lookup = null;
-			if ( class_exists( 'CentralIdLookup' ) ) {
-				$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
-			}
-
-			if ( $lookup ) {
-				$id = $lookup->centralIdFromName( $username );
-				if ( $id === 0 ) {
-					$id = false;
-				}
-			} else {
-				if ( !\Hooks::isRegistered( 'OAuthGetCentralIdFromUserName' ) ) {
-					throw new \MWException( "No handler for 'OAuthGetCentralIdFromLocalUser' hook" );
-				}
-
-				$id = null;
-				// Let CentralAuth check that $user is attached to a global account and
-				// that the foreign local account on the central wiki is also attached to it
-				Hooks::run( 'OAuthGetCentralIdFromUserName',
-					[ $username, $wgMWOAuthCentralWiki, &$id, $wgMWOAuthSharedUserSource ] );
-				if ( $id === null ) {
-					throw new \MWException( 'Could not lookup ID for user via hook.' );
-				}
+			$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
+			$id = $lookup->centralIdFromName( $username );
+			if ( $id === 0 ) {
+				$id = false;
 			}
 		} else {
 			$id = false;
