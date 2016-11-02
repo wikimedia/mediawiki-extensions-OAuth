@@ -48,8 +48,12 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 		$params = func_get_args();
 		array_shift( $params );
 		$msg = wfMessage( $key, $params );
-		$msg = $msg->inLanguage( 'en' )->useDatabase( false )->plain();
-		$exception = new \UsageException( $msg, $key );
+		if ( class_exists( \ApiUsageException::class ) ) {
+			$exception = \ApiUsageException::newWithMesage( null, $msg );
+		} else {
+			$msg = $msg->inLanguage( 'en' )->useDatabase( false )->plain();
+			$exception = new \UsageException( $msg, $key );
+		}
 		$wgHooks['ApiBeforeMain'][] = function () use ( $exception ) {
 			throw $exception;
 		};
@@ -239,12 +243,10 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 
 		foreach ( $wgMWOauthDisabledApiModules as $badModule ) {
 			if ( $module instanceof $badModule ) {
-				// Awful interface, API.
-				\ApiBase::$messageMap['mwoauth-api-module-disabled'] = [
-					'code' => 'mwoauth-api-module-disabled',
-					'info' => 'The "$1" module is not available with OAuth.',
-				];
-				$message = [ 'mwoauth-api-module-disabled', $module->getModuleName() ];
+				$message = ApiMessage::create(
+					[ 'mwoauth-api-module-disabled', $module->getModuleName() ],
+					'mwoauth-api-module-disabled'
+				);
 				return false;
 			}
 		}
