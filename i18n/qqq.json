@@ -7,7 +7,8 @@
 			"Siebrand",
 			"Liuxinyu970226",
 			"Mormegil",
-			"Tgr"
+			"Tgr",
+			"Hamilton Abreu"
 		]
 	},
 	"oauth": "Title of MWOAuth page.\n{{Identical|OAuth}}",
@@ -59,7 +60,7 @@
 	"mwoauth-invalid-access-token": "Used as failure message.",
 	"mwoauth-invalid-access-wrongwiki": "Used as error message. Parameters:\n* $1 - the wiki ID the consumer is applicable to",
 	"mwoauth-consumer-conflict": "Used as failure message.",
-	"mwoauth-consumer-grantshelp": "Help text shown on consumer proposal form.",
+	"mwoauth-consumer-grantshelp": "Help text shown on consumer proposal form.\n\nIdentical:\n* {{msg-mw|Botpasswords-help-grants}}",
 	"mwoauth-consumer-stage-proposed": "{{Related|Mwoauth-consumer-stage}}\n{{Identical|Proposed}}",
 	"mwoauth-consumer-stage-rejected": "{{Related|Mwoauth-consumer-stage}}\n{{Identical|Rejected}}",
 	"mwoauth-consumer-stage-expired": "{{Related|Mwoauth-consumer-stage}}\n{{Identical|Expired}}",

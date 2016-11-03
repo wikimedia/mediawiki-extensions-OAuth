@@ -246,5 +246,10 @@
 	"action-mwoauthupdateownconsumer": "upravovat konzumenty OAuth, které spravujete",
 	"action-mwoauthviewsuppressed": "prohlížet si utajené konzumenty OAuth",
 	"mwoauth-tag-reserved": "Značky začínající <code>OAuth CID:</code> jsou vyhrazeny pro OAuth.",
-	"mwoauth-botpasswords-note": "<strong>Poznámka:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> je bezpečnější než hesla robotů a měl by být preferován, kdykoliv to robot preferuje."
+	"mwoauth-botpasswords-note": "<strong>Poznámka:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> je bezpečnější než hesla robotů a měl by být preferován, kdykoliv to robot preferuje.",
+	"echo-category-title-oauth-owner": "vývoj OAuth",
+	"echo-pref-tooltip-oauth-owner": "Upozorněte mě na události týkající aplikací OAuth, které jsem {{GENDER:|vytvořil|vytvořila}}.",
+	"echo-category-title-oauth-admin": "správu OAuth",
+	"echo-pref-tooltip-oauth-admin": "Upozorněte mě na události týkající se schvalování aplikací OAuth.",
+	"notification-oauth-app-body": "Zdůvodnění: $1"
 }

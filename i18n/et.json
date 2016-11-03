@@ -84,5 +84,6 @@
 	"action-mwoauthmanageconsumer": "OAuthi-rakendusi hallata",
 	"action-mwoauthmanagemygrants": "oma OAuthi-volitusi hallata",
 	"action-mwoauthproposeconsumer": "esitada uusi OAuthi-rakendusi",
-	"action-mwoauthupdateownconsumer": "uuendada OAuthi-rakendusi, mida valdad"
+	"action-mwoauthupdateownconsumer": "uuendada OAuthi-rakendusi, mida valdad",
+	"mwoauth-botpasswords-note": "<strong>Märkus:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> on robotiparoolidest turvalisem ja seda tuleks eelistada alati kui robot seda toetab."
 }
