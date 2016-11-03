@@ -135,34 +135,18 @@
 		"ApiRsdServiceApis": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onApiRsdServiceApis"
 	},
 	"config": {
-		"MWOAuthCentralWiki": {
-			"value": false
-		},
-		"MWOAuthSharedUserIDs": {
-			"value": false
-		},
-		"MWOAuthSharedUserSource": {
-			"value": null
-		},
-		"MWOAuthRequestExpirationAge": {
-			"value": 2592000
-		},
-		"MWOAuthSecureTokenTransfer": {
-			"value": true
-		},
-		"MWOauthDisabledApiModules": {
-			"value": [
-				"ApiLogin",
-				"ApiLogout"
-			]
-		},
-		"MWOAuthReadOnly": {
-			"value": false
-		},
-		"OAuthGroupsToNotify": {
-			"value": []
-		}
+		"MWOAuthCentralWiki": false,
+		"MWOAuthSharedUserIDs": false,
+		"MWOAuthSharedUserSource": null,
+		"MWOAuthRequestExpirationAge": 2592000,
+		"MWOAuthSecureTokenTransfer": true,
+		"MWOauthDisabledApiModules": [
+			"ApiLogin",
+			"ApiLogout"
+		],
+		"MWOAuthReadOnly": false,
+		"OAuthGroupsToNotify": []
 	},
 	"load_composer_autoloader": true,
-	"manifest_version": 2
+	"manifest_version": 1
 }
