@@ -144,7 +144,7 @@
 	"mwoauthmanageconsumers-success-reanable": "O consumidor foi reativado.",
 	"mwoauthmanageconsumers-search-name": "consumidores com este nome",
 	"mwoauthmanageconsumers-search-publisher": "consumidores deste utilizador",
-	"oauthlistconsumers": "Listar aplicações OAuth",
+	"oauthlistconsumers": "Aplicações OAuth",
 	"mwoauthlistconsumers-legend": "Procurar aplicações OAuth",
 	"mwoauthlistconsumers-view": "detalhes",
 	"mwoauthlistconsumers-none": "Não foram encontradas aplicações que satisfaçam estes critérios.",
