@@ -60,7 +60,7 @@
 	"mwoauth-invalid-access-token": "Não existe nenhuma chave de acesso com a chave fornecida.",
 	"mwoauth-invalid-access-wrongwiki": "O consumidor só pode ser usado no projeto \"$1\".",
 	"mwoauth-consumer-conflict": "Alguém alterou os atributos deste consumidor enquanto os visionava. Tente novamente, por favor. Talvez queira verificar o registo de alterações.",
-	"mwoauth-consumer-grantshelp": "Cada concessão de privilégios dá acesso às permissões listadas que uma conta de utilizador já possua. Consulte a [[Special:ListGrants|tabela de concessões]] para mais informação.",
+	"mwoauth-consumer-grantshelp": "Cada concessão de permissões dá acesso às permissões listadas que uma conta de utilizador já possua. Consulte a [[Special:ListGrants|tabela de concessões]] para mais informação.",
 	"mwoauth-consumer-stage-proposed": "proposto",
 	"mwoauth-consumer-stage-rejected": "rejeitado",
 	"mwoauth-consumer-stage-expired": "expirado",
