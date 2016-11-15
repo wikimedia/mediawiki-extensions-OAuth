@@ -56,7 +56,7 @@
 	"mwoauth-invalid-access-token": "Non existe pase de acceso ningún coa clave achegada.",
 	"mwoauth-invalid-access-wrongwiki": "O consumidor só pode usarse no proxecto \"$1\".",
 	"mwoauth-consumer-conflict": "Alguén cambiou os atributos deste consumidor mentres o vía. Inténteo de novo. Se cadra, quere comprobar o rexistro de modificacións.",
-	"mwoauth-consumer-grantshelp": "Cada permiso da acceso á lista de dereitos de usuario que unha conta de usuario xa ten. Consulte a [[Special:ListGrants|táboa de permisos]] para ter máis información.",
+	"mwoauth-consumer-grantshelp": "Cada permiso dá acceso aos permisos de usuario listados que xa teña a conta de usuario. Consulte a [[Special:ListGrants|táboa de permisos]] para obter máis información.",
 	"mwoauth-consumer-stage-proposed": "proposto",
 	"mwoauth-consumer-stage-rejected": "rexeitado",
 	"mwoauth-consumer-stage-expired": "caducado",
