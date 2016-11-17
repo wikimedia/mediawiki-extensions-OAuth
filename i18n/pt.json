@@ -65,7 +65,7 @@
 	"mwoauth-consumer-stage-rejected": "rejeitado",
 	"mwoauth-consumer-stage-expired": "expirado",
 	"mwoauth-consumer-stage-approved": "aprovado",
-	"mwoauth-consumer-stage-disabled": "desactivado",
+	"mwoauth-consumer-stage-disabled": "desativado",
 	"mwoauth-consumer-stage-suppressed": "suprimido",
 	"oauthconsumerregistration": "Registo de consumidores OAuth",
 	"mwoauthconsumerregistration-notloggedin": "Precisa de ter sessão iniciada para aceder a esta página.",
