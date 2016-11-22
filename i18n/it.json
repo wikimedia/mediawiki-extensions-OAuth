@@ -5,7 +5,8 @@
 			"Ricordisamoa",
 			"Alexmar983",
 			"Nemo bis",
-			"Selven"
+			"Selven",
+			"Giromin Cangiaxo"
 		]
 	},
 	"mwoauth-desc": "Consente l'utilizzo di OAuth 1.0a per le API di autorizzazione",
@@ -135,7 +136,7 @@
 	"mwoauthmanageconsumers-success-reanable": "Il cliente è stato riabilitato.",
 	"mwoauthmanageconsumers-search-name": "clienti con questo nome",
 	"mwoauthmanageconsumers-search-publisher": "clienti di questo utente",
-	"oauthlistconsumers": "Elenco applicazioni OAuth",
+	"oauthlistconsumers": "Elenco delle applicazioni OAuth",
 	"mwoauthlistconsumers-legend": "Naviga applicazioni OAuth",
 	"mwoauthlistconsumers-view": "dettagli",
 	"mwoauthlistconsumers-none": "Nessuna applicazione trovata che soddisfa questo criterio.",
