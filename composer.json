@@ -5,7 +5,7 @@
 	"license": "GPL-2.0+",
 	"prefer-stable": true,
 	"require": {
-		"firebase/php-jwt": "3.0.0",
+		"firebase/php-jwt": "4.0.0",
 		"php": ">=5.3.3"
 	},
 	"require-dev": {
