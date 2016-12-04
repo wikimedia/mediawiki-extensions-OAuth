@@ -84,7 +84,7 @@
 	"mwoauth-form-button-cancel": "Ofbriechen",
 	"mwoauth-error": "Verbinndungsfeeler vun der Software",
 	"mwoauth-grants-heading": "Ugefroten Autorisatiounen:",
-	"grant-mwoauth-authonly": "Nëmmen Authentifikatioun, keen API Zougang.",
+	"grant-mwoauth-authonly": "Nëmmen Iwwerpréiwung vun der Benotzer-Identitéit, keng Méiglechkeet fir Säiten ze liesen oder aplaz vum Benotzer z'agéieren.",
 	"mwoauth-oauth-exception": "Am OAuth-Protokoll ass e Feeler geschitt: $1",
 	"echo-category-title-oauth-owner": "OAuth-Entwécklung",
 	"echo-pref-tooltip-oauth-owner": "Mech iwwer Evenementer a Relatioun mat OAuth-Appen, déi ech ugeluecht hunn, informéieren.",
