@@ -252,6 +252,7 @@
 	"action-mwoauthviewsuppressed": "unterdrückte OAuth-Anwendungen anzusehen",
 	"mwoauth-tag-reserved": "Markierungen, die mit <code>OAuth CID:</code> beginnen, sind für die Verwendung durch OAuth reserviert.",
 	"mwoauth-botpasswords-note": "<strong>Hinweis:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> ist sicherer als Passwörter von Bots und sollte immer bevorzugt werden, wenn der Bot es unterstützt.",
+	"mwoauth-api-module-disabled": "Das Modul „$1“ ist mit OAuth nicht verfügbar.",
 	"echo-category-title-oauth-owner": "OAuth-Entwicklung",
 	"echo-pref-tooltip-oauth-owner": "Benachrichtige mich über Ereignisse bezüglich OAuth-Anwendungen, die ich erstellt habe.",
 	"echo-category-title-oauth-admin": "OAuth-Verwaltung",

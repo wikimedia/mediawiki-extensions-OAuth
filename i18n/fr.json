@@ -260,6 +260,7 @@
 	"action-mwoauthviewsuppressed": "afficher les consommateurs OAuth supprimés",
 	"mwoauth-tag-reserved": "Les balises commençant par <code>OAuth CID:</code> sont réservées à une utilisation par OAuth.",
 	"mwoauth-botpasswords-note": "<strong>Note :</strong> <span class=\"plainlinks\">[$1 OAuth]</span> est plus sécurisé que les mots de passe de robots et devrait être privilégié si le robot l’accepte.",
+	"mwoauth-api-module-disabled": "Le module « $1 » n’est pas disponible avec OAuth.",
 	"echo-category-title-oauth-owner": "Développement de OAuth",
 	"echo-pref-tooltip-oauth-owner": "M'informer sur les événements liés aux applications OAuth que j'ai créées.",
 	"echo-category-title-oauth-admin": "Administrateur de OAuth",

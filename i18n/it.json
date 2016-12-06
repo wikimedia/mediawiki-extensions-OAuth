@@ -239,6 +239,7 @@
 	"action-mwoauthviewsuppressed": "visualizzare clienti OAuth soppressi",
 	"mwoauth-tag-reserved": "Etichette che iniziano con <code>OAuth CID:</code> sono riservate all'utilizzo da parte di OAuth.",
 	"mwoauth-botpasswords-note": "<strong>Nota:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> è più sicuro delle password bot e dovrebbe essere preferito ogni volta che il bot lo supporta.",
+	"mwoauth-api-module-disabled": "Il modulo \"$1\" non è disponibile con OAuth.",
 	"echo-category-title-oauth-owner": "Sviluppo OAuth",
 	"echo-pref-tooltip-oauth-owner": "Avvisami su eventi relativi alle applicazioni OAuth che ho creato.",
 	"echo-category-title-oauth-admin": "Amministrazione OAuth",

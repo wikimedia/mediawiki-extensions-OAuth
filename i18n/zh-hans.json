@@ -263,6 +263,7 @@
 	"action-mwoauthviewsuppressed": "查看已阻止的OAuth应用程序",
 	"mwoauth-tag-reserved": "以<code>OAuth CID:</code>开头的标签被OAuth保留使用。",
 	"mwoauth-botpasswords-note": "<strong>注意：</strong><span class=\"plainlinks\">[$1 OAuth]</span>比机器人密码更安全，并当机器人支持它时应当首选使用。",
+	"mwoauth-api-module-disabled": "“$1”模块在OAuth中不可用。",
 	"echo-category-title-oauth-owner": "OAuth开发",
 	"echo-pref-tooltip-oauth-owner": "通知我有关我创建的OAuth应用程序相关的事件。",
 	"echo-category-title-oauth-admin": "OAuth管理员",
