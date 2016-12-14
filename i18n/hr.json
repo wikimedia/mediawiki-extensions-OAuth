@@ -5,8 +5,8 @@
 			"Ex13"
 		]
 	},
-	"mwoauth-prefs-managegrants": "Povezane aplikacije",
-	"mwoauth-prefs-managegrantslink": "Upravljaj s ukupno $1 {{PLURAL:$1|aplikacijom|aplikacije|aplikacija}}",
+	"mwoauth-prefs-managegrants": "Povezane aplikacije:",
+	"mwoauth-prefs-managegrantslink": "upravljaj s ukupno $1 {{PLURAL:$1|aplikacijom|aplikacije|aplikacija}}",
 	"mwoauthconsumerregistration-navigation": "Orijentacija:",
 	"oauthmanagemygrants": "Upravljanje povezanim aplikacijama",
 	"mwoauthmanagemygrants-text": "Ovo je popis svih aplikacija koje možete koristiti s Vašim suradničkim računom. Opseg djelovanja svake aplikacije ograničen je dopuštenjima koja odobrite prilikom autorizacije. Ukoliko posebno definirate dopuštenja za svaki sestrinski projekt, vidjet ćete posebne konfiguracije za svaki projekt.\n\nPovezane aplikacije pristupaju Vašem suradničkom računu putem protokola OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Saznajte više o povezanim aplikacijama])</span>",
@@ -23,6 +23,5 @@
 	"mwoauthmanagemygrants-update": "Ažuriraj odobrenja",
 	"mwoauthmanagemygrants-renounce": "Poništi autorizaciju",
 	"mwoauthmanagemygrants-success-update": "Pristupni token ažuriran.",
-	"mwoauthmanagemygrants-useoauth-tooltip": "Zašto ne mogu promijeniti ovo odobrenje? Ono omogućava povezanoj aplikaciji osnovno dopuštenje koje je nužno za njeno djelovanje. Ako ne želite da aplikacija ima ova dopuštenja, opozovite prava pristupa aplikacije.",
-	"mwoauth-grant-highvolume": "Uređivanja velikog opsega"
+	"mwoauthmanagemygrants-basic-tooltip": "Zašto ne mogu promijeniti ovo odobrenje? Ono omogućava povezanoj aplikaciji osnovno dopuštenje koje je nužno za njeno djelovanje. Ako ne želite da aplikacija ima ova dopuštenja, opozovite prava pristupa aplikacije."
 }
