@@ -49,7 +49,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 		array_shift( $params );
 		$msg = wfMessage( $key, $params );
 		if ( class_exists( \ApiUsageException::class ) ) {
-			$exception = \ApiUsageException::newWithMesage( null, $msg );
+			$exception = \ApiUsageException::newWithMessage( null, $msg );
 		} else {
 			$msg = $msg->inLanguage( 'en' )->useDatabase( false )->plain();
 			$exception = new \UsageException( $msg, $key );
