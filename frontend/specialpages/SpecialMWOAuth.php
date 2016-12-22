@@ -383,6 +383,8 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		// * mwoauth-form-description-onewiki
 		// * mwoauth-form-description-allwikis-nogrants
 		// * mwoauth-form-description-onewiki-nogrants
+		// * mwoauth-form-description-allwikis-privateinfo
+		// * mwoauth-form-description-onewiki-privateinfo
 		$msgKey = 'mwoauth-form-description';
 		$params = [
 			$this->getUser()->getName(),
@@ -397,7 +399,11 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		}
 		$grantsText = \MWGrants::getGrantsWikiText( $cmr->get( 'grants' ), $this->getLanguage() );
 		if ( $grantsText === "\n" ) {
-			$msgKey .= '-nogrants';
+			if ( in_array( 'mwoauth-authonlyprivate', $cmr->get( 'grants' ), true ) ) {
+				$msgKey .= '-privateinfo';
+			} else {
+				$msgKey .= '-nogrants';
+			}
 		} else {
 			$params[] = $grantsText;
 		}
