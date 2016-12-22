@@ -225,6 +225,8 @@
 	"mwoauth-form-description-onewiki": "Hallo $1,\n\num deine Anfrage abzuschließen, benötigt '''$2''' die Berechtigung, um die folgenden Aktionen in deinem Namen auf ''$4'' auszuführen:\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Hallo $1,\n\num deine Anfrage abzuschließen, benötigt '''$2''' die Berechtigung zum Zugriff auf Informationen auf allen Projekten dieser Website in deinem Namen. An deinem Benutzerkonto werden keine Änderungen durchgeführt.",
 	"mwoauth-form-description-onewiki-nogrants": "Hallo $1,\n\num deine Anfrage abzuschließen, benötigt '''$2''' die Berechtigung zum Zugriff auf Informationen auf ''$4'' in deinem Namen. An deinem Benutzerkonto werden keine Änderungen durchgeführt.",
+	"mwoauth-form-description-allwikis-privateinfo": "Hallo $1,\n\num deine Anfrage abschließen zu können, benötigt '''$2''' eine Berechtigung, um auf Informationen über dich zuzugreifen, inklusive deines bürgerlichen Namens und deiner E-Mail-Adresse auf allen Projekten dieser Website. Mit deinem Benutzerkonto werden keine Änderungen durchgeführt.",
+	"mwoauth-form-description-onewiki-privateinfo": "Hallo $1,\n\num deine Anfrage abschließen zu können, benötigt '''$2''' eine Berechtigung, um auf Informationen zuzugreifen, inklusive deines bürgerlichen Namens und deiner E-Mail-Adresse auf ''$4''. Mit deinem Benutzerkonto werden keine Änderungen durchgeführt.",
 	"mwoauth-form-button-approve": "Erlauben",
 	"mwoauth-form-button-cancel": "Abbrechen",
 	"mwoauth-error": "Anwendungsverbindungsfehler",
