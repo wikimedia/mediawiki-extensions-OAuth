@@ -236,6 +236,8 @@
 	"mwoauth-form-description-onewiki": "您好$1，\n\n为了完成您的请求，'''$2'''需要权限以代表您在''$4''上执行以下操作：\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "您好$1，\n\n为了完成您的请求，'''$2'''需要权限以在此网站所有项目中代表您访问信息。我们不会对您的账户做出更改。",
 	"mwoauth-form-description-onewiki-nogrants": "您好$1，\n\n为了完成您的请求，'''$2'''需要权限以在''$4''代表您访问信息。我们不会对您的账户做出更改。",
+	"mwoauth-form-description-allwikis-privateinfo": "您好$1，\n\n为了完成您的请求，'''$2'''需要权限以在此网站所有项目上访问有关您的信息，这包括您的真实姓名和电子邮件地址。我们不会对您的账户做出更改。",
+	"mwoauth-form-description-onewiki-privateinfo": "您好$1，\n\n为了完成您的请求，'''$2'''需要权限以在''$4''访问信息，这包括您的真实姓名和电子邮件地址。我们不会对您的账户做出更改。",
 	"mwoauth-form-button-approve": "允许",
 	"mwoauth-form-button-cancel": "取消",
 	"mwoauth-error": "应用程序连接错误",

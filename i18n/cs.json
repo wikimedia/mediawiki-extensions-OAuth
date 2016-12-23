@@ -220,6 +220,8 @@
 	"mwoauth-form-description-onewiki": "{{GENDER:$1|Uživateli|Uživatelko}} $1,\n\nAby mohla dokončit váš požadavek, potřebuje aplikace '''$2''' svolení, aby mohla vaším jménem na ''{{grammar:6sg|$4}}'' provádět následující aktivity:\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "{{GENDER:$1|Uživateli|Uživatelko}} $1,\n\nAby mohla dokončit váš požadavek, potřebuje aplikace '''$2''' svolení, aby mohla vaším jménem přistupovat k informacím na všech projektech tohoto webu. Vaším jménem nebudou prováděny žádné změny.",
 	"mwoauth-form-description-onewiki-nogrants": "{{GENDER:$1|Uživateli|Uživatelko}} $1,\n\naplikace '''$2''' by chtěla získat základní přístup vaším jménem na ''{{grammar:6sg|$4}}''.\n\nAby mohla dokončit váš požadavek, potřebuje aplikace '''$2''' svolení, aby mohla vaším jménem přistupovat k informacím na ''{{grammar:6sg|$4}}''. Vaším jménem nebudou prováděny žádné změny.",
+	"mwoauth-form-description-allwikis-privateinfo": "{{GENDER:$1|Uživateli|Uživatelko}} $1,\n\naby mohla aplikace '''$2''' dokončit váš požadavek, potřebuje svolení, aby směla na všech projektech tohoto webu přistupovat k informacím o vás zahrnujícím i vaše skutečné jméno a e-mailovou adresu. Vaším jménem nebudou prováděny žádné změny.",
+	"mwoauth-form-description-onewiki-privateinfo": "{{GENDER:$1|Uživateli|Uživatelko}} $1,\n\naby mohla aplikace '''$2''' dokončit váš požadavek, potřebuje svolení, aby směla na „$4“ přistupovat k informacím zahrnujícím i vaše skutečné jméno a e-mailovou adresu. Vaším jménem nebudou prováděny žádné změny.",
 	"mwoauth-form-button-approve": "Dovolit",
 	"mwoauth-form-button-cancel": "Storno",
 	"mwoauth-error": "Chyba připojení aplikace",

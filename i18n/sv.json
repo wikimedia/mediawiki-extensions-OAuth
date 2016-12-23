@@ -6,7 +6,8 @@
 			"Jopparn",
 			"Lokal Profil",
 			"Skalman",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Jkl"
 		]
 	},
 	"mwoauth-desc": "Tillåter användning av OAuth 1.0a för API-tillstånd",
@@ -208,6 +209,8 @@
 	"mwoauth-form-description-onewiki": "Hej $1,\n\nFör att slutföra din begäran behöver '''$2''' behörighet att utföra följande åtgärder åt dina vägnar på '''$4''':\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Hej $1,\n\nFör att slutföra din begäran behöver '''$2''' behörighet till åtkomst för alla projekt på denna sida åt dina vägnar. Inga ändringar kommer att göras på ditt konto.",
 	"mwoauth-form-description-onewiki-nogrants": "Hej $1,\n\nFör att slutföra din begäran behöver '''$2''' behörighet för att komma åt information på ''$4'' åt dina vägnar. Inga ändringar kommer att göras på ditt konto.",
+	"mwoauth-form-description-allwikis-privateinfo": "Hej $1,\n\nFör att slutföra din begäran, behöver \"'$2\"' tillstånd att få tillgång till information om dig, inklusive ditt verkliga namn och e-postadress, i alla projekt på denna webbplats. Inga ändringar kommer att göras med ditt konto.",
+	"mwoauth-form-description-onewiki-privateinfo": "Hej $1,\n\nFör att slutföra din begäran behöver '''$2''' behörighet att komma åt information, däribland ditt verkliga namn och mailadress, på ''$4''. Inga ändringar kommer att göras med ditt konto.",
 	"mwoauth-form-button-approve": "Tillåt",
 	"mwoauth-form-button-cancel": "Avbryt",
 	"mwoauth-error": "Anslutningsfel för applikationen",
