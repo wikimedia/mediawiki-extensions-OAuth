@@ -195,6 +195,7 @@
 	"action-mwoauthupdateownconsumer": "actualizar consumidores OAuth que controles",
 	"action-mwoauthviewsuppressed": "ver consumidores OAuth eliminados",
 	"mwoauth-tag-reserved": "Las etiquetas que comienzan con <code>OAuth CID:</code> están reservadas para que las use OAuth.",
+	"mwoauth-botpasswords-note": "<strong>Nota:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> es más seguro que las contraseñas de bots, y debería ser la opción prioritaria en caso de que el bot lo permitiese.",
 	"mwoauth-api-module-disabled": "El módulo «$1» no está disponible con OAuth.",
 	"echo-category-title-oauth-owner": "Desarrollo de OAuth",
 	"echo-category-title-oauth-admin": "Administrador de OAuth",

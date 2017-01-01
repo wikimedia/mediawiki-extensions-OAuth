@@ -8,11 +8,12 @@
 			"Liuxinyu970226",
 			"Mormegil",
 			"Tgr",
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"Umherirrender"
 		]
 	},
 	"oauth": "Title of MWOAuth page.\n{{Identical|OAuth}}",
-	"mwoauth-desc": "Used as subtitle.",
+	"mwoauth-desc": "{{desc|name=OAuth|url=https://www.mediawiki.org/wiki/Extension:OAuth}}",
 	"mwoauth-verified": "Displayed to the user when the consumer does not have a callback URL, to provide the verification token that the consumer needs to complete the authorization process.\n\nParameters:\n* $1 - verification token\n* $2 - (Unused) request token (the app should already have this)",
 	"mwoauth-db-readonly": "Error displayed when an admin has temporarily make OAuth read-only",
 	"mwoauth-missing-field": "Parameters:\n* $1 - field name\nSee also:\n* {{msg-mw|Mwoauth-invalid-field}}",
