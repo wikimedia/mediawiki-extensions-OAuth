@@ -33,6 +33,7 @@ class MigrateCentralWiki extends \Maintenance {
 		$this->addOption( 'target', 'New central wiki', true, true );
 		$this->addOption( 'table', 'Table name (oauth_registered_consumer or oauth_accepted_consumer)', true, true );
 		$this->setBatchSize( 200 );
+		$this->requireExtension( "OAuth" );
 	}
 
 	public function execute() {

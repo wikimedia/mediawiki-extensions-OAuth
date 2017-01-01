@@ -25,6 +25,7 @@ class TestOAuthConsumer extends \Maintenance {
 		);
 		$this->addOption( 'useSSL', 'Use SSL' );
 		$this->addOption( 'verbose', 'Verbose output (e.g. HTTP request/response headers)' );
+		$this->requireExtension( "OAuth" );
 	}
 
 	public function execute() {
