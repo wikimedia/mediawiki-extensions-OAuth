@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Danmichaelo",
-			"Cocu"
+			"Cocu",
+			"Jon Harald Søby"
 		]
 	},
 	"mwoauth-desc": "Muliggjør bruk av OAuth 1.0a for API-autorisering",
@@ -22,13 +23,13 @@
 	"mwoauth-consumer-user": "Utgiver:",
 	"mwoauth-consumer-stage": "Status:",
 	"mwoauth-consumer-email": "E-postadresse",
+	"mwoauth-consumer-owner-only-label": "Kun eieren:",
 	"mwoauth-consumer-description": "Beskrivelse av appen:",
 	"mwoauth-consumer-callbackurl": "OAuth «callback»-URL:",
 	"mwoauth-consumer-grantsneeded": "Tilgjengelige tildelinger:",
 	"mwoauth-consumer-required-grant": "Tilgjengelig for konsumentappen",
 	"mwoauth-consumer-wiki": "Begrens til prosjekt:",
 	"mwoauth-consumer-wiki-thiswiki": "Nåværende prosjekt ($1)",
-	"mwoauth-consumer-wiki-other": "Spesifikt prosjekt",
 	"mwoauth-consumer-restrictions": "Bruksbegrensninger:",
 	"mwoauth-consumer-restrictions-json": "Bruksbegrensninger (JSON):",
 	"mwoauth-consumer-rsakey": "Offentlig RSA-nøkkel:",
@@ -224,5 +225,28 @@
 	"action-mwoauthmanagemygrants": "håndter dine OAuth-tildelinger",
 	"action-mwoauthproposeconsumer": "foreslå nye OAuth-konsumenter",
 	"action-mwoauthupdateownconsumer": "oppdater OAuth-konsumenter du kontrollerer",
-	"action-mwoauthviewsuppressed": "vis underslåtte OAuth-konsumenter"
+	"action-mwoauthviewsuppressed": "vis underslåtte OAuth-konsumenter",
+	"mwoauth-api-module-disabled": "Modulen «$1» er ikke tilgjengelig med OAuth.",
+	"echo-category-title-oauth-owner": "OAuth-utvikling",
+	"echo-pref-tooltip-oauth-owner": "Varsle meg om hendelser relatert til OAuth-applikasjoner jeg har opprettet.",
+	"echo-category-title-oauth-admin": "OAuth-admin",
+	"notification-oauth-app-propose-title": "$1 {{GENDER:$1|foreslo}} en ny OAuth-app: $2",
+	"notification-oauth-app-update-title": "$1 {{GENDER:$1|oppdaterte}} OAuth-appen $2",
+	"notification-oauth-app-approve-title": "$1 {{GENDER:$1|godkjente}} {{GENDER:$3|din}} OAuth-app ($2)",
+	"notification-oauth-app-reject-title": "$1 {{GENDER:$1|avviste}} {{GENDER:$3|din}} OAuth-app ($2)",
+	"notification-oauth-app-disable-title": "$1 {{GENDER:$1|slo av}} {{GENDER:$3|din}} OAuth-app ($2)",
+	"notification-oauth-app-reenable-title": "$1 {{GENDER:$1|slo på}} OAuth-appen {{GENDER:$3|din}} ($2) igjen",
+	"notification-oauth-app-propose-subject": "$1 {{GENDER:$1|foreslo}} en ny OAuth-app på {{SITENAME}}",
+	"notification-oauth-app-update-subject": "$1 {{GENDER:$1|oppdaterte}} en OAuth-app på {{SITENAME}}",
+	"notification-oauth-app-approve-subject": "$1 {{GENDER:$1|godkjente}} OAuth-appen {{GENDER:$3|din}} på {{SITENAME}}",
+	"notification-oauth-app-reject-subject": "$1 {{GENDER:$1|avviste}} OAuth-appen {{GENDER:$3|din}} på {{SITENAME}}",
+	"notification-oauth-app-disable-subject": "$1 {{GENDER:$1|slo av}} OAuth-appen {{GENDER:$3|din}} på {{SITENAME}}",
+	"notification-oauth-app-reenable-subject": "$1 {{GENDER:$1|slo på}} OAuth-appen {{GENDER:$3|din}} på {{SITENAME}} igjen",
+	"notification-oauth-app-propose-primary-link": "Gjennomgå app",
+	"notification-oauth-app-update-primary-link": "Gjennomgå app",
+	"notification-oauth-app-approve-primary-link": "Vis app",
+	"notification-oauth-app-reject-primary-link": "Vis app",
+	"notification-oauth-app-disable-primary-link": "Vis app",
+	"notification-oauth-app-reenable-primary-link": "Vis app",
+	"notification-oauth-app-body": "Årsak: $1"
 }
