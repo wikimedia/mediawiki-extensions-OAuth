@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Papuass"
+			"Papuass",
+			"Silraks"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Piesaistītās lietotnes:",
+	"mwoauth-prefs-managegrantslink": "Pārvaldīt $1 {{PLURAL:$1|piesaistīto lietotni|piesaistītās lietotnes}}",
 	"oauthlistconsumers": "OAuth lietotņu saraksts",
 	"mwoauthlistconsumers-legend": "Pārlūkot OAuth lietotnes",
 	"oauthmanagemygrants": "Pārvaldīt piesaistītās lietotnes",
