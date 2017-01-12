@@ -172,8 +172,9 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 							)
 						),
 						'force-options-on' => array_map(
-							function( $g ) { return "grant-$g";
-	      },
+							function( $g ) {
+								return "grant-$g";
+							},
 							\MWGrants::getHiddenGrants()
 						),
 						'validation-callback' => null // different format

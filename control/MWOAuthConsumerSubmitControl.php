@@ -77,14 +77,14 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				'description'  => '/^.*$/s',
 				'email'        => function( $s ) {
 					return \Sanitizer::validateEmail( $s );
-	   },
+				},
 				'wiki'         => function( $s ) {
 					global $wgConf;
 					return ( $s === '*'
 						|| in_array( $s, $wgConf->getLocalDatabases() )
 						|| array_search( $s, MWOAuthUtils::getAllWikiNames() ) !== false
 					);
-	   },
+				},
 				'granttype'    => '/^(authonly|authonlyprivate|normal)$/',
 				'grants'       => function( $s ) {
 					$grants = \FormatJson::decode( $s, true );
@@ -114,8 +114,9 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					}
 				},
 				'rsaKey'       => $validateRsaKey,
-				'resetSecret'  => function( $s ) { return is_bool( $s );
-	   },
+				'resetSecret'  => function( $s ) {
+					return is_bool( $s );
+				},
 				'reason'       => '/^.{0,255}$/',
 				'changeToken'  => '/^[0-9a-f]{40}$/'
 			],

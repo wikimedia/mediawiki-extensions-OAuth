@@ -146,7 +146,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		return $row;
 	}
 
-	protected function decodeRow( \DBConnRef $db, $row ) {;
+	protected function decodeRow( \DBConnRef $db, $row ) {
 		$row['oaac_grants'] = \FormatJson::decode( $row['oaac_grants'], true );
 		$row['oaac_accepted'] = wfTimestamp( TS_MW, $row['oaac_accepted'] );
 

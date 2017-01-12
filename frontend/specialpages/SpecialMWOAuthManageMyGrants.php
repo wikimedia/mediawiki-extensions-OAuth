@@ -178,8 +178,9 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 						$cmr->get( 'grants' )
 					),
 					'default' => array_map(
-						function( $g ) { return "grant-$g";
-	     },
+						function( $g ) {
+							return "grant-$g";
+						},
 						$cmra->get( 'grants' )
 					),
 					'tooltips' => [
@@ -188,8 +189,9 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 						\MWGrants::getGrantsLink( 'mwoauth-authonlyprivate' ) => $this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
 					],
 					'force-options-on' => array_map(
-						function( $g ) { return "grant-$g";
-	     },
+						function( $g ) {
+							return "grant-$g";
+						},
 						( $type === 'revoke' )
 							? array_merge( \MWGrants::getValidGrants(), self::irrevocableGrants() )
 							: self::irrevocableGrants()

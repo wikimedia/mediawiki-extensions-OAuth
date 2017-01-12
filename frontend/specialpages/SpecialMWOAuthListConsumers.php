@@ -180,8 +180,9 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			$this->getContext()
 		);
 		$form->setAction( $this->getPageTitle()->getFullUrl() ); // always go back to listings
-		$form->setSubmitCallback( function() { return false;
-	 } );
+		$form->setSubmitCallback( function() {
+			return false;
+		} );
 		$form->setMethod( 'get' );
 		$form->setSubmitTextMsg( 'go' );
 		$form->setWrapperLegendMsg( 'mwoauthlistconsumers-legend' );
