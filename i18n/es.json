@@ -172,6 +172,8 @@
 	"mwoauth-form-description-onewiki": "Hola, $1:\n\nPara completar tu pedido, '''$2''' necesita permiso para realizar las acciones siguientes en tu nombre en ''$4'':\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Hola, $1:\n\nPara completar tu solicitud, '''$2''' necesita permiso para acceder en tu nombre a información de todos los proyectos de este sitio. No se harán cambios con tu cuenta.",
 	"mwoauth-form-description-onewiki-nogrants": "Hola, $1:\n\nPara completar tu solicitud, '''$2''' necesita permiso para acceder en tu nombre a información de ''$4''. No se harán cambios con tu cuenta.",
+	"mwoauth-form-description-allwikis-privateinfo": "Hola, $1:\n\nPara completar la solicitud, '''$2''' necesita permiso para acceder a datos sobre ti, como tu nombre verdadero y tu dirección de correo electrónico, en todos los proyectos de este sitio. No se realizará ninguna modificación a través de tu cuenta.",
+	"mwoauth-form-description-onewiki-privateinfo": "Hola, $1:\n\nPara completar la solicitud, '''$2''' necesita permiso para acceder a datos como tu nombre verdadero y tu dirección de correo electrónico, en ''$4''. No se realizará ninguna modificación a través de tu cuenta.",
 	"mwoauth-form-button-approve": "Permitir",
 	"mwoauth-form-button-cancel": "Cancelar",
 	"mwoauth-error": "Error de conexión de la aplicación",
