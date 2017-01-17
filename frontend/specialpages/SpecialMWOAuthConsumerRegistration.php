@@ -208,6 +208,10 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				function( array $data, \IContextSource $context ) use ( $control ) {
 					$data['grants'] = \FormatJson::encode( // adapt form to controller
 						preg_replace( '/^grant-/', '', $data['grants'] ) );
+					// 'callbackUrl' must be present, otherwise MWOAuthSubmitControl::validateFields() fails.
+					if ( $data['ownerOnly'] && !isset( $data['callbackUrl'] ) ) {
+						$data['callbackUrl'] = '';
+					}
 
 					$control->setInputParameters( $data );
 					return $control->submit();
