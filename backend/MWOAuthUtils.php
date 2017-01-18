@@ -210,7 +210,7 @@ class MWOAuthUtils {
 	 * @return string|bool User name, false if not found, empty string if name is hidden
 	 */
 	public static function getCentralUserNameFromId( $userId, $audience = false ) {
-		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
+		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
 			$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
@@ -239,14 +239,12 @@ class MWOAuthUtils {
 	 * @return \User|bool User or false if not found
 	 */
 	public static function getLocalUserFromCentralId( $userId ) {
-		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
+		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
 			$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
 			$user = $lookup->localUserFromCentralId( $userId );
-			if ( $user === null ||
-				!$lookup->isAttached( $user ) || !$lookup->isAttached( $user, $wgMWOAuthCentralWiki )
-			) {
+			if ( $user === null || !$lookup->isAttached( $user ) ) {
 				$user = false;
 			}
 		} else {
@@ -264,14 +262,14 @@ class MWOAuthUtils {
 	 * @return integer|bool ID or false if not found
 	 */
 	public static function getCentralIdFromLocalUser( \User $user ) {
-		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
+		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
 			if ( isset( $user->oAuthUserData['centralId'] ) ) {
 				$id = $user->oAuthUserData['centralId'];
 			} else {
 				$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
-				if ( !$lookup->isAttached( $user ) || !$lookup->isAttached( $user, $wgMWOAuthCentralWiki ) ) {
+				if ( !$lookup->isAttached( $user ) ) {
 					$id = false;
 				} else {
 					$id = $lookup->centralIdFromLocalUser( $user );
@@ -290,15 +288,13 @@ class MWOAuthUtils {
 	}
 
 	/**
-	 * Given a username, get the user ID for that user on the central wiki. This
-	 * function MUST NOT be used to determine if a user is attached on the central
-	 * wiki. It's only intended to resolve the central id of a username.
+	 * Given a username, get the user ID for that user on the central wiki.
 	 * @param string $username
 	 * @throws \MWException
 	 * @return integer|bool ID or false if not found
 	 */
 	public static function getCentralIdFromUserName( $username ) {
-		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
+		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
 			$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
