@@ -93,6 +93,11 @@
 	"mwoauthmanageconsumers-showproposed": "Solicitúes propuestes",
 	"mwoauthmanageconsumers-showrejected": "Solicitúes refugaes",
 	"mwoauthmanageconsumers-showexpired": "Solicitúes caducaes",
+	"mwoauthmanageconsumers-linkproposed": "solicitúes propuestes",
+	"mwoauthmanageconsumers-linkrejected": "solicitúes refugaes",
+	"mwoauthmanageconsumers-linkexpired": "solicitúes caducaes",
+	"mwoauthmanageconsumers-linkapproved": "solicitúes aprobaes",
+	"mwoauthmanageconsumers-linkdisabled": "solicitúes desactivaes",
 	"mwoauthmanageconsumers-main": "Principal",
 	"mwoauthmanageconsumers-maintext": "Esta páxina tien l'envís de xestionar solicitúes d'aplicaciones de consumidor d'OAuth (ver http://oauth.net) y alministrar los consumidores d'OAuth establecíos.",
 	"mwoauthmanageconsumers-queues": "Seleicione una cola de confirmación de consumidor d'abaxo:",
@@ -187,9 +192,11 @@
 	"mwoauthconsumer-consumer-logpage": "Rexistru de consumidor OAuth",
 	"mwoauthconsumer-consumer-logpagetext": "Rexistru d'aprobaciones, refugos y desactivaciones de los consumidores OAuth rexistraos.",
 	"mwoauthdatastore-bad-token": "Nun s'alcontró dengún pase que case cola so solicitú",
+	"mwoauthdatastore-bad-source-ip": "La solicitú vien d'una dirección IP inválida.",
 	"mwoauthdatastore-bad-verifier": "El códigu de comprobación que se dio nun ye válidu",
 	"mwoauthdatastore-invalid-token-type": "O tipu de pase solicitáu ye inválidu.",
 	"mwoauthgrants-general-error": "Hebo un error na so solicitú OAuth.",
+	"mwoauth-invalid-authorization-title": "Error d'autorización d'OAuth",
 	"mwoauth-form-button-approve": "Permitir",
 	"mwoauth-form-button-cancel": "Encaboxar",
 	"mwoauth-error": "Error de conexón de l'aplicación",
@@ -202,5 +209,6 @@
 	"action-mwoauthproposeconsumer": "proponer nuevos consumidores d'OAuth",
 	"action-mwoauthupdateownconsumer": "actualizar los consumidores d'OAuth que controles",
 	"action-mwoauthviewsuppressed": "ver los consumidores d'OAuth desaniciaos",
-	"mwoauth-tag-reserved": "Les etiquetes que principien por <code>OAuth CID:</code> tán acutaes pa usar con OAuth."
+	"mwoauth-tag-reserved": "Les etiquetes que principien por <code>OAuth CID:</code> tán acutaes pa usar con OAuth.",
+	"notification-oauth-app-body": "Motivu: $1"
 }
