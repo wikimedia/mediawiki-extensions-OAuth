@@ -58,7 +58,7 @@ class MWOAuthRequest extends OAuthRequest {
 			) === 0
 		) {
 			$postData = OAuthUtil::parse_parameters( $request->getRawPostString() );
-			$logger->debug( __METHOD__ . ': Post String = ' . implode( ',', $postData ) );
+			$logger->debug( __METHOD__ . ': Post String = ' . $request->getRawPostString() );
 			$parameters = array_merge( $parameters, $postData );
 		}
 
