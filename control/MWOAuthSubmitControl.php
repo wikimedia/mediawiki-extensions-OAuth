@@ -178,7 +178,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 			if ( !isset( $this->vals[$field] ) ) {
 				// @TODO: check for field-specific message first
 				return $this->failure( "missing_field_$field", 'mwoauth-missing-field', $field );
-			} elseif ( !is_scalar( $this->vals[$field] ) ) {
+			} elseif ( !is_scalar( $this->vals[$field] ) && $field !== 'restrictions' ) {
 				// @TODO: check for field-specific message first
 				return $this->failure( "invalid_field_$field", 'mwoauth-invalid-field', $field );
 			}
