@@ -35,7 +35,7 @@
 	"mwoauth-consumer-wiki-thiswiki": "Proyecto actual ($1)",
 	"mwoauth-consumer-restrictions": "Restricciones de uso:",
 	"mwoauth-consumer-restrictions-json": "Restricciones de uso (JSON):",
-	"mwoauth-consumer-rsakey": "Clave RSA pública:",
+	"mwoauth-consumer-rsakey": "Clave RSA pública (opcional):",
 	"mwoauth-consumer-accesstoken": "Ficha de acceso:",
 	"mwoauth-consumer-reason": "Motivo:",
 	"mwoauth-consumer-email-unconfirmed": "Todavía no se ha confirmado la dirección de correo de tu cuenta.",

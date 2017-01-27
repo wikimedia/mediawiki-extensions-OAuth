@@ -39,7 +39,7 @@
 	"mwoauth-consumer-wiki-thiswiki": "현재 프로젝트($1)",
 	"mwoauth-consumer-restrictions": "사용 제한:",
 	"mwoauth-consumer-restrictions-json": "사용 제한 (JSON):",
-	"mwoauth-consumer-rsakey": "공개 RSA 키:",
+	"mwoauth-consumer-rsakey": "공개 RSA 키 (선택 사항):",
 	"mwoauth-consumer-secretkey": "컨슈머 비밀 토큰:",
 	"mwoauth-consumer-accesstoken": "접근 토큰:",
 	"mwoauth-consumer-reason": "이유:",

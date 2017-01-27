@@ -26,7 +26,7 @@
 	"mwoauth-consumer-description": "Opis aplikacji:",
 	"mwoauth-consumer-wiki-thiswiki": "Obecny projekt ($1)",
 	"mwoauth-consumer-restrictions": "Ograniczenia użytkowania:",
-	"mwoauth-consumer-rsakey": "Klucz publiczny RSA:",
+	"mwoauth-consumer-rsakey": "Klucz publiczny RSA (opcjonalnie):",
 	"mwoauth-consumer-accesstoken": "Token dostępu:",
 	"mwoauth-consumer-reason": "Powód:",
 	"mwoauth-consumer-stage-proposed": "proponowane",

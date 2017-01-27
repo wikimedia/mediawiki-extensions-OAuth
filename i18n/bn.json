@@ -4,7 +4,8 @@
 			"Aftab1995",
 			"Gitartha.bordoloi",
 			"Tauhid16",
-			"Aftabuzzaman"
+			"Aftabuzzaman",
+			"Elias Ahmmad"
 		]
 	},
 	"mwoauth-invalid-field-generic": "অবৈধ মান দেয়া হয়েছে",
@@ -19,6 +20,7 @@
 	"mwoauth-consumer-user": "প্রকাশক:",
 	"mwoauth-consumer-stage": "বর্তমান অবস্থা:",
 	"mwoauth-consumer-email": "যোগাযোগের ইমেল ঠিকানা:",
+	"mwoauth-consumer-email-help": "শুধু তাদের কাছেই দৃশ্যমান যারা নতুন ভোক্তাদের অনুমোদন করছে",
 	"mwoauth-consumer-owner-only-label": "শুধুমাত্র মালিক:",
 	"mwoauth-consumer-description": "অ্যাপ্লিকেশনের বিবরণ:",
 	"mwoauth-consumer-callbackurl": "\"কলব্যাক\" ওআউথের URL:",
@@ -27,7 +29,8 @@
 	"mwoauth-consumer-wiki-thiswiki": "বর্তমান প্রকল্প ($1)",
 	"mwoauth-consumer-restrictions": "ব্যবহারের সীমাবদ্ধতা:",
 	"mwoauth-consumer-restrictions-json": "ব্যবহারের সীমাবদ্ধতা (JSON):",
-	"mwoauth-consumer-rsakey": "পাবলিক RSA চাবি:",
+	"mwoauth-consumer-rsakey": "পাবলিক RSA চাবি (ঐচ্ছিক):",
+	"mwoauth-consumer-rsakey-help": "RSA-SHA1 এ স্বাক্ষর পদ্ধতি ব্যবহার করার জন্য একটি পাবলিক কী লিখুন। HMAC-SHA1 এর সঙ্গে একটি এলোমেলো গোপন ব্যবহার করার জন্য খালি রাখুন। আপনি যদি নিশ্চিত না হন কোনটি ব্যবহার করবেন, তাহলে এটি ফাঁকা রাখুন।",
 	"mwoauth-consumer-reason": "কারণ:",
 	"mwoauth-consumer-email-unconfirmed": "আপনার অ্যাকাউন্টের ইমেল ঠিকানা এখনো নিশ্চিত করা হয় নি।",
 	"mwoauth-consumer-stage-proposed": "প্রস্তাবিত",
@@ -47,6 +50,7 @@
 	"mwoauthconsumerregistration-lastchange": "সর্বশেষ পরিবর্তন",
 	"mwoauthconsumerregistration-manage": "পরিচালনা করুন",
 	"mwoauthconsumerregistration-resetsecretkey": "একটি নতুন মানে গোপন চাবিটি পুনঃস্থাপন করুন",
+	"mwoauthconsumerregistration-need-emailconfirmed": "আপনাকে OAuth অ্যাপ্লিকেশন তৈরি করার আগে আপনার ই-মেইল ঠিকানা অবশ্যই নিশ্চিত করতে হবে। দয়া করে আপনার ই-মেইল ঠিকানাটি বসান এবং যাচাই করুন [[Special:Preferences|ব্যবহারকারীর পছন্দতালিকা]] মাধ্যমে।",
 	"mwoauthmanageconsumers-main": "প্রধান",
 	"mwoauthmanageconsumers-name": "ভোক্তা",
 	"mwoauthmanageconsumers-user": "প্রকাশক",
@@ -91,6 +95,7 @@
 	"mwoauth-form-button-cancel": "বাতিল",
 	"mwoauth-error": "অ্যাপ্লিকেশন সংযোগ ত্রুটি",
 	"mwoauth-grants-heading": "অনুরোধকৃত অনুমতি:",
+	"grant-mwoauth-authonlyprivate": "ব্যবহারকারী পরিচয় যাচাইকরণ শুধুমাত্র বাস্তব নাম এবং ই-মেইল ঠিকানায় অ্যাক্সেসের সঙ্গে, কোন ক্ষমতা নেই পৃষ্ঠাগুলি পড়া বা কোনো ব্যবহারকারীর পক্ষে কাজ করার জন্য.",
 	"notification-oauth-app-approve-title": "$1 {{GENDER:$3|আপনার}} OAuth অ্যাপ ($2) {{GENDER:$1|অনুমোদন করেছেন}}",
 	"notification-oauth-app-propose-primary-link": "অ্যাপ পর্যালোচনা করুন",
 	"notification-oauth-app-update-primary-link": "অ্যাপ পর্যালোচনা করুন",
