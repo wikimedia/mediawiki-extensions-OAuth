@@ -221,5 +221,13 @@
 	"mwoauth-botpasswords-note": "<strong>Nota:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> ye más seguru que les contraseñes de bots, y tendría de ser la opción prioritaria si'l bot lo permite.",
 	"mwoauth-api-module-disabled": "El módulu «$1» nun ta disponible con OAuth.",
 	"echo-category-title-oauth-owner": "Desendolcu d'OAuth",
+	"echo-pref-tooltip-oauth-owner": "Avisame sobro actividaes rellacionaes con aplicaciones OAuth creaes por min.",
+	"echo-category-title-oauth-admin": "Alministrador d'OAuth",
+	"notification-oauth-app-propose-primary-link": "Revisar app",
+	"notification-oauth-app-update-primary-link": "Revisar app",
+	"notification-oauth-app-approve-primary-link": "Ver app",
+	"notification-oauth-app-reject-primary-link": "Ver app",
+	"notification-oauth-app-disable-primary-link": "Ver app",
+	"notification-oauth-app-reenable-primary-link": "Ver app",
 	"notification-oauth-app-body": "Motivu: $1"
 }
