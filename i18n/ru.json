@@ -47,7 +47,7 @@
 	"mwoauth-consumer-wiki-thiswiki": "Текущий проект ($1)",
 	"mwoauth-consumer-restrictions": "Ограничения на использование:",
 	"mwoauth-consumer-restrictions-json": "Ограничения на использование (JSON):",
-	"mwoauth-consumer-rsakey": "Публичный RSA-ключ:",
+	"mwoauth-consumer-rsakey": "Публичный RSA-ключ (не обязательно):",
 	"mwoauth-consumer-secretkey": "Секретный ключ клиента:",
 	"mwoauth-consumer-accesstoken": "Код (токен) доступа:",
 	"mwoauth-consumer-reason": "Причина:",

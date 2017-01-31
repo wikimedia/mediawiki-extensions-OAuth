@@ -7,9 +7,18 @@
 	},
 	"mwoauth-prefs-managegrants": "Piesaistītās lietotnes:",
 	"mwoauth-prefs-managegrantslink": "Pārvaldīt $1 {{PLURAL:$1|piesaistīto lietotni|piesaistītās lietotnes}}",
+	"mwoauth-consumer-description": "Lietotnes apraksts:",
+	"mwoauthconsumerregistration-navigation": "Navigācija:",
+	"mwoauthconsumerregistration-user": "Izdevējs",
+	"mwoauthmanageconsumers-user": "Izdevējs",
 	"oauthlistconsumers": "OAuth lietotņu saraksts",
 	"mwoauthlistconsumers-legend": "Pārlūkot OAuth lietotnes",
+	"mwoauthlistconsumers-name": "Lietotnes nosaukums:",
+	"mwoauthlistconsumers-user": "Izdevējs",
 	"oauthmanagemygrants": "Pārvaldīt piesaistītās lietotnes",
+	"mwoauthmanagemygrants-navigation": "Navigācija:",
 	"mwoauthmanagemygrants-none": "Tavam kontam nav piesaistītu lietotņu.",
-	"mwoauthmanagemygrants-wikiallowed": "Atļauts projektā:"
+	"mwoauthmanagemygrants-user": "Izdevējs:",
+	"mwoauthmanagemygrants-wikiallowed": "Atļauts projektā:",
+	"mwoauthmanagemygrants-confirm-legend": "Pārvaldīt piesaistīto lietotni"
 }
