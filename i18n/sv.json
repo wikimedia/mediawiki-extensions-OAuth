@@ -36,7 +36,7 @@
 	"mwoauth-consumer-wiki-thiswiki": "Aktuellt projekt ($1)",
 	"mwoauth-consumer-restrictions": "Användningsbegränsningar:",
 	"mwoauth-consumer-restrictions-json": "Användningsbegränsningar (JSON):",
-	"mwoauth-consumer-rsakey": "Offentlig RSA-nyckel:",
+	"mwoauth-consumer-rsakey": "Offentlig RSA-nyckel (valfritt):",
 	"mwoauth-consumer-secretkey": "Konsumentens hemliga nyckel:",
 	"mwoauth-consumer-accesstoken": "Åtkomstnyckel:",
 	"mwoauth-consumer-reason": "Orsak:",
