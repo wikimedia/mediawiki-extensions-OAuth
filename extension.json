@@ -61,6 +61,7 @@
 		"MediaWiki\\Extensions\\OAuth\\SpecialMWOAuthListConsumers": "frontend/specialpages/SpecialMWOAuthListConsumers.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthListConsumersPager": "frontend/specialpages/SpecialMWOAuthListConsumers.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthUIUtils": "frontend/MWOAuthUIUtils.php",
+		"MediaWiki\\Extensions\\OAuth\\MWOAuthLogFormatter": "frontend/MWOAuthLogFormatter.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthUtils": "backend/MWOAuthUtils.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthException": "backend/MWOAuthException.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthDAO": "backend/MWOAuthDAO.php",

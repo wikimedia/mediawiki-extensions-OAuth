@@ -20,7 +20,7 @@ class MWOAuthUISetup {
 			$wgLogTypes[] = 'mwoauthconsumer';
 			$wgLogNames['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpage';
 			$wgLogHeaders['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpagetext';
-			$wgLogActionsHandlers['mwoauthconsumer/*'] = 'LogFormatter';
+			$wgLogActionsHandlers['mwoauthconsumer/*'] = MWOAuthLogFormatter::class;
 		}
 	}
 }
