@@ -38,7 +38,7 @@
 	"mwoauth-consumer-wiki-thiswiki": "Tento projekt ($1)",
 	"mwoauth-consumer-restrictions": "Omezení užití:",
 	"mwoauth-consumer-restrictions-json": "Omezení užití (JSON):",
-	"mwoauth-consumer-rsakey": "Veřejný RSA klíč:",
+	"mwoauth-consumer-rsakey": "Veřejný RSA klíč (nepovinný):",
 	"mwoauth-consumer-secretkey": "Tajný token konzumenta:",
 	"mwoauth-consumer-accesstoken": "Přístupový token:",
 	"mwoauth-consumer-reason": "Důvod:",

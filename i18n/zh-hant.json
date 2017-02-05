@@ -64,7 +64,7 @@
 	"mwoauthconsumerregistration-propose": "提出新的 Consumer 申請",
 	"mwoauthconsumerregistration-list": "我的 Consumer 清單",
 	"mwoauthconsumerregistration-main": "主頁",
-	"mwoauthconsumerregistration-propose-text": "開發人員應使用以下表單提出申請新的 OAuth Consumer (請參考 [//www.mediawiki.org/wiki/Extension:OAuth 擴充套件說明文件] 取得更多詳細資訊)。 在送出這個表單後，您將會收到一組密鑰(Token)，可用來讓 MediaWiki 識別您的應用程式。 在這之前 OAuth 管理員須要先核准您的應用程式。\n\n以下有幾點建議要特別說明：\n* 盡可能減少授權，避免目前不需的授權。\n* 版本的格式為 \"major.minor.release\" (最後兩項為選填) 並且需隨著授權變更時遞增。\n* 若可能，請提供一組公開 RSA 金鑰 (使用 PEM 格式)，否則將會採用安全性較低的秘密密鑰。\n* 使用 JSON 限制欄位來限制 IP 位址於 CIDR 範圍中的 Consumer 存取。\n* 您可使用專案 ID 來限制 Consumer 在網站中能存取的專案 (使用 \"*\" 代表所有專案)。\n* 申請提供的 Email 位址要與您帳號填寫的位址相同 (且須已完成確認)。",
+	"mwoauthconsumerregistration-propose-text": "開發人員應使用以下表單提出申請新的 OAuth Consumer (請參考 [//www.mediawiki.org/wiki/Extension:OAuth 擴充套件說明文件] 取得更多詳細資訊)。 在送出這個表單後，您將會收到一組密鑰(Token)，可用來讓 MediaWiki 識別您的應用程式。 在這之前 OAuth 管理員須要先核准您的應用程式。\n\n以下有幾點建議要特別說明：\n* 盡可能減少授權，避免目前不需的授權。\n* 版本的格式為 \"major.minor.release\" (最後兩項為選填) 並且需隨著授權變更時遞增。\n* 若可能，請提供一組公開 RSA 金鑰 (使用 PEM 格式)，否則將會採用安全性較低的秘密密鑰。\n* 您可使用專案 ID 來限制 Consumer 在網站中能存取的專案 (使用 \"*\" 代表所有專案)。",
 	"mwoauthconsumerregistration-update-text": "使用以下表單來更新你可管控的 OAuth Consumer。\n\n所有填寫的數值將會覆蓋先前的數值，若您沒有要清除欄位值，請勿在欄位上留空。",
 	"mwoauthconsumerregistration-maintext": "此頁面可以讓開發人員提出申請與更新於本站登錄資料中的 OAuth Consumer 應用程式。\n\n在這裡您可以：\n* [[Special:OAuthConsumerRegistration/propose|申請新 Consumer 的密鑰(Token)]]。\n* [[Special:OAuthConsumerRegistration/list|管理您已有的 Consumer]]。\n\n欲取得更多有關 OAuth 的資訊請參考[//www.mediawiki.org/wiki/Extension:OAuth 擴充套件說明文件]。",
 	"mwoauthconsumerregistration-propose-legend": "新增 OAuth Consumer 應用程式",
