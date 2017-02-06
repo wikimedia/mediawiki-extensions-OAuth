@@ -28,7 +28,7 @@
 	"mwoauth-consumer-wiki-thiswiki": "Projècte actual ($1)",
 	"mwoauth-consumer-restrictions": "Limitacions d’utilizacion :",
 	"mwoauth-consumer-restrictions-json": "Limitacions d’utilizacion (JSON) :",
-	"mwoauth-consumer-rsakey": "Clau RSA publica :",
+	"mwoauth-consumer-rsakey": "Clau RSA publica (facultatiu) :",
 	"mwoauth-consumer-secretkey": "Geton secret del consomator :",
 	"mwoauth-consumer-accesstoken": "Geton d’accès :",
 	"mwoauth-consumer-reason": "Motiu :",
