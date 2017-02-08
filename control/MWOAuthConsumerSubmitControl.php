@@ -131,10 +131,11 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	}
 
 	protected function checkBasePermissions() {
+		global $wgBlockDisablesLogin;
 		$user = $this->getUser();
 		if ( !$user->getID() ) {
 			return $this->failure( 'not_logged_in', 'badaccess-group0' );
-		} elseif ( $user->isBlocked() ) {
+		} elseif ( $user->isLocked() || $wgBlockDisablesLogin && $user->isBlocked() ) {
 			return $this->failure( 'user_blocked', 'badaccess-group0' );
 		} elseif ( wfReadOnly() ) {
 			return $this->failure( 'readonly', 'readonlytext', wfReadOnlyReason() );

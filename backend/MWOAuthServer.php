@@ -192,8 +192,10 @@ class MWOAuthServer extends OAuthServer {
 	 * @throws MWOAuthException
 	 */
 	public function authorize( $consumerKey, $requestTokenKey, \User $mwUser, $update ) {
+		global $wgBlockDisablesLogin;
+
 		// Check that user and consumer are in good standing
-		if ( $mwUser->isBlocked() ) {
+		if ( $mwUser->isLocked() || $wgBlockDisablesLogin && $mwUser->isBlocked() ) {
 			throw new MWOAuthException( 'mwoauthserver-insufficient-rights' );
 		}
 		$consumer = $this->data_store->lookup_consumer( $consumerKey );

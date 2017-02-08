@@ -282,6 +282,8 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 				$statement['realname'] = $user->getRealName();
 				$statement['email'] = $user->getEmail();
 			}
+		} else {
+			$statement['blocked'] = true;
 		}
 
 		$JWT = JWT::encode( $statement, $consumer->secret );
