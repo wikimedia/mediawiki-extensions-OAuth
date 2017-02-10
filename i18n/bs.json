@@ -27,5 +27,7 @@
 	"mwoauthmanagemygrants-update": "Ažuriraj dozvole",
 	"mwoauthmanagemygrants-renounce": "Poništi pristup",
 	"mwoauthmanagemygrants-action": "Izmijeni status:",
-	"mwoauthmanagemygrants-basic-tooltip": "Zašto ne mogu promijeniti ovu dozvolu? Ova dozvola daje povezanoj aplikaciji osnovno dopuštenje koje joj je neophodno za ispravni rad. Ako ne želite da aplikacija ima ova prava, poništite joj prava pristupa."
+	"mwoauthmanagemygrants-basic-tooltip": "Zašto ne mogu promijeniti ovu dozvolu? Ova dozvola daje povezanoj aplikaciji osnovno dopuštenje koje joj je neophodno za ispravni rad. Ako ne želite da aplikacija ima ova prava, poništite joj prava pristupa.",
+	"right-mwoauthmanagemygrants": "Upravljanje dozvolama za OAuth",
+	"action-mwoauthmanagemygrants": "upravljate vlastitim dozvolama za OAuth"
 }
