@@ -29,7 +29,7 @@
 	"mwoauth-consumer-grantsneeded": "Tilgjengelige tildelinger:",
 	"mwoauth-consumer-required-grant": "Tilgjengelig for konsumentappen",
 	"mwoauth-consumer-wiki": "Begrens til prosjekt:",
-	"mwoauth-consumer-wiki-thiswiki": "Nåværende prosjekt ($1)",
+	"mwoauth-consumer-wiki-thiswiki": "Gjeldende prosjekt ($1)",
 	"mwoauth-consumer-restrictions": "Bruksbegrensninger:",
 	"mwoauth-consumer-restrictions-json": "Bruksbegrensninger (JSON):",
 	"mwoauth-consumer-rsakey": "Offentlig RSA-nøkkel:",
