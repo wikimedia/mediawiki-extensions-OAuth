@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Milicevic01"
+			"Milicevic01",
+			"Srdjan m"
 		]
 	},
 	"mwoauth-field-hidden": "(ova informacija je skrivena)",
 	"mwoauth-field-private": "(ova informacija je privatna)",
-	"mwoauth-prefs-managegrants": "Prikačene aplikacije:",
+	"mwoauth-prefs-managegrants": "Povezane aplikacije:",
 	"mwoauth-prefs-managegrantslink": "Upravljaj prikačenim aplikacijama ({{PLURAL:$1|$1}})",
 	"mwoauth-consumer-allwikis": "Svim projektima na ovom sajtu",
 	"mwoauth-consumer-name": "Ime aplikacije:",
