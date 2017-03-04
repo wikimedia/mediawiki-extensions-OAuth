@@ -52,6 +52,7 @@
 	"mwoauthmanageconsumers-dsuppress": "გათიშული და აკრძალულია",
 	"mwoauthmanageconsumers-reenable": "დამოწმებულია",
 	"mwoauthmanageconsumers-reason": "მიზეზი:",
+	"oauthlistconsumers": "OAuth-აპლიკაციების სია",
 	"mwoauthlistconsumers-view": "დეტალები",
 	"mwoauthlistconsumers-name": "აპლიკაციის სახელი",
 	"mwoauthlistconsumers-version": "კლიენტის ვერსია",
