@@ -205,4 +205,14 @@ class MWOAuthUIHooks {
 
 		$icons['oauth'] = [ 'path' => 'OAuth/frontend/assets/echo-icon.png' ];
 	}
+
+	/**
+	 * @param array $specialPages
+	 */
+	public static function onSpecialPage_initList( array &$specialPages ) {
+		if ( MWOAuthUtils::isCentralWiki() ) {
+			$specialPages['OAuthConsumerRegistration'] = SpecialMWOAuthConsumerRegistration::class;
+			$specialPages['OAuthManageConsumers'] = SpecialMWOAuthManageConsumers::class;
+		}
+	}
 }
