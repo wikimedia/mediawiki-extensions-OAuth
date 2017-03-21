@@ -6,7 +6,8 @@
 			"Ата",
 			"Olion",
 			"Piramidion",
-			"Macofe"
+			"Macofe",
+			"Ahonc"
 		]
 	},
 	"mwoauth-desc": "Дозволяє використовувати OAuth 1.0a для API авторизації",
@@ -31,7 +32,7 @@
 	"mwoauth-consumer-owner-only": "Цього споживача може використовувати тільки $1.",
 	"mwoauth-consumer-owner-only-help": "Вибір цієї опції зробить так, що споживач буде автоматично прийнятий для використання та затверджений за $1. Ним не зможе користуватися будь-який інший користувач, і звична процедура авторизації не працюватиме. Дії, виконані цим споживачем, не позначатимуться тегами.",
 	"mwoauth-consumer-description": "Опис програми:",
-	"mwoauth-consumer-callbackurl": "URL \"зворотнього виклику\" OAuth :",
+	"mwoauth-consumer-callbackurl": "URL «зворотного виклику» OAuth:",
 	"mwoauth-consumer-callbackisprefix": "Дозволяти споживачеві вказати зворотний виклик у запиті використовувати URL «зворотного виклику» вище як обов'язковий префікс.",
 	"mwoauth-consumer-granttypes": "Типи доступу, які запитуються:",
 	"mwoauth-consumer-grantsneeded": "Придатні гранти:",
@@ -153,7 +154,7 @@
 	"mwoauthlistconsumers-user": "Видавець",
 	"mwoauthlistconsumers-description": "Опис",
 	"mwoauthlistconsumers-wiki": "Придатний проект",
-	"mwoauthlistconsumers-callbackurl": "URL \"зворотнього виклику\" OAuth",
+	"mwoauthlistconsumers-callbackurl": "URL «зворотного виклику» OAuth",
 	"mwoauthlistconsumers-callbackisprefix": "Дозволяти споживачеві вказати зворотний виклик у запиті використовувати URL «зворотного виклику» вище як обов'язковий префікс.",
 	"mwoauthlistconsumers-grants": "Застосовні ґранти",
 	"mwoauthlistconsumers-basicgrantsonly": "(тільки для базового доступу)",
@@ -204,7 +205,7 @@
 	"mwoauth-bad-request-invalid-action-contact": "Вибачте, щось пішло не так. Вам потрібно зв'язатися з  автором програми [$1]  для допомоги з цього питання.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unknown URL, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>",
 	"mwoauthdatastore-access-token-not-found": "Не знайдено схваленого ґранту для цього маркера авторизації.",
 	"mwoauthdatastore-request-token-not-found": "На жаль, щось пішло невірно при підключенні цієї програми. Поверніться назад та спробуйте підключити ваш профіль знову або зв'яжіться з автором програми.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Маркер OAuth не знайдений, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
-	"mwoauthdatastore-callback-not-found": "URL зворотнього виклику OAuth не знайдено у кеші. Це, ймовірно, помилка того, як програма здійснює запити до сервера.",
+	"mwoauthdatastore-callback-not-found": "URL зворотного виклику OAuth не знайдено у кеші. Це, ймовірно, помилка того, як програма здійснює запити до сервера.",
 	"mwoauthdatastore-request-token-already-used": "Цей запит уже завершено і не може бути подано ще раз.\nПоверніться до програми і спробуйте з'єднатися зі своїм обліковим запитом ще раз або зверніться до автора програми.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Маркер OAuth уже використано, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauthdatastore-bad-token": "Не знайдено маркера, відповідного вашому запиту.",
 	"mwoauthdatastore-bad-source-ip": "Запит надійшов з неприпустимої IP-адреси.",
