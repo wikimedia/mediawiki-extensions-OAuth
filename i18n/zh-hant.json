@@ -6,7 +6,8 @@
 			"Justincheng12345",
 			"LNDDYL",
 			"Waihorace",
-			"一個正常人"
+			"一個正常人",
+			"SupaplexTW"
 		]
 	},
 	"mwoauth-desc": "允許使用 OAuth 1.0a 作為 API 認証程式",
@@ -26,6 +27,7 @@
 	"mwoauth-consumer-user": "發佈者：",
 	"mwoauth-consumer-stage": "目前狀態：",
 	"mwoauth-consumer-email": "聯絡人電子郵件地址：",
+	"mwoauth-consumer-owner-only-label": "只限擁有者：",
 	"mwoauth-consumer-description": "應用程式描述：",
 	"mwoauth-consumer-callbackurl": "OAuth \"回呼\" URL：",
 	"mwoauth-consumer-grantsneeded": "適用的權限：",
@@ -34,7 +36,7 @@
 	"mwoauth-consumer-wiki-thiswiki": "現有專案 ($1)",
 	"mwoauth-consumer-restrictions": "使用限制：",
 	"mwoauth-consumer-restrictions-json": "使用限制 (JSON)：",
-	"mwoauth-consumer-rsakey": "公開 RSA 金鑰：",
+	"mwoauth-consumer-rsakey": "公開 RSA 金鑰 (選填)：",
 	"mwoauth-consumer-secretkey": "Consumer 秘密金鑰：",
 	"mwoauth-consumer-accesstoken": "存取金鑰：",
 	"mwoauth-consumer-reason": "原因：",
@@ -82,7 +84,7 @@
 	"mwoauthconsumerregistration-manage": "管理",
 	"mwoauthconsumerregistration-resetsecretkey": "重設祕密金鑰為新的值",
 	"mwoauthconsumerregistration-proposed": "您的 OAuth Consumer 請求已被接受。\n\n您已被分配了一組 Consumer 密鑰(Token) '''$1'''，與秘密密鑰(Secret Token) '''$2'''。''請將妥善保存這些資訊供未來參考使用。''",
-	"mwoauthconsumerregistration-updated": "已成功更新您的 OAuth Consumer 登入資訊。",
+	"mwoauthconsumerregistration-updated": "已更新您的 OAuth Consumer 登入資訊。",
 	"mwoauthconsumerregistration-secretreset": "您已被分配了一組 Consumer 密鑰(Token) '''$1'''。''請將妥善保存這些資訊供未來參考使用。''",
 	"oauthmanageconsumers": "管理 OAuth Consumer",
 	"mwoauthmanageconsumers-notloggedin": "您必須登入以存取此頁面。",
@@ -100,6 +102,7 @@
 	"mwoauthmanageconsumers-q-proposed": "已提出申請的 Consumer 請求序列",
 	"mwoauthmanageconsumers-q-rejected": "已拒絕的 Consumer 請求序列",
 	"mwoauthmanageconsumers-q-expired": "已過期的 Consumer 請求序列",
+	"mwoauthmanageconsumers-lists": "選擇下面使用者狀況列表",
 	"mwoauthmanageconsumers-l-approved": "目前已核准的 Consumer 清單",
 	"mwoauthmanageconsumers-l-disabled": "目前已停用的 Consumer 清單",
 	"mwoauthmanageconsumers-none-proposed": "此清單沒有任提出申請的 Consumer。",
