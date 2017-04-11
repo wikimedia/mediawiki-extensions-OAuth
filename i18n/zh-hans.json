@@ -56,7 +56,7 @@
 	"mwoauth-consumer-accesstoken": "访问令牌：",
 	"mwoauth-consumer-reason": "原因：",
 	"mwoauth-consumer-developer-agreement": "通过提交此应用程序，您承认我们保留禁用您的应用程序，移除或限制您或您的应用程序对此网站的访问权的权利，并当我们相信根据我们自身的判断，您或您的应用程序违反此网站的任何方针、指引和指导原则时，继续从事任何其他我们认为适当的操作过程。我们可以在我们谨慎判断认为必要时，随时更改此应用程序方针，而不事先通知。您继续使用OAuth就意味着认可这些更改。",
-	"mwoauth-consumer-email-unconfirmed": "你的账户的电子邮件地址还没有确认。",
+	"mwoauth-consumer-email-unconfirmed": "您的账户的电子邮件地址还没有确认。",
 	"mwoauth-consumer-email-mismatched": "提供的电子邮件地址必须与您的帐户相匹配。",
 	"mwoauth-consumer-alreadyexists": "最终用户与此名称/版本/发布者的组合已经存在",
 	"mwoauth-consumer-alreadyexistsversion": "使用此名称/发布者组合的程序已存在相等或更高版本（“$1”）",
