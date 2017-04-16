@@ -40,7 +40,7 @@
 	"mwoauth-consumer-wiki-thiswiki": "Huidig project ($1)",
 	"mwoauth-consumer-restrictions": "Gebruiksbeperkingen:",
 	"mwoauth-consumer-restrictions-json": "Gebruiksbeperkingen (JSON):",
-	"mwoauth-consumer-rsakey": "Openbare SSH-sleutel:",
+	"mwoauth-consumer-rsakey": "Openbare RSA-sleutel (optioneel):",
 	"mwoauth-consumer-secretkey": "Geheim token consumer:",
 	"mwoauth-consumer-accesstoken": "Toegangstoken:",
 	"mwoauth-consumer-reason": "Reden:",
