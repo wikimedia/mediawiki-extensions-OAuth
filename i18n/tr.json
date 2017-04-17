@@ -5,12 +5,13 @@
 			"Rapsar",
 			"Demircimehmed",
 			"Meelo",
-			"McAang"
+			"McAang",
+			"Vito Genovese"
 		]
 	},
 	"mwoauth-desc": "OAuth 1.0a kullanımı için API yetkilendirme kullanımı",
 	"mwoauth-prefs-managegrants": "Bağlı uygulamalar:",
-	"mwoauth-prefs-managegrantslink": "$1 bağlı {{PLURAL:$1|uygulamayı|uygulamaları}} yönet",
+	"mwoauth-prefs-managegrantslink": "Bağlı olan $1 uygulamayı yönet",
 	"mwoauth-consumer-allwikis": "Bu sitedeki bütün projeler",
 	"mwoauth-consumer-name": "Uygulama adı:",
 	"mwoauth-consumer-user": "Yayıncı:",
@@ -36,7 +37,6 @@
 	"mwoauthmanagemygrants-authonly-tooltip": "Bu hibeyi neden güncelleyemiyorum? Eğer bu bağlı uygulamanın bu haklara sahip olmasını istemiyorsanız, uygulamanının erişimini iptal etmelisiniz.",
 	"mwoauth-form-button-approve": "Evet, izin ver",
 	"mwoauth-granttype-normal": "Özel izinler için yetki talep et.",
-	"mwoauth-grant-group-authentication": "Kimlik doğrulama için OAuth kullan",
-	"mwoauth-grant-authonly": "Yalnızca kimlik doğrulaması, API erişimi yok.",
-	"mwoauth-grant-authonlyprivate": "Special:OAuth/identify üzerinden sadece gerçek adınız ve e posta adresinizle erişebilirsiniz. API erişimi yok."
+	"grant-mwoauth-authonly": "Yalnızca kimlik doğrulaması, API erişimi yok.",
+	"grant-mwoauth-authonlyprivate": "Special:OAuth/identify üzerinden sadece gerçek adınız ve e posta adresinizle erişebilirsiniz. API erişimi yok."
 }
