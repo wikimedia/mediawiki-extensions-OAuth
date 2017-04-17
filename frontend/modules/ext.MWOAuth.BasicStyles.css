@@ -1,37 +1,37 @@
 
 .mw-mwoauthconsumerregistration-body,
 .mw-mwoauthmanageconsumers-body {
-	background-color: #F0F0F0;
+	background-color: #f0f0f0;
 }
 
 .mw-mwoauthmanageconsumers-proposed,
 .mw-mwoauthmanagemygrants-proposed,
 .mw-mwoauthconsumerregistration-proposed {
-	background-color: #B7B8E1;
+	background-color: #b7b8e1;
 }
 
 .mw-mwoauthmanageconsumers-rejected,
 .mw-mwoauthmanagemygrants-rejected,
 .mw-mwoauthconsumerregistration-rejected {
-	background-color: #E1B7BA;
+	background-color: #e1b7ba;
 }
 
 .mw-mwoauthmanageconsumers-expired,
 .mw-mwoauthmanagemygrants-expired,
 .mw-mwoauthconsumerregistration-expired {
-	background-color: #E1CDB7;
+	background-color: #e1cdb7;
 }
 
 .mw-mwoauthmanageconsumers-approved,
 .mw-mwoauthmanagemygrants-approved,
 .mw-mwoauthconsumerregistration-approved {
-	background-color: #BAE1B7;
+	background-color: #bae1b7;
 }
 
 .mw-mwoauthmanageconsumers-disabled,
 .mw-mwoauthmanagemygrants-disabled,
 .mw-mwoauthconsumerregistration-disabled {
-	background-color: #CEB7E1;
+	background-color: #ceb7e1;
 }
 
 .mw-mwoauthmanagemygrants-list-item {
@@ -39,7 +39,7 @@
 }
 
 .mw-mwoautherror-details {
-	font-size: .7em;
+	font-size: 0.7em;
 	color: #7d7d7d;
 }
 

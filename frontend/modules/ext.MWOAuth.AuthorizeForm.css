@@ -14,7 +14,7 @@
 }
 
 #mw-mwoauth-authorize-form > ul {
-	padding-top: .5em;
+	padding-top: 0.5em;
 	line-height: 1em;
 }
 
@@ -25,9 +25,9 @@
 
 input.mw-mwoauth-authorize-button {
 	float: right;
-	margin-left: .7em;
-	margin-right: .7em;
-	margin-bottom: .5em;
+	margin-left: 0.7em;
+	margin-right: 0.7em;
+	margin-bottom: 0.5em;
 }
 
 .client-js #mw-mwoauth-authorize-dialog {
