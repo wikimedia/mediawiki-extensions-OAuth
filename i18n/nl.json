@@ -11,7 +11,8 @@
 			"Robin0van0der0vliet",
 			"Mathonius",
 			"MrLeopold",
-			"Macofe"
+			"Macofe",
+			"Mainframe98"
 		]
 	},
 	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a te gebruiken voor API-toestemming",
@@ -70,7 +71,7 @@
 	"mwoauthconsumerregistration-propose": "Nieuwe consumer voorstellen",
 	"mwoauthconsumerregistration-list": "Uw consumerlijst",
 	"mwoauthconsumerregistration-main": "Startpagina",
-	"mwoauthconsumerregistration-propose-text": "Ontwikkelaars moeten het onderstaande formulier gebruiken om een nieuwe OAuthtoepassing voor te stellen (zie de [//www.mediawiki.org/wiki/Extension:OAuth documentatie van de uitbreiding] voor meer details). Na het indienden van dit formulier ontvangt u een token dat uw programma gaat gebruiken om zichzelf te identificeren bij MediaWiki. Een OAuthbeheerder moet uw aanvraag goedkeuren voor het door andere gebruikers kan worden toegestaan.\n\nEen paar aanbevelingen en opmerkingen:\n* Probeer zo min mogelijk bevoegdheden te gebruiken  Vermijd bevoegdheden die niet echt nodig zijn;\n* Versies hebben de opmaak \"groot.klein.release\" (de laatste twee elementen zijn optioneel) en moeten oplopen als er wijzigingen voor de toestemmingen nodig zijn;\n* Gebruik als mogelijk een RSA-sleutel (in PEM-opmaak); als dat niet mogelijk is, wordt u een (minder veilig) geheim token toegewezen;\n* Gebruik het veld JSON-beperkingen om de toegang voor deze toepassing te beperken tot IP-adressen in de opgegeven CIDR-bereiken;\n* U kunt een project-ID gebruiken om de toepassing te beperken tot één enkel project op deze site (gebruik \"*\" voor alle projecten);\n* Het e-mailadres moet overeenkomen met dat van uw gebruiker (en het e-mailadres moet zijn bevestigd).",
+	"mwoauthconsumerregistration-propose-text": "Ontwikkelaars moeten het onderstaande formulier gebruiken om een nieuwe OAuthtoepassing voor te stellen (zie de [//www.mediawiki.org/wiki/Extension:OAuth documentatie van de uitbreiding] voor meer details). Na het indienden van dit formulier ontvangt u een token dat uw programma gaat gebruiken om zichzelf te identificeren bij MediaWiki. Een OAuthbeheerder moet uw aanvraag goedkeuren voor het door andere gebruikers kan worden toegestaan.\n\nEen paar aanbevelingen en opmerkingen:\n* Probeer zo min mogelijk bevoegdheden te gebruiken  Vermijd bevoegdheden die niet echt nodig zijn;\n* Versies hebben de opmaak \"groot.klein.release\" (de laatste twee elementen zijn optioneel) en moeten oplopen als er wijzigingen voor de toestemmingen nodig zijn;\n* Gebruik als mogelijk een RSA-sleutel (in PEM-opmaak); als dat niet mogelijk is, wordt u een (minder veilig) geheim token toegewezen;\n* U kunt een project-ID gebruiken om de toepassing te beperken tot één enkel project op deze site (gebruik \"*\" voor alle projecten);",
 	"mwoauthconsumerregistration-update-text": "Gebruik het onderstaande formulier om bepaalde aspecten van de OAuthtoepassing die u beheert bij te werken.\n\nAlle waarden hier overschrijven eerdere waarden. Laat velden niet leeg, tenzij u inderdaad waarden wilt verwijderen.",
 	"mwoauthconsumerregistration-maintext": "Op deze pagina kunnen ontwikkelaars OAuthtoepassingen voorstellen en bijwerken in het register van deze site.\n\nVanaf hier kunt u:\n* [[Special:OAuthConsumerRegistration/propose|Een token aanvragen voor een nieuwe toepassing]];\n* [[Special:OAuthConsumerRegistration/list|Uw lijst met bestaande toepassing beheren]].\n\nVoor meer informatie over OAuth kunt u de [https://www.mediawiki.org/wiki/Extension:OAuth uitbreidingsdocumentatie] raadplegen.",
 	"mwoauthconsumerregistration-propose-legend": "Nieuwe OAuthconsumertoepassing",
