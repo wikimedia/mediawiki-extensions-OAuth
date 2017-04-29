@@ -152,7 +152,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 							return $s . ' [' . $cmr->get( 'version' ) . ']';
 						} ),
 						'mwoauth-consumer-user' => $cmr->get( 'userId',
-							[ MWOAuthUtils::class, 'getCentralUserNameFromId'] ),
+							[ MWOAuthUtils::class, 'getCentralUserNameFromId' ] ),
 						'mwoauth-consumer-description' => $cmr->get( 'description' ),
 						'mwoauthmanagemygrants-wikiallowed' => $cmra->get( 'wiki',
 							[ MWOAuthUtils::class, 'getWikiIdName' ] ),
@@ -257,7 +257,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 
 	/**
 	 * @param \DBConnRef $db
-	 * @param sdtclass $row
+	 * @param stdclass $row
 	 * @return string
 	 */
 	public function formatRow( \DBConnRef $db, $row ) {
@@ -348,7 +348,7 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param $row
+	 * @param stdclass $row
 	 * @return string
 	 */
 	function formatRow( $row ) {

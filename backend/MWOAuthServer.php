@@ -20,7 +20,7 @@ class MWOAuthServer extends OAuthServer {
 	 * Process a request_token request returns the request token on success. This
 	 * also checks the IP restriction, which the OAuthServer method did not.
 	 *
-	 * @param MWOAuthRequest $request the request
+	 * @param MWOAuthRequest &$request the request
 	 * @return MWOAuthToken
 	 * @throws MWOAuthException
 	 */
@@ -110,7 +110,7 @@ class MWOAuthServer extends OAuthServer {
 	 * process an access_token request
 	 * returns the access token on success
 	 *
-	 * @param MWOAuthRequest $request the request
+	 * @param MWOAuthRequest &$request the request
 	 * @return MWOAuthToken
 	 * @throws MWOAuthException
 	 */

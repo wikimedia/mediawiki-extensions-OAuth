@@ -12,7 +12,7 @@ class MWOAuthUIHooks {
 
 	/**
 	 * @param \User $user
-	 * @param $preferences
+	 * @param array &$preferences
 	 * @return bool
 	 * @throws \MWException
 	 */
@@ -176,9 +176,9 @@ class MWOAuthUIHooks {
 	}
 
 	/**
-	 * @param array $notifications
-	 * @param array $notificationCategories
-	 * @param array $icons
+	 * @param array &$notifications
+	 * @param array &$notificationCategories
+	 * @param array &$icons
 	 */
 	public static function onBeforeCreateEchoEvent( &$notifications, &$notificationCategories, &$icons ) {
 		global $wgOAuthGroupsToNotify;
@@ -207,7 +207,7 @@ class MWOAuthUIHooks {
 	}
 
 	/**
-	 * @param array $specialPages
+	 * @param array &$specialPages
 	 */
 	public static function onSpecialPage_initList( array &$specialPages ) {
 		if ( MWOAuthUtils::isCentralWiki() ) {

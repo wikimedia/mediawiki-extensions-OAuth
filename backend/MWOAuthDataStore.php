@@ -46,8 +46,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * Get either a request or access token from the data store
 	 *
 	 * @param OAuthConsumer|MWOAuthConsumer $consumer
-	 * @param $token_type
-	 * @param $token String the token
+	 * @param string $token_type
+	 * @param string $token String the token
 	 * @throws MWOAuthException
 	 * @return MWOAuthToken
 	 */
@@ -97,7 +97,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @param MWOAuthConsumer|OAuthConsumer $consumer
 	 * @param String $token
 	 * @param String $nonce
-	 * @param $timestamp
+	 * @param int $timestamp
 	 * @return boolean
 	 */
 	public function lookup_nonce( $consumer, $token, $nonce, $timestamp ) {
@@ -184,7 +184,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 *
 	 * @param MWOAuthToken $token the request token that started this
 	 * @param OAuthConsumer $consumer
-	 * @param $verifier
+	 * @param int|null $verifier
 	 * @throws MWOAuthException
 	 * @return MWOAuthToken the access token
 	 */

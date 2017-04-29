@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-/*
+/**
  (c) Aaron Schulz 2013, GPL
 
  This program is free software; you can redistribute it and/or modify

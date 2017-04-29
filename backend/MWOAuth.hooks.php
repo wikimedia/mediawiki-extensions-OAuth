@@ -36,7 +36,7 @@ class MWOAuthHooks {
 	 *
 	 * @param string $tag
 	 * @param \User|null $user
-	 * @param \Status $status
+	 * @param \Status &$status
 	 * @return bool
 	 */
 	public static function onChangeTagCanCreate( $tag, \User $user = null, \Status &$status ) {

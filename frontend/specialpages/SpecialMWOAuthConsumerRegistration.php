@@ -39,7 +39,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 	}
 
 	function displayRestrictionError() {
-		throw new \PermissionsError( null, ['mwoauthconsumerregistration-need-emailconfirmed'] );
+		throw new \PermissionsError( null, [ 'mwoauthconsumerregistration-need-emailconfirmed' ] );
 	}
 
 	public function execute( $par ) {
@@ -429,7 +429,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 	/**
 	 * @param \DBConnRef $db
-	 * @param sdtclass $row
+	 * @param stdclass $row
 	 * @return string
 	 */
 	public function formatRow( \DBConnRef $db, $row ) {
@@ -535,7 +535,7 @@ class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param $row
+	 * @param stdclass $row
 	 * @return string
 	 */
 	function formatRow( $row ) {

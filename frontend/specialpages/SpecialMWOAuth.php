@@ -242,6 +242,8 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	 * a key shared with the Consumer.
 	 * @param \User $user the user who is the subject of this request
 	 * @param OAuthConsumer $consumer
+	 * @param MWOAuthRequest $request
+	 * @param string $format
 	 * @param MWOAuthConsumerAcceptance $access
 	 */
 	protected function outputJWT( $user, $consumer, $request, $format, $access ) {

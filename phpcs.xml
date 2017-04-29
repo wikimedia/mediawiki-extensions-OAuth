@@ -11,6 +11,33 @@
 	<rule ref="MediaWiki.Commenting.FunctionComment.MissingReturn">
 		<severity>0</severity>
 	</rule>
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax.Found">
+		<severity>0</severity>
+	</rule>
+	<rule ref="Generic.Files.LineLength.TooLong">
+		<severity>0</severity>
+	</rule>
+	<rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">
+		<severity>0</severity>
+	</rule>
+	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamName">
+		<severity>0</severity>
+	</rule>
 	<arg name="extensions" value="php,php5,inc"/>
 	<arg name="encoding" value="utf8"/>
 	<exclude-pattern>vendor/</exclude-pattern>
