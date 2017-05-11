@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Milicevic01",
-			"Сербијана"
+			"Сербијана",
+			"Obsuser"
 		]
 	},
 	"mwoauth-field-hidden": "(ова информација је скривена)",
@@ -71,5 +72,6 @@
 	"mwoauth-form-description-allwikis-nogrants": "Здраво $1,\n\n'''$2''' жели да добије основни приступ у ваше име на свим пројектима овог сајта.",
 	"mwoauth-form-button-approve": "Дозволи",
 	"mwoauth-form-button-cancel": "Откажи",
-	"mwoauth-grants-heading": "Тражене дозволе:"
+	"mwoauth-grants-heading": "Тражене дозволе:",
+	"echo-category-title-oauth-admin": "OAuth админ"
 }
