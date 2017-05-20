@@ -67,7 +67,7 @@
 	"mwoauth-consumer-stage-approved": "затверджено",
 	"mwoauth-consumer-stage-disabled": "вимкнено",
 	"mwoauth-consumer-stage-suppressed": "пригнічено",
-	"oauthconsumerregistration": "Реєстрація покупця OAuth",
+	"oauthconsumerregistration": "Реєстрація споживача OAuth",
 	"mwoauthconsumerregistration-notloggedin": "Ви повинні увійти в систему для доступу до цієї сторінки.",
 	"mwoauthconsumerregistration-navigation": "Навігація:",
 	"mwoauthconsumerregistration-propose": "Запропонувати нового споживача",

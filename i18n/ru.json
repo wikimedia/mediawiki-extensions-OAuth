@@ -17,7 +17,8 @@
 			"Дмитрий",
 			"Metastasis",
 			"SergeyButkov",
-			"Mailman"
+			"Mailman",
+			"Av6"
 		]
 	},
 	"mwoauth-desc": "Позволяет использование OAuth 1.0a для API авторизации",
@@ -51,7 +52,7 @@
 	"mwoauth-consumer-secretkey": "Секретный ключ клиента:",
 	"mwoauth-consumer-accesstoken": "Код (токен) доступа:",
 	"mwoauth-consumer-reason": "Причина:",
-	"mwoauth-consumer-email-unconfirmed": "Адрес электронной почты вашей учётной записи еще не был подтверждён.",
+	"mwoauth-consumer-email-unconfirmed": "Адрес электронной почты вашей учётной записи ещё не был подтверждён.",
 	"mwoauth-consumer-email-mismatched": "Указанный адрес электронной почты должен совпадать с тем адресом, который указан в настройках вашей учётной записи.",
 	"mwoauth-consumer-alreadyexists": "Клиент с этой комбинацией из имени, версии и издателя уже существует",
 	"mwoauth-consumer-alreadyexistsversion": "Клиент с этой комбинации имени и издателя с такой же или более высокой версией («$1») уже существует",
