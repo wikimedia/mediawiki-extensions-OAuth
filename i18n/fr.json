@@ -13,7 +13,8 @@
 			"Wyz",
 			"Fitoschido",
 			"Wladek92",
-			"Orlodrim"
+			"Orlodrim",
+			"Urhixidur"
 		]
 	},
 	"mwoauth-desc": "Autorise l’utilisation de OAuth 1.0a pour l’authentification de l’API",
@@ -211,7 +212,7 @@
 	"mwoauth-bad-request-invalid-action-contact": "Désolé, quelque chose s’est mal passé. Vous aurez besoin de [$1 contacter] l’auteur de l’application pour obtenir de l’aide.\n\n<span class=\"plainlinks mw-mwoautherror-détail\">URL inconnue, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003 E003]</span>",
 	"mwoauthdatastore-access-token-not-found": "Aucun droit approuvé n’a été trouvé pour ce jeton d’autorisation.",
 	"mwoauthdatastore-request-token-not-found": "Désolé, quelque chose s’est mal passé lors de la connexion de l’application.\nRevenez en arrière et essayez de reconnecter votre compte, ou contactez l’auteur de l’application.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Jeton OAuth introuvable, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
-	"mwoauthdatastore-callback-not-found": "URL de rappel de OAuth non trouvée dans le cache. C’est probablement une erreur sur la manière dont l’application fait la requête au serveur.",
+	"mwoauthdatastore-callback-not-found": "URL de rappel de OAuth non trouvée dans le cache. C’est probablement une erreur de l’application (mauvaise façon de faire la requête au serveur).",
 	"mwoauthdatastore-request-token-already-used": "Cette requête a déjà été effectuée et ne peut pas être soumise à nouveau.\nRetourner à l’application et essayer de connecter de nouveau votre compte, ou contacter l’auteur de l’application.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Jeton OAuth déjà utilisé, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauthdatastore-bad-token": "Aucun jeton correspondant à votre demande n’a été trouvé",
 	"mwoauthdatastore-bad-source-ip": "La requête provient d’une adresse IP non valide.",
