@@ -10,5 +10,7 @@
 	"mwoauth-prefs-managegrants": "Свързани приложения:",
 	"mwoauth-prefs-managegrantslink": "Управление $1 {{PLURAL:$1|свързано приложение|свързани приложения}}",
 	"oauthlistconsumers": "Списък на свързаните приложения",
-	"oauthmanagemygrants": "Управление на свързани приложения"
+	"oauthmanagemygrants": "Управление на свързани приложения",
+	"echo-category-title-oauth-owner": "Разработка с OAuth",
+	"echo-pref-tooltip-oauth-owner": "Известяване, когато има ново събитие свързано приложенията използващи OAuth, които съм разработил."
 }
