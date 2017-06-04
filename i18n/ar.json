@@ -58,7 +58,7 @@
 	"action-mwoauthproposeconsumer": "اقتراح مستهلكي OAuth جدد",
 	"action-mwoauthupdateownconsumer": "تحديث مستهلكي OAuth الذين تتحكم بهم",
 	"action-mwoauthviewsuppressed": "عرض مستهلكي OAuth المخفيين",
-	"echo-pref-tooltip-oauth-owner": "اخطرني بالأحداث المتعلقة بتطبيقات OAuth التي قمت بإنشاؤها.",
+	"echo-pref-tooltip-oauth-owner": "اخطرني بالأحداث المتعلقة بتطبيقات OAuth التي قمت بإنشائها.",
 	"notification-oauth-app-propose-primary-link": "مراجعة التطبيق",
 	"notification-oauth-app-update-primary-link": "مراجعة التطبيق",
 	"notification-oauth-app-reject-primary-link": "اعرض التطبيق",
