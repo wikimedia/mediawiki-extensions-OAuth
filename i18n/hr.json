@@ -9,6 +9,7 @@
 	"mwoauth-prefs-managegrants": "Povezane aplikacije:",
 	"mwoauth-prefs-managegrantslink": "upravljaj s ukupno $1 {{PLURAL:$1|aplikacijom|aplikacije|aplikacija}}",
 	"mwoauth-consumer-allwikis": "svim projektima",
+	"oauthconsumerregistration": "Registracija trošača OAutha",
 	"mwoauthconsumerregistration-navigation": "Orijentacija:",
 	"oauthlistconsumers": "Popis OAuth aplikacija",
 	"mwoauthlistconsumers-none": "Nisu pronađene aplikacije prema zadnom kriteriju.",

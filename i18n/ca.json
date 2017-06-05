@@ -6,6 +6,7 @@
 		]
 	},
 	"mwoauth-prefs-managegrantslink": "Gestiona $1 {{PLURAL:$1|aplicació connectada|aplicacions connectades}}",
+	"mwoauthconsumerregistration-navigation": "Navegació:",
 	"mwoauthlistconsumers-view": "detalls",
 	"oauthmanagemygrants": "Gestió de aplicacions connectades",
 	"mwoauthdatastore-bad-source-ip": "La sol·licitud provenia d’una adreça IP no vàlida."
