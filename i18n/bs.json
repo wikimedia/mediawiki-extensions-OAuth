@@ -4,6 +4,7 @@
 			"Srdjan m"
 		]
 	},
+	"mwoauth-desc": "Omogućava upotrebu OAutha 1.0a za autentifikaciju API-a",
 	"mwoauth-prefs-managegrants": "Povezane aplikacije:",
 	"mwoauth-prefs-managegrantslink": "Upravljaj s ukupno $1 {{PLURAL:$1|aplikacijom|aplikacije|aplikacija}}",
 	"mwoauth-consumer-allwikis": "svim projektima na ovoj stranici",
@@ -28,6 +29,10 @@
 	"mwoauthmanagemygrants-renounce": "Poništi pristup",
 	"mwoauthmanagemygrants-action": "Izmijeni status:",
 	"mwoauthmanagemygrants-basic-tooltip": "Zašto ne mogu promijeniti ovu dozvolu? Ova dozvola daje povezanoj aplikaciji osnovno dopuštenje koje joj je neophodno za ispravni rad. Ako ne želite da aplikacija ima ova prava, poništite joj prava pristupa.",
+	"mwoauth-form-description-onewiki": "Zdravo, $1,\n\nDa bi se mogao ispuniti Vaš zahtjev, aplikaciji '''$2''' potrebna je dozvola da vrši sljedeće radnje u Vaše ime na ''$4'':\n\n$5",
+	"mwoauth-form-button-approve": "Dozvoli",
+	"mwoauth-form-button-cancel": "Otkaži",
+	"mwoauth-acceptance-cancelled": "Odlučili ste da aplikaciji \"$1\" ne dozvolite pristup Vašem računu. \"$1\" može raditi samo ako mu date dozvolu. Možete se vratiti na \"$1\" ili [[Special:OAuthManageMyGrants|upravljati]] povezanim aplikacijama.",
 	"right-mwoauthmanagemygrants": "Upravljanje dozvolama za OAuth",
 	"action-mwoauthmanagemygrants": "upravljate vlastitim dozvolama za OAuth"
 }
