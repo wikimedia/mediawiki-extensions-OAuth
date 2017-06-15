@@ -43,9 +43,9 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	protected $accepted;
 
 	protected static function getSchema() {
-		return array(
+		return [
 			'table'          => 'oauth_accepted_consumer',
-			'fieldColumnMap' => array(
+			'fieldColumnMap' => [
 				'id'           => 'oaac_id',
 				'wiki'         => 'oaac_wiki',
 				'userId'       => 'oaac_user_id',
@@ -54,14 +54,14 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 				'accessSecret' => 'oaac_access_secret',
 				'grants'       => 'oaac_grants',
 				'accepted'     => 'oaac_accepted'
-			),
+			],
 			'idField'        => 'id',
 			'autoIncrField'  => 'id',
-		);
+		];
 	}
 
 	protected static function getFieldPermissionChecks() {
-		return array(
+		return [
 			'wiki'         => 'userCanSee',
 			'userId'       => 'userCanSee',
 			'consumerId'   => 'userCanSee',
@@ -69,7 +69,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 			'accessSecret' => 'userCanSeeSecret',
 			'grants'       => 'userCanSee',
 			'accepted'     => 'userCanSee',
-		);
+		];
 	}
 
 	/**
@@ -81,9 +81,9 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	public static function newFromToken( \DBConnRef $db, $token, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
-			array( 'oaac_access_token' => (string)$token ),
+			[ 'oaac_access_token' => (string)$token ],
 			__METHOD__,
-			( $flags & self::READ_LOCKING ) ? array( 'FOR UPDATE' ) : array()
+			( $flags & self::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
 		);
 
 		if ( $row ) {
@@ -108,13 +108,13 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
-			array(
+			[
 				'oaac_user_id' => (int)$userId,
 				'oaac_consumer_id' => $consumer->get( 'id' ),
 				'oaac_wiki' => (string)$wiki
-			),
+			],
 			__METHOD__,
-			( $flags & self::READ_LOCKING ) ? array( 'FOR UPDATE' ) : array()
+			( $flags & self::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
 		);
 
 		if ( $row ) {
