@@ -72,7 +72,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				'name'         => '/^.{1,128}$/',
 				'version'      => '/^\d{1,3}(\.\d{1,2}){0,2}(-(dev|alpha|beta))?$/',
 				'callbackUrl'  => function( $s, $vals ) {
-					return $vals['ownerOnly'] || wfParseUrl( $s ) !== null;
+					return $vals['ownerOnly'] || wfParseUrl( $s ) !== false;
 				},
 				'description'  => '/^.*$/s',
 				'email'        => function( $s ) {
