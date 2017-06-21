@@ -61,21 +61,24 @@ class MWOAuthServer extends OAuthServer {
 	}
 
 	/**
-	 * Ensure the callback is "oob" or that the registered callback is a strict string
-	 * prefix of the supplied callback. It throws an exception if callback is invalid.
+	 * Ensure the callback is "oob" or that the registered callback is a valid
+	 * prefix of the supplied callback. It throws an exception if callback is
+	 * invalid.
 	 *
-	 * In MediaWiki, we require the callback to be established at registration.
-	 * OAuth 1.0a (rfc5849, section 2.1) specifies that oauth_callback is required
-	 * for the temporary credentials, and "If the client is unable to receive callbacks
-	 * or a callback URI has been established via other means, the parameter value MUST
-	 * be set to "oob" (case sensitive), to indicate an out-of-band configuration."
-	 * Otherwise, client can provide a callback and the configured callback must be
-	 * a prefix of the supplied callback. We verify at registration that registered
-	 * callback is a valid URI, so also one matching the prefix probably is, but
-	 * we verify anyway.
+	 * In MediaWiki, we require the callback to be established at
+	 * registration. OAuth 1.0a (rfc5849, section 2.1) specifies that
+	 * oauth_callback is required for the temporary credentials, and "If the
+	 * client is unable to receive callbacks or a callback URI has been
+	 * established via other means, the parameter value MUST be set to "oob"
+	 * (case sensitive), to indicate an out-of-band configuration." Otherwise,
+	 * client can provide a callback and the configured callback must be
+	 * a prefix of the supplied callback. The matching performed here is based
+	 * on parsed URL components rather than strict string matching. Protocol
+	 * upgrades from http to https are also allowed.
 	 *
 	 * @param MWOAuthConsumer $consumer
 	 * @param string $callback
+	 * @return void
 	 * @throws MWOAuthException
 	 */
 	private function checkCallback( $consumer, $callback ) {
@@ -94,16 +97,92 @@ class MWOAuthServer extends OAuthServer {
 			return;
 		}
 
-		if ( wfParseUrl( $callback ) === null ) {
+		$reqCallback = wfParseUrl( $callback );
+		if ( $reqCallback === false ) {
 			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix' );
 		}
 
-		$consumerCallback = $consumer->get( 'callbackUrl' );
-		if ( substr( $callback, 0, strlen( $consumerCallback ) ) !== $consumerCallback ) {
+		$knownCallback = wfParseUrl( $consumer->get( 'callbackUrl' ) );
+		$exactPath = array_key_exists( 'query', $knownCallback );
+
+		$match =
+			// Protocol can be upgraded from http to http
+			self::looseSchemeMatch( $knownCallback['scheme'], $reqCallback['scheme'] ) &&
+			// Host must match exactly
+			$knownCallback['host'] === $reqCallback['host'] &&
+			// Port must be either missing from both or an exact match
+			static::getOrNull( 'port', $knownCallback ) === static::getorNull( 'port', $reqCallback ) &&
+			// Path must be an exact match if query is provided in the
+			// registered callback. Otherwise it must be a prefix match if
+			// provided in the registered callback or anything if no path was
+			// included in the registered callback at all.
+			static::componentMatches( 'path', $knownCallback, $reqCallback, $exactPath ) &&
+			// Query string must be aprefix match if provided in the
+			// registered callback.
+			static::componentMatches( 'query', $knownCallback, $reqCallback );
+
+		if ( !$match ) {
 			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix' );
 		}
+	}
 
-		return;
+	/**
+	 * Compare URL schemes for a match.
+	 *
+	 * Allows 'https' to match an expected 'http' value.
+	 *
+	 * @param string $want
+	 * @param string $got
+	 * @return bool
+	 */
+	private static function looseSchemeMatch( $want, $got ) {
+		if ( $want === 'http' ) {
+			return in_array( $got, [ 'http', 'https' ], true );
+		} else {
+			return $want === $got;
+		}
+	}
+
+	/**
+	 * Get a named value from an array or return null if the key does not
+	 * exist.
+	 *
+	 * @param string $key
+	 * @param array $arr
+	 * @return mixed
+	 */
+	private static function getOrNull( $key, $arr ) {
+		return array_key_exists( $key, $arr ) ? $arr[$key] : null;
+	}
+
+	/**
+	 * Check that a callback URL component matches the expected value.
+	 *
+	 * @param string $part URL component name
+	 * @param array $expect Expected URL components
+	 * @param array $got Posted URl components
+	 * @param bool $exact Perform exact match instead of prefix match
+	 * @return bool
+	 */
+	private static function componentMatches(
+		$part, $expect, $got, $exact = false
+	) {
+		$match = false;
+		if ( !array_key_exists( $part, $expect ) ) {
+			// Anything in the request is ok if we do not have the URL part in
+			// the expected values
+			$match = true;
+		} elseif ( !array_key_exists( $part,  $got ) ) {
+			$match = false;
+		} elseif ( $exact ) {
+			$match = $expect[$part] === $got[$part];
+		} else {
+			$want = (string) $expect[$part];
+			$have = (string) $got[$part];
+			$len = strlen( $want );
+			$match = $want === substr( $have, 0, $len );
+		}
+		return $match;
 	}
 
 	/**
