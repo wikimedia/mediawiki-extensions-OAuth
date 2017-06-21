@@ -32,7 +32,7 @@
 	"mwoauth-form-description-onewiki": "Zdravo, $1,\n\nDa bi se mogao ispuniti Vaš zahtjev, aplikaciji '''$2''' potrebna je dozvola da vrši sljedeće radnje u Vaše ime na ''$4'':\n\n$5",
 	"mwoauth-form-button-approve": "Dozvoli",
 	"mwoauth-form-button-cancel": "Otkaži",
-	"mwoauth-acceptance-cancelled": "Odlučili ste da aplikaciji \"$1\" ne dozvolite pristup Vašem računu. \"$1\" može raditi samo ako mu date dozvolu. Možete se vratiti na \"$1\" ili [[Special:OAuthManageMyGrants|upravljati]] povezanim aplikacijama.",
+	"mwoauth-acceptance-cancelled": "Odlučili ste da aplikaciji \"$1\" ne dozvolite pristup računu. \"$1\" može raditi samo ako mu date dozvolu. Možete se vratiti na \"$1\" ili [[Special:OAuthManageMyGrants|upravljati]] povezanim aplikacijama.",
 	"right-mwoauthmanagemygrants": "Upravljanje dozvolama za OAuth",
 	"action-mwoauthmanagemygrants": "upravljate vlastitim dozvolama za OAuth"
 }
