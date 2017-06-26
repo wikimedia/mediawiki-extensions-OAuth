@@ -98,7 +98,7 @@ $validate_token_url = $baseurl . '/token&format=json';
  */
 
 // This is to allow you to work without SSL locally
-$baseUrlIsSsl = (bool) preg_match( '/^https/i', $baseurl );
+$baseUrlIsSsl = (bool)preg_match( '/^https/i', $baseurl );
 
 print <<<HELPTEXT
 
@@ -129,7 +129,7 @@ HELPTEXT;
 echo "Calling: $req_req".PHP_EOL;
 
 $ch = curl_init();
-curl_setopt( $ch, CURLOPT_URL, (string) $req_req );
+curl_setopt( $ch, CURLOPT_URL, (string)$req_req );
 if ( $baseUrlIsSsl === true ) {
 	curl_setopt( $ch, CURLOPT_PORT, 443 );
 	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
@@ -200,7 +200,7 @@ echo "Calling: $acc_req".PHP_EOL;
 
 unset( $ch );
 $ch = curl_init();
-curl_setopt( $ch, CURLOPT_URL, (string) $acc_req );
+curl_setopt( $ch, CURLOPT_URL, (string)$acc_req );
 if ( $baseUrlIsSsl === true ) {
 	curl_setopt( $ch, CURLOPT_PORT, 443 );
 	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );

@@ -177,8 +177,8 @@ class MWOAuthServer extends OAuthServer {
 		} elseif ( $exact ) {
 			$match = $expect[$part] === $got[$part];
 		} else {
-			$want = (string) $expect[$part];
-			$have = (string) $got[$part];
+			$want = (string)$expect[$part];
+			$have = (string)$got[$part];
 			$len = strlen( $want );
 			$match = $want === substr( $have, 0, $len );
 		}

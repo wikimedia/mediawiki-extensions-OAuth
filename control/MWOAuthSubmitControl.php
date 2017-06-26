@@ -94,7 +94,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 			}
 			$control = $this;
 			$description['validation-callback'] =
-				function( $value, $allValues, $form ) use ( $control, $field ) {
+				function ( $value, $allValues, $form ) use ( $control, $field ) {
 					return $control->validateFieldInternal( $field, $value, $allValues, $form );
 				};
 		}

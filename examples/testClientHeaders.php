@@ -66,7 +66,7 @@ echo "Calling: $acc_req\n";
 
 unset( $ch );
 $ch = curl_init();
-curl_setopt( $ch, CURLOPT_URL, (string) $acc_req );
+curl_setopt( $ch, CURLOPT_URL, (string)$acc_req );
 curl_setopt( $ch, CURLOPT_PORT, 443 );
 curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
 curl_setopt( $ch, CURLOPT_HEADER, 0 );

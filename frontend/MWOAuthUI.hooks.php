@@ -86,7 +86,7 @@ class MWOAuthUIHooks {
 			$target = \SpecialPage::getTitleFor( 'OAuthListConsumers',
 				'view/' . $cmr->get( 'consumerKey' )
 			);
-			$encName = wfEscapeWikiText( $cmr->get( 'name', function( $s ) use ( $cmr ) {
+			$encName = wfEscapeWikiText( $cmr->get( 'name', function ( $s ) use ( $cmr ) {
 				return $s . ' [' . $cmr->get( 'version' ) . ']';
 			} ) );
 			$message = "[[$target|$encName]]";

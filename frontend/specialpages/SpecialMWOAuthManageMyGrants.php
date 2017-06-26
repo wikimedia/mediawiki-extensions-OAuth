@@ -148,7 +148,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 					'type' => 'info',
 					'raw' => true,
 					'default' => MWOAuthUIUtils::generateInfoTable( [
-						'mwoauth-consumer-name' => $cmr->get( 'name', function( $s ) use ( $cmr ) {
+						'mwoauth-consumer-name' => $cmr->get( 'name', function ( $s ) use ( $cmr ) {
 							return $s . ' [' . $cmr->get( 'version' ) . ']';
 						} ),
 						'mwoauth-consumer-user' => $cmr->get( 'userId',
@@ -169,7 +169,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 						$cmr->get( 'grants' )
 					),
 					'default' => array_map(
-						function( $g ) {
+						function ( $g ) {
 							return "grant-$g";
 						},
 						$cmra->get( 'grants' )
@@ -180,7 +180,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 						\MWGrants::getGrantsLink( 'mwoauth-authonlyprivate' ) => $this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
 					],
 					'force-options-on' => array_map(
-						function( $g ) {
+						function ( $g ) {
 							return "grant-$g";
 						},
 						( $type === 'revoke' )
@@ -197,7 +197,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
-			function( array $data, \IContextSource $context ) use ( $action ) {
+			function ( array $data, \IContextSource $context ) use ( $action ) {
 				$data['action'] = $action;
 				$data['grants'] = \FormatJson::encode( // adapt form to controller
 					preg_replace( '/^grant-/', '', $data['grants'] ) );
@@ -279,7 +279,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		);
 		$reviewLinks = $this->getLanguage()->pipeList( $links );
 
-		$encName = htmlspecialchars( $cmr->get( 'name', function( $s ) use ( $cmr ) {
+		$encName = htmlspecialchars( $cmr->get( 'name', function ( $s ) use ( $cmr ) {
 			return $s . ' [' . $cmr->get( 'version' ) . ']';
 		} ) );
 

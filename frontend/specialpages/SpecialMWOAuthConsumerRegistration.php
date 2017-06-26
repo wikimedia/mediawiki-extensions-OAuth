@@ -178,7 +178,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'tooltips' => array_combine(
 							array_map( 'MWGrants::getGrantsLink', $showGrants ),
 							array_map(
-								function( $rights ) use ( $lang ) {
+								function ( $rights ) use ( $lang ) {
 									return $lang->semicolonList( array_map(
 										'\User::getRightDescription', $rights ) );
 								},
@@ -186,7 +186,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 							)
 						),
 						'force-options-on' => array_map(
-							function( $g ) {
+							function ( $g ) {
 								return "grant-$g";
 							},
 							\MWGrants::getHiddenGrants()
@@ -219,7 +219,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				$this->getContext()
 			);
 			$form->setSubmitCallback(
-				function( array $data, \IContextSource $context ) use ( $control ) {
+				function ( array $data, \IContextSource $context ) use ( $control ) {
 					$data['grants'] = \FormatJson::encode( // adapt form to controller
 						preg_replace( '/^grant-/', '', $data['grants'] ) );
 					// 'callbackUrl' must be present, otherwise MWOAuthSubmitControl::validateFields() fails.
@@ -326,7 +326,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				$this->getContext()
 			);
 			$form->setSubmitCallback(
-				function( array $data, \IContextSource $context ) use ( $control ) {
+				function ( array $data, \IContextSource $context ) use ( $control ) {
 					$control->setInputParameters( $data );
 					return $control->submit();
 				}
@@ -461,7 +461,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		$lang = $this->getLanguage();
 		$data = [
 			'mwoauthconsumerregistration-name' => htmlspecialchars(
-				$cmr->get( 'name', function( $s ) use ( $cmr ) {
+				$cmr->get( 'name', function ( $s ) use ( $cmr ) {
 					return $s . ' [' . $cmr->get( 'version' ) . ']';
 	   } )
 			),
@@ -470,7 +470,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			'mwoauthconsumerregistration-stage' =>
 				$this->msg( "mwoauth-consumer-stage-$stageKey" )->escaped(),
 			'mwoauthconsumerregistration-description' => htmlspecialchars(
-				$cmr->get( 'description', function( $s ) use ( $lang ) {
+				$cmr->get( 'description', function ( $s ) use ( $lang ) {
 					return $lang->truncate( $s, 10024 );
 	   } )
 			),

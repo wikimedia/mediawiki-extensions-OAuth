@@ -18,7 +18,7 @@ class MWOAuthUpdaterHooks {
 
 		$dbType = $updater->getDB()->getType();
 
-		if ( $dbType == 'mysql' or $dbType == 'sqlite' ) {
+		if ( $dbType == 'mysql' || $dbType == 'sqlite' ) {
 			$base = "$base/$dbType";
 
 			$updater->addExtensionTable( 'oauth_registered_consumer', "$base/OAuth.sql" );

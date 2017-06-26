@@ -51,7 +51,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	}
 
 	protected function getRequiredFields() {
-		$validateRsaKey = function( $s ) {
+		$validateRsaKey = function ( $s ) {
 			if ( trim( $s ) === '' ) {
 				return true;
 			}
@@ -71,14 +71,14 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			'propose'     => [
 				'name'         => '/^.{1,128}$/',
 				'version'      => '/^\d{1,3}(\.\d{1,2}){0,2}(-(dev|alpha|beta))?$/',
-				'callbackUrl'  => function( $s, $vals ) {
+				'callbackUrl'  => function ( $s, $vals ) {
 					return $vals['ownerOnly'] || wfParseUrl( $s ) !== false;
 				},
 				'description'  => '/^.*$/s',
-				'email'        => function( $s ) {
+				'email'        => function ( $s ) {
 					return \Sanitizer::validateEmail( $s );
 				},
-				'wiki'         => function( $s ) {
+				'wiki'         => function ( $s ) {
 					global $wgConf;
 					return ( $s === '*'
 						|| in_array( $s, $wgConf->getLocalDatabases() )
@@ -86,19 +86,19 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					);
 				},
 				'granttype'    => '/^(authonly|authonlyprivate|normal)$/',
-				'grants'       => function( $s ) {
+				'grants'       => function ( $s ) {
 					$grants = \FormatJson::decode( $s, true );
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
 				},
 				'rsaKey'       => $validateRsaKey,
-				'agreement'    => function( $s ) {
+				'agreement'    => function ( $s ) {
 					return ( $s == true );
 				},
 			],
 			'update'      => [
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
 				'rsaKey'       => $validateRsaKey,
-				'resetSecret'  => function( $s ) {
+				'resetSecret'  => function ( $s ) {
 					return is_bool( $s );
 				},
 				'reason'       => '/^.{0,255}$/',

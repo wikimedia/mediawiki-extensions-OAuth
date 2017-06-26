@@ -231,7 +231,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			}
 		}
 
-		$owner = $cmr->get( 'userId', function( $s ) {
+		$owner = $cmr->get( 'userId', function ( $s ) {
 			$name = MWOAuthUtils::getCentralUserNameFromId( $s );
 			return $name;
 		} );
@@ -256,7 +256,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 					'raw' => true,
 					'default' => MWOAuthUIUtils::generateInfoTable( [
 						'mwoauth-consumer-key' => $cmr->get( 'consumerKey' ),
-						'mwoauth-consumer-name' => new HtmlSnippet( $cmr->get( 'name', function( $s ) {
+						'mwoauth-consumer-name' => new HtmlSnippet( $cmr->get( 'name', function ( $s ) {
 							$link = \Linker::linkKnown(
 								\SpecialPage::getTitleFor( 'OAuthListConsumers' ),
 								$this->msg( 'mwoauthmanageconsumers-search-name' )->escaped(),
@@ -277,7 +277,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 							null : ( $cmr->get( 'callbackIsPrefix' ) ?
 								$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ) ),
 						'mwoauth-consumer-grantsneeded' =>  $cmr->get( 'grants',
-							function( $grants ) use ( $lang ) {
+							function ( $grants ) use ( $lang ) {
 								return $lang->semicolonList( \MWGrants::grantNames( $grants, $lang ) );
 							} ),
 						'mwoauth-consumer-email' => $cmr->get( 'email' ),
@@ -318,7 +318,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
-			function( array $data, \IContextSource $context ) use ( $control ) {
+			function ( array $data, \IContextSource $context ) use ( $control ) {
 				$data['suppress'] = 0;
 				if ( $data['action'] === 'dsuppress' ) {
 					$data = [ 'action' => 'disable', 'suppress' => 1 ] + $data;
@@ -425,7 +425,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$lang = $this->getLanguage();
 		$data = [
 			'mwoauthmanageconsumers-name' => htmlspecialchars(
-				$cmr->get( 'name', function( $s ) use ( $cmr ) {
+				$cmr->get( 'name', function ( $s ) use ( $cmr ) {
 					return $s . ' [' . $cmr->get( 'version' ) . ']';
 	   } )
 			),
@@ -433,7 +433,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 				$cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' )
 			),
 			'mwoauthmanageconsumers-description' => htmlspecialchars(
-				$cmr->get( 'description', function( $s ) use ( $lang ) {
+				$cmr->get( 'description', function ( $s ) use ( $lang ) {
 					return $lang->truncate( $s, 10024 );
 	   } )
 			),

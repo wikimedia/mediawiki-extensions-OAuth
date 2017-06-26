@@ -52,7 +52,7 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			],
 			'update'   => [
 				'acceptanceId' => '/^\d+$/',
-				'grants'      => function( $s ) {
+				'grants'      => function ( $s ) {
 					$grants = \FormatJson::decode( $s, true );
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
 				}

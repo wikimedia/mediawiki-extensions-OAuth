@@ -163,7 +163,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			$this->getContext()
 		);
 		$form->setAction( $this->getPageTitle()->getFullUrl() ); // always go back to listings
-		$form->setSubmitCallback( function() {
+		$form->setSubmitCallback( function () {
 			return false;
 		} );
 		$form->setMethod( 'get' );
@@ -235,7 +235,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 		// We don't have $this in the anonymous function here within PHP 5.3.
 		$out = $this;
-		$name = $cmr->get( 'name', function( $s ) use ( $cmr, $out ) {
+		$name = $cmr->get( 'name', function ( $s ) use ( $cmr, $out ) {
 			return $s . ' ' . $out->msg( 'brackets' )->rawParams( $cmr->get( 'version' ) )->plain();
 	 } );
 		$r .= "<strong>" . htmlspecialchars( $name ) . '</strong> ' . $this->msg( 'parentheses' )
@@ -247,7 +247,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 				$cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' )
 			),
 			'mwoauthlistconsumers-description' => htmlspecialchars(
-				$cmr->get( 'description', function( $s ) use ( $lang ) {
+				$cmr->get( 'description', function ( $s ) use ( $lang ) {
 					return $lang->truncate( $s, 10024 );
 	   } )
 			),

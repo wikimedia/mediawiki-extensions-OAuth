@@ -64,7 +64,7 @@ class TestOAuthConsumer extends \Maintenance {
 		$this->output( "Calling: $req_req\n" );
 
 		$ch = curl_init();
-		curl_setopt( $ch, CURLOPT_URL, (string) $req_req );
+		curl_setopt( $ch, CURLOPT_URL, (string)$req_req );
 		if ( $this->hasOption( 'useSSL' ) ) {
 			curl_setopt( $ch, CURLOPT_PORT, 443 );
 		}
@@ -107,7 +107,7 @@ class TestOAuthConsumer extends \Maintenance {
 
 		unset( $ch );
 		$ch = curl_init();
-		curl_setopt( $ch, CURLOPT_URL, (string) $acc_req );
+		curl_setopt( $ch, CURLOPT_URL, (string)$acc_req );
 		if ( $this->hasOption( 'useSSL' ) ) {
 			curl_setopt( $ch, CURLOPT_PORT, 443 );
 		}
