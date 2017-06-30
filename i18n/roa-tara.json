@@ -18,7 +18,7 @@
 	"mwoauth-consumer-description": "Descrizione de l'applicazione:",
 	"mwoauth-consumer-wiki": "Pruggette applicabbile:",
 	"mwoauth-consumer-restrictions": "Ause le restriziune:",
-	"mwoauth-consumer-rsakey": "Chiave pubblche RSA:",
+	"mwoauth-consumer-rsakey": "Chiave pubblche RSA (opzionale):",
 	"mwoauth-consumer-reason": "Mutive:",
 	"mwoauth-consumer-stage-proposed": "proposte",
 	"mwoauth-consumer-stage-rejected": "scettate",
