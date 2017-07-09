@@ -13,7 +13,9 @@ class MWOAuthException extends OAuthException {
 	function __construct( $msg, $params = null ) {
 		$this->msg = $msg;
 		$this->params = $params;
-		parent::__construct( wfMessage( $msg, $params )->inLanguage( 'en' )->useDatabase( false )->plain() );
+		parent::__construct(
+			wfMessage( $msg, $params )->inLanguage( 'en' )->useDatabase( false )->plain()
+		);
 	}
 
 }

@@ -24,7 +24,9 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 */
 	public function __construct( \DBConnRef $centralSlave, $centralMaster, \BagOStuff $cache ) {
 		if ( $centralMaster !== null && !( $centralMaster instanceof \DBConnRef ) ) {
-			throw new \InvalidArgumentException( __METHOD__ . ': $centralMaster must be a DB or null' );
+			throw new \InvalidArgumentException(
+				__METHOD__ . ': $centralMaster must be a DB or null'
+			);
 		}
 		$this->centralSlave = $centralSlave;
 		$this->centralMaster = $centralMaster;
@@ -138,8 +140,12 @@ class MWOAuthDataStore extends OAuthDataStore {
 	public function new_request_token( $consumer, $callback = 'oob' ) {
 		$token = MWOAuthDataStore::newToken();
 		$cacheConsumerKey = MWOAuthUtils::getCacheKey( 'consumer', 'request', $token->key );
-		$cacheTokenKey = MWOAuthUtils::getCacheKey( 'token', $consumer->key, 'request', $token->key );
-		$cacheCallbackKey = MWOAuthUtils::getCacheKey( 'callback', $consumer->key, 'request', $token->key );
+		$cacheTokenKey = MWOAuthUtils::getCacheKey(
+			'token', $consumer->key, 'request', $token->key
+		);
+		$cacheCallbackKey = MWOAuthUtils::getCacheKey(
+			'callback', $consumer->key, 'request', $token->key
+		);
 		$this->cache->add( $cacheConsumerKey, $consumer->key, 600 ); // 10 minutes. Kindof arbitray.
 		$this->cache->add( $cacheTokenKey, $token, 600 ); // 10 minutes. Kindof arbitray.
 		$this->cache->add( $cacheCallbackKey, $callback, 600 ); // 10 minutes. Kindof arbitray.

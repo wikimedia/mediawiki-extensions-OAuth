@@ -237,7 +237,9 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$cmr->save( $dbw );
 
 			if ( $cmr->get( 'ownerOnly' ) ) {
-				$this->makeLogEntry( $dbw, $cmr, 'create-owner-only', $user, $this->vals['description'] );
+				$this->makeLogEntry(
+					$dbw, $cmr, 'create-owner-only', $user, $this->vals['description']
+				);
 			} else {
 				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['description'] );
 				$this->notify( $cmr, $user, $action,  null );
@@ -460,7 +462,9 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	 * @param \User $performer
 	 * @param string $comment
 	 */
-	protected function makeLogEntry( $dbw, MWOAuthConsumer $cmr, $action, \User $performer, $comment ) {
+	protected function makeLogEntry(
+		$dbw, MWOAuthConsumer $cmr, $action, \User $performer, $comment
+	) {
 		$logEntry = new \ManualLogEntry( 'mwoauthconsumer', $action );
 		$logEntry->setPerformer( $performer );
 		$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );

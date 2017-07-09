@@ -45,7 +45,10 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $version;
 	/** @var string OAuth callback URL for authorization step*/
 	protected $callbackUrl;
-	/** @var int OAuth callback URL is a prefix and we allow all URLs which have callbackUrl as the prefix */
+	/**
+	 * @var int OAuth callback URL is a prefix and we allow all URLs which
+	 *   have callbackUrl as the prefix
+	 */
 	protected $callbackIsPrefix;
 	/** @var string Application description */
 	protected $description;

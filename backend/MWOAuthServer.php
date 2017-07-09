@@ -111,7 +111,8 @@ class MWOAuthServer extends OAuthServer {
 			// Host must match exactly
 			$knownCallback['host'] === $reqCallback['host'] &&
 			// Port must be either missing from both or an exact match
-			static::getOrNull( 'port', $knownCallback ) === static::getorNull( 'port', $reqCallback ) &&
+			static::getOrNull( 'port', $knownCallback ) ===
+				static::getOrNull( 'port', $reqCallback ) &&
 			// Path must be an exact match if query is provided in the
 			// registered callback. Otherwise it must be a prefix match if
 			// provided in the registered callback or anything if no path was
@@ -357,8 +358,11 @@ class MWOAuthServer extends OAuthServer {
 
 		$requestToken->addAccessKey( $accessToken->key );
 		$this->data_store->updateRequestToken( $requestToken, $consumer );
-		$this->logger->debug( "Verification code {$requestToken->getVerifyCode()} for $requestTokenKey (client: $consumerKey)" );
-		return $consumer->generateCallbackUrl( $this->data_store, $requestToken->getVerifyCode(), $requestTokenKey );
+		$this->logger->debug( "Verification code {$requestToken->getVerifyCode()} for " .
+			"$requestTokenKey (client: $consumerKey)" );
+		return $consumer->generateCallbackUrl(
+			$this->data_store, $requestToken->getVerifyCode(), $requestTokenKey
+		);
 	}
 
 	/**

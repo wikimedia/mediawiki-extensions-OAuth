@@ -175,9 +175,12 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 						$cmra->get( 'grants' )
 					),
 					'tooltips' => [
-						\MWGrants::getGrantsLink( 'basic' ) => $this->msg( 'mwoauthmanagemygrants-basic-tooltip' )->text(),
-						\MWGrants::getGrantsLink( 'mwoauth-authonly' ) => $this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
-						\MWGrants::getGrantsLink( 'mwoauth-authonlyprivate' ) => $this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
+						\MWGrants::getGrantsLink( 'basic' ) =>
+							$this->msg( 'mwoauthmanagemygrants-basic-tooltip' )->text(),
+						\MWGrants::getGrantsLink( 'mwoauth-authonly' ) =>
+							$this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
+						\MWGrants::getGrantsLink( 'mwoauth-authonlyprivate' ) =>
+							$this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
 					],
 					'force-options-on' => array_map(
 						function ( $g ) {
@@ -231,7 +234,8 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 
 		$status = $form->show();
 		if ( $status instanceof \Status && $status->isOk() ) {
-			// Messages: mwoauthmanagemygrants-success-update, mwoauthmanagemygrants-success-renounce
+			// Messages: mwoauthmanagemygrants-success-update,
+			// mwoauthmanagemygrants-success-renounce
 			$this->getOutput()->addWikiMsg( "mwoauthmanagemygrants-success-$action" );
 		}
 	}

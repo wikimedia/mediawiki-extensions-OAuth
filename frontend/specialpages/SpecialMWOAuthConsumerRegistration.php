@@ -147,7 +147,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'type' => $allWikis ? 'combobox' : 'select',
 						'options' => [
 							wfMessage( 'mwoauth-consumer-allwikis' )->escaped() => '*',
-							wfMessage( 'mwoauth-consumer-wiki-thiswiki', wfWikiID() )->escaped() => wfWikiID()
+							wfMessage( 'mwoauth-consumer-wiki-thiswiki', wfWikiID() )
+								->escaped() => wfWikiID()
 						] + array_flip( $allWikis ),
 						'label-message' => 'mwoauth-consumer-wiki',
 						'required' => true,
@@ -182,7 +183,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 									return $lang->semicolonList( array_map(
 										'\User::getRightDescription', $rights ) );
 								},
-								array_intersect_key( \MWGrants::getRightsByGrant(), array_flip( $showGrants ) )
+								array_intersect_key(
+									\MWGrants::getRightsByGrant(), array_flip( $showGrants ) )
 							)
 						),
 						'force-options-on' => array_map(
@@ -222,7 +224,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				function ( array $data, \IContextSource $context ) use ( $control ) {
 					$data['grants'] = \FormatJson::encode( // adapt form to controller
 						preg_replace( '/^grant-/', '', $data['grants'] ) );
-					// 'callbackUrl' must be present, otherwise MWOAuthSubmitControl::validateFields() fails.
+					// 'callbackUrl' must be present,
+					// otherwise MWOAuthSubmitControl::validateFields() fails.
 					if ( $data['ownerOnly'] && !isset( $data['callbackUrl'] ) ) {
 						$data['callbackUrl'] = '';
 					}
@@ -241,7 +244,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				$cmr = $status->value['result']['consumer'];
 				if ( $cmr->get( 'ownerOnly' ) ) {
 					$cmra = $status->value['result']['acceptance'];
-					$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-created-owner-only',
+					$this->getOutput()->addWikiMsg(
+						'mwoauthconsumerregistration-created-owner-only',
 						$cmr->get( 'consumerKey' ),
 						MWOAuthUtils::hmacDBSecret( $cmr->get( 'secretKey' ) ),
 						$cmra->get( 'accessToken' ),
@@ -344,7 +348,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				if ( $oldSecretKey !== $curSecretKey ) { // token reset?
 					if ( $cmr->get( 'ownerOnly' ) ) {
 						$cmra = $status->value['result']['acceptance'];
-						$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-secretreset-owner-only',
+						$this->getOutput()->addWikiMsg(
+							'mwoauthconsumerregistration-secretreset-owner-only',
 							$cmr->get( 'consumerKey' ),
 							MWOAuthUtils::hmacDBSecret( $curSecretKey ),
 							$cmra->get( 'accessToken' ),
@@ -466,7 +471,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 	   } )
 			),
 			// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
-			// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved, mwoauth-consumer-stage-disabled
+			// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
+			// mwoauth-consumer-stage-disabled
 			'mwoauthconsumerregistration-stage' =>
 				$this->msg( "mwoauth-consumer-stage-$stageKey" )->escaped(),
 			'mwoauthconsumerregistration-description' => htmlspecialchars(

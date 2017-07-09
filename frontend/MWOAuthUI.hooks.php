@@ -180,7 +180,9 @@ class MWOAuthUIHooks {
 	 * @param array &$notificationCategories
 	 * @param array &$icons
 	 */
-	public static function onBeforeCreateEchoEvent( &$notifications, &$notificationCategories, &$icons ) {
+	public static function onBeforeCreateEchoEvent(
+		&$notifications, &$notificationCategories, &$icons
+	) {
 		global $wgOAuthGroupsToNotify;
 
 		if ( !MWOAuthUtils::isCentralWiki() ) {

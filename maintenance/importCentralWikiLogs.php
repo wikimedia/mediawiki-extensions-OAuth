@@ -55,7 +55,8 @@ class MigrateCentralWikiLogs extends Maintenance {
 			// This assumes that we don't have more than mBatchSize oauth log entries
 			// with the same timestamp. Otherwise this will go into an infinite loop.
 			if ( $lastMinTimestamp !== null ) {
-				$conds[] = 'log_timestamp < ' . $oldDb->addQuotes( $oldDb->timestamp( $lastMinTimestamp ) );
+				$conds[] = 'log_timestamp < ' .
+					$oldDb->addQuotes( $oldDb->timestamp( $lastMinTimestamp ) );
 			}
 
 			$oldLoggs = $oldDb->select(
@@ -82,7 +83,8 @@ class MigrateCentralWikiLogs extends Maintenance {
 				}
 				$extra = $oldLoggs->fetchObject();
 				if ( $last->log_timestamp === $extra->log_timestamp ) {
-					$this->error( "We hit an edge case. Please increase the batch size and restart the transfer.\n", 1 );
+					$this->error( "We hit an edge case. Please increase the batch " .
+						" size and restart the transfer.\n", 1 );
 				}
 				$oldLoggs->rewind();
 			}
@@ -99,7 +101,9 @@ class MigrateCentralWikiLogs extends Maintenance {
 				$this->output( "Migrating log {$row->log_id}...\n" );
 				$logUser = User::newFromName( $row->log_user_text );
 				if ( !$logUser->getId() ) {
-					$this->output( "Cannot transfer log_id: {$row->log_id}, the log user doesn't exist" );
+					$this->output(
+						"Cannot transfer log_id: {$row->log_id}, the log user doesn't exist"
+					);
 					continue;
 				}
 				$params = unserialize( $row->log_params );

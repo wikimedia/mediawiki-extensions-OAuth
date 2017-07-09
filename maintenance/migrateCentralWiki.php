@@ -28,10 +28,12 @@ require_once "$IP/maintenance/Maintenance.php";
 class MigrateCentralWiki extends \Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Migrate central wiki from one wiki to another. OAuth should be in Read Only mode while this is running.";
+		$this->mDescription = "Migrate central wiki from one wiki to another. " .
+			"OAuth should be in Read Only mode while this is running.";
 		$this->addOption( 'old', 'Previous central wiki', true, true );
 		$this->addOption( 'target', 'New central wiki', true, true );
-		$this->addOption( 'table', 'Table name (oauth_registered_consumer or oauth_accepted_consumer)', true, true );
+		$this->addOption( 'table',
+			'Table name (oauth_registered_consumer or oauth_accepted_consumer)', true, true );
 		$this->setBatchSize( 200 );
 		$this->requireExtension( "OAuth" );
 	}
@@ -50,7 +52,8 @@ class MigrateCentralWiki extends \Maintenance {
 			$cmrClass = 'MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance';
 			$type = 'grant';
 		} else {
-			$this->error( "Invalid table name. Must be one of 'oauth_registered_consumer' or 'oauth_accepted_consumer'.\n", 1 );
+			$this->error( "Invalid table name. Must be one of 'oauth_registered_consumer' " .
+				"or 'oauth_accepted_consumer'.\n", 1 );
 		}
 
 		$oldDb = wfGetLB( $oldWiki )->getConnectionRef( DB_MASTER, [], $oldWiki );

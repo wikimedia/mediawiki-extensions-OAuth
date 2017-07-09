@@ -51,7 +51,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$format = $request->getVal( 'format', 'raw' );
 
 		try {
-			if ( $wgMWOAuthReadOnly && !in_array( $subpage, [ 'verified', 'grants', 'identify' ] ) ) {
+			if ( $wgMWOAuthReadOnly &&
+				!in_array( $subpage, [ 'verified', 'grants', 'identify' ] )
+			) {
 				throw new MWOAuthException( 'mwoauth-db-readonly' );
 			}
 
@@ -109,7 +111,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 						&& $request->detectProtocol() == 'http'
 						&& substr( wfExpandUrl( '/', PROTO_HTTPS ), 0, 8 ) === 'https://'
 					) {
-						$redirUrl = str_replace( 'http://', 'https://', $request->getFullRequestURL() );
+						$redirUrl = str_replace(
+							'http://', 'https://', $request->getFullRequestURL()
+						);
 						$this->getOutput()->redirect( $redirUrl );
 						$this->getOutput()->addVaryHeader( 'X-Forwarded-Proto' );
 						break;
@@ -160,7 +164,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					$localUser = MWOAuthUtils::getLocalUserFromCentralId( $access->get( 'userId' ) );
 					if ( !$localUser || !$localUser->isLoggedIn() ) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-invalid-user' );
-					} elseif ( $localUser->isLocked() || $wgBlockDisablesLogin && $localUser->isBlocked() ) {
+					} elseif ( $localUser->isLocked() ||
+						$wgBlockDisablesLogin && $localUser->isBlocked()
+					) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-blocked-user' );
 					}
 					// Access token is for this wiki
@@ -194,7 +200,8 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 							$format
 						);
 					} else {
-						$owner = MWOAuthUtils::getCentralUserNameFromId( $cmr->get( 'userId' ), $this->getUser() );
+						$owner = MWOAuthUtils::getCentralUserNameFromId(
+							$cmr->get( 'userId' ), $this->getUser() );
 						$this->showError(
 							wfMessage( 'mwoauth-bad-request-invalid-action-contact',
 								MWOAuthUtils::getCentralUserTalk( $owner )
@@ -204,10 +211,12 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					}
 			}
 		} catch ( MWOAuthException $exception ) {
-			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(), [ 'exception' => $exception ] );
+			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(),
+				[ 'exception' => $exception ] );
 			$this->showError( wfMessage( $exception->msg, $exception->params ), $format );
 		} catch ( OAuthException $exception ) {
-			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(), [ 'exception' => $exception ] );
+			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(),
+				[ 'exception' => $exception ] );
 			$this->showError(
 				wfMessage( 'mwoauth-oauth-exception', $exception->getMessage() ),
 				$format
@@ -332,7 +341,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		if ( $existing && $authenticate &&
 			$existing->get( 'wiki' ) === $cmr->get( 'wiki' ) &&
 			$existing->get( 'grants' ) === $cmr->get( 'grants' ) &&
-			!array_diff( $existing->get( 'grants' ), [ 'mwoauth-authonly', 'mwoauth-authonlyprivate' ] )
+			!array_diff(
+				$existing->get( 'grants' ), [ 'mwoauth-authonly', 'mwoauth-authonlyprivate' ]
+			)
 		) {
 			$callback = $oauthServer->authorize(
 				$consumerKey,
@@ -344,7 +355,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			return;
 		}
 
-		$this->getOutput()->addModuleStyles( [ 'mediawiki.ui', 'mediawiki.ui.button', 'ext.MWOAuth.AuthorizeForm' ] );
+		$this->getOutput()->addModuleStyles(
+			[ 'mediawiki.ui', 'mediawiki.ui.button', 'ext.MWOAuth.AuthorizeForm' ]
+		);
 		$this->getOutput()->addModules( 'ext.MWOAuth.AuthorizeDialog' );
 
 		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), [], $dbr );
@@ -393,13 +406,15 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$params = [
 			$this->getUser()->getName(),
 			$cmr->get( 'name' ),
-			$cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' ),
+			$cmr->get( 'userId',
+				'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' ),
 		];
 		if ( $cmr->get( 'wiki' ) === '*' ) {
 			$msgKey .= '-allwikis';
 		} else {
 			$msgKey .= '-onewiki';
-			$params[] = $cmr->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' );
+			$params[] = $cmr->get( 'wiki',
+				'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' );
 		}
 		$grantsText = \MWGrants::getGrantsWikiText( $cmr->get( 'grants' ), $this->getLanguage() );
 		if ( $grantsText === "\n" ) {
