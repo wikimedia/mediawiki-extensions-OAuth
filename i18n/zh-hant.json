@@ -7,7 +7,8 @@
 			"LNDDYL",
 			"Waihorace",
 			"一個正常人",
-			"SupaplexTW"
+			"SupaplexTW",
+			"A2093064"
 		]
 	},
 	"mwoauth-desc": "允許使用 OAuth 1.0a 作為 API 認証程式",
@@ -171,7 +172,7 @@
 	"mwoauthmanagemygrants-revoke-text": "使用下面的表單以您的身分撤銷應用程式的存取權。",
 	"mwoauthmanagemygrants-confirm-legend": "管理已連接的應用程式",
 	"mwoauthmanagemygrants-update": "更新授權",
-	"mwoauthmanagemygrants-renounce": "取消認証",
+	"mwoauthmanagemygrants-renounce": "取消認證",
 	"mwoauthmanagemygrants-action": "變更狀態：",
 	"mwoauthmanagemygrants-confirm-submit": "更新存取密鑰狀態",
 	"mwoauthmanagemygrants-success-update": "您對此應用程序的參數設置已更新。",
