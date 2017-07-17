@@ -192,7 +192,7 @@
 	"mwoauthserver-bad-consumer": "\"$1\" 未被核准爲可連接的應用程式，[$2 聯絡]應用程式作者尋求協助。\n<span class=\"plainlinks mw-mwoautherror-details\">已連接的 OAuth 應用程式未被核准，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005 E005]</span>",
 	"mwoauthserver-invalid-request-token": "您請求中的金鑰無效。",
 	"mwoauthserver-invalid-user": "要使用此網站已連接的應用程式，您必須擁有跨所有專案的帳號。當您在所有專案上擁有帳號後，您才能再次嘗試連接 \"$1\" 。\n<span class=\"plainlinks mw-mwoautherror-details\">需要統一登入，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
-	"mwoauth-invalid-authorization-title": "OAuth 認証錯誤",
+	"mwoauth-invalid-authorization-title": "OAuth 認證錯誤",
 	"mwoauth-invalid-authorization": "您申請中的授權標頭無效：$1",
 	"mwoauth-invalid-authorization-not-approved": "您嘗試連接的應用程式似乎設定有誤。請聯繫作者 \"$1\" 取得協助。",
 	"mwoauth-form-description-allwikis": "$1 您好，\n\n要完成您的請求，'''$2''' 需要權限以您的身分在此網站的所有專案上執行以下動作：\n\n$4",
