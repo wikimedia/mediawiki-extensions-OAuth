@@ -57,7 +57,7 @@
 	"mwoauth-consumer-stage-disabled": "desabilitado",
 	"mwoauth-consumer-stage-suppressed": "suprimido",
 	"oauthconsumerregistration": "Registro do consumidor OAuth",
-	"mwoauthconsumerregistration-notloggedin": "Você precisa estar logado para acessar essa página.",
+	"mwoauthconsumerregistration-notloggedin": "Você precisa estar logado para acessar esta página.",
 	"mwoauthconsumerregistration-navigation": "Navegação:",
 	"mwoauthconsumerregistration-propose": "Propor novo consumidor",
 	"mwoauthconsumerregistration-list": "Minha lista de consumidores",
@@ -76,6 +76,7 @@
 	"mwoauthconsumerregistration-lastchange": "Última alteração",
 	"mwoauthconsumerregistration-manage": "administrar",
 	"mwoauthconsumerregistration-resetsecretkey": "Redefinir chave secreta para um novo valor",
+	"oauthmanageconsumers": "Gerenciar os consumidores da OAuth",
 	"mwoauthmanageconsumers-notloggedin": "Você precisa estar logado para acessar esta página.",
 	"mwoauthmanageconsumers-type": "Filas:",
 	"mwoauthmanageconsumers-showproposed": "Pedidos propostos",
@@ -107,7 +108,7 @@
 	"mwoauthmanageconsumers-approve": "Aprovado",
 	"mwoauthmanageconsumers-reject": "Rejeitado",
 	"mwoauthmanageconsumers-rsuppress": "Rejeitado e suprimido",
-	"mwoauthmanageconsumers-disable": "Desabilitado",
+	"mwoauthmanageconsumers-disable": "Desativado",
 	"mwoauthmanageconsumers-dsuppress": "Desabilitado e suprimido",
 	"mwoauthmanageconsumers-reenable": "Aprovado",
 	"mwoauthmanageconsumers-reason": "Motivo:",
@@ -169,6 +170,7 @@
 	"mwoauth-grants-heading": "Permissões solicitadas:",
 	"mwoauth-grants-nogrants": "O aplicativo não solicitou nenhuma permissão.",
 	"mwoauth-acceptance-cancelled": "Escolheu que o aplicativo \"$1\" não pode aceder à sua conta. \"$1\" não irá funcionar a menos que permita o seu acesso. Pode regressar a \"$1\" ou [[Special:OAuthManageMyGrants|gerir]] os seus aplicativos conectados.",
+	"right-mwoauthmanageconsumer": "Gerenciar os consumidores da OAuth",
 	"echo-pref-tooltip-oauth-owner": "Notificar-me sobre os eventos relacionados com as aplicações OAuth que eu criei.",
 	"echo-category-title-oauth-admin": "Administrador de OAuth",
 	"echo-pref-tooltip-oauth-admin": "Notificar-me sobre eventos relacionados à revisão de aplicativos OAuth.",
@@ -190,5 +192,5 @@
 	"notification-oauth-app-reject-primary-link": "Ver aplicativo",
 	"notification-oauth-app-disable-primary-link": "Ver aplicativo",
 	"notification-oauth-app-reenable-primary-link": "Ver aplicativo",
-	"notification-oauth-app-body": "Razão: $1"
+	"notification-oauth-app-body": "Motivo: $1"
 }
