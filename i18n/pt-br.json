@@ -145,6 +145,7 @@
 	"mwoauthmanagemygrants-description": "Descrição",
 	"mwoauthmanagemygrants-wikiallowed": "Permitido no projeto:",
 	"mwoauthmanagemygrants-grants": "Permissões aplicáveis",
+	"mwoauthmanagemygrants-grantsallowed": "Concessões permitidas",
 	"mwoauthmanagemygrants-review": "administrar acesso",
 	"mwoauthmanagemygrants-revoke": "revogar acesso",
 	"mwoauthmanagemygrants-grantaccept": "Concedido",
