@@ -11,7 +11,7 @@
 			"A2093064"
 		]
 	},
-	"mwoauth-desc": "允許使用 OAuth 1.0a 作為 API 認証程式",
+	"mwoauth-desc": "允許使用 OAuth 1.0a 作為 API 認證程式",
 	"mwoauth-verified": "應用程式現在已允許您以個人的名義連結 MediaWiki。\n\n要完成這個程序，請提供應用程式此確認金鑰：'''$1'''",
 	"mwoauth-db-readonly": "OAuth 已資料庫暫時鎖定，請幾分鐘後再試。",
 	"mwoauth-missing-field": "未填寫 \"$1\" 欄位的欄位值",
@@ -184,7 +184,7 @@
 	"logentry-mwoauthconsumer-disable": "$1 {{GENDER:$2|已停用}}由 $3 申請的 OAuth Consumer (Consumer 金鑰 $4)",
 	"logentry-mwoauthconsumer-reenable": "$1 {{GENDER:$2|已重新開啟}}由 $3 申請的 OAuth Consumer (Consumer 金鑰 $4)",
 	"mwoauthconsumer-consumer-logpage": "OAuth Consumer 日誌",
-	"mwoauthdatastore-access-token-not-found": "查無該認証密鑰已核准的授權資訊。",
+	"mwoauthdatastore-access-token-not-found": "查無該認證密鑰已核准的授權資訊。",
 	"mwoauthdatastore-request-token-not-found": "抱歉，連接此應用程式時出錯。返回並重新嘗試連接您的帳號，或聯繫應用程式開發人員。<span class=\"plainlinks mw-mwoautherror-details\">未找到 OAuth 的 token，[https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
 	"mwoauthdatastore-bad-verifier": "提交的驗證碼無效。",
 	"mwoauthdatastore-invalid-token-type": "請求的密鑰類型無效。",
