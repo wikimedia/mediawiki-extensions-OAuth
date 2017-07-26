@@ -191,9 +191,9 @@ class MWOAuthUtils {
 	 * @return MWOAuthServer with default configurations
 	 */
 	public static function newMWOAuthServer() {
-		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
-		$dbw = wfGetLB()->getServerCount() > 1 ? MWOAuthUtils::getCentralDB( DB_MASTER ) : null;
-		$store = new MWOAuthDataStore( $dbr, $dbw, MWOAuthUtils::getSessionCache() );
+		$dbr = self::getCentralDB( DB_SLAVE );
+		$dbw = wfGetLB()->getServerCount() > 1 ? self::getCentralDB( DB_MASTER ) : null;
+		$store = new MWOAuthDataStore( $dbr, $dbw, self::getSessionCache() );
 		$server = new MWOAuthServer( $store );
 		$server->add_signature_method( new OAuthSignatureMethod_HMAC_SHA1() );
 		$server->add_signature_method( new MWOAuthSignatureMethod_RSA_SHA1( $store ) );
@@ -379,7 +379,7 @@ class MWOAuthUtils {
 	 */
 	public static function locateUsersToNotify( EchoEvent $event ) {
 		$agent = $event->getAgent();
-		$owner = MWOAuthUtils::getLocalUserFromCentralId( $event->getExtraParam( 'owner-id' ) );
+		$owner = self::getLocalUserFromCentralId( $event->getExtraParam( 'owner-id' ) );
 
 		$users = [];
 		switch ( $event->getType() ) {

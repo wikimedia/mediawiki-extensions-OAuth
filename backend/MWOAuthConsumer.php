@@ -91,11 +91,11 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 * @var array
 	 */
 	public static $stageNames = [
-		MWOAuthConsumer::STAGE_PROPOSED => 'proposed',
-		MWOAuthConsumer::STAGE_REJECTED => 'rejected',
-		MWOAuthConsumer::STAGE_EXPIRED  => 'expired',
-		MWOAuthConsumer::STAGE_APPROVED => 'approved',
-		MWOAuthConsumer::STAGE_DISABLED => 'disabled',
+		self::STAGE_PROPOSED => 'proposed',
+		self::STAGE_REJECTED => 'rejected',
+		self::STAGE_EXPIRED  => 'expired',
+		self::STAGE_APPROVED => 'approved',
+		self::STAGE_DISABLED => 'disabled',
 	];
 
 	/**
@@ -104,11 +104,11 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 * @var array
 	 */
 	public static $stageActionNames = [
-		MWOAuthConsumer::STAGE_PROPOSED => 'propose',
-		MWOAuthConsumer::STAGE_REJECTED => 'reject',
-		MWOAuthConsumer::STAGE_EXPIRED  => 'propose',
-		MWOAuthConsumer::STAGE_APPROVED => 'approve',
-		MWOAuthConsumer::STAGE_DISABLED => 'disable',
+		self::STAGE_PROPOSED => 'propose',
+		self::STAGE_REJECTED => 'reject',
+		self::STAGE_EXPIRED  => 'propose',
+		self::STAGE_APPROVED => 'approve',
+		self::STAGE_DISABLED => 'disable',
 	];
 
 	protected static function getSchema() {
@@ -223,11 +223,11 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 */
 	public static function getAllStages() {
 		return [
-			MWOAuthConsumer::STAGE_PROPOSED,
-			MWOAuthConsumer::STAGE_REJECTED,
-			MWOAuthConsumer::STAGE_EXPIRED,
-			MWOAuthConsumer::STAGE_APPROVED,
-			MWOAuthConsumer::STAGE_DISABLED,
+			self::STAGE_PROPOSED,
+			self::STAGE_REJECTED,
+			self::STAGE_EXPIRED,
+			self::STAGE_APPROVED,
+			self::STAGE_DISABLED,
 		];
 	}
 
@@ -259,7 +259,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 * - Still pending approval and is owned by $user
 	 *
 	 * @param \User $user
-	 * @return boolean
+	 * @return bool
 	 */
 	public function isUsableBy( \User $user ) {
 		if ( $this->stage === self::STAGE_APPROVED && !$this->get( 'ownerOnly' ) ) {
@@ -285,7 +285,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 
 	protected function encodeRow( \DBConnRef $db, $row ) {
 		// For compatibility with other wikis in the farm, un-remap some grants
-		foreach ( MWOAuthConsumer::$mapBackCompatGrants as $old => $new ) {
+		foreach ( self::$mapBackCompatGrants as $old => $new ) {
 			while ( ( $i = array_search( $new, $row['oarc_grants'], true ) ) !== false ) {
 				$row['oarc_grants'][$i] = $old;
 			}
@@ -309,7 +309,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 			wfTimestampOrNull( TS_MW, $row['oarc_email_authenticated'] );
 
 		// For backwards compatibility, remap some grants
-		foreach ( MWOAuthConsumer::$mapBackCompatGrants as $old => $new ) {
+		foreach ( self::$mapBackCompatGrants as $old => $new ) {
 			while ( ( $i = array_search( $old, $row['oarc_grants'], true ) ) !== false ) {
 				$row['oarc_grants'][$i] = $new;
 			}

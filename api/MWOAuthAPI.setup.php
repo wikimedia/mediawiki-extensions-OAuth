@@ -11,7 +11,7 @@ class MWOAuthAPISetup {
 	/**
 	 * Prevent CentralAuth from issuing centralauthtokens if we have
 	 * OAuth headers in this request.
-	 * @return boolean
+	 * @return bool
 	 */
 	public static function onCentralAuthAbortCentralAuthToken() {
 		$request = \RequestContext::getMain()->getRequest();

@@ -98,7 +98,7 @@ class MWOAuthUIHooks {
 	 * Append OAuth-specific grants to Special:ListGrants
 	 * @param SpecialPage $special
 	 * @param string $par
-	 * @return boolean
+	 * @return bool
 	 */
 	public static function onSpecialPageAfterExecute( SpecialPage $special, $par ) {
 		if ( $special->getName() != 'Listgrants' ) {
@@ -156,7 +156,7 @@ class MWOAuthUIHooks {
 	 * Add additional text to Special:BotPasswords
 	 * @param string $name Special page name
 	 * @param HTMLForm $form
-	 * @return boolean
+	 * @return bool
 	 */
 	public static function onSpecialPageBeforeFormDisplay( $name, HTMLForm $form ) {
 		global $wgMWOAuthCentralWiki;
