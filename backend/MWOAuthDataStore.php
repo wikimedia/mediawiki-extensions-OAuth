@@ -103,7 +103,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @param String $token
 	 * @param String $nonce
 	 * @param int $timestamp
-	 * @return boolean
+	 * @return bool
 	 */
 	public function lookup_nonce( $consumer, $token, $nonce, $timestamp ) {
 		$key = MWOAuthUtils::getCacheKey( 'nonce', $consumer->key, $token, $nonce );
@@ -138,7 +138,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return MWOAuthToken
 	 */
 	public function new_request_token( $consumer, $callback = 'oob' ) {
-		$token = MWOAuthDataStore::newToken();
+		$token = self::newToken();
 		$cacheConsumerKey = MWOAuthUtils::getCacheKey( 'consumer', 'request', $token->key );
 		$cacheTokenKey = MWOAuthUtils::getCacheKey(
 			'token', $consumer->key, 'request', $token->key

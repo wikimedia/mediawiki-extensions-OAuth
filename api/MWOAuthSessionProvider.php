@@ -232,7 +232,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 	 * @param \ApiBase $module
 	 * @param \User $user
 	 * @param string|array &$message
-	 * @return boolean
+	 * @return bool
 	 */
 	public function onApiCheckCanExecute( \ApiBase $module, \User $user, &$message ) {
 		global $wgMWOauthDisabledApiModules;
@@ -258,7 +258,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 	 * Record the fact that OAuth was used for anything added to RecentChanges.
 	 *
 	 * @param \RecentChange $rc
-	 * @return boolean true
+	 * @return bool true
 	 */
 	public function onRecentChange_save( $rc ) {
 		$data = $this->getSessionData( $rc->getPerformer() ?: null );
