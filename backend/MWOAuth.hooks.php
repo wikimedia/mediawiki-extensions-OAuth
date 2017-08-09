@@ -93,7 +93,7 @@ class MWOAuthHooks {
 	 * flooding Special:Tags with tags for consumers that will never be making
 	 * logged actions.
 	 *
-	 * @param boolean $activeOnly true for ChangeTagsListActive, false for ListDefinedTags
+	 * @param bool $activeOnly true for ChangeTagsListActive, false for ListDefinedTags
 	 * @param array &$tags
 	 * @return bool
 	 */

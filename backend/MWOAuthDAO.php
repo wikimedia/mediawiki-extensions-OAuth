@@ -28,7 +28,7 @@ use MediaWiki\Logger\LoggerFactory;
  */
 abstract class MWOAuthDAO implements \IDBAccessObject {
 	private $daoOrigin = 'new'; // string; object construction origin
-	private $daoPending = true; // boolean; whether fields changed or the field is new
+	private $daoPending = true; // bool; whether fields changed or the field is new
 
 	/** @var \\Psr\\Log\\LoggerInterface */
 	protected $logger;
@@ -67,8 +67,8 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 
 	/**
 	 * @param \DBConnRef $db
-	 * @param integer $id
-	 * @param integer $flags MWOAuthDAO::READ_* bitfield
+	 * @param int $id
+	 * @param int $flags MWOAuthDAO::READ_* bitfield
 	 * @return MWOAuthDAO|bool Returns false if not found
 	 * @throws \DBError
 	 */
@@ -218,7 +218,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * Get the schema information for this object type
 	 *
 	 * This should return an associative array with:
-	 *   - idField        : a field with an integer/hex UNIQUE identifier
+	 *   - idField        : a field with an int/hex UNIQUE identifier
 	 *   - autoIncrField  : a field that auto-increments in the DB (or NULL if none)
 	 *   - table          : a table name
 	 *   - fieldColumnMap : a map of field names to column names

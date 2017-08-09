@@ -25,13 +25,13 @@ namespace MediaWiki\Extensions\OAuth;
  * Representation of an OAuth consumer acceptance
  */
 class MWOAuthConsumerAcceptance extends MWOAuthDAO {
-	/** @var integer Unique ID */
+	/** @var int Unique ID */
 	protected $id;
 	/** @var string Wiki ID the application can be used on (or "*" for all) */
 	protected $wiki;
-	/** @var integer Publisher user ID (on central wiki) */
+	/** @var int Publisher user ID (on central wiki) */
 	protected $userId;
-	/** @var integer */
+	/** @var int */
 	protected $consumerId;
 	/** @var string Hex token */
 	protected $accessToken;
@@ -75,7 +75,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	/**
 	 * @param \DBConnRef $db
 	 * @param string $token Access token
-	 * @param integer $flags MWOAuthConsumerAcceptance::READ_* bitfield
+	 * @param int $flags MWOAuthConsumerAcceptance::READ_* bitfield
 	 * @return MWOAuthConsumerAcceptance|bool
 	 */
 	public static function newFromToken( \DBConnRef $db, $token, $flags = 0 ) {
@@ -100,7 +100,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	 * @param String $userId of user who authorized (central wiki's id)
 	 * @param MWOAuthConsumer $consumer
 	 * @param String $wiki wiki associated with the acceptance
-	 * @param integer $flags MWOAuthConsumerAcceptance::READ_* bitfield
+	 * @param int $flags MWOAuthConsumerAcceptance::READ_* bitfield
 	 * @return MWOAuthConsumerAcceptance|bool
 	 */
 	public static function newFromUserConsumerWiki(

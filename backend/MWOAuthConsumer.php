@@ -32,13 +32,13 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		'authonlyprivate' => 'mwoauth-authonlyprivate',
 	];
 
-	/** @var integer Unique ID */
+	/** @var int Unique ID */
 	protected $id;
 	/** @var string Hex token */
 	protected $consumerKey;
 	/** @var string Name of connected application */
 	protected $name;
-	/** @var integer Publisher's central user ID. $wgMWOAuthSharedUserIDs defines which central ID
+	/** @var int Publisher's central user ID. $wgMWOAuthSharedUserIDs defines which central ID
 	 *    provider to use. */
 	protected $userId;
 	/** @var string Version used for handshake breaking changes */
@@ -72,11 +72,11 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $grants;
 	/** @var \\MWRestrictions IP restrictions */
 	protected $restrictions;
-	/** @var integer MWOAuthConsumer::STAGE_* constant */
+	/** @var int MWOAuthConsumer::STAGE_* constant */
 	protected $stage;
 	/** @var string TS_MW timestamp of last stage change */
 	protected $stageTimestamp;
-	/** @var integer Indicates (if non-zero) this consumer's information is suppressed */
+	/** @var int Indicates (if non-zero) this consumer's information is suppressed */
 	protected $deleted;
 
 	/* Stages that registered consumer takes (stored in DB) */
@@ -160,7 +160,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	/**
 	 * @param \DBConnRef $db
 	 * @param string $key
-	 * @param integer $flags MWOAuthConsumer::READ_* bitfield
+	 * @param int $flags MWOAuthConsumer::READ_* bitfield
 	 * @return MWOAuthConsumer|bool
 	 */
 	public static function newFromKey( \DBConnRef $db, $key, $flags = 0 ) {
@@ -184,8 +184,8 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 * @param \DBConnRef $db
 	 * @param string $name
 	 * @param string $version
-	 * @param integer $userId Central user ID
-	 * @param integer $flags MWOAuthConsumer::READ_* bitfield
+	 * @param int $userId Central user ID
+	 * @param int $flags MWOAuthConsumer::READ_* bitfield
 	 * @return MWOAuthConsumer|bool
 	 */
 	public static function newFromNameVersionUser(
@@ -322,6 +322,8 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 * Magic method so that $consumer->secret and $consumer->key work.
 	 * This allows MWOAuthConsumer to be a replacement for OAuthConsumer
 	 * in lib/OAuth.php without inheriting.
+	 * @param mixed $prop
+	 * @return mixed
 	 */
 	public function __get( $prop ) {
 		if ( $prop === 'key' ) {

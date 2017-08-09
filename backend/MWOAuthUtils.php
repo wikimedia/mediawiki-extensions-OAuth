@@ -23,7 +23,7 @@ class MWOAuthUtils {
 	}
 
 	/**
-	 * @param integer $index DB_MASTER/DB_SLAVE
+	 * @param int $index DB_MASTER/DB_SLAVE
 	 * @return \DBConnRef
 	 */
 	public static function getCentralDB( $index ) {
@@ -93,7 +93,7 @@ class MWOAuthUtils {
 	/**
 	 * Test this request for an OAuth Authorization header
 	 * @param \WebRequest $request the MediaWiki request
-	 * @return Boolean (true if a header was found)
+	 * @return bool true if a header was found
 	 */
 	public static function hasOAuthHeaders( \WebRequest $request ) {
 		$header = $request->getHeader( 'Authorization' );
@@ -106,6 +106,7 @@ class MWOAuthUtils {
 	/**
 	 * Make a cache key for the given arguments, that (hopefully) won't clash with
 	 * anything else in your cache
+	 * @return string
 	 */
 	public static function getCacheKey( /* varags */ ) {
 		global $wgMWOAuthCentralWiki;
@@ -204,7 +205,7 @@ class MWOAuthUtils {
 	/**
 	 * Given a central wiki user ID, get a central user name
 	 *
-	 * @param integer $userId
+	 * @param int $userId
 	 * @param bool|\User $audience show hidden names based on this user, or false for public
 	 * @throws \MWException
 	 * @return string|bool User name, false if not found, empty string if name is hidden
@@ -234,7 +235,7 @@ class MWOAuthUtils {
 	/**
 	 * Given a central wiki user ID, get a local User object
 	 *
-	 * @param integer $userId
+	 * @param int $userId
 	 * @throws \MWException
 	 * @return \User|bool User or false if not found
 	 */
@@ -259,7 +260,7 @@ class MWOAuthUtils {
 	 *
 	 * @param \User $user
 	 * @throws \MWException
-	 * @return integer|bool ID or false if not found
+	 * @return int|bool ID or false if not found
 	 */
 	public static function getCentralIdFromLocalUser( \User $user ) {
 		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
@@ -291,7 +292,7 @@ class MWOAuthUtils {
 	 * Given a username, get the user ID for that user on the central wiki.
 	 * @param string $username
 	 * @throws \MWException
-	 * @return integer|bool ID or false if not found
+	 * @return int|bool ID or false if not found
 	 */
 	public static function getCentralIdFromUserName( $username ) {
 		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;

@@ -237,6 +237,7 @@ class MWOAuthServer extends OAuthServer {
 	/**
 	 * Wrap the call to the parent function and check that the source IP of
 	 * the request is allowed by this consumer's restrictions.
+	 * @param MWOAuthRequest &$request
 	 * @return array
 	 */
 	public function verify_request( &$request ) {

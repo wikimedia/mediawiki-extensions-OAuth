@@ -43,6 +43,9 @@ class MWOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
 	/**
 	 * If you want to reuse this code to write your Consumer, implement
 	 * this function to get your private key, so you can sign the request.
+	 * @param OAuthRequest &$request
+	 * @return string
+	 * @throws OAuthException
 	 */
 	protected function fetch_private_cert( &$request ) {
 		if ( $this->privateKey === null ) {

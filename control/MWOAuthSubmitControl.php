@@ -109,7 +109,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	 * @param array $allValues
 	 * @param \HTMLForm $form
 	 * @throws \MWException
-	 * @return boolean|string
+	 * @return bool|string
 	 */
 	public function validateFieldInternal( $field, $value, $allValues, $form ) {
 		if ( !isset( $allValues['action'] ) && isset( $this->vals['action'] ) ) {
@@ -207,7 +207,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	/**
 	 * @param string $error API error key
 	 * @param string $msg Message key
-	 * @param mixed ... Additional arguments used as message parameters
+	 * @param mixed $params,... Additional arguments used as message parameters
 	 * @return \Status
 	 */
 	protected function failure( $error, $msg /*, params */ ) {
