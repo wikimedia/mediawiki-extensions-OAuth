@@ -276,7 +276,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 						'mwoauth-consumer-callbackisprefix' => $ownerOnly ?
 							null : ( $cmr->get( 'callbackIsPrefix' ) ?
 								$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ) ),
-						'mwoauth-consumer-grantsneeded' =>  $cmr->get( 'grants',
+						'mwoauth-consumer-grantsneeded' => $cmr->get( 'grants',
 							function ( $grants ) use ( $lang ) {
 								return $lang->semicolonList( \MWGrants::grantNames( $grants, $lang ) );
 							} ),
