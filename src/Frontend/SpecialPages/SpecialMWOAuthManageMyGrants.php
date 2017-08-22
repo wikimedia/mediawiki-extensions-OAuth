@@ -267,7 +267,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$status = $form->show();
 		if ( $status instanceof Status && $status->isOK() ) {
 			// Messages: mwoauthmanagemygrants-success-update, mwoauthmanagemygrants-success-renounce
-			$this->getOutput()->addWikiMsg( "mwoauthmanagemygrants-success-$action" );
+			$this->getOutput()->addWikiMsg( "mwoauthmanagemygrants-success-$action", $cmrAc->getNameAndVersion() );
 		}
 	}
 
