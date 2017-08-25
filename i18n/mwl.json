@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"MokaAkashiyaPT"
+		]
+	},
+	"mwoauth-prefs-managegrants": "Aplicaçones lhigadas:",
+	"mwoauth-prefs-managegrantslink": "Gerir $1 {{PLURAL:$1|aplicaçon lhigada|aplicaçones lhigadas}}",
+	"mwoauth-consumer-stage-disabled": "zatibado",
+	"mwoauthmanageconsumers-disable": "Zatibado",
+	"mwoauthlistconsumers-status-disabled": "zatibado"
+}
