@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Milicevic01",
-			"Srdjan m"
+			"Srdjan m",
+			"Obsuser"
 		]
 	},
 	"mwoauth-field-hidden": "(ova informacija je skrivena)",
@@ -63,6 +64,7 @@
 	"mwoauthmanagemygrants-user": "Izdavač:",
 	"mwoauthmanagemygrants-description": "Opis",
 	"mwoauthmanagemygrants-wikiallowed": "Dozvoljeno na:",
+	"mwoauthmanagemygrants-applicablegrantsallowed": "Dozvoljena sledeća prava:",
 	"mwoauthmanagemygrants-grantaccept": "Dozvole",
 	"mwoauthmanagemygrants-confirm-legend": "Upravljanje prikačenim aplikacijama",
 	"mwoauthmanagemygrants-update": "Primeni",

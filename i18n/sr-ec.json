@@ -64,6 +64,7 @@
 	"mwoauthmanagemygrants-user": "Издавач:",
 	"mwoauthmanagemygrants-description": "Опис",
 	"mwoauthmanagemygrants-wikiallowed": "Дозвољено на:",
+	"mwoauthmanagemygrants-applicablegrantsallowed": "Дозвољена следећа права:",
 	"mwoauthmanagemygrants-grantaccept": "Дозволе",
 	"mwoauthmanagemygrants-confirm-legend": "Управљање прикаченим апликацијама",
 	"mwoauthmanagemygrants-update": "Примени",
