@@ -6,5 +6,7 @@
 	},
 	"mwoauth-prefs-managegrants": "Tilkopla småprogram:",
 	"mwoauth-prefs-managegrantslink": "Handsam {{PLURAL:$1|eitt tilknytt småprogram|$1 tilknytte småprogram}}",
-	"mwoauthmanagemygrants-none": "Det finst ingen småprogram knytte til kontoen din."
+	"mwoauthmanagemygrants-none": "Det finst ingen småprogram knytte til kontoen din.",
+	"mwoauth-form-description-allwikis": "Hei $1,\n\nfor å fullføra førespurnaden treng '''$2''' løyve til å utføra desse handlingane på dine vegner på alle prosjekta på denne nettstaden:\n\n$4",
+	"mwoauth-form-description-onewiki": "Hei $1,\n\nfor å fullføra førespurnaden treng '''$2''' løyve til å utføra desse handlingane på dine vegner på ''$4'':\n\n$5"
 }
