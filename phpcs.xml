@@ -7,7 +7,10 @@
 		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName"/>
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment"/>
-		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures"/>
+		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
+		<exclude name="MediaWiki.Files.ClassMatchesFilename.NotMatch" />
+		<exclude name="MediaWiki.Files.ClassMatchesFilename.WrongCase" />
+		<exclude name="MediaWiki.Files.OneClassPerFile.MultipleFound" />
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage"/>
 	</rule>
 	<file>.</file>
