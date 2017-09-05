@@ -49,6 +49,9 @@ class MigrateCentralWikiLogs extends Maintenance {
 			$lastMinTimestamp = $targetMinTS;
 		}
 
+		$commentStore = CommentStore::newKey( 'log_comment' );
+		$commentQuery = $commentStore->getJoin();
+
 		do {
 			$conds = [ 'log_type' => 'mwoauthconsumer' ];
 
@@ -60,16 +63,17 @@ class MigrateCentralWikiLogs extends Maintenance {
 			}
 
 			$oldLoggs = $oldDb->select(
-				'logging',
+				[ 'logging' ] + $commentQuery['tables'],
 				[ 'log_id', 'log_action', 'log_timestamp', 'log_user',
-					'log_user_text', 'log_comment', 'log_params', 'log_deleted'
-				],
+					'log_user_text', 'log_params', 'log_deleted'
+				] + $commentQuery['fields'],
 				$conds,
 				__METHOD__,
 				[
 					'ORDER BY' => 'log_timestamp DESC',
 					'LIMIT' => $this->mBatchSize + 1,
-				]
+				],
+				$commentQuery['joins']
 			);
 
 			$rowCount = $oldLoggs->numRows();
@@ -114,7 +118,7 @@ class MigrateCentralWikiLogs extends Maintenance {
 				$logEntry = new ManualLogEntry( 'mwoauthconsumer', $row->log_action );
 				$logEntry->setPerformer( $logUser );
 				$logEntry->setTarget( Title::makeTitleSafe( NS_USER, $row->log_user_text ) );
-				$logEntry->setComment( $row->log_comment );
+				$logEntry->setComment( $commentStore->getComment( $row )->text );
 				$logEntry->setParameters( $params );
 				$logEntry->setRelations( [
 					'OAuthConsumer' => [ $params['4:consumer'] ]
