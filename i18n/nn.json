@@ -7,6 +7,7 @@
 	"mwoauth-prefs-managegrants": "Tilkopla småprogram:",
 	"mwoauth-prefs-managegrantslink": "Handsam {{PLURAL:$1|eitt tilknytt småprogram|$1 tilknytte småprogram}}",
 	"mwoauth-consumer-allwikis": "Alle prosjekta på denne nettstaden",
+	"mwoauth-consumer-user": "Utgjevar:",
 	"mwoauthconsumerregistration-user": "Utgjevar",
 	"mwoauthmanagemygrants-none": "Det finst ingen småprogram knytte til kontoen din.",
 	"mwoauthmanagemygrants-wikiallowed": "Tillate på prosjekt:",
