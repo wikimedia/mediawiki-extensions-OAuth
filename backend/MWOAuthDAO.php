@@ -176,11 +176,12 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 		} else {
 			$this->logger->debug( get_class( $this ) . ': performing DB update; new object.' );
 			$afield = static::getAutoIncrField();
+			$acolumn = $afield !== null ? static::getColumn( $afield ) : null;
 			$row = $this->getRowArray( $dbw );
-			if ( $afield !== null && $row[$afield] === null ) {
+			if ( $acolumn !== null && $row[$acolumn] === null ) {
 				// auto-increment field should be omitted, not set null, for
 				// auto-incrementing behavior
-				unset( $row[$afield] );
+				unset( $row[$acolumn] );
 			}
 			$dbw->insert(
 				static::getTable(),
