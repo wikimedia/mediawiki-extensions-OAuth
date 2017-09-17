@@ -219,5 +219,6 @@
 	"action-mwoauthproposeconsumer": "提出申請新的 OAuth Consumer",
 	"action-mwoauthupdateownconsumer": "更新你管控的 OAuth Consumer",
 	"action-mwoauthviewsuppressed": "檢示已禁止使用的 OAuth Consumer",
+	"echo-category-title-oauth-owner": "OAuth開發",
 	"notification-oauth-app-body": "原因：$1"
 }
