@@ -2,11 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Calak",
-			"Sarchia"
+			"Sarchia",
+			"Lost Whispers"
 		]
 	},
 	"mwoauth-prefs-managegrants": "بەرنامە لکێنراوەکان",
 	"oauthmanageconsumers": "بەڕێوەبەردنی بەکاربەرانی OAuth",
+	"oauthmanagemygrants": "بینین و دەستکاریکردنی ئاپە بەستراوەکان بەم ھەژمارەوە",
 	"right-mwoauthproposeconsumer": "پێشنیاری بەکاربەرانی OAuthی نوێ",
 	"right-mwoauthupdateownconsumer": "نوێکردنەوەی بەکاربەرانی OAuthی تاوتوێی دەکەی",
 	"right-mwoauthmanageconsumer": "بەڕێوەبەردنی بەکاربەرانی OAuth",
