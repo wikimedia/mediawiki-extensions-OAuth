@@ -4,7 +4,6 @@ namespace MediaWiki\Extensions\OAuth;
 
 use EchoAttributeManager;
 use EchoEventPresentationModel;
-use MediaWiki\Logger\LoggerFactory;
 use MWException;
 use User;
 use SpecialPage;
@@ -92,7 +91,7 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 	 */
 	protected function getConsumer() {
 		if ( $this->consumer === null ) {
-			$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+			$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 			$this->consumer =
 				MWOAuthConsumer::newFromKey( $dbr, $this->event->getExtraParam( 'app-key' ) );
 		}

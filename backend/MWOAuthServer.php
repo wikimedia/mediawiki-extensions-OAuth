@@ -385,7 +385,7 @@ class MWOAuthServer extends OAuthServer {
 	 * @return MWOAuthConsumerAcceptance
 	 */
 	public function getCurrentAuthorization( \User $mwUser, $consumer, $wikiId ) {
-		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {

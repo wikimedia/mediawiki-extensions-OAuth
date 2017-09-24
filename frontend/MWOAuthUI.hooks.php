@@ -17,7 +17,7 @@ class MWOAuthUIHooks {
 	 * @throws \MWException
 	 */
 	public static function onGetPreferences( $user, &$preferences ) {
-		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		$conds = [
 			'oaac_consumer_id = oarc_id',
 			'oaac_user_id' => MWOAuthUtils::getCentralIdFromLocalUser( $user ),
@@ -71,7 +71,7 @@ class MWOAuthUIHooks {
 			return true;
 		}
 
-		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromId( $dbr, $m[1] ), \RequestContext::getMain()
 		);

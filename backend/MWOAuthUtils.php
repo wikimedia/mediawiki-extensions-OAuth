@@ -192,7 +192,7 @@ class MWOAuthUtils {
 	 * @return MWOAuthServer with default configurations
 	 */
 	public static function newMWOAuthServer() {
-		$dbr = self::getCentralDB( DB_SLAVE );
+		$dbr = self::getCentralDB( DB_REPLICA );
 		$dbw = wfGetLB()->getServerCount() > 1 ? self::getCentralDB( DB_MASTER ) : null;
 		$store = new MWOAuthDataStore( $dbr, $dbw, self::getSessionCache() );
 		$server = new MWOAuthServer( $store );

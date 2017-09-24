@@ -151,7 +151,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 		$out->addWikiMsg( 'mwoauthmanageconsumers-maintext' );
 
-		$counts = MWOAuthUtils::getConsumerStateCounts( MWOAuthUtils::getCentralDB( DB_SLAVE ) );
+		$counts = MWOAuthUtils::getConsumerStateCounts( MWOAuthUtils::getCentralDB( DB_REPLICA ) );
 
 		$out->wrapWikiMsg( "<p><strong>$1</strong></p>", 'mwoauthmanageconsumers-queues' );
 		$out->addHTML( '<ul>' );
@@ -198,7 +198,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	protected function handleConsumerForm( $consumerKey ) {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
-		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
 		if ( !$cmr ) {
@@ -478,7 +478,7 @@ class MWOAuthManageConsumersPager extends \ReverseChronologicalPager {
 			$this->mConds['oarc_deleted'] = 0;
 		}
 
-		$this->mDb = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$this->mDb = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		parent::__construct();
 
 		# Treat 20 as the default limit, since each entry takes up 5 rows.

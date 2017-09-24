@@ -23,7 +23,6 @@ namespace MediaWiki\Extensions\OAuth;
 
 use Firebase\JWT\JWT;
 use MediaWiki\Logger\LoggerFactory;
-use Psr\Log\LoggerInterface;
 
 /**
  * Page that handles OAuth consumer authorization and token exchange
@@ -159,7 +158,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					/** @var MWOAuthToken $token */
 
 					$wiki = wfWikiID();
-					$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+					$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 					$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $token->key );
 					$localUser = MWOAuthUtils::getLocalUserFromCentralId( $access->get( 'userId' ) );
 					if ( !$localUser || !$localUser->isLoggedIn() ) {
@@ -185,7 +184,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					break;
 				default:
 					$format = $request->getVal( 'format', 'html' );
-					$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+					$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 					$cmr = MWOAuthDAOAccessControl::wrap(
 						MWOAuthConsumer::newFromKey(
 							$dbr,
@@ -229,7 +228,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	protected function showCancelPage() {
 		$request = $this->getRequest();
 		$consumerKey = $request->getVal( 'consumerKey', $request->getVal( 'oauth_consumer_key' ) );
-		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
 			$this->getContext()
@@ -307,7 +306,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 
-		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE ); // @TODO: lazy handle
+		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA ); // @TODO: lazy handle
 		$oauthServer = MWOAuthUtils::newMWOAuthServer();
 
 		if ( !$consumerKey ) {

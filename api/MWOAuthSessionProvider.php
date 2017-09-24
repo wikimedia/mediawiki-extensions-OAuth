@@ -87,7 +87,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 		}
 
 		$wiki = wfWikiID();
-		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 
 		// Access token is for this wiki
 		$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $accesstoken->key );
@@ -263,7 +263,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 	public function onRecentChange_save( $rc ) {
 		$data = $this->getSessionData( $rc->getPerformer() ?: null );
 		if ( $data ) {
-			$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+			$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 			$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $data['key'] );
 			$consumerId = $access->get( 'consumerId' );
 			$consumer = MWOAuthConsumer::newFromId( $dbr, $consumerId );

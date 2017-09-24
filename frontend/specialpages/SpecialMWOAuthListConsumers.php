@@ -67,7 +67,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			$out->addWikiMsg( 'mwoauth-missing-consumer-key' );
 		}
 
-		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
 		if ( !$cmr ) {
@@ -308,7 +308,7 @@ class MWOAuthListConsumersPager extends \AlphabeticPager {
 			$this->mConds['oarc_deleted'] = 0;
 		}
 
-		$this->mDb = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$this->mDb = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		parent::__construct();
 
 		# Treat 20 as the default limit, since each entry takes up 5 rows.

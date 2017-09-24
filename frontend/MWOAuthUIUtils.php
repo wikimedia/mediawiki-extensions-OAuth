@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-use Html;
 use IContextSource;
 use Message;
 use OOUI\Tag;

@@ -99,7 +99,7 @@ class MWOAuthHooks {
 	 */
 	public static function getUsedConsumerTags( $activeOnly, &$tags ) {
 		// Step 1: Get the list of (active) consumers' tags for this wiki
-		$db = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$db = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		$conds = [
 			$db->makeList( [
 				'oarc_wiki = ' . $db->addQuotes( '*' ),
@@ -127,7 +127,7 @@ class MWOAuthHooks {
 
 		// Step 2: Return only those that are in use.
 		if ( $allTags ) {
-			$db = wfGetDB( DB_SLAVE );
+			$db = wfGetDB( DB_REPLICA );
 			$res = $db->select(
 				'change_tag',
 				[ 'ct_tag' ],

@@ -110,7 +110,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 	protected function handleConsumerForm( $acceptanceId, $type ) {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
-		$dbr = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
 		if ( !$centralUserId ) {
@@ -336,7 +336,7 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 			$this->mConds['oarc_deleted'] = 0;
 		}
 
-		$this->mDb = MWOAuthUtils::getCentralDB( DB_SLAVE );
+		$this->mDb = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		parent::__construct();
 
 		# Treat 20 as the default limit, since each entry takes up 5 rows.
