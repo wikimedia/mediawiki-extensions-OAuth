@@ -96,6 +96,8 @@
 	"mwoauthmanageconsumers-showproposed": "درخواست‌های پیشنهادی",
 	"mwoauthmanageconsumers-showrejected": "درخواست‌های رد شده",
 	"mwoauthmanageconsumers-showexpired": "درخواست‌های منقضی‌شده",
+	"mwoauthmanageconsumers-linkrejected": "درخواست‌های رد شده",
+	"mwoauthmanageconsumers-linkexpired": "درخواست‌های منقضی‌شده",
 	"mwoauthmanageconsumers-main": "اصلی",
 	"mwoauthmanageconsumers-maintext": "این صفحه برای کنترل درخواست‌های برنامهٔ مصرف‌کننده (مشاهدهٔ  http://oauth.net) و مدیریت تآٔسیس مصرف‌کنند‌گان OAuth است.",
 	"mwoauthmanageconsumers-queues": "یک صف تأیید مصرف‌کننده از زیر انتخاب کنید:",
@@ -231,5 +233,6 @@
 	"action-mwoauthmanagemygrants": "مدیریت اعطاشده‌های OAuth شما",
 	"action-mwoauthproposeconsumer": "پیشنهاد مصرف‌کنندهٔ جدید OAuth",
 	"action-mwoauthupdateownconsumer": "به‌روزرسانی مصرف‌کننده‌های OAuth که شما کنترل می‌کنید",
-	"action-mwoauthviewsuppressed": "نمایش مصرف‌کننده‌های OAuth توقیف‌شده"
+	"action-mwoauthviewsuppressed": "نمایش مصرف‌کننده‌های OAuth توقیف‌شده",
+	"notification-oauth-app-body": "دلیل: $1"
 }
