@@ -23,6 +23,7 @@
 	"mwoauth-consumer-user": "Utgiver:",
 	"mwoauth-consumer-stage": "Status:",
 	"mwoauth-consumer-email": "E-postadresse",
+	"mwoauth-consumer-email-help": "Bare synlig for de som godkjenner nye konsumenter",
 	"mwoauth-consumer-owner-only-label": "Kun eieren:",
 	"mwoauth-consumer-description": "Beskrivelse av appen:",
 	"mwoauth-consumer-callbackurl": "OAuth «callback»-URL:",
