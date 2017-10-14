@@ -124,6 +124,15 @@ $specialPageAliases['sv'] = [
 	'OAuthManageMyGrants' => [ 'Anslutna_applikationer' ],
 ];
 
+/** Urdu (اردو) */
+$specialPageAliases['ur'] = [
+	'OAuthConsumerRegistration' => [ 'اندراج_اوآتھ_صارف', 'اوآتھ_اندراج' ],
+	'OAuthManageConsumers' => [ 'انتظام_اوآتھ_صارف' ],
+	'OAuthListConsumers' => [ 'فہرست_اوآتھ_صارفین' ],
+	'OAuthManageMyGrants' => [ 'انتظام_اوآتھ_عطیات_من', 'اوآتھ_عطیات' ],
+	'OAuth' => [ 'اوآتھ', 'میڈیا_ویکی_اوآتھ' ],
+];
+
 /** Yiddish (ייִדיש) */
 $specialPageAliases['yi'] = [
 	'OAuthManageMyGrants' => [ 'פארוואלטן_פראיעקטן' ],
