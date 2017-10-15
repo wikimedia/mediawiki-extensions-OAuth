@@ -23,7 +23,7 @@ class MWOAuthUtils {
 	}
 
 	/**
-	 * @param int $index DB_MASTER/DB_SLAVE
+	 * @param int $index DB_MASTER/DB_REPLICA
 	 * @return \DBConnRef
 	 */
 	public static function getCentralDB( $index ) {
