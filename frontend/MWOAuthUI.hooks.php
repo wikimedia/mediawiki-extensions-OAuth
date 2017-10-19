@@ -140,7 +140,7 @@ class MWOAuthUIHooks {
 				$grantCellHtml = '<ul><li>' . implode( "</li>\n<li>", $descs ) . '</li></ul>';
 			}
 
-			$id = \Sanitizer::escapeId( $grant );
+			$id = \Sanitizer::escapeIdForAttribute( $grant );
 			$out->addHTML( \Html::rawElement( 'tr', [ 'id' => $id ],
 				"<td>" . $special->msg( "grant-$grant" )->escaped() . "</td>" .
 				"<td>" . $grantCellHtml . '</td>'
