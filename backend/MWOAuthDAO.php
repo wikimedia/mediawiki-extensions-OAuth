@@ -452,8 +452,8 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	/**
 	 * Update the origin of this object
 	 * @param string $source source of the object
-	 *	'new': Treat this as a new object to the datastore (insert on save)
-	 *	'db': Treat this as already in the datastore (update on save)
+	 * 	'new': Treat this as a new object to the datastore (insert on save)
+	 * 	'db': Treat this as already in the datastore (update on save)
 	 */
 	public function updateOrigin( $source ) {
 		$this->daoOrigin = $source;
