@@ -33,5 +33,6 @@
 	"mwoauthmanagemygrants-success-update": "Pristupni token ažuriran.",
 	"mwoauthmanagemygrants-basic-tooltip": "Zašto ne mogu promijeniti ovo odobrenje? Ono omogućava povezanoj aplikaciji osnovno dopuštenje koje je nužno za njeno djelovanje. Ako ne želite da aplikacija ima ova dopuštenja, opozovite prava pristupa aplikacije.",
 	"mwoauth-form-button-approve": "Dopusti",
-	"mwoauth-form-button-cancel": "Odustani"
+	"mwoauth-form-button-cancel": "Odustani",
+	"echo-category-title-oauth-owner": "Razvoj OAutha"
 }
