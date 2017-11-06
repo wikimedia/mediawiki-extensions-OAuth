@@ -205,7 +205,7 @@
 	"mwoauthdatastore-callback-not-found": "A URL de retrochamada de OAuth non se atopou na caché. Isto é probablemente un erro na forma na que a aplicación fai peticións ó servidor.",
 	"mwoauthdatastore-request-token-already-used": "Esta solicitude xa foi completada e non pode volver a presentarse.\nVolva á aplicación e probe a conectarse á súa conta de novo, ou póñase en contacto co autor da aplicación.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Identificador OAuth xa usado, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009 E009]</span>",
 	"mwoauthdatastore-bad-token": "Non se atopou ningún pase que coincidise coa solicitude",
-	"mwoauthdatastore-bad-source-ip": "A solicitude chegou dunha dirección IP inválida.",
+	"mwoauthdatastore-bad-source-ip": "A solicitude chegou dunha dirección IP non válida.",
 	"mwoauthdatastore-bad-verifier": "O código de verificación achegado non é válido",
 	"mwoauthdatastore-invalid-token-type": "O tipo de pase solicitado non é válido",
 	"mwoauthgrants-general-error": "Houbo un erro na súa solicitude OAuth",
