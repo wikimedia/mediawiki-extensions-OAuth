@@ -70,7 +70,7 @@ class MWOAuthHooks {
 		return true;
 	}
 
-	protected function doUserIdMerge( $oldid, $newid ) {
+	protected static function doUserIdMerge( $oldid, $newid ) {
 		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
 		// Merge any consumers register to this user
 		$dbw->update( 'oauth_registered_consumer',
