@@ -101,6 +101,7 @@
 	"mwoauth-error": "অ্যাপ্লিকেশন সংযোগ ত্রুটি",
 	"mwoauth-grants-heading": "অনুরোধকৃত অনুমতি:",
 	"grant-mwoauth-authonlyprivate": "শুধুমাত্র প্রকৃত নাম ও ই-মেইল ঠিকানায় প্রবেশাধিকারসহ ব্যবহারকারী পরিচয় যাচাই করে, ব্যবহারকারীর পক্ষে পড়া বা কাজ করার ক্ষমতা নেই।",
+	"echo-category-title-oauth-owner": "OAuth উন্নয়ন",
 	"notification-oauth-app-approve-title": "$1 {{GENDER:$3|আপনার}} OAuth অ্যাপ ($2) {{GENDER:$1|অনুমোদন করেছেন}}",
 	"notification-oauth-app-propose-primary-link": "অ্যাপ পর্যালোচনা করুন",
 	"notification-oauth-app-update-primary-link": "অ্যাপ পর্যালোচনা করুন",
