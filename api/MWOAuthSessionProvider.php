@@ -98,7 +98,13 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 		// There exists a local user
 		$localUser = MWOAuthUtils::getLocalUserFromCentralId( $access->get( 'userId' ) );
 		if ( !$localUser || !$localUser->isLoggedIn() ) {
-			return $this->makeException( 'mwoauth-invalid-authorization-invalid-user' );
+			return $this->makeException( 'mwoauth-invalid-authorization-invalid-user',
+				\Message::rawParam( \Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
+					'E008',
+					true
+				) )
+			);
 		}
 		if ( $localUser->isLocked() ||
 			( $this->config->get( 'BlockDisablesLogin' ) && $localUser->isBlocked() )

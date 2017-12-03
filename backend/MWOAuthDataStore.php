@@ -66,7 +66,13 @@ class MWOAuthDataStore extends OAuthDataStore {
 				throw new MWOAuthException( 'mwoauthdatastore-request-token-already-used' );
 			}
 			if ( $token === null || !( $returnToken instanceof MWOAuthToken ) ) {
-				throw new MWOAuthException( 'mwoauthdatastore-request-token-not-found' );
+				throw new MWOAuthException( 'mwoauthdatastore-request-token-not-found', [
+					\Message::rawParam( \Linker::makeExternalLink(
+						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004',
+						'E004',
+						true
+					) )
+				] );
 			}
 		} elseif ( $token_type === 'access' ) {
 			$cmra = MWOAuthConsumerAcceptance::newFromToken( $this->centralSlave, $token );
