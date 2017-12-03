@@ -277,11 +277,23 @@ class MWOAuthServer extends OAuthServer {
 
 		// Check that user and consumer are in good standing
 		if ( $mwUser->isLocked() || $wgBlockDisablesLogin && $mwUser->isBlocked() ) {
-			throw new MWOAuthException( 'mwoauthserver-insufficient-rights' );
+			throw new MWOAuthException( 'mwoauthserver-insufficient-rights', [
+				\Message::rawParam( \Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007',
+					'E007',
+					true
+				) )
+			] );
 		}
 		$consumer = $this->data_store->lookup_consumer( $consumerKey );
 		if ( !$consumer || $consumer->get( 'deleted' ) ) {
-			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key' );
+			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key', [
+				\Message::rawParam( \Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006',
+					'E006',
+					true
+				) )
+			] );
 		} elseif ( !$consumer->isUsableBy( $mwUser ) ) {
 			$owner = MWOAuthUtils::getCentralUserNameFromId(
 				$consumer->get( 'userId' ),
@@ -289,7 +301,13 @@ class MWOAuthServer extends OAuthServer {
 			);
 			throw new MWOAuthException(
 				'mwoauthserver-bad-consumer',
-				[ $consumer->get( 'name' ), MWOAuthUtils::getCentralUserTalk( $owner ) ]
+				[ $consumer->get( 'name' ), MWOAuthUtils::getCentralUserTalk( $owner ), \Message::rawParam(
+					\Linker::makeExternalLink(
+						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005',
+						'E005',
+						true
+					)
+				) ]
 			);
 		} elseif ( $consumer->get( 'ownerOnly' ) ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
@@ -317,7 +335,13 @@ class MWOAuthServer extends OAuthServer {
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
 			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
-			throw new MWOAuthException( $userMsg, [ $consumer->get( 'name' ) ] );
+			throw new MWOAuthException( $userMsg, [ $consumer->get( 'name' ), \Message::rawParam(
+				\Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
+					'E008',
+					true
+				)
+			) ] );
 		}
 
 		// Authorization Token
@@ -390,7 +414,13 @@ class MWOAuthServer extends OAuthServer {
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
 			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
-			throw new MWOAuthException( $userMsg, [ $consumer->get( 'name' ) ] );
+			throw new MWOAuthException( $userMsg, [ $consumer->get( 'name' ), \Message::rawParam(
+				\Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
+					'E008',
+					true
+				)
+			) ] );
 		}
 
 		$checkWiki = $consumer->get( 'wiki' ) !== '*' ? $consumer->get( 'wiki' ) : $wikiId;
