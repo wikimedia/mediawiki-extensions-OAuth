@@ -17,6 +17,5 @@
 	"mwoauthconsumerregistration-manage": "idarəetmə",
 	"mwoauthconsumerregistration-resetsecretkey": "Gizli açarı sıfırlayıb, yenisini təyin et",
 	"mwoauthmanageconsumers-disable": "Söndürülüb",
-	"mwoauthlistconsumers-status-disabled": "söndürülüb",
-	"mwoauth-grant-editmywatchlist": "İzləmə siyahısını dəyiş"
+	"mwoauthlistconsumers-status-disabled": "söndürülüb"
 }

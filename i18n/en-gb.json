@@ -16,7 +16,5 @@
 	"mwoauth-invalid-authorization-wrong-user": "The authorisation headers in your request are for a different user",
 	"mwoauth-invalid-authorization-not-approved": "The app that you are trying to connect seems to be set up incorrectly. Contact the author of \"$1\" for help.",
 	"mwoauth-invalid-authorization-blocked-user": "The authorisation headers in your request are for a user who is blocked",
-	"mwoauth-acceptance-cancelled": "You have chosen not to allow \"$1\" to access your account. \"$1\" will not work unless you allow it access. You can go back to \"$1\" or [[Special:OAuthManageMyGrants|manage]] your connected apps.",
-	"mwoauth-grant-group-customization": "Customisation and preferences",
-	"mwoauth-listgrantrights-summary": "The following is a list of OAuth grants, with their associated access to user rights. Users can authorise applications to use their account, but with limited permissions based on the grants the user gave to the application. An application acting on behalf of a user cannot actually use rights that the user does not have however.\nThere may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] about individual rights."
+	"mwoauth-acceptance-cancelled": "You have chosen not to allow \"$1\" to access your account. \"$1\" will not work unless you allow it access. You can go back to \"$1\" or [[Special:OAuthManageMyGrants|manage]] your connected apps."
 }

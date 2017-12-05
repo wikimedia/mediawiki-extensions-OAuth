@@ -15,7 +15,6 @@
 	"mwoauth-invalid-field-generic": "അസാധുവായ വിലയാണ് നൽകിയത്",
 	"mwoauth-field-hidden": "(ഈ വിവരം മറയ്ക്കപ്പെട്ടിരിക്കുന്നു)",
 	"mwoauth-field-private": "(ഈ വിവരം സ്വകാര്യമാണ്)",
-	"mwoauth-grant-generic": "\"$1\" അവകാശ സഞ്ചയം",
 	"mwoauth-prefs-managegrants": "ബന്ധപ്പെട്ടിരിക്കുന്ന ആപുകൾ:",
 	"mwoauth-prefs-managegrantslink": "ബന്ധപ്പെട്ടിരിക്കുന്ന {{PLURAL:$1|സൗകര്യം|$1 സൗകര്യങ്ങൾ}} കൈകാര്യം ചെയ്യുക",
 	"mwoauth-consumer-allwikis": "ഈ സൈറ്റിലെ എല്ലാ പദ്ധതികളും",
@@ -31,7 +30,6 @@
 	"mwoauth-consumer-required-grant": "ഉപഭോക്താവിനു ബാധകം",
 	"mwoauth-consumer-wiki": "ബാധകമായ പദ്ധതി:",
 	"mwoauth-consumer-wiki-thiswiki": "ഇപ്പോഴത്തെ പദ്ധതി ($1)",
-	"mwoauth-consumer-wiki-other": "കൃത്യമായ പദ്ധതി",
 	"mwoauth-consumer-restrictions": "ഉപയോഗത്തിന്റെ പരിമിതപ്പെടുത്തലുകൾ:",
 	"mwoauth-consumer-restrictions-json": "ഉപയോഗത്തിന്റെ പരിമിതപ്പെടുത്തലുകൾ (ജെസൺ):",
 	"mwoauth-consumer-rsakey": "പൊതു ആർ.എസ്.എ. ചാവി:",
@@ -57,6 +55,5 @@
 	"mwoauth-form-button-approve": "അനുവദിക്കുക",
 	"mwoauth-form-button-cancel": "റദ്ദാക്കുക",
 	"mwoauth-error": "ആപ്ലിക്കേഷൻ ബന്ധപ്പെടൽ പിഴവ്",
-	"mwoauth-grants-heading": "ആവശ്യപ്പെട്ട അനുമതികൾ:",
-	"mwoauth-grant-sendemail": "ഇമെയിൽ അയയ്ക്കുക"
+	"mwoauth-grants-heading": "ആവശ്യപ്പെട്ട അനുമതികൾ:"
 }

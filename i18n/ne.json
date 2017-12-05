@@ -18,9 +18,5 @@
 	"mwoauthlistconsumers-status": "स्थिति",
 	"mwoauthmanagemygrants-description": "विवरण",
 	"mwoauth-form-button-cancel": "रद्द गर्ने",
-	"mwoauth-granttype-normal": "विशेष अनुमति अधिकारको लागी निवेदन गर्नुहोस् ।",
-	"mwoauth-grant-createeditmovepage": "पृष्ठहरूमा परिवर्तन गर्नुहोस्",
-	"mwoauth-grant-editmycssjs": "तपाईंको प्रयोगकर्ता CSS/JavaScript सम्पादन गर्नुहोस्",
-	"mwoauth-grant-editmyoptions": "तपाईंको प्रयोगकर्ता अभिरूचीहरूलाई सम्पादन गर्नुहोस्",
-	"mwoauth-grant-viewdeleted": "मेटाइएका फाइल तथा पृष्ठहरू हेर्ने"
+	"mwoauth-granttype-normal": "विशेष अनुमति अधिकारको लागी निवेदन गर्नुहोस् ।"
 }

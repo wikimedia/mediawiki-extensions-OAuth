@@ -20,8 +20,5 @@
 	"mwoauthlistconsumers-status-rejected": "къабыл этилмеди",
 	"oauthmanagemygrants": "Джандырылгъан къошакъ программаланы джюрютюу",
 	"mwoauthmanagemygrants-user": "Басмагъа чыгъаргъан:",
-	"mwoauthmanagemygrants-description": "Ачыкълау",
-	"mwoauth-grant-group-email": "E-mail джибер",
-	"mwoauth-grant-createaccount": "Аккаунтла къурау",
-	"mwoauth-listgrants-rights": "Онгла"
+	"mwoauthmanagemygrants-description": "Ачыкълау"
 }

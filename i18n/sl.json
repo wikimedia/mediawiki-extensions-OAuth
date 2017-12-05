@@ -17,17 +17,5 @@
 	"mwoauth-form-button-approve": "Dovoli",
 	"mwoauth-form-button-cancel": "Prekliči",
 	"mwoauth-acceptance-cancelled": "Odločili ste se, da »$1« na dovolite dostopa do svojega računa. Oseba »$1« ne bo delovala, razen če ji dovolite dostop. Greste lahko nazaj na »$1« ali na[[Special:OAuthManageMyGrants|urejanje]] vaših povezanih aplikacij.",
-	"mwoauth-grant-group-page-interaction": "Interakcija s stranmi",
-	"mwoauth-grant-group-file-interaction": "Interakcija z mediji",
-	"mwoauth-grant-group-watchlist-interaction": "Interakcija z vašim spiskom nadzorov",
-	"mwoauth-grant-group-email": "Pošljite e-pošto",
-	"mwoauth-grant-group-high-volume": "Izvedi visokoštevilsko dejanje",
-	"mwoauth-grant-group-customization": "Prilagoditve in nastavitve",
-	"mwoauth-grant-group-administration": "Izvajanje administrativnih dejanj",
-	"mwoauth-grant-group-other": "Druga dejavnost",
-	"mwoauth-grant-createaccount": "Ustvarite račune",
-	"mwoauth-grant-patrol": "Nadzor sprememb strani",
-	"mwoauth-grant-rollback": "Razveljavitev sprememb strani",
-	"mwoauth-grant-sendemail": "Pošiljanje e-pošte drugim uporabnikom",
 	"mwoauth-oauth-exception": "Napaka v protokolu OAuth: $1"
 }

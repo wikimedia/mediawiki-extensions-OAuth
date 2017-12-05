@@ -15,7 +15,6 @@
 	"mwoauth-consumer-user": "Embanner :",
 	"mwoauth-consumer-stage": "Statud a vremañ :",
 	"mwoauth-consumer-description": "Deskrivadur an arload :",
-	"mwoauth-consumer-wiki-other": "Raktres difer",
 	"mwoauth-consumer-restrictions": "Strishadennoù implij :",
 	"mwoauth-consumer-accesstoken": "Jedouar moned :",
 	"mwoauth-consumer-reason": "Abeg :",
@@ -85,18 +84,7 @@
 	"mwoauthserver-invalid-request-token": "Jedouar direizh en ho reked.",
 	"mwoauth-form-button-approve": "Aotren",
 	"mwoauth-form-button-cancel": "Nullañ",
-	"mwoauth-grant-group-email": "Kas ur postel",
-	"mwoauth-grant-createaccount": "Krouiñ kontoù",
-	"mwoauth-grant-createeditmovepage": "Krouiñ, aozañ ha dilec'hiañ pajennoù",
-	"mwoauth-grant-editmywatchlist": "Aozañ ho roll evezhiañ",
-	"mwoauth-grant-editpage": "Aoañ pajennoù a zo anezho dija",
-	"mwoauth-grant-editprotected": "Aozañ pajennoù gwarezet",
-	"mwoauth-grant-sendemail": "Kas ur postel d'an implijerien all",
-	"mwoauth-grant-useoauth": "Gwirioù diazez",
-	"mwoauth-grant-viewdeleted": "Gwelet an titouroù dilamet",
-	"mwoauth-grant-viewmywatchlist": "Gwelet ho roll evezhiañ",
 	"right-mwoauthproposeconsumer": "Kinnig bevezerien OAuth nevez",
 	"right-mwoauthupdateownconsumer": "Hizivaat ar vevezerien OAuth a gontrollit",
-	"right-mwoauthmanageconsumer": "Merañ ar vevezerien OAuth",
-	"mwoauth-listgrants-rights": "Gwirioù"
+	"right-mwoauthmanageconsumer": "Merañ ar vevezerien OAuth"
 }
