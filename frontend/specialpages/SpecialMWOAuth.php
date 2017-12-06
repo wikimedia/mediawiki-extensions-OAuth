@@ -208,7 +208,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					if ( !$cmr ) {
 						$this->showError(
 							wfMessage( 'mwoauth-bad-request-invalid-action',
-								\Linked::makeExternalLink(
+								\Linker::makeExternalLink(
 									'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002',
 									'E002',
 									true
