@@ -5,7 +5,8 @@
 			"Withoutaname",
 			"KhangND",
 			"Dinhxuanduyet",
-			"Macofe"
+			"Macofe",
+			"Phjtieudoc"
 		]
 	},
 	"mwoauth-desc": "Cho phép sử dụng OAuth 1.0a để xác minh khi truy cập API",
@@ -138,14 +139,14 @@
 	"mwoauth-bad-request-missing-params": "Rất tiếc, đã xảy ra lỗi khi thiết lập ứng dụng kết nối này. Hãy <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth xin trợ giúp]</span> để sửa nó.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth thiếu tham số, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=vi#E001 E001]</span>",
 	"mwoauth-bad-request-invalid-action": "Rất tiếc, đã xảy ra lỗi. Xin vui lòng liên lạc với tác giả ứng dụng để xin trợ giúp.\n\n<span class=\"plainlinks mw-mwoautherror-details\">URL bất ngờ, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=vi#E002 E002]</span>",
 	"mwoauth-bad-request-invalid-action-contact": "Rất tiếc, đã xảy ra lỗi. Xin vui lòng [$1 liên lạc] với tác giả ứng dụng để xin trợ giúp.\n\n<span class=\"plainlinks mw-mwoautherror-details\">URL bất ngờ, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=vi#E003 E003]</span>",
-	"mwoauthdatastore-request-token-not-found": "Rất tiếc, có trục trặc khi kết nối với ứng dụng này.\nHãy quay lại và thử kết nối với tài khoản của bạn lần nữa hoặc liên lạc với nhà phát triển của ứng dụng.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Không tìm thấy dấu hiệu OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004 E004]</span>",
+	"mwoauthdatastore-request-token-not-found": "Rất tiếc, có trục trặc khi kết nối với ứng dụng này.\nHãy quay lại và thử kết nối với tài khoản của bạn lần nữa hoặc liên lạc với nhà phát triển ứng dụng.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Không tìm thấy mã OAuth, $1</span>",
 	"mwoauthdatastore-bad-token": "Không tìm thấy dấu hiệu ứng với yêu cầu của bạn.",
 	"mwoauthdatastore-bad-verifier": "Mã xác minh được cung cấp là không hợp lệ.",
 	"mwoauthdatastore-invalid-token-type": "Đã yêu cầu kiểu dấu hiệu không hợp lệ.",
 	"mwoauthgrants-general-error": "Có lỗi trong yêu cầu OAuth của bạn.",
 	"mwoauthserver-bad-consumer": "“$1” không được chấp nhận là một Ứng dụng Kết nối. Hãy [$2 liên lạc] với tác giả ứng dụng để xin trợ giúp.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Ứng dụng kết nối OAuth không được chấp nhận, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=vi#E005 E005]</span>",
 	"mwoauthserver-bad-consumer-key": "Rất tiếc, đã xảy ra lỗi khi kết nối với ứng dụng này.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Chìa khóa OAuth bất ngờ, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=vi#E006 E006]</span>",
-	"mwoauthserver-insufficient-rights": "Bạn không có đủ quyền để thực hiện thao tác này.\n\nTài khoản của bạn không được phép sử dụng tính năng Ứng dụng Kết nối. Hãy liên lạc với quản lý viên trang Web của bạn để tìm hiểu lý do tại sao.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Người dùng không đủ quyền OAuth, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007 E007]</span>",
+	"mwoauthserver-insufficient-rights": "Tài khoản của bạn không được phép sử dụng tính năng Ứng dụng kết nối, hãy liên lạc với quản lý viên trang Web của bạn để tìm hiểu lý do tại sao.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Người dùng không đủ quyền OAuth, $1</span>",
 	"mwoauthserver-invalid-request-token": "Dấu hiệu không hợp lệ trong yêu cầu của bạn.",
 	"mwoauthserver-invalid-user": "Để sử dụng Ứng dụng Kết nối trên trang Web này, bạn cần phải có tài khoản trên tất cả các dự án. Khi nào bạn có tài khoản trên tất cả các dự án, xin hãy thử lại kết nối với “$1”.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Cần đăng nhập thống nhất, [https://www.mediawiki.org/wiki/Help:OAuth/Errors?uselang=vi#E008 E008]</span>",
 	"mwoauth-invalid-authorization-title": "Lỗi xác minh OAuth",
