@@ -191,7 +191,7 @@
 	"grant-mwoauth-authonly": "Только проверки личности участника, без возможности читать страницы или действовать от имени участника.",
 	"mwoauth-oauth-exception": "Произошла ошибка в протоколе OAuth: $1",
 	"mwoauth-callback-not-oob": "oauth_callback должен быть установлен и иметь значение «oob» (с учётом регистра)",
-	"right-mwoauthproposeconsumer": "предложение новых OAuth клиентов",
+	"right-mwoauthproposeconsumer": "предложение новых клиентов OAuth",
 	"right-mwoauthupdateownconsumer": "обновление контролируемых клиентов OAuth",
 	"right-mwoauthmanageconsumer": "управление клиентами OAuth",
 	"right-mwoauthsuppress": "сокрытие клиентов OAuth",
