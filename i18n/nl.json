@@ -240,6 +240,7 @@
 	"action-mwoauthproposeconsumer": "nieuwe OAuthconsumers voor te stellen",
 	"action-mwoauthupdateownconsumer": "OAuthconsumers bij te werken",
 	"action-mwoauthviewsuppressed": "onderdrukte OAuthconsumers te bekijken",
+	"mwoauth-botpasswords-note": "<strong>Opmerking:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> is veiliger dan botwachtwoorden en verdient de voorkeur wanneer de bot dit ondersteunt.",
 	"mwoauth-api-module-disabled": "De \"$1\" module is niet beschikbaar met OAuth.",
 	"echo-category-title-oauth-owner": "OAuth-ontwikkeling",
 	"echo-pref-tooltip-oauth-owner": "Houd me op de hoogte van evenementen die te maken hebben met OAuth-applicaties die ik heb aangemaakt.",
