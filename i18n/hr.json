@@ -30,7 +30,7 @@
 	"mwoauthmanagemygrants-confirm-legend": "Upravljaj povezanom aplikacijom",
 	"mwoauthmanagemygrants-update": "Ažuriraj odobrenja",
 	"mwoauthmanagemygrants-renounce": "Poništi autorizaciju",
-	"mwoauthmanagemygrants-success-update": "Pristupni token ažuriran.",
+	"mwoauthmanagemygrants-success-update": "Vaše postavke ove aplikacije su ažurirane.",
 	"mwoauthmanagemygrants-basic-tooltip": "Zašto ne mogu promijeniti ovo odobrenje? Ono omogućava povezanoj aplikaciji osnovno dopuštenje koje je nužno za njeno djelovanje. Ako ne želite da aplikacija ima ova dopuštenja, opozovite prava pristupa aplikacije.",
 	"mwoauth-form-button-approve": "Dopusti",
 	"mwoauth-form-button-cancel": "Odustani",
