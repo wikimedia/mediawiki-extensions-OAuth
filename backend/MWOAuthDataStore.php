@@ -63,7 +63,13 @@ class MWOAuthDataStore extends OAuthDataStore {
 				$token
 			) );
 			if ( $returnToken === '**USED**' ) {
-				throw new MWOAuthException( 'mwoauthdatastore-request-token-already-used' );
+				throw new MWOAuthException( 'mwoauthdatastore-request-token-already-used', [
+					\Message::rawParam( \Linker::makeExternalLink(
+						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009',
+						'E009',
+						true
+					) )
+				] );
 			}
 			if ( $token === null || !( $returnToken instanceof MWOAuthToken ) ) {
 				throw new MWOAuthException( 'mwoauthdatastore-request-token-not-found', [

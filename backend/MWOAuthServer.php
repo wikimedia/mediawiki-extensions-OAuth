@@ -35,13 +35,24 @@ class MWOAuthServer extends OAuthServer {
 				$consumer->get( 'name' ),
 				\SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $consumer->get( 'consumerKey' )
-				)
+				),
+				\Message::rawParam( \Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
+					'E010',
+					true
+				) )
 			] );
 		}
 
 		// Consumer must have a key for us to verify
 		if ( !$consumer->get( 'secretKey' ) && !$consumer->get( 'rsaKey' ) ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret' );
+			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret', [
+				\Message::rawParam( \Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E011',
+					'E011',
+					true
+				) )
+			] );
 		}
 
 		$this->checkSourceIP( $consumer, $request );
@@ -205,13 +216,24 @@ class MWOAuthServer extends OAuthServer {
 				$consumer->get( 'name' ),
 				\SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $consumer->get( 'consumerKey' )
-				)
+				),
+				\Message::rawParam( \Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
+					'E010',
+					true
+				) )
 			] );
 		}
 
 		// Consumer must have a key for us to verify
 		if ( !$consumer->get( 'secretKey' ) && !$consumer->get( 'rsaKey' ) ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret' );
+			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret', [
+				\Message::rawParam( \Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E011',
+					'E011',
+					true
+				) )
+			] );
 		}
 
 		$this->checkSourceIP( $consumer, $request );
@@ -314,7 +336,12 @@ class MWOAuthServer extends OAuthServer {
 				$consumer->get( 'name' ),
 				\SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $consumer->get( 'consumerKey' )
-				)
+				),
+				\Message::rawParam( \Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
+					'E010',
+					true
+				) )
 			] );
 		}
 
