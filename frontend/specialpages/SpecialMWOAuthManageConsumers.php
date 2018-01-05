@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use Wikimedia\Rdbms\DBConnRef;
+
 /**
  * (c) Aaron Schulz 2013, GPL
  *
@@ -385,11 +387,11 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	}
 
 	/**
-	 * @param \DBConnRef $db
+	 * @param DBConnRef $db
 	 * @param stdclass $row
 	 * @return string
 	 */
-	public function formatRow( \DBConnRef $db, $row ) {
+	public function formatRow( DBConnRef $db, $row ) {
 		$cmr = MWOAuthDAOAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
 

@@ -5,6 +5,8 @@ namespace MediaWiki\Extensions\OAuth;
 use EchoEvent;
 use Hooks;
 use User;
+use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Static utility functions for OAuth
@@ -24,7 +26,7 @@ class MWOAuthUtils {
 
 	/**
 	 * @param int $index DB_MASTER/DB_REPLICA
-	 * @return \DBConnRef
+	 * @return DBConnRef
 	 */
 	public static function getCentralDB( $index ) {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthReadOnly;
@@ -44,10 +46,10 @@ class MWOAuthUtils {
 	}
 
 	/**
-	 * @param \DBConnRef $db
+	 * @param DBConnRef $db
 	 * @return array
 	 */
-	public static function getConsumerStateCounts( \DBConnRef $db ) {
+	public static function getConsumerStateCounts( DBConnRef $db ) {
 		$res = $db->select( 'oauth_registered_consumer',
 			[ 'oarc_stage', 'count' => 'COUNT(*)' ],
 			[],
@@ -116,10 +118,10 @@ class MWOAuthUtils {
 	}
 
 	/**
-	 * @param \DBConnRef $dbw
+	 * @param DBConnRef $dbw
 	 * @return void
 	 */
-	public static function runAutoMaintenance( \DBConnRef $dbw ) {
+	public static function runAutoMaintenance( DBConnRef $dbw ) {
 		global $wgMWOAuthRequestExpirationAge;
 
 		if ( $wgMWOAuthRequestExpirationAge <= 0 ) {
@@ -131,7 +133,7 @@ class MWOAuthUtils {
 			new \AutoCommitUpdate(
 				$dbw,
 				__METHOD__,
-				function ( \IDatabase $dbw ) use ( $cutoff ) {
+				function ( IDatabase $dbw ) use ( $cutoff ) {
 					$dbw->update(
 						'oauth_registered_consumer',
 						[

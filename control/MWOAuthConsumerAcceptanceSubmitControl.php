@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use Wikimedia\Rdbms\DBConnRef;
+
 /**
  * (c) Aaron Schulz 2013, GPL
  *
@@ -30,15 +32,15 @@ namespace MediaWiki\Extensions\OAuth;
  * @TODO: improve error messages
  */
 class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
-	/** @var \DBConnRef */
+	/** @var DBConnRef */
 	protected $dbw;
 
 	/**
 	 * @param \IContextSource $context
 	 * @param array $params
-	 * @param \DBConnRef $dbw Result of MWOAuthUtils::getCentralDB( DB_MASTER )
+	 * @param DBConnRef $dbw Result of MWOAuthUtils::getCentralDB( DB_MASTER )
 	 */
-	public function __construct( \IContextSource $context, array $params, \DBConnRef $dbw ) {
+	public function __construct( \IContextSource $context, array $params, DBConnRef $dbw ) {
 		parent::__construct( $context, $params );
 		$this->dbw = $dbw;
 	}
