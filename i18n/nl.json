@@ -161,7 +161,7 @@
 	"mwoauthlistconsumers-status-rejected": "afgewezen",
 	"mwoauthlistconsumers-status-expired": "verlopen",
 	"oauthmanagemygrants": "Gekoppelde toepassingen beheren",
-	"mwoauthmanagemygrants-text": "Op deze pagina worden alle toepassingen weergegeven die toegang hebben tot uw gebruikersaccount. Iedere toepassing kan alleen dat doen waar u de toepassing voor heeft gemachtigd. Als u toepassingen afzonderlijk toegang heeft gegeven tot uw gebruikersaccount op zusterprojecten, dan ziet u hieronder afzonderlijke instellingen voor elk project.\n\nGekoppelde toepassingen hebben toegang tot uw gebruikersaccount via het protocol OAuth. <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Meer over gekoppelde toepassingen]</span>.",
+	"mwoauthmanagemygrants-text": "Op deze pagina worden alle toepassingen weergegeven die toegang hebben tot uw gebruikersaccount. Iedere toepassing kan alleen dat doen waar u deze voor hebt gemachtigd. Als u een toepassing afzonderlijk toegang hebt gegeven tot uw gebruikersaccount op zusterprojecten, dan ziet u hieronder afzonderlijke instellingen voor elk van die projecten.\n\nGekoppelde toepassingen hebben toegang tot uw account via het protocol OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Meer over gekoppelde toepassingen])</span>",
 	"mwoauthmanagemygrants-notloggedin": "U moet aangemeld zijn om toegang te krijgen tot deze pagina.",
 	"mwoauthmanagemygrants-navigation": "Navigatie:",
 	"mwoauthmanagemygrants-showlist": "Lijst met gekoppelde toepassingen",
