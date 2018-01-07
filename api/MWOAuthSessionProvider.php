@@ -7,6 +7,7 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
 use WebRequest;
+use Wikimedia\Rdbms\DBError;
 
 /**
  * Session provider for OAuth
@@ -180,7 +181,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 				[ 'oaac_user_id' => $id ],
 				__METHOD__
 			);
-		} catch ( \DBError $e ) {
+		} catch ( DBError $e ) {
 			$dbw->rollback( __METHOD__ );
 			throw $e;
 		}

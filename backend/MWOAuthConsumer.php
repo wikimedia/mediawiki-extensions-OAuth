@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use Wikimedia\Rdbms\DBConnRef;
+
 /**
  * (c) Aaron Schulz 2013, GPL
  *
@@ -158,12 +160,12 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param \DBConnRef $db
+	 * @param DBConnRef $db
 	 * @param string $key
 	 * @param int $flags MWOAuthConsumer::READ_* bitfield
 	 * @return MWOAuthConsumer|bool
 	 */
-	public static function newFromKey( \DBConnRef $db, $key, $flags = 0 ) {
+	public static function newFromKey( DBConnRef $db, $key, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
 			[ 'oarc_consumer_key' => (string)$key ],
@@ -181,7 +183,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param \DBConnRef $db
+	 * @param DBConnRef $db
 	 * @param string $name
 	 * @param string $version
 	 * @param int $userId Central user ID
@@ -189,7 +191,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	 * @return MWOAuthConsumer|bool
 	 */
 	public static function newFromNameVersionUser(
-		\DBConnRef $db, $name, $version, $userId, $flags = 0
+		DBConnRef $db, $name, $version, $userId, $flags = 0
 	) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
@@ -283,7 +285,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$this->grants = (array)$this->grants; // sanity
 	}
 
-	protected function encodeRow( \DBConnRef $db, $row ) {
+	protected function encodeRow( DBConnRef $db, $row ) {
 		// For compatibility with other wikis in the farm, un-remap some grants
 		foreach ( self::$mapBackCompatGrants as $old => $new ) {
 			while ( ( $i = array_search( $new, $row['oarc_grants'], true ) ) !== false ) {
@@ -300,7 +302,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		return $row;
 	}
 
-	protected function decodeRow( \DBConnRef $db, $row ) {
+	protected function decodeRow( DBConnRef $db, $row ) {
 		$row['oarc_registration'] = wfTimestamp( TS_MW, $row['oarc_registration'] );
 		$row['oarc_stage_timestamp'] = wfTimestamp( TS_MW, $row['oarc_stage_timestamp'] );
 		$row['oarc_restrictions'] = \MWRestrictions::newFromJson( $row['oarc_restrictions'] );

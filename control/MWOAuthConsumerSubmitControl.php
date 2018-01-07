@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use Wikimedia\Rdbms\DBConnRef;
+
 /**
  * (c) Aaron Schulz 2013, GPL
  *
@@ -37,15 +39,15 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	 */
 	public static $actions = [ 'propose', 'update', 'approve', 'reject', 'disable', 'reenable' ];
 
-	/** @var \DBConnRef */
+	/** @var DBConnRef */
 	protected $dbw;
 
 	/**
 	 * @param \IContextSource $context
 	 * @param array $params
-	 * @param \DBConnRef $dbw Result of MWOAuthUtils::getCentralDB( DB_MASTER )
+	 * @param DBConnRef $dbw Result of MWOAuthUtils::getCentralDB( DB_MASTER )
 	 */
-	public function __construct( \IContextSource $context, array $params, \DBConnRef $dbw ) {
+	public function __construct( \IContextSource $context, array $params, DBConnRef $dbw ) {
 		parent::__construct( $context, $params );
 		$this->dbw = $dbw;
 	}
@@ -446,17 +448,17 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	}
 
 	/**
-	 * @param \DBConnRef $db
+	 * @param DBConnRef $db
 	 * @param int $userId
 	 * @return \Title
 	 */
-	protected function getLogTitle( \DBConnRef $db, $userId ) {
+	protected function getLogTitle( DBConnRef $db, $userId ) {
 		$name = MWOAuthUtils::getCentralUserNameFromId( $userId );
 		return \Title::makeTitleSafe( NS_USER, $name );
 	}
 
 	/**
-	 * @param \DBConnRef $dbw
+	 * @param DBConnRef $dbw
 	 * @param MWOAuthConsumer $cmr
 	 * @param string $action
 	 * @param \User $performer

@@ -3,11 +3,12 @@
 namespace MediaWiki\Extensions\OAuth;
 
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Rdbms\DBConnRef;
 
 class MWOAuthDataStore extends OAuthDataStore {
-	/** @var \DBConnRef DB for the consumer/grant registry */
+	/** @var DBConnRef DB for the consumer/grant registry */
 	protected $centralSlave;
-	/** @var \DBConnRef|null Master DB for repeated lookup in case of replication lag problems;
+	/** @var DBConnRef|null Master DB for repeated lookup in case of replication lag problems;
 	 *    null if there is no separate master and slave DB */
 	protected $centralMaster;
 	/** @var \BagOStuff Cache for Tokens and Nonces */
@@ -17,12 +18,12 @@ class MWOAuthDataStore extends OAuthDataStore {
 	protected $logger;
 
 	/**
-	 * @param \DBConnRef $centralSlave Central DB slave
-	 * @param \DBConnRef|null $centralMaster Central DB master (if different)
+	 * @param DBConnRef $centralSlave Central DB slave
+	 * @param DBConnRef|null $centralMaster Central DB master (if different)
 	 * @param \BagOStuff $cache
 	 */
-	public function __construct( \DBConnRef $centralSlave, $centralMaster, \BagOStuff $cache ) {
-		if ( $centralMaster !== null && !( $centralMaster instanceof \DBConnRef ) ) {
+	public function __construct( DBConnRef $centralSlave, $centralMaster, \BagOStuff $cache ) {
+		if ( $centralMaster !== null && !( $centralMaster instanceof DBConnRef ) ) {
 			throw new \InvalidArgumentException(
 				__METHOD__ . ': $centralMaster must be a DB or null'
 			);

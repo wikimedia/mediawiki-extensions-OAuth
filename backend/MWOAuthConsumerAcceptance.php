@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use Wikimedia\Rdbms\DBConnRef;
+
 /**
  (c) Aaron Schulz 2013, GPL
 
@@ -73,12 +75,12 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param \DBConnRef $db
+	 * @param DBConnRef $db
 	 * @param string $token Access token
 	 * @param int $flags MWOAuthConsumerAcceptance::READ_* bitfield
 	 * @return MWOAuthConsumerAcceptance|bool
 	 */
-	public static function newFromToken( \DBConnRef $db, $token, $flags = 0 ) {
+	public static function newFromToken( DBConnRef $db, $token, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
 			[ 'oaac_access_token' => (string)$token ],
@@ -96,7 +98,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param \DBConnRef $db
+	 * @param DBConnRef $db
 	 * @param String $userId of user who authorized (central wiki's id)
 	 * @param MWOAuthConsumer $consumer
 	 * @param String $wiki wiki associated with the acceptance
@@ -104,7 +106,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	 * @return MWOAuthConsumerAcceptance|bool
 	 */
 	public static function newFromUserConsumerWiki(
-		\DBConnRef $db, $userId, $consumer, $wiki, $flags = 0
+		DBConnRef $db, $userId, $consumer, $wiki, $flags = 0
 	) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
@@ -133,7 +135,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		$this->grants = (array)$this->grants; // sanity
 	}
 
-	protected function encodeRow( \DBConnRef $db, $row ) {
+	protected function encodeRow( DBConnRef $db, $row ) {
 		// For compatibility with other wikis in the farm, un-remap some grants
 		foreach ( MWOAuthConsumer::$mapBackCompatGrants as $old => $new ) {
 			while ( ( $i = array_search( $new, $row['oaac_grants'], true ) ) !== false ) {
@@ -146,7 +148,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		return $row;
 	}
 
-	protected function decodeRow( \DBConnRef $db, $row ) {
+	protected function decodeRow( DBConnRef $db, $row ) {
 		$row['oaac_grants'] = \FormatJson::decode( $row['oaac_grants'], true );
 		$row['oaac_accepted'] = wfTimestamp( TS_MW, $row['oaac_accepted'] );
 
