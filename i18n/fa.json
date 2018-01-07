@@ -12,7 +12,8 @@
 			"Dalba",
 			"Mardetanha",
 			"Hosseinblue",
-			"Huji"
+			"Huji",
+			"Ladsgroup"
 		]
 	},
 	"oauth": "OAuth",
@@ -40,7 +41,7 @@
 	"mwoauth-consumer-wiki-thiswiki": "پروژه فعلی ( $1 )",
 	"mwoauth-consumer-restrictions": "محدودیت استفاده از:",
 	"mwoauth-consumer-restrictions-json": "محدودیت استفاده از  (JSON):",
-	"mwoauth-consumer-rsakey": "کلید عمومی RSA:",
+	"mwoauth-consumer-rsakey": "کلید عمومی RSA (اختیاری):",
 	"mwoauth-consumer-secretkey": " نشانه‌های مخفی مصرف‌کننده:",
 	"mwoauth-consumer-accesstoken": "رمز دسترسی:",
 	"mwoauth-consumer-reason": "دلیل:",
