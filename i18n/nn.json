@@ -5,7 +5,7 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "Tilkopla småprogram:",
-	"mwoauth-prefs-managegrantslink": "Handsam {{PLURAL:$1|eitt tilknytt småprogram|$1 tilknytte småprogram}}",
+	"mwoauth-prefs-managegrantslink": "Handsam {{PLURAL:$1|eitt tilkopla småprogram|$1 tilkopla småprogram}}",
 	"mwoauth-consumer-allwikis": "Alle prosjekta på denne nettstaden",
 	"mwoauth-consumer-name": "Programnamn:",
 	"mwoauth-consumer-user": "Utgjevar:",
@@ -22,7 +22,7 @@
 	"mwoauthmanagemygrants-revoke": "ta frå tilgang",
 	"mwoauthmanagemygrants-grantaccept": "Gjeve",
 	"mwoauthmanagemygrants-update-text": "Nytt skjemaet under for å endra løyva gjevne til eit småprogram for å handla på dine vegner.",
-	"mwoauthmanagemygrants-confirm-legend": "Handsam tilknytt program",
+	"mwoauthmanagemygrants-confirm-legend": "Handsam tilkopla småprogram",
 	"mwoauthmanagemygrants-update": "Oppdater løyve",
 	"mwoauth-form-description-allwikis": "Hei $1,\n\nfor å fullføra førespurnaden treng '''$2''' løyve til å utføra desse handlingane på dine vegner på alle prosjekta på denne nettstaden:\n\n$4",
 	"mwoauth-form-description-onewiki": "Hei $1,\n\nfor å fullføra førespurnaden treng '''$2''' løyve til å utføra desse handlingane på dine vegner på ''$4'':\n\n$5"

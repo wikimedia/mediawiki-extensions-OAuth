@@ -5,5 +5,8 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "ڳنڍيل ايپس:",
+	"mwoauth-consumer-email": "رابطي جو برقٽپال پتو:",
+	"mwoauthconsumerregistration-email": "رابطي جي برقٽپال",
+	"mwoauthmanageconsumers-email": "رابطي جي برقٽپال",
 	"mwoauth-form-button-cancel": "رد"
 }
