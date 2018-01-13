@@ -98,6 +98,7 @@
 	"right-mwoauthviewprivate": "Podgląd prywatnych danych OAuth",
 	"right-mwoauthmanagemygrants": "Zarządzanie włączonymi aplikacjami OAuth",
 	"action-mwoauthmanageconsumer": "zarządzanie konsumentami OAuth",
+	"echo-pref-tooltip-oauth-owner": "Powiadamiaj mnie o zdarzeniach związanych z aplikacjami OAuth, które utworzyłem.",
 	"echo-category-title-oauth-admin": "Administrator OAuth",
 	"notification-oauth-app-body": "Powód: $1"
 }
