@@ -138,7 +138,7 @@
 	"mwoauthmanageconsumers-reject": "Used as label for the radio box.\n{{Related|Mwoauthmanageconsumers}}\n{{Identical|Rejected}}",
 	"mwoauthmanageconsumers-rsuppress": "Used as label for the radio box.\n{{Related|Mwoauthmanageconsumers}}",
 	"mwoauthmanageconsumers-disable": "Used as label for the radio box.\n{{Related|Mwoauthmanageconsumers}}\n{{Identical|Disabled}}",
-	"mwoauthmanageconsumers-dsuppress": "Used as label for the radio box.\n{{Related|Mwoauthmanageconsumers}}",
+	"mwoauthmanageconsumers-dsuppress": "Used as label for the radio box. Describes a consumer.\n{{Related|Mwoauthmanageconsumers}}",
 	"mwoauthmanageconsumers-reenable": "Used as label for the radio box.\n{{Related|Mwoauthmanageconsumers}}\n{{Identical|Approved}}",
 	"mwoauthmanageconsumers-reason": "Used as label for the \"Reason\" input box.\n{{Identical|Reason}}",
 	"mwoauthmanageconsumers-confirm-submit": "Used as label for the Submit button.",
