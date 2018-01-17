@@ -32,6 +32,7 @@
 	"mwoauth-consumer-stage": "Estado actual:",
 	"mwoauth-consumer-email": "Correo electrónico de contacto:",
 	"mwoauth-consumer-description": "Descripción de la aplicación:",
+	"mwoauth-consumer-callbackurl": "URL de devolución de llamada de OAuth:",
 	"mwoauth-consumer-granttypes": "Tipo de subvenciones que se solicitan:",
 	"mwoauth-consumer-wiki-thiswiki": "Proyecto actual ($1)",
 	"mwoauth-consumer-restrictions": "Restricciones de uso:",
