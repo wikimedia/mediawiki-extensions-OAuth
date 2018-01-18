@@ -257,6 +257,13 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 					'type' => 'info',
 					'raw' => true,
 					'default' => MWOAuthUIUtils::generateInfoTable( [
+						// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
+						// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
+						// mwoauth-consumer-stage-disabled
+						'mwoauth-consumer-stage' => $cmr->get( 'deleted' )
+							? $this->msg( 'mwoauth-consumer-stage-suppressed' )
+							: $this->msg( 'mwoauth-consumer-stage-' .
+								MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )] ),
 						'mwoauth-consumer-key' => $cmr->get( 'consumerKey' ),
 						'mwoauth-consumer-name' => new HtmlSnippet( $cmr->get( 'name', function ( $s ) {
 							$link = \Linker::linkKnown(
@@ -287,13 +294,6 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 						'mwoauth-consumer-restrictions-json' => $restrictions instanceof \MWRestrictions ?
 							$restrictions->toJson( true ) : $restrictions,
 						'mwoauth-consumer-rsakey' => $cmr->get( 'rsaKey' ),
-						// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
-						// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
-						// mwoauth-consumer-stage-disabled
-						'mwoauth-consumer-stage' => $cmr->get( 'deleted' )
-							? $this->msg( 'mwoauth-consumer-stage-suppressed' )
-							: $this->msg( 'mwoauth-consumer-stage-' .
-								MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )] ),
 					], $this->getContext() ),
 				],
 				'action' => [
