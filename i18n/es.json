@@ -121,7 +121,7 @@
 	"mwoauthlistconsumers-description": "Descripción",
 	"mwoauthlistconsumers-wiki": "Proyecto aplicable",
 	"mwoauthlistconsumers-callbackurl": "«URL de devolución de llamada» de OAuth",
-	"mwoauthlistconsumers-callbackisprefix": "Permite al consumidor especificar una devolución de llamada en peticiones y usar el URL de devolución de llamada especificado arriba como prefijo requerido.",
+	"mwoauthlistconsumers-callbackisprefix": "Permitir al consumidor especificar una devolución de llamadas en las solicitudes y utilizar el URL anterior como prefijo obligatorio.",
 	"mwoauthlistconsumers-grants": "Permisos aplicables",
 	"mwoauthlistconsumers-basicgrantsonly": "(solo acceso básico)",
 	"mwoauthlistconsumers-status": "Estado",
