@@ -93,13 +93,11 @@
 	},
 	"ResourceModules": {
 		"ext.MWOAuth.BasicStyles": {
-			"position": "top",
 			"styles": [
 				"ext.MWOAuth.BasicStyles.css"
 			]
 		},
 		"ext.MWOAuth.AuthorizeForm": {
-			"position": "top",
 			"styles": [
 				"ext.MWOAuth.AuthorizeForm.css"
 			]
