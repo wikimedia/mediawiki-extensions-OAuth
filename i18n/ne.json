@@ -3,7 +3,8 @@
 		"authors": [
 			"Nirjal stha",
 			"NehalDaveND",
-			"राम प्रसाद जोशी"
+			"राम प्रसाद जोशी",
+			"सरोज कुमार ढकाल"
 		]
 	},
 	"mwoauth-consumer-granttypes": "निवेदन गरिएको अनुदानको प्रकारः",
@@ -18,5 +19,5 @@
 	"mwoauthlistconsumers-status": "स्थिति",
 	"mwoauthmanagemygrants-description": "विवरण",
 	"mwoauth-form-button-cancel": "रद्द गर्ने",
-	"mwoauth-granttype-normal": "विशेष अनुमति अधिकारको लागी निवेदन गर्नुहोस् ।"
+	"mwoauth-granttype-normal": "विशेष अनुमति अधिकारको लागि निवेदन गर्नुहोस् ।"
 }
