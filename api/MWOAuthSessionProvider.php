@@ -125,7 +125,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 		if ( $this->sessionCookieName === null ) {
 			// We're not configured to use cookies, so concatenate some of the
 			// internal consumer-acceptance state to generate an ID.
-			$id = $this->hashToSessionId( join( "\n", [
+			$id = $this->hashToSessionId( implode( "\n", [
 				$access->get( 'id' ),
 				$access->get( 'wiki' ),
 				$access->get( 'userId' ),

@@ -24,7 +24,7 @@ namespace MediaWiki\Extensions\OAuth;
 /**
  * @copyright © 2017 Wikimedia Foundation and contributors
  */
-class MWOAuthServerTest extends \PHPUnit_Framework_TestCase {
+class MWOAuthServerTest extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * @param bool $expect Expectation
