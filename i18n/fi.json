@@ -3,7 +3,8 @@
 		"authors": [
 			"Nike",
 			"Pxos",
-			"Stryn"
+			"Stryn",
+			"Pyscowicz"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Liitetyt sovellukset:",
@@ -24,9 +25,12 @@
 	"mwoauth-consumer-stage-approved": "hyväksytty",
 	"mwoauth-consumer-stage-disabled": "poistettu käytöstä",
 	"mwoauth-consumer-stage-suppressed": "häivytetty",
+	"mwoauthconsumerregistration-user": "Julkaisija",
+	"mwoauthmanageconsumers-user": "Julkaisija",
 	"oauthlistconsumers": "Luettele OAuth-sovellukset",
 	"mwoauthlistconsumers-legend": "Selaa OAuth-sovelluksia",
 	"mwoauthlistconsumers-name": "Sovelluksen nimi",
+	"mwoauthlistconsumers-user": "Julkaisija",
 	"mwoauth-consumer-stage-any": "mikä tahansa",
 	"mwoauthlistconsumers-status-proposed": "ehdotettu",
 	"mwoauthlistconsumers-status-approved": "hyväksytty",
