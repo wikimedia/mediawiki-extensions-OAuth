@@ -31,7 +31,7 @@ require_once __DIR__ . '/common.php';
 /**
  * @group OAuth
  */
-class OAuthConsumerTest extends \PHPUnit_Framework_TestCase {
+class OAuthConsumerTest extends \PHPUnit\Framework\TestCase {
 	public function testConvertToString() {
 		$consumer = new OAuthConsumer('key', 'secret');
 		$this->assertEquals('OAuthConsumer[key=key,secret=secret]', (string) $consumer);

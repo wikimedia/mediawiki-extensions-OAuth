@@ -32,7 +32,7 @@ require_once __DIR__ . '/common.php';
  * Tests of OAuthUtil
  * @group OAuth
  */
-class OAuthUtilTest extends \PHPUnit_Framework_TestCase {
+class OAuthUtilTest extends \PHPUnit\Framework\TestCase {
 	public function testUrlencode() {
 		// Tests taken from
 		// http://wiki.oauth.net/TestCases ("Parameter Encoding")

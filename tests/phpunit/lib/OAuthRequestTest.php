@@ -40,7 +40,7 @@ require_once __DIR__ . '/common.php';
  *
  * @group OAuth
  */
-class OAuthRequestTest extends \PHPUnit_Framework_TestCase {
+class OAuthRequestTest extends \PHPUnit\Framework\TestCase {
 	public function testCanGetSingleParameter() {
 		// Yes, a awesomely boring test.. But if this doesn't work, the other tests is unreliable
 		$request = new OAuthRequest('', '', array('test'=>'foo'));

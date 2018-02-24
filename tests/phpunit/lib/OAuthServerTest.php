@@ -33,7 +33,7 @@ require_once __DIR__ . '/Mock_OAuthDataStore.php';
  * Tests of OAuthUtil
  * @group OAuth
  */
-class OAuthServerTest extends \PHPUnit_Framework_TestCase {
+class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 	private $consumer;
 	private $request_token;
 	private $access_token;
