@@ -8,7 +8,8 @@
 			"محمد أحمد عبد الفتاح",
 			"Meno25",
 			"Moud hosny",
-			"ديفيد"
+			"ديفيد",
+			"علاء"
 		]
 	},
 	"mwoauth-verified": "تم السماح لهذا التطبيق بالولوج الى الميدياويكي نيابة عنك.\n\nلإتمام هذه العملية، الرجاء نقل رمز التأكيد الى التطبيق : '''$1'''",
@@ -58,6 +59,7 @@
 	"action-mwoauthproposeconsumer": "اقتراح مستهلكي OAuth جدد",
 	"action-mwoauthupdateownconsumer": "تحديث مستهلكي OAuth الذين تتحكم بهم",
 	"action-mwoauthviewsuppressed": "عرض مستهلكي OAuth المخفيين",
+	"mwoauth-botpasswords-note": "<strong>ملاحظة:</strong> <span class=\"plainlinks\"> [$1 أوث]</span> أكثر أمانًا من كلمات سر البوت ويجب تفضيل استعماله كلما كان البوت يدعم ذلك.",
 	"echo-pref-tooltip-oauth-owner": "اخطرني بالأحداث المتعلقة بتطبيقات OAuth التي قمت بإنشائها.",
 	"notification-oauth-app-propose-primary-link": "مراجعة التطبيق",
 	"notification-oauth-app-update-primary-link": "مراجعة التطبيق",
