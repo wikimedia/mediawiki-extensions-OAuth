@@ -64,5 +64,6 @@
 	"mwoauth-form-button-approve": "Engedélyezés",
 	"mwoauth-form-button-cancel": "Mégse",
 	"mwoauth-grants-heading": "Kért engedélyek:",
-	"mwoauth-grants-nogrants": "Ez az alkalmazás nem kért semmilyen engedélyt."
+	"mwoauth-grants-nogrants": "Ez az alkalmazás nem kért semmilyen engedélyt.",
+	"echo-category-title-oauth-owner": "OAuth-fejlesztés"
 }

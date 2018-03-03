@@ -3,13 +3,14 @@
 		"authors": [
 			"Milicevic01",
 			"Сербијана",
-			"Obsuser"
+			"Obsuser",
+			"Acamicamacaraca"
 		]
 	},
 	"mwoauth-field-hidden": "(ова информација је скривена)",
 	"mwoauth-field-private": "(ова информација је приватна)",
 	"mwoauth-prefs-managegrants": "Повезане апликације:",
-	"mwoauth-prefs-managegrantslink": "Управљај повезаним апликацијама ({{PLURAL:$1|$1}})",
+	"mwoauth-prefs-managegrantslink": "управљај с $1 {{PLURAL:$1|апликацијом|апликације|апликација}}",
 	"mwoauth-consumer-allwikis": "Свим пројектима на овом сајту",
 	"mwoauth-consumer-name": "Име апликације:",
 	"mwoauth-consumer-user": "Издавач:",
