@@ -45,5 +45,6 @@
 	"mwoauth-form-button-approve": "Salli",
 	"mwoauth-form-button-cancel": "Peruuta",
 	"mwoauth-error": "Sovelluksen yhteysvirhe",
-	"mwoauth-grants-heading": "Pyydetyt oikeudet:"
+	"mwoauth-grants-heading": "Pyydetyt oikeudet:",
+	"echo-category-title-oauth-owner": "OAuth-kehitys"
 }
