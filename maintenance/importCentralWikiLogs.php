@@ -51,6 +51,7 @@ class MigrateCentralWikiLogs extends Maintenance {
 
 		$commentStore = CommentStore::getStore();
 		$commentQuery = $commentStore->getJoin( 'log_comment' );
+		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
 
 		do {
 			$conds = [ 'log_type' => 'mwoauthconsumer' ];
@@ -63,17 +64,17 @@ class MigrateCentralWikiLogs extends Maintenance {
 			}
 
 			$oldLoggs = $oldDb->select(
-				[ 'logging' ] + $commentQuery['tables'],
-				[ 'log_id', 'log_action', 'log_timestamp', 'log_user',
-					'log_user_text', 'log_params', 'log_deleted'
-				] + $commentQuery['fields'],
+				[ 'logging' ] + $commentQuery['tables'] + $actorQuery['tables'],
+				[
+					'log_id', 'log_action', 'log_timestamp', 'log_params', 'log_deleted'
+				] + $commentQuery['fields'] + $actorQuery['fields'],
 				$conds,
 				__METHOD__,
 				[
 					'ORDER BY' => 'log_timestamp DESC',
 					'LIMIT' => $this->mBatchSize + 1,
 				],
-				$commentQuery['joins']
+				$commentQuery['joins'] + $actorQuery['joins']
 			);
 
 			$rowCount = $oldLoggs->numRows();
