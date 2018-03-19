@@ -8,9 +8,11 @@
 			"Vuh",
 			"WTM",
 			"Alan ffm",
-			"Sp5uhe"
+			"Sp5uhe",
+			"Railfail536"
 		]
 	},
+	"mwoauth-desc": "Umożliwia korzystanie z OAuth 1.0a w celu autoryzacji API",
 	"mwoauth-db-readonly": "Bazy danych OAuth jest tymczasowo zablokowana. Proszę spróbować ponownie za kilka minut.",
 	"mwoauth-missing-field": "Brak wartości dla pola „$1”",
 	"mwoauth-invalid-field": "W polu „$1” podano nieprawidłową wartość",
@@ -38,6 +40,7 @@
 	"mwoauth-consumer-stage-disabled": "wyłączone",
 	"oauthconsumerregistration": "Rejestracja konsumenta OAuth",
 	"mwoauthconsumerregistration-navigation": "Nawigacja:",
+	"mwoauthconsumerregistration-user": "Wydawca",
 	"mwoauthconsumerregistration-description": "Opis",
 	"mwoauthconsumerregistration-stage": "Status",
 	"mwoauthconsumerregistration-lastchange": "Ostatnia zmiana",
