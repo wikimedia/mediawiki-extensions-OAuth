@@ -7,7 +7,7 @@
 	"mwoauth-prefs-managegrants": "Ekoppelde toepassigen:",
 	"mwoauth-prefs-managegrantslink": "$1 ekoppelde {{PLURAL:$1|toepassige|toepassigen}} beheren",
 	"mwoauthconsumerregistration-navigation": "Navigasie:",
-	"mwoauthconsumerregistration-main": "Veurblad",
+	"mwoauthconsumerregistration-main": "Startsyde",
 	"mwoauthconsumerregistration-stage": "Staotus",
 	"oauthlistconsumers": "Lieste mit OAuth-toepassingen",
 	"mwoauthserver-invalid-user": "Um gebruuk te kunnen maken van ekoppelde toepassigen op disse webstee, mu'j n gebruker hebben op alle projekten. A'j n gebruker hebben op alle projekten, ku'j \"$1\" opniej proberen te koppelen.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Samenevoegd anmelden noodzakelik, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
