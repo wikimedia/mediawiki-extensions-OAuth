@@ -172,6 +172,7 @@
 	"mwoauthdatastore-bad-verifier": "El código de verificación proporcionado no es válido.",
 	"mwoauthdatastore-invalid-token-type": "El tipo de ficha solicitado no es válido.",
 	"mwoauthgrants-general-error": "Hay un error en la solicitud de OAuth.",
+	"mwoauthserver-bad-consumer": "«$1» no se ha aprobado como aplicación conectada. [$2 Ponte en contacto] con el autor de la aplicación para obtener ayuda.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Aplicación conectada por OAuth no aprobada, $3</span>",
 	"mwoauthserver-insufficient-rights": "Tu cuenta no tiene permitido utilizar aplicaciones conectadas. Ponte en contacto con un administrador del sitio para saber por qué.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Privilegios de usuario OAuth insuficientes, $1</span>",
 	"mwoauthserver-consumer-no-secret": "Se produjo un error al conectar con esta aplicación.\n\n<span class=\"plainlinks mw-mwoautherror-details\">El consumidor no tiene ninguna clave secreta; $1</span>",
 	"mwoauthserver-consumer-owner-only": "«$1» es una aplicación conectada reservada al propietario. Para recuperar el pase de acceso, consulta [[$2]].\n\n<span class=\"plainlinks mw-mwoautherror-details\">El consumidor es exclusivo del propietario, $3</span>",
