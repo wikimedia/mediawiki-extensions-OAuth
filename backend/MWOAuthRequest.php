@@ -8,7 +8,7 @@ use MediaWiki\Logger\LoggerFactory;
  * @file
  * @ingroup OAuth
  *
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  * @author Chris Steipp
  */
 
