@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use ApiMessage;
 use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionInfo;
