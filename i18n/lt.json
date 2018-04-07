@@ -13,5 +13,6 @@
 	"oauthmanagemygrants": "Tvarkyti susietas programas",
 	"mwoauth-form-description-allwikis-nogrants": "Sveiki $1,\n\nNorėdami įvykdyti jūsų prašymą, '''$2''' reikia leidimo pasiekti informaciją visuose šio puslapio projektuose jūsų vardu. Tai nepaveiks jūsų paskyros.",
 	"echo-pref-tooltip-oauth-owner": "Pranešti man apie įvykius, susijusius su OAuth paraiškomis, kurias aš sukūriau.",
-	"echo-pref-tooltip-oauth-admin": "Pranešti man apie įvykius, susijusius su OAuth paraiškų peržiūromis."
+	"echo-pref-tooltip-oauth-admin": "Pranešti man apie įvykius, susijusius su OAuth paraiškų peržiūromis.",
+	"notification-oauth-app-body": "Priežastis: $1"
 }
