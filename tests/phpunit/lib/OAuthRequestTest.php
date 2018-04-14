@@ -1,7 +1,4 @@
 <?php
-
-namespace MediaWiki\Extensions\OAuth;
-
 /**
  * The MIT License
  *
@@ -26,6 +23,10 @@ namespace MediaWiki\Extensions\OAuth;
  * THE SOFTWARE.
  */
 
+namespace MediaWiki\Extensions\OAuth;
+
+use PHPUnit4And6Compat;
+
 require_once __DIR__ . '/common.php';
 
 /**
@@ -41,6 +42,8 @@ require_once __DIR__ . '/common.php';
  * @group OAuth
  */
 class OAuthRequestTest extends \PHPUnit\Framework\TestCase {
+	use PHPUnit4And6Compat;
+
 	public function testCanGetSingleParameter() {
 		// Yes, a awesomely boring test.. But if this doesn't work, the other tests is unreliable
 		$request = new OAuthRequest('', '', array('test'=>'foo'));

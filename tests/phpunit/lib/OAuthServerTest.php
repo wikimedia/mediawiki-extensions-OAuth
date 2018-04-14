@@ -1,7 +1,4 @@
 <?php
-
-namespace MediaWiki\Extensions\OAuth;
-
 /**
  * The MIT License
  *
@@ -26,6 +23,10 @@ namespace MediaWiki\Extensions\OAuth;
  * THE SOFTWARE.
  */
 
+namespace MediaWiki\Extensions\OAuth;
+
+use PHPUnit4And6Compat;
+
 require_once __DIR__ . '/common.php';
 require_once __DIR__ . '/Mock_OAuthDataStore.php';
 
@@ -34,6 +35,8 @@ require_once __DIR__ . '/Mock_OAuthDataStore.php';
  * @group OAuth
  */
 class OAuthServerTest extends \PHPUnit\Framework\TestCase {
+	use PHPUnit4And6Compat;
+
 	private $consumer;
 	private $request_token;
 	private $access_token;
