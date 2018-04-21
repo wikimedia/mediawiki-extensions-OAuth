@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"គីមស៊្រុន"
+		]
+	},
+	"mwoauth-field-hidden": "(ព័ត៌មាននេះត្រូវបានលាក់មិនអោយអ្នកដទៃមើលឃើញ)",
+	"mwoauth-field-private": "(ព័ត៌មាននេះត្រូវបានលាក់មិនអោយអ្នកដទៃមើលឃើញ)",
+	"mwoauth-prefs-managegrants": "កម្មវិធីភ្ជាប់មករួច៖",
+	"mwoauth-prefs-managegrantslink": "ចាត់ចែង{{PLURAL:$1|កម្មវិធី|កម្មវិធី}}ភ្ជាប់មករួចចំនួន$1",
+	"mwoauth-consumer-allwikis": "គម្រោងទាំងអស់នៅលើវិបសាយនេះ"
+}
