@@ -5,5 +5,7 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "Aplikaji relata:",
-	"mwoauth-prefs-managegrantslink": "Administrar $1 {{PLURAL:$1|aplikajo|aplikaji}} relata"
+	"mwoauth-prefs-managegrantslink": "Administrar $1 {{PLURAL:$1|aplikajo|aplikaji}} relata",
+	"notification-oauth-app-reject-primary-link": "Montrez 'app'",
+	"notification-oauth-app-disable-primary-link": "Vidar 'app'"
 }
