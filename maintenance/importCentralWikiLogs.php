@@ -49,8 +49,8 @@ class MigrateCentralWikiLogs extends Maintenance {
 			$lastMinTimestamp = $targetMinTS;
 		}
 
-		$commentStore = CommentStore::newKey( 'log_comment' );
-		$commentQuery = $commentStore->getJoin();
+		$commentStore = CommentStore::getStore();
+		$commentQuery = $commentStore->getJoin( 'log_comment' );
 
 		do {
 			$conds = [ 'log_type' => 'mwoauthconsumer' ];
@@ -118,7 +118,7 @@ class MigrateCentralWikiLogs extends Maintenance {
 				$logEntry = new ManualLogEntry( 'mwoauthconsumer', $row->log_action );
 				$logEntry->setPerformer( $logUser );
 				$logEntry->setTarget( Title::makeTitleSafe( NS_USER, $row->log_user_text ) );
-				$logEntry->setComment( $commentStore->getComment( $row )->text );
+				$logEntry->setComment( $commentStore->getComment( 'log_comment', $row )->text );
 				$logEntry->setParameters( $params );
 				$logEntry->setRelations( [
 					'OAuthConsumer' => [ $params['4:consumer'] ]
