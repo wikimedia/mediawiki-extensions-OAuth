@@ -6,10 +6,12 @@
 			"Macofe"
 		]
 	},
+	"oauth": "OAuth",
 	"mwoauth-desc": "De Gebrauch vun OAuth 1.0a fir API Autorisatioun erlaben",
 	"mwoauth-verified": "D'Applikatioun ass elo berechtegt op MediaWiki an Ärem Numm zouzegräifen.\n\nFir de Prozess ofzeschléissen, gitt w.e.g. dëse Kontrollwäert un d'Applatioun virun: '''$1'''",
 	"mwoauth-db-readonly": "D'OAuth-Datebank ass temporär gespaart. Probéiert w.e.g. an e puer Minutte nach eng Kéier.",
 	"mwoauth-missing-field": "De Wäert fir d'Feld \"$1\" feelt",
+	"mwoauth-invalid-field": "Net valabele Wäert fir ''$1'' uginn",
 	"mwoauth-invalid-field-generic": "Net valabele Wäert uginn",
 	"mwoauth-field-hidden": "(dës Informatioun ass verstoppt)",
 	"mwoauth-field-private": "(dës Informatioun ass privat)",
@@ -19,6 +21,7 @@
 	"mwoauth-consumer-name": "Numm vun der Applicatioun:",
 	"mwoauth-consumer-stage": "Aktuelle Status:",
 	"mwoauth-consumer-email": "Kontakt-E-Mail-Adress:",
+	"mwoauth-consumer-owner-only-label": "Besëtzer-nëmmen:",
 	"mwoauth-consumer-description": "Beschreiwung vum Programm:",
 	"mwoauth-consumer-wiki-thiswiki": "Aktuelle Projet ($1)",
 	"mwoauth-consumer-reason": "Grond:",
@@ -50,6 +53,7 @@
 	"mwoauthmanageconsumers-linkdisabled": "desaktivéiert Ufroen",
 	"mwoauthmanageconsumers-main": "Haapt",
 	"mwoauthmanageconsumers-name": "Konsument",
+	"mwoauthmanageconsumers-user": "Editeur",
 	"mwoauthmanageconsumers-description": "Beschreiwung",
 	"mwoauthmanageconsumers-email": "Kontakt-E-Mail",
 	"mwoauthmanageconsumers-lastchange": "Lescht Ännerung",
