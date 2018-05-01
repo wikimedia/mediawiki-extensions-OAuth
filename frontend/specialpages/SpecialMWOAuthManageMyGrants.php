@@ -82,7 +82,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 	/**
 	 * Show other parent page link
 	 *
-	 * @param type $acceptanceId
+	 * @param string $acceptanceId
 	 * @return void
 	 */
 	protected function addSubtitleLinks( $acceptanceId ) {
@@ -263,7 +263,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 
 	/**
 	 * @param DBConnRef $db
-	 * @param stdclass $row
+	 * @param \stdClass $row
 	 * @return string
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
@@ -329,6 +329,11 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	public $mForm, $mConds;
 
+	/**
+	 * @param SpecialMWOAuthManageMyGrants $form
+	 * @param array $conds
+	 * @param int $centralUserId
+	 */
 	function __construct( $form, $conds, $centralUserId ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
@@ -354,7 +359,7 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param stdclass $row
+	 * @param \stdClass $row
 	 * @return string
 	 */
 	function formatRow( $row ) {

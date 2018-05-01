@@ -436,7 +436,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 	/**
 	 * @param DBConnRef $db
-	 * @param stdclass $row
+	 * @param \stdClass $row
 	 * @return string
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
@@ -543,7 +543,7 @@ class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
 	}
 
 	/**
-	 * @param stdclass $row
+	 * @param \stdClass $row
 	 * @return string
 	 */
 	function formatRow( $row ) {
