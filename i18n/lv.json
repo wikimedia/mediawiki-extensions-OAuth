@@ -26,7 +26,7 @@
 	"mwoauthmanagemygrants-user": "Izdevējs:",
 	"mwoauthmanagemygrants-wikiallowed": "Atļauts projektā:",
 	"mwoauthmanagemygrants-confirm-legend": "Pārvaldīt piesaistīto lietotni",
-	"mwoauthserver-invalid-request-token": "Nederīgs pieprasījuma marķieris.",
+	"mwoauthserver-invalid-request-token": "Nederīgs pieprasījuma kods.",
 	"mwoauth-invalid-authorization-title": "OAuth autorizācijas kļūda",
 	"mwoauth-form-description-allwikis": "Sveicināts, $1,\n\nPieprasījuma pabeigšanai '''$2''' nepieciešama atļauja, lai tavā vārdā veiktu šādas darbības visos šīs vietnes projektos:\n\n$4",
 	"mwoauth-form-description-onewiki": "Sveicināts, $1,\n\nPieprasījuma pabeigšanai '''$2''' nepieciešama atļauja, lai tavā vārdā veiktu šādas darbības ''$4'':\n\n$5",
