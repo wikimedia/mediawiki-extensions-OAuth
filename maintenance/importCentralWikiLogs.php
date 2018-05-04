@@ -16,6 +16,8 @@ if ( getenv( 'MW_INSTALL_PATH' ) ) {
 
 require_once "$IP/maintenance/Maintenance.php";
 
+use MediaWiki\MediaWikiServices;
+
 class MigrateCentralWikiLogs extends Maintenance {
 	public function __construct() {
 		parent::__construct();
@@ -32,8 +34,10 @@ class MigrateCentralWikiLogs extends Maintenance {
 		$this->output( "Moving OAuth logs from '$oldWiki' to '$targetWiki'\n" );
 
 		// We only read from $oldDb, but we do want to make sure we get the most recent logs.
-		$oldDb = wfGetLB( $oldWiki )->getConnectionRef( DB_MASTER, [], $oldWiki );
-		$targetDb = wfGetLB( $targetWiki )->getConnectionRef( DB_MASTER, [], $targetWiki );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$oldDb = $lbFactory->getMainLB( $oldWiki )->getConnectionRef( DB_MASTER, [], $oldWiki );
+		$targetDb = $lbFactory->getMainLB( $targetWiki )
+			->getConnectionRef( DB_MASTER, [], $targetWiki );
 
 		$targetMinTS = $targetDb->selectField(
 			'logging',

@@ -4,6 +4,7 @@ namespace MediaWiki\Extensions\OAuth;
 
 use EchoEvent;
 use Hooks;
+use MediaWiki\MediaWikiServices;
 use User;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
@@ -31,7 +32,8 @@ class MWOAuthUtils {
 	public static function getCentralDB( $index ) {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthReadOnly;
 
-		$db = wfGetLB( $wgMWOAuthCentralWiki )->getLazyConnectionRef(
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$db = $lbFactory->getMainLB( $wgMWOAuthCentralWiki )->getLazyConnectionRef(
 			$index, [], $wgMWOAuthCentralWiki );
 		$db->daoReadOnly = $wgMWOAuthReadOnly;
 		return $db;
@@ -194,8 +196,9 @@ class MWOAuthUtils {
 	 * @return MWOAuthServer with default configurations
 	 */
 	public static function newMWOAuthServer() {
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$dbr = self::getCentralDB( DB_REPLICA );
-		$dbw = wfGetLB()->getServerCount() > 1 ? self::getCentralDB( DB_MASTER ) : null;
+		$dbw = $lb->getServerCount() > 1 ? self::getCentralDB( DB_MASTER ) : null;
 		$store = new MWOAuthDataStore( $dbr, $dbw, self::getSessionCache() );
 		$server = new MWOAuthServer( $store );
 		$server->add_signature_method( new OAuthSignatureMethod_HMAC_SHA1() );

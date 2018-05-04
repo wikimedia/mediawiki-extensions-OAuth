@@ -25,6 +25,8 @@ if ( getenv( 'MW_INSTALL_PATH' ) ) {
 
 require_once "$IP/maintenance/Maintenance.php";
 
+use MediaWiki\MediaWikiServices;
+
 class MigrateCentralWiki extends \Maintenance {
 	public function __construct() {
 		parent::__construct();
@@ -56,8 +58,10 @@ class MigrateCentralWiki extends \Maintenance {
 				"or 'oauth_accepted_consumer'.\n", 1 );
 		}
 
-		$oldDb = wfGetLB( $oldWiki )->getConnectionRef( DB_MASTER, [], $oldWiki );
-		$targetDb = wfGetLB( $targetWiki )->getConnectionRef( DB_MASTER, [], $targetWiki );
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$oldDb = $lbFactory->getMainLB( $oldWiki )->getConnectionRef( DB_MASTER, [], $oldWiki );
+		$targetDb = $lbFactory->getMainLB( $targetWiki )
+			->getConnectionRef( DB_MASTER, [], $targetWiki );
 		$targetDb->daoReadOnly = false;
 
 		$newMax = $targetDb->selectField(
