@@ -200,7 +200,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	 * Attempt to validate and submit this data for the given action
 	 *
 	 * @param string $action
-	 * @return array Status
+	 * @return \Status
 	 */
 	abstract protected function processAction( $action );
 

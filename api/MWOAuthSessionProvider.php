@@ -39,8 +39,8 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 	 * Throw an exception, later
 	 *
 	 * @param string $key Key for the error message
-	 * @param mixed $param,... Parameters as strings.
-	 * @returns SessionInfo
+	 * @param mixed $params,... Parameters as strings.
+	 * @return SessionInfo
 	 */
 	private function makeException( $key /*, ... */ ) {
 		global $wgHooks;

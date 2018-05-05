@@ -43,7 +43,7 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 	 * @param MWOAuthDAO $dao
 	 * @param \RequestContext $context
 	 * @throws \MWException
-	 * @return MWOAuthDAOAccessControl
+	 * @return static|null|false
 	 */
 	final public static function wrap( $dao, \RequestContext $context ) {
 		if ( $dao instanceof MWOAuthDAO ) {

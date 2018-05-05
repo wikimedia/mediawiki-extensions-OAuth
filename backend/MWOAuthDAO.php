@@ -49,7 +49,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 
 	/**
 	 * @param array $values (field => value) map
-	 * @return MWOAuthDAO
+	 * @return static
 	 */
 	final public static function newFromArray( array $values ) {
 		$consumer = new static();
@@ -60,7 +60,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	/**
 	 * @param DBConnRef $db
 	 * @param array|\stdClass $row
-	 * @return MWOAuthDAO
+	 * @return static
 	 */
 	final public static function newFromRow( DBConnRef $db, $row ) {
 		$consumer = new static();
@@ -72,7 +72,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @param DBConnRef $db
 	 * @param int $id
 	 * @param int $flags MWOAuthDAO::READ_* bitfield
-	 * @return MWOAuthDAO|bool Returns false if not found
+	 * @return static|bool Returns false if not found
 	 * @throws DBError
 	 */
 	final public static function newFromId( DBConnRef $db, $id, $flags = 0 ) {

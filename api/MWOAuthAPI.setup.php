@@ -24,9 +24,9 @@ class MWOAuthAPISetup {
 	/**
 	 * Prevent redirects to canonical titles, since that's not what the OAuth
 	 * request signed.
-	 * @param WebRequest $request
-	 * @param Title $title
-	 * @param OutputPage $output
+	 * @param \WebRequest $request
+	 * @param \Title $title
+	 * @param \OutputPage $output
 	 * @return bool
 	 */
 	public static function onTestCanonicalRedirect( $request, $title, $output ) {

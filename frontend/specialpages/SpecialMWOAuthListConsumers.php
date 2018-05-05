@@ -207,7 +207,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 	/**
 	 * @param DBConnRef $db
-	 * @param stdclass $row
+	 * @param \stdClass $row
 	 * @return string
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
@@ -326,7 +326,7 @@ class MWOAuthListConsumersPager extends \AlphabeticPager {
 	}
 
 	/**
-	 * @param stdclass $row
+	 * @param \stdClass $row
 	 * @return string
 	 */
 	function formatRow( $row ) {
