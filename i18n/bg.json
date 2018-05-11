@@ -23,6 +23,8 @@
 	"mwoauth-consumer-stage-disabled": "изключено",
 	"mwoauth-consumer-stage-suppressed": "потиснато",
 	"mwoauthconsumerregistration-user": "Издател",
+	"mwoauthconsumerregistration-description": "Описание",
+	"mwoauthmanageconsumers-description": "Описание",
 	"oauthlistconsumers": "Списък на свързаните приложения",
 	"mwoauthlistconsumers-legend": "Преглед на приложенията, ползващи OAuth",
 	"mwoauthlistconsumers-description": "Описание",
