@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robin van der Vliet"
+			"Robin van der Vliet",
+			"Mafcadio"
 		]
 	},
 	"mwoauthconsumerregistration-description": "Descrive",
 	"mwoauthmanageconsumers-description": "Descrive",
 	"mwoauthlistconsumers-description": "Descrive",
+	"oauthmanagemygrants": "Maneja apes liada",
 	"mwoauthmanagemygrants-description": "Descrive"
 }
