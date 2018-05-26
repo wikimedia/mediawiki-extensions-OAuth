@@ -222,7 +222,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	}
 
 	/**
-	 * @param mixed $value
+	 * @param mixed|null $value
 	 * @return \Status
 	 */
 	protected function success( $value = null ) {

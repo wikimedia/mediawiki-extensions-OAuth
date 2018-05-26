@@ -67,7 +67,7 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 	 * An appropriate Message will be returned if access is denied.
 	 *
 	 * @param string $name
-	 * @param callback $sCallback Optional callback to apply to result on access success
+	 * @param callback|null $sCallback Optional callback to apply to result on access success
 	 * @return mixed Returns a Message on access failure
 	 * @throws \Exception
 	 */
