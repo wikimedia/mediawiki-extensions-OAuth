@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Adam-Yourist"
+		]
+	},
+	"mwoauth-prefs-managegrants": "Хьатесса приложенеш:",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 приложенена урхалду|$1 приложенена урхалду|1=приложенена урхалду}}",
+	"oauthmanagemygrants": "Хьатессача приложенешта урхалдар"
+}
