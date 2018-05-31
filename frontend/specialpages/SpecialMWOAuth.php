@@ -40,6 +40,15 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		return true;
 	}
 
+	function getLocalName() {
+		// Force the canonical name when OAuth headers are present,
+		// otherwise SpecialPageFactory redirects and breaks the signature.
+		if ( MWOAuthUtils::hasOAuthHeaders( $this->getRequest() ) ) {
+			return $this->getName();
+		}
+		return parent::getLocalName();
+	}
+
 	public function execute( $subpage ) {
 		global $wgMWOAuthSecureTokenTransfer, $wgMWOAuthReadOnly, $wgBlockDisablesLogin;
 
