@@ -9,7 +9,8 @@
 			"Araceletorres",
 			"Hamilton Abreu",
 			"Felipe L. Ewald",
-			"Eduardo Addad de Oliveira"
+			"Eduardo Addad de Oliveira",
+			"Opraco"
 		]
 	},
 	"oauth": "OAuth",
@@ -22,7 +23,7 @@
 	"mwoauth-field-hidden": "(esta informação está oculta)",
 	"mwoauth-field-private": "(esta informação é confidencial)",
 	"mwoauth-prefs-managegrants": "Aplicativos conectados:",
-	"mwoauth-prefs-managegrantslink": "Gerenciar $1 {{PLURAL:$1|aplicativo|aplicativos}} conectados",
+	"mwoauth-prefs-managegrantslink": "Gerenciar $1 {{PLURAL:$1|aplicativo conectado|aplicativos conectados}}",
 	"mwoauth-consumer-allwikis": "Todos os projetos neste site",
 	"mwoauth-consumer-key": "Chave de consumidor:",
 	"mwoauth-consumer-name": "Nome do aplicativo:",
