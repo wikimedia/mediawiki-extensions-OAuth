@@ -436,7 +436,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			),
 			'mwoauthmanageconsumers-description' => htmlspecialchars(
 				$cmr->get( 'description', function ( $s ) use ( $lang ) {
-					return $lang->truncate( $s, 10024 );
+					return $lang->truncateForVisual( $s, 10024 );
 	   } )
 			),
 			'mwoauthmanageconsumers-email' => htmlspecialchars( $cmr->get( 'email' ) ),

@@ -479,7 +479,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				$this->msg( "mwoauth-consumer-stage-$stageKey" )->escaped(),
 			'mwoauthconsumerregistration-description' => htmlspecialchars(
 				$cmr->get( 'description', function ( $s ) use ( $lang ) {
-					return $lang->truncate( $s, 10024 );
+					return $lang->truncateForVisual( $s, 10024 );
 	   } )
 			),
 			'mwoauthconsumerregistration-email' => htmlspecialchars(

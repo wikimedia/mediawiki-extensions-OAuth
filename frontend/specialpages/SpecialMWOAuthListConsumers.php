@@ -250,7 +250,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			),
 			'mwoauthlistconsumers-description' => htmlspecialchars(
 				$cmr->get( 'description', function ( $s ) use ( $lang ) {
-					return $lang->truncate( $s, 10024 );
+					return $lang->truncateForVisual( $s, 10024 );
 	   } )
 			),
 			'mwoauthlistconsumers-wiki' => htmlspecialchars(
