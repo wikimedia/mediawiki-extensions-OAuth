@@ -32,6 +32,7 @@
 	"mwoauthmanagemygrants-renounce": "Poništi autorizaciju",
 	"mwoauthmanagemygrants-success-update": "Vaše postavke ove aplikacije su ažurirane.",
 	"mwoauthmanagemygrants-basic-tooltip": "Zašto ne mogu promijeniti ovo odobrenje? Ono omogućava povezanoj aplikaciji osnovno dopuštenje koje je nužno za njeno djelovanje. Ako ne želite da aplikacija ima ova dopuštenja, opozovite prava pristupa aplikacije.",
+	"mwoauth-form-description-allwikis-nogrants": "Pozdrav $1.\n\nDa bi se ispunio Vaš zahtjev, '''$2''' traži dopuštenje pristupu informacijama na svim wikijima ovog mrežnog mjesta u Vaše ime. Nikakve promjene povezane s Vašim suradničkim računom neće se dogoditi.",
 	"mwoauth-form-button-approve": "Dopusti",
 	"mwoauth-form-button-cancel": "Odustani",
 	"echo-category-title-oauth-owner": "Razvoj OAutha"
