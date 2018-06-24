@@ -1,12 +1,24 @@
 {
 	"@metadata": {
 		"authors": [
-			"Muhammad Shuaib"
+			"Muhammad Shuaib",
+			"BukhariSaeed"
 		]
 	},
 	"mwoauth-prefs-managegrants": "منسلکہ اطلاقیے:",
 	"mwoauth-prefs-managegrantslink": "$1 منسلک {{PLURAL:$1|اطلاقیہ|اطلاقیوں}} کا انتظام",
+	"mwoauth-consumer-name": "ایپلیکیشن کا نام:",
+	"mwoauth-consumer-user": "ناشر:",
+	"mwoauth-consumer-stage": "موجودہ حال",
+	"mwoauth-consumer-stage-proposed": "تجویز شدہ",
+	"mwoauth-consumer-stage-rejected": "رد شدہ",
+	"mwoauth-consumer-stage-expired": "منقضی شدہ",
+	"mwoauth-consumer-stage-approved": "منظورہ شدہ",
+	"mwoauth-consumer-stage-disabled": "معطل شد",
+	"mwoauth-consumer-stage-suppressed": "توقیف شد",
 	"oauthlistconsumers": "OAuth اطلاقیوں کی فہرست",
+	"mwoauthlistconsumers-legend": "OAuth ایپلیکیشنز براؤز کریں",
+	"mwoauth-consumer-stage-any": "کوئی بھی",
 	"mwoauth-form-description-allwikis": "آداب $1!\n\nآپ کی درخواست پر عمل کرنے کے لیے '''$2''' کو اس امر کی اجازت درکار ہے کہ وہ آپ کی جانب سے اس سائٹ کے تمام منصوبوں پر درج ذیل اقدامات کر سکے: \n\n$4",
 	"mwoauth-form-description-allwikis-nogrants": "آداب $1!\n\nآپ کی درخواست پر عمل کرنے کے لیے '''$2''' کو اس امر کی اجازت درکار ہے کہ وہ آپ کی جانب سے اس سائٹ کے تمام منصوبوں پر موجود معلومات تک رسائی حاصل کر سکے۔ آپ کے کھاتے سے کوئی تبدیلی نہیں کی جائے گی۔",
 	"mwoauth-form-description-allwikis-privateinfo": "آداب $1!\n\nآپ کی درخواست پر عمل کرنے کے لیے '''$2''' کو اس امر کی اجازت درکار ہے کہ وہ آپ کی جانب سے اس سائٹ کے تمام منصوبوں پر موجود آپ کے متعلق جملہ معلومات بشمول آپ کا حقیقی نام و برقی ڈاک پتا تک رسائی حاصل کر سکے۔ آپ کے کھاتے سے کوئی تبدیلی نہیں کی جائے گی۔",
