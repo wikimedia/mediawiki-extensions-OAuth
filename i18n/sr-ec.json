@@ -4,13 +4,14 @@
 			"Milicevic01",
 			"Сербијана",
 			"Obsuser",
-			"Acamicamacaraca"
+			"Acamicamacaraca",
+			"BadDog"
 		]
 	},
 	"mwoauth-field-hidden": "(ова информација је скривена)",
 	"mwoauth-field-private": "(ова информација је приватна)",
 	"mwoauth-prefs-managegrants": "Повезане апликације:",
-	"mwoauth-prefs-managegrantslink": "управљај с $1 {{PLURAL:$1|апликацијом|апликације|апликација}}",
+	"mwoauth-prefs-managegrantslink": "управљај са укупно $1 {{PLURAL:$1|повезаном апликацијом|повезане апликације|повезаних апликација}}",
 	"mwoauth-consumer-allwikis": "Свим пројектима на овом сајту",
 	"mwoauth-consumer-name": "Име апликације:",
 	"mwoauth-consumer-user": "Издавач:",
