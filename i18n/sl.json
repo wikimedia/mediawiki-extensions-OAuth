@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Dbc334",
-			"Eleassar"
+			"Eleassar",
+			"Janezdrilc"
 		]
 	},
+	"mwoauth-prefs-managegrantslink": "Upravljaj $1 {{PLURAL:$1|priklopljeno aplikacijo|priklopljeni aplikaciji|priklopljene aplikacije|priklopljenih aplikacij}}",
 	"mwoauth-consumer-allwikis": "Vsi projekti na tem spletišču",
 	"mwoauthmanagemygrants-review": "upravljaj z dostopom",
 	"mwoauthmanagemygrants-grantaccept": "Donirano",
