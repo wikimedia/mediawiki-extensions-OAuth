@@ -9,7 +9,8 @@
 			"一個正常人",
 			"SupaplexTW",
 			"A2093064",
-			"Hello903hello"
+			"Hello903hello",
+			"Kly"
 		]
 	},
 	"mwoauth-desc": "允許使用 OAuth 1.0a 作為 API 認證程式",
@@ -190,6 +191,7 @@
 	"mwoauthconsumer-consumer-logpage": "OAuth Consumer 日誌",
 	"mwoauthdatastore-access-token-not-found": "查無該認證密鑰已核准的授權資訊。",
 	"mwoauthdatastore-request-token-not-found": "抱歉，連接此應用程式時出錯。返回並重新嘗試連接您的帳號，或聯繫應用程式開發人員。<span class=\"plainlinks mw-mwoautherror-details\">未找到 OAuth 的token，$1</span>",
+	"mwoauthdatastore-bad-source-ip": "請求來自於無效的 IP 位址。",
 	"mwoauthdatastore-bad-verifier": "提交的驗證碼無效。",
 	"mwoauthdatastore-invalid-token-type": "請求的密鑰類型無效。",
 	"mwoauthgrants-general-error": "您的 OAuth 請求中存在錯誤。",
@@ -198,7 +200,11 @@
 	"mwoauthserver-invalid-user": "要使用此網站已連接的應用程式，您必須擁有跨所有專案的帳號。當您在所有專案上擁有帳號後，您才能再次嘗試連接「$1」。\n<span class=\"plainlinks mw-mwoautherror-details\">需要統一登入，$2</span>",
 	"mwoauth-invalid-authorization-title": "OAuth 認證錯誤",
 	"mwoauth-invalid-authorization": "您申請中的授權標頭無效：$1",
+	"mwoauth-invalid-authorization-wrong-wiki": "您請求裡的認證標頭對於 $1 無效",
+	"mwoauth-invalid-authorization-invalid-user": "您請求裡的認證標頭用在不存在的使用者",
+	"mwoauth-invalid-authorization-wrong-user": "您請求裡的授權標頭用在不同個使用者",
 	"mwoauth-invalid-authorization-not-approved": "您嘗試連接的應用程式似乎設定有誤。請聯繫作者 \"$1\" 取得協助。",
+	"mwoauth-invalid-authorization-blocked-user": "您請求裡的認證標頭用在被封鎖的使用者",
 	"mwoauth-form-description-allwikis": "$1 您好，\n\n要完成您的請求，'''$2''' 需要權限以您的身分在此網站的所有專案上執行以下動作：\n\n$4",
 	"mwoauth-form-description-onewiki": "$1 您好，\n\n要完成您的請求，'''$2''' 需要權限使用你的身份在''$4''做以下事情：\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "$1 您好，\n\n要完成您的請求，'''$2''' 需要權限存取您在此網站所有專案上的資訊。此動作不會對您的帳號資訊做任何的修改。",
