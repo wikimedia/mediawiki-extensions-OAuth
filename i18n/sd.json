@@ -1,12 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mehtab ahmed"
+			"Mehtab ahmed",
+			"Tweety"
 		]
 	},
 	"mwoauth-prefs-managegrants": "ڳنڍيل ايپس:",
+	"mwoauth-prefs-managegrantslink": "$1 ڳنڊيل {{PLURAL:$1|اپليڪيشن|اپليڪيشنن}} جو انتظام",
 	"mwoauth-consumer-email": "رابطي جو برقٽپال پتو:",
 	"mwoauthconsumerregistration-email": "رابطي جي برقٽپال",
 	"mwoauthmanageconsumers-email": "رابطي جي برقٽپال",
+	"oauthmanagemygrants": "ڳنڊيل اپليڪيشنن جو انتظام",
+	"mwoauthmanagemygrants-showlist": "فهرست لاڳاپيل اپليڪشن",
 	"mwoauth-form-button-cancel": "رد"
 }
