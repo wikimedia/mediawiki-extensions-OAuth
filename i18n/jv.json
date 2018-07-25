@@ -4,8 +4,8 @@
 			"NoiX180"
 		]
 	},
-	"mwoauth-prefs-managegrants": "Aplikasi sing nggayut:",
-	"mwoauth-prefs-managegrantslink": "Kemunah aplikasi cacah $1 sing nggayut",
-	"oauthmanagemygrants": "Kemunah aplikasi sing nggayut",
-	"mwoauthmanagemygrants-confirm-legend": "Kemunah aplikasi sing nggayut"
+	"mwoauth-prefs-managegrants": "Aplikasi-aplikasi kang ginayut:",
+	"mwoauth-prefs-managegrantslink": "Tata $1 {{PLURAL:$1|aplikasi|aplikasi}} kang ginayut",
+	"oauthmanagemygrants": "Tata aplikasi-aplikasi kang ginayut",
+	"mwoauthmanagemygrants-confirm-legend": "Tata aplikasi kang ginayut"
 }

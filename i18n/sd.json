@@ -11,6 +11,7 @@
 	"mwoauthconsumerregistration-email": "رابطي جي برقٽپال",
 	"mwoauthmanageconsumers-email": "رابطي جي برقٽپال",
 	"oauthmanagemygrants": "ڳنڊيل اپليڪيشنن جو انتظام",
+	"mwoauthmanagemygrants-text": "هتي اهي اپليڪشن ڏنل آهن، جيڪي اوهان جي کاتي سان ڳنڍيل آهن. ڪنهن به اپليڪيشن کي ڪيترا اختيار ڏنل آهن، اهي اوهان اپليڪشن کي پهرين دفعي استعمال ڪرڻ وقت ڏيندا آهيو. جيڪڏهن اوهان ڪنهن ٻي وڪي پراجيڪٽ لاءِ ڪو اپليڪشن الڳ سان استعمال ڪيو ٿا ته ان جي لاءِ هيٺ الڳ ترتيبون ڏنل آهن. \n\nڳنڍيل اپليڪشن OAuth protocol ذريعي اوهان جي کاتي جو اختيار رکي ٿي. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth وڌيڪ ڄاڻو ڳنڍيل اپليڪشن متعلق])</span>",
 	"mwoauthmanagemygrants-showlist": "فهرست لاڳاپيل اپليڪشن",
 	"mwoauth-form-button-cancel": "رد"
 }
