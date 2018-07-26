@@ -7,25 +7,6 @@ namespace MediaWiki\Extensions\OAuth;
  */
 class MWOAuthHooks {
 
-	public static function onExtensionRegistration() {
-		global $wgOAuthSecretKey, $wgSecretKey, $wgSessionProviders,
-			$wgHooks;
-
-		if ( empty( $wgOAuthSecretKey ) ) {
-			$wgOAuthSecretKey = $wgSecretKey;
-		}
-
-		$wgHooks['ListDefinedTags'][] =
-			[ 'MediaWiki\Extensions\OAuth\MWOAuthHooks::getUsedConsumerTags', false ];
-		$wgHooks['ChangeTagsListActive'][] =
-			[ 'MediaWiki\Extensions\OAuth\MWOAuthHooks::getUsedConsumerTags', true ];
-
-		$wgSessionProviders['MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider'] = [
-			'class' => 'MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider',
-			'args' => []
-		];
-	}
-
 	public static function onExtensionFunctions() {
 		\MediaWiki\Extensions\OAuth\MWOAuthUISetup::conditionalSetup();
 	}
@@ -85,6 +66,14 @@ class MWOAuthHooks {
 		);
 	}
 
+	public static function onListDefinedTags( &$tags ) {
+		return self::getUsedConsumerTags( false, $tags );
+	}
+
+	public static function onChangeTagsListActive( &$tags ) {
+		return self::getUsedConsumerTags( true, $tags );
+	}
+
 	/**
 	 * List tags that should show as defined/active on Special:Tags
 	 *
@@ -97,7 +86,7 @@ class MWOAuthHooks {
 	 * @param array &$tags
 	 * @return bool
 	 */
-	public static function getUsedConsumerTags( $activeOnly, &$tags ) {
+	private static function getUsedConsumerTags( $activeOnly, &$tags ) {
 		// Step 1: Get the list of (active) consumers' tags for this wiki
 		$db = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		$conds = [

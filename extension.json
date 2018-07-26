@@ -12,7 +12,6 @@
 	"requires": {
 		"MediaWiki": ">= 1.31.0"
 	},
-	"callback": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onExtensionRegistration",
 	"ExtensionFunctions": [
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onExtensionFunctions"
 	],
@@ -36,6 +35,12 @@
 		"mwoauthviewprivate",
 		"mwoauthmanagemygrants"
 	],
+	"SessionProviders": {
+		"MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider": {
+			"class": "MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider",
+			"args": []
+		}
+	},
 	"SpecialPages": {
 		"OAuth": "MediaWiki\\Extensions\\OAuth\\SpecialMWOAuth",
 		"OAuthManageMyGrants": "MediaWiki\\Extensions\\OAuth\\SpecialMWOAuthManageMyGrants",
@@ -135,7 +140,9 @@
 		"TestCanonicalRedirect": "MediaWiki\\Extensions\\OAuth\\MWOAuthAPISetup::onTestCanonicalRedirect",
 		"SetupAfterCache": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onSetupAfterCache",
 		"ApiRsdServiceApis": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onApiRsdServiceApis",
-		"SpecialPage_initList": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onSpecialPage_initList"
+		"SpecialPage_initList": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onSpecialPage_initList",
+		"ListDefinedTags": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onListDefinedTags",
+		"ChangeTagsListActive": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onChangeTagsListActive"
 	},
 	"config": {
 		"MWOAuthCentralWiki": {
