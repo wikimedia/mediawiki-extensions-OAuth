@@ -7,11 +7,15 @@
 	},
 	"mwoauth-prefs-managegrants": "ڳنڍيل ايپس:",
 	"mwoauth-prefs-managegrantslink": "$1 ڳنڊيل {{PLURAL:$1|اپليڪيشن|اپليڪيشنن}} جو انتظام",
+	"mwoauth-consumer-allwikis": "هن وڪي جي سڀئي منصوبن ۾",
 	"mwoauth-consumer-email": "رابطي جو برقٽپال پتو:",
 	"mwoauthconsumerregistration-email": "رابطي جي برقٽپال",
 	"mwoauthmanageconsumers-email": "رابطي جي برقٽپال",
 	"oauthmanagemygrants": "ڳنڊيل اپليڪيشنن جو انتظام",
 	"mwoauthmanagemygrants-text": "هتي اهي اپليڪشن ڏنل آهن، جيڪي اوهان جي کاتي سان ڳنڍيل آهن. ڪنهن به اپليڪيشن کي ڪيترا اختيار ڏنل آهن، اهي اوهان اپليڪشن کي پهرين دفعي استعمال ڪرڻ وقت ڏيندا آهيو. جيڪڏهن اوهان ڪنهن ٻي وڪي پراجيڪٽ لاءِ ڪو اپليڪشن الڳ سان استعمال ڪيو ٿا ته ان جي لاءِ هيٺ الڳ ترتيبون ڏنل آهن. \n\nڳنڍيل اپليڪشن OAuth protocol ذريعي اوهان جي کاتي جو اختيار رکي ٿي. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth وڌيڪ ڄاڻو ڳنڍيل اپليڪشن متعلق])</span>",
 	"mwoauthmanagemygrants-showlist": "فهرست لاڳاپيل اپليڪشن",
+	"mwoauthmanagemygrants-wikiallowed": "منصوبن ۾ اجازت:",
+	"mwoauthmanagemygrants-review": "اختيار تبديل ڪيو",
+	"mwoauthmanagemygrants-revoke": "اختيار ختم ڪيو",
 	"mwoauth-form-button-cancel": "رد"
 }
