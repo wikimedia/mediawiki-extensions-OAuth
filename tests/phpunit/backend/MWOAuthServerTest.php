@@ -1,6 +1,8 @@
 <?php
 /**
  * @section LICENSE
+ * © 2017 Wikimedia Foundation and contributors
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,7 +24,7 @@
 namespace MediaWiki\Extensions\OAuth;
 
 /**
- * @copyright © 2017 Wikimedia Foundation and contributors
+ * @covers \MediaWiki\Extensions\OAuth\MWOAuthServer
  */
 class MWOAuthServerTest extends \PHPUnit\Framework\TestCase {
 
