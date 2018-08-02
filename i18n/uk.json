@@ -7,7 +7,8 @@
 			"Olion",
 			"Piramidion",
 			"Macofe",
-			"Ahonc"
+			"Ahonc",
+			"Vlad5250"
 		]
 	},
 	"mwoauth-desc": "Дозволяє використовувати OAuth 1.0a для API авторизації",
@@ -247,10 +248,10 @@
 	"mwoauth-callback-not-oob-or-prefix": "Має бути вказано oauth_callback і встановлено як «oob» (з урахуванням регістру) або налаштований колбек повинен бути префіксом наданого колбеку.",
 	"right-mwoauthproposeconsumer": "пропонування нових споживачів OAuth",
 	"right-mwoauthupdateownconsumer": "оновлення споживачів OAuth, яких ви контролюєте",
-	"right-mwoauthmanageconsumer": "Управління споживачами OAuth",
-	"right-mwoauthsuppress": "Придушити споживачів OAuth",
-	"right-mwoauthviewsuppressed": "Перегляд пригнічених споживачів OAuth",
-	"right-mwoauthviewprivate": "Переглянути приватні дані OAuth",
+	"right-mwoauthmanageconsumer": "управління споживачами OAuth",
+	"right-mwoauthsuppress": "придушити споживачів OAuth",
+	"right-mwoauthviewsuppressed": "перегляд пригнічених споживачів OAuth",
+	"right-mwoauthviewprivate": "перегляд приватних даних OAuth",
 	"right-mwoauthmanagemygrants": "керування грантами OAuth",
 	"action-mwoauthmanageconsumer": "управляти споживачами OAuth",
 	"action-mwoauthmanagemygrants": "управляти вашими ґрантами OAuth",
