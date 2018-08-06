@@ -40,6 +40,7 @@
 	"mwoauth-consumer-restrictions": "Restricións de uso:",
 	"mwoauth-consumer-restrictions-json": "Restricións de uso (JSON):",
 	"mwoauth-consumer-rsakey": "Clave pública RSA (opcional):",
+	"mwoauth-consumer-rsakey-help": "Introducir unha chave pública para usar o método de sinatura RSA-SHA1. Deixar baleiro para usar HMAC-SHA1 cun segredo aleatorio. En caso de non estar seguro, deixalo baleiro.",
 	"mwoauth-consumer-secretkey": "Pase secreto do consumidor:",
 	"mwoauth-consumer-accesstoken": "Pase de acceso:",
 	"mwoauth-consumer-reason": "Motivo:",

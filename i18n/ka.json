@@ -81,5 +81,7 @@
 	"mwoauthmanagemygrants-confirm-legend": "დაკავშირებული აპლიკაციის მართვა",
 	"mwoauthmanagemygrants-action": "სტატუსის შეცვლა:",
 	"mwoauth-form-button-approve": "ნების დართვა",
-	"mwoauth-form-button-cancel": "გაუქმება"
+	"mwoauth-form-button-cancel": "გაუქმება",
+	"echo-category-title-oauth-owner": "OAuth-ის განვითარება",
+	"echo-pref-tooltip-oauth-owner": "შემატყობინე OAuth-აპლიკაციებთან დაკავშირებული მოვლენები, რომელიც მე შევქმენი."
 }
