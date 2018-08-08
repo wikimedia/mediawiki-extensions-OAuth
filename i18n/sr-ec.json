@@ -76,5 +76,6 @@
 	"mwoauth-form-button-approve": "Дозволи",
 	"mwoauth-form-button-cancel": "Откажи",
 	"mwoauth-grants-heading": "Тражене дозволе:",
+	"action-mwoauthmanageconsumer": "управљате потрошачима OAuth-а",
 	"echo-category-title-oauth-admin": "OAuth админ"
 }
