@@ -11,7 +11,8 @@
 			"Lemondoge",
 			"Dgstranz",
 			"Matiia",
-			"AlvaroMolina"
+			"AlvaroMolina",
+			"Jelou"
 		]
 	},
 	"mwoauth-desc": "Permite el uso de OAuth 1.0a para la autorización de la API",
@@ -164,8 +165,8 @@
 	"mwoauthconsumer-consumer-logpage": "Registro de consumidores OAuth",
 	"mwoauthconsumer-consumer-logpagetext": "Registro de aprobaciones, rechazos, y desactivaciones de consumidores OAuth registrados.",
 	"mwoauth-bad-request-missing-params": "Se produjo un problema al configurar esta aplicación conectada. Ponte en contacto con los desarrolladores de la aplicación.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Faltan parámetros de OAuth, $1</span>",
-	"mwoauth-bad-request-invalid-action": "Algo salió mal. Tendrás que contactar al autor de la aplicación para obtener ayuda con esto.\n\n<span class=\"plainlinks mw-mwoautherror-details\">URL deconocido, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>",
-	"mwoauth-bad-request-invalid-action-contact": "Algo salió mal. Tendrás que [$1 contactar] al autor de la aplicación para obtener ayuda con esto.\n\n<span class=\"plainlinks mw-mwoautherror-details\">URL deconocido, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002 E002]</span>",
+	"mwoauth-bad-request-invalid-action": "Algo salió mal. Tendrás que ponerte en contacto con el autor de la aplicación para obtener ayuda.\n\n<span class=\"plainlinks mw-mwoautherror-details\">URL deconocida, $1</span>",
+	"mwoauth-bad-request-invalid-action-contact": "Algo salió mal. Tendrás que [$1 ponerte en contacto] con el autor de la aplicación para obtener ayuda.\n\n<span class=\"plainlinks mw-mwoautherror-details\">URL deconocida, $2</span>",
 	"mwoauthdatastore-request-token-not-found": "Se produjo un error al conectar con esta aplicación. Sentimos las molestias.\nVuelve atrás e intenta conectar tu cuenta de nuevo, o ponte en contacto con el autor de la aplicación.\n\n<span class=\"plainlinks mw-mwoautherror-details\">No se encontró la ficha OAuth, $1</span>",
 	"mwoauthdatastore-request-token-already-used": "Esta solicitud ya se ha completado y no puede volver a enviarse.\nVuelve a la aplicación y prueba a conectar tu cuenta otra vez, o bien ponte en contacto con los autores de la aplicación.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Ya se utilizó la ficha de OAuth; $1</span>",
 	"mwoauthdatastore-bad-source-ip": "La solicitud proviene de una dirección IP inválida.",
