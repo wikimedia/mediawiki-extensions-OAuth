@@ -2,11 +2,31 @@
 	"@metadata": {
 		"authors": [
 			"Sarrus",
-			"Knud Winckelmann"
+			"Knud Winckelmann",
+			"Saederup92"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Forbundne apps:",
 	"mwoauth-prefs-managegrantslink": "Håndtér $1 {{PLURAL:$1|forbundet applikation|forbundne applikationer}}",
+	"mwoauth-consumer-reason": "Begrundelse:",
+	"mwoauth-consumer-stage-disabled": "deaktiveret",
+	"mwoauthconsumerregistration-description": "Beskrivelse",
+	"mwoauthconsumerregistration-stage": "Status",
+	"mwoauthmanageconsumers-name": "Kunde",
+	"mwoauthmanageconsumers-user": "Udgiver",
+	"mwoauthmanageconsumers-description": "Beskrivelse",
+	"mwoauthmanageconsumers-disable": "Deaktiveret",
+	"mwoauthmanageconsumers-reason": "Begrundelse:",
+	"mwoauthlistconsumers-view": "detaljer",
+	"mwoauthlistconsumers-user": "Udgiver",
+	"mwoauthlistconsumers-description": "Beskrivelse",
+	"mwoauthlistconsumers-status": "Status",
+	"mwoauthlistconsumers-status-expired": "udgået",
 	"oauthmanagemygrants": "Administrer forbundne applikationer",
-	"mwoauthmanagemygrants-confirm-legend": "Håndtér forbundet applikation"
+	"mwoauthmanagemygrants-user": "Udgiver:",
+	"mwoauthmanagemygrants-description": "Beskrivelse",
+	"mwoauthmanagemygrants-confirm-legend": "Håndtér forbundet applikation",
+	"mwoauthdatastore-bad-source-ip": "Forespørgslen kom fra en ugyldig IP-adresse.",
+	"mwoauth-form-button-approve": "Tillad",
+	"notification-oauth-app-body": "Begrundelse: $1"
 }
