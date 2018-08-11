@@ -3,7 +3,8 @@
 		"authors": [
 			"Tacsipacsi",
 			"Csega",
-			"Dorgan"
+			"Dorgan",
+			"Bencemac"
 		]
 	},
 	"mwoauth-desc": "Lehetővé teszi az OAuth 1.0a használatát API-hitelesítéshez",
@@ -53,10 +54,20 @@
 	"mwoauthmanageconsumers-approve": "Ellenőrzött",
 	"oauthlistconsumers": "OAuth alkalmazások listája",
 	"mwoauthlistconsumers-legend": "OAuth alkalmazások böngészése",
+	"mwoauthlistconsumers-description": "Leírás",
 	"mwoauthlistconsumers-basicgrantsonly": "(csak alapvető hozzáférés)",
 	"mwoauthlistconsumers-status-approved": "ellenőrzött",
 	"mwoauthlistconsumers-status-rejected": "visszadobott",
 	"oauthmanagemygrants": "Összekapcsolt alkalmazások kezelése",
+	"mwoauthmanagemygrants-showlist": "Összekapcsolt alkalmazások listája",
+	"mwoauthmanagemygrants-none": "Nincsen a fiókodhoz kapcsolt alkalmazás.",
+	"mwoauthmanagemygrants-description": "Leírás",
+	"mwoauthmanagemygrants-wikiallowed": "Engedélyezve a következő projekte(ke)n:",
+	"mwoauthmanagemygrants-revoke": "hozzáférés megvonása",
+	"mwoauthmanagemygrants-grantaccept": "Megadva",
+	"mwoauthmanagemygrants-update-text": "Az alábbi űrlap segítségével módosíthatod egy nevedben eljáró alkalmazás engedélyeit.",
+	"mwoauthmanagemygrants-confirm-legend": "Összekapcsolt alkalmazások kezelése",
+	"mwoauthmanagemygrants-renounce": "Engedély visszavonása",
 	"mwoauth-form-description-allwikis": "Helló $1,\n\nA kérésed befejezéséhez a(z) '''$2''' alkalmazásnak szüksége van engedélyre, hogy a következő műveleteket végrehajthassa a nevedben az összes projektben:\n\n$4",
 	"mwoauth-form-description-onewiki": "Helló $1,\n\nA kérésed befejezéséhez a(z) '''$2''' alkalmazásnak szüksége van engedélyre, hogy a következő műveleteket végrehajthassa a nevedben a(z) ''$4'' wikin:\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Helló $1,\n\nA kérésed befejezéséhez a(z) '''$2''' alkalmazásnak szüksége van engedélyre, hogy hozzáférhessen információkhoz a nevedben az oldal összes projektjében. Semmilyen változás nem fog történni a fiókoddal.",

@@ -13,7 +13,8 @@
 			"MrLeopold",
 			"Macofe",
 			"Mainframe98",
-			"Mar(c)"
+			"Mar(c)",
+			"Kippenvlees1"
 		]
 	},
 	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a te gebruiken voor API-toestemming",
@@ -227,7 +228,7 @@
 	"mwoauth-grants-heading": "Aangevraagde rechten:",
 	"mwoauth-grants-nogrants": "De toepassing heeft geen rechten aangevraagd.",
 	"mwoauth-acceptance-cancelled": "U hebt gekozen \"$1\" geen toegang te geven tot uw account. \"$1\" werkt niet, tenzij u de toepassing toegang geeft. U kunt teruggaan naar \"$1\" of uw gekoppelde toepassingen [[Special:OAuthManageMyGrants|beheren]].",
-	"grant-mwoauth-authonly": "Alleen authenticatie, geen API-toegang\nAlleen verificatie van gebruikersidentiteit, geen mogelijkheid om pagina's te lezen of namens een gebruiker te handelen.",
+	"grant-mwoauth-authonly": "Alleen verificatie van gebruikersidentiteit, geen mogelijkheid om pagina's te lezen of namens een gebruiker te handelen.",
 	"mwoauth-oauth-exception": "Er is een fout opgetreden in het OAuth-protocol: $1",
 	"mwoauth-callback-not-oob": "oauth_callback moet worden ingesteld, en moet worden ingesteld op \"oob\" (hoofdlettergevoelig)",
 	"right-mwoauthproposeconsumer": "Nieuwe OAuth-consumers voorstellen",
