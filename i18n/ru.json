@@ -176,7 +176,7 @@
 	"mwoauthmanagemygrants-success-renounce": "Доступ приложения к вашей учётной записи аннулирован.",
 	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|предложил|предложила}} клиент OAuth (ключ клиента: $4)",
 	"logentry-mwoauthconsumer-update": "$1 {{GENDER:$2|обновил|обновила}} клиент OAuth (ключ клиента: $4)",
-	"mwoauthconsumer-consumer-logpage": "Журнал клиентов AOuth",
+	"mwoauthconsumer-consumer-logpage": "Журнал клиентов OAuth",
 	"mwoauthconsumer-consumer-logpagetext": "Журнал одобрений, отклонений и отключений зарегистрированных клиентов OAuth.",
 	"mwoauthdatastore-bad-source-ip": "Запрос пришёл с некорректного IP-адреса.",
 	"mwoauthdatastore-bad-verifier": "Предоставленный проверочный код недействителен.",
