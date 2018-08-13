@@ -18,7 +18,7 @@
 	"mwoauth-consumer-stage": "Тренутни статус:",
 	"mwoauth-consumer-description": "Опис апликације:",
 	"mwoauth-consumer-wiki": "Примењљиви пројекти:",
-	"mwoauth-consumer-rsakey": "Јавни RSA кључ (необавезно):",
+	"mwoauth-consumer-rsakey": "Јавни RSA кључ (опционално):",
 	"mwoauth-consumer-reason": "Разлог:",
 	"mwoauth-consumer-stage-rejected": "одбијено",
 	"mwoauth-consumer-stage-expired": "истекло",
