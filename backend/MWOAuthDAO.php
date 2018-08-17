@@ -246,7 +246,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * This returns a map of field names to method names.
 	 * The methods check if a context user has access to the field,
 	 * returning true if they do and a Message object otherwise.
-	 * The methods take (field name, \RequestContext) as arguments.
+	 * The methods take (field name, \IContextSource) as arguments.
 	 *
 	 * @see MWOAuthDAO::userCanAccess()
 	 * @see MWOAuthDAOAccessControl
@@ -397,11 +397,11 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @see MWOAuthDAOAccessControl
 	 *
 	 * @param string $name
-	 * @param \RequestContext $context
+	 * @param \IContextSource $context
 	 * @return \Message|true Returns on success or a Message if the user lacks access
 	 * @throws \Exception
 	 */
-	final public function userCanAccess( $name, \RequestContext $context ) {
+	final public function userCanAccess( $name, \IContextSource $context ) {
 		$map = static::getFieldPermissionChecks();
 		if ( isset( $map[$name] ) ) {
 			$method = $map[$name];
@@ -414,10 +414,10 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	/**
 	 * Get the current conflict token value for a user
 	 *
-	 * @param \RequestContext $context
+	 * @param \IContextSource $context
 	 * @return string Hex token
 	 */
-	final public function getChangeToken( \RequestContext $context ) {
+	final public function getChangeToken( \IContextSource $context ) {
 		$map = [];
 		foreach ( $this->getFieldNames() as $field ) {
 			if ( $this->userCanAccess( $field, $context ) ) {
@@ -436,11 +436,11 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	/**
 	 * Compare an old change token to the current one
 	 *
-	 * @param \RequestContext $context
+	 * @param \IContextSource $context
 	 * @param string $oldToken
 	 * @return bool Whether the current is unchanged
 	 */
-	final public function checkChangeToken( \RequestContext $context, $oldToken ) {
+	final public function checkChangeToken( \IContextSource $context, $oldToken ) {
 		return ( $this->getChangeToken( $context ) === $oldToken );
 	}
 

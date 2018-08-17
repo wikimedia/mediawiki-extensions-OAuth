@@ -27,25 +27,25 @@ namespace MediaWiki\Extensions\OAuth;
 class MWOAuthDAOAccessControl extends \ContextSource {
 	/** @var MWOAuthDAO */
 	protected $dao;
-	/** @var \RequestContext */
+	/** @var \IContextSource */
 	protected $context;
 
 	/**
 	 * @param MWOAuthDAO $dao
-	 * @param \RequestContext $context
+	 * @param \IContextSource $context
 	 */
-	final protected function __construct( MWOAuthDAO $dao, \RequestContext $context ) {
+	final protected function __construct( MWOAuthDAO $dao, \IContextSource $context ) {
 		$this->dao = $dao;
 		$this->context = $context;
 	}
 
 	/**
 	 * @param MWOAuthDAO $dao
-	 * @param \RequestContext $context
+	 * @param \IContextSource $context
 	 * @throws \MWException
 	 * @return static|null|false
 	 */
-	final public static function wrap( $dao, \RequestContext $context ) {
+	final public static function wrap( $dao, \IContextSource $context ) {
 		if ( $dao instanceof MWOAuthDAO ) {
 			return new static( $dao, $context );
 		} elseif ( $dao === null || $dao === false ) {
