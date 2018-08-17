@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\NameTableAccessException;
+
 /**
  * Class containing hooked functions for an OAuth environment
  */
@@ -87,6 +90,7 @@ class MWOAuthHooks {
 	 * @return bool
 	 */
 	private static function getUsedConsumerTags( $activeOnly, &$tags ) {
+		global $wgChangeTagsSchemaMigrationStage;
 		// Step 1: Get the list of (active) consumers' tags for this wiki
 		$db = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		$conds = [
@@ -115,12 +119,26 @@ class MWOAuthHooks {
 		}
 
 		// Step 2: Return only those that are in use.
+		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
+			$tagIds = [];
+			foreach ( $allTags as $tag ) {
+				try {
+					$tagIds[] = $changeTagDefStore->getId( $tag );
+				} catch ( NameTableAccessException $ex ) {
+					continue;
+				}
+			}
+			$conditions = [ 'ct_tag_id' => $tagIds ];
+		} else {
+			$conditions = [ 'ct_tag' => $allTags ];
+		}
 		if ( $allTags ) {
 			$db = wfGetDB( DB_REPLICA );
 			$res = $db->select(
 				'change_tag',
 				[ 'ct_tag' ],
-				[ 'ct_tag' => $allTags ],
+				$conditions,
 				__METHOD__,
 				[ 'DISTINCT' ]
 			);
