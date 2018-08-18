@@ -241,7 +241,7 @@
 	"mwoauth-grants-nogrants": "لم يطلب التطبيق أية أذونات.",
 	"mwoauth-acceptance-cancelled": "لقد اخترت عدم السماح لـ\"$1\" بالوصول إلى حسابك; لن يعمل \"$1\" ما لم تسمح له بالوصول، يمكنك الرجوع إلى \"$1\" أو [[Special:OAuthManageMyGrants|إدارة]] لطبيقاتك المتصلة.",
 	"mwoauth-granttype-normal": "طلب تفويض لأذونات محددة.",
-	"grant-mwoauth-authonly": "User identity verification only, no ability to read pages or act on a user's behalf.\nالتحقق من هوية المستخدم فقط، وعدم القدرة على قراءة الصفحات أو التصرف بالنيابة عن المستخدم.",
+	"grant-mwoauth-authonly": "التحقق من هوية المستخدم فقط، وعدم القدرة على قراءة الصفحات أو التصرف بالنيابة عن المستخدم.",
 	"grant-mwoauth-authonlyprivate": "التحقق من هوية المستخدم فقط مع الوصول إلى الاسم الحقيقي وعنوان البريد الإلكتروني، وعدم القدرة على قراءة الصفحات أو التصرف نيابةً عن المستخدم.",
 	"mwoauth-listgrants-extra-summary": "== منح OAuth الخاصة ==\n\nهذه المنح الإضافية قابلة للتطبيق على مستهلك OAuth.",
 	"mwoauth-oauth-exception": "حدث خطأ في بروتوكول OAuth: $1",
