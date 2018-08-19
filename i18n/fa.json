@@ -34,6 +34,7 @@
 	"mwoauth-consumer-user": "ناشر:",
 	"mwoauth-consumer-stage": "وضعیت فعلی:",
 	"mwoauth-consumer-email": "نشانی ایمیل تماس:",
+	"mwoauth-consumer-owner-only-label": "فقط-مالکان:",
 	"mwoauth-consumer-description": "توضیحات نرم‌افزار:",
 	"mwoauth-consumer-callbackurl": "نشانی پاسخ OAuth:",
 	"mwoauth-consumer-grantsneeded": "اعطاهای اجرا شدنی:",
