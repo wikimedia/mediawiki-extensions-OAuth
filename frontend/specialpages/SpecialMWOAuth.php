@@ -540,6 +540,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	/**
 	 * @param string $data html or string to pass back to the user. Already escaped.
 	 * @param string $format the format of the response: raw, json, or html
+	 * @param-taint $data escaped
 	 */
 	private function showResponse( $data, $format ) {
 		$out = $this->getOutput();

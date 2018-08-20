@@ -176,6 +176,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 	/**
 	 * Show a paged list of consumers with links to details
+	 * @suppress SecurityCheck-XSS For getNavigationBar, see T201811 for more information
 	 */
 	protected function showConsumerList() {
 		$request = $this->getRequest();
