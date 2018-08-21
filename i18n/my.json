@@ -1,10 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ninjastrikers"
+			"Ninjastrikers",
+			"Dr Lotus Black"
 		]
 	},
 	"mwoauth-prefs-managegrants": "ဆက်သွယ်ထားသော အက်ပ်များ -",
+	"mwoauth-prefs-managegrantslink": "$1 ချိတ်ဆက်ထားသော {{PLURAL:$1|အပလေကေးရှင်း|အပလေကေးရှင်းများ}}ကို စီမံခန့်ခွဲရန်",
 	"mwoauthconsumerregistration-navigation": "အ​ညွှန်း​:",
+	"oauthmanagemygrants": "ချိတ်ဆက်ထားသော အပလေကေးရှင်းများကို စီမံခန့်ခွဲရန်",
 	"mwoauthmanagemygrants-navigation": "အ​ညွှန်း​:"
 }
