@@ -50,12 +50,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 		$params = func_get_args();
 		array_shift( $params );
 		$msg = wfMessage( $key, $params );
-		if ( class_exists( \ApiUsageException::class ) ) {
-			$exception = \ApiUsageException::newWithMessage( null, $msg );
-		} else {
-			$msg = $msg->inLanguage( 'en' )->useDatabase( false )->plain();
-			$exception = new \UsageException( $msg, $key );
-		}
+		$exception = \ApiUsageException::newWithMessage( null, $msg );
 		$wgHooks['ApiBeforeMain'][] = function () use ( $exception ) {
 			throw $exception;
 		};
