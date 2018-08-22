@@ -216,7 +216,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 					if ( !$cmr ) {
 						$this->showError(
-							wfMessage( 'mwoauth-bad-request-invalid-action',
+							$this->msg( 'mwoauth-bad-request-invalid-action',
 								\Linker::makeExternalLink(
 									'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002',
 									'E002',
@@ -229,7 +229,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 						$owner = MWOAuthUtils::getCentralUserNameFromId(
 							$cmr->get( 'userId' ), $this->getUser() );
 						$this->showError(
-							wfMessage( 'mwoauth-bad-request-invalid-action-contact',
+							$this->msg( 'mwoauth-bad-request-invalid-action-contact',
 								MWOAuthUtils::getCentralUserTalk( $owner )
 							)->rawParams( \Linker::makeExternalLink(
 								'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003',
@@ -243,12 +243,12 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		} catch ( MWOAuthException $exception ) {
 			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(),
 				[ 'exception' => $exception ] );
-			$this->showError( wfMessage( $exception->msg, $exception->params ), $format );
+			$this->showError( $this->msg( $exception->msg, $exception->params ), $format );
 		} catch ( OAuthException $exception ) {
 			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(),
 				[ 'exception' => $exception ] );
 			$this->showError(
-				wfMessage( 'mwoauth-oauth-exception', $exception->getMessage() ),
+				$this->msg( 'mwoauth-oauth-exception', $exception->getMessage() ),
 				$format
 			);
 		}
@@ -467,11 +467,11 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 		$form->suppressDefaultSubmit();
 		$form->addButton( 'accept',
-			wfMessage( 'mwoauth-form-button-approve' )->text(), null,
+			$this->msg( 'mwoauth-form-button-approve' )->text(), null,
 			[ 'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-progressive',
 				'id' => 'mw-mwoauth-accept' ] );
 		$form->addButton( 'cancel',
-			wfMessage( 'mwoauth-form-button-cancel' )->text(), null,
+			$this->msg( 'mwoauth-form-button-cancel' )->text(), null,
 			[ 'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-quiet' ] );
 
 		$form->addFooterText( $this->getSkin()->privacyLink() );

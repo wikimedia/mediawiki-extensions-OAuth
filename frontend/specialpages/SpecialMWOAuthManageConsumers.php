@@ -240,12 +240,12 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 		$link = \Linker::linkKnown(
 			$title = \SpecialPage::getTitleFor( 'OAuthListConsumers' ),
-			wfMessage( 'mwoauthmanageconsumers-search-publisher' )->escaped(),
+			$this->msg( 'mwoauthmanageconsumers-search-publisher' )->escaped(),
 			[],
 			[ 'publisher' => $owner ]
 		);
 		$ownerLink = htmlspecialchars( $owner ) . ' ' .
-			wfMessage( 'parentheses' )->rawParams( $link )->escaped();
+			$this->msg( 'parentheses' )->rawParams( $link )->escaped();
 		$ownerOnly = $cmr->get( 'ownerOnly' );
 
 		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle

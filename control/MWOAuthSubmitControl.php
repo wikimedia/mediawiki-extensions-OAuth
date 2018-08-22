@@ -129,7 +129,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 			? preg_match( $validator, $value )
 			: $validator( $value, $allValues );
 		if ( !$isValid ) {
-			$errorMessage = wfMessage( 'mwoauth-invalid-field-' . $field );
+			$errorMessage = $this->msg( 'mwoauth-invalid-field-' . $field );
 			if ( !$errorMessage->isDisabled() ) {
 				return $errorMessage->text();
 			}
@@ -146,7 +146,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 			}
 
 			// messages: mwoauth-missing-field, mwoauth-invalid-field, mwoauth-invalid-field-generic
-			return wfMessage( "mwoauth-$problem-field$generic", $field )->text();
+			return $this->msg( "mwoauth-$problem-field$generic", $field )->text();
 		}
 		return true;
 	}

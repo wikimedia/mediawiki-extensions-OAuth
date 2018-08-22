@@ -148,8 +148,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 					'wiki' => [
 						'type' => $allWikis ? 'combobox' : 'select',
 						'options' => [
-							wfMessage( 'mwoauth-consumer-allwikis' )->escaped() => '*',
-							wfMessage( 'mwoauth-consumer-wiki-thiswiki', wfWikiID() )
+							$this->msg( 'mwoauth-consumer-allwikis' )->escaped() => '*',
+							$this->msg( 'mwoauth-consumer-wiki-thiswiki', wfWikiID() )
 								->escaped() => wfWikiID()
 						] + array_flip( $allWikis ),
 						'label-message' => 'mwoauth-consumer-wiki',

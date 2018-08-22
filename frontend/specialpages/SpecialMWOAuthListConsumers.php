@@ -97,7 +97,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			'mwoauthlistconsumers-version' => $cmr->get( 'version' ),
 			'mwoauthlistconsumers-user' => $cmr->get( 'userId',
 				[ MWOAuthUtils::class, 'getCentralUserNameFromId' ] ),
-			'mwoauthlistconsumers-status' => wfMessage( "mwoauthlistconsumers-status-$stageKey" ),
+			'mwoauthlistconsumers-status' => $this->msg( "mwoauthlistconsumers-status-$stageKey" ),
 			'mwoauthlistconsumers-description' => $cmr->get( 'description' ),
 			'mwoauthlistconsumers-wiki' => $cmr->get( 'wiki',
 				[ MWOAuthUtils::class, 'getWikiIdName' ] ),
@@ -146,16 +146,16 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 					'type'     => 'select',
 					'label-message' => 'mwoauth-consumer-stage',
 					'options'  => [
-						wfMessage( 'mwoauth-consumer-stage-any' )->escaped() => -1,
-						wfMessage( 'mwoauth-consumer-stage-proposed' )->escaped()
+						$this->msg( 'mwoauth-consumer-stage-any' )->escaped() => -1,
+						$this->msg( 'mwoauth-consumer-stage-proposed' )->escaped()
 							=> MWOAuthConsumer::STAGE_PROPOSED,
-						wfMessage( 'mwoauth-consumer-stage-approved' )->escaped()
+						$this->msg( 'mwoauth-consumer-stage-approved' )->escaped()
 							=> MWOAuthConsumer::STAGE_APPROVED,
-						wfMessage( 'mwoauth-consumer-stage-rejected' )->escaped()
+						$this->msg( 'mwoauth-consumer-stage-rejected' )->escaped()
 							=> MWOAuthConsumer::STAGE_REJECTED,
-						wfMessage( 'mwoauth-consumer-stage-disabled' )->escaped()
+						$this->msg( 'mwoauth-consumer-stage-disabled' )->escaped()
 							=> MWOAuthConsumer::STAGE_DISABLED,
-						wfMessage( 'mwoauth-consumer-stage-expired' )->escaped()
+						$this->msg( 'mwoauth-consumer-stage-expired' )->escaped()
 							=> MWOAuthConsumer::STAGE_EXPIRED
 					],
 					'default'  => MWOAuthConsumer::STAGE_APPROVED,
@@ -258,7 +258,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 				$cmr->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
 			),
 			'mwoauthlistconsumers-status' => htmlspecialchars(
-				wfMessage( "mwoauthlistconsumers-status-$stageKey" )
+				$this->msg( "mwoauthlistconsumers-status-$stageKey" )
 			)
 		];
 
