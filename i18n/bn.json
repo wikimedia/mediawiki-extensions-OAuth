@@ -9,6 +9,7 @@
 			"আফতাবুজ্জামান"
 		]
 	},
+	"mwoauth-desc": "API অনুমোদনের জন্য OAuth 1.0a ব্যবহার করার অনুমতি দেয়",
 	"mwoauth-invalid-field-generic": "অবৈধ মান দেয়া হয়েছে",
 	"mwoauth-field-hidden": "(এই তথ্য গোপন করা)",
 	"mwoauth-field-private": "(এই তথ্য ব্যক্তিগত)",
