@@ -9,7 +9,8 @@
 			"WTM",
 			"Alan ffm",
 			"Sp5uhe",
-			"Railfail536"
+			"Railfail536",
+			"Vlad5250"
 		]
 	},
 	"mwoauth-desc": "Umożliwia korzystanie z OAuth 1.0a w celu autoryzacji API",
@@ -99,7 +100,7 @@
 	"right-mwoauthupdateownconsumer": "Aktualizowanie kontrolowanych konsumentów OAuth",
 	"right-mwoauthmanageconsumer": "Zarządzanie konsumentami OAuth",
 	"right-mwoauthviewprivate": "Podgląd prywatnych danych OAuth",
-	"right-mwoauthmanagemygrants": "Zarządzanie włączonymi aplikacjami OAuth",
+	"right-mwoauthmanagemygrants": "Zarządzanie uprawnieniami OAuth",
 	"action-mwoauthmanageconsumer": "zarządzanie konsumentami OAuth",
 	"echo-pref-tooltip-oauth-owner": "Powiadamiaj mnie o zdarzeniach związanych z aplikacjami OAuth, które utworzyłem.",
 	"echo-category-title-oauth-admin": "Administrator OAuth",
