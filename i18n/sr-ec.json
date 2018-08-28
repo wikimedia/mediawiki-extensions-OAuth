@@ -72,7 +72,7 @@
 	"mwoauthmanagemygrants-update": "Примени",
 	"mwoauthmanagemygrants-renounce": "Скини овлашћења",
 	"mwoauthmanagemygrants-action": "Промени статус:",
-	"mwoauth-form-description-allwikis-nogrants": "Здраво $1,\n\n'''$2''' жели да добије основни приступ у ваше име на свим пројектима овог сајта.",
+	"mwoauth-form-description-allwikis-nogrants": "Поздрав $1,\n\nУ циљу завршавања вашег захтева, апликацији '''$2''' је потребна дозвола за приступ информацијама на свим пројектима овог сајта у ваше име. Никакве промене неће бити направљене са вашим налогом.",
 	"mwoauth-form-button-approve": "Дозволи",
 	"mwoauth-form-button-cancel": "Откажи",
 	"mwoauth-grants-heading": "Тражене дозволе:",
