@@ -240,6 +240,7 @@
 	"action-mwoauthproposeconsumer": "پیشنهاد مصرف‌کنندهٔ جدید OAuth",
 	"action-mwoauthupdateownconsumer": "به‌روزرسانی مصرف‌کننده‌های OAuth که شما کنترل می‌کنید",
 	"action-mwoauthviewsuppressed": "نمایش مصرف‌کننده‌های OAuth توقیف‌شده",
+	"mwoauth-botpasswords-note": "<strong>نکته:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> نسبت به پسورد ربات امنیت بیشتری دارد و زمانی که ربات از آن پشتیبانی کند، از OAuth به جای پسورد ربات استفاده کنید.",
 	"mwoauth-api-module-disabled": "پودمان «$1» با OAuth قابل انجام نیست.",
 	"echo-category-title-oauth-owner": "توسعه OAuth",
 	"echo-category-title-oauth-admin": "مدیر OAuth",

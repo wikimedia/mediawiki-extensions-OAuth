@@ -6,7 +6,8 @@
 			"Demircimehmed",
 			"Meelo",
 			"McAang",
-			"Vito Genovese"
+			"Vito Genovese",
+			"TmY e12"
 		]
 	},
 	"mwoauth-desc": "OAuth 1.0a kullanımı için API yetkilendirme kullanımı",
@@ -38,5 +39,6 @@
 	"mwoauth-form-button-approve": "Evet, izin ver",
 	"mwoauth-granttype-normal": "Özel izinler için yetki talep et.",
 	"grant-mwoauth-authonly": "Yalnızca kimlik doğrulaması, API erişimi yok.",
-	"grant-mwoauth-authonlyprivate": "Special:OAuth/identify üzerinden sadece gerçek adınız ve e posta adresinizle erişebilirsiniz. API erişimi yok."
+	"grant-mwoauth-authonlyprivate": "Special:OAuth/identify üzerinden sadece gerçek adınız ve e posta adresinizle erişebilirsiniz. API erişimi yok.",
+	"mwoauth-botpasswords-note": "<strong>Not:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> bot şifrelerinden daha güvenlidir ve bot her desteklediğinde tercih edilmelidir."
 }
