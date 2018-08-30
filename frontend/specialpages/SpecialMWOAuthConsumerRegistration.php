@@ -448,8 +448,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			$this->msg( 'mwoauthconsumerregistration-manage' )->escaped()
 		);
 
-		$time = $this->getLanguage()->timeanddate(
-			wfTimestamp( TS_MW, $cmr->get( 'registration' ) ), true );
+		$time = htmlspecialchars( $this->getLanguage()->timeanddate(
+			wfTimestamp( TS_MW, $cmr->get( 'registration' ) ), true ) );
 
 		$stageKey = MWOAuthConsumer::$stageNames[$cmr->get( 'stage' )];
 		$encStageKey = htmlspecialchars( $stageKey ); // sanity

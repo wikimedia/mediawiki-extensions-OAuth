@@ -242,7 +242,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			return $s . ' ' . $out->msg( 'brackets' )->rawParams( $cmr->get( 'version' ) )->plain();
 	 } );
 		$r .= "<strong>" . htmlspecialchars( $name ) . '</strong> ' . $this->msg( 'parentheses' )
-				->rawParams( "<strong>{$links}</strong>" )->plain();
+				->rawParams( "<strong>{$links}</strong>" )->escaped();
 
 		$lang = $this->getLanguage();
 		$data = [
@@ -257,9 +257,8 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			'mwoauthlistconsumers-wiki' => htmlspecialchars(
 				$cmr->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
 			),
-			'mwoauthlistconsumers-status' => htmlspecialchars(
-				$this->msg( "mwoauthlistconsumers-status-$stageKey" )
-			)
+			'mwoauthlistconsumers-status' =>
+				$this->msg( "mwoauthlistconsumers-status-$stageKey" )->escaped()
 		];
 
 		foreach ( $data as $msg => $encValue ) {
