@@ -15,7 +15,7 @@ use MediaWiki\Logger\LoggerFactory;
 class MWOAuthRequest extends OAuthRequest {
 	private $sourceIP;
 
-	public function __construct( $httpMethod, $httpUrl, $parameters, $sourcIP=false ) {
+	public function __construct( $httpMethod, $httpUrl, $parameters, $sourcIP = false ) {
 		$this->sourceIP = $sourcIP;
 		parent::__construct( $httpMethod, $httpUrl, $parameters );
 	}

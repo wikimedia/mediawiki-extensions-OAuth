@@ -492,7 +492,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	 */
 	private function showError( $message, $format ) {
 		if ( $format == 'raw' ) {
-			$this->showResponse( 'Error: ' .$message->escaped(), 'raw' );
+			$this->showResponse( 'Error: ' . $message->escaped(), 'raw' );
 		} elseif ( $format == 'json' ) {
 			$error = \FormatJson::encode( [
 				'error' => $message->getKey(),

@@ -35,7 +35,7 @@ class MWOAuthServerTest extends \PHPUnit\Framework\TestCase {
 	 * @param bool $isPrefix Is Callback prefix?
 	 * @dataProvider provideCheckCallback
 	 */
-	public function testCheckCallback( $expect, $registeredUrl, $got, $isPrefix=true ) {
+	public function testCheckCallback( $expect, $registeredUrl, $got, $isPrefix = true ) {
 		$fixture = new MWOAuthServer( null );
 		$consumer = new StubConsumer( [
 			'callbackIsPrefix' => $isPrefix,

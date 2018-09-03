@@ -126,7 +126,7 @@ print <<<HELPTEXT
 
 HELPTEXT;
 
-echo "Calling: $req_req".PHP_EOL;
+echo "Calling: $req_req" . PHP_EOL;
 
 $ch = curl_init();
 curl_setopt( $ch, CURLOPT_URL, (string)$req_req );
@@ -177,7 +177,7 @@ HELPTEXT;
 // @codingStandardsIgnoreEnd
 
 // ACCESS TOKEN
-print 'What was the "verification value" the MediaWiki installation gave?'.PHP_EOL;
+print 'What was the "verification value" the MediaWiki installation gave?' . PHP_EOL;
 $fh = fopen( "php://stdin", "r" );
 $line = fgets( $fh );
 
@@ -198,7 +198,7 @@ print <<<HELPTEXT
 
 HELPTEXT;
 
-echo "Calling: $acc_req".PHP_EOL;
+echo "Calling: $acc_req" . PHP_EOL;
 
 unset( $ch );
 $ch = curl_init();

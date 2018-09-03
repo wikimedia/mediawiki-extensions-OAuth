@@ -8,7 +8,7 @@ namespace MediaWiki\Extensions\OAuth;
 if ( getenv( 'MW_INSTALL_PATH' ) ) {
 	$IP = getenv( 'MW_INSTALL_PATH' );
 } else {
-	$IP = __DIR__.'/../../..';
+	$IP = __DIR__ . '/../../..';
 }
 
 require __DIR__ . '/../lib/OAuth.php';
