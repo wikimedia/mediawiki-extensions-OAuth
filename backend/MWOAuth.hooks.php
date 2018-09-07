@@ -119,8 +119,8 @@ class MWOAuthHooks {
 		}
 
 		// Step 2: Return only those that are in use.
+		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
-			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			$tagIds = [];
 			foreach ( $allTags as $tag ) {
 				try {
@@ -130,20 +130,29 @@ class MWOAuthHooks {
 				}
 			}
 			$conditions = [ 'ct_tag_id' => $tagIds ];
+			$field = 'ct_tag_id';
 		} else {
 			$conditions = [ 'ct_tag' => $allTags ];
+			$field = 'ct_tag';
 		}
+
 		if ( $allTags ) {
 			$db = wfGetDB( DB_REPLICA );
 			$res = $db->select(
 				'change_tag',
-				[ 'ct_tag' ],
+				[ $field ],
 				$conditions,
 				__METHOD__,
 				[ 'DISTINCT' ]
 			);
-			foreach ( $res as $row ) {
-				$tags[] = $row->ct_tag;
+			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
+				foreach ( $res as $row ) {
+					$tags[] = $changeTagDefStore->getName( $row->ct_tag_id );
+				}
+			} else {
+				foreach ( $res as $row ) {
+					$tags[] = $row->ct_tag;
+				}
 			}
 		}
 
