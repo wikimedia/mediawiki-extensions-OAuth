@@ -239,22 +239,24 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		// We don't have $this in the anonymous function here within PHP 5.3.
 		$out = $this;
 		$name = $cmr->get( 'name', function ( $s ) use ( $cmr, $out ) {
-			return $s . ' ' . $out->msg( 'brackets' )->rawParams( $cmr->get( 'version' ) )->plain();
+			$escapedName = htmlspecialchars( $s );
+			return $escapedName . ' ' .
+				$out->msg( 'brackets' )->rawParams( $cmr->getForHtml( 'version' ) )->escaped();
 	 } );
-		$r .= "<strong>" . htmlspecialchars( $name ) . '</strong> ' . $this->msg( 'parentheses' )
+		$r .= "<strong>" . $name . '</strong> ' . $this->msg( 'parentheses' )
 				->rawParams( "<strong>{$links}</strong>" )->escaped();
 
 		$lang = $this->getLanguage();
 		$data = [
-			'mwoauthlistconsumers-user' => htmlspecialchars(
+			'mwoauthlistconsumers-user' => $cmr->escapeForHtml(
 				$cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' )
 			),
-			'mwoauthlistconsumers-description' => htmlspecialchars(
+			'mwoauthlistconsumers-description' => $cmr->escapeForHtml(
 				$cmr->get( 'description', function ( $s ) use ( $lang ) {
 					return $lang->truncateForVisual( $s, 10024 );
 	   } )
 			),
-			'mwoauthlistconsumers-wiki' => htmlspecialchars(
+			'mwoauthlistconsumers-wiki' => $cmr->escapeForHtml(
 				$cmr->get( 'wiki', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getWikiIdName' )
 			),
 			'mwoauthlistconsumers-status' =>

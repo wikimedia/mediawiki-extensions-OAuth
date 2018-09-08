@@ -285,7 +285,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		);
 		$reviewLinks = $this->getLanguage()->pipeList( $links );
 
-		$encName = htmlspecialchars( $cmr->get( 'name', function ( $s ) use ( $cmr ) {
+		$encName = $cmr->escapeForHtml( $cmr->get( 'name', function ( $s ) use ( $cmr ) {
 			return $s . ' [' . $cmr->get( 'version' ) . ']';
 		} ) );
 
@@ -299,7 +299,7 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		];
 
 		foreach ( $data as $msg => $val ) {
-			$r .= '<p>' . $this->msg( $msg )->escaped() . ' ' . htmlspecialchars( $val ) . '</p>';
+			$r .= '<p>' . $this->msg( $msg )->escaped() . ' ' . $cmr->escapeForHtml( $val ) . '</p>';
 		}
 		$r .= '</li>';
 

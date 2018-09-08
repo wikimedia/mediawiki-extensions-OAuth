@@ -81,14 +81,16 @@ class MWOAuthUIHooks {
 		}
 
 		if ( $m[2] ) {
-			$message = htmlspecialchars( $cmr->get( 'description' ) );
+			$message = $cmr->escapeForWikitext( $cmr->get( 'description' ) );
 		} else {
 			$target = \SpecialPage::getTitleFor( 'OAuthListConsumers',
 				'view/' . $cmr->get( 'consumerKey' )
 			);
-			$encName = wfEscapeWikiText( $cmr->get( 'name', function ( $s ) use ( $cmr ) {
-				return $s . ' [' . $cmr->get( 'version' ) . ']';
-			} ) );
+			$encName = wfEscapeWikiText( $cmr->escapeForWikitext( $cmr->get( 'name',
+				function ( $s ) use ( $cmr ) {
+					return $s . ' [' . $cmr->get( 'version' ) . ']';
+				}
+			) ) );
 			$message = "[[$target|$encName]]";
 		}
 		return false;

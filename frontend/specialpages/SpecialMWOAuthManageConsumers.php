@@ -244,7 +244,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			[],
 			[ 'publisher' => $owner ]
 		);
-		$ownerLink = htmlspecialchars( $owner ) . ' ' .
+		$ownerLink = $cmr->escapeForHtml( $owner ) . ' ' .
 			$this->msg( 'parentheses' )->rawParams( $link )->escaped();
 		$ownerOnly = $cmr->get( 'ownerOnly' );
 
@@ -426,21 +426,21 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 		$lang = $this->getLanguage();
 		$data = [
-			'mwoauthmanageconsumers-name' => htmlspecialchars(
+			'mwoauthmanageconsumers-name' => $cmr->escapeForHtml(
 				$cmr->get( 'name', function ( $s ) use ( $cmr ) {
 					return $s . ' [' . $cmr->get( 'version' ) . ']';
 	   } )
 			),
-			'mwoauthmanageconsumers-user' => htmlspecialchars(
+			'mwoauthmanageconsumers-user' => $cmr->escapeForHtml(
 				$cmr->get( 'userId', 'MediaWiki\Extensions\OAuth\MWOAuthUtils::getCentralUserNameFromId' )
 			),
-			'mwoauthmanageconsumers-description' => htmlspecialchars(
+			'mwoauthmanageconsumers-description' => $cmr->escapeForHtml(
 				$cmr->get( 'description', function ( $s ) use ( $lang ) {
 					return $lang->truncateForVisual( $s, 10024 );
 	   } )
 			),
-			'mwoauthmanageconsumers-email' => htmlspecialchars( $cmr->get( 'email' ) ),
-			'mwoauthmanageconsumers-consumerkey' => htmlspecialchars( $cmr->get( 'consumerKey' ) ),
+			'mwoauthmanageconsumers-email' => $cmr->escapeForHtml( $cmr->get( 'email' ) ),
+			'mwoauthmanageconsumers-consumerkey' => $cmr->escapeForHtml( $cmr->get( 'consumerKey' ) ),
 			'mwoauthmanageconsumers-lastchange' => $logHtml
 		];
 

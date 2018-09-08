@@ -1,7 +1,4 @@
 <?php
-
-namespace MediaWiki\Extensions\OAuth;
-
 /**
  * (c) Aaron Schulz 2013, GPL
  *
@@ -20,6 +17,10 @@ namespace MediaWiki\Extensions\OAuth;
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
+
+ namespace MediaWiki\Extensions\OAuth;
+
+use Message;
 
 /**
  * Wrapper of an MWOAuthDAO that handles authorization to view fields
@@ -60,6 +61,34 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 	 */
 	final public function getDAO() {
 		return $this->dao;
+	}
+
+	/**
+	 * Helper to make return value of get() safe for wikitext
+	 *
+	 * @param Message|string $value
+	 * @return string For use in wikitext
+	 */
+	final public function escapeForWikitext( $value ) {
+		if ( $value instanceof Message ) {
+			return $value->plain();
+		} else {
+			return $value;
+		}
+	}
+
+	/**
+	 * Helper to make return value of get() safe for HTML
+	 *
+	 * @param Message|string $value
+	 * @return string HTML escaped
+	 */
+	final public function escapeForHtml( $value ) {
+		if ( $value instanceof Message ) {
+			return $value->parse();
+		} else {
+			return htmlspecialchars( $value );
+		}
 	}
 
 	/**
