@@ -164,7 +164,7 @@
 	"mwoauthlistconsumers-status-rejected": "rexeitado",
 	"mwoauthlistconsumers-status-expired": "caducado",
 	"oauthmanagemygrants": "Administrar as aplicacións conectadas",
-	"mwoauthmanagemygrants-text": "Esta páxina mostra as aplicacións que poden utilizar a súa conta. Para calquera aplicación, o alcance do seu acceso está limitado polos permisos que se lle outorgaron no momento de autorizala. Se autorizou unha aplicación para que acceda a varios proxectos no seu nome, verá axustes separados a continuación por cada un dos proxectos.\n\nAs aplicacións conectadas acceden á súa conta mediante o protocolo OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Máis información sobre as aplicacións conectadas])</span>",
+	"mwoauthmanagemygrants-text": "Esta páxina amosa as aplicacións que poden utilizar a súa conta. Para calquera aplicación, o alcance do seu acceso está limitado polos permisos que se lle outorgaron no momento de autorizala. Se autorizou unha aplicación para que acceda a varios proxectos no seu nome, verá axustes separados a continuación por cada un dos proxectos.\n\nAs aplicacións conectadas acceden á súa conta mediante o protocolo OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Máis información sobre as aplicacións conectadas])</span>",
 	"mwoauthmanagemygrants-notloggedin": "Debe acceder ao sistema para acceder a esta páxina.",
 	"mwoauthmanagemygrants-navigation": "Navegación:",
 	"mwoauthmanagemygrants-showlist": "Lista de aplicacións conectadas",
