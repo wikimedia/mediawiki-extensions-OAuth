@@ -147,7 +147,7 @@ class MWOAuthHooks {
 			);
 			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
 				foreach ( $res as $row ) {
-					$tags[] = $changeTagDefStore->getName( $row->ct_tag_id );
+					$tags[] = $changeTagDefStore->getName( intval( $row->ct_tag_id ) );
 				}
 			} else {
 				foreach ( $res as $row ) {
