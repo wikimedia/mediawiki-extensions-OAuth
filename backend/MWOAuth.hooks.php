@@ -129,6 +129,10 @@ class MWOAuthHooks {
 					continue;
 				}
 			}
+			if ( $tagIds === [] ) {
+				// Nothing to add, return
+				return true;
+			}
 			$conditions = [ 'ct_tag_id' => $tagIds ];
 			$field = 'ct_tag_id';
 		} else {
