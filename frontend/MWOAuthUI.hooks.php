@@ -32,16 +32,26 @@ class MWOAuthUIHooks {
 			__METHOD__
 		);
 
+		// TODO: Drop this when isOouiEnabled always returns true.
+		if ( \SpecialPreferences::isOouiEnabled( \RequestContext::getMain() ) ) {
+			$control = new \OOUI\ButtonWidget( [
+				'href' => SpecialPage::getTitleFor( 'OAuthManageMyGrants' )->getLinkURL(),
+				'label' => wfMessage( 'mwoauth-prefs-managegrantslink' )->numParams( $count )->text()
+			] );
+		} else {
+			$control = \Linker::linkKnown(
+				\SpecialPage::getTitleFor( 'OAuthManageMyGrants' ),
+				wfMessage( 'mwoauth-prefs-managegrantslink' )->numParams( $count )->escaped()
+			);
+		}
+
 		$prefInsert = [ 'mwoauth-prefs-managegrants' =>
 			[
 				'section' => 'personal/info',
 				'label-message' => 'mwoauth-prefs-managegrants',
 				'type' => 'info',
 				'raw' => true,
-				'default' => \Linker::linkKnown(
-					\SpecialPage::getTitleFor( 'OAuthManageMyGrants' ),
-					wfMessage( 'mwoauth-prefs-managegrantslink' )->numParams( $count )->escaped()
-				)
+				'default' => (string)$control
 			],
 		];
 
