@@ -467,7 +467,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 		$lang = $this->getLanguage();
 		$data = [
-			'mwoauthconsumerregistration-name' => htmlspecialchars(
+			'mwoauthconsumerregistration-name' => $cmr->escapeForHtml(
 				$cmr->get( 'name', function ( $s ) use ( $cmr ) {
 					return $s . ' [' . $cmr->get( 'version' ) . ']';
 	   } )
@@ -477,14 +477,14 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			// mwoauth-consumer-stage-disabled
 			'mwoauthconsumerregistration-stage' =>
 				$this->msg( "mwoauth-consumer-stage-$stageKey" )->escaped(),
-			'mwoauthconsumerregistration-description' => htmlspecialchars(
+			'mwoauthconsumerregistration-description' => $cmr->escapeForHtml(
 				$cmr->get( 'description', function ( $s ) use ( $lang ) {
 					return $lang->truncateForVisual( $s, 10024 );
 	   } )
 			),
-			'mwoauthconsumerregistration-email' => htmlspecialchars(
+			'mwoauthconsumerregistration-email' => $cmr->escapeForHtml(
 				$cmr->get( 'email' ) ),
-			'mwoauthconsumerregistration-consumerkey' => htmlspecialchars(
+			'mwoauthconsumerregistration-consumerkey' => $cmr->escapeForHtml(
 				$cmr->get( 'consumerKey' ) ),
 			'mwoauthconsumerregistration-lastchange' => $logHtml
 		];
