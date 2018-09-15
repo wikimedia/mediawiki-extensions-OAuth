@@ -7,6 +7,7 @@
 	},
 	"mwoauth-prefs-managegrants": "ဆက်သွယ်ထားသော အက်ပ်များ -",
 	"mwoauth-prefs-managegrantslink": "$1 ချိတ်ဆက်ထားသော {{PLURAL:$1|အပလေကေးရှင်း|အပလေကေးရှင်းများ}}ကို စီမံခန့်ခွဲရန်",
+	"mwoauth-consumer-reason": "အ​ကြောင်း​ပြ​ချက်:",
 	"mwoauthconsumerregistration-navigation": "အ​ညွှန်း​:",
 	"mwoauthconsumerregistration-description": "ဖော်ပြချက်",
 	"mwoauthmanageconsumers-description": "ဖော်ပြချက်",

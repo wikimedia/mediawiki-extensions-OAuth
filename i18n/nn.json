@@ -4,6 +4,7 @@
 			"Njardarlogar"
 		]
 	},
+	"mwoauth-desc": "Gjer det mogeleg å nytta OAuth 1.0a for å gje API-løyve",
 	"mwoauth-prefs-managegrants": "Tilkopla småprogram:",
 	"mwoauth-prefs-managegrantslink": "Handsam {{PLURAL:$1|eitt tilkopla småprogram|$1 tilkopla småprogram}}",
 	"mwoauth-consumer-allwikis": "Alle prosjekta på denne nettstaden",
