@@ -241,7 +241,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		$name = $cmr->get( 'name', function ( $s ) use ( $cmr, $out ) {
 			$escapedName = htmlspecialchars( $s );
 			return $escapedName . ' ' .
-				$out->msg( 'brackets' )->rawParams( $cmr->getForHtml( 'version' ) )->escaped();
+				$out->msg( 'brackets' )->rawParams( $cmr->escapeForHtml( 'version' ) )->escaped();
 	 } );
 		$r .= "<strong>" . $name . '</strong> ' . $this->msg( 'parentheses' )
 				->rawParams( "<strong>{$links}</strong>" )->escaped();
