@@ -10,7 +10,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.31.0"
+		"MediaWiki": ">= 1.32.0"
 	},
 	"ExtensionFunctions": [
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onExtensionFunctions"
