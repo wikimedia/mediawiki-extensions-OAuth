@@ -131,11 +131,12 @@ class MWOAuthUtils {
 		}
 
 		$cutoff = time() - $wgMWOAuthRequestExpirationAge;
+		$fname = __METHOD__;
 		\DeferredUpdates::addUpdate(
 			new \AutoCommitUpdate(
 				$dbw,
 				__METHOD__,
-				function ( IDatabase $dbw ) use ( $cutoff ) {
+				function ( IDatabase $dbw ) use ( $cutoff, $fname ) {
 					$dbw->update(
 						'oauth_registered_consumer',
 						[
@@ -147,7 +148,7 @@ class MWOAuthUtils {
 							'oarc_stage_timestamp < ' .
 								$dbw->addQuotes( $dbw->timestamp( $cutoff ) )
 						],
-						__METHOD__
+						$fname
 					);
 				}
 			)
