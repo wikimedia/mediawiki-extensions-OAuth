@@ -99,6 +99,7 @@
 	"right-mwoauthproposeconsumer": "Proponowanie nowych konsumentów OAuth",
 	"right-mwoauthupdateownconsumer": "Aktualizowanie kontrolowanych konsumentów OAuth",
 	"right-mwoauthmanageconsumer": "Zarządzanie konsumentami OAuth",
+	"right-mwoauthsuppress": "Utajnianie konsumentów OAuth",
 	"right-mwoauthviewprivate": "Podgląd prywatnych danych OAuth",
 	"right-mwoauthmanagemygrants": "Zarządzanie uprawnieniami OAuth",
 	"action-mwoauthmanageconsumer": "zarządzanie konsumentami OAuth",

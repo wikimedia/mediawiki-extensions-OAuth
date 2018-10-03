@@ -8,7 +8,7 @@
 	"mwoauth-field-hidden": "(ဤသတင်းအချက်အလက်သည် ဖုံးကွယ်ထားသည်)",
 	"mwoauth-field-private": "(ဤသတင်းအချက်အလက်သည် ပုဂ္ဂလိကဖြစ်သည်)",
 	"mwoauth-prefs-managegrants": "ဆက်သွယ်ထားသော အက်ပ်များ -",
-	"mwoauth-prefs-managegrantslink": "$1 ချိတ်ဆက်ထားသော {{PLURAL:$1|အပလေကေးရှင်း|အပလေကေးရှင်းများ}}ကို စီမံခန့်ခွဲရန်",
+	"mwoauth-prefs-managegrantslink": "ချိတ်ဆက်ထားသော {{PLURAL:$1|အပလေကေးရှင်း|အပလေကေးရှင်းများ}} $1 ခုကို စီမံခန့်ခွဲရန်",
 	"mwoauth-consumer-allwikis": "ဤဆိုဒ်ပေါ်ရှိ ပရောဂျက်အားလုံး",
 	"mwoauth-consumer-stage": "လက်ရှိအခြေနေ:",
 	"mwoauth-consumer-wiki-thiswiki": "လက်ရှိ ပရောဂျက် ($1)",
