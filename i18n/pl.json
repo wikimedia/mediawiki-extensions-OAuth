@@ -103,6 +103,7 @@
 	"right-mwoauthviewprivate": "Podgląd prywatnych danych OAuth",
 	"right-mwoauthmanagemygrants": "Zarządzanie uprawnieniami OAuth",
 	"action-mwoauthmanageconsumer": "zarządzanie konsumentami OAuth",
+	"mwoauth-botpasswords-note": "<strong>Uwaga:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> jest bezpieczniejszą metodą od haseł bota i powinna być ona preferowana zawsze, gdy tylko jest wspierana.",
 	"echo-pref-tooltip-oauth-owner": "Powiadamiaj mnie o zdarzeniach związanych z aplikacjami OAuth, które utworzyłem.",
 	"echo-category-title-oauth-admin": "Administrator OAuth",
 	"notification-oauth-app-body": "Powód: $1"
