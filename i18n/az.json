@@ -11,11 +11,14 @@
 	"mwoauth-field-hidden": "(bu məlumat gizlədilib)",
 	"mwoauth-field-private": "(bu məlumat konfidensialdır)",
 	"mwoauth-prefs-managegrants": "Əlaqələndirilmiş tətbiqlər:",
+	"mwoauth-prefs-managegrantslink": "$1 qoşulu tətbiqi idarə et",
 	"mwoauth-consumer-stage-disabled": "söndürülüb",
 	"mwoauthconsumerregistration-stage": "Vəziyyəti",
 	"mwoauthconsumerregistration-lastchange": "Son redaktə",
 	"mwoauthconsumerregistration-manage": "idarəetmə",
 	"mwoauthconsumerregistration-resetsecretkey": "Gizli açarı sıfırlayıb, yenisini təyin et",
 	"mwoauthmanageconsumers-disable": "Söndürülüb",
-	"mwoauthlistconsumers-status-disabled": "söndürülüb"
+	"mwoauthlistconsumers-status-disabled": "söndürülüb",
+	"oauthmanagemygrants": "Qoşulmuş tətbiqləri idarə et",
+	"mwoauthmanagemygrants-confirm-legend": "Qoşulmuş tətbiqin idarə edilməsi"
 }
