@@ -50,7 +50,7 @@
 	"mwoauthmanagemygrants-success-renounce": "Достъпът на приложението до Вашата сметка бе отменен.",
 	"mwoauthmanagemygrants-basic-tooltip": "Защо не мога да обновя това разрешение? Това разрешение дава права на Вашите основни свързани приложения, които имат нужда от него, за да функционират както трябва. Ако не искате това свързано приложение да има тези права, тогава отменете достъпа на приложението.",
 	"mwoauth-form-button-approve": "Разрешаване",
-	"mwoauth-form-button-cancel": "Отмяна",
+	"mwoauth-form-button-cancel": "Отказ",
 	"right-mwoauthmanagemygrants": "Управление на разрешения за OAuth",
 	"echo-category-title-oauth-owner": "Разработка с OAuth",
 	"echo-pref-tooltip-oauth-owner": "Известяване, когато има ново събитие свързано приложенията използващи OAuth, които съм разработил."
