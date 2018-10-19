@@ -14,6 +14,7 @@
 		]
 	},
 	"mwoauth-desc": "Umożliwia korzystanie z OAuth 1.0a w celu autoryzacji API",
+	"mwoauth-verified": "Aplikacja ma teraz dostęp do MediaWiki w twoim imieniu.\n\nAby ukończyć proces wprowadź ten kod weryfikacyjny w aplikacji: '''$1'''",
 	"mwoauth-db-readonly": "Bazy danych OAuth jest tymczasowo zablokowana. Proszę spróbować ponownie za kilka minut.",
 	"mwoauth-missing-field": "Brak wartości dla pola „$1”",
 	"mwoauth-invalid-field": "W polu „$1” podano nieprawidłową wartość",
@@ -33,6 +34,8 @@
 	"mwoauth-consumer-rsakey": "Klucz publiczny RSA (opcjonalnie):",
 	"mwoauth-consumer-accesstoken": "Token dostępu:",
 	"mwoauth-consumer-reason": "Powód:",
+	"mwoauth-consumer-email-unconfirmed": "Adres email twojego konta nie został jeszcze zweryfikowany.",
+	"mwoauth-consumer-email-mismatched": "Wprowadzony adres email musi pasować do adresu twojego konta.",
 	"mwoauth-consumer-grantshelp": "Nadawane uprawnienia upoważniają do działań, które możesz już obecnie wykonywać. Zobacz [[Special:ListGrants|tabelę uprawnień]], aby uzyskać więcej informacji.",
 	"mwoauth-consumer-stage-proposed": "proponowane",
 	"mwoauth-consumer-stage-rejected": "odrzucone",
