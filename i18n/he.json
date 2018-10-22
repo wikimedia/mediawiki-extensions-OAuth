@@ -17,7 +17,7 @@
 	"mwoauth-field-hidden": "(מידע זה מוסתר)",
 	"mwoauth-field-private": "(מידע זה הוא פרטי)",
 	"mwoauth-prefs-managegrants": "יישומים מחוברים:",
-	"mwoauth-prefs-managegrantslink": "ניהול {{PLURAL:$1|יישום מחובר אחד|$1 היישומים המחוברים}}",
+	"mwoauth-prefs-managegrantslink": "ניהול {{PLURAL:$1|היישום המחובר|$1 היישומים המחוברים|0=היישומים המחוברים}}",
 	"mwoauth-consumer-allwikis": "כל המיזמים באתר הזה",
 	"mwoauth-consumer-key": "מפתח צרכן:",
 	"mwoauth-consumer-name": "שם היישום:",
