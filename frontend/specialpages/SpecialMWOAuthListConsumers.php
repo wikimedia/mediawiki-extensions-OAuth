@@ -81,11 +81,11 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 		$grants = $cmr->get( 'grants' );
 		if ( $grants === [ 'mwoauth-authonly' ] || $grants === [ 'mwoauth-authonlyprivate' ] ) {
-			$s = $this->msg( 'grant-' . $grants[0] )->text() . "\n";
+			$s = $this->msg( 'grant-' . $grants[0] )->plain() . "\n";
 		} else {
 			$s = \MWGrants::getGrantsWikiText( $grants, $this->getLanguage() );
 			if ( $s == '' ) {
-				$s = $this->msg( 'mwoauthlistconsumers-basicgrantsonly' )->text();
+				$s = $this->msg( 'mwoauthlistconsumers-basicgrantsonly' )->plain();
 			} else {
 				$s .= "\n";
 			}
@@ -104,7 +104,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			'mwoauthlistconsumers-callbackurl' => $cmr->get( 'callbackUrl' ),
 			'mwoauthlistconsumers-callbackisprefix' => $cmr->get( 'callbackIsPrefix' ) ?
 				$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
-			'mwoauthlistconsumers-grants' => new HtmlSnippet( $out->parseInline( $s ) ),
+			'mwoauthlistconsumers-grants' => new HtmlSnippet( $out->parseInlineAsInterface( $s ) ),
 		];
 
 		$out->addHTML( MWOAuthUIUtils::generateInfoTable( $data, $this->getContext() ) );
