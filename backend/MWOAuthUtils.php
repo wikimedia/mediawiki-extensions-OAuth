@@ -212,7 +212,7 @@ class MWOAuthUtils {
 	 * Given a central wiki user ID, get a central user name
 	 *
 	 * @param int $userId
-	 * @param bool|\User $audience show hidden names based on this user, or false for public
+	 * @param bool|\User|string $audience show hidden names based on this user, or false for public
 	 * @throws \MWException
 	 * @return string|bool User name, false if not found, empty string if name is hidden
 	 */
@@ -221,14 +221,20 @@ class MWOAuthUtils {
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
 			$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
-			$name = $lookup->nameFromCentralId( $userId, $audience ?: \CentralIdLookup::AUDIENCE_PUBLIC );
+			$name = $lookup->nameFromCentralId(
+				$userId,
+				$audience === 'raw'
+					? \CentralIdLookup::AUDIENCE_RAW
+					: ( $audience ?: \CentralIdLookup::AUDIENCE_PUBLIC )
+			);
 			if ( $name === null ) {
 				$name = false;
 			}
 		} else {
 			$name = '';
 			$user = \User::newFromId( $userId );
-			if ( !$user->isHidden()
+			if ( $audience === 'raw'
+				|| !$user->isHidden()
 				|| ( $audience instanceof \User && $audience->isAllowed( 'hideuser' ) )
 			) {
 				$name = $user->getName();

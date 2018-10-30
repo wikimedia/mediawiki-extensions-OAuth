@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
@@ -110,6 +111,16 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 					'mwoauth-oauth-exception', $exception->getMessage() );
 			}
 
+			LoggerFactory::getInstance( 'OAuth' )->info(
+				'{user} performed action {action} on consumer {consumer}', [
+					'action' => 'accept',
+					'user' => $user->getName(),
+					'consumer' => $cmr->get( 'consumerKey' ),
+					'target' => MWOAuthUtils::getCentralUserNameFromId( $cmr->get( 'userId' ), 'raw' ),
+					'comment' => '',
+					'clientip' => $this->getContext()->getRequest()->getIP(),
+				]
+			);
 			return $this->success( [ 'callbackUrl' => $callback ] );
 		case 'update':
 			$cmra = MWOAuthConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
@@ -129,6 +140,16 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 				 $cmr->get( 'grants' ) // Only keep the applicable ones
 			) );
 
+			LoggerFactory::getInstance( 'OAuth' )->info(
+				'{user} performed action {action} on consumer {consumer}', [
+					'action' => 'update-acceptance',
+					'user' => $user->getName(),
+					'consumer' => $cmr->get( 'consumerKey' ),
+					'target' => MWOAuthUtils::getCentralUserNameFromId( $cmr->get( 'userId' ), 'raw' ),
+					'comment' => '',
+					'clientip' => $this->getContext()->getRequest()->getIP(),
+				]
+			);
 			$cmra->setFields( [
 				'grants' => array_intersect( $grants, $cmr->get( 'grants' ) ) // sanity
 			] );
@@ -143,6 +164,17 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 			}
 
+			$cmr = MWOAuthConsumer::newFromId( $dbw, $cmra->get( 'consumerId' ) );
+			LoggerFactory::getInstance( 'OAuth' )->info(
+				'{user} performed action {action} on consumer {consumer}', [
+					'action' => 'renounce',
+					'user' => $user->getName(),
+					'consumer' => $cmr->get( 'consumerKey' ),
+					'target' => MWOAuthUtils::getCentralUserNameFromId( $cmr->get( 'userId' ), 'raw' ),
+					'comment' => '',
+					'clientip' => $this->getContext()->getRequest()->getIP(),
+				]
+			);
 			$cmra->delete( $dbw );
 
 			return $this->success( $cmra );

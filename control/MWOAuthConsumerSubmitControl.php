@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
@@ -469,13 +470,25 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	) {
 		$logEntry = new \ManualLogEntry( 'mwoauthconsumer', $action );
 		$logEntry->setPerformer( $performer );
-		$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->get( 'userId' ) ) );
+		$target = $this->getLogTitle( $dbw, $cmr->get( 'userId' ) );
+		$logEntry->setTarget( $target );
 		$logEntry->setComment( $comment );
 		$logEntry->setParameters( [ '4:consumer' => $cmr->get( 'consumerKey' ) ] );
 		$logEntry->setRelations( [
 			'OAuthConsumer' => [ $cmr->get( 'consumerKey' ) ]
 		] );
 		$logEntry->insert( $dbw );
+
+		LoggerFactory::getInstance( 'OAuth' )->info(
+			'{user} performed action {action} on consumer {consumer}', [
+				'action' => $action,
+				'user' => $performer->getName(),
+				'consumer' => $cmr->get( 'consumerKey' ),
+				'target' => $target->getText(),
+				'comment' => $comment,
+				'clientip' => $this->getContext()->getRequest()->getIP(),
+			]
+		);
 	}
 
 	/**
