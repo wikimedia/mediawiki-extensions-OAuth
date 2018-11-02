@@ -10,7 +10,7 @@ class MWOAuthException extends OAuthException {
 	 * @param string $msg Message key (string) for error text
 	 * @param array|null $params with parameters to wfMessage()
 	 */
-	function __construct( $msg, $params = null ) {
+	public function __construct( $msg, $params = null ) {
 		$this->msg = $msg;
 		$this->params = $params;
 		parent::__construct(

@@ -472,7 +472,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 class MWOAuthManageConsumersPager extends \ReverseChronologicalPager {
 	public $mForm, $mConds;
 
-	function __construct( $form, $conds, $stage ) {
+	public function __construct( $form, $conds, $stage ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->mConds['oarc_stage'] = $stage;
@@ -491,7 +491,7 @@ class MWOAuthManageConsumersPager extends \ReverseChronologicalPager {
 	/**
 	 * @return \Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		return $this->mForm->getFullTitle();
 	}
 
@@ -499,14 +499,14 @@ class MWOAuthManageConsumersPager extends \ReverseChronologicalPager {
 	 * @param \stdClass $row
 	 * @return string
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		return $this->mForm->formatRow( $this->mDb, $row );
 	}
 
 	/**
 	 * @return string
 	 */
-	function getStartBody() {
+	public function getStartBody() {
 		if ( $this->getNumRows() ) {
 			return '<ul>';
 		} else {
@@ -517,7 +517,7 @@ class MWOAuthManageConsumersPager extends \ReverseChronologicalPager {
 	/**
 	 * @return string
 	 */
-	function getEndBody() {
+	public function getEndBody() {
 		if ( $this->getNumRows() ) {
 			return '</ul>';
 		} else {
@@ -528,7 +528,7 @@ class MWOAuthManageConsumersPager extends \ReverseChronologicalPager {
 	/**
 	 * @return array
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [
 			'tables' => [ 'oauth_registered_consumer' ],
 			'fields' => [ '*' ],
@@ -539,7 +539,7 @@ class MWOAuthManageConsumersPager extends \ReverseChronologicalPager {
 	/**
 	 * @return string
 	 */
-	function getIndexField() {
+	public function getIndexField() {
 		return 'oarc_stage_timestamp';
 	}
 }

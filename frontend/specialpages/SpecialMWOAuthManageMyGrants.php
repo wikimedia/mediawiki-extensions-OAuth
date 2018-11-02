@@ -334,7 +334,7 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	 * @param array $conds
 	 * @param int $centralUserId
 	 */
-	function __construct( $form, $conds, $centralUserId ) {
+	public function __construct( $form, $conds, $centralUserId ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->mConds[] = 'oaac_consumer_id = oarc_id';
@@ -354,7 +354,7 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	/**
 	 * @return \Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		return $this->mForm->getFullTitle();
 	}
 
@@ -362,14 +362,14 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	 * @param \stdClass $row
 	 * @return string
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		return $this->mForm->formatRow( $this->mDb, $row );
 	}
 
 	/**
 	 * @return string
 	 */
-	function getStartBody() {
+	public function getStartBody() {
 		if ( $this->getNumRows() ) {
 			return '<ul>';
 		} else {
@@ -380,7 +380,7 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	/**
 	 * @return string
 	 */
-	function getEndBody() {
+	public function getEndBody() {
 		if ( $this->getNumRows() ) {
 			return '</ul>';
 		} else {
@@ -391,7 +391,7 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	/**
 	 * @return array
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [
 			'tables' => [ 'oauth_accepted_consumer', 'oauth_registered_consumer' ],
 			'fields' => [ '*' ],
@@ -402,7 +402,7 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	/**
 	 * @return string
 	 */
-	function getIndexField() {
+	public function getIndexField() {
 		return 'oaac_consumer_id';
 	}
 }

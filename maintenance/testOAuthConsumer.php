@@ -129,7 +129,7 @@ class TestOAuthConsumer extends \Maintenance {
 class TestOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
 	private $privKey, $pubKey;
 
-	function __construct( $privKeyFile ) {
+	public function __construct( $privKeyFile ) {
 		$key = file_get_contents( $privKeyFile );
 		if ( !$key ) {
 			throw new OAuthException( "Could not read private key file $privKeyFile" );

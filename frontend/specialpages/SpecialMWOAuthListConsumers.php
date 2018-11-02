@@ -285,7 +285,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 class MWOAuthListConsumersPager extends \AlphabeticPager {
 	public $mForm, $mConds;
 
-	function __construct( $form, $conds, $name, $centralUserID, $stage ) {
+	public function __construct( $form, $conds, $name, $centralUserID, $stage ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 
@@ -323,7 +323,7 @@ class MWOAuthListConsumersPager extends \AlphabeticPager {
 	/**
 	 * @return \Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		return $this->mForm->getFullTitle();
 	}
 
@@ -331,14 +331,14 @@ class MWOAuthListConsumersPager extends \AlphabeticPager {
 	 * @param \stdClass $row
 	 * @return string
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		return $this->mForm->formatRow( $this->mDb, $row );
 	}
 
 	/**
 	 * @return string
 	 */
-	function getStartBody() {
+	public function getStartBody() {
 		if ( $this->getNumRows() ) {
 			return '<ul>';
 		} else {
@@ -349,7 +349,7 @@ class MWOAuthListConsumersPager extends \AlphabeticPager {
 	/**
 	 * @return string
 	 */
-	function getEndBody() {
+	public function getEndBody() {
 		if ( $this->getNumRows() ) {
 			return '</ul>';
 		} else {
@@ -360,7 +360,7 @@ class MWOAuthListConsumersPager extends \AlphabeticPager {
 	/**
 	 * @return array
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [
 			'tables' => [ 'oauth_registered_consumer' ],
 			'fields' => [ '*' ],
@@ -371,7 +371,7 @@ class MWOAuthListConsumersPager extends \AlphabeticPager {
 	/**
 	 * @return string
 	 */
-	function getIndexField() {
+	public function getIndexField() {
 		return $this->mIndexField;
 	}
 }

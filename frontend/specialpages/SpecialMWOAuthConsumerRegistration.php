@@ -40,7 +40,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		return $user->isEmailConfirmed();
 	}
 
-	function displayRestrictionError() {
+	public function displayRestrictionError() {
 		throw new \PermissionsError( null, [ 'mwoauthconsumerregistration-need-emailconfirmed' ] );
 	}
 
@@ -519,7 +519,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
 	public $mForm, $mConds;
 
-	function __construct( $form, $conds, $centralUserId ) {
+	public function __construct( $form, $conds, $centralUserId ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->mConds['oarc_user_id'] = $centralUserId;
@@ -538,7 +538,7 @@ class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
 	/**
 	 * @return \Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		return $this->mForm->getFullTitle();
 	}
 
@@ -546,14 +546,14 @@ class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
 	 * @param \stdClass $row
 	 * @return string
 	 */
-	function formatRow( $row ) {
+	public function formatRow( $row ) {
 		return $this->mForm->formatRow( $this->mDb, $row );
 	}
 
 	/**
 	 * @return string
 	 */
-	function getStartBody() {
+	public function getStartBody() {
 		if ( $this->getNumRows() ) {
 			return '<ul>';
 		} else {
@@ -564,7 +564,7 @@ class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
 	/**
 	 * @return string
 	 */
-	function getEndBody() {
+	public function getEndBody() {
 		if ( $this->getNumRows() ) {
 			return '</ul>';
 		} else {
@@ -575,7 +575,7 @@ class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
 	/**
 	 * @return array
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return [
 			'tables' => [ 'oauth_registered_consumer' ],
 			'fields' => [ '*' ],
@@ -586,7 +586,7 @@ class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
 	/**
 	 * @return string
 	 */
-	function getIndexField() {
+	public function getIndexField() {
 		return 'oarc_stage_timestamp';
 	}
 }

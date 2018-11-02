@@ -31,7 +31,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	/** @var \\Psr\\Log\\LoggerInterface */
 	protected $logger;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'OAuth' );
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
 	}
@@ -40,7 +40,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		return true;
 	}
 
-	function getLocalName() {
+	public function getLocalName() {
 		// Force the canonical name when OAuth headers are present,
 		// otherwise SpecialPageFactory redirects and breaks the signature.
 		if ( MWOAuthUtils::hasOAuthHeaders( $this->getRequest() ) ) {
