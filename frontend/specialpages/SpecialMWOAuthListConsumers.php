@@ -236,12 +236,10 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		$encStageKey = htmlspecialchars( $stageKey ); // sanity
 		$r = "<li class=\"mw-mwoauthlistconsumers-{$encStageKey}\">";
 
-		// We don't have $this in the anonymous function here within PHP 5.3.
-		$out = $this;
-		$name = $cmr->get( 'name', function ( $s ) use ( $cmr, $out ) {
+		$name = $cmr->get( 'name', function ( $s ) use ( $cmr ) {
 			$escapedName = htmlspecialchars( $s );
 			return $escapedName . ' ' .
-				$out->msg( 'brackets' )->rawParams( $cmr->escapeForHtml( 'version' ) )->escaped();
+				$this->msg( 'brackets' )->rawParams( $cmr->escapeForHtml( 'version' ) )->escaped();
 	 } );
 		$r .= "<strong>" . $name . '</strong> ' . $this->msg( 'parentheses' )
 				->rawParams( "<strong>{$links}</strong>" )->escaped();
