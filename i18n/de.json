@@ -17,7 +17,7 @@
 	"mwoauth-field-hidden": "(diese Information ist versteckt)",
 	"mwoauth-field-private": "(diese Information ist privat)",
 	"mwoauth-prefs-managegrants": "Verbundene Anwendungen:",
-	"mwoauth-prefs-managegrantslink": "Verbundene {{PLURAL:$1|Anwendung|Anwendungen}} verwalten ($1)",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|Eine verbundene Anwendung|$1 verbundene Anwendungen|0=Verbundene Anwendungen}} verwalten",
 	"mwoauth-consumer-allwikis": "Alle Projekte dieser Website",
 	"mwoauth-consumer-key": "Verbraucherschlüssel:",
 	"mwoauth-consumer-name": "Anwendungsname:",
