@@ -7,7 +7,7 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "Forbundne apps:",
-	"mwoauth-prefs-managegrantslink": "Håndtér $1 {{PLURAL:$1|forbundet applikation|forbundne applikationer}}",
+	"mwoauth-prefs-managegrantslink": "Håndtér $1 {{PLURAL:$1|forbundet applikation|$1 forbundne applikationer|0=forbundne applikationer}}",
 	"mwoauth-consumer-stage": "Nuværende status:",
 	"mwoauth-consumer-reason": "Begrundelse:",
 	"mwoauth-consumer-stage-expired": "udløbet",

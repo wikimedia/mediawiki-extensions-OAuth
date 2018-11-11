@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Bjankuloski06",
-			"Macofe"
+			"Macofe",
+			"Vlad5250"
 		]
 	},
 	"mwoauth-desc": "Овозможува употреба на OAuth 1.0a за заверка на извршници (API)",
@@ -14,7 +15,7 @@
 	"mwoauth-field-hidden": "(оваа информација е скриена)",
 	"mwoauth-field-private": "(оваа информација е доверлива)",
 	"mwoauth-prefs-managegrants": "Поврзани извршници:",
-	"mwoauth-prefs-managegrantslink": "Раководење со $1 {{PLURAL:$1|поврзан извршник|поврзани извршници}}",
+	"mwoauth-prefs-managegrantslink": "Раководење со {{PLURAL:$1|$1 поврзан извршник|$1 поврзани извршници|0=поврзани извршници}}",
 	"mwoauth-consumer-allwikis": "Сите проекти на ова мрежно место",
 	"mwoauth-consumer-key": "Потрошувачки клуч:",
 	"mwoauth-consumer-name": "Назив на извршникот:",

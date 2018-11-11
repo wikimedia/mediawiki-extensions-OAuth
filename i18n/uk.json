@@ -20,7 +20,7 @@
 	"mwoauth-field-hidden": "(ця інформація прихована)",
 	"mwoauth-field-private": "(ця інформація є конфіденційною)",
 	"mwoauth-prefs-managegrants": "Підключені додатки:",
-	"mwoauth-prefs-managegrantslink": "Управляти $1 {{PLURAL:$1|1=з'єднаною програмою|з'єднаними програмами}}",
+	"mwoauth-prefs-managegrantslink": "Управляти {{PLURAL:$1|$1 з'єднаною програмою|$1 з'єднаними програмами|0=з'єднаними програмами}}",
 	"mwoauth-consumer-allwikis": "Всі проекти на цьому сайті",
 	"mwoauth-consumer-key": "Ключ споживача:",
 	"mwoauth-consumer-name": "Назва програми:",

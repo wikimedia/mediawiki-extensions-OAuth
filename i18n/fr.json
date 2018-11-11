@@ -26,7 +26,7 @@
 	"mwoauth-field-hidden": "(cette information est masquée)",
 	"mwoauth-field-private": "(cette information est privée)",
 	"mwoauth-prefs-managegrants": "Applications connectées :",
-	"mwoauth-prefs-managegrantslink": "Gérer $1 {{PLURAL:$1|application connectée|applications connectées}}",
+	"mwoauth-prefs-managegrantslink": "Gérer {{PLURAL:$1|$1 application connectée|$1 applications connectées|0=les applications connectées}}",
 	"mwoauth-consumer-allwikis": "Tous les projets sur ce site",
 	"mwoauth-consumer-key": "Clé du consommateur :",
 	"mwoauth-consumer-name": "Nom de l'application :",

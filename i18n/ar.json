@@ -21,7 +21,7 @@
 	"mwoauth-field-hidden": "(هذه المعلومة مخفية)",
 	"mwoauth-field-private": "(هذه المعلومات خاصة)",
 	"mwoauth-prefs-managegrants": "التطبيقات المتصلة:",
-	"mwoauth-prefs-managegrantslink": "تحكم {{PLURAL:$1|بالتطبيق المتصل|بالتطبيقات ال$1 المتصلة}}",
+	"mwoauth-prefs-managegrantslink": "تحكم {{PLURAL:$1|بالتطبيق المتصل|بالتطبيقات ال$1 المتصلة|0=بالتطبيقات المتصلة}}",
 	"mwoauth-consumer-allwikis": "جميع المشاريع ضمن هذا الموقع",
 	"mwoauth-consumer-key": "رمز المستهلك:",
 	"mwoauth-consumer-name": "اسم التطبيق:",

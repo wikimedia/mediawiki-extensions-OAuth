@@ -32,7 +32,7 @@
 	"mwoauth-field-hidden": "(эта информация скрыта)",
 	"mwoauth-field-private": "(эта информация конфиденциальна)",
 	"mwoauth-prefs-managegrants": "Подключённые приложения:",
-	"mwoauth-prefs-managegrantslink": "Управление $1 {{PLURAL:$1|подключённым приложением|подключёнными приложениями}}",
+	"mwoauth-prefs-managegrantslink": "Управление {{PLURAL:$1|$1 подключённым приложением|$1 подключёнными приложениями|0=подключёнными приложениями}}",
 	"mwoauth-consumer-allwikis": "Все проекты на этом сайте",
 	"mwoauth-consumer-key": "Идентификатор клиента:",
 	"mwoauth-consumer-name": "Название приложения:",

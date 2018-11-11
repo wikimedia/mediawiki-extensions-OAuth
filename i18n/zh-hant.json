@@ -22,7 +22,7 @@
 	"mwoauth-field-hidden": "(此為隱藏資訊)",
 	"mwoauth-field-private": "(此為非公開資訊)",
 	"mwoauth-prefs-managegrants": "已連接的應用程式：",
-	"mwoauth-prefs-managegrantslink": "管理 $1 個已連接的{{PLURAL:$1|應用程式}}",
+	"mwoauth-prefs-managegrantslink": "管理{{PLURAL:$1|$1個已連接應用程式|$1個已連接應用程式|0=已連接應用程式}}",
 	"mwoauth-consumer-allwikis": "於此網站的所有專案",
 	"mwoauth-consumer-key": "Consumer 金鑰：",
 	"mwoauth-consumer-name": "應用程式名稱：",
