@@ -10,7 +10,7 @@
 	"mwoauth-field-hidden": "(iste information es celate)",
 	"mwoauth-field-private": "(iste information es private)",
 	"mwoauth-prefs-managegrants": "Applicationes connectite:",
-	"mwoauth-prefs-managegrantslink": "Gerer $1 {{PLURAL:$1|application|applicationes}} connectite",
+	"mwoauth-prefs-managegrantslink": "Gerer {{PLURAL:$1|$1 application|$1 applicationes|0=applicationes}} connectite",
 	"mwoauth-consumer-key": "Clave de consumitor:",
 	"mwoauth-consumer-name": "Nomine del application:",
 	"mwoauth-consumer-version": "Version del consumitor:",
