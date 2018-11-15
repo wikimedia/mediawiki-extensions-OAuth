@@ -90,7 +90,6 @@ class MWOAuthHooks {
 	 * @return bool
 	 */
 	private static function getUsedConsumerTags( $activeOnly, &$tags ) {
-		global $wgChangeTagsSchemaMigrationStage;
 		// Step 1: Get the list of (active) consumers' tags for this wiki
 		$db = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		$conds = [
@@ -120,25 +119,20 @@ class MWOAuthHooks {
 
 		// Step 2: Return only those that are in use.
 		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
-		if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
-			$tagIds = [];
-			foreach ( $allTags as $tag ) {
-				try {
-					$tagIds[] = $changeTagDefStore->getId( $tag );
-				} catch ( NameTableAccessException $ex ) {
-					continue;
-				}
+		$tagIds = [];
+		foreach ( $allTags as $tag ) {
+			try {
+				$tagIds[] = $changeTagDefStore->getId( $tag );
+			} catch ( NameTableAccessException $ex ) {
+				continue;
 			}
-			if ( $tagIds === [] ) {
-				// Nothing to add, return
-				return true;
-			}
-			$conditions = [ 'ct_tag_id' => $tagIds ];
-			$field = 'ct_tag_id';
-		} else {
-			$conditions = [ 'ct_tag' => $allTags ];
-			$field = 'ct_tag';
 		}
+		if ( $tagIds === [] ) {
+			// Nothing to add, return
+			return true;
+		}
+		$conditions = [ 'ct_tag_id' => $tagIds ];
+		$field = 'ct_tag_id';
 
 		if ( $allTags ) {
 			$db = wfGetDB( DB_REPLICA );
@@ -149,14 +143,8 @@ class MWOAuthHooks {
 				__METHOD__,
 				[ 'DISTINCT' ]
 			);
-			if ( $wgChangeTagsSchemaMigrationStage > MIGRATION_WRITE_BOTH ) {
-				foreach ( $res as $row ) {
-					$tags[] = $changeTagDefStore->getName( intval( $row->ct_tag_id ) );
-				}
-			} else {
-				foreach ( $res as $row ) {
-					$tags[] = $row->ct_tag;
-				}
+			foreach ( $res as $row ) {
+				$tags[] = $changeTagDefStore->getName( intval( $row->ct_tag_id ) );
 			}
 		}
 
