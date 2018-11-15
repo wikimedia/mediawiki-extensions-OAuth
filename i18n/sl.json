@@ -7,7 +7,7 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "Priklopljene aplikacije:",
-	"mwoauth-prefs-managegrantslink": "Upravljaj $1 {{PLURAL:$1|priklopljeno aplikacijo|priklopljeni aplikaciji|priklopljene aplikacije|priklopljenih aplikacij}}",
+	"mwoauth-prefs-managegrantslink": "Upravljaj {{PLURAL:$1|$1 povezano aplikacijo|$1 povezani aplikaciji|$1 povezane aplikacije|$1 povezanih aplikacij|0=povezane aplikacije}}",
 	"mwoauth-consumer-allwikis": "Vsi projekti na tem spletišču",
 	"mwoauth-consumer-user": "Avtor:",
 	"mwoauthconsumerregistration-navigation": "Navigacija:",

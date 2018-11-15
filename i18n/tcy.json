@@ -4,5 +4,5 @@
 			"Ravi Mundkur"
 		]
 	},
-	"mwoauth-prefs-managegrantslink": "ನಡಪಾಲೆ {{ಬಹುವಚನ:$1|$1 ಗೋಡಿನ ಅರ್ಜಿ|$1  ಗೋಡಿನ ಅರ್ಜಿ|0=ಗೋಡಿನ ಅರ್ಜಿಲು}}"
+	"mwoauth-prefs-managegrantslink": "ನಡಪಾಲೆ {{PLURAL:$1|$1 connected application|$1  connected applications|0=connected applications}}"
 }
