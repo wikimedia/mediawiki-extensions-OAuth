@@ -14,7 +14,7 @@
 	"mwoauth-field-hidden": "(এই তথ্য গোপন করা)",
 	"mwoauth-field-private": "(এই তথ্য ব্যক্তিগত)",
 	"mwoauth-prefs-managegrants": "সংযুক্ত অ্যাপগুলি:",
-	"mwoauth-prefs-managegrantslink": "সংযুক্ত $1টি {{PLURAL:$1|অ্যাপ্লিকেশন}} পরিচালনা করুন",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|সংযুক্ত $1টি অ্যাপ্লিকেশন|0=সংযুক্ত অ্যাপ্লিকেশন}} পরিচালনা করুন",
 	"mwoauth-consumer-allwikis": "এই সাইটের সব প্রকল্প",
 	"mwoauth-consumer-key": "ভোক্তার চাবি:",
 	"mwoauth-consumer-name": "অ্যাপ্লিকেশনের নাম:",
