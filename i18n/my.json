@@ -56,6 +56,7 @@
 	"oauthmanagemygrants": "ချိတ်ဆက်ထားသော အပလေကေးရှင်းများကို စီမံခန့်ခွဲရန်",
 	"mwoauthmanagemygrants-notloggedin": "ဤစာမျက်နှာသို့ ဝင်ရောက်ခွင့်ရှိရန် အကောင့်ထဲသို့ဝင်ရပါမည်။",
 	"mwoauthmanagemygrants-navigation": "အ​ညွှန်း​:",
+	"mwoauthmanagemygrants-showlist": "ချိတ်ဆက်ထားသော အပလေကေးရှင်းစာရင်း",
 	"mwoauthmanagemygrants-description": "ဖော်ပြချက်",
 	"mwoauthmanagemygrants-confirm-legend": "ချိတ်ဆက်ထားသော အပလေကေးရှင်းကို စီမံခန့်ခွဲရန်",
 	"mwoauthdatastore-request-token-not-found": "စိတ်မကောင်းပါ၊ ဤအပလေကေးရှင်းသို့ ချိတ်ဆက်ရာ၌ တစ်ခုခု မှားယွင်းသွားခဲ့ပါသည်။ နောက်ပြန်သွားပြီး သင်၏အကောင့်ကို ထပ်မံချိတ်ဆက်ရန် ကြိုးစားပါ၊ သို့မဟုတ် အပလေကေးရှင်းပိုင်ရှင်ကို ဆက်သွယ်ပါ။ \n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth token မတွေ့ပါ၊ $1</span>",
