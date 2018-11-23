@@ -7,7 +7,8 @@
 			"Sujiniku",
 			"Otokoume",
 			"Macofe",
-			"Yusuke1109"
+			"Yusuke1109",
+			"Omotecho"
 		]
 	},
 	"oauth": "OAuth",
@@ -20,7 +21,7 @@
 	"mwoauth-field-hidden": "(この情報は非表示です)",
 	"mwoauth-field-private": "(この情報は非公開です)",
 	"mwoauth-prefs-managegrants": "接続済みのアプリ:",
-	"mwoauth-prefs-managegrantslink": "接続済みの $1 {{PLURAL:$1|アプリケーション}}を管理",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 connected application|$1 connected applications|接続済みのアプリケーション}}を管理",
 	"mwoauth-consumer-allwikis": "このサイト上のすべてのプロジェクト",
 	"mwoauth-consumer-key": "コンシューマー キー:",
 	"mwoauth-consumer-name": "アプリケーション名:",
