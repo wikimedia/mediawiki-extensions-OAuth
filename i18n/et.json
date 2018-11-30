@@ -7,7 +7,7 @@
 	},
 	"mwoauth-desc": "Võimaldab kasutada OAuth 1.0a-d API-volitamiseks.",
 	"mwoauth-prefs-managegrants": "Ühendatud rakendused:",
-	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|Halda üht ühendatud rakendust|Halda $1 ühendatud rakendust|0=Puuduvad}}",
+	"mwoauth-prefs-managegrantslink": "Halda {{PLURAL:$1|üht ühendatud rakendust|$1 ühendatud rakendust|0=ühendatud rakendusi}}",
 	"mwoauth-consumer-allwikis": "Kõigis selle võrgukoha projektides",
 	"mwoauth-consumer-key": "Tarvituse võti:",
 	"mwoauth-consumer-name": "Rakenduse nimi:",
