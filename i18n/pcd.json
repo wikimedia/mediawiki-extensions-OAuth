@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Geoleplubo"
+		]
+	},
+	"mwoauth-prefs-managegrantslink": "Gérer {{PLURAL:$1|$1 aplitchacion connectée|$1 aplitchacions connectées|0=chés aplitchacions connectées}}",
+	"oauthlistconsumers": "Lisse éd chés aplitchacions OAuth",
+	"oauthmanagemygrants": "Gérer chés aplitchacions connectées",
+	"mwoauthmanagemygrants-confirm-legend": "Gérer chés aplitchacions connectées"
+}
