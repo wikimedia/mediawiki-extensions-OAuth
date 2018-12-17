@@ -20,7 +20,8 @@
 			"Mailman",
 			"Av6",
 			"Vlad5250",
-			"Iluvatar"
+			"Iluvatar",
+			"Nk88"
 		]
 	},
 	"mwoauth-desc": "Позволяет использование OAuth 1.0a для API авторизации",
@@ -113,6 +114,8 @@
 	"mwoauthmanageconsumers-linkapproved": "одобренные запросы",
 	"mwoauthmanageconsumers-linkdisabled": "отключенные запросы",
 	"mwoauthmanageconsumers-main": "Главная",
+	"mwoauthmanageconsumers-q-proposed": "Очередь предложенных запросов потребителей",
+	"mwoauthmanageconsumers-q-expired": "Очередь просроченных запросов потребителей",
 	"mwoauthmanageconsumers-l-disabled": "Список отключенных клиентов",
 	"mwoauthmanageconsumers-name": "Клиент",
 	"mwoauthmanageconsumers-user": "Издатель",
