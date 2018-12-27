@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Pginer",
-			"Fitoschido"
+			"Fitoschido",
+			"Townie"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Aplicacions connectades:",
@@ -15,7 +16,7 @@
 	"mwoauthconsumerregistration-manage": "gestiona",
 	"mwoauthmanageconsumers-description": "Descripció",
 	"mwoauthlistconsumers-view": "detalls",
-	"oauthmanagemygrants": "Gestió d’aplicacions connectades",
+	"oauthmanagemygrants": "Gestió d'aplicacions connectades",
 	"mwoauthmanagemygrants-navigation": "Navegació:",
 	"mwoauthmanagemygrants-description": "Descripció",
 	"mwoauthdatastore-bad-source-ip": "La sol·licitud provenia d’una adreça IP no vàlida.",

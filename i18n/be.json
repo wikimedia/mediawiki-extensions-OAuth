@@ -5,5 +5,5 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "Падключаныя дадаткі:",
-	"mwoauth-prefs-managegrantslink": "Кіраванне $1 падключанымі дадаткамі"
+	"mwoauth-prefs-managegrantslink": "Кіраванне {{PLURAL:$1|$1 падключаным дадаткам|$1 падключанымі дадаткамі|0=падключанымі дадаткамі}}"
 }
