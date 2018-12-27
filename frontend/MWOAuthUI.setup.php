@@ -11,13 +11,22 @@ class MWOAuthUISetup {
 	 */
 	public static function conditionalSetup() {
 		global $wgLogTypes, $wgLogNames,
-			$wgLogHeaders, $wgLogActionsHandlers;
+			$wgLogHeaders, $wgLogActionsHandlers, $wgActionFilteredLogs;
 
 		if ( MWOAuthUtils::isCentralWiki() ) {
 			$wgLogTypes[] = 'mwoauthconsumer';
 			$wgLogNames['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpage';
 			$wgLogHeaders['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpagetext';
 			$wgLogActionsHandlers['mwoauthconsumer/*'] = MWOAuthLogFormatter::class;
+			$wgActionFilteredLogs['mwoauthconsumer'] = [
+				'approve' => [ 'approve' ],
+				'create-owner-only' => [ 'create-owner-only' ],
+				'disable' => [ 'disable' ],
+				'propose' => [ 'propose' ],
+				'reenable' => [ 'reenable' ],
+				'reject' => [ 'reject' ],
+				'update' => [ 'update' ],
+			];
 		}
 	}
 }
