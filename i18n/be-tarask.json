@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Red Winged Duck"
+			"Red Winged Duck",
+			"Renessaince"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Падключаныя дадаткі:",
 	"mwoauth-prefs-managegrantslink": "Кіраваць $1 {{PLURAL:$1|падключаным дадаткам|падключанымі дадаткамі}}",
+	"mwoauth-consumer-allwikis": "Усе праекты на гэтым сайце",
 	"mwoauth-consumer-name": "Назва праграмы:",
 	"mwoauth-consumer-stage": "Актуальны статус:",
 	"oauthlistconsumers": "Сьпіс праграмаў OAuth",
@@ -14,6 +16,13 @@
 	"mwoauthmanagemygrants-navigation": "Навігацыя:",
 	"mwoauthmanagemygrants-showlist": "Сьпіс падключаных праграмаў",
 	"mwoauthmanagemygrants-none": "Няма праграмаў, падключаных да вашага рахунку.",
+	"mwoauthmanagemygrants-wikiallowed": "Дазволена ў праекце:",
+	"mwoauthmanagemygrants-review": "кіраваньне доступам",
+	"mwoauthmanagemygrants-revoke": "скасаваць доступ",
+	"mwoauthmanagemygrants-revoke-text": "Дзеля скасаваньня доступу праграме на дзеяньні ад вашага імя скарыстайцеся формай ніжэй.",
+	"mwoauthmanagemygrants-success-renounce": "Доступ праграмы да вашага ўліковага запісу быў адкліканы.",
+	"mwoauthmanagemygrants-basic-tooltip": "Чаму я не магу абнавіць гэты дазвол? Гэты дазвол дае вашым злучаным праграмам асноўныя правы, неабходныя дзеля належнай работы. Калі вы ня хочаце, каб злучаныя праграмы мелі гэткія правы, вы мусіце адклікаць ейны доступ.",
+	"mwoauthmanagemygrants-authonly-tooltip": "Чаму я не магу абнавіць гэты дазвол? Калі вы ня хочаце, каб злучаныя праграмы мелі гэткія правы, вы мусіце адклікаць ейны доступ.",
 	"right-mwoauthproposeconsumer": "прапаноўваць новых спажыўцоў OAuth",
 	"right-mwoauthupdateownconsumer": "абнаўленьне кантраляваных вамі OAuth-дадаткаў",
 	"right-mwoauthmanagemygrants": "кіраваньне OAuth-дазволамі",

@@ -3,7 +3,8 @@
 		"authors": [
 			"David1010",
 			"Otogi",
-			"MIKHEIL"
+			"MIKHEIL",
+			"Mehman97"
 		]
 	},
 	"mwoauth-prefs-managegrants": "დაკავშირებული აპლიკაციები:",
@@ -80,6 +81,7 @@
 	"mwoauthmanagemygrants-revoke": "წვდომის გაუქმება",
 	"mwoauthmanagemygrants-confirm-legend": "დაკავშირებული აპლიკაციის მართვა",
 	"mwoauthmanagemygrants-action": "სტატუსის შეცვლა:",
+	"log-action-filter-mwoauthconsumer-reenable": "OAuth სამომხმარებლო რეპუტაცია",
 	"mwoauth-form-button-approve": "ნების დართვა",
 	"mwoauth-form-button-cancel": "გაუქმება",
 	"echo-category-title-oauth-owner": "OAuth-ის განვითარება",

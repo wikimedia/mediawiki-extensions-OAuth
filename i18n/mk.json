@@ -194,6 +194,8 @@
 	"logentry-mwoauthconsumer-disable": "$1 оневозможи потрошувач на OAuth со $3 (потрошувачки клуч $4)",
 	"logentry-mwoauthconsumer-reenable": "$1 {{GENDER:$2|преовозможи}} потрошувач на OAuth со $3 (потрошувачки клуч $4)",
 	"logentry-mwoauthconsumer-create-owner-only": "$1 {{GENDER:$2|создаде}} OAuth-потршувач наменет само за сопственикот (потрошувачки клуч $4)",
+	"log-action-filter-mwoauthconsumer": "Вид потрошувачко дејство со OAuth:",
+	"log-action-filter-mwoauthconsumer-approve": "Потрошувачко одобрување со OAuth",
 	"mwoauthconsumer-consumer-logpage": "Потрошувачки дневник за OAuth",
 	"mwoauthconsumer-consumer-logpagetext": "Дневник на одобрувања, одбивања и оневозможувања на регистрирани потрошувачи на OAuth.",
 	"mwoauth-bad-request-missing-params": "За жал, се јави проблем при поставувањето на извршникот. Обратете се на <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth местото за поддршка]</span> за да дознаете како да го решите.\n\n<span class=\"plainlinks mw-mwoautherror-details\">На OAuth му недостасуваат параметри, $1</span>",

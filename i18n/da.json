@@ -4,7 +4,8 @@
 			"Sarrus",
 			"Knud Winckelmann",
 			"Saederup92",
-			"Weblars"
+			"Weblars",
+			"Kranix"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Forbundne apps:",
@@ -24,9 +25,13 @@
 	"mwoauthconsumerregistration-user": "Udgiver",
 	"mwoauthconsumerregistration-description": "Beskrivelse",
 	"mwoauthconsumerregistration-stage": "Status",
+	"mwoauthconsumerregistration-lastchange": "Seneste ændring",
+	"mwoauthmanageconsumers-notloggedin": "Du skal være logget på for at tilgå denne side.",
+	"mwoauthmanageconsumers-type": "Køer:",
 	"mwoauthmanageconsumers-name": "Kunde",
 	"mwoauthmanageconsumers-user": "Udgiver",
 	"mwoauthmanageconsumers-description": "Beskrivelse",
+	"mwoauthmanageconsumers-lastchange": "Seneste ændring",
 	"mwoauthmanageconsumers-approve": "Godkendt",
 	"mwoauthmanageconsumers-reject": "Afvist",
 	"mwoauthmanageconsumers-disable": "Deaktiveret",

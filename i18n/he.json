@@ -5,7 +5,8 @@
 			"GilCahana",
 			"Guycn2",
 			"אור שפירא",
-			"דולב"
+			"דולב",
+			"Strayblues"
 		]
 	},
 	"mwoauth-desc": "מאפשרת שימוש ב־OAuth 1.0a לאישור ב־API",
@@ -196,6 +197,8 @@
 	"logentry-mwoauthconsumer-disable": "$1 {{GENDER:$2|ביטל|ביטלה}} צרכן OAuth על־ידי $3 (מפתח הצרכן $4)",
 	"logentry-mwoauthconsumer-reenable": "$1 {{GENDER:$2|הפעיל|הפעילה}} מחדש צרכן OAuth על־ידי $3 (מפתח הצרכן $4)",
 	"logentry-mwoauthconsumer-create-owner-only": "$1 {{GENDER:$2|יצר|יצרה}} צרכן OAuth רק לבעלים (מפתח צרכן $4)",
+	"log-action-filter-mwoauthconsumer-reject": "דחיית צרכן OAuth",
+	"log-action-filter-mwoauthconsumer-update": "עדכון צרכן OAuth",
 	"mwoauthconsumer-consumer-logpage": "יומן צרכן OAuth",
 	"mwoauthconsumer-consumer-logpagetext": "יומן של אישורים, שלילות וכיבויים של צרכני OAuth רשומים.",
 	"mwoauth-bad-request-missing-params": "סליחה, משהו השתבש עם הגדרות היישום המחובר. <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth נא ליצור קשר עם התמיכה]</span> כדי לקבל עזרה בתיקון.\n\n<span class=\"plainlinks mw-mwoautherror-details\">חסרים פרמטרים ל־OAuth‏, $1</span>",

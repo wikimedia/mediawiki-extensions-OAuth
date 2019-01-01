@@ -17,7 +17,7 @@
 	"mwoauth-field-hidden": "(tato informace je skryta)",
 	"mwoauth-field-private": "(tato informace je soukromá)",
 	"mwoauth-prefs-managegrants": "Připojené aplikace:",
-	"mwoauth-prefs-managegrantslink": "Spravovat $1 {{PLURAL:$1|připojenou aplikaci|připojené aplikace|připojených aplikací}}",
+	"mwoauth-prefs-managegrantslink": "Spravovat {{PLURAL:$1|$1 připojenou aplikaci|$1 připojené aplikace|$1 připojených aplikací|0=připojené aplikace}}",
 	"mwoauth-consumer-allwikis": "Všechny projekty na tomto webu",
 	"mwoauth-consumer-key": "Klíč konzumenta:",
 	"mwoauth-consumer-name": "Název aplikace:",

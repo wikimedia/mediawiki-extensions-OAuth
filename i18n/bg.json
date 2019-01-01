@@ -54,6 +54,8 @@
 	"mwoauthmanagemygrants-action": "Промяна на статус:",
 	"mwoauthmanagemygrants-success-renounce": "Достъпът на приложението до Вашата сметка бе отменен.",
 	"mwoauthmanagemygrants-basic-tooltip": "Защо не мога да обновя това разрешение? Това разрешение дава права на Вашите основни свързани приложения, които имат нужда от него, за да функционират както трябва. Ако не искате това свързано приложение да има тези права, тогава отменете достъпа на приложението.",
+	"log-action-filter-mwoauthconsumer": "Вид клиентско действие с OAuth:",
+	"log-action-filter-mwoauthconsumer-approve": "Клиентско одобряване с OAuth",
 	"mwoauth-form-button-approve": "Разрешаване",
 	"mwoauth-form-button-cancel": "Отказ",
 	"right-mwoauthviewprivate": "Преглед на личните данни за OAuth",
