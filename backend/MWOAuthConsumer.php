@@ -72,7 +72,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $rsaKey;
 	/** @var array List of grants */
 	protected $grants;
-	/** @var \\MWRestrictions IP restrictions */
+	/** @var \MWRestrictions IP restrictions */
 	protected $restrictions;
 	/** @var int MWOAuthConsumer::STAGE_* constant */
 	protected $stage;

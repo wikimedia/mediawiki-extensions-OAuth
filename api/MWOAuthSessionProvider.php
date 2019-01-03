@@ -214,7 +214,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 
 	/**
 	 * Fetch the access data, if any, for this user-session
-	 * @param \\User|null $user
+	 * @param \User|null $user
 	 * @return array|null
 	 */
 	private function getSessionData( \User $user = null ) {

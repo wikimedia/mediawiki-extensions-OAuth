@@ -14,7 +14,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	/** @var \BagOStuff Cache for Tokens and Nonces */
 	protected $cache;
 
-	/** @var \\Psr\\Log\\LoggerInterface */
+	/** @var \Psr\Log\LoggerInterface */
 	protected $logger;
 
 	/**

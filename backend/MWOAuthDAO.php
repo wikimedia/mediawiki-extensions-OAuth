@@ -34,7 +34,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	private $daoOrigin = 'new'; // string; object construction origin
 	private $daoPending = true; // bool; whether fields changed or the field is new
 
-	/** @var \\Psr\\Log\\LoggerInterface */
+	/** @var \Psr\Log\LoggerInterface */
 	protected $logger;
 
 	/**
