@@ -12,6 +12,8 @@
  *   --user="Admin"
  *   --version="0.2"
  *   --wiki=default
+ *
+ * You can optionally output successful results as json using --jsonOnSuccess
  */
 
 namespace MediaWiki\Extensions\OAuth;
@@ -43,6 +45,7 @@ class CreateOAuthConsumer extends \Maintenance {
 			true
 		);
 		$this->addOption( 'grants', 'Grants', true, true, false, true );
+		$this->addOption( 'jsonOnSuccess', 'Output successful results as JSON' );
 		$this->requireExtension( "OAuth" );
 	}
 
@@ -86,10 +89,21 @@ class CreateOAuthConsumer extends \Maintenance {
 		/** @var MWOAuthConsumer $cmr */
 		$cmr = $status->value['result']['consumer'];
 
-		$this->output( 'Id: ' . $cmr->getId() . PHP_EOL );
-		$this->output( 'Name: ' . $cmr->getName() . PHP_EOL );
-		$this->output( 'Key: ' . $cmr->getConsumerKey() . PHP_EOL );
-		$this->output( 'Secret: ' . MWOAuthUtils::hmacDBSecret( $cmr->getSecretKey() ) . PHP_EOL );
+		$outputData = [
+			'success' => true,
+			'id' => $cmr->getId(),
+			'name' => $cmr->getName(),
+			'key' => $cmr->getConsumerKey(),
+			'secret' => MWOAuthUtils::hmacDBSecret( $cmr->getSecretKey() ),
+		];
+
+		if ( $this->hasOption( 'jsonOnSuccess' ) ) {
+			$this->output( json_encode( $outputData ) );
+		} else {
+			foreach ( $outputData as $key => $value ) {
+				$this->output( $key . ': ' . $value . PHP_EOL );
+			}
+		}
 	}
 }
 
