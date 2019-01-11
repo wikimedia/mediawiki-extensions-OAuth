@@ -75,8 +75,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		} elseif ( wfReadOnly() ) {
 			throw new \ReadOnlyError();
 		} elseif ( !$this->getUser()->isLoggedIn() ) {
-			$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-notloggedin' );
-			return;
+			throw new \UserNotLoggedIn();
 		}
 
 		// Format is Special:OAuthConsumerRegistration[/propose|/list|/update/<consumer key>]
