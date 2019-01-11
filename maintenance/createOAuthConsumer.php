@@ -12,6 +12,7 @@
  *   --user="Admin"
  *   --version="0.2"
  *   --wiki=default
+ *   --approve
  *
  * You can optionally output successful results as json using --jsonOnSuccess
  */
@@ -21,6 +22,7 @@ namespace MediaWiki\Extensions\OAuth;
 /**
  * @ingroup Maintenance
  */
+
 if ( getenv( 'MW_INSTALL_PATH' ) ) {
 	$IP = getenv( 'MW_INSTALL_PATH' );
 } else {
@@ -46,6 +48,7 @@ class CreateOAuthConsumer extends \Maintenance {
 		);
 		$this->addOption( 'grants', 'Grants', true, true, false, true );
 		$this->addOption( 'jsonOnSuccess', 'Output successful results as JSON' );
+		$this->addOption( 'approve', 'Accept the consumer' );
 		$this->requireExtension( "OAuth" );
 	}
 
@@ -59,6 +62,7 @@ class CreateOAuthConsumer extends \Maintenance {
 		}
 
 		$data = [
+			'action' => 'propose',
 			'name'         => $this->getOption( 'name' ),
 			'version'      => $this->getOption( 'version' ),
 			'description'  => $this->getOption( 'description' ),
@@ -71,7 +75,6 @@ class CreateOAuthConsumer extends \Maintenance {
 			'wiki' => '*', // All wikis
 			'rsaKey' => '', // Generate a key
 			'agreement' => true,
-			'action' => 'propose',
 			'restrictions' => \MWRestrictions::newDefault(),
 		];
 
@@ -82,20 +85,36 @@ class CreateOAuthConsumer extends \Maintenance {
 		$control = new MWOAuthConsumerSubmitControl( $context, $data, $dbw );
 		$status = $control->submit();
 
-		if ( !$status->isOK() ) {
+		if ( !$status->isGood() ) {
 			$this->fatalError( $status->getMessage() );
 		}
 
 		/** @var MWOAuthConsumer $cmr */
 		$cmr = $status->value['result']['consumer'];
 
+		if ( $this->hasOption( 'approve' ) ) {
+			$data = [
+				'action' => 'approve',
+				'consumerKey'  => $cmr->getConsumerKey(),
+				'reason'       => 'Approved by maintenance script',
+				'changeToken'  => $cmr->getChangeToken( $context ),
+			];
+			$control = new MWOAuthConsumerSubmitControl( $context, $data, $dbw );
+			$approveStatus = $control->submit();
+		}
+
 		$outputData = [
-			'success' => true,
+			'created' => true,
 			'id' => $cmr->getId(),
 			'name' => $cmr->getName(),
 			'key' => $cmr->getConsumerKey(),
 			'secret' => MWOAuthUtils::hmacDBSecret( $cmr->getSecretKey() ),
 		];
+
+		if ( $this->hasOption( 'approve' ) ) {
+			$outputData['approved'] = $approveStatus->isGood() ?
+				1 : $approveStatus->getWikiText( null, null, 'en' );
+		}
 
 		if ( $this->hasOption( 'jsonOnSuccess' ) ) {
 			$this->output( json_encode( $outputData ) );
