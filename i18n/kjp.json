@@ -6,9 +6,11 @@
 	},
 	"mwoauth-prefs-managegrants": "ထိုဝ်ၜုဂ်ထဝေ့ အဲပ်ုလ်ုဖး -",
 	"mwoauth-prefs-managegrantslink": "ထိုဝ်ၜုဂ်ထဝေ့ {{PLURAL:$1|အ်ုပ်ုလေဝ်ကေႋယှေန်ႋ|အ်ုပ်ုလေဝ်ကေႋယှေန်လ်ုဖး}} $1 ဏါင်းဏှ် မ်ုစီရေင့်အင်းတာင်",
+	"mwoauthconsumerregistration-navigation": "ပ်ုယုံ့:",
 	"mwoauthconsumerregistration-description": "ဆ်ုဏဲဖၠဟ်",
 	"mwoauthmanageconsumers-description": "ဆ်ုဏဲဖၠဟ်",
 	"mwoauthmanageconsumers-reason": "ဖှ်ေအ်ုၯာင်ႋအ်ုကျံင်း:",
 	"mwoauthlistconsumers-description": "ဆ်ုဏဲဖၠဟ်",
+	"mwoauthmanagemygrants-navigation": "ပ်ုယုံ့:",
 	"mwoauthmanagemygrants-description": "ဆ်ုဏဲဖၠဟ်"
 }
