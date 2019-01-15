@@ -47,9 +47,9 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		$this->getOutput()->disallowUserJs();
 
 		if ( !$this->getUser()->isLoggedIn() ) {
-			$this->getOutput()->addWikiMsg( 'mwoauthmanagemygrants-notloggedin' );
-			return;
-		} elseif ( !$user->isAllowed( 'mwoauthmanagemygrants' ) ) {
+			throw new \UserNotLoggedIn();
+		}
+		if ( !$user->isAllowed( 'mwoauthmanagemygrants' ) ) {
 			throw new \PermissionsError( 'mwoauthmanagemygrants' );
 		}
 
