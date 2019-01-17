@@ -1,4 +1,3 @@
-
 .mw-mwoauthconsumerregistration-body,
 .mw-mwoauthmanageconsumers-body {
 	background-color: #f0f0f0;
@@ -39,8 +38,8 @@
 }
 
 .mw-mwoautherror-details {
+	color: #72777d;
 	font-size: 0.7em;
-	color: #7d7d7d;
 }
 
 span.mw-grantgroup {
@@ -51,10 +50,12 @@ span.mw-grantgroup {
 .mw-mwoauth-infotable span.mw-grantgroup {
 	font-weight: normal;
 }
+
 /* grant descriptions inside an infotable */
 .mw-mwoauth-infotable dl {
 	margin-top: 0;
 }
+
 dl.mw-mwoauth-infotable dl dd {
 	font-size: 0.9em;
 }
