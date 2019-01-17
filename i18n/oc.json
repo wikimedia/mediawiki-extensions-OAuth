@@ -52,7 +52,6 @@
 	"mwoauth-consumer-stage-disabled": "desactivat",
 	"mwoauth-consumer-stage-suppressed": "suprimit",
 	"oauthconsumerregistration": "Inscripcion de consomidor OAuth",
-	"mwoauthconsumerregistration-notloggedin": "Vos cal èsser connectat per accedir a aquesta pagina.",
 	"mwoauthconsumerregistration-navigation": "Navigacion :",
 	"mwoauthconsumerregistration-propose": "Prepausar un novèl consomator",
 	"mwoauthconsumerregistration-list": "Ma lista de consomators",

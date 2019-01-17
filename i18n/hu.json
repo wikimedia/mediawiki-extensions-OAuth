@@ -37,7 +37,6 @@
 	"mwoauth-consumer-stage-approved": "ellenőrzött",
 	"mwoauth-consumer-stage-disabled": "letiltott",
 	"mwoauth-consumer-stage-suppressed": "elrejtett",
-	"mwoauthconsumerregistration-notloggedin": "A lap megtekintéséhez be kell jelentkezned.",
 	"mwoauthconsumerregistration-navigation": "Navigáció:",
 	"mwoauthconsumerregistration-user": "Közzétevő",
 	"mwoauthconsumerregistration-description": "Leírás",

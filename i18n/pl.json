@@ -43,7 +43,6 @@
 	"mwoauth-consumer-stage-approved": "zatwierdzone",
 	"mwoauth-consumer-stage-disabled": "wyłączone",
 	"oauthconsumerregistration": "Rejestracja konsumenta OAuth",
-	"mwoauthconsumerregistration-notloggedin": "Musisz być zalogowany, aby mieć dostęp do tej strony.",
 	"mwoauthconsumerregistration-navigation": "Nawigacja:",
 	"mwoauthconsumerregistration-user": "Wydawca",
 	"mwoauthconsumerregistration-description": "Opis",
