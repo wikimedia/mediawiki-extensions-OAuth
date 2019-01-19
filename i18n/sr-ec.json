@@ -5,7 +5,8 @@
 			"Сербијана",
 			"Obsuser",
 			"Acamicamacaraca",
-			"BadDog"
+			"BadDog",
+			"Zoranzoki21"
 		]
 	},
 	"mwoauth-field-hidden": "(ова информација је скривена)",
@@ -16,6 +17,7 @@
 	"mwoauth-consumer-name": "Име апликације:",
 	"mwoauth-consumer-user": "Издавач:",
 	"mwoauth-consumer-stage": "Актуелни статус:",
+	"mwoauth-consumer-email": "Имејл адреса за контакт:",
 	"mwoauth-consumer-description": "Опис апликације:",
 	"mwoauth-consumer-wiki": "Применљиви пројекти:",
 	"mwoauth-consumer-rsakey": "Јавни RSA кључ (опционално):",

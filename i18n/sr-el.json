@@ -3,7 +3,8 @@
 		"authors": [
 			"Milicevic01",
 			"Srdjan m",
-			"Obsuser"
+			"Obsuser",
+			"Zoranzoki21"
 		]
 	},
 	"mwoauth-field-hidden": "(ova informacija je skrivena)",
@@ -14,6 +15,7 @@
 	"mwoauth-consumer-name": "Ime aplikacije:",
 	"mwoauth-consumer-user": "Izdavač:",
 	"mwoauth-consumer-stage": "Trenutni status:",
+	"mwoauth-consumer-email": "Imejl adresa za kontakt:",
 	"mwoauth-consumer-description": "Opis aplikacije:",
 	"mwoauth-consumer-wiki": "Primenjljivi projekti:",
 	"mwoauth-consumer-rsakey": "Javni RSA ključ:",
