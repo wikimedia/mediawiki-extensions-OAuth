@@ -70,6 +70,7 @@
 	"mwoauth-form-button-cancel": "Peruuta",
 	"mwoauth-error": "Sovelluksen yhteysvirhe",
 	"mwoauth-grants-heading": "Pyydetyt oikeudet:",
+	"right-mwoauthviewprivate": "Nähdä yksityisiä OAuth-tietoja",
 	"echo-category-title-oauth-owner": "OAuth-kehitys",
 	"notification-oauth-app-body": "Syy: $1"
 }
