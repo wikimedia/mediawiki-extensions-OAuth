@@ -459,13 +459,21 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$form->addHeaderText( $this->msg( 'mwoauth-form-legal' )->text() );
 
 		$form->suppressDefaultSubmit();
-		$form->addButton( 'accept',
-			$this->msg( 'mwoauth-form-button-approve' )->text(), null,
-			[ 'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-progressive',
-				'id' => 'mw-mwoauth-accept' ] );
-		$form->addButton( 'cancel',
-			$this->msg( 'mwoauth-form-button-cancel' )->text(), null,
-			[ 'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-quiet' ] );
+		$form->addButton( [
+			'name' => 'accept',
+			'value' => $this->msg( 'mwoauth-form-button-approve' )->text(),
+			'id' => 'mw-mwoauth-accept',
+			'attribs' => [
+				'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-progressive'
+			]
+		] );
+		$form->addButton( [
+			'name' => 'cancel',
+			'value' => $this->msg( 'mwoauth-form-button-cancel' )->text(),
+			'attribs' => [
+				'class' => 'mw-mwoauth-authorize-button mw-ui-button mw-ui-quiet'
+			]
+		] );
 
 		$form->addFooterText( $this->getSkin()->privacyLink() );
 
