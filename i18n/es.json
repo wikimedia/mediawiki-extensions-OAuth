@@ -197,6 +197,7 @@
 	"mwoauth-granttype-normal": "Solicita autorización para permisos específicos.",
 	"grant-mwoauth-authonly": "Solamente para la verificación de la identidad del usuario, sin capacidad de leer páginas ni de actuar en nombre de un usuario.",
 	"grant-mwoauth-authonlyprivate": "Para la verificación de la identidad del usuario con acceso al nombre real y a la dirección de correo electrónico, sin capacidad de leer páginas ni de actuar en nombre de un usuario.",
+	"mwoauth-listgrants-extra-summary": "== Concesiones específicas de OAuth ==\nEstas concesiones adicionales se aplican a usuarios de OAuth.",
 	"mwoauth-oauth-exception": "Ha ocurrido un error en el protocolo OAuth: $1",
 	"mwoauth-callback-not-oob-or-prefix": "oauth_callback debe ser conjunto y se debe establecerse en \"oob\" (sensible a mayúsculas) o la configuración de devolución de llamada debe ser un prefijo de devolución de llamada.",
 	"right-mwoauthproposeconsumer": "Proponer consumidores OAuth nuevos",

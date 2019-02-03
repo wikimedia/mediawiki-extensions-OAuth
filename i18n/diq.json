@@ -3,9 +3,11 @@
 		"authors": [
 			"Marmase",
 			"Mirzali",
-			"1917 Ekim Devrimi"
+			"1917 Ekim Devrimi",
+			"Orbot707"
 		]
 	},
+	"mwoauth-prefs-managegrants": "Gıre bıyayey Aplikasyoni",
 	"mwoauth-prefs-managegrantslink": "$1 ya greyın {{PLURAL:$1|dezgi|dezgan}} idare ke",
 	"mwoauthconsumerregistration-main": "Ser",
 	"mwoauthmanageconsumers-type": "Rêzi:",
