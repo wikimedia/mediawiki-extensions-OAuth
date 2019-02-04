@@ -137,8 +137,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 */
 	public static function newToken() {
 		return new MWOAuthToken(
-			\MWCryptRand::generateHex( 32, false ), // the key doesn't need to be unpredictable
-			\MWCryptRand::generateHex( 32, true )
+			\MWCryptRand::generateHex( 32 ),
+			\MWCryptRand::generateHex( 32 )
 		);
 	}
 

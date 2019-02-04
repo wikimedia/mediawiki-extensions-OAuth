@@ -355,7 +355,7 @@ class MWOAuthServer extends OAuthServer {
 		// ** Generate a new access token if this is a new authorization
 		// * Resave request token with the access token
 
-		$verifyCode = \MWCryptRand::generateHex( 32, true );
+		$verifyCode = \MWCryptRand::generateHex( 32 );
 		$requestToken = $this->data_store->lookup_token( $consumer, 'request', $requestTokenKey );
 		if ( !$requestToken || !( $requestToken instanceof MWOAuthToken ) ) {
 			throw new MWOAuthException( 'mwoauthserver-invalid-request-token' );
