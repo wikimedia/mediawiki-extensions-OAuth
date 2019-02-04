@@ -191,6 +191,7 @@
 	"log-action-filter-mwoauthconsumer-propose": "Клиентское предложение с OAuth",
 	"log-action-filter-mwoauthconsumer-reenable": "Клиентское перевключение с OAuth",
 	"log-action-filter-mwoauthconsumer-reject": "Клиентское отклонение с OAuth",
+	"log-action-filter-mwoauthconsumer-update": "Клиентское обновление с OAuth",
 	"mwoauthconsumer-consumer-logpage": "Журнал клиентов OAuth",
 	"mwoauthconsumer-consumer-logpagetext": "Журнал одобрений, отклонений и отключений зарегистрированных клиентов OAuth.",
 	"mwoauthdatastore-bad-token": "Не был найден подходящий для вашего запроса токен.",

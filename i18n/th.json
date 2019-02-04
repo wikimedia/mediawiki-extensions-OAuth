@@ -155,6 +155,7 @@
 	"action-mwoauthproposeconsumer": "เสนอผู้บริโภค OAuth ใหม่",
 	"action-mwoauthupdateownconsumer": "อัปเดตผู้บริโภค OAuth ที่คุณควบคุม",
 	"action-mwoauthviewsuppressed": "ดูผู้บริโภค OAuth ที่ไม่แสดง",
+	"echo-category-title-oauth-owner": "การพัฒนา OAuth",
 	"echo-pref-tooltip-oauth-owner": "เตือนฉันเกี่ยวกับเหตุการณ์ที่เกี่ยวข้องกับแอปพลิเคชัน OAuth ที่ฉันสร้าง",
 	"echo-pref-tooltip-oauth-admin": "เตือนฉันเกี่ยวกับเหตุการณ์ที่เกี่ยวข้องกับการตรวจสอบแอปพลิเคชัน OAuth",
 	"notification-oauth-app-propose-title": "$1 ได้เสนอแอป OAuth ใหม่: $2",
