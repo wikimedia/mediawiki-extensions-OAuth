@@ -66,6 +66,7 @@
 	"mwoauthmanagemygrants-action": "Muuta tilaa:",
 	"mwoauth-form-description-allwikis": "Hei $1,\n\n'''$2''' haluaisi tehdä seuraavat toiminnot puolestasi kaikissa tämän sivuston projekteissa:\n\n$4",
 	"mwoauth-form-description-onewiki": "Hei $1,\n\n'''$2''' haluaisi tehdä seuraavat toiminnot puolestasi sivustolla ''$4'':\n\n$5",
+	"mwoauth-form-description-allwikis-nogrants": "Hei $1,\n\nPyynnön suorittamiseksi, '''$2''' tarvitsee luvan päästäkseen puolestasi kaikkien tämän sivuston projektien tietoihin. Tililläsi ei tehdä muutoksia.",
 	"mwoauth-form-button-approve": "Salli",
 	"mwoauth-form-button-cancel": "Peruuta",
 	"mwoauth-error": "Sovelluksen yhteysvirhe",

@@ -13,5 +13,6 @@
 	"mwoauthmanageconsumers-type": "Rêzi:",
 	"mwoauthmanageconsumers-main": "Ser",
 	"oauthlistconsumers": "Listey Dezganê icazetınan",
-	"mwoauth-form-button-cancel": "Bıtexelne"
+	"mwoauth-form-button-cancel": "Bıtexelne",
+	"notification-oauth-app-body": "Sebeb: $1"
 }
