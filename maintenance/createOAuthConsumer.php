@@ -95,7 +95,7 @@ class CreateOAuthConsumer extends \Maintenance {
 		if ( $this->hasOption( 'approve' ) ) {
 			$data = [
 				'action' => 'approve',
-				'consumerKey'  => $cmr->getConsumerKey(),
+				'consumerKey'  => $cmr->get( 'consumerKey' ),
 				'reason'       => 'Approved by maintenance script',
 				'changeToken'  => $cmr->getChangeToken( $context ),
 			];
@@ -105,10 +105,10 @@ class CreateOAuthConsumer extends \Maintenance {
 
 		$outputData = [
 			'created' => true,
-			'id' => $cmr->getId(),
-			'name' => $cmr->getName(),
-			'key' => $cmr->getConsumerKey(),
-			'secret' => MWOAuthUtils::hmacDBSecret( $cmr->getSecretKey() ),
+			'id' => $cmr->get( 'id' ),
+			'name' => $cmr->get( 'name' ),
+			'key' => $cmr->get( 'consumerKey' ),
+			'secret' => MWOAuthUtils::hmacDBSecret( $cmr->get( 'secretKey' ) )
 		];
 
 		if ( $this->hasOption( 'approve' ) ) {
