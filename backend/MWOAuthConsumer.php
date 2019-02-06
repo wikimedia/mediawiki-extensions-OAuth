@@ -283,6 +283,10 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$this->emailAuthenticated = wfTimestamp( TS_MW, $this->emailAuthenticated );
 		$this->deleted = (int)$this->deleted;
 		$this->grants = (array)$this->grants; // sanity
+		$this->callbackIsPrefix = (bool)$this->callbackIsPrefix;
+		$this->ownerOnly = (bool)$this->ownerOnly;
+		$this->developerAgreement = (bool)$this->developerAgreement;
+		$this->deleted = (bool)$this->deleted;
 	}
 
 	protected function encodeRow( DBConnRef $db, $row ) {
