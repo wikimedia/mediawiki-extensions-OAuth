@@ -10,9 +10,15 @@
 	"mwoauth-prefs-managegrants": "Gıre bıyayey Aplikasyoni",
 	"mwoauth-prefs-managegrantslink": "$1 ya greyın {{PLURAL:$1|dezgi|dezgan}} idare ke",
 	"mwoauthconsumerregistration-main": "Ser",
+	"mwoauthconsumerregistration-description": "Şınasnayış",
+	"mwoauthconsumerregistration-stage": "Weziyet",
 	"mwoauthmanageconsumers-type": "Rêzi:",
 	"mwoauthmanageconsumers-main": "Ser",
+	"mwoauthmanageconsumers-description": "Şınasnayış",
 	"oauthlistconsumers": "Listey Dezganê icazetınan",
+	"mwoauthlistconsumers-description": "Şınasnayış",
+	"mwoauthlistconsumers-status": "Weziyet",
+	"mwoauthmanagemygrants-description": "Şınasnayış",
 	"mwoauth-form-button-cancel": "Bıtexelne",
 	"notification-oauth-app-body": "Sebeb: $1"
 }
