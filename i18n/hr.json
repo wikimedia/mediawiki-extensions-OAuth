@@ -4,7 +4,8 @@
 			"MaGa",
 			"Ex13",
 			"Bugoslav",
-			"Vlad5250"
+			"Vlad5250",
+			"Excaliboor"
 		]
 	},
 	"mwoauth-desc": "Omogućuje upotrebu OAuth 1.0a za autorizaciju API-ja",
@@ -13,8 +14,8 @@
 	"mwoauth-missing-field": "Nedostaje vrijednost u polju »$1«",
 	"mwoauth-invalid-field": "U polju »$1« dana je nevažeća vrijednost",
 	"mwoauth-invalid-field-generic": "Navedena je nevažeća vrijednost",
-	"mwoauth-field-hidden": "(ove informacije su skrivene)",
-	"mwoauth-field-private": "(ove informacije su povjerljive)",
+	"mwoauth-field-hidden": "(ovaj podatak je skriven)",
+	"mwoauth-field-private": "(ovaj podatak je povjerljiv)",
 	"mwoauth-prefs-managegrants": "Povezane aplikacije:",
 	"mwoauth-prefs-managegrantslink": "upravljaj s ukupno $1 {{PLURAL:$1|aplikacijom|aplikacije|aplikacija}}",
 	"mwoauth-consumer-allwikis": "svim projektima",
@@ -22,7 +23,7 @@
 	"mwoauth-consumer-name": "Naziv aplikacije:",
 	"mwoauth-consumer-version": "Korisnička inačica:",
 	"mwoauth-consumer-user": "Izdavač:",
-	"mwoauth-consumer-stage": "Trenutni status:",
+	"mwoauth-consumer-stage": "Trenutno stanje:",
 	"mwoauth-consumer-email": "E-pošta za kontakt:",
 	"mwoauth-consumer-email-help": "Vidljivo samo onima koji odobravaju nove korisnike",
 	"mwoauth-consumer-owner-only-label": "Samo vlasnik:",
@@ -68,7 +69,7 @@
 	"mwoauthconsumerregistration-description": "Opis",
 	"mwoauthconsumerregistration-email": "E-pošta za kontakt",
 	"mwoauthconsumerregistration-consumerkey": "Korisnički ključ",
-	"mwoauthconsumerregistration-stage": "Status",
+	"mwoauthconsumerregistration-stage": "Stanje",
 	"mwoauthconsumerregistration-lastchange": "Posljednja promjena",
 	"mwoauthconsumerregistration-manage": "upravljaj",
 	"mwoauthconsumerregistration-resetsecretkey": "Ponovno postavite novu vrijednost tajnom ključu",

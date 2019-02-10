@@ -87,7 +87,7 @@
 	"mwoauthconsumerregistration-resetsecretkey": "Дај нова вредност на тајниот клуч",
 	"mwoauthconsumerregistration-proposed": "Вашето потрошувачко барање за OAuth е примено.\n\nВашата потрошувачка шифра гласи '''$1''', а тајната шифра гласи '''$2'''. ''Зачувајте ги бидејќи може да ви затребаат во иднина.''",
 	"mwoauthconsumerregistration-created-owner-only": "Вашиот потрошувач на OAuth е создаден.\n\nВашите шифри се:\n; Потрошувачка шифра: $1\n; Потрошувачка тајна: $2\n; Пристапна шифра: $3\n; Пристапна тајна: $4\n<em>Зачувајте ги за идна консултација.</em>",
-	"mwoauthconsumerregistration-updated": "Вашиот потрошувачки регистар na OAuth е изменет.",
+	"mwoauthconsumerregistration-updated": "Вашиот потрошувачки регистар нa OAuth е изменет.",
 	"mwoauthconsumerregistration-secretreset": "Вашата тајна потрошувачка шифра гласи '''$1'''. ''Зачувајте ја бидејќи може да ви затреба во иднина.''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "Вашите потрошувачки шифри на OAuth се сменети. Еве ги новите:\n\n; Потрошувачка шифра: $1\n; Потрошувачка тајна: $2\n; Пристапна шифра: $3\n; Пристапна тајна: $4\n<em>Зачувајте ги за идна консултација.</em>",
 	"mwoauthconsumerregistration-need-emailconfirmed": "Мора да ја потвтдите вашата е-пошта пред создавање на прилози со OAuth.\nЗадајте и потврдете ја е-поштата преку вашите [[Special:Preferences|кориснички нагодувања]].",
