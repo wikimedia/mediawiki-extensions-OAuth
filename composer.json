@@ -6,7 +6,7 @@
 	"prefer-stable": true,
 	"require": {
 		"firebase/php-jwt": "5.0.0",
-		"php": ">=5.4"
+		"php": ">=5.5.99"
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "1.0.0",
