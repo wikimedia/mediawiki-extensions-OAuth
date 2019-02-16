@@ -60,9 +60,10 @@ class MWOAuthUIHooks {
 	 * Override MediaWiki namespace for a message
 	 * @param string $title Message name (no prefix)
 	 * @param string &$message Message wikitext
+	 * @param string $code Language code
 	 * @return bool false if we replaced $message
 	 */
-	public static function onMessagesPreLoad( $title, &$message ) {
+	public static function onMessagesPreLoad( $title, &$message, $code ) {
 		// Quick fail check
 		if ( substr( $title, 0, 15 ) !== 'Tag-OAuth_CID:_' ) {
 			return true;
@@ -73,9 +74,13 @@ class MWOAuthUIHooks {
 			return true;
 		}
 
+		// Put the correct language in the context, so that later uses of $context->msg() will use it
+		$context = new \DerivativeContext( \RequestContext::getMain() );
+		$context->setLanguage( $code );
+
 		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		$cmrAc = MWOAuthConsumerAccessControl::wrap(
-			MWOAuthConsumer::newFromId( $dbr, $m[1] ), \RequestContext::getMain()
+			MWOAuthConsumer::newFromId( $dbr, $m[1] ), $context
 		);
 		if ( !$cmrAc ) {
 			// Invalid consumer, skip it
