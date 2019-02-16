@@ -28,8 +28,6 @@ use Message;
 class MWOAuthDAOAccessControl extends \ContextSource {
 	/** @var MWOAuthDAO */
 	protected $dao;
-	/** @var \IContextSource */
-	protected $context;
 
 	/**
 	 * @param MWOAuthDAO $dao
@@ -37,7 +35,7 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 	 */
 	final protected function __construct( MWOAuthDAO $dao, \IContextSource $context ) {
 		$this->dao = $dao;
-		$this->context = $context;
+		$this->setContext( $context );
 	}
 
 	/**
@@ -100,7 +98,7 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 	 * @return mixed Returns a Message on access failure
 	 */
 	final public function get( $name, $sCallback = null ) {
-		$msg = $this->dao->userCanAccess( $name, $this->context );
+		$msg = $this->dao->userCanAccess( $name, $this->getContext() );
 		if ( $msg !== true ) {
 			return $msg; // should be a Message object
 		} else {
@@ -116,7 +114,7 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 	 */
 	final public function userCanAccess( $names ) {
 		foreach ( (array)$names as $name ) {
-			if ( !$this->dao->userCanAccess( $name, $this->context ) ) {
+			if ( !$this->dao->userCanAccess( $name, $this->getContext() ) ) {
 				return false;
 			}
 		}

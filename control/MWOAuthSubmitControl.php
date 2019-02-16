@@ -25,8 +25,6 @@ namespace MediaWiki\Extensions\OAuth;
  * Handle the logic of submitting a client request
  */
 abstract class MWOAuthSubmitControl extends \ContextSource {
-	/** @var \RequestContext */
-	protected $context;
 	/** @var array (field name => value) */
 	protected $vals;
 
@@ -35,7 +33,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	 * @param array $params
 	 */
 	public function __construct( \IContextSource $context, array $params ) {
-		$this->context = $context;
+		$this->setContext( $context );
 		$this->vals = $params;
 	}
 
@@ -216,7 +214,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
-		$status = \Status::newFatal( $this->context->msg( $msg, $params ) );
+		$status = \Status::newFatal( $this->msg( $msg, $params ) );
 		$status->value = [ 'error' => $error, 'result' => null ];
 		return $status;
 	}

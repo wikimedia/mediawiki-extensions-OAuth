@@ -232,7 +232,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		return $row;
 	}
 
-	protected function userCanSee( $name, \RequestContext $context ) {
+	protected function userCanSee( $name, \IContextSource $context ) {
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $context->getUser() );
 		if ( $this->userId != $centralUserId
 			&& !$context->getUser()->isAllowed( 'mwoauthviewprivate' )
@@ -243,7 +243,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		}
 	}
 
-	protected function userCanSeePrivate( $name, \RequestContext $context ) {
+	protected function userCanSeePrivate( $name, \IContextSource $context ) {
 		if ( !$context->getUser()->isAllowed( 'mwoauthviewprivate' ) ) {
 			return $context->msg( 'mwoauth-field-private' );
 		} else {
@@ -251,7 +251,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		}
 	}
 
-	protected function userCanSeeSecret( $name, \RequestContext $context ) {
+	protected function userCanSeeSecret( $name, \IContextSource $context ) {
 		return $context->msg( 'mwoauth-field-private' );
 	}
 }

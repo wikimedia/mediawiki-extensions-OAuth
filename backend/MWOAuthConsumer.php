@@ -525,7 +525,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		}
 	}
 
-	protected function userCanSee( $name, \RequestContext $context ) {
+	protected function userCanSee( $name, \IContextSource $context ) {
 		if ( $this->getDeleted()
 			&& !$context->getUser()->isAllowed( 'mwoauthviewsuppressed' )
 		) {
@@ -535,7 +535,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		}
 	}
 
-	protected function userCanSeePrivate( $name, \RequestContext $context ) {
+	protected function userCanSeePrivate( $name, \IContextSource $context ) {
 		if ( !$context->getUser()->isAllowed( 'mwoauthviewprivate' ) ) {
 			return $context->msg( 'mwoauth-field-private' );
 		} else {
@@ -543,7 +543,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		}
 	}
 
-	protected function userCanSeeEmail( $name, \RequestContext $context ) {
+	protected function userCanSeeEmail( $name, \IContextSource $context ) {
 		if ( !$context->getUser()->isAllowed( 'mwoauthmanageconsumer' ) ) {
 			return $context->msg( 'mwoauth-field-private' );
 		} else {
@@ -551,7 +551,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		}
 	}
 
-	protected function userCanSeeSecret( $name, \RequestContext $context ) {
+	protected function userCanSeeSecret( $name, \IContextSource $context ) {
 		return $context->msg( 'mwoauth-field-private' );
 	}
 }
