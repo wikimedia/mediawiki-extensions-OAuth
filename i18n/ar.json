@@ -217,7 +217,7 @@
 	"mwoauthdatastore-callback-not-found": "لم يتم العثور على مسار لاستعادة OAuth في ذاكرة التخزين المؤقت، ربما هذا خطأ في كيفية تقديم التطبيق طلبات إلى الخادم.",
 	"mwoauthdatastore-request-token-already-used": "اكتمل هذا الطلب بالفعل ولا يمكن إعادة تقديمه، ارجع إلى التطبيق وحاول ربط حسابك مرة أخرى، أو اتصل بكاتب التطبيق.\n\n<span class=\"plainlinks mw-mwoautherror-details\">رمز OAuth مستخدم بالفعل: $1</span>",
 	"mwoauthdatastore-bad-token": "لم يتم العثور على رمز مميز يطابق طلبك.",
-	"mwoauthdatastore-bad-source-ip": "جاء الطلب من عنوان آيبي غير صالح.",
+	"mwoauthdatastore-bad-source-ip": "جاء الطلب من عنوان أيبي غير صالح.",
 	"mwoauthdatastore-bad-verifier": "رمز التحقق المقدم غير صالح.",
 	"mwoauthdatastore-invalid-token-type": "نوع الرمز المميز المطلوب غير صالح.",
 	"mwoauthgrants-general-error": "حدث خطأ في طلب OAuth.",
