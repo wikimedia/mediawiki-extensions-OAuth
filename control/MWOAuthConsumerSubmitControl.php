@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use ExtensionRegistry;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -505,7 +506,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	protected function notify( $cmr, $user, $actionType, $comment ) {
 		if ( !in_array( $actionType, self::$actions, true ) ) {
 			throw new \MWException( "Invalid action type: $actionType" );
-		} elseif ( !class_exists( \EchoEvent::class ) ) {
+		} elseif ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			return;
 		} elseif ( !MWOAuthUtils::isCentralWiki() ) {
 			# sanity; should never get here on a slave wiki
