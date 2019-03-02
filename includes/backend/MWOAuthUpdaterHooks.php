@@ -14,7 +14,7 @@ class MWOAuthUpdaterHooks {
 		if ( !MWOAuthUtils::isCentralWiki() ) {
 			return true; // no tables to add
 		}
-		$base = __DIR__;
+		$base = dirname( dirname( __DIR__ ) ) . '/schema';
 
 		$dbType = $updater->getDB()->getType();
 
@@ -47,10 +47,6 @@ class MWOAuthUpdaterHooks {
 				true
 			] );
 
-		} elseif ( $dbType == 'postgres' ) {
-			// $base = "$base/postgres";
-
-			// @TODO
 		}
 		return true;
 	}

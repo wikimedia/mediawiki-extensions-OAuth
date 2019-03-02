@@ -8,11 +8,10 @@
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName"/>
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment"/>
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
-		<exclude name="MediaWiki.Files.ClassMatchesFilename.NotMatch" />
 	</rule>
 	<file>.</file>
 	<arg name="extensions" value="php,php5,inc"/>
 	<arg name="encoding" value="UTF-8"/>
-	<exclude-pattern type="relative">^lib/</exclude-pattern>
+	<exclude-pattern type="relative">^includes/lib/</exclude-pattern>
 	<exclude-pattern type="relative">^tests/phpunit/lib/</exclude-pattern>
 </ruleset>

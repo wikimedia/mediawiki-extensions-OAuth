@@ -29,7 +29,6 @@ if ( getenv( 'MW_INSTALL_PATH' ) ) {
 	$IP = __DIR__ . '/../../..';
 }
 
-require __DIR__ . '/../lib/OAuth.php';
 require_once "$IP/maintenance/Maintenance.php";
 
 class CreateOAuthConsumer extends \Maintenance {

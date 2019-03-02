@@ -210,7 +210,7 @@ class MWOAuthUIHooks {
 				EchoOAuthStageChangePresentationModel::getDefinition( $eventName );
 		}
 
-		$icons['oauth'] = [ 'path' => 'OAuth/frontend/assets/echo-icon.png' ];
+		$icons['oauth'] = [ 'path' => 'OAuth/resources/assets/echo-icon.png' ];
 	}
 
 	/**
