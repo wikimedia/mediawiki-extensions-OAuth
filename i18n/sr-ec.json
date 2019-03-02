@@ -86,6 +86,7 @@
 	"log-action-filter-mwoauthconsumer-reenable": "OAuth потрошачко поновно омогућавање",
 	"log-action-filter-mwoauthconsumer-reject": "OAuth потрошачко одбијање",
 	"log-action-filter-mwoauthconsumer-update": "OAuth потрошачко ажурирање",
+	"mwoauthconsumer-consumer-logpagetext": "Дневник одобравања, одбијања и онемогућавања регистрованих корисника OAuth-а.",
 	"mwoauth-form-description-allwikis-nogrants": "Здраво, $1,\n\nУ циљу завршавања вашег захтева, апликацији '''$2''' је потребна дозвола за приступ информацијама на свим пројектима овог сајта у ваше име. Никакве промене неће бити направљене са вашим налогом.",
 	"mwoauth-form-button-approve": "Дозволи",
 	"mwoauth-form-button-cancel": "Откажи",
