@@ -505,7 +505,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 	protected function notify( $cmr, $user, $actionType, $comment ) {
 		if ( !in_array( $actionType, self::$actions, true ) ) {
 			throw new \MWException( "Invalid action type: $actionType" );
-		} elseif ( !class_exists( '\EchoEvent' ) ) {
+		} elseif ( !class_exists( \EchoEvent::class ) ) {
 			return;
 		} elseif ( !MWOAuthUtils::isCentralWiki() ) {
 			# sanity; should never get here on a slave wiki

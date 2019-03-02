@@ -161,5 +161,5 @@ class TestOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
 	}
 }
 
-$maintClass = "TestOAuthConsumer";
+$maintClass = TestOAuthConsumer::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

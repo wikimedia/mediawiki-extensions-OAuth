@@ -47,11 +47,11 @@ class MigrateCentralWiki extends \Maintenance {
 
 		if ( $table === 'oauth_registered_consumer' ) {
 			$idKey = 'oarc_id';
-			$cmrClass = 'MediaWiki\Extensions\OAuth\MWOAuthConsumer';
+			$cmrClass = MWOAuthConsumer::class;
 			$type = 'consumer';
 		} elseif ( $table === 'oauth_accepted_consumer' ) {
 			$idKey = 'oaac_id';
-			$cmrClass = 'MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance';
+			$cmrClass = MWOAuthConsumerAcceptance::class;
 			$type = 'grant';
 		} else {
 			$this->error( "Invalid table name. Must be one of 'oauth_registered_consumer' " .
@@ -102,5 +102,5 @@ class MigrateCentralWiki extends \Maintenance {
 
 }
 
-$maintClass = "MediaWiki\Extensions\OAuth\MigrateCentralWiki";
+$maintClass = MigrateCentralWiki::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

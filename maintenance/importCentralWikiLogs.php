@@ -143,5 +143,5 @@ class MigrateCentralWikiLogs extends Maintenance {
 
 }
 
-$maintClass = "MigrateCentralWikiLogs";
+$maintClass = MigrateCentralWikiLogs::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

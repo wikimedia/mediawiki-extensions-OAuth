@@ -84,7 +84,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 		$request = OAuthRequest::from_consumer_and_token( $this->consumer, $this->request_token, 'POST', 'http://example.com');
 		$request->sign_request( $this->plaintext, $this->consumer, $this->request_token );
 
-		$this->setExpectedException('MediaWiki\Extensions\OAuth\OAuthException');
+		$this->setExpectedException(OAuthException::class);
 		$this->server->verify_request( $request );
 	}
 
@@ -119,7 +119,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 		$request->set_parameter( 'oauth_timestamp', $request->get_parameter('oauth_timestamp') - 10*60*60, false);
 		$request->sign_request( $this->plaintext, $this->consumer, $this->access_token );
 
-		$this->setExpectedException('MediaWiki\Extensions\OAuth\OAuthException');
+		$this->setExpectedException(OAuthException::class);
 		$this->server->verify_request($request);
 	}
 
@@ -130,7 +130,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 		$request->set_parameter( 'oauth_timestamp', $request->get_parameter('oauth_timestamp') + 10*60*60, false);
 		$request->sign_request( $this->plaintext, $this->consumer, $this->access_token );
 
-		$this->setExpectedException('MediaWiki\Extensions\OAuth\OAuthException');
+		$this->setExpectedException(OAuthException::class);
 		$this->server->verify_request($request);
 	}
 
@@ -142,7 +142,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 		$request->set_parameter( 'oauth_nonce', 'nonce', false);
 		$request->sign_request( $this->plaintext, $this->consumer, $this->access_token );
 
-		$this->setExpectedException('MediaWiki\Extensions\OAuth\OAuthException');
+		$this->setExpectedException(OAuthException::class);
 		$this->server->verify_request($request);
 	}
 
@@ -153,7 +153,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 		$request->sign_request( $this->plaintext, $this->consumer, $this->access_token );
 		$request->set_parameter( 'oauth_signature', '__whatever__', false);
 
-		$this->setExpectedException('MediaWiki\Extensions\OAuth\OAuthException');
+		$this->setExpectedException(OAuthException::class);
 		$this->server->verify_request($request);
 	}
 
@@ -165,7 +165,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 		$request = OAuthRequest::from_consumer_and_token( $unknown_consumer, $this->access_token, 'POST', 'http://example.com');
 		$request->sign_request( $this->plaintext, $unknown_consumer, $this->access_token );
 
-		$this->setExpectedException('MediaWiki\Extensions\OAuth\OAuthException');
+		$this->setExpectedException(OAuthException::class);
 		$this->server->verify_request( $request );	
 	}
 
@@ -177,7 +177,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 		$request = OAuthRequest::from_consumer_and_token( $this->consumer, $unknown_token, 'POST', 'http://example.com');
 		$request->sign_request( $this->plaintext, $this->consumer, $unknown_token );
 
-		$this->setExpectedException('MediaWiki\Extensions\OAuth\OAuthException');
+		$this->setExpectedException(OAuthException::class);
 		$this->server->verify_request( $request );	
 	}
 
@@ -190,7 +190,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 		$server = new OAuthServer( new Mock_OAuthDataStore() );
 		$server->add_signature_method( $this->hmac_sha1 );
 
-		$this->setExpectedException('MediaWiki\Extensions\OAuth\OAuthException');
+		$this->setExpectedException(OAuthException::class);
 		$server->verify_request( $request );	
 	}
 
@@ -201,7 +201,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 		$request->sign_request( $this->plaintext, $this->consumer, $this->access_token );
 		$request->set_parameter('oauth_version', '1.0a', false);
 
-		$this->setExpectedException('MediaWiki\Extensions\OAuth\OAuthException');
+		$this->setExpectedException(OAuthException::class);
 		$this->server->verify_request( $request );	
 	}
 
@@ -221,7 +221,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 		$request = OAuthRequest::from_consumer_and_token( $this->consumer, $this->request_token, 'POST', 'http://example.com');
 		$request->sign_request( $this->plaintext, $this->consumer, $this->request_token );
 
-		$this->setExpectedException('MediaWiki\Extensions\OAuth\OAuthException');
+		$this->setExpectedException(OAuthException::class);
 		$token = $this->server->fetch_request_token($request);
 	}
 
@@ -241,7 +241,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 		$request = OAuthRequest::from_consumer_and_token( $this->consumer, NULL, 'POST', 'http://example.com');
 		$request->sign_request( $this->plaintext, $this->consumer, NULL );
 
-		$this->setExpectedException('MediaWiki\Extensions\OAuth\OAuthException');
+		$this->setExpectedException(OAuthException::class);
 		$token = $this->server->fetch_access_token($request);
 	}
 
@@ -251,7 +251,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 		$request = OAuthRequest::from_consumer_and_token( $this->consumer, $this->access_token, 'POST', 'http://example.com');
 		$request->sign_request( $this->plaintext, $this->consumer, $this->access_token );
 
-		$this->setExpectedException('MediaWiki\Extensions\OAuth\OAuthException');
+		$this->setExpectedException(OAuthException::class);
 		$token = $this->server->fetch_access_token($request);
 	}
 }
