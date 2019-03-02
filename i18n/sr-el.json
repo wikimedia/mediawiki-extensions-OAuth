@@ -70,6 +70,7 @@
 	"mwoauthmanagemygrants-update": "Primeni",
 	"mwoauthmanagemygrants-renounce": "Skini ovlašćenja",
 	"mwoauthmanagemygrants-action": "Izmeni status:",
+	"mwoauthconsumer-consumer-logpagetext": "Dnevnik odobravanja, odbijanja i onemogućavanja registrovanih korisnika OAuth-a.",
 	"mwoauth-form-description-allwikis-nogrants": "Zdravo $1,\n\n'''$2''' želi da dobije osnovni pristup u vaše ime na svim projektima ovog sajta.",
 	"mwoauth-form-button-approve": "Dozvoli",
 	"mwoauth-form-button-cancel": "Otkaži",
