@@ -205,11 +205,10 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	/**
 	 * @param string $error API error key
 	 * @param string $msg Message key
-	 * @param mixed $params,... Additional arguments used as message parameters
+	 * @param mixed ...$params Additional arguments used as message parameters
 	 * @return \Status
 	 */
-	protected function failure( $error, $msg /*, params */ ) {
-		$params = array_slice( func_get_args(), 2 );
+	protected function failure( $error, $msg, ...$params ) {
 		// Use the same logic as wfMessage
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];

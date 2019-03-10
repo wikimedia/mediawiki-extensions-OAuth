@@ -111,12 +111,12 @@ class MWOAuthUtils {
 	/**
 	 * Make a cache key for the given arguments, that (hopefully) won't clash with
 	 * anything else in your cache
+	 * @param string ...$args
 	 * @return string
 	 */
-	public static function getCacheKey( /* varags */ ) {
+	public static function getCacheKey( ...$args ) {
 		global $wgMWOAuthCentralWiki;
 
-		$args = func_get_args();
 		return "OAUTH:$wgMWOAuthCentralWiki:" . implode( ':', $args );
 	}
 

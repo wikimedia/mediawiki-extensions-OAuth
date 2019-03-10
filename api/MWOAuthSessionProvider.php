@@ -39,16 +39,14 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 	 * Throw an exception, later
 	 *
 	 * @param string $key Key for the error message
-	 * @param mixed $params,... Parameters as strings.
+	 * @param mixed ...$params Parameters as strings.
 	 * @return SessionInfo
 	 */
-	private function makeException( $key /*, ... */ ) {
+	private function makeException( $key, ...$params ) {
 		global $wgHooks;
 
 		// First, schedule the throwing of the exception for later when the API
 		// is ready to catch it
-		$params = func_get_args();
-		array_shift( $params );
 		$msg = wfMessage( $key, $params );
 		$exception = \ApiUsageException::newWithMessage( null, $msg );
 		$wgHooks['ApiBeforeMain'][] = function () use ( $exception ) {
