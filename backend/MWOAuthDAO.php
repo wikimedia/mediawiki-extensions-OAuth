@@ -298,7 +298,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 */
 	final protected static function getAutoIncrField() {
 		$schema = static::getSchema();
-		return isset( $schema['autoIncrField'] ) ? $schema['autoIncrField'] : null;
+		return $schema['autoIncrField'] ?? null;
 	}
 
 	/**

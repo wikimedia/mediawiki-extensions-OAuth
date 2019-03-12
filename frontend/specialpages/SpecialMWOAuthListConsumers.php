@@ -38,8 +38,8 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 		// Format is Special:OAuthListConsumers[/list|/view/[<consumer key>]]
 		$navigation = explode( '/', $par );
-		$type = isset( $navigation[0] ) ? $navigation[0] : null;
-		$consumerKey = isset( $navigation[1] ) ? $navigation[1] : null;
+		$type = $navigation[0] ?? null;
+		$consumerKey = $navigation[1] ?? null;
 
 		$this->showConsumerListForm();
 
@@ -309,7 +309,7 @@ class MWOAuthListConsumersPager extends \AlphabeticPager {
 
 		# Treat 20 as the default limit, since each entry takes up 5 rows.
 		$urlLimit = $this->mRequest->getInt( 'limit' );
-		$this->mLimit = $urlLimit ? $urlLimit : 20;
+		$this->mLimit = $urlLimit ?: 20;
 	}
 
 	/**

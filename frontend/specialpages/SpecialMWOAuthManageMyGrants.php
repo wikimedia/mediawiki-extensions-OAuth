@@ -55,8 +55,8 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 
 		// Format is Special:OAuthManageMyGrants[/list|/manage/<accesstoken>]
 		$navigation = explode( '/', $par );
-		$typeKey = isset( $navigation[0] ) ? $navigation[0] : null;
-		$acceptanceId = isset( $navigation[1] ) ? $navigation[1] : null;
+		$typeKey = $navigation[0] ?? null;
+		$acceptanceId = $navigation[1] ?? null;
 
 		if ( $wgMWOAuthReadOnly && in_array( $typeKey, [ 'update', 'revoke' ] ) ) {
 			throw new \ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
@@ -336,7 +336,7 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 
 		# Treat 20 as the default limit, since each entry takes up 5 rows.
 		$urlLimit = $this->mRequest->getInt( 'limit' );
-		$this->mLimit = $urlLimit ? $urlLimit : 20;
+		$this->mLimit = $urlLimit ?: 20;
 	}
 
 	/**

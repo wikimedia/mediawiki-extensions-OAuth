@@ -482,7 +482,7 @@ class MWOAuthManageConsumersPager extends \ReverseChronologicalPager {
 
 		# Treat 20 as the default limit, since each entry takes up 5 rows.
 		$urlLimit = $this->mRequest->getInt( 'limit' );
-		$this->mLimit = $urlLimit ? $urlLimit : 20;
+		$this->mLimit = $urlLimit ?: 20;
 	}
 
 	/**
