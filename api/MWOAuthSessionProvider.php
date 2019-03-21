@@ -127,7 +127,8 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 			$this->logger->debug(
 				'OAuth request for consumer {consumer} not approved by user {user}', $logData
 			);
-			return $this->makeException( 'mwoauth-invalid-authorization-not-approved' );
+			return $this->makeException( 'mwoauth-invalid-authorization-not-approved',
+				$consumer->getName() );
 		} elseif ( $consumer->getWiki() !== '*' && $consumer->getWiki() !== $wiki ) {
 			$this->logger->debug( 'OAuth request for consumer {consumer} to incorrect wiki', $logData );
 			return $this->makeException( 'mwoauth-invalid-authorization-wrong-wiki', $wiki );
