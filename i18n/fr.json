@@ -14,7 +14,8 @@
 			"Fitoschido",
 			"Wladek92",
 			"Orlodrim",
-			"Urhixidur"
+			"Urhixidur",
+			"Od1n"
 		]
 	},
 	"mwoauth-desc": "Autorise l’utilisation de OAuth 1.0a pour l’authentification de l’API",
@@ -67,7 +68,7 @@
 	"mwoauth-invalid-access-token": "Aucun jeton d’accès n’existe pour la clé fournie",
 	"mwoauth-invalid-access-wrongwiki": "Le consommateur ne peut être utilisé que sur le projet « $1 ».",
 	"mwoauth-consumer-conflict": "Quelqu’un a modifié les attributs de ce consommateur pendant que vous le consultiez. Veuillez réessayer. Vous pouvez aussi vérifier le journal des modifications.",
-	"mwoauth-consumer-grantshelp": "Chaque droit accorde l’accès aux droits d’utilisateur listés qu’un compte utilisateur possède déjà. Voyez le [[Special:ListGrants|tableau des droits]] pour plus d’information.",
+	"mwoauth-consumer-grantshelp": "Chaque droit accorde l’accès aux droits d’utilisateur listés qu’un compte utilisateur possède déjà. Voyez le [[Special:ListGrants|tableau des droits]] pour plus d’informations.",
 	"mwoauth-consumer-stage-proposed": "proposé",
 	"mwoauth-consumer-stage-rejected": "rejeté",
 	"mwoauth-consumer-stage-expired": "expiré",
