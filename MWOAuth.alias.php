@@ -43,6 +43,14 @@ $specialPageAliases['bgn'] = [
 	'OAuthManageMyGrants' => [ 'نی_OAuth_ئی_بخش_یی_مدیریت' ],
 ];
 
+/** Czech (čeština) */
+$specialPageAliases['cs'] = [
+	'OAuthConsumerRegistration' => [ 'Registrace_aplikace_OAuth' ],
+	'OAuthManageConsumers' => [ 'Správa_aplikací_OAuth' ],
+	'OAuthListConsumers' => [ 'Seznam_aplikací_OAuth' ],
+	'OAuthManageMyGrants' => [ 'Správa_připojených_aplikací' ],
+];
+
 /** German (Deutsch) */
 $specialPageAliases['de'] = [
 	'OAuthConsumerRegistration' => [ 'Verbraucherregistrierung' ],
