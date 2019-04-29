@@ -8,5 +8,6 @@
 	"mwoauth-consumer-name": "Номи барнома:",
 	"mwoauth-consumer-description": "Тавзеҳоти барнома:",
 	"mwoauthlistconsumers-name": "Номи барнома",
-	"mwoauthmanagemygrants-success-update": "Танзимоти ин барнома азнавсозӣ шудаанд."
+	"mwoauthmanagemygrants-success-update": "Танзимоти ин барнома азнавсозӣ шудаанд.",
+	"mwoauth-invalid-authorization-not-approved": "Ҳамёне, ки шумо мехоҳед истифода баред, мумкин нодуруст кор кунад. Барои иттило бо $1 тамос гиред."
 }
