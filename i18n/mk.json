@@ -189,7 +189,7 @@
 	"logentry-mwoauthconsumer-update": "$1 {{GENDER:$2|измени}} потрошувач на OAuth (потрошувачки клуч $4)",
 	"logentry-mwoauthconsumer-approve": "$1 {{GENDER:$2|одобри}} потрошувач на OAuth со $3 (потрошувачки клуч $4)",
 	"logentry-mwoauthconsumer-reject": "$1 {{GENDER:$2|одби}} потрошувач на OAuth со $3 (потрошувачки клуч $4)",
-	"logentry-mwoauthconsumer-disable": "$1 оневозможи потрошувач на OAuth со $3 (потрошувачки клуч $4)",
+	"logentry-mwoauthconsumer-disable": "$1 {{GENDER:$2|оневозможи}} потрошувач на OAuth со $3 (потрошувачки клуч $4)",
 	"logentry-mwoauthconsumer-reenable": "$1 {{GENDER:$2|преовозможи}} потрошувач на OAuth со $3 (потрошувачки клуч $4)",
 	"logentry-mwoauthconsumer-create-owner-only": "$1 {{GENDER:$2|создаде}} OAuth-потршувач наменет само за сопственикот (потрошувачки клуч $4)",
 	"log-action-filter-mwoauthconsumer": "Вид потрошувачко дејство со OAuth:",
