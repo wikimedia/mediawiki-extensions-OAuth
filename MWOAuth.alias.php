@@ -126,6 +126,22 @@ $specialPageAliases['nl'] = [
 	'OAuthListConsumers' => [ 'OAuthLijstGebruikers' ],
 ];
 
+/** Serbian Cyrillic (српски (ћирилица)) */
+$specialPageAliases['sr-ec'] = [
+	'OAuthConsumerRegistration' => [ 'OAuth_регистрација_апликације', 'OAuth_регистрација' ],
+	'OAuthManageConsumers' => [ 'OAuth_управљање_апликацијама' ],
+	'OAuthListConsumers' => [ 'Списак_OAuth_апликација' ],
+	'OAuthManageMyGrants' => [ 'УправљањеПовезанимАпликацијама' ],
+];
+
+/** Serbian Latin (srpski (latinica)) */
+$specialPageAliases['sr-el'] = [
+	'OAuthConsumerRegistration' => [ 'OAuth_registracija_aplikacije', 'OAuth_registracija' ],
+	'OAuthManageConsumers' => [ 'OAuth_upravljanje_aplikacijama' ],
+	'OAuthListConsumers' => [ 'Spisak_OAuth_aplikacija' ],
+	'OAuthManageMyGrants' => [ 'UpravljanjePovezanimAplikacijama' ],
+];
+
 /** Swedish (svenska) */
 $specialPageAliases['sv'] = [
 	'OAuthListConsumers' => [ 'OAuth-applikationer' ],
