@@ -3,12 +3,14 @@
 		"authors": [
 			"Kening Aldgilles",
 			"Robin0van0der0vliet",
-			"Robin van der Vliet"
+			"Robin van der Vliet",
+			"PiefPafPier"
 		]
 	},
 	"mwoauth-consumer-reason": "Reden:",
 	"mwoauthconsumerregistration-navigation": "Navigaasje:",
 	"mwoauthmanageconsumers-reason": "Reden:",
 	"mwoauthmanagemygrants-navigation": "Navigaasje:",
-	"mwoauth-form-button-cancel": "Annulearje"
+	"mwoauth-form-button-cancel": "Annulearje",
+	"echo-category-title-oauth-owner": "OAuth-ûntwikkeling"
 }
