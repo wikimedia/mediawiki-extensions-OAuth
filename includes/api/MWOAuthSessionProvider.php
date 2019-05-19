@@ -7,6 +7,7 @@ use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
+use User;
 use WebRequest;
 use Wikimedia\Rdbms\DBError;
 
@@ -22,7 +23,7 @@ use Wikimedia\Rdbms\DBError;
  *
  * It also takes advantage of the getAllowedUserRights() method for authz
  * purposes (limiting the rights to those included in the grant), and
- * hooks RecentChange_save to tag revisions made via the provider.
+ * registers some hooks to tag actions made via the provider.
  */
 class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCookie {
 
@@ -33,6 +34,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 
 		$wgHooks['ApiCheckCanExecute'][] = $this;
 		$wgHooks['RecentChange_save'][] = $this;
+		$wgHooks['MarkPatrolled'][] = $this;
 	}
 
 	/**
@@ -283,15 +285,55 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 	 * @return bool true
 	 */
 	public function onRecentChange_save( $rc ) {
-		$data = $this->getSessionData( $rc->getPerformer() ?: null );
+		$consumerId = $this->getPublicConsumerId( $rc->getPerformer() ?: null );
+		if ( $consumerId !== null ) {
+			$rc->addTags( "OAuth CID: $consumerId" );
+		}
+		return true;
+	}
+
+	/**
+	 * Get the consumer ID of the non-owner-only OAuth consumer associated with this user, or null.
+	 * @param User|null $user
+	 * @return int|null
+	 */
+	protected function getPublicConsumerId( User $user = null ) {
+		$data = $this->getSessionData( $user );
 		if ( $data ) {
 			$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 			$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $data['key'] );
 			$consumerId = $access->getConsumerId();
 			$consumer = MWOAuthConsumer::newFromId( $dbr, $consumerId );
 			if ( !$consumer->getOwnerOnly() ) {
-				$rc->addTags( "OAuth CID: $consumerId" );
+				return $consumerId;
 			}
+		}
+		return null;
+	}
+
+	/**
+	 * Record the fact that OAuth was used for marking an existing RecentChange as patrolled.
+	 * (RecentChange::doMarkPatrolled() does not use RecentChange::save()
+	 * and therefore bypasses the above hook handler.)
+	 *
+	 * @param int $rcid
+	 * @param User $user
+	 * @param bool $wcOnlySysopsCanPatrol
+	 * @param bool $auto
+	 * @param string[] &$tags
+	 *
+	 * @return bool true
+	 */
+	public function onMarkPatrolled(
+		$rcid,
+		User $user,
+		$wcOnlySysopsCanPatrol,
+		$auto,
+		array &$tags
+	) {
+		$consumerId = $this->getPublicConsumerId( $user );
+		if ( $consumerId !== null ) {
+			$tags[] = "OAuth CID: $consumerId";
 		}
 		return true;
 	}
