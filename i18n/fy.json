@@ -7,6 +7,8 @@
 			"PiefPafPier"
 		]
 	},
+	"mwoauth-prefs-managegrants": "Oansletten apps:",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 oansletten applikaasje|$1 oansletten applikaasjes|0=Oansletten applikaasjes}} beheare",
 	"mwoauth-consumer-reason": "Reden:",
 	"mwoauthconsumerregistration-navigation": "Navigaasje:",
 	"mwoauthmanageconsumers-reason": "Reden:",
