@@ -194,6 +194,8 @@
 	"mwoauthmanagemygrants-success-renounce": "Message shown when grants for an OAuth consumer are totally revoked",
 	"mwoauthmanagemygrants-basic-tooltip": "Message for the tooltip shown next to the disabled checkbox for the \"basic\" grant on [[Special:OAuthManageMyGrants]], explaining why the checkbox cannot be modified.",
 	"mwoauthmanagemygrants-authonly-tooltip": "Message for the tooltip shown next to the disabled checkboxes for the \"authonly\" and \"authonlyprivate\" grants on [[Special:OAuthManageMyGrants]], explaining why the checkbox cannot be modified.\n\nCf. {{msg-mw|Mwoauthmanagemygrants-basic-tooltip}}",
+	"mwoauthmanagemygrants-editslink": "Text of the link shown on [[Special:OAuthManageMyGrants]] which shows the edits this application made in the name of the user. $1 is the current user.",
+	"mwoauthmanagemygrants-actionslink": "Text of the link shown on [[Special:OAuthManageMyGrants]] which shows the logged actions this application made in the name of the user. $1 is the current user.",
 	"logentry-mwoauthconsumer-propose": "{{logentry}}",
 	"logentry-mwoauthconsumer-update": "{{logentry}}\n* $4 - consumer key",
 	"logentry-mwoauthconsumer-approve": "{{logentry}}\n* $4 - consumer key",

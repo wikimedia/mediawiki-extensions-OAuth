@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use Html;
+use SpecialPage;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
@@ -27,7 +29,7 @@ use Wikimedia\Rdbms\DBConnRef;
  * Special page for listing consumers this user granted access to and
  * for manage the specific grants given or revoking access for the consumer
  */
-class SpecialMWOAuthManageMyGrants extends \SpecialPage {
+class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	private static $irrevocableGrants = null;
 
 	public function __construct() {
@@ -289,6 +291,20 @@ class SpecialMWOAuthManageMyGrants extends \SpecialPage {
 		foreach ( $data as $msg => $val ) {
 			$r .= '<p>' . $this->msg( $msg )->escaped() . ' ' . $cmrAc->escapeForHtml( $val ) . '</p>';
 		}
+
+		$editsUrl = SpecialPage::getTitleFor( 'Contributions', $this->getUser()->getName() )
+			->getFullURL( [ 'tagfilter' => MWOAuthUtils::getTagName( $cmrAc->getId() ) ] );
+		$editsLink = Html::element( 'a', [ 'href' => $editsUrl ],
+			$this->msg( 'mwoauthmanagemygrants-editslink', $this->getUser() )->text() );
+		$r .= '<p>' . $editsLink . '</p>';
+		$actionsUrl = SpecialPage::getTitleFor( 'Log' )->getFullURL( [
+			'user' => $this->getUser()->getName(),
+			'tagfilter' => MWOAuthUtils::getTagName( $cmrAc->getId() ),
+		] );
+		$actionsLink = Html::element( 'a', [ 'href' => $actionsUrl ],
+			$this->msg( 'mwoauthmanagemygrants-actionslink', $this->getUser() )->text() );
+		$r .= '<p>' . $actionsLink . '</p>';
+
 		$r .= '</li>';
 
 		return $r;
