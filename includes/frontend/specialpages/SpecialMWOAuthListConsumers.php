@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use Html;
+use SpecialPage;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
@@ -254,6 +256,12 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		foreach ( $data as $msg => $encValue ) {
 			$r .= '<p>' . $this->msg( $msg )->escaped() . ': ' . $encValue . '</p>';
 		}
+
+		$rcUrl = SpecialPage::getTitleFor( 'Recentchanges' )
+			->getFullURL( [ 'tagfilter' => MWOAuthUtils::getTagName( $cmrAc->getId() ) ] );
+		$rcLink = Html::element( 'a', [ 'href' => $rcUrl ],
+			$this->msg( 'mwoauthlistconsumers-rclink' )->plain() );
+		$r .= '<p>' . $rcLink . '</p>';
 
 		$r .= '</li>';
 
