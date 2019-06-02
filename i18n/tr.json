@@ -7,7 +7,8 @@
 			"Meelo",
 			"McAang",
 			"Vito Genovese",
-			"TmY e12"
+			"TmY e12",
+			"Sayginer"
 		]
 	},
 	"mwoauth-desc": "OAuth 1.0a kullanımı için API yetkilendirme kullanımı",
@@ -53,5 +54,6 @@
 	"grant-mwoauth-authonlyprivate": "Special:OAuth/identify üzerinden sadece gerçek adınız ve e posta adresinizle erişebilirsiniz. API erişimi yok.",
 	"right-mwoauthviewprivate": "Özel OAuth verilerini görüntüle",
 	"action-mwoauthviewsuppressed": "Bastırılmış OAuth kullanıcılarını görüntüle",
-	"mwoauth-botpasswords-note": "<strong>Not:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> bot parolalarından daha güvenlidir ve bot her desteklediğinde tercih edilmelidir."
+	"mwoauth-botpasswords-note": "<strong>Not:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> bot parolalarından daha güvenlidir ve bot her desteklediğinde tercih edilmelidir.",
+	"echo-pref-tooltip-oauth-owner": "Oluşturduğum OAuth uygulamarıyla ilgili olaylar hakkında bana bildirim gönder."
 }
