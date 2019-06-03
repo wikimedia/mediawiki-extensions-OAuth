@@ -44,6 +44,23 @@ require_once __DIR__ . '/common.php';
 class OAuthRequestTest extends \PHPUnit\Framework\TestCase {
 	use PHPUnit4And6Compat;
 
+	protected static $globals = [];
+
+	public static function setUpBeforeClass() {
+		parent::setUpBeforeClass();
+		// can't use @backupGlobals because it tries to serialize the arrays
+		self::$globals['$_SERVER'] = $_SERVER;
+		self::$globals['$_POST'] = $_POST;
+		self::$globals['$_GET'] = $_GET;
+	}
+
+	public static function tearDownAfterClass() {
+		$_SERVER = self::$globals['$_SERVER'];
+		$_POST = self::$globals['$_POST'];
+		$_GET = self::$globals['$_GET'];
+		parent::tearDownAfterClass();
+	}
+
 	public function testCanGetSingleParameter() {
 		// Yes, a awesomely boring test.. But if this doesn't work, the other tests is unreliable
 		$request = new OAuthRequest('', '', array('test'=>'foo'));
