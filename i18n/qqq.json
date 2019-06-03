@@ -169,6 +169,7 @@
 	"mwoauthlistconsumers-status-disabled": "{{Related|Mwoauthlistconsumers-status}}\n{{Identical|Disabled}}",
 	"mwoauthlistconsumers-status-rejected": "{{Related|Mwoauthlistconsumers-status}}\n{{Identical|Rejected}}",
 	"mwoauthlistconsumers-status-expired": "{{Related|Mwoauthlistconsumers-status}}\n{{Identical|Expired}}",
+	"mwoauthlistconsumers-rclink": "Text of the link shown on [[Special:OAuthListConsumers]] which shows the recent changes by this application.",
 	"oauthmanagemygrants": "{{doc-special|MWOAuthManageMyGrants}}",
 	"mwoauthmanagemygrants-text": "Explanatory text for Special:OAuthManageMyGrants page",
 	"mwoauthmanagemygrants-navigation": "Used as subtitle.\n\nFollowed by a link with the link text {{msg-mw|Mwoauthmanagemygrants-showlist}}. It can be without link.\n{{Identical|Navigation}}",
