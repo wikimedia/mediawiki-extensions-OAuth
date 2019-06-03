@@ -15,8 +15,7 @@ class MWOAuthHooks {
 	}
 
 	/**
-	 * Reserve all change tags beginning with 'OAuth CID:' (case-insensitive) so
-	 * that the user may not create them
+	 * Reserve change tags that look like an OAuth change tag.
 	 *
 	 * @param string $tag
 	 * @param \User|null $user
@@ -24,7 +23,7 @@ class MWOAuthHooks {
 	 * @return bool
 	 */
 	public static function onChangeTagCanCreate( $tag, \User $user = null, \Status &$status ) {
-		if ( strpos( strtolower( $tag ), 'oauth cid:' ) === 0 ) {
+		if ( MWOAuthUtils::isReservedTagName( $tag ) ) {
 			$status->fatal( 'mwoauth-tag-reserved' );
 		}
 		return true;
@@ -114,7 +113,7 @@ class MWOAuthHooks {
 		);
 		$allTags = [];
 		foreach ( $res as $row ) {
-			$allTags[] = "OAuth CID: $row->oarc_id";
+			$allTags[] = MWOAuthUtils::getTagName( $row->oarc_id );
 		}
 
 		// Step 2: Return only those that are in use.

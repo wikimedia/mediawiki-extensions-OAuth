@@ -287,7 +287,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 	public function onRecentChange_save( $rc ) {
 		$consumerId = $this->getPublicConsumerId( $rc->getPerformer() ?: null );
 		if ( $consumerId !== null ) {
-			$rc->addTags( "OAuth CID: $consumerId" );
+			$rc->addTags( MWOAuthUtils::getTagName( $consumerId ) );
 		}
 		return true;
 	}
@@ -333,7 +333,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 	) {
 		$consumerId = $this->getPublicConsumerId( $user );
 		if ( $consumerId !== null ) {
-			$tags[] = "OAuth CID: $consumerId";
+			$tags[] = MWOAuthUtils::getTagName( $consumerId );
 		}
 		return true;
 	}

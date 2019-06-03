@@ -428,6 +428,24 @@ class MWOAuthUtils {
 	}
 
 	/**
+	 * Get the change tag name for a given consumer.
+	 * @param int $consumerId
+	 * @return string
+	 */
+	public static function getTagName( $consumerId ) {
+		return 'OAuth CID: ' . (int)$consumerId;
+	}
+
+	/**
+	 * Check if a given change tag name should be reserved for this extension.
+	 * @param string $tagName
+	 * @return bool
+	 */
+	public static function isReservedTagName( $tagName ) {
+		return strpos( strtolower( $tagName ), 'oauth cid:' ) === 0;
+	}
+
+	/**
 	 * Return a list of all OAuth admins (or the first 5000 in the unlikely case that there is more
 	 * than that).
 	 * Should be called on the central OAuth wiki.
