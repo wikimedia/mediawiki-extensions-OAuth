@@ -152,6 +152,7 @@
 	"mwoauthlistconsumers-status-disabled": "비활성화됨",
 	"mwoauthlistconsumers-status-rejected": "거부됨",
 	"mwoauthlistconsumers-status-expired": "만료됨",
+	"mwoauthlistconsumers-rclink": "이 애플리케이션의 최근 바뀜",
 	"oauthmanagemygrants": "연결된 애플리케이션 관리",
 	"mwoauthmanagemygrants-text": "이 문서는 당신의 계정을 사용할 수 있는 모든 애플리케이션을 나열합니다. 이러한 애플리케이션은 당신을 대신하여 인증할 때 애플리케이션에 부여한 권한이 접근 범위를 제한합니다. 만약 애플리케이션이 당신을 대신해 자매 프로젝트에 접근하도록 하기 위해서 애플리케이션에 개별적으로 권한을 부여한다면 각각의 프로젝트들에 대한 개별 설정이 아래에 보일 것입니다.\n\n연결된 애플리케이션들은 OAuth 프로토콜을 사용하여 계정에 접근합니다. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth 연결된 애플리케이션에 대해 더 알아보세요])</span>",
 	"mwoauthmanagemygrants-navigation": "둘러보기:",
