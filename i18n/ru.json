@@ -237,6 +237,7 @@
 	"action-mwoauthproposeconsumer": "предложение новых клиентских OAuth-приложений",
 	"action-mwoauthupdateownconsumer": "обновление контролируемых вами клиентских OAuth-приложений",
 	"action-mwoauthviewsuppressed": "просмотр подавленных клиентских OAuth-приложений",
+	"mwoauth-botpasswords-note": "Примечание: [$1 OAuth] является более безопасным методом, чем пароли ботов. Его стоит использовать во всех случаях, когда бот его поддерживает.",
 	"echo-category-title-oauth-owner": "OAuth-разработка",
 	"echo-pref-tooltip-oauth-owner": "Оповещать меня о событиях, связанных с созданными мной OAuth-приложениями.",
 	"echo-category-title-oauth-admin": "Администратор OAuth",
