@@ -6,7 +6,8 @@
 			"Mormegil",
 			"Cvanca",
 			"Dvorapa",
-			"Patriccck"
+			"Patriccck",
+			"Tchoř"
 		]
 	},
 	"mwoauth-desc": "Umožňuje využití OAuth 1.0a pro autorizaci přístupu k API",
@@ -73,7 +74,7 @@
 	"mwoauthconsumerregistration-main": "Hlavní",
 	"mwoauthconsumerregistration-propose-text": "Vývojáři by měli používat níže zobrazený formulář k navržení nového konzumenta OAuth (podrobnosti najdete v [//www.mediawiki.org/wiki/Extension:OAuth?uselang=cs dokumentaci rozšíření]). Po odeslání tohoto formuláře obdržíte token, pomocí kterého se vaše aplikace bude identifikovat MediaWiki. Předtím, než budou moci ostatní uživatelé autorizovat vaši aplikaci, bude ji muset schválit některý správce OAuth.\n\nNěkolik doporučení a poznámek:\n* Snažte se používat co nejméně oprávnění. Vyhněte se těm, která ve skutečnosti zatím nepotřebujete.\n* Verze má tvar „major.minor.release“ (poslední dvě části jsou nepovinné) a zvyšuje se, když jsou potřeba změny oprávnění.\n* Pokud je to možné, poskytněte veřejný klíč RSA (ve formátu PEM), jinak se musí používat (méně bezpečný) tajný token.\n* Pomocí ID wiki můžete omezit tohoto konzumenta na jediný projekt na tomto serveru (pro všechny projekty uveďte „*“).",
 	"mwoauthconsumerregistration-update-text": "Pomocí níže uvedeného formuláře můžete změnit vlastnosti konzumenta OAuth, kterého spravujete.\n\nVšechny uvedené hodnoty přepíšou ty původní. Neponechávejte žádná pole prázdná, pokud nechcete jejich hodnoty smazat.",
-	"mwoauthconsumerregistration-maintext": "Tato stránka slouží k navrhování a změnám konzumentských aplikací OAuth (viz http://oauth.net) v registru tohoto serveru.\n\nMůžete zde [[Special:OAuthConsumerRegistration/propose|navrhnout nového konzumenta]] nebo [[Special:OAuthConsumerRegistration/list|spravovat své existující konzumenty]].",
+	"mwoauthconsumerregistration-maintext": "Tato stránka slouží k navrhování a změnám konzumentských aplikací OAuth (vizte http://oauth.net) v registru tohoto serveru.\n\nMůžete zde [[Special:OAuthConsumerRegistration/propose|navrhnout nového konzumenta]] nebo [[Special:OAuthConsumerRegistration/list|spravovat své existující konzumenty]].",
 	"mwoauthconsumerregistration-propose-legend": "Nová konzumentská aplikace OAuth",
 	"mwoauthconsumerregistration-update-legend": "Změna konzumentské aplikace OAuth",
 	"mwoauthconsumerregistration-propose-submit": "Navrhnout konzumenta",

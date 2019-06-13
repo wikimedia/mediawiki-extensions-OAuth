@@ -7,7 +7,8 @@
 			"Lokal Profil",
 			"Skalman",
 			"WikiPhoenix",
-			"Jkl"
+			"Jkl",
+			"Mjälten"
 		]
 	},
 	"mwoauth-desc": "Tillåter användning av OAuth 1.0a för API-tillstånd",
@@ -91,6 +92,7 @@
 	"mwoauthmanageconsumers-showproposed": "Föreslagna ansökningar",
 	"mwoauthmanageconsumers-showrejected": "Avslagna ansökningar",
 	"mwoauthmanageconsumers-showexpired": "Utgångna ansökningar",
+	"mwoauthmanageconsumers-linkproposed": "Föreslagna ansökningar",
 	"mwoauthmanageconsumers-main": "Huvudsida",
 	"mwoauthmanageconsumers-maintext": "Denna sida är ämnad för hanteringen av OAuths (se http://oauth.net) konsumentapplikationsförfrågningar samt hanteringen av etablerade OAuth konsumenter.",
 	"mwoauthmanageconsumers-queues": "Välj konsumentbekräftelsekö nedan:",

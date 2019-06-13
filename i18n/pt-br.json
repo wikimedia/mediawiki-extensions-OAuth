@@ -195,6 +195,7 @@
 	"mwoauthmanagemygrants-basic-tooltip": "Por que não posso atualizar essa concessão? Esta concessão dá as permissões básicas do aplicativo conectado que ele precisa para funcionar corretamente. Se você não quiser que este aplicativo conectado tenha esses direitos, você deve revogar o acesso do aplicativo.",
 	"mwoauthmanagemygrants-authonly-tooltip": "Por que não posso atualizar essa concessão? Se você não quiser que este aplicativo conectado tenha esse direito, você deve revogar o acesso do aplicativo.",
 	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Suas}} edições por este aplicativo",
+	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Suas}} ações por este aplicativo",
 	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|propos}} um consumidor da OAuth (chave do consumidor $4)",
 	"logentry-mwoauthconsumer-update": "$1 {{GENDER:$2|atualizou}} um consumidor OAuth (chave do consumidor $4)",
 	"logentry-mwoauthconsumer-approve": "$1 {{GENDER:$2|aprovOU}} uma chave de consumidor OAuth por $3 (chave do consumidor $4)",

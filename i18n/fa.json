@@ -15,7 +15,8 @@
 			"Huji",
 			"Ladsgroup",
 			"Physicsch",
-			"Ahmad252"
+			"Ahmad252",
+			"FarsiNevis"
 		]
 	},
 	"oauth": "OAuth",
@@ -80,7 +81,7 @@
 	"mwoauthconsumerregistration-propose-legend": "برنامهٔ مصرف‌کننده تازه OAuth",
 	"mwoauthconsumerregistration-update-legend": "به‌روزرسانی برنامهٔ مصرف‌کننده OAuth",
 	"mwoauthconsumerregistration-propose-submit": "پشیناهد مصرف‌کننده",
-	"mwoauthconsumerregistration-update-submit": "به‌روزرسانی مصرف‌کننده",
+	"mwoauthconsumerregistration-update-submit": "روزامدسازی مصرف‌کننده",
 	"mwoauthconsumerregistration-none": "شما هیچ مصرف‌کنندهٔ OAuth را کنترل نمی‌کنید.",
 	"mwoauthconsumerregistration-name": "مصرف‌کننده",
 	"mwoauthconsumerregistration-user": "ناشر",
