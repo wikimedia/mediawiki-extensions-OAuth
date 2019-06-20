@@ -207,9 +207,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 
 	public function getVaryHeaders() {
 		return [
-			'Authorization' => [
-				'substr="OAuth "',
-			],
+			'Authorization' => null,
 		];
 	}
 
