@@ -29,7 +29,7 @@
 	"mwoauth-field-hidden": "(این اطلاعات پنهان است)",
 	"mwoauth-field-private": "(این اطلاعات خصوصی است)",
 	"mwoauth-prefs-managegrants": "برنامه‌های متصل:",
-	"mwoauth-prefs-managegrantslink": "مدیریت {{PLURAL:$1|$1 برنامهٔ وصل‌شده|$1 برنامه‌های وصل‌شده|0=برنامه‌های وصل‌شده}}",
+	"mwoauth-prefs-managegrantslink": "مدیریت {{PLURAL:$1|$1 برنامهٔ وصل‌شده|$1 برنامهٔ وصل‌شده|0=برنامهٔ وصل‌شده}}",
 	"mwoauth-consumer-allwikis": "همه پروژه‌ها در این وب‌گاه",
 	"mwoauth-consumer-key": "کلید مصرف‌کننده:",
 	"mwoauth-consumer-name": "نام برنامه:",
