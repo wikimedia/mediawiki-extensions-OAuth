@@ -12,7 +12,7 @@
 	"mwoauth-desc": "Позволява употреба на OAuth 1.0а за заверка на приложения (API)",
 	"mwoauth-verified": "В извршникот не е разрешен\nдостъп до говоря от ваше\nиме. За да довършим\nпроцедурата, на извршникот\nзаявяваме му следната\nконтролна стойност: $ 1",
 	"mwoauth-prefs-managegrants": "Свързани приложения:",
-	"mwoauth-prefs-managegrantslink": "Управление $1 {{PLURAL:$1|свързано приложение|свързани приложения}}",
+	"mwoauth-prefs-managegrantslink": "Управление на $1 {{PLURAL:$1|свързано приложение|свързани приложения}}",
 	"mwoauth-consumer-allwikis": "Всички проекти на този сайт",
 	"mwoauth-consumer-key": "Ключ на клиента:",
 	"mwoauth-consumer-name": "Име на приложението:",
