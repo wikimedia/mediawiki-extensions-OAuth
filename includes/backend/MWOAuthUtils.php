@@ -42,9 +42,11 @@ class MWOAuthUtils {
 	 * @return \BagOStuff
 	 */
 	public static function getSessionCache() {
+		global $wgMWOAuthSessionCacheType;
 		global $wgSessionCacheType;
 
-		return \ObjectCache::getInstance( $wgSessionCacheType );
+		$sessionCacheType = $wgMWOAuthSessionCacheType ?? $wgSessionCacheType;
+		return \ObjectCache::getInstance( $sessionCacheType );
 	}
 
 	/**

@@ -170,6 +170,9 @@
 		},
 		"OAuthGroupsToNotify": {
 			"value": []
+		},
+		"MWOAuthSessionCacheType": {
+			"value": null
 		}
 	},
 	"load_composer_autoloader": true,
