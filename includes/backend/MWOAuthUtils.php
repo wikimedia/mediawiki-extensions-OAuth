@@ -279,6 +279,11 @@ class MWOAuthUtils {
 		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
+			// T227688 do not rely on array autocreation for non-stdClass
+			if ( !isset( $user->oAuthUserData ) ) {
+				$user->oAuthUserData = [];
+			}
+
 			if ( isset( $user->oAuthUserData['centralId'] ) ) {
 				$id = $user->oAuthUserData['centralId'];
 			} else {
