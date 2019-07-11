@@ -348,7 +348,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 				// Messages: mwoauthmanageconsumers-linkproposed,
 				// mwoauthmanageconsumers-linkrejected, mwoauthmanageconsumers-linkexpired,
 				// mwoauthmanageconsumers-linkapproved, mwoauthmanageconsumers-linkdisabled
-				$this->msg( 'mwoauthmanageconsumers-link' . $oldStageKey )->escaped() );
+				$this->msg( 'mwoauthmanageconsumers-link' . $oldStageKey )->text() );
 		} else {
 			$out = $this->getOutput();
 			// Show all of the status updates

@@ -66,6 +66,7 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 	 *
 	 * @param Message|string $value
 	 * @return string For use in wikitext
+	 * @param-taint $value escapes_escaped
 	 */
 	final public function escapeForWikitext( $value ) {
 		if ( $value instanceof Message ) {
@@ -80,6 +81,7 @@ class MWOAuthDAOAccessControl extends \ContextSource {
 	 *
 	 * @param Message|string $value
 	 * @return string HTML escaped
+	 * @param-taint $value escapes_escaped
 	 */
 	final public function escapeForHtml( $value ) {
 		if ( $value instanceof Message ) {
