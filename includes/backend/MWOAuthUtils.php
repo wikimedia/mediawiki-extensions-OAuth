@@ -38,6 +38,7 @@ class MWOAuthUtils {
 		$db->daoReadOnly = $wgMWOAuthReadOnly;
 		return $db;
 	}
+
 	/**
 	 * @return \BagOStuff
 	 */
