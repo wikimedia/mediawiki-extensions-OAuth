@@ -43,6 +43,7 @@
 	"mwoauthconsumerregistration-description": "Опис",
 	"mwoauthconsumerregistration-stage": "Статус",
 	"mwoauthconsumerregistration-lastchange": "Последња промена",
+	"mwoauthconsumerregistration-manage": "Управљај",
 	"mwoauthmanageconsumers-notloggedin": "Морате бити пријављени да бисте приступили овој страници.",
 	"mwoauthmanageconsumers-showrejected": "Одбијени захтеви",
 	"mwoauthmanageconsumers-showexpired": "Истекли захтеви",
