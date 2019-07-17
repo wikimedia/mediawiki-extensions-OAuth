@@ -37,6 +37,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 	public function execute( $par ) {
 		$this->setHeaders();
+		$this->addHelpLink( 'Help:OAuth' );
 
 		// Format is Special:OAuthListConsumers[/list|/view/[<consumer key>]]
 		$navigation = explode( '/', $par );
