@@ -191,6 +191,8 @@
 	"mwoauthmanagemygrants-success-renounce": "Доступ програми до Вашого облікового запису був відкликаний.",
 	"mwoauthmanagemygrants-basic-tooltip": "Чому я не можу оновити цей грант? Він надає базові права під'єднаній програмі, які вимагаються для належної роботи. Якщо Ви не хочете, щоб ця під'єднана програма мала ці права, Ви повинні відкликати її доступ.",
 	"mwoauthmanagemygrants-authonly-tooltip": "Чому я не можу оновити цей доступ? Якщо Ви хочете, щоб цей під'єднаний додаток мав це право, Вам треба відкликати доступ додатка.",
+	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Ваші}} редагування через цю програму",
+	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Ваші}} дії через цю програму",
 	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|запропонував|запропонувала}} споживача OAuth (ключ споживача $4)",
 	"logentry-mwoauthconsumer-update": "$1 {{GENDER:$2|оновив|оновила}} споживача OAuth (ключ споживача $4)",
 	"logentry-mwoauthconsumer-approve": "$1 {{GENDER:$2|схвалив|схвалила}} споживача OAuth на $3 (ключ споживача $4)",

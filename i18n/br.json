@@ -2,12 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Y-M D",
-			"Fohanno"
+			"Fohanno",
+			"Huñvreüs"
 		]
 	},
 	"mwoauth-field-hidden": "(kuzhet eo an titour-mañ)",
 	"mwoauth-field-private": "(prevez eo an titour-mañ)",
 	"mwoauth-prefs-managegrants": "Arloadoù kevreet :",
+	"mwoauth-prefs-managegrantslink": "Merañ $1 arload kevreet",
 	"mwoauth-consumer-allwikis": "An holl raktresoù war al lec'hienn-mañ",
 	"mwoauth-consumer-key": "Alc'hwez bevezer :",
 	"mwoauth-consumer-name": "Anv an arload :",
