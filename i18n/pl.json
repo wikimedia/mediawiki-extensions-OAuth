@@ -22,7 +22,7 @@
 	"mwoauth-field-hidden": "(ta informacja jest ukryta)",
 	"mwoauth-field-private": "(ta informacja jest prywatna)",
 	"mwoauth-prefs-managegrants": "Włączone aplikacje:",
-	"mwoauth-prefs-managegrantslink": "Zarządzaj $1 {{PLURAL:$1|włączoną aplikacją|włączonymi aplikacjami}}",
+	"mwoauth-prefs-managegrantslink": "Zarządzaj {{PLURAL:$1|włączoną aplikacją|$1 włączonymi aplikacjami}}",
 	"mwoauth-consumer-allwikis": "Wszystkie projekty na tej witrynie",
 	"mwoauth-consumer-name": "Nazwa aplikacji:",
 	"mwoauth-consumer-user": "Wydawca:",
