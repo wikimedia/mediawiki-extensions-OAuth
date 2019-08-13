@@ -5,7 +5,8 @@
 			"Se4598",
 			"Wnme",
 			"Kghbln",
-			"ChrisiPK"
+			"ChrisiPK",
+			"Umherirrender"
 		]
 	},
 	"mwoauth-desc": "Ermöglicht die Verwendung von OAuth 1.0a zur API-Autorisierung",
@@ -176,7 +177,7 @@
 	"mwoauthmanagemygrants-review": "Zugriff verwalten",
 	"mwoauthmanagemygrants-revoke": "Zugriff entziehen",
 	"mwoauthmanagemygrants-grantaccept": "Gewährt",
-	"mwoauthmanagemygrants-update-text": "Benutze das unten stehende Formular, um die gewährten Berechtigungen für eine Anwendung zu ändern, die auf deinen Namen handelt.",
+	"mwoauthmanagemygrants-update-text": "Benutze das unten stehende Formular, um die gewährten Berechtigungen für eine Anwendung zu ändern, die in deinem Namen handelt.",
 	"mwoauthmanagemygrants-revoke-text": "Benutze das unten stehende Formular, um den Zugriff für eine Anwendung zu entziehen, die auf deinen Namen handelt.",
 	"mwoauthmanagemygrants-confirm-legend": "Verbundene Anwendung verwalten",
 	"mwoauthmanagemygrants-update": "Berechtigungen aktualisieren",
