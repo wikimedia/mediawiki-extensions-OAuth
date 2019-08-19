@@ -34,7 +34,7 @@ require_once "$IP/maintenance/Maintenance.php";
 class CreateOAuthConsumer extends \Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Create an OAuth consumer";
+		$this->addDescription( "Create an OAuth consumer" );
 		$this->addOption( 'user', 'User to run the script as', true, true );
 		$this->addOption( 'name', 'Application name', true, true );
 		$this->addOption( 'description', 'Application description', true, true );

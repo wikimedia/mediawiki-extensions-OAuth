@@ -16,7 +16,7 @@ require_once "$IP/maintenance/Maintenance.php";
 class TestOAuthConsumer extends \Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Test an OAuth consumer";
+		$this->addDescription( "Test an OAuth consumer" );
 		$this->addOption( 'consumerKey', 'Consumer key', true, true );
 		$this->addOption( 'consumerSecret', 'Consumer secret', false, true );
 		$this->addOption( 'RSAKeyFile',

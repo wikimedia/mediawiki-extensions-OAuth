@@ -30,8 +30,8 @@ use MediaWiki\MediaWikiServices;
 class MigrateCentralWiki extends \Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Migrate central wiki from one wiki to another. " .
-			"OAuth should be in Read Only mode while this is running.";
+		$this->addDescription( "Migrate central wiki from one wiki to another. " .
+			"OAuth should be in Read Only mode while this is running." );
 		$this->addOption( 'old', 'Previous central wiki', true, true );
 		$this->addOption( 'target', 'New central wiki', true, true );
 		$this->addOption( 'table',

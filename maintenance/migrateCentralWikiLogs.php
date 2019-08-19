@@ -21,7 +21,7 @@ use MediaWiki\MediaWikiServices;
 class MigrateCentralWikiLogs extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Import central wiki logs to this wiki";
+		$this->addDescription( "Import central wiki logs to this wiki" );
 		$this->addOption( 'old', 'Previous central wiki', true, true );
 		$this->setBatchSize( 200 );
 		$this->requireExtension( "OAuth" );
