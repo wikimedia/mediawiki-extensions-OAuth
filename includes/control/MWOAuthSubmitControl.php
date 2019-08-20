@@ -47,7 +47,7 @@ abstract class MWOAuthSubmitControl extends \ContextSource {
 	/**
 	 * Attempt to validate and submit this data
 	 *
-	 * This will check basic permissions, validate the action and paramters
+	 * This will check basic permissions, validate the action and parameters
 	 * and route the submission handling to the internal subclass function.
 	 *
 	 * @throws \MWException
