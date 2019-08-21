@@ -270,7 +270,7 @@
 	"action-mwoauthviewprivate": "visa privat OAuth-data",
 	"action-mwoauthviewsuppressed": "Visa upphävda OAuthkonsumenter",
 	"mwoauth-tag-reserved": "Taggar som börjar med <code>OAuth CID:</code> är reserverade för OAuth.",
-	"mwoauth-botpasswords-note": "<strong>Observera:</strong> <span class=\"plainlinks\"[$1 OAuth]</span> är säkrare än bot-lösenord och bör föredras i de fall då boten stöder det.",
+	"mwoauth-botpasswords-note": "<strong>Observera:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> är säkrare än bot-lösenord och bör föredras i de fall då boten stöder det.",
 	"mwoauth-api-module-disabled": "\"$1\"-modulen är inte tillgänglig med OAuth.",
 	"echo-category-title-oauth-owner": "OAuth-utveckling",
 	"echo-pref-tooltip-oauth-owner": "Meddela mig om händelser relaterade till OAuth-applikationer som jag har skapat.",
