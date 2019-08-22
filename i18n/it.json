@@ -6,7 +6,8 @@
 			"Alexmar983",
 			"Nemo bis",
 			"Selven",
-			"Giromin Cangiaxo"
+			"Giromin Cangiaxo",
+			"Sakretsu"
 		]
 	},
 	"mwoauth-desc": "Consente l'utilizzo di OAuth 1.0a per le API di autorizzazione",
@@ -178,6 +179,8 @@
 	"mwoauthmanagemygrants-success-update": "Le tue preferenze per questa applicazione sono state aggiornate.",
 	"mwoauthmanagemygrants-success-renounce": "L'accesso dell'applicazione alla tua utenza è stato revocato.",
 	"mwoauthmanagemygrants-basic-tooltip": "Perché non posso aggiornare questa assegnazione? Questa concessione offre le autorizzazioni di base per l'applicazione connessa che sono richieste per funzionare correttamente. Se non si desidera che questa applicazione connessa abbia questi diritti, si dovrebbe revocare l'accesso all'applicazione.",
+	"mwoauthmanagemygrants-editslink": "Le {{GENDER:$1|tue}} modifiche con questa applicazione",
+	"mwoauthmanagemygrants-actionslink": "Le {{GENDER:$1|tue}} azioni con questa applicazione",
 	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|ha proposto}} un cliente OAuth (chiave cliente $4)",
 	"logentry-mwoauthconsumer-update": "$1 {{GENDER:$2|ha aggiornato}} un cliente OAuth (chiave cliente $4)",
 	"logentry-mwoauthconsumer-approve": "$1 {{GENDER:$2|ha approvato}} un cliente OAuth di $3 (chiave cliente $4)",
