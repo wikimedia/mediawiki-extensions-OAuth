@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Iwan Novirion"
+		]
+	},
+	"mwoauth-prefs-managegrants": "Aplikasi tahubuang:",
+	"mwoauth-prefs-managegrantslink": "Atua $1 {{PLURAL:$1|aplikasi}} tahubuang",
+	"oauthmanagemygrants": "Atua aplikasi tahubuang",
+	"mwoauthmanagemygrants-confirm-legend": "Atua aplikasi tahubuang"
+}
