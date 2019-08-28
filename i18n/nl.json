@@ -184,6 +184,8 @@
 	"mwoauthmanagemygrants-success-update": "Uw voorkeuren voor deze toepassing zijn bijgewerkt.",
 	"mwoauthmanagemygrants-success-renounce": "De toegang tot uw account is voor deze toepassing ingetrokken.",
 	"mwoauthmanagemygrants-basic-tooltip": "Waarom kan ik deze toestemming niet bijwerken? Deze toestemming geeft uw gekoppelde toepassing standaard rechten die nodig zijn om goed te kunnen werken. Als u niet wilt dat deze gekoppelde toepassing deze rechten heeft, trek dan de toegang van de toepassing in.",
+	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Uw}} bewerkingen gemaakt door deze applicatie",
+	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Uw}} handelingen uitgevoerd door deze applicatie",
 	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|heeft}} een OAuth-toepassing (toepassingssleutel $4) voorgesteld",
 	"logentry-mwoauthconsumer-update": "$1 {{GENDER:$2|heeft}} een OAuth-toepassing (toepassingssleutel $4) bijgewerkt",
 	"logentry-mwoauthconsumer-approve": "$1 {{GENDER:$2|heeft}} een OAuth-toepassing van $3 (toepassingssleutel $4) goedgekeurd",
