@@ -67,7 +67,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 
 	public function provideSessionInfo( WebRequest $request ) {
 		// For some reason MWOAuth is restricted to be API-only.
-		if ( !defined( 'MW_API' ) ) {
+		if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) ) {
 			return null;
 		}
 
