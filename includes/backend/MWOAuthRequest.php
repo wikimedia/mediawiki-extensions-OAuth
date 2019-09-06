@@ -45,7 +45,7 @@ class MWOAuthRequest extends OAuthRequest {
 		$requestHeaders = MWOAuthUtils::getHeaders();
 
 		// Parse the query-string to find GET parameters
-		$parameters = $request->getQueryValues();
+		$parameters = $request->getQueryValuesOnly();
 
 		// It's a POST request of the proper content-type, so parse POST
 		// parameters and add those overriding any duplicates from GET
