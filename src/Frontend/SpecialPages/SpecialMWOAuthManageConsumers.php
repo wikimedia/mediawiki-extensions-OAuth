@@ -66,8 +66,6 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgMWOAuthReadOnly;
-
 		$user = $this->getUser();
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
@@ -82,7 +80,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			throw new \PermissionsError( 'mwoauthmanageconsumer' );
 		}
 
-		if ( $wgMWOAuthReadOnly ) {
+		if ( $this->getConfig()->get( 'MWOAuthReadOnly' ) ) {
 			throw new \ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
 		}
 
@@ -124,33 +122,35 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 * @return void
 	 */
 	protected function addQueueSubtitleLinks( $consumerKey ) {
+		$linkRenderer = $this->getLinkRenderer();
 		$listLinks = [];
 		foreach ( self::$queueStages as $stage ) {
 			$stageKey = Consumer::$stageNames[$stage];
 			if ( $consumerKey || $this->stageKey !== $stageKey ) {
-				$listLinks[] = \Linker::linkKnown(
+				$listLinks[] = $linkRenderer->makeKnownLink(
 					$this->getPageTitle( $stageKey ),
 					// Messages: mwoauthmanageconsumers-showproposed,
 					// mwoauthmanageconsumers-showrejected, mwoauthmanageconsumers-showexpired,
-					$this->msg( 'mwoauthmanageconsumers-show' . $stageKey )->escaped() );
+					$this->msg( 'mwoauthmanageconsumers-show' . $stageKey )->text()
+				);
 			} else {
 				$listLinks[] = $this->msg( 'mwoauthmanageconsumers-show' . $stageKey )->escaped();
 			}
 		}
 
 		if ( $consumerKey ) {
-			$consumerViewLink = "[" . \Linker::linkKnown(
+			$consumerViewLink = "[" . $linkRenderer->makeKnownLink(
 				\SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$consumerKey" ),
-				$this->msg( 'mwoauthconsumer-consumer-view' )->escaped() ) . "]";
+				$this->msg( 'mwoauthconsumer-consumer-view' )->text() ) . "]";
 		} else {
 			$consumerViewLink = '';
 		}
 
 		$linkHtml = $this->getLanguage()->pipeList( $listLinks );
 
-		$viewall = $this->msg( 'parentheses' )->rawParams( \Linker::linkKnown(
+		$viewall = $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeKnownLink(
 			$this->getPageTitle(),
-			$this->msg( 'mwoauthmanageconsumers-main' )->escaped()
+			$this->msg( 'mwoauthmanageconsumers-main' )->text()
 		) )->escaped();
 
 		$this->getOutput()->setSubtitle(
@@ -170,6 +170,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$keyStageMapL = array_intersect( array_flip( Consumer::$stageNames ),
 			self::$listStages );
 
+		$linkRenderer = $this->getLinkRenderer();
 		$out = $this->getOutput();
 
 		$out->addWikiMsg( 'mwoauthmanageconsumers-maintext' );
@@ -183,11 +184,11 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			$out->addHTML(
 				'<li>' .
 				"<$tag>" .
-				\Linker::linkKnown(
+				$linkRenderer->makeKnownLink(
 					$this->getPageTitle( $stageKey ),
 					// Messages: mwoauthmanageconsumers-q-proposed, mwoauthmanageconsumers-q-rejected,
 					// mwoauthmanageconsumers-q-expired
-					$this->msg( 'mwoauthmanageconsumers-q-' . $stageKey )->escaped()
+					$this->msg( 'mwoauthmanageconsumers-q-' . $stageKey )->text()
 				) .
 				"</$tag> [$counts[$stage]]" .
 				'</li>'
@@ -200,10 +201,10 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		foreach ( $keyStageMapL as $stageKey => $stage ) {
 			$out->addHTML(
 				'<li>' .
-				\Linker::linkKnown(
+				$linkRenderer->makeKnownLink(
 					$this->getPageTitle( $stageKey ),
 					// Messages: mwoauthmanageconsumers-l-approved, mwoauthmanageconsumers-l-disabled
-					$this->msg( 'mwoauthmanageconsumers-l-' . $stageKey )->escaped()
+					$this->msg( 'mwoauthmanageconsumers-l-' . $stageKey )->text()
 				) .
 				" [$counts[$stage]]" .
 				'</li>'
@@ -349,9 +350,9 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$owner = $cmrAc->getUserName();
 		$lang = $this->getLanguage();
 
-		$link = \Linker::linkKnown(
+		$link = $this->getLinkRenderer()->makeKnownLink(
 			$title = \SpecialPage::getTitleFor( 'OAuthListConsumers' ),
-			$this->msg( 'mwoauthmanageconsumers-search-publisher' )->escaped(),
+			$this->msg( 'mwoauthmanageconsumers-search-publisher' )->text(),
 			[],
 			[ 'publisher' => $owner ]
 		);
@@ -370,9 +371,9 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 					Consumer::$stageNames[$cmrAc->getStage()] ),
 			'mwoauth-consumer-key' => $cmrAc->getConsumerKey(),
 			'mwoauth-consumer-name' => new HtmlSnippet( $cmrAc->get( 'name', function ( $s ) {
-				$link = \Linker::linkKnown(
+				$link = $this->getLinkRenderer()->makeKnownLink(
 					\SpecialPage::getTitleFor( 'OAuthListConsumers' ),
-					$this->msg( 'mwoauthmanageconsumers-search-name' )->escaped(),
+					$this->msg( 'mwoauthmanageconsumers-search-name' )->text(),
 					[],
 					[ 'name' => $s ]
 				);
@@ -480,9 +481,9 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$cmrKey = $cmrAc->getConsumerKey();
 		$stageKey = Consumer::$stageNames[$cmrAc->getStage()];
 
-		$link = \Linker::linkKnown(
+		$link = $this->getLinkRenderer()->makeKnownLink(
 			$this->getPageTitle( $cmrKey ),
-			$this->msg( 'mwoauthmanageconsumers-review' )->escaped()
+			$this->msg( 'mwoauthmanageconsumers-review' )->text()
 		);
 
 		$time = $this->getLanguage()->timeanddate(

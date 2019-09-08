@@ -21,7 +21,6 @@ namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-use Html;
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
@@ -231,16 +230,16 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		$permMgr = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$links = [];
-		$links[] = \Linker::linkKnown(
+		$links[] = $this->getLinkRenderer()->makeKnownLink(
 			$this->getPageTitle( "view/{$cmrKey}" ),
-			$this->msg( 'mwoauthlistconsumers-view' )->escaped(),
+			$this->msg( 'mwoauthlistconsumers-view' )->text(),
 			[],
 			$this->getRequest()->getValues( 'name', 'publisher', 'stage' ) // stick
 		);
 		if ( !$permMgr->userHasRight( $this->getUser(), 'mwoauthmanageconsumer' ) ) {
-			$links[] = \Linker::linkKnown(
-				\SpecialPage::getTitleFor( 'OAuthManageConsumers', $cmrKey ),
-				$this->msg( 'mwoauthmanageconsumers-review' )->escaped()
+			$links[] = $this->getLinkRenderer()->makeKnownLink(
+				SpecialPage::getTitleFor( 'OAuthManageConsumers', $cmrKey ),
+				$this->msg( 'mwoauthmanageconsumers-review' )->text()
 			);
 		}
 		$links = $this->getLanguage()->pipeList( $links );
@@ -274,10 +273,12 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			$r .= '<p>' . $this->msg( $msg )->escaped() . ': ' . $encValue . '</p>';
 		}
 
-		$rcUrl = SpecialPage::getTitleFor( 'Recentchanges' )
-			->getFullURL( [ 'tagfilter' => Utils::getTagName( $cmrAc->getId() ) ] );
-		$rcLink = Html::element( 'a', [ 'href' => $rcUrl ],
-			$this->msg( 'mwoauthlistconsumers-rclink' )->plain() );
+		$rcLink = $this->getLinkRenderer()->makeKnownLink(
+			SpecialPage::getTitleFor( 'Recentchanges' ),
+			$this->msg( 'mwoauthlistconsumers-rclink' )->plain(),
+			[],
+			[ 'tagfilter' => Utils::getTagName( $cmrAc->getId() ) ]
+		);
 		$r .= '<p>' . $rcLink . '</p>';
 
 		$r .= '</li>';
@@ -296,7 +297,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	private function addNavigationSubtitle( ConsumerAccessControl $cmrAc ): void {
 		$user = $this->getUser();
 		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$linkRenderer = $this->getLinkRenderer();
 		$consumer = $cmrAc->getDAO();
 
 		$siteLinks = array_merge(

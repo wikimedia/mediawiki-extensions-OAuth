@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
 
-use Html;
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
@@ -51,8 +50,6 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgMWOAuthReadOnly;
-
 		$user = $this->getUser();
 
 		$this->setHeaders();
@@ -73,7 +70,8 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$typeKey = $navigation[0] ?? null;
 		$acceptanceId = $navigation[1] ?? null;
 
-		if ( $wgMWOAuthReadOnly && in_array( $typeKey, [ 'update', 'revoke' ] ) ) {
+		if ( $this->getConfig()->get( 'MWOAuthReadOnly' )
+				&& in_array( $typeKey, [ 'update', 'revoke' ] ) ) {
 			throw new \ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
 		}
 
@@ -104,16 +102,18 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		if ( $acceptanceId ) {
 			$dbr = Utils::getCentralDB( DB_REPLICA );
 			$cmraAc = ConsumerAcceptance::newFromId( $dbr, $acceptanceId );
-			$listLinks[] = \Linker::linkKnown(
+			$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 				$this->getPageTitle(),
-				$this->msg( 'mwoauthmanagemygrants-showlist' )->escaped() );
+				$this->msg( 'mwoauthmanagemygrants-showlist' )->text()
+			);
 
 			if ( $cmraAc ) {
 				$cmrAc = Consumer::newFromId( $dbr, $cmraAc->getConsumerId() );
 				$consumerKey = $cmrAc->getConsumerKey();
-				$listLinks[] = \Linker::linkKnown(
-					\SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$consumerKey" ),
-					$this->msg( 'mwoauthconsumer-application-view' )->escaped() );
+				$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
+					SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$consumerKey" ),
+					$this->msg( 'mwoauthconsumer-application-view' )->text()
+				);
 			}
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthmanagemygrants-showlist' )->escaped();
@@ -293,16 +293,18 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$cmraAc = ConsumerAcceptanceAccessControl::wrap(
 			ConsumerAcceptance::newFromRow( $db, $row ), $this->getContext() );
 
+		$linkRenderer = $this->getLinkRenderer();
+
 		$links = [];
 		if ( array_diff( $cmrAc->getGrants(), self::irrevocableGrants() ) ) {
-			$links[] = \Linker::linkKnown(
+			$links[] = $linkRenderer->makeKnownLink(
 				$this->getPageTitle( 'update/' . $cmraAc->getId() ),
-				$this->msg( 'mwoauthmanagemygrants-review' )->escaped()
+				$this->msg( 'mwoauthmanagemygrants-review' )->text()
 			);
 		}
-		$links[] = \Linker::linkKnown(
+		$links[] = $linkRenderer->makeKnownLink(
 			$this->getPageTitle( 'revoke/' . $cmraAc->getId() ),
-			$this->msg( 'mwoauthmanagemygrants-revoke' )->escaped()
+			$this->msg( 'mwoauthmanagemygrants-revoke' )->text()
 		);
 		$reviewLinks = $this->getLanguage()->pipeList( $links );
 
@@ -319,17 +321,22 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			$r .= '<p>' . $this->msg( $msg )->escaped() . ' ' . $cmrAc->escapeForHtml( $val ) . '</p>';
 		}
 
-		$editsUrl = SpecialPage::getTitleFor( 'Contributions', $this->getUser()->getName() )
-			->getFullURL( [ 'tagfilter' => Utils::getTagName( $cmrAc->getId() ) ] );
-		$editsLink = Html::element( 'a', [ 'href' => $editsUrl ],
-			$this->msg( 'mwoauthmanagemygrants-editslink', $this->getUser() )->text() );
+		$editsLink = $linkRenderer->makeKnownLink(
+			SpecialPage::getTitleFor( 'Contributions', $this->getUser()->getName() ),
+			$this->msg( 'mwoauthmanagemygrants-editslink', $this->getUser()->getName() )->text(),
+			[],
+			[ 'tagfilter' => Utils::getTagName( $cmrAc->getId() ) ]
+		);
 		$r .= '<p>' . $editsLink . '</p>';
-		$actionsUrl = SpecialPage::getTitleFor( 'Log' )->getFullURL( [
-			'user' => $this->getUser()->getName(),
-			'tagfilter' => Utils::getTagName( $cmrAc->getId() ),
-		] );
-		$actionsLink = Html::element( 'a', [ 'href' => $actionsUrl ],
-			$this->msg( 'mwoauthmanagemygrants-actionslink', $this->getUser() )->text() );
+		$actionsLink = $linkRenderer->makeKnownLink(
+			SpecialPage::getTitleFor( 'Log' ),
+			$this->msg( 'mwoauthmanagemygrants-actionslink', $this->getUser()->getName() )->text(),
+			[],
+			[
+				'user' => $this->getUser()->getName(),
+				'tagfilter' => Utils::getTagName( $cmrAc->getId() ),
+			]
+		);
 		$r .= '<p>' . $actionsLink . '</p>';
 
 		$r .= '</li>';

@@ -53,7 +53,6 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgMWOAuthSecureTokenTransfer, $wgMWOAuthReadOnly;
 		$this->checkPermissions();
 
 		$request = $this->getRequest();
@@ -63,7 +62,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 		// Redirect to HTTPs if attempting to access this page via HTTP.
 		// Proposals and updates to consumers can involve sending new secrets.
-		if ( $wgMWOAuthSecureTokenTransfer
+		if ( $this->getConfig()->get( 'MWOAuthSecureTokenTransfer' )
 			&& $request->detectProtocol() == 'http'
 			&& substr( wfExpandUrl( '/', PROTO_HTTPS ), 0, 8 ) === 'https://'
 		) {
@@ -91,7 +90,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		$action = $navigation[0] ?? null;
 		$consumerKey = $navigation[1] ?? null;
 
-		if ( $wgMWOAuthReadOnly && $action !== 'list' ) {
+		if ( $this->getConfig()->get( 'MWOAuthReadOnly' ) && $action !== 'list' ) {
 			throw new \ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
 		}
 
@@ -503,31 +502,34 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 	protected function addSubtitleLinks( $action, $consumerKey ) {
 		$listLinks = [];
 		if ( $consumerKey || $action !== 'propose' ) {
-			$listLinks[] = \Linker::linkKnown(
+			$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 				$this->getPageTitle( 'propose' ),
-				$this->msg( 'mwoauthconsumerregistration-propose' )->escaped() );
+				$this->msg( 'mwoauthconsumerregistration-propose' )->text()
+			);
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthconsumerregistration-propose' )->escaped();
 		}
 		if ( $consumerKey || $action !== 'list' ) {
-			$listLinks[] = \Linker::linkKnown(
+			$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 				$this->getPageTitle( 'list' ),
-				$this->msg( 'mwoauthconsumerregistration-list' )->escaped() );
+				$this->msg( 'mwoauthconsumerregistration-list' )->text()
+			);
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthconsumerregistration-list' )->escaped();
 		}
 		if ( $consumerKey && $action == 'update' ) {
-			$listLinks[] = \Linker::linkKnown(
+			$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 				\SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$consumerKey" ),
-				$this->msg( 'mwoauthconsumer-consumer-view' )->escaped() );
+				$this->msg( 'mwoauthconsumer-consumer-view' )->text()
+			);
 		}
 
 		$linkHtml = $this->getLanguage()->pipeList( $listLinks );
 
 		$viewall = $this->msg( 'parentheses' )->rawParams(
-			\Linker::linkKnown(
+			$this->getLinkRenderer()->makeKnownLink(
 				$this->getPageTitle(),
-				$this->msg( 'mwoauthconsumerregistration-main' )->escaped()
+				$this->msg( 'mwoauthconsumerregistration-main' )->text()
 			)
 		)->escaped();
 
@@ -547,14 +549,14 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		$cmrKey = $cmrAc->getConsumerKey();
 
 		$links = [];
-		$links[] = \Linker::linkKnown(
+		$links[] = $this->getLinkRenderer()->makeKnownLink(
 			\SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$cmrKey" ),
-			$this->msg( 'mwoauthlistconsumers-view' )->escaped()
+			$this->msg( 'mwoauthlistconsumers-view' )->text()
 		);
 
-		$links[] = \Linker::linkKnown(
+		$links[] = $this->getLinkRenderer()->makeKnownLink(
 			$this->getPageTitle( 'update/' . $cmrKey ),
-			$this->msg( 'mwoauthconsumerregistration-manage' )->escaped()
+			$this->msg( 'mwoauthconsumerregistration-manage' )->text()
 		);
 
 		$links = $this->getLanguage()->pipeList( $links );
