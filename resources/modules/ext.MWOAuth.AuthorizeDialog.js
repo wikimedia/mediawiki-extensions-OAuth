@@ -2,11 +2,11 @@
  * OAuth JavaScript
  * @author Aaron Schulz 2013
  */
-( function ( mw, $ ) {
+( function () {
 	'use strict';
 
 	var mwoauth = {
-		'init': function () {
+		init: function () {
 			var form = $( '#mw-mwoauth-authorize-dialog' ),
 				accept = $( '#mw-mwoauth-accept' );
 			form.find( '.mw-htmlform-submit-buttons' ).addClass( 'mw-ui-flush-right' );
@@ -23,8 +23,8 @@
 					$( this ).parents( '.ui-dialog:first' )
 						.find( '.ui-dialog-content' ).css( 'padding', '20px' );
 					$( this ).css( 'maxHeight', 0.9 * $( window ).height() );
-					$( this ).css( 'background-color', '#FFF' );
-					$( this ).css( 'border', '1px #CCC' );
+					$( this ).css( 'background-color', '#fff' );
+					$( this ).css( 'border', '1px #ccc' );
 					$( this ).dialog( 'option', 'modal', true );
 				}
 			} );
@@ -35,8 +35,6 @@
 	};
 
 	// Perform some onload events:
-	$( document ).ready( function () {
-		mwoauth.init();
-	} );
+	$( mwoauth.init );
 
-})( mediaWiki, jQuery );
+}() );
