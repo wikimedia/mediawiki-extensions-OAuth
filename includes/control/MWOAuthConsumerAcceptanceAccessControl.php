@@ -2,12 +2,9 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-// phpcs:disable Generic.Files.LineLength.TooLong
 /**
- * @method static MWOAuthConsumerAcceptanceAccessControl|false|null wrap( MWOAuthConsumerAcceptance $dao, \IContextSource $context )
  * @method MWOAuthConsumerAcceptance getDAO()
  */
-// phpcs:enable Generic.Files.LineLength.TooLong
 class MWOAuthConsumerAcceptanceAccessControl extends MWOAuthDAOAccessControl {
 	// accessor fields copied from MWOAuthConsumerAcceptance, except they can return a Message
 	// on access error
