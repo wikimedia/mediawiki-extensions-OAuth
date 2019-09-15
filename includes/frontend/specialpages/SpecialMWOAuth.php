@@ -320,7 +320,12 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			if ( in_array( 'mwoauth-authonlyprivate', $statement['grants'] ) ||
 				in_array( 'viewmyprivateinfo', \MWGrants::getGrantRights( $statement['grants'] ) )
 			) {
-				$statement['realname'] = $user->getRealName();
+				// Paranoia - avoid showing the real name if the wiki is not configured to use
+				// it but it somehow exists (from past configuration, or some identity management
+				// extension). This is important as the viewmyprivateinfo grant is presented
+				// to the user differently when useRealNames() is false.
+				// Don't omit the field completely to avoid a breaking change.
+				$statement['realname'] = $this->useRealNames() ? $user->getRealName() : '';
 				$statement['email'] = $user->getEmail();
 			}
 		} else {
@@ -433,6 +438,8 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		// * mwoauth-form-description-onewiki-nogrants
 		// * mwoauth-form-description-allwikis-privateinfo
 		// * mwoauth-form-description-onewiki-privateinfo
+		// * mwoauth-form-description-allwikis-privateinfo-norealname
+		// * mwoauth-form-description-onewiki-privateinfo-norealname
 		$msgKey = 'mwoauth-form-description';
 		$params = [
 			$this->getUser()->getName(),
@@ -449,6 +456,14 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		if ( $grantsText === "\n" ) {
 			if ( in_array( 'mwoauth-authonlyprivate', $cmrAc->getGrants(), true ) ) {
 				$msgKey .= '-privateinfo';
+				if ( !$this->useRealNames() ) {
+					// If the wiki does not use real names, don't mention them in the authorization
+					// dialog to avoid scaring users. The wiki where the authorization dialog is
+					// shown and the wiki where the user is actually identified might be different;
+					// there's not much we can do about that here so it is left to the wiki
+					// administrator to set up the farm in a non-misleading way.
+					$msgKey .= '-norealname';
+				}
 			} else {
 				$msgKey .= '-nogrants';
 			}
@@ -564,5 +579,15 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		} elseif ( $format == 'html' ) { // html
 			$out->addHTML( $data );
 		}
+	}
+
+	/**
+	 * Check whether the wiki is configured to use/show real names.
+	 * We assume that either all or none of the OAuth wikis in a farm use real names.
+	 * @return bool
+	 */
+	private function useRealNames() {
+		$config = $this->getContext()->getConfig();
+		return !in_array( 'realname', $config->get( 'HiddenPrefs' ), true );
 	}
 }

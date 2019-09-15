@@ -234,6 +234,8 @@
 	"mwoauth-form-description-onewiki-nogrants": "Hi $1,\n\nIn order to complete your request, '''$2''' needs permission to access information on ''$4'' on your behalf. No changes will be made with your account.",
 	"mwoauth-form-description-allwikis-privateinfo": "Hi $1,\n\nIn order to complete your request, '''$2''' needs permission to access information about you, including your real name and email address, on all projects of this site. No changes will be made with your account.",
 	"mwoauth-form-description-onewiki-privateinfo": "Hi $1,\n\nIn order to complete your request, '''$2''' needs permission to access information, including your real name and email address, on ''$4''. No changes will be made with your account.",
+	"mwoauth-form-description-allwikis-privateinfo-norealname": "Hi $1,\n\nIn order to complete your request, '''$2''' needs permission to access information about you, including your email address, on all projects of this site. No changes will be made with your account.",
+	"mwoauth-form-description-onewiki-privateinfo-norealname": "Hi $1,\n\nIn order to complete your request, '''$2''' needs permission to access information, including your email address, on ''$4''. No changes will be made with your account.",
 	"mwoauth-form-legal": "",
 	"mwoauth-form-button-approve": "Allow",
 	"mwoauth-form-button-cancel": "Cancel",
