@@ -245,6 +245,8 @@
 	"mwoauth-form-description-onewiki-nogrants": "Olá $1,\n\nPara concluir a sua solicitação, '''$2''' necessita de permissão para acessar informações em ''$4'' em seu nome. Nenhuma alteração será feita com a sua conta.",
 	"mwoauth-form-description-allwikis-privateinfo": "Olá $1,\n\nPara concluir a sua solicitação, '''$2''' necessita de permissão para acessar informações sobre você, incluindo, seu nome real e endereço de e-mail. Nenhuma alteração será feita com a sua conta.",
 	"mwoauth-form-description-onewiki-privateinfo": "Olá $1,\n\nPara concluir a sua solicitação, '''$2''' necessita de permissão para acessar informações, incluindo, seu nome real e endereço de e-mail, em ''$4''. Nenhuma alteração será feita com a sua conta.",
+	"mwoauth-form-description-allwikis-privateinfo-norealname": "Olá $1,\n\nPara concluir o seu pedido, '''$2''' precisa de permissão para aceder à informação sobre si, incluindo o seu nome real e o endereço de e-mail, em todos os projetos deste site. Não serão efetuadas alterações na sua conta.",
+	"mwoauth-form-description-onewiki-privateinfo-norealname": "Olá, $1,\n\nPara concluir sua solicitação, '''$2''' precisa de permissão para acessar informações, incluindo seu endereço de e-mail, em ''$4''. Nenhuma alteração será feita com sua conta.",
 	"mwoauth-form-button-approve": "Permitir",
 	"mwoauth-form-button-cancel": "Cancelar",
 	"mwoauth-error": "Erro de conexão do aplicativo",
