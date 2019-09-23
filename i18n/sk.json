@@ -4,7 +4,8 @@
 			"Kusavica",
 			"Sudo77(new)",
 			"Teslaton",
-			"Robert Važan"
+			"Robert Važan",
+			"Luky001"
 		]
 	},
 	"mwoauth-desc": "Umožňuje použitie OAuth 1.0a pre povolenie prístupu k API",
@@ -19,11 +20,14 @@
 	"mwoauthmanagemygrants-text": "Táto stránka obsahuje zoznam aplikácií, ktoré môžu využívať váš účet. Každá z aplikácii má rozsah prístupu obmedzený oprávneniami, ktoré ste aplikácii {{GENDER:|pridelil|pridelila|pridelili}} v okamihu, keď ste jej {{GENDER:|dovolil|dovolila|dovolili}} konať vo vašom mene. Ak ste aplikácii {{GENDER:|dovolil|dovolila|dovolili}} konať vo vašom mene nezávisle na rôznych sesterských projektoch, uvidíte nižšie oddelené konfigurácie pre každý taký projekt.\n\nPripojené aplikácie pristupujú k vášmu účtu pomocou protokolu OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth?uselang=sk Viac informácií o pripojených aplikáciách])</span>",
 	"mwoauthmanagemygrants-navigation": "Navigácia:",
 	"mwoauthmanagemygrants-showlist": "Zoznam pripojených aplikácií",
+	"mwoauthmanagemygrants-user": "Vydavateľ:",
 	"mwoauthmanagemygrants-wikiallowed": "Povolené na projekte:",
 	"mwoauthmanagemygrants-review": "spravovať prístup",
 	"mwoauthmanagemygrants-revoke": "odobrať prístup",
 	"mwoauthmanagemygrants-update-text": "Pomocou nižšie zobrazeného formulára môžete zmeniť oprávnenie pridelené aplikácii, aby mohla konať vo vašom mene.",
 	"mwoauthmanagemygrants-revoke-text": "Pomocou nižšie zobrazeného formulára môžete odvolať oprávnenie aplikácii konať vo vašom mene.",
+	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Vaše}} úpravy vykonané touto aplikáciou",
+	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Vaše}} činnosti vykonané touto aplikáciou",
 	"mwoauth-form-description-allwikis": "{{GENDER:$1|Užívateľ|Užívateľka}} $1,\n\npre dokončenie vašej požiadavky potrebuje '''$2''' povolenie vykonávať vo vašom mene nasledujúce úkony na všetkých projektoch tohoto webu:\n\n$4",
 	"mwoauth-form-description-onewiki": "{{GENDER:$1|Užívateľ|Užívateľka}} $1,\n\npre dokončenie vašej požiadavky potrebuje '''$2''' povolenie vykonávať vo vašom mene nasledujúce úkony na ''{{grammar:5sg|$4}}'':\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "{{GENDER:$1|Užívateľ|Užívateľka}} $1,\n\npre dokončenie vašej požiadavky potrebuje '''$2''' povolenie pristupovať vo vašom mene k informáciám na všetkých projektoch tohoto webu. Vo vašom mene nebudú vykonané žiadne zmeny.",

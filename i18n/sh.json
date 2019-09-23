@@ -223,6 +223,8 @@
 	"mwoauth-form-description-onewiki-nogrants": "Zdravo, $1,\n\nDa bi se mogao ispuniti Vaš zahtjev, '''$2''' traži dopuštenje pristupu informacijama na \"$4\" u Vaše ime. Na vašem računu neće biti izmjena.",
 	"mwoauth-form-description-allwikis-privateinfo": "Zdravo, $1,\n\nDa biste dovršili zahtjev, '''$2''' traži dopuštenje pristupu Vašim informacijama, uključujući vaše pravo ime i adresu e-pošte, na svim projektima na mrežnovom mjestu. Nikakve izmjene povezane s Vašim računom neće se dogoditi.",
 	"mwoauth-form-description-onewiki-privateinfo": "Zdravo, $1,\n\nDa biste dovršili zahtjev, '''$2''' traži dopuštenje pristupu Vašim informacijama, uključujući vaše pravo ime i adresu e-pošte, na ''$4''. Nikakve izmjene povezane s Vašim računom neće se dogoditi.",
+	"mwoauth-form-description-allwikis-privateinfo-norealname": "Zdravo, $1,\n\nDa biste dovršili zahtjev, '''$2''' ima potrebu od dopuštenja za pristup Vašim informacijama, uključujući Vašu adresu e-pošte, na svim projektima na mrežnovom mjestu. Neće se dogoditi nikakve izmjene u Vašem računu.",
+	"mwoauth-form-description-onewiki-privateinfo-norealname": "Zdravo, $1,\n\nDa biste dovršili zahtjev, '''$2''' ima potrebu od dopuštenja za pristup Vašim informacijama, uključujući Vašu adresu e-pošte, na svim projektima na $4. Neće se dogoditi nikakve izmjene u Vašem računu.",
 	"mwoauth-form-button-approve": "Dozvoli",
 	"mwoauth-form-button-cancel": "Otkaži",
 	"mwoauth-error": "Pogreška u povezivanju s izvršnikom",
