@@ -4,7 +4,7 @@
 			"Servien"
 		]
 	},
-	"mwoauth-prefs-managegrants": "Ekoppelde toepassigen:",
+	"mwoauth-prefs-managegrants": "Koppelde topassingen:",
 	"mwoauth-prefs-managegrantslink": "$1 ekoppelde {{PLURAL:$1|toepassige|toepassigen}} beheren",
 	"mwoauthconsumerregistration-navigation": "Navigasie:",
 	"mwoauthconsumerregistration-main": "Startsyde",
