@@ -5,7 +5,7 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "Koppelde topassingen:",
-	"mwoauth-prefs-managegrantslink": "$1 ekoppelde {{PLURAL:$1|toepassige|toepassigen}} beheren",
+	"mwoauth-prefs-managegrantslink": "$1 koppelde {{PLURAL:$1|topassing|topassingen|0=topassingen}} beheyren",
 	"mwoauthconsumerregistration-navigation": "Navigasie:",
 	"mwoauthconsumerregistration-main": "Startsyde",
 	"mwoauthconsumerregistration-stage": "Staotus",
