@@ -32,7 +32,7 @@ use MediaWikiTestCase;
  */
 class MWOAuthSessionProviderTest extends MediaWikiTestCase {
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		// the MWOAuthSessionProvider constructor modifies $wgHooks, stash it
 		global $wgHooks;

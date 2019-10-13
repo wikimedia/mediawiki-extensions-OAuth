@@ -22,7 +22,7 @@ class MWOAuthHooks {
 	 * @param \Status &$status
 	 * @return bool
 	 */
-	public static function onChangeTagCanCreate( $tag, \User $user = null, \Status &$status ) {
+	public static function onChangeTagCanCreate( $tag, ?\User $user, \Status &$status ) {
 		if ( MWOAuthUtils::isReservedTagName( $tag ) ) {
 			$status->fatal( 'mwoauth-tag-reserved' );
 		}
