@@ -57,7 +57,6 @@ $specialPageAliases['de'] = [
 	'OAuthManageConsumers' => [ 'Verbraucher_verwalten' ],
 	'OAuthListConsumers' => [ 'Verbraucher_auflisten' ],
 	'OAuthManageMyGrants' => [ 'Meine_Berechtigungen_verwalten' ],
-	'OAuth' => [ 'OAuth' ],
 ];
 
 /** Estonian (eesti) */
@@ -72,7 +71,6 @@ $specialPageAliases['fa'] = [
 	'OAuthManageConsumers' => [ 'مدیریت_مصرف‌کننده‌های_OAuth' ],
 	'OAuthListConsumers' => [ 'فهرست_مصرف‌کننده‌های_OAuth' ],
 	'OAuthManageMyGrants' => [ 'مدیریت_اعطاهای_OAuth_من' ],
-	'OAuth' => [ 'OAuth', 'MWOAuth' ],
 ];
 
 /** Galician (galego) */
@@ -116,7 +114,6 @@ $specialPageAliases['mk'] = [
 	'OAuthManageConsumers' => [ 'МВOAuthРаководењеПотрошувач' ],
 	'OAuthListConsumers' => [ 'OAuthНаведиПотрошувачи' ],
 	'OAuthManageMyGrants' => [ 'OAuthРаководењеМоиДоделувања' ],
-	'OAuth' => [ 'OAuth' ],
 ];
 
 /** Dutch (Nederlands) */
