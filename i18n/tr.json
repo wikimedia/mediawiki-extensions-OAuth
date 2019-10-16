@@ -9,7 +9,9 @@
 			"Vito Genovese",
 			"TmY e12",
 			"Sayginer",
-			"ToprakM"
+			"ToprakM",
+			"BaRaN6161 TURK",
+			"Grkn gll"
 		]
 	},
 	"mwoauth-desc": "OAuth 1.0a kullanımı için API yetkilendirme kullanımı",
@@ -26,8 +28,10 @@
 	"mwoauth-consumer-stage-approved": "onaylı",
 	"mwoauth-consumer-stage-disabled": "devre dışı",
 	"mwoauth-consumer-stage-suppressed": "bastırılmış",
+	"oauthconsumerregistration": "OAuth tüketici kaydı",
 	"mwoauthconsumerregistration-navigation": "Navigasyon:",
 	"mwoauthconsumerregistration-user": "Yayımcı",
+	"mwoauthconsumerregistration-manage": "yönet",
 	"oauthlistconsumers": "Yetkilendirilen uygulamalar listesi",
 	"mwoauthlistconsumers-legend": "Yetkilendirilen uygulamalara göz atın",
 	"mwoauthlistconsumers-view": "detaylar",
@@ -56,5 +60,6 @@
 	"right-mwoauthviewprivate": "Özel OAuth verilerini görüntüle",
 	"action-mwoauthviewsuppressed": "Bastırılmış OAuth kullanıcılarını görüntüle",
 	"mwoauth-botpasswords-note": "<strong>Not:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> bot parolalarından daha güvenlidir ve bot her desteklediğinde tercih edilmelidir.",
+	"echo-category-title-oauth-owner": "OAuth geliştirme",
 	"echo-pref-tooltip-oauth-owner": "Oluşturduğum OAuth uygulamarıyla ilgili olaylar hakkında bana bildirim gönder."
 }
