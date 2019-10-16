@@ -100,13 +100,13 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @expectedException \MediaWiki\Extensions\OAuth\OAuthException
 	 * @dataProvider requiredParameterProvider
 	 */
 	public function testRejectRequestWithMissingParameters( $required ) {
 		$request = OAuthRequest::from_consumer_and_token( $this->consumer, $this->access_token, 'POST', 'http://example.com');
 		$request->sign_request( $this->plaintext, $this->consumer, $this->access_token );
 		$request->unset_parameter( $required );
+		$this->expectException(OAuthException::class);
 		$this->server->verify_request($request);
 	}
 
