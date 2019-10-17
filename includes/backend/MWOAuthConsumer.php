@@ -2,7 +2,9 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\Extensions\OAuth\Entity\ClientEntity as OAuth2Client;
 use Wikimedia\Rdbms\DBConnRef;
+use FormatJson;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -26,7 +28,10 @@ use Wikimedia\Rdbms\DBConnRef;
 /**
  * Representation of an OAuth consumer.
  */
-class MWOAuthConsumer extends MWOAuthDAO {
+abstract class MWOAuthConsumer extends MWOAuthDAO {
+	const OAUTH_VERSION_1 = 1;
+	const OAUTH_VERSION_2 = 2;
+
 	/** @var array Backwards-compatibility grant mappings */
 	public static $mapBackCompatGrants = [
 		'useoauth' => 'basic',
@@ -62,6 +67,8 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $developerAgreement;
 	/** @var int Consumer is for use by the owner only */
 	protected $ownerOnly;
+	/** @var string Version of the OAuth protocol */
+	protected $oauthVersion;
 	/** @var string Wiki ID the application can be used on (or "*" for all) */
 	protected $wiki;
 	/** @var string TS_MW timestamp of proposal */
@@ -80,6 +87,10 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	protected $stageTimestamp;
 	/** @var int Indicates (if non-zero) this consumer's information is suppressed */
 	protected $deleted;
+	/** @var bool Indicates whether the client (consumer) is able to keep the secret */
+	protected $oauth2IsConfidential;
+	/** @var array OAuth2 grant types available to the client */
+	protected $oauth2GrantTypes;
 
 	/* Stages that registered consumer takes (stored in DB) */
 	const STAGE_PROPOSED = 0;
@@ -113,31 +124,40 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		self::STAGE_DISABLED => 'disable',
 	];
 
+	/**
+	 * Get member => db field mapping
+	 * Loads all fields to avoid unnecessary querying
+	 *
+	 * @return array
+	 */
 	protected static function getSchema() {
 		return [
 			'table'          => 'oauth_registered_consumer',
 			'fieldColumnMap' => [
-				'id'                 => 'oarc_id',
-				'consumerKey'        => 'oarc_consumer_key',
-				'name'               => 'oarc_name',
-				'userId'             => 'oarc_user_id',
-				'version'            => 'oarc_version',
-				'callbackUrl'        => 'oarc_callback_url',
-				'callbackIsPrefix'   => 'oarc_callback_is_prefix',
-				'description'        => 'oarc_description',
-				'email'              => 'oarc_email',
-				'emailAuthenticated' => 'oarc_email_authenticated',
-				'developerAgreement' => 'oarc_developer_agreement',
-				'ownerOnly'          => 'oarc_owner_only',
-				'wiki'               => 'oarc_wiki',
-				'grants'             => 'oarc_grants',
-				'registration'       => 'oarc_registration',
-				'secretKey'          => 'oarc_secret_key',
-				'rsaKey'             => 'oarc_rsa_key',
-				'restrictions'       => 'oarc_restrictions',
-				'stage'              => 'oarc_stage',
-				'stageTimestamp'     => 'oarc_stage_timestamp',
-				'deleted'            => 'oarc_deleted'
+				'id'                    => 'oarc_id',
+				'consumerKey'           => 'oarc_consumer_key',
+				'name'                  => 'oarc_name',
+				'userId'                => 'oarc_user_id',
+				'version'               => 'oarc_version',
+				'callbackUrl'           => 'oarc_callback_url',
+				'callbackIsPrefix'      => 'oarc_callback_is_prefix',
+				'description'           => 'oarc_description',
+				'email'                 => 'oarc_email',
+				'emailAuthenticated'    => 'oarc_email_authenticated',
+				'oauthVersion'          => 'oarc_oauth_version',
+				'developerAgreement'    => 'oarc_developer_agreement',
+				'ownerOnly'             => 'oarc_owner_only',
+				'wiki'                  => 'oarc_wiki',
+				'grants'                => 'oarc_grants',
+				'registration'          => 'oarc_registration',
+				'secretKey'             => 'oarc_secret_key',
+				'rsaKey'                => 'oarc_rsa_key',
+				'restrictions'          => 'oarc_restrictions',
+				'stage'                 => 'oarc_stage',
+				'stageTimestamp'        => 'oarc_stage_timestamp',
+				'deleted'               => 'oarc_deleted',
+				'oauth2IsConfidential'  => 'oarc_oauth2_is_confidential',
+				'oauth2GrantTypes'      => 'oarc_oauth2_allowed_grants',
 			],
 			'idField'        => 'id',
 			'autoIncrField'  => 'id',
@@ -160,6 +180,25 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
+	 * @param array $data
+	 * @return string
+	 */
+	protected static function getConsumerClass( array $data ) {
+		return static::isOAuth2( $data ) ?
+			OAuth2Client::class :
+			OAuth1Consumer::class;
+	}
+
+	/**
+	 * @param array $data
+	 * @return bool
+	 */
+	protected static function isOAuth2( array $data = [] ) {
+		$oauthVersion = $data['oarc_oauth_version'] ?? $data['oauthVersion'];
+		return (int)$oauthVersion === self::OAUTH_VERSION_2;
+	}
+
+	/**
 	 * @param DBConnRef $db
 	 * @param string $key
 	 * @param int $flags MWOAuthConsumer::READ_* bitfield
@@ -174,9 +213,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		);
 
 		if ( $row ) {
-			$consumer = new self();
-			$consumer->loadFromRow( $db, $row );
-			return $consumer;
+			return static::newFromRow( $db, $row );
 		} else {
 			return false;
 		}
@@ -205,9 +242,7 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		);
 
 		if ( $row ) {
-			$consumer = new self();
-			$consumer->loadFromRow( $db, $row );
-			return $consumer;
+			return static::newFromRow( $db, $row );
 		} else {
 			return false;
 		}
@@ -341,6 +376,11 @@ class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
+	 * @return string
+	 */
+	abstract public function getOAuthVersion();
+
+	/**
 	 * The wiki on which the consumer is allowed to access user accounts. A wiki ID or '*' for all.
 	 * @return string
 	 */
@@ -467,8 +507,10 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$this->grants = (array)$this->grants; // sanity
 		$this->callbackIsPrefix = (bool)$this->callbackIsPrefix;
 		$this->ownerOnly = (bool)$this->ownerOnly;
+		$this->oauthVersion = (int)$this->oauthVersion;
 		$this->developerAgreement = (bool)$this->developerAgreement;
 		$this->deleted = (bool)$this->deleted;
+		$this->oauth2IsConfidential = (bool)$this->oauth2IsConfidential;
 	}
 
 	protected function encodeRow( DBConnRef $db, $row ) {
@@ -485,6 +527,9 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$row['oarc_grants'] = \FormatJson::encode( $row['oarc_grants'] );
 		$row['oarc_email_authenticated'] =
 			$db->timestampOrNull( $row['oarc_email_authenticated'] );
+		$row['oarc_oauth2_allowed_grants'] = FormatJson::encode(
+			$row['oarc_oauth2_allowed_grants']
+		);
 		return $row;
 	}
 
@@ -493,8 +538,12 @@ class MWOAuthConsumer extends MWOAuthDAO {
 		$row['oarc_stage_timestamp'] = wfTimestamp( TS_MW, $row['oarc_stage_timestamp'] );
 		$row['oarc_restrictions'] = \MWRestrictions::newFromJson( $row['oarc_restrictions'] );
 		$row['oarc_grants'] = \FormatJson::decode( $row['oarc_grants'], true );
+		$row['oarc_user_id'] = (int)$row['oarc_user_id'];
 		$row['oarc_email_authenticated'] =
 			wfTimestampOrNull( TS_MW, $row['oarc_email_authenticated'] );
+		$row['oarc_oauth2_allowed_grants'] = FormatJson::decode(
+			$row['oarc_oauth2_allowed_grants'], true
+		);
 
 		// For backwards compatibility, remap some grants
 		foreach ( self::$mapBackCompatGrants as $old => $new ) {

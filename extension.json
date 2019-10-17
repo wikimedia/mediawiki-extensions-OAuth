@@ -99,7 +99,11 @@
 		"MediaWiki\\Extensions\\OAuth\\OAuthUtil": "includes/lib/OAuth.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthDataStore": "includes/backend/MWOAuthDataStore.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthUpdaterHooks": "includes/backend/MWOAuthUpdaterHooks.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider": "includes/api/MWOAuthSessionProvider.php"
+		"MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider": "includes/api/MWOAuthSessionProvider.php",
+		"MediaWiki\\Extensions\\OAuth\\OAuth1Consumer": "includes/backend/OAuth1Consumer.php"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extensions\\OAuth\\": "src/"
 	},
 	"TestAutoloadClasses": {
 		"MediaWiki\\Extensions\\OAuth\\StubConsumer": "tests/phpunit/backend/StubConsumer.php"
@@ -145,6 +149,9 @@
 		"ListDefinedTags": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onListDefinedTags",
 		"ChangeTagsListActive": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onChangeTagsListActive"
 	},
+	"ConfigRegistry": {
+		"mwoauth": "GlobalVarConfig::newInstance"
+	},
 	"config": {
 		"MWOAuthCentralWiki": {
 			"value": false
@@ -172,6 +179,13 @@
 		},
 		"MWOAuthSessionCacheType": {
 			"value": null
+		},
+		"OAuth2EnabledGrantTypes": {
+			"value": [
+				"authorization_code",
+				"refresh_token",
+				"client_credentials"
+			]
 		}
 	},
 	"load_composer_autoloader": true,

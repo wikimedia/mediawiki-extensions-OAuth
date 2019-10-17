@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
@@ -200,7 +201,6 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 */
 	protected function handleConsumerForm( $consumerKey ) {
 		$user = $this->getUser();
-		$lang = $this->getLanguage();
 		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		$cmrAc = MWOAuthConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
@@ -234,65 +234,17 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			}
 		}
 
-		$owner = $cmrAc->getUserName();
-
-		$link = \Linker::linkKnown(
-			$title = \SpecialPage::getTitleFor( 'OAuthListConsumers' ),
-			$this->msg( 'mwoauthmanageconsumers-search-publisher' )->escaped(),
-			[],
-			[ 'publisher' => $owner ]
-		);
-		$ownerLink = $cmrAc->escapeForHtml( $owner ) . ' ' .
-			$this->msg( 'parentheses' )->rawParams( $link )->escaped();
-		$ownerOnly = $cmrAc->getDAO()->getOwnerOnly();
-
 		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 		$control = new MWOAuthConsumerSubmitControl( $this->getContext(), [], $dbw );
-		$restrictions = $cmrAc->getRestrictions();
 		$form = \HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
 				'info' => [
 					'type' => 'info',
 					'raw' => true,
-					'default' => MWOAuthUIUtils::generateInfoTable( [
-						// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
-						// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
-						// mwoauth-consumer-stage-disabled
-						'mwoauth-consumer-stage' => $cmrAc->getDeleted()
-							? $this->msg( 'mwoauth-consumer-stage-suppressed' )
-							: $this->msg( 'mwoauth-consumer-stage-' .
-								MWOAuthConsumer::$stageNames[$cmrAc->getStage()] ),
-						'mwoauth-consumer-key' => $cmrAc->getConsumerKey(),
-						'mwoauth-consumer-name' => new HtmlSnippet( $cmrAc->get( 'name', function ( $s ) {
-							$link = \Linker::linkKnown(
-								\SpecialPage::getTitleFor( 'OAuthListConsumers' ),
-								$this->msg( 'mwoauthmanageconsumers-search-name' )->escaped(),
-								[],
-								[ 'name' => $s ]
-							);
-							return htmlspecialchars( $s ) . ' ' .
-								   $this->msg( 'parentheses' )->rawParams( $link )->escaped();
-						} ) ),
-						'mwoauth-consumer-version' => $cmrAc->getVersion(),
-						'mwoauth-consumer-user' => new HtmlSnippet( $ownerLink ),
-						'mwoauth-consumer-description' => $cmrAc->getDescription(),
-						'mwoauth-consumer-owner-only-label' => $ownerOnly ?
-							$this->msg( 'mwoauth-consumer-owner-only', $owner ) : null,
-						'mwoauth-consumer-callbackurl' => $ownerOnly ?
-							null : $cmrAc->getCallbackUrl(),
-						'mwoauth-consumer-callbackisprefix' => $ownerOnly ?
-							null : ( $cmrAc->getCallbackIsPrefix() ?
-								$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ) ),
-						'mwoauth-consumer-grantsneeded' => $cmrAc->get( 'grants',
-							function ( $grants ) use ( $lang ) {
-								return $lang->semicolonList( \MWGrants::grantNames( $grants, $lang ) );
-							} ),
-						'mwoauth-consumer-email' => $cmrAc->getEmail(),
-						'mwoauth-consumer-wiki' => $cmrAc->getWiki(),
-						'mwoauth-consumer-restrictions-json' => $restrictions instanceof \MWRestrictions ?
-							$restrictions->toJson( true ) : $restrictions,
-						'mwoauth-consumer-rsakey' => $cmrAc->getRsaKey(),
-					], $this->getContext() ),
+					'default' => MWOAuthUIUtils::generateInfoTable(
+						$this->getInfoTableOptions( $cmrAc ),
+						$this->getContext()
+					),
 				],
 				'action' => [
 					'type' => 'radio',
@@ -366,6 +318,91 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	}
 
 	/**
+	 * @param MWOAuthConsumerAccessControl $cmrAc
+	 * @return array
+	 */
+	protected function getInfoTableOptions( $cmrAc ) {
+		$owner = $cmrAc->getUserName();
+		$lang = $this->getLanguage();
+
+		$link = \Linker::linkKnown(
+			$title = \SpecialPage::getTitleFor( 'OAuthListConsumers' ),
+			$this->msg( 'mwoauthmanageconsumers-search-publisher' )->escaped(),
+			[],
+			[ 'publisher' => $owner ]
+		);
+		$ownerLink = $cmrAc->escapeForHtml( $owner ) . ' ' .
+			$this->msg( 'parentheses' )->rawParams( $link )->escaped();
+		$ownerOnly = $cmrAc->getDAO()->getOwnerOnly();
+		$restrictions = $cmrAc->getRestrictions();
+
+		$options = [
+			// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
+			// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
+			// mwoauth-consumer-stage-disabled
+			'mwoauth-consumer-stage' => $cmrAc->getDeleted()
+				? $this->msg( 'mwoauth-consumer-stage-suppressed' )
+				: $this->msg( 'mwoauth-consumer-stage-' .
+					MWOAuthConsumer::$stageNames[$cmrAc->getStage()] ),
+			'mwoauth-consumer-key' => $cmrAc->getConsumerKey(),
+			'mwoauth-consumer-name' => new HtmlSnippet( $cmrAc->get( 'name', function ( $s ) {
+				$link = \Linker::linkKnown(
+					\SpecialPage::getTitleFor( 'OAuthListConsumers' ),
+					$this->msg( 'mwoauthmanageconsumers-search-name' )->escaped(),
+					[],
+					[ 'name' => $s ]
+				);
+				return htmlspecialchars( $s ) . ' ' .
+					$this->msg( 'parentheses' )->rawParams( $link )->escaped();
+			} ) ),
+			'mwoauth-consumer-version' => $cmrAc->getVersion(),
+			'mwoauth-oauth-version' => $cmrAc->getOAuthVersion(),
+			'mwoauth-consumer-user' => new HtmlSnippet( $ownerLink ),
+			'mwoauth-consumer-description' => $cmrAc->getDescription(),
+			'mwoauth-consumer-owner-only-label' => $ownerOnly ?
+				$this->msg( 'mwoauth-consumer-owner-only', $owner ) : null,
+			'mwoauth-consumer-callbackurl' => $ownerOnly ?
+				null : $cmrAc->getCallbackUrl(),
+			'mwoauth-consumer-callbackisprefix' => $ownerOnly ?
+				null : ( $cmrAc->getCallbackIsPrefix() ?
+					$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ) ),
+			'mwoauth-consumer-grantsneeded' => $cmrAc->get( 'grants',
+				function ( $grants ) use ( $lang ) {
+					return $lang->semicolonList( \MWGrants::grantNames( $grants, $lang ) );
+				} ),
+			'mwoauth-consumer-email' => $cmrAc->getEmail(),
+			'mwoauth-consumer-wiki' => $cmrAc->getWiki()
+		];
+
+		// Add OAuth2 specific parameters
+		if ( $cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2 ) {
+			/** @var ClientEntity $consumer */
+			$consumer = $cmrAc->getDAO();
+			$options += [
+				'mwoauth-oauth2-is-confidential' => $consumer->isConfidential() ?
+					$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
+				'mwoauth-oauth2-granttypes' => implode( ', ', array_map( function ( $grant ) {
+					$map = [
+						'authorization_code' => 'mwoauth-oauth2-granttype-auth-code',
+						'refresh_token' => 'mwoauth-oauth2-granttype-refresh-token',
+						'client_credentials' => 'mwoauth-oauth2-granttype-client-credentials'
+					];
+					return isset( $map[$grant] ) ? $this->msg( $map[$grant] ) : '';
+				}, $consumer->getAllowedGrants() ) )
+			];
+		}
+
+		// Add optional parameters
+		$options += [
+			'mwoauth-consumer-restrictions-json' => $restrictions instanceof \MWRestrictions ?
+				$restrictions->toJson( true ) : $restrictions,
+			'mwoauth-consumer-rsakey' => $cmrAc->getRsaKey(),
+		];
+
+		return $options;
+	}
+
+	/**
 	 * Show a paged list of consumers with links to details
 	 */
 	protected function showConsumerList() {
@@ -428,6 +465,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$data = [
 			'mwoauthmanageconsumers-name' => $cmrAc->escapeForHtml( $cmrAc->getNameAndVersion() ),
 			'mwoauthmanageconsumers-user' => $cmrAc->escapeForHtml( $cmrAc->getUserName() ),
+			'mwoauth-oauth-version' => $cmrAc->escapeForHtml( $cmrAc->getOAuthVersion() ),
 			'mwoauthmanageconsumers-description' => $cmrAc->escapeForHtml(
 				$cmrAc->get( 'description', function ( $s ) use ( $lang ) {
 					return $lang->truncateForVisual( $s, 10024 );

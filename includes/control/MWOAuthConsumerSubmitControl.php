@@ -172,7 +172,8 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			}
 
 			if ( MWOAuthConsumer::newFromNameVersionUser(
-				$dbw, $this->vals['name'], $this->vals['version'], $centralUserId ) ) {
+				$dbw, $this->vals['name'], $this->vals['version'], $centralUserId
+			) ) {
 				return $this->failure( 'consumer_exists', 'mwoauth-consumer-alreadyexists' );
 			}
 

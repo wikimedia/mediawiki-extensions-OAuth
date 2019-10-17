@@ -3,7 +3,7 @@
 namespace MediaWiki\Extensions\OAuth;
 
 /**
- * @method MWOAuthConsumer getDAO()
+ * @method MWOAuthConsumer|Entity\ClientEntity getDAO()
  */
 class MWOAuthConsumerAccessControl extends MWOAuthDAOAccessControl {
 	// accessor fields copied from MWOAuthConsumer, except they can return a Message on access error
@@ -34,6 +34,13 @@ class MWOAuthConsumerAccessControl extends MWOAuthDAOAccessControl {
 	 */
 	public function getName() {
 		return $this->get( 'name' );
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getOAuthVersion() {
+		return $this->get( 'oauthVersion' );
 	}
 
 	/**

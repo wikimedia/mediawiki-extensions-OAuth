@@ -98,6 +98,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		$data = [
 			'mwoauthlistconsumers-name' => $cmrAc->getName(),
 			'mwoauthlistconsumers-version' => $cmrAc->getVersion(),
+			'mwoauth-oauth-version' => $cmrAc->getOAuthVersion(),
 			'mwoauthlistconsumers-user' => $cmrAc->getUserName(),
 			'mwoauthlistconsumers-status' => $this->msg( "mwoauthlistconsumers-status-$stageKey" ),
 			'mwoauthlistconsumers-description' => $cmrAc->getDescription(),
@@ -243,6 +244,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 		$lang = $this->getLanguage();
 		$data = [
+			'mwoauth-oauth-version' => $cmrAc->escapeForHtml( $cmrAc->getOAuthVersion() ),
 			'mwoauthlistconsumers-user' => $cmrAc->escapeForHtml( $cmrAc->getUserName() ),
 			'mwoauthlistconsumers-description' => $cmrAc->escapeForHtml(
 				$cmrAc->get( 'description', function ( $s ) use ( $lang ) {

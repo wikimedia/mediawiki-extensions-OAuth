@@ -3,7 +3,7 @@
 		"authors": []
 	},
 	"oauth": "OAuth",
-	"mwoauth-desc": "Allows usage of OAuth 1.0a for API authorization",
+	"mwoauth-desc": "Allows usage of OAuth 1.0a and OAuth 2.0 for API authorization",
 	"mwoauth-verified": "The application is now allowed to access MediaWiki on your behalf.\n\nTo complete the process, provide this verification value to the application: '''$1'''",
 	"mwoauth-db-readonly": "The OAuth database is temporarily locked. Please try again in a few minutes.",
 	"mwoauth-missing-field": "Missing value for \"$1\" field",
@@ -289,5 +289,14 @@
 	"notification-oauth-app-reject-primary-link": "View app",
 	"notification-oauth-app-disable-primary-link": "View app",
 	"notification-oauth-app-reenable-primary-link": "View app",
-	"notification-oauth-app-body": "Reason: $1"
+	"notification-oauth-app-body": "Reason: $1",
+	"mwoauth-oauth-version": "OAuth protocol version",
+	"mwoauth-oauth-version-1": "OAuth 1.0a",
+	"mwoauth-oauth-version-2": "OAuth 2.0",
+	"mwoauth-oauth2-is-confidential": "Client is confidential",
+	"mwoauth-oauth2-is-confidential-help": "A confidential client is an application that is capable of keeping a client password confidential to the world. Non-confidential clients are less secure",
+	"mwoauth-oauth2-granttypes": "Allowed OAuth2 grant types",
+	"mwoauth-oauth2-granttype-auth-code": "Authorization code",
+	"mwoauth-oauth2-granttype-refresh-token": "Refresh token",
+	"mwoauth-oauth2-granttype-client-credentials": "Client credentials"
 }

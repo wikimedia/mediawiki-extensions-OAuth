@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
@@ -28,6 +29,7 @@ use User;
  * Page that has registration request form and consumer update form
  */
 class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
+
 	public function __construct() {
 		parent::__construct( 'OAuthConsumerRegistration' );
 	}
@@ -46,7 +48,6 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 	public function execute( $par ) {
 		global $wgMWOAuthSecureTokenTransfer, $wgMWOAuthReadOnly;
-
 		$this->checkPermissions();
 
 		$request = $this->getRequest();
@@ -97,6 +98,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			$allWikis = MWOAuthUtils::getAllWikiNames();
 
 			$showGrants = \MWGrants::getValidGrants();
+			$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
 
 			$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 			$control = new MWOAuthConsumerSubmitControl( $this->getContext(), [], $dbw );
@@ -113,6 +115,18 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'label-message' => 'mwoauth-consumer-version',
 						'required' => true,
 						'default' => "1.0"
+					],
+					'oauthVersion' => [
+						'type' => 'select',
+						'label-message' => 'mwoauth-oauth-version',
+						'options' => [
+							$this->msg( 'mwoauth-oauth-version-1' )->escaped() =>
+								MWOAuthConsumer::OAUTH_VERSION_1,
+							$this->msg( 'mwoauth-oauth-version-2' )->escaped() =>
+								MWOAuthConsumer::OAUTH_VERSION_2
+						],
+						'required' => true,
+						'default' => MWOAuthConsumer::OAUTH_VERSION_1
 					],
 					'description' => [
 						'type' => 'textarea',
@@ -156,6 +170,34 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'required' => true,
 						'default' => '*'
 					],
+					'oauth2IsConfidential' => [
+						'type' => 'check',
+						'label-message' => 'mwoauth-oauth2-is-confidential',
+						'help-message' => 'mwoauth-oauth2-is-confidential-help',
+						'hide-if' => [ '!==', 'oauthVersion', (string)MWOAuthConsumer::OAUTH_VERSION_2 ],
+						'default' => 1
+					],
+					'oauth2GrantTypes'  => [
+						'type' => 'multiselect',
+						'label-message' => 'mwoauth-oauth2-granttypes',
+						'hide-if' => [ 'OR',
+							[ '!==', 'oauthVersion', (string)MWOAuthConsumer::OAUTH_VERSION_2 ],
+							[ '!==', 'ownerOnly', '' ]
+						],
+						'options' => array_filter( [
+							$this->msg( 'mwoauth-oauth2-granttype-auth-code' )->escaped() =>
+								'authorization_code',
+							$this->msg( 'mwoauth-oauth2-granttype-refresh-token' )->escaped() =>
+								'refresh_token',
+							$this->msg( 'mwoauth-oauth2-granttype-client-credentials' )->escaped() =>
+								'client_credentials',
+						], function ( $grantType ) use ( $config ) {
+							return in_array( $grantType, $config->get( 'OAuth2EnabledGrantTypes' ) );
+						} ),
+						'dropdown' => true,
+						'required' => true,
+						'default' => [ 'authorization_code', 'refresh_token' ]
+					],
 					'granttype'  => [
 						'type' => 'radio',
 						'options-messages' => [
@@ -195,7 +237,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 							},
 							\MWGrants::getHiddenGrants()
 						),
-						'validation-callback' => null // different format
+						'validation-callback' => null, // different format
 					],
 					'restrictions' => [
 						'class' => 'HTMLRestrictionsField',
@@ -208,7 +250,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'help-message' => 'mwoauth-consumer-rsakey-help',
 						'required' => false,
 						'default' => '',
-						'rows' => 5
+						'rows' => 5,
+						'hide-if' => [ '===', 'oauthVersion', (string)MWOAuthConsumer::OAUTH_VERSION_2 ]
 					],
 					'agreement' => [
 						'type' => 'check',
@@ -230,6 +273,10 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 					// otherwise MWOAuthSubmitControl::validateFields() fails.
 					if ( $data['ownerOnly'] && !isset( $data['callbackUrl'] ) ) {
 						$data['callbackUrl'] = '';
+					}
+					// Force all ownerOnly clients to use client_credentials
+					if ( $data['ownerOnly'] ) {
+						$data['oauth2GrantTypes'] = [ 'client_credentials' ];
 					}
 
 					$control->setInputParameters( $data );
@@ -295,6 +342,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'default' => MWOAuthUIUtils::generateInfoTable( [
 							'mwoauth-consumer-name' => $cmrAc->getName(),
 							'mwoauth-consumer-version' => $cmrAc->getVersion(),
+							'mwoauth-oauth-version' => $cmrAc->getOAuthVersion(),
 							'mwoauth-consumer-key' => $cmrAc->getConsumerKey(),
 						], $this->getContext() ),
 					],
@@ -476,6 +524,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		$lang = $this->getLanguage();
 		$data = [
 			'mwoauthconsumerregistration-name' => $cmrAc->escapeForHtml( $cmrAc->getNameAndVersion() ),
+			'mwoauth-oauth-version' => $cmrAc->escapeForHtml( $cmrAc->getOAuthVersion() ),
 			// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
 			// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
 			// mwoauth-consumer-stage-disabled

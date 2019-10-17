@@ -301,5 +301,14 @@
 	"notification-oauth-app-reject-primary-link": "Text of the link which appears at the end of the email notification {{msg-mw|notification-oauth-app-reject-email-batch-body}}. It links to the app update page for app owners.",
 	"notification-oauth-app-disable-primary-link": "Text of the link which appears at the end of the email notification {{msg-mw|notification-oauth-app-disable-email-batch-body}}. It links to the app update page for app owners.",
 	"notification-oauth-app-reenable-primary-link": "Text of the link which appears at the end of the email notification {{msg-mw|notification-oauth-app-reenable-email-batch-body}}. It links to the app update page for app owners.",
-	"notification-oauth-app-body": "Text of the body of app stage change notifications. $1 is the reason given by the user who made the change.\n{{Identical|Reason}}"
+	"notification-oauth-app-body": "Text of the body of app stage change notifications. $1 is the reason given by the user who made the change.\n{{Identical|Reason}}",
+	"mwoauth-oauth-version": "Used as a label in multiple places for the field indicating OAuth version consumer is registered to use",
+	"mwoauth-oauth-version-1": "Label for OAuth version 1.0a",
+	"mwoauth-oauth-version-2": "Label for OAuth version 2.0",
+	"mwoauth-oauth2-is-confidential": "Used as a field label that indicates if the consumer (client) is confidential",
+	"mwoauth-oauth2-is-confidential-help": "Help message for the field that indicates if the consumer (client) is confidential",
+	"mwoauth-oauth2-granttypes": "Used as a label for field that determines which types of OAuth2 grants consumer can use",
+	"mwoauth-oauth2-granttype-auth-code": "Display label for grant type authorization_code",
+	"mwoauth-oauth2-granttype-refresh-token": "Display label for grant type refresh_token",
+	"mwoauth-oauth2-granttype-client-credentials": "Display label for grant type client_credentials"
 }

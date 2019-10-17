@@ -53,10 +53,20 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @return static
 	 */
 	final public static function newFromArray( array $values ) {
-		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
-		$consumer = new static();
+		$class = static::getConsumerClass( $values );
+		$consumer = new $class();
 		$consumer->loadFromValues( $values );
 		return $consumer;
+	}
+
+	/**
+	 * Determine and return the correct consumer class
+	 *
+	 * @param array $data
+	 * @return string
+	 */
+	protected static function getConsumerClass( array $data ) {
+		return static::class;
 	}
 
 	/**
@@ -65,8 +75,8 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @return static
 	 */
 	final public static function newFromRow( DBConnRef $db, $row ) {
-		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
-		$consumer = new static();
+		$class = static::getConsumerClass( (array)$row );
+		$consumer = new $class();
 		$consumer->loadFromRow( $db, $row );
 		return $consumer;
 	}
@@ -87,8 +97,8 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 		);
 
 		if ( $row ) {
-			// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
-			$consumer = new static();
+			$class = static::getConsumerClass( (array)$row );
+			$consumer = new $class();
 			$consumer->loadFromRow( $db, $row );
 			return $consumer;
 		} else {
