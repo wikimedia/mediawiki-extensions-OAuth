@@ -17,10 +17,16 @@ class ClientRepository implements ClientRepositoryInterface {
 	 * @return ClientEntity|bool
 	 */
 	public function getClientEntity( $clientIdentifier ) {
-		return ClientEntity::newFromKey(
+		$client = ClientEntity::newFromKey(
 			MWOAuthUtils::getCentralDB( DB_REPLICA ),
 			$clientIdentifier
 		);
+
+		if ( !$client instanceof ClientEntity ) {
+			return false;
+		}
+
+		return $client;
 	}
 
 	/**
@@ -35,7 +41,7 @@ class ClientRepository implements ClientRepositoryInterface {
 	 */
 	public function validateClient( $clientIdentifier, $clientSecret, $grantType ) {
 		$client = $this->getClientEntity( $clientIdentifier );
-		if ( !$client ) {
+		if ( !$client || !$client instanceof ClientEntity ) {
 			throw new InvalidArgumentException(
 				"Client with identifier $clientIdentifier does not exist!"
 			);

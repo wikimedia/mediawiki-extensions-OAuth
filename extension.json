@@ -105,8 +105,8 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extensions\\OAuth\\": "src/"
 	},
-	"TestAutoloadClasses": {
-		"MediaWiki\\Extensions\\OAuth\\StubConsumer": "tests/phpunit/backend/StubConsumer.php"
+	"TestAutoloadNamespaces": {
+		"MediaWiki\\Extensions\\OAuth\\Tests\\": "tests/phpunit"
 	},
 	"ResourceModules": {
 		"ext.MWOAuth.styles": {
@@ -180,14 +180,54 @@
 		"MWOAuthSessionCacheType": {
 			"value": null
 		},
+		"OAuthSecretKey": {
+			"value": null,
+			"description": "Random 32-bit string used to encrypt OAuth requests. Generate using \"base64_encode(random_bytes(32))\""
+		},
 		"OAuth2EnabledGrantTypes": {
 			"value": [
 				"authorization_code",
 				"refresh_token",
 				"client_credentials"
-			]
+			],
+			"description": "List of OAuth2 grants that client applications can use"
+		},
+		"OAuth2PrivateKey": {
+			"value": "",
+			"description": "Private key or a path to the private key used to sign OAuth2 JWT being transmitted"
+		},
+		"OAuth2PublicKey": {
+			"value": "",
+			"description": "Public key or a path to the public key used to verify OAuth2 resource requests"
+		},
+		"OAuth2RequireCodeChallengeForPublicClients": {
+			"value": true,
+			"description": "Controls whether clients are required to send code challenges with OAuth2 requests"
+		},
+		"OAuth2GrantExpirationInterval": {
+			"description": "Controls validity period for access tokens",
+			"value": "PT1H"
+		},
+		"OAuth2RefreshTokenTTL": {
+			"description": "Controls validity period for refresh tokens",
+			"value": "PT1M"
 		}
 	},
+	"RestRoutes": [
+		{
+			"path": "/oauth2/authorize",
+			"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\Authorize::factory"
+		},
+		{
+			"path": "/oauth2/access_token",
+			"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\AccessToken::factory",
+			"method": "POST"
+		},
+		{
+			"path": "/oauth2/resource/{{type}}",
+			"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\Resource::factory"
+		}
+	],
 	"load_composer_autoloader": true,
 	"manifest_version": 2
 }

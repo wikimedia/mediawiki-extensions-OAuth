@@ -205,6 +205,16 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					// We know the identity of the user who granted the authorization
 					$this->outputJWT( $localUser, $consumer, $oauthRequest, $format, $access );
 					break;
+				case 'rest_redirect':
+					$query = $this->getRequest()->getQueryValues();
+					$restUrl = $query['rest_url'];
+					unset( $query['title'] );
+					unset( $query['rest_url'] );
+
+					$target = wfExpandUrl( $restUrl );
+
+					$this->getOutput()->redirect( wfAppendQuery( $target, $query ) );
+					break;
 				default:
 					$format = $request->getVal( 'format', 'html' );
 					$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
@@ -287,52 +297,13 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	 * @param MWOAuthConsumerAcceptance $access
 	 */
 	protected function outputJWT( $user, $consumer, $request, $format, $access ) {
-		global $wgCanonicalServer;
-		$statement = [];
+		$grants = $access->getGrants();
+		$userStatementProvider = UserStatementProvider::factory( $user, $consumer, $grants );
 
-		// Include some of the OpenID Connect attributes
-		// http://openid.net/specs/openid-connect-core-1_0.html (draft 14)
-		// Issuer Identifier for the Issuer of the response.
-		$statement['iss'] = $wgCanonicalServer;
-		// Subject identifier. A locally unique and never reassigned identifier.
-		$statement['sub'] = MWOAuthUtils::getCentralIdFromLocalUser( $user );
-		// Audience(s) that this ID Token is intended for.
-		$statement['aud'] = $consumer->key;
-		// Expiration time on or after which the ID Token MUST NOT be accepted for processing.
-		$statement['exp'] = wfTimestamp() + 100;
-		// Time at which the JWT was issued.
-		$statement['iat'] = (int)wfTimestamp();
+		$statement = $userStatementProvider->getUserStatement();
 		// String value used to associate a Client session with an ID Token, and to mitigate
 		// replay attacks. The value is passed through unmodified from the Authorization Request.
 		$statement['nonce'] = $request->get_parameter( 'oauth_nonce' );
-		// TODO: Add auth_time, if we start tracking last login timestamp
-
-		// Include some MediaWiki info about the user
-		if ( !$user->isHidden() ) {
-			$statement['username'] = $user->getName();
-			$statement['editcount'] = intval( $user->getEditCount() );
-			$statement['confirmed_email'] = $user->isEmailConfirmed();
-			$statement['blocked'] = $user->isBlocked();
-			$statement['registered'] = $user->getRegistration();
-			$statement['groups'] = $user->getEffectiveGroups();
-			$statement['rights'] = array_values( array_unique( $user->getRights() ) );
-			$statement['grants'] = $access->getGrants();
-
-			if ( in_array( 'mwoauth-authonlyprivate', $statement['grants'] ) ||
-				in_array( 'viewmyprivateinfo', \MWGrants::getGrantRights( $statement['grants'] ) )
-			) {
-				// Paranoia - avoid showing the real name if the wiki is not configured to use
-				// it but it somehow exists (from past configuration, or some identity management
-				// extension). This is important as the viewmyprivateinfo grant is presented
-				// to the user differently when useRealNames() is false.
-				// Don't omit the field completely to avoid a breaking change.
-				$statement['realname'] = $this->useRealNames() ? $user->getRealName() : '';
-				$statement['email'] = $user->getEmail();
-			}
-		} else {
-			$statement['blocked'] = true;
-		}
-
 		$JWT = JWT::encode( $statement, $consumer->secret );
 		$this->showResponse( $JWT, $format );
 	}

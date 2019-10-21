@@ -1,0 +1,15 @@
+[
+  {
+	"path": "/oauth2/authorize",
+	"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\Authorize::factory"
+  },
+  {
+	"path": "/oauth2/access_token",
+	"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\AccessToken::factory",
+	"method": "POST"
+  },
+  {
+	"path": "/oauth2/resource/{{type}}",
+	"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\Resource::factory"
+  }
+]

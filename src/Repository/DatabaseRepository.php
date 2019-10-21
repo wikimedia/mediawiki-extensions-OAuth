@@ -1,0 +1,36 @@
+<?php
+
+namespace MediaWiki\Extensions\OAuth\Repository;
+
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
+use Wikimedia\Rdbms\IDatabase;
+
+abstract class DatabaseRepository {
+
+	/**
+	 * @param int $index
+	 * @return IDatabase
+	 */
+	public function getDB( $index = DB_REPLICA ) {
+		return MWOAuthUtils::getCentralDB( $index );
+	}
+
+	/**
+	 * Is given identifier stored in the DB
+	 *
+	 * @param string $identifier
+	 * @return bool
+	 */
+	public function identifierExists( $identifier ) {
+		return $this->getDB()->selectRow(
+			$this->getTableName(),
+			[ $this->getIdentifierField() ],
+			[ $this->getIdentifierField() => $identifier ],
+			__METHOD__
+		) !== false;
+	}
+
+	abstract protected function getTableName() : string;
+
+	abstract protected function getIdentifierField() : string;
+}

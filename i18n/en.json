@@ -298,5 +298,7 @@
 	"mwoauth-oauth2-granttypes": "Allowed OAuth2 grant types",
 	"mwoauth-oauth2-granttype-auth-code": "Authorization code",
 	"mwoauth-oauth2-granttype-refresh-token": "Refresh token",
-	"mwoauth-oauth2-granttype-client-credentials": "Client credentials"
+	"mwoauth-oauth2-granttype-client-credentials": "Client credentials",
+	"mwoauth-oauth2-error-create-at-no-user-approval": "Cannot create access token, user did not approve issuing this access token",
+	"mwoauth-oauth2-error-user-approval-deny": "User has rejected the request from client application"
 }
