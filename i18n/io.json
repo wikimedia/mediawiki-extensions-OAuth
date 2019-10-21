@@ -8,6 +8,7 @@
 	"mwoauth-prefs-managegrantslink": "Administrar $1 {{PLURAL:$1|aplikajo|aplikaji}} relata",
 	"mwoauth-consumer-reason": "Motivo:",
 	"mwoauth-form-description-allwikis-privateinfo-norealname": "Saluto $1,\n\nPor atendar komplete vua demando, '''$2''' bezonas acesar informi pri vu, inkluzite vua e-posto adreso, en omna projeti de ca retsituo. Nula modifikuri facesos en vua uzero-konto.",
+	"mwoauth-form-button-cancel": "Nuligar",
 	"notification-oauth-app-reject-primary-link": "Montrez 'app'",
 	"notification-oauth-app-disable-primary-link": "Vidar 'app'",
 	"notification-oauth-app-body": "Motivo: $1"
