@@ -3,14 +3,21 @@
 namespace MediaWiki\Extensions\OAuth\Rest\Handler;
 
 use GuzzleHttp\Psr7\ServerRequest;
+use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\RequestTypes\AuthorizationRequest;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization;
+use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
+use MediaWiki\Extensions\OAuth\Entity\UserEntity;
+use MediaWiki\Extensions\OAuth\Exception\ClientApprovalDenyException;
 use MediaWiki\Extensions\OAuth\Response;
 use Throwable;
 use SpecialPage;
 use User;
 use Wikimedia\ParamValidator\ParamValidator;
+use Exception;
+use MediaWiki\Rest\Response as RestResponse;
+use MWException;
 
 class Authorize extends AuthenticationHandler {
 	const RESPONSE_TYPE_CODE = 'code';
@@ -20,11 +27,17 @@ class Authorize extends AuthenticationHandler {
 	 */
 	public function execute() {
 		$response = new Response();
-		$request = ServerRequest::fromGlobals()->withQueryParams(
-			$this->getRequest()->getQueryParams()
-		);
 
 		try {
+			if ( $this->queuedError ) {
+				throw $this->queuedError;
+			}
+			$request = ServerRequest::fromGlobals()->withQueryParams(
+				$this->getValidatedParams()
+			);
+			// Note: Owner-only clients can only use client_credentials grant
+			// so would be rejected from this endpoint with invalid_client error
+			// automatically, no need for additional checks
 			if ( !$this->user instanceof User || $this->user->isAnon() ) {
 				return $this->getLoginRedirectResponse();
 			}
@@ -33,17 +46,57 @@ class Authorize extends AuthenticationHandler {
 			$authProvider->setUser( $this->user );
 			/** @var AuthorizationRequest $authRequest */
 			$authRequest = $authProvider->init( $request );
+
+			$this->setValidScopes( $authRequest );
 			if ( !$authProvider->needsUserApproval() ) {
 				return $authProvider->authorize( $authRequest, $response );
 			}
-			$authRequest->setAuthorizationApproved( true );
-			return $authProvider->authorize( $authRequest, $response );
+
+			if ( $this->getValidatedParams()['approval_cancel'] ) {
+				throw new ClientApprovalDenyException( $authRequest->getRedirectUri() );
+			}
+
+			if (
+				$this->getValidatedParams()['approval_pass'] &&
+				$this->checkApproval( $authRequest )
+			) {
+				$authRequest->setAuthorizationApproved( true );
+				return $authProvider->authorize( $authRequest, $response );
+			}
+
+			return $this->getApprovalRedirectResponse( $authRequest );
 		} catch ( OAuthServerException $ex ) {
-			return $ex->generateHttpResponse( $response );
+			return $this->errorResponse( $ex, $response );
 		} catch ( Throwable $ex ) {
-			return OAuthServerException::serverError( $ex->getMessage() )
-				->generateHttpResponse( $response );
+			return $this->errorResponse(
+				OAuthServerException::serverError( $ex->getMessage() ),
+				$response
+			);
 		}
+	}
+
+	protected function setValidScopes( AuthorizationRequest &$authRequest ) {
+		/** @var ClientEntity $client */
+		$client = $authRequest->getClient();
+		'@phan-var ClientEntity $client';
+
+		$scopes = $this->getValidatedParams()['scope'];
+		if ( !$scopes ) {
+			// No scope parameter
+			$authRequest->setScopes(
+				$client->getScopes()
+			);
+			return;
+		}
+		// Trim off any not allowed scopes
+		$allowedScopes = $client->getGrants();
+
+		$authRequest->setScopes( array_filter(
+			$authRequest->getScopes(),
+			function ( ScopeEntityInterface $scope ) use ( $allowedScopes ) {
+				return in_array( $scope->getIdentifier(), $allowedScopes );
+			}
+		) );
 	}
 
 	/**
@@ -90,8 +143,37 @@ class Authorize extends AuthenticationHandler {
 					'S256'
 				],
 				ParamValidator::PARAM_REQUIRED => false,
+			],
+			'approval_cancel' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+			],
+			'approval_pass' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
 			]
 		];
+	}
+
+	/**
+	 * @param AuthorizationRequest $authRequest
+	 * @return RestResponse
+	 * @throws MWException
+	 */
+	private function getApprovalRedirectResponse( AuthorizationRequest $authRequest ) {
+		return $this->getResponseFactory()->createTemporaryRedirect(
+			SpecialPage::getTitleFor( 'OAuth', 'approve' )->getFullURL( [
+				'returnto' => $this->getRequest()->getUri()->getPath(),
+				'returntoquery' => $this->getQueryParamsCgi(),
+				'client_id' => $authRequest->getClient()->getIdentifier(),
+				'oauth_version' => ClientEntity::OAUTH_VERSION_2,
+				'scope' => implode( ' ', array_map( function ( ScopeEntityInterface $scope ) {
+					return $scope->getIdentifier();
+				}, $authRequest->getScopes() ) )
+			] )
+		);
 	}
 
 	private function getLoginRedirectResponse() {
@@ -123,5 +205,54 @@ class Authorize extends AuthenticationHandler {
 			default:
 				return false;
 		}
+	}
+
+	/**
+	 * Check if user has approved the client, and scopes it requested
+	 *
+	 * @param AuthorizationRequest $authRequest
+	 * @return bool
+	 */
+	private function checkApproval( AuthorizationRequest $authRequest ) {
+		/** @var ClientEntity $client */
+		$client = $authRequest->getClient();
+		'@phan-var ClientEntity $client';
+
+		/** @var UserEntity $userEntity */
+		$userEntity = $authRequest->getUser();
+		'@phan-var UserEntity $userEntity';
+
+		try {
+			$approval = $client->getCurrentAuthorization(
+				$userEntity->getMwUser(),
+				wfWikiID()
+			);
+		} catch ( Exception $ex ) {
+			return false;
+		}
+
+		if ( !$approval ) {
+			return false;
+		}
+
+		// Scopes in OAuth 1.0 are called grants
+		$scopes = $approval->getGrants();
+		$requestedScopes = $this->getFlatScopes( $authRequest->getScopes() );
+		$missing = array_diff( $requestedScopes, $scopes );
+		if ( !empty( $missing ) ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * @param ScopeEntityInterface[] $scopeEntities
+	 * @return string[]
+	 */
+	private function getFlatScopes( $scopeEntities ) {
+		return array_map( function ( ScopeEntityInterface $scope ) {
+			return $scope->getIdentifier();
+		}, $scopeEntities );
 	}
 }

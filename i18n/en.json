@@ -84,9 +84,11 @@
 	"mwoauthconsumerregistration-resetsecretkey": "Reset the secret key to a new value",
 	"mwoauthconsumerregistration-proposed": "Your OAuth consumer request has been received.\n\nYou have been assigned a consumer token of '''$1''' and a secret token of '''$2'''. ''Please record these for future reference.''",
 	"mwoauthconsumerregistration-created-owner-only": "Your OAuth consumer has been created.\n\nYour tokens are:\n; Consumer token: $1\n; Consumer secret: $2\n; Access token: $3\n; Access secret: $4\n<em>Please record these for future reference.</em>",
+	"mwoauthconsumerregistration-created-owner-only-oauth2": "Your OAuth 2.0 client has been created.\n\nYour tokens are:\n; Client application key: $1\n; Client application secret: $2\n; Access token: $3\n;<em>Please record these for future reference.</em>",
 	"mwoauthconsumerregistration-updated": "Your OAuth consumer registry was updated.",
 	"mwoauthconsumerregistration-secretreset": "You have been assigned a consumer secret token of '''$1'''. ''Please record this for future reference.''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "Your OAuth consumer tokens have been reset. The new tokens are:\n; Consumer token: $1\n; Consumer secret: $2\n; Access token: $3\n; Access secret: $4\n<em>Please record these for future reference.</em>",
+	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Your OAuth 2.0 consumer tokens have been reset. The new tokens are:\n; Consumer token: $1\n; Consumer secret: $2\n; Access token: $3\n<em>Please record these for future reference.</em>",
 	"mwoauthconsumerregistration-need-emailconfirmed": "You must confirm your email address before creating OAuth applications.\nPlease set and validate your email address through your [[Special:Preferences|user preferences]].",
 	"oauthmanageconsumers": "Manage OAuth consumers",
 	"mwoauthmanageconsumers-notloggedin": "You have to be logged in to access this page.",
@@ -300,5 +302,19 @@
 	"mwoauth-oauth2-granttype-refresh-token": "Refresh token",
 	"mwoauth-oauth2-granttype-client-credentials": "Client credentials",
 	"mwoauth-oauth2-error-create-at-no-user-approval": "Cannot create access token, user did not approve issuing this access token",
-	"mwoauth-oauth2-error-user-approval-deny": "User has rejected the request from client application"
+	"mwoauth-oauth2-error-user-approval-deny": "User has rejected the request from client application",
+	"mwoauth-oauth-unsupported-version": "This endpoint is not allowed for OAuth version $1",
+	"mwoauth-oauth2-error-unauthorized-scope": "Scope \"$1\" is not allowed for this application",
+	"mwoauth-oauth2-error-owner-only-invalid-grant": "Owner-only clients must be allowed to use client_credentials",
+	"mwoauth-oauth2-unable-to-retrieve-access-token": "Could not retrieve access token: $1",
+	"mwoauth-oauth2-error": "$1\n\n$2\n\n$3",
+	"mwoauth-oauth2-error-server-error": "The authorization server encountered an unexpected condition that prevented it from fulfilling the request.",
+	"mwoauth-oauth2-error-invalid-request": "The request is missing a required parameter, includes an invalid parameter value, includes a parameter more than once, or is otherwise malformed.",
+	"mwoauth-oauth2-error-unauthorized-client": "The client is not authorized to request an authorization code using this method.",
+	"mwoauth-oauth2-error-access-denied": "The resource owner or authorization server denied the request.",
+	"mwoauth-oauth2-error-unsupported-response-type": "The authorization server does not support obtaining an authorization code using this method.",
+	"mwoauth-oauth2-error-invalid-scope": "The requested scope is invalid, unknown, or malformed.",
+	"mwoauth-oauth2-error-temporarily-unavailable": "The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.",
+	"mwoauth-oauth2-error-invalid-client": "Client authentication failed (e.g., unknown client, no client authentication included, or unsupported authentication method)"
+
 }

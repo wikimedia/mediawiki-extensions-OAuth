@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use User;
+use MWException;
+
 /**
  * (c) Dejan Savuljesku 2019, GPL
  *
@@ -30,7 +33,48 @@ namespace MediaWiki\Extensions\OAuth;
 class OAuth1Consumer extends MWOAuthConsumer {
 
 	/**
+	 * The user has authorized the request by this consumer, with this request token. Update
+	 * everything so that the consumer can swap the request token for an access token. Then
+	 * generate the callback URL where we will redirect our user back to the consumer.
+	 *
+	 * @param User $mwUser
+	 * @param bool $update
+	 * @param array $grants
+	 * @param null $requestTokenKey
 	 * @return string
+	 * @throws MWOAuthException
+	 * @throws MWException
+	 */
+	public function authorize( \User $mwUser, $update, $grants, $requestTokenKey = null ) {
+		$this->conductAuthorizationChecks( $mwUser );
+
+		// Generate and Update the tokens:
+		// * Generate a new Verification code, and add it to the request token
+		// * Either add or update the authorization
+		// ** Generate a new access token if this is a new authorization
+		// * Resave request token with the access token
+		$verifyCode = \MWCryptRand::generateHex( 32 );
+		$store = MWOAuthUtils::newMWOAuthDataStore();
+		$requestToken = $store->lookup_token( $this, 'request', $requestTokenKey );
+		if ( !$requestToken || !( $requestToken instanceof MWOAuthToken ) ) {
+			throw new MWOAuthException( 'mwoauthserver-invalid-request-token' );
+		}
+		$requestToken->addVerifyCode( $verifyCode );
+
+		$cmra = $this->saveAuthorization( $mwUser, $update, $grants );
+		$accessToken = new MWOAuthToken( $cmra->getAccessToken(), '' );
+
+		$requestToken->addAccessKey( $accessToken->key );
+		$store->updateRequestToken( $requestToken, $this );
+		$this->logger->debug( "Verification code {$requestToken->getVerifyCode()} for " .
+			"$requestTokenKey (client: {$this->getConsumerKey()})" );
+		return $this->generateCallbackUrl(
+			$store, $requestToken->getVerifyCode(), $requestTokenKey
+		);
+	}
+
+	/**
+	 * @return int
 	 */
 	public function getOAuthVersion() {
 		return static::OAUTH_VERSION_1;

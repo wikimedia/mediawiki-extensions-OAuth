@@ -67,8 +67,6 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 
 		switch ( $typeKey ) {
 		case 'update':
-			$this->handleConsumerForm( $acceptanceId, $typeKey );
-			break;
 		case 'revoke':
 			$this->handleConsumerForm( $acceptanceId, $typeKey );
 			break;
@@ -146,7 +144,9 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		}
 
 		$data = [ 'action' => $action ];
-		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), $data, $dbr );
+		$control = new MWOAuthConsumerAcceptanceSubmitControl(
+			$this->getContext(), $data, $dbr, $cmraAc->getDAO()->getOAuthVersion()
+		);
 		$form = \HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
 				'info' => [
@@ -201,13 +201,15 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
-			function ( array $data, \IContextSource $context ) use ( $action ) {
+			function ( array $data, \IContextSource $context ) use ( $action, $cmraAc ) {
 				$data['action'] = $action;
 				$data['grants'] = \FormatJson::encode( // adapt form to controller
 					preg_replace( '/^grant-/', '', $data['grants'] ) );
 
 				$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
-				$control = new MWOAuthConsumerAcceptanceSubmitControl( $context, $data, $dbw );
+				$control = new MWOAuthConsumerAcceptanceSubmitControl(
+					$context, $data, $dbw, $cmraAc->getDAO()->getOAuthVersion()
+				);
 				return $control->submit();
 			}
 		);

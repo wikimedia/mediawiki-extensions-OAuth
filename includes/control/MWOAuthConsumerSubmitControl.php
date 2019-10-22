@@ -3,6 +3,7 @@
 namespace MediaWiki\Extensions\OAuth;
 
 use ExtensionRegistry;
+use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -251,7 +252,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			}
 
 			// If it's owner-only, automatically accept it for the user too.
-			$cmra = null;
+			$accessToken = null;
 			if ( $cmr->getOwnerOnly() ) {
 				$accessToken = MWOAuthDataStore::newToken();
 				$cmra = MWOAuthConsumerAcceptance::newFromArray( [
@@ -263,11 +264,24 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					'accessSecret' => $accessToken->secret,
 					'grants'       => $cmr->getGrants(),
 					'accepted'     => $now,
+					'oauth_version' => $cmr->getOAuthVersion()
 				] );
 				$cmra->save( $dbw );
+				if ( $cmr instanceof ClientEntity ) {
+					// OAuth2 client
+					try {
+						$accessToken = $cmr->getOwnerOnlyAccessToken( $cmra );
+					} catch ( \Exception $ex ) {
+						return $this->failure(
+							'unable_to_retrieve_access_token',
+							'mwoauth-oauth2-unable-to-retrieve-access-token',
+							$ex->getMessage()
+						);
+					}
+				}
 			}
 
-			return $this->success( [ 'consumer' => $cmr, 'acceptance' => $cmra ] );
+			return $this->success( [ 'consumer' => $cmr, 'accessToken' => $accessToken ] );
 		case 'update':
 			if ( !$user->isAllowed( 'mwoauthupdateownconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
@@ -304,6 +318,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			}
 
 			$cmra = null;
+			$accessToken = null;
 			if ( $cmr->getOwnerOnly() && $this->vals['resetSecret'] ) {
 				$accessToken = MWOAuthDataStore::newToken();
 				$fields = [
@@ -314,8 +329,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					'grants'       => $cmr->getGrants(),
 				];
 
-				$oauthServer = MWOAuthUtils::newMWOAuthServer();
-				$cmra = $oauthServer->getCurrentAuthorization( $user, $cmr, wfWikiID() );
+				$cmra = $cmr->getCurrentAuthorization( $user, wfWikiID() );
 				if ( $cmra ) {
 					$cmra->setFields( $fields );
 				} else {
@@ -326,9 +340,12 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					] );
 				}
 				$cmra->save( $dbw );
+				if ( $cmr instanceof ClientEntity ) {
+					$accessToken = $cmr->getOwnerOnlyAccessToken( $cmra, true );
+				}
 			}
 
-			return $this->success( [ 'consumer' => $cmr, 'acceptance' => $cmra ] );
+			return $this->success( [ 'consumer' => $cmr, 'accessToken' => $accessToken ] );
 		case 'approve':
 			if ( !$user->isAllowed( 'mwoauthmanageconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );

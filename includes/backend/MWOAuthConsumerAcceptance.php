@@ -46,34 +46,38 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	protected $grants;
 	/** @var string TS_MW timestamp of acceptance */
 	protected $accepted;
+	/** @var string */
+	protected $oauthVersion;
 
 	protected static function getSchema() {
 		return [
-			'table'          => 'oauth_accepted_consumer',
-			'fieldColumnMap' => [
-				'id'           => 'oaac_id',
-				'wiki'         => 'oaac_wiki',
-				'userId'       => 'oaac_user_id',
-				'consumerId'   => 'oaac_consumer_id',
-				'accessToken'  => 'oaac_access_token',
-				'accessSecret' => 'oaac_access_secret',
-				'grants'       => 'oaac_grants',
-				'accepted'     => 'oaac_accepted'
+			'table'               => 'oauth_accepted_consumer',
+			'fieldColumnMap'      => [
+				'id'              => 'oaac_id',
+				'wiki'            => 'oaac_wiki',
+				'userId'          => 'oaac_user_id',
+				'consumerId'      => 'oaac_consumer_id',
+				'accessToken'     => 'oaac_access_token',
+				'accessSecret'    => 'oaac_access_secret',
+				'grants'          => 'oaac_grants',
+				'accepted'        => 'oaac_accepted',
+				'oauth_version'   => 'oaac_oauth_version',
 			],
-			'idField'        => 'id',
-			'autoIncrField'  => 'id',
+			'idField'             => 'id',
+			'autoIncrField'       => 'id',
 		];
 	}
 
 	protected static function getFieldPermissionChecks() {
 		return [
-			'wiki'         => 'userCanSee',
-			'userId'       => 'userCanSee',
-			'consumerId'   => 'userCanSee',
-			'accessToken'  => 'userCanSeePrivate',
-			'accessSecret' => 'userCanSeeSecret',
-			'grants'       => 'userCanSee',
-			'accepted'     => 'userCanSee',
+			'wiki'          => 'userCanSee',
+			'userId'        => 'userCanSee',
+			'consumerId'    => 'userCanSee',
+			'accessToken'   => 'userCanSeePrivate',
+			'accessSecret'  => 'userCanSeeSecret',
+			'grants'        => 'userCanSee',
+			'accepted'      => 'userCanSee',
+			'oauth_version' => 'userCanSee',
 		];
 	}
 
@@ -106,16 +110,19 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	 * @param MWOAuthConsumer $consumer
 	 * @param String $wiki wiki associated with the acceptance
 	 * @param int $flags MWOAuthConsumerAcceptance::READ_* bitfield
+	 * @param string $oauthVersion
 	 * @return MWOAuthConsumerAcceptance|bool
 	 */
 	public static function newFromUserConsumerWiki(
-		DBConnRef $db, $userId, $consumer, $wiki, $flags = 0
+		DBConnRef $db, $userId, $consumer,
+		$wiki, $flags = 0, $oauthVersion = MWOAuthConsumer::OAUTH_VERSION_1
 	) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
 			[
 				'oaac_user_id' => (int)$userId,
 				'oaac_consumer_id' => $consumer->getId(),
+				'oaac_oauth_version' => $oauthVersion,
 				'oaac_wiki' => (string)$wiki
 			],
 			__METHOD__,
@@ -196,6 +203,13 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	 */
 	public function getAccepted() {
 		return $this->get( 'accepted' );
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getOAuthVersion() {
+		return (int)$this->get( 'oauth_version' );
 	}
 
 	protected function normalizeValues() {

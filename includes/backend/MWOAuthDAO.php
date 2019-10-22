@@ -55,6 +55,9 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	final public static function newFromArray( array $values ) {
 		$class = static::getConsumerClass( $values );
 		$consumer = new $class();
+
+		// Make sure oauth_version is set - for backwards compat
+		$values['oauth_version'] = $values['oauth_version'] ?? MWOAuthConsumer::OAUTH_VERSION_1;
 		$consumer->loadFromValues( $values );
 		return $consumer;
 	}

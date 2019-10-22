@@ -3,7 +3,9 @@
 	"author": [
 		"Aaron Schulz",
 		"Chris Steipp",
-		"Brad Jorsch"
+		"Brad Jorsch",
+		"Robert Vogel",
+		"Dejan Savuljesku"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:OAuth",
 	"descriptionmsg": "mwoauth-desc",
@@ -205,11 +207,11 @@
 			"description": "Controls whether clients are required to send code challenges with OAuth2 requests"
 		},
 		"OAuth2GrantExpirationInterval": {
-			"description": "Controls validity period for access tokens",
+			"description": "Controls validity period for access tokens. Does not apply to owner-only clients, whose access tokens are always non-expiring. Accepts ISO 8601 durations or can be set to \"infinity\" or false for non-expiring tokens",
 			"value": "PT1H"
 		},
 		"OAuth2RefreshTokenTTL": {
-			"description": "Controls validity period for refresh tokens",
+			"description": "Controls validity period for refresh tokens. Accepts ISO 8601 durations or can be set to \"infinity\" or false for non-expiring tokens",
 			"value": "PT1M"
 		}
 	},

@@ -201,15 +201,19 @@ class MWOAuthUtils {
 	 * @return MWOAuthServer with default configurations
 	 */
 	public static function newMWOAuthServer() {
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbr = self::getCentralDB( DB_REPLICA );
-		$dbw = $lb->getServerCount() > 1 ? self::getCentralDB( DB_MASTER ) : null;
-		$store = new MWOAuthDataStore( $dbr, $dbw, self::getSessionCache() );
+		$store = static::newMWOAuthDataStore();
 		$server = new MWOAuthServer( $store );
 		$server->add_signature_method( new OAuthSignatureMethod_HMAC_SHA1() );
 		$server->add_signature_method( new MWOAuthSignatureMethod_RSA_SHA1( $store ) );
 
 		return $server;
+	}
+
+	public static function newMWOAuthDataStore() {
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$dbr = self::getCentralDB( DB_REPLICA );
+		$dbw = $lb->getServerCount() > 1 ? self::getCentralDB( DB_MASTER ) : null;
+		return new MWOAuthDataStore( $dbr, $dbw, self::getSessionCache() );
 	}
 
 	/**

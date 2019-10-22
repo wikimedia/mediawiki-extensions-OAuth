@@ -2,12 +2,18 @@
 
 namespace MediaWiki\Extensions\OAuth\Rest\Handler;
 
+use League\OAuth2\Server\Exception\OAuthServerException;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\AccessToken as AccessTokenProvider;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization;
+use MediaWiki\Extensions\OAuth\Response;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use Config;
+use MediaWiki\Rest\StringStream;
+use MediaWiki\Rest\Validator\Validator;
+use Psr\Http\Message\ResponseInterface;
+use MediaWiki\Rest\Response as RestResponse;
 use RequestContext;
 use User;
 
@@ -22,6 +28,11 @@ abstract class AuthenticationHandler extends Handler {
 	 * @var Config
 	 */
 	protected $config;
+
+	/**
+	 * @var OAuthServerException|null
+	 */
+	protected $queuedError;
 
 	/**
 	 * @return AuthenticationHandler
@@ -80,6 +91,32 @@ abstract class AuthenticationHandler extends Handler {
 		return $authProvider;
 	}
 
+	public function validate( Validator $restValidator ) {
+		try {
+			parent::validate( $restValidator );
+		} catch ( HttpException $exception ) {
+			// Catch and store any validation errors, so they can be thrown
+			// during the execution, and get caught by appropriate error handling code
+			$type = $exception->getErrorData()['error'] ?? 'parameter-validation-failed';
+			if ( $type === 'parameter-validation-failed' ) {
+				$missingParam = $exception->getErrorData()['name'] ?? '';
+				return $this->queueError( OAuthServerException::invalidRequest( $missingParam ) );
+			}
+			$this->queueError( OAuthServerException::serverError( $exception->getMessage() ) );
+		}
+	}
+
+	/**
+	 * @param OAuthServerException $ex
+	 */
+	protected function queueError( OAuthServerException $ex ) {
+		// If already set, do not override, since we cannot throw more than one error,
+		// and it will probably be more useful to throw first error that occurred
+		if ( !$this->queuedError ) {
+			$this->queuedError = $ex;
+		}
+	}
+
 	/**
 	 * @param array $query
 	 * @return string
@@ -90,6 +127,59 @@ abstract class AuthenticationHandler extends Handler {
 
 		$queryParams = array_merge( $queryParams, $query );
 		return wfArrayToCgi( $queryParams );
+	}
+
+	/**
+	 * @param OAuthServerException $exception
+	 * @param Response|null $response
+	 * @return ResponseInterface|RestResponse
+	 */
+	protected function errorResponse( $exception, $response = null ) {
+		$response = $response ?? new Response();
+		$response = $exception->generateHttpResponse( $response );
+		if ( $exception->hasRedirect() || $this->getRequest()->getMethod() === 'POST' ) {
+			return $response;
+		}
+
+		$out = RequestContext::getMain()->getOutput();
+		// TODO: Should we include message/hint eventhough they are not localized?
+		$out->showErrorPage(
+			'mwoauth-error',
+			$this->getLocalizedErrorMessage( $exception->getErrorType() )
+		);
+
+		ob_start();
+		$out->output();
+		$html = ob_get_clean();
+
+		$response = $this->getResponseFactory()->create();
+		$stream = new StringStream( $html );
+		$response->setHeader( 'Content-Type', 'text/html' );
+		$response->setBody( $stream );
+
+		return $response;
+	}
+
+	/**
+	 * @param string $type
+	 * @return string
+	 */
+	private function getLocalizedErrorMessage( $type ) {
+		$map = [
+			'invalid_client' => 'mwoauth-oauth2-error-invalid-client',
+			'server_error' => 'mwoauth-oauth2-error-server-error',
+			'invalid_request' => 'mwoauth-oauth2-error-invalid-request',
+			'unauthorized_client' => 'mwoauth-oauth2-error-unauthorized-client',
+			'access_denied' => 'mwoauth-oauth2-error-access-denied',
+			'unsupported_response_type' => 'mwoauth-oauth2-error-unsupported-response-type',
+			'invalid_scope' => 'mwoauth-oauth2-error-invalid-scope',
+			'temporarily_unavailable' => 'mwoauth-oauth2-error-temporarily-unavailable'
+		];
+		if ( isset( $map[$type] ) ) {
+			return $map[$type];
+		}
+
+		return 'mwoauth-oauth2-error-server-error';
 	}
 
 	/**

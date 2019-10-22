@@ -14,6 +14,8 @@ use MediaWiki\Rest\Validator\Validator;
 use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectFactory;
 use User;
+use RequestContext;
+use Title;
 
 abstract class EndpointTest extends \MediaWikiTestCase {
 
@@ -27,6 +29,8 @@ abstract class EndpointTest extends \MediaWikiTestCase {
 			'wgOAuth2PrivateKey' => $signatureMethod->fetch_private_cert( $request ),
 			'wgOAuthSecretKey' => base64_encode( random_bytes( 32 ) )
 		] );
+
+		RequestContext::getMain()->setTitle( Title::newMainPage() );
 	}
 
 	abstract public static function provideTestViaRouter();

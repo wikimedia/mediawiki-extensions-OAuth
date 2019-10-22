@@ -1,11 +1,5 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
-
-use MediaWiki\Extensions\OAuth\Entity\ClientEntity as OAuth2Client;
-use Wikimedia\Rdbms\DBConnRef;
-use FormatJson;
-
 /**
  * (c) Aaron Schulz 2013, GPL
  *
@@ -24,6 +18,14 @@ use FormatJson;
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
+
+namespace MediaWiki\Extensions\OAuth;
+
+use MediaWiki\Extensions\OAuth\Entity\ClientEntity as OAuth2Client;
+use Wikimedia\Rdbms\DBConnRef;
+use FormatJson;
+use User;
+use MWException;
 
 /**
  * Representation of an OAuth consumer.
@@ -376,7 +378,7 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * @return string
+	 * @return int
 	 */
 	abstract public function getOAuthVersion();
 
@@ -475,6 +477,186 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 	}
 
 	/**
+	 * Attempts to find an authorization by this user for this consumer. Since a user can
+	 * accept a consumer multiple times (once for "*" and once for each specific wiki),
+	 * there can several access tokens per-wiki (with varying grants) for a consumer.
+	 * This will choose the most wiki-specific access token. The precedence is:
+	 * a) The acceptance for wiki X if the consumer is applicable only to wiki X
+	 * b) The acceptance for wiki $wikiId (if the consumer is applicable to it)
+	 * c) The acceptance for wikis "*" (all wikis)
+	 *
+	 * Users might want more grants on some wikis than on "*". Note that the reverse would not
+	 * make sense, since the consumer could just use the "*" acceptance if it has more grants.
+	 *
+	 * @param \User $mwUser (local wiki user) User who may or may not have authorizations
+	 * @param string $wikiId
+	 * @throws MWOAuthException
+	 * @return MWOAuthConsumerAcceptance|bool
+	 */
+	public function getCurrentAuthorization( User $mwUser, $wikiId ) {
+		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+
+		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
+		if ( !$centralUserId ) {
+			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
+			throw new MWOAuthException( $userMsg, [ $this->getName(), \Message::rawParam(
+				\Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
+					'E008',
+					true
+				)
+			) ] );
+		}
+
+		$checkWiki = $this->getWiki() !== '*' ? $this->getWiki() : $wikiId;
+
+		$cmra = MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
+			$dbr,
+			$centralUserId,
+			$this,
+			$checkWiki,
+			0,
+			$this->getOAuthVersion()
+		);
+		if ( !$cmra ) {
+			$cmra = MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
+				$dbr,
+				$centralUserId,
+				$this,
+				'*',
+				0,
+				$this->getOAuthVersion()
+			);
+		}
+		return $cmra;
+	}
+
+	/**
+	 * @param User $mwUser
+	 * @param bool $update
+	 * @param array $grants
+	 * @param string|null $requestTokenKey
+	 * @return mixed
+	 */
+	abstract public function authorize( User $mwUser, $update, $grants, $requestTokenKey = null );
+
+	/**
+	 * Verify that this user can authorize this consumer
+	 *
+	 * @param User $mwUser
+	 * @throws MWOAuthException
+	 * @throws MWException
+	 */
+	protected function conductAuthorizationChecks( User $mwUser ) {
+		global $wgBlockDisablesLogin;
+
+		// Check that user and consumer are in good standing
+		if ( $mwUser->isLocked() || $wgBlockDisablesLogin && $mwUser->isBlocked() ) {
+			throw new MWOAuthException( 'mwoauthserver-insufficient-rights', [
+				\Message::rawParam( \Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007',
+					'E007',
+					true
+				) )
+			] );
+		}
+
+		if ( $this->getDeleted() ) {
+			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key', [
+				\Message::rawParam( \Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006',
+					'E006',
+					true
+				) )
+			] );
+		} elseif ( !$this->isUsableBy( $mwUser ) ) {
+			$owner = MWOAuthUtils::getCentralUserNameFromId(
+				$this->getUserId(),
+				$mwUser
+			);
+			throw new MWOAuthException(
+				'mwoauthserver-bad-consumer',
+				[ $this->getName(), MWOAuthUtils::getCentralUserTalk( $owner ), \Message::rawParam(
+					\Linker::makeExternalLink(
+						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005',
+						'E005',
+						true
+					)
+				) ]
+			);
+		} elseif ( $this->getOwnerOnly() ) {
+			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
+				$this->getName(),
+				\SpecialPage::getTitleFor(
+					'OAuthConsumerRegistration', 'update/' . $this->getConsumerKey()
+				),
+				\Message::rawParam( \Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
+					'E010',
+					true
+				) )
+			] );
+		}
+	}
+
+	/**
+	 * @param User $mwUser
+	 * @param bool $update
+	 * @param array $grants
+	 * @return MWOAuthConsumerAcceptance
+	 * @throws MWOAuthException
+	 * @throws MWException
+	 */
+	protected function saveAuthorization( User $mwUser, $update, $grants ) {
+		// CentralAuth may abort here if there is no global account for this user
+		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
+		if ( !$centralUserId ) {
+			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
+			throw new MWOAuthException( $userMsg, [ $this->getName(), \Message::rawParam(
+				\Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
+					'E008',
+					true
+				)
+			) ] );
+		}
+
+		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
+		// Check if this authorization exists
+		$cmra = $this->getCurrentAuthorization( $mwUser, wfWikiID() );
+
+		if ( $update ) {
+			// This should be an update to an existing authorization
+			if ( !$cmra ) {
+				// update requested, but no existing key
+				throw new MWOAuthException( 'mwoauthserver-invalid-request' );
+			}
+			$cmra->setFields( [
+				'wiki'   => $this->getWiki(),
+				'grants' => $grants
+			] );
+			$cmra->save( $dbw );
+		} elseif ( !$cmra ) {
+			// Add the Authorization to the database
+			$accessToken = MWOAuthDataStore::newToken();
+			$cmra = MWOAuthConsumerAcceptance::newFromArray( [
+				'id'           => null,
+				'wiki'         => $this->getWiki(),
+				'userId'       => $centralUserId,
+				'consumerId'   => $this->getId(),
+				'accessToken'  => $accessToken->key,
+				'accessSecret' => $accessToken->secret,
+				'grants'       => $grants,
+				'accepted'     => wfTimestampNow(),
+				'oauth_version' => $this->getOAuthVersion()
+			] );
+			$cmra->save( $dbw );
+		}
+
+		return $cmra;
+	}
+
+	/**
 	 * Check if the consumer is usable by $user
 	 *
 	 * "Usable by $user" includes:
@@ -535,6 +717,7 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 
 	protected function decodeRow( DBConnRef $db, $row ) {
 		$row['oarc_registration'] = wfTimestamp( TS_MW, $row['oarc_registration'] );
+		$row['oarc_stage'] = (int)$row['oarc_stage'];
 		$row['oarc_stage_timestamp'] = wfTimestamp( TS_MW, $row['oarc_stage_timestamp'] );
 		$row['oarc_restrictions'] = \MWRestrictions::newFromJson( $row['oarc_restrictions'] );
 		$row['oarc_grants'] = \FormatJson::decode( $row['oarc_grants'], true );

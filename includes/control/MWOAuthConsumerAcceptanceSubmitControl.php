@@ -1,10 +1,5 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
-
-use MediaWiki\Logger\LoggerFactory;
-use Wikimedia\Rdbms\DBConnRef;
-
 /**
  * (c) Aaron Schulz 2013, GPL
  *
@@ -24,6 +19,12 @@ use Wikimedia\Rdbms\DBConnRef;
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+namespace MediaWiki\Extensions\OAuth;
+
+use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
+use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\Rdbms\DBConnRef;
+
 /**
  * This handles the core logic of submitting/approving application
  * consumer requests and the logic of managing approved consumers
@@ -36,23 +37,25 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 	/** @var DBConnRef */
 	protected $dbw;
 
+	/** @var int */
+	protected $oauthVersion;
+
 	/**
 	 * @param \IContextSource $context
 	 * @param array $params
 	 * @param DBConnRef $dbw Result of MWOAuthUtils::getCentralDB( DB_MASTER )
+	 * @param int $oauthVersion
 	 */
-	public function __construct( \IContextSource $context, array $params, DBConnRef $dbw ) {
+	public function __construct(
+		\IContextSource $context, array $params, DBConnRef $dbw, $oauthVersion
+	) {
 		parent::__construct( $context, $params );
 		$this->dbw = $dbw;
+		$this->oauthVersion = (int)$oauthVersion;
 	}
 
 	protected function getRequiredFields() {
-		return [
-			'accept'    => [
-				'consumerKey'   => '/^[0-9a-f]{32}$/',
-				'requestToken'  => '/^[0-9a-f]{32}$/',
-				'confirmUpdate' => '/^[01]$/',
-			],
+		$required = [
 			'update'   => [
 				'acceptanceId' => '/^\d+$/',
 				'grants'      => function ( $s ) {
@@ -64,6 +67,20 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 				'acceptanceId' => '/^\d+$/',
 			],
 		];
+		if ( $this->isOAuth2() ) {
+			$required['accept'] = [
+				'client_id' => '/^[0-9a-f]{32}$/',
+				'confirmUpdate' => '/^[01]$/',
+			];
+		} else {
+			$required['accept'] = [
+				'consumerKey'   => '/^[0-9a-f]{32}$/',
+				'requestToken'  => '/^[0-9a-f]{32}$/',
+				'confirmUpdate' => '/^[01]$/',
+			];
+		}
+
+		return $required;
 	}
 
 	protected function checkBasePermissions() {
@@ -89,7 +106,9 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 
 		switch ( $action ) {
 		case 'accept':
-			$cmr = MWOAuthConsumer::newFromKey( $dbw, $this->vals['consumerKey'] );
+			$payload = [];
+			$identifier = $this->isOAuth2() ? 'client_id' : 'consumerKey';
+			$cmr = MWOAuthConsumer::newFromKey( $this->dbw, $this->vals[$identifier] );
 			if ( !$cmr ) {
 				return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
 			} elseif ( !$cmr->isUsableBy( $user ) ) {
@@ -97,13 +116,18 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 			}
 
 			try {
-				$oauthServer = MWOAuthUtils::newMWOAuthServer();
-				$callback = $oauthServer->authorize(
-					$this->vals['consumerKey'],
-					$this->vals['requestToken'],
-					$this->getUser(),
-					(bool)$this->vals['confirmUpdate']
-				);
+				if ( $this->isOAuth2() ) {
+					$scopes = isset( $this->vals['scope'] ) ? explode( ' ', $this->vals['scope'] ) : [];
+					$payload = $cmr->authorize( $this->getUser(), (bool)$this->vals['confirmUpdate'], $scopes );
+				} else {
+					$callback = $cmr->authorize(
+						$this->getUser(),
+						(bool)$this->vals[ 'confirmUpdate' ],
+						$cmr->getGrants(),
+						$this->vals[ 'requestToken' ]
+					);
+					$payload = [ 'callbackUrl' => $callback ];
+				}
 			} catch ( MWOAuthException $exception ) {
 				return $this->failure( 'oauth_exception', $exception->msg, $exception->params );
 			} catch ( OAuthException $exception ) {
@@ -121,7 +145,8 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 					'clientip' => $this->getContext()->getRequest()->getIP(),
 				]
 			);
-			return $this->success( [ 'callbackUrl' => $callback ] );
+
+			return $this->success( $payload );
 		case 'update':
 			$cmra = MWOAuthConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
 			if ( !$cmra ) {
@@ -175,9 +200,30 @@ class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
 					'clientip' => $this->getContext()->getRequest()->getIP(),
 				]
 			);
+
+			if ( $cmr->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2 ) {
+				$this->removeOAuth2AccessTokens( $cmra->getId() );
+			}
 			$cmra->delete( $dbw );
 
 			return $this->success( $cmra );
 		}
+	}
+
+	/**
+	 * Convenience function
+	 *
+	 * @return bool
+	 */
+	private function isOAuth2() {
+		return $this->oauthVersion === MWOAuthConsumer::OAUTH_VERSION_2;
+	}
+
+	/**
+	 * @param int $approvalId
+	 */
+	private function removeOAuth2AccessTokens( $approvalId ) {
+		$accessTokenRepository = new AccessTokenRepository();
+		$accessTokenRepository->deleteForApprovalId( $approvalId );
 	}
 }

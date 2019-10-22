@@ -37,10 +37,10 @@ class MWOAuthConsumerAccessControl extends MWOAuthDAOAccessControl {
 	}
 
 	/**
-	 * @return string
+	 * @return int
 	 */
 	public function getOAuthVersion() {
-		return $this->get( 'oauthVersion' );
+		return (int)$this->get( 'oauthVersion' );
 	}
 
 	/**

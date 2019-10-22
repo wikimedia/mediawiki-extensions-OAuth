@@ -45,4 +45,11 @@ class UserEntity implements UserEntityInterface {
 	public function getIdentifier() {
 		return $this->identifier;
 	}
+
+	/**
+	 * @return bool|User
+	 */
+	public function getMWUser() {
+		return MWOAuthUtils::getLocalUserFromCentralId( $this->identifier );
+	}
 }

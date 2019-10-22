@@ -21,7 +21,19 @@ class ClientRepository implements ClientRepositoryInterface {
 			MWOAuthUtils::getCentralDB( DB_REPLICA ),
 			$clientIdentifier
 		);
+		if ( !$client instanceof ClientEntity ) {
+			return false;
+		}
 
+		return $client;
+	}
+
+	/**
+	 * @param int $clientId
+	 * @return ClientEntity|bool
+	 */
+	public function getClientEntityByDBId( $clientId ) {
+		$client = ClientEntity::newFromId( MWOAuthUtils::getCentralDB( DB_REPLICA ), $clientId );
 		if ( !$client instanceof ClientEntity ) {
 			return false;
 		}

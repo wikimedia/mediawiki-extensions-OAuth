@@ -32,6 +32,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	/** @var LoggerInterface */
 	protected $logger;
 
+	/** @var int Defaults to OAuth1 */
+	protected $oauthVersion = MWOAuthConsumer::OAUTH_VERSION_1;
+
 	public function __construct() {
 		parent::__construct( 'OAuth' );
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
@@ -66,8 +69,10 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 				throw new MWOAuthException( 'mwoauth-db-readonly' );
 			}
 
+			$this->determineOAuthVersion( $request );
 			switch ( $subpage ) {
 				case 'initiate':
+					$this->assertOAuthVersion( MWOAuthConsumer::OAUTH_VERSION_1 );
 					$oauthServer = MWOAuthUtils::newMWOAuthServer();
 					$oauthRequest = MWOAuthRequest::fromRequest( $request );
 					$this->logger->debug( __METHOD__ . ": Consumer " .
@@ -76,15 +81,38 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					$token = $oauthServer->fetch_request_token( $oauthRequest );
 					$this->returnToken( $token, $format );
 					break;
+				case 'approve':
+					$this->assertOAuthVersion( MWOAuthConsumer::OAUTH_VERSION_2 );
+					$format = 'html';
+					$clientId = $request->getVal( 'client_id', '' );
+					$this->logger->debug( __METHOD__ . ": doing '$subpage' for OAuth2 with " .
+						"client_id '$clientId' for '{$user->getName()}'" );
+					if ( $user->isAnon() ) {
+						// Should not happen, as user login status will already be checked at this point
+						// Just redirect back to REST, it will then redirect to login
+						return $this->redirectToREST();
+					}
+					if ( $request->wasPosted() && $request->getCheck( 'cancel' ) ) {
+						$this->showCancelPage( $clientId );
+					} else {
+						$this->handleAuthorizationForm(
+							null, $clientId, true
+						);
+					}
+
+					break;
 				case 'authorize':
 				case 'authenticate':
+					$this->assertOAuthVersion( MWOAuthConsumer::OAUTH_VERSION_1 );
 					$format = 'html'; // for exceptions
+
 					$requestToken = $request->getVal( 'requestToken',
 						$request->getVal( 'oauth_token' ) );
 					$consumerKey = $request->getVal( 'consumerKey',
 						$request->getVal( 'oauth_consumer_key' ) );
 					$this->logger->debug( __METHOD__ . ": doing '$subpage' with " .
 						"'$requestToken' '$consumerKey' for '{$user->getName()}'" );
+
 					// TODO? Test that $requestToken exists in memcache
 					if ( $user->isAnon() ) {
 						$query = [];
@@ -100,7 +128,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					} else {
 						if ( $request->wasPosted() && $request->getCheck( 'cancel' ) ) {
 							// Show acceptance cancellation confirmation
-							$this->showCancelPage();
+							$this->showCancelPage( $consumerKey );
 						} else {
 							// Show form and redirect on submission for authorization
 							$this->handleAuthorizationForm(
@@ -110,6 +138,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					}
 					break;
 				case 'token':
+					$this->assertOAuthVersion( MWOAuthConsumer::OAUTH_VERSION_1 );
 					$oauthServer = MWOAuthUtils::newMWOAuthServer();
 					$oauthRequest = MWOAuthRequest::fromRequest( $request );
 
@@ -139,6 +168,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					$this->returnToken( $token, $format );
 					break;
 				case 'verified':
+					$this->assertOAuthVersion( MWOAuthConsumer::OAUTH_VERSION_1 );
 					$format = 'html'; // for exceptions
 					$verifier = $request->getVal( 'oauth_verifier' );
 					$requestToken = $request->getVal( 'oauth_token' );
@@ -161,11 +191,13 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					);
 					break;
 				case 'grants':
+					$this->assertOAuthVersion( MWOAuthConsumer::OAUTH_VERSION_1 );
 					// Backwards compatibility
 					$listGrants = \SpecialPage::getTitleFor( 'ListGrants' );
 					$this->getOutput()->redirect( $listGrants->getFullURL() );
 					break;
 				case 'identify':
+					$this->assertOAuthVersion( MWOAuthConsumer::OAUTH_VERSION_1 );
 					$format = 'json'; // we only return JWT, so we assume json
 					$server = MWOAuthUtils::newMWOAuthServer();
 					$oauthRequest = MWOAuthRequest::fromRequest( $request );
@@ -267,9 +299,11 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.styles' );
 	}
 
-	protected function showCancelPage() {
-		$request = $this->getRequest();
-		$consumerKey = $request->getVal( 'consumerKey', $request->getVal( 'oauth_consumer_key' ) );
+	/**
+	 * @param string $consumerKey
+	 * @throws MWOAuthException
+	 */
+	protected function showCancelPage( $consumerKey ) {
 		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
 		$cmrAc = MWOAuthConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
@@ -277,6 +311,14 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		);
 		if ( !$cmrAc ) {
 			throw new MWOAuthException( 'mwoauth-invalid-consumer-key' );
+		}
+
+		if ( $cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2 ) {
+			// Respond to client with user approval denied error
+			$this->redirectToREST( [
+				'approval_cancel' => 1
+			] );
+			return;
 		}
 
 		$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
@@ -310,20 +352,19 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 	protected function handleAuthorizationForm( $requestToken, $consumerKey, $authenticate ) {
 		$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
-
 		$user = $this->getUser();
 
-		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA ); // @TODO: lazy handle
 		$oauthServer = MWOAuthUtils::newMWOAuthServer();
 
-		if ( !$consumerKey ) {
+		if ( !$consumerKey && $this->oauthVersion === MWOAuthConsumer::OAUTH_VERSION_1 ) {
 			$consumerKey = $oauthServer->getConsumerKey( $requestToken );
 		}
 
 		$cmrAc = MWOAuthConsumerAccessControl::wrap(
-			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
+			MWOAuthConsumer::newFromKey( MWOAuthUtils::getCentralDB( DB_REPLICA ), $consumerKey ),
 			$this->getContext()
 		);
+
 		if ( !$cmrAc || !$cmrAc->userCanAccess( [ 'name', 'userId', 'grants' ] ) ) {
 			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key', [
 				\Message::rawParam( \Linker::makeExternalLink(
@@ -332,7 +373,10 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					true
 				) )
 			] );
-		} elseif ( !$cmrAc->getDAO()->isUsableBy( $user ) ) {
+		} elseif (
+			!$cmrAc->getDAO()->isUsableBy( $user ) ||
+			$cmrAc->getDAO()->getOAuthVersion() !== $this->oauthVersion
+		) {
 			throw new MWOAuthException(
 				'mwoauthserver-bad-consumer',
 				[
@@ -342,8 +386,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			);
 		}
 
-		// Check if this user has authorized grants for this consumer previously
-		$existing = $oauthServer->getCurrentAuthorization( $user, $cmrAc->getDAO(), wfWikiID() );
+		$existing = $cmrAc->getDAO()->getCurrentAuthorization( $user, wfWikiID() );
 
 		// If only authentication was requested, and the existing authorization
 		// matches, and the only grants are 'mwoauth-authonly' or 'mwoauth-authonlyprivate',
@@ -353,13 +396,14 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$existing->getGrants() === $cmrAc->getDAO()->getGrants() &&
 			 !array_diff( $existing->getGrants(), [ 'mwoauth-authonly', 'mwoauth-authonlyprivate' ] )
 		) {
-			$callback = $oauthServer->authorize(
-				$consumerKey,
-				$requestToken,
-				$user,
-				false
-			);
-			$this->getOutput()->redirect( $callback );
+			if ( $this->oauthVersion === MWOAuthConsumer::OAUTH_VERSION_2 ) {
+				$this->redirectToREST();
+			} else {
+				$callback = $cmrAc->getDAO()->authorize(
+					$user, false, $cmrAc->getDAO()->getGrants(), $requestToken
+				);
+				$this->getOutput()->redirect( $callback );
+			}
 			return;
 		}
 
@@ -368,28 +412,16 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		);
 		$this->getOutput()->addModules( 'ext.MWOAuth.AuthorizeDialog' );
 
-		$control = new MWOAuthConsumerAcceptanceSubmitControl( $this->getContext(), [], $dbr );
+		$control = new MWOAuthConsumerAcceptanceSubmitControl(
+			$this->getContext(), [], MWOAuthUtils::getCentralDB( DB_MASTER ), $this->oauthVersion
+		);
+
 		$form = \HTMLForm::factory( 'table',
-			$control->registerValidators( [
-				'action' => [
-					'type'    => 'hidden',
-					'default' => 'accept',
-				],
-				'confirmUpdate' => [
-					'type'    => 'hidden',
-					'default' => $existing ? 1 : 0,
-				],
-				'consumerKey' => [
-					'name'    => 'consumerKey',
-					'type'    => 'hidden',
-					'default' => $consumerKey,
-				],
-				'requestToken' => [
-					'name'    => 'requestToken',
-					'type'    => 'hidden',
-					'default' => $requestToken,
-				]
-			] ),
+			$control->registerValidators( $this->getRequestValidators( [
+				'existing' => $existing,
+				'consumerKey' => $consumerKey,
+				'requestToken' => $requestToken
+			] ) ),
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
@@ -424,7 +456,12 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$msgKey .= '-onewiki';
 			$params[] = $cmrAc->getWikiName();
 		}
-		$grantsText = \MWGrants::getGrantsWikiText( $cmrAc->getGrants(), $this->getLanguage() );
+		$grants = $cmrAc->getGrants();
+		if ( $this->oauthVersion === MWOAuthConsumer::OAUTH_VERSION_2 ) {
+			$grants = $this->getRequestedGrants( $cmrAc );
+		}
+
+		$grantsText = \MWGrants::getGrantsWikiText( $grants, $this->getLanguage() );
 		if ( $grantsText === "\n" ) {
 			if ( in_array( 'mwoauth-authonlyprivate', $cmrAc->getGrants(), true ) ) {
 				$msgKey .= '-privateinfo';
@@ -467,12 +504,119 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$this->getOutput()->addHTML(
 			'<div id="mw-mwoauth-authorize-dialog" class="mw-ui-container">' );
 		$status = $form->show();
+
 		$this->getOutput()->addHTML( '</div>' );
 		if ( $status instanceof \Status && $status->isOK() ) {
-			// Redirect to callback url
-			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-			$this->getOutput()->redirect( $status->value['result']['callbackUrl'] );
+			if ( $this->oauthVersion === MWOAuthConsumer::OAUTH_VERSION_2 ) {
+				$this->redirectToREST( [
+					'approval_pass' => true
+				] );
+			} else {
+				// Redirect to callback url
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+				$this->getOutput()->redirect( $status->value['result']['callbackUrl'] );
+			}
 		}
+	}
+
+	private function redirectToREST( $queryAppend = [] ) {
+		$redirectParams = [
+			'returnto' => $this->getRequest()->getText(
+				'returnto', $this->getRequest()->getText( 'returnto' )
+			),
+			'returntoquery' => wfCgiToArray(
+				$this->getRequest()->getText(
+					'returntoquery', $this->getRequest()->getText( 'returntoquery' )
+				)
+			)
+		];
+
+		$expanded = wfExpandUrl( $redirectParams['returnto'] );
+		if ( !$expanded ) {
+			return;
+		}
+
+		$returnToQuery = array_merge(
+			$redirectParams['returntoquery'],
+			$queryAppend
+		);
+		$returnToQuery = wfArrayToCgi( $returnToQuery );
+
+		$this->getOutput()->disable();
+		$this->getOutput()->getRequest()->response()->header(
+			'Location: ' . "$expanded?{$returnToQuery}"
+		);
+	}
+
+	private function getRequestValidators( $data = [] ) {
+		$validators = [
+			'action' => [
+				'type'    => 'hidden',
+				'default' => 'accept',
+			],
+			'confirmUpdate' => [
+				'type'    => 'hidden',
+				'default' => $data['existing'] ? 1 : 0,
+			],
+			'oauth_version' => [
+				'name' => 'oauth_version',
+				'type' => 'hidden',
+				'default' => $this->oauthVersion
+			],
+		];
+		if ( $this->oauthVersion === MWOAuthConsumer::OAUTH_VERSION_2 ) {
+			$validators += [
+				'client_id' => [
+					'name' => 'client_id',
+					'type' => 'hidden',
+					'default' => $this->getRequest()->getText( 'client_id' )
+				],
+				'scope' => [
+					'name' => 'scope',
+					'type' => 'hidden',
+					'default' => $this->getRequest()->getText( 'scope' )
+				],
+				'returnto' => [
+					'name' => 'returnto',
+					'type'    => 'hidden',
+					'default' => $this->getRequest()->getText( 'returnto' )
+				],
+				'returntoquery' => [
+					'name'    => 'returntoquery',
+					'type'    => 'hidden',
+					'default' => $this->getRequest()->getText( 'returntoquery' )
+				],
+			];
+		} else {
+			$validators += [
+				'consumerKey' => [
+					'name'    => 'consumerKey',
+					'type'    => 'hidden',
+					'default' => $data['consumerKey']
+				],
+				'requestToken' => [
+					'name'    => 'requestToken',
+					'type'    => 'hidden',
+					'default' => $data['requestToken'],
+				],
+			];
+		}
+
+		return $validators;
+	}
+
+	/**
+	 * OAuth 2.0 only
+	 * Get only the grants (scopes) that were actually requested (and are allowed)
+	 *
+	 * @param MWOAuthConsumerAccessControl $cmrAc
+	 * @return array
+	 */
+	private function getRequestedGrants( $cmrAc ) {
+		$allowed = $cmrAc->getGrants();
+		$requested = explode( ' ', $this->getRequest()->getText( 'scope', '' ) );
+
+		return array_intersect( $requested, $allowed );
 	}
 
 	/**
@@ -562,5 +706,30 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	private function useRealNames() {
 		$config = $this->getContext()->getConfig();
 		return !in_array( 'realname', $config->get( 'HiddenPrefs' ), true );
+	}
+
+	/**
+	 * Get the requested OAuth version from the request
+	 *
+	 * @param \WebRequest $request
+	 * @return string
+	 */
+	private function determineOAuthVersion( \WebRequest $request ) {
+		$this->oauthVersion = $request->getInt( 'oauth_version', MWOAuthConsumer::OAUTH_VERSION_1 );
+
+		return $this->oauthVersion;
+	}
+
+	/**
+	 * @param string $allowed Allowed version
+	 * @throws MWOAuthException
+	 */
+	private function assertOAuthVersion( $allowed ) {
+		if ( $this->oauthVersion !== $allowed ) {
+			throw new MWOAuthException(
+				'mwoauth-oauth-unsupported-version',
+				$this->oauthVersion
+			);
+		}
 	}
 }

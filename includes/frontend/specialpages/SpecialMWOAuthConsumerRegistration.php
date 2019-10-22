@@ -294,16 +294,30 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$cmr = $status->value['result']['consumer'];
 				if ( $cmr->getOwnerOnly() ) {
-					/** @var MWOAuthConsumerAcceptance $cmra */
 					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-					$cmra = $status->value['result']['acceptance'];
-					$this->getOutput()->addWikiMsg(
-						'mwoauthconsumerregistration-created-owner-only',
-						$cmr->getConsumerKey(),
-						MWOAuthUtils::hmacDBSecret( $cmr->getSecretKey() ),
-						$cmra->getAccessToken(),
-						MWOAuthUtils::hmacDBSecret( $cmra->getAccessSecret() )
-					);
+					$accessToken = $status->value['result']['accessToken'];
+					if ( $cmr->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2 ) {
+						// If we just add raw AT to the page, it would go 3000px wide
+						// @phan-suppress-next-line SecurityCheck-DoubleEscaped
+						$accessToken = \Html::element( 'span', [
+							'style' => 'overflow-wrap: break-word'
+						], (string)$accessToken );
+
+						$this->getOutput()->addWikiMsg(
+							'mwoauthconsumerregistration-created-owner-only-oauth2',
+							$cmr->getConsumerKey(),
+							MWOAuthUtils::hmacDBSecret( $cmr->getSecretKey() ),
+							\Message::rawParam( $accessToken )
+						);
+					} else {
+						$this->getOutput()->addWikiMsg(
+							'mwoauthconsumerregistration-created-owner-only',
+							$cmr->getConsumerKey(),
+							MWOAuthUtils::hmacDBSecret( $cmr->getSecretKey() ),
+							$accessToken->key,
+							MWOAuthUtils::hmacDBSecret( $accessToken->secret )
+						);
+					}
 				} else {
 					$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-proposed',
 						$cmr->getConsumerKey(),
@@ -342,7 +356,9 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'default' => MWOAuthUIUtils::generateInfoTable( [
 							'mwoauth-consumer-name' => $cmrAc->getName(),
 							'mwoauth-consumer-version' => $cmrAc->getVersion(),
-							'mwoauth-oauth-version' => $cmrAc->getOAuthVersion(),
+							'mwoauth-oauth-version' => $cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2 ?
+								wfMessage( 'mwoauth-oauth-version-2' )->text() :
+								wfMessage( 'mwoauth-oauth-version-1' )->text(),
 							'mwoauth-consumer-key' => $cmrAc->getConsumerKey(),
 						], $this->getContext() ),
 					],
@@ -361,7 +377,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'label-message' => 'mwoauth-consumer-rsakey',
 						'required' => false,
 						'default' => $cmrAc->getDAO()->getRsaKey(),
-						'rows' => 5
+						'rows' => 5,
 					],
 					'reason' => [
 						'type' => 'text',
@@ -403,16 +419,30 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				$curSecretKey = $cmr->getSecretKey();
 				if ( $oldSecretKey !== $curSecretKey ) { // token reset?
 					if ( $cmr->getOwnerOnly() ) {
-						/** @var MWOAuthConsumerAcceptance $cmra */
 						// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-						$cmra = $status->value['result']['acceptance'];
-						$this->getOutput()->addWikiMsg(
-							'mwoauthconsumerregistration-secretreset-owner-only',
-							$cmr->getConsumerKey(),
-							MWOAuthUtils::hmacDBSecret( $curSecretKey ),
-							$cmra->getAccessToken(),
-							MWOAuthUtils::hmacDBSecret( $cmra->getAccessSecret() )
-						);
+						$accessToken = $status->value['result']['accessToken'];
+						if ( $cmr->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2 ) {
+							// If we just add raw AT to the page, it would go 3000px wide
+							// @phan-suppress-next-line SecurityCheck-DoubleEscaped
+							$accessToken = \Html::element( 'span', [
+								'style' => 'overflow-wrap: break-word'
+							], (string)$accessToken );
+
+							$this->getOutput()->addWikiMsg(
+								'mwoauthconsumerregistration-secretreset-owner-only-oauth2',
+								$cmr->getConsumerKey(),
+								MWOAuthUtils::hmacDBSecret( $cmr->getSecretKey() ),
+								\Message::rawParam( $accessToken )
+							);
+						} else {
+							$this->getOutput()->addWikiMsg(
+								'mwoauthconsumerregistration-secretreset-owner-only',
+								$cmr->getConsumerKey(),
+								MWOAuthUtils::hmacDBSecret( $curSecretKey ),
+								$accessToken->key,
+								MWOAuthUtils::hmacDBSecret( $accessToken->secret )
+							);
+						}
 					} else {
 						$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-secretreset',
 							MWOAuthUtils::hmacDBSecret( $curSecretKey ) );
@@ -522,9 +552,12 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		] );
 
 		$lang = $this->getLanguage();
+		$oauthVersionMessage = $cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2 ?
+			wfMessage( 'mwoauth-oauth-version-2' )->text() :
+			wfMessage( 'mwoauth-oauth-version-1' )->text();
 		$data = [
 			'mwoauthconsumerregistration-name' => $cmrAc->escapeForHtml( $cmrAc->getNameAndVersion() ),
-			'mwoauth-oauth-version' => $cmrAc->escapeForHtml( $cmrAc->getOAuthVersion() ),
+			'mwoauth-oauth-version' => $cmrAc->escapeForHtml( $oauthVersionMessage ),
 			// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
 			// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
 			// mwoauth-consumer-stage-disabled

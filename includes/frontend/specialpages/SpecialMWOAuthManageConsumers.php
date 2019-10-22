@@ -465,7 +465,11 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$data = [
 			'mwoauthmanageconsumers-name' => $cmrAc->escapeForHtml( $cmrAc->getNameAndVersion() ),
 			'mwoauthmanageconsumers-user' => $cmrAc->escapeForHtml( $cmrAc->getUserName() ),
-			'mwoauth-oauth-version' => $cmrAc->escapeForHtml( $cmrAc->getOAuthVersion() ),
+			'mwoauth-oauth-version' => $cmrAc->escapeForHtml(
+				$cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2 ?
+				$this->msg( 'mwoauth-oauth-version-2' ) :
+				$this->msg( 'mwoauth-oauth-version-1' )
+			),
 			'mwoauthmanageconsumers-description' => $cmrAc->escapeForHtml(
 				$cmrAc->get( 'description', function ( $s ) use ( $lang ) {
 					return $lang->truncateForVisual( $s, 10024 );

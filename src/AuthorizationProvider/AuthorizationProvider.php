@@ -106,6 +106,7 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 	protected function decorateAuthServer() {
 		$grant = $this->getGrantSingleton();
 		$grant->setRefreshTokenTTL( $this->getRefreshTokenTTL() );
+		$this->server->setDefaultScope( '#default' );
 		$this->server->enableGrantType(
 			$grant,
 			$this->getGrantExpirationInterval()

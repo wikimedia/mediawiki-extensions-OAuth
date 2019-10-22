@@ -41,6 +41,7 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 		if ( $this->identifierExists( $accessTokenEntity->getIdentifier() ) ) {
 			throw UniqueTokenIdentifierConstraintViolationException::create();
 		}
+
 		$data = $this->getDbDataFromTokenEntity( $accessTokenEntity );
 
 		$this->getDB( DB_MASTER )->insert(
@@ -86,12 +87,29 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 		return (bool)$row->{static::FIELD_REVOKED};
 	}
 
+	/**
+	 * Delete all access tokens issued with provided approval
+	 *
+	 * @param int $approvalId
+	 */
+	public function deleteForApprovalId( $approvalId ) {
+		$this->getDB( DB_MASTER )->delete(
+			$this->getTableName(),
+			[
+				static::FIELD_ACCEPTANCE_ID => $approvalId
+			],
+			__METHOD__
+		);
+	}
+
 	private function getDbDataFromTokenEntity( AccessTokenEntity $accessTokenEntity ) {
+		$expiry = $accessTokenEntity->getExpiryDateTime()->getTimestamp();
+		if ( $expiry > 9223371197536780800 ) {
+			$expiry = 'infinity';
+		}
 		return [
 			$this->getIdentifierField() => $accessTokenEntity->getIdentifier(),
-			static::FIELD_EXPIRES => $this->getDB()->encodeExpiry(
-				$accessTokenEntity->getExpiryDateTime()->getTimestamp()
-			),
+			static::FIELD_EXPIRES => $this->getDB()->encodeExpiry( $expiry ),
 			static::FIELD_ACCEPTANCE_ID => $accessTokenEntity->getApproval() ?
 				$accessTokenEntity->getApproval()->getId() :
 				0

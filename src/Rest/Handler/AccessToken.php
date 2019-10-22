@@ -22,19 +22,25 @@ class AccessToken extends AuthenticationHandler {
 	 */
 	public function execute() {
 		$response = new Response();
-		$request = ServerRequest::fromGlobals()->withParsedBody(
-			$this->getRequest()->getPostParams()
-		);
 
 		try {
+			if ( $this->queuedError ) {
+				throw $this->queuedError;
+			}
+			$request = ServerRequest::fromGlobals()->withParsedBody(
+				$this->getValidatedParams()
+			);
+
 			$authProvider = $this->getAuthorizationProvider();
 			$authProvider->setUser( $this->user );
 			return $authProvider->getAccessTokens( $request, $response );
 		} catch ( OAuthServerException $exception ) {
-			return $exception->generateHttpResponse( $response );
+			return $this->errorResponse( $exception, $response );
 		} catch ( Throwable $exception ) {
-			return OAuthServerException::serverError( $exception->getMessage() )
-				->generateHttpResponse( $response );
+			return $this->errorResponse(
+				OAuthServerException::serverError( $exception->getMessage(), $exception ),
+				$response
+			);
 		}
 	}
 

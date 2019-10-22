@@ -286,139 +286,18 @@ class MWOAuthServer extends OAuthServer {
 	}
 
 	/**
-	 * The user has authorized the request by this consumer, with this request token. Update
-	 * everything so that the consumer can swap the request token for an access token. Then
-	 * generate the callback URL where we will redirect our user back to the consumer.
-	 * @param String $consumerKey
-	 * @param String $requestTokenKey
-	 * @param \User $mwUser user authorizing the request (local user)
-	 * @param bool $update update the grants/wiki to those requested by consumer
-	 * @return String the callback URL to redirect the user
-	 * @throws MWOAuthException
+	 * @deprecated User MWOAuthConsumer::authorize(...)
+	 *
+	 * @param string $consumerKey
+	 * @param string $requestTokenKey
+	 * @param \User $mwUser
+	 * @param bool $update
+	 * @return string
 	 */
 	public function authorize( $consumerKey, $requestTokenKey, \User $mwUser, $update ) {
-		global $wgBlockDisablesLogin;
-
-		// Check that user and consumer are in good standing
-		if ( $mwUser->isLocked() || $wgBlockDisablesLogin && $mwUser->isBlocked() ) {
-			throw new MWOAuthException( 'mwoauthserver-insufficient-rights', [
-				\Message::rawParam( \Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007',
-					'E007',
-					true
-				) )
-			] );
-		}
-
-		/** @var MWOAuthConsumer $consumer */
-		$consumer = $this->data_store->lookup_consumer( $consumerKey );
-		if ( !$consumer || $consumer->getDeleted() ) {
-			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key', [
-				\Message::rawParam( \Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006',
-					'E006',
-					true
-				) )
-			] );
-		} elseif ( !$consumer->isUsableBy( $mwUser ) ) {
-			$owner = MWOAuthUtils::getCentralUserNameFromId(
-				$consumer->getUserId(),
-				$mwUser
-			);
-			throw new MWOAuthException(
-				'mwoauthserver-bad-consumer',
-				[ $consumer->getName(), MWOAuthUtils::getCentralUserTalk( $owner ), \Message::rawParam(
-					\Linker::makeExternalLink(
-						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005',
-						'E005',
-						true
-					)
-				) ]
-			);
-		} elseif ( $consumer->getOwnerOnly() ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
-				$consumer->getName(),
-				\SpecialPage::getTitleFor(
-					'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
-				),
-				\Message::rawParam( \Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
-					'E010',
-					true
-				) )
-			] );
-		}
-
-		// Generate and Update the tokens:
-		// * Generate a new Verification code, and add it to the request token
-		// * Either add or update the authorization
-		// ** Generate a new access token if this is a new authorization
-		// * Resave request token with the access token
-
-		$verifyCode = \MWCryptRand::generateHex( 32 );
-		$requestToken = $this->data_store->lookup_token( $consumer, 'request', $requestTokenKey );
-		if ( !$requestToken || !( $requestToken instanceof MWOAuthToken ) ) {
-			throw new MWOAuthException( 'mwoauthserver-invalid-request-token' );
-		}
-		$requestToken->addVerifyCode( $verifyCode );
-
-		// CentralAuth may abort here if there is no global account for this user
-		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
-		if ( !$centralUserId ) {
-			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
-			throw new MWOAuthException( $userMsg, [ $consumer->getName(), \Message::rawParam(
-				\Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
-					'E008',
-					true
-				)
-			) ] );
-		}
-
-		// Authorization Token
-		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
-
-		// Check if this authorization exists
-		$cmra = $this->getCurrentAuthorization( $mwUser, $consumer, wfWikiID() );
-
-		if ( $update ) {
-			// This should be an update to an existing authorization
-			if ( !$cmra ) {
-				// update requested, but no existing key
-				throw new MWOAuthException( 'mwoauthserver-invalid-request' );
-			}
-			$cmra->setFields( [
-				'wiki'   => $consumer->getWiki(),
-				'grants' => $consumer->getGrants()
-			] );
-			$cmra->save( $dbw );
-			$accessToken = new MWOAuthToken( $cmra->getAccessToken(), '' );
-		} elseif ( !$cmra ) {
-			// Add the Authorization to the database
-			$accessToken = MWOAuthDataStore::newToken();
-			$cmra = MWOAuthConsumerAcceptance::newFromArray( [
-				'id'           => null,
-				'wiki'         => $consumer->getWiki(),
-				'userId'       => $centralUserId,
-				'consumerId'   => $consumer->getId(),
-				'accessToken'  => $accessToken->key,
-				'accessSecret' => $accessToken->secret,
-				'grants'       => $consumer->getGrants(),
-				'accepted'     => wfTimestampNow()
-			] );
-			$cmra->save( $dbw );
-		} else {
-			// Authorization exists, no updates requested, so no changes to the db
-			$accessToken = new MWOAuthToken( $cmra->getAccessToken(), '' );
-		}
-
-		$requestToken->addAccessKey( $accessToken->key );
-		$this->data_store->updateRequestToken( $requestToken, $consumer );
-		$this->logger->debug( "Verification code {$requestToken->getVerifyCode()} for " .
-			"$requestTokenKey (client: $consumerKey)" );
-		return $consumer->generateCallbackUrl(
-			$this->data_store, $requestToken->getVerifyCode(), $requestTokenKey
-		);
+		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+		$consumer = MWOAuthConsumer::newFromKey( $dbr, $consumerKey );
+		return $consumer->authorize( $mwUser, $update, $consumer->getGrants(), $requestTokenKey );
 	}
 
 	/**
@@ -433,6 +312,8 @@ class MWOAuthServer extends OAuthServer {
 	 * Users might want more grants on some wikis than on "*". Note that the reverse would not
 	 * make sense, since the consumer could just use the "*" acceptance if it has more grants.
 	 *
+	 * @deprecated Use MWOAuthConsumer::getCurrentAuthorization(...)
+	 *
 	 * @param \User $mwUser (local wiki user) User who may or may not have authorizations
 	 * @param MWOAuthConsumer $consumer
 	 * @param string $wikiId
@@ -440,36 +321,7 @@ class MWOAuthServer extends OAuthServer {
 	 * @return MWOAuthConsumerAcceptance
 	 */
 	public function getCurrentAuthorization( \User $mwUser, $consumer, $wikiId ) {
-		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-
-		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
-		if ( !$centralUserId ) {
-			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
-			throw new MWOAuthException( $userMsg, [ $consumer->getName(), \Message::rawParam(
-				\Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
-					'E008',
-					true
-				)
-			) ] );
-		}
-
-		$checkWiki = $consumer->getWiki() !== '*' ? $consumer->getWiki() : $wikiId;
-
-		$cmra = MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
-			$dbr,
-			$centralUserId,
-			$consumer,
-			$checkWiki
-		);
-		if ( !$cmra ) {
-			$cmra = MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
-				$dbr,
-				$centralUserId,
-				$consumer,
-				'*'
-			);
-		}
-		return $cmra;
+		wfDeprecated( __METHOD__ );
+		return $consumer->getCurrentAuthorization( $mwUser, $wikiId );
 	}
 }
