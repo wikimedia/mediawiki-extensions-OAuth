@@ -35,7 +35,7 @@ require_once __DIR__ . '/Mock_OAuthBaseStringRequest.php';
 class OAuthSignatureMethodHmacSha1Test extends \PHPUnit\Framework\TestCase {
 	private $method;
 
-	public function setUp() {
+	protected function setUp() : void {
 		$this->method = new OAuthSignatureMethod_HMAC_SHA1();
 	}
 

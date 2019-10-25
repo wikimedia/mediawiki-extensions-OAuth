@@ -36,7 +36,7 @@ require_once __DIR__ . '/Mock_OAuthSignatureMethod_RSA_SHA1.php';
 class OAuthSignatureMethodRsaSha1Test extends \PHPUnit\Framework\TestCase {
 	private $method;
 
-	public function setUp() {
+	protected function setUp() : void {
 		$this->method = new Mock_OAuthSignatureMethod_RSA_SHA1();
 	}
 

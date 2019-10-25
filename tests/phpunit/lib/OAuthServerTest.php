@@ -42,7 +42,7 @@ class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 	private $plaintext;
 	private $server;
 
-	public function setUp() {
+	protected function setUp() : void {
 		$this->consumer       = new OAuthConsumer('key', 'secret');
 		$this->request_token  = new OAuthToken('requestkey', 'requestsecret');
 		$this->access_token   = new OAuthToken('accesskey', 'accesssecret');
