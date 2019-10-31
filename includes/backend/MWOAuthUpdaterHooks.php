@@ -47,6 +47,43 @@ class MWOAuthUpdaterHooks {
 				true
 			] );
 
+			$updater->addExtensionUpdate( [
+				'addField',
+				'oauth_registered_consumer',
+				'oarc_oauth_version',
+				"$base/oauth_version_registered.sql",
+				true
+			] );
+
+			$updater->addExtensionUpdate( [
+				'addField',
+				'oauth_registered_consumer',
+				'oarc_oauth2_is_confidential',
+				"$base/oauth2_is_confidential.sql",
+				true
+			] );
+
+			$updater->addExtensionUpdate( [
+				'addField',
+				'oauth_registered_consumer',
+				'oarc_oauth2_allowed_grants',
+				"$base/oauth2_allowed_grants.sql",
+				true
+			] );
+
+			$updater->addExtensionUpdate( [
+				'addField',
+				'oauth_accepted_consumer',
+				'oaac_oauth_version',
+				"$base/oauth_version_accepted.sql",
+				true
+			] );
+
+			$updater->addExtensionTable(
+				'oauth2_access_tokens',
+				"$base/oauth2_access_tokens.sql"
+			);
+
 		}
 		return true;
 	}

@@ -49,7 +49,13 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_registered_consumer (
     -- Timestamp of the last stage change
     oarc_stage_timestamp varbinary(14) NOT NULL,
     -- Whether this consumer is suppressed (hidden)
-    oarc_deleted tinyint unsigned NOT NULL DEFAULT 0
+    oarc_deleted tinyint unsigned NOT NULL DEFAULT 0,
+    -- Version of OAuth protocol this consumer uses
+    oarc_oauth_version TINYINT NOT NULL DEFAULT 1,
+    -- Allowed OAuth 2.0 grant types
+    oarc_oauth2_allowed_grants BLOB NULL,
+    -- OAuth2 flag indicating if consumer can be trusted with keeping secrets
+    oarc_oauth2_is_confidential TINYINT NOT NULL DEFAULT 1
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/oarc_consumer_key
@@ -75,7 +81,9 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_accepted_consumer (
     -- JSON blob of actually accepted grants
     oaac_grants blob NOT NULL,
     -- Timestamp of grant approval by the user
-    oaac_accepted varbinary(14) NOT NULL
+    oaac_accepted varbinary(14) NOT NULL,
+    -- Version of OAuth protocol this consumer uses
+    oaac_oauth_version TINYINT NOT NULL DEFAULT 1
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/oaac_access_token
@@ -85,3 +93,19 @@ CREATE UNIQUE INDEX /*i*/oaac_user_consumer_wiki
 CREATE INDEX /*i*/oaac_consumer_user
     ON /*_*/oauth_accepted_consumer (oaac_consumer_id,oaac_user_id);
 CREATE INDEX /*i*/oaac_user_id ON /*_*/oauth_accepted_consumer (oaac_user_id,oaac_id);
+
+-- Access tokens used on OAuth2 requests
+CREATE TABLE IF NOT EXISTS /*_*/oauth2_access_tokens (
+    oaat_id integer unsigned NOT NULL PRIMARY KEY auto_increment,
+    -- Access token identifier
+    oaat_identifier varchar(255) NOT NULL,
+    -- Expiration timestamp
+    oaat_expires varbinary(14) NOT NULL,
+    -- Identifier of the acceptance that allows this access token to be created
+    oaat_acceptance_id integer unsigned NOT NULL,
+    -- Indicates if the access token has been revoked
+    oaat_revoked tinyint NOT NULL DEFAULT 0
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/oaat_identifier
+    ON /*_*/oauth2_access_tokens (oaat_identifier);
