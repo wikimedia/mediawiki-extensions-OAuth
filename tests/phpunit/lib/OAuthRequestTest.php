@@ -44,7 +44,7 @@ class OAuthRequestTest extends \PHPUnit\Framework\TestCase {
 
 	protected static $globals = [];
 
-	public static function setUpBeforeClass() {
+	public static function setUpBeforeClass() : void {
 		parent::setUpBeforeClass();
 		// can't use @backupGlobals because it tries to serialize the arrays
 		self::$globals['$_SERVER'] = $_SERVER;
@@ -52,7 +52,7 @@ class OAuthRequestTest extends \PHPUnit\Framework\TestCase {
 		self::$globals['$_GET'] = $_GET;
 	}
 
-	public static function tearDownAfterClass() {
+	public static function tearDownAfterClass() : void {
 		$_SERVER = self::$globals['$_SERVER'];
 		$_POST = self::$globals['$_POST'];
 		$_GET = self::$globals['$_GET'];
