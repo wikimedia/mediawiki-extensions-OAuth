@@ -243,9 +243,11 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			$status = $form->show();
 			if ( $status instanceof \Status && $status->isOK() ) {
 				/** @var MWOAuthConsumer $cmr */
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$cmr = $status->value['result']['consumer'];
 				if ( $cmr->getOwnerOnly() ) {
 					/** @var MWOAuthConsumerAcceptance $cmra */
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					$cmra = $status->value['result']['acceptance'];
 					$this->getOutput()->addWikiMsg(
 						'mwoauthconsumerregistration-created-owner-only',
@@ -346,12 +348,14 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			$status = $form->show();
 			if ( $status instanceof \Status && $status->isOK() ) {
 				/** @var MWOAuthConsumer $cmr */
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$cmr = $status->value['result']['consumer'];
 				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-updated' );
 				$curSecretKey = $cmr->getSecretKey();
 				if ( $oldSecretKey !== $curSecretKey ) { // token reset?
 					if ( $cmr->getOwnerOnly() ) {
 						/** @var MWOAuthConsumerAcceptance $cmra */
+						// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 						$cmra = $status->value['result']['acceptance'];
 						$this->getOutput()->addWikiMsg(
 							'mwoauthconsumerregistration-secretreset-owner-only',

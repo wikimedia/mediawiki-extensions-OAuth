@@ -84,7 +84,6 @@ class MigrateCentralWiki extends \Maintenance {
 
 		for ( $currentId = $newMax + 1, $i = 1; $currentId <= $oldMax; ++$currentId, ++$i ) {
 			$this->output( "Migrating $type $currentId..." );
-			// @phan-suppress-next-line PhanNonClassMethodCall
 			$cmr = $cmrClass::newFromId( $oldDb, $currentId );
 			if ( $cmr ) {
 				$cmr->updateOrigin( 'new' );
