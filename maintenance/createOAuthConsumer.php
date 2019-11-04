@@ -89,6 +89,7 @@ class CreateOAuthConsumer extends \Maintenance {
 		}
 
 		/** @var MWOAuthConsumer $cmr */
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		$cmr = $status->value['result']['consumer'];
 
 		if ( $this->hasOption( 'approve' ) ) {

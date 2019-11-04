@@ -499,6 +499,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$this->getOutput()->addHTML( '</div>' );
 		if ( $status instanceof \Status && $status->isOK() ) {
 			// Redirect to callback url
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$this->getOutput()->redirect( $status->value['result']['callbackUrl'] );
 		}
 	}
