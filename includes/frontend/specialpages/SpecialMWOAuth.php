@@ -254,7 +254,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			);
 		}
 
-		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.BasicStyles' );
+		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.styles' );
 	}
 
 	protected function showCancelPage() {
@@ -393,7 +393,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		}
 
 		$this->getOutput()->addModuleStyles(
-			[ 'mediawiki.ui', 'mediawiki.ui.button', 'ext.MWOAuth.AuthorizeForm' ]
+			[ 'mediawiki.ui', 'mediawiki.ui.button', 'ext.MWOAuth.Styles' ]
 		);
 		$this->getOutput()->addModules( 'ext.MWOAuth.AuthorizeDialog' );
 

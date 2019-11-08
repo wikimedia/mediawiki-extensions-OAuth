@@ -404,7 +404,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 		$this->addSubtitleLinks( $action, $consumerKey );
 
-		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.BasicStyles' );
+		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.styles' );
 	}
 
 	/**

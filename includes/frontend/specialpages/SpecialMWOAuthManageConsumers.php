@@ -102,7 +102,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 		$this->addQueueSubtitleLinks( $consumerKey );
 
-		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.BasicStyles' );
+		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.styles' );
 	}
 
 	/**

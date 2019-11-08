@@ -78,7 +78,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 
 		$this->addSubtitleLinks( $acceptanceId );
 
-		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.BasicStyles' );
+		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.styles' );
 	}
 
 	/**

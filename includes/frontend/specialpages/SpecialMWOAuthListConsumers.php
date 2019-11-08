@@ -54,7 +54,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			break;
 		}
 
-		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.BasicStyles' );
+		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.styles' );
 	}
 
 	/**

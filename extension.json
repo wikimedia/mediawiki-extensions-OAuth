@@ -102,13 +102,9 @@
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider": "includes/api/MWOAuthSessionProvider.php"
 	},
 	"ResourceModules": {
-		"ext.MWOAuth.BasicStyles": {
+		"ext.MWOAuth.styles": {
 			"styles": [
-				"ext.MWOAuth.BasicStyles.css"
-			]
-		},
-		"ext.MWOAuth.AuthorizeForm": {
-			"styles": [
+				"ext.MWOAuth.BasicStyles.css",
 				"ext.MWOAuth.AuthorizeForm.css"
 			]
 		},
