@@ -44,7 +44,7 @@
 	"mwoauthmanageconsumers-reenable": "قبول ڪيل",
 	"mwoauthmanageconsumers-reason": "سبب:",
 	"oauthmanagemygrants": "ڳنڊيل اپليڪيشنن جو انتظام",
-	"mwoauthmanagemygrants-text": "هتي اهي اپليڪشن ڏنل آهن، جيڪي اوهان جي کاتي سان ڳنڍيل آهن. ڪنهن به اپليڪيشن کي ڪيترا اختيار ڏنل آهن، اهي اوهان اپليڪشن کي پهرين دفعي استعمال ڪرڻ وقت ڏيندا آهيو. جيڪڏهن اوهان ڪنهن ٻي وڪي پراجيڪٽ لاءِ ڪو اپليڪشن الڳ سان استعمال ڪيو ٿا ته ان جي لاءِ هيٺ الڳ ترتيبون ڏنل آهن. \n\nڳنڍيل اپليڪشن OAuth protocol ذريعي اوهان جي کاتي جو اختيار رکي ٿي. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth وڌيڪ ڄاڻو ڳنڍيل اپليڪشن متعلق])</span>",
+	"mwoauthmanagemygrants-text": "هتي اهي ايپليڪيشنون ڏنل آهن، جيڪي اوهان جي کاتي سان ڳنڍيل آهن. ڪنھن بہ ايپليڪيشن کي ڪيترا اختيار ڏنل آهن، اهي اوهان ايپليڪشن کي پھرين ڀيري استعمال ڪرڻ وقت ڏيندا آهيو. جيڪڏهن اوهان ڪنھن ٻي وڪي پراجيڪٽ لاءِ ڪو ايپليڪشن الڳ سان استعمال ڪريو ٿا تہ ان جي لاءِ هيٺ الڳ ترتيبون ڏنل آهن. \n\nڳنڍيل ايپليڪشن OAuth protocol ذريعي اوهان جي کاتي جو اختيار رکي ٿي. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth ڳنڍيل ايپليڪشنن بابت وڌيڪ پرايو])</span>",
 	"mwoauthmanagemygrants-showlist": "فھرست ڳنڍيل ايپليڪشن",
 	"mwoauthmanagemygrants-wikiallowed": "منصوبن ۾ اجازت:",
 	"mwoauthmanagemygrants-applicablegrantsallowed": "مناسب اجازت ڏنل:",
