@@ -15,7 +15,7 @@ class MWOAuthAPISetup {
 	 */
 	public static function onCentralAuthAbortCentralAuthToken() {
 		$request = \RequestContext::getMain()->getRequest();
-		return !MWOAuthUtils::hasOAuthHeaders( $request );
+		return !self::isOAuthRequest( $request );
 	}
 
 	/**
@@ -27,6 +27,13 @@ class MWOAuthAPISetup {
 	 * @return bool
 	 */
 	public static function onTestCanonicalRedirect( $request, $title, $output ) {
-		return !MWOAuthUtils::hasOAuthHeaders( $request );
+		return !self::isOAuthRequest( $request );
+	}
+
+	protected static function isOAuthRequest( $request ) {
+		if ( MWOAuthUtils::hasOAuthHeaders( $request ) ) {
+			return true;
+		}
+		return ResourceServer::isOAuth2Request( $request );
 	}
 }

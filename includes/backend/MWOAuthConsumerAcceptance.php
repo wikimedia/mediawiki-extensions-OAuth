@@ -220,6 +220,9 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	protected function encodeRow( DBConnRef $db, $row ) {
+		if ( (int)$row['oaac_user_id'] === 0 ) {
+			throw new MWOAuthException( 'mwoauth-consumer-access-no-user' );
+		}
 		// For compatibility with other wikis in the farm, un-remap some grants
 		foreach ( MWOAuthConsumer::$mapBackCompatGrants as $old => $new ) {
 			while ( ( $i = array_search( $new, $row['oaac_grants'], true ) ) !== false ) {

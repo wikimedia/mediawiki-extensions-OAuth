@@ -3,6 +3,8 @@
 namespace MediaWiki\Extensions\OAuth;
 
 use ApiMessage;
+use GuzzleHttp\Psr7\ServerRequest;
+use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\SessionInfo;
@@ -71,7 +73,9 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 			return null;
 		}
 
-		if ( !MWOAuthUtils::hasOAuthHeaders( $request ) ) {
+		$oauthVersion = $this->getOAuthVersionFromRequest( $request );
+		if ( $oauthVersion === null ) {
+			// Not an OAuth request
 			return null;
 		}
 
@@ -82,22 +86,60 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 			'result' => 'fail',
 		];
 
+		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+		$access = null;
 		try {
-			$server = MWOAuthUtils::newMWOAuthServer();
-			$oauthRequest = MWOAuthRequest::fromRequest( $request );
-			$logData['consumer'] = $oauthRequest->getConsumerKey();
-			list( , $accesstoken ) = $server->verify_request( $oauthRequest );
-		} catch ( OAuthException $ex ) {
+			if ( $oauthVersion === MWOAuthConsumer::OAUTH_VERSION_2 ) {
+				$resourceServer = ResourceServer::factory();
+				$accessTokenKey = $this->verifyOAuth2Request( $resourceServer, $request );
+				$accessTokenRepo = new AccessTokenRepository();
+				$accessId = $accessTokenRepo->getApprovalId( $accessTokenKey );
+				if ( $accessId === 0 ) {
+					if (
+						$resourceServer->getUser()->getId() === 0 &&
+						$resourceServer->getClient()->getOwnerOnly() === false
+					) {
+						// This tell us, with good degree of certainty, that the AT
+						// was issued to a machine and represents no particular user
+						$access = MWOAuthConsumerAcceptance::newFromArray( [
+							'id'           => null,
+							'wiki'         => $resourceServer->getClient()->getWiki(),
+							'userId'       => 0,
+							'consumerId'   => $resourceServer->getClient()->getId(),
+							'accessToken'  => '',
+							'accessSecret' => '',
+							'grants'       => $resourceServer->getClient()->getGrants(),
+							'accepted'     => wfTimestampNow(),
+							'oauth_version' => MWOAuthConsumer::OAUTH_VERSION_2
+						] );
+					}
+				} else {
+					$access = MWOAuthConsumerAcceptance::newFromId(
+						MWOAuthUtils::getCentralDB( DB_REPLICA ), $accessId
+					);
+				}
+				if ( !$access ) {
+					throw new MWOAuthException( 'mwoauth-oauth2-error-create-at-no-user-approval' );
+				}
+
+				// Set the scopes that are verified for this request
+				$access->setField( 'grants', array_keys( $resourceServer->getScopes() ) );
+			} else {
+				$server = MWOAuthUtils::newMWOAuthServer();
+				$oauthRequest = MWOAuthRequest::fromRequest( $request );
+				$logData['consumer'] = $oauthRequest->getConsumerKey();
+				list( , $accessToken ) = $server->verify_request( $oauthRequest );
+				$accessTokenKey = $accessToken->key;
+				$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $accessTokenKey );
+			}
+		} catch ( \Exception $ex ) {
 			$this->logger->debug( 'Bad OAuth request from {ip}', $logData + [ 'exception' => $ex ] );
 			return $this->makeException( 'mwoauth-invalid-authorization', $ex->getMessage() );
 		}
 
-		$wiki = wfWikiID();
-		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-
-		$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $accesstoken->key );
 		$logData['user'] = MWOAuthUtils::getCentralUserNameFromId( $access->getUserId(), 'raw' );
 
+		$wiki = wfWikiID();
 		// Access token is for this wiki
 		if ( $access->getWiki() !== '*' && $access->getWiki() !== $wiki ) {
 			$this->logger->debug( 'OAuth request for wrong wiki from user {user}', $logData );
@@ -106,7 +148,11 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 
 		// There exists a local user
 		$localUser = MWOAuthUtils::getLocalUserFromCentralId( $access->getUserId() );
-		if ( !$localUser || !$localUser->isLoggedIn() ) {
+		if ( !$localUser ) {
+			$localUser = User::newFromId( 0 );
+		}
+		// If there is an actual approval, but user bound to it does not exist
+		if ( $access->getId() > 0 && $localUser->getId() === 0 ) {
 			$this->logger->debug( 'OAuth request for invalid or non-local user {user}', $logData );
 			return $this->makeException( 'mwoauth-invalid-authorization-invalid-user',
 				\Message::rawParam( \Linker::makeExternalLink(
@@ -158,6 +204,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 
 		$logData['result'] = 'success';
 		$this->logger->debug( 'OAuth request for consumer {consumer} by user {user}', $logData );
+
 		return new SessionInfo( SessionInfo::MAX_PRIORITY, [
 			'provider' => $this,
 			'id' => $id,
@@ -165,10 +212,58 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 			'persisted' => $persisted,
 			'forceUse' => $forceUse,
 			'metadata' => [
-				'key' => $accesstoken->key,
+				'oauthVersion' => $oauthVersion,
+				'consumerId' => $consumer->getOwnerOnly() ? null : $consumer->getId(),
+				'key' => $accessTokenKey,
 				'rights' => \MWGrants::getGrantRights( $access->getGrants() ),
 			],
 		] );
+	}
+
+	/**
+	 * Determine OAuth version of the request
+	 *
+	 * @param WebRequest $request
+	 * @return int|null if request is not using OAuth header
+	 */
+	private function getOAuthVersionFromRequest( WebRequest $request ) {
+		if ( MWOAuthUtils::hasOAuthHeaders( $request ) ) {
+			return MWOAuthConsumer::OAUTH_VERSION_1;
+		}
+		if ( ResourceServer::isOAuth2Request( $request ) ) {
+			return MWOAuthConsumer::OAUTH_VERSION_2;
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param ResourceServer &$resourceServer
+	 * @param WebRequest $request
+	 * @return string
+	 * @throws MWOAuthException
+	 */
+	private function verifyOAuth2Request( ResourceServer &$resourceServer, WebRequest $request ) {
+		$request = ServerRequest::fromGlobals()->withHeader(
+			'authorization',
+			$request->getHeader( 'authorization' )
+		);
+
+		$response = new Response();
+		$valid = false;
+		$resourceServer->verify(
+			$request,
+			$response,
+			function ( $request, $response ) use ( &$valid ) {
+				$valid = true;
+			}
+		);
+
+		if ( $valid ) {
+			return $resourceServer->getAccessTokenId();
+		}
+
+		throw new MWOAuthException( 'mwoauth-oauth2-invalid-access-token' );
 	}
 
 	public function preventSessionsForUser( $username ) {
@@ -258,7 +353,6 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 	 */
 	public function onApiCheckCanExecute( \ApiBase $module, \User $user, &$message ) {
 		global $wgMWOauthDisabledApiModules;
-
 		if ( !$this->getSessionData( $user ) ) {
 			return true;
 		}
@@ -297,14 +391,8 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 	 */
 	protected function getPublicConsumerId( User $user = null ) {
 		$data = $this->getSessionData( $user );
-		if ( $data ) {
-			$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-			$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $data['key'] );
-			$consumerId = $access->getConsumerId();
-			$consumer = MWOAuthConsumer::newFromId( $dbr, $consumerId );
-			if ( !$consumer->getOwnerOnly() ) {
-				return $consumerId;
-			}
+		if ( $data && isset( $data['consumerId'] ) ) {
+			return $data['consumerId'];
 		}
 		return null;
 	}

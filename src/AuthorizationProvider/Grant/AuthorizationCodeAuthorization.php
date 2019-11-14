@@ -9,6 +9,7 @@ use League\OAuth2\Server\RequestTypes\AuthorizationRequest;
 use DateInterval;
 use Exception;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\AuthorizationProvider;
+use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Extensions\OAuth\Entity\UserEntity;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -46,7 +47,16 @@ class AuthorizationCodeAuthorization extends AuthorizationProvider {
 	 */
 	public function init( ServerRequestInterface $request ): AuthorizationRequest {
 		$authRequest = $this->server->validateAuthorizationRequest( $request );
+		/** @var ClientEntity $client */
+		$client = $authRequest->getClient();
+		'@phan-var ClientEntity $client';
 
+		if ( !$client->isUsableBy( $this->user ) ) {
+			throw OAuthServerException::accessDenied(
+				'Client ' . $client->getIdentifier() .
+				'is not usable by user with ID ' . $this->user->getId()
+			);
+		}
 		$userEntity = UserEntity::newFromMWUser( $this->user );
 		$authRequest->setUser( $userEntity );
 		$this->logAuthorizationRequest( __METHOD__, $authRequest );

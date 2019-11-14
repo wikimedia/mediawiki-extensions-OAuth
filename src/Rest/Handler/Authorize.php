@@ -46,7 +46,6 @@ class Authorize extends AuthenticationHandler {
 			$authProvider->setUser( $this->user );
 			/** @var AuthorizationRequest $authRequest */
 			$authRequest = $authProvider->init( $request );
-
 			$this->setValidScopes( $authRequest );
 			if ( !$authProvider->needsUserApproval() ) {
 				return $authProvider->authorize( $authRequest, $response );

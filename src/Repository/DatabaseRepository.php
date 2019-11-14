@@ -3,13 +3,13 @@
 namespace MediaWiki\Extensions\OAuth\Repository;
 
 use MediaWiki\Extensions\OAuth\MWOAuthUtils;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\DBConnRef;
 
 abstract class DatabaseRepository {
 
 	/**
 	 * @param int $index
-	 * @return IDatabase
+	 * @return DBConnRef
 	 */
 	public function getDB( $index = DB_REPLICA ) {
 		return MWOAuthUtils::getCentralDB( $index );

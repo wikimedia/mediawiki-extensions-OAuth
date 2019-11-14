@@ -674,6 +674,7 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 			$centralId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
 			return ( $centralId && $this->userId === $centralId );
 		}
+
 		return false;
 	}
 

@@ -102,6 +102,27 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 		);
 	}
 
+	/**
+	 * Get ID of the approval bound to this AT
+	 *
+	 * @param string $tokenId
+	 * @return bool|int
+	 */
+	public function getApprovalId( $tokenId ) {
+		$row = $this->getDB()->selectRow(
+			$this->getTableName(),
+			[ static::FIELD_ACCEPTANCE_ID ],
+			[ $this->getIdentifierField() => $tokenId ],
+			__METHOD__
+		);
+
+		if ( $row ) {
+			return (int)$row->{static::FIELD_ACCEPTANCE_ID};
+		}
+
+		return false;
+	}
+
 	private function getDbDataFromTokenEntity( AccessTokenEntity $accessTokenEntity ) {
 		$expiry = $accessTokenEntity->getExpiryDateTime()->getTimestamp();
 		if ( $expiry > 9223371197536780800 ) {

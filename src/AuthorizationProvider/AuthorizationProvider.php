@@ -152,6 +152,7 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 		if ( $this->config->has( 'OAuth2RefreshTokenTTL' ) ) {
 			$intervalSpec = $this->config->get( 'OAuth2RefreshTokenTTL' );
 		}
+
 		return new DateInterval( $intervalSpec );
 	}
 

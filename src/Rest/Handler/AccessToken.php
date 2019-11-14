@@ -32,7 +32,6 @@ class AccessToken extends AuthenticationHandler {
 			);
 
 			$authProvider = $this->getAuthorizationProvider();
-			$authProvider->setUser( $this->user );
 			return $authProvider->getAccessTokens( $request, $response );
 		} catch ( OAuthServerException $exception ) {
 			return $this->errorResponse( $exception, $response );

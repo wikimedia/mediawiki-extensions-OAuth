@@ -66,6 +66,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 			}
 			$this->setUserIdentifier( $userIdentifier );
 		}
+
 		$this->confirmClientUsable();
 	}
 
