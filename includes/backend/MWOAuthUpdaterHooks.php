@@ -84,6 +84,12 @@ class MWOAuthUpdaterHooks {
 				"$base/oauth2_access_tokens.sql"
 			);
 
+			$updater->addExtensionIndex(
+				'oauth2_access_tokens',
+				'oaat_acceptance_id',
+				"$base/index_on_oaat_acceptance_id.sql"
+			);
+
 		}
 		return true;
 	}
