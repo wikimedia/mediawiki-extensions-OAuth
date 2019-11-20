@@ -14,7 +14,8 @@
 			"Macofe",
 			"Mainframe98",
 			"Mar(c)",
-			"Kippenvlees1"
+			"Kippenvlees1",
+			"McDutchie"
 		]
 	},
 	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a te gebruiken voor API-toestemming",
@@ -175,7 +176,7 @@
 	"mwoauthmanagemygrants-revoke": "toegang intrekken",
 	"mwoauthmanagemygrants-grantaccept": "Toegestaan",
 	"mwoauthmanagemygrants-update-text": "Gebruik het onderstaande formulier om de rechten te wijzigen die worden gegeven aan een toepassing om namens u te handelen.",
-	"mwoauthmanagemygrants-revoke-text": "Gebruik het onderstaande formulier om toegang voor een toepassing om namen u te handelen in te trekken.",
+	"mwoauthmanagemygrants-revoke-text": "Gebruik het onderstaande formulier om de toestemming van een toepassing om namens u te handelen in te trekken.",
 	"mwoauthmanagemygrants-confirm-legend": "Gekoppelde toepassing beheren",
 	"mwoauthmanagemygrants-update": "Toegang bijwerken",
 	"mwoauthmanagemygrants-renounce": "Machtiging intrekken",
