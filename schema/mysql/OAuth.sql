@@ -109,3 +109,6 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth2_access_tokens (
 
 CREATE UNIQUE INDEX /*i*/oaat_identifier
     ON /*_*/oauth2_access_tokens (oaat_identifier);
+
+CREATE INDEX /*i*/oaat_acceptance_id
+    ON /*_*/oauth2_access_tokens (oaat_acceptance_id);
