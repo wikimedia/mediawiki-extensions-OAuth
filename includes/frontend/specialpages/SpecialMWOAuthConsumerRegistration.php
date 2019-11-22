@@ -68,6 +68,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 		$this->setHeaders();
 		$this->getOutput()->disallowUserJs();
+		$this->addHelpLink( 'Help:OAuth' );
 
 		$block = $user->getBlock();
 		if ( $block ) {
