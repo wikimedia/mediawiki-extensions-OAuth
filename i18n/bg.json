@@ -123,6 +123,8 @@
 	"mwoauthmanagemygrants-success-update": "Вашите настройки за това приложение са обновени.",
 	"mwoauthmanagemygrants-success-renounce": "Достъпът на приложението до Вашата сметка бе отменен.",
 	"mwoauthmanagemygrants-basic-tooltip": "Защо не мога да обновя това разрешение? Това разрешение дава права на Вашите основни свързани приложения, които имат нужда от него, за да функционират както трябва. Ако не искате това свързано приложение да има тези права, тогава отменете достъпа на приложението.",
+	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Вашите}} редакции с това приложение",
+	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Вашите}} действия с това приложение",
 	"log-action-filter-mwoauthconsumer": "Вид клиентско действие с OAuth:",
 	"log-action-filter-mwoauthconsumer-approve": "Клиентско одобряване с OAuth",
 	"log-action-filter-mwoauthconsumer-create-owner-only": "Създаване на клиенти с OAuth само за собственика",
