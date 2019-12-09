@@ -54,6 +54,7 @@
 	"mwoauthmanagemygrants-confirm-legend": "Bağlı uygulama yönetimi",
 	"mwoauthmanagemygrants-authonly-tooltip": "Bu hibeyi neden güncelleyemiyorum? Eğer bu bağlı uygulamanın bu haklara sahip olmasını istemiyorsanız, uygulamanının erişimini iptal etmelisiniz.",
 	"mwoauth-form-button-approve": "Evet, izin ver",
+	"mwoauth-acceptance-cancelled": "\"$1\" hesabınızın hesabınıza erişmesine izin vermemeyi seçtiniz. Erişimine izin vermediğiniz sürece \"$1\" çalışmaz. Bağlı uygulamalarınıza \"$1\" veya [[Special:OAuthManageMyGrants|yönete]] geri dönebilirsiniz.",
 	"mwoauth-granttype-normal": "Özel izinler için yetki talep et.",
 	"grant-mwoauth-authonly": "Yalnızca kimlik doğrulaması, API erişimi yok.",
 	"grant-mwoauth-authonlyprivate": "Special:OAuth/identify üzerinden sadece gerçek adınız ve e posta adresinizle erişebilirsiniz. API erişimi yok.",
