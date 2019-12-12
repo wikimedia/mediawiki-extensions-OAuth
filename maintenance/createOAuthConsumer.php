@@ -113,7 +113,7 @@ class CreateOAuthConsumer extends \Maintenance {
 
 		if ( $this->hasOption( 'approve' ) ) {
 			$outputData['approved'] = $approveStatus->isGood() ?
-				1 : $approveStatus->getWikiText( null, null, 'en' );
+				1 : $approveStatus->getWikiText( false, false, 'en' );
 		}
 
 		if ( $this->hasOption( 'jsonOnSuccess' ) ) {
