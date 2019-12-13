@@ -140,8 +140,8 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					break;
 				case 'verified':
 					$format = 'html'; // for exceptions
-					$verifier = $request->getVal( 'oauth_verifier', false );
-					$requestToken = $request->getVal( 'oauth_token', false );
+					$verifier = $request->getVal( 'oauth_verifier' );
+					$requestToken = $request->getVal( 'oauth_token' );
 					if ( !$verifier || !$requestToken ) {
 						throw new MWOAuthException( 'mwoauth-bad-request-missing-params', [
 							\Message::rawParam( \Linker::makeExternalLink(
