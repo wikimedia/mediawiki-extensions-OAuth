@@ -92,6 +92,8 @@
 	"mwoauthmanagemygrants-renounce": "Скини овлашћења",
 	"mwoauthmanagemygrants-action": "Промени статус:",
 	"mwoauthmanagemygrants-basic-tooltip": "Зашто не могу да ажурирам ово додељење? Ово додељење даје повезаној апликацији основне дозволе које захтева да би исправно функционисала. Ако не желите да ова повезана апликација има ова права, треба да опозовете приступ апликације.",
+	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Ваше}} измене помоћу ове апликације",
+	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Ваше}} радње помоћу ове апликације",
 	"log-action-filter-mwoauthconsumer": "Тип OAuth потрошачке радње:",
 	"log-action-filter-mwoauthconsumer-approve": "OAuth потрошачко одобравање",
 	"log-action-filter-mwoauthconsumer-create-owner-only": "OAuth потрошачко прављење само за власника",
@@ -108,5 +110,6 @@
 	"mwoauth-grants-heading": "Тражене дозволе:",
 	"mwoauth-acceptance-cancelled": "Одлучили сте да не дозволите да \"$1\" приступи вашем налогу. \"$1\" неће радити ако му не дозволите приступ. Можете се вратити на \"$1\" или [[Special:OAuthManageMyGrants|управљати]] вашим повезаним апликацијама.",
 	"action-mwoauthmanageconsumer": "управљате потрошачима OAuth-а",
-	"echo-category-title-oauth-admin": "Администратор OAuth-а"
+	"echo-category-title-oauth-admin": "Администратор OAuth-а",
+	"notification-oauth-app-body": "Разлог: $1"
 }
