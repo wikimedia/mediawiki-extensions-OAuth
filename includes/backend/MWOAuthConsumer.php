@@ -671,6 +671,7 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 		if ( $this->stage === self::STAGE_APPROVED && !$this->getOwnerOnly() ) {
 			return true;
 		} elseif ( $this->stage === self::STAGE_PROPOSED || $this->stage === self::STAGE_APPROVED ) {
+			// @phan-suppress-previous-line PhanSuspiciousValueComparison
 			$centralId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
 			return ( $centralId && $this->userId === $centralId );
 		}
@@ -686,7 +687,6 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 		$this->stage = (int)$this->stage;
 		$this->stageTimestamp = wfTimestamp( TS_MW, $this->stageTimestamp );
 		$this->emailAuthenticated = wfTimestamp( TS_MW, $this->emailAuthenticated );
-		$this->deleted = (int)$this->deleted;
 		$this->grants = (array)$this->grants; // sanity
 		$this->callbackIsPrefix = (bool)$this->callbackIsPrefix;
 		$this->ownerOnly = (bool)$this->ownerOnly;

@@ -9,7 +9,6 @@ use Psr\Http\Message\StreamInterface;
 class Response extends RestResponse implements ResponseInterface {
 
 	public function __construct( $bodyContents = '' ) {
-		// @phan-suppress-next-line PhanAccessMethodInternal
 		parent::__construct( $bodyContents );
 	}
 

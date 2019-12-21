@@ -47,6 +47,7 @@ class TestOAuthConsumer extends \Maintenance {
 		$c = new OAuthConsumer( $consumerKey, $consumerSecret );
 		$parsed = parse_url( $endpoint );
 		$params = [];
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 		parse_str( $parsed['query'], $params );
 		$req_req = OAuthRequest::from_consumer_and_token( $c, null, "GET", $endpoint, $params );
 		if ( $rsaKeyFile ) {
@@ -96,6 +97,7 @@ class TestOAuthConsumer extends \Maintenance {
 
 		$rc = new OAuthConsumer( $token->key, $token->secret );
 		$parsed = parse_url( $endpoint_acc );
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 		parse_str( $parsed['query'], $params );
 		$params['oauth_verifier'] = trim( $line );
 
