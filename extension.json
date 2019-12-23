@@ -101,6 +101,9 @@
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthUpdaterHooks": "includes/backend/MWOAuthUpdaterHooks.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider": "includes/api/MWOAuthSessionProvider.php"
 	},
+	"TestAutoloadClasses": {
+		"MediaWiki\\Extensions\\OAuth\\StubConsumer": "tests/phpunit/backend/StubConsumer.php"
+	},
 	"ResourceModules": {
 		"ext.MWOAuth.styles": {
 			"styles": [
