@@ -218,7 +218,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 					if ( !$cmrAc || !$cmrAc->userCanAccess( 'userId' ) ) {
 						$this->showError(
-							$this->msg( 'mwoauth-bad-request-invalid-action',
+							$this->msg( 'mwoauth-bad-request-invalid-action' )->rawParams(
 								\Linker::makeExternalLink(
 									'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002',
 									'E002',
