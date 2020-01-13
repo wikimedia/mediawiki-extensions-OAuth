@@ -58,7 +58,6 @@
 	},
 	"AutoloadClasses": {
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthAPISetup": "includes/api/MWOAuthAPISetup.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthUISetup": "includes/frontend/MWOAuthUISetup.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks": "includes/frontend/MWOAuthUIHooks.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthHooks": "includes/backend/MWOAuthHooks.php",
 		"MediaWiki\\Extensions\\OAuth\\SpecialMWOAuth": "includes/frontend/specialpages/SpecialMWOAuth.php",
