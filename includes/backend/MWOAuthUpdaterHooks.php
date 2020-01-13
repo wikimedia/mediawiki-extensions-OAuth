@@ -14,83 +14,85 @@ class MWOAuthUpdaterHooks {
 		if ( !MWOAuthUtils::isCentralWiki() ) {
 			return true; // no tables to add
 		}
-		$base = dirname( dirname( __DIR__ ) ) . '/schema';
 
 		$dbType = $updater->getDB()->getType();
 
 		if ( $dbType == 'mysql' || $dbType == 'sqlite' ) {
-			$base = "$base/$dbType";
 
-			$updater->addExtensionTable( 'oauth_registered_consumer', "$base/OAuth.sql" );
+			$updater->addExtensionTable(
+				'oauth_registered_consumer',
+				self::getPath( 'OAuth.sql', $dbType )
+			);
 
-			$updater->addExtensionUpdate( [
-				'addField',
+			$updater->addExtensionField(
 				'oauth_registered_consumer',
 				'oarc_callback_is_prefix',
-				"$base/callback_is_prefix.sql",
-				true
-			] );
+				self::getPath( 'callback_is_prefix.sql', $dbType )
+			);
 
-			$updater->addExtensionUpdate( [
-				'addField',
+			$updater->addExtensionField(
 				'oauth_registered_consumer',
 				'oarc_developer_agreement',
-				"$base/developer_agreement.sql",
-				true
-			] );
+				self::getPath( 'developer_agreement.sql', $dbType )
+			);
 
-			$updater->addExtensionUpdate( [
-				'addField',
+			$updater->addExtensionField(
 				'oauth_registered_consumer',
 				'oarc_owner_only',
-				"$base/owner_only.sql",
-				true
-			] );
+				self::getPath( 'owner_only.sql', $dbType )
+			);
 
-			$updater->addExtensionUpdate( [
-				'addField',
+			$updater->addExtensionField(
 				'oauth_registered_consumer',
 				'oarc_oauth_version',
-				"$base/oauth_version_registered.sql",
-				true
-			] );
+				self::getPath( 'oauth_version_registered.sql', $dbType )
+			);
 
-			$updater->addExtensionUpdate( [
-				'addField',
+			$updater->addExtensionField(
 				'oauth_registered_consumer',
 				'oarc_oauth2_is_confidential',
-				"$base/oauth2_is_confidential.sql",
-				true
-			] );
+				self::getPath( 'oauth2_is_confidential.sql', $dbType )
+			);
 
-			$updater->addExtensionUpdate( [
-				'addField',
+			$updater->addExtensionField(
 				'oauth_registered_consumer',
 				'oarc_oauth2_allowed_grants',
-				"$base/oauth2_allowed_grants.sql",
-				true
-			] );
+				self::getPath( 'oauth2_allowed_grants.sql', $dbType )
+			);
 
-			$updater->addExtensionUpdate( [
-				'addField',
+			$updater->addExtensionField(
 				'oauth_accepted_consumer',
 				'oaac_oauth_version',
-				"$base/oauth_version_accepted.sql",
-				true
-			] );
+				self::getPath( 'oauth_version_accepted.sql', $dbType )
+			);
 
 			$updater->addExtensionTable(
 				'oauth2_access_tokens',
-				"$base/oauth2_access_tokens.sql"
+				self::getPath( 'oauth2_access_tokens.sql', $dbType )
 			);
 
 			$updater->addExtensionIndex(
 				'oauth2_access_tokens',
 				'oaat_acceptance_id',
-				"$base/index_on_oaat_acceptance_id.sql"
+				self::getPath( 'index_on_oaat_acceptance_id.sql', $dbType )
 			);
 
 		}
 		return true;
+	}
+
+	/**
+	 * @param string $filename Name of the patch file (without path).
+	 *    The file should be in the schema/<dbtype>/ directory
+	 *    or the schema/ directory.
+	 * @param string $dbType 'mysql' or 'sqlite'
+	 * @return string
+	 */
+	protected static function getPath( $filename, $dbType ) {
+		$base = dirname( dirname( __DIR__ ) ) . '/schema';
+		if ( file_exists( "$base/$dbType/$filename" ) ) {
+			return "$base/$dbType/$filename";
+		}
+		return "$base/$filename";
 	}
 }
