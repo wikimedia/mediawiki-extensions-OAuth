@@ -156,28 +156,36 @@
 	},
 	"config": {
 		"MWOAuthCentralWiki": {
-			"value": false
+			"value": false,
+			"description": "Wiki ID of OAuth management wiki. On wiki farms, it makes sense to set this to a wiki that acts as a portal site, is decidated to management, or just handles login/authentication. It can, however, be set to any wiki if the farm. For single-wiki sites or farms where each wiki manages consumers separately, it should be left as false."
 		},
 		"MWOAuthSharedUserIDs": {
-			"value": false
+			"value": false,
+			"description": "Whether shared global user IDs are stored in the oauth tables. On wiki farms with a central authentication system (with integer user IDs) that share a single OAuth management wiki, this must be set to true. If wikis have a central authentication system but have their own OAuth management, then this can be either true or false. Otherwise it should always be set to false Setting this to true requires CentralIdLookup or an MWOAuth aware authentication extension. This value should not be changed after the fact to avoid ambigious IDs. Proper user ID migration should be done before any such changes."
 		},
 		"MWOAuthSharedUserSource": {
-			"value": null
+			"value": null,
+			"description": "Source of shared user IDs, if enabled. If CentralIdLookup is available, this is the $providerId for CentralIdLookup::factory(). Generally null would be what you want, to use the default provider. If that class is not available or the named provider is not found, this is\n * passed to the 'OAuthGetUserNamesFromCentralIds', 'OAuthGetLocalUserFromCentralId', 'OAuthGetCentralIdFromLocalUser', and 'OAuthGetCentralIdFromUserName' hooks. This has no effect if $wgMWOAuthSharedUserIDs is set to false."
 		},
 		"MWOAuthRequestExpirationAge": {
-			"value": 2592000
+			"value": 2592000,
+			"description": "Seconds after which an idle consumer request is marked as \"expired\""
 		},
 		"MWOAuthSecureTokenTransfer": {
-			"value": true
+			"value": true,
+			"description": "Require HTTPs for user transactions that might send out secret tokens"
 		},
 		"MWOauthDisabledApiModules": {
-			"value": []
+			"value": [],
+			"description": "List of API module classes to disable when OAuth is used for the request"
 		},
 		"MWOAuthReadOnly": {
-			"value": false
+			"value": false,
+			"description": "Prevent write activity to the database. When this is set, consumers cannot be added or updated, and new authorizations are prohibited. Authorization headers for existing authorizations will continue to work. Useful for migrating database tables"
 		},
 		"OAuthGroupsToNotify": {
-			"value": []
+			"value": [],
+			"description": "User groups to notify about new consumers that need to be reviewed"
 		},
 		"MWOAuthSessionCacheType": {
 			"value": null
