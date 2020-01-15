@@ -10,7 +10,7 @@
 			"Sakretsu"
 		]
 	},
-	"mwoauth-desc": "Consente l'utilizzo di OAuth 1.0a per le API di autorizzazione",
+	"mwoauth-desc": "Consente l'utilizzo di OAuth 1.0a e OAuth 2.0 per le API di autorizzazione",
 	"mwoauth-verified": "Ora è consentito all'applicazione di accedere a MediaWiki per tuo conto.\n\nPer completare il processo, inserisci questo valore per la verifica nel'applicazione: '''$1'''",
 	"mwoauth-db-readonly": "Il database di OAuth è temporaneamente bloccato. Riprova tra pochi minuti.",
 	"mwoauth-missing-field": "Valore mancante per il campo \"$1\".",
@@ -263,5 +263,6 @@
 	"notification-oauth-app-reject-primary-link": "Visualizza applicazione",
 	"notification-oauth-app-disable-primary-link": "Visualizza applicazione",
 	"notification-oauth-app-reenable-primary-link": "Visualizza applicazione",
-	"notification-oauth-app-body": "Motivo: $1"
+	"notification-oauth-app-body": "Motivo: $1",
+	"mwoauth-oauth-version": "Versione protocollo OAuth"
 }

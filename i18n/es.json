@@ -13,7 +13,8 @@
 			"Matiia",
 			"AlvaroMolina",
 			"Jelou",
-			"Tiberius1701"
+			"Tiberius1701",
+			"Ihojose"
 		]
 	},
 	"mwoauth-desc": "Permite el uso de OAuth 1.0a para la autorización de la API",
@@ -242,5 +243,10 @@
 	"notification-oauth-app-reject-primary-link": "Ver aplicación",
 	"notification-oauth-app-disable-primary-link": "Ver aplicación",
 	"notification-oauth-app-reenable-primary-link": "Ver aplicación",
-	"notification-oauth-app-body": "Motivo: $1"
+	"notification-oauth-app-body": "Motivo: $1",
+	"mwoauth-oauth2-is-confidential": "El cliente es confidencial",
+	"mwoauth-oauth2-granttype-auth-code": "Código de autorización",
+	"mwoauth-oauth2-granttype-refresh-token": "Refrescar token",
+	"mwoauth-oauth2-granttype-client-credentials": "Credenciales del cliente",
+	"mwoauth-oauth2-invalid-access-token": "Token de acceso inválido"
 }

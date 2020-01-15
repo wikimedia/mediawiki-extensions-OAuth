@@ -14,7 +14,7 @@
 			"Grkn gll"
 		]
 	},
-	"mwoauth-desc": "OAuth 1.0a kullanımı için API yetkilendirme kullanımı",
+	"mwoauth-desc": "API yetkilendirmesi için OAuth 1.0a ve OAuth 2.0 kullanımına izin verir",
 	"mwoauth-prefs-managegrants": "Bağlı uygulamalar:",
 	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 bağlı uygulamayı|$1 bağlı uygulamayı|0=bağlı uygulamayı}} yönet",
 	"mwoauth-consumer-allwikis": "Bu sitedeki bütün projeler",
@@ -33,6 +33,7 @@
 	"mwoauthconsumerregistration-user": "Yayımcı",
 	"mwoauthconsumerregistration-description": "Açıklama",
 	"mwoauthconsumerregistration-manage": "yönet",
+	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "OAuth 2.0 tüketici simgeleriniz sıfırlandı. Yeni simgeler:\n; Tüketici belirteci: $1\n; Tüketici sırrı: $2\n; Erişim belirteci: $3\n<em>Lütfen bunları ileride başvurmak üzere kaydedin.</em>",
 	"mwoauthmanageconsumers-description": "Açıklama",
 	"oauthlistconsumers": "Yetkilendirilen uygulamalar listesi",
 	"mwoauthlistconsumers-legend": "Yetkilendirilen uygulamalara göz atın",
@@ -66,5 +67,18 @@
 	"action-mwoauthviewsuppressed": "Bastırılmış OAuth kullanıcılarını görüntüle",
 	"mwoauth-botpasswords-note": "<strong>Not:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> bot parolalarından daha güvenlidir ve bot her desteklediğinde tercih edilmelidir.",
 	"echo-category-title-oauth-owner": "OAuth geliştirme",
-	"echo-pref-tooltip-oauth-owner": "Oluşturduğum OAuth uygulamarıyla ilgili olaylar hakkında bana bildirim gönder."
+	"echo-pref-tooltip-oauth-owner": "Oluşturduğum OAuth uygulamarıyla ilgili olaylar hakkında bana bildirim gönder.",
+	"mwoauth-oauth-version": "OAuth protokol sürümü",
+	"mwoauth-oauth2-is-confidential": "Müşteri gizlidir",
+	"mwoauth-oauth2-granttypes": "İzin verilen OAuth2 hibe türleri",
+	"mwoauth-oauth2-granttype-auth-code": "Yetki kodu",
+	"mwoauth-oauth2-granttype-refresh-token": "Simgeyi yenile",
+	"mwoauth-oauth2-granttype-client-credentials": "Müşteri kimlik bilgileri",
+	"mwoauth-oauth-unsupported-version": "$1 OAuth sürümü için bu bitiş noktasına izin verilmiyor",
+	"mwoauth-oauth2-error-owner-only-invalid-grant": "Yalnızca sahip istemcilerin client_credentials kullanmalarına izin verilmelidir",
+	"mwoauth-oauth2-error-invalid-request": "İstekte gerekli bir parametre eksik, geçersiz bir parametre değeri içeriyor, bir kereden fazla bir parametre içeriyor veya aksi halde hatalı biçimlendirilmiş.",
+	"mwoauth-oauth2-error-unauthorized-client": "İstemcinin bu yöntemi kullanarak bir yetkilendirme kodu isteme yetkisi yok.",
+	"mwoauth-oauth2-error-invalid-scope": "İstenen kapsam geçersiz, bilinmiyor veya hatalı biçimlendirilmiş.",
+	"mwoauth-oauth2-error-temporarily-unavailable": "Yetkilendirme sunucusu şu anda sunucunun geçici olarak aşırı yüklenmesi veya bakımı nedeniyle isteği işleyemiyor.",
+	"mwoauth-oauth2-error-invalid-client": "İstemci kimlik doğrulaması başarısız oldu (ör. Bilinmeyen istemci, istemci kimlik doğrulaması dahil değil veya desteklenmeyen kimlik doğrulama yöntemi)"
 }
