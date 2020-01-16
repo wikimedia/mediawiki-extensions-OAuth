@@ -1,11 +1,39 @@
 {
 	"@metadata": {
 		"authors": [
-			"Naudefj"
+			"Naudefj",
+			"Joris Darlington Quarshie"
 		]
 	},
+	"mwoauth-desc": "Laat gebruik van OAuth 1.0a en OAuth 2.0 toe vir API matiging",
 	"mwoauth-prefs-managegrantslink": "Bestuur $1 gekoppelde {{PLURAL:$1|toepassing|toepassings}}",
+	"mwoauthconsumerregistration-created-owner-only-oauth2": "U OAuth 2.0-kliënt is geskep.\n\nJou tokens is:\n; Kliënt-toepassingsleutel: $1\n; Kliënt-toepassingsgeheim: $2\n; Toegangstoken: $3\n; <em> Teken dit asseblief vir toekomstige verwysing aan. </em>",
+	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "\nU OAuth 2.0-verbruikerstoken is teruggestel. Die nuwe tekens is:\n; Verbruikerstoken:$1\n; Verbruikersgeheim:$2\n; Toegangstoken:$3\n<em> Teken dit asseblief vir toekomstige verwysing aan.</em>",
 	"oauthlistconsumers": "Lys van OAuth-toepassings",
 	"oauthmanagemygrants": "Beheer gekoppelde toepassings",
-	"mwoauthmanagemygrants-confirm-legend": "Bestuur gekoppelde toepassing"
+	"mwoauthmanagemygrants-confirm-legend": "Bestuur gekoppelde toepassing",
+	"mwoauth-oauth-version": "OAuth protokolweergawe",
+	"mwoauth-oauth2-is-confidential": "Client is confidential",
+	"mwoauth-oauth2-is-confidential-help": "'N Vertroulike kliënt is 'n toepassing wat die kliëntwagwoord vir die wêreld vertroulik kan hou.Nie-verttroulike kliënte is minder veilig.",
+	"mwoauth-oauth2-granttypes": "Toegestane OAuth2-toekenningstipes",
+	"mwoauth-oauth2-granttype-auth-code": "Matigingskode",
+	"mwoauth-oauth2-granttype-refresh-token": "Verfris token",
+	"mwoauth-oauth2-granttype-client-credentials": "kredietbewyse",
+	"mwoauth-oauth2-error-create-at-no-user-approval": "Kan nie toegangstoken skep nie,die gebruiker het nie die toegangtoken uitgereik nie",
+	"mwoauth-oauth2-error-user-approval-deny": "Gebruiker het die versoek van die kliëntaansoek afgekeur",
+	"mwoauth-oauth-unsupported-version": "Hierdie eindpunt is nie toegelaat vir OAuth weergawe $1",
+	"mwoauth-oauth2-error-unauthorized-scope": "Omvang \"$1\" is nie toegelaat vir hierdie toepassing nie",
+	"mwoauth-oauth2-error-owner-only-invalid-grant": "\nKliënte slegs deur eienaars moet toegelaat word om kliënt_bewyse te gebruik",
+	"mwoauth-oauth2-unable-to-retrieve-access-token": "Kon nie toegangstoken kry nie: $1",
+	"mwoauth-oauth2-error-server-error": "Die magtingingsbediener het 'n onverwagte voorwaarde ondervind wat verhoed het dat hy aan die versoek voldoen.",
+	"mwoauth-oauth2-error-invalid-request": "Die versoek ontbreek 'n vereiste parameter,bevat 'n ongeldige parameterwaarde,bevat 'n parameter meer as een keer of is andersins misvorm",
+	"mwoauth-oauth2-error-unauthorized-client": "\nDie kliënt is nie gemagtig om 'n magtigingskode op hierdie metode aan te vra nie.",
+	"mwoauth-oauth2-error-access-denied": "\nDie hulpbronneienaar of magtigingsbediener het die versoek geweier.",
+	"mwoauth-oauth2-error-unsupported-response-type": "Die matigingsbediener ondersteun nie die verkryging van 'n magtigingskode op herdie metode nie.",
+	"mwoauth-oauth2-error-invalid-scope": "Die versoekte omvang is ongeldig,onbekend of verkeerd gevorm.",
+	"mwoauth-oauth2-error-temporarily-unavailable": "Die matigingsbediener kan tans nie die versoek hanteer nie weens die tydelike oorlading of instandhouding van die bediener.",
+	"mwoauth-oauth2-error-invalid-client": "\nKliëntverifikasie het misluk (bv. Onbekende kliënt, geen kliëntverifikasie ingesluit nie, of nie-ondersteunde stawingsmetode)",
+	"mwoauth-oauth2-error-request-not-verified": "Probeer om die geverifieerdie eiendom terug te kry voordat die versoek geverifieer word",
+	"mwoauth-oauth2-invalid-access-token": "Ongeldige toegangsteken",
+	"mwoauth-consumer-access-no-user": "Goedkeuring deur die verbruiker moet aan 'n geldige gebruiker gebonde wees, met die gebruiker met ID 0 gegee"
 }

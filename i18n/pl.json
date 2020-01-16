@@ -14,7 +14,7 @@
 			"Rail"
 		]
 	},
-	"mwoauth-desc": "Umożliwia korzystanie z OAuth 1.0a w celu autoryzacji API",
+	"mwoauth-desc": "Umożliwia korzystanie z OAuth 1.0a i OAuth 2.0 w celu autoryzacji API",
 	"mwoauth-verified": "Aplikacja ma teraz dostęp do MediaWiki w twoim imieniu.\n\nAby ukończyć proces wprowadź ten kod weryfikacyjny w aplikacji: '''$1'''",
 	"mwoauth-db-readonly": "Bazy danych OAuth jest tymczasowo zablokowana. Proszę spróbować ponownie za kilka minut.",
 	"mwoauth-missing-field": "Brak wartości dla pola „$1”",
@@ -95,9 +95,11 @@
 	"mwoauthconsumerregistration-resetsecretkey": "Zresetuj tajny klucz do nowej wartości",
 	"mwoauthconsumerregistration-proposed": "Twój wniosek o konsumenta OAuth został odebrany.\n\nPrzyznano ci token konsumenta '''$1''' i sekretny token '''$2'''. ''Zapisz je do wykorzystania w przyszłości.''",
 	"mwoauthconsumerregistration-created-owner-only": "Twój konsument OAuth został utworzony.\n\nTwoimi tokenami są:\n; Token konsumenta: $1\n; Sekretny klucz konsumenta: $2\n; Token dostępu: $3\n; Sekretny klucz dostępu: $4\n<em>Zapisz je do wykorzystania w przyszłości.</em>",
+	"mwoauthconsumerregistration-created-owner-only-oauth2": "Twój konsument OAuth 2.0 został utworzony.\n\nTwoimi tokenami są:\n; Token konsumenta: $1\n; Sekretny klucz konsumenta: $2\n; Token dostępu: $3\n<em>Zapisz je do wykorzystania w przyszłości.</em>",
 	"mwoauthconsumerregistration-updated": "Twoja rejestracja konsumenta OAuth została zaktualizowana.",
 	"mwoauthconsumerregistration-secretreset": "Przypisano ci sekretny token konsumenta '''$1'''. ''Zapisz to do wykorzystania w przyszłości.''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "Twoje tokeny konsumenta OAuth zostały zresetowane. Nowymi tokenami są:\n; Token konsumenta: $1\n; Sekretny klucz konsumenta: $2\n; Token dostępu: $3\n; Sekretny klucz dostępu: $4\n<em>Zapisz je do wykorzystania w przyszłości.</em>",
+	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Twoje tokeny konsumenta OAuth 2.0 zostały zresetowane. Nowymi tokenami są:\n; Token konsumenta: $1\n; Sekretny klucz konsumenta: $2\n; Token dostępu: $3\n<em>Zapisz je do wykorzystania w przyszłości.</em>",
 	"mwoauthconsumerregistration-need-emailconfirmed": "Tworzenie aplikacji OAuth jest możliwe dopiero po zweryfikowaniu adresu e‐mail.\nPodaj adres e‐mail i potwierdź go w swoich [[Special:Preferences|ustawieniach użytkownika]].",
 	"oauthmanageconsumers": "Zarządzanie konsumentami OAuth",
 	"mwoauthmanageconsumers-notloggedin": "Musisz być zalogowany, aby uzyskać dostęp do tej strony.",
@@ -297,5 +299,16 @@
 	"notification-oauth-app-reject-primary-link": "Zobacz aplikację",
 	"notification-oauth-app-disable-primary-link": "Zobacz aplikację",
 	"notification-oauth-app-reenable-primary-link": "Zobacz aplikację",
-	"notification-oauth-app-body": "Powód: $1"
+	"notification-oauth-app-body": "Powód: $1",
+	"mwoauth-oauth-version": "Wersja protokołu OAuth",
+	"mwoauth-oauth2-granttypes": "Dozwolone typy dostępów OAuth 2.0",
+	"mwoauth-oauth2-granttype-auth-code": "Kod autoryzacyjny",
+	"mwoauth-oauth2-granttype-refresh-token": "Odśwież token",
+	"mwoauth-oauth2-granttype-client-credentials": "Poświadczenia konsumenta",
+	"mwoauth-oauth2-error-create-at-no-user-approval": "Nie można pozyskać klucza dostępu, użytkownik nie zaakceptował wydania tego klucza",
+	"mwoauth-oauth2-error-user-approval-deny": "Użytkownik odrzucił żądanie od aplikacji konsumenta",
+	"mwoauth-oauth-unsupported-version": "Ten punkt końcowy nie jest dostępny dla OAuth w wersji $1",
+	"mwoauth-oauth2-error-unauthorized-scope": "Zakres „$1” nie jest dostępny dla tej aplikacji",
+	"mwoauth-oauth2-error-owner-only-invalid-grant": "Konsumenci do użytku tylko przez właściciela muszą mieć dostęp do używania client_credentials",
+	"mwoauth-oauth2-unable-to-retrieve-access-token": "Nie udało się pozyskać klucza dostępu: $1"
 }

@@ -18,11 +18,12 @@
 			"Nbdd0121",
 			"A2093064",
 			"Mys 721tx",
-			"Xiplus"
+			"Xiplus",
+			"Josephine W."
 		]
 	},
 	"oauth": "OAuth",
-	"mwoauth-desc": "允许使用OAuth 1.0a用作API授权",
+	"mwoauth-desc": "允许使用OAuth 1.0a 与OAuth 2.0 用作API授权",
 	"mwoauth-verified": "现在该应用以允许以您的名义访问MediaWiki。\n\n要完成这个过程，请为该应用提供这个校验值：'''$1'''",
 	"mwoauth-db-readonly": "OAuth数据库暂时锁定。请几分钟后重试。",
 	"mwoauth-missing-field": "缺少值为“$1”字段",

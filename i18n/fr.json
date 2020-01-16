@@ -319,7 +319,7 @@
 	"mwoauth-oauth2-error-create-at-no-user-approval": "Impossible de créer un jeton d’accès, l’utilisateur n’a pas approuvé l’utilisation de ce jeton d’accès",
 	"mwoauth-oauth2-error-user-approval-deny": "L’utilisateur a rejeté la requête de l’application client",
 	"mwoauth-oauth-unsupported-version": "Ce point de terminaison n’est pas autorisé pour la version OAuth $1",
-	"mwoauth-oauth2-error-unauthorized-scope": "Le périmètre « $1 » n’est pas autorisé pour cette application",
+	"mwoauth-oauth2-error-unauthorized-scope": "Le périmètre « $1 » n’est pas autorisé pour cette application",
 	"mwoauth-oauth2-error-owner-only-invalid-grant": "Les clients propriétaires seuls doivent être autorisés à utiliser client_credentials",
 	"mwoauth-oauth2-unable-to-retrieve-access-token": "Impossible de récupérer le jeton d’accès : $1",
 	"mwoauth-oauth2-error-server-error": "Le serveur d’autorisation a rencontré une condition inattendue qui l’a empêché d’achever la requête.",
