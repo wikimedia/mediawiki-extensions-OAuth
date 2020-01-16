@@ -106,8 +106,11 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			'mwoauthlistconsumers-callbackurl' => $cmrAc->getCallbackUrl(),
 			'mwoauthlistconsumers-callbackisprefix' => $cmrAc->getCallbackIsPrefix() ?
 				$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
-			'mwoauthlistconsumers-grants' => new HtmlSnippet( $out->parseInlineAsInterface( $s ) ),
 		];
+
+		if ( $grants !== [ 'basic' ] ) {
+			$data[ 'mwoauthlistconsumers-grants' ] = new HtmlSnippet( $out->parseInlineAsInterface( $s ) );
+		}
 
 		$out->addHTML( MWOAuthUIUtils::generateInfoTable( $data, $this->getContext() ) );
 
