@@ -107,7 +107,7 @@
 		"MediaWiki\\Extensions\\OAuth\\": "src/"
 	},
 	"TestAutoloadNamespaces": {
-		"MediaWiki\\Extensions\\OAuth\\Tests\\": "tests/phpunit"
+		"MediaWiki\\Extensions\\OAuth\\Tests\\": "tests/phpunit/"
 	},
 	"ResourceModules": {
 		"ext.MWOAuth.styles": {
