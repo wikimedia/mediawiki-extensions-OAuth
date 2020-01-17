@@ -11,7 +11,8 @@
 			"Sayginer",
 			"ToprakM",
 			"BaRaN6161 TURK",
-			"Grkn gll"
+			"Grkn gll",
+			"SwornToTranslate29"
 		]
 	},
 	"mwoauth-desc": "API yetkilendirmesi için OAuth 1.0a ve OAuth 2.0 kullanımına izin verir",
@@ -74,11 +75,13 @@
 	"mwoauth-oauth2-granttype-auth-code": "Yetki kodu",
 	"mwoauth-oauth2-granttype-refresh-token": "Simgeyi yenile",
 	"mwoauth-oauth2-granttype-client-credentials": "Müşteri kimlik bilgileri",
+	"mwoauth-oauth2-error-create-at-no-user-approval": "Giriş jetonu oluşturulamıyor, kullanıcı bu giriş jetonunun kullanımını onaylamadı",
 	"mwoauth-oauth-unsupported-version": "$1 OAuth sürümü için bu bitiş noktasına izin verilmiyor",
 	"mwoauth-oauth2-error-owner-only-invalid-grant": "Yalnızca sahip istemcilerin client_credentials kullanmalarına izin verilmelidir",
 	"mwoauth-oauth2-error-invalid-request": "İstekte gerekli bir parametre eksik, geçersiz bir parametre değeri içeriyor, bir kereden fazla bir parametre içeriyor veya aksi halde hatalı biçimlendirilmiş.",
 	"mwoauth-oauth2-error-unauthorized-client": "İstemcinin bu yöntemi kullanarak bir yetkilendirme kodu isteme yetkisi yok.",
 	"mwoauth-oauth2-error-invalid-scope": "İstenen kapsam geçersiz, bilinmiyor veya hatalı biçimlendirilmiş.",
 	"mwoauth-oauth2-error-temporarily-unavailable": "Yetkilendirme sunucusu şu anda sunucunun geçici olarak aşırı yüklenmesi veya bakımı nedeniyle isteği işleyemiyor.",
-	"mwoauth-oauth2-error-invalid-client": "İstemci kimlik doğrulaması başarısız oldu (ör. Bilinmeyen istemci, istemci kimlik doğrulaması dahil değil veya desteklenmeyen kimlik doğrulama yöntemi)"
+	"mwoauth-oauth2-error-invalid-client": "İstemci kimlik doğrulaması başarısız oldu (ör. Bilinmeyen istemci, istemci kimlik doğrulaması dahil değil veya desteklenmeyen kimlik doğrulama yöntemi)",
+	"mwoauth-oauth2-invalid-access-token": "Geçersiz giriş jetonu"
 }

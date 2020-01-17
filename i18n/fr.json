@@ -323,7 +323,7 @@
 	"mwoauth-oauth2-error-owner-only-invalid-grant": "Les clients propriétaires seuls doivent être autorisés à utiliser client_credentials",
 	"mwoauth-oauth2-unable-to-retrieve-access-token": "Impossible de récupérer le jeton d’accès : $1",
 	"mwoauth-oauth2-error-server-error": "Le serveur d’autorisation a rencontré une condition inattendue qui l’a empêché d’achever la requête.",
-	"mwoauth-oauth2-error-invalid-request": "Il manque un paramètre obligatoire pour la requête, ou une valeur de paramètre non valide, ou un paramètre répété, ou sinon mal formé.",
+	"mwoauth-oauth2-error-invalid-request": "Il manque un paramètre obligatoire pour la requête, ou une valeur de paramètre est non valide, ou un paramètre est répété ou mal construit.",
 	"mwoauth-oauth2-error-unauthorized-client": "Le client n’est pas autorisé à demander un code d’autorisation en utilisant cette méthode.",
 	"mwoauth-oauth2-error-access-denied": "Le propriétaire de la ressource ou le serveur d’autorisation a refusé la requête.",
 	"mwoauth-oauth2-error-unsupported-response-type": "Le serveur d’autorisation ne supporte pas l’obtention d’un code d’autorisation en utilisant cette méthode.",
