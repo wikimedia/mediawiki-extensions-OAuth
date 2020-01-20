@@ -294,5 +294,6 @@
 	"notification-oauth-app-reject-primary-link": "Visa app",
 	"notification-oauth-app-disable-primary-link": "Visa app",
 	"notification-oauth-app-reenable-primary-link": "Visa app",
-	"notification-oauth-app-body": "Anledning: $1"
+	"notification-oauth-app-body": "Anledning: $1",
+	"mwoauth-oauth2-granttype-refresh-token": "Uppdatera nyckel"
 }

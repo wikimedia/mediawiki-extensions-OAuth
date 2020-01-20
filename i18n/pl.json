@@ -260,6 +260,8 @@
 	"grant-mwoauth-authonlyprivate": "Tylko uwierzytelnianie wraz z dostępem do prawdziwego nazwiska oraz adresu e-mail. Bez dostępu do czytania stron lub działania w imieniu użytkownika.",
 	"mwoauth-listgrants-extra-summary": "== Dostępy specyficzne dla OAuth ==\nPoniższe dodatkowe dostępy są przeznaczone dla użytkowników rozszerzenia OAuth.",
 	"mwoauth-oauth-exception": "Wystąpił błąd w protokole OAuth: $1",
+	"mwoauth-callback-not-oob": "oauth_callback musi być ustawiony i jego wartością musi być „oob” (rozróżniana wielkość liter)",
+	"mwoauth-callback-not-oob-or-prefix": "oauth_callback musi być ustawiony i jego wartością musi być „oob” (rozróżniana wielkość liter) lub skonfigurowany callback musi być prefiksem dostarczonego callbacka.",
 	"right-mwoauthproposeconsumer": "Proponowanie nowych konsumentów OAuth",
 	"right-mwoauthupdateownconsumer": "Aktualizowanie kontrolowanych konsumentów OAuth",
 	"right-mwoauthmanageconsumer": "Zarządzanie konsumentami OAuth",
@@ -301,6 +303,8 @@
 	"notification-oauth-app-reenable-primary-link": "Zobacz aplikację",
 	"notification-oauth-app-body": "Powód: $1",
 	"mwoauth-oauth-version": "Wersja protokołu OAuth",
+	"mwoauth-oauth2-is-confidential": "Klient jest prywatny",
+	"mwoauth-oauth2-is-confidential-help": "Prywatny klient jest aplikacją zdolną do przechowywania hasła klienta jako poufnego dla świata. Nieprywatne klienty są mniej bezpieczne.",
 	"mwoauth-oauth2-granttypes": "Dozwolone typy dostępów OAuth 2.0",
 	"mwoauth-oauth2-granttype-auth-code": "Kod autoryzacyjny",
 	"mwoauth-oauth2-granttype-refresh-token": "Odśwież token",
@@ -310,5 +314,11 @@
 	"mwoauth-oauth-unsupported-version": "Ten punkt końcowy nie jest dostępny dla OAuth w wersji $1",
 	"mwoauth-oauth2-error-unauthorized-scope": "Zakres „$1” nie jest dostępny dla tej aplikacji",
 	"mwoauth-oauth2-error-owner-only-invalid-grant": "Konsumenci do użytku tylko przez właściciela muszą mieć dostęp do używania client_credentials",
-	"mwoauth-oauth2-unable-to-retrieve-access-token": "Nie udało się pozyskać klucza dostępu: $1"
+	"mwoauth-oauth2-unable-to-retrieve-access-token": "Nie udało się pozyskać klucza dostępu: $1",
+	"mwoauth-oauth2-error-server-error": "Serwer autoryzacyjny napotkał niespodziewany warunek, który uniemożliwił mu wykonanie żądania.",
+	"mwoauth-oauth2-error-unauthorized-client": "Klient nie jest autoryzowany aby żądać kodu autoryzacyjnego używając tej metody.",
+	"mwoauth-oauth2-error-access-denied": "Właściciel zasobu lub serwer autoryzujący odrzucił żądanie.",
+	"mwoauth-oauth2-error-unsupported-response-type": "Serwer autoryzujący nie wspiera uzyskiwania kodu autoryzacyjnego używając tej metody.",
+	"mwoauth-oauth2-error-invalid-scope": "Żądany zakres jest nieprawidłowy, nieznany lub zniekształcony.",
+	"mwoauth-oauth2-invalid-access-token": "Nieprawidłowy klucz dostępu."
 }

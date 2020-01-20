@@ -8,11 +8,13 @@
 			"Otokoume",
 			"Macofe",
 			"Yusuke1109",
-			"Omotecho"
+			"Omotecho",
+			"Buntschann",
+			"Kkairri"
 		]
 	},
 	"oauth": "OAuth",
-	"mwoauth-desc": "API 認証に OAuth 1.0a を使用できるようにする",
+	"mwoauth-desc": "API 認証に OAuth 1.0a および OAuth 2.0 を使用できるようにする",
 	"mwoauth-verified": "このアプリケーションがあなたに代わって MediaWiki にアクセスすることが許可されました。\n\nこの手続きを完了するには次の検証トークンをアプリケーションに提供してください: '''$1'''",
 	"mwoauth-db-readonly": "OAuth データベースは一時的にロックされています。しばらくしてからもう一度お試しください。",
 	"mwoauth-missing-field": "「$1」フィールドの値がありません",
@@ -133,8 +135,9 @@
 	"mwoauthlistconsumers-status-disabled": "無効",
 	"mwoauthlistconsumers-status-rejected": "却下",
 	"mwoauthlistconsumers-status-expired": "期限切れ",
+	"mwoauthlistconsumers-rclink": "このアプリケーションによる最近の変更",
 	"oauthmanagemygrants": "接続済みアプリケーションの管理",
-	"mwoauthmanagemygrants-text": "このページでは、あなたのアカウントを使用できるアプリケーションをすべて列挙します。各アプリケーションについて、あなたの代わりに実行することを承認した際に許可した範囲に、そのアプリケーションの権限が制限されています。If you separately authorized an application to access different sister projects on your behalf, then you will see separate configuration for each such project below.\n\n接続されたアプリケーションは、OAuth プロトコル を使って、あなたのアカウントにアクセスします。<span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Learn more about connected applications])</span>",
+	"mwoauthmanagemygrants-text": "このページでは、あなたのアカウントを使用できるアプリケーションをすべて列挙します。各アプリケーションについて、あなたの代わりに実行することを承認した際に許可した範囲に、そのアプリケーションの権限が制限されています。If you separately authorized an application to access different sister projects on your behalf, then you will see separate configuration for each such project below.\n\n接続されたアプリケーションは、OAuth プロトコル を使って、あなたのアカウントにアクセスします。<span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth 接続されたアプリケーションについて詳しく知る])</span>",
 	"mwoauthmanagemygrants-navigation": "ナビゲーション:",
 	"mwoauthmanagemygrants-showlist": "接続済みアプリケーション一覧",
 	"mwoauthmanagemygrants-none": "あなたのアカウントに接続されているアプリケーションはありません。",
@@ -154,7 +157,9 @@
 	"mwoauthmanagemygrants-confirm-submit": "アクセス トークンの状態を更新",
 	"mwoauthmanagemygrants-success-update": "このアプリケーションの設定が更新されました。",
 	"mwoauthmanagemygrants-success-renounce": "あなたのアカウントへのアプリケーションのアクセスは取り消されました。",
-	"mwoauthmanagemygrants-basic-tooltip": "この助成金の更新ができない理由は？ この助成金はあなたが接続するアプリケーションの正常な動作に求められる基本の権限を与えます。それら権限を与えたくない場合には、あなた自身でこのアプリケーションのアクセス権を無効にしなければなりません。",
+	"mwoauthmanagemygrants-basic-tooltip": "この権限の付与の変更ができない理由は？ この権限の付与では、あなたが接続するアプリケーションの正常な動作に必要な基礎的権限を与えます。それら権限を与えたくない場合には、あなた自身でこのアプリケーションのアクセス権を無効にしなければなりません。",
+	"mwoauthmanagemygrants-editslink": "このアプリケーションによる{{GENDER:$1|あなたの}}編集",
+	"mwoauthmanagemygrants-actionslink": "このアプリケーションによる{{GENDER:$1|あなたの}}操作",
 	"logentry-mwoauthconsumer-propose": "$1 が OAuth コンシューマーを{{GENDER:$2|提案}} (コンシューマー キー $4)",
 	"logentry-mwoauthconsumer-update": "$1 が OAuth コンシューマーを{{GENDER:$2|更新}} (コンシューマー キー $4)",
 	"logentry-mwoauthconsumer-approve": "$1 が $3 による OAuth コンシューマーを{{GENDER:$2|承認}} (コンシューマー キー $4)",
@@ -217,5 +222,7 @@
 	"notification-oauth-app-reject-primary-link": "アプリを表示",
 	"notification-oauth-app-disable-primary-link": "アプリを表示",
 	"notification-oauth-app-reenable-primary-link": "アプリを表示",
-	"notification-oauth-app-body": "理由: $1"
+	"notification-oauth-app-body": "理由: $1",
+	"mwoauth-oauth2-granttype-refresh-token": "トークンの更新",
+	"mwoauth-oauth2-invalid-access-token": "無効なアクセストークン"
 }

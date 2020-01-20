@@ -14,7 +14,7 @@
 		]
 	},
 	"oauth": "أو أوث",
-	"mwoauth-desc": "يسمح باستخدام OAuth 1.0a لتفويض API",
+	"mwoauth-desc": "يسمح باستخدام OAuth 1.0a و OAuth 2.0 لتفويض API",
 	"mwoauth-verified": "تم السماح لهذا التطبيق بالولوج الى الميدياويكي نيابة عنك.\n\nلإتمام هذه العملية، الرجاء نقل رمز التأكيد الى التطبيق : '''$1'''",
 	"mwoauth-db-readonly": "يتم قفل قاعدة بيانات OAuth مؤقتا; تُرجَى المحاولة مرة أخرى خلال بضع دقائق.",
 	"mwoauth-missing-field": "لم يتم إدخال قيمة في حقل \"$1\"",
@@ -299,5 +299,18 @@
 	"notification-oauth-app-reject-primary-link": "اعرض التطبيق",
 	"notification-oauth-app-disable-primary-link": "اعرض التطبيق",
 	"notification-oauth-app-reenable-primary-link": "اعرض التطبيق",
-	"notification-oauth-app-body": "السبب: $1"
+	"notification-oauth-app-body": "السبب: $1",
+	"mwoauth-oauth-version": "نسخة بروتوكول OAuth",
+	"mwoauth-oauth2-is-confidential": "العميل سري",
+	"mwoauth-oauth2-granttypes": "أنواع منح OAuth2 المسموح بها",
+	"mwoauth-oauth2-granttype-auth-code": "كود التحقق",
+	"mwoauth-oauth2-granttype-refresh-token": "تحديث الرمز",
+	"mwoauth-oauth2-granttype-client-credentials": "شهادات العميل",
+	"mwoauth-oauth2-error-user-approval-deny": "المستخدم رفض الطلب من تطبيق العميل",
+	"mwoauth-oauth-unsupported-version": "نقطة النهاية هذه غير مسموح بها لنسخة OAuth $1",
+	"mwoauth-oauth2-unable-to-retrieve-access-token": "لم يمكن الحصول على رمز الوصول: $1",
+	"mwoauth-oauth2-error-access-denied": "مالك المورد أو خادم التحقق رفض الطلب.",
+	"mwoauth-oauth2-error-unsupported-response-type": "خادم التحقق لا يدعم الحصول على كود تحقق باستخدام هذه الطريقة.",
+	"mwoauth-oauth2-error-request-not-verified": "محاولة الحصول على خاصية متحقق منها قبل التحقق من الطلب",
+	"mwoauth-oauth2-invalid-access-token": "رمز وصول غير صحيح"
 }

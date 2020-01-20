@@ -5,10 +5,11 @@
 			"Ex13",
 			"Bugoslav",
 			"Vlad5250",
-			"Excaliboor"
+			"Excaliboor",
+			"Neptune, the Mystic"
 		]
 	},
-	"mwoauth-desc": "Omogućuje upotrebu OAuth 1.0a za autorizaciju API-ja",
+	"mwoauth-desc": "Omogućuje upotrebu OAuth 1.0a i OAuth 2.0 za autorizaciju API-ja",
 	"mwoauth-verified": "Aplikaciji je dopušten pristup MediaWikiju u vaše ime.\n\nDa biste dovršili postupak, navedite kontrolnu vrijednost aplikacije: '''$1'''",
 	"mwoauth-db-readonly": "Baza podataka OAuth privremeno je zaključana. Pokušajte ponovo za nekoliko minuta.",
 	"mwoauth-missing-field": "Nedostaje vrijednost u polju »$1«",
@@ -187,5 +188,6 @@
 	"notification-oauth-app-reject-primary-link": "Vidi aplikaciju",
 	"notification-oauth-app-disable-primary-link": "Vidi aplikaciju",
 	"notification-oauth-app-reenable-primary-link": "Vidi aplikaciju",
-	"notification-oauth-app-body": "Razlog: $1"
+	"notification-oauth-app-body": "Razlog: $1",
+	"mwoauth-oauth2-invalid-access-token": "Pristupni tajni ključ nije valjan"
 }
