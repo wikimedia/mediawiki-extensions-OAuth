@@ -248,5 +248,6 @@
 	"mwoauth-oauth2-granttype-auth-code": "Código de autorización",
 	"mwoauth-oauth2-granttype-refresh-token": "Refrescar token",
 	"mwoauth-oauth2-granttype-client-credentials": "Credenciales del cliente",
+	"mwoauth-oauth2-error-unauthorized-scope": "Esta aplicación no tiene permitido utilizar el ámbito «$1»",
 	"mwoauth-oauth2-invalid-access-token": "Token de acceso inválido"
 }

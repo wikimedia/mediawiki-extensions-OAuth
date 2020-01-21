@@ -144,6 +144,7 @@
 	"mwoauthmanagemygrants-success-update": "Vaše postavke ove aplikacije su ažurirane.",
 	"mwoauthmanagemygrants-success-renounce": "Pristup aplikacije Vašem računu je opozvan.",
 	"mwoauthmanagemygrants-basic-tooltip": "Zašto ne mogu promijeniti ovo odobrenje? Ono omogućava povezanoj aplikaciji osnovno dopuštenje koje je nužno za njeno djelovanje. Ako ne želite da aplikacija ima ova dopuštenja, opozovite prava pristupa aplikacije.",
+	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|predložio|predložila}} je trošač OAutha (trošački ključ $4)",
 	"mwoauthconsumer-consumer-logpage": "Evidencija OAuth trošača",
 	"mwoauthconsumer-consumer-logpagetext": "Evidencija odobravanja, odbacivanja, te onemogućavanja registriranih OAuth potrošača.",
 	"mwoauthserver-bad-consumer": "»$1« nije odobreno kao povezana aplikacija. Ako vam je potrebna pomoć, [$2 kontaktirajte] autora.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Neodobrena OAuth povezana aplikacija, $3</span>",

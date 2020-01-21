@@ -121,5 +121,6 @@
 	"notification-oauth-app-reject-primary-link": "App weisen",
 	"notification-oauth-app-disable-primary-link": "App weisen",
 	"notification-oauth-app-reenable-primary-link": "App weisen",
-	"notification-oauth-app-body": "Grond: $1"
+	"notification-oauth-app-body": "Grond: $1",
+	"mwoauth-oauth2-granttype-auth-code": "Autorisatiouns-Code"
 }
