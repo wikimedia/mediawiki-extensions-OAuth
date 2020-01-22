@@ -6,7 +6,7 @@
 			"Jon Harald Søby"
 		]
 	},
-	"mwoauth-desc": "Muliggjør bruk av OAuth 1.0a for API-autorisering",
+	"mwoauth-desc": "Muliggjør bruk av OAuth 1.0a og OAuth 2.0 for API-autorisering",
 	"mwoauth-verified": "Applikasjonen har nå tilgang til MediaWiki på dine vegne.\n\nFor å fullføre prosessen, vennligst angi verifikasjonsverdien til applikasjonen: '''$1'''",
 	"mwoauth-db-readonly": "OAuth-databasen er midlertidig låst. Vennligst forsøk igjen om et par minutter.",
 	"mwoauth-missing-field": "Mangler verdi for «$1»-feltet",
@@ -87,9 +87,11 @@
 	"mwoauthconsumerregistration-resetsecretkey": "Tilbakestill den hemmelige nøkkelen til en ny verdi",
 	"mwoauthconsumerregistration-proposed": "Forespørselen din om en OAuth-konsument har blitt levert.\n\nDu har fått tildelt et konsumenttoken '''$1''' og et hemmelig token '''$2'''. ''Vennligst ta vare på disse til fremtidig bruk.''",
 	"mwoauthconsumerregistration-created-owner-only": "Din OAuth-konsument har blitt opprettet.\n\nDine nøkler er:\n;Konsumentnøkkel: $1\n;Konsumenthemmelighet: $2\n;Tilgangsnøkkel: $3\n;Tilgangshemmelighet: $4\n<em>Ta vare på disse for fremtidig bruk.</em>",
+	"mwoauthconsumerregistration-created-owner-only-oauth2": "Din OAuth 2.0-klient har blitt opprettet.\n\nDine nøkler er:\n;Klientens applikasjonsnøkkel: $1\n;Klientens applikasjonshemmelighet: $2\n;Tilgangsnøkkel: $3\n;<em>Ta vare på disse for mulig framtidig bruk.</em>",
 	"mwoauthconsumerregistration-updated": "Ditt OAuth-konsumentregister ble oppdatert.",
 	"mwoauthconsumerregistration-secretreset": "Du har fått tildelt et hemmelig konsumenttoken '''$1'''. ''Vennligst ta vare på denne til fremtidig bruk.''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "Dine OAuth-konsumentnøkler har blitt endret. De nye nøklene er:\n;Konsumentnøkkel: $1\n;Konsumenthemmelighet: $2\n;Tilgangsnøkkel: $3\n;Tilgangshemmelighet: $4\n<em>Ta vare på disse for fremtidig bruk.</em>",
+	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Dine konsumentnøkler for OAuth 2.0 har blitt tilbakestilt. De nye nøklene er:\n;Konsumentnøkkel: $1\n;Konsumenthemmelighet: $2\n;Tilgangsnøkkel: $3\n<em>Ta vare på disse til framtidig bruk.</em>",
 	"mwoauthconsumerregistration-need-emailconfirmed": "Du må bekrefte epostadressa di før du oppretter OAuth-applikasjoner.\nSett og valider epostadressa di via [[Special:Preferences|innstillingene dine]].",
 	"oauthmanageconsumers": "Håndter OAuth-konsumenter",
 	"mwoauthmanageconsumers-notloggedin": "Du må være innlogget for å vise denne siden.",
@@ -291,5 +293,14 @@
 	"notification-oauth-app-reject-primary-link": "Vis app",
 	"notification-oauth-app-disable-primary-link": "Vis app",
 	"notification-oauth-app-reenable-primary-link": "Vis app",
-	"notification-oauth-app-body": "Årsak: $1"
+	"notification-oauth-app-body": "Årsak: $1",
+	"mwoauth-oauth-version": "OAuth-protokollversjon",
+	"mwoauth-oauth2-is-confidential": "Klienten er konfidensiell",
+	"mwoauth-oauth2-is-confidential-help": "En konfidensiell klient er en applikasjon som kan holde klientpassordet konfidensielt for verden. Ikke-konfidensielle klienter er mindre sikre.",
+	"mwoauth-oauth2-granttypes": "Tillatte OAuth2-tildelingstyper",
+	"mwoauth-oauth2-granttype-auth-code": "Autoriseringskode",
+	"mwoauth-oauth2-granttype-refresh-token": "Oppdater nøkkel",
+	"mwoauth-oauth2-error-create-at-no-user-approval": "Kan ikke opprette tilgangsnøkkel, brukeren godtok ikke å utdele denne tilgangsnøkkelen",
+	"mwoauth-oauth2-error-user-approval-deny": "Brukeren har avvist forespørselen fra klientapplikasjonen",
+	"mwoauth-oauth-unsupported-version": "Dette endepunktet er ikke tillatt for OAuth versjon $1"
 }
