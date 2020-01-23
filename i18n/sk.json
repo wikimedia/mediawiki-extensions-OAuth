@@ -8,7 +8,7 @@
 			"Luky001"
 		]
 	},
-	"mwoauth-desc": "Umožňuje použitie OAuth 1.0a pre povolenie prístupu k API",
+	"mwoauth-desc": "Umožňuje použitie OAuth 1.0a a OAuth 2.0 pre povolenie prístupu k API",
 	"mwoauth-prefs-managegrants": "Pripojené aplikácie:",
 	"mwoauth-prefs-managegrantslink": "Spravovať {{PLURAL:$1|$1 pripojenú aplikáciu|$1 pripojené aplikácie|$1 pripojených aplikácií|0=pripojené aplikácie}}",
 	"mwoauth-consumer-allwikis": "Všetky projekty na tomto webe",
