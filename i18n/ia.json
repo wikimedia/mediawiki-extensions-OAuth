@@ -242,7 +242,7 @@
 	"mwoauth-error": "Error de connexion del application",
 	"mwoauth-grants-heading": "Permissiones requestate:",
 	"mwoauth-grants-nogrants": "Le application non ha requestate alcun permission.",
-	"mwoauth-acceptance-cancelled": "Tu ha eligite de non permitter a \"$1\" le accesso a tu conto. \"$1\" non functionara a minus que tu lo permitte le accesso. Tu pote retornar a \"$1\" o [[Special:OAuthManageMyGrants|gerer]] tu applicatoines connectite.",
+	"mwoauth-acceptance-cancelled": "Tu ha refusate a \"$1\" le accesso a tu conto. \"$1\" non pote functionar si tu non lo permitte de acceder. Tu pote retornar a \"$1\" o [[Special:OAuthManageMyGrants|gerer]] tu applicationes connectite.",
 	"mwoauth-granttype-normal": "Requestar autorisation pro permissiones specific.",
 	"grant-mwoauth-authonly": "Verification del identitate del usator solmente, sin possibilitate de leger paginas o ager in le nomine del usator.",
 	"grant-mwoauth-authonlyprivate": "Verification del identitate del usator con accesso al nomine real e adresse de e-mail, sin possibilitate de leger paginas o ager in le nomine del usator.",

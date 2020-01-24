@@ -302,5 +302,6 @@
 	"mwoauth-oauth2-granttype-refresh-token": "Oppdater nøkkel",
 	"mwoauth-oauth2-error-create-at-no-user-approval": "Kan ikke opprette tilgangsnøkkel, brukeren godtok ikke å utdele denne tilgangsnøkkelen",
 	"mwoauth-oauth2-error-user-approval-deny": "Brukeren har avvist forespørselen fra klientapplikasjonen",
-	"mwoauth-oauth-unsupported-version": "Dette endepunktet er ikke tillatt for OAuth versjon $1"
+	"mwoauth-oauth-unsupported-version": "Dette endepunktet er ikke tillatt for OAuth versjon $1",
+	"mwoauth-oauth2-invalid-access-token": "Ugyldig tilgangsnøkkel"
 }
