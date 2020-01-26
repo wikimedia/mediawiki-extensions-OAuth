@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extensions\OAuth\AuthorizationProvider;
 
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 abstract class AccessToken extends AuthorizationProvider implements IAccessTokenProvider {
 

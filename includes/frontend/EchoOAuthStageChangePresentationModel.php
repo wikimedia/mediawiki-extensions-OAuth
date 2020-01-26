@@ -5,8 +5,8 @@ namespace MediaWiki\Extensions\OAuth;
 use EchoAttributeManager;
 use EchoEventPresentationModel;
 use MWException;
-use User;
 use SpecialPage;
+use User;
 
 class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 	/** @var User[] OAuth admins who should be notified about additiions to the review queue */

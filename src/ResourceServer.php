@@ -10,10 +10,10 @@ use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extensions\OAuth\Repository\ScopeRepository;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\HttpException;
+use MWException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use User;
-use MWException;
 use WebRequest;
 
 class ResourceServer {

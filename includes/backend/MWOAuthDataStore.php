@@ -9,7 +9,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 	/** @var DBConnRef DB for the consumer/grant registry */
 	protected $centralSlave;
 	/** @var DBConnRef|null Master DB for repeated lookup in case of replication lag problems;
-	 *    null if there is no separate master and slave DB */
+	 *    null if there is no separate master and slave DB
+	 */
 	protected $centralMaster;
 	/** @var \BagOStuff Cache for Tokens and Nonces */
 	protected $cache;

@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Extensions\OAuth\Repository;
 
+use InvalidArgumentException;
 use League\OAuth2\Server\Entities\AuthCodeEntityInterface;
 use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException;
 use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use MediaWiki\Extensions\OAuth\Entity\AuthCodeEntity;
-use InvalidArgumentException;
 
 class AuthCodeRepository extends CacheRepository implements AuthCodeRepositoryInterface {
 

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Entity;
 
+use InvalidArgumentException;
 use League\OAuth2\Server\CryptKey;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
@@ -13,7 +14,6 @@ use MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance;
 use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 use MediaWiki\MediaWikiServices;
 use Throwable;
-use InvalidArgumentException;
 use User;
 
 class AccessTokenEntity implements AccessTokenEntityInterface {

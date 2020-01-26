@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extensions\OAuth\Repository;
 
+use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
-use League\OAuth2\Server\Entities\ClientEntityInterface;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Extensions\OAuth\Entity\ScopeEntity;
 use MediaWiki\Extensions\OAuth\Entity\UserEntity;

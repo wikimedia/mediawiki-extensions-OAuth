@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Rest\Handler;
 
+use FormatJson;
 use GuzzleHttp\Psr7\ServerRequest;
 use MediaWiki\Extensions\OAuth\MWOAuthException;
 use MediaWiki\Extensions\OAuth\ResourceServer;
@@ -9,10 +10,9 @@ use MediaWiki\Extensions\OAuth\Response;
 use MediaWiki\Extensions\OAuth\UserStatementProvider;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
+use MWException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use FormatJson;
-use MWException;
 
 class Resource extends Handler {
 	const TYPE_PROFILE = 'profile';

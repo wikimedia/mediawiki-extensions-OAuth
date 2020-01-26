@@ -2,8 +2,10 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\DBReadOnlyError;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -23,9 +25,6 @@ use Wikimedia\Rdbms\DBError;
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
-
-use MediaWiki\Logger\LoggerFactory;
-use Wikimedia\Rdbms\DBReadOnlyError;
 
 /**
  * Representation of a Data Access Object

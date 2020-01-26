@@ -12,10 +12,10 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use Psr\Container\ContainerInterface;
-use Wikimedia\ObjectFactory;
-use User;
 use RequestContext;
 use Title;
+use User;
+use Wikimedia\ObjectFactory;
 
 abstract class EndpointTest extends \MediaWikiTestCase {
 

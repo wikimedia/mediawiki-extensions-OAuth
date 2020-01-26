@@ -2,18 +2,18 @@
 
 namespace MediaWiki\Extensions\OAuth\Entity;
 
+use Exception;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
 use MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance;
+use MediaWiki\Extensions\OAuth\MWOAuthException;
 use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
-use User;
 use MWException;
-use MediaWiki\Extensions\OAuth\MWOAuthException;
-use Exception;
+use User;
 
 class ClientEntity extends MWOAuthConsumer implements ClientEntityInterface {
 

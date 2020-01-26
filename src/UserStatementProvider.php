@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-use MediaWiki\MediaWikiServices;
-use User;
 use Config;
-use MWGrants;
+use MediaWiki\MediaWikiServices;
 use MWException;
+use MWGrants;
+use User;
 
 class UserStatementProvider {
 	/** @var Config */

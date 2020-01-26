@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Rest\Handler;
 
+use Exception;
 use GuzzleHttp\Psr7\ServerRequest;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -11,13 +12,12 @@ use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Extensions\OAuth\Entity\UserEntity;
 use MediaWiki\Extensions\OAuth\Exception\ClientApprovalDenyException;
 use MediaWiki\Extensions\OAuth\Response;
-use Throwable;
-use SpecialPage;
-use User;
-use Wikimedia\ParamValidator\ParamValidator;
-use Exception;
 use MediaWiki\Rest\Response as RestResponse;
 use MWException;
+use SpecialPage;
+use Throwable;
+use User;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class Authorize extends AuthenticationHandler {
 	const RESPONSE_TYPE_CODE = 'code';

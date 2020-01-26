@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Extensions\OAuth\Entity;
 
+use JsonSerializable;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\RefreshTokenTrait;
-use JsonSerializable;
 
 class RefreshTokenEntity implements RefreshTokenEntityInterface, JsonSerializable {
 	use RefreshTokenTrait;

@@ -2,9 +2,6 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
-use Wikimedia\Rdbms\DBConnRef;
-
 /**
  * (c) Aaron Schulz 2013, GPL
  *
@@ -23,14 +20,17 @@ use Wikimedia\Rdbms\DBConnRef;
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
+
+use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use OOUI\HtmlSnippet;
+use Wikimedia\Rdbms\DBConnRef;
 
 /**
  * Special page for listing the queue of consumer requests and managing
  * their approval/rejection and also for listing approved/disabled consumers
  */
 class SpecialMWOAuthManageConsumers extends \SpecialPage {
-	/** @var bool|int An MWOAuthConsumer::STAGE_* constant on queue/list subpages, false otherwise*/
+	/** @var bool|int An MWOAuthConsumer::STAGE_* constant on queue/list subpages, false otherwise */
 	protected $stage = false;
 	/** @var string A stage key from MWOAuthConsumer::$stageNames */
 	protected $stageKey;

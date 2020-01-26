@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use InvalidArgumentException;
 use League\OAuth2\Server\AuthorizationServer;
 use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extensions\OAuth\Repository\ClientRepository;
 use MediaWiki\Extensions\OAuth\Repository\ScopeRepository;
-use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
 
 class AuthorizationServerFactory {

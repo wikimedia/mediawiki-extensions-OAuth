@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-use User;
 use MWException;
+use User;
 
 /**
  * (c) Dejan Savuljesku 2019, GPL

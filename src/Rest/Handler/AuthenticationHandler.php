@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Rest\Handler;
 
+use Config;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\AccessToken as AccessTokenProvider;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization;
@@ -10,11 +11,10 @@ use MediaWiki\Extensions\OAuth\Response;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
-use Config;
+use MediaWiki\Rest\Response as RestResponse;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Rest\Validator\Validator;
 use Psr\Http\Message\ResponseInterface;
-use MediaWiki\Rest\Response as RestResponse;
 use RequestContext;
 use User;
 

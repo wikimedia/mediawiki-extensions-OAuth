@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Extensions\OAuth\Entity;
 
+use JsonSerializable;
 use League\OAuth2\Server\Entities\AuthCodeEntityInterface;
 use League\OAuth2\Server\Entities\Traits\AuthCodeTrait;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
-use JsonSerializable;
 
 class AuthCodeEntity implements AuthCodeEntityInterface, JsonSerializable {
 	use TokenEntityTrait;

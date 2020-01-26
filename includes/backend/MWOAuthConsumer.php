@@ -21,11 +21,11 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-use MediaWiki\Extensions\OAuth\Entity\ClientEntity as OAuth2Client;
-use Wikimedia\Rdbms\DBConnRef;
 use FormatJson;
-use User;
+use MediaWiki\Extensions\OAuth\Entity\ClientEntity as OAuth2Client;
 use MWException;
+use User;
+use Wikimedia\Rdbms\DBConnRef;
 
 /**
  * Representation of an OAuth consumer.
@@ -48,11 +48,12 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 	/** @var string Name of connected application */
 	protected $name;
 	/** @var int Publisher's central user ID. $wgMWOAuthSharedUserIDs defines which central ID
-	 *    provider to use. */
+	 *    provider to use.
+	 */
 	protected $userId;
 	/** @var string Version used for handshake breaking changes */
 	protected $version;
-	/** @var string OAuth callback URL for authorization step*/
+	/** @var string OAuth callback URL for authorization step */
 	protected $callbackUrl;
 	/**
 	 * @var int OAuth callback URL is a prefix and we allow all URLs which
@@ -680,7 +681,7 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 
 	protected function normalizeValues() {
 		// Keep null values since we're constructing w/ them to auto-increment
-		$this->id = is_null( $this->id ) ? null : (int)$this->id;
+		$this->id = $this->id === null ? null : (int)$this->id;
 		$this->userId = (int)$this->userId;
 		$this->registration = wfTimestamp( TS_MW, $this->registration );
 		$this->stage = (int)$this->stage;

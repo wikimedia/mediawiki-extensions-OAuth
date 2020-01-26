@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant;
 
+use DateInterval;
+use Exception;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Grant\AuthCodeGrant;
 use League\OAuth2\Server\Grant\GrantTypeInterface;
 use League\OAuth2\Server\RequestTypes\AuthorizationRequest;
-use DateInterval;
-use Exception;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\AuthorizationProvider;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Extensions\OAuth\Entity\UserEntity;

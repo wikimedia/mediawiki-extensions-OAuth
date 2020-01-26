@@ -2,9 +2,6 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
-use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\DBConnRef;
-
 /**
  * (c) Aaron Schulz 2013, GPL
  *
@@ -23,7 +20,10 @@ use Wikimedia\Rdbms\DBConnRef;
  * 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  * http://www.gnu.org/copyleft/gpl.html
  */
+
+use MediaWiki\MediaWikiServices;
 use User;
+use Wikimedia\Rdbms\DBConnRef;
 
 /**
  * Page that has registration request form and consumer update form
