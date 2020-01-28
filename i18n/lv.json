@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Papuass",
-			"Silraks"
+			"Silraks",
+			"Edgars2007"
 		]
 	},
-	"mwoauth-desc": "Ļauj izmantot OAuth 1.0a API autorizācijai",
+	"mwoauth-desc": "Ļauj izmantot OAuth 1.0a un OAuth 2.0 API autorizācijai",
 	"mwoauth-prefs-managegrants": "Piesaistītās lietotnes:",
 	"mwoauth-prefs-managegrantslink": "Pārvaldīt $1 {{PLURAL:$1|piesaistīto lietotni|piesaistītās lietotnes}}",
 	"mwoauth-consumer-description": "Lietotnes apraksts:",

@@ -15,10 +15,11 @@
 			"Mainframe98",
 			"Mar(c)",
 			"Kippenvlees1",
-			"McDutchie"
+			"McDutchie",
+			"Elroy"
 		]
 	},
-	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a te gebruiken voor API-toestemming",
+	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a en OAuth 2.0 te gebruiken voor API-toestemming",
 	"mwoauth-verified": "De toepassing heeft nu namens u toegang tot MediaWiki.\n\nGeef deze controlewaarde op in de toepassing om het proces te voltooien: '''$1'''",
 	"mwoauth-db-readonly": "De OAuth-database is tijdelijk vergrendeld. Probeer het over enkele minuten opnieuw.",
 	"mwoauth-missing-field": "Waarde voor het veld \"$1\" ontbreekt",
@@ -161,6 +162,7 @@
 	"mwoauthlistconsumers-status-disabled": "uitgeschakeld",
 	"mwoauthlistconsumers-status-rejected": "afgewezen",
 	"mwoauthlistconsumers-status-expired": "verlopen",
+	"mwoauthlistconsumers-rclink": "Recente wijzigingen door deze applicatie",
 	"oauthmanagemygrants": "Gekoppelde toepassingen beheren",
 	"mwoauthmanagemygrants-text": "Op deze pagina worden alle toepassingen weergegeven die toegang hebben tot uw gebruikersaccount. Iedere toepassing kan alleen dat doen waar u deze voor hebt gemachtigd. Als u een toepassing afzonderlijk toegang hebt gegeven tot uw gebruikersaccount op zusterprojecten, dan ziet u hieronder afzonderlijke instellingen voor elk van die projecten.\n\nGekoppelde toepassingen hebben toegang tot uw account via het protocol OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Meer over gekoppelde toepassingen])</span>",
 	"mwoauthmanagemygrants-navigation": "Navigatie:",
@@ -268,5 +270,6 @@
 	"notification-oauth-app-reject-primary-link": "Bekijk applicatie",
 	"notification-oauth-app-disable-primary-link": "Bekijk applicatie",
 	"notification-oauth-app-reenable-primary-link": "Bekijk applicatie",
-	"notification-oauth-app-body": "Reden: $1"
+	"notification-oauth-app-body": "Reden: $1",
+	"mwoauth-oauth2-granttype-client-credentials": "Aanmeldgegevens klant"
 }
