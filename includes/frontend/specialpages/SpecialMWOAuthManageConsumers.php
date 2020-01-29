@@ -291,6 +291,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		if ( $status instanceof \Status && $status->isOK() ) {
 			/** @var MWOAuthConsumer $cmr */
 			$cmr = $status->value['result'];
+			'@phan-var MWOAuthConsumer $cmr';
 			$oldStageKey = MWOAuthConsumer::$stageNames[$startingStage];
 			$newStageKey = MWOAuthConsumer::$stageNames[$cmr->getStage()];
 			// Messages: mwoauthmanageconsumers-success-approved, mwoauthmanageconsumers-success-rejected,

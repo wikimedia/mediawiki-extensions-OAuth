@@ -111,7 +111,7 @@ class CreateOAuthConsumer extends \Maintenance {
 			'secret' => MWOAuthUtils::hmacDBSecret( $cmr->getSecretKey() ),
 		];
 
-		if ( $this->hasOption( 'approve' ) ) {
+		if ( isset( $approveStatus ) ) {
 			$outputData['approved'] = $approveStatus->isGood() ?
 				1 : $approveStatus->getWikiText( false, false, 'en' );
 		}

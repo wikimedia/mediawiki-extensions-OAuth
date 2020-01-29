@@ -672,7 +672,6 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 		if ( $this->stage === self::STAGE_APPROVED && !$this->getOwnerOnly() ) {
 			return true;
 		} elseif ( $this->stage === self::STAGE_PROPOSED || $this->stage === self::STAGE_APPROVED ) {
-			// @phan-suppress-previous-line PhanSuspiciousValueComparison
 			$centralId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
 			return ( $centralId && $this->userId === $centralId );
 		}
