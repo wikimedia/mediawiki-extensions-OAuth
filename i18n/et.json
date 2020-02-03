@@ -5,7 +5,7 @@
 			"Boxmein"
 		]
 	},
-	"mwoauth-desc": "Võimaldab kasutada OAuth 1.0a-d API-volitamiseks.",
+	"mwoauth-desc": "Võimaldab kasutada OAuthi versioone 1.0a ja 2.0 API-volitamiseks.",
 	"mwoauth-prefs-managegrants": "Ühendatud rakendused:",
 	"mwoauth-prefs-managegrantslink": "Halda {{PLURAL:$1|üht ühendatud rakendust|$1 ühendatud rakendust|0=ühendatud rakendusi}}",
 	"mwoauth-consumer-allwikis": "Kõigis selle võrgukoha projektides",

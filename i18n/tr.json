@@ -23,6 +23,8 @@
 	"mwoauth-consumer-user": "Yayıncı:",
 	"mwoauth-consumer-stage": "Geçerli durumu:",
 	"mwoauth-consumer-granttypes": "İstenilen hibe türleri:",
+	"mwoauth-consumer-restrictions": "Kullanım sınırları:",
+	"mwoauth-consumer-restrictions-json": "Kullanım sınırları (JSON):",
 	"mwoauth-consumer-stage-proposed": "önerilen",
 	"mwoauth-consumer-stage-rejected": "reddedilen",
 	"mwoauth-consumer-stage-expired": "süresi dolmuş",
