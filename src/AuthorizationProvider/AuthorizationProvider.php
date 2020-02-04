@@ -138,7 +138,7 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 	protected function getGrantExpirationInterval() {
 		$intervalSpec = 'PT1H';
 		if ( $this->config->has( 'OAuth2GrantExpirationInterval' ) ) {
-			$intervalSpec = $this->config->get( 'OAuth2GrantExpirationInterval' );
+			$intervalSpec = $this->parseExpiration( $this->config->get( 'OAuth2GrantExpirationInterval' ) );
 		}
 		return new DateInterval( $intervalSpec );
 	}
@@ -150,7 +150,7 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 	protected function getRefreshTokenTTL() {
 		$intervalSpec = 'PT1M';
 		if ( $this->config->has( 'OAuth2RefreshTokenTTL' ) ) {
-			$intervalSpec = $this->config->get( 'OAuth2RefreshTokenTTL' );
+			$intervalSpec = $this->parseExpiration( $this->config->get( 'OAuth2RefreshTokenTTL' ) );
 		}
 
 		return new DateInterval( $intervalSpec );
@@ -165,5 +165,14 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 		$params = (array)$request->getParsedBody();
 
 		return $params['client_id'] ?? $default;
+	}
+
+	private function parseExpiration( $expiration ) {
+		if ( $expiration === false || $expiration === 'infinity' ) {
+			// Effectively non-expiring tokens
+			$expiration = 'P292277000000Y';
+		}
+
+		return $expiration;
 	}
 }
