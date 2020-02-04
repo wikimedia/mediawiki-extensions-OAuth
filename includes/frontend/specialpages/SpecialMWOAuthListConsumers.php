@@ -98,7 +98,9 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		$data = [
 			'mwoauthlistconsumers-name' => $cmrAc->getName(),
 			'mwoauthlistconsumers-version' => $cmrAc->getVersion(),
-			'mwoauth-oauth-version' => $cmrAc->getOAuthVersion(),
+			'mwoauth-oauth-version' => $cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2
+				? $this->msg( 'mwoauth-oauth-version-2' )
+				: $this->msg( 'mwoauth-oauth-version-1' ),
 			'mwoauthlistconsumers-user' => $cmrAc->getUserName(),
 			'mwoauthlistconsumers-status' => $this->msg( "mwoauthlistconsumers-status-$stageKey" ),
 			'mwoauthlistconsumers-description' => $cmrAc->getDescription(),
@@ -247,7 +249,11 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 		$lang = $this->getLanguage();
 		$data = [
-			'mwoauth-oauth-version' => $cmrAc->escapeForHtml( $cmrAc->getOAuthVersion() ),
+			'mwoauth-oauth-version' => $cmrAc->escapeForHtml(
+				$cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2
+					? $this->msg( 'mwoauth-oauth-version-2' )
+					: $this->msg( 'mwoauth-oauth-version-1' )
+			),
 			'mwoauthlistconsumers-user' => $cmrAc->escapeForHtml( $cmrAc->getUserName() ),
 			'mwoauthlistconsumers-description' => $cmrAc->escapeForHtml(
 				$cmrAc->get( 'description', function ( $s ) use ( $lang ) {
