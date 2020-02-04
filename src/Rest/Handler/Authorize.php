@@ -14,6 +14,7 @@ use MediaWiki\Extensions\OAuth\Exception\ClientApprovalDenyException;
 use MediaWiki\Extensions\OAuth\Response;
 use MediaWiki\Rest\Response as RestResponse;
 use MWException;
+use MWExceptionHandler;
 use SpecialPage;
 use Throwable;
 use User;
@@ -67,6 +68,7 @@ class Authorize extends AuthenticationHandler {
 		} catch ( OAuthServerException $ex ) {
 			return $this->errorResponse( $ex, $response );
 		} catch ( Throwable $ex ) {
+			MWExceptionHandler::logException( $ex );
 			return $this->errorResponse(
 				OAuthServerException::serverError( $ex->getMessage() ),
 				$response
