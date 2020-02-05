@@ -13,6 +13,7 @@ use MediaWiki\Rest\HttpException;
 use MWException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Wikimedia\ParamValidator\ParamValidator;
 
 class Resource extends Handler {
 	const TYPE_PROFILE = 'profile';
@@ -74,7 +75,7 @@ class Resource extends Handler {
 	 * @throws MWOAuthException
 	 */
 	public function doExecuteProtected( $request, $response ) {
-		$type = $this->getRequest()->getPathParam( '{type}' );
+		$type = $this->getRequest()->getPathParam( 'type' );
 
 		switch ( $type ) {
 			case 'profile':
@@ -134,5 +135,15 @@ class Resource extends Handler {
 	private function respond( $response, $data = [] ) {
 		$response->getBody()->write( FormatJson::encode( $data ) );
 		return $response;
+	}
+
+	public function getParamSettings() {
+		return [
+			'type' => [
+				self::PARAM_SOURCE => 'path',
+				ParamValidator::PARAM_TYPE => [ 'profile', 'scopes' ],
+				ParamValidator::PARAM_REQUIRED => true,
+			],
+		];
 	}
 }

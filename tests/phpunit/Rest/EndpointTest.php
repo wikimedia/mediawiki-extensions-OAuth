@@ -4,7 +4,6 @@ namespace MediaWiki\Extensions\OAuth\Tests\Rest;
 
 use EmptyBagOStuff;
 use GuzzleHttp\Psr7\Uri;
-use MediaWiki\Extensions\OAuth\Tests\Lib\Mock_OAuthSignatureMethod_RSA_SHA1;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\RequestData;
@@ -22,11 +21,7 @@ abstract class EndpointTest extends \MediaWikiTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		$signatureMethod = new Mock_OAuthSignatureMethod_RSA_SHA1();
-		$request = null;
 		$this->setMwGlobals( [
-			'wgOAuth2PublicKey' => $signatureMethod->fetch_public_cert( $request ),
-			'wgOAuth2PrivateKey' => $signatureMethod->fetch_private_cert( $request ),
 			'wgOAuthSecretKey' => base64_encode( random_bytes( 32 ) )
 		] );
 

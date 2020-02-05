@@ -8,7 +8,6 @@ use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\ClientCredentials;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\RefreshToken;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\IAuthorizationProvider;
 use MediaWiki\Extensions\OAuth\AuthorizationServerFactory;
-use MediaWiki\Extensions\OAuth\Tests\Lib\Mock_OAuthSignatureMethod_RSA_SHA1;
 use MediaWiki\MediaWikiServices;
 use MediaWikiTestCase;
 use Psr\Log\NullLogger;
@@ -26,11 +25,7 @@ class AuthorizationProviderTest extends MediaWikiTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		$signatureMethod = new Mock_OAuthSignatureMethod_RSA_SHA1();
-		$request = null;
 		$this->setMwGlobals( [
-			'wgOAuth2PublicKey' => $signatureMethod->fetch_public_cert( $request ),
-			'wgOAuth2PrivateKey' => $signatureMethod->fetch_private_cert( $request ),
 			'wgOAuthSecretKey' => base64_encode( random_bytes( 32 ) )
 		] );
 	}
