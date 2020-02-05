@@ -33,6 +33,12 @@ class MWOAuthUtils {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthReadOnly;
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
+		// T244415: Use the master if there were changes
+		if ( $index === DB_REPLICA && $lbFactory->hasOrMadeRecentMasterChanges() ) {
+			$index = DB_MASTER;
+		}
+
 		$db = $lbFactory->getMainLB( $wgMWOAuthCentralWiki )->getLazyConnectionRef(
 			$index, [], $wgMWOAuthCentralWiki );
 		$db->daoReadOnly = $wgMWOAuthReadOnly;
