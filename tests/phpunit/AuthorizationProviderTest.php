@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth\Tests;
 
+use DateTime;
+use MediaWiki\Extensions\OAuth\AuthorizationProvider\AuthorizationProvider;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokens;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\ClientCredentials;
@@ -13,6 +15,7 @@ use MediaWikiTestCase;
 use Psr\Log\NullLogger;
 use ReflectionClass;
 use User;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization
@@ -110,6 +113,68 @@ class AuthorizationProviderTest extends MediaWikiTestCase {
 			[ AuthorizationCodeAccessTokens::class, 'authorization_code', false ],
 			[ ClientCredentials::class, 'client_credentials', false ],
 			[ RefreshToken::class, 'refresh_token', false ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideExpirationInterval
+	 * @param string $global Value for setting
+	 * @param int $expect Expected DateTimeInterval->getTimestamp()
+	 */
+	public function testGetGrantExpirationInterval( $global, $expect ) {
+		$this->setMwGlobals( [ 'wgOAuth2GrantExpirationInterval' => $global ] );
+
+		$server = $this->getServer();
+		/** @var IAuthorizationProvider $authorizationProvider */
+		$authorizationProvider = $this->getMockBuilder( AuthorizationProvider::class )
+			->setConstructorArgs( [
+				$this->getOAuthConfig(),
+				$server,
+				new NullLogger()
+			] )
+			->getMockForAbstractClass();
+
+		$interval = TestingAccessWrapper::newFromObject( $authorizationProvider )
+			->getGrantExpirationInterval();
+
+		// No way to get the interval directly, so add it to a 0 timestamp then extract the timestamp...
+		$actual = ( new DateTime( '@0' ) )->add( $interval )->getTimestamp();
+
+		$this->assertSame( $expect, $actual );
+	}
+
+	/**
+	 * @dataProvider provideExpirationInterval
+	 * @param string $global Value for setting
+	 * @param int $expect Expected DateTimeInterval->getTimestamp()
+	 */
+	public function testGetRefreshTokenTTL( $global, $expect ) {
+		$this->setMwGlobals( [ 'wgOAuth2RefreshTokenTTL' => $global ] );
+
+		$server = $this->getServer();
+		/** @var IAuthorizationProvider $authorizationProvider */
+		$authorizationProvider = $this->getMockBuilder( AuthorizationProvider::class )
+			->setConstructorArgs( [
+				$this->getOAuthConfig(),
+				$server,
+				new NullLogger()
+			] )
+			->getMockForAbstractClass();
+
+		$interval = TestingAccessWrapper::newFromObject( $authorizationProvider )
+			->getRefreshTokenTTL();
+
+		// No way to get the interval directly, so add it to a 0 timestamp then extract the timestamp...
+		$actual = ( new DateTime( '@0' ) )->add( $interval )->getTimestamp();
+
+		$this->assertSame( $expect, $actual );
+	}
+
+	public function provideExpirationInterval() {
+		return [
+			[ 'P30D', 2592000 ],
+			[ false, 9223371259704000000 ],
+			[ 'infinity', 9223371259704000000 ],
 		];
 	}
 
