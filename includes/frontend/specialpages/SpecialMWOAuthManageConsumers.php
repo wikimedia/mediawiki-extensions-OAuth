@@ -356,7 +356,9 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 					$this->msg( 'parentheses' )->rawParams( $link )->escaped();
 			} ) ),
 			'mwoauth-consumer-version' => $cmrAc->getVersion(),
-			'mwoauth-oauth-version' => $cmrAc->getOAuthVersion(),
+			'mwoauth-oauth-version' => $cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2
+				? $this->msg( 'mwoauth-oauth-version-2' )
+				: $this->msg( 'mwoauth-oauth-version-1' ),
 			'mwoauth-consumer-user' => new HtmlSnippet( $ownerLink ),
 			'mwoauth-consumer-description' => $cmrAc->getDescription(),
 			'mwoauth-consumer-owner-only-label' => $ownerOnly ?
