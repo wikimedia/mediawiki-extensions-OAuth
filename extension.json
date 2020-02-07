@@ -132,6 +132,7 @@
 		"localBasePath": "resources/modules",
 		"remoteExtPath": "OAuth/resources/modules"
 	},
+	"callback": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onRegistration",
 	"Hooks": {
 		"ChangeTagCanCreate": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onChangeTagCanCreate",
 		"MergeAccountFromTo": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onMergeAccountFromTo",
@@ -233,7 +234,7 @@
 			"method": "POST"
 		},
 		{
-			"path": "/oauth2/resource/{{type}}",
+			"path": "/oauth2/resource/{type}",
 			"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\Resource::factory"
 		}
 	],

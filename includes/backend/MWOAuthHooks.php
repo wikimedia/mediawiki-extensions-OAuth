@@ -10,6 +10,34 @@ use MediaWiki\Storage\NameTableAccessException;
  */
 class MWOAuthHooks {
 
+	/**
+	 * Called right after configuration variables have been set.
+	 */
+	public static function onRegistration() {
+		global $wgWikimediaJenkinsCI, $wgOAuth2PrivateKey, $wgOAuth2PublicKey;
+
+		// Set $wgOAuth2PrivateKey and $wgOAuth2PublicKey for Wikimedia Jenkins, PHPUnit.
+		if ( defined( 'MW_PHPUNIT_TEST' ) || ( $wgWikimediaJenkinsCI ?? false ) ) {
+			$wgOAuth2PrivateKey = <<<EOK
+-----BEGIN RSA PRIVATE KEY-----
+MIIBOwIBAAJBAMBGXQYJ2lXzLuQkRlWoqYJvSnNGfRvPBUVsbHfFPyCr8i6jBPcO
+vtMLFMRAaq4quRDFgQ7YQLvKTqjpN+bo7RECAwEAAQJBAKP3XTzZCihhyYskpBZI
+TsW8wnCrm+UrFgOuApHg04S3oeUXpNApxxGy+EX0aBsVoPBuisyBjiJDIFssdgJa
+IwECIQDuMipv8QOzA9qJPPpXZCQQN6znXjSE3jZhrBH879SDBQIhAM6lgY0lWB0N
+lhQZWtM8jRcxtJUFrApEizE6WFxj/LedAiEAyINgaAVqiMror3iugNyi4ygLHGWY
+LnVlMAmKxvMZYQUCIAYTeb6ztWaNSrdmk3QYmLFw5bVoCEn4//q/k2+MBRdFAiA2
+MJWJuom6IpoP0UrM/gJbwGxwgZymb4jL+sKFoIqGmA==
+-----END RSA PRIVATE KEY-----
+EOK;
+			$wgOAuth2PublicKey = <<<EOK
+-----BEGIN PUBLIC KEY-----
+MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMBGXQYJ2lXzLuQkRlWoqYJvSnNGfRvP
+BUVsbHfFPyCr8i6jBPcOvtMLFMRAaq4quRDFgQ7YQLvKTqjpN+bo7RECAwEAAQ==
+-----END PUBLIC KEY-----
+EOK;
+		}
+	}
+
 	public static function onExtensionFunctions() {
 		global $wgLogTypes, $wgLogNames,
 			$wgLogHeaders, $wgLogActionsHandlers, $wgActionFilteredLogs;
