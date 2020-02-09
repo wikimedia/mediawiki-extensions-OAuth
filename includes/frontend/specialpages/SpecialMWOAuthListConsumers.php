@@ -22,6 +22,7 @@ namespace MediaWiki\Extensions\OAuth;
  */
 
 use Html;
+use MediaWiki\MediaWikiServices;
 use OOUI\HtmlSnippet;
 use SpecialPage;
 use Wikimedia\Rdbms\DBConnRef;
@@ -115,6 +116,8 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		}
 
 		$out->addHTML( MWOAuthUIUtils::generateInfoTable( $data, $this->getContext() ) );
+
+		$this->addNavigationSubtitle( $cmrAc );
 
 		if ( MWOAuthUtils::isCentralWiki() ) {
 			// Show all of the status updates
@@ -282,5 +285,118 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 	protected function getGroupName() {
 		return 'users';
+	}
+
+	/**
+	 * @param MWOAuthConsumerAccessControl $cmrAc
+	 * @throws \MWException
+	 */
+	private function addNavigationSubtitle( MWOAuthConsumerAccessControl $cmrAc ): void {
+		$user = $this->getUser();
+		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$consumer = $cmrAc->getDAO();
+
+		$siteLinks = array_merge(
+			$this->updateLink( $cmrAc, $centralUserId, $linkRenderer ),
+			$this->manageConsumerLink( $consumer, $user, $linkRenderer ),
+			$this->manageMyGrantsLink( $consumer, $centralUserId, $linkRenderer )
+		);
+
+		if ( $siteLinks ) {
+			$links = $this->getLanguage()->pipeList( $siteLinks );
+			$this->getOutput()->setSubtitle(
+				"<strong>" . $this->msg( 'mwoauthlistconsumers-navigation' )->escaped() .
+				"</strong> [{$links}]" );
+		}
+	}
+
+	/**
+	 * @param MWOAuthConsumerAccessControl $cmrAc
+	 * @param int $centralUserId Add update link for this user id, if they can update the consumer
+	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
+	 * @return array
+	 * @throws \MWException
+	 */
+	private function updateLink(
+		MWOAuthConsumerAccessControl $cmrAc, $centralUserId,
+		\MediaWiki\Linker\LinkRenderer $linkRenderer
+	): array {
+		if ( $cmrAc->getDAO()->getUserId() === $centralUserId ) {
+			return [
+				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'OAuthConsumerRegistration',
+					'update/' . $cmrAc->getDAO()->getConsumerKey() ),
+					$this->msg( 'mwoauthlistconsumers-update-link' )->text() )
+			];
+		}
+
+		return [];
+	}
+
+	/**
+	 * @param MWOAuthConsumer $consumer
+	 * @param \User $user
+	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
+	 * @return array
+	 * @throws \MWException
+	 */
+	private function manageConsumerLink(
+		MWOAuthConsumer $consumer, \User $user, \MediaWiki\Linker\LinkRenderer $linkRenderer
+	): array {
+		if ( $user->isAllowed( 'mwoauthmanageconsumer' ) ) {
+			return [
+				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'OAuthManageConsumers',
+					$consumer->getConsumerKey() ),
+					$this->msg( 'mwoauthlistconsumers-manage-link' )->text() )
+			];
+		}
+
+		return [];
+	}
+
+	/**
+	 * @param MWOAuthConsumer $consumer
+	 * @param int $centralUserId Add link to manage grants for this user, if they've granted this
+	 * consumer
+	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
+	 * @return array
+	 * @throws \MWException
+	 */
+	private function manageMyGrantsLink(
+		MWOAuthConsumer $consumer, $centralUserId, \MediaWiki\Linker\LinkRenderer $linkRenderer
+	): array {
+		$acceptance = $this->userGrantedAcceptance( $consumer, $centralUserId );
+		if ( $acceptance !== false ) {
+			return [
+				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'OAuthManageMyGrants',
+					'update/' . $acceptance->getId() ),
+					$this->msg( 'mwoauthlistconsumers-grants-link' )->text() )
+			];
+		}
+
+		return [];
+	}
+
+	/**
+	 * @param MWOAuthConsumer $consumer
+	 * @param int $centralUserId UserId to retrieve the grants for
+	 * @return bool|MWOAuthConsumerAcceptance
+	 */
+	private function userGrantedAcceptance( MWOAuthConsumer $consumer, $centralUserId ) {
+		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+		$wikiSpecificGrant =
+			MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
+				$dbr, $centralUserId, $consumer, wfWikiId() );
+
+		$allWikiGrant = MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
+			$dbr, $centralUserId, $consumer, '*' );
+
+		if ( $wikiSpecificGrant !== false ) {
+			return $wikiSpecificGrant;
+		}
+		if ( $allWikiGrant !== false ) {
+			return $allWikiGrant;
+		}
+		return false;
 	}
 }
