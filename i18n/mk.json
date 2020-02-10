@@ -269,7 +269,7 @@
 	"action-mwoauthviewprivate": "преглед на лични податоци за OAuth",
 	"action-mwoauthviewsuppressed": "преглед на скриени потрошувачи на OAuth",
 	"mwoauth-tag-reserved": "Ознаките што почнуваат со <code>OAuth CID:</code> се резервирани за употреба од OAuth.",
-	"mwoauth-botpasswords-note": "<strong>Напомена:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> е побезбеден од ботовските јавки и треба да се користи секогаш кога ботот го поддржува.",
+	"mwoauth-botpasswords-note": "<strong>Напомена:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> е побезбеден од ботовските лозинки и треба да се користи секогаш кога ботот го поддржува.",
 	"mwoauth-api-module-disabled": "Модулот „$1“ не е достапен со OAuth.",
 	"echo-category-title-oauth-owner": "Разработка на OAuth",
 	"echo-pref-tooltip-oauth-owner": "Извести ме за случувањата поврзани со прилозите со OAuth што ги имам создадено.",

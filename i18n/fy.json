@@ -14,5 +14,8 @@
 	"mwoauthmanageconsumers-reason": "Reden:",
 	"mwoauthmanagemygrants-navigation": "Navigaasje:",
 	"mwoauth-form-button-cancel": "Annulearje",
-	"echo-category-title-oauth-owner": "OAuth-ûntwikkeling"
+	"echo-category-title-oauth-owner": "OAuth-ûntwikkeling",
+	"echo-pref-tooltip-oauth-owner": "Meld my barrens oangeande OAuth-applikaasjes dy't ik makke haw.",
+	"echo-category-title-oauth-admin": "OAuth-behear",
+	"echo-pref-tooltip-oauth-admin": "Meld my barrens oangeande it beoardieljen fan OAuth-applikaasjes."
 }

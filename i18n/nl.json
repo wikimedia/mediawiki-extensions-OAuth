@@ -16,7 +16,8 @@
 			"Mar(c)",
 			"Kippenvlees1",
 			"McDutchie",
-			"Elroy"
+			"Elroy",
+			"PiefPafPier"
 		]
 	},
 	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a en OAuth 2.0 te gebruiken voor API-toestemming",
@@ -249,9 +250,9 @@
 	"mwoauth-botpasswords-note": "<strong>Opmerking:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> is veiliger dan botwachtwoorden en verdient de voorkeur wanneer de bot dit ondersteunt.",
 	"mwoauth-api-module-disabled": "De \"$1\" module is niet beschikbaar met OAuth.",
 	"echo-category-title-oauth-owner": "OAuth-ontwikkeling",
-	"echo-pref-tooltip-oauth-owner": "Informeer mij over gebeurtenissen rond OAuth-applicaties die ik heb aangemaakt.",
-	"echo-category-title-oauth-admin": "OAuth-administrator",
-	"echo-pref-tooltip-oauth-admin": "Informeer mij over gebeurtenissen rond het herzien van OAuth-applicaties.",
+	"echo-pref-tooltip-oauth-owner": "Meld mij over gebeurtenissen rond OAuth-applicaties die ik heb aangemaakt.",
+	"echo-category-title-oauth-admin": "OAuth-beheer",
+	"echo-pref-tooltip-oauth-admin": "Meld mij gebeurtenissen aangaande het beoordelen van OAuth-applicaties.",
 	"notification-oauth-app-propose-title": "$1 {{GENDER:$1|stelde}} een nieuwe OAuth-applicatie voor: $2",
 	"notification-oauth-app-update-title": "$1 heeft de OAuth-applicatie $2 {{GENDER:$1|bijgewerkt}}",
 	"notification-oauth-app-approve-title": "$1 {{GENDER:$1|heeft}} {{GENDER:$3|uw}} OAuth-applicatie ($2) goedgekeurd",

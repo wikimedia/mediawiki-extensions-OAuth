@@ -79,5 +79,6 @@
 	"mwoauth-form-description-allwikis-privateinfo": "{{GENDER:$1|Užívateľ|Užívateľka}} $1,\n\npre dokončenie vašej požiadavky potrebuje '''$2''' povolenie na prístup k informáciám o vás, vrátane vášho skutočného mena a emailovej adresy, na všetkých projektoch tohoto webu. Vo vašom mene nebudú vykonané žiadne zmeny.",
 	"mwoauth-form-description-onewiki-privateinfo": "{{GENDER:$1|Užívateľ|Užívateľka}} $1,\n\npre dokončenie vašej požiadavky potrebuje '''$2''' povolenie na prístup k informáciám o vás, vrátane vášho skutočného mena a emailovej adresy, na ''{{grammar:5sg|$4}}''. Vo vašom mene nebudú vykonané žiadne zmeny.",
 	"mwoauth-form-button-approve": "Povoliť",
-	"mwoauth-form-button-cancel": "Zrušiť"
+	"mwoauth-form-button-cancel": "Zrušiť",
+	"echo-pref-tooltip-oauth-owner": "Upozornite ma na udalosti týkajúce sa aplikácií OAuth, ktoré som {{GENDER:|vytvoril|vytvorila}}."
 }
