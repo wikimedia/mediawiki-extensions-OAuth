@@ -149,7 +149,8 @@
 		"ApiRsdServiceApis": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onApiRsdServiceApis",
 		"SpecialPage_initList": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onSpecialPage_initList",
 		"ListDefinedTags": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onListDefinedTags",
-		"ChangeTagsListActive": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onChangeTagsListActive"
+		"ChangeTagsListActive": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onChangeTagsListActive",
+		"LoginFormValidErrorMessages": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onLoginFormValidErrorMessages"
 	},
 	"ConfigRegistry": {
 		"mwoauth": "GlobalVarConfig::newInstance"

@@ -222,4 +222,14 @@ class MWOAuthUIHooks {
 			$specialPages['OAuthManageConsumers'] = SpecialMWOAuthManageConsumers::class;
 		}
 	}
+
+	/**
+	 * Show help text when a user is redirected to provider login page
+	 * @param array &$messages
+	 * @return bool
+	 */
+	public static function onLoginFormValidErrorMessages( &$messages ) {
+		$messages[] = 'mwoauth-login-required-reason';
+		return true;
+	}
 }
