@@ -528,11 +528,20 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 	public function formatRow( DBConnRef $db, $row ) {
 		$cmrAc = MWOAuthConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
+		$cmrKey = $cmrAc->getConsumerKey();
 
-		$link = \Linker::linkKnown(
-			$this->getPageTitle( 'update/' . $cmrAc->getConsumerKey() ),
+		$links = [];
+		$links[] = \Linker::linkKnown(
+			\SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$cmrKey" ),
+			$this->msg( 'mwoauthlistconsumers-view' )->escaped()
+		);
+
+		$links[] = \Linker::linkKnown(
+			$this->getPageTitle( 'update/' . $cmrKey ),
 			$this->msg( 'mwoauthconsumerregistration-manage' )->escaped()
 		);
+
+		$links = $this->getLanguage()->pipeList( $links );
 
 		$time = htmlspecialchars( $this->getLanguage()->timeanddate(
 			wfTimestamp( TS_MW, $cmrAc->getRegistration() ), true ) );
@@ -574,7 +583,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		];
 
 		$r = "<li class='mw-mwoauthconsumerregistration-{$encStageKey}'>";
-		$r .= "<span>$time (<strong>{$link}</strong>)</span>";
+		$r .= "<span>$time (<strong>{$links}</strong>)</span>";
 		$r .= "<table class='mw-mwoauthconsumerregistration-body' " .
 			"cellspacing='1' cellpadding='3' border='1' width='100%'>";
 		foreach ( $data as $msg => $encValue ) {
