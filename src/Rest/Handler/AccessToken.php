@@ -8,6 +8,7 @@ use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAcce
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\ClientCredentials;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\RefreshToken;
 use MediaWiki\Extensions\OAuth\Response;
+use MWExceptionHandler;
 use Throwable;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -36,6 +37,7 @@ class AccessToken extends AuthenticationHandler {
 		} catch ( OAuthServerException $exception ) {
 			return $this->errorResponse( $exception, $response );
 		} catch ( Throwable $exception ) {
+			MWExceptionHandler::logException( $exception );
 			return $this->errorResponse(
 				OAuthServerException::serverError( $exception->getMessage(), $exception ),
 				$response
