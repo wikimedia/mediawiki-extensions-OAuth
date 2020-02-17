@@ -322,5 +322,6 @@
 	"mwoauth-oauth2-error-invalid-client": "Client authentication failed (e.g., unknown client, no client authentication included, or unsupported authentication method)",
 	"mwoauth-oauth2-error-request-not-verified": "Attempting to retrieve verified property before verifying the request",
 	"mwoauth-oauth2-invalid-access-token": "Invalid access token",
-	"mwoauth-consumer-access-no-user": "Consumer approval must be bound to a valid user, user with ID 0 given"
+	"mwoauth-consumer-access-no-user": "Consumer approval must be bound to a valid user, user with ID 0 given",
+	"mwoauth-login-required-reason": "You need to log into your {{SITENAME}} account to authorize applications to access it."
 }

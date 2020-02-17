@@ -115,16 +115,8 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 					// TODO? Test that $requestToken exists in memcache
 					if ( $user->isAnon() ) {
-						$query = [];
-						// Redirect to login page
-						$query['returnto'] = $this->getPageTitle( $subpage )->getPrefixedText();
-						$query['returntoquery'] = wfArrayToCgi( [
-							'oauth_token'        => $requestToken,
-							'oauth_consumer_key' => $consumerKey
-						] );
-						$loginPage = \SpecialPage::getTitleFor( 'Userlogin' );
-						$url = $loginPage->getLocalURL( $query );
-						$this->getOutput()->redirect( $url );
+						// Login required on provider wiki
+						$this->requireLogin( 'mwoauth-login-required-reason' );
 					} else {
 						if ( $request->wasPosted() && $request->getCheck( 'cancel' ) ) {
 							// Show acceptance cancellation confirmation
