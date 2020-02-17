@@ -75,8 +75,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					$this->assertOAuthVersion( MWOAuthConsumer::OAUTH_VERSION_1 );
 					$oauthServer = MWOAuthUtils::newMWOAuthServer();
 					$oauthRequest = MWOAuthRequest::fromRequest( $request );
-					$this->logger->debug( __METHOD__ . ": Consumer " .
-						"'{$oauthRequest->getConsumerKey()}' getting temporary credentials" );
+					$this->logger->debug( __METHOD__ . ": Getting temporary credentials" );
 					// fetch_request_token does the version, freshness, and sig checks
 					$token = $oauthServer->fetch_request_token( $oauthRequest );
 					$this->returnToken( $token, $format );
@@ -150,8 +149,6 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 						break;
 					}
 
-					$consumerKey = $oauthRequest->get_parameter( 'oauth_consumer_key' );
-					$this->logger->debug( "/token: '{$consumerKey}' getting temporary credentials" );
 					$token = $oauthServer->fetch_access_token( $oauthRequest );
 					if ( $isRsa ) {
 						// RSA doesn't use the token secret, so don't return one.
