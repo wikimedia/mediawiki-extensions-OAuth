@@ -15,6 +15,10 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Wikimedia\ParamValidator\ParamValidator;
 
+/**
+ * Handles the oauth2/resource/profile and oauth2/resource/scope endpoints, which return
+ * information about the user and the grants of the application, respectively.
+ */
 class Resource extends Handler {
 	const TYPE_PROFILE = 'profile';
 

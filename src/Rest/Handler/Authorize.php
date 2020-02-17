@@ -20,6 +20,11 @@ use Throwable;
 use User;
 use Wikimedia\ParamValidator\ParamValidator;
 
+/**
+ * Handles the oauth2/authorize endpoint, which displays an authorization dialog to the user if
+ * needed (by redirecting to Special:OAuth/approve), and returns an authorization code that can be
+ * traded for the access token.
+ */
 class Authorize extends AuthenticationHandler {
 	const RESPONSE_TYPE_CODE = 'code';
 
