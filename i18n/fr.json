@@ -18,7 +18,8 @@
 			"Od1n",
 			"Thibaut120094",
 			"Pols12",
-			"Verdy p"
+			"Verdy p",
+			"Eneelk"
 		]
 	},
 	"mwoauth-desc": "Autorise l’utilisation de OAuth 1.0a et 2.0 pour l’authentification de l’API",
@@ -177,6 +178,10 @@
 	"mwoauthlistconsumers-status-disabled": "désactivé",
 	"mwoauthlistconsumers-status-rejected": "rejeté",
 	"mwoauthlistconsumers-status-expired": "expiré",
+	"mwoauthlistconsumers-navigation": "Navigation :",
+	"mwoauthlistconsumers-update-link": "Mettre à jour le consommateur",
+	"mwoauthlistconsumers-manage-link": "Gérer le consommateur",
+	"mwoauthlistconsumers-grants-link": "Gérer les droits",
 	"mwoauthlistconsumers-rclink": "Modifications récentes par cette application",
 	"oauthmanagemygrants": "Gérer les applications connectées",
 	"mwoauthmanagemygrants-text": "Cette page liste toutes les applications qui peuvent utiliser votre compte. Pour chacune de ces applications, son périmètre d’accès est limité par les droits que vous lui avez accordés quand vous l’avez autorisée à agir en votre nom. Si vous avez autorisé une application de façon séparée à accéder à différents projets « frères » en votre nom, alors vous verrez une configuration distincte pour chacun de ces projets ci-dessous.\n\nLes applications connectées accèdent à votre compte en utilisant le protocole OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth En savoir plus sur les applications connectées])</span>",
@@ -332,5 +337,6 @@
 	"mwoauth-oauth2-error-invalid-client": "L’authentification du client a échoué (par ex., client inconnu, pas d’authentification de client incluse, ou méthode d’authentification non supportée)",
 	"mwoauth-oauth2-error-request-not-verified": "Essai de récupérer la propriété vérifiée avant de vérifier la requête",
 	"mwoauth-oauth2-invalid-access-token": "Jeton d’accès non valide",
-	"mwoauth-consumer-access-no-user": "L’approbation du serveur doit être liée à un utilisateur valide, utilisateur avec ID 0 fourni"
+	"mwoauth-consumer-access-no-user": "L’approbation du serveur doit être liée à un utilisateur valide, utilisateur avec ID 0 fourni",
+	"mwoauth-login-required-reason": "Vous devez vous connecter à votre compte {{SITENAME}} pour autoriser les applications à y accéder."
 }

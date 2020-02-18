@@ -4,9 +4,11 @@
 			"Nirjal stha",
 			"NehalDaveND",
 			"राम प्रसाद जोशी",
-			"सरोज कुमार ढकाल"
+			"सरोज कुमार ढकाल",
+			"पर्वत सुबेदी"
 		]
 	},
+	"mwoauth-prefs-managegrants": "जडान गरिएका अनुप्रयाेगहरू",
 	"mwoauth-consumer-granttypes": "निवेदन गरिएको अनुदानको प्रकारः",
 	"mwoauth-consumer-reason": "कारण:",
 	"mwoauth-consumer-email-unconfirmed": "तपाईंको खातामा इमेल ठेगाना प्रमाणित भएको छैन ।",
@@ -17,6 +19,8 @@
 	"mwoauthmanageconsumers-reason": "कारण:",
 	"mwoauthlistconsumers-view": "विवरणहरू",
 	"mwoauthlistconsumers-status": "स्थिति",
+	"mwoauthlistconsumers-navigation": "पथ प्रर्दशन",
+	"mwoauthlistconsumers-update-link": "अद्यावधिक उपभोक्ता",
 	"mwoauthmanagemygrants-description": "विवरण",
 	"mwoauth-form-button-cancel": "रद्द गर्ने",
 	"mwoauth-granttype-normal": "विशेष अनुमति अधिकारको लागि निवेदन गर्नुहोस् ।"
