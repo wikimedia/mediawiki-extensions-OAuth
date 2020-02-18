@@ -11,6 +11,10 @@ use MediaWiki\Extensions\OAuth\Response;
 use Throwable;
 use Wikimedia\ParamValidator\ParamValidator;
 
+/**
+ * Handles the oauth2/access_token endpoint, which can be used after the user has returned from
+ * the authorization dialog to trade the off the received authorization code for an access token.
+ */
 class AccessToken extends AuthenticationHandler {
 
 	const GRANT_TYPE_CLIENT_CREDENTIALS = 'client_credentials';
