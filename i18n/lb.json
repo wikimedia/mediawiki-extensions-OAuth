@@ -3,13 +3,14 @@
 		"authors": [
 			"Robby",
 			"Les Meloures",
-			"Macofe"
+			"Macofe",
+			"Soued031"
 		]
 	},
 	"oauth": "OAuth",
 	"mwoauth-desc": "De Gebrauch vun OAuth 1.0a fir API Autorisatioun erlaben",
-	"mwoauth-verified": "D'Applikatioun ass elo berechtegt op MediaWiki an Ärem Numm zouzegräifen.\n\nFir de Prozess ofzeschléissen, gitt w.e.g. dëse Kontrollwäert un d'Applatioun virun: '''$1'''",
-	"mwoauth-db-readonly": "D'OAuth-Datebank ass temporär gespaart. Probéiert w.e.g. an e puer Minutte nach eng Kéier.",
+	"mwoauth-verified": "D'Applikatioun ass elo berechtegt op MediaWiki an Ärem Numm zouzegräifen.\n\nFir de Prozess ofzeschléissen, gitt wgl. dëse Kontrollwäert un d'Applatioun virun: '''$1'''",
+	"mwoauth-db-readonly": "D'OAuth-Datebank ass temporär gespaart. Probéiert wgl. an e puer Minutte nach eng Kéier.",
 	"mwoauth-missing-field": "De Wäert fir d'Feld \"$1\" feelt",
 	"mwoauth-invalid-field": "Net valabele Wäert fir ''$1'' uginn",
 	"mwoauth-invalid-field-generic": "Net valabele Wäert uginn",

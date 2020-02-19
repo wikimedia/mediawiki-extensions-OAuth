@@ -330,5 +330,6 @@
 	"mwoauth-oauth2-error-invalid-client": "İstemci kimlik doğrulaması başarısız oldu (ör. Bilinmeyen istemci, istemci kimlik doğrulaması dahil değil veya desteklenmeyen kimlik doğrulama yöntemi)",
 	"mwoauth-oauth2-error-request-not-verified": "Doğrulanmış özellikleri talebin doğrulanmasından önce kurtarma girişimi",
 	"mwoauth-oauth2-invalid-access-token": "Geçersiz giriş jetonu",
-	"mwoauth-consumer-access-no-user": "Tüketici onayı geçerli bir kullanıcıya bağlı olmalı, kimlik numarası 0 olan kullanıcı verilmiş olmalıdır"
+	"mwoauth-consumer-access-no-user": "Tüketici onayı geçerli bir kullanıcıya bağlı olmalı, kimlik numarası 0 olan kullanıcı verilmiş olmalıdır",
+	"mwoauth-login-required-reason": "Uygulamalara erişme yetkisi vermek için {{SITENAME}} hesabınıza giriş yapmanız gerekiyor."
 }

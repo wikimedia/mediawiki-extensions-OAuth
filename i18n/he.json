@@ -165,6 +165,10 @@
 	"mwoauthlistconsumers-status-disabled": "כבוי",
 	"mwoauthlistconsumers-status-rejected": "דחוי",
 	"mwoauthlistconsumers-status-expired": "פג־תוקף",
+	"mwoauthlistconsumers-navigation": "ניווט:",
+	"mwoauthlistconsumers-update-link": "עדכון צרכן",
+	"mwoauthlistconsumers-manage-link": "ניהול צרכן",
+	"mwoauthlistconsumers-grants-link": "ניהול זיכיונות",
 	"mwoauthlistconsumers-rclink": "שינויים אחרונים שנעשו על־די היישום הזה",
 	"oauthmanagemygrants": "ניהול יישומים מחוברים",
 	"mwoauthmanagemygrants-text": "בדף הזה נמצאת רשימה של כל היישומים שיכולים להשתמש בחשבון שלך. לכל יישום כזה טווח הגישה מוגבל בהרשאות שנתת לו כאשר אישרת לו לפעול בשמך. אם נתת אישור נפרד ליישום לגשת בשמך למיזמים אחרים, תראה את ההגדרות הנפרדות לכל מיזם כזה להלן.\n\nהיישומים המחוברים ניגשים לחשבון שלך באמצעות פרוטוקול OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth מידע נוסף על יישומים מחוברים])</span>",
@@ -320,5 +324,6 @@
 	"mwoauth-oauth2-error-invalid-client": "אימות הלקוח נכשל (למשל, לקוח לא ידוע, לא נכלל אימות לקוח, או שיטת אימות שאינה נתמכת)",
 	"mwoauth-oauth2-error-request-not-verified": "ניסיון לאחזר מאפיין מאומת לפני אימות הבקשה",
 	"mwoauth-oauth2-invalid-access-token": "אסימון גישה בלתי־תקין",
-	"mwoauth-consumer-access-no-user": "אישור לקוח צריך להיות משויך למשתמש תקין, ניתן משתמש עם מזהה 0"
+	"mwoauth-consumer-access-no-user": "אישור לקוח צריך להיות משויך למשתמש תקין, ניתן משתמש עם מזהה 0",
+	"mwoauth-login-required-reason": "עליך להיכנס לחשבון שלך באתר {{SITENAME}} כדי לאשר ליישומים לגשת אליו."
 }
