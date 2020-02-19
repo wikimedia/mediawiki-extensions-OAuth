@@ -105,9 +105,9 @@
 	"oauthmanageconsumers": "{{doc-special|MWOAuthManageConsumers}}\n{{Identical|Manage OAuth consumer}}",
 	"mwoauthmanageconsumers-notloggedin": "Used if the user is not logged in.",
 	"mwoauthmanageconsumers-type": "Used as subtitle.\n\nFollowed by any one (or zero) of the following messages:\n* {{msg-mw|Mwoauthmanageconsumers-showproposed}}\n* {{msg-mw|Mwoauthmanageconsumers-showrejected}}\n* {{msg-mw|Mwoauthmanageconsumers-showexpired}}\n{{Identical|Queue}}",
-	"mwoauthmanageconsumers-showproposed": "Used as link text or plain text in a navgation menu.\n\nSee also:\n* {{msg-mw|Mwoauthmanageconsumers-type}}",
-	"mwoauthmanageconsumers-showrejected": "Used as link text or plain text in a navgation menu.\n\nSee also:\n* {{msg-mw|Mwoauthmanageconsumers-type}}",
-	"mwoauthmanageconsumers-showexpired": "Used as link text or plain text in a navgation menu.\n\nSee also:\n* {{msg-mw|Mwoauthmanageconsumers-type}}",
+	"mwoauthmanageconsumers-showproposed": "Used as link text or plain text in a navigation menu.\n\nSee also:\n* {{msg-mw|Mwoauthmanageconsumers-type}}",
+	"mwoauthmanageconsumers-showrejected": "Used as link text or plain text in a navigation menu.\n\nSee also:\n* {{msg-mw|Mwoauthmanageconsumers-type}}",
+	"mwoauthmanageconsumers-showexpired": "Used as link text or plain text in a navigation menu.\n\nSee also:\n* {{msg-mw|Mwoauthmanageconsumers-type}}",
 	"mwoauthmanageconsumers-linkproposed": "Used as link text inside a sentence.",
 	"mwoauthmanageconsumers-linkrejected": "Used as link text inside a sentence.",
 	"mwoauthmanageconsumers-linkexpired": "Used as link text inside a sentence.",
@@ -335,5 +335,8 @@
 	"mwoauth-oauth2-error-request-not-verified": "Error message when verified properties are accessed before verifying the request",
 	"mwoauth-oauth2-invalid-access-token": "Error when verifying the access token and the token is invalid",
 	"mwoauth-consumer-access-no-user": "Error message when trying to save user approval with anonymous user",
-	"mwoauth-login-required-reason": "Helper text that appears when a user is redirected to Special:Login page because they attempted authorisation while not logged in on the provider"
+	"mwoauth-login-required-reason": "Helper text that appears when a user is redirected to Special:Login page because they attempted authorisation while not logged in on the provider",
+	"mwoauthconsumer-consumer-view": "Used as link text in a navigation menu.",
+	"mwoauthconsumer-application-view": "Used as link text in a navigation menu."
+
 }

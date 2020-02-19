@@ -509,6 +509,11 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthconsumerregistration-list' )->escaped();
 		}
+		if ( $consumerKey && $action == 'update' ) {
+			$listLinks[] = \Linker::linkKnown(
+				\SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$consumerKey" ),
+				$this->msg( 'mwoauthconsumer-consumer-view' )->escaped() );
+		}
 
 		$linkHtml = $this->getLanguage()->pipeList( $listLinks );
 
