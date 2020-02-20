@@ -66,8 +66,6 @@ class OAuth1Consumer extends MWOAuthConsumer {
 
 		$requestToken->addAccessKey( $accessToken->key );
 		$store->updateRequestToken( $requestToken, $this );
-		$this->logger->debug( "Verification code {$requestToken->getVerifyCode()} for " .
-			"$requestTokenKey (client: {$this->getConsumerKey()})" );
 		return $this->generateCallbackUrl(
 			$store, $requestToken->getVerifyCode(), $requestTokenKey
 		);

@@ -57,7 +57,6 @@ class MWOAuthRequest extends OAuthRequest {
 			) === 0
 		) {
 			$postData = OAuthUtil::parse_parameters( $request->getRawPostString() );
-			$logger->debug( __METHOD__ . ': Post String = ' . $request->getRawPostString() );
 			$parameters = array_merge( $parameters, $postData );
 		}
 
@@ -71,7 +70,6 @@ class MWOAuthRequest extends OAuthRequest {
 			);
 			$parameters = array_merge( $parameters, $headerParameters );
 		}
-		$logger->debug( __METHOD__ . ": parameters:\n" . print_r( $parameters, true ) );
 
 		return new self( $httpMethod, $httpUrl, $parameters, $request->getIP() );
 	}

@@ -133,7 +133,7 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 				$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $accessTokenKey );
 			}
 		} catch ( \Exception $ex ) {
-			$this->logger->debug( 'Bad OAuth request from {ip}', $logData + [ 'exception' => $ex ] );
+			$this->logger->info( 'Bad OAuth request from {ip}', $logData + [ 'exception' => $ex ] );
 			return $this->makeException( 'mwoauth-invalid-authorization', $ex->getMessage() );
 		}
 
