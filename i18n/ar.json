@@ -168,6 +168,7 @@
 	"mwoauthlistconsumers-status-disabled": "معطل",
 	"mwoauthlistconsumers-status-rejected": "مرفوض",
 	"mwoauthlistconsumers-status-expired": "منتهي الصلاحية",
+	"mwoauthlistconsumers-grants-link": "إدارة المنح",
 	"mwoauthlistconsumers-rclink": "أحدث التغييرات بواسطة هذا التطبيق",
 	"oauthmanagemygrants": "التحكم بالتطبيقات المرتبطة",
 	"mwoauthmanagemygrants-text": "تسرد هذه الصفحة أية تطبيقات يمكنها استخدام حسابك، بالنسبة لأي تطبيق من هذا القبيل، فإن نطاق وصوله يكون محدودا بالأذونات التي منحتها للتطبيق عندما أذنت له بالتصرف نيابة عنك، إذا قمت بتفويض أحد التطبيقات بشكل منفصل للوصول إلى مشاريع شقيقة مختلفة نيابة عنك، فسترى تكوينا منفصلا لكل مشروع من هذا القبيل أدناه.\n\nتصل التطبيقات المتصلة إلى حسابك باستخدام بروتوكول OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth معرفة المزيد حول التطبيقات المتصلة])</span>",

@@ -163,6 +163,7 @@
 	"mwoauthlistconsumers-status-disabled": "uitgeschakeld",
 	"mwoauthlistconsumers-status-rejected": "afgewezen",
 	"mwoauthlistconsumers-status-expired": "verlopen",
+	"mwoauthlistconsumers-navigation": "Navigatie:",
 	"mwoauthlistconsumers-rclink": "Recente wijzigingen door deze applicatie",
 	"oauthmanagemygrants": "Gekoppelde toepassingen beheren",
 	"mwoauthmanagemygrants-text": "Op deze pagina worden alle toepassingen weergegeven die toegang hebben tot uw gebruikersaccount. Iedere toepassing kan alleen dat doen waar u deze voor hebt gemachtigd. Als u een toepassing afzonderlijk toegang hebt gegeven tot uw gebruikersaccount op zusterprojecten, dan ziet u hieronder afzonderlijke instellingen voor elk van die projecten.\n\nGekoppelde toepassingen hebben toegang tot uw account via het protocol OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Meer over gekoppelde toepassingen])</span>",

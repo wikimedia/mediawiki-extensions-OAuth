@@ -164,6 +164,7 @@
 	"mwoauthlistconsumers-status-disabled": "deaktiviert",
 	"mwoauthlistconsumers-status-rejected": "abgelehnt",
 	"mwoauthlistconsumers-status-expired": "abgelaufen",
+	"mwoauthlistconsumers-grants-link": "Rechte verwalten",
 	"mwoauthlistconsumers-rclink": "Letzte Änderungen durch diese Anwendung",
 	"oauthmanagemygrants": "Verbundene Anwendungen verwalten",
 	"mwoauthmanagemygrants-text": "Diese Seite listet alle Anwendungen auf, die dein Benutzerkonto verwenden können. Für jede Anwendung ist der Zugriffsbereich durch die von dir gewährten Berechtigungen beschränkt, wenn du die Anwendung zum Handeln auf deinen Namen autorisiert hast. Falls du eine Anwendung separat autorisiert hast, um auf unterschiedliche Schwesterprojekte zuzugreifen, dann wirst du unten separate Konfigurationen für jedes Projekt sehen.\n\nVerbundene Anwendungen greifen auf dein Benutzerkonto durch Verwendung eines OAuth-Protokolls zu. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Mehr über verbundene Anwendungen erfahren])</span>",
