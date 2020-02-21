@@ -168,6 +168,7 @@
 	"mwoauthlistconsumers-status-disabled": "معطل",
 	"mwoauthlistconsumers-status-rejected": "مرفوض",
 	"mwoauthlistconsumers-status-expired": "منتهي الصلاحية",
+	"mwoauthlistconsumers-navigation": "التصفح:",
 	"mwoauthlistconsumers-grants-link": "إدارة المنح",
 	"mwoauthlistconsumers-rclink": "أحدث التغييرات بواسطة هذا التطبيق",
 	"oauthmanagemygrants": "التحكم بالتطبيقات المرتبطة",
