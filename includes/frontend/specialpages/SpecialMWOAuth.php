@@ -236,6 +236,11 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 					$this->getOutput()->redirect( wfAppendQuery( $target, $query ) );
 					break;
+				case '':
+					$output = $this->getOutput();
+					$this->addHelpLink( 'Help:OAuth' );
+					$output->addWikiMsg( 'mwoauth-nosubpage-explanation' );
+					break;
 				default:
 					$format = $request->getVal( 'format', 'html' );
 					$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
