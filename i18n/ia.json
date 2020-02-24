@@ -4,7 +4,7 @@
 			"McDutchie"
 		]
 	},
-	"mwoauth-desc": "Permitte usar OAuth 1.0a pro autorisation via API",
+	"mwoauth-desc": "Permitte usar OAuth 1.0a e OAuth 2.0 pro autorisation via API",
 	"mwoauth-verified": "Le application ha ora le permission de acceder a MediaWiki in tu nomine.\n\nPro concluder le processo, forni iste valor de verification al application: '''$1'''",
 	"mwoauth-db-readonly": "Le base de datos OAuth es temporarimente blocate. Tenta lo de novo in alcun minutas.",
 	"mwoauth-missing-field": "Manca un valor pro le campo \"$1\"",
