@@ -4,6 +4,7 @@
 	},
 	"oauth": "OAuth",
 	"mwoauth-desc": "Allows usage of OAuth 1.0a and OAuth 2.0 for API authorization",
+	"mwoauth-nosubpage-explanation": "OAuth is a mechanism which allows external applications to identify a {{SITENAME}} user or act on their behalf, after receiving permission from that user.\n\nFor this page to do something, more parameters are required. If you were sent here from an external application, that was probably due to an error in that application; you should contact the author.",
 	"mwoauth-verified": "The application is now allowed to access MediaWiki on your behalf.\n\nTo complete the process, provide this verification value to the application: '''$1'''",
 	"mwoauth-db-readonly": "The OAuth database is temporarily locked. Please try again in a few minutes.",
 	"mwoauth-missing-field": "Missing value for \"$1\" field",
