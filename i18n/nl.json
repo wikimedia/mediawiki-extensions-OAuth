@@ -17,7 +17,8 @@
 			"Kippenvlees1",
 			"McDutchie",
 			"Elroy",
-			"PiefPafPier"
+			"PiefPafPier",
+			"Romaine"
 		]
 	},
 	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a en OAuth 2.0 te gebruiken voor API-toestemming",
@@ -227,6 +228,8 @@
 	"mwoauth-form-description-onewiki-nogrants": "Hallo $1,\n\nOm uw verzoek te voltooien, heeft '''$2''' toestemming nodig om namens u toegang te hebben tot informatie op ''$4''. Er zullen met uw account geen wijzigingen gedaan worden.",
 	"mwoauth-form-description-allwikis-privateinfo": "Hallo $1,\n\nOm uw verzoek te voltooien, heeft '''$2''' toestemming nodig om namens u toegang te hebben tot informatie over u, met inbegrip van uw echte naam en e-mailadres, op alle projecten van deze site. Er zullen met uw account geen wijzigingen gedaan worden.",
 	"mwoauth-form-description-onewiki-privateinfo": "Hallo $1,\n\nOm uw verzoek te voltooien, heeft '''$2''' toestemming nodig om namens u toegang te hebben tot informatie over u, met inbegrip van uw echte naam en e-mailadres, op ''$4''. Er zullen met uw account geen wijzigingen gedaan worden.",
+	"mwoauth-form-description-allwikis-privateinfo-norealname": "Hallo $1,\n\nOm uw verzoek te voltooien, heeft '''$2''' toestemming nodig om namens u toegang te hebben tot informatie over u, met inbegrip van uw e-mailadres, op alle projecten van deze site. Er zullen met uw account geen wijzigingen gedaan worden.",
+	"mwoauth-form-description-onewiki-privateinfo-norealname": "Hallo $1,\n\nOm uw verzoek te voltooien, heeft '''$2''' toestemming nodig om namens u toegang te hebben tot informatie over u, met inbegrip van e-mailadres, op ''$4''. Er zullen met uw account geen wijzigingen gedaan worden.",
 	"mwoauth-form-button-approve": "Toestaan",
 	"mwoauth-form-button-cancel": "Annuleren",
 	"mwoauth-error": "Fout bij koppelen toepassing",

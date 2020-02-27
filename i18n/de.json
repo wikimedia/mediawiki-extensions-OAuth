@@ -164,6 +164,7 @@
 	"mwoauthlistconsumers-status-disabled": "deaktiviert",
 	"mwoauthlistconsumers-status-rejected": "abgelehnt",
 	"mwoauthlistconsumers-status-expired": "abgelaufen",
+	"mwoauthlistconsumers-navigation": "Navigation:",
 	"mwoauthlistconsumers-grants-link": "Rechte verwalten",
 	"mwoauthlistconsumers-rclink": "Letzte Änderungen durch diese Anwendung",
 	"oauthmanagemygrants": "Verbundene Anwendungen verwalten",
@@ -296,5 +297,6 @@
 	"notification-oauth-app-reject-primary-link": "Anwendung ansehen",
 	"notification-oauth-app-disable-primary-link": "Anwendung ansehen",
 	"notification-oauth-app-reenable-primary-link": "Anwendung ansehen",
-	"notification-oauth-app-body": "Grund: $1"
+	"notification-oauth-app-body": "Grund: $1",
+	"mwoauth-oauth2-granttype-auth-code": "Autorisierungscode"
 }

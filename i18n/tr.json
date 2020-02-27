@@ -16,6 +16,7 @@
 		]
 	},
 	"mwoauth-desc": "API yetkilendirmesi için OAuth 1.0a ve OAuth 2.0 kullanımına izin verir",
+	"mwoauth-nosubpage-explanation": "OAuth, harici uygulamaların bu kullanıcıdan izin aldıktan sonra {{SITENAME}} kullanıcısını tanımasına veya onlar adına taşıma olanak tanıyan bir mekanizmadır.\n\nBu sayfanın bir şey yapması için daha fazla parametre gerekir. Buraya harici bir uygulamadan gönderildiyseniz, bunun nedeni büyük olasılıkla o uygulamadaki bir hatadır; yazarla iletişime geçmelisiniz.",
 	"mwoauth-verified": "Uygulamanın artık sizin adınıza MediaWiki'ye erişmesine izin verildi.\n\nİşlemi tamamlamak için bu doğrulama değerini uygulamaya sağlayın: '''$1'''",
 	"mwoauth-db-readonly": "OAuth veritabanı geçici olarak kilitlendi. Lütfen birkaç dakika içinde tekrar deneyin.",
 	"mwoauth-missing-field": "\"$1\" alanı için eksik değer",

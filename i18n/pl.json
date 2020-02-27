@@ -15,6 +15,7 @@
 		]
 	},
 	"mwoauth-desc": "Umożliwia korzystanie z OAuth 1.0a i OAuth 2.0 w celu autoryzacji API",
+	"mwoauth-nosubpage-explanation": "OAuth jest mechanizmem pozwalającym zewnętrznym aplikacjom na zidentyfikowanie użytkownika {{GRAMMAR:D.lp|{{SITENAME}}}} lub działanie w jego imieniu po otyrzymnaniu uprawnień od użytkownika.\n\nDo działąnia tej strony potrzeba więcej parametrów. Jeśli {{GENDER:|trafiłeś|trafiłaś}} tutaj z zewnętrznej aplikacji, prawdopodobnie było to spowodowane błędem w tej aplikacji; zaleca się kontakt z jej autorem.",
 	"mwoauth-verified": "Aplikacja ma teraz dostęp do MediaWiki w twoim imieniu.\n\nAby ukończyć proces wprowadź ten kod weryfikacyjny w aplikacji: '''$1'''",
 	"mwoauth-db-readonly": "Bazy danych OAuth jest tymczasowo zablokowana. Proszę spróbować ponownie za kilka minut.",
 	"mwoauth-missing-field": "Brak wartości dla pola „$1”",
