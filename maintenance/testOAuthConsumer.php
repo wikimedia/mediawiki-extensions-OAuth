@@ -52,7 +52,40 @@ class TestOAuthConsumer extends \Maintenance {
 		$req_req = OAuthRequest::from_consumer_and_token( $c, null, "GET", $endpoint, $params );
 		if ( $rsaKeyFile ) {
 			try {
-				$sig_method = new TestOAuthSignatureMethod_RSA_SHA1( $rsaKeyFile );
+				$sig_method = new class ( $rsaKeyFile ) extends OAuthSignatureMethod_RSA_SHA1 {
+					private $privKey, $pubKey;
+
+					public function __construct( $privKeyFile ) {
+						$key = file_get_contents( $privKeyFile );
+						if ( !$key ) {
+							throw new OAuthException( "Could not read private key file $privKeyFile" );
+						}
+
+						$privKey = openssl_pkey_get_private( $key );
+						if ( !$privKey ) {
+							throw new OAuthException( "File $privKeyFile does not contain a private key" );
+						}
+
+						$details = openssl_pkey_get_details( $privKey );
+						if ( $details['type'] !== OPENSSL_KEYTYPE_RSA ) {
+							throw new OAuthException( "Key is not an RSA key" );
+						}
+						if ( !$details['key'] ) {
+							throw new OAuthException( "Could not get public key from private key" );
+						}
+
+						$this->privKey = $key;
+						$this->pubKey = $details['key'];
+					}
+
+					protected function fetch_public_cert( &$request ) {
+						return $this->pubKey;
+					}
+
+					protected function fetch_private_cert( &$request ) {
+						return $this->privKey;
+					}
+				};
 			} catch ( OAuthException $ex ) {
 				$this->error( $ex->getMessage(), 1 );
 			}
@@ -124,41 +157,6 @@ class TestOAuthConsumer extends \Maintenance {
 		}
 
 		$this->output( "Returned: $data\n\n" );
-	}
-}
-
-class TestOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
-	private $privKey, $pubKey;
-
-	public function __construct( $privKeyFile ) {
-		$key = file_get_contents( $privKeyFile );
-		if ( !$key ) {
-			throw new OAuthException( "Could not read private key file $privKeyFile" );
-		}
-
-		$privKey = openssl_pkey_get_private( $key );
-		if ( !$privKey ) {
-			throw new OAuthException( "File $privKeyFile does not contain a private key" );
-		}
-
-		$details = openssl_pkey_get_details( $privKey );
-		if ( $details['type'] !== OPENSSL_KEYTYPE_RSA ) {
-			throw new OAuthException( "Key is not an RSA key" );
-		}
-		if ( !$details['key'] ) {
-			throw new OAuthException( "Could not get public key from private key" );
-		}
-
-		$this->privKey = $key;
-		$this->pubKey = $details['key'];
-	}
-
-	protected function fetch_public_cert( &$request ) {
-		return $this->pubKey;
-	}
-
-	protected function fetch_private_cert( &$request ) {
-		return $this->privKey;
 	}
 }
 
