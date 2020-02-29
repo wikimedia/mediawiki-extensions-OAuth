@@ -109,7 +109,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 	/**
 	 * Show other sub-queue links. Grey out the current one.
-	 * When viewing a request, show them all.
+	 * When viewing a request, show them all and a link to current consumer view.
 	 *
 	 * @param string $consumerKey
 	 * @return void
@@ -129,6 +129,14 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			}
 		}
 
+		if ( $consumerKey ) {
+			$consumerViewLink = "[" . \Linker::linkKnown(
+				\SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$consumerKey" ),
+				$this->msg( 'mwoauthconsumer-consumer-view' )->escaped() ) . "]";
+		} else {
+			$consumerViewLink = '';
+		}
+
 		$linkHtml = $this->getLanguage()->pipeList( $listLinks );
 
 		$viewall = $this->msg( 'parentheses' )->rawParams( \Linker::linkKnown(
@@ -136,7 +144,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 		$this->getOutput()->setSubtitle(
 			"<strong>" . $this->msg( 'mwoauthmanageconsumers-type' )->escaped() .
-			"</strong> [{$linkHtml}] <strong>{$viewall}</strong>" );
+			"</strong> [{$linkHtml}] {$consumerViewLink} <strong>{$viewall}</strong>" );
 	}
 
 	/**

@@ -81,17 +81,25 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	}
 
 	/**
-	 * Show other parent page link
+	 * Show navigation links
 	 *
 	 * @param string|null $acceptanceId
 	 * @return void
 	 */
 	protected function addSubtitleLinks( $acceptanceId ) {
 		$listLinks = [];
+
 		if ( $acceptanceId ) {
+			$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+			$cmrAc = MWOAuthConsumer::newFromId( $dbr, $acceptanceId );
+			$consumerKey = $cmrAc->getConsumerKey();
+
 			$listLinks[] = \Linker::linkKnown(
 				$this->getPageTitle(),
 				$this->msg( 'mwoauthmanagemygrants-showlist' )->escaped() );
+			$listLinks[] = \Linker::linkKnown(
+				\SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$consumerKey" ),
+				$this->msg( 'mwoauthconsumer-application-view' )->escaped() );
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthmanagemygrants-showlist' )->escaped();
 		}
