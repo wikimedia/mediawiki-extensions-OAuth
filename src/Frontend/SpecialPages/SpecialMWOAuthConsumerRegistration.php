@@ -95,9 +95,11 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			throw new \ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
 		}
 
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		switch ( $action ) {
 		case 'propose':
-			if ( !$user->isAllowed( 'mwoauthproposeconsumer' ) ) {
+			if ( !$permissionManager->userHasRight( $user, 'mwoauthproposeconsumer' ) ) {
 				throw new \PermissionsError( 'mwoauthproposeconsumer' );
 			}
 
@@ -332,7 +334,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			}
 			break;
 		case 'update':
-			if ( !$user->isAllowed( 'mwoauthupdateownconsumer' ) ) {
+			if ( !$permissionManager->userHasRight( $user, 'mwoauthupdateownconsumer' ) ) {
 				throw new \PermissionsError( 'mwoauthupdateownconsumer' );
 			}
 
@@ -342,7 +344,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			if ( !$cmrAc ) {
 				$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 				break;
-			} elseif ( $cmrAc->getDAO()->getDeleted() && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
+			} elseif ( $cmrAc->getDAO()->getDeleted()
+				&& !$permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
 				throw new \PermissionsError( 'mwoauthviewsuppressed' );
 			} elseif ( $cmrAc->getDAO()->getUserId() !== $centralUserId ) {
 				// Do not show private information to other users

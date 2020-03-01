@@ -256,9 +256,11 @@ class Utils {
 		} else {
 			$name = '';
 			$user = \User::newFromId( $userId );
+			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 			if ( $audience === 'raw'
 				|| !$user->isHidden()
-				|| ( $audience instanceof \User && $audience->isAllowed( 'hideuser' ) )
+				|| ( $audience instanceof \User && $permissionManager->userHasRight( $audience, 'hideuser' ) )
 			) {
 				$name = $user->getName();
 			}

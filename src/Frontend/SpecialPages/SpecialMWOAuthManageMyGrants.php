@@ -11,6 +11,7 @@ use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceSubmitControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extensions\OAuth\Frontend\Pagers\ManageMyGrantsPager;
 use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
+use MediaWiki\MediaWikiServices;
 use SpecialPage;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -60,7 +61,9 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		if ( !$this->getUser()->isLoggedIn() ) {
 			throw new \UserNotLoggedIn();
 		}
-		if ( !$user->isAllowed( 'mwoauthmanagemygrants' ) ) {
+
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $user, 'mwoauthmanagemygrants' ) ) {
 			throw new \PermissionsError( 'mwoauthmanagemygrants' );
 		}
 
@@ -133,6 +136,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$dbr = Utils::getCentralDB( DB_REPLICA );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
 		if ( !$centralUserId ) {
@@ -149,7 +153,8 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromId( $dbr, $cmraAc->getConsumerId() ), $this->getContext() );
-		if ( $cmrAc->getDeleted() && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
+		if ( $cmrAc->getDeleted()
+			&& !$permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
 			throw new \PermissionsError( 'mwoauthviewsuppressed' );
 		}
 

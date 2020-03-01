@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Backend;
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
@@ -251,8 +252,10 @@ class ConsumerAcceptance extends MWOAuthDAO {
 
 	protected function userCanSee( $name, \IContextSource $context ) {
 		$centralUserId = Utils::getCentralIdFromLocalUser( $context->getUser() );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		if ( $this->userId != $centralUserId
-			&& !$context->getUser()->isAllowed( 'mwoauthviewprivate' )
+			&& !$permissionManager->userHasRight( $context->getUser(), 'mwoauthviewprivate' )
 		) {
 			return $context->msg( 'mwoauth-field-private' );
 		} else {
@@ -261,7 +264,9 @@ class ConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	protected function userCanSeePrivate( $name, \IContextSource $context ) {
-		if ( !$context->getUser()->isAllowed( 'mwoauthviewprivate' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		if ( !$permissionManager->userHasRight( $context->getUser(), 'mwoauthviewprivate' ) ) {
 			return $context->msg( 'mwoauth-field-private' );
 		} else {
 			return $this->userCanSee( $name, $context );

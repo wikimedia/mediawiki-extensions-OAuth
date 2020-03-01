@@ -24,6 +24,8 @@ use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageMyGrant
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Query to list out consumers that have an access token for this user
  *
@@ -42,7 +44,9 @@ class ManageMyGrantsPager extends \ReverseChronologicalPager {
 		$this->mConds = $conds;
 		$this->mConds[] = 'oaac_consumer_id = oarc_id';
 		$this->mConds['oaac_user_id'] = $centralUserId;
-		if ( !$this->getUser()->isAllowed( 'mwoauthviewsuppressed' ) ) {
+
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $this->getUser(), 'mwoauthviewsuppressed' ) ) {
 			$this->mConds['oarc_deleted'] = 0;
 		}
 

@@ -23,6 +23,7 @@ namespace MediaWiki\Extensions\OAuth\Backend;
 
 use FormatJson;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity as OAuth2Client;
+use MediaWiki\MediaWikiServices;
 use MWException;
 use User;
 use Wikimedia\Rdbms\DBConnRef;
@@ -770,8 +771,10 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	protected function userCanSee( $name, \IContextSource $context ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		if ( $this->getDeleted()
-			&& !$context->getUser()->isAllowed( 'mwoauthviewsuppressed' )
+			&& !$permissionManager->userHasRight( $context->getUser(), 'mwoauthviewsuppressed' )
 		) {
 			return $context->msg( 'mwoauth-field-hidden' );
 		} else {
@@ -780,7 +783,9 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	protected function userCanSeePrivate( $name, \IContextSource $context ) {
-		if ( !$context->getUser()->isAllowed( 'mwoauthviewprivate' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		if ( !$permissionManager->userHasRight( $context->getUser(), 'mwoauthviewprivate' ) ) {
 			return $context->msg( 'mwoauth-field-private' );
 		} else {
 			return $this->userCanSee( $name, $context );
@@ -788,7 +793,9 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	protected function userCanSeeEmail( $name, \IContextSource $context ) {
-		if ( !$context->getUser()->isAllowed( 'mwoauthmanageconsumer' ) ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		if ( !$permissionManager->userHasRight( $context->getUser(), 'mwoauthmanageconsumer' ) ) {
 			return $context->msg( 'mwoauth-field-private' );
 		} else {
 			return $this->userCanSee( $name, $context );

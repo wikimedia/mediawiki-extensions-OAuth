@@ -24,6 +24,8 @@ use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegis
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Query to list out consumers
  *
@@ -40,7 +42,9 @@ class ListMyConsumersPager extends \ReverseChronologicalPager {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->mConds['oarc_user_id'] = $centralUserId;
-		if ( !$this->getUser()->isAllowed( 'mwoauthviewsuppressed' ) ) {
+
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		if ( !$permissionManager->userHasRight( $this->getUser(), 'mwoauthviewsuppressed' ) ) {
 			$this->mConds['oarc_deleted'] = 0;
 		}
 

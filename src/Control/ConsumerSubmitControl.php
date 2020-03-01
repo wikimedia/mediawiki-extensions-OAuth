@@ -168,6 +168,8 @@ class ConsumerSubmitControl extends SubmitControl {
 			return $this->failure( 'permission_denied', 'badaccess-group0' );
 		}
 
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		switch ( $action ) {
 		case 'propose':
 			if ( !$permissionManager->userHasRight( $user, 'mwoauthproposeconsumer' ) ) {
@@ -304,7 +306,8 @@ class ConsumerSubmitControl extends SubmitControl {
 				&& $cmr->getStage() !== Consumer::STAGE_PROPOSED
 			) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
-			} elseif ( $cmr->getDeleted() && !$permissionManager->userHasRight( $user, 'mwoauthsuppress' ) ) {
+			} elseif ( $cmr->getDeleted()
+				&& !$permissionManager->userHasRight( $user, 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' ); // sanity
 			} elseif ( !$cmr->checkChangeToken( $context, $this->vals['changeToken'] ) ) {
 				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );

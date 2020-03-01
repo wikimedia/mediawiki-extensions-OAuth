@@ -29,6 +29,7 @@ use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Extensions\OAuth\Frontend\Pagers\ManageConsumersPager;
 use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
+use MediaWiki\MediaWikiServices;
 use OOUI\HtmlSnippet;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -68,6 +69,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		global $wgMWOAuthReadOnly;
 
 		$user = $this->getUser();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$this->setHeaders();
 		$this->getOutput()->disallowUserJs();
@@ -76,7 +78,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		if ( !$user->isLoggedIn() ) {
 			$this->getOutput()->addWikiMsg( 'mwoauthmanageconsumers-notloggedin' );
 			return;
-		} elseif ( !$user->isAllowed( 'mwoauthmanageconsumer' ) ) {
+		} elseif ( !$permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' ) ) {
 			throw new \PermissionsError( 'mwoauthmanageconsumer' );
 		}
 
@@ -221,10 +223,13 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		if ( !$cmrAc ) {
 			$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 			return;
-		} elseif ( $cmrAc->getDeleted() && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
+		} elseif ( $cmrAc->getDeleted()
+			&& !$permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
 			throw new \PermissionsError( 'mwoauthviewsuppressed' );
 		}
 		$startingStage = $cmrAc->getStage();
@@ -236,7 +241,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 				$this->msg( 'mwoauthmanageconsumers-approve' )->escaped() => 'approve',
 				$this->msg( 'mwoauthmanageconsumers-reject' )->escaped()  => 'reject'
 			];
-			if ( $this->getUser()->isAllowed( 'mwoauthsuppress' ) ) {
+			if ( $permissionManager->userHasRight( $this->getUser(), 'mwoauthsuppress' ) ) {
 				$msg = $this->msg( 'mwoauthmanageconsumers-rsuppress' )->escaped();
 				$opts["<strong>$msg</strong>"] = 'rsuppress';
 			}
@@ -245,7 +250,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 				$this->msg( 'mwoauthmanageconsumers-disable' )->escaped() => 'disable',
 				$this->msg( 'mwoauthmanageconsumers-reenable' )->escaped()  => 'reenable'
 			];
-			if ( $this->getUser()->isAllowed( 'mwoauthsuppress' ) ) {
+			if ( $permissionManager->userHasRight( $this->getUser(), 'mwoauthsuppress' ) ) {
 				$msg = $this->msg( 'mwoauthmanageconsumers-dsuppress' )->escaped();
 				$opts["<strong>$msg</strong>"] = 'dsuppress';
 			}

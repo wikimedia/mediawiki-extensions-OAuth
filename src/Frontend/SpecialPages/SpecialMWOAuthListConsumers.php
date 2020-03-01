@@ -82,10 +82,13 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
 		if ( !$cmrAc ) {
 			$out->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 			return;
-		} elseif ( $cmrAc->getDeleted() && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
+		} elseif ( $cmrAc->getDeleted()
+			&& !$permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
 			throw new \PermissionsError( 'mwoauthviewsuppressed' );
 		}
 
@@ -224,9 +227,9 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	public function formatRow( DBConnRef $db, $row ) {
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromRow( $db, $row ), $this->getContext() );
-
 		$cmrKey = $cmrAc->getConsumerKey();
 		$stageKey = Consumer::$stageNames[$cmrAc->getStage()];
+		$permMgr = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$links = [];
 		$links[] = \Linker::linkKnown(
@@ -235,7 +238,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			[],
 			$this->getRequest()->getValues( 'name', 'publisher', 'stage' ) // stick
 		);
-		if ( $this->getUser()->isAllowed( 'mwoauthmanageconsumer' ) ) {
+		if ( !$permMgr->userHasRight( $this->getUser(), 'mwoauthmanageconsumer' ) ) {
 			$links[] = \Linker::linkKnown(
 				\SpecialPage::getTitleFor( 'OAuthManageConsumers', $cmrKey ),
 				$this->msg( 'mwoauthmanageconsumers-review' )->escaped()
@@ -343,7 +346,9 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	private function manageConsumerLink(
 		Consumer $consumer, \User $user, \MediaWiki\Linker\LinkRenderer $linkRenderer
 	): array {
-		if ( Utils::isCentralWiki() && $user->isAllowed( 'mwoauthmanageconsumer' ) ) {
+		$permMgr = MediaWikiServices::getInstance()->getPermissionManager();
+
+		if ( Utils::isCentralWiki() && $permMgr->userHasRight( $user, 'mwoauthmanageconsumer' ) ) {
 			return [
 				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'OAuthManageConsumers',
 					$consumer->getConsumerKey() ),
