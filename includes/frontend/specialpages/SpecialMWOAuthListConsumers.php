@@ -322,7 +322,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		MWOAuthConsumerAccessControl $cmrAc, $centralUserId,
 		\MediaWiki\Linker\LinkRenderer $linkRenderer
 	): array {
-		if ( $cmrAc->getDAO()->getUserId() === $centralUserId ) {
+		if ( MWOAuthUtils::isCentralWiki() && $cmrAc->getDAO()->getUserId() === $centralUserId ) {
 			return [
 				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'OAuthConsumerRegistration',
 					'update/' . $cmrAc->getDAO()->getConsumerKey() ),
@@ -343,7 +343,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	private function manageConsumerLink(
 		MWOAuthConsumer $consumer, \User $user, \MediaWiki\Linker\LinkRenderer $linkRenderer
 	): array {
-		if ( $user->isAllowed( 'mwoauthmanageconsumer' ) ) {
+		if ( MWOAuthUtils::isCentralWiki() && $user->isAllowed( 'mwoauthmanageconsumer' ) ) {
 			return [
 				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'OAuthManageConsumers',
 					$consumer->getConsumerKey() ),
