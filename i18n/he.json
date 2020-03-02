@@ -6,7 +6,8 @@
 			"Guycn2",
 			"אור שפירא",
 			"דולב",
-			"Strayblues"
+			"Strayblues",
+			"YaronSh"
 		]
 	},
 	"mwoauth-desc": "מאפשרת שימוש ב־OAuth 1.0a וב־OAuth 2.0 לאישור ב־API",
@@ -326,5 +327,7 @@
 	"mwoauth-oauth2-error-request-not-verified": "ניסיון לאחזר מאפיין מאומת לפני אימות הבקשה",
 	"mwoauth-oauth2-invalid-access-token": "אסימון גישה בלתי־תקין",
 	"mwoauth-consumer-access-no-user": "אישור לקוח צריך להיות משויך למשתמש תקין, ניתן משתמש עם מזהה 0",
-	"mwoauth-login-required-reason": "עליך להיכנס לחשבון שלך באתר {{SITENAME}} כדי לאשר ליישומים לגשת אליו."
+	"mwoauth-login-required-reason": "עליך להיכנס לחשבון שלך באתר {{SITENAME}} כדי לאשר ליישומים לגשת אליו.",
+	"mwoauthconsumer-consumer-view": "הצגת הצרכן הזה",
+	"mwoauthconsumer-application-view": "הצגת היישום הזה"
 }

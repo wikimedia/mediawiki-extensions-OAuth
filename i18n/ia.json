@@ -289,5 +289,7 @@
 	"notification-oauth-app-reject-primary-link": "Vider application",
 	"notification-oauth-app-disable-primary-link": "Vider application",
 	"notification-oauth-app-reenable-primary-link": "Vider application",
-	"notification-oauth-app-body": "Motivo: $1"
+	"notification-oauth-app-body": "Motivo: $1",
+	"mwoauthconsumer-consumer-view": "Vider iste consumitor",
+	"mwoauthconsumer-application-view": "Vider iste application"
 }

@@ -21,5 +21,6 @@
 	"mwoauthmanagemygrants-description": "Descripció",
 	"mwoauthdatastore-bad-source-ip": "La sol·licitud provenia d’una adreça IP no vàlida.",
 	"action-mwoauthviewprivate": "veure dades privades de l’OAuth",
-	"notification-oauth-app-body": "Motiu: $1"
+	"notification-oauth-app-body": "Motiu: $1",
+	"mwoauthconsumer-application-view": "Mostra aquesta aplicació"
 }

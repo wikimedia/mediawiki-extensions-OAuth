@@ -323,5 +323,7 @@
 	"mwoauth-oauth2-error-request-not-verified": "Се обидувам да добијам потврдено својство пред да го потврдам барањето",
 	"mwoauth-oauth2-invalid-access-token": "Неважечка пристапна шифра",
 	"mwoauth-consumer-access-no-user": "Потрошувачкото одобрение мора да биде врзано за важечки корисник. Укажан е корисник со назнака 0",
-	"mwoauth-login-required-reason": "Ќе треба да се најавите со вашата сметка на {{SITENAME}} за да ги овластите прилозите за пристап до неа."
+	"mwoauth-login-required-reason": "Ќе треба да се најавите со вашата сметка на {{SITENAME}} за да ги овластите прилозите за пристап до неа.",
+	"mwoauthconsumer-consumer-view": "Погл. го потрошувачов",
+	"mwoauthconsumer-application-view": "Погр. го прилогов"
 }

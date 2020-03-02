@@ -332,5 +332,7 @@
 	"mwoauth-oauth2-error-request-not-verified": "Doğrulanmış özellikleri talebin doğrulanmasından önce kurtarma girişimi",
 	"mwoauth-oauth2-invalid-access-token": "Geçersiz giriş jetonu",
 	"mwoauth-consumer-access-no-user": "Tüketici onayı geçerli bir kullanıcıya bağlı olmalı, kimlik numarası 0 olan kullanıcı verilmiş olmalıdır",
-	"mwoauth-login-required-reason": "Uygulamalara erişme yetkisi vermek için {{SITENAME}} hesabınıza giriş yapmanız gerekiyor."
+	"mwoauth-login-required-reason": "Uygulamalara erişme yetkisi vermek için {{SITENAME}} hesabınıza giriş yapmanız gerekiyor.",
+	"mwoauthconsumer-consumer-view": "Bu tüketiciyi görüntüle",
+	"mwoauthconsumer-application-view": "Bu uygulamayı görüntüle"
 }

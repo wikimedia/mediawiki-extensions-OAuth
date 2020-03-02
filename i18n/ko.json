@@ -261,5 +261,6 @@
 	"notification-oauth-app-disable-primary-link": "앱 보기",
 	"notification-oauth-app-reenable-primary-link": "앱 보기",
 	"notification-oauth-app-body": "이유: $1",
-	"mwoauth-login-required-reason": "애플리케이션의 접근 인가를 위해 {{SITENAME}} 계정으로 로그인해야 합니다."
+	"mwoauth-login-required-reason": "애플리케이션의 접근 인가를 위해 {{SITENAME}} 계정으로 로그인해야 합니다.",
+	"mwoauthconsumer-application-view": "이 애플리케이션 보기"
 }

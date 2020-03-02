@@ -24,7 +24,8 @@
 			"Nk88",
 			"Diralik",
 			"Movses",
-			"Katunchik"
+			"Katunchik",
+			"Alexander Yukal"
 		]
 	},
 	"mwoauth-desc": "Позволяет использование OAuth 1.0a для API авторизации",
@@ -253,5 +254,6 @@
 	"notification-oauth-app-reject-primary-link": "Просмотр приложения.",
 	"notification-oauth-app-disable-primary-link": "Просмотр приложения.",
 	"notification-oauth-app-reenable-primary-link": "Просмотр приложения.",
-	"notification-oauth-app-body": "Причина: $1"
+	"notification-oauth-app-body": "Причина: $1",
+	"mwoauthconsumer-application-view": "Посмотреть это приложение"
 }

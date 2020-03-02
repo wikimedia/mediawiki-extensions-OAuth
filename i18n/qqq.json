@@ -339,5 +339,4 @@
 	"mwoauth-login-required-reason": "Helper text that appears when a user is redirected to Special:Login page because they attempted authorisation while not logged in on the provider",
 	"mwoauthconsumer-consumer-view": "Used as link text in a navigation menu.",
 	"mwoauthconsumer-application-view": "Used as link text in a navigation menu."
-
 }

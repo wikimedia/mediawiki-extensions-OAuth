@@ -124,5 +124,7 @@
 	"notification-oauth-app-disable-primary-link": "App weisen",
 	"notification-oauth-app-reenable-primary-link": "App weisen",
 	"notification-oauth-app-body": "Grond: $1",
-	"mwoauth-oauth2-granttype-auth-code": "Autorisatiouns-Code"
+	"mwoauth-oauth2-granttype-auth-code": "Autorisatiouns-Code",
+	"mwoauthconsumer-consumer-view": "Dëse Konsument weisen",
+	"mwoauthconsumer-application-view": "Dës Applikatioun weisen"
 }
