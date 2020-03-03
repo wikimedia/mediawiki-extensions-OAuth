@@ -42,5 +42,6 @@
 	"mwoauth-grants-heading": "Pieprasītās atļaujas:",
 	"mwoauth-grants-nogrants": "Lietotne nav pieprasījusi nekādas atļaujas.",
 	"mwoauth-acceptance-cancelled": "Tu izvēlējies neļaut \"$1\" piekļūt tavam kontam. \"$1\" nestrādās, ja vien tai neatļausi piekļuvi. Tu vari doties atpakaļ uz \"$1\" vai [[Special:OAuthManageMyGrants|pārvaldīt]] savas pievienotās lietotnes.",
-	"notification-oauth-app-body": "Iemesls: $1"
+	"notification-oauth-app-body": "Iemesls: $1",
+	"mwoauthconsumer-application-view": "Skatīt šo pieteikumu"
 }

@@ -190,5 +190,6 @@
 	"notification-oauth-app-disable-primary-link": "Vidi aplikaciju",
 	"notification-oauth-app-reenable-primary-link": "Vidi aplikaciju",
 	"notification-oauth-app-body": "Razlog: $1",
-	"mwoauth-oauth2-invalid-access-token": "Pristupni tajni ključ nije valjan"
+	"mwoauth-oauth2-invalid-access-token": "Pristupni tajni ključ nije valjan",
+	"mwoauthconsumer-consumer-view": "Prikaži ovoga trošača"
 }
