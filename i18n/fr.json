@@ -340,6 +340,6 @@
 	"mwoauth-oauth2-invalid-access-token": "Jeton d’accès non valide",
 	"mwoauth-consumer-access-no-user": "L’approbation du serveur doit être liée à un utilisateur valide, utilisateur avec ID 0 fourni",
 	"mwoauth-login-required-reason": "Vous devez vous connecter à votre compte {{SITENAME}} pour autoriser les applications à y accéder.",
-	"mwoauthconsumer-consumer-view": "Voir le client",
+	"mwoauthconsumer-consumer-view": "Voir ce client",
 	"mwoauthconsumer-application-view": "Voir cette application"
 }
