@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cedric31"
+			"Cedric31",
+			"Quentí"
 		]
 	},
 	"mwoauth-desc": "Autoriza l’utilizacion de OAuth 1.0a per l’autentificacion de l’API",
@@ -116,5 +117,7 @@
 	"notification-oauth-app-approve-subject": "$1 {{GENDER:$1|a aprovat}} {{GENDER:$3|vòstra}} aplicacion OAuth sus {{SITENAME}}",
 	"notification-oauth-app-reject-subject": "$1 {{GENDER:$1|a regetat}} {{GENDER:$3|vòstra}} aplicacion OAuth sus {{SITENAME}}",
 	"notification-oauth-app-disable-subject": "$1 {{GENDER:$1|a desactivat}} {{GENDER:$3|vòstra}} aplicacion OAuth sus {{SITENAME}}",
-	"notification-oauth-app-reenable-subject": "$1 {{GENDER:$1|a reactivat}} {{GENDER:$3|vòstra}} aplicacion OAuth sus {{SITENAME}}"
+	"notification-oauth-app-reenable-subject": "$1 {{GENDER:$1|a reactivat}} {{GENDER:$3|vòstra}} aplicacion OAuth sus {{SITENAME}}",
+	"mwoauthconsumer-consumer-view": "Veire aqueste client",
+	"mwoauthconsumer-application-view": "Veire aquesta aplicacion"
 }

@@ -171,6 +171,9 @@
 	"mwoauthlistconsumers-status-disabled": "wyłączone",
 	"mwoauthlistconsumers-status-rejected": "odrzucone",
 	"mwoauthlistconsumers-status-expired": "przeterminowane",
+	"mwoauthlistconsumers-navigation": "Nawigacja:",
+	"mwoauthlistconsumers-update-link": "Zaktualizuj konsumenta",
+	"mwoauthlistconsumers-manage-link": "Zarządzaj konsumentem",
 	"mwoauthlistconsumers-rclink": "Ostatnie zmiany wykonane za pośrednictwem tej aplikacji",
 	"oauthmanagemygrants": "Zarządzanie włączonymi aplikacjami",
 	"mwoauthmanagemygrants-text": "Poniższa strona zawiera listę wszystkich aplikacji, które mogą korzystać z Twojego konta. Zakres uprawnień każdej aplikacji jest ograniczony przez dostępy, jakich jej {{GENDER:|udzieliłeś|udzieliłaś}} podczas autoryzacji do działania w Twoim imieniu. Jeżeli oddzielnie {{GENDER:|autoryzowałeś|autoryzowałaś}} dostęp aplikacji do swojego konta na innym siostrzanym projekcie, poniżej zobaczysz oddzielną konfigurację dla każdego z tych projektów.\n\nPołączone aplikacje mają dostęp do twojego konta za pomocą protokołu OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Dowiedz się więcej o połączonych aplikacjach])</span>",
@@ -321,5 +324,8 @@
 	"mwoauth-oauth2-error-access-denied": "Właściciel zasobu lub serwer autoryzujący odrzucił żądanie.",
 	"mwoauth-oauth2-error-unsupported-response-type": "Serwer autoryzujący nie wspiera uzyskiwania kodu autoryzacyjnego używając tej metody.",
 	"mwoauth-oauth2-error-invalid-scope": "Żądany zakres jest nieprawidłowy, nieznany lub zniekształcony.",
-	"mwoauth-oauth2-invalid-access-token": "Nieprawidłowy klucz dostępu."
+	"mwoauth-oauth2-invalid-access-token": "Nieprawidłowy klucz dostępu.",
+	"mwoauth-login-required-reason": "Musisz zalogować się na {{GRAMMAR:B.lp|{{SITENAME}}}} aby dać tej aplikacji dostęp do swojego konta.",
+	"mwoauthconsumer-consumer-view": "Zobacz tego konsumenta",
+	"mwoauthconsumer-application-view": "Zobacz tę aplikację"
 }
