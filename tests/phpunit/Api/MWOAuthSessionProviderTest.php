@@ -40,6 +40,13 @@ class MWOAuthSessionProviderTest extends MediaWikiTestCase {
 		$this->setMwGlobals( 'wgHooks', $wgHooks );
 	}
 
+	public function testSafeAgainstCsrf() {
+		$provider = $this->getMockBuilder( MWOAuthSessionProvider::class )
+			->setMethodsExcept( [ 'safeAgainstCsrf' ] )
+			->getMock();
+		$this->assertTrue( $provider->safeAgainstCsrf() );
+	}
+
 	/**
 	 * @dataProvider provideOnMarkPatrolledArguments
 	 */

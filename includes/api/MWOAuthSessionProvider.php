@@ -424,4 +424,12 @@ class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProvider
 		return true;
 	}
 
+	/**
+	 * OAuth tokens already protect against CSRF. CSRF tokens are not required.
+	 *
+	 * @return bool true
+	 */
+	public function safeAgainstCsrf() {
+		return true;
+	}
 }
