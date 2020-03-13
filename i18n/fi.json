@@ -7,7 +7,7 @@
 			"Pyscowicz"
 		]
 	},
-	"mwoauth-prefs-managegrants": "Liitetyt sovellukset:",
+	"mwoauth-prefs-managegrants": "Liitetyt sovellukset",
 	"mwoauth-prefs-managegrantslink": "Hallinnoi {{PLURAL:$1|$1 yhdistettyä sovellusta|$1 yhdistettyä sovellusta|0=yhdistettyä sovellusta}}",
 	"mwoauth-consumer-allwikis": "Kaikki projektit tällä sivustolla",
 	"mwoauth-consumer-key": "Asiakkaan avain:",

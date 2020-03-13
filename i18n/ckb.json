@@ -4,7 +4,8 @@
 			"Calak",
 			"Sarchia",
 			"Lost Whispers",
-			"Épine"
+			"Épine",
+			"Arya sarhan"
 		]
 	},
 	"mwoauth-prefs-managegrants": "بەرنامە لکێنراوەکان:",
@@ -18,5 +19,6 @@
 	"action-mwoauthmanageconsumer": "بەڕێوەبەردنی بەکاربەرانی OAuth",
 	"action-mwoauthmanagemygrants": "بەڕێوەبەردنی مافەکانی OAuthەکەت",
 	"action-mwoauthproposeconsumer": "پێشنیاری بەکاربەرانی OAuthی نوێ",
-	"action-mwoauthupdateownconsumer": "نوێکردنەوەی بەکاربەرانی OAuthی تاوتوێی دەکەی"
+	"action-mwoauthupdateownconsumer": "نوێکردنەوەی بەکاربەرانی OAuthی تاوتوێی دەکەی",
+	"mwoauthconsumer-application-view": "بینینی ئەم نەرمەواڵەیە"
 }
