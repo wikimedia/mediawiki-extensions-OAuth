@@ -91,15 +91,18 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 
 		if ( $acceptanceId ) {
 			$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-			$cmrAc = MWOAuthConsumer::newFromId( $dbr, $acceptanceId );
-			$consumerKey = $cmrAc->getConsumerKey();
-
+			$cmraAc = MWOAuthConsumerAcceptance::newFromId( $dbr, $acceptanceId );
 			$listLinks[] = \Linker::linkKnown(
 				$this->getPageTitle(),
 				$this->msg( 'mwoauthmanagemygrants-showlist' )->escaped() );
-			$listLinks[] = \Linker::linkKnown(
-				\SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$consumerKey" ),
-				$this->msg( 'mwoauthconsumer-application-view' )->escaped() );
+
+			if ( $cmraAc ) {
+				$cmrAc = MWOAuthConsumer::newFromId( $dbr, $cmraAc->getConsumerId() );
+				$consumerKey = $cmrAc->getConsumerKey();
+				$listLinks[] = \Linker::linkKnown(
+					\SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$consumerKey" ),
+					$this->msg( 'mwoauthconsumer-application-view' )->escaped() );
+			}
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthmanagemygrants-showlist' )->escaped();
 		}
