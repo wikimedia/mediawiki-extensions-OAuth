@@ -38,7 +38,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	/**
 	 * Get an MWOAuthConsumer from the consumer's key
 	 *
-	 * @param String $consumerKey the string value of the Consumer's key
+	 * @param string $consumerKey the string value of the Consumer's key
 	 * @return MWOAuthConsumer|bool
 	 */
 	public function lookup_consumer( $consumerKey ) {
@@ -113,8 +113,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * Note, timestamp has already been checked, so this should be a fresh nonce.
 	 *
 	 * @param MWOAuthConsumer|OAuthConsumer $consumer
-	 * @param String $token
-	 * @param String $nonce
+	 * @param string $token
+	 * @param string $nonce
 	 * @param int $timestamp
 	 * @return bool
 	 */
@@ -243,8 +243,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 	/**
 	 * Return the string representing the Consumer's public RSA key
 	 *
-	 * @param String $consumerKey the string value of the Consumer's key
-	 * @return String|null
+	 * @param string $consumerKey the string value of the Consumer's key
+	 * @return string|null
 	 */
 	public function getRSAKey( $consumerKey ) {
 		$cmr = MWOAuthConsumer::newFromKey( $this->centralSlave, $consumerKey );

@@ -106,9 +106,9 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 
 	/**
 	 * @param DBConnRef $db
-	 * @param String $userId of user who authorized (central wiki's id)
+	 * @param string $userId of user who authorized (central wiki's id)
 	 * @param MWOAuthConsumer $consumer
-	 * @param String $wiki wiki associated with the acceptance
+	 * @param string $wiki wiki associated with the acceptance
 	 * @param int $flags MWOAuthConsumerAcceptance::READ_* bitfield
 	 * @param string $oauthVersion
 	 * @return MWOAuthConsumerAcceptance|bool
