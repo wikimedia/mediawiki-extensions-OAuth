@@ -7,7 +7,7 @@
 			"Bencemac"
 		]
 	},
-	"mwoauth-desc": "Lehetővé teszi az OAuth 1.0a használatát API-hitelesítéshez",
+	"mwoauth-desc": "Lehetővé teszi az OAuth 1.0a és OAuth 2.0 használatát API-hitelesítéshez",
 	"mwoauth-verified": "Az alkalmazás most már hozzáférhet a MediaWikihez a nevedben.\n\nA folyamat befejezéséhez add meg a következő megerősítő értéket az alkalmazásnak: '''$1'''",
 	"mwoauth-db-readonly": "Az OAuth adatbázis ideiglenesen le van zárva. Próbálkozz újra pár perc múlva.",
 	"mwoauth-missing-field": "Hiányzik a(z) „$1” mező értéke",
@@ -16,7 +16,7 @@
 	"mwoauth-field-hidden": "(ez az információ el van rejtve)",
 	"mwoauth-field-private": "(ez az információ titkos)",
 	"mwoauth-prefs-managegrants": "Összekapcsolt alkalmazások:",
-	"mwoauth-prefs-managegrantslink": "$1 összekapcsolt {{PLURAL:$1|alkalmazás|alkalmazás}} kezelése",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|0=Összekapcsolt alkalmazások|$1 összekapcsolt alkalmazás}} kezelése",
 	"mwoauth-consumer-allwikis": "Összes projekt ezen a weboldalon",
 	"mwoauth-consumer-name": "Alkalmazás neve:",
 	"mwoauth-consumer-user": "Közzétevő:",
