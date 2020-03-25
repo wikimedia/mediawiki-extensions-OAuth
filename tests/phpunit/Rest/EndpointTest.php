@@ -44,6 +44,7 @@ abstract class EndpointTest extends \MediaWikiTestCase {
 		$router = new Router(
 			[ __DIR__ . '/testRoutes.json' ],
 			[],
+			'http://wiki.example.com',
 			'/rest',
 			new EmptyBagOStuff(),
 			new ResponseFactory( [] ),
