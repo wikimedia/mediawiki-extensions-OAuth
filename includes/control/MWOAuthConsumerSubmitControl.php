@@ -320,6 +320,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			$cmra = null;
 			$accessToken = null;
 			if ( $cmr->getOwnerOnly() && $this->vals['resetSecret'] ) {
+				$cmra = $cmr->getCurrentAuthorization( $user, wfWikiID() );
 				$accessToken = MWOAuthDataStore::newToken();
 				$fields = [
 					'wiki'         => $cmr->getWiki(),
@@ -329,8 +330,8 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					'grants'       => $cmr->getGrants(),
 				];
 
-				$cmra = $cmr->getCurrentAuthorization( $user, wfWikiID() );
 				if ( $cmra ) {
+					$accessToken->key = $cmra->getAccessToken();
 					$cmra->setFields( $fields );
 				} else {
 					$cmra = MWOAuthConsumerAcceptance::newFromArray( $fields + [
