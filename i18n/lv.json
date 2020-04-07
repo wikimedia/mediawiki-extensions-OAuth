@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Edgars2007",
 			"Papuass",
-			"Silraks",
-			"Edgars2007"
+			"Silraks"
 		]
 	},
 	"mwoauth-desc": "Ļauj izmantot OAuth 1.0a un OAuth 2.0 API autorizācijai",

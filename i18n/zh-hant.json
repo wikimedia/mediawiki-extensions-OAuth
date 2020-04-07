@@ -1,17 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
-			"Liuxinyu970226",
-			"Cwlin0416",
-			"Justincheng12345",
-			"LNDDYL",
-			"Waihorace",
-			"一個正常人",
-			"SupaplexTW",
 			"A2093064",
+			"Cwlin0416",
 			"Hello903hello",
+			"Justincheng12345",
 			"Kly",
-			"Xiplus"
+			"LNDDYL",
+			"Liuxinyu970226",
+			"SupaplexTW",
+			"Waihorace",
+			"Xiplus",
+			"一個正常人"
 		]
 	},
 	"mwoauth-desc": "允許使用 OAuth 1.0a 與 OAuth 2.0 作為 API 授權程式",

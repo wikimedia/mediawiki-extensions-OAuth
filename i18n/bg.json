@@ -2,12 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Dicto23456",
-			"Termininja",
-			"StanProg",
 			"ShockD",
-			"Vlad5250",
 			"Spiritia",
-			"Ted Masters"
+			"StanProg",
+			"Ted Masters",
+			"Termininja",
+			"Vlad5250"
 		]
 	},
 	"mwoauth-desc": "Позволява употреба на OAuth 1.0а и OAuth 2.0 за удостоверяване за API",

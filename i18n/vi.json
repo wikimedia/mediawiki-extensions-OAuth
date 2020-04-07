@@ -1,12 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Minh Nguyen",
-			"Withoutaname",
-			"KhangND",
 			"Dinhxuanduyet",
+			"KhangND",
 			"Macofe",
-			"Phjtieudoc"
+			"Minh Nguyen",
+			"Phjtieudoc",
+			"Withoutaname"
 		]
 	},
 	"mwoauth-desc": "Cho phép sử dụng OAuth 1.0a để xác minh khi truy cập API",

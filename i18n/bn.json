@@ -2,12 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Aftab1995",
-			"Gitartha.bordoloi",
-			"Tauhid16",
 			"Aftabuzzaman",
 			"Elias Ahmmad",
-			"আফতাবুজ্জামান",
-			"Nokib Sarkar"
+			"Gitartha.bordoloi",
+			"Nokib Sarkar",
+			"Tauhid16",
+			"আফতাবুজ্জামান"
 		]
 	},
 	"mwoauth-desc": "API অনুমোদনের জন্য OAuth 1.0a ও OAuth 2.0 ব্যবহার করার অনুমতি দেয়",

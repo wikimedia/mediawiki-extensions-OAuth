@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Tacsipacsi",
+			"Bencemac",
 			"Csega",
 			"Dorgan",
-			"Bencemac"
+			"Tacsipacsi"
 		]
 	},
 	"mwoauth-desc": "Lehetővé teszi az OAuth 1.0a és OAuth 2.0 használatát API-hitelesítéshez",

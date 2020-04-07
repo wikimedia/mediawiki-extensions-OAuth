@@ -1,15 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ahonc",
 			"Andriykopanytsia",
 			"Base",
-			"Ата",
+			"Macofe",
+			"Movses",
 			"Olion",
 			"Piramidion",
-			"Macofe",
-			"Ahonc",
 			"Vlad5250",
-			"Movses"
+			"Ата"
 		]
 	},
 	"mwoauth-desc": "Дозволяє використовувати OAuth 1.0a та OAuth 2.0 для API авторизації",

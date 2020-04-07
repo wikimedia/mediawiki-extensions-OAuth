@@ -1,13 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Elisardojm",
-			"Toliño",
-			"Fisterraeomar",
 			"Banjo",
+			"Elisardojm",
+			"Fisterraeomar",
+			"Iváns",
 			"Macofe",
-			"Navhy",
-			"Iváns"
+			"Toliño"
 		]
 	},
 	"mwoauth-desc": "Permite o uso do OAuth 1.0a para autorización de API",

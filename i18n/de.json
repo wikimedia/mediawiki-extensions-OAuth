@@ -1,13 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"ChrisiPK",
+			"Kghbln",
+			"Killarnee",
 			"Metalhead64",
 			"Se4598",
-			"Wnme",
-			"Kghbln",
-			"ChrisiPK",
 			"Umherirrender",
-			"Killarnee"
+			"Wnme"
 		]
 	},
 	"mwoauth-desc": "Verwendung von OAuth 1.0a und OAuth 2.0 zur API-Autorisierung erlauben",

@@ -1,12 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"MaGa",
-			"Ex13",
 			"Bugoslav",
-			"Vlad5250",
+			"Ex13",
 			"Excaliboor",
-			"Neptune, the Mystic"
+			"MaGa",
+			"Neptune, the Mystic",
+			"Vlad5250"
 		]
 	},
 	"mwoauth-desc": "Omogućuje upotrebu OAuth 1.0a i OAuth 2.0 za autorizaciju API-ja",

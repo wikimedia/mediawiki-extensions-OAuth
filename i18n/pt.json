@@ -1,17 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
+			"Athena in Wonderland",
 			"Dannyps",
-			"Lijealso",
-			"Vitorvicentevalente",
-			"Helder.wiki",
-			"He7d3r",
 			"Fúlvio",
-			"Mansil",
 			"Hamilton Abreu",
+			"He7d3r",
+			"Helder.wiki",
+			"Lijealso",
 			"Macofe",
+			"Mansil",
 			"MokaAkashiyaPT",
-			"Athena in Wonderland"
+			"Vitorvicentevalente"
 		]
 	},
 	"mwoauth-desc": "Permite o uso do OAuth 1.0a para autorização da API",

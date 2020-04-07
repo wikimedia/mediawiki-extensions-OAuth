@@ -1,14 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hym411",
-			"Priviet",
-			"아라",
-			"Revi",
-			"LiteHell",
 			"Hwangjy9",
+			"Hym411",
+			"LiteHell",
+			"Macofe",
+			"Priviet",
+			"Revi",
 			"Ykhwong",
-			"Macofe"
+			"아라"
 		]
 	},
 	"mwoauth-desc": "API 인증을 위해 OAuth 1.0a를 사용할 수 있게 합니다",

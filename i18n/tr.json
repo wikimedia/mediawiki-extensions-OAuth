@@ -1,18 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"Incelemeelemani",
-			"Rapsar",
-			"Demircimehmed",
-			"Meelo",
-			"McAang",
-			"Vito Genovese",
-			"TmY e12",
-			"Sayginer",
-			"ToprakM",
 			"BaRaN6161 TURK",
+			"Demircimehmed",
 			"Grkn gll",
-			"SwornToTranslate29"
+			"Incelemeelemani",
+			"McAang",
+			"Meelo",
+			"Rapsar",
+			"Sayginer",
+			"SwornToTranslate29",
+			"TmY e12",
+			"ToprakM",
+			"Vito Genovese"
 		]
 	},
 	"mwoauth-desc": "API yetkilendirmesi için OAuth 1.0a ve OAuth 2.0 kullanımına izin verir",

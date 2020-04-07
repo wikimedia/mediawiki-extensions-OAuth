@@ -1,17 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
+			"Alan ffm",
 			"Chrumps",
 			"Peter Bowman",
-			"Rzuwig",
-			"Ty221",
-			"Vuh",
-			"WTM",
-			"Alan ffm",
-			"Sp5uhe",
+			"Rail",
 			"Railfail536",
+			"Rzuwig",
+			"Sp5uhe",
+			"Ty221",
 			"Vlad5250",
-			"Rail"
+			"Vuh",
+			"WTM"
 		]
 	},
 	"mwoauth-desc": "Umożliwia korzystanie z OAuth 1.0a i OAuth 2.0 w celu autoryzacji API",

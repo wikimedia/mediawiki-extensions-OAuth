@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pikne",
-			"Boxmein"
+			"Boxmein",
+			"Pikne"
 		]
 	},
 	"mwoauth-desc": "Võimaldab kasutada OAuthi versioone 1.0a ja 2.0 API-volitamiseks.",

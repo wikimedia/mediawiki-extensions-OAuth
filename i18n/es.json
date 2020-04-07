@@ -1,21 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
-			"Fitoschido",
-			"Ovruni",
-			"Macofe",
-			"Amitie 10g",
-			"MarcoAurelio",
-			"Ryo567",
-			"Csbotero",
-			"Lemondoge",
-			"Dgstranz",
-			"Matiia",
 			"AlvaroMolina",
-			"Jelou",
-			"Tiberius1701",
+			"Amitie 10g",
+			"Csbotero",
+			"DannyS712",
+			"Dgstranz",
+			"Fitoschido",
 			"Ihojose",
-			"DannyS712"
+			"Jelou",
+			"Lemondoge",
+			"Macofe",
+			"MarcoAurelio",
+			"Matiia",
+			"Ovruni",
+			"Ryo567",
+			"Tiberius1701"
 		]
 	},
 	"mwoauth-desc": "Permite el uso de OAuth 1.0a y OAuth 2.0 para la autorización de la API",

@@ -1,15 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
+			"Cvanca",
+			"Dvorapa",
+			"Luky001",
 			"Matěj Grabovský",
 			"Matěj Suchánek",
 			"Mormegil",
-			"Cvanca",
-			"Dvorapa",
-			"Patriccck",
-			"Tchoř",
 			"MrJaroslavik",
-			"Luky001"
+			"Patriccck",
+			"Tchoř"
 		]
 	},
 	"mwoauth-desc": "Umožňuje využití OAuth 1.0a pro autorizaci přístupu k API",

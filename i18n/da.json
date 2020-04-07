@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sarrus",
 			"Knud Winckelmann",
+			"Kranix",
 			"Saederup92",
-			"Weblars",
-			"Kranix"
+			"Sarrus",
+			"Weblars"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Forbundne apps:",

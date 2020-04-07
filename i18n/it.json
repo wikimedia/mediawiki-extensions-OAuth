@@ -1,13 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16",
-			"Ricordisamoa",
 			"Alexmar983",
-			"Nemo bis",
-			"Selven",
+			"Beta16",
 			"Giromin Cangiaxo",
-			"Sakretsu"
+			"Nemo bis",
+			"Ricordisamoa",
+			"Sakretsu",
+			"Selven"
 		]
 	},
 	"mwoauth-desc": "Consente l'utilizzo di OAuth 1.0a e OAuth 2.0 per le API di autorizzazione",

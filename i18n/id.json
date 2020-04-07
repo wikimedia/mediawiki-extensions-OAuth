@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Raynasution",
 			"Ilham151096",
-			"Iwan Novirion"
+			"Iwan Novirion",
+			"Raynasution"
 		]
 	},
 	"mwoauth-invalid-field": "Terjadi nilai tidak valid untuk bidang \"$1\"",
