@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fierodelveneto"
+		]
+	},
+	"mwoauth-prefs-managegrants": "Aplicasion coneteste:",
+	"mwoauth-prefs-managegrantslink": "Xestionare {{PLURAL:$1|$1 aplicasion conetesta|$1 aplicasion coneteste|0=aplicasion coneteste}}"
+}
