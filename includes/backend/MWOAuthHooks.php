@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\Extensions\OAuth\Frontend\OAuthLogFormatter;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableAccessException;
 
@@ -46,7 +47,7 @@ EOK;
 			$wgLogTypes[] = 'mwoauthconsumer';
 			$wgLogNames['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpage';
 			$wgLogHeaders['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpagetext';
-			$wgLogActionsHandlers['mwoauthconsumer/*'] = MWOAuthLogFormatter::class;
+			$wgLogActionsHandlers['mwoauthconsumer/*'] = OAuthLogFormatter::class;
 			$wgActionFilteredLogs['mwoauthconsumer'] = [
 				'approve' => [ 'approve' ],
 				'create-owner-only' => [ 'create-owner-only' ],

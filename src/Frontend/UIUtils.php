@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Frontend;
 
 use IContextSource;
 use Message;
@@ -9,7 +9,7 @@ use OOUI\Tag;
 /**
  * Static utility class for the special pages
  */
-class MWOAuthUIUtils {
+class UIUtils {
 	/**
 	 * Generate an information table for a consumer. The result will be suitable for use as a
 	 * HTMLForm field with no label.

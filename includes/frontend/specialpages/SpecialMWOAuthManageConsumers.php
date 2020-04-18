@@ -24,6 +24,7 @@ namespace MediaWiki\Extensions\OAuth;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
+use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
 use OOUI\HtmlSnippet;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -251,7 +252,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 				'info' => [
 					'type' => 'info',
 					'raw' => true,
-					'default' => MWOAuthUIUtils::generateInfoTable(
+					'default' => UIUtils::generateInfoTable(
 						$this->getInfoTableOptions( $cmrAc ),
 						$this->getContext()
 					),

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Frontend;
 
 use LogEntry;
 use LogFormatter;
@@ -12,7 +12,7 @@ use Title;
 /**
  * Formatter for OAuth log events
  */
-class MWOAuthLogFormatter extends LogFormatter {
+class OAuthLogFormatter extends LogFormatter {
 	/** @var LinkRenderer */
 	protected $linkRenderer;
 

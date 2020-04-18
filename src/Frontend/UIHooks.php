@@ -1,16 +1,20 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Frontend;
 
 use HTMLForm;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
+use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
+use MediaWiki\Extensions\OAuth\SpecialMWOAuthConsumerRegistration;
+use MediaWiki\Extensions\OAuth\SpecialMWOAuthManageConsumers;
 use SpecialPage;
 
 /**
  * Class containing GUI even handler functions for an OAuth environment
  */
-class MWOAuthUIHooks {
+class UIHooks {
 
 	/**
 	 * @param \User $user

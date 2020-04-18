@@ -23,6 +23,7 @@ namespace MediaWiki\Extensions\OAuth;
 
 use Html;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
 use OOUI\HtmlSnippet;
 use SpecialPage;
@@ -116,7 +117,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			$data[ 'mwoauthlistconsumers-grants' ] = new HtmlSnippet( $out->parseInlineAsInterface( $s ) );
 		}
 
-		$out->addHTML( MWOAuthUIUtils::generateInfoTable( $data, $this->getContext() ) );
+		$out->addHTML( UIUtils::generateInfoTable( $data, $this->getContext() ) );
 
 		$this->addNavigationSubtitle( $cmrAc );
 

@@ -23,6 +23,7 @@ namespace MediaWiki\Extensions\OAuth;
 
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
+use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
 use User;
 use Wikimedia\Rdbms\DBConnRef;
@@ -355,7 +356,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 					'info' => [
 						'type' => 'info',
 						'raw' => true,
-						'default' => MWOAuthUIUtils::generateInfoTable( [
+						'default' => UIUtils::generateInfoTable( [
 							'mwoauth-consumer-name' => $cmrAc->getName(),
 							'mwoauth-consumer-version' => $cmrAc->getVersion(),
 							'mwoauth-oauth-version' => $cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2 ?

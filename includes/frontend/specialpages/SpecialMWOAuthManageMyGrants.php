@@ -6,6 +6,7 @@ use Html;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceAccessControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceSubmitControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
 use SpecialPage;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -166,7 +167,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 				'info' => [
 					'type' => 'info',
 					'raw' => true,
-					'default' => MWOAuthUIUtils::generateInfoTable( [
+					'default' => UIUtils::generateInfoTable( [
 						'mwoauth-consumer-name' => $cmrAc->getNameAndVersion(),
 						'mwoauth-consumer-user' => $cmrAc->getUserName(),
 						'mwoauth-consumer-description' => $cmrAc->getDescription(),

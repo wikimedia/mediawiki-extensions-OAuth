@@ -1,9 +1,11 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Frontend;
 
 use EchoAttributeManager;
 use EchoEventPresentationModel;
+use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 use MWException;
 use SpecialPage;
 use User;
