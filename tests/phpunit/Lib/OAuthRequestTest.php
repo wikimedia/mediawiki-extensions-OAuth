@@ -26,12 +26,12 @@
 namespace MediaWiki\Extensions\OAuth\Tests\Lib;
 
 
-use MediaWiki\Extensions\OAuth\OAuthConsumer;
-use MediaWiki\Extensions\OAuth\OAuthException;
-use MediaWiki\Extensions\OAuth\OAuthRequest;
-use MediaWiki\Extensions\OAuth\OAuthSignatureMethod_HMAC_SHA1;
-use MediaWiki\Extensions\OAuth\OAuthSignatureMethod_PLAINTEXT;
-use MediaWiki\Extensions\OAuth\OAuthToken;
+use MediaWiki\Extensions\OAuth\Lib\OAuthConsumer;
+use MediaWiki\Extensions\OAuth\Lib\OAuthException;
+use MediaWiki\Extensions\OAuth\Lib\OAuthRequest;
+use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
+use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod_PLAINTEXT;
+use MediaWiki\Extensions\OAuth\Lib\OAuthToken;
 
 /**
  * Tests of OAuthRequest

@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extensions\OAuth\Tests\Lib;
 
-use MediaWiki\Extensions\OAuth\OAuthConsumer;
-use MediaWiki\Extensions\OAuth\OAuthDataStore;
-use MediaWiki\Extensions\OAuth\OAuthToken;
+use MediaWiki\Extensions\OAuth\Lib\OAuthConsumer;
+use MediaWiki\Extensions\OAuth\Lib\OAuthDataStore;
+use MediaWiki\Extensions\OAuth\Lib\OAuthToken;
 
 /**
  * A mock store for testing

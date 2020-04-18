@@ -24,8 +24,11 @@
  * THE SOFTWARE.
  */
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Lib;
 
+use MediaWiki\Extensions\OAuth\Lib\OAuthConsumer;
+use MediaWiki\Extensions\OAuth\Lib\OAuthRequest;
+use MediaWiki\Extensions\OAuth\Lib\OAuthToken;
 use MediaWiki\Logger\LoggerFactory;
 
 /**

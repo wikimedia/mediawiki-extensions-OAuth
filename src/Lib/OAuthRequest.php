@@ -24,8 +24,10 @@
  * THE SOFTWARE.
  */
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Lib;
 
+use MediaWiki\Extensions\OAuth\Lib\OAuthException;
+use MediaWiki\Extensions\OAuth\Lib\OAuthUtil;
 use MediaWiki\Logger\LoggerFactory;
 
 class OAuthRequest {

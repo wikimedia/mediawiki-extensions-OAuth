@@ -24,7 +24,7 @@
  * THE SOFTWARE.
  */
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Lib;
 
 class OAuthDataStore {
 	function lookup_consumer( $consumer_key ) {

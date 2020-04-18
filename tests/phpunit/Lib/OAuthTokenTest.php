@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Tests\Lib;
 
-use MediaWiki\Extensions\OAuth\OAuthToken;
+use MediaWiki\Extensions\OAuth\Lib\OAuthToken;
 
 /**
  * The MIT License

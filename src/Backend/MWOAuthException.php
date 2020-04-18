@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Backend;
 
-use MediaWiki\Extensions\OAuth\OAuthException;
+use MediaWiki\Extensions\OAuth\Lib\OAuthException;
 
 class MWOAuthException extends OAuthException {
 	public $msg, $params;

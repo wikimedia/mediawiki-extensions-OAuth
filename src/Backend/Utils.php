@@ -4,7 +4,7 @@ namespace MediaWiki\Extensions\OAuth\Backend;
 
 use EchoEvent;
 use Hooks;
-use MediaWiki\Extensions\OAuth\OAuthSignatureMethod_HMAC_SHA1;
+use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
 use MediaWiki\MediaWikiServices;
 use User;
 use Wikimedia\Rdbms\DBConnRef;

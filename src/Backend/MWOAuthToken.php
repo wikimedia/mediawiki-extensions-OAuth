@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Backend;
 
-use MediaWiki\Extensions\OAuth\OAuthToken;
+use MediaWiki\Extensions\OAuth\Lib\OAuthToken;
 
 class MWOAuthToken extends OAuthToken {
 	// Keep the verification code here

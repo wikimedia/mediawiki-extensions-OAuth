@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Tests\Lib;
 
-use MediaWiki\Extensions\OAuth\OAuthSignatureMethod_RSA_SHA1;
+use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1;
 
 /**
  * A mock implementation of OAuthSignatureMethod_RSA_SHA1

@@ -22,13 +22,22 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */
+*/
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Lib;
 
-/**
- * Generic exception class
- */
-class OAuthException extends \Exception {
-	// pass
+class OAuthConsumer {
+	public $key;
+	public $secret;
+	public $callback_url;
+
+	function __construct( $key, $secret, $callback_url = NULL ) {
+		$this->key = $key;
+		$this->secret = $secret;
+		$this->callback_url = $callback_url;
+	}
+
+	function __toString() {
+		return "OAuthConsumer[key=$this->key,secret=$this->secret]";
+	}
 }

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Backend;
 
-use MediaWiki\Extensions\OAuth\OAuthServer;
+use MediaWiki\Extensions\OAuth\Lib\OAuthServer;
 
 class MWOAuthServer extends OAuthServer {
 	/** @var MWOAuthDataStore */

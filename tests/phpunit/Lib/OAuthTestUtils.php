@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Tests\Lib;
 
-use MediaWiki\Extensions\OAuth\OAuthRequest;
+use MediaWiki\Extensions\OAuth\Lib\OAuthRequest;
 
 /**
  * A simple utils class for methods needed

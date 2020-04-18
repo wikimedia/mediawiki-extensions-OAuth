@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth\Backend;
 
-use MediaWiki\Extensions\OAuth\OAuthRequest;
-use MediaWiki\Extensions\OAuth\OAuthUtil;
+use MediaWiki\Extensions\OAuth\Lib\OAuthRequest;
+use MediaWiki\Extensions\OAuth\Lib\OAuthUtil;
 use MediaWiki\Logger\LoggerFactory;
 
 /**

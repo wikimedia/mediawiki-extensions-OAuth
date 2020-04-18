@@ -25,7 +25,7 @@ use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\OAuthException;
+use MediaWiki\Extensions\OAuth\Lib\OAuthException;
 use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DBConnRef;

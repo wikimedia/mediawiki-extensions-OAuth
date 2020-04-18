@@ -24,7 +24,7 @@
  * THE SOFTWARE.
  */
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Lib;
 
 use MediaWiki\Logger\LoggerFactory;
 
@@ -33,7 +33,7 @@ class OAuthUtil {
 		if ( is_array( $input ) ) {
 			return array_map(
 				array(
-					'MediaWiki\Extensions\OAuth\OAuthUtil',
+					self::class,
 					'urlencode_rfc3986'
 				),
 				$input
