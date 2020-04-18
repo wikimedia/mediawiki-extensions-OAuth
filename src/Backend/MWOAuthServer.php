@@ -1,6 +1,8 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Backend;
+
+use MediaWiki\Extensions\OAuth\OAuthServer;
 
 class MWOAuthServer extends OAuthServer {
 	/** @var MWOAuthDataStore */
@@ -27,7 +29,7 @@ class MWOAuthServer extends OAuthServer {
 	public function fetch_request_token( &$request ) {
 		$this->get_version( $request );
 
-		/** @var MWOAuthConsumer $consumer */
+		/** @var Consumer $consumer */
 		$consumer = $this->get_consumer( $request );
 
 		// Consumer must not be owner-only
@@ -88,7 +90,7 @@ class MWOAuthServer extends OAuthServer {
 	 * on parsed URL components rather than strict string matching. Protocol
 	 * upgrades from http to https are also allowed.
 	 *
-	 * @param MWOAuthConsumer $consumer
+	 * @param Consumer $consumer
 	 * @param string $callback
 	 * @return void
 	 * @throws MWOAuthException
@@ -209,7 +211,7 @@ class MWOAuthServer extends OAuthServer {
 	public function fetch_access_token( &$request ) {
 		$this->get_version( $request );
 
-		/** @var MWOAuthConsumer $consumer */
+		/** @var Consumer $consumer */
 		$consumer = $this->get_consumer( $request );
 
 		// Consumer must not be owner-only
@@ -274,7 +276,7 @@ class MWOAuthServer extends OAuthServer {
 	 * Ensure the request comes from an approved IP address, if IP restriction has been
 	 * setup by the Consumer. It throws an exception if IP address is invalid.
 	 *
-	 * @param MWOAuthConsumer $consumer
+	 * @param Consumer $consumer
 	 * @param MWOAuthRequest $request
 	 * @throws MWOAuthException
 	 */
@@ -295,8 +297,8 @@ class MWOAuthServer extends OAuthServer {
 	 * @return string
 	 */
 	public function authorize( $consumerKey, $requestTokenKey, \User $mwUser, $update ) {
-		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-		$consumer = MWOAuthConsumer::newFromKey( $dbr, $consumerKey );
+		$dbr = Utils::getCentralDB( DB_REPLICA );
+		$consumer = Consumer::newFromKey( $dbr, $consumerKey );
 		return $consumer->authorize( $mwUser, $update, $consumer->getGrants(), $requestTokenKey );
 	}
 
@@ -312,13 +314,12 @@ class MWOAuthServer extends OAuthServer {
 	 * Users might want more grants on some wikis than on "*". Note that the reverse would not
 	 * make sense, since the consumer could just use the "*" acceptance if it has more grants.
 	 *
-	 * @deprecated Use MWOAuthConsumer::getCurrentAuthorization(...)
-	 *
 	 * @param \User $mwUser (local wiki user) User who may or may not have authorizations
-	 * @param MWOAuthConsumer $consumer
+	 * @param Consumer $consumer
 	 * @param string $wikiId
 	 * @throws MWOAuthException
-	 * @return MWOAuthConsumerAcceptance
+	 * @return ConsumerAcceptance
+	 * @deprecated Use MWOAuthConsumer::getCurrentAuthorization(...)
 	 */
 	public function getCurrentAuthorization( \User $mwUser, $consumer, $wikiId ) {
 		wfDeprecated( __METHOD__ );

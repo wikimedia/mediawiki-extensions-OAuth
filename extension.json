@@ -15,7 +15,7 @@
 		"MediaWiki": ">= 1.34.0"
 	},
 	"ExtensionFunctions": [
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onExtensionFunctions"
+		"MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onExtensionFunctions"
 	],
 	"DefaultUserOptions": {
 		"echo-subscriptions-web-oauth-owner": true,
@@ -57,16 +57,6 @@
 		"MWOAuthAliases": "MWOAuth.alias.php"
 	},
 	"AutoloadClasses": {
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthHooks": "includes/backend/MWOAuthHooks.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthUtils": "includes/backend/MWOAuthUtils.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthException": "includes/backend/MWOAuthException.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthDAO": "includes/backend/MWOAuthDAO.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthToken": "includes/backend/MWOAuthToken.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthConsumer": "includes/backend/MWOAuthConsumer.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthConsumerAcceptance": "includes/backend/MWOAuthConsumerAcceptance.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthRequest": "includes/backend/MWOAuthRequest.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthServer": "includes/backend/MWOAuthServer.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthSignatureMethod_RSA_SHA1": "includes/backend/MWOAuthSignatureMethod_RSA_SHA1.php",
 		"MediaWiki\\Extensions\\OAuth\\OAuthException": "includes/lib/OAuthException.php",
 		"MediaWiki\\Extensions\\OAuth\\OAuthConsumer": "includes/lib/OAuthConsumer.php",
 		"MediaWiki\\Extensions\\OAuth\\OAuthToken": "includes/lib/OAuthToken.php",
@@ -77,10 +67,7 @@
 		"MediaWiki\\Extensions\\OAuth\\OAuthRequest": "includes/lib/OAuthRequest.php",
 		"MediaWiki\\Extensions\\OAuth\\OAuthServer": "includes/lib/OAuthServer.php",
 		"MediaWiki\\Extensions\\OAuth\\OAuthDataStore": "includes/lib/OAuthDataStore.php",
-		"MediaWiki\\Extensions\\OAuth\\OAuthUtil": "includes/lib/OAuthUtil.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthDataStore": "includes/backend/MWOAuthDataStore.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthUpdaterHooks": "includes/backend/MWOAuthUpdaterHooks.php",
-		"MediaWiki\\Extensions\\OAuth\\OAuth1Consumer": "includes/backend/OAuth1Consumer.php"
+		"MediaWiki\\Extensions\\OAuth\\OAuthUtil": "includes/lib/OAuthUtil.php"
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extensions\\OAuth\\": "src/"
@@ -111,12 +98,12 @@
 		"localBasePath": "resources/modules",
 		"remoteExtPath": "OAuth/resources/modules"
 	},
-	"callback": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onRegistration",
+	"callback": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onRegistration",
 	"Hooks": {
-		"ChangeTagCanCreate": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onChangeTagCanCreate",
-		"MergeAccountFromTo": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onMergeAccountFromTo",
-		"CentralAuthGlobalUserMerged": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onCentralAuthGlobalUserMerged",
-		"LoadExtensionSchemaUpdates": "MediaWiki\\Extensions\\OAuth\\MWOAuthUpdaterHooks::addSchemaUpdates",
+		"ChangeTagCanCreate": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onChangeTagCanCreate",
+		"MergeAccountFromTo": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onMergeAccountFromTo",
+		"CentralAuthGlobalUserMerged": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onCentralAuthGlobalUserMerged",
+		"LoadExtensionSchemaUpdates": "MediaWiki\\Extensions\\OAuth\\Backend\\UpdaterHooks::addSchemaUpdates",
 		"GetPreferences": "MediaWiki\\Extensions\\OAuth\\Frontend\\UIHooks::onGetPreferences",
 		"MessagesPreLoad": "MediaWiki\\Extensions\\OAuth\\Frontend\\UIHooks::onMessagesPreLoad",
 		"SpecialPageAfterExecute": "MediaWiki\\Extensions\\OAuth\\Frontend\\UIHooks::onSpecialPageAfterExecute",
@@ -124,11 +111,11 @@
 		"BeforeCreateEchoEvent": "MediaWiki\\Extensions\\OAuth\\Frontend\\UIHooks::onBeforeCreateEchoEvent",
 		"CentralAuthAbortCentralAuthToken": "MediaWiki\\Extensions\\OAuth\\Setup::onCentralAuthAbortCentralAuthToken",
 		"TestCanonicalRedirect": "MediaWiki\\Extensions\\OAuth\\Setup::onTestCanonicalRedirect",
-		"SetupAfterCache": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onSetupAfterCache",
-		"ApiRsdServiceApis": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onApiRsdServiceApis",
+		"SetupAfterCache": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onSetupAfterCache",
+		"ApiRsdServiceApis": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onApiRsdServiceApis",
 		"SpecialPage_initList": "MediaWiki\\Extensions\\OAuth\\Frontend\\UIHooks::onSpecialPage_initList",
-		"ListDefinedTags": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onListDefinedTags",
-		"ChangeTagsListActive": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onChangeTagsListActive",
+		"ListDefinedTags": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onListDefinedTags",
+		"ChangeTagsListActive": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onChangeTagsListActive",
 		"LoginFormValidErrorMessages": "MediaWiki\\Extensions\\OAuth\\Frontend\\UIHooks::onLoginFormValidErrorMessages"
 	},
 	"ConfigRegistry": {

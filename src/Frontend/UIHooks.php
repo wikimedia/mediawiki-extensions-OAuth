@@ -3,12 +3,12 @@
 namespace MediaWiki\Extensions\OAuth\Frontend;
 
 use HTMLForm;
+use MediaWiki\Extensions\OAuth\Backend\Consumer;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
 use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers;
-use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 use SpecialPage;
 
 /**
@@ -23,10 +23,10 @@ class UIHooks {
 	 * @throws \MWException
 	 */
 	public static function onGetPreferences( $user, &$preferences ) {
-		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$conds = [
 			'oaac_consumer_id = oarc_id',
-			'oaac_user_id' => MWOAuthUtils::getCentralIdFromLocalUser( $user ),
+			'oaac_user_id' => Utils::getCentralIdFromLocalUser( $user ),
 		];
 		if ( !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			$conds['oarc_deleted'] = 0;
@@ -84,9 +84,9 @@ class UIHooks {
 		$context = new \DerivativeContext( \RequestContext::getMain() );
 		$context->setLanguage( $code );
 
-		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$cmrAc = ConsumerAccessControl::wrap(
-			MWOAuthConsumer::newFromId( $dbr, $m[1] ), $context
+			Consumer::newFromId( $dbr, $m[1] ), $context
 		);
 		if ( !$cmrAc ) {
 			// Invalid consumer, skip it
@@ -173,7 +173,7 @@ class UIHooks {
 		global $wgMWOAuthCentralWiki;
 
 		if ( $name === 'BotPasswords' ) {
-			if ( MWOAuthUtils::isCentralWiki() ) {
+			if ( Utils::isCentralWiki() ) {
 				$url = SpecialPage::getTitleFor( 'OAuthConsumerRegistration' )->getFullURL();
 			} else {
 				$url = \WikiMap::getForeignURL(
@@ -196,7 +196,7 @@ class UIHooks {
 	) {
 		global $wgOAuthGroupsToNotify;
 
-		if ( !MWOAuthUtils::isCentralWiki() ) {
+		if ( !Utils::isCentralWiki() ) {
 			return;
 		}
 
@@ -223,7 +223,7 @@ class UIHooks {
 	 * @param array &$specialPages
 	 */
 	public static function onSpecialPage_initList( array &$specialPages ) {
-		if ( MWOAuthUtils::isCentralWiki() ) {
+		if ( Utils::isCentralWiki() ) {
 			$specialPages['OAuthConsumerRegistration'] = SpecialMWOAuthConsumerRegistration::class;
 			$specialPages['OAuthManageConsumers'] = SpecialMWOAuthManageConsumers::class;
 		}

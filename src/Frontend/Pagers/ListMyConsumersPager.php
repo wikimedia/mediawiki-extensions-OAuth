@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth\Frontend\Pagers;
 
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -44,7 +44,7 @@ class ListMyConsumersPager extends \ReverseChronologicalPager {
 			$this->mConds['oarc_deleted'] = 0;
 		}
 
-		$this->mDb = MWOAuthUtils::getCentralDB( DB_REPLICA );
+		$this->mDb = Utils::getCentralDB( DB_REPLICA );
 		parent::__construct();
 
 		# Treat 20 as the default limit, since each entry takes up 5 rows.

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Backend;
 
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -29,7 +29,7 @@ use Wikimedia\Rdbms\DBConnRef;
  * the specified consumer to perform actions in the name of the user
  * (subject to the grant and wiki restrictions stored in the acceptance object).
  */
-class MWOAuthConsumerAcceptance extends MWOAuthDAO {
+class ConsumerAcceptance extends MWOAuthDAO {
 	/** @var int Unique ID */
 	protected $id;
 	/** @var string Wiki ID the application can be used on (or "*" for all) */
@@ -85,7 +85,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	 * @param DBConnRef $db
 	 * @param string $token Access token
 	 * @param int $flags MWOAuthConsumerAcceptance::READ_* bitfield
-	 * @return MWOAuthConsumerAcceptance|bool
+	 * @return ConsumerAcceptance|bool
 	 */
 	public static function newFromToken( DBConnRef $db, $token, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
@@ -107,15 +107,15 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	/**
 	 * @param DBConnRef $db
 	 * @param string $userId of user who authorized (central wiki's id)
-	 * @param MWOAuthConsumer $consumer
+	 * @param Consumer $consumer
 	 * @param string $wiki wiki associated with the acceptance
 	 * @param int $flags MWOAuthConsumerAcceptance::READ_* bitfield
 	 * @param string $oauthVersion
-	 * @return MWOAuthConsumerAcceptance|bool
+	 * @return ConsumerAcceptance|bool
 	 */
 	public static function newFromUserConsumerWiki(
 		DBConnRef $db, $userId, $consumer,
-		$wiki, $flags = 0, $oauthVersion = MWOAuthConsumer::OAUTH_VERSION_1
+		$wiki, $flags = 0, $oauthVersion = Consumer::OAUTH_VERSION_1
 	) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
@@ -224,7 +224,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 			throw new MWOAuthException( 'mwoauth-consumer-access-no-user' );
 		}
 		// For compatibility with other wikis in the farm, un-remap some grants
-		foreach ( MWOAuthConsumer::$mapBackCompatGrants as $old => $new ) {
+		foreach ( Consumer::$mapBackCompatGrants as $old => $new ) {
 			while ( ( $i = array_search( $new, $row['oaac_grants'], true ) ) !== false ) {
 				$row['oaac_grants'][$i] = $old;
 			}
@@ -240,7 +240,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 		$row['oaac_accepted'] = wfTimestamp( TS_MW, $row['oaac_accepted'] );
 
 		// For backwards compatibility, remap some grants
-		foreach ( MWOAuthConsumer::$mapBackCompatGrants as $old => $new ) {
+		foreach ( Consumer::$mapBackCompatGrants as $old => $new ) {
 			while ( ( $i = array_search( $old, $row['oaac_grants'], true ) ) !== false ) {
 				$row['oaac_grants'][$i] = $new;
 			}
@@ -250,7 +250,7 @@ class MWOAuthConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	protected function userCanSee( $name, \IContextSource $context ) {
-		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $context->getUser() );
+		$centralUserId = Utils::getCentralIdFromLocalUser( $context->getUser() );
 		if ( $this->userId != $centralUserId
 			&& !$context->getUser()->isAllowed( 'mwoauthviewprivate' )
 		) {

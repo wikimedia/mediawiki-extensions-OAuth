@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Backend;
 
 use MediaWiki\Extensions\OAuth\Frontend\OAuthLogFormatter;
 use MediaWiki\MediaWikiServices;
@@ -9,7 +9,7 @@ use MediaWiki\Storage\NameTableAccessException;
 /**
  * Class containing hooked functions for an OAuth environment
  */
-class MWOAuthHooks {
+class Hooks {
 
 	/**
 	 * Called right after configuration variables have been set.
@@ -43,7 +43,7 @@ EOK;
 		global $wgLogTypes, $wgLogNames,
 			$wgLogHeaders, $wgLogActionsHandlers, $wgActionFilteredLogs;
 
-		if ( MWOAuthUtils::isCentralWiki() ) {
+		if ( Utils::isCentralWiki() ) {
 			$wgLogTypes[] = 'mwoauthconsumer';
 			$wgLogNames['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpage';
 			$wgLogHeaders['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpagetext';
@@ -69,7 +69,7 @@ EOK;
 	 * @return bool
 	 */
 	public static function onChangeTagCanCreate( $tag, ?\User $user, \Status &$status ) {
-		if ( MWOAuthUtils::isReservedTagName( $tag ) ) {
+		if ( Utils::isReservedTagName( $tag ) ) {
 			$status->fatal( 'mwoauth-tag-reserved' );
 		}
 		return true;
@@ -100,7 +100,7 @@ EOK;
 	}
 
 	protected static function doUserIdMerge( $oldid, $newid ) {
-		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
+		$dbw = Utils::getCentralDB( DB_MASTER );
 		// Merge any consumers register to this user
 		$dbw->update( 'oauth_registered_consumer',
 			[ 'oarc_user_id' => $newid ],
@@ -136,7 +136,7 @@ EOK;
 	 */
 	private static function getUsedConsumerTags( $activeOnly, &$tags ) {
 		// Step 1: Get the list of (active) consumers' tags for this wiki
-		$db = MWOAuthUtils::getCentralDB( DB_REPLICA );
+		$db = Utils::getCentralDB( DB_REPLICA );
 		$conds = [
 			$db->makeList( [
 				'oarc_wiki = ' . $db->addQuotes( '*' ),
@@ -146,9 +146,9 @@ EOK;
 		];
 		if ( $activeOnly ) {
 			$conds[] = $db->makeList( [
-				'oarc_stage = ' . MWOAuthConsumer::STAGE_APPROVED,
+				'oarc_stage = ' . Consumer::STAGE_APPROVED,
 				// Proposed consumers are active for the owner, so count them too
-				'oarc_stage = ' . MWOAuthConsumer::STAGE_PROPOSED,
+				'oarc_stage = ' . Consumer::STAGE_PROPOSED,
 			], LIST_OR );
 		}
 		$res = $db->select(
@@ -159,7 +159,7 @@ EOK;
 		);
 		$allTags = [];
 		foreach ( $res as $row ) {
-			$allTags[] = MWOAuthUtils::getTagName( $row->oarc_id );
+			$allTags[] = Utils::getTagName( $row->oarc_id );
 		}
 
 		// Step 2: Return only those that are in use.

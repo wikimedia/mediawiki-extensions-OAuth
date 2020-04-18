@@ -21,13 +21,13 @@ namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Extensions\OAuth\Backend\Consumer;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Extensions\OAuth\Frontend\Pagers\ManageConsumersPager;
 use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
-use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 use OOUI\HtmlSnippet;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -36,24 +36,24 @@ use Wikimedia\Rdbms\DBConnRef;
  * their approval/rejection and also for listing approved/disabled consumers
  */
 class SpecialMWOAuthManageConsumers extends \SpecialPage {
-	/** @var bool|int An MWOAuthConsumer::STAGE_* constant on queue/list subpages, false otherwise */
+	/** @var bool|int An Consumer::STAGE_* constant on queue/list subpages, false otherwise */
 	protected $stage = false;
-	/** @var string A stage key from MWOAuthConsumer::$stageNames */
+	/** @var string A stage key from Consumer::$stageNames */
 	protected $stageKey;
 
 	/**
 	 * Stages which are shown in a queue (they are in an actionable state and can form a backlog)
 	 * @var array
 	 */
-	public static $queueStages = [ MWOAuthConsumer::STAGE_PROPOSED,
-		MWOAuthConsumer::STAGE_REJECTED, MWOAuthConsumer::STAGE_EXPIRED ];
+	public static $queueStages = [ Consumer::STAGE_PROPOSED,
+		Consumer::STAGE_REJECTED, Consumer::STAGE_EXPIRED ];
 
 	/**
 	 * Stages which cannot form a backlog and are shown in a list
 	 * @var array
 	 */
-	public static $listStages = [ MWOAuthConsumer::STAGE_APPROVED,
-		MWOAuthConsumer::STAGE_DISABLED ];
+	public static $listStages = [ Consumer::STAGE_APPROVED,
+		Consumer::STAGE_DISABLED ];
 
 	public function __construct() {
 		parent::__construct( 'OAuthManageConsumers', 'mwoauthmanageconsumer' );
@@ -91,7 +91,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			$this->stage = false;
 			$consumerKey = $navigation[1];
 		} elseif ( count( $navigation ) === 1 && $navigation[0] ) {
-			$this->stage = array_search( $navigation[0], MWOAuthConsumer::$stageNames, true );
+			$this->stage = array_search( $navigation[0], Consumer::$stageNames, true );
 			if ( $this->stage !== false ) {
 				$consumerKey = null;
 				$this->stageKey = $navigation[0];
@@ -123,7 +123,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	protected function addQueueSubtitleLinks( $consumerKey ) {
 		$listLinks = [];
 		foreach ( self::$queueStages as $stage ) {
-			$stageKey = MWOAuthConsumer::$stageNames[$stage];
+			$stageKey = Consumer::$stageNames[$stage];
 			if ( $consumerKey || $this->stageKey !== $stageKey ) {
 				$listLinks[] = \Linker::linkKnown(
 					$this->getPageTitle( $stageKey ),
@@ -160,21 +160,21 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 * @return void
 	 */
 	protected function showMainHub() {
-		$keyStageMapQ = array_intersect( array_flip( MWOAuthConsumer::$stageNames ),
+		$keyStageMapQ = array_intersect( array_flip( Consumer::$stageNames ),
 			self::$queueStages );
-		$keyStageMapL = array_intersect( array_flip( MWOAuthConsumer::$stageNames ),
+		$keyStageMapL = array_intersect( array_flip( Consumer::$stageNames ),
 			self::$listStages );
 
 		$out = $this->getOutput();
 
 		$out->addWikiMsg( 'mwoauthmanageconsumers-maintext' );
 
-		$counts = MWOAuthUtils::getConsumerStateCounts( MWOAuthUtils::getCentralDB( DB_REPLICA ) );
+		$counts = Utils::getConsumerStateCounts( Utils::getCentralDB( DB_REPLICA ) );
 
 		$out->wrapWikiMsg( "<p><strong>$1</strong></p>", 'mwoauthmanageconsumers-queues' );
 		$out->addHTML( '<ul>' );
 		foreach ( $keyStageMapQ as $stageKey => $stage ) {
-			$tag = ( $stage === MWOAuthConsumer::STAGE_EXPIRED ) ? 'i' : 'b';
+			$tag = ( $stage === Consumer::STAGE_EXPIRED ) ? 'i' : 'b';
 			$out->addHTML(
 				'<li>' .
 				"<$tag>" .
@@ -215,9 +215,9 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 */
 	protected function handleConsumerForm( $consumerKey ) {
 		$user = $this->getUser();
-		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$cmrAc = ConsumerAccessControl::wrap(
-			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
+			Consumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
 		if ( !$cmrAc ) {
 			$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 			return;
@@ -226,7 +226,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		}
 		$startingStage = $cmrAc->getStage();
 		$pending = !in_array( $startingStage, [
-			MWOAuthConsumer::STAGE_APPROVED, MWOAuthConsumer::STAGE_DISABLED ] );
+			Consumer::STAGE_APPROVED, Consumer::STAGE_DISABLED ] );
 
 		if ( $pending ) {
 			$opts = [
@@ -248,7 +248,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			}
 		}
 
-		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
+		$dbw = Utils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
 		$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
 		$form = \HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
@@ -303,11 +303,11 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 		$status = $form->show();
 		if ( $status instanceof \Status && $status->isOK() ) {
-			/** @var MWOAuthConsumer $cmr */
+			/** @var Consumer $cmr */
 			$cmr = $status->value['result'];
-			'@phan-var MWOAuthConsumer $cmr';
-			$oldStageKey = MWOAuthConsumer::$stageNames[$startingStage];
-			$newStageKey = MWOAuthConsumer::$stageNames[$cmr->getStage()];
+			'@phan-var Consumer $cmr';
+			$oldStageKey = Consumer::$stageNames[$startingStage];
+			$newStageKey = Consumer::$stageNames[$cmr->getStage()];
 			// Messages: mwoauthmanageconsumers-success-approved, mwoauthmanageconsumers-success-rejected,
 			// mwoauthmanageconsumers-success-disabled
 			$this->getOutput()->addWikiMsg( "mwoauthmanageconsumers-success-$newStageKey" );
@@ -358,7 +358,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			'mwoauth-consumer-stage' => $cmrAc->getDeleted()
 				? $this->msg( 'mwoauth-consumer-stage-suppressed' )
 				: $this->msg( 'mwoauth-consumer-stage-' .
-					MWOAuthConsumer::$stageNames[$cmrAc->getStage()] ),
+					Consumer::$stageNames[$cmrAc->getStage()] ),
 			'mwoauth-consumer-key' => $cmrAc->getConsumerKey(),
 			'mwoauth-consumer-name' => new HtmlSnippet( $cmrAc->get( 'name', function ( $s ) {
 				$link = \Linker::linkKnown(
@@ -371,7 +371,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 					$this->msg( 'parentheses' )->rawParams( $link )->escaped();
 			} ) ),
 			'mwoauth-consumer-version' => $cmrAc->getVersion(),
-			'mwoauth-oauth-version' => $cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2
+			'mwoauth-oauth-version' => $cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2
 				? $this->msg( 'mwoauth-oauth-version-2' )
 				: $this->msg( 'mwoauth-oauth-version-1' ),
 			'mwoauth-consumer-user' => new HtmlSnippet( $ownerLink ),
@@ -392,7 +392,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		];
 
 		// Add OAuth2 specific parameters
-		if ( $cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2 ) {
+		if ( $cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
 			/** @var ClientEntity $consumer */
 			$consumer = $cmrAc->getDAO();
 			$options += [
@@ -436,7 +436,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		}
 		# Every 30th view, prune old deleted items
 		if ( 0 == mt_rand( 0, 29 ) ) {
-			MWOAuthUtils::runAutoMaintenance( MWOAuthUtils::getCentralDB( DB_MASTER ) );
+			Utils::runAutoMaintenance( Utils::getCentralDB( DB_MASTER ) );
 		}
 	}
 
@@ -447,10 +447,10 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
 		$cmrAc = ConsumerAccessControl::wrap(
-			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
+			Consumer::newFromRow( $db, $row ), $this->getContext() );
 
 		$cmrKey = $cmrAc->getConsumerKey();
-		$stageKey = MWOAuthConsumer::$stageNames[$cmrAc->getStage()];
+		$stageKey = Consumer::$stageNames[$cmrAc->getStage()];
 
 		$link = \Linker::linkKnown(
 			$this->getPageTitle( $cmrKey ),
@@ -469,7 +469,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		// @TODO: inject DB
 		$logHtml = '';
 		\LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '', [
-			'action' => MWOAuthConsumer::$stageActionNames[$cmrAc->getStage()],
+			'action' => Consumer::$stageActionNames[$cmrAc->getStage()],
 			'conds'  => [
 				'ls_field' => 'OAuthConsumer',
 				'ls_value' => $cmrAc->getConsumerKey(),
@@ -483,7 +483,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			'mwoauthmanageconsumers-name' => $cmrAc->escapeForHtml( $cmrAc->getNameAndVersion() ),
 			'mwoauthmanageconsumers-user' => $cmrAc->escapeForHtml( $cmrAc->getUserName() ),
 			'mwoauth-oauth-version' => $cmrAc->escapeForHtml(
-				$cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2 ?
+				$cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ?
 				$this->msg( 'mwoauth-oauth-version-2' ) :
 				$this->msg( 'mwoauth-oauth-version-1' )
 			),

@@ -22,12 +22,12 @@ namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
  */
 
 use Html;
+use MediaWiki\Extensions\OAuth\Backend\Consumer;
+use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extensions\OAuth\Frontend\Pagers\ListConsumersPager;
 use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
-use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
-use MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance;
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 use MediaWiki\MediaWikiServices;
 use OOUI\HtmlSnippet;
 use SpecialPage;
@@ -79,9 +79,9 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			$out->addWikiMsg( 'mwoauth-missing-consumer-key' );
 		}
 
-		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$cmrAc = ConsumerAccessControl::wrap(
-			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
+			Consumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
 		if ( !$cmrAc ) {
 			$out->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 			return;
@@ -101,11 +101,11 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			}
 		}
 
-		$stageKey = MWOAuthConsumer::$stageNames[$cmrAc->getDAO()->getStage()];
+		$stageKey = Consumer::$stageNames[$cmrAc->getDAO()->getStage()];
 		$data = [
 			'mwoauthlistconsumers-name' => $cmrAc->getName(),
 			'mwoauthlistconsumers-version' => $cmrAc->getVersion(),
-			'mwoauth-oauth-version' => $cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2
+			'mwoauth-oauth-version' => $cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2
 				? $this->msg( 'mwoauth-oauth-version-2' )
 				: $this->msg( 'mwoauth-oauth-version-1' ),
 			'mwoauthlistconsumers-user' => $cmrAc->getUserName(),
@@ -125,7 +125,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 		$this->addNavigationSubtitle( $cmrAc );
 
-		if ( MWOAuthUtils::isCentralWiki() ) {
+		if ( Utils::isCentralWiki() ) {
 			// Show all of the status updates
 			$logPage = new \LogPage( 'mwoauthconsumer' );
 			$out->addHTML( \Xml::element( 'h2', null, $logPage->getName()->text() ) );
@@ -164,17 +164,17 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 					'options'  => [
 						$this->msg( 'mwoauth-consumer-stage-any' )->escaped() => -1,
 						$this->msg( 'mwoauth-consumer-stage-proposed' )->escaped()
-							=> MWOAuthConsumer::STAGE_PROPOSED,
+							=> Consumer::STAGE_PROPOSED,
 						$this->msg( 'mwoauth-consumer-stage-approved' )->escaped()
-							=> MWOAuthConsumer::STAGE_APPROVED,
+							=> Consumer::STAGE_APPROVED,
 						$this->msg( 'mwoauth-consumer-stage-rejected' )->escaped()
-							=> MWOAuthConsumer::STAGE_REJECTED,
+							=> Consumer::STAGE_REJECTED,
 						$this->msg( 'mwoauth-consumer-stage-disabled' )->escaped()
-							=> MWOAuthConsumer::STAGE_DISABLED,
+							=> Consumer::STAGE_DISABLED,
 						$this->msg( 'mwoauth-consumer-stage-expired' )->escaped()
-							=> MWOAuthConsumer::STAGE_EXPIRED
+							=> Consumer::STAGE_EXPIRED
 					],
-					'default'  => MWOAuthConsumer::STAGE_APPROVED,
+					'default'  => Consumer::STAGE_APPROVED,
 					'required' => false
 				]
 			],
@@ -198,9 +198,9 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		$request = $this->getRequest();
 
 		$name = $request->getVal( 'name', '' );
-		$stage = $request->getInt( 'stage', MWOAuthConsumer::STAGE_APPROVED );
+		$stage = $request->getInt( 'stage', Consumer::STAGE_APPROVED );
 		if ( $request->getVal( 'publisher', '' ) !== '' ) {
-			$centralId = MWOAuthUtils::getCentralIdFromUserName( $request->getVal( 'publisher' ) );
+			$centralId = Utils::getCentralIdFromUserName( $request->getVal( 'publisher' ) );
 		} else {
 			$centralId = null;
 		}
@@ -218,7 +218,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		}
 		# Every 30th view, prune old deleted items
 		if ( 0 == mt_rand( 0, 29 ) ) {
-			MWOAuthUtils::runAutoMaintenance( MWOAuthUtils::getCentralDB( DB_MASTER ) );
+			Utils::runAutoMaintenance( Utils::getCentralDB( DB_MASTER ) );
 		}
 	}
 
@@ -229,10 +229,10 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
 		$cmrAc = ConsumerAccessControl::wrap(
-			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
+			Consumer::newFromRow( $db, $row ), $this->getContext() );
 
 		$cmrKey = $cmrAc->getConsumerKey();
-		$stageKey = MWOAuthConsumer::$stageNames[$cmrAc->getStage()];
+		$stageKey = Consumer::$stageNames[$cmrAc->getStage()];
 
 		$links = [];
 		$links[] = \Linker::linkKnown(
@@ -259,7 +259,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		$lang = $this->getLanguage();
 		$data = [
 			'mwoauth-oauth-version' => $cmrAc->escapeForHtml(
-				$cmrAc->getOAuthVersion() === MWOAuthConsumer::OAUTH_VERSION_2
+				$cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2
 					? $this->msg( 'mwoauth-oauth-version-2' )
 					: $this->msg( 'mwoauth-oauth-version-1' )
 			),
@@ -279,7 +279,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		}
 
 		$rcUrl = SpecialPage::getTitleFor( 'Recentchanges' )
-			->getFullURL( [ 'tagfilter' => MWOAuthUtils::getTagName( $cmrAc->getId() ) ] );
+			->getFullURL( [ 'tagfilter' => Utils::getTagName( $cmrAc->getId() ) ] );
 		$rcLink = Html::element( 'a', [ 'href' => $rcUrl ],
 			$this->msg( 'mwoauthlistconsumers-rclink' )->plain() );
 		$r .= '<p>' . $rcLink . '</p>';
@@ -299,7 +299,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 */
 	private function addNavigationSubtitle( ConsumerAccessControl $cmrAc ): void {
 		$user = $this->getUser();
-		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
+		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$consumer = $cmrAc->getDAO();
 
@@ -328,7 +328,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		ConsumerAccessControl $cmrAc, $centralUserId,
 		\MediaWiki\Linker\LinkRenderer $linkRenderer
 	): array {
-		if ( MWOAuthUtils::isCentralWiki() && $cmrAc->getDAO()->getUserId() === $centralUserId ) {
+		if ( Utils::isCentralWiki() && $cmrAc->getDAO()->getUserId() === $centralUserId ) {
 			return [
 				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'OAuthConsumerRegistration',
 					'update/' . $cmrAc->getDAO()->getConsumerKey() ),
@@ -340,16 +340,16 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	}
 
 	/**
-	 * @param MWOAuthConsumer $consumer
+	 * @param Consumer $consumer
 	 * @param \User $user
 	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
 	 * @return array
 	 * @throws \MWException
 	 */
 	private function manageConsumerLink(
-		MWOAuthConsumer $consumer, \User $user, \MediaWiki\Linker\LinkRenderer $linkRenderer
+		Consumer $consumer, \User $user, \MediaWiki\Linker\LinkRenderer $linkRenderer
 	): array {
-		if ( MWOAuthUtils::isCentralWiki() && $user->isAllowed( 'mwoauthmanageconsumer' ) ) {
+		if ( Utils::isCentralWiki() && $user->isAllowed( 'mwoauthmanageconsumer' ) ) {
 			return [
 				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'OAuthManageConsumers',
 					$consumer->getConsumerKey() ),
@@ -361,7 +361,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	}
 
 	/**
-	 * @param MWOAuthConsumer $consumer
+	 * @param Consumer $consumer
 	 * @param int $centralUserId Add link to manage grants for this user, if they've granted this
 	 * consumer
 	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
@@ -369,7 +369,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 * @throws \MWException
 	 */
 	private function manageMyGrantsLink(
-		MWOAuthConsumer $consumer, $centralUserId, \MediaWiki\Linker\LinkRenderer $linkRenderer
+		Consumer $consumer, $centralUserId, \MediaWiki\Linker\LinkRenderer $linkRenderer
 	): array {
 		$acceptance = $this->userGrantedAcceptance( $consumer, $centralUserId );
 		if ( $acceptance !== false ) {
@@ -384,17 +384,17 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	}
 
 	/**
-	 * @param MWOAuthConsumer $consumer
+	 * @param Consumer $consumer
 	 * @param int $centralUserId UserId to retrieve the grants for
-	 * @return bool|MWOAuthConsumerAcceptance
+	 * @return bool|ConsumerAcceptance
 	 */
-	private function userGrantedAcceptance( MWOAuthConsumer $consumer, $centralUserId ) {
-		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+	private function userGrantedAcceptance( Consumer $consumer, $centralUserId ) {
+		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$wikiSpecificGrant =
-			MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
+			ConsumerAcceptance::newFromUserConsumerWiki(
 				$dbr, $centralUserId, $consumer, wfWikiId() );
 
-		$allWikiGrant = MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
+		$allWikiGrant = ConsumerAcceptance::newFromUserConsumerWiki(
 			$dbr, $centralUserId, $consumer, '*' );
 
 		if ( $wikiSpecificGrant !== false ) {

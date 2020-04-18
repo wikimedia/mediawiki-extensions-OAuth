@@ -6,7 +6,7 @@ use Config;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\AccessToken as AccessTokenProvider;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization;
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Response;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Handler;
@@ -39,8 +39,8 @@ abstract class AuthenticationHandler extends Handler {
 	 * @return AuthenticationHandler
 	 */
 	public static function factory() {
-		$centralId = MWOAuthUtils::getCentralIdFromLocalUser( RequestContext::getMain()->getUser() );
-		$user = $centralId ? MWOAuthUtils::getLocalUserFromCentralId( $centralId ) : User::newFromId( 0 );
+		$centralId = Utils::getCentralIdFromLocalUser( RequestContext::getMain()->getUser() );
+		$user = $centralId ? Utils::getLocalUserFromCentralId( $centralId ) : User::newFromId( 0 );
 		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
 		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
 		return new static( $user, $config );

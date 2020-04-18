@@ -4,6 +4,11 @@ namespace MediaWiki\Extensions\OAuth;
 
 use ApiMessage;
 use GuzzleHttp\Psr7\ServerRequest;
+use MediaWiki\Extensions\OAuth\Backend\Consumer;
+use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
+use MediaWiki\Extensions\OAuth\Backend\MWOAuthRequest;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionInfo;
@@ -86,10 +91,10 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 			'result' => 'fail',
 		];
 
-		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$access = null;
 		try {
-			if ( $oauthVersion === MWOAuthConsumer::OAUTH_VERSION_2 ) {
+			if ( $oauthVersion === Consumer::OAUTH_VERSION_2 ) {
 				$resourceServer = ResourceServer::factory();
 				$accessTokenKey = $this->verifyOAuth2Request( $resourceServer, $request );
 				$accessTokenRepo = new AccessTokenRepository();
@@ -101,7 +106,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 					) {
 						// This tell us, with good degree of certainty, that the AT
 						// was issued to a machine and represents no particular user
-						$access = MWOAuthConsumerAcceptance::newFromArray( [
+						$access = ConsumerAcceptance::newFromArray( [
 							'id'           => null,
 							'wiki'         => $resourceServer->getClient()->getWiki(),
 							'userId'       => 0,
@@ -110,12 +115,12 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 							'accessSecret' => '',
 							'grants'       => $resourceServer->getClient()->getGrants(),
 							'accepted'     => wfTimestampNow(),
-							'oauth_version' => MWOAuthConsumer::OAUTH_VERSION_2
+							'oauth_version' => Consumer::OAUTH_VERSION_2
 						] );
 					}
 				} else {
-					$access = MWOAuthConsumerAcceptance::newFromId(
-						MWOAuthUtils::getCentralDB( DB_REPLICA ), $accessId
+					$access = ConsumerAcceptance::newFromId(
+						Utils::getCentralDB( DB_REPLICA ), $accessId
 					);
 				}
 				if ( !$access ) {
@@ -125,19 +130,19 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 				// Set the scopes that are verified for this request
 				$access->setField( 'grants', array_keys( $resourceServer->getScopes() ) );
 			} else {
-				$server = MWOAuthUtils::newMWOAuthServer();
+				$server = Utils::newMWOAuthServer();
 				$oauthRequest = MWOAuthRequest::fromRequest( $request );
 				$logData['consumer'] = $oauthRequest->getConsumerKey();
 				list( , $accessToken ) = $server->verify_request( $oauthRequest );
 				$accessTokenKey = $accessToken->key;
-				$access = MWOAuthConsumerAcceptance::newFromToken( $dbr, $accessTokenKey );
+				$access = ConsumerAcceptance::newFromToken( $dbr, $accessTokenKey );
 			}
 		} catch ( \Exception $ex ) {
 			$this->logger->info( 'Bad OAuth request from {ip}', $logData + [ 'exception' => $ex ] );
 			return $this->makeException( 'mwoauth-invalid-authorization', $ex->getMessage() );
 		}
 
-		$logData['user'] = MWOAuthUtils::getCentralUserNameFromId( $access->getUserId(), 'raw' );
+		$logData['user'] = Utils::getCentralUserNameFromId( $access->getUserId(), 'raw' );
 
 		$wiki = wfWikiID();
 		// Access token is for this wiki
@@ -147,7 +152,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 		}
 
 		// There exists a local user
-		$localUser = MWOAuthUtils::getLocalUserFromCentralId( $access->getUserId() );
+		$localUser = Utils::getLocalUserFromCentralId( $access->getUserId() );
 		if ( !$localUser ) {
 			$localUser = User::newFromId( 0 );
 		}
@@ -170,7 +175,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 		}
 
 		// The consumer is approved or owned by $localUser, and is for this wiki.
-		$consumer = MWOAuthConsumer::newFromId( $dbr, $access->getConsumerId() );
+		$consumer = Consumer::newFromId( $dbr, $access->getConsumerId() );
 		if ( !$consumer->isUsableBy( $localUser ) ) {
 			$this->logger->debug(
 				'OAuth request for consumer {consumer} not approved by user {user}', $logData
@@ -227,11 +232,11 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 	 * @return int|null if request is not using OAuth header
 	 */
 	private function getOAuthVersionFromRequest( WebRequest $request ) {
-		if ( MWOAuthUtils::hasOAuthHeaders( $request ) ) {
-			return MWOAuthConsumer::OAUTH_VERSION_1;
+		if ( Utils::hasOAuthHeaders( $request ) ) {
+			return Consumer::OAUTH_VERSION_1;
 		}
 		if ( ResourceServer::isOAuth2Request( $request ) ) {
-			return MWOAuthConsumer::OAUTH_VERSION_2;
+			return Consumer::OAUTH_VERSION_2;
 		}
 
 		return null;
@@ -267,8 +272,8 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 	}
 
 	public function preventSessionsForUser( $username ) {
-		$id = MWOAuthUtils::getCentralIdFromUserName( $username );
-		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
+		$id = Utils::getCentralIdFromUserName( $username );
+		$dbw = Utils::getCentralDB( DB_MASTER );
 
 		$dbw->startAtomic( __METHOD__ );
 		try {
@@ -379,7 +384,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 	public function onRecentChange_save( $rc ) {
 		$consumerId = $this->getPublicConsumerId( $rc->getPerformer() ?: null );
 		if ( $consumerId !== null ) {
-			$rc->addTags( MWOAuthUtils::getTagName( $consumerId ) );
+			$rc->addTags( Utils::getTagName( $consumerId ) );
 		}
 		return true;
 	}
@@ -419,7 +424,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 	) {
 		$consumerId = $this->getPublicConsumerId( $user );
 		if ( $consumerId !== null ) {
-			$tags[] = MWOAuthUtils::getTagName( $consumerId );
+			$tags[] = Utils::getTagName( $consumerId );
 		}
 		return true;
 	}

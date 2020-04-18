@@ -1,9 +1,10 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Backend;
 
 use EchoEvent;
 use Hooks;
+use MediaWiki\Extensions\OAuth\OAuthSignatureMethod_HMAC_SHA1;
 use MediaWiki\MediaWikiServices;
 use User;
 use Wikimedia\Rdbms\DBConnRef;
@@ -15,7 +16,7 @@ use Wikimedia\Rdbms\IDatabase;
  * @file
  * @ingroup OAuth
  */
-class MWOAuthUtils {
+class Utils {
 	/**
 	 * @return bool
 	 */
@@ -68,11 +69,11 @@ class MWOAuthUtils {
 			[ 'GROUP BY' => 'oarc_stage' ]
 		);
 		$table = [
-			MWOAuthConsumer::STAGE_APPROVED => 0,
-			MWOAuthConsumer::STAGE_DISABLED => 0,
-			MWOAuthConsumer::STAGE_EXPIRED  => 0,
-			MWOAuthConsumer::STAGE_PROPOSED => 0,
-			MWOAuthConsumer::STAGE_REJECTED => 0,
+			Consumer::STAGE_APPROVED => 0,
+			Consumer::STAGE_DISABLED => 0,
+			Consumer::STAGE_EXPIRED  => 0,
+			Consumer::STAGE_PROPOSED => 0,
+			Consumer::STAGE_REJECTED => 0,
 		];
 		foreach ( $res as $row ) {
 			$table[(int)$row->oarc_stage] = (int)$row->count;
@@ -150,11 +151,11 @@ class MWOAuthUtils {
 					$dbw->update(
 						'oauth_registered_consumer',
 						[
-							'oarc_stage' => MWOAuthConsumer::STAGE_EXPIRED,
+							'oarc_stage' => Consumer::STAGE_EXPIRED,
 							'oarc_stage_timestamp' => $dbw->timestamp()
 						],
 						[
-							'oarc_stage' => MWOAuthConsumer::STAGE_PROPOSED,
+							'oarc_stage' => Consumer::STAGE_PROPOSED,
 							'oarc_stage_timestamp < ' .
 								$dbw->addQuotes( $dbw->timestamp( $cutoff ) )
 						],

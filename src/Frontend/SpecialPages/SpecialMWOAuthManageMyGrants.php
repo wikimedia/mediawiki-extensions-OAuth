@@ -3,14 +3,14 @@
 namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
 
 use Html;
+use MediaWiki\Extensions\OAuth\Backend\Consumer;
+use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceAccessControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceSubmitControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extensions\OAuth\Frontend\Pagers\ManageMyGrantsPager;
 use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
-use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
-use MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance;
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 use SpecialPage;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -98,14 +98,14 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$listLinks = [];
 
 		if ( $acceptanceId ) {
-			$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-			$cmraAc = MWOAuthConsumerAcceptance::newFromId( $dbr, $acceptanceId );
+			$dbr = Utils::getCentralDB( DB_REPLICA );
+			$cmraAc = ConsumerAcceptance::newFromId( $dbr, $acceptanceId );
 			$listLinks[] = \Linker::linkKnown(
 				$this->getPageTitle(),
 				$this->msg( 'mwoauthmanagemygrants-showlist' )->escaped() );
 
 			if ( $cmraAc ) {
-				$cmrAc = MWOAuthConsumer::newFromId( $dbr, $cmraAc->getConsumerId() );
+				$cmrAc = Consumer::newFromId( $dbr, $cmraAc->getConsumerId() );
 				$consumerKey = $cmrAc->getConsumerKey();
 				$listLinks[] = \Linker::linkKnown(
 					\SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$consumerKey" ),
@@ -132,23 +132,23 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	protected function handleConsumerForm( $acceptanceId, $type ) {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
-		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getCentralDB( DB_REPLICA );
 
-		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
+		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
 		if ( !$centralUserId ) {
 			$this->getOutput()->addWikiMsg( 'badaccess-group0' );
 			return;
 		}
 
 		$cmraAc = ConsumerAcceptanceAccessControl::wrap(
-			MWOAuthConsumerAcceptance::newFromId( $dbr, $acceptanceId ), $this->getContext() );
+			ConsumerAcceptance::newFromId( $dbr, $acceptanceId ), $this->getContext() );
 		if ( !$cmraAc || $cmraAc->getUserId() !== $centralUserId ) {
 			$this->getOutput()->addHTML( $this->msg( 'mwoauth-invalid-access-token' )->escaped() );
 			return;
 		}
 
 		$cmrAc = ConsumerAccessControl::wrap(
-			MWOAuthConsumer::newFromId( $dbr, $cmraAc->getConsumerId() ), $this->getContext() );
+			Consumer::newFromId( $dbr, $cmraAc->getConsumerId() ), $this->getContext() );
 		if ( $cmrAc->getDeleted() && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			throw new \PermissionsError( 'mwoauthviewsuppressed' );
 		}
@@ -225,7 +225,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 				$data['grants'] = \FormatJson::encode( // adapt form to controller
 					preg_replace( '/^grant-/', '', $data['grants'] ) );
 
-				$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
+				$dbw = Utils::getCentralDB( DB_MASTER );
 				$control = new ConsumerAcceptanceSubmitControl(
 					$context, $data, $dbw, $cmraAc->getDAO()->getOAuthVersion()
 				);
@@ -266,7 +266,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	protected function showConsumerList() {
 		$this->getOutput()->addWikiMsg( 'mwoauthmanagemygrants-text' );
 
-		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $this->getUser() );
+		$centralUserId = Utils::getCentralIdFromLocalUser( $this->getUser() );
 		$pager = new ManageMyGrantsPager( $this, [], $centralUserId );
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addHTML( $pager->getNavigationBar() );
@@ -284,9 +284,9 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
 		$cmrAc = ConsumerAccessControl::wrap(
-			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
+			Consumer::newFromRow( $db, $row ), $this->getContext() );
 		$cmraAc = ConsumerAcceptanceAccessControl::wrap(
-			MWOAuthConsumerAcceptance::newFromRow( $db, $row ), $this->getContext() );
+			ConsumerAcceptance::newFromRow( $db, $row ), $this->getContext() );
 
 		$links = [];
 		if ( array_diff( $cmrAc->getGrants(), self::irrevocableGrants() ) ) {
@@ -315,13 +315,13 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		}
 
 		$editsUrl = SpecialPage::getTitleFor( 'Contributions', $this->getUser()->getName() )
-			->getFullURL( [ 'tagfilter' => MWOAuthUtils::getTagName( $cmrAc->getId() ) ] );
+			->getFullURL( [ 'tagfilter' => Utils::getTagName( $cmrAc->getId() ) ] );
 		$editsLink = Html::element( 'a', [ 'href' => $editsUrl ],
 			$this->msg( 'mwoauthmanagemygrants-editslink', $this->getUser() )->text() );
 		$r .= '<p>' . $editsLink . '</p>';
 		$actionsUrl = SpecialPage::getTitleFor( 'Log' )->getFullURL( [
 			'user' => $this->getUser()->getName(),
-			'tagfilter' => MWOAuthUtils::getTagName( $cmrAc->getId() ),
+			'tagfilter' => Utils::getTagName( $cmrAc->getId() ),
 		] );
 		$actionsLink = Html::element( 'a', [ 'href' => $actionsUrl ],
 			$this->msg( 'mwoauthmanagemygrants-actionslink', $this->getUser() )->text() );

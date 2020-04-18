@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth\Tests\Entity;
 
+use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
-use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
 use MWRestrictions;
 use User;
 
@@ -25,13 +25,13 @@ class Mock_ClientEntity extends ClientEntity {
 			'developerAgreement'   => 1,
 			'secretKey'            => 'secretKey',
 			'registration'         => $now,
-			'stage'                => MWOAuthConsumer::STAGE_APPROVED,
+			'stage'                => Consumer::STAGE_APPROVED,
 			'stageTimestamp'       => $now,
 			'grants'               => [ 'editpage', 'highvolume' ],
 			'restrictions'         => MWRestrictions::newDefault(),
 			'deleted'              => 0,
 			'rsaKey'               => '',
-			'oauthVersion'         => MWOAuthConsumer::OAUTH_VERSION_2,
+			'oauthVersion'         => Consumer::OAUTH_VERSION_2,
 			'ownerOnly'            => false,
 			'oauth2IsConfidential' => true,
 			'oauth2GrantTypes'     => [ 'authorization_code', 'refresh_token' ]

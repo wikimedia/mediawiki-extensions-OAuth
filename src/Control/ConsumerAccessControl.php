@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extensions\OAuth\Control;
 
+use MediaWiki\Extensions\OAuth\Backend\Consumer;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
-use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 
 class ConsumerAccessControl extends DAOAccessControl {
 	// accessor fields copied from MWOAuthConsumer, except they can return a Message on access error
@@ -229,7 +229,7 @@ class ConsumerAccessControl extends DAOAccessControl {
 	 */
 	public function getUserName( $audience = false ) {
 		return $this->get( 'userId', function ( $id ) use ( $audience ) {
-			return MWOAuthUtils::getCentralUserNameFromId( $id, $audience );
+			return Utils::getCentralUserNameFromId( $id, $audience );
 		} );
 	}
 
@@ -239,7 +239,7 @@ class ConsumerAccessControl extends DAOAccessControl {
 	 */
 	public function getWikiName() {
 		return $this->get( 'wiki', function ( $wikiId ) {
-			return MWOAuthUtils::getWikiIdName( $wikiId );
+			return Utils::getWikiIdName( $wikiId );
 		} );
 	}
 
@@ -254,7 +254,7 @@ class ConsumerAccessControl extends DAOAccessControl {
 	}
 
 	/**
-	 * @return MWOAuthConsumer|ClientEntity
+	 * @return Consumer|ClientEntity
 	 */
 	public function getDAO() {
 		return $this->dao;

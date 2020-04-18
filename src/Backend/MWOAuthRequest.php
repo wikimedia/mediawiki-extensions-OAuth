@@ -1,7 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Backend;
 
+use MediaWiki\Extensions\OAuth\OAuthRequest;
+use MediaWiki\Extensions\OAuth\OAuthUtil;
 use MediaWiki\Logger\LoggerFactory;
 
 /**
@@ -42,7 +44,7 @@ class MWOAuthRequest extends OAuthRequest {
 		$logger = LoggerFactory::getInstance( 'OAuth' );
 
 		// Find request headers
-		$requestHeaders = MWOAuthUtils::getHeaders();
+		$requestHeaders = Utils::getHeaders();
 
 		// Parse the query-string to find GET parameters
 		$parameters = $request->getQueryValuesOnly();

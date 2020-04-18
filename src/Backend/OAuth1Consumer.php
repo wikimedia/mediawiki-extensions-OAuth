@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Backend;
 
 use MWException;
 use User;
@@ -30,7 +30,7 @@ use User;
  *
  * Representation of an OAuth 1.0a consumer.
  */
-class OAuth1Consumer extends MWOAuthConsumer {
+class OAuth1Consumer extends Consumer {
 
 	/**
 	 * The user has authorized the request by this consumer, with this request token. Update
@@ -54,7 +54,7 @@ class OAuth1Consumer extends MWOAuthConsumer {
 		// ** Generate a new access token if this is a new authorization
 		// * Resave request token with the access token
 		$verifyCode = \MWCryptRand::generateHex( 32 );
-		$store = MWOAuthUtils::newMWOAuthDataStore();
+		$store = Utils::newMWOAuthDataStore();
 		$requestToken = $store->lookup_token( $this, 'request', $requestTokenKey );
 		if ( !$requestToken || !( $requestToken instanceof MWOAuthToken ) ) {
 			throw new MWOAuthException( 'mwoauthserver-invalid-request-token' );

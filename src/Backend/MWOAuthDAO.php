@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Backend;
 
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DBConnRef;
@@ -56,7 +56,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 		$consumer = new $class();
 
 		// Make sure oauth_version is set - for backwards compat
-		$values['oauth_version'] = $values['oauth_version'] ?? MWOAuthConsumer::OAUTH_VERSION_1;
+		$values['oauth_version'] = $values['oauth_version'] ?? Consumer::OAUTH_VERSION_1;
 		$consumer->loadFromValues( $values );
 		return $consumer;
 	}

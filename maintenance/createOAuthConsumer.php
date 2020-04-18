@@ -19,6 +19,8 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\Extensions\OAuth\Backend\Consumer;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
 
 /**
@@ -82,7 +84,7 @@ class CreateOAuthConsumer extends \Maintenance {
 		$context = \RequestContext::getMain();
 		$context->setUser( $user );
 
-		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
+		$dbw = Utils::getCentralDB( DB_MASTER );
 		$control = new ConsumerSubmitControl( $context, $data, $dbw );
 		$status = $control->submit();
 
@@ -90,7 +92,7 @@ class CreateOAuthConsumer extends \Maintenance {
 			$this->fatalError( $status->getMessage() );
 		}
 
-		/** @var MWOAuthConsumer $cmr */
+		/** @var Consumer $cmr */
 		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 		$cmr = $status->value['result']['consumer'];
 
@@ -110,7 +112,7 @@ class CreateOAuthConsumer extends \Maintenance {
 			'id' => $cmr->getId(),
 			'name' => $cmr->getName(),
 			'key' => $cmr->getConsumerKey(),
-			'secret' => MWOAuthUtils::hmacDBSecret( $cmr->getSecretKey() ),
+			'secret' => Utils::hmacDBSecret( $cmr->getSecretKey() ),
 		];
 
 		if ( isset( $approveStatus ) ) {

@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\Extensions\OAuth\Backend\Utils;
+
 /**
  * Class containing hooked functions for an OAuth environment
  */
@@ -31,7 +33,7 @@ class Setup {
 	}
 
 	protected static function isOAuthRequest( $request ) {
-		if ( MWOAuthUtils::hasOAuthHeaders( $request ) ) {
+		if ( Utils::hasOAuthHeaders( $request ) ) {
 			return true;
 		}
 		return ResourceServer::isOAuth2Request( $request );

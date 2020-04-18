@@ -4,7 +4,7 @@ namespace MediaWiki\Extensions\OAuth\Rest\Handler;
 
 use FormatJson;
 use GuzzleHttp\Psr7\ServerRequest;
-use MediaWiki\Extensions\OAuth\MWOAuthException;
+use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extensions\OAuth\ResourceServer;
 use MediaWiki\Extensions\OAuth\Response;
 use MediaWiki\Extensions\OAuth\UserStatementProvider;

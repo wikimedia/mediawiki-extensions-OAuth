@@ -7,9 +7,9 @@ use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
+use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
-use MediaWiki\Extensions\OAuth\MWOAuthException;
 
 class AccessTokenRepository extends DatabaseRepository implements AccessTokenRepositoryInterface {
 	const FIELD_EXPIRES = 'oaat_expires';

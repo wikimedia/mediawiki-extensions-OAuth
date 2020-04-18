@@ -1,7 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Backend;
 
+use MediaWiki\Extensions\OAuth\OAuthConsumer;
+use MediaWiki\Extensions\OAuth\OAuthDataStore;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -39,16 +41,16 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * Get an MWOAuthConsumer from the consumer's key
 	 *
 	 * @param string $consumerKey the string value of the Consumer's key
-	 * @return MWOAuthConsumer|bool
+	 * @return Consumer|bool
 	 */
 	public function lookup_consumer( $consumerKey ) {
-		return MWOAuthConsumer::newFromKey( $this->centralSlave, $consumerKey );
+		return Consumer::newFromKey( $this->centralSlave, $consumerKey );
 	}
 
 	/**
 	 * Get either a request or access token from the data store
 	 *
-	 * @param OAuthConsumer|MWOAuthConsumer $consumer
+	 * @param OAuthConsumer|Consumer $consumer
 	 * @param string $token_type
 	 * @param string $token String the token
 	 * @throws MWOAuthException
@@ -58,7 +60,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 		$this->logger->debug( __METHOD__ . ": Looking up $token_type token '$token'" );
 
 		if ( $token_type === 'request' ) {
-			$returnToken = $this->cache->get( MWOAuthUtils::getCacheKey(
+			$returnToken = $this->cache->get( Utils::getCacheKey(
 				'token',
 				$consumer->key,
 				$token_type,
@@ -83,23 +85,23 @@ class MWOAuthDataStore extends OAuthDataStore {
 				] );
 			}
 		} elseif ( $token_type === 'access' ) {
-			$cmra = MWOAuthConsumerAcceptance::newFromToken( $this->centralSlave, $token );
+			$cmra = ConsumerAcceptance::newFromToken( $this->centralSlave, $token );
 			if ( !$cmra && $this->centralMaster ) {
 				// try master in case there is replication lag T124942
-				$cmra = MWOAuthConsumerAcceptance::newFromToken( $this->centralMaster, $token );
+				$cmra = ConsumerAcceptance::newFromToken( $this->centralMaster, $token );
 			}
 			if ( !$cmra ) {
 				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found' );
 			}
 
 			// Ensure the cmra's consumer matches the expected consumer (T103023)
-			$mwconsumer = ( $consumer instanceof MWOAuthConsumer )
+			$mwconsumer = ( $consumer instanceof Consumer )
 				? $consumer : $this->lookup_consumer( $consumer->key );
 			if ( !$mwconsumer || $mwconsumer->getId() !== $cmra->getConsumerId() ) {
 				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found' );
 			}
 
-			$secret = MWOAuthUtils::hmacDBSecret( $cmra->getAccessSecret() );
+			$secret = Utils::hmacDBSecret( $cmra->getAccessSecret() );
 			$returnToken = new MWOAuthToken( $cmra->getAccessToken(), $secret );
 		} else {
 			throw new MWOAuthException( 'mwoauthdatastore-invalid-token-type' );
@@ -112,14 +114,14 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * Check that nonce has not been seen before. Add it on check, so we don't repeat it.
 	 * Note, timestamp has already been checked, so this should be a fresh nonce.
 	 *
-	 * @param MWOAuthConsumer|OAuthConsumer $consumer
+	 * @param Consumer|OAuthConsumer $consumer
 	 * @param string $token
 	 * @param string $nonce
 	 * @param int $timestamp
 	 * @return bool
 	 */
 	public function lookup_nonce( $consumer, $token, $nonce, $timestamp ) {
-		$key = MWOAuthUtils::getCacheKey( 'nonce', $consumer->key, $token, $nonce );
+		$key = Utils::getCacheKey( 'nonce', $consumer->key, $token, $nonce );
 		// Do an add for the key associated with this nonce to check if it was already used.
 		// Set timeout 5 minutes in the future of the timestamp as OAuthServer does. Use the
 		// timestamp so the client can also expire their nonce records after 5 mins.
@@ -146,17 +148,17 @@ class MWOAuthDataStore extends OAuthDataStore {
 	/**
 	 * Generate a new token (attached to this consumer), save it in the cache, and return it
 	 *
-	 * @param MWOAuthConsumer|OAuthConsumer $consumer
+	 * @param Consumer|OAuthConsumer $consumer
 	 * @param string $callback
 	 * @return MWOAuthToken
 	 */
 	public function new_request_token( $consumer, $callback = 'oob' ) {
 		$token = self::newToken();
-		$cacheConsumerKey = MWOAuthUtils::getCacheKey( 'consumer', 'request', $token->key );
-		$cacheTokenKey = MWOAuthUtils::getCacheKey(
+		$cacheConsumerKey = Utils::getCacheKey( 'consumer', 'request', $token->key );
+		$cacheTokenKey = Utils::getCacheKey(
 			'token', $consumer->key, 'request', $token->key
 		);
-		$cacheCallbackKey = MWOAuthUtils::getCacheKey(
+		$cacheCallbackKey = Utils::getCacheKey(
 			'callback', $consumer->key, 'request', $token->key
 		);
 		$this->cache->add( $cacheConsumerKey, $consumer->key, 600 ); // 10 minutes. Kindof arbitray.
@@ -174,7 +176,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return string|false the consumer key or false if nothing is stored for the request token
 	 */
 	public function getConsumerKey( $requestToken ) {
-		$cacheKey = MWOAuthUtils::getCacheKey( 'consumer', 'request', $requestToken );
+		$cacheKey = Utils::getCacheKey( 'consumer', 'request', $requestToken );
 		$consumerKey = $this->cache->get( $cacheKey );
 		return $consumerKey;
 	}
@@ -191,7 +193,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return string|false the stored callback URL parameter
 	 */
 	public function getCallbackUrl( $consumerKey, $requestKey ) {
-		$cacheKey = MWOAuthUtils::getCacheKey( 'callback', $consumerKey, 'request', $requestKey );
+		$cacheKey = Utils::getCacheKey( 'callback', $consumerKey, 'request', $requestKey );
 		$callback = $this->cache->get( $cacheKey );
 		if ( $callback === null || !is_string( $callback ) ) {
 			throw new MWOAuthException( 'mwoauthdatastore-callback-not-found' );
@@ -205,7 +207,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * token if the request token is authorized. Should also invalidate the request token.
 	 *
 	 * @param MWOAuthToken $token the request token that started this
-	 * @param MWOAuthConsumer $consumer
+	 * @param Consumer $consumer
 	 * @param int|null $verifier
 	 * @throws MWOAuthException
 	 * @return MWOAuthToken the access token
@@ -220,7 +222,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 			throw new MWOAuthException( 'mwoauthdatastore-bad-verifier' );
 		}
 
-		$cacheKey = MWOAuthUtils::getCacheKey( 'token',
+		$cacheKey = Utils::getCacheKey( 'token',
 			$consumer->getConsumerKey(), 'request', $token->key );
 		$accessToken = $this->lookup_token( $consumer, 'access', $token->getAccessKey() );
 		$this->cache->set( $cacheKey, '**USED**', 600 );
@@ -233,10 +235,10 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * Update a request token. The token probably already exists, but had another attribute added.
 	 *
 	 * @param MWOAuthToken $token the token to store
-	 * @param MWOAuthConsumer|OAuthConsumer $consumer
+	 * @param Consumer|OAuthConsumer $consumer
 	 */
 	public function updateRequestToken( $token, $consumer ) {
-		$cacheKey = MWOAuthUtils::getCacheKey( 'token', $consumer->key, 'request', $token->key );
+		$cacheKey = Utils::getCacheKey( 'token', $consumer->key, 'request', $token->key );
 		$this->cache->set( $cacheKey, $token, 600 ); // 10 more minutes. Kindof arbitray.
 	}
 
@@ -247,7 +249,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return string|null
 	 */
 	public function getRSAKey( $consumerKey ) {
-		$cmr = MWOAuthConsumer::newFromKey( $this->centralSlave, $consumerKey );
+		$cmr = Consumer::newFromKey( $this->centralSlave, $consumerKey );
 		return $cmr ? $cmr->getRsaKey() : null;
 	}
 }

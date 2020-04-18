@@ -19,7 +19,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Backend;
 
 use FormatJson;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity as OAuth2Client;
@@ -30,7 +30,7 @@ use Wikimedia\Rdbms\DBConnRef;
 /**
  * Representation of an OAuth consumer.
  */
-abstract class MWOAuthConsumer extends MWOAuthDAO {
+abstract class Consumer extends MWOAuthDAO {
 	const OAUTH_VERSION_1 = 1;
 	const OAUTH_VERSION_2 = 2;
 
@@ -205,7 +205,7 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 	 * @param DBConnRef $db
 	 * @param string $key
 	 * @param int $flags MWOAuthConsumer::READ_* bitfield
-	 * @return MWOAuthConsumer|bool
+	 * @return Consumer|bool
 	 */
 	public static function newFromKey( DBConnRef $db, $key, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
@@ -228,7 +228,7 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 	 * @param string $version
 	 * @param int $userId Central user ID
 	 * @param int $flags MWOAuthConsumer::READ_* bitfield
-	 * @return MWOAuthConsumer|bool
+	 * @return Consumer|bool
 	 */
 	public static function newFromNameVersionUser(
 		DBConnRef $db, $name, $version, $userId, $flags = 0
@@ -492,14 +492,14 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 	 * @param \User $mwUser (local wiki user) User who may or may not have authorizations
 	 * @param string $wikiId
 	 * @throws MWOAuthException
-	 * @return MWOAuthConsumerAcceptance|bool
+	 * @return ConsumerAcceptance|bool
 	 */
 	public function getCurrentAuthorization( User $mwUser, $wikiId ) {
-		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getCentralDB( DB_REPLICA );
 
-		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
+		$centralUserId = Utils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
-			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
+			$userMsg = Utils::getSiteMessage( 'mwoauthserver-invalid-user' );
 			throw new MWOAuthException( $userMsg, [ $this->getName(), \Message::rawParam(
 				\Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
@@ -511,7 +511,7 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 
 		$checkWiki = $this->getWiki() !== '*' ? $this->getWiki() : $wikiId;
 
-		$cmra = MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
+		$cmra = ConsumerAcceptance::newFromUserConsumerWiki(
 			$dbr,
 			$centralUserId,
 			$this,
@@ -520,7 +520,7 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 			$this->getOAuthVersion()
 		);
 		if ( !$cmra ) {
-			$cmra = MWOAuthConsumerAcceptance::newFromUserConsumerWiki(
+			$cmra = ConsumerAcceptance::newFromUserConsumerWiki(
 				$dbr,
 				$centralUserId,
 				$this,
@@ -571,13 +571,13 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 				) )
 			] );
 		} elseif ( !$this->isUsableBy( $mwUser ) ) {
-			$owner = MWOAuthUtils::getCentralUserNameFromId(
+			$owner = Utils::getCentralUserNameFromId(
 				$this->getUserId(),
 				$mwUser
 			);
 			throw new MWOAuthException(
 				'mwoauthserver-bad-consumer',
-				[ $this->getName(), MWOAuthUtils::getCentralUserTalk( $owner ), \Message::rawParam(
+				[ $this->getName(), Utils::getCentralUserTalk( $owner ), \Message::rawParam(
 					\Linker::makeExternalLink(
 						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005',
 						'E005',
@@ -604,15 +604,15 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 	 * @param User $mwUser
 	 * @param bool $update
 	 * @param array $grants
-	 * @return MWOAuthConsumerAcceptance
+	 * @return ConsumerAcceptance
 	 * @throws MWOAuthException
 	 * @throws MWException
 	 */
 	protected function saveAuthorization( User $mwUser, $update, $grants ) {
 		// CentralAuth may abort here if there is no global account for this user
-		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $mwUser );
+		$centralUserId = Utils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
-			$userMsg = MWOAuthUtils::getSiteMessage( 'mwoauthserver-invalid-user' );
+			$userMsg = Utils::getSiteMessage( 'mwoauthserver-invalid-user' );
 			throw new MWOAuthException( $userMsg, [ $this->getName(), \Message::rawParam(
 				\Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
@@ -622,7 +622,7 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 			) ] );
 		}
 
-		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
+		$dbw = Utils::getCentralDB( DB_MASTER );
 		// Check if this authorization exists
 		$cmra = $this->getCurrentAuthorization( $mwUser, wfWikiID() );
 
@@ -640,7 +640,7 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 		} elseif ( !$cmra ) {
 			// Add the Authorization to the database
 			$accessToken = MWOAuthDataStore::newToken();
-			$cmra = MWOAuthConsumerAcceptance::newFromArray( [
+			$cmra = ConsumerAcceptance::newFromArray( [
 				'id'           => null,
 				'wiki'         => $this->getWiki(),
 				'userId'       => $centralUserId,
@@ -672,7 +672,7 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 		if ( $this->stage === self::STAGE_APPROVED && !$this->getOwnerOnly() ) {
 			return true;
 		} elseif ( $this->stage === self::STAGE_PROPOSED || $this->stage === self::STAGE_APPROVED ) {
-			$centralId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
+			$centralId = Utils::getCentralIdFromLocalUser( $user );
 			return ( $centralId && $this->userId === $centralId );
 		}
 
@@ -750,7 +750,7 @@ abstract class MWOAuthConsumer extends MWOAuthDAO {
 		if ( $prop === 'key' ) {
 			return $this->consumerKey;
 		} elseif ( $prop === 'secret' ) {
-			return MWOAuthUtils::hmacDBSecret( $this->secretKey );
+			return Utils::hmacDBSecret( $this->secretKey );
 		} elseif ( $prop === 'callback_url' ) {
 			return $this->callbackUrl;
 		} else {

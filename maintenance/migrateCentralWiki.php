@@ -25,6 +25,8 @@ if ( getenv( 'MW_INSTALL_PATH' ) ) {
 
 require_once "$IP/maintenance/Maintenance.php";
 
+use MediaWiki\Extensions\OAuth\Backend\Consumer;
+use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\MediaWikiServices;
 
 class MigrateCentralWiki extends \Maintenance {
@@ -47,11 +49,11 @@ class MigrateCentralWiki extends \Maintenance {
 
 		if ( $table === 'oauth_registered_consumer' ) {
 			$idKey = 'oarc_id';
-			$cmrClass = MWOAuthConsumer::class;
+			$cmrClass = Consumer::class;
 			$type = 'consumer';
 		} elseif ( $table === 'oauth_accepted_consumer' ) {
 			$idKey = 'oaac_id';
-			$cmrClass = MWOAuthConsumerAcceptance::class;
+			$cmrClass = ConsumerAcceptance::class;
 			$type = 'grant';
 		} else {
 			$this->error( "Invalid table name. Must be one of 'oauth_registered_consumer' " .

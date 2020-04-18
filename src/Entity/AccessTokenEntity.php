@@ -10,8 +10,8 @@ use League\OAuth2\Server\Entities\Traits\AccessTokenTrait;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
 use League\OAuth2\Server\Exception\OAuthServerException;
-use MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance;
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
+use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\MediaWikiServices;
 use Throwable;
 use User;
@@ -29,7 +29,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 	/**
 	 * User approval of the client
 	 *
-	 * @var MWOAuthConsumerAcceptance|bool
+	 * @var ConsumerAcceptance|bool
 	 */
 	private $approval = false;
 
@@ -73,7 +73,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 	/**
 	 * Get the approval that allows this AT to be created
 	 *
-	 * @return MWOAuthConsumerAcceptance
+	 * @return ConsumerAcceptance
 	 */
 	public function getApproval() {
 		return $this->approval;
@@ -102,7 +102,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 	 * @param ClientEntity $clientEntity
 	 * @param array $scopes
 	 * @param null $userIdentifier
-	 * @return MWOAuthConsumerAcceptance|bool
+	 * @return ConsumerAcceptance|bool
 	 */
 	private function setApprovalFromClientScopesUser(
 		ClientEntity $clientEntity, array $scopes, $userIdentifier = null
@@ -112,7 +112,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 			$scopes = $clientEntity->getScopes();
 		}
 		try {
-			$user = MWOAuthUtils::getLocalUserFromCentralId( $userIdentifier );
+			$user = Utils::getLocalUserFromCentralId( $userIdentifier );
 			$approval = $clientEntity->getCurrentAuthorization( $user, wfWikiID() );
 		} catch ( Throwable $ex ) {
 			return false;
@@ -134,7 +134,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 
 	private function confirmClientUsable() {
 		$userId = $this->getUserIdentifier() ?? 0;
-		$user = MWOAuthUtils::getLocalUserFromCentralId( $userId );
+		$user = Utils::getLocalUserFromCentralId( $userId );
 		if ( !$user ) {
 			$user = User::newFromId( 0 );
 		}

@@ -3,6 +3,8 @@
 namespace MediaWiki\Extensions\OAuth;
 
 use Config;
+use MediaWiki\Extensions\OAuth\Backend\Consumer;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\MediaWikiServices;
 use MWException;
 use MWGrants;
@@ -13,18 +15,18 @@ class UserStatementProvider {
 	protected $config;
 	/** @var User */
 	protected $user;
-	/** @var MWOAuthConsumer */
+	/** @var Consumer */
 	protected $consumer;
 	/** @var array */
 	protected $grants;
 
 	/**
 	 * @param User $user
-	 * @param MWOAuthConsumer $consumer
+	 * @param Consumer $consumer
 	 * @param array $grants
 	 * @return static
 	 */
-	public static function factory( User $user, MWOAuthConsumer $consumer, $grants = [] ) {
+	public static function factory( User $user, Consumer $consumer, $grants = [] ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		return new static( $mainConfig, $user, $consumer, $grants );
 	}
@@ -33,7 +35,7 @@ class UserStatementProvider {
 	 * UserStatementProvider constructor.
 	 * @param Config $config
 	 * @param User $user
-	 * @param MWOAuthConsumer $consumer
+	 * @param Consumer $consumer
 	 * @param array $grants
 	 */
 	protected function __construct( $config, $user, $consumer, $grants ) {
@@ -57,7 +59,7 @@ class UserStatementProvider {
 		// Issuer Identifier for the Issuer of the response.
 		$statement['iss'] = $this->config->get( 'CanonicalServer' );
 		// Subject identifier. A locally unique and never reassigned identifier.
-		$statement['sub'] = MWOAuthUtils::getCentralIdFromLocalUser( $this->user );
+		$statement['sub'] = Utils::getCentralIdFromLocalUser( $this->user );
 		// Audience(s) that this ID Token is intended for.
 		$statement['aud'] = $this->consumer->getConsumerKey();
 		// Expiration time on or after which the ID Token MUST NOT be accepted for processing.

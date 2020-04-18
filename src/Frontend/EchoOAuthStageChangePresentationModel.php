@@ -4,8 +4,8 @@ namespace MediaWiki\Extensions\OAuth\Frontend;
 
 use EchoAttributeManager;
 use EchoEventPresentationModel;
-use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
+use MediaWiki\Extensions\OAuth\Backend\Consumer;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MWException;
 use SpecialPage;
 use User;
@@ -14,7 +14,7 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 	/** @var User[] OAuth admins who should be notified about additiions to the review queue */
 	protected static $oauthAdmins;
 
-	/** @var MWOAuthConsumer|false */
+	/** @var Consumer|false */
 	protected $consumer;
 
 	/** @var User|false The owner of the OAuth consumer */
@@ -35,7 +35,7 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 		}
 
 		return [
-			EchoAttributeManager::ATTR_LOCATORS => [ MWOAuthUtils::class . '::locateUsersToNotify' ],
+			EchoAttributeManager::ATTR_LOCATORS => [ Utils::class . '::locateUsersToNotify' ],
 			'category' => $category,
 			'presentation-model' => self::class,
 			'icon' => 'oauth',
@@ -89,13 +89,13 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 	}
 
 	/**
-	 * @return MWOAuthConsumer|false
+	 * @return Consumer|false
 	 */
 	protected function getConsumer() {
 		if ( $this->consumer === null ) {
-			$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
+			$dbr = Utils::getCentralDB( DB_REPLICA );
 			$this->consumer =
-				MWOAuthConsumer::newFromKey( $dbr, $this->event->getExtraParam( 'app-key' ) );
+				Consumer::newFromKey( $dbr, $this->event->getExtraParam( 'app-key' ) );
 		}
 		return $this->consumer;
 	}
@@ -105,7 +105,7 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 	 */
 	protected function getOwner() {
 		if ( $this->owner === null ) {
-			$this->owner = MWOAuthUtils::getLocalUserFromCentralId(
+			$this->owner = Utils::getLocalUserFromCentralId(
 				$this->event->getExtraParam( 'owner-id' ) );
 		}
 		return $this->owner;

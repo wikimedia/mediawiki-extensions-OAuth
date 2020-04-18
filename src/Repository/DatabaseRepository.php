@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Repository;
 
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use Wikimedia\Rdbms\DBConnRef;
 
 abstract class DatabaseRepository {
@@ -12,7 +12,7 @@ abstract class DatabaseRepository {
 	 * @return DBConnRef
 	 */
 	public function getDB( $index = DB_REPLICA ) {
-		return MWOAuthUtils::getCentralDB( $index );
+		return Utils::getCentralDB( $index );
 	}
 
 	/**

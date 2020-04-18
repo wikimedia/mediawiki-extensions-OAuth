@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Extensions\OAuth\Tests\Backend;
 
-use MediaWiki\Extensions\OAuth\MWOAuthHooks;
+use MediaWiki\Extensions\OAuth\Backend\Hooks;
 use PHPUnit\Framework\TestCase;
 use Status;
 use User;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\MWOAuthServer
+ * @covers \MediaWiki\Extensions\OAuth\Backend\MWOAuthServer
  */
 class MWOAuthHooksTest extends TestCase {
 
@@ -17,7 +17,7 @@ class MWOAuthHooksTest extends TestCase {
 	 */
 	public function testOnChangeTagCanCreate( $tagName, $statusOk ) {
 		$status = Status::newGood();
-		MWOAuthHooks::onChangeTagCanCreate( $tagName, new User, $status );
+		Hooks::onChangeTagCanCreate( $tagName, new User, $status );
 		$this->assertSame( $statusOk, $status->isOK() );
 	}
 

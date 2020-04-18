@@ -5,11 +5,11 @@ namespace MediaWiki\Extensions\OAuth\Repository;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
+use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Extensions\OAuth\Entity\ScopeEntity;
 use MediaWiki\Extensions\OAuth\Entity\UserEntity;
-use MediaWiki\Extensions\OAuth\MWOAuthException;
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 use MWGrants;
 
 class ScopeRepository implements ScopeRepositoryInterface {
@@ -71,7 +71,7 @@ class ScopeRepository implements ScopeRepositoryInterface {
 			return [];
 		}
 
-		$mwUser = MWOAuthUtils::getLocalUserFromCentralId( $userIdentifier );
+		$mwUser = Utils::getLocalUserFromCentralId( $userIdentifier );
 		$userEntity = UserEntity::newFromMWUser( $mwUser );
 		if ( $userEntity === null ) {
 			return [];

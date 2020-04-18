@@ -3,7 +3,7 @@
 namespace MediaWiki\Extensions\OAuth\Repository;
 
 use BagOStuff;
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 
 abstract class CacheRepository {
 
@@ -16,7 +16,7 @@ abstract class CacheRepository {
 	 * @return static
 	 */
 	public static function factory() {
-		$cache = MWOAuthUtils::getSessionCache();
+		$cache = Utils::getSessionCache();
 
 		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
 		return new static( $cache );
@@ -43,7 +43,7 @@ abstract class CacheRepository {
 	 * @return string
 	 */
 	protected function getCacheKey( $id ) {
-		return MWOAuthUtils::getCacheKey( $this->getCacheKeyType(), $id );
+		return Utils::getCacheKey( $this->getCacheKeyType(), $id );
 	}
 
 	/**

@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Control;
 
-use MediaWiki\Extensions\OAuth\MWOAuthDAO;
+use MediaWiki\Extensions\OAuth\Backend\MWOAuthDAO;
 use Message;
 
 /**

@@ -7,15 +7,15 @@ use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
-use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
-use MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance;
-use MediaWiki\Extensions\OAuth\MWOAuthException;
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
+use MediaWiki\Extensions\OAuth\Backend\Consumer;
+use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
 use MWException;
 use User;
 
-class ClientEntity extends MWOAuthConsumer implements ClientEntityInterface {
+class ClientEntity extends Consumer implements ClientEntityInterface {
 
 	/**
 	 * Returns the registered redirect URI (as a string).
@@ -80,7 +80,7 @@ class ClientEntity extends MWOAuthConsumer implements ClientEntityInterface {
 	 * @throws MWException
 	 */
 	public function getUser() {
-		return MWOAuthUtils::getLocalUserFromCentralId( $this->getUserId() );
+		return Utils::getLocalUserFromCentralId( $this->getUserId() );
 	}
 
 	/**
@@ -108,7 +108,7 @@ class ClientEntity extends MWOAuthConsumer implements ClientEntityInterface {
 	}
 
 	private function isSecretValid( $secret ) {
-		return hash_equals( $secret, MWOAuthUtils::hmacDBSecret( $this->secretKey ) );
+		return hash_equals( $secret, Utils::hmacDBSecret( $this->secretKey ) );
 	}
 
 	/**
@@ -141,7 +141,7 @@ class ClientEntity extends MWOAuthConsumer implements ClientEntityInterface {
 	 * Get the access token to be used with a single user
 	 * Should never be called outside of client registration/manage code
 	 *
-	 * @param MWOAuthConsumerAcceptance $approval
+	 * @param ConsumerAcceptance $approval
 	 * @param bool $revokeExisting - Delete all existing tokens
 	 *
 	 * @return AccessTokenEntityInterface
@@ -150,7 +150,7 @@ class ClientEntity extends MWOAuthConsumer implements ClientEntityInterface {
 	 * @throws Exception
 	 */
 	public function getOwnerOnlyAccessToken(
-		MWOAuthConsumerAcceptance $approval, $revokeExisting = false
+		ConsumerAcceptance $approval, $revokeExisting = false
 	) {
 		if (
 			count( $this->getAllowedGrants() ) !== 1 ||

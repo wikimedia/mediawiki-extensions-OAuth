@@ -4,8 +4,8 @@ namespace MediaWiki\Extensions\OAuth\Repository;
 
 use InvalidArgumentException;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
+use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
-use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 
 class ClientRepository implements ClientRepositoryInterface {
 
@@ -18,7 +18,7 @@ class ClientRepository implements ClientRepositoryInterface {
 	 */
 	public function getClientEntity( $clientIdentifier ) {
 		$client = ClientEntity::newFromKey(
-			MWOAuthUtils::getCentralDB( DB_REPLICA ),
+			Utils::getCentralDB( DB_REPLICA ),
 			$clientIdentifier
 		);
 		if ( !$client instanceof ClientEntity ) {
@@ -33,7 +33,7 @@ class ClientRepository implements ClientRepositoryInterface {
 	 * @return ClientEntity|bool
 	 */
 	public function getClientEntityByDBId( $clientId ) {
-		$client = ClientEntity::newFromId( MWOAuthUtils::getCentralDB( DB_REPLICA ), $clientId );
+		$client = ClientEntity::newFromId( Utils::getCentralDB( DB_REPLICA ), $clientId );
 		if ( !$client instanceof ClientEntity ) {
 			return false;
 		}
