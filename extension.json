@@ -44,9 +44,9 @@
 		}
 	},
 	"SpecialPages": {
-		"OAuth": "MediaWiki\\Extensions\\OAuth\\SpecialMWOAuth",
-		"OAuthManageMyGrants": "MediaWiki\\Extensions\\OAuth\\SpecialMWOAuthManageMyGrants",
-		"OAuthListConsumers": "MediaWiki\\Extensions\\OAuth\\SpecialMWOAuthListConsumers"
+		"OAuth": "MediaWiki\\Extensions\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuth",
+		"OAuthManageMyGrants": "MediaWiki\\Extensions\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthManageMyGrants",
+		"OAuthListConsumers": "MediaWiki\\Extensions\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthListConsumers"
 	},
 	"MessagesDirs": {
 		"MWOAuth": [
@@ -58,15 +58,6 @@
 	},
 	"AutoloadClasses": {
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthHooks": "includes/backend/MWOAuthHooks.php",
-		"MediaWiki\\Extensions\\OAuth\\SpecialMWOAuth": "includes/frontend/specialpages/SpecialMWOAuth.php",
-		"MediaWiki\\Extensions\\OAuth\\SpecialMWOAuthConsumerRegistration": "includes/frontend/specialpages/SpecialMWOAuthConsumerRegistration.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthListMyConsumersPager": "includes/frontend/specialpages/MWOAuthListMyConsumersPager.php",
-		"MediaWiki\\Extensions\\OAuth\\SpecialMWOAuthManageConsumers": "includes/frontend/specialpages/SpecialMWOAuthManageConsumers.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthManageConsumersPager": "includes/frontend/specialpages/MWOAuthManageConsumersPager.php",
-		"MediaWiki\\Extensions\\OAuth\\SpecialMWOAuthManageMyGrants": "includes/frontend/specialpages/SpecialMWOAuthManageMyGrants.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthManageMyGrantsPager": "includes/frontend/specialpages/MWOAuthManageMyGrantsPager.php",
-		"MediaWiki\\Extensions\\OAuth\\SpecialMWOAuthListConsumers": "includes/frontend/specialpages/SpecialMWOAuthListConsumers.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthListConsumersPager": "includes/frontend/specialpages/MWOAuthListConsumersPager.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthUtils": "includes/backend/MWOAuthUtils.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthException": "includes/backend/MWOAuthException.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthDAO": "includes/backend/MWOAuthDAO.php",

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
 
 /**
  * (c) Chris Steipp, Aaron Schulz 2013, GPL
@@ -24,6 +24,16 @@ namespace MediaWiki\Extensions\OAuth;
 use Firebase\JWT\JWT;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceSubmitControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
+use MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance;
+use MediaWiki\Extensions\OAuth\MWOAuthException;
+use MediaWiki\Extensions\OAuth\MWOAuthRequest;
+use MediaWiki\Extensions\OAuth\MWOAuthToken;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
+use MediaWiki\Extensions\OAuth\OAuthException;
+use MediaWiki\Extensions\OAuth\OAuthToken;
+use MediaWiki\Extensions\OAuth\OAuthUtil;
+use MediaWiki\Extensions\OAuth\UserStatementProvider;
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
 

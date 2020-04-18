@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -24,7 +24,10 @@ namespace MediaWiki\Extensions\OAuth;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
+use MediaWiki\Extensions\OAuth\Frontend\Pagers\ManageConsumersPager;
 use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
+use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 use OOUI\HtmlSnippet;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -420,7 +423,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 * Show a paged list of consumers with links to details
 	 */
 	protected function showConsumerList() {
-		$pager = new MWOAuthManageConsumersPager( $this, [], $this->stage );
+		$pager = new ManageConsumersPager( $this, [], $this->stage );
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addHTML( $pager->getNavigationBar() );
 			$this->getOutput()->addHTML( $pager->getBody() );

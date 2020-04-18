@@ -1,6 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Frontend\Pagers;
+
+use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -22,23 +25,21 @@ namespace MediaWiki\Extensions\OAuth;
  */
 
 /**
- * Query to list out consumers that have an access token for this user
+ * Query to list out consumers
  *
  * @TODO: use UserCache
  */
-class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
-	public $mForm, $mConds;
+class ManageConsumersPager extends \ReverseChronologicalPager {
+	/** @var SpecialMWOAuthManageConsumers */
+	public $mForm;
 
-	/**
-	 * @param SpecialMWOAuthManageMyGrants $form
-	 * @param array $conds
-	 * @param int $centralUserId
-	 */
-	public function __construct( $form, $conds, $centralUserId ) {
+	/** @var array */
+	public $mConds;
+
+	public function __construct( $form, $conds, $stage ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
-		$this->mConds[] = 'oaac_consumer_id = oarc_id';
-		$this->mConds['oaac_user_id'] = $centralUserId;
+		$this->mConds['oarc_stage'] = $stage;
 		if ( !$this->getUser()->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			$this->mConds['oarc_deleted'] = 0;
 		}
@@ -93,7 +94,7 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	 */
 	public function getQueryInfo() {
 		return [
-			'tables' => [ 'oauth_accepted_consumer', 'oauth_registered_consumer' ],
+			'tables' => [ 'oauth_registered_consumer' ],
 			'fields' => [ '*' ],
 			'conds'  => $this->mConds
 		];
@@ -103,6 +104,6 @@ class MWOAuthManageMyGrantsPager extends \ReverseChronologicalPager {
 	 * @return string
 	 */
 	public function getIndexField() {
-		return 'oaac_consumer_id';
+		return 'oarc_stage_timestamp';
 	}
 }

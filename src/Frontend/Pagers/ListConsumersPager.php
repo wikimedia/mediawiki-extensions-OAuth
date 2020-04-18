@@ -1,6 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Frontend\Pagers;
+
+use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthListConsumers;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -26,17 +29,36 @@ namespace MediaWiki\Extensions\OAuth;
  *
  * @TODO: use UserCache
  */
-class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
-	/** @var SpecialMWOAuthConsumerRegistration */
+class ListConsumersPager extends \AlphabeticPager {
+	/** @var SpecialMWOAuthListConsumers */
 	public $mForm;
 
 	/** @var array */
 	public $mConds;
 
-	public function __construct( $form, $conds, $centralUserId ) {
+	public function __construct( $form, $conds, $name, $centralUserID, $stage ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
-		$this->mConds['oarc_user_id'] = $centralUserId;
+
+		$this->mIndexField = null;
+		if ( $name !== '' ) {
+			$this->mConds['oarc_name'] = $name;
+			$this->mIndexField = 'oarc_id';
+		}
+		if ( $centralUserID !== null ) {
+			$this->mConds['oarc_user_id'] = $centralUserID;
+			$this->mIndexField = 'oarc_id';
+		}
+		if ( $stage >= 0 ) {
+			$this->mConds['oarc_stage'] = $stage;
+			if ( !$this->mIndexField ) {
+				$this->mIndexField = 'oarc_stage_timestamp';
+			}
+		}
+		if ( !$this->mIndexField ) {
+			$this->mIndexField = 'oarc_id';
+		}
+
 		if ( !$this->getUser()->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			$this->mConds['oarc_deleted'] = 0;
 		}
@@ -101,6 +123,6 @@ class MWOAuthListMyConsumersPager extends \ReverseChronologicalPager {
 	 * @return string
 	 */
 	public function getIndexField() {
-		return 'oarc_stage_timestamp';
+		return $this->mIndexField;
 	}
 }

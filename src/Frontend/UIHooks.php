@@ -5,10 +5,10 @@ namespace MediaWiki\Extensions\OAuth\Frontend;
 use HTMLForm;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
+use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
+use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers;
 use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
 use MediaWiki\Extensions\OAuth\MWOAuthUtils;
-use MediaWiki\Extensions\OAuth\SpecialMWOAuthConsumerRegistration;
-use MediaWiki\Extensions\OAuth\SpecialMWOAuthManageConsumers;
 use SpecialPage;
 
 /**

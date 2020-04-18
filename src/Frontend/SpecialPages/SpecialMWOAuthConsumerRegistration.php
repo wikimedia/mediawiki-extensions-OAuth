@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -23,7 +23,10 @@ namespace MediaWiki\Extensions\OAuth;
 
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
+use MediaWiki\Extensions\OAuth\Frontend\Pagers\ListMyConsumersPager;
 use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
+use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 use MediaWiki\MediaWikiServices;
 use User;
 use Wikimedia\Rdbms\DBConnRef;
@@ -467,7 +470,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			}
 			break;
 		case 'list':
-			$pager = new MWOAuthListMyConsumersPager( $this, [], $centralUserId );
+			$pager = new ListMyConsumersPager( $this, [], $centralUserId );
 			if ( $pager->getNumRows() ) {
 				$this->getOutput()->addHTML( $pager->getNavigationBar() );
 				$this->getOutput()->addHTML( $pager->getBody() );

@@ -1,12 +1,16 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
 
 use Html;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceAccessControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceSubmitControl;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extensions\OAuth\Frontend\Pagers\ManageMyGrantsPager;
 use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
+use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
+use MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 use SpecialPage;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -263,7 +267,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$this->getOutput()->addWikiMsg( 'mwoauthmanagemygrants-text' );
 
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $this->getUser() );
-		$pager = new MWOAuthManageMyGrantsPager( $this, [], $centralUserId );
+		$pager = new ManageMyGrantsPager( $this, [], $centralUserId );
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addHTML( $pager->getNavigationBar() );
 			$this->getOutput()->addHTML( $pager->getBody() );

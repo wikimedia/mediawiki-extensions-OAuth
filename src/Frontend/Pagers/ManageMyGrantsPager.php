@@ -1,6 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Frontend\Pagers;
+
+use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageMyGrants;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -22,40 +25,23 @@ namespace MediaWiki\Extensions\OAuth;
  */
 
 /**
- * Query to list out consumers
+ * Query to list out consumers that have an access token for this user
  *
  * @TODO: use UserCache
  */
-class MWOAuthListConsumersPager extends \AlphabeticPager {
-	/** @var SpecialMWOAuthListConsumers */
-	public $mForm;
+class ManageMyGrantsPager extends \ReverseChronologicalPager {
+	public $mForm, $mConds;
 
-	/** @var array */
-	public $mConds;
-
-	public function __construct( $form, $conds, $name, $centralUserID, $stage ) {
+	/**
+	 * @param SpecialMWOAuthManageMyGrants $form
+	 * @param array $conds
+	 * @param int $centralUserId
+	 */
+	public function __construct( $form, $conds, $centralUserId ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
-
-		$this->mIndexField = null;
-		if ( $name !== '' ) {
-			$this->mConds['oarc_name'] = $name;
-			$this->mIndexField = 'oarc_id';
-		}
-		if ( $centralUserID !== null ) {
-			$this->mConds['oarc_user_id'] = $centralUserID;
-			$this->mIndexField = 'oarc_id';
-		}
-		if ( $stage >= 0 ) {
-			$this->mConds['oarc_stage'] = $stage;
-			if ( !$this->mIndexField ) {
-				$this->mIndexField = 'oarc_stage_timestamp';
-			}
-		}
-		if ( !$this->mIndexField ) {
-			$this->mIndexField = 'oarc_id';
-		}
-
+		$this->mConds[] = 'oaac_consumer_id = oarc_id';
+		$this->mConds['oaac_user_id'] = $centralUserId;
 		if ( !$this->getUser()->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			$this->mConds['oarc_deleted'] = 0;
 		}
@@ -110,7 +96,7 @@ class MWOAuthListConsumersPager extends \AlphabeticPager {
 	 */
 	public function getQueryInfo() {
 		return [
-			'tables' => [ 'oauth_registered_consumer' ],
+			'tables' => [ 'oauth_accepted_consumer', 'oauth_registered_consumer' ],
 			'fields' => [ '*' ],
 			'conds'  => $this->mConds
 		];
@@ -120,6 +106,6 @@ class MWOAuthListConsumersPager extends \AlphabeticPager {
 	 * @return string
 	 */
 	public function getIndexField() {
-		return $this->mIndexField;
+		return 'oaac_consumer_id';
 	}
 }

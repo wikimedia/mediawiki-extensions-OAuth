@@ -1,6 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Frontend\Pagers;
+
+use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -26,17 +29,17 @@ namespace MediaWiki\Extensions\OAuth;
  *
  * @TODO: use UserCache
  */
-class MWOAuthManageConsumersPager extends \ReverseChronologicalPager {
-	/** @var SpecialMWOAuthManageConsumers */
+class ListMyConsumersPager extends \ReverseChronologicalPager {
+	/** @var SpecialMWOAuthConsumerRegistration */
 	public $mForm;
 
 	/** @var array */
 	public $mConds;
 
-	public function __construct( $form, $conds, $stage ) {
+	public function __construct( $form, $conds, $centralUserId ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
-		$this->mConds['oarc_stage'] = $stage;
+		$this->mConds['oarc_user_id'] = $centralUserId;
 		if ( !$this->getUser()->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			$this->mConds['oarc_deleted'] = 0;
 		}
