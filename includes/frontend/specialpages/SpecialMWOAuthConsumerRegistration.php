@@ -74,9 +74,9 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		$block = $user->getBlock();
 		if ( $block ) {
 			throw new \UserBlockedError( $block );
-		} elseif ( wfReadOnly() ) {
-			throw new \ReadOnlyError();
-		} elseif ( !$this->getUser()->isLoggedIn() ) {
+		}
+		$this->checkReadOnly();
+		if ( !$this->getUser()->isLoggedIn() ) {
 			throw new \UserNotLoggedIn();
 		}
 
