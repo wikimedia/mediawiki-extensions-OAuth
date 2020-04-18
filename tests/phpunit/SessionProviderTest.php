@@ -21,27 +21,27 @@
  * @file
  */
 
-namespace MediaWiki\Extensions\OAuth\Tests\Api;
+namespace MediaWiki\Extensions\OAuth\Tests;
 
-use MediaWiki\Extensions\OAuth\MWOAuthSessionProvider;
+use MediaWiki\Extensions\OAuth\SessionProvider;
 use MediaWikiTestCase;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\MWOAuthSessionProvider
+ * @covers \MediaWiki\Extensions\OAuth\SessionProvider
  * @group OAuth
  * @license GPL-2.0-or-later
  */
-class MWOAuthSessionProviderTest extends MediaWikiTestCase {
+class SessionProviderTest extends MediaWikiTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();
-		// the MWOAuthSessionProvider constructor modifies $wgHooks, stash it
+		// the SessionProvider constructor modifies $wgHooks, stash it
 		global $wgHooks;
 		$this->setMwGlobals( 'wgHooks', $wgHooks );
 	}
 
 	public function testSafeAgainstCsrf() {
-		$provider = $this->getMockBuilder( MWOAuthSessionProvider::class )
+		$provider = $this->getMockBuilder( SessionProvider::class )
 			->setMethodsExcept( [ 'safeAgainstCsrf' ] )
 			->getMock();
 		$this->assertTrue( $provider->safeAgainstCsrf() );
@@ -51,7 +51,7 @@ class MWOAuthSessionProviderTest extends MediaWikiTestCase {
 	 * @dataProvider provideOnMarkPatrolledArguments
 	 */
 	public function testOnMarkPatrolled( $consumerId, $auto, $expectedExtraTag ) {
-		$provider = $this->getMockBuilder( MWOAuthSessionProvider::class )
+		$provider = $this->getMockBuilder( SessionProvider::class )
 			->setMethods( [ 'getPublicConsumerId' ] )
 			->getMock();
 		$provider->expects( $this->once() )

@@ -27,7 +27,7 @@ use Wikimedia\Rdbms\DBError;
  * purposes (limiting the rights to those included in the grant), and
  * registers some hooks to tag actions made via the provider.
  */
-class MWOAuthSessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCookie {
+class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCookie {
 
 	public function __construct( array $params = [] ) {
 		global $wgHooks;

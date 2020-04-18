@@ -5,7 +5,7 @@ namespace MediaWiki\Extensions\OAuth;
 /**
  * Class containing hooked functions for an OAuth environment
  */
-class MWOAuthAPISetup {
+class Setup {
 	const TTL_REFRESH_WINDOW = 600; // refresh if expiring in 10 minutes
 
 	/**

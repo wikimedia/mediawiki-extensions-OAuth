@@ -38,8 +38,8 @@
 		"mwoauthmanagemygrants"
 	],
 	"SessionProviders": {
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider": {
-			"class": "MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider",
+		"MediaWiki\\Extensions\\OAuth\\SessionProvider": {
+			"class": "MediaWiki\\Extensions\\OAuth\\SessionProvider",
 			"args": []
 		}
 	},
@@ -57,7 +57,6 @@
 		"MWOAuthAliases": "MWOAuth.alias.php"
 	},
 	"AutoloadClasses": {
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthAPISetup": "includes/api/MWOAuthAPISetup.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks": "includes/frontend/MWOAuthUIHooks.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthHooks": "includes/backend/MWOAuthHooks.php",
 		"MediaWiki\\Extensions\\OAuth\\SpecialMWOAuth": "includes/frontend/specialpages/SpecialMWOAuth.php",
@@ -100,7 +99,6 @@
 		"MediaWiki\\Extensions\\OAuth\\OAuthUtil": "includes/lib/OAuthUtil.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthDataStore": "includes/backend/MWOAuthDataStore.php",
 		"MediaWiki\\Extensions\\OAuth\\MWOAuthUpdaterHooks": "includes/backend/MWOAuthUpdaterHooks.php",
-		"MediaWiki\\Extensions\\OAuth\\MWOAuthSessionProvider": "includes/api/MWOAuthSessionProvider.php",
 		"MediaWiki\\Extensions\\OAuth\\OAuth1Consumer": "includes/backend/OAuth1Consumer.php"
 	},
 	"AutoloadNamespaces": {
@@ -143,8 +141,8 @@
 		"SpecialPageAfterExecute": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onSpecialPageAfterExecute",
 		"SpecialPageBeforeFormDisplay": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onSpecialPageBeforeFormDisplay",
 		"BeforeCreateEchoEvent": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onBeforeCreateEchoEvent",
-		"CentralAuthAbortCentralAuthToken": "MediaWiki\\Extensions\\OAuth\\MWOAuthAPISetup::onCentralAuthAbortCentralAuthToken",
-		"TestCanonicalRedirect": "MediaWiki\\Extensions\\OAuth\\MWOAuthAPISetup::onTestCanonicalRedirect",
+		"CentralAuthAbortCentralAuthToken": "MediaWiki\\Extensions\\OAuth\\Setup::onCentralAuthAbortCentralAuthToken",
+		"TestCanonicalRedirect": "MediaWiki\\Extensions\\OAuth\\Setup::onTestCanonicalRedirect",
 		"SetupAfterCache": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onSetupAfterCache",
 		"ApiRsdServiceApis": "MediaWiki\\Extensions\\OAuth\\MWOAuthHooks::onApiRsdServiceApis",
 		"SpecialPage_initList": "MediaWiki\\Extensions\\OAuth\\MWOAuthUIHooks::onSpecialPage_initList",
