@@ -1,11 +1,11 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Control;
 
-/**
- * @method MWOAuthConsumerAcceptance getDAO()
- */
-class MWOAuthConsumerAcceptanceAccessControl extends MWOAuthDAOAccessControl {
+use MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
+
+class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	// accessor fields copied from MWOAuthConsumerAcceptance, except they can return a Message
 	// on access error
 
@@ -94,5 +94,12 @@ class MWOAuthConsumerAcceptanceAccessControl extends MWOAuthDAOAccessControl {
 		return $this->get( 'wiki', function ( $wikiId ) {
 			return MWOAuthUtils::getWikiIdName( $wikiId );
 		} );
+	}
+
+	/**
+	 * @return MWOAuthConsumerAcceptance
+	 */
+	public function getDAO() {
+		return $this->dao;
 	}
 }

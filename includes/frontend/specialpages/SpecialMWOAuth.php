@@ -22,6 +22,8 @@ namespace MediaWiki\Extensions\OAuth;
  */
 
 use Firebase\JWT\JWT;
+use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceSubmitControl;
+use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
 
@@ -244,7 +246,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 				default:
 					$format = $request->getVal( 'format', 'html' );
 					$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-					$cmrAc = MWOAuthConsumerAccessControl::wrap(
+					$cmrAc = ConsumerAccessControl::wrap(
 						MWOAuthConsumer::newFromKey(
 							$dbr,
 							$request->getVal( 'oauth_consumer_key', null )
@@ -299,7 +301,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	 */
 	protected function showCancelPage( $consumerKey ) {
 		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-		$cmrAc = MWOAuthConsumerAccessControl::wrap(
+		$cmrAc = ConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ),
 			$this->getContext()
 		);
@@ -354,7 +356,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$consumerKey = $oauthServer->getConsumerKey( $requestToken );
 		}
 
-		$cmrAc = MWOAuthConsumerAccessControl::wrap(
+		$cmrAc = ConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( MWOAuthUtils::getCentralDB( DB_REPLICA ), $consumerKey ),
 			$this->getContext()
 		);
@@ -406,7 +408,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		);
 		$this->getOutput()->addModules( 'ext.MWOAuth.AuthorizeDialog' );
 
-		$control = new MWOAuthConsumerAcceptanceSubmitControl(
+		$control = new ConsumerAcceptanceSubmitControl(
 			$this->getContext(), [], MWOAuthUtils::getCentralDB( DB_MASTER ), $this->oauthVersion
 		);
 
@@ -603,7 +605,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	 * OAuth 2.0 only
 	 * Get only the grants (scopes) that were actually requested (and are allowed)
 	 *
-	 * @param MWOAuthConsumerAccessControl $cmrAc
+	 * @param ConsumerAccessControl $cmrAc
 	 * @return array
 	 */
 	private function getRequestedGrants( $cmrAc ) {

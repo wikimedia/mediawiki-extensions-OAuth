@@ -3,6 +3,8 @@
 namespace MediaWiki\Extensions\OAuth;
 
 use HTMLForm;
+use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
 use SpecialPage;
 
 /**
@@ -79,7 +81,7 @@ class MWOAuthUIHooks {
 		$context->setLanguage( $code );
 
 		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-		$cmrAc = MWOAuthConsumerAccessControl::wrap(
+		$cmrAc = ConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromId( $dbr, $m[1] ), $context
 		);
 		if ( !$cmrAc ) {
@@ -202,7 +204,7 @@ class MWOAuthUIHooks {
 			'usergroups' => $wgOAuthGroupsToNotify,
 		];
 
-		foreach ( MWOAuthConsumerSubmitControl::$actions as $eventName ) {
+		foreach ( ConsumerSubmitControl::$actions as $eventName ) {
 			// oauth-app-propose and oauth-app-update notifies admins of the app.
 			// oauth-app-approve, oauth-app-reject, oauth-app-disable and oauth-app-reenable
 			// notify owner of the change.

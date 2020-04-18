@@ -1,9 +1,13 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Control;
 
 use ExtensionRegistry;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
+use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
+use MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance;
+use MediaWiki\Extensions\OAuth\MWOAuthDataStore;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -34,7 +38,7 @@ use Wikimedia\Rdbms\DBConnRef;
  *
  * @TODO: improve error messages
  */
-class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
+class ConsumerSubmitControl extends SubmitControl {
 	/**
 	 * Names of the actions that can be performed on a consumer. These are the same as the
 	 * options in getRequiredFields().

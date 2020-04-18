@@ -3,6 +3,9 @@
 namespace MediaWiki\Extensions\OAuth;
 
 use Html;
+use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceAccessControl;
+use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceSubmitControl;
+use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use SpecialPage;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -132,14 +135,14 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			return;
 		}
 
-		$cmraAc = MWOAuthConsumerAcceptanceAccessControl::wrap(
+		$cmraAc = ConsumerAcceptanceAccessControl::wrap(
 			MWOAuthConsumerAcceptance::newFromId( $dbr, $acceptanceId ), $this->getContext() );
 		if ( !$cmraAc || $cmraAc->getUserId() !== $centralUserId ) {
 			$this->getOutput()->addHTML( $this->msg( 'mwoauth-invalid-access-token' )->escaped() );
 			return;
 		}
 
-		$cmrAc = MWOAuthConsumerAccessControl::wrap(
+		$cmrAc = ConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromId( $dbr, $cmraAc->getConsumerId() ), $this->getContext() );
 		if ( $cmrAc->getDeleted() && !$user->isAllowed( 'mwoauthviewsuppressed' ) ) {
 			throw new \PermissionsError( 'mwoauthviewsuppressed' );
@@ -155,7 +158,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		}
 
 		$data = [ 'action' => $action ];
-		$control = new MWOAuthConsumerAcceptanceSubmitControl(
+		$control = new ConsumerAcceptanceSubmitControl(
 			$this->getContext(), $data, $dbr, $cmraAc->getDAO()->getOAuthVersion()
 		);
 		$form = \HTMLForm::factory( 'ooui',
@@ -218,7 +221,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 					preg_replace( '/^grant-/', '', $data['grants'] ) );
 
 				$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
-				$control = new MWOAuthConsumerAcceptanceSubmitControl(
+				$control = new ConsumerAcceptanceSubmitControl(
 					$context, $data, $dbw, $cmraAc->getDAO()->getOAuthVersion()
 				);
 				return $control->submit();
@@ -275,9 +278,9 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	 * @return string
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
-		$cmrAc = MWOAuthConsumerAccessControl::wrap(
+		$cmrAc = ConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
-		$cmraAc = MWOAuthConsumerAcceptanceAccessControl::wrap(
+		$cmraAc = ConsumerAcceptanceAccessControl::wrap(
 			MWOAuthConsumerAcceptance::newFromRow( $db, $row ), $this->getContext() );
 
 		$links = [];

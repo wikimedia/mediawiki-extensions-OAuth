@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Control;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -24,7 +24,7 @@ namespace MediaWiki\Extensions\OAuth;
 /**
  * Handle the logic of submitting a client request
  */
-abstract class MWOAuthSubmitControl extends \ContextSource {
+abstract class SubmitControl extends \ContextSource {
 	/** @var array (field name => value) */
 	protected $vals;
 
