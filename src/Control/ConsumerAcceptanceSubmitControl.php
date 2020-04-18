@@ -19,8 +19,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Control;
 
+use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
+use MediaWiki\Extensions\OAuth\MWOAuthConsumerAcceptance;
+use MediaWiki\Extensions\OAuth\MWOAuthException;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
+use MediaWiki\Extensions\OAuth\OAuthException;
 use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DBConnRef;
@@ -33,7 +38,7 @@ use Wikimedia\Rdbms\DBConnRef;
  *
  * @TODO: improve error messages
  */
-class MWOAuthConsumerAcceptanceSubmitControl extends MWOAuthSubmitControl {
+class ConsumerAcceptanceSubmitControl extends SubmitControl {
 	/** @var DBConnRef */
 	protected $dbw;
 

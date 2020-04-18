@@ -18,14 +18,15 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
- namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Control;
 
+use MediaWiki\Extensions\OAuth\MWOAuthDAO;
 use Message;
 
 /**
  * Wrapper of an MWOAuthDAO that handles authorization to view fields
  */
-class MWOAuthDAOAccessControl extends \ContextSource {
+class DAOAccessControl extends \ContextSource {
 	/** @var MWOAuthDAO */
 	protected $dao;
 

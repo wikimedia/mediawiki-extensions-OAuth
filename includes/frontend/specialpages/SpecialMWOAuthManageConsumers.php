@@ -21,6 +21,8 @@ namespace MediaWiki\Extensions\OAuth;
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use OOUI\HtmlSnippet;
 use Wikimedia\Rdbms\DBConnRef;
@@ -210,7 +212,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	protected function handleConsumerForm( $consumerKey ) {
 		$user = $this->getUser();
 		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-		$cmrAc = MWOAuthConsumerAccessControl::wrap(
+		$cmrAc = ConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
 		if ( !$cmrAc ) {
 			$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
@@ -243,7 +245,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		}
 
 		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
-		$control = new MWOAuthConsumerSubmitControl( $this->getContext(), [], $dbw );
+		$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
 		$form = \HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
 				'info' => [
@@ -327,7 +329,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	}
 
 	/**
-	 * @param MWOAuthConsumerAccessControl $cmrAc
+	 * @param ConsumerAccessControl $cmrAc
 	 * @return array
 	 */
 	protected function getInfoTableOptions( $cmrAc ) {
@@ -440,7 +442,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 * @return string
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
-		$cmrAc = MWOAuthConsumerAccessControl::wrap(
+		$cmrAc = ConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
 
 		$cmrKey = $cmrAc->getConsumerKey();

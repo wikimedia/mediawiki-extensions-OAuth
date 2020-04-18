@@ -19,6 +19,8 @@
 
 namespace MediaWiki\Extensions\OAuth;
 
+use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
+
 /**
  * @ingroup Maintenance
  */
@@ -81,7 +83,7 @@ class CreateOAuthConsumer extends \Maintenance {
 		$context->setUser( $user );
 
 		$dbw = MWOAuthUtils::getCentralDB( DB_MASTER );
-		$control = new MWOAuthConsumerSubmitControl( $context, $data, $dbw );
+		$control = new ConsumerSubmitControl( $context, $data, $dbw );
 		$status = $control->submit();
 
 		if ( !$status->isGood() ) {
@@ -99,7 +101,7 @@ class CreateOAuthConsumer extends \Maintenance {
 				'reason'       => 'Approved by maintenance script',
 				'changeToken'  => $cmr->getChangeToken( $context ),
 			];
-			$control = new MWOAuthConsumerSubmitControl( $context, $data, $dbw );
+			$control = new ConsumerSubmitControl( $context, $data, $dbw );
 			$approveStatus = $control->submit();
 		}
 

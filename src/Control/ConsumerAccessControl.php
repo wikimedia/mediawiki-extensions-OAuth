@@ -1,11 +1,12 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extensions\OAuth\Control;
 
-/**
- * @method MWOAuthConsumer|Entity\ClientEntity getDAO()
- */
-class MWOAuthConsumerAccessControl extends MWOAuthDAOAccessControl {
+use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
+use MediaWiki\Extensions\OAuth\MWOAuthConsumer;
+use MediaWiki\Extensions\OAuth\MWOAuthUtils;
+
+class ConsumerAccessControl extends DAOAccessControl {
 	// accessor fields copied from MWOAuthConsumer, except they can return a Message on access error
 
 	/**
@@ -250,5 +251,12 @@ class MWOAuthConsumerAccessControl extends MWOAuthDAOAccessControl {
 		return $this->get( 'name', function ( $s ) {
 			return $s . ' ' . $this->msg( 'brackets', $this->getVersion() )->plain();
 		} );
+	}
+
+	/**
+	 * @return MWOAuthConsumer|ClientEntity
+	 */
+	public function getDAO() {
+		return $this->dao;
 	}
 }

@@ -22,6 +22,7 @@ namespace MediaWiki\Extensions\OAuth;
  */
 
 use Html;
+use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\MediaWikiServices;
 use OOUI\HtmlSnippet;
 use SpecialPage;
@@ -74,7 +75,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		}
 
 		$dbr = MWOAuthUtils::getCentralDB( DB_REPLICA );
-		$cmrAc = MWOAuthConsumerAccessControl::wrap(
+		$cmrAc = ConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
 		if ( !$cmrAc ) {
 			$out->addWikiMsg( 'mwoauth-invalid-consumer-key' );
@@ -222,7 +223,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 * @return string
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
-		$cmrAc = MWOAuthConsumerAccessControl::wrap(
+		$cmrAc = ConsumerAccessControl::wrap(
 			MWOAuthConsumer::newFromRow( $db, $row ), $this->getContext() );
 
 		$cmrKey = $cmrAc->getConsumerKey();
@@ -288,10 +289,10 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	}
 
 	/**
-	 * @param MWOAuthConsumerAccessControl $cmrAc
+	 * @param ConsumerAccessControl $cmrAc
 	 * @throws \MWException
 	 */
-	private function addNavigationSubtitle( MWOAuthConsumerAccessControl $cmrAc ): void {
+	private function addNavigationSubtitle( ConsumerAccessControl $cmrAc ): void {
 		$user = $this->getUser();
 		$centralUserId = MWOAuthUtils::getCentralIdFromLocalUser( $user );
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
@@ -312,14 +313,14 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	}
 
 	/**
-	 * @param MWOAuthConsumerAccessControl $cmrAc
+	 * @param ConsumerAccessControl $cmrAc
 	 * @param int $centralUserId Add update link for this user id, if they can update the consumer
 	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
 	 * @return array
 	 * @throws \MWException
 	 */
 	private function updateLink(
-		MWOAuthConsumerAccessControl $cmrAc, $centralUserId,
+		ConsumerAccessControl $cmrAc, $centralUserId,
 		\MediaWiki\Linker\LinkRenderer $linkRenderer
 	): array {
 		if ( MWOAuthUtils::isCentralWiki() && $cmrAc->getDAO()->getUserId() === $centralUserId ) {
