@@ -5,5 +5,11 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "Aplicasion coneteste:",
-	"mwoauth-prefs-managegrantslink": "Xestionare {{PLURAL:$1|$1 aplicasion conetesta|$1 aplicasion coneteste|0=aplicasion coneteste}}"
+	"mwoauth-prefs-managegrantslink": "Xestionare {{PLURAL:$1|$1 aplicasion conetesta|$1 aplicasion coneteste|0=aplicasion coneteste}}",
+	"mwoauth-form-description-allwikis-nogrants": "S-ciao $1,\n\nPar terminar ła to domanda, '''$2''' el neçesita de l'autorixasion par ndar drento a łe informasion in tuti i projeti de sto sito par conto too. No vegnarà fata alguna modifega al to account.",
+	"mwoauth-form-description-allwikis-privateinfo": "S-ciao $1,\n\nPar terminar ła to domanda, '''$2''' el neçesita de l'autorixasion par ndar drento a łe to informasion e intrà ste cuà anca del to vero nome e del to indiriso e-mail, in tuti i projeti de sto sito. No vegnarà fata alguna modifega al to account.",
+	"mwoauth-form-description-onewiki-privateinfo": "S-ciao $1,\n\nPar terminar ła to domanda, '''$2''' el neçesita de l'autorixasion par ndar drento a łe to informasion e intrà ste cuà anca del to vero nome e el to indiriso e-mail, in $4. No vegnarà fata alguna modifega al to account.",
+	"mwoauth-form-description-allwikis-privateinfo-norealname": "S-ciao $1,\n\nPar terminar ła to domanda, '''$2''' el neçesita de l'autorixasion par ndar drento a łe to informasion e intrà ste cuà anca del to indiriso e-mail, in tuti i projeti de sto sito. No vegnarà fata alguna modifega al to account.",
+	"mwoauth-form-description-onewiki-privateinfo-norealname": "S-ciao $1,\n\nPar terminar ła to domanda, '''$2''' el neçesita de l'autorixasion par ndar drento a łe to informasion e intrà ste cuà anca del to indiriso e-mail so $4. No vegnarà fata alguna modifega al to account.",
+	"mwoauth-acceptance-cancelled": "Te ghè prefario no consentirghe a \"$1\" de ndar drento a ła to utensa. \"$1\" no ła funsionarà inmanco che no te ghe parmeti de vegnere drento. Te połi tornare a \"$1\" o in te ła [[Special:OAuthManageMyGrants|jestion]] de łe to aplicasion coneteste."
 }

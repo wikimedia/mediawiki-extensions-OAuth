@@ -8,6 +8,7 @@
 			"Hamilton Abreu",
 			"He7d3r",
 			"Helder.wiki",
+			"Leonardo9387",
 			"Luckas",
 			"Opraco",
 			"Rodrigo codignoli"
@@ -77,7 +78,7 @@
 	"mwoauthconsumerregistration-propose": "Propor novo consumidor",
 	"mwoauthconsumerregistration-list": "Minha lista de consumidores",
 	"mwoauthconsumerregistration-main": "Principal",
-	"mwoauthconsumerregistration-propose-text": "Os desenvolvedores devem usar o formulário abaixo para propor um novo consumidor da OAuth (veja a [//www.mediawiki.org/wiki/Extension:OAuth documentação da extensão] para obter mais detalhes). Depois de enviar este formulário, você receberá um token que seu aplicativo usará para se identificar com o MediaWiki. Um administrador do OAuth precisará aprovar seu aplicativo antes que ele possa ser autorizado por outros usuários.\n\nAlgumas recomendações e observações:\n* Tente usar o máximo possível de concessões. Evite concessões que não são realmente necessárias agora.\n* As versões são da forma \"major.minor.release\" (os últimos dois são opcionais) e aumentam à medida que são necessárias alterações de concessão.\n* Forneça uma chave pública RSA (em Formato PEM), se possível; Caso contrário, será necessário usar um token secreto (menos seguro). \n* Você pode usar uma ID do projeto para restringir o consumidor a um único projeto neste site (use \"*\" para todos os projetos).",
+	"mwoauthconsumerregistration-propose-text": "Os desenvolvedores devem usar a forma abaixo para propôr um novo consumidor da OAuth (veja a [//www.mediawiki.org/wiki/Extension:OAuth documentação da extensão] para obter mais detalhes). Depois de enviar esta forma você receberá um token que seu aplicativo usará para se identificar com o MediaWiki. Um administrador do OAuth precisará aprovar seu aplicativo antes que ele possa ser autorizado por outros usuários.\n\nAlgumas recomendações e observações:\n* Tente usar o mínimo possível de concessões. Evite concessões que não são realmente necessárias agora.\n* As versões são da forma \"major.minor.release\" (os últimos dois sendo opcionais) e aumentam à medida que são necessárias alterações de concessão.\n* Forneça uma chave pública RSA (em Formato PEM), se possível; Caso contrário, será necessário usar um token secreto (menos seguro). \n* Você pode usar uma ID do projeto para restringir o consumidor a um único projeto neste site (use \"*\" para todos os projetos).",
 	"mwoauthconsumerregistration-update-text": "Use o formulário abaixo para atualizar aspectos de um consumidor OAuth que você controla. \n\nTodos os valores aqui substituirão os anteriores. Não deixe campos vazios, a menos que você pretenda limpar esses valores.",
 	"mwoauthconsumerregistration-maintext": "Esta página é para permitir aos desenvolvedores propor e atualizar os aplicativos de consumo da OAuth no registro deste site.\n\nDepois, você pode:\n* [[Special:OAuthConsumerRegistration/propose|Solicitar um token para um novo consumidor]].\n* [[Special:OAuthConsumerRegistration/list|Gerenciar seu consumidor existente]].\n\nPara obter mais informações sobre o Outh, consulte a [//www.mediawiki.org/wiki/Extension:OAuth documentação da extensão].",
 	"mwoauthconsumerregistration-propose-legend": "Novo aplicativo do consumidor OAuth",
