@@ -115,7 +115,7 @@
 	"mwoauthmanageconsumers-linkapproved": "onaylanmış istekler",
 	"mwoauthmanageconsumers-linkdisabled": "devre dışı bırakılmış istekler",
 	"mwoauthmanageconsumers-main": "Ana",
-	"mwoauthmanageconsumers-maintext": "Bu sayfa OAuth (bkz. https://oauth.net/) tüketici uygulaması taleplerini ele almak ve yerleşik OAuth tüketicilerini yönetmek içindir.",
+	"mwoauthmanageconsumers-maintext": "Bu sayfa OAuth (https://oauth.net/ bağlantıya bakın) tüketici uygulaması taleplerini ele almak ve yerleşik OAuth tüketicilerini yönetmek içindir.",
 	"mwoauthmanageconsumers-queues": "Aşağıdan bir tüketici onay kuyruğu seçin:",
 	"mwoauthmanageconsumers-q-proposed": "Önerilen tüketici istekleri kuyruğu",
 	"mwoauthmanageconsumers-q-rejected": "Reddedilen tüketici istekleri kuyruğu",
