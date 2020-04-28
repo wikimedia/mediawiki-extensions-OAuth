@@ -4,6 +4,7 @@ namespace MediaWiki\Extensions\OAuth\Backend;
 
 use MediaWiki\Extensions\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extensions\OAuth\Lib\OAuthDataStore;
+use MediaWiki\Extensions\OAuth\MWOAuthToken as OldMWAuthToken;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -75,7 +76,11 @@ class MWOAuthDataStore extends OAuthDataStore {
 					) )
 				] );
 			}
-			if ( $token === null || !( $returnToken instanceof MWOAuthToken ) ) {
+			if ( $token === null || !(
+					$returnToken instanceof MWOAuthToken ||
+					$returnToken instanceof OldMWAuthToken
+				)
+			) {
 				throw new MWOAuthException( 'mwoauthdatastore-request-token-not-found', [
 					\Message::rawParam( \Linker::makeExternalLink(
 						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004',
