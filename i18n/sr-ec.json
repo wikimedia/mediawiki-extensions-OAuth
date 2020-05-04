@@ -9,7 +9,7 @@
 			"Сербијана"
 		]
 	},
-	"mwoauth-desc": "Дозвољава употребу OAuth 1.0a за АПИ ауторизацију",
+	"mwoauth-desc": "Дозвољава употребу OAuth 1.0a и OAuth 2.0 за АПИ ауторизацију",
 	"mwoauth-verified": "Апликацији је сада дозвољено да приступи Медијавикију у ваше име.\n\nДа бисте довршили процес, наведете ову верификациону вредност у апликацији: '''$1'''",
 	"mwoauth-db-readonly": "OAuth база података је привремено закључана. Покушајте поново за неколико минута.",
 	"mwoauth-missing-field": "Недостаје вредност за поље „$1”",
@@ -110,6 +110,7 @@
 	"mwoauth-grants-heading": "Тражене дозволе:",
 	"mwoauth-acceptance-cancelled": "Одлучили сте да не дозволите да \"$1\" приступи вашем налогу. \"$1\" неће радити ако му не дозволите приступ. Можете се вратити на \"$1\" или [[Special:OAuthManageMyGrants|управљати]] вашим повезаним апликацијама.",
 	"action-mwoauthmanageconsumer": "управљате потрошачима OAuth-а",
+	"echo-category-title-oauth-owner": "Развој OAuth-а",
 	"echo-category-title-oauth-admin": "Администратор OAuth-а",
 	"notification-oauth-app-body": "Разлог: $1",
 	"mwoauth-login-required-reason": "Морате се пријавити на налог на пројекту{{SITENAME}} да бисте овластили апликације да му приступе."
