@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extensions\OAuth\Backend;
 
-use MediaWiki\Extensions\OAuth\MWOAuthToken as OldMWAuthToken;
 use MWException;
 use User;
 
@@ -57,11 +56,7 @@ class OAuth1Consumer extends Consumer {
 		$verifyCode = \MWCryptRand::generateHex( 32 );
 		$store = Utils::newMWOAuthDataStore();
 		$requestToken = $store->lookup_token( $this, 'request', $requestTokenKey );
-		if ( !$requestToken || !(
-				$requestToken instanceof MWOAuthToken ||
-				$requestToken instanceof OldMWAuthToken
-			)
-		) {
+		if ( !$requestToken || !( $requestToken instanceof MWOAuthToken ) ) {
 			throw new MWOAuthException( 'mwoauthserver-invalid-request-token' );
 		}
 		$requestToken->addVerifyCode( $verifyCode );
