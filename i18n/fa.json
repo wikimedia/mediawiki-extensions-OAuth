@@ -54,7 +54,7 @@
 	"mwoauth-consumer-email-mismatched": "آدرس ایمیل ارائه شده باید با حساب کاربریتان مطابقت داشته باشد.",
 	"mwoauth-consumer-alreadyexists": "مصرف‌کنندگان با این ترکیب ناشر/نام/نسخه در حال حاضر وجود دارد",
 	"mwoauth-consumer-alreadyexistsversion": "مصرف‌کننده‌ای با این ترکیب نام/منتشرکننده با نسخه‌ای برابر یا بالاتر در حال حاضر موجود است («$1»)",
-	"mwoauth-consumer-not-accepted": "نمی‌توان اطلاعات یک درخواست معلف مصرف‌کننده به‌روز کرد",
+	"mwoauth-consumer-not-accepted": "اطلاعات یک درخواست معلق مصرف‌کننده را نمی‌توان روزآمد کرد",
 	"mwoauth-consumer-not-proposed": "مصرف‌کننده در حال حاضر پیشنهاد نشده‌است",
 	"mwoauth-consumer-not-disabled": "مصرف‌کننده در حال حاضر غیرفعال شده‌است",
 	"mwoauth-consumer-not-approved": "مصرف‌کننده تأییدنشده (ممکن است غیرفعال شده باشد)",
