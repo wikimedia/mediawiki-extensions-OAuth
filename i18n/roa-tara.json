@@ -4,7 +4,7 @@
 			"Joetaras"
 		]
 	},
-	"mwoauth-desc": "Permette l'ause de OAuth 1.0a API de autendicazione",
+	"mwoauth-desc": "Permette l'ause de le API de OAuth 1.0a e OAuth 2.0 de autendicazione",
 	"mwoauth-missing-field": "Valore zumbate pu cambe \"$1\"",
 	"mwoauth-invalid-field": "Valore date invalide pu cambe \"$1\"",
 	"mwoauth-field-hidden": "(sta 'mbormazione jè scunnute)",
