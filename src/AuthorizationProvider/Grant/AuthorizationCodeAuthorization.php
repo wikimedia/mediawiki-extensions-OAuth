@@ -54,7 +54,7 @@ class AuthorizationCodeAuthorization extends AuthorizationProvider {
 		if ( !$client->isUsableBy( $this->user ) ) {
 			throw OAuthServerException::accessDenied(
 				'Client ' . $client->getIdentifier() .
-				'is not usable by user with ID ' . $this->user->getId()
+				' is not usable by user with ID ' . $this->user->getId()
 			);
 		}
 		$userEntity = UserEntity::newFromMWUser( $this->user );

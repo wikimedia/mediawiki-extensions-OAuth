@@ -142,7 +142,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 		if ( !$this->getClient()->isUsableBy( $user ) ) {
 			throw OAuthServerException::accessDenied(
 				'Client ' . $this->getClient()->getIdentifier() .
-				'is not usable by user with ID ' . $user->getId()
+				' is not usable by user with ID ' . $user->getId()
 			);
 		}
 	}
