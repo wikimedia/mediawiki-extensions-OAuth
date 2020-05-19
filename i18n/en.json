@@ -247,6 +247,7 @@
 	"mwoauth-form-button-approve": "Allow",
 	"mwoauth-form-button-cancel": "Cancel",
 	"mwoauth-error": "Application Connection Error",
+	"mwoauth-error-missing-callback-url-non-owner": "callback_url is required for non-owner-only clients",
 	"mwoauth-grants-heading": "Requested permissions:",
 	"mwoauth-grants-nogrants": "The application has not requested any permissions.",
 	"mwoauth-acceptance-cancelled": "You have chosen not to allow \"$1\" to access your account. \"$1\" will not work unless you allow it access. You can go back to \"$1\" or [[Special:OAuthManageMyGrants|manage]] your connected apps.",
@@ -326,5 +327,9 @@
 	"mwoauth-consumer-access-no-user": "Consumer approval must be bound to a valid user, user with ID 0 given",
 	"mwoauth-login-required-reason": "You need to log into your {{SITENAME}} account to authorize applications to access it.",
 	"mwoauthconsumer-consumer-view": "View this consumer",
-	"mwoauthconsumer-application-view": "View this application"
+	"mwoauthconsumer-application-view": "View this application",
+	"grant-oauthmanageownclient": "Manage your OAuth clients",
+	"mwoauth-consumer-user-mismatch": "You cannot perform actions on clients that do not belong to you",
+	"mwoauth-consumer-deleted-error": "You cannot perform actions on deleted clients",
+	"mwoauth-consumer-submit-error": "An error occurred while saving a consumer"
 }

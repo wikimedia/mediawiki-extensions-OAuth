@@ -260,6 +260,7 @@
 	"mwoauth-form-button-approve": "Button label, indicating the user wants to allow access.\n\nSee also:\n* {{msg-mw|Mwoauth-form-button-cancel}}\n{{Identical|Allow}}",
 	"mwoauth-form-button-cancel": "Button label, indicating the user wants to cancel granting access.\n\nSee also:\n* {{msg-mw|Mwoauth-form-button-approve}}\n{{Identical|Cancel}}",
 	"mwoauth-error": "Heading on the page, whenever an OAuth error is presented to a user.",
+	"mwoauth-error-missing-callback-url-non-owner": "Error when callback_url is not provided for a non-owner-only client",
 	"mwoauth-grants-heading": "Used as label for the grants list.\n\nSee also:\n* {{msg-mw|Grant-blockusers}}\n* {{msg-mw|Grant-createaccount}}\n* {{msg-mw|Grant-createeditmovepage}}\n* {{msg-mw|Grant-delete}}\n* {{msg-mw|Grant-editinterface}}\n* {{msg-mw|Grant-editmycssjs}}\n* {{msg-mw|Grant-editmywatchlist}}\n* {{msg-mw|Grant-editpage}}\n* {{msg-mw|Grant-editprotected}}\n* {{msg-mw|Grant-highvolume}}\n* {{msg-mw|Grant-oversight}}\n* {{msg-mw|Grant-patrol}}\n* {{msg-mw|Grant-protect}}\n* {{msg-mw|Grant-rollback}}\n* {{msg-mw|Grant-sendemail}}\n* {{msg-mw|Grant-uploadeditmovefile}}\n* {{msg-mw|Grant-uploadfile}}\n* {{msg-mw|Grant-basic}}\n* {{msg-mw|Grant-viewdeleted}}\n* {{msg-mw|Grant-viewmywatchlist}}",
 	"mwoauth-grants-nogrants": "Warning message that the OAuth consumer has not requested any permissions",
 	"mwoauth-acceptance-cancelled": "Message shown when an OAuth authorization request is declined. Parameters:\n* $1 - consumer name",
@@ -339,5 +340,9 @@
 	"mwoauth-consumer-access-no-user": "Error message when trying to save user approval with anonymous user",
 	"mwoauth-login-required-reason": "Helper text that appears when a user is redirected to Special:Login page because they attempted authorisation while not logged in on the provider",
 	"mwoauthconsumer-consumer-view": "Used as link text in a navigation menu.",
-	"mwoauthconsumer-application-view": "Used as link text in a navigation menu."
+	"mwoauthconsumer-application-view": "Used as link text in a navigation menu.",
+	"grant-oauthmanageownclient": "Name for grant \"oauthmanageownclient\".\n{{Related|Grant}}",
+	"mwoauth-consumer-user-mismatch": "Error message when user tries to perform an action on a client that belongs to another user",
+	"mwoauth-consumer-deleted-error": "Error message when user tries to perform an action on a deleted client",
+	"mwoauth-consumer-submit-error": "Error message when submitting a consumer but no consumer data available for response"
 }
