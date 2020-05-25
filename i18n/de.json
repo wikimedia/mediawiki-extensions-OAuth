@@ -10,7 +10,7 @@
 			"Wnme"
 		]
 	},
-	"mwoauth-desc": "Verwendung von OAuth 1.0a und OAuth 2.0 zur API-Autorisierung erlauben",
+	"mwoauth-desc": "Ermöglicht die Nutzung von OAuth 1.0a und OAuth 2.0 zur API-Autorisierung",
 	"mwoauth-verified": "Die Anwendung ist jetzt berechtigt, in deinem Namen auf MediaWiki zuzugreifen.\n\nUm den Prozess abzuschließen, gib diesen Verifizierungswert an die Anwendung weiter: '''$1'''",
 	"mwoauth-db-readonly": "Die OAuth-Datenbank ist vorübergehend gesperrt. Bitte in einigen Minuten erneut versuchen.",
 	"mwoauth-missing-field": "Fehlender Wert für das Feld „$1“",
