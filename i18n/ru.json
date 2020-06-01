@@ -3,6 +3,7 @@
 		"authors": [
 			"Alexander Yukal",
 			"Av6",
+			"Diman Russkov",
 			"Diralik",
 			"Illythr",
 			"Iltever",
@@ -28,7 +29,8 @@
 			"Дмитрий"
 		]
 	},
-	"mwoauth-desc": "Позволяет использование OAuth 1.0a для API авторизации",
+	"mwoauth-desc": "Позволяет использование OAuth 1.0a и OAuth 2.0 для API авторизации",
+	"mwoauth-nosubpage-explanation": "OAuth - это механизм, который позволяет внешним приложениям идентифицировать участника {{SITENAME}} или действовать от его имени после получения разрешения от этого участника.\n\nЧтобы эта страница что-то сделала, требуется больше параметров. Если вы были отправлены сюда из внешнего приложения, это, вероятно, было связано с ошибкой в этом приложении; Вы должны связаться с автором.",
 	"mwoauth-verified": "Приложению теперь разрешён доступ к MediaWiki от вашего имени.\n\nДля завершения процесса, предоставьте приложению это проверочное значение: '''$1'''",
 	"mwoauth-db-readonly": "База данных OAuth временно заблокирована. Повторите действие через несколько минут.",
 	"mwoauth-missing-field": "Отсутствует значение для поля «$1»",
@@ -164,6 +166,7 @@
 	"mwoauthlistconsumers-status-disabled": "отключено",
 	"mwoauthlistconsumers-status-rejected": "отклонено",
 	"mwoauthlistconsumers-status-expired": "истекло",
+	"mwoauthlistconsumers-navigation": "Навигацияː",
 	"oauthmanagemygrants": "Управление подключёнными приложениями",
 	"mwoauthmanagemygrants-text": "На этой странице перечислены все приложения, которые могут использовать вашу учётную запись. Область доступа каждого такого приложения ограничена разрешениями, которые вы ему предоставили для действий от вашего имени. Если вы предоставили приложению доступ к вашей учётной записи в различных родственных проектах, то ниже вы можете просмотреть отдельные настройки для каждого такого проекта.\n\nПодключённые приложения получают доступ к вашей учётной записи с помощью протокола OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Узнать больше о подключаемых приложениях])</span>",
 	"mwoauthmanagemygrants-navigation": "Навигацияː",
@@ -255,5 +258,6 @@
 	"notification-oauth-app-disable-primary-link": "Просмотр приложения.",
 	"notification-oauth-app-reenable-primary-link": "Просмотр приложения.",
 	"notification-oauth-app-body": "Причина: $1",
+	"mwoauth-oauth2-granttype-auth-code": "Код авторизации",
 	"mwoauthconsumer-application-view": "Посмотреть это приложение"
 }
