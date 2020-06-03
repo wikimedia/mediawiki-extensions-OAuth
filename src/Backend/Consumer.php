@@ -499,14 +499,19 @@ abstract class Consumer extends MWOAuthDAO {
 
 		$centralUserId = Utils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
-			$userMsg = Utils::getSiteMessage( 'mwoauthserver-invalid-user' );
-			throw new MWOAuthException( $userMsg, [ $this->getName(), \Message::rawParam(
-				\Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
-					'E008',
-					true
-				)
-			) ] );
+			throw new MWOAuthException(
+				'mwoauthserver-invalid-user',
+				[
+					$this->getName(),
+					\Message::rawParam(
+						\Linker::makeExternalLink(
+							'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
+							'E008',
+							true
+						)
+					)
+				]
+			);
 		}
 
 		$checkWiki = $this->getWiki() !== '*' ? $this->getWiki() : $wikiId;
@@ -612,14 +617,19 @@ abstract class Consumer extends MWOAuthDAO {
 		// CentralAuth may abort here if there is no global account for this user
 		$centralUserId = Utils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
-			$userMsg = Utils::getSiteMessage( 'mwoauthserver-invalid-user' );
-			throw new MWOAuthException( $userMsg, [ $this->getName(), \Message::rawParam(
-				\Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
-					'E008',
-					true
-				)
-			) ] );
+			throw new MWOAuthException(
+				'mwoauthserver-invalid-user',
+				[
+					$this->getName(),
+					\Message::rawParam(
+						\Linker::makeExternalLink(
+							'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
+							'E008',
+							true
+						)
+					)
+				]
+			);
 		}
 
 		$dbw = Utils::getCentralDB( DB_MASTER );

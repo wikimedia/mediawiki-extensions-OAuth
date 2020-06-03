@@ -3,7 +3,6 @@
 namespace MediaWiki\Extensions\OAuth\Backend;
 
 use EchoEvent;
-use Hooks;
 use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
 use MediaWiki\MediaWikiServices;
 use User;
@@ -368,17 +367,6 @@ class Utils {
 		}
 
 		return $secretKey ? hash_hmac( 'sha1', $secret, $secretKey ) : $secret;
-	}
-
-	/**
-	 * Run hook to override a message keys that might need to be changed
-	 * across all sites in this cluster.
-	 * @param string $msgKey the Message key
-	 * @return string the Message key to use
-	 */
-	public static function getSiteMessage( $msgKey ) {
-		Hooks::run( 'OAuthReplaceMessage', [ &$msgKey ] );
-		return $msgKey;
 	}
 
 	/**
