@@ -304,7 +304,6 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 					$accessToken = $status->value['result']['accessToken'];
 					if ( $cmr->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
 						// If we just add raw AT to the page, it would go 3000px wide
-						// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 						$accessToken = \Html::element( 'span', [
 							'style' => 'overflow-wrap: break-word'
 						], (string)$accessToken );
@@ -429,7 +428,6 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						$accessToken = $status->value['result']['accessToken'];
 						if ( $cmr->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
 							// If we just add raw AT to the page, it would go 3000px wide
-							// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 							$accessToken = \Html::element( 'span', [
 								'style' => 'overflow-wrap: break-word'
 							], (string)$accessToken );
