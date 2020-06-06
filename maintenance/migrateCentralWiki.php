@@ -27,6 +27,7 @@ require_once "$IP/maintenance/Maintenance.php";
 
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extensions\OAuth\Backend\MWOAuthDAO;
 use MediaWiki\MediaWikiServices;
 
 class MigrateCentralWiki extends \Maintenance {
@@ -85,8 +86,11 @@ class MigrateCentralWiki extends \Maintenance {
 			$this->output( "No new rows.\n" );
 		}
 
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
 		for ( $currentId = $newMax + 1, $i = 1; $currentId <= $oldMax; ++$currentId, ++$i ) {
 			$this->output( "Migrating $type $currentId..." );
+			/** @var MWOAuthDAO $cmrClass */
 			$cmr = $cmrClass::newFromId( $oldDb, $currentId );
 			if ( $cmr ) {
 				$cmr->updateOrigin( 'new' );
@@ -98,7 +102,7 @@ class MigrateCentralWiki extends \Maintenance {
 			}
 
 			if ( $this->mBatchSize && $i % $this->mBatchSize === 0 ) {
-				wfWaitForSlaves( null, $targetWiki );
+				$lbFactory->waitForReplication( [ 'domain' => $targetWiki ] );
 			}
 		}
 	}
