@@ -521,8 +521,12 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 		$linkHtml = $this->getLanguage()->pipeList( $listLinks );
 
-		$viewall = $this->msg( 'parentheses' )->rawParams( \Linker::linkKnown(
-			$this->getPageTitle(), $this->msg( 'mwoauthconsumerregistration-main' )->escaped() ) );
+		$viewall = $this->msg( 'parentheses' )->rawParams(
+			\Linker::linkKnown(
+				$this->getPageTitle(),
+				$this->msg( 'mwoauthconsumerregistration-main' )->escaped()
+			)
+		)->escaped();
 
 		$this->getOutput()->setSubtitle(
 			"<strong>" . $this->msg( 'mwoauthconsumerregistration-navigation' )->escaped() .

@@ -146,7 +146,9 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$linkHtml = $this->getLanguage()->pipeList( $listLinks );
 
 		$viewall = $this->msg( 'parentheses' )->rawParams( \Linker::linkKnown(
-			$this->getPageTitle(), $this->msg( 'mwoauthmanageconsumers-main' )->escaped() ) );
+			$this->getPageTitle(),
+			$this->msg( 'mwoauthmanageconsumers-main' )->escaped()
+		) )->escaped();
 
 		$this->getOutput()->setSubtitle(
 			"<strong>" . $this->msg( 'mwoauthmanageconsumers-type' )->escaped() .

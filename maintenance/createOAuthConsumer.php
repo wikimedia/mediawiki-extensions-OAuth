@@ -89,7 +89,7 @@ class CreateOAuthConsumer extends \Maintenance {
 		$status = $control->submit();
 
 		if ( !$status->isGood() ) {
-			$this->fatalError( $status->getMessage() );
+			$this->fatalError( $status->getMessage()->text() );
 		}
 
 		/** @var Consumer $cmr */
