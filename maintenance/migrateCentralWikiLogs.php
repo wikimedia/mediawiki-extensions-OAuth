@@ -98,7 +98,7 @@ class MigrateCentralWikiLogs extends Maintenance {
 				$oldLoggs->rewind();
 			}
 
-			$targetDb->begin();
+			$targetDb->begin( __METHOD__ );
 			foreach ( $oldLoggs as $key => $row ) {
 				// Skip if this is the extra row we selected
 				if ( $key > $this->mBatchSize ) {
@@ -134,7 +134,7 @@ class MigrateCentralWikiLogs extends Maintenance {
 				$logEntry->setDeleted( $row->log_deleted );
 				$logEntry->insert( $targetDb );
 			}
-			$targetDb->commit();
+			$targetDb->commit( __METHOD__ );
 
 			$lbFactory->waitForReplication();
 
