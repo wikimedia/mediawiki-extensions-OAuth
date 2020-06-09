@@ -9,11 +9,13 @@ use Wikimedia\Rdbms\DBConnRef;
 
 class MWOAuthDataStore extends OAuthDataStore {
 	/** @var DBConnRef DB for the consumer/grant registry */
-	protected $centralSlave;
+	protected $centralReplica;
+
 	/** @var DBConnRef|null Master DB for repeated lookup in case of replication lag problems;
-	 *    null if there is no separate master and slave DB
+	 *    null if there is no separate master and replica DB
 	 */
 	protected $centralMaster;
+
 	/** @var \BagOStuff Cache for Tokens and Nonces */
 	protected $cache;
 
@@ -21,17 +23,17 @@ class MWOAuthDataStore extends OAuthDataStore {
 	protected $logger;
 
 	/**
-	 * @param DBConnRef $centralSlave Central DB slave
+	 * @param DBConnRef $centralReplica Central DB replica
 	 * @param DBConnRef|null $centralMaster Central DB master (if different)
 	 * @param \BagOStuff $cache
 	 */
-	public function __construct( DBConnRef $centralSlave, $centralMaster, \BagOStuff $cache ) {
+	public function __construct( DBConnRef $centralReplica, $centralMaster, \BagOStuff $cache ) {
 		if ( $centralMaster !== null && !( $centralMaster instanceof DBConnRef ) ) {
 			throw new \InvalidArgumentException(
 				__METHOD__ . ': $centralMaster must be a DB or null'
 			);
 		}
-		$this->centralSlave = $centralSlave;
+		$this->centralReplica = $centralReplica;
 		$this->centralMaster = $centralMaster;
 		$this->cache = $cache;
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
@@ -44,7 +46,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return Consumer|bool
 	 */
 	public function lookup_consumer( $consumerKey ) {
-		return Consumer::newFromKey( $this->centralSlave, $consumerKey );
+		return Consumer::newFromKey( $this->centralReplica, $consumerKey );
 	}
 
 	/**
@@ -85,7 +87,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 				] );
 			}
 		} elseif ( $token_type === 'access' ) {
-			$cmra = ConsumerAcceptance::newFromToken( $this->centralSlave, $token );
+			$cmra = ConsumerAcceptance::newFromToken( $this->centralReplica, $token );
 			if ( !$cmra && $this->centralMaster ) {
 				// try master in case there is replication lag T124942
 				$cmra = ConsumerAcceptance::newFromToken( $this->centralMaster, $token );
@@ -249,7 +251,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return string|null
 	 */
 	public function getRSAKey( $consumerKey ) {
-		$cmr = Consumer::newFromKey( $this->centralSlave, $consumerKey );
+		$cmr = Consumer::newFromKey( $this->centralReplica, $consumerKey );
 		return $cmr ? $cmr->getRsaKey() : null;
 	}
 }
