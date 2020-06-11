@@ -532,7 +532,7 @@ class ConsumerSubmitControl extends SubmitControl {
 		} elseif ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			return;
 		} elseif ( !Utils::isCentralWiki() ) {
-			# sanity; should never get here on a slave wiki
+			# sanity; should never get here on a replica wiki
 			return;
 		}
 
