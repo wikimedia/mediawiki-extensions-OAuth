@@ -4,5 +4,9 @@
 			"Patriot Kur"
 		]
 	},
+	"mwoauthconsumerregistration-description": "Təsvir",
+	"mwoauthmanageconsumers-description": "Təsvir",
+	"mwoauthlistconsumers-description": "Təsvir",
+	"mwoauthmanagemygrants-description": "Təsvir",
 	"mwoauth-form-button-cancel": "Ləğv karde"
 }
