@@ -403,7 +403,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			 !array_diff( $existing->getGrants(), [ 'mwoauth-authonly', 'mwoauth-authonlyprivate' ] )
 		) {
 			if ( $this->oauthVersion === Consumer::OAUTH_VERSION_2 ) {
-				$this->redirectToREST();
+				$this->redirectToREST( [
+					'approval_pass' => true
+				] );
 			} else {
 				$callback = $cmrAc->getDAO()->authorize(
 					$user, false, $cmrAc->getDAO()->getGrants(), $requestToken
