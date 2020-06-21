@@ -161,16 +161,16 @@ $specialPageAliases['yi'] = [
 
 /** Simplified Chinese (中文（简体）‎) */
 $specialPageAliases['zh-hans'] = [
-	'OAuthConsumerRegistration' => [ 'OAuth消费者注册', 'OAuth注册' ],
-	'OAuthManageConsumers' => [ 'OAuth管理消费者' ],
-	'OAuthListConsumers' => [ 'OAuth消费者列表' ],
-	'OAuthManageMyGrants' => [ 'OAuth管理我的许可', 'OAuth许可' ],
+	'OAuthConsumerRegistration' => [ 'OAuth应用程序注册', 'OAuth注册' ],
+	'OAuthManageConsumers' => [ 'OAuth应用程序管理', 'OAuth管理' ],
+	'OAuthListConsumers' => [ 'OAuth应用程序列表', 'OAuth列表' ],
+	'OAuthManageMyGrants' => [ 'OAuth应用程序授权', 'OAuth授权' ],
 ];
 
 /** Traditional Chinese (中文（繁體）‎) */
 $specialPageAliases['zh-hant'] = [
-	'OAuthConsumerRegistration' => [ 'OAuth_使用者註冊' ],
-	'OAuthManageConsumers' => [ 'OAuth_使用者管理' ],
-	'OAuthListConsumers' => [ 'OAuth_使用者清單' ],
-	'OAuthManageMyGrants' => [ 'OAuth_使用者授權' ],
+	'OAuthConsumerRegistration' => [ 'OAuth應用程式註冊', 'OAuth註冊' ],
+	'OAuthManageConsumers' => [ 'OAuth應用程式管理', 'OAuth管理' ],
+	'OAuthListConsumers' => [ 'OAuth應用程式清單', 'OAuth清單' ],
+	'OAuthManageMyGrants' => [ 'OAuth應用程式授權', 'OAuth授權' ],
 ];
