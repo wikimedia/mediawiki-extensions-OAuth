@@ -17,6 +17,7 @@
 			"Shirayuki",
 			"Shizhao",
 			"Simon Shek",
+			"VulpesVulpes825",
 			"Xiaomingyan",
 			"Xiplus",
 			"Yfdyh000"
@@ -157,7 +158,7 @@
 	"mwoauthmanageconsumers-success-reanable": "消费者已重新启用。",
 	"mwoauthmanageconsumers-search-name": "使用此名称的消费者",
 	"mwoauthmanageconsumers-search-publisher": "通过此用户的消费者",
-	"oauthlistconsumers": "列出OAuth应用程序",
+	"oauthlistconsumers": "OAuth应用程序列表",
 	"mwoauthlistconsumers-legend": "浏览OAuth应用程序",
 	"mwoauthlistconsumers-view": "详情",
 	"mwoauthlistconsumers-none": "找不到满足此条件的应用程序。",
