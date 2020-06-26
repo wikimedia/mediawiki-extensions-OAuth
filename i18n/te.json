@@ -7,6 +7,7 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "అనుసంధానిత అనువర్తనాలు:",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 అనుసంధానిత అనువర్తనాన్ని|$1 అనుసంధానిత అనువర్తనాలను|0=అనుసంధానిత అనువర్తనాలను}} నిర్వహించుకోండి",
 	"mwoauth-consumer-owner-only-label": "యజమాని-మాత్రమే:",
 	"notification-oauth-app-body": "కారణం: $1"
 }
