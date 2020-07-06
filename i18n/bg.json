@@ -153,5 +153,6 @@
 	"echo-category-title-oauth-owner": "Разработка на OAuth",
 	"echo-pref-tooltip-oauth-owner": "Известяване, когато има ново събитие свързано приложенията използващи OAuth, които съм разработил.",
 	"echo-category-title-oauth-admin": "Администратор на OAuth",
-	"notification-oauth-app-body": "Причина: $1"
+	"notification-oauth-app-body": "Причина: $1",
+	"mwoauth-oauth-version": "Версия на OAuth протокола"
 }

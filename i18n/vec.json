@@ -6,6 +6,7 @@
 	},
 	"mwoauth-prefs-managegrants": "Aplicasion coneteste:",
 	"mwoauth-prefs-managegrantslink": "Xestionare {{PLURAL:$1|$1 aplicasion conetesta|$1 aplicasion coneteste|0=aplicasion coneteste}}",
+	"mwoauthconsumerregistration-manage": "xestiona",
 	"mwoauth-form-description-allwikis-nogrants": "S-ciao $1,\n\nPar terminar ła to domanda, '''$2''' el neçesita de l'autorixasion par ndar drento a łe informasion in tuti i projeti de sto sito par conto too. No vegnarà fata alguna modifega al to account.",
 	"mwoauth-form-description-allwikis-privateinfo": "S-ciao $1,\n\nPar terminar ła to domanda, '''$2''' el neçesita de l'autorixasion par ndar drento a łe to informasion e intrà ste cuà anca del to vero nome e del to indiriso e-mail, in tuti i projeti de sto sito. No vegnarà fata alguna modifega al to account.",
 	"mwoauth-form-description-onewiki-privateinfo": "S-ciao $1,\n\nPar terminar ła to domanda, '''$2''' el neçesita de l'autorixasion par ndar drento a łe to informasion e intrà ste cuà anca del to vero nome e el to indiriso e-mail, in $4. No vegnarà fata alguna modifega al to account.",

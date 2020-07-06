@@ -64,7 +64,7 @@
 	"mwoauth-missing-consumer-key": "Tüketici anahtarı sağlanmadı.",
 	"mwoauth-invalid-consumer-key": "Verilen anahtarda tüketici yok.",
 	"mwoauth-invalid-access-token": "Verilen anahtarla erişim belirteç yok.",
-	"mwoauth-invalid-access-wrongwiki": "Tüketici sadece \"$1\" projesinde kullanılabilir.",
+	"mwoauth-invalid-access-wrongwiki": "Tüketici yalnızca \"$1\" projesinde kullanılabilir.",
 	"mwoauth-consumer-conflict": "Birisi bu tüketicinin özelliklerini görüntülediğinizde değiştirdi. Lütfen tekrar deneyin. Değişiklik günlüğünü kontrol etmek isteyebilirsiniz.",
 	"mwoauth-consumer-grantshelp": "Her hibe, bir kullanıcı hesabının sahip olduğu listelenen kullanıcı haklarına erişim sağlar. Daha fazla bilgi için [[Special:ListGrants|hibe tablosuna]] bakın.",
 	"mwoauth-consumer-stage-proposed": "önerilen",
