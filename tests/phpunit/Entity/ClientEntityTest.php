@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth\Tests\Entity;
 
+use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity;
 use MediaWikiTestCase;
 
 /**
@@ -45,5 +47,28 @@ class ClientEntityTest extends MediaWikiTestCase {
 			[ 'client_credentials' ], $client->getAllowedGrants(),
 			'Allowed grants should be the same as ones given on registration'
 		);
+
+		$approval = ConsumerAcceptance::newFromArray(
+			[
+				'id' 		   => 2,
+				'accessToken'  => '98764erf',
+				'accepted'     => wfTimestampNow(),
+				'wiki'         => 'dummy',
+				'userId'       => 12345,
+				'consumerId'   => '67890987654',
+				'accessSecret' => 'secret key',
+				'grants'       => [ 'editpage' ]
+			]
+		);
+
+		$accessToken = $client->getOwnerOnlyAccessToken( $approval );
+		$this->assertInstanceOf( AccessTokenEntity::class, $accessToken );
+		$this->assertEquals( 12345, $accessToken->getUserIdentifier() );
+
+		$scopes = $client->getScopes();
+		$accessTokenScopes = $accessToken->getScopes();
+		foreach ( $scopes  as $index => $scope ) {
+			$this->assertEquals( $scope->jsonSerialize(), $accessTokenScopes[$index]->jsonSerialize() );
+		}
 	}
 }

@@ -5,9 +5,9 @@ namespace MediaWiki\Extensions\OAuth\Repository;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
-use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 
@@ -22,8 +22,8 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 * @param ClientEntityInterface|ClientEntity $clientEntity
 	 * @param ScopeEntityInterface[] $scopes
 	 * @param mixed|null $userIdentifier
-	 * @throws MWOAuthException
 	 * @return AccessTokenEntityInterface
+	 * @throws OAuthServerException
 	 */
 	public function getNewToken( ClientEntityInterface $clientEntity,
 		array $scopes, $userIdentifier = null ) {
