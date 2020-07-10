@@ -8,10 +8,14 @@
 	"mwoauth-prefs-managegrantslink": "$1 koppelde {{PLURAL:$1|topassing|topassingen|0=topassingen}} beheyren",
 	"mwoauthconsumerregistration-navigation": "Navigasie:",
 	"mwoauthconsumerregistration-main": "Startsyde",
+	"mwoauthconsumerregistration-description": "Beskryving",
 	"mwoauthconsumerregistration-stage": "Staotus",
+	"mwoauthmanageconsumers-description": "Beskryving",
 	"oauthlistconsumers": "Lyste mid OAuth-topassingen",
+	"mwoauthlistconsumers-description": "Beskryving",
 	"mwoauthlistconsumers-grants": "Tostemmingen",
 	"oauthmanagemygrants": "Koppelde topassingen beheyren",
+	"mwoauthmanagemygrants-description": "Beskryving",
 	"mwoauthserver-invalid-user": "Um gebruuk te kunnen maken van ekoppelde toepassigen op disse webstee, mu'j n gebruker hebben op alle projekten. A'j n gebruker hebben op alle projekten, ku'j \"$1\" opniej proberen te koppelen.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Samenevoegd anmelden noodzakelik, [https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008 E008]</span>",
 	"mwoauth-acceptance-cancelled": "Je hebben ekeuzen \"$1\" gien toegang te geven tot joew gebruker. \"$1\" warkt niet, behalve a'j de toepassige toegang geven. Je kunnen weerummegaon naor \"$1\" of joew ekoppelde toepassigen [[Special:OAuthManageMyGrants|beheren]]."
 }
