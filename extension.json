@@ -1,5 +1,6 @@
 {
 	"name": "OAuth",
+	"version": "1.0.0",
 	"author": [
 		"Aaron Schulz",
 		"Chris Steipp",
