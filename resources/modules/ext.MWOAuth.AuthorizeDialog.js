@@ -1,5 +1,6 @@
 /**
  * OAuth JavaScript
+ *
  * @author Aaron Schulz 2013
  */
 ( function () {
