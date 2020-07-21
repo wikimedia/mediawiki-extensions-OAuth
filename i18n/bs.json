@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Srdjan m"
+			"Srdjan m",
+			"Srđan"
 		]
 	},
 	"mwoauth-desc": "Omogućava upotrebu OAutha 1.0a za autentifikaciju API-a",
