@@ -128,6 +128,8 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			'mwoauthlistconsumers-user' => $cmrAc->getUserName(),
 			'mwoauthlistconsumers-status' => $this->msg( "mwoauthlistconsumers-status-$stageKey" ),
 			'mwoauthlistconsumers-description' => $cmrAc->getDescription(),
+			'mwoauthlistconsumers-owner-only' => $cmrAc->getDAO()->getOwnerOnly()
+				? $this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
 			'mwoauthlistconsumers-wiki' => $cmrAc->getWikiName(),
 			'mwoauthlistconsumers-callbackurl' => $cmrAc->getCallbackUrl(),
 			'mwoauthlistconsumers-callbackisprefix' => $cmrAc->getCallbackIsPrefix() ?
@@ -301,6 +303,11 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			'mwoauthlistconsumers-status' =>
 				$this->msg( "mwoauthlistconsumers-status-$stageKey" )->escaped(),
 		];
+		if ( $cmrAc->getDAO()->getOwnerOnly() ) {
+			$data = wfArrayInsertAfter( $data, [
+				'mwoauthlistconsumers-owner-only' => $this->msg( 'htmlform-yes' ),
+			], 'mwoauthlistconsumers-description' );
+		}
 
 		foreach ( $data as $msg => $encValue ) {
 			$r .= '<p>' . $this->msg( $msg )->escaped() . ': ' . $encValue . '</p>';
