@@ -323,9 +323,10 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * When true, getCallbackUrl() returns a prefix; the callback URL can be provided by the caller
-	 * as long as the prefix matches. When false, the callback URL will be determined by
-	 * getCallbackUrl().
+	 * When false, the callback URL will be determined by getCallbackUrl(). When true,
+	 * getCallbackUrl() returns a prefix; the callback URL must be provided by the caller
+	 * and must match the prefix. For the exact definition of "match", see
+	 * MWOAuthServer::checkCallback().
 	 * @return bool
 	 */
 	public function getCallbackIsPrefix() {
