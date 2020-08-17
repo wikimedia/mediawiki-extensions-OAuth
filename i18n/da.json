@@ -61,6 +61,7 @@
 	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Dine}} redigeringer via denne applikation",
 	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Dine}} handlinger via denne applikation",
 	"mwoauthdatastore-bad-source-ip": "Forespørgslen kom fra en ugyldig IP-adresse.",
+	"mwoauth-form-description-onewiki-nogrants": "Hej $1,\n\nFor at kunne udføre din anmodning, skal '''$2''' have tilladelse til at tilgå information på ''$4'' på dine vegne. Der vil ikke ske nogen ændringer af din brugerkonto.",
 	"mwoauth-form-button-approve": "Tillad",
 	"mwoauth-form-button-cancel": "Annullér",
 	"notification-oauth-app-body": "Begrundelse: $1"
