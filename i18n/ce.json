@@ -115,6 +115,7 @@
 	"mwoauth-form-button-approve": "Магаде",
 	"mwoauth-form-button-cancel": "Цаоьшу",
 	"mwoauth-grants-heading": "Магийтар деха:",
+	"mwoauth-listgrants-extra-summary": "== OAuth лело ша-тайпа бакъоялар ==\nХӀара бакъояларш леррина ду OAuth клиенташна.",
 	"mwoauth-callback-not-oob": "oauth_callback хӀоттина хила еза «oob» маьӀна а долуш (регистр лоруш)",
 	"notification-oauth-app-body": "Бахьана: $1"
 }
