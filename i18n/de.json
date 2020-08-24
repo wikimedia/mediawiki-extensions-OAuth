@@ -5,6 +5,7 @@
 			"Kghbln",
 			"Killarnee",
 			"Metalhead64",
+			"Robby",
 			"Se4598",
 			"Umherirrender",
 			"Wnme"
@@ -298,5 +299,7 @@
 	"notification-oauth-app-disable-primary-link": "Anwendung ansehen",
 	"notification-oauth-app-reenable-primary-link": "Anwendung ansehen",
 	"notification-oauth-app-body": "Grund: $1",
-	"mwoauth-oauth2-granttype-auth-code": "Autorisierungscode"
+	"mwoauth-oauth2-granttype-auth-code": "Autorisierungscode",
+	"mwoauth-login-required-reason": "Dir musst Iech an Äre(n) {{SITENAME}}-Benotzerkont alogge fir d'Applikatioune z'autoriséieren fir dorop zou ze gräifen.",
+	"mwoauthconsumer-application-view": "Dës Ufro weisen"
 }
