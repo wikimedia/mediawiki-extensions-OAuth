@@ -4,6 +4,8 @@
 			"Starladin"
 		]
 	},
+	"oauthlistconsumers": "Lista dles aplicaziuns OAuth",
+	"oauthmanagemygrants": "Gestiun dles aplicaziuns colegades",
 	"mwoauth-oauth2-granttype-auth-code": "Codesc d'autorisaziun",
 	"mwoauth-oauth2-granttype-refresh-token": "Ciaria danü le simbol",
 	"mwoauth-oauth2-granttype-client-credentials": "Dac dl cliënt",
