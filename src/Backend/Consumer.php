@@ -64,7 +64,7 @@ abstract class Consumer extends MWOAuthDAO {
 	protected $description;
 	/** @var string Publisher email address */
 	protected $email;
-	/** @var string TS_MW timestamp of when email address was confirmed */
+	/** @var string|null TS_MW timestamp of when email address was confirmed */
 	protected $emailAuthenticated;
 	/** @var int User accepted the developer agreement */
 	protected $developerAgreement;
@@ -352,7 +352,7 @@ abstract class Consumer extends MWOAuthDAO {
 	/**
 	 * Date of verifying the email, in TS_MW format. In practice this will be the same as
 	 * getRegistration().
-	 * @return string
+	 * @return string|null
 	 */
 	public function getEmailAuthenticated() {
 		return $this->get( 'emailAuthenticated' );
@@ -696,7 +696,7 @@ abstract class Consumer extends MWOAuthDAO {
 		$this->registration = wfTimestamp( TS_MW, $this->registration );
 		$this->stage = (int)$this->stage;
 		$this->stageTimestamp = wfTimestamp( TS_MW, $this->stageTimestamp );
-		$this->emailAuthenticated = wfTimestamp( TS_MW, $this->emailAuthenticated );
+		$this->emailAuthenticated = wfTimestampOrNull( TS_MW, $this->emailAuthenticated );
 		$this->grants = (array)$this->grants; // sanity
 		$this->callbackIsPrefix = (bool)$this->callbackIsPrefix;
 		$this->ownerOnly = (bool)$this->ownerOnly;

@@ -106,8 +106,9 @@ class ConsumerAccessControl extends DAOAccessControl {
 	/**
 	 * Date of verifying the email, in TS_MW format. In practice this will be the same as
 	 * getRegistration().
+	 * Returns null if the timestamp is not set.
 	 * Returns a Message when the user does not have permission to see this field.
-	 * @return string|\Message
+	 * @return string|null|\Message
 	 */
 	public function getEmailAuthenticated() {
 		return $this->get( 'emailAuthenticated' );
