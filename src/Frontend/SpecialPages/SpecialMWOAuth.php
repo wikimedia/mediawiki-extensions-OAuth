@@ -507,7 +507,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			]
 		] );
 
-		$form->addFooterText( $this->getSkin()->privacyLink() );
+		$form->addFooterText( $this->getSkin()->footerLink( 'privacy', 'privacypage' ) );
 
 		$this->getOutput()->addHTML(
 			'<div id="mw-mwoauth-authorize-dialog" class="mw-ui-container">' );
