@@ -37,6 +37,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 	 * @param ClientEntity $clientEntity
 	 * @param ScopeEntityInterface[] $scopes
 	 * @param string|null $userIdentifier
+	 * @throws OAuthServerException
 	 */
 	public function __construct(
 		ClientEntity $clientEntity, array $scopes, $userIdentifier = null

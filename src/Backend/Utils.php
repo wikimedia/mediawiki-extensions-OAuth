@@ -26,6 +26,15 @@ class Utils {
 	}
 
 	/**
+	 * @return string|bool
+	 */
+	public static function getCentralWiki() {
+		global $wgMWOAuthCentralWiki;
+
+		return $wgMWOAuthCentralWiki;
+	}
+
+	/**
 	 * @param int $index DB_MASTER/DB_REPLICA
 	 * @return DBConnRef
 	 */

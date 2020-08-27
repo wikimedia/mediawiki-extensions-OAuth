@@ -4,6 +4,7 @@ namespace MediaWiki\Extensions\OAuth\Tests\Entity;
 
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity;
+use MediaWiki\Extensions\OAuth\Entity\ClaimEntity;
 use MediaWiki\Extensions\OAuth\Entity\ScopeEntity;
 use MediaWikiTestCase;
 
@@ -13,6 +14,16 @@ use MediaWikiTestCase;
 class AccessTokenEntityTest extends MediaWikiTestCase {
 
 	public function testProperties() {
+		$claims = [
+			new ClaimEntity( 'name', 'dummyValue' ),
+			new ClaimEntity(
+				'arr',
+				[
+					'str' => 'string',
+					'num' => 9
+				]
+			)
+		];
 		$accessToken = new AccessTokenEntity(
 			Mock_ClientEntity::newMock( $this->getTestUser()->getUser(), [
 				'consumerKey' => 'dummykey'
@@ -25,6 +36,9 @@ class AccessTokenEntityTest extends MediaWikiTestCase {
 		);
 		$identifier = bin2hex( random_bytes( 40 ) );
 		$accessToken->setIdentifier( $identifier );
+		foreach ( $claims as $claim ) {
+			$accessToken->addClaim( $claim );
+		}
 
 		$this->assertSame(
 			$identifier, $accessToken->getIdentifier(),
@@ -47,5 +61,11 @@ class AccessTokenEntityTest extends MediaWikiTestCase {
 			$atScopes,
 			'Access tokens should have the same scopes as the ones that were passed'
 		);
+		$tokenClaims = $accessToken->getClaims();
+		$this->assertEquals( count( $claims ), count( $tokenClaims ) );
+		foreach ( $claims as $index => $claim ) {
+			$this->assertSame( $claim->getName(), $tokenClaims[$index]->getName() );
+			$this->assertSame( $claim->getValue(), $tokenClaims[$index]->getValue() );
+		}
 	}
 }

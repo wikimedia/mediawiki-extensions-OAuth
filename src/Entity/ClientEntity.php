@@ -4,7 +4,6 @@ namespace MediaWiki\Extensions\OAuth\Entity;
 
 use Exception;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
-use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
@@ -12,10 +11,11 @@ use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
+use MediaWiki\Extensions\OAuth\Repository\ClaimStore;
 use MWException;
 use User;
 
-class ClientEntity extends Consumer implements ClientEntityInterface {
+class ClientEntity extends Consumer implements MWClientEntityInterface {
 
 	/**
 	 * Returns the registered redirect URI (as a string).
@@ -152,9 +152,10 @@ class ClientEntity extends Consumer implements ClientEntityInterface {
 	public function getOwnerOnlyAccessToken(
 		ConsumerAcceptance $approval, $revokeExisting = false
 	) {
+		$grantType = 'client_credentials';
 		if (
 			count( $this->getAllowedGrants() ) !== 1 ||
-			$this->getAllowedGrants()[0] !== 'client_credentials'
+			$this->getAllowedGrants()[0] !== $grantType
 		) {
 			// sanity - make sure client is allowed *only* client_credentials grant,
 			// so that this AT cannot be used in other grant type requests
@@ -168,6 +169,11 @@ class ClientEntity extends Consumer implements ClientEntityInterface {
 		/** @var AccessTokenEntity $accessToken */
 		$accessToken = $accessTokenRepo->getNewToken( $this, $this->getScopes(), $approval->getUserId() );
 		'@phan-var AccessTokenEntity $accessToken';
+		$claimStore = new ClaimStore();
+		$claims = $claimStore->getClaims( $grantType, $this );
+		foreach ( $claims as $claim ) {
+			$accessToken->addClaim( $claim );
+		}
 		$accessToken->setExpiryDateTime( ( new \DateTimeImmutable() )->add(
 			new \DateInterval( 'P292277000000Y' )
 		) );

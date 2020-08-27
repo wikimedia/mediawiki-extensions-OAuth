@@ -5,6 +5,7 @@ namespace MediaWiki\Extensions\OAuth;
 use InvalidArgumentException;
 use League\OAuth2\Server\AuthorizationServer;
 use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
+use MediaWiki\Extensions\OAuth\Repository\ClaimStore;
 use MediaWiki\Extensions\OAuth\Repository\ClientRepository;
 use MediaWiki\Extensions\OAuth\Repository\ScopeRepository;
 use MediaWiki\MediaWikiServices;
@@ -51,7 +52,9 @@ class AuthorizationServerFactory {
 			new AccessTokenRepository(),
 			new ScopeRepository(),
 			$this->privateKey,
-			$this->encryptionKey
+			$this->encryptionKey,
+			null,
+			new ClaimStore()
 		);
 	}
 }
