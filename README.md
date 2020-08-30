@@ -6,6 +6,6 @@ For a full description see [Extension:OAuth on mediawiki.org](https://www.mediaw
 
 To enable the `/oauth/clients` REST API you must set
 
-    $wgRestAPIAdditionalRouteFiles[] = "$wgExtensionDirectory/OAuth/experimentalRoutes.json";
+    $wgRestAPIAdditionalRouteFiles[] = "extensions/OAuth/experimentalRoutes.json";
 
 in your `LocalSettings.php`
