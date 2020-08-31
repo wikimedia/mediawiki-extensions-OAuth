@@ -107,8 +107,13 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 		return static::OAUTH_VERSION_2;
 	}
 
+	/**
+	 * @param null|string $secret
+	 * @return bool
+	 */
 	private function isSecretValid( $secret ) {
-		return hash_equals( $secret, Utils::hmacDBSecret( $this->secretKey ) );
+		return is_string( $secret )
+			&& hash_equals( $secret, Utils::hmacDBSecret( $this->secretKey ) );
 	}
 
 	/**
