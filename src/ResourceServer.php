@@ -35,14 +35,15 @@ class ResourceServer {
 
 	public static function factory() {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
-		return new static( $config->get( 'OAuth2PublicKey' ) );
+		return new static( $config->get( 'OAuth2PublicKey' ), $config->get( 'CanonicalServer' ) );
 	}
 
 	/**
 	 * @param string $publicKey
+	 * @param string $canonicalServer
 	 */
-	protected function __construct( $publicKey ) {
-		$accessTokenRepository = new AccessTokenRepository();
+	protected function __construct( string $publicKey, string $canonicalServer ) {
+		$accessTokenRepository = new AccessTokenRepository( $canonicalServer );
 
 		$server = new \League\OAuth2\Server\ResourceServer(
 			$accessTokenRepository,

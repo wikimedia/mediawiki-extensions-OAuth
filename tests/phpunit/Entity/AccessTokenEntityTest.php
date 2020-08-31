@@ -32,6 +32,7 @@ class AccessTokenEntityTest extends MediaWikiTestCase {
 				new ScopeEntity( 'editpage' ),
 				new ScopeEntity( 'highvolume' )
 			],
+			'dummy',
 			$this->getTestUser()->getUser()->getId()
 		);
 		$identifier = bin2hex( random_bytes( 40 ) );
@@ -67,5 +68,9 @@ class AccessTokenEntityTest extends MediaWikiTestCase {
 			$this->assertSame( $claim->getName(), $tokenClaims[$index]->getName() );
 			$this->assertSame( $claim->getValue(), $tokenClaims[$index]->getValue() );
 		}
+
+		$this->assertSame( 'dummy', $accessToken->getIssuer() );
+		$accessToken->setIssuer( 'new_dummy' );
+		$this->assertSame( 'new_dummy', $accessToken->getIssuer() );
 	}
 }

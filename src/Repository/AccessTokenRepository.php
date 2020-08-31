@@ -10,11 +10,31 @@ use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationExcep
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
+use MediaWiki\MediaWikiServices;
 
 class AccessTokenRepository extends DatabaseRepository implements AccessTokenRepositoryInterface {
 	const FIELD_EXPIRES = 'oaat_expires';
 	const FIELD_ACCEPTANCE_ID = 'oaat_acceptance_id';
 	const FIELD_REVOKED = 'oaat_revoked';
+
+	/** @var string */
+	private $issuer;
+
+	/**
+	 * @param string|null $issuer
+	 */
+	public function __construct(
+		string $issuer = null
+	) {
+		if ( !$issuer ) {
+			// TODO: When the extension is converted to proper use of DI,
+			// this needs to be always injected.
+			$issuer = MediaWikiServices::getInstance()
+				->getMainConfig()
+				->get( 'CanonicalServer' );
+		}
+		$this->issuer = $issuer;
+	}
 
 	/**
 	 * Create a new access token
@@ -27,7 +47,8 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 */
 	public function getNewToken( ClientEntityInterface $clientEntity,
 		array $scopes, $userIdentifier = null ) {
-		return new AccessTokenEntity( $clientEntity, $scopes, $userIdentifier );
+		return new AccessTokenEntity( $clientEntity, $scopes,
+			$this->issuer, $userIdentifier );
 	}
 
 	/**

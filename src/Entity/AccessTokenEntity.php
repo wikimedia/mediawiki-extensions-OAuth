@@ -36,17 +36,22 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 	/**
 	 * @param ClientEntity $clientEntity
 	 * @param ScopeEntityInterface[] $scopes
+	 * @param string $issuer
 	 * @param string|null $userIdentifier
 	 * @throws OAuthServerException
 	 */
 	public function __construct(
-		ClientEntity $clientEntity, array $scopes, $userIdentifier = null
+		ClientEntity $clientEntity,
+		array $scopes,
+		string $issuer,
+		$userIdentifier = null
 	) {
 		$this->approval = $this->setApprovalFromClientScopesUser(
 			$clientEntity, $scopes, $userIdentifier
 		);
 
 		$this->setClient( $clientEntity );
+		$this->setIssuer( $issuer );
 		if ( $clientEntity->getOwnerOnly() ) {
 			if ( $userIdentifier !== null && $userIdentifier !== $clientEntity->getUserId() ) {
 				throw new InvalidArgumentException(

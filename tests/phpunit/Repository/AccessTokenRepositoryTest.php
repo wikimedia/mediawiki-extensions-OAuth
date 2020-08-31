@@ -21,7 +21,7 @@ class AccessTokenRepositoryTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		$this->accessToken = new AccessTokenEntity(
-			Mock_ClientEntity::newMock( $this->getTestUser()->getUser() ), []
+			Mock_ClientEntity::newMock( $this->getTestUser()->getUser() ), [], 'dummy'
 		);
 		$identifier = bin2hex( random_bytes( 40 ) );
 		$this->accessToken->setIdentifier( $identifier );
@@ -29,7 +29,7 @@ class AccessTokenRepositoryTest extends MediaWikiTestCase {
 			( new \DateTimeImmutable() )->add( new \DateInterval( 'PT1H' ) )
 		);
 
-		$this->accessTokenRepo = new AccessTokenRepository();
+		$this->accessTokenRepo = new AccessTokenRepository( 'dummy' );
 	}
 
 	public function testPersistingToken() {
@@ -48,5 +48,12 @@ class AccessTokenRepositoryTest extends MediaWikiTestCase {
 			$this->accessTokenRepo->isAccessTokenRevoked( $this->accessToken->getIdentifier() ),
 			'Access token should be revoked'
 		);
+	}
+
+	public function testGetNewToken() {
+		$client = Mock_ClientEntity::newMock( $this->getTestUser()->getUser() );
+		$token = $this->accessTokenRepo->getNewToken( $client, [] );
+		$this->assertSame( 'dummy', $token->getIssuer() );
+		$this->assertSame( $client, $token->getClient() );
 	}
 }
