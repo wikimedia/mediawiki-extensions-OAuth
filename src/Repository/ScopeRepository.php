@@ -26,6 +26,10 @@ class ScopeRepository implements ScopeRepositoryInterface {
 		$this->allowedScopes = array_merge( $this->allowedScopes, MWGrants::getValidGrants() );
 	}
 
+	public function getAllowedScopes() {
+		return $this->allowedScopes;
+	}
+
 	/**
 	 * Return information about a scope.
 	 *

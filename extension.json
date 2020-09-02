@@ -178,6 +178,16 @@
 			"value": "PT1M"
 		}
 	},
+	"GrantPermissions": {
+		"oauthmanageownclient": {
+			"mwoauthproposeconsumer": true,
+			"mwoauthupdateownconsumer": true,
+			"mwoauthmanagemygrants": true
+		}
+	},
+	"GrantPermissionGroups": {
+		"oauthmanageownclient": "administration"
+	},
 	"RestRoutes": [
 		{
 			"path": "/oauth2/authorize",
