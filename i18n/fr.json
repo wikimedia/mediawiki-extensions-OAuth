@@ -265,6 +265,7 @@
 	"mwoauth-form-button-approve": "Autoriser",
 	"mwoauth-form-button-cancel": "Annuler",
 	"mwoauth-error": "Erreur de connexion de l’application",
+	"mwoauth-error-missing-callback-url-non-owner": "callback_url est obligatoire pour les clients non propriétaire unique",
 	"mwoauth-grants-heading": "Droits requis :",
 	"mwoauth-grants-nogrants": "L’application n’a demandé aucun droit.",
 	"mwoauth-acceptance-cancelled": "Vous avez choisi de ne pas autoriser $1 à accéder à votre compte. $1 ne fonctionnera pas à moins que vous lui autorisiez l’accès. Vous pouvez revenir à $1 ou [[Special:OAuthManageMyGrants|gérer]] vos applications connectées.",
@@ -341,5 +342,9 @@
 	"mwoauth-consumer-access-no-user": "L’approbation du serveur doit être liée à un utilisateur valide, utilisateur avec ID 0 fourni",
 	"mwoauth-login-required-reason": "Vous devez vous connecter à votre compte {{SITENAME}} pour autoriser les applications à y accéder.",
 	"mwoauthconsumer-consumer-view": "Voir ce client",
-	"mwoauthconsumer-application-view": "Voir cette application"
+	"mwoauthconsumer-application-view": "Voir cette application",
+	"grant-oauthmanageownclient": "Gérer vos clients OAuth",
+	"mwoauth-consumer-user-mismatch": "Vous ne pouvez pas effectuer des actions sur les clients qui ne vous appartiennent pas",
+	"mwoauth-consumer-deleted-error": "Vous ne pouvez pas effectuer des actions sur les clients supprimés",
+	"mwoauth-consumer-submit-error": "Une erreur s’est produite en enregistrant un consommateur"
 }

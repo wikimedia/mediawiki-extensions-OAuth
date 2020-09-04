@@ -249,6 +249,7 @@
 	"mwoauth-form-button-approve": "Erlauben",
 	"mwoauth-form-button-cancel": "Abbrechen",
 	"mwoauth-error": "Anwendungsverbindungsfehler",
+	"mwoauth-error-missing-callback-url-non-owner": "callback_url ist für Nicht-Eigentümer-Clients erforderlich",
 	"mwoauth-grants-heading": "Angeforderte Berechtigungen:",
 	"mwoauth-grants-nogrants": "Die Anwendung hat keine Berechtigungen beantragt.",
 	"mwoauth-acceptance-cancelled": "Du hast dich entschieden, dass $1 nicht auf dein Benutzerkonto zugreifen darf. $1 wird nicht laufen, bis du den Zugriff erlaubt hast. Du kannst zu $1 zurückgehen oder deine verbundenen Anwendungen [[Special:OAuthManageMyGrants|verwalten]].",
