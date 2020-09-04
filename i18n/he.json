@@ -253,6 +253,7 @@
 	"mwoauth-form-button-approve": "לאפשר",
 	"mwoauth-form-button-cancel": "ביטול",
 	"mwoauth-error": "שגיאה בחיבור היישום",
+	"mwoauth-error-missing-callback-url-non-owner": "נדרש callback_url עבור לקוחות non-owner-only",
 	"mwoauth-grants-heading": "הרשאות מבוקשות:",
 	"mwoauth-grants-nogrants": "היישום לא ביקש שום הרשאות.",
 	"mwoauth-acceptance-cancelled": "בחרת לא לאפשר ל{{GRAMMAR:תחילית|$1}} לגשת לחשבון שלך. $1 לא יעבוד אלא אם כן תיתן לו גישה. ניתן לחזור על $1 או [[Special:OAuthManageMyGrants|לנהל]] את היישומים המחוברים שלך.",
@@ -329,5 +330,9 @@
 	"mwoauth-consumer-access-no-user": "אישור לקוח צריך להיות משויך למשתמש תקין, ניתן משתמש עם מזהה 0",
 	"mwoauth-login-required-reason": "עליך להיכנס לחשבון שלך באתר {{SITENAME}} כדי לאשר ליישומים לגשת אליו.",
 	"mwoauthconsumer-consumer-view": "הצגת הצרכן הזה",
-	"mwoauthconsumer-application-view": "הצגת היישום הזה"
+	"mwoauthconsumer-application-view": "הצגת היישום הזה",
+	"grant-oauthmanageownclient": "ניהול לקוחות ה־OAuth שלך",
+	"mwoauth-consumer-user-mismatch": "אין לך אפשר לבצע פעולות על לקוחות שאינם שייכים לך",
+	"mwoauth-consumer-deleted-error": "אין לך אפשרות לבצע בעולם על לקוחות מחוקים",
+	"mwoauth-consumer-submit-error": "אירעה שגיאה בעת שמירת צרכן"
 }

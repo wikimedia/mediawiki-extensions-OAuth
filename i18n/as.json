@@ -2,10 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Gitartha.bordoloi",
+			"Mohsin Ali",
 			"Simbu123"
 		]
 	},
 	"mwoauth-prefs-managegrants": "সংযুক্ত এপ্লিকেছনসমূহৰ",
 	"mwoauth-prefs-managegrantslink": "সংযুক্ত $1 {{PLURAL:$1|এপ্লিকেছনৰ|এপ্লিকেছনসমূহৰ}} পৰিচালনা কৰক",
-	"oauthmanagemygrants": "সংযোজিত এপ্লিকেছনসমূহৰ ব্যৱস্থাপনা কৰক"
+	"oauthmanagemygrants": "সংযোজিত এপ্লিকেছনসমূহৰ ব্যৱস্থাপনা কৰক",
+	"grant-oauthmanageownclient": "আপোনাৰ OAuth ক্লায়েণ্ট পৰিচালনা কৰক",
+	"mwoauth-consumer-user-mismatch": "আপুনি সেইবোৰ ক্লায়েণ্টৰ ওপৰত কাৰ্য্য কৰিব নোৱাৰে যিবোৰ আপোনাৰ নহয়",
+	"mwoauth-consumer-deleted-error": "মচি পেলোৱা ক্লায়েণ্টৰ ওপৰত আপুনি কাৰ্য্য কৰিব নোৱাৰে",
+	"mwoauth-consumer-submit-error": "এগৰাকী গ্ৰাহকক সাঁচি থওঁতে কিবা ত্ৰুটি ঘটিছে"
 }

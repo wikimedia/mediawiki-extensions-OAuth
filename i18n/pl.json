@@ -333,5 +333,9 @@
 	"mwoauth-consumer-access-no-user": "Zgoda wyrażona prze konsumenta musi być powiązania z prawidłowym użytkownikiem; podano użytkownika o identyfikatorze 0",
 	"mwoauth-login-required-reason": "Musisz zalogować się na {{GRAMMAR:B.lp|{{SITENAME}}}} aby dać tej aplikacji dostęp do swojego konta.",
 	"mwoauthconsumer-consumer-view": "Zobacz tego konsumenta",
-	"mwoauthconsumer-application-view": "Zobacz tę aplikację"
+	"mwoauthconsumer-application-view": "Zobacz tę aplikację",
+	"grant-oauthmanageownclient": "Zarządzenie swoimi klientami OAuth",
+	"mwoauth-consumer-user-mismatch": "Nie możesz wykonywać żadnych akcji na klientach, które do Ciebie nie należą",
+	"mwoauth-consumer-deleted-error": "Nie możesz wykonywać żadnych operacji na usuniętych klientach",
+	"mwoauth-consumer-submit-error": "Wystąpił błąd podczas zapisywania konsumenta"
 }
