@@ -2,10 +2,11 @@
 
 namespace MediaWiki\Extensions\OAuth\Rest\Handler;
 
-use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extensions\OAuth\Repository\ScopeRepository;
+use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Validator\Validator;
 use MWRestrictions;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class RequestClient extends AbstractClientHandler {
@@ -160,7 +161,9 @@ class RequestClient extends AbstractClientHandler {
 			( isset( $params['owner_only'] ) && !$params['owner_only'] ) &&
 			( isset( $params['callback_url'] ) && !$params['callback_url'] )
 		) {
-			throw new MWOAuthException( 'mwoauth-error-missing-callback-url-non-owner' );
+			throw new LocalizedHttpException(
+				new MessageValue( 'mwoauth-error-missing-callback-url-non-owner', [] ), 400
+			);
 		}
 	}
 }

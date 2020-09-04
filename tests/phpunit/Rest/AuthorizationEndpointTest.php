@@ -9,7 +9,7 @@ class AuthorizationEndpointTest extends EndpointTest {
 	/**
 	 * @return array
 	 */
-	public static function provideTestViaRouter() {
+	public function provideTestViaRouter() {
 		return [
 			'redirect to login' => [
 				[

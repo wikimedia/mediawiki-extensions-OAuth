@@ -63,6 +63,9 @@
 	"TestAutoloadNamespaces": {
 		"MediaWiki\\Extensions\\OAuth\\Tests\\": "tests/phpunit/"
 	},
+	"TestAutoloadClasses": {
+		"MediaWiki\\Extensions\\OAuth\\Tests\\TestHandlerFactory": "tests/TestHandlerFactory.php"
+	},
 	"ResourceModules": {
 		"ext.MWOAuth.styles": {
 			"styles": [

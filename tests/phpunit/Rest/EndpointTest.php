@@ -3,6 +3,7 @@
 namespace MediaWiki\Extensions\OAuth\Tests\Rest;
 
 use EmptyBagOStuff;
+use FormatJson;
 use GuzzleHttp\Psr7\Uri;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
@@ -16,8 +17,15 @@ use Title;
 use User;
 use Wikimedia\ObjectFactory;
 
+/**
+ * Class EndpointTest
+ * @package MediaWiki\Extensions\OAuth\Tests\Rest
+ */
 abstract class EndpointTest extends \MediaWikiTestCase {
 
+	/**
+	 * @throws \Exception
+	 */
 	protected function setUp() : void {
 		parent::setUp();
 
@@ -28,19 +36,39 @@ abstract class EndpointTest extends \MediaWikiTestCase {
 		RequestContext::getMain()->setTitle( Title::newMainPage() );
 	}
 
-	abstract public static function provideTestViaRouter();
+	/**
+	 * @return mixed
+	 */
+	abstract public function provideTestViaRouter();
 
+	/**
+	 * @param $path
+	 * @return Uri
+	 */
 	protected static function makeUri( $path ) {
 		return new Uri( "http://www.example.com/rest$path" );
 	}
 
-	/** @dataProvider provideTestViaRouter */
-	public function testViaRouter( $requestInfo, $responseInfo ) {
+	/**
+	 * @param array $requestInfo
+	 * @param array $responseInfo
+	 * @param callable|null $call
+	 * @dataProvider provideTestViaRouter
+	 */
+	public function testViaRouter( array $requestInfo = [], array $responseInfo = [], callable $call = null ) {
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$request = new RequestData( $requestInfo );
+
+		$user = new User;
+		if ( null !== $call ) {
+			$user = $call();
+
+			RequestContext::getMain()->setUser( $user );
+		}
+
 		$router = new Router(
 			[ __DIR__ . '/testRoutes.json' ],
 			[],
@@ -50,7 +78,7 @@ abstract class EndpointTest extends \MediaWikiTestCase {
 			new ResponseFactory( [] ),
 			new StaticBasicAuthorizer(),
 			$objectFactory,
-			new Validator( $objectFactory, $permissionManager, $request, new User ),
+			new Validator( $objectFactory, $permissionManager, $request, $user ),
 			$this->createHookContainer()
 		);
 		$response = $router->execute( $request );
@@ -65,7 +93,11 @@ abstract class EndpointTest extends \MediaWikiTestCase {
 			$this->assertSame( $responseInfo['protocolVersion'], $response->getProtocolVersion() );
 		}
 		if ( isset( $responseInfo['body'] ) ) {
-			$this->assertSame( $responseInfo['body'], $response->getBody()->getContents() );
+			$body = is_array( $responseInfo['body'] ) ?
+				$responseInfo['body'] :
+				FormatJson::decode( $responseInfo['body'], true );
+
+			$this->assertArrayEquals( $body, FormatJson::decode( $response->getBody()->getContents(), true ) );
 		}
 		$this->assertSame(
 			[],

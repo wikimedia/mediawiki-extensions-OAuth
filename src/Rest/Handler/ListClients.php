@@ -35,6 +35,17 @@ class ListClients extends SimpleHandler {
 		'description' => 'oarc_description',
 		'allowed_grants' => 'oarc_oauth2_allowed_grants',
 		'restrictions' => 'oarc_restrictions',
+		'user_id' => 'oarc_user_id',
+		'callback_is_prefix' => 'oarc_callback_is_prefix',
+		'email_authenticated' => 'oarc_email_authenticated',
+		'developer_agreement' => 'oarc_developer_agreement',
+		'owner_only' => 'oarc_owner_only',
+		'wiki' => 'oarc_wiki',
+		'secret_key' => 'oarc_secret_key',
+		'rsa_key' => 'oarc_rsa_key',
+		'stage_timestamp' => 'oarc_stage_timestamp',
+		'deleted' => 'oarc_deleted',
+		'oauth2_is_confidential' => 'oarc_oauth2_is_confidential',
 	];
 
 	/**
@@ -197,7 +208,7 @@ class ListClients extends SimpleHandler {
 				$consumer['allowed_grants'] = FormatJson::decode( $cmrAc->get( 'oauth2GrantTypes' ), 1 );
 			}
 
-			$consumer['scopes'] = FormatJson::decode( $cmrAc->getGrants(), 1 );
+			$consumer['scopes'] = $cmrAc->getGrants();
 			$consumer['restrictions'] = $cmrAc->getRestrictions();
 
 			$consumers[] = $consumer;
