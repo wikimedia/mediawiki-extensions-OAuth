@@ -8,10 +8,10 @@
 
 	var mwoauth = {
 		init: function () {
-			var form = $( '#mw-mwoauth-authorize-dialog' ),
-				accept = $( '#mw-mwoauth-accept' );
-			form.find( '.mw-htmlform-submit-buttons' ).addClass( 'mw-ui-flush-right' );
-			form.dialog( {
+			var $form = $( '#mw-mwoauth-authorize-dialog' ),
+				$accept = $( '#mw-mwoauth-accept' );
+			$form.find( '.mw-htmlform-submit-buttons' ).addClass( 'mw-ui-flush-right' );
+			$form.dialog( {
 				dialogClass: 'mw-mwoauth-authorize-jQuery-dialog',
 				width: 0.3 * $( window ).width(),
 				title: mw.msg( 'mwoauth-desc' ),
@@ -29,8 +29,8 @@
 					$( this ).dialog( 'option', 'modal', true );
 				}
 			} );
-			form.submit( function () {
-				accept.prop( 'disabled', true );
+			$form.on( 'submit', function () {
+				$accept.prop( 'disabled', true );
 			} );
 		}
 	};
