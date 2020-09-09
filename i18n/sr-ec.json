@@ -113,5 +113,9 @@
 	"echo-category-title-oauth-owner": "Развој OAuth-а",
 	"echo-category-title-oauth-admin": "Администратор OAuth-а",
 	"notification-oauth-app-body": "Разлог: $1",
-	"mwoauth-login-required-reason": "Морате се пријавити на налог на пројекту{{SITENAME}} да бисте овластили апликације да му приступе."
+	"mwoauth-login-required-reason": "Морате се пријавити на налог на пројекту{{SITENAME}} да бисте овластили апликације да му приступе.",
+	"grant-oauthmanageownclient": "управљање Вашим OAuth клијентима",
+	"mwoauth-consumer-user-mismatch": "Не можете да вршите радње над клијентима који Вам не припадају",
+	"mwoauth-consumer-deleted-error": "Не можете да вршите радње над избрисаним клијентима",
+	"mwoauth-consumer-submit-error": "Дошло је до грешке при чувању потрошача"
 }

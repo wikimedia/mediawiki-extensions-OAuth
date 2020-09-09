@@ -249,6 +249,7 @@
 	"mwoauth-form-button-approve": "Godkjenn",
 	"mwoauth-form-button-cancel": "Avbryt",
 	"mwoauth-error": "Tilkoblingsfeil for applikasjonen",
+	"mwoauth-error-missing-callback-url-non-owner": "callback_url kreves for «non-owner-only»-klienter",
 	"mwoauth-grants-heading": "Ønskede rettigheter:",
 	"mwoauth-grants-nogrants": "Applikasjonen har ikke bedt om noen rettigheter.",
 	"mwoauth-acceptance-cancelled": "Du har valgt å ikke gi «$1» tilgang til kontoen din. «$1» vil ikke fungere uten denne tilgangen. Du kan velge å gå tilbake til «$1» eller [[Special:OAuthManageMyGrants|håndtere]] dine tilkoblede apper.",
@@ -325,5 +326,9 @@
 	"mwoauth-consumer-access-no-user": "Konsumentgodkjenning må være knyttet til en gyldig bruker, bruker med ID 0 gitt",
 	"mwoauth-login-required-reason": "Du må logge inn med kontoen din på {{SITENAME}} for å autorisere tilgang til applikasjoner.",
 	"mwoauthconsumer-consumer-view": "Vis denne konsumenten",
-	"mwoauthconsumer-application-view": "Vis denne applikasjonen"
+	"mwoauthconsumer-application-view": "Vis denne applikasjonen",
+	"grant-oauthmanageownclient": "Behandle OAuth-klientene dine",
+	"mwoauth-consumer-user-mismatch": "Du kan ikke utføre handlinger på klienter som ikke tilhører deg",
+	"mwoauth-consumer-deleted-error": "Du kan ikke utføre handlinger på slettede klienter",
+	"mwoauth-consumer-submit-error": "En feil oppsto mens konsumenten ble lagret"
 }
