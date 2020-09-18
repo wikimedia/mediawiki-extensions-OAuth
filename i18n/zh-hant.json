@@ -257,6 +257,7 @@
 	"mwoauth-form-button-approve": "允許",
 	"mwoauth-form-button-cancel": "取消",
 	"mwoauth-error": "應用程式連接錯誤",
+	"mwoauth-error-missing-callback-url-non-owner": "非擁有者的客戶端需要 callback_url",
 	"mwoauth-grants-heading": "請求的權限：",
 	"mwoauth-grants-nogrants": "應用程式未請求任何權限。",
 	"mwoauth-acceptance-cancelled": "您已選擇不允許 \"$1\" 存取您的帳號，在您允許 \"$1\" 存取前將無法正常運作。 您可以返回 \"$1\" 或 [[Special:OAuthManageMyGrants|管理]] 您已連結的應用程式。",
@@ -333,5 +334,9 @@
 	"mwoauth-consumer-access-no-user": "Consumer 核准必須綁定有效的使用者，指定的使用者 ID 為 0",
 	"mwoauth-login-required-reason": "您需要登入到您的{{SITENAME}}帳號來授權應用程式以對其存取。",
 	"mwoauthconsumer-consumer-view": "檢視此 Consumer",
-	"mwoauthconsumer-application-view": "檢視此應用程式"
+	"mwoauthconsumer-application-view": "檢視此應用程式",
+	"grant-oauthmanageownclient": "管理您的 OAuth 客戶端",
+	"mwoauth-consumer-user-mismatch": "您無法對不屬於您的客戶端執行操作",
+	"mwoauth-consumer-deleted-error": "您無法對已被刪除的客戶端執行操作",
+	"mwoauth-consumer-submit-error": "儲存 consumer 時發生錯誤。"
 }
