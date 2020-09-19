@@ -91,14 +91,11 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 		$grants = $cmrAc->getGrants();
 		if ( $grants === [ 'mwoauth-authonly' ] || $grants === [ 'mwoauth-authonlyprivate' ] ) {
-			$s = $this->msg( 'grant-' . $grants[0] )->plain() . "\n";
+			$s = $this->msg( 'grant-' . $grants[0] )->plain();
+		} elseif ( $grants === [ 'basic' ] ) {
+			$s = $this->msg( 'mwoauthlistconsumers-basicgrantsonly' )->plain();
 		} else {
 			$s = \MWGrants::getGrantsWikiText( $grants, $this->getLanguage() );
-			if ( $s == '' ) {
-				$s = $this->msg( 'mwoauthlistconsumers-basicgrantsonly' )->plain();
-			} else {
-				$s .= "\n";
-			}
 		}
 
 		$stageKey = Consumer::$stageNames[$cmrAc->getDAO()->getStage()];
@@ -115,11 +112,8 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			'mwoauthlistconsumers-callbackurl' => $cmrAc->getCallbackUrl(),
 			'mwoauthlistconsumers-callbackisprefix' => $cmrAc->getCallbackIsPrefix() ?
 				$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
+			'mwoauthlistconsumers-grants' => new HtmlSnippet( $out->parseInlineAsInterface( $s ) ),
 		];
-
-		if ( $grants !== [ 'basic' ] ) {
-			$data[ 'mwoauthlistconsumers-grants' ] = new HtmlSnippet( $out->parseInlineAsInterface( $s ) );
-		}
 
 		$out->addHTML( UIUtils::generateInfoTable( $data, $this->getContext() ) );
 
