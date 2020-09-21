@@ -4,6 +4,8 @@
 			"Sveinn í Felli"
 		]
 	},
+	"mwoauth-prefs-managegrants": "Tengd forrit:",
+	"mwoauth-prefs-managegrantslink": "Sýsla með {{PLURAL:$1|$1 tengt forrit|$1 tengd forrit|0=tengd forrit}}",
 	"mwoauth-consumer-key": "Lykill notanda:",
 	"mwoauth-consumer-name": "Heiti forrits:",
 	"mwoauth-consumer-user": "Útgefandi:",
@@ -44,9 +46,11 @@
 	"mwoauthlistconsumers-status-disabled": "óvirkt",
 	"mwoauthlistconsumers-status-rejected": "hafnað",
 	"mwoauthlistconsumers-status-expired": "útrunnið",
+	"oauthmanagemygrants": "Sýsla með tengd forrit",
 	"mwoauthmanagemygrants-navigation": "Flakk:",
 	"mwoauthmanagemygrants-user": "Útgefandi:",
 	"mwoauthmanagemygrants-description": "Lýsing",
+	"mwoauthmanagemygrants-confirm-legend": "Sýsla með tengt forrit",
 	"mwoauth-form-button-approve": "Leyfa",
 	"mwoauth-form-button-cancel": "Hætta við",
 	"notification-oauth-app-body": "Ástæða: $1"
