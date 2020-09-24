@@ -62,14 +62,6 @@ class ListClients extends SimpleHandler {
 	}
 
 	/**
-	 *
-	 * @return bool
-	 */
-	public function needsReadAccess() {
-		return true;
-	}
-
-	/**
 	 * @return bool
 	 */
 	public function needsWriteAccess() {
