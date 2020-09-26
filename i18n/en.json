@@ -27,6 +27,7 @@
 	"mwoauth-consumer-owner-only-help": "Selecting this option will cause the consumer to be automatically approved and accepted for use by $1. It will not be usable by any other user, and the usual authorization flow will not function. Actions taken using this consumer will not be tagged.",
 	"mwoauth-consumer-description": "Application description:",
 	"mwoauth-consumer-callbackurl": "OAuth \"callback\" URL:",
+	"mwoauth-consumer-callbackurl-warning": "(wildcard port)",
 	"mwoauth-consumer-callbackisprefix": "Allow consumer to specify a callback in requests and use \"callback\" URL above as a required prefix.",
 	"mwoauth-consumer-granttypes": "Types of grants being requested:",
 	"mwoauth-consumer-grantsneeded": "Applicable grants:",

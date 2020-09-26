@@ -21,6 +21,7 @@ namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use Html;
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
@@ -382,7 +383,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			'mwoauth-consumer-owner-only-label' => $ownerOnly ?
 				$this->msg( 'mwoauth-consumer-owner-only', $owner ) : null,
 			'mwoauth-consumer-callbackurl' => $ownerOnly ?
-				null : $cmrAc->getCallbackUrl(),
+				null : $this->formatCallbackUrl( $cmrAc ),
 			'mwoauth-consumer-callbackisprefix' => $ownerOnly ?
 				null : ( $cmrAc->getCallbackIsPrefix() ?
 					$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ) ),
@@ -420,6 +421,25 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		];
 
 		return $options;
+	}
+
+	/**
+	 * Format a callback URL. Usually this doesn't do anything nontrivial, but it adds a warning
+	 * to callback URLs with a special meaning.
+	 * @param ConsumerAccessControl $cmrAc
+	 * @return HtmlSnippet|string Formatted callback URL, as a plaintext or HTML string
+	 */
+	protected function formatCallbackUrl( ConsumerAccessControl $cmrAc ) {
+		$url = $cmrAc->getCallbackUrl();
+		if ( $cmrAc->getDAO()->getCallbackIsPrefix() ) {
+			$urlParts = wfParseUrl( $cmrAc->getDAO()->getCallbackUrl() );
+			if ( ( $urlParts['port'] ?? null ) === 1 ) {
+				$warning = Html::element( 'span', [ 'class' => 'warning' ],
+					$this->msg( 'mwoauth-consumer-callbackurl-warning' )->text() );
+				$url = new HtmlSnippet( $url . ' ' . $warning );
+			}
+		}
+		return $url;
 	}
 
 	/**
@@ -518,4 +538,5 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	protected function getGroupName() {
 		return 'users';
 	}
+
 }

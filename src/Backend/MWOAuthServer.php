@@ -88,7 +88,9 @@ class MWOAuthServer extends OAuthServer {
 	 * client can provide a callback and the configured callback must be
 	 * a prefix of the supplied callback. The matching performed here is based
 	 * on parsed URL components rather than strict string matching. Protocol
-	 * upgrades from http to https are also allowed.
+	 * upgrades from http to https are also allowed, and the registered callback
+	 * can be made to match any port number, by specifying port 1. (This is
+	 * less secure, and only meant for demo consumers for local development.)
 	 *
 	 * @param Consumer $consumer
 	 * @param string $callback
@@ -124,9 +126,13 @@ class MWOAuthServer extends OAuthServer {
 			self::looseSchemeMatch( $knownCallback['scheme'], $reqCallback['scheme'] ) &&
 			// Host must match exactly
 			$knownCallback['host'] === $reqCallback['host'] &&
-			// Port must be either missing from both or an exact match
-			static::getOrNull( 'port', $knownCallback ) ===
-				static::getOrNull( 'port', $reqCallback ) &&
+			// Port must be either missing from both or an exact match,
+			// unless the registered callback allows any port, which is specified
+			// by using port 1.
+			( static::getOrNull( 'port', $knownCallback ) === 1 ||
+				static::getOrNull( 'port', $knownCallback ) ===
+					static::getOrNull( 'port', $reqCallback )
+			) &&
 			// Path must be an exact match if query is provided in the
 			// registered callback. Otherwise it must be a prefix match if
 			// provided in the registered callback or anything if no path was
