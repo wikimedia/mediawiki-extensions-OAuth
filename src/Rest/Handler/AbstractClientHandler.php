@@ -82,13 +82,6 @@ abstract class AbstractClientHandler extends Handler {
 	}
 
 	/**
-	 * @return bool
-	 */
-	public function needsWriteAccess() {
-		return true;
-	}
-
-	/**
 	 * Get params that have fixed values and cannot be
 	 * changed by the request params
 	 *
