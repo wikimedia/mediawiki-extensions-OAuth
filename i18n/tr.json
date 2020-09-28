@@ -9,6 +9,7 @@
 			"Meelo",
 			"Rapsar",
 			"Sayginer",
+			"Selcuksntrk",
 			"Stonecy",
 			"SwornToTranslate29",
 			"TmY e12",
@@ -259,6 +260,7 @@
 	"mwoauth-form-button-approve": "İzin ver",
 	"mwoauth-form-button-cancel": "İptal",
 	"mwoauth-error": "Uygulama Bağlantı Hatası",
+	"mwoauth-error-missing-callback-url-non-owner": "callback_url sahibi olmayan istemciler için gereklidir",
 	"mwoauth-grants-heading": "İstenen izinler:",
 	"mwoauth-grants-nogrants": "Uygulama herhangi bir izin istemedi.",
 	"mwoauth-acceptance-cancelled": "\"$1\" hesabınızın hesabınıza erişmesine izin vermemeyi seçtiniz. Erişimine izin vermediğiniz sürece \"$1\" çalışmaz. Bağlı uygulamalarınıza \"$1\" veya [[Special:OAuthManageMyGrants|yönete]] geri dönebilirsiniz.",
@@ -335,5 +337,9 @@
 	"mwoauth-consumer-access-no-user": "Tüketici onayı geçerli bir kullanıcıya bağlı olmalı, kimlik numarası 0 olan kullanıcı verilmiş olmalıdır",
 	"mwoauth-login-required-reason": "Uygulamalara erişme yetkisi vermek için {{SITENAME}} hesabınıza giriş yapmanız gerekiyor.",
 	"mwoauthconsumer-consumer-view": "Bu tüketiciyi görüntüle",
-	"mwoauthconsumer-application-view": "Bu uygulamayı görüntüle"
+	"mwoauthconsumer-application-view": "Bu uygulamayı görüntüle",
+	"grant-oauthmanageownclient": "OAuth istemcilerinizi yönetin",
+	"mwoauth-consumer-user-mismatch": "Size ait olmayan istemciler üzerinde işlem yapamazsınız",
+	"mwoauth-consumer-deleted-error": "Silinmiş olan istemciler üzerinde işlem yapamazsınız",
+	"mwoauth-consumer-submit-error": "Bir tüketiciyi kaydederken bir hata oluştu"
 }

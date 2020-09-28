@@ -34,6 +34,7 @@
 	"mwoauth-consumer-owner-only-help": "בחירת האפשרות הזאת תגרום לצרכן להיות מאושר אוטומטית וקביל לשימוש על־ידי $1. הוא לא יהיה שמיש על־ידי שום משתמש אחר, וזרימת האישור הרגילה לא תפעל. פעולות שתיעשינה באמצעות הצרכן הזה לא תתויגנה.",
 	"mwoauth-consumer-description": "תיאור היישום:",
 	"mwoauth-consumer-callbackurl": "כתובת מענה (callback) של OAuth:",
+	"mwoauth-consumer-callbackurl-warning": "(תווים כלליים בפתחה)",
 	"mwoauth-consumer-callbackisprefix": "לאפשר לצרכן להגדיר מענה (callback) בבקשות ולהשתמש בכתובת ה־\"callback\" לעיל בתור תחילית דרושה.",
 	"mwoauth-consumer-granttypes": "סוגי הזיכיונות המבוקשים:",
 	"mwoauth-consumer-grantsneeded": "זיכיונות מתאימים:",
