@@ -20,7 +20,16 @@ use Wikimedia\ParamValidator\ParamValidator;
  * information about the user and the grants of the application, respectively.
  */
 class Resource extends Handler {
-	const TYPE_PROFILE = 'profile';
+
+	/**
+	 * (string) TYPE_PROFILE constant to specify the profile type of the resource.
+	 */
+	private const TYPE_PROFILE = 'profile';
+
+	/**
+	 * (string) TYPE_SCOPES constant to specify the scopes type of the resource.
+	 */
+	private const TYPE_SCOPES = 'scopes';
 
 	/** @var ResourceServer */
 	protected $resourceServer;
@@ -82,9 +91,9 @@ class Resource extends Handler {
 		$type = $this->getRequest()->getPathParam( 'type' );
 
 		switch ( $type ) {
-			case 'profile':
+			case self::TYPE_PROFILE:
 				return $this->getProfile( $response );
-			case 'scopes':
+			case self::TYPE_SCOPES:
 				return $this->getScopes( $response );
 		}
 
@@ -127,7 +136,7 @@ class Resource extends Handler {
 	private function getScopes( $response ) {
 		$grants = $this->resourceServer->getClient()->getGrants();
 		return $this->respond( $response, [
-			'scopes' => $grants
+			self::TYPE_SCOPES => $grants
 		] );
 	}
 
@@ -145,7 +154,7 @@ class Resource extends Handler {
 		return [
 			'type' => [
 				self::PARAM_SOURCE => 'path',
-				ParamValidator::PARAM_TYPE => [ 'profile', 'scopes' ],
+				ParamValidator::PARAM_TYPE => [ self::TYPE_PROFILE, self::TYPE_SCOPES ],
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 		];
