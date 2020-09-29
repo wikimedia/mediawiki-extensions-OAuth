@@ -39,6 +39,7 @@
 	"mwoauth-consumer-owner-only-help": "Selecionar esta opção fará com que o consumidor seja automaticamente aprovado e aceito para uso em $1. Não será utilizável por nenhum outro usuário e o fluxo de autorização usual não funcionará. As ações tomadas com esse consumidor não serão marcadas.",
 	"mwoauth-consumer-description": "Descrição do aplicativo:",
 	"mwoauth-consumer-callbackurl": "OAuth \"callback\" URL:",
+	"mwoauth-consumer-callbackurl-warning": "(porta curinga)",
 	"mwoauth-consumer-callbackisprefix": "Permitir que o consumidor especifique um retorno nos pedidos e use o URL \"callback\" acima como um prefixo necessário.",
 	"mwoauth-consumer-granttypes": "Tipos de permissões sendo solicitadas:",
 	"mwoauth-consumer-grantsneeded": "Permissões aplicáveis:",
