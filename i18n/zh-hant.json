@@ -38,6 +38,7 @@
 	"mwoauth-consumer-owner-only-help": "選擇此選項將會導致 consumer 被自動核准，且接受由$1使用。這不會讓其他使用者可用，且慣有的授權流程不會進行。採用此 consumer 的操作不會被標記。",
 	"mwoauth-consumer-description": "應用程式描述：",
 	"mwoauth-consumer-callbackurl": "OAuth「回呼」URL：",
+	"mwoauth-consumer-callbackurl-warning": "（通配埠）",
 	"mwoauth-consumer-callbackisprefix": "允許 Consumer 在請求中指定一個回呼並使用上面的「回呼」URL作為一個必需的前綴。",
 	"mwoauth-consumer-granttypes": "請求的權限類型：",
 	"mwoauth-consumer-grantsneeded": "適用的權限：",
