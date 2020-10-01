@@ -29,6 +29,7 @@ class RequestClient extends AbstractClientHandler {
 	 * @inheritDoc
 	 */
 	public function getParamSettings() {
+		$scopeRepo = new ScopeRepository();
 		return [
 			'name' => [
 				self::PARAM_SOURCE => 'post',
@@ -86,11 +87,7 @@ class RequestClient extends AbstractClientHandler {
 			],
 			'scopes' => [
 				self::PARAM_SOURCE => 'post',
-				ParamValidator::PARAM_TYPE => [
-					'basic',
-					'mwoauth-authonly',
-					'mwoauth-authonlyprivate'
-				],
+				ParamValidator::PARAM_TYPE => $scopeRepo->getAllowedScopes(),
 				ParamValidator::PARAM_REQUIRED => true,
 				ParamValidator::PARAM_ISMULTI => true
 			]
