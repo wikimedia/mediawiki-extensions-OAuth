@@ -30,6 +30,7 @@
 	"mwoauth-consumer-owner-only-help": "Å velge dette alternativet gjør at konsumenten godkjennes automatisk og godtas for bruk av $1. Det vil ikke kunne brukes av andre brukere, og den vanlige autoriseringsflyten vil ikke fungere. Handlinger tatt med denne konsumenten blir ikke tagget.",
 	"mwoauth-consumer-description": "Beskrivelse av appen:",
 	"mwoauth-consumer-callbackurl": "OAuth «callback»-URL:",
+	"mwoauth-consumer-callbackurl-warning": "(jokertegn-port)",
 	"mwoauth-consumer-callbackisprefix": "La konsument angi et callback i forespørsler og bruke «callback»-URL-en ovenfor som påkrevd prefiks.",
 	"mwoauth-consumer-granttypes": "Typer tildelinger som det bes om:",
 	"mwoauth-consumer-grantsneeded": "Tilgjengelige tildelinger:",
