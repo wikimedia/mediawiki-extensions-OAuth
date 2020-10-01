@@ -87,7 +87,7 @@ class RequestClient extends AbstractClientHandler {
 			'scopes' => [
 				self::PARAM_SOURCE => 'post',
 				ParamValidator::PARAM_TYPE => [
-					'#default',
+					'basic',
 					'mwoauth-authonly',
 					'mwoauth-authonlyprivate'
 				],
