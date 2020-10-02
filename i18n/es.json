@@ -39,6 +39,7 @@
 	"mwoauth-consumer-owner-only": "Este consumidor es exclusivo para $1.",
 	"mwoauth-consumer-description": "Descripción de la aplicación:",
 	"mwoauth-consumer-callbackurl": "URL de devolución de llamada de OAuth:",
+	"mwoauth-consumer-callbackurl-warning": "(puerto comodín)",
 	"mwoauth-consumer-granttypes": "Tipo de subvenciones que se solicitan:",
 	"mwoauth-consumer-wiki-thiswiki": "Proyecto actual ($1)",
 	"mwoauth-consumer-restrictions": "Restricciones de uso:",
