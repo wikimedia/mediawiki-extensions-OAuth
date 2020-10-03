@@ -188,6 +188,7 @@ class ListClients extends SimpleHandler {
 			$consumer['version'] = $cmrAc->getVersion();
 			$consumer['callback_url'] = $cmrAc->getCallbackUrl();
 			$consumer['description'] = $cmrAc->getDescription();
+			$consumer['client_key'] = $cmrAc->getConsumerKey();
 
 			$consumer['stage'] = (int)$cmrAc->getStage();
 			$consumer['oauth_version'] = $cmrAc->getOAuthVersion();
