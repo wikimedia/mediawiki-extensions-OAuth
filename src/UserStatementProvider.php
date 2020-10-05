@@ -59,7 +59,7 @@ class UserStatementProvider {
 		// Issuer Identifier for the Issuer of the response.
 		$statement['iss'] = $this->config->get( 'CanonicalServer' );
 		// Subject identifier. A locally unique and never reassigned identifier.
-		$statement['sub'] = Utils::getCentralIdFromLocalUser( $this->user );
+		// T264560: sub added via $this->getUserProfile()
 		// Audience(s) that this ID Token is intended for.
 		$statement['aud'] = $this->consumer->getConsumerKey();
 		// Expiration time on or after which the ID Token MUST NOT be accepted for processing.
@@ -79,7 +79,9 @@ class UserStatementProvider {
 	 * @return array
 	 */
 	public function getUserProfile() {
-		$profile = [];
+		$profile = [
+			'sub' => Utils::getCentralIdFromLocalUser( $this->user ),
+		];
 		// Include some MediaWiki info about the user
 		if ( !$this->user->isHidden() ) {
 			$profile['username'] = $this->user->getName();
