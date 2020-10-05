@@ -9,6 +9,8 @@ use MediaWiki\Extensions\OAuth\Backend\MWOAuthDataStore;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
+use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
@@ -144,7 +146,7 @@ class ConsumerSubmitControl extends SubmitControl {
 		$user = $this->getUser();
 		if ( !$user->getId() ) {
 			return $this->failure( 'not_logged_in', 'badaccess-group0' );
-		} elseif ( $user->isLocked() || $wgBlockDisablesLogin && $user->isBlocked() ) {
+		} elseif ( $user->isLocked() || $wgBlockDisablesLogin && $user->getBlock() ) {
 			return $this->failure( 'user_blocked', 'badaccess-group0' );
 		} elseif ( wfReadOnly() ) {
 			return $this->failure( 'readonly', 'readonlytext', wfReadOnlyReason() );
@@ -159,6 +161,7 @@ class ConsumerSubmitControl extends SubmitControl {
 		$context = $this->getContext();
 		$user = $this->getUser(); // proposer or admin
 		$dbw = $this->dbw; // convenience
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
 		if ( !$centralUserId ) { // sanity
@@ -167,7 +170,7 @@ class ConsumerSubmitControl extends SubmitControl {
 
 		switch ( $action ) {
 		case 'propose':
-			if ( !$user->isAllowed( 'mwoauthproposeconsumer' ) ) {
+			if ( !$permissionManager->userHasRight( $user, 'mwoauthproposeconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			} elseif ( !$user->isEmailConfirmed() ) {
 				return $this->failure( 'email_not_confirmed', 'mwoauth-consumer-email-unconfirmed' );
@@ -287,7 +290,7 @@ class ConsumerSubmitControl extends SubmitControl {
 
 			return $this->success( [ 'consumer' => $cmr, 'accessToken' => $accessToken ] );
 		case 'update':
-			if ( !$user->isAllowed( 'mwoauthupdateownconsumer' ) ) {
+			if ( !$permissionManager->userHasRight( $user, 'mwoauthupdateownconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			}
 
@@ -301,7 +304,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				&& $cmr->getStage() !== Consumer::STAGE_PROPOSED
 			) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
-			} elseif ( $cmr->getDeleted() && !$user->isAllowed( 'mwoauthsuppress' ) ) {
+			} elseif ( $cmr->getDeleted() && !$permissionManager->userHasRight( $user, 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' ); // sanity
 			} elseif ( !$cmr->checkChangeToken( $context, $this->vals['changeToken'] ) ) {
 				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
@@ -324,7 +327,7 @@ class ConsumerSubmitControl extends SubmitControl {
 			$cmra = null;
 			$accessToken = null;
 			if ( $cmr->getOwnerOnly() && $this->vals['resetSecret'] ) {
-				$cmra = $cmr->getCurrentAuthorization( $user, wfWikiID() );
+				$cmra = $cmr->getCurrentAuthorization( $user, WikiMap::getCurrentWikiId() );
 				$accessToken = MWOAuthDataStore::newToken();
 				$fields = [
 					'wiki'         => $cmr->getWiki(),
@@ -352,7 +355,7 @@ class ConsumerSubmitControl extends SubmitControl {
 
 			return $this->success( [ 'consumer' => $cmr, 'accessToken' => $accessToken ] );
 		case 'approve':
-			if ( !$user->isAllowed( 'mwoauthmanageconsumer' ) ) {
+			if ( !$permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			}
 
@@ -365,7 +368,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				Consumer::STAGE_REJECTED,
 			] ) ) {
 				return $this->failure( 'not_proposed', 'mwoauth-consumer-not-proposed' );
-			} elseif ( $cmr->getDeleted() && !$user->isAllowed( 'mwoauthsuppress' ) ) {
+			} elseif ( $cmr->getDeleted() && !$permissionManager->userHasRight( $user, 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			} elseif ( !$cmr->checkChangeToken( $context, $this->vals['changeToken'] ) ) {
 				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
@@ -384,7 +387,7 @@ class ConsumerSubmitControl extends SubmitControl {
 
 			return $this->success( $cmr );
 		case 'reject':
-			if ( !$user->isAllowed( 'mwoauthmanageconsumer' ) ) {
+			if ( !$permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			}
 
@@ -393,9 +396,9 @@ class ConsumerSubmitControl extends SubmitControl {
 				return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
 			} elseif ( $cmr->getStage() !== Consumer::STAGE_PROPOSED ) {
 				return $this->failure( 'not_proposed', 'mwoauth-consumer-not-proposed' );
-			} elseif ( $cmr->getDeleted() && !$user->isAllowed( 'mwoauthsuppress' ) ) {
+			} elseif ( $cmr->getDeleted() && !$permissionManager->userHasRight( $user, 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
-			} elseif ( $this->vals['suppress'] && !$user->isAllowed( 'mwoauthsuppress' ) ) {
+			} elseif ( $this->vals['suppress'] && !$permissionManager->userHasRight( $user, 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			} elseif ( !$cmr->checkChangeToken( $context, $this->vals['changeToken'] ) ) {
 				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
@@ -414,9 +417,9 @@ class ConsumerSubmitControl extends SubmitControl {
 
 			return $this->success( $cmr );
 		case 'disable':
-			if ( !$user->isAllowed( 'mwoauthmanageconsumer' ) ) {
+			if ( !$permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
-			} elseif ( $this->vals['suppress'] && !$user->isAllowed( 'mwoauthsuppress' ) ) {
+			} elseif ( $this->vals['suppress'] && !$permissionManager->userHasRight( $user, 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			}
 
@@ -427,7 +430,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				&& $cmr->getDeleted() == $this->vals['suppress']
 			) {
 				return $this->failure( 'not_approved', 'mwoauth-consumer-not-approved' );
-			} elseif ( $cmr->getDeleted() && !$user->isAllowed( 'mwoauthsuppress' ) ) {
+			} elseif ( $cmr->getDeleted() && !$permissionManager->userHasRight( $user, 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			} elseif ( !$cmr->checkChangeToken( $context, $this->vals['changeToken'] ) ) {
 				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
@@ -446,7 +449,7 @@ class ConsumerSubmitControl extends SubmitControl {
 
 			return $this->success( $cmr );
 		case 'reenable':
-			if ( !$user->isAllowed( 'mwoauthmanageconsumer' ) ) {
+			if ( !$permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			}
 
@@ -455,7 +458,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
 			} elseif ( $cmr->getStage() !== Consumer::STAGE_DISABLED ) {
 				return $this->failure( 'not_disabled', 'mwoauth-consumer-not-disabled' );
-			} elseif ( $cmr->getDeleted() && !$user->isAllowed( 'mwoauthsuppress' ) ) {
+			} elseif ( $cmr->getDeleted() && !$permissionManager->userHasRight( $user, 'mwoauthsuppress' ) ) {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			} elseif ( !$cmr->checkChangeToken( $context, $this->vals['changeToken'] ) ) {
 				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
