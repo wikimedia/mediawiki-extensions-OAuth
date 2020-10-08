@@ -9,6 +9,10 @@ use MWRestrictions;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
+/**
+ * Handles the oauth2/client endpoint, which creates
+ * a new consumer for the user
+ */
 class RequestClient extends AbstractClientHandler {
 
 	/**
