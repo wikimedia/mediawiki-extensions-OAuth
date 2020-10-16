@@ -134,7 +134,6 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	 */
 	protected function handleConsumerForm( $acceptanceId, $type ) {
 		$user = $this->getUser();
-		$lang = $this->getLanguage();
 		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
