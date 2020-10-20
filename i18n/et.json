@@ -6,6 +6,7 @@
 		]
 	},
 	"mwoauth-desc": "Võimaldab kasutada OAuthi versioone 1.0a ja 2.0 API-volitamiseks.",
+	"mwoauth-nosubpage-explanation": "OAuth on mehhanism, mis võimaldab välistel rakendustel {{GRAMMAR:genitive|{{SITENAME}}}} kasutaja identida või toimida tema nimel, kui see kasutaja annab selleks loa.\n\nSelleks et see lehekülg midagi teeks, on vaja rohkem parameetreid. Kui väline rakendus suunas sind siia, siis on selles rakenduses tõenäoliselt viga. Peaksid võtma ühendust rakenduse autoriga.",
 	"mwoauth-prefs-managegrants": "Ühendatud rakendused:",
 	"mwoauth-prefs-managegrantslink": "Halda {{PLURAL:$1|üht ühendatud rakendust|$1 ühendatud rakendust|0=ühendatud rakendusi}}",
 	"mwoauth-consumer-allwikis": "Kõigis selle võrgukoha projektides",
@@ -164,5 +165,6 @@
 	"notification-oauth-app-reenable-primary-link": "Vaata rakendust",
 	"notification-oauth-app-body": "Põhjus: $1",
 	"mwoauth-oauth-version": "OAuthi protokolli versioon:",
-	"mwoauthconsumer-application-view": "vaata seda rakendust"
+	"mwoauthconsumer-application-view": "vaata seda rakendust",
+	"grant-oauthmanageownclient": "Enda OAuthi-klientide haldamine"
 }

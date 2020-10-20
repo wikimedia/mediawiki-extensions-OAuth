@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ahonc",
+			"Andriy.v",
 			"Andriykopanytsia",
 			"Base",
 			"Macofe",
@@ -40,8 +41,8 @@
 	"mwoauth-consumer-granttypes": "Типи доступу, які запитуються:",
 	"mwoauth-consumer-grantsneeded": "Придатні гранти:",
 	"mwoauth-consumer-required-grant": "Застосовні до споживача",
-	"mwoauth-consumer-wiki": "Придатний проект:",
-	"mwoauth-consumer-wiki-thiswiki": "Поточний проект ($1)",
+	"mwoauth-consumer-wiki": "Придатний проєкт:",
+	"mwoauth-consumer-wiki-thiswiki": "Поточний проєкт ($1)",
 	"mwoauth-consumer-restrictions": "Обмеження на використання:",
 	"mwoauth-consumer-restrictions-json": "Обмеження на користування (JSON):",
 	"mwoauth-consumer-rsakey": "Відкритий ключ RSA (необов'язково):",
@@ -157,7 +158,7 @@
 	"mwoauthlistconsumers-version": "Споживча версія",
 	"mwoauthlistconsumers-user": "Видавець",
 	"mwoauthlistconsumers-description": "Опис",
-	"mwoauthlistconsumers-wiki": "Придатний проект",
+	"mwoauthlistconsumers-wiki": "Придатний проєкт",
 	"mwoauthlistconsumers-callbackurl": "URL «зворотного виклику» OAuth",
 	"mwoauthlistconsumers-callbackisprefix": "Дозволяти споживачеві вказати зворотний виклик у запиті використовувати URL «зворотного виклику» вище як обов'язковий префікс.",
 	"mwoauthlistconsumers-grants": "Застосовні ґранти",
