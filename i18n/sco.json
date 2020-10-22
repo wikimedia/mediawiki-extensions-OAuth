@@ -6,9 +6,13 @@
 		]
 	},
 	"mwoauth-db-readonly": "The OAuth database is temperarilie lockit. Please ettle at it again in twa-three minutes.",
+	"mwoauth-consumer-stage-approved": "appruived",
 	"mwoauthconsumerregistration-description": "Descreeption",
 	"mwoauthmanageconsumers-description": "Descreeption",
+	"mwoauthmanageconsumers-approve": "Appruived",
+	"mwoauthmanageconsumers-reenable": "Appruived",
 	"mwoauthlistconsumers-description": "Descreeption",
+	"mwoauthlistconsumers-status-approved": "appruived",
 	"mwoauthmanagemygrants-description": "Descreeption",
 	"mwoauthmanagemygrants-basic-tooltip": "Why can Ah naw update this graunt? This graunt gies yer connected appleecation basic permeessions that it requires fer tae function properlie. Gif ye dinna want this connected appleecation tae hae thir richts, ye shid revoke the appleecation's access."
 }
