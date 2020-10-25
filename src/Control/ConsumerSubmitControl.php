@@ -161,7 +161,6 @@ class ConsumerSubmitControl extends SubmitControl {
 		$context = $this->getContext();
 		$user = $this->getUser(); // proposer or admin
 		$dbw = $this->dbw; // convenience
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
 		if ( !$centralUserId ) { // sanity
