@@ -28,6 +28,7 @@ use MediaWiki\Extensions\OAuth\Backend\MWOAuthServer;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Backend\MWOAuthServer
+ * @group OAuth
  */
 class MWOAuthServerTest extends \PHPUnit\Framework\TestCase {
 

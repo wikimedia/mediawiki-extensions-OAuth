@@ -9,6 +9,7 @@ use User;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Backend\MWOAuthServer
+ * @group OAuth
  */
 class MWOAuthHooksTest extends TestCase {
 

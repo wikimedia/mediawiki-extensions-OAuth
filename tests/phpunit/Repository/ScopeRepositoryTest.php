@@ -8,6 +8,7 @@ use MediaWikiTestCase;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Repository\ScopeRepository
+ * @group OAuth
  */
 class ScopeRepositoryTest extends MediaWikiTestCase {
 	public function testScopes() {

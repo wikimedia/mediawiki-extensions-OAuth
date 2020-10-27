@@ -11,6 +11,7 @@ use WikiMap;
 /**
  * @covers \MediaWiki\Extensions\OAuth\Rest\Handler\ResetClientSecret
  * @group Database
+ * @group OAuth
  */
 class ResetClientSecretEndpointTest extends EndpointTest {
 

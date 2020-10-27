@@ -8,6 +8,7 @@ use MediaWikiTestCase;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Repository\AuthCodeRepository
+ * @group OAuth
  */
 class AuthCodeRepositoryTest extends MediaWikiTestCase {
 	protected $authCodeToken;

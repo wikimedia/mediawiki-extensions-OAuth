@@ -10,6 +10,7 @@ use MediaWikiTestCase;
 /**
  * @covers \MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository
  * @group Database
+ * @group OAuth
  */
 class AccessTokenRepositoryTest extends MediaWikiTestCase {
 	protected $accessToken;

@@ -4,6 +4,7 @@ namespace MediaWiki\Extensions\OAuth\Tests\Rest;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Rest\Handler\AccessToken
+ * @group OAuth
  */
 class AccessTokenEndpointTest extends EndpointTest {
 	public function provideTestViaRouter() {

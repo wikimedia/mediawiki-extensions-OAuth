@@ -10,6 +10,7 @@ use User;
 /**
  * @covers \MediaWiki\Extensions\OAuth\Rest\Handler\ListClients
  * @group Database
+ * @group OAuth
  */
 class ListClientsEndpointTest extends EndpointTest {
 

@@ -8,6 +8,7 @@ use WikiMap;
 /**
  * @covers \MediaWiki\Extensions\OAuth\Rest\Handler\RequestClient
  * @group Database
+ * @group OAuth
  */
 class RequestClientEndpointTest extends EndpointTest {
 

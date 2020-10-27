@@ -22,6 +22,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokens
  * @covers \MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\ClientCredentials
  * @covers \MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\RefreshToken
+ * @group OAuth
  */
 class AuthorizationProviderTest extends MediaWikiTestCase {
 

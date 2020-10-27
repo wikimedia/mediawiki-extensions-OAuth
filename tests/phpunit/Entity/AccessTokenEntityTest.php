@@ -10,6 +10,7 @@ use MediaWikiTestCase;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity
+ * @group OAuth
  */
 class AccessTokenEntityTest extends MediaWikiTestCase {
 

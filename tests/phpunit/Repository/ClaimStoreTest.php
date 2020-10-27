@@ -11,6 +11,7 @@ use MediaWikiTestCase;
 /**
  * @covers \MediaWiki\Extensions\OAuth\Repository\ClaimStore
  * @group Database
+ * @group OAuth
  */
 class ClaimStoreTest extends MediaWikiTestCase {
 

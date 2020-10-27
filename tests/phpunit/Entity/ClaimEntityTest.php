@@ -5,6 +5,9 @@ namespace MediaWiki\Extensions\OAuth\Tests\Entity;
 use MediaWiki\Extensions\OAuth\Entity\ClaimEntity;
 use MediaWikiTestCase;
 
+/**
+ * @group OAuth
+ */
 class ClaimEntityTest extends MediaWikiTestCase {
 	public function provideClaims() {
 		yield 'string claim' => [

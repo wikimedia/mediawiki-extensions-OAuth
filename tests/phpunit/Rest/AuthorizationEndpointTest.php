@@ -4,6 +4,7 @@ namespace MediaWiki\Extensions\OAuth\Tests\Rest;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Rest\Handler\Authorize
+ * @group OAuth
  */
 class AuthorizationEndpointTest extends EndpointTest {
 	/**
