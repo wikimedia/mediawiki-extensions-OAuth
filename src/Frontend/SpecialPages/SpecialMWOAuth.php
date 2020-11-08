@@ -72,7 +72,10 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 		$user = $this->getUser();
 		$request = $this->getRequest();
-		$this->getOutput()->disallowUserJs();
+
+		$output = $this->getOutput();
+		$output->disallowUserJs();
+
 		$format = $request->getVal( 'format', 'raw' );
 
 		try {
@@ -93,6 +96,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					$token = $oauthServer->fetch_request_token( $oauthRequest );
 					$this->returnToken( $token, $format );
 					break;
+
 				case 'approve':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_2 );
 					$format = 'html';
@@ -113,6 +117,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					}
 
 					break;
+
 				case 'authorize':
 				case 'authenticate':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
@@ -141,6 +146,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 						}
 					}
 					break;
+
 				case 'token':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
 					$oauthServer = Utils::newMWOAuthServer();
@@ -157,8 +163,8 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 						$redirUrl = str_replace(
 							'http://', 'https://', $request->getFullRequestURL()
 						);
-						$this->getOutput()->redirect( $redirUrl );
-						$this->getOutput()->addVaryHeader( 'X-Forwarded-Proto' );
+						$output->redirect( $redirUrl );
+						$output->addVaryHeader( 'X-Forwarded-Proto' );
 						break;
 					}
 
@@ -169,6 +175,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					}
 					$this->returnToken( $token, $format );
 					break;
+
 				case 'verified':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
 					$format = 'html'; // for exceptions
@@ -183,7 +190,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 							) )
 						] );
 					}
-					$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
+					$output->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
 					$this->showResponse(
 						$this->msg( 'mwoauth-verified',
 							wfEscapeWikiText( $verifier ),
@@ -192,12 +199,14 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 						$format
 					);
 					break;
+
 				case 'grants':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
 					// Backwards compatibility
 					$listGrants = \SpecialPage::getTitleFor( 'ListGrants' );
-					$this->getOutput()->redirect( $listGrants->getFullURL() );
+					$output->redirect( $listGrants->getFullURL() );
 					break;
+
 				case 'identify':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
 					$format = 'json'; // we only return JWT, so we assume json
@@ -239,6 +248,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					// We know the identity of the user who granted the authorization
 					$this->outputJWT( $localUser, $consumer, $oauthRequest, $format, $access );
 					break;
+
 				case 'rest_redirect':
 					$query = $this->getRequest()->getQueryValues();
 					$restUrl = $query['rest_url'];
@@ -247,13 +257,14 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 					$target = wfExpandUrl( $restUrl );
 
-					$this->getOutput()->redirect( wfAppendQuery( $target, $query ) );
+					$output->redirect( wfAppendQuery( $target, $query ) );
 					break;
+
 				case '':
-					$output = $this->getOutput();
 					$this->addHelpLink( 'Help:OAuth' );
 					$output->addWikiMsg( 'mwoauth-nosubpage-explanation' );
 					break;
+
 				default:
 					$format = $request->getVal( 'format', 'html' );
 					$dbr = Utils::getCentralDB( DB_REPLICA );
@@ -303,7 +314,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			);
 		}
 
-		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.styles' );
+		$output->addModuleStyles( 'ext.MWOAuth.styles' );
 	}
 
 	/**
@@ -328,12 +339,14 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			return;
 		}
 
-		$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
-		$this->getOutput()->addWikiMsg(
+		$output = $this->getOutput();
+
+		$output->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
+		$output->addWikiMsg(
 			'mwoauth-acceptance-cancelled',
 			$cmrAc->getName()
 		);
-		$this->getOutput()->addReturnTo( \Title::newMainPage() );
+		$output->addReturnTo( \Title::newMainPage() );
 	}
 
 	/**
@@ -358,7 +371,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	}
 
 	protected function handleAuthorizationForm( $requestToken, $consumerKey, $authenticate ) {
-		$this->getOutput()->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
+		$output = $this->getOutput();
+
+		$output->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
 		$user = $this->getUser();
 
 		$oauthServer = Utils::newMWOAuthServer();
@@ -411,15 +426,15 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 				$callback = $cmrAc->getDAO()->authorize(
 					$user, false, $cmrAc->getDAO()->getGrants(), $requestToken
 				);
-				$this->getOutput()->redirect( $callback );
+				$output->redirect( $callback );
 			}
 			return;
 		}
 
-		$this->getOutput()->addModuleStyles(
+		$output->addModuleStyles(
 			[ 'mediawiki.ui', 'mediawiki.ui.button', 'ext.MWOAuth.Styles' ]
 		);
-		$this->getOutput()->addModules( 'ext.MWOAuth.AuthorizeDialog' );
+		$output->addModules( 'ext.MWOAuth.AuthorizeDialog' );
 
 		$control = new ConsumerAcceptanceSubmitControl(
 			$this->getContext(), [], Utils::getCentralDB( DB_MASTER ), $this->oauthVersion
@@ -510,11 +525,11 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 		$form->addFooterText( $this->getSkin()->footerLink( 'privacy', 'privacypage' ) );
 
-		$this->getOutput()->addHTML(
+		$output->addHTML(
 			'<div id="mw-mwoauth-authorize-dialog" class="mw-ui-container">' );
 		$status = $form->show();
 
-		$this->getOutput()->addHTML( '</div>' );
+		$output->addHTML( '</div>' );
 		if ( $status instanceof \Status && $status->isOK() ) {
 			if ( $this->oauthVersion === Consumer::OAUTH_VERSION_2 ) {
 				$this->redirectToREST( [
@@ -523,7 +538,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			} else {
 				// Redirect to callback url
 				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-				$this->getOutput()->redirect( $status->value['result']['callbackUrl'] );
+				$output->redirect( $status->value['result']['callbackUrl'] );
 			}
 		}
 	}
@@ -551,8 +566,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		);
 		$returnToQuery = wfArrayToCgi( $returnToQuery );
 
-		$this->getOutput()->disable();
-		$this->getOutput()->getRequest()->response()->header(
+		$output = $this->getOutput();
+		$output->disable();
+		$output->getRequest()->response()->header(
 			'Location: ' . "$expanded?{$returnToQuery}"
 		);
 	}
@@ -687,7 +703,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	private function showResponse( $data, $format ) {
 		$out = $this->getOutput();
 		if ( $format == 'raw' || $format == 'json' ) {
-			$this->getOutput()->disable();
+			$out->disable();
 			// Cancel output buffering and gzipping if set
 			wfResetOutputBuffers();
 			// We must not allow the output to be Squid cached
