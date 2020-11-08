@@ -72,6 +72,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 		$user = $this->getUser();
 		$request = $this->getRequest();
+		$this->getOutput()->disallowUserJs();
 		$format = $request->getVal( 'format', 'raw' );
 
 		try {
