@@ -44,6 +44,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		global $wgMWOAuthSecureTokenTransfer, $wgMWOAuthReadOnly, $wgBlockDisablesLogin;
 
 		$this->setHeaders();
+		$this->getOutput()->disallowUserJs();
 
 		$user = $this->getUser();
 		$request = $this->getRequest();
