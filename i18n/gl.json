@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"ArenaL5",
 			"Banjo",
 			"Elisardojm",
 			"Fisterraeomar",
@@ -18,7 +19,7 @@
 	"mwoauth-field-hidden": "(esta información está agochada)",
 	"mwoauth-field-private": "(esta información é privada)",
 	"mwoauth-prefs-managegrants": "Aplicacións conectadas:",
-	"mwoauth-prefs-managegrantslink": "Administrar $1 {{PLURAL:$1|aplicación conectada|aplicacións conectadas}}",
+	"mwoauth-prefs-managegrantslink": "Administrar {{PLURAL:$1|$1 aplicación conectada|$1 aplicacións conectadas|0=aplicacións conectadas}}",
 	"mwoauth-consumer-allwikis": "Todos os proxectos deste sitio",
 	"mwoauth-consumer-key": "Clave do consumidor:",
 	"mwoauth-consumer-name": "Nome da aplicación:",
@@ -71,9 +72,9 @@
 	"mwoauthconsumerregistration-propose": "Propoñer un novo consumidor",
 	"mwoauthconsumerregistration-list": "A miña lista de consumidores",
 	"mwoauthconsumerregistration-main": "Principal",
-	"mwoauthconsumerregistration-propose-text": "Os desenvolvedores deben utilizar o formulario inferior para propoñer un novo consumidor OAuth (véxase a [//www.mediawiki.org/wiki/Extension:OAuth documentación da extensión] para atopar máis detalles). Despois de enviar este formulario, recibirá un pase que a súa aplicación usará para identificarse en MediaWiki. Un administrador de OAuth terá que aprobar a súa aplicación antes de poder ser autorizada por outros usuarios.\n\nAlgunhas recomendacións e observacións:\n* Intente utilizar as menos concesións posibles. Evite as concesións que non sexan realmente necesarias agora.\n* As versións son da forma \"maior.menor.lanzamento\" (os dous últimos son opcionais) e aumentan cando son necesarios cambios nas concesións.\n* Achegue unha clave RSA pública (en formato PEM) se fose posible; en caso contrario, haberá que utilizar un pase secreto (menos seguro).\n* Pode empregar o ID dun proxecto para restrinxir o consumidor a un único proxecto neste sitio (utilice \"*\" para todos os proxectos).",
+	"mwoauthconsumerregistration-propose-text": "Os desenvolvedores deben utilizar o formulario inferior para propoñer un novo consumidor OAuth (véxase a [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth documentación da extensión] para atopar máis detalles). Despois de enviar este formulario, recibirá un pase que a súa aplicación usará para identificarse en MediaWiki. Un administrador de OAuth terá que aprobar a súa aplicación antes de poder ser autorizada por outros usuarios.\n\nAlgunhas recomendacións e observacións:\n* Intente utilizar as menos concesións posibles. Evite as concesións que non sexan realmente necesarias agora.\n* As versións son da forma \"maior.menor.lanzamento\" (os dous últimos son opcionais) e aumentan cando son necesarios cambios nas concesións.\n* Achegue unha clave RSA pública (en formato PEM) se fose posible; en caso contrario, haberá que utilizar un pase secreto (menos seguro).\n* Pode empregar o ID dun proxecto para restrinxir o consumidor a un único proxecto neste sitio (utilice \"*\" para todos os proxectos).",
 	"mwoauthconsumerregistration-update-text": "Utilice o formulario inferior para actualizar aspectos dun consumidor OAuth que controle.\n\nTodos os valores que haxa aquí sobrescribirán os anteriores. Non deixe campos en branco a menos que queira limpar eses valores.",
-	"mwoauthconsumerregistration-maintext": "Esta páxina está destinada a que os desenvolvedores propoñan e actualicen aplicacións de consumidores OAuth no rexistro do sitio.\n\nDesde aquí, pode:\n* [[Special:OAuthConsumerRegistration/propose|Solicitar un pase para un novo consumidor]].\n* [[Special:OAuthConsumerRegistration/list|Administrar os consumidores existentes]].\n\nPara obter máis información sobre OAuth, consulte a [//www.mediawiki.org/wiki/Extension:OAuth documentación da extensión].",
+	"mwoauthconsumerregistration-maintext": "Esta páxina está destinada a que os desenvolvedores propoñan e actualicen aplicacións de consumidores OAuth no rexistro do sitio.\n\nDesde aquí, pode:\n* [[Special:OAuthConsumerRegistration/propose|Solicitar un pase para un novo consumidor]].\n* [[Special:OAuthConsumerRegistration/list|Administrar os consumidores existentes]].\n\nPara obter máis información sobre OAuth, consulte a [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth documentación da extensión].",
 	"mwoauthconsumerregistration-propose-legend": "Nova aplicación de consumidores OAuth",
 	"mwoauthconsumerregistration-update-legend": "Actualizar a aplicación de consumidores OAuth",
 	"mwoauthconsumerregistration-propose-submit": "Propoñer o consumidor",
