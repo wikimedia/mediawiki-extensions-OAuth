@@ -220,6 +220,84 @@ class RequestClientEndpointTest extends EndpointTest {
 					return $user;
 				}
 			],
+			'Successful scopes values' => [
+				[
+					'method' => 'POST',
+					'uri' => self::makeUri( '/oauth2/client' ),
+					'postParams' => [ 'scopes' => 'basic' ] + $this->postParams,
+					'headers' => [
+						'Content-Type' => 'application/json'
+					],
+				],
+				[
+					'statusCode' => 200,
+					'reasonPhrase' => 'OK',
+					'protocolVersion' => '1.1'
+				],
+				function () {
+					$user = User::createNew( 'RequestClientTestUser7' );
+					$user->setEmail( 'test@test.com' );
+
+					return $user;
+				}
+			],
+			'Scope with mwoauth-authonly' => [
+				[
+					'method' => 'POST',
+					'uri' => self::makeUri( '/oauth2/client' ),
+					'postParams' => [ 'scopes' => 'mwoauth-authonly' ] + $this->postParams,
+					'headers' => [
+						'Content-Type' => 'application/json'
+					],
+				],
+				[
+					'statusCode' => 200,
+					'reasonPhrase' => 'OK',
+					'protocolVersion' => '1.1'
+				],
+				function () {
+					$user = User::createNew( 'RequestClientTestUser8' );
+					$user->setEmail( 'test@test.com' );
+
+					return $user;
+				}
+			],
+			'Scope with mwoauth-authonlyprivate' => [
+				[
+					'method' => 'POST',
+					'uri' => self::makeUri( '/oauth2/client' ),
+					'postParams' => [ 'scopes' => 'mwoauth-authonlyprivate' ] + $this->postParams,
+					'headers' => [
+						'Content-Type' => 'application/json'
+					],
+				],
+				[
+					'statusCode' => 200,
+					'reasonPhrase' => 'OK',
+					'protocolVersion' => '1.1'
+				],
+				function () {
+					$user = User::createNew( 'RequestClientTestUser9' );
+					$user->setEmail( 'test@test.com' );
+
+					return $user;
+				}
+			],
+			'Failed scopes values' => [
+				[
+					'method' => 'POST',
+					'uri' => self::makeUri( '/oauth2/client' ),
+					'postParams' => [ 'scopes' => 'wrong' ] + $this->postParams,
+					'headers' => [
+						'Content-Type' => 'application/json'
+					],
+				],
+				[
+					'statusCode' => 400,
+					'reasonPhrase' => 'Bad Request',
+					'protocolVersion' => '1.1'
+				],
+			],
 		];
 	}
 }
