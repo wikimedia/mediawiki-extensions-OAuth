@@ -55,11 +55,12 @@ abstract class AbstractClientHandler extends Handler {
 				}
 
 				$data = [
-					'name' => $clientAccess->getName(),
-					'client_key' => $clientAccess->getConsumerKey(),
-					'secret' => Utils::hmacDBSecret( $clientAccess->getSecretKey() )
+					'name' => $client->getName(),
+					'client_key' => $client->getConsumerKey(),
+					'secret' => Utils::hmacDBSecret( $client->getSecretKey() )
 				];
-				if ( $clientAccess->getOwnerOnly() ) {
+
+				if ( $client->getOwnerOnly() ) {
 					$accessToken = $value['result']['accessToken'];
 					if ( $accessToken instanceof AccessTokenEntityInterface ) {
 						$data['access_token'] = $accessToken->getIdentifier();
