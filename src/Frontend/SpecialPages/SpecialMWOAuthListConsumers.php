@@ -214,7 +214,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			$this->getOutput()->addWikiMsg( "mwoauthlistconsumers-none" );
 		}
 		# Every 30th view, prune old deleted items
-		if ( 0 == mt_rand( 0, 29 ) ) {
+		if ( mt_rand( 0, 29 ) == 0 ) {
 			Utils::runAutoMaintenance( Utils::getCentralDB( DB_MASTER ) );
 		}
 	}

@@ -63,7 +63,7 @@ abstract class EndpointTest extends \MediaWikiTestCase {
 		$request = new RequestData( $requestInfo );
 
 		$user = new User;
-		if ( null !== $call ) {
+		if ( $call !== null ) {
 			$user = $call();
 
 			RequestContext::getMain()->setUser( $user );
