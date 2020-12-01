@@ -4,7 +4,7 @@ For a full description see [Extension:OAuth on mediawiki.org](https://www.mediaw
 
 ## Experimental REST API
 
-To enable the `/oauth/clients` REST API you must set
+To enable experimental REST APIs you must set
 
     $wgRestAPIAdditionalRouteFiles[] = "extensions/OAuth/experimentalRoutes.json";
 
