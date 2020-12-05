@@ -8,8 +8,6 @@ use MediaWiki\Extensions\OAuth\Backend\Utils;
  * Class containing hooked functions for an OAuth environment
  */
 class Setup {
-	const TTL_REFRESH_WINDOW = 600; // refresh if expiring in 10 minutes
-
 	/**
 	 * Prevent CentralAuth from issuing centralauthtokens if we have
 	 * OAuth headers in this request.

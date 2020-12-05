@@ -18,9 +18,9 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class AccessToken extends AuthenticationHandler {
 
-	const GRANT_TYPE_CLIENT_CREDENTIALS = 'client_credentials';
-	const GRANT_TYPE_AUTHORIZATION_CODE = 'authorization_code';
-	const GRANT_TYPE_REFRESH_TOKEN = 'refresh_token';
+	private const GRANT_TYPE_CLIENT_CREDENTIALS = 'client_credentials';
+	private const GRANT_TYPE_AUTHORIZATION_CODE = 'authorization_code';
+	private const GRANT_TYPE_REFRESH_TOKEN = 'refresh_token';
 
 	/**
 	 * @inheritDoc

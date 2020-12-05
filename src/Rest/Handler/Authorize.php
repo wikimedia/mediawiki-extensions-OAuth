@@ -26,7 +26,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  * traded for the access token.
  */
 class Authorize extends AuthenticationHandler {
-	const RESPONSE_TYPE_CODE = 'code';
+	private const RESPONSE_TYPE_CODE = 'code';
 
 	/**
 	 * @inheritDoc

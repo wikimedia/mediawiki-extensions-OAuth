@@ -14,7 +14,6 @@
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment"/>
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
-		<exclude name="PSR12.Properties.ConstantVisibility.NotFound" />
 	</rule>
 	<file>.</file>
 	<arg name="extensions" value="php,php5,inc"/>

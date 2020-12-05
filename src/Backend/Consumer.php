@@ -32,8 +32,8 @@ use Wikimedia\Rdbms\DBConnRef;
  * Representation of an OAuth consumer.
  */
 abstract class Consumer extends MWOAuthDAO {
-	const OAUTH_VERSION_1 = 1;
-	const OAUTH_VERSION_2 = 2;
+	public const OAUTH_VERSION_1 = 1;
+	public const OAUTH_VERSION_2 = 2;
 
 	/** @var array Backwards-compatibility grant mappings */
 	public static $mapBackCompatGrants = [
@@ -97,11 +97,11 @@ abstract class Consumer extends MWOAuthDAO {
 	protected $oauth2GrantTypes;
 
 	/* Stages that registered consumer takes (stored in DB) */
-	const STAGE_PROPOSED = 0;
-	const STAGE_APPROVED = 1;
-	const STAGE_REJECTED = 2;
-	const STAGE_EXPIRED  = 3;
-	const STAGE_DISABLED = 4;
+	public const STAGE_PROPOSED = 0;
+	public const STAGE_APPROVED = 1;
+	public const STAGE_REJECTED = 2;
+	public const STAGE_EXPIRED  = 3;
+	public const STAGE_DISABLED = 4;
 
 	/**
 	 * Maps stage ids to human-readable names which describe them as a state
