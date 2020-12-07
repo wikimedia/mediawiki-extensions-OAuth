@@ -10,7 +10,7 @@
 			"Toliño"
 		]
 	},
-	"mwoauth-desc": "Permite o uso do OAuth 1.0a para autorización de API",
+	"mwoauth-desc": "Permite o uso de OAuth 1.0a e OAuth 2.0 para autorización de API",
 	"mwoauth-verified": "Agora, esta aplicación ten permitido acceder a MediaWiki no seu nome.\n\nPara completar o proceso, achegue este valor de verificación á aplicación: '''$1'''",
 	"mwoauth-db-readonly": "A base de datos OAuth está pechada temporalmente. Por favor, probe de novo nuns minutos.",
 	"mwoauth-missing-field": "Falta o valor para o campo \"$1\"",
