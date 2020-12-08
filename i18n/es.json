@@ -14,6 +14,7 @@
 			"MarcoAurelio",
 			"Matiia",
 			"Ovruni",
+			"Rodney Araujo",
 			"Ryo567",
 			"Tiberius1701"
 		]
@@ -138,6 +139,8 @@
 	"mwoauthlistconsumers-status-disabled": "desactivado",
 	"mwoauthlistconsumers-status-rejected": "rechazado",
 	"mwoauthlistconsumers-status-expired": "caducado",
+	"mwoauthlistconsumers-navigation": "Navegación:",
+	"mwoauthlistconsumers-grants-link": "Gestionar aplicaciones conectadas",
 	"mwoauthlistconsumers-rclink": "Cambios recientes por esta aplicación",
 	"oauthmanagemygrants": "Gestionar aplicaciones conectadas",
 	"mwoauthmanagemygrants-text": "Esta página muestra las aplicaciones que pueden utilizar tu cuenta. Para cualquier aplicación, el alcance de su acceso está limitado por los permisos que se le otorgaron al momento de autorizarla. Si has autorizado una aplicación para que acceda a varios proyectos en tu nombre, verás ajustes separados a continuación por cada uno de los proyectos.\n\nLas aplicaciones conectadas acceden a tu cuenta mediante el protocolo OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Más información sobre las aplicaciones conectadas])</span>",
