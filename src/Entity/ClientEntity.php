@@ -169,7 +169,7 @@ class ClientEntity extends Consumer implements ClientEntityInterface {
 		$accessToken = $accessTokenRepo->getNewToken( $this, $this->getScopes(), $approval->getUserId() );
 		'@phan-var AccessTokenEntity $accessToken';
 		$accessToken->setExpiryDateTime( ( new \DateTimeImmutable() )->add(
-			new \DateInterval( 'P292277000000Y' )
+			new \DateInterval( 'P1000Y' )
 		) );
 		$accessToken->setPrivateKeyFromConfig();
 		$accessToken->setIdentifier( bin2hex( random_bytes( 40 ) ) );
