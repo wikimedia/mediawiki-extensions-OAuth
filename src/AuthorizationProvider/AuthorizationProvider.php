@@ -170,7 +170,7 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 	private function parseExpiration( $expiration ) {
 		if ( $expiration === false || $expiration === 'infinity' ) {
 			// Effectively non-expiring tokens
-			$expiration = 'P292277000000Y';
+			$expiration = 'P1000Y';
 		}
 
 		return $expiration;

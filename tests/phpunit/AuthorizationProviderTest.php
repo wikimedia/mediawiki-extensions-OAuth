@@ -174,8 +174,8 @@ class AuthorizationProviderTest extends MediaWikiTestCase {
 	public function provideExpirationInterval() {
 		return [
 			[ 'P30D', 2592000 ],
-			[ false, 9223371259704000000 ],
-			[ 'infinity', 9223371259704000000 ],
+			[ false, 31556995200 ],
+			[ 'infinity', 31556995200 ],
 		];
 	}
 

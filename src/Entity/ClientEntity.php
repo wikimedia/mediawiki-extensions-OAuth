@@ -180,7 +180,7 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 			$accessToken->addClaim( $claim );
 		}
 		$accessToken->setExpiryDateTime( ( new \DateTimeImmutable() )->add(
-			new \DateInterval( 'P292277000000Y' )
+			new \DateInterval( 'P1000Y' )
 		) );
 		$accessToken->setPrivateKeyFromConfig();
 		$accessToken->setIdentifier( bin2hex( random_bytes( 40 ) ) );
