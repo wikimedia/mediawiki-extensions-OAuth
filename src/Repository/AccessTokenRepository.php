@@ -13,9 +13,9 @@ use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\MediaWikiServices;
 
 class AccessTokenRepository extends DatabaseRepository implements AccessTokenRepositoryInterface {
-	const FIELD_EXPIRES = 'oaat_expires';
-	const FIELD_ACCEPTANCE_ID = 'oaat_acceptance_id';
-	const FIELD_REVOKED = 'oaat_revoked';
+	private const FIELD_EXPIRES = 'oaat_expires';
+	private const FIELD_ACCEPTANCE_ID = 'oaat_acceptance_id';
+	private const FIELD_REVOKED = 'oaat_revoked';
 
 	/** @var string */
 	private $issuer;
