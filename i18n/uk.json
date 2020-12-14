@@ -37,6 +37,7 @@
 	"mwoauth-consumer-owner-only-help": "Вибір цієї опції зробить так, що споживач буде автоматично прийнятий для використання та затверджений за $1. Ним не зможе користуватися будь-який інший користувач, і звична процедура авторизації не працюватиме. Дії, виконані цим споживачем, не позначатимуться тегами.",
 	"mwoauth-consumer-description": "Опис програми:",
 	"mwoauth-consumer-callbackurl": "URL «зворотного виклику» OAuth:",
+	"mwoauth-consumer-callbackurl-warning": "(маска порту)",
 	"mwoauth-consumer-callbackisprefix": "Дозволяти споживачеві вказати зворотний виклик у запиті використовувати URL «зворотного виклику» вище як обов'язковий префікс.",
 	"mwoauth-consumer-granttypes": "Типи доступу, які запитуються:",
 	"mwoauth-consumer-grantsneeded": "Придатні гранти:",
@@ -256,6 +257,7 @@
 	"mwoauth-form-button-approve": "Дозволити",
 	"mwoauth-form-button-cancel": "Скасувати",
 	"mwoauth-error": "Помилка підключення застосунку",
+	"mwoauth-error-missing-callback-url-non-owner": "callback_url є обов'язковим для клієнтів, що не лише для власників.",
 	"mwoauth-grants-heading": "Потрібні дозволи:",
 	"mwoauth-grants-nogrants": "Програма не вимагає жодних дозволів.",
 	"mwoauth-acceptance-cancelled": "Ви вже вибрали не надавати $1 доступу до вашого профілю. $1 не буде працювати без вашого дозволу. Ви можете повернутися до $1 або до [[Special:OAuthManageMyGrants|управління]] вашими підключеними програмами.",
@@ -332,5 +334,9 @@
 	"mwoauth-consumer-access-no-user": "Підтвердження споживача має бути прив'язане до дійсного користувача, тоді як подано користувача з ID 0",
 	"mwoauth-login-required-reason": "Щоб дозволяти програмам отримувати доступ до вашого облікового запису, вам треба спершу увійти в систему на сайті {{SITENAME}}.",
 	"mwoauthconsumer-consumer-view": "Переглянути цього споживача",
-	"mwoauthconsumer-application-view": "Переглянути цю заявку"
+	"mwoauthconsumer-application-view": "Переглянути цю заявку",
+	"grant-oauthmanageownclient": "Керування Вашими OAuth-клієнтами",
+	"mwoauth-consumer-user-mismatch": "Ви не можете здійснювати дії щодо клієнтів, що не належать Вам",
+	"mwoauth-consumer-deleted-error": "Ви не можете здійснювати дії щодо вилучених клієнтів",
+	"mwoauth-consumer-submit-error": "Сталась помилка при збереженні споживача"
 }
