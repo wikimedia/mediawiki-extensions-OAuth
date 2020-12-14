@@ -84,7 +84,6 @@ class ListClients extends SimpleHandler {
 				new MessageValue( 'rest-nonexistent-user', [ $user->getName() ] ), 404
 			);
 		}
-
 		$response = $this->getDbResults( $centralId );
 
 		return $responseFactory->createJson( $response );
@@ -203,6 +202,12 @@ class ListClients extends SimpleHandler {
 
 			$consumer['scopes'] = $cmrAc->getGrants();
 			$consumer['restrictions'] = $cmrAc->getRestrictions();
+
+			foreach ( $consumer as $key => $value ) {
+				if ( is_object( $consumer[$key] ) ) {
+					unset( $consumer[$key] );
+				}
+			}
 
 			$consumers[] = $consumer;
 		}
