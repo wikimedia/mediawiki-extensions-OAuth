@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extensions\OAuth\Rest\Handler;
 
-use FormatJson;
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
@@ -197,7 +196,7 @@ class ListClients extends SimpleHandler {
 			);
 
 			if ( $consumer['oauth_version'] === Consumer::OAUTH_VERSION_2 ) {
-				$consumer['allowed_grants'] = FormatJson::decode( $cmrAc->get( 'oauth2GrantTypes' ), 1 );
+				$consumer['allowed_grants'] = $cmrAc->get( 'oauth2GrantTypes' );
 			}
 
 			$consumer['scopes'] = $cmrAc->getGrants();
