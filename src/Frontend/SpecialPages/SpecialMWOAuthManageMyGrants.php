@@ -58,7 +58,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$this->getOutput()->disallowUserJs();
 		$this->addHelpLink( 'Help:OAuth' );
 
-		if ( !$this->getUser()->isLoggedIn() ) {
+		if ( !$this->getUser()->isRegistered() ) {
 			throw new \UserNotLoggedIn();
 		}
 

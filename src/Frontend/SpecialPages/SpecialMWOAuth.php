@@ -221,7 +221,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					$dbr = Utils::getCentralDB( DB_REPLICA );
 					$access = ConsumerAcceptance::newFromToken( $dbr, $token->key );
 					$localUser = Utils::getLocalUserFromCentralId( $access->getUserId() );
-					if ( !$localUser || !$localUser->isLoggedIn() ) {
+					if ( !$localUser || !$localUser->isRegistered() ) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-invalid-user', [
 							\Message::rawParam( \Linker::makeExternalLink(
 								'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',

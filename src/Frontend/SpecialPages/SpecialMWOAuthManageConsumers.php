@@ -75,7 +75,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$this->getOutput()->disallowUserJs();
 		$this->addHelpLink( 'Help:OAuth' );
 
-		if ( !$user->isLoggedIn() ) {
+		if ( !$user->isRegistered() ) {
 			$this->getOutput()->addWikiMsg( 'mwoauthmanageconsumers-notloggedin' );
 			return;
 		} elseif ( !$permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' ) ) {
