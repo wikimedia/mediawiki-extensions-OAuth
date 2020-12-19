@@ -365,8 +365,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 							'mwoauth-consumer-name' => $cmrAc->getName(),
 							'mwoauth-consumer-version' => $cmrAc->getVersion(),
 							'mwoauth-oauth-version' => $cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ?
-								wfMessage( 'mwoauth-oauth-version-2' )->text() :
-								wfMessage( 'mwoauth-oauth-version-1' )->text(),
+								$this->msg( 'mwoauth-oauth-version-2' )->text() :
+								$this->msg( 'mwoauth-oauth-version-1' )->text(),
 							'mwoauth-consumer-key' => $cmrAc->getConsumerKey(),
 						], $this->getContext() ),
 					],
@@ -578,8 +578,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 		$lang = $this->getLanguage();
 		$oauthVersionMessage = $cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ?
-			wfMessage( 'mwoauth-oauth-version-2' )->text() :
-			wfMessage( 'mwoauth-oauth-version-1' )->text();
+			$this->msg( 'mwoauth-oauth-version-2' )->text() :
+			$this->msg( 'mwoauth-oauth-version-1' )->text();
 		$data = [
 			'mwoauthconsumerregistration-name' => $cmrAc->escapeForHtml( $cmrAc->getNameAndVersion() ),
 			'mwoauth-oauth-version' => $cmrAc->escapeForHtml( $oauthVersionMessage ),
