@@ -21,6 +21,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class ListClients extends SimpleHandler {
 
+	/** @var string[] */
 	protected $propertyMapping = [
 		'id' => 'oarc_id',
 		'client_key' => 'oarc_consumer_key',

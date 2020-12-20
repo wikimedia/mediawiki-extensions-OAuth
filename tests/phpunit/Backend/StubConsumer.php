@@ -24,6 +24,7 @@
 namespace MediaWiki\Extensions\OAuth\Tests\Backend;
 
 class StubConsumer {
+	/** @var array */
 	public $data;
 
 	public function __construct( $data ) {

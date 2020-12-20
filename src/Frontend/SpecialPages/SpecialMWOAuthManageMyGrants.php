@@ -39,6 +39,7 @@ use Wikimedia\Rdbms\DBConnRef;
  * for manage the specific grants given or revoking access for the consumer
  */
 class SpecialMWOAuthManageMyGrants extends SpecialPage {
+	/** @var string[]|null */
 	private static $irrevocableGrants = null;
 
 	public function __construct() {

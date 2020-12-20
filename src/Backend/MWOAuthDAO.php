@@ -30,8 +30,10 @@ use Wikimedia\Rdbms\DBReadOnlyError;
  * Representation of a Data Access Object
  */
 abstract class MWOAuthDAO implements \IDBAccessObject {
-	private $daoOrigin = 'new'; // string; object construction origin
-	private $daoPending = true; // bool; whether fields changed or the field is new
+	/** @var string object construction origin */
+	private $daoOrigin = 'new';
+	/** @var bool whether fields changed or the field is new */
+	private $daoPending = true;
 
 	/** @var \Psr\Log\LoggerInterface */
 	protected $logger;

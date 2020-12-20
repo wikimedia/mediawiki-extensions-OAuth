@@ -59,7 +59,10 @@ class TestOAuthConsumer extends \Maintenance {
 		if ( $rsaKeyFile ) {
 			try {
 				$sig_method = new class ( $rsaKeyFile ) extends OAuthSignatureMethod_RSA_SHA1 {
-					private $privKey, $pubKey;
+					/** @var string */
+					private $privKey;
+					/** @var string */
+					private $pubKey;
 
 					public function __construct( $privKeyFile ) {
 						$key = file_get_contents( $privKeyFile );

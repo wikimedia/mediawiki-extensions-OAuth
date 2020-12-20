@@ -5,9 +5,9 @@ namespace MediaWiki\Extensions\OAuth\Backend;
 use MediaWiki\Extensions\OAuth\Lib\OAuthToken;
 
 class MWOAuthToken extends OAuthToken {
-	// Keep the verification code here
+	/** @var string|null Keep the verification code here */
 	protected $code;
-	// Token to find grant in oauth_accepted_consumer
+	/** @var string|null Token to find grant in oauth_accepted_consumer */
 	protected $accessTokenKey;
 
 	public function addVerifyCode( $code ) {

@@ -32,7 +32,10 @@ use MediaWiki\MediaWikiServices;
  * @TODO: use UserCache
  */
 class ManageMyGrantsPager extends \ReverseChronologicalPager {
-	public $mForm, $mConds;
+	/** @var SpecialMWOAuthManageMyGrants */
+	public $mForm;
+	/** @var array */
+	public $mConds;
 
 	/**
 	 * @param SpecialMWOAuthManageMyGrants $form
