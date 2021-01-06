@@ -267,7 +267,7 @@
 	"action-mwoauthviewprivate": "prohlížet si soukromé údaje OAuth",
 	"action-mwoauthviewsuppressed": "prohlížet si utajené konzumenty OAuth",
 	"mwoauth-tag-reserved": "Značky začínající <code>OAuth CID:</code> jsou vyhrazeny pro OAuth.",
-	"mwoauth-botpasswords-note": "<strong>Poznámka:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> je bezpečnější než hesla robotů a měl by být preferován, kdykoliv to robot preferuje.",
+	"mwoauth-botpasswords-note": "<strong>Poznámka:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> je bezpečnější než hesla robotů a měl by být preferován, kdykoliv to robot podporuje.",
 	"mwoauth-api-module-disabled": "Modul „$1“ není dostupný prostřednictvím OAuth.",
 	"echo-category-title-oauth-owner": "vývoj OAuth",
 	"echo-pref-tooltip-oauth-owner": "Upozorněte mě na události týkající aplikací OAuth, které jsem {{GENDER:|vytvořil|vytvořila}}.",
