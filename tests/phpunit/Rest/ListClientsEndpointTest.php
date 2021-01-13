@@ -72,7 +72,7 @@ class ListClientsEndpointTest extends EndpointTest {
 					'body' => '{"clients":[{"name":"lc_test_name","version":"1","callback_url":' .
 						'"https://test.com","description":"test_description","stage":1,"oauth_version":1,' .
 						'"registration_formatted":"00:00, 1 January 2020","scopes":["[\"test\"]"],' .
-						'"client_key":"lc111111111111111111111111111111"}], "total":1}',
+						'"client_key":"lc111111111111111111111111111111", "owner_only":false}],"total":1}',
 				],
 				function () {
 					$user = User::createNew( 'ListClientsTestUser1' );
@@ -106,7 +106,7 @@ class ListClientsEndpointTest extends EndpointTest {
 						'"https://test.com","description":"test_description","stage":1,"oauth_version":2,' .
 						'"registration_formatted":"00:00, 1 January 2020","allowed_grants":null,' .
 						'"scopes":["[\"test\"]"],' .
-						'"client_key":"lc222222222222222222222222222222"}],"total":1}'
+						'"client_key":"lc222222222222222222222222222222", "owner_only":false}],"total":1}'
 				],
 				function () {
 					$user = User::createNew( 'ListClientsTestUser2' );
