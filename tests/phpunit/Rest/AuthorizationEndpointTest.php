@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Extensions\OAuth\Tests\Rest;
 
+use MediaWiki\Extensions\OAuth\Rest\Handler\Authorize;
+use MediaWiki\Rest\Handler;
+
 /**
  * @covers \MediaWiki\Extensions\OAuth\Rest\Handler\Authorize
  * @group OAuth
@@ -10,7 +13,7 @@ class AuthorizationEndpointTest extends EndpointTest {
 	/**
 	 * @return array
 	 */
-	public function provideTestViaRouter() {
+	public function provideTestHandlerExecute() {
 		return [
 			'redirect to login' => [
 				[
@@ -26,19 +29,11 @@ class AuthorizationEndpointTest extends EndpointTest {
 					'reasonPhrase' => 'Temporary Redirect',
 					'protocolVersion' => '1.1'
 				]
-			],
-			'method not allowed' => [
-				[
-					'method' => 'POST',
-					'uri' => self::makeUri( '/oauth2/authorize' ),
-				],
-				[
-					'statusCode' => 405,
-					'reasonPhrase' => 'Method Not Allowed',
-					'protocolVersion' => '1.1',
-					'body' => '{"httpCode":405,"httpReason":"Method Not Allowed"}',
-				]
-			],
+			]
 		];
+	}
+
+	protected function newHandler(): Handler {
+		return Authorize::factory();
 	}
 }

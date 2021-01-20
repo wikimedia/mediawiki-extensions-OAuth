@@ -4,6 +4,8 @@ namespace MediaWiki\Extensions\OAuth\Tests\Rest;
 
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
+use MediaWiki\Extensions\OAuth\Tests\TestHandlerFactory;
+use MediaWiki\Rest\Handler;
 use MWRestrictions;
 use User;
 
@@ -52,10 +54,14 @@ class ListClientsEndpointTest extends EndpointTest {
 		'oauth2GrantTypes' => null,
 	];
 
+	public function testNeedsWriteAccess() {
+		$this->assertFalse( $this->newHandler()->needsWriteAccess() );
+	}
+
 	/**
 	 * @return array
 	 */
-	public function provideTestViaRouter() {
+	public function provideTestHandlerExecute() {
 		return [
 			'Non-empty result OAuth 1' => [
 				[
@@ -165,9 +171,16 @@ class ListClientsEndpointTest extends EndpointTest {
 					'statusCode' => 404,
 					'reasonPhrase' => 'Not Found',
 					'protocolVersion' => '1.1',
-					'body' => '{"httpCode":404,"httpReason":"Not Found"}'
+					'body' => [
+						'httpCode' => 404,
+						'httpReason' => 'Not Found',
+					]
 				]
 			],
 		];
+	}
+
+	protected function newHandler(): Handler {
+		return TestHandlerFactory::getListClients();
 	}
 }

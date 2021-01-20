@@ -4,6 +4,8 @@ namespace MediaWiki\Extensions\OAuth\Tests\Rest;
 
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
+use MediaWiki\Extensions\OAuth\Rest\Handler\ResetClientSecret;
+use MediaWiki\Rest\Handler;
 use MWRestrictions;
 use User;
 use WikiMap;
@@ -63,13 +65,13 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 	/**
 	 * @return array
 	 */
-	public function provideTestViaRouter() {
+	public function provideTestHandlerExecute() {
 		return [
 			'Unsupported Media Type' => [
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client/INVALID_CLIENT_KEY/reset_secret' ),
-					'postParams' => []
+					'pathParams' => [ 'client_key' => 'INVALID_CLIENT_KEY' ]
 				],
 				[
 					'statusCode' => 415,
@@ -77,26 +79,11 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 					'protocolVersion' => '1.1'
 				]
 			],
-			'Unsupported Method' => [
-				[
-					'method' => 'GET',
-					'uri' => self::makeUri( '/oauth2/client/INVALID_CLIENT_KEY/reset_secret' ),
-					'postParams' => []
-				],
-				[
-					'statusCode' => 405,
-					'reasonPhrase' => 'Method Not Allowed',
-					'protocolVersion' => '1.1'
-				]
-			],
 			'Missing Content-Type header' => [
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client/11111111111111111111111111111111/reset_secret' ),
-					'postParams' => [
-						'client_key' => '11111111111111111111111111111111',
-						'reason' => 'Test reason'
-					],
+					'pathParams' => [ 'client_key' => '11111111111111111111111111111111' ],
 					'headers' => [],
 				],
 				[
@@ -109,13 +96,10 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client/22222222222222222222222222222222/reset_secret' ),
-					'postParams' => [
-						'client_key' => '11111111111111111111111111111111',
-						'reason' => 'Test reason'
-					],
 					'headers' => [
 						'Content-Type' => 'application/json'
 					],
+					'pathParams' => [ 'client_key' => '444444444' ],
 				],
 				[
 					'statusCode' => 400,
@@ -127,10 +111,7 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client/11111111111111111111111111111111/reset_secret' ),
-					'postParams' => [
-						'client_key' => '11111111111111111111111111111111',
-						'reason' => 'Test reason'
-					],
+					'pathParams' => [ 'client_key' => '11111111111111111111111111111111' ],
 					'headers' => [
 						'Content-Type' => 'application/json'
 					],
@@ -163,10 +144,6 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client/22222222222222222222222222222222/reset_secret' ),
-					'postParams' => [
-						'client_key' => '22222222222222222222222222222222',
-						'reason' => 'Test reason'
-					],
 					'headers' => [
 						'Content-Type' => 'application/json'
 					],
@@ -199,10 +176,7 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client/33333333333333333333333333333333/reset_secret' ),
-					'postParams' => [
-						'client_key' => '33333333333333333333333333333333',
-						'reason' => 'Test reason'
-					],
+					'pathParams' => [ 'client_key' => '33333333333333333333333333333333' ],
 					'headers' => [
 						'Content-Type' => 'application/json'
 					],
@@ -235,10 +209,7 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client/44444444444444444444444444444444/reset_secret' ),
-					'postParams' => [
-						'client_key' => '44444444444444444444444444444444',
-						'reason' => 'Test reason'
-					],
+					'pathParams' => [ 'client_key' => '44444444444444444444444444444444' ],
 					'headers' => [
 						'Content-Type' => 'application/json'
 					],
@@ -269,5 +240,9 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 				}
 			],
 		];
+	}
+
+	protected function newHandler(): Handler {
+		return new ResetClientSecret();
 	}
 }

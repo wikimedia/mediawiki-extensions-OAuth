@@ -2,12 +2,15 @@
 
 namespace MediaWiki\Extensions\OAuth\Tests\Rest;
 
+use MediaWiki\Extensions\OAuth\Rest\Handler\AccessToken;
+use MediaWiki\Rest\Handler;
+
 /**
  * @covers \MediaWiki\Extensions\OAuth\Rest\Handler\AccessToken
  * @group OAuth
  */
 class AccessTokenEndpointTest extends EndpointTest {
-	public function provideTestViaRouter() {
+	public function provideTestHandlerExecute() {
 		return [
 			'normal' => [
 				[
@@ -25,18 +28,6 @@ class AccessTokenEndpointTest extends EndpointTest {
 					'statusCode' => 401,
 					'reasonPhrase' => 'Unauthorized',
 					'protocolVersion' => '1.1'
-				]
-			],
-			'method not allowed' => [
-				[
-					'method' => 'GET',
-					'uri' => self::makeUri( '/oauth2/access_token' ),
-				],
-				[
-					'statusCode' => 405,
-					'reasonPhrase' => 'Method Not Allowed',
-					'protocolVersion' => '1.1',
-					'body' => '{"httpCode":405,"httpReason":"Method Not Allowed"}',
 				]
 			],
 			'invalid grant type' => [
@@ -69,5 +60,9 @@ class AccessTokenEndpointTest extends EndpointTest {
 				]
 			],
 		];
+	}
+
+	protected function newHandler(): Handler {
+		return AccessToken::factory();
 	}
 }

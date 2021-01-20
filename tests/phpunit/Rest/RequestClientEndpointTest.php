@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extensions\OAuth\Tests\Rest;
 
+use MediaWiki\Extensions\OAuth\Rest\Handler\RequestClient;
+use MediaWiki\Rest\Handler;
 use User;
 use WikiMap;
 
@@ -70,7 +72,7 @@ class RequestClientEndpointTest extends EndpointTest {
 	/**
 	 * @return array
 	 */
-	public function provideTestViaRouter() {
+	public function provideTestHandlerExecute() {
 		return [
 			'No POST params' => [
 				[
@@ -299,5 +301,9 @@ class RequestClientEndpointTest extends EndpointTest {
 				],
 			],
 		];
+	}
+
+	protected function newHandler(): Handler {
+		return new RequestClient();
 	}
 }
