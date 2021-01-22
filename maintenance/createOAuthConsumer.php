@@ -9,7 +9,6 @@
  *   --grants="editprotected"
  *   --grants="createaccount"
  *   --name="Application name"
- *   --oauthVersion=1
  *   --user="Admin"
  *   --version="0.2"
  *   --wiki=default
@@ -53,12 +52,6 @@ class CreateOAuthConsumer extends \Maintenance {
 		$this->addOption( 'grants', 'Grants', true, true, false, true );
 		$this->addOption( 'jsonOnSuccess', 'Output successful results as JSON' );
 		$this->addOption( 'approve', 'Accept the consumer' );
-		$this->addOption(
-			'oauthVersion',
-			'Version of OAuth, can be either 1 or 2. Default: 1',
-			false,
-			true
-		);
 		$this->requireExtension( "OAuth" );
 	}
 
@@ -77,11 +70,13 @@ class CreateOAuthConsumer extends \Maintenance {
 			'version'      => $this->getOption( 'version' ),
 			'description'  => $this->getOption( 'description' ),
 			'callbackUrl'  => $this->getOption( 'callbackUrl' ),
-			'oauthVersion' => (int)$this->getOption( 'oauthVersion', 1 ),
+			'oauthVersion' => 1,
 			'callbackIsPrefix' => $this->hasOption( 'callbackIsPrefix' ),
 			'grants' => '["' . implode( '","', $this->getOption( 'grants' ) ) . '"]',
 			'granttype' => 'normal',
 			'ownerOnly' => false,
+			'oauth2IsConfidential' => false, // only support OAUth 1 for now
+			'oauth2GrantTypes' => null, // only support OAUth 1 for now
 			'email' => $user->getEmail(),
 			'wiki' => '*', // All wikis
 			'rsaKey' => '', // Generate a key
