@@ -11,7 +11,9 @@ use MediaWikiTestCase;
  * @group OAuth
  */
 class AuthCodeRepositoryTest extends MediaWikiTestCase {
+	/** @var AuthCodeEntity */
 	protected $authCodeToken;
+	/** @var AuthCodeRepository */
 	protected $authCodeTokenRepo;
 
 	protected function setUp() : void {

@@ -60,8 +60,6 @@ class ClaimStoreTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideClaims
 	 * @covers \MediaWiki\Extensions\OAuth\Repository\ClaimStore::getClaims
-	 * @param $claims
-	 * @param $expectedClaims
 	 */
 	public function testGetClaimsWithHook( $claims, $expectedClaims ) {
 		$client = Mock_ClientEntity::newMock( $this->getTestUser()->getUser() );

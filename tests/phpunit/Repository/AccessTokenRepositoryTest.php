@@ -13,9 +13,12 @@ use MediaWikiTestCase;
  * @group OAuth
  */
 class AccessTokenRepositoryTest extends MediaWikiTestCase {
+	/** @var AccessTokenEntity */
 	protected $accessToken;
+	/** @var AccessTokenRepository */
 	protected $accessTokenRepo;
 
+	/** @inheritDoc */
 	protected $tablesUsed = [ 'oauth2_access_tokens' ];
 
 	protected function setUp() : void {

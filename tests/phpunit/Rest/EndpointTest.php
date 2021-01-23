@@ -40,7 +40,7 @@ abstract class EndpointTest extends \MediaWikiTestCase {
 	abstract public function provideTestHandlerExecute();
 
 	/**
-	 * @param $path
+	 * @param string $path
 	 * @return Uri
 	 */
 	protected static function makeUri( $path ) {

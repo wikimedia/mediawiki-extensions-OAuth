@@ -33,7 +33,6 @@ class ClaimEntityTest extends MediaWikiTestCase {
 	 * @dataProvider provideClaims
 	 * @covers \MediaWiki\Extensions\OAuth\Entity\ClaimEntity::getName
 	 * @covers \MediaWiki\Extensions\OAuth\Entity\ClaimEntity::getValue
-	 * @param $claims
 	 */
 	public function testProperties( $claims ) {
 		foreach ( $claims as $name => $value ) {
