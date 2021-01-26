@@ -62,7 +62,7 @@ abstract class AbstractClientHandler extends Handler {
 				if ( $clientAccess->getOwnerOnly() ) {
 					$accessToken = $value['result']['accessToken'];
 					if ( $accessToken instanceof AccessTokenEntityInterface ) {
-						$data['access_token'] = $accessToken->getIdentifier();
+						$data['access_token'] = (string)$accessToken;
 					}
 				}
 

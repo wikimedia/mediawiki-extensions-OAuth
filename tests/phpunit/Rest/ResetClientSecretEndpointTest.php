@@ -2,10 +2,12 @@
 
 namespace MediaWiki\Extensions\OAuth\Tests\Rest;
 
+use FormatJson;
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Rest\Handler\ResetClientSecret;
 use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\ResponseInterface;
 use MWRestrictions;
 use User;
 use WikiMap;
@@ -45,6 +47,14 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 		'deleted' => 0,
 		'oauth2IsConfidential' => 1,
 		'oauth2GrantTypes' => null,
+	];
+
+	/**
+	 * @var array
+	 */
+	private $consumerDataOwnerOnly = [
+		'ownerOnly' => true,
+		'oauth2GrantTypes' => [ 'client_credentials' ],
 	];
 
 	/**
@@ -237,6 +247,50 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 					Consumer::newFromArray( $this->consumerData )->save( $db );
 
 					return $user;
+				}
+			],
+			'Successful Request OAuth 2 Owner Only' => [
+				[
+					'method' => 'POST',
+					'uri' => self::makeUri( '/oauth2/client/55555555555555555555555555555555/reset_secret' ),
+					'pathParams' => [ 'client_key' => '55555555555555555555555555555555' ],
+					'headers' => [
+						'Content-Type' => 'application/json'
+					],
+				],
+				[
+					'statusCode' => 200,
+					'reasonPhrase' => 'OK',
+					'protocolVersion' => '1.1'
+				],
+				function () {
+					$user = User::createNew( 'ResetClientSecretTestUser5' );
+					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
+					$db = Utils::getCentralDB( DB_MASTER );
+
+					$this->consumerData['userId'] = $centralId;
+					$this->consumerData['consumerKey'] = '55555555555555555555555555555555';
+					$this->consumerData['name'] = 'test_name_user_successful';
+					$this->consumerData['oauthVersion'] = '2';
+
+					if ( isset( $this->consumerData['restrictions'] ) ) {
+						$this->consumerData['restrictions'] =
+							MWRestrictions::newFromJson( $this->consumerData['restrictions'] );
+					}
+
+					Consumer::newFromArray(
+						array_merge( $this->consumerData, $this->consumerDataOwnerOnly )
+					)->save( $db );
+
+					return $user;
+				},
+				function ( ResponseInterface $response ) {
+					$responseBody = FormatJson::decode(
+						$response->getBody()->getContents(),
+						true
+					);
+					$this->assertArrayHasKey( 'access_token', $responseBody );
+					$this->assertRegExp( '/((.*)\.(.*)\.(.*))/', $responseBody['access_token'] );
 				}
 			],
 		];

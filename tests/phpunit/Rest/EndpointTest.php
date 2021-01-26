@@ -53,12 +53,14 @@ abstract class EndpointTest extends \MediaWikiTestCase {
 	 * @param array $requestInfo
 	 * @param array $responseInfo
 	 * @param callable|null $userCreateCallback
+	 * @param callable|null $extraValidationCallback
 	 * @dataProvider provideTestHandlerExecute
 	 */
 	public function testHandlerExecute(
 		array $requestInfo = [],
 		array $responseInfo = [],
-		callable $userCreateCallback = null
+		callable $userCreateCallback = null,
+		callable $extraValidationCallback = null
 	) {
 		$request = new RequestData( $requestInfo );
 
@@ -101,6 +103,10 @@ abstract class EndpointTest extends \MediaWikiTestCase {
 				'body'
 			] ),
 			'$responseInfo may not contain unknown keys' );
+
+		if ( $extraValidationCallback ) {
+			$extraValidationCallback( $response );
+		}
 	}
 
 	/**

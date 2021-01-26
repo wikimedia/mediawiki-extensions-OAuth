@@ -2,8 +2,10 @@
 
 namespace MediaWiki\Extensions\OAuth\Tests\Rest;
 
+use FormatJson;
 use MediaWiki\Extensions\OAuth\Rest\Handler\RequestClient;
 use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\ResponseInterface;
 use User;
 use WikiMap;
 
@@ -51,6 +53,13 @@ class RequestClientEndpointTest extends EndpointTest {
 	private $postParamsWrongGrantTypes = [
 		'owner_only' => true,
 		'grant_types' => [ 'authorization_code', 'refresh_token' ],
+	];
+
+	/**
+	 * @var array
+	 */
+	private $postParamsOwnerOnly = [
+		'owner_only' => true,
 	];
 
 	/**
@@ -221,6 +230,35 @@ class RequestClientEndpointTest extends EndpointTest {
 
 					return $user;
 				}
+			],
+			'Successful request owner only' => [
+				[
+					'method' => 'POST',
+					'uri' => self::makeUri( '/oauth2/client' ),
+					'postParams' => array_merge( $this->postParams, $this->postParamsOwnerOnly ),
+					'headers' => [
+						'Content-Type' => 'application/json'
+					],
+				],
+				[
+					'statusCode' => 200,
+					'reasonPhrase' => 'OK',
+					'protocolVersion' => '1.1',
+				],
+				function () {
+					$user = User::createNew( 'RequestClientTestUser10' );
+					$user->setEmail( 'test@test.com' );
+
+					return $user;
+				},
+				function ( ResponseInterface $response ) {
+					$responseBody = FormatJson::decode(
+						$response->getBody()->getContents(),
+						true
+					);
+					$this->assertArrayHasKey( 'access_token', $responseBody );
+					$this->assertRegExp( '/((.*)\.(.*)\.(.*))/', $responseBody['access_token'] );
+				},
 			],
 			'Successful scopes values' => [
 				[
