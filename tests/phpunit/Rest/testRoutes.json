@@ -1,33 +1,33 @@
 [
-  {
-	"path": "/oauth2/authorize",
-	"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\Authorize::factory"
-  },
-  {
-	"path": "/oauth2/access_token",
-	"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\AccessToken::factory",
-	"method": "POST"
-  },
-  {
-	"path": "/oauth2/resource/{{type}}",
-	"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\Resource::factory"
-  },
-  {
-	"path": "/oauth2/client",
-	"class": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\RequestClient",
-	"method": "POST"
-  },
-  {
- 	"path": "/oauth2/client/{client_key}/reset_secret",
-	"class": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\ResetClientSecret",
-	"method": "POST"
-  },
-  {
- 	"path": "/oauth2/client",
-	"factory": "MediaWiki\\Extensions\\OAuth\\Tests\\TestHandlerFactory::getListClients",
-	"services": [
-		"DBLoadBalancer"
-	],
-	"method": "GET"
-  }
+	{
+		"path": "/oauth2/authorize",
+		"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\Authorize::factory"
+	},
+	{
+		"path": "/oauth2/access_token",
+		"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\AccessToken::factory",
+		"method": "POST"
+	},
+	{
+		"path": "/oauth2/resource/{{type}}",
+		"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\Resource::factory"
+	},
+	{
+		"path": "/oauth2/client",
+		"class": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\RequestClient",
+		"method": "POST"
+	},
+	{
+		"path": "/oauth2/client/{client_key}/reset_secret",
+		"class": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\ResetClientSecret",
+		"method": "POST"
+	},
+	{
+		"path": "/oauth2/client",
+		"factory": "MediaWiki\\Extensions\\OAuth\\Tests\\TestHandlerFactory::getListClients",
+		"services": [
+			"DBLoadBalancer"
+		],
+		"method": "GET"
+	}
 ]

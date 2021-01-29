@@ -101,7 +101,7 @@ class AuthorizationProviderTest extends MediaWikiTestCase {
 		$enabledGrantsProp->setAccessible( true );
 		$enabledGrants = $enabledGrantsProp->getValue( $server );
 		// In our case, each class is handling a single grant, so only that grant must be enabled
-		$this->assertSame( 1, count( $enabledGrants ),
+		$this->assertCount( 1, $enabledGrants,
 			'Authorization server must have exactly one grant enabled' );
 		$this->assertArrayHasKey(
 			$grantName, $enabledGrants, "Grant \"$grantName\" must be enabled for $class"

@@ -9,6 +9,7 @@
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionConfigUsage" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment"/>
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
+		<exclude name="MediaWiki.PHPUnit.AssertCount.NotUsed" />
 	</rule>
 	<file>.</file>
 	<arg name="extensions" value="php,php5,inc"/>
