@@ -165,6 +165,7 @@
 	"notification-oauth-app-reenable-primary-link": "Vaata rakendust",
 	"notification-oauth-app-body": "Põhjus: $1",
 	"mwoauth-oauth-version": "OAuthi protokolli versioon:",
+	"mwoauth-login-required-reason": "Rakenduse juurdepääsu volitamiseks tuleb saidi {{SITENAME}} kontoga sisse logida.",
 	"mwoauthconsumer-application-view": "vaata seda rakendust",
 	"grant-oauthmanageownclient": "Enda OAuthi-klientide haldamine"
 }
