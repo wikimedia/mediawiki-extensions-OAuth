@@ -25,6 +25,7 @@ namespace MediaWiki\Extensions\OAuth\Tests;
 
 use MediaWiki\Extensions\OAuth\SessionProvider;
 use MediaWikiTestCase;
+use RecentChange;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\SessionProvider
@@ -98,4 +99,38 @@ class SessionProviderTest extends MediaWikiTestCase {
 		];
 	}
 
+	/**
+	 * @dataProvider provideOnRecentChangeSave
+	 */
+	public function testOnRecentChangeSave( $expectedConsumerId ) {
+		$provider = $this->getMockBuilder( SessionProvider::class )
+			->setMethodsExcept( [ 'onRecentChange_save' ] )
+			->onlyMethods( [ 'getPublicConsumerId' ] )
+			->getMock();
+		$provider->expects( $this->once() )
+			->method( 'getPublicConsumerId' )
+			->willReturn( $expectedConsumerId );
+		$rc = $this->getMockBuilder( RecentChange::class )
+			->onlyMethods( [ 'addTags', 'getPerformerIdentity' ] )
+			->getMock();
+		$rc->expects( $this->once() )
+			->method( 'getPerformerIdentity' )
+			->willReturn( $this->getTestUser()->getUser() );
+
+		if ( $expectedConsumerId !== null ) {
+			$rc->expects( $this->once() )
+				->method( 'addTags' );
+		}
+		$this->assertTrue( $provider->onRecentChange_save( $rc ) );
+	}
+
+	public function provideOnRecentChangeSave() {
+		yield 'no consumer' => [
+			null,
+		];
+
+		yield 'consumer 123' => [
+			123,
+		];
+	}
 }

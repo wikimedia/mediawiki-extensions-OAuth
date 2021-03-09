@@ -14,6 +14,7 @@ use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\UserInfo;
+use MediaWiki\User\UserIdentity;
 use User;
 use WebRequest;
 use Wikimedia\Rdbms\DBError;
@@ -313,11 +314,12 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 
 	/**
 	 * Fetch the access data, if any, for this user-session
-	 * @param \User|null $user
+	 * @param UserIdentity|null $userIdentity
 	 * @return array|null
 	 */
-	private function getSessionData( \User $user = null ) {
-		if ( $user ) {
+	private function getSessionData( UserIdentity $userIdentity = null ) {
+		if ( $userIdentity ) {
+			$user = User::newFromIdentity( $userIdentity );
 			$session = $user->getRequest()->getSession();
 			if ( $session->getProvider() === $this &&
 				$user->equals( $session->getUser() )
@@ -352,13 +354,13 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 	 * Disable certain API modules when used with OAuth
 	 *
 	 * @param \ApiBase $module
-	 * @param \User $user
+	 * @param UserIdentity $userIdentity
 	 * @param string|array &$message
 	 * @return bool
 	 */
-	public function onApiCheckCanExecute( \ApiBase $module, \User $user, &$message ) {
+	public function onApiCheckCanExecute( \ApiBase $module, UserIdentity $userIdentity, &$message ) {
 		global $wgMWOauthDisabledApiModules;
-		if ( !$this->getSessionData( $user ) ) {
+		if ( !$this->getSessionData( $userIdentity ) ) {
 			return true;
 		}
 
@@ -382,7 +384,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 	 * @return bool true
 	 */
 	public function onRecentChange_save( $rc ) {
-		$consumerId = $this->getPublicConsumerId( User::newFromIdentity( $rc->getPerformerIdentity() ) );
+		$consumerId = $this->getPublicConsumerId( $rc->getPerformerIdentity() );
 		if ( $consumerId !== null ) {
 			$rc->addTags( Utils::getTagName( $consumerId ) );
 		}
@@ -391,11 +393,11 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 
 	/**
 	 * Get the consumer ID of the non-owner-only OAuth consumer associated with this user, or null.
-	 * @param User|null $user
+	 * @param UserIdentity|null $userIdentity
 	 * @return int|null
 	 */
-	protected function getPublicConsumerId( User $user = null ) {
-		$data = $this->getSessionData( $user );
+	protected function getPublicConsumerId( UserIdentity $userIdentity = null ) {
+		$data = $this->getSessionData( $userIdentity );
 		if ( $data && isset( $data['consumerId'] ) ) {
 			return $data['consumerId'];
 		}
