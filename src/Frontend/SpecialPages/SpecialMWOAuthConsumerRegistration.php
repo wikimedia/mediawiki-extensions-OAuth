@@ -53,6 +53,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 	}
 
 	public function execute( $par ) {
+		$this->requireLogin();
 		$this->checkPermissions();
 
 		$request = $this->getRequest();
