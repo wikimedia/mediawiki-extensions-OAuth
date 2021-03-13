@@ -77,7 +77,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			return true;
 		};
 
-		$validateRestrictions = function ( $s ) {
+		$validateBlobSize = function ( $s ) {
 			return strlen( $s ) < self::BLOB_SIZE;
 		};
 
@@ -89,7 +89,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				'callbackUrl'  => function ( $s, $vals ) {
 					return $vals['ownerOnly'] || wfParseUrl( $s ) !== false;
 				},
-				'description'  => '/^.*$/s',
+				'description'  => $validateBlobSize,
 				'email'        => function ( $s ) {
 					return \Sanitizer::validateEmail( $s );
 				},
@@ -108,7 +108,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					$grants = \FormatJson::decode( $s, true );
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
 				},
-				'restrictions' => $validateRestrictions,
+				'restrictions' => $validateBlobSize,
 				'rsaKey'       => $validateRsaKey,
 				'agreement'    => function ( $s ) {
 					return ( $s == true );
@@ -116,7 +116,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			],
 			'update'      => [
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
-				'restrictions' => $validateRestrictions,
+				'restrictions' => $validateBlobSize,
 				'rsaKey'       => $validateRsaKey,
 				'resetSecret'  => function ( $s ) {
 					return is_bool( $s );
