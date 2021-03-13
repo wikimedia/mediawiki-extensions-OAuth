@@ -54,6 +54,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 	public function execute( $par ) {
 		global $wgMWOAuthSecureTokenTransfer, $wgMWOAuthReadOnly;
+
+		$this->requireLogin();
 		$this->checkPermissions();
 
 		$request = $this->getRequest();
