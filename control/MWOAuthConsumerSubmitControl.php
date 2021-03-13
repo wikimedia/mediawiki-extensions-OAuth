@@ -98,6 +98,9 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 				},
 				'granttype'    => '/^(authonly|authonlyprivate|normal)$/',
 				'grants'       => function ( $s ) {
+					if ( strlen( $s ) > self::BLOB_SIZE ) {
+						return false;
+					}
 					$grants = \FormatJson::decode( $s, true );
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
 				},
