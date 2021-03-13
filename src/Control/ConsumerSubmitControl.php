@@ -50,6 +50,12 @@ class ConsumerSubmitControl extends SubmitControl {
 	protected $dbw;
 
 	/**
+	 * MySQL Blob Size is 2^16 - 1 = 65535 as per "L + 2 bytes, where L < 216" on
+	 * https://dev.mysql.com/doc/refman/8.0/en/storage-requirements.html
+	 */
+	private const BLOB_SIZE = 65535;
+
+	/**
 	 * @param \IContextSource $context
 	 * @param array $params
 	 * @param DBConnRef $dbw Result of MWOAuthUtils::getCentralDB( DB_MASTER )
@@ -63,6 +69,9 @@ class ConsumerSubmitControl extends SubmitControl {
 		$validateRsaKey = function ( $s ) {
 			if ( trim( $s ) === '' ) {
 				return true;
+			}
+			if ( strlen( $s ) > self::BLOB_SIZE ) {
+				return false;
 			}
 			$key = openssl_pkey_get_public( $s );
 			if ( $key === false ) {
