@@ -77,6 +77,10 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			return true;
 		};
 
+		$validateRestrictions = function ( $s ) {
+			return strlen( $s ) < self::BLOB_SIZE;
+		};
+
 		return [
 			// Proposer (application administrator) actions:
 			'propose'     => [
@@ -104,6 +108,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 					$grants = \FormatJson::decode( $s, true );
 					return is_array( $grants ) && MWOAuthUtils::grantsAreValid( $grants );
 				},
+				'restrictions' => $validateRestrictions,
 				'rsaKey'       => $validateRsaKey,
 				'agreement'    => function ( $s ) {
 					return ( $s == true );
@@ -111,6 +116,7 @@ class MWOAuthConsumerSubmitControl extends MWOAuthSubmitControl {
 			],
 			'update'      => [
 				'consumerKey'  => '/^[0-9a-f]{32}$/',
+				'restrictions' => $validateRestrictions,
 				'rsaKey'       => $validateRsaKey,
 				'resetSecret'  => function ( $s ) {
 					return is_bool( $s );
