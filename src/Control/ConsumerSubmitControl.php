@@ -146,8 +146,12 @@ class ConsumerSubmitControl extends SubmitControl {
 					);
 				},
 				'oauth2GrantTypes' => static function ( $a, $vals ) {
+					if ( $vals['oauthVersion'] == Consumer::OAUTH_VERSION_1 ) {
+						return true;
+					}
+
 					// OAuth 2 apps must have at least one grant type
-					return $vals['oauthVersion'] == Consumer::OAUTH_VERSION_1 || count( $a ) > 0;
+					return count( $a ) > 0 && strlen( FormatJson::encode( $a ) ) <= self::BLOB_SIZE;
 				},
 				'granttype' => '/^(authonly|authonlyprivate|normal)$/',
 				'grants' => static function ( $s ) {
