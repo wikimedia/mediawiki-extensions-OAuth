@@ -420,7 +420,7 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * Public RSA key for RSA-SHA1 signerd OAuth requests.
+	 * Public RSA key for RSA-SHA1 signed OAuth requests.
 	 * @return string
 	 */
 	public function getRsaKey() {

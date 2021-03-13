@@ -175,7 +175,7 @@ class ConsumerAccessControl extends DAOAccessControl {
 	}
 
 	/**
-	 * Public RSA key for RSA-SHA1 signerd OAuth requests.
+	 * Public RSA key for RSA-SHA1 signed OAuth requests.
 	 * Returns a Message when the user does not have permission to see this field.
 	 * @return string|\Message
 	 */
