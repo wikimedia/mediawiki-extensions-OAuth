@@ -90,6 +90,13 @@ class ConsumerSubmitControl extends SubmitControl {
 			return true;
 		};
 
+		$suppress = [ 'suppress' => '/^[01]$/' ];
+		$base = [
+			'consumerKey'  => '/^[0-9a-f]{32}$/',
+			'reason'       => '/^.{0,255}$/',
+			'changeToken'  => '/^[0-9a-f]{40}$/'
+		];
+
 		return [
 			// Proposer (application administrator) actions:
 			'propose'     => [
@@ -119,38 +126,17 @@ class ConsumerSubmitControl extends SubmitControl {
 					return ( $s == true );
 				},
 			],
-			'update'      => [
-				'consumerKey'  => '/^[0-9a-f]{32}$/',
+			'update'      => array_merge( $base, [
 				'rsaKey'       => $validateRsaKey,
 				'resetSecret'  => function ( $s ) {
 					return is_bool( $s );
 				},
-				'reason'       => '/^.{0,255}$/',
-				'changeToken'  => '/^[0-9a-f]{40}$/'
-			],
+			] ),
 			// Approver (project administrator) actions:
-			'approve'     => [
-				'consumerKey'  => '/^[0-9a-f]{32}$/',
-				'reason'       => '/^.{0,255}$/',
-				'changeToken'  => '/^[0-9a-f]{40}$/'
-			],
-			'reject'      => [
-				'consumerKey'  => '/^[0-9a-f]{32}$/',
-				'reason'       => '/^.{0,255}$/',
-				'suppress'     => '/^[01]$/',
-				'changeToken'  => '/^[0-9a-f]{40}$/'
-			],
-			'disable'     => [
-				'consumerKey'  => '/^[0-9a-f]{32}$/',
-				'reason'       => '/^.{0,255}$/',
-				'suppress'     => '/^[01]$/',
-				'changeToken'  => '/^[0-9a-f]{40}$/'
-			],
-			'reenable'    => [
-				'consumerKey'  => '/^[0-9a-f]{32}$/',
-				'reason'       => '/^.{0,255}$/',
-				'changeToken'  => '/^[0-9a-f]{40}$/'
-			]
+			'approve'     => $base,
+			'reject'      => array_merge( $base, $suppress ),
+			'disable'     => array_merge( $base, $suppress ),
+			'reenable'    => $base
 		];
 	}
 
