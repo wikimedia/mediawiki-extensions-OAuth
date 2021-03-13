@@ -101,6 +101,9 @@ class ConsumerSubmitControl extends SubmitControl {
 				'name'         => '/^.{1,128}$/',
 				'version'      => '/^\d{1,3}(\.\d{1,2}){0,2}(-(dev|alpha|beta))?$/',
 				'callbackUrl'  => function ( $s, $vals ) {
+					if ( strlen( $s ) > 2000 ) {
+						return false;
+					}
 					return $vals['ownerOnly'] || wfParseUrl( $s ) !== false;
 				},
 				'description'  => $validateBlobSize,
