@@ -37,7 +37,7 @@ class RequestClientEndpointTest extends EndpointTest {
 	 * @var array[]
 	 */
 	private $postParamsOwnerOnlyRestriction = [
-			'callback_url' => false,
+		'callback_url' => false,
 	];
 
 	/**
