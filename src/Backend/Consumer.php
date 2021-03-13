@@ -417,7 +417,7 @@ abstract class Consumer extends MWOAuthDAO {
 
 	/**
 	 * Secret key used to derive the consumer secret for HMAC-SHA1 signed OAuth requests.
-	 * The actual consumer secret will be calculated via MWOAuthUtils::hmacDBSecret() to mitigate
+	 * The actual consumer secret will be calculated via Utils::hmacDBSecret() to mitigate
 	 * DB leaks.
 	 * @return string
 	 */

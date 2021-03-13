@@ -22,7 +22,7 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 
 	/**
 	 * Helper function for $wgEchoNotifications
-	 * @param string $action One of the actions from MWOAuthConsumerSubmitControl::$actions
+	 * @param string $action One of the actions from ConsumerSubmitControl::$actions
 	 * @return array
 	 */
 	public static function getDefinition( $action ) {

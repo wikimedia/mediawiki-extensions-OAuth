@@ -165,7 +165,7 @@ class ConsumerAccessControl extends DAOAccessControl {
 
 	/**
 	 * Secret key used to derive the consumer secret for HMAC-SHA1 signed OAuth requests.
-	 * The actual consumer secret will be calculated via MWOAuthUtils::hmacDBSecret() to mitigate
+	 * The actual consumer secret will be calculated via Utils::hmacDBSecret() to mitigate
 	 * DB leaks.
 	 * Returns a Message when the user does not have permission to see this field.
 	 * @return string|\Message

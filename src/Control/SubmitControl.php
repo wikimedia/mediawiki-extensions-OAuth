@@ -100,7 +100,7 @@ abstract class SubmitControl extends \ContextSource {
 	}
 
 	/**
-	 * This method should not be called outside MWOAuthSubmitControl
+	 * This method should not be called outside SubmitControl
 	 *
 	 * @param string $field
 	 * @param string $value
