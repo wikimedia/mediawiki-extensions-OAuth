@@ -129,6 +129,9 @@ class ConsumerSubmitControl extends SubmitControl {
 					}
 				},
 				'callbackUrl'  => function ( $s, $vals ) {
+					if ( strlen( $s ) > 2000 ) {
+						return false;
+					}
 					return $vals['ownerOnly'] || wfParseUrl( $s ) !== false;
 				},
 				'description'  => $validateBlobSize,
