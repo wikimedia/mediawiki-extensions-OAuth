@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Control;
 
+use Composer\Semver\VersionParser;
 use ExtensionRegistry;
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
@@ -9,6 +10,7 @@ use MediaWiki\Extensions\OAuth\Backend\MWOAuthDataStore;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Logger\LoggerFactory;
+use UnexpectedValueException;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
@@ -99,7 +101,18 @@ class ConsumerSubmitControl extends SubmitControl {
 			// Proposer (application administrator) actions:
 			'propose'     => [
 				'name'         => '/^.{1,128}$/',
-				'version'      => '/^\d{1,3}(\.\d{1,2}){0,2}(-(dev|alpha|beta))?$/',
+				'version'      => function ( $s ) {
+					if ( strlen( $s ) > 32 ) {
+						return false;
+					}
+					$parser = new VersionParser();
+					try {
+						$parser->normalize( $s );
+						return true;
+					} catch ( UnexpectedValueException $e ) {
+						return false;
+					}
+				},
 				'callbackUrl'  => function ( $s, $vals ) {
 					if ( strlen( $s ) > 2000 ) {
 						return false;
