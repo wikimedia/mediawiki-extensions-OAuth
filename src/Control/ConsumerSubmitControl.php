@@ -105,6 +105,9 @@ class ConsumerSubmitControl extends SubmitControl {
 				},
 				'granttype'    => '/^(authonly|authonlyprivate|normal)$/',
 				'grants'       => function ( $s ) {
+					if ( strlen( $s ) > self::BLOB_SIZE ) {
+						return false;
+					}
 					$grants = \FormatJson::decode( $s, true );
 					return is_array( $grants ) && Utils::grantsAreValid( $grants );
 				},
