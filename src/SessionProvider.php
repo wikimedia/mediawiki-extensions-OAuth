@@ -382,7 +382,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 	 * @return bool true
 	 */
 	public function onRecentChange_save( $rc ) {
-		$consumerId = $this->getPublicConsumerId( $rc->getPerformer() ?: null );
+		$consumerId = $this->getPublicConsumerId( User::newFromIdentity( $rc->getPerformerIdentity() ) );
 		if ( $consumerId !== null ) {
 			$rc->addTags( Utils::getTagName( $consumerId ) );
 		}
