@@ -2,7 +2,12 @@
 
 namespace MediaWiki\Extensions\OAuth\Control;
 
+use EchoEvent;
+use Exception;
 use ExtensionRegistry;
+use FormatJson;
+use IContextSource;
+use ManualLogEntry;
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extensions\OAuth\Backend\MWOAuthDataStore;
@@ -10,6 +15,12 @@ use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MWCryptRand;
+use MWException;
+use MWGrants;
+use SpecialPage;
+use Title;
+use User;
 use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -52,11 +63,11 @@ class ConsumerSubmitControl extends SubmitControl {
 	protected $dbw;
 
 	/**
-	 * @param \IContextSource $context
+	 * @param IContextSource $context
 	 * @param array $params
 	 * @param DBConnRef $dbw Result of MWOAuthUtils::getCentralDB( DB_MASTER )
 	 */
-	public function __construct( \IContextSource $context, array $params, DBConnRef $dbw ) {
+	public function __construct( IContextSource $context, array $params, DBConnRef $dbw ) {
 		parent::__construct( $context, $params );
 		$this->dbw = $dbw;
 	}
@@ -205,7 +216,7 @@ class ConsumerSubmitControl extends SubmitControl {
 
 			// Handle owner-only mode
 			if ( $this->vals['ownerOnly'] ) {
-				$this->vals['callbackUrl'] = \SpecialPage::getTitleFor( 'OAuth', 'verified' )
+				$this->vals['callbackUrl'] = SpecialPage::getTitleFor( 'OAuth', 'verified' )
 					->getLocalURL();
 				$this->vals['callbackIsPrefix'] = '';
 				$stage = Consumer::STAGE_APPROVED;
@@ -224,8 +235,8 @@ class ConsumerSubmitControl extends SubmitControl {
 					break;
 				case 'normal':
 					$grants = array_unique( array_merge(
-						\MWGrants::getHiddenGrants(), // implied grants
-						\FormatJson::decode( $this->vals['grants'], true )
+						MWGrants::getHiddenGrants(), // implied grants
+						FormatJson::decode( $this->vals['grants'], true )
 					) );
 					break;
 			}
@@ -234,12 +245,12 @@ class ConsumerSubmitControl extends SubmitControl {
 			$cmr = Consumer::newFromArray(
 				[
 					'id'                 => null, // auto-increment
-					'consumerKey'        => \MWCryptRand::generateHex( 32 ),
+					'consumerKey'        => MWCryptRand::generateHex( 32 ),
 					'userId'             => $centralUserId,
 					'email'              => $user->getEmail(),
 					'emailAuthenticated' => $now, // see above
 					'developerAgreement' => 1,
-					'secretKey'          => \MWCryptRand::generateHex( 32 ),
+					'secretKey'          => MWCryptRand::generateHex( 32 ),
 					'registration'       => $now,
 					'stage'              => $stage,
 					'stageTimestamp'     => $now,
@@ -279,7 +290,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					// OAuth2 client
 					try {
 						$accessToken = $cmr->getOwnerOnlyAccessToken( $cmra );
-					} catch ( \Exception $ex ) {
+					} catch ( Exception $ex ) {
 						return $this->failure(
 							'unable_to_retrieve_access_token',
 							'mwoauth-oauth2-unable-to-retrieve-access-token',
@@ -316,7 +327,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				'rsaKey'       => $this->vals['rsaKey'],
 				'restrictions' => $this->vals['restrictions'],
 				'secretKey'    => $this->vals['resetSecret']
-					? \MWCryptRand::generateHex( 32 )
+					? MWCryptRand::generateHex( 32 )
 					: $cmr->getSecretKey(),
 			] );
 
@@ -326,7 +337,6 @@ class ConsumerSubmitControl extends SubmitControl {
 				$this->notify( $cmr, $user, $action,  $this->vals['reason'] );
 			}
 
-			$cmra = null;
 			$accessToken = null;
 			if ( $cmr->getOwnerOnly() && $this->vals['resetSecret'] ) {
 				$cmra = $cmr->getCurrentAuthorization( $user, WikiMap::getCurrentWikiId() );
@@ -484,24 +494,24 @@ class ConsumerSubmitControl extends SubmitControl {
 	/**
 	 * @param DBConnRef $db
 	 * @param int $userId
-	 * @return \Title
+	 * @return Title
 	 */
 	protected function getLogTitle( DBConnRef $db, $userId ) {
 		$name = Utils::getCentralUserNameFromId( $userId );
-		return \Title::makeTitleSafe( NS_USER, $name );
+		return Title::makeTitleSafe( NS_USER, $name );
 	}
 
 	/**
 	 * @param DBConnRef $dbw
 	 * @param Consumer $cmr
 	 * @param string $action
-	 * @param \User $performer
+	 * @param User $performer
 	 * @param string $comment
 	 */
 	protected function makeLogEntry(
-		$dbw, Consumer $cmr, $action, \User $performer, $comment
+		$dbw, Consumer $cmr, $action, User $performer, $comment
 	) {
-		$logEntry = new \ManualLogEntry( 'mwoauthconsumer', $action );
+		$logEntry = new ManualLogEntry( 'mwoauthconsumer', $action );
 		$logEntry->setPerformer( $performer );
 		$target = $this->getLogTitle( $dbw, $cmr->getUserId() );
 		$logEntry->setTarget( $target );
@@ -526,14 +536,14 @@ class ConsumerSubmitControl extends SubmitControl {
 
 	/**
 	 * @param Consumer $cmr Consumer which was the subject of the action
-	 * @param \User $user User who performed the action
+	 * @param User $user User who performed the action
 	 * @param string $actionType Action type
 	 * @param string $comment
-	 * @throws \MWException
+	 * @throws MWException
 	 */
 	protected function notify( $cmr, $user, $actionType, $comment ) {
 		if ( !in_array( $actionType, self::$actions, true ) ) {
-			throw new \MWException( "Invalid action type: $actionType" );
+			throw new MWException( "Invalid action type: $actionType" );
 		} elseif ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			return;
 		} elseif ( !Utils::isCentralWiki() ) {
@@ -541,7 +551,7 @@ class ConsumerSubmitControl extends SubmitControl {
 			return;
 		}
 
-		\EchoEvent::create( [
+		EchoEvent::create( [
 			'type' => 'oauth-app-' . $actionType,
 			'agent' => $user,
 			'extra' => [
