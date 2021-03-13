@@ -7,6 +7,7 @@ use Exception;
 use ExtensionRegistry;
 use FormatJson;
 use IContextSource;
+use LogicException;
 use ManualLogEntry;
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
@@ -18,6 +19,7 @@ use MediaWiki\MediaWikiServices;
 use MWCryptRand;
 use MWException;
 use MWGrants;
+use Sanitizer;
 use SpecialPage;
 use Title;
 use User;
@@ -98,7 +100,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				},
 				'description'  => '/^.*$/s',
 				'email'        => function ( $s ) {
-					return \Sanitizer::validateEmail( $s );
+					return Sanitizer::validateEmail( $s );
 				},
 				'wiki'         => function ( $s ) {
 					global $wgConf;
@@ -109,7 +111,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				},
 				'granttype'    => '/^(authonly|authonlyprivate|normal)$/',
 				'grants'       => function ( $s ) {
-					$grants = \FormatJson::decode( $s, true );
+					$grants = FormatJson::decode( $s, true );
 					return is_array( $grants ) && Utils::grantsAreValid( $grants );
 				},
 				'rsaKey'       => $validateRsaKey,
@@ -163,7 +165,7 @@ class ConsumerSubmitControl extends SubmitControl {
 			return $this->failure( 'readonly', 'readonlytext', wfReadOnlyReason() );
 		} elseif ( !Utils::isCentralWiki() ) { // sanity
 			// This logs consumer changes to the local logging table on the central wiki
-			throw new \LogicException( "This can only be used from the OAuth management wiki." );
+			throw new LogicException( "This can only be used from the OAuth management wiki." );
 		}
 		return $this->success();
 	}
