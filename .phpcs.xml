@@ -13,6 +13,6 @@
 	<file>.</file>
 	<arg name="extensions" value="php"/>
 	<arg name="encoding" value="UTF-8"/>
-	<exclude-pattern type="relative">^src/lib/</exclude-pattern>
-	<exclude-pattern type="relative">^tests/phpunit/lib/</exclude-pattern>
+	<exclude-pattern type="relative">^src/Lib/</exclude-pattern>
+	<exclude-pattern type="relative">^tests/phpunit/Lib/</exclude-pattern>
 </ruleset>
