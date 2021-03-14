@@ -1,11 +1,3 @@
 # Extension:OAuth
 
 For a full description see [Extension:OAuth on mediawiki.org](https://www.mediawiki.org/wiki/Extension:OAuth).
-
-## Experimental REST API
-
-To enable experimental REST APIs you must set
-
-    $wgRestAPIAdditionalRouteFiles[] = "extensions/OAuth/experimentalRoutes.json";
-
-in your `LocalSettings.php`
