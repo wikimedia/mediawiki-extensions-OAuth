@@ -106,6 +106,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			$allWikis = Utils::getAllWikiNames();
 
 			$showGrants = \MWGrants::getValidGrants();
+			$grantLinks = array_map( 'MWGrants::getGrantsLink', $showGrants );
+
 			$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
 
 			$dbw = Utils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
@@ -225,18 +227,19 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 							$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
 						],
 						'rows' => array_combine(
-							array_map( 'MWGrants::getGrantsLink', $showGrants ),
+							$grantLinks,
 							$showGrants
 						),
 						'tooltips' => array_combine(
-							array_map( 'MWGrants::getGrantsLink', $showGrants ),
+							$grantLinks,
 							array_map(
 								function ( $rights ) use ( $lang ) {
 									return $lang->semicolonList( array_map(
 										'\User::getRightDescription', $rights ) );
 								},
 								array_intersect_key(
-									\MWGrants::getRightsByGrant(), array_flip( $showGrants ) )
+									\MWGrants::getRightsByGrant(), array_flip( $showGrants )
+								)
 							)
 						),
 						'force-options-on' => array_map(
