@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extensions\OAuth\Control;
 
+use Composer\Semver\VersionParser;
 use EchoEvent;
 use Exception;
 use ExtensionRegistry;
@@ -22,6 +23,7 @@ use MWGrants;
 use Sanitizer;
 use SpecialPage;
 use Title;
+use UnexpectedValueException;
 use User;
 use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
@@ -101,7 +103,18 @@ class ConsumerSubmitControl extends SubmitControl {
 			// Proposer (application administrator) actions:
 			'propose'     => [
 				'name'         => '/^.{1,128}$/',
-				'version'      => '/^\d{1,3}(\.\d{1,2}){0,2}(-(dev|alpha|beta))?$/',
+				'version'      => function ( $s ) {
+					if ( strlen( $s ) > 32 ) {
+						return false;
+					}
+					$parser = new VersionParser();
+					try {
+						$parser->normalize( $s );
+						return true;
+					} catch ( UnexpectedValueException $e ) {
+						return false;
+					}
+				},
 				'callbackUrl'  => function ( $s, $vals ) {
 					return $vals['ownerOnly'] || wfParseUrl( $s ) !== false;
 				},
