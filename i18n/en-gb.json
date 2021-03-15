@@ -19,5 +19,13 @@
 	"mwoauth-invalid-authorization-wrong-user": "The authorisation headers in your request are for a different user",
 	"mwoauth-invalid-authorization-not-approved": "The app that you are trying to connect seems to be set up incorrectly. Contact the author of \"$1\" for help.",
 	"mwoauth-invalid-authorization-blocked-user": "The authorisation headers in your request are for a user who is blocked",
-	"mwoauth-acceptance-cancelled": "You have chosen not to allow \"$1\" to access your account. \"$1\" will not work unless you allow it access. You can go back to \"$1\" or [[Special:OAuthManageMyGrants|manage]] your connected apps."
+	"mwoauth-acceptance-cancelled": "You have chosen not to allow \"$1\" to access your account. \"$1\" will not work unless you allow it access. You can go back to \"$1\" or [[Special:OAuthManageMyGrants|manage]] your connected apps.",
+	"mwoauth-granttype-normal": "Request authorisation for specific permissions.",
+	"mwoauth-oauth2-granttype-auth-code": "Authorisation code",
+	"mwoauth-oauth2-error-server-error": "The authorisation server encountered an unexpected condition that prevented it from fulfilling the request.",
+	"mwoauth-oauth2-error-unauthorized-client": "The client is not authorised to request an authorisation code using this method.",
+	"mwoauth-oauth2-error-access-denied": "The resource owner or authorisation server denied the request.",
+	"mwoauth-oauth2-error-unsupported-response-type": "The authorisation server does not support obtaining an authorisation code using this method.",
+	"mwoauth-oauth2-error-temporarily-unavailable": "The authorisation server is currently unable to handle the request due to a temporary overloading or maintenance of the server.",
+	"mwoauth-login-required-reason": "You need to log into your {{SITENAME}} account to authorise applications to access it."
 }
