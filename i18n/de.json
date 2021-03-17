@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"ChrisiPK",
+			"Gebu",
 			"Kghbln",
 			"Killarnee",
 			"Metalhead64",
@@ -167,6 +168,7 @@
 	"mwoauthlistconsumers-status-rejected": "abgelehnt",
 	"mwoauthlistconsumers-status-expired": "abgelaufen",
 	"mwoauthlistconsumers-navigation": "Navigation:",
+	"mwoauthlistconsumers-update-link": "Verbraucher aktualisieren",
 	"mwoauthlistconsumers-grants-link": "Rechte verwalten",
 	"mwoauthlistconsumers-rclink": "Letzte Änderungen durch diese Anwendung",
 	"oauthmanagemygrants": "Verbundene Anwendungen verwalten",
