@@ -4,7 +4,6 @@ namespace MediaWiki\Extensions\OAuth\Backend;
 
 use MediaWiki\Extensions\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extensions\OAuth\Lib\OAuthUtil;
-use MediaWiki\Logger\LoggerFactory;
 
 /**
  * @file
@@ -32,7 +31,7 @@ class MWOAuthRequest extends OAuthRequest {
 	}
 
 	/**
-	 * Track the source IP of the request, so we can enforce the IP whitelist
+	 * Track the source IP of the request, so we can enforce the allowed IP list
 	 * @return string $ip the ip of the source
 	 */
 	public function getSourceIP() {
@@ -42,7 +41,6 @@ class MWOAuthRequest extends OAuthRequest {
 	public static function fromRequest( \WebRequest $request ) {
 		$httpMethod = strtoupper( $request->getMethod() );
 		$httpUrl = $request->getFullRequestURL();
-		$logger = LoggerFactory::getInstance( 'OAuth' );
 
 		// Find request headers
 		$requestHeaders = Utils::getHeaders();
