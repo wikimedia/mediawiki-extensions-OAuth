@@ -108,7 +108,7 @@ class ConsumerSubmitControl extends SubmitControl {
 			'changeToken'  => '/^[0-9a-f]{40}$/'
 		];
 
-		$validateRestrictions = function ( $s ) {
+		$validateBlobSize = function ( $s ) {
 			return strlen( $s ) < self::BLOB_SIZE;
 		};
 
@@ -131,7 +131,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				'callbackUrl'  => function ( $s, $vals ) {
 					return $vals['ownerOnly'] || wfParseUrl( $s ) !== false;
 				},
-				'description'  => '/^.*$/s',
+				'description'  => $validateBlobSize,
 				'email'        => function ( $s ) {
 					return Sanitizer::validateEmail( $s );
 				},
@@ -150,14 +150,14 @@ class ConsumerSubmitControl extends SubmitControl {
 					$grants = FormatJson::decode( $s, true );
 					return is_array( $grants ) && Utils::grantsAreValid( $grants );
 				},
-				'restrictions' => $validateRestrictions,
+				'restrictions' => $validateBlobSize,
 				'rsaKey'       => $validateRsaKey,
 				'agreement'    => function ( $s ) {
 					return ( $s == true );
 				},
 			],
 			'update'      => array_merge( $base, [
-				'restrictions' => $validateRestrictions,
+				'restrictions' => $validateBlobSize,
 				'rsaKey'       => $validateRsaKey,
 				'resetSecret'  => function ( $s ) {
 					return is_bool( $s );
