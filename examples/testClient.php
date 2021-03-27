@@ -147,7 +147,7 @@ if ( !$data ) {
 
 $token = json_decode( $data );
 
-// @codingStandardsIgnoreStart
+// phpcs:disable Generic.Files.LineLength
 print <<<HELPTEXT
 
 	Response body should be a JSON object with three keys:
@@ -174,7 +174,7 @@ print <<<HELPTEXT
 
 
 HELPTEXT;
-// @codingStandardsIgnoreEnd
+// phpcs:enable
 
 // ACCESS TOKEN
 print 'What was the "verification value" the MediaWiki installation gave?' . PHP_EOL;
