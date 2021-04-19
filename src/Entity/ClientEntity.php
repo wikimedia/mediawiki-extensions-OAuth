@@ -162,7 +162,7 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 			count( $this->getAllowedGrants() ) !== 1 ||
 			$this->getAllowedGrants()[0] !== $grantType
 		) {
-			// sanity - make sure client is allowed *only* client_credentials grant,
+			// make sure client is allowed *only* client_credentials grant,
 			// so that this AT cannot be used in other grant type requests
 			throw new MWOAuthException( 'mwoauth-oauth2-error-owner-only-invalid-grant' );
 		}

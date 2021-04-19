@@ -103,7 +103,8 @@ class DAOAccessControl extends \ContextSource {
 	final public function get( $name, $sCallback = null ) {
 		$msg = $this->dao->userCanAccess( $name, $this->getContext() );
 		if ( $msg !== true ) {
-			return $msg; // should be a Message object
+			// should be a Message object
+			return $msg;
 		} else {
 			$value = $this->dao->get( $name );
 			return $sCallback ? call_user_func( $sCallback, $value ) : $value;

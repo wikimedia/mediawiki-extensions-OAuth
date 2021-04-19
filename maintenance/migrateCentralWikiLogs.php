@@ -138,7 +138,7 @@ class MigrateCentralWikiLogs extends Maintenance {
 
 			$lbFactory->waitForReplication();
 
-		} while ( $rowCount ); // This wastes an extra query, but keeps the logic simpler
+		} while ( $rowCount );
 	}
 
 }

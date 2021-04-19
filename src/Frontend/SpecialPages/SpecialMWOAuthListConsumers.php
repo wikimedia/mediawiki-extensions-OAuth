@@ -176,7 +176,8 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			],
 			$this->getContext()
 		);
-		$form->setAction( $this->getPageTitle()->getFullURL() ); // always go back to listings
+		// always go back to listings
+		$form->setAction( $this->getPageTitle()->getFullURL() );
 		$form->setSubmitCallback( function () {
 			return false;
 		} );
@@ -234,7 +235,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			$this->getPageTitle( "view/{$cmrKey}" ),
 			$this->msg( 'mwoauthlistconsumers-view' )->text(),
 			[],
-			$this->getRequest()->getValues( 'name', 'publisher', 'stage' ) // stick
+			$this->getRequest()->getValues( 'name', 'publisher', 'stage' )
 		);
 		if ( !$permMgr->userHasRight( $this->getUser(), 'mwoauthmanageconsumer' ) ) {
 			$links[] = $this->getLinkRenderer()->makeKnownLink(
@@ -244,7 +245,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		}
 		$links = $this->getLanguage()->pipeList( $links );
 
-		$encStageKey = htmlspecialchars( $stageKey ); // sanity
+		$encStageKey = htmlspecialchars( $stageKey );
 		$r = "<li class=\"mw-mwoauthlistconsumers-{$encStageKey}\">";
 
 		$name = $cmrAc->getNameAndVersion();

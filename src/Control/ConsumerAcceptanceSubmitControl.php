@@ -104,11 +104,12 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 	}
 
 	protected function processAction( $action ) {
-		$user = $this->getUser(); // proposer or admin
-		$dbw = $this->dbw; // convenience
+		// proposer or admin
+		$user = $this->getUser();
+		$dbw = $this->dbw;
 
 		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
-		if ( !$centralUserId ) { // sanity
+		if ( !$centralUserId ) {
 			return $this->failure( 'permission_denied', 'badaccess-group0' );
 		}
 
@@ -164,13 +165,16 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 			}
 			$cmr = Consumer::newFromId( $dbw, $cmra->getConsumerId() );
 
-			$grants = \FormatJson::decode( $this->vals['grants'], true ); // requested grants
+			// requested grants
+			$grants = \FormatJson::decode( $this->vals['grants'], true );
 			$grants = array_unique( array_intersect(
 				array_merge(
-					\MWGrants::getHiddenGrants(), // implied grants
-					$grants // requested grants
+					// implied grants
+					\MWGrants::getHiddenGrants(),
+					$grants
 				),
-				 $cmr->getGrants() // Only keep the applicable ones
+				// Only keep the applicable ones
+				$cmr->getGrants()
 			) );
 
 			LoggerFactory::getInstance( 'OAuth' )->info(
@@ -184,7 +188,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 				]
 			);
 			$cmra->setFields( [
-				'grants' => array_intersect( $grants, $cmr->getGrants() ) // sanity
+				'grants' => array_intersect( $grants, $cmr->getGrants() )
 			] );
 			$cmra->save( $dbw );
 

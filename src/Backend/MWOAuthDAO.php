@@ -191,7 +191,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 				return $dbw->affectedRows() > 0;
 			} else {
 				$this->logger->debug( get_class( $this ) . ': skipping DB update; object unchanged.' );
-				return false; // short-circuit
+				return false;
 			}
 		} else {
 			$this->logger->debug( get_class( $this ) . ': performing DB update; new object.' );
@@ -208,7 +208,8 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 				$row,
 				__METHOD__
 			);
-			if ( $afield !== null ) { // update field for auto-increment field
+			if ( $afield !== null ) {
+				// update field for auto-increment field
 				$this->$afield = $dbw->insertId();
 			}
 			$this->daoPending = false;
@@ -439,7 +440,8 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 			if ( $this->userCanAccess( $field, $context ) ) {
 				$map[$field] = $this->$field;
 			} else {
-				$map[$field] = null; // don't convey this information
+				// don't convey this information
+				$map[$field] = null;
 			}
 		}
 		return hash_hmac(

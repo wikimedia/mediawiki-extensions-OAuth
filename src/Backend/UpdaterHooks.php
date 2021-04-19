@@ -12,7 +12,8 @@ class UpdaterHooks {
 	 */
 	public static function addSchemaUpdates( \DatabaseUpdater $updater ) {
 		if ( !Utils::isCentralWiki() ) {
-			return true; // no tables to add
+			// no tables to add
+			return true;
 		}
 
 		$dbType = $updater->getDB()->getType();
