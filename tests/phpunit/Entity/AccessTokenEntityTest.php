@@ -55,7 +55,7 @@ class AccessTokenEntityTest extends MediaWikiTestCase {
 			'dummykey', $accessToken->getClient()->getIdentifier(),
 			'Access token should have the same client identifier as the one that was passed'
 		);
-		$atScopes = array_map( function ( ScopeEntityInterface $scope ) {
+		$atScopes = array_map( static function ( ScopeEntityInterface $scope ) {
 			return $scope->getIdentifier();
 		}, $accessToken->getScopes() );
 		$this->assertArrayEquals(

@@ -116,7 +116,7 @@ class RequestClient extends AbstractClientHandler {
 		$scopeRepo = new ScopeRepository();
 		$allowedScopes = $scopeRepo->getAllowedScopes();
 
-		$scopes = array_filter( $finalParams['grants'], function ( $scope ) use ( $allowedScopes ) {
+		$scopes = array_filter( $finalParams['grants'], static function ( $scope ) use ( $allowedScopes ) {
 			return in_array( $scope, $allowedScopes );
 		} );
 

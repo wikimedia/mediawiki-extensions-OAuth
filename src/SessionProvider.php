@@ -58,7 +58,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 		// is ready to catch it
 		$msg = wfMessage( $key, $params );
 		$exception = \ApiUsageException::newWithMessage( null, $msg );
-		$wgHooks['ApiBeforeMain'][] = function () use ( $exception ) {
+		$wgHooks['ApiBeforeMain'][] = static function () use ( $exception ) {
 			throw $exception;
 		};
 
@@ -259,7 +259,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 		$resourceServer->verify(
 			$request,
 			$response,
-			function ( $request, $response ) use ( &$valid ) {
+			static function ( $request, $response ) use ( &$valid ) {
 				$valid = true;
 			}
 		);

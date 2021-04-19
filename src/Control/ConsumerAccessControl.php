@@ -229,7 +229,7 @@ class ConsumerAccessControl extends DAOAccessControl {
 	 * @return string|\Message
 	 */
 	public function getUserName( $audience = false ) {
-		return $this->get( 'userId', function ( $id ) use ( $audience ) {
+		return $this->get( 'userId', static function ( $id ) use ( $audience ) {
 			return Utils::getCentralUserNameFromId( $id, $audience );
 		} );
 	}
@@ -239,7 +239,7 @@ class ConsumerAccessControl extends DAOAccessControl {
 	 * @return string|\Message
 	 */
 	public function getWikiName() {
-		return $this->get( 'wiki', function ( $wikiId ) {
+		return $this->get( 'wiki', static function ( $wikiId ) {
 			return Utils::getWikiIdName( $wikiId );
 		} );
 	}

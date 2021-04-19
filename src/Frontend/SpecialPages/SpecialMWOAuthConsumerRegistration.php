@@ -201,7 +201,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 								'refresh_token',
 							$this->msg( 'mwoauth-oauth2-granttype-client-credentials' )->escaped() =>
 								'client_credentials',
-						], function ( $grantType ) use ( $config ) {
+						], static function ( $grantType ) use ( $config ) {
 							return in_array( $grantType, $config->get( 'OAuth2EnabledGrantTypes' ) );
 						} ),
 						'dropdown' => true,
@@ -233,7 +233,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'tooltips' => array_combine(
 							$grantLinks,
 							array_map(
-								function ( $rights ) use ( $lang ) {
+								static function ( $rights ) use ( $lang ) {
 									return $lang->semicolonList( array_map(
 										'\User::getRightDescription', $rights ) );
 								},
@@ -243,7 +243,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 							)
 						),
 						'force-options-on' => array_map(
-							function ( $g ) {
+							static function ( $g ) {
 								return "grant-$g";
 							},
 							\MWGrants::getHiddenGrants()
@@ -278,7 +278,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				$this->getContext()
 			);
 			$form->setSubmitCallback(
-				function ( array $data, \IContextSource $context ) use ( $control ) {
+				static function ( array $data, \IContextSource $context ) use ( $control ) {
 					// adapt form to controller
 					$data['grants'] = \FormatJson::encode(
 						preg_replace( '/^grant-/', '', $data['grants'] )
@@ -414,7 +414,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 				$this->getContext()
 			);
 			$form->setSubmitCallback(
-				function ( array $data, \IContextSource $context ) use ( $control ) {
+				static function ( array $data, \IContextSource $context ) use ( $control ) {
 					$control->setInputParameters( $data );
 					return $control->submit();
 				}
@@ -599,7 +599,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			'mwoauthconsumerregistration-stage' =>
 				$this->msg( "mwoauth-consumer-stage-$stageKey" )->escaped(),
 			'mwoauthconsumerregistration-description' => $cmrAc->escapeForHtml(
-				$cmrAc->get( 'description', function ( $s ) use ( $lang ) {
+				$cmrAc->get( 'description', static function ( $s ) use ( $lang ) {
 					return $lang->truncateForVisual( $s, 10024 );
 				} )
 			),

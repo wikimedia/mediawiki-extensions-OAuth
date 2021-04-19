@@ -178,7 +178,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		);
 		// always go back to listings
 		$form->setAction( $this->getPageTitle()->getFullURL() );
-		$form->setSubmitCallback( function () {
+		$form->setSubmitCallback( static function () {
 			return false;
 		} );
 		$form->setMethod( 'get' );
@@ -261,7 +261,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			),
 			'mwoauthlistconsumers-user' => $cmrAc->escapeForHtml( $cmrAc->getUserName() ),
 			'mwoauthlistconsumers-description' => $cmrAc->escapeForHtml(
-				$cmrAc->get( 'description', function ( $s ) use ( $lang ) {
+				$cmrAc->get( 'description', static function ( $s ) use ( $lang ) {
 					return $lang->truncateForVisual( $s, 10024 );
 				} )
 			),

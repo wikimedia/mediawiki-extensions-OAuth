@@ -64,7 +64,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 		$required = [
 			'update'   => [
 				'acceptanceId' => '/^\d+$/',
-				'grants'      => function ( $s ) {
+				'grants'      => static function ( $s ) {
 					$grants = \FormatJson::decode( $s, true );
 					return is_array( $grants ) && Utils::grantsAreValid( $grants );
 				}

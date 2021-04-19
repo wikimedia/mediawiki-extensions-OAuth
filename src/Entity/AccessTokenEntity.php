@@ -130,7 +130,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 		$approvedScopes = $approval->getGrants();
 		$notApproved = array_filter(
 			$scopes,
-			function ( ScopeEntityInterface $scope ) use ( $approvedScopes ) {
+			static function ( ScopeEntityInterface $scope ) use ( $approvedScopes ) {
 				return !in_array( $scope->getIdentifier(), $approvedScopes, true );
 			}
 		);

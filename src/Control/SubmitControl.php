@@ -93,7 +93,7 @@ abstract class SubmitControl extends \ContextSource {
 			}
 			$control = $this;
 			$description['validation-callback'] =
-				function ( $value, $allValues, $form ) use ( $control, $field ) {
+				static function ( $value, $allValues, $form ) use ( $control, $field ) {
 					return $control->validateFieldInternal( $field, $value, $allValues, $form );
 				};
 		}

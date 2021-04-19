@@ -294,7 +294,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
-			function ( array $data, \IContextSource $context ) use ( $control ) {
+			static function ( array $data, \IContextSource $context ) use ( $control ) {
 				$data['suppress'] = 0;
 				if ( $data['action'] === 'dsuppress' ) {
 					$data = [ 'action' => 'disable', 'suppress' => 1 ] + $data;
@@ -395,7 +395,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 				null : ( $cmrAc->getCallbackIsPrefix() ?
 					$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ) ),
 			'mwoauth-consumer-grantsneeded' => $cmrAc->get( 'grants',
-				function ( $grants ) use ( $lang ) {
+				static function ( $grants ) use ( $lang ) {
 					return $lang->semicolonList( \MWGrants::grantNames( $grants, $lang ) );
 				} ),
 			'mwoauth-consumer-email' => $cmrAc->getEmail(),
@@ -518,7 +518,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 				$this->msg( 'mwoauth-oauth-version-1' )
 			),
 			'mwoauthmanageconsumers-description' => $cmrAc->escapeForHtml(
-				$cmrAc->get( 'description', function ( $s ) use ( $lang ) {
+				$cmrAc->get( 'description', static function ( $s ) use ( $lang ) {
 					return $lang->truncateForVisual( $s, 10024 );
 				} )
 			),

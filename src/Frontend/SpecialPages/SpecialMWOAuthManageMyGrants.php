@@ -194,7 +194,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 						$cmrAc->getGrants()
 					),
 					'default' => array_map(
-						function ( $g ) {
+						static function ( $g ) {
 							return "grant-$g";
 						},
 						$cmraAc->getGrants()
@@ -208,7 +208,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 							$this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
 					],
 					'force-options-on' => array_map(
-						function ( $g ) {
+						static function ( $g ) {
 							return "grant-$g";
 						},
 						( $type === 'revoke' )
@@ -225,7 +225,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
-			function ( array $data, \IContextSource $context ) use ( $action, $cmraAc ) {
+			static function ( array $data, \IContextSource $context ) use ( $action, $cmraAc ) {
 				$data['action'] = $action;
 				// adapt form to controller
 				$data['grants'] = \FormatJson::encode(
