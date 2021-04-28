@@ -28,8 +28,6 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * Query to list out consumers
- *
- * @TODO: use UserCache
  */
 class ManageConsumersPager extends \ReverseChronologicalPager {
 	/** @var SpecialMWOAuthManageConsumers */

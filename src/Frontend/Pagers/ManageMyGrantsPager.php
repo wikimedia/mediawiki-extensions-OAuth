@@ -28,8 +28,6 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * Query to list out consumers that have an access token for this user
- *
- * @TODO: use UserCache
  */
 class ManageMyGrantsPager extends \ReverseChronologicalPager {
 	/** @var SpecialMWOAuthManageMyGrants */
