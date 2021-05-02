@@ -186,7 +186,8 @@ class Utils {
 		} else {
 			$host = \WikiMap::getWikiName( $wikiId );
 			if ( strpos( $host, '.' ) ) {
-				return $host; // e.g. "en.wikipedia.org"
+				// e.g. "en.wikipedia.org"
+				return $host;
 			} else {
 				return $wikiId;
 			}
@@ -242,7 +243,8 @@ class Utils {
 	public static function getCentralUserNameFromId( $userId, $audience = false ) {
 		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
-		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
+		// global ID required via hook
+		if ( $wgMWOAuthSharedUserIDs ) {
 			$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
 			$name = $lookup->nameFromCentralId(
 				$userId,
@@ -279,7 +281,8 @@ class Utils {
 	public static function getLocalUserFromCentralId( $userId ) {
 		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
-		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
+		// global ID required via hook
+		if ( $wgMWOAuthSharedUserIDs ) {
 			$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
 			$user = $lookup->localUserFromCentralId( $userId );
 			if ( $user === null || !$lookup->isAttached( $user ) ) {
@@ -302,8 +305,9 @@ class Utils {
 	public static function getCentralIdFromLocalUser( \User $user ) {
 		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
-		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
-			// T227688 do not rely on array autocreation for non-stdClass
+		// global ID required via hook
+		if ( $wgMWOAuthSharedUserIDs ) {
+			// T227688 do not rely on array auto-creation for non-stdClass
 			if ( !isset( $user->oAuthUserData ) ) {
 				$user->oAuthUserData = [];
 			}
@@ -340,7 +344,8 @@ class Utils {
 	public static function getCentralIdFromUserName( $username ) {
 		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
-		if ( $wgMWOAuthSharedUserIDs ) { // global ID required via hook
+		// global ID required via hook
+		if ( $wgMWOAuthSharedUserIDs ) {
 			$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
 			$id = $lookup->centralIdFromName( $username );
 			if ( $id === 0 ) {

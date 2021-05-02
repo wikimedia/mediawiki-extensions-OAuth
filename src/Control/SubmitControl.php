@@ -88,7 +88,8 @@ abstract class SubmitControl extends \ContextSource {
 	public function registerValidators( array $descriptors ) {
 		foreach ( $descriptors as $field => &$description ) {
 			if ( array_key_exists( 'validation-callback', $description ) ) {
-				continue; // already set to something
+				// already set to something
+				continue;
 			}
 			$control = $this;
 			$description['validation-callback'] =
@@ -113,17 +114,18 @@ abstract class SubmitControl extends \ContextSource {
 		if ( !isset( $allValues['action'] ) && isset( $this->vals['action'] ) ) {
 			// The action may be derived, especially for multi-button forms.
 			// Such an HTMLForm will not have an action key set in $allValues.
-			$allValues['action'] = $this->vals['action']; // injected
+			$allValues['action'] = $this->vals['action'];
 		}
 		if ( !isset( $allValues['action'] ) ) {
 			throw new \MWException( "No form action defined; cannot validate fields." );
 		}
 		$validators = $this->getRequiredFields();
 		if ( !isset( $validators[$allValues['action']][$field] ) ) {
-			return true; // nothing to check
+			// nothing to check
+			return true;
 		}
 		$validator = $validators[$allValues['action']][$field];
-		$isValid = is_string( $validator ) // regex
+		$isValid = is_string( $validator )
 			? preg_match( $validator, $value )
 			: $validator( $value, $allValues );
 		if ( !$isValid ) {
@@ -181,9 +183,9 @@ abstract class SubmitControl extends \ContextSource {
 				return $this->failure( "invalid_field_$field", 'mwoauth-invalid-field', $field );
 			}
 			if ( is_string( $this->vals[$field] ) ) {
-				$this->vals[$field] = trim( $this->vals[$field] ); // trim all input
+				$this->vals[$field] = trim( $this->vals[$field] );
 			}
-			$valid = is_string( $validator ) // regex
+			$valid = is_string( $validator )
 				? preg_match( $validator, $this->vals[$field] )
 				: $validator( $this->vals[$field], $this->vals );
 			if ( !$valid ) {

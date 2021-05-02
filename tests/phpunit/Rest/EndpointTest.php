@@ -70,7 +70,8 @@ abstract class EndpointTest extends \MediaWikiTestCase {
 			$user = new User();
 		}
 
-		RequestContext::getMain()->setUser( $user ); // TODO: to remove this once REST is switched to Authority
+		// TODO: to remove this once REST is switched to Authority
+		RequestContext::getMain()->setUser( $user );
 
 		$response = $this->executeHandlerAndGetReponse( $this->newHandler(), $request, [], [], [], [], $user );
 

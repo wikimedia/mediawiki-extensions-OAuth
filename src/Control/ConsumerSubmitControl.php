@@ -183,7 +183,7 @@ class ConsumerSubmitControl extends SubmitControl {
 			return $this->failure( 'user_blocked', 'badaccess-group0' );
 		} elseif ( wfReadOnly() ) {
 			return $this->failure( 'readonly', 'readonlytext', wfReadOnlyReason() );
-		} elseif ( !Utils::isCentralWiki() ) { // sanity
+		} elseif ( !Utils::isCentralWiki() ) {
 			// This logs consumer changes to the local logging table on the central wiki
 			throw new LogicException( "This can only be used from the OAuth management wiki." );
 		}
@@ -192,11 +192,12 @@ class ConsumerSubmitControl extends SubmitControl {
 
 	protected function processAction( $action ) {
 		$context = $this->getContext();
-		$user = $this->getUser(); // proposer or admin
-		$dbw = $this->dbw; // convenience
+		// proposer or admin
+		$user = $this->getUser();
+		$dbw = $this->dbw;
 
 		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
-		if ( !$centralUserId ) { // sanity
+		if ( !$centralUserId ) {
 			return $this->failure( 'permission_denied', 'badaccess-group0' );
 		}
 
@@ -257,7 +258,8 @@ class ConsumerSubmitControl extends SubmitControl {
 					break;
 				case 'normal':
 					$grants = array_unique( array_merge(
-						MWGrants::getHiddenGrants(), // implied grants
+						// implied grants
+						MWGrants::getHiddenGrants(),
 						FormatJson::decode( $this->vals['grants'], true )
 					) );
 					break;
@@ -266,11 +268,11 @@ class ConsumerSubmitControl extends SubmitControl {
 			$now = wfTimestampNow();
 			$cmr = Consumer::newFromArray(
 				[
-					'id'                 => null, // auto-increment
+					'id'                 => null,
 					'consumerKey'        => MWCryptRand::generateHex( 32 ),
 					'userId'             => $centralUserId,
 					'email'              => $user->getEmail(),
-					'emailAuthenticated' => $now, // see above
+					'emailAuthenticated' => $now,
 					'developerAgreement' => 1,
 					'secretKey'          => MWCryptRand::generateHex( 32 ),
 					'registration'       => $now,
@@ -340,7 +342,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			} elseif ( $cmr->getDeleted()
 				&& !$permissionManager->userHasRight( $user, 'mwoauthsuppress' ) ) {
-				return $this->failure( 'permission_denied', 'badaccess-group0' ); // sanity
+				return $this->failure( 'permission_denied', 'badaccess-group0' );
 			} elseif ( !$cmr->checkChangeToken( $context, $this->vals['changeToken'] ) ) {
 				return $this->failure( 'change_conflict', 'mwoauth-consumer-conflict' );
 			}

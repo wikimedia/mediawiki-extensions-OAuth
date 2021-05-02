@@ -705,7 +705,7 @@ abstract class Consumer extends MWOAuthDAO {
 		$this->stage = (int)$this->stage;
 		$this->stageTimestamp = wfTimestamp( TS_MW, $this->stageTimestamp );
 		$this->emailAuthenticated = wfTimestampOrNull( TS_MW, $this->emailAuthenticated );
-		$this->grants = (array)$this->grants; // sanity
+		$this->grants = (array)$this->grants;
 		$this->callbackIsPrefix = (bool)$this->callbackIsPrefix;
 		$this->ownerOnly = (bool)$this->ownerOnly;
 		$this->oauthVersion = (int)$this->oauthVersion;

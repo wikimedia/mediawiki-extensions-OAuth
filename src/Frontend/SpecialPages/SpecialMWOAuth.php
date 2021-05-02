@@ -66,8 +66,6 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	}
 
 	public function execute( $subpage ) {
-		global $wgMWOAuthSecureTokenTransfer, $wgMWOAuthReadOnly, $wgBlockDisablesLogin;
-
 		$this->setHeaders();
 
 		$user = $this->getUser();
@@ -76,10 +74,12 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$output = $this->getOutput();
 		$output->disallowUserJs();
 
+		$config = $this->getConfig();
+
 		$format = $request->getVal( 'format', 'raw' );
 
 		try {
-			if ( $wgMWOAuthReadOnly &&
+			if ( $config->get( 'MWOAuthReadOnly' ) &&
 				!in_array( $subpage, [ 'verified', 'grants', 'identify' ] )
 			) {
 				throw new MWOAuthException( 'mwoauth-db-readonly' );
@@ -106,7 +106,8 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					if ( $user->isAnon() ) {
 						// Should not happen, as user login status will already be checked at this point
 						// Just redirect back to REST, it will then redirect to login
-						return $this->redirectToREST();
+						$this->redirectToREST();
+						return;
 					}
 					if ( $request->wasPosted() && $request->getCheck( 'cancel' ) ) {
 						$this->showCancelPage( $clientId );
@@ -121,7 +122,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 				case 'authorize':
 				case 'authenticate':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
-					$format = 'html'; // for exceptions
+					$format = 'html';
 
 					$requestToken = $request->getVal( 'requestToken',
 						$request->getVal( 'oauth_token' ) );
@@ -134,16 +135,14 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					if ( $user->isAnon() ) {
 						// Login required on provider wiki
 						$this->requireLogin( 'mwoauth-login-required-reason' );
+					} elseif ( $request->wasPosted() && $request->getCheck( 'cancel' ) ) {
+						// Show acceptance cancellation confirmation
+						$this->showCancelPage( $consumerKey );
 					} else {
-						if ( $request->wasPosted() && $request->getCheck( 'cancel' ) ) {
-							// Show acceptance cancellation confirmation
-							$this->showCancelPage( $consumerKey );
-						} else {
-							// Show form and redirect on submission for authorization
-							$this->handleAuthorizationForm(
-								$requestToken, $consumerKey, $subpage === 'authenticate'
-							);
-						}
+						// Show form and redirect on submission for authorization
+						$this->handleAuthorizationForm(
+							$requestToken, $consumerKey, $subpage === 'authenticate'
+						);
 					}
 					break;
 
@@ -156,7 +155,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 					// We want to use HTTPS when returning the credentials. But
 					// for RSA we don't need to return a token secret, so HTTP is ok.
-					if ( $wgMWOAuthSecureTokenTransfer && !$isRsa
+					if ( $config->get( 'MWOAuthSecureTokenTransfer' ) && !$isRsa
 						&& $request->detectProtocol() == 'http'
 						&& substr( wfExpandUrl( '/', PROTO_HTTPS ), 0, 8 ) === 'https://'
 					) {
@@ -178,7 +177,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 				case 'verified':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
-					$format = 'html'; // for exceptions
+					$format = 'html';
 					$verifier = $request->getVal( 'oauth_verifier' );
 					$requestToken = $request->getVal( 'oauth_token' );
 					if ( !$verifier || !$requestToken ) {
@@ -209,7 +208,8 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 				case 'identify':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
-					$format = 'json'; // we only return JWT, so we assume json
+					// we only return JWT, so we assume json
+					$format = 'json';
 					$server = Utils::newMWOAuthServer();
 					$oauthRequest = MWOAuthRequest::fromRequest( $request );
 					// verify_request throws an exception if anything isn't verified
@@ -230,7 +230,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 							) )
 						] );
 					} elseif ( $localUser->isLocked() ||
-						$wgBlockDisablesLogin && $localUser->isBlocked()
+						$config->get( 'BlockDisablesLogin' ) && $localUser->isBlocked()
 					) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-blocked-user' );
 					}
@@ -450,7 +450,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		);
 		$form->setSubmitCallback(
 			function ( array $data, \IContextSource $context ) use ( $control ) {
-				if ( $context->getRequest()->getCheck( 'cancel' ) ) { // sanity
+				if ( $context->getRequest()->getCheck( 'cancel' ) ) {
 					throw new \MWException( 'Received request for a form cancellation.' );
 				}
 				$control->setInputParameters( $data );
@@ -718,7 +718,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 				$response->header( 'Content-type: text/plain' );
 			}
 			print $data;
-		} elseif ( $format == 'html' ) { // html
+		} elseif ( $format == 'html' ) {
 			$out->addHTML( $data );
 		}
 	}

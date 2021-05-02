@@ -215,7 +215,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 							? array_merge( \MWGrants::getValidGrants(), self::irrevocableGrants() )
 							: self::irrevocableGrants()
 					),
-					'validation-callback' => null // different format
+					'validation-callback' => null
 				],
 				'acceptanceId' => [
 					'type' => 'hidden',
@@ -227,8 +227,10 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$form->setSubmitCallback(
 			function ( array $data, \IContextSource $context ) use ( $action, $cmraAc ) {
 				$data['action'] = $action;
-				$data['grants'] = \FormatJson::encode( // adapt form to controller
-					preg_replace( '/^grant-/', '', $data['grants'] ) );
+				// adapt form to controller
+				$data['grants'] = \FormatJson::encode(
+					preg_replace( '/^grant-/', '', $data['grants'] )
+				);
 
 				$dbw = Utils::getCentralDB( DB_MASTER );
 				$control = new ConsumerAcceptanceSubmitControl(

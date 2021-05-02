@@ -163,9 +163,11 @@ class MWOAuthDataStore extends OAuthDataStore {
 		$cacheCallbackKey = Utils::getCacheKey(
 			'callback', $consumer->key, 'request', $token->key
 		);
-		$this->cache->add( $cacheConsumerKey, $consumer->key, 600 ); // 10 minutes. Kindof arbitray.
-		$this->cache->add( $cacheTokenKey, $token, 600 ); // 10 minutes. Kindof arbitray.
-		$this->cache->add( $cacheCallbackKey, $callback, 600 ); // 10 minutes. Kindof arbitray.
+
+		// 600s == 10 minutes. Kind of arbitrary.
+		$this->cache->add( $cacheConsumerKey, $consumer->key, 600 );
+		$this->cache->add( $cacheTokenKey, $token, 600 );
+		$this->cache->add( $cacheCallbackKey, $callback, 600 );
 		$this->logger->debug( __METHOD__ .
 			": New request token {$token->key} for {$consumer->key} with callback {$callback}" );
 		return $token;
@@ -241,7 +243,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 */
 	public function updateRequestToken( $token, $consumer ) {
 		$cacheKey = Utils::getCacheKey( 'token', $consumer->key, 'request', $token->key );
-		$this->cache->set( $cacheKey, $token, 600 ); // 10 more minutes. Kindof arbitray.
+		// 10 more minutes. Kind of arbitrary.
+		$this->cache->set( $cacheKey, $token, 600 );
 	}
 
 	/**

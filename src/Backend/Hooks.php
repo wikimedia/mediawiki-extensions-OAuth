@@ -201,7 +201,7 @@ EOK;
 
 		if ( $wgMWOAuthCentralWiki === false ) {
 			// Treat each wiki as its own "central wiki" as there is no actual one
-			$wgMWOAuthCentralWiki = wfWikiId(); // default
+			$wgMWOAuthCentralWiki = wfWikiId();
 		} else {
 			// There is actually a central wiki, requiring global user IDs via hook
 			$wgMWOAuthSharedUserIDs = true;

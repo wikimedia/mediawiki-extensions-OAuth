@@ -257,7 +257,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			}
 		}
 
-		$dbw = Utils::getCentralDB( DB_MASTER ); // @TODO: lazy handle
+		$dbw = Utils::getCentralDB( DB_MASTER );
 		$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
 		$form = \HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
@@ -274,7 +274,8 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 					'label-message' => 'mwoauthmanageconsumers-action',
 					'required' => true,
 					'options' => $opts,
-					'default' => '', // no validate on GET
+					// no validate on GET
+					'default' => '',
 				],
 				'reason' => [
 					'type' => 'text',
@@ -489,7 +490,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$time = $this->getLanguage()->timeanddate(
 			wfTimestamp( TS_MW, $cmrAc->getRegistration() ), true );
 
-		$encStageKey = htmlspecialchars( $stageKey ); // sanity
+		$encStageKey = htmlspecialchars( $stageKey );
 		$r = "<li class='mw-mwoauthmanageconsumers-{$encStageKey}'>";
 
 		$r .= $time . " (<strong>{$link}</strong>)";
