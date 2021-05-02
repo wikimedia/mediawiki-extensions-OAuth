@@ -66,7 +66,7 @@ class ScopeRepository implements ScopeRepositoryInterface {
 			// just filter out the scopes that are not allowed for the client
 			return array_filter(
 				$scopes,
-				function ( ScopeEntityInterface $scope ) use ( $clientEntity ) {
+				static function ( ScopeEntityInterface $scope ) use ( $clientEntity ) {
 					return in_array( $scope->getIdentifier(), $clientEntity->getGrants(), true );
 				}
 			);
@@ -91,7 +91,7 @@ class ScopeRepository implements ScopeRepositoryInterface {
 
 		return array_filter(
 			$scopes,
-			function ( ScopeEntityInterface $scope ) use ( $approvedScopeIds ) {
+			static function ( ScopeEntityInterface $scope ) use ( $approvedScopeIds ) {
 				return in_array( $scope->getIdentifier(), $approvedScopeIds, true );
 			}
 		);
@@ -107,7 +107,7 @@ class ScopeRepository implements ScopeRepositoryInterface {
 	private function replaceDefaultScope( array $scopes, ClientEntityInterface $client ) {
 		// Normally, #default scope would be an only scope set, but go through whole array in case
 		// someone explicitly made a request with that scope set
-		$index = array_search( '#default', array_map( function ( ScopeEntityInterface $scope ) {
+		$index = array_search( '#default', array_map( static function ( ScopeEntityInterface $scope ) {
 			return $scope->getIdentifier();
 		}, $scopes ) );
 

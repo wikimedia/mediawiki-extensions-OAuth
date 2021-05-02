@@ -449,7 +449,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
-			function ( array $data, \IContextSource $context ) use ( $control ) {
+			static function ( array $data, \IContextSource $context ) use ( $control ) {
 				if ( $context->getRequest()->getCheck( 'cancel' ) ) {
 					throw new \MWException( 'Received request for a form cancellation.' );
 				}

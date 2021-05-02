@@ -99,7 +99,7 @@ class Authorize extends AuthenticationHandler {
 
 		$authRequest->setScopes( array_filter(
 			$authRequest->getScopes(),
-			function ( ScopeEntityInterface $scope ) use ( $allowedScopes ) {
+			static function ( ScopeEntityInterface $scope ) use ( $allowedScopes ) {
 				return in_array( $scope->getIdentifier(), $allowedScopes );
 			}
 		) );
@@ -175,7 +175,7 @@ class Authorize extends AuthenticationHandler {
 				'returntoquery' => $this->getQueryParamsCgi(),
 				'client_id' => $authRequest->getClient()->getIdentifier(),
 				'oauth_version' => ClientEntity::OAUTH_VERSION_2,
-				'scope' => implode( ' ', array_map( function ( ScopeEntityInterface $scope ) {
+				'scope' => implode( ' ', array_map( static function ( ScopeEntityInterface $scope ) {
 					return $scope->getIdentifier();
 				}, $authRequest->getScopes() ) )
 			] )
@@ -257,7 +257,7 @@ class Authorize extends AuthenticationHandler {
 	 * @return string[]
 	 */
 	private function getFlatScopes( $scopeEntities ) {
-		return array_map( function ( ScopeEntityInterface $scope ) {
+		return array_map( static function ( ScopeEntityInterface $scope ) {
 			return $scope->getIdentifier();
 		}, $scopeEntities );
 	}

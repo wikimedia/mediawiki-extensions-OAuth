@@ -91,7 +91,7 @@ class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	 * @return string|\Message
 	 */
 	public function getWikiName() {
-		return $this->get( 'wiki', function ( $wikiId ) {
+		return $this->get( 'wiki', static function ( $wikiId ) {
 			return Utils::getWikiIdName( $wikiId );
 		} );
 	}

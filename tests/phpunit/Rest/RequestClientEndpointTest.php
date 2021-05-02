@@ -124,7 +124,7 @@ class RequestClientEndpointTest extends EndpointTest {
 					'reasonPhrase' => 'Bad Request',
 					'protocolVersion' => '1.1'
 				],
-				function () {
+				static function () {
 					return User::createNew( 'RequestClientTestUser1' );
 				}
 			],
@@ -140,7 +140,7 @@ class RequestClientEndpointTest extends EndpointTest {
 					'reasonPhrase' => 'Unsupported Media Type',
 					'protocolVersion' => '1.1'
 				],
-				function () {
+				static function () {
 					$user = User::createNew( 'RequestClientTestUser3' );
 					$user->setEmail( 'test@test.com' );
 
@@ -161,7 +161,7 @@ class RequestClientEndpointTest extends EndpointTest {
 					'reasonPhrase' => 'Bad Request',
 					'protocolVersion' => '1.1'
 				],
-				function () {
+				static function () {
 					$user = User::createNew( 'RequestClientTestUser4' );
 					$user->setEmail( 'test@test.com' );
 
@@ -182,7 +182,7 @@ class RequestClientEndpointTest extends EndpointTest {
 					'reasonPhrase' => 'Bad Request',
 					'protocolVersion' => '1.1'
 				],
-				function () {
+				static function () {
 					$user = User::createNew( 'RequestClientTestUser5' );
 					$user->setEmail( 'test@test.com' );
 
@@ -203,7 +203,7 @@ class RequestClientEndpointTest extends EndpointTest {
 					'reasonPhrase' => 'Bad Request',
 					'protocolVersion' => '1.1'
 				],
-				function () {
+				static function () {
 					$user = User::createNew( 'RequestClientTestUser6' );
 					$user->setEmail( 'test@test.com' );
 
@@ -224,7 +224,7 @@ class RequestClientEndpointTest extends EndpointTest {
 					'reasonPhrase' => 'OK',
 					'protocolVersion' => '1.1'
 				],
-				function () {
+				static function () {
 					$user = User::createNew( 'RequestClientTestUser2' );
 					$user->setEmail( 'test@test.com' );
 
@@ -245,7 +245,7 @@ class RequestClientEndpointTest extends EndpointTest {
 					'reasonPhrase' => 'OK',
 					'protocolVersion' => '1.1',
 				],
-				function () {
+				static function () {
 					$user = User::createNew( 'RequestClientTestUser10' );
 					$user->setEmail( 'test@test.com' );
 
@@ -274,7 +274,7 @@ class RequestClientEndpointTest extends EndpointTest {
 					'reasonPhrase' => 'OK',
 					'protocolVersion' => '1.1'
 				],
-				function () {
+				static function () {
 					$user = User::createNew( 'RequestClientTestUser7' );
 					$user->setEmail( 'test@test.com' );
 
@@ -295,7 +295,7 @@ class RequestClientEndpointTest extends EndpointTest {
 					'reasonPhrase' => 'OK',
 					'protocolVersion' => '1.1'
 				],
-				function () {
+				static function () {
 					$user = User::createNew( 'RequestClientTestUser8' );
 					$user->setEmail( 'test@test.com' );
 
@@ -316,7 +316,7 @@ class RequestClientEndpointTest extends EndpointTest {
 					'reasonPhrase' => 'OK',
 					'protocolVersion' => '1.1'
 				],
-				function () {
+				static function () {
 					$user = User::createNew( 'RequestClientTestUser9' );
 					$user->setEmail( 'test@test.com' );
 

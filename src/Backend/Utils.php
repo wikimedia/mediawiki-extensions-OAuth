@@ -155,7 +155,7 @@ class Utils {
 			new \AutoCommitUpdate(
 				$dbw,
 				__METHOD__,
-				function ( IDatabase $dbw ) use ( $cutoff, $fname ) {
+				static function ( IDatabase $dbw ) use ( $cutoff, $fname ) {
 					$dbw->update(
 						'oauth_registered_consumer',
 						[
