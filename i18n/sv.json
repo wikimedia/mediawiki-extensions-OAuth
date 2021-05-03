@@ -166,6 +166,10 @@
 	"mwoauthlistconsumers-status-disabled": "inaktiverade",
 	"mwoauthlistconsumers-status-rejected": "avvisad",
 	"mwoauthlistconsumers-status-expired": "utgången",
+	"mwoauthlistconsumers-navigation": "Navigering:",
+	"mwoauthlistconsumers-update-link": "Uppdatera konsument",
+	"mwoauthlistconsumers-manage-link": "Hantera konsument",
+	"mwoauthlistconsumers-grants-link": "Hantera bidrag",
 	"mwoauthlistconsumers-rclink": "Senaste ändringarna från denna applikation",
 	"oauthmanagemygrants": "Hantera anslutna applikationer",
 	"mwoauthmanagemygrants-text": "Denna sida listar alla applikationer som kan använda ditt konto. För varje sådan applikation är dess tillträde begränsat av de behörigheter vilka du auktoriserade när du valde att låta den agera åt dina vägnar. Om du separat auktoriserar en applikation att tillgå olika systerprojekt åt dina vägnar kommer du se separat konfiguration för varje sådant projekt nedan.\n\nAnsluta applikationer kan få tillgång till ditt konto via OAuth-protokollet. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Läs mer om ansluta applikationer])</span>",
@@ -301,6 +305,7 @@
 	"notification-oauth-app-body": "Anledning: $1",
 	"mwoauth-oauth2-granttype-refresh-token": "Uppdatera nyckel",
 	"mwoauthconsumer-consumer-view": "Visa den här konsumenten",
+	"grant-oauthmanageownclient": "Hantera dina OAuth-klienter",
 	"mwoauth-consumer-user-mismatch": "Du kan inte utföra handlingar på klienter som inte är dina",
 	"mwoauth-consumer-deleted-error": "Du kan inte utföra handlingar på radera klienter",
 	"mwoauth-consumer-submit-error": "Ett fel uppstod när en konsument skulle sparas"
