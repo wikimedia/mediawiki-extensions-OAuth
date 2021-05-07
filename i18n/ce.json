@@ -98,7 +98,7 @@
 	"mwoauthmanagemygrants-text": "ХӀокху агӀонгахь гойтуш ю хьан декъашхочун агӀо лело йиш йолу тӀетохарш. ХӀора тӀетохар шордаро дихкина ду. Ахьа тӀетохаран агӀо лелаян бакъо елехь хьа йиш ю лахахь царна урхалла дан\n\nТӀетесна тӀетохаршна болх бан ло OAuth протоколан гӀоьнца. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Хьажа кхин тӀе тӀетесна йолу тӀетохаршах лаьца])</span>",
 	"mwoauthmanagemygrants-navigation": "Навигациː",
 	"mwoauthmanagemygrants-showlist": "ТӀетесна тӀетохаршан могӀа",
-	"mwoauthmanagemygrants-none": "Хьан декъашхочун дӀаяздаран хӀинца яц тӀетесна тӀетохарш.",
+	"mwoauthmanagemygrants-none": "Хьан декъашхочун дӀайаздаран хӀинца йац тӀетесна тӀетохарш.",
 	"mwoauthmanagemygrants-user": "Арахецархо",
 	"mwoauthmanagemygrants-description": "Цуьнах лаьцна",
 	"mwoauthmanagemygrants-wikiallowed": "Магийна проектехь:",
