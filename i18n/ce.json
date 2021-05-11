@@ -95,7 +95,7 @@
 	"mwoauthlistconsumers-status-rejected": "юхатоьхна",
 	"mwoauthlistconsumers-status-expired": "чекхъяла",
 	"oauthmanagemygrants": "ТӀетесна тӀетохаршан урхалладар",
-	"mwoauthmanagemygrants-text": "ХӀокху агӀонгахь гойтуш ю хьан декъашхочун агӀо лело йиш йолу тӀетохарш. ХӀора тӀетохар шордаро дихкина ду. Ахьа тӀетохаран агӀо лелаян бакъо елехь хьа йиш ю лахахь царна урхалла дан\n\nТӀетесна тӀетохаршна болх бан ло OAuth протоколан гӀоьнца. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Хьажа кхин тӀе тӀетесна йолу тӀетохаршах лаьца])</span>",
+	"mwoauthmanagemygrants-text": "ХӀокху агӀонгахь гойтуш йу хьан декъашхочун агӀо лело йиш йолу тӀетохарш. ХӀора тӀетохар шордаро дихкина ду. Ахьа тӀетохаран агӀо лелайан бакъо йелехь хьа йиш йу лахахь царна урхалла дан\n\nТӀетесна тӀетохаршна болх бан ло OAuth протоколан гӀоьнца. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Хьажа кхин тӀе тӀетесна йолу тӀетохаршах лаьца])</span>",
 	"mwoauthmanagemygrants-navigation": "Навигациː",
 	"mwoauthmanagemygrants-showlist": "ТӀетесна тӀетохаршан могӀа",
 	"mwoauthmanagemygrants-none": "Хьан декъашхочун дӀайаздаран хӀинца йац тӀетесна тӀетохарш.",
@@ -116,6 +116,6 @@
 	"mwoauth-form-button-cancel": "Цаоьшу",
 	"mwoauth-grants-heading": "Магийтар деха:",
 	"mwoauth-listgrants-extra-summary": "== OAuth лело ша-тайпа бакъоялар ==\nХӀара бакъояларш леррина ду OAuth клиенташна.",
-	"mwoauth-callback-not-oob": "oauth_callback хӀоттина хила еза «oob» маьӀна а долуш (регистр лоруш)",
+	"mwoauth-callback-not-oob": "oauth_callback хӀоттина хила йеза «oob» маьӀна а долуш (регистр лоруш)",
 	"notification-oauth-app-body": "Бахьана: $1"
 }
