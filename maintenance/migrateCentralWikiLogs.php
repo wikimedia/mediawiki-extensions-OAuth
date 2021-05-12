@@ -35,9 +35,9 @@ class MigrateCentralWikiLogs extends Maintenance {
 
 		// We only read from $oldDb, but we do want to make sure we get the most recent logs.
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$oldDb = $lbFactory->getMainLB( $oldWiki )->getConnectionRef( DB_MASTER, [], $oldWiki );
+		$oldDb = $lbFactory->getMainLB( $oldWiki )->getConnectionRef( DB_PRIMARY, [], $oldWiki );
 		$targetDb = $lbFactory->getMainLB( $targetWiki )
-			->getConnectionRef( DB_MASTER, [], $targetWiki );
+			->getConnectionRef( DB_PRIMARY, [], $targetWiki );
 
 		$targetMinTS = $targetDb->selectField(
 			'logging',

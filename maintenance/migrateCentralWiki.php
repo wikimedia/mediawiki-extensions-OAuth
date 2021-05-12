@@ -63,9 +63,9 @@ class MigrateCentralWiki extends \Maintenance {
 		}
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$oldDb = $lbFactory->getMainLB( $oldWiki )->getConnectionRef( DB_MASTER, [], $oldWiki );
+		$oldDb = $lbFactory->getMainLB( $oldWiki )->getConnectionRef( DB_PRIMARY, [], $oldWiki );
 		$targetDb = $lbFactory->getMainLB( $targetWiki )
-			->getConnectionRef( DB_MASTER, [], $targetWiki );
+			->getConnectionRef( DB_PRIMARY, [], $targetWiki );
 		$targetDb->daoReadOnly = false;
 
 		$newMax = $targetDb->selectField(

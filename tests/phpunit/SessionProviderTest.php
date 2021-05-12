@@ -52,7 +52,7 @@ class SessionProviderTest extends MediaWikiTestCase {
 	 */
 	public function testOnMarkPatrolled( $consumerId, $auto, $expectedExtraTag ) {
 		$provider = $this->getMockBuilder( SessionProvider::class )
-			->setMethods( [ 'getPublicConsumerId' ] )
+			->onlyMethods( [ 'getPublicConsumerId' ] )
 			->getMock();
 		$provider->expects( $this->once() )
 			->method( 'getPublicConsumerId' )

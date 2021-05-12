@@ -65,7 +65,7 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 
 		$data = $this->getDbDataFromTokenEntity( $accessTokenEntity );
 
-		$this->getDB( DB_MASTER )->insert(
+		$this->getDB( DB_PRIMARY )->insert(
 			$this->getTableName(),
 			$data,
 			__METHOD__
@@ -79,7 +79,7 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 */
 	public function revokeAccessToken( $tokenId ) {
 		if ( $this->identifierExists( $tokenId ) ) {
-			$this->getDB( DB_MASTER )->update(
+			$this->getDB( DB_PRIMARY )->update(
 				$this->getTableName(),
 				[ static::FIELD_REVOKED => 1 ],
 				[ $this->getIdentifierField() => $tokenId ],
@@ -114,7 +114,7 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 * @param int $approvalId
 	 */
 	public function deleteForApprovalId( $approvalId ) {
-		$this->getDB( DB_MASTER )->delete(
+		$this->getDB( DB_PRIMARY )->delete(
 			$this->getTableName(),
 			[
 				static::FIELD_ACCEPTANCE_ID => $approvalId

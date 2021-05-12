@@ -257,7 +257,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			}
 		}
 
-		$dbw = Utils::getCentralDB( DB_MASTER );
+		$dbw = Utils::getCentralDB( DB_PRIMARY );
 		$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
 		$form = \HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
@@ -466,7 +466,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		}
 		# Every 30th view, prune old deleted items
 		if ( mt_rand( 0, 29 ) == 0 ) {
-			Utils::runAutoMaintenance( Utils::getCentralDB( DB_MASTER ) );
+			Utils::runAutoMaintenance( Utils::getCentralDB( DB_PRIMARY ) );
 		}
 	}
 
