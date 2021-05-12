@@ -110,7 +110,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 			$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
 
-			$dbw = Utils::getCentralDB( DB_MASTER );
+			$dbw = Utils::getCentralDB( DB_PRIMARY );
 			$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
 			$form = \HTMLForm::factory( 'ooui',
 				$control->registerValidators( [
@@ -360,7 +360,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			}
 			$oldSecretKey = $cmrAc->getDAO()->getSecretKey();
 
-			$dbw = Utils::getCentralDB( DB_MASTER );
+			$dbw = Utils::getCentralDB( DB_PRIMARY );
 			$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
 			$form = \HTMLForm::factory( 'ooui',
 				$control->registerValidators( [
@@ -488,7 +488,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 			}
 			# Every 30th view, prune old deleted items
 			if ( mt_rand( 0, 29 ) == 0 ) {
-				Utils::runAutoMaintenance( Utils::getCentralDB( DB_MASTER ) );
+				Utils::runAutoMaintenance( Utils::getCentralDB( DB_PRIMARY ) );
 			}
 			break;
 		default:

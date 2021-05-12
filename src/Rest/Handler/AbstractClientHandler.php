@@ -37,7 +37,7 @@ abstract class AbstractClientHandler extends Handler {
 		$control = new ConsumerSubmitControl(
 			RequestContext::getMain(),
 			$params,
-			Utils::getCentralDB( DB_MASTER )
+			Utils::getCentralDB( DB_PRIMARY )
 		);
 
 		$status = $control->submit();

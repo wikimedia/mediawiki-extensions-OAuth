@@ -437,7 +437,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$output->addModules( 'ext.MWOAuth.AuthorizeDialog' );
 
 		$control = new ConsumerAcceptanceSubmitControl(
-			$this->getContext(), [], Utils::getCentralDB( DB_MASTER ), $this->oauthVersion
+			$this->getContext(), [], Utils::getCentralDB( DB_PRIMARY ), $this->oauthVersion
 		);
 
 		$form = \HTMLForm::factory( 'table',

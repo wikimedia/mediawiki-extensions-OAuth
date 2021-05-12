@@ -273,7 +273,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 
 	public function preventSessionsForUser( $username ) {
 		$id = Utils::getCentralIdFromUserName( $username );
-		$dbw = Utils::getCentralDB( DB_MASTER );
+		$dbw = Utils::getCentralDB( DB_PRIMARY );
 
 		$dbw->startAtomic( __METHOD__ );
 		try {

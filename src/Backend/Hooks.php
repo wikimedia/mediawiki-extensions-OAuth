@@ -100,7 +100,7 @@ EOK;
 	}
 
 	protected static function doUserIdMerge( $oldid, $newid ) {
-		$dbw = Utils::getCentralDB( DB_MASTER );
+		$dbw = Utils::getCentralDB( DB_PRIMARY );
 		// Merge any consumers register to this user
 		$dbw->update( 'oauth_registered_consumer',
 			[ 'oarc_user_id' => $newid ],

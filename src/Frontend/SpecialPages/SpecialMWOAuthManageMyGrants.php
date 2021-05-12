@@ -232,7 +232,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 					preg_replace( '/^grant-/', '', $data['grants'] )
 				);
 
-				$dbw = Utils::getCentralDB( DB_MASTER );
+				$dbw = Utils::getCentralDB( DB_PRIMARY );
 				$control = new ConsumerAcceptanceSubmitControl(
 					$context, $data, $dbw, $cmraAc->getDAO()->getOAuthVersion()
 				);

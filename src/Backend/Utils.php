@@ -45,7 +45,7 @@ class Utils {
 
 		// T244415: Use the master if there were changes
 		if ( $index === DB_REPLICA && $lbFactory->hasOrMadeRecentMasterChanges() ) {
-			$index = DB_MASTER;
+			$index = DB_PRIMARY;
 		}
 
 		$db = $lbFactory->getMainLB( $wgMWOAuthCentralWiki )->getLazyConnectionRef(
@@ -228,7 +228,7 @@ class Utils {
 	public static function newMWOAuthDataStore() {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$dbr = self::getCentralDB( DB_REPLICA );
-		$dbw = $lb->getServerCount() > 1 ? self::getCentralDB( DB_MASTER ) : null;
+		$dbw = $lb->getServerCount() > 1 ? self::getCentralDB( DB_PRIMARY ) : null;
 		return new MWOAuthDataStore( $dbr, $dbw, self::getSessionCache() );
 	}
 

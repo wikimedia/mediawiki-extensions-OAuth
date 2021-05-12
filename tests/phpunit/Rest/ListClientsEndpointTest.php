@@ -83,7 +83,7 @@ class ListClientsEndpointTest extends EndpointTest {
 				function () {
 					$user = User::createNew( 'ListClientsTestUser1' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getCentralDB( DB_MASTER );
+					$db = Utils::getCentralDB( DB_PRIMARY );
 
 					$this->consumerData['userId'] = $centralId;
 					$this->consumerData['consumerKey'] = 'lc111111111111111111111111111111';
@@ -117,7 +117,7 @@ class ListClientsEndpointTest extends EndpointTest {
 				function () {
 					$user = User::createNew( 'ListClientsTestUser2' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getCentralDB( DB_MASTER );
+					$db = Utils::getCentralDB( DB_PRIMARY );
 
 					$this->consumerData['userId'] = $centralId;
 					$this->consumerData['consumerKey'] = 'lc222222222222222222222222222222';
@@ -147,7 +147,7 @@ class ListClientsEndpointTest extends EndpointTest {
 				],
 				function () {
 					$user = User::createNew( 'ListClientsTestUser3' );
-					$db = Utils::getCentralDB( DB_MASTER );
+					$db = Utils::getCentralDB( DB_PRIMARY );
 
 					/*
 					 * Inserting client id for a different user than the one making the request.

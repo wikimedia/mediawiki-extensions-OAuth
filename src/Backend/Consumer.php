@@ -640,7 +640,7 @@ abstract class Consumer extends MWOAuthDAO {
 			);
 		}
 
-		$dbw = Utils::getCentralDB( DB_MASTER );
+		$dbw = Utils::getCentralDB( DB_PRIMARY );
 		// Check if this authorization exists
 		$cmra = $this->getCurrentAuthorization( $mwUser, wfWikiID() );
 

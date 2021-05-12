@@ -134,7 +134,7 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 				function () {
 					$user = User::createNew( 'ResetClientSecretTestUser1' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getCentralDB( DB_MASTER );
+					$db = Utils::getCentralDB( DB_PRIMARY );
 
 					$this->consumerData['userId'] = $centralId;
 					$this->consumerData['consumerKey'] = '11111111111111111111111111111111';
@@ -165,7 +165,7 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 				],
 				function () {
 					$user = User::createNew( 'ResetClientSecretTestUser2' );
-					$db = Utils::getCentralDB( DB_MASTER );
+					$db = Utils::getCentralDB( DB_PRIMARY );
 
 					$this->consumerData['userId'] = 999;
 					$this->consumerData['consumerKey'] = '22222222222222222222222222222222';
@@ -199,7 +199,7 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 				function () {
 					$user = User::createNew( 'ResetClientSecretTestUser3' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getCentralDB( DB_MASTER );
+					$db = Utils::getCentralDB( DB_PRIMARY );
 
 					$this->consumerData['userId'] = $centralId;
 					$this->consumerData['consumerKey'] = '33333333333333333333333333333333';
@@ -232,7 +232,7 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 				function () {
 					$user = User::createNew( 'ResetClientSecretTestUser4' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getCentralDB( DB_MASTER );
+					$db = Utils::getCentralDB( DB_PRIMARY );
 
 					$this->consumerData['userId'] = $centralId;
 					$this->consumerData['consumerKey'] = '44444444444444444444444444444444';
@@ -266,7 +266,7 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 				function () {
 					$user = User::createNew( 'ResetClientSecretTestUser5' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getCentralDB( DB_MASTER );
+					$db = Utils::getCentralDB( DB_PRIMARY );
 
 					$this->consumerData['userId'] = $centralId;
 					$this->consumerData['consumerKey'] = '55555555555555555555555555555555';
