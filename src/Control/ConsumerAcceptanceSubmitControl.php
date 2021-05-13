@@ -49,7 +49,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 	/**
 	 * @param \IContextSource $context
 	 * @param array $params
-	 * @param DBConnRef $dbw Result of Utils::getCentralDB( DB_MASTER )
+	 * @param DBConnRef $dbw Result of Utils::getCentralDB( DB_PRIMARY )
 	 * @param int $oauthVersion
 	 */
 	public function __construct(

@@ -35,7 +35,7 @@ class Utils {
 	}
 
 	/**
-	 * @param int $index DB_MASTER/DB_REPLICA
+	 * @param int $index DB_PRIMARY/DB_REPLICA
 	 * @return DBConnRef
 	 */
 	public static function getCentralDB( $index ) {
@@ -43,7 +43,7 @@ class Utils {
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
-		// T244415: Use the master if there were changes
+		// T244415: Use the primary database if there were changes
 		if ( $index === DB_REPLICA && $lbFactory->hasOrMadeRecentMasterChanges() ) {
 			$index = DB_PRIMARY;
 		}

@@ -11,8 +11,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 	/** @var DBConnRef DB for the consumer/grant registry */
 	protected $centralReplica;
 
-	/** @var DBConnRef|null Master DB for repeated lookup in case of replication lag problems;
-	 *    null if there is no separate master and replica DB
+	/** @var DBConnRef|null Primary DB for repeated lookup in case of replication lag problems;
+	 *    null if there is no separate primary DB and replica DB
 	 */
 	protected $centralMaster;
 
@@ -24,7 +24,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 
 	/**
 	 * @param DBConnRef $centralReplica Central DB replica
-	 * @param DBConnRef|null $centralMaster Central DB master (if different)
+	 * @param DBConnRef|null $centralMaster Central DB primary (if different)
 	 * @param \BagOStuff $cache
 	 */
 	public function __construct( DBConnRef $centralReplica, $centralMaster, \BagOStuff $cache ) {
@@ -89,7 +89,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 		} elseif ( $token_type === 'access' ) {
 			$cmra = ConsumerAcceptance::newFromToken( $this->centralReplica, $token );
 			if ( !$cmra && $this->centralMaster ) {
-				// try master in case there is replication lag T124942
+				// try primary database in case there is replication lag T124942
 				$cmra = ConsumerAcceptance::newFromToken( $this->centralMaster, $token );
 			}
 			if ( !$cmra ) {
