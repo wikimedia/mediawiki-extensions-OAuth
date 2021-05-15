@@ -91,10 +91,9 @@ abstract class SubmitControl extends \ContextSource {
 				// already set to something
 				continue;
 			}
-			$control = $this;
 			$description['validation-callback'] =
-				static function ( $value, $allValues, $form ) use ( $control, $field ) {
-					return $control->validateFieldInternal( $field, $value, $allValues, $form );
+				function ( $value, $allValues, $form ) use ( $field ) {
+					return $this->validateFieldInternal( $field, $value, $allValues, $form );
 				};
 		}
 		return $descriptors;
