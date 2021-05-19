@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Boxmein",
+			"Cumbril",
 			"Pikne"
 		]
 	},
@@ -21,7 +22,7 @@
 	"mwoauth-consumer-owner-only-help": "Selle valiku korral kiidetakse tarvitus automaatselt heaks ja selle kasutamine lubatakse kasutajale $1. Teised kasutajad seda kasutada ei saa ja harilik volitamisvoog ei toimi. Selle tarvitusega sooritatud toiminguid ei märgistata.",
 	"mwoauth-consumer-description": "Rakenduse kirjeldus:",
 	"mwoauth-consumer-callbackurl": "OAuthi tagasisuunamis-URL:",
-	"mwoauth-consumer-callbackisprefix": "Luba määrata tarvituses tagasihelistamine ja kasuta nõutava eesliitena ülaltoodud tagasihelistamis-URL-i.",
+	"mwoauth-consumer-callbackisprefix": "Luba kasutajal määrata päringutes tagasikutse ja kasuta kohustusliku eesliitena ülaltoodud tagasiaadressi.",
 	"mwoauth-consumer-granttypes": "Taotlen järgmist tüüpi volitusi:",
 	"mwoauth-consumer-grantsneeded": "Rakendatavad volitused:",
 	"mwoauth-consumer-required-grant": "Tarvituse suhtes rakendatav",
@@ -72,7 +73,7 @@
 	"mwoauthlistconsumers-description": "Kirjeldus",
 	"mwoauthlistconsumers-wiki": "Rakendamise projekt",
 	"mwoauthlistconsumers-callbackurl": "Rakenduse internetiaadress",
-	"mwoauthlistconsumers-callbackisprefix": "Luba määrata tarvituses tagasihelistamine ja kasuta nõutava eesliitena ülaltoodud tagasihelistamis-URL-i.",
+	"mwoauthlistconsumers-callbackisprefix": "Luba kasutajal määrata päringutes tagasikutse ja kasuta kohustusliku eesliitena ülaltoodud tagasiaadressi.",
 	"mwoauthlistconsumers-grants": "Rakendatavad volitused",
 	"mwoauthlistconsumers-basicgrantsonly": "(ainult põhijuurdepääs)",
 	"mwoauthlistconsumers-status": "Olek",
