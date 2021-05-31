@@ -27,7 +27,7 @@
 	"mwoauth-consumer-granttypes": "Kért jogosultságok típusai:",
 	"mwoauth-consumer-grantsneeded": "Alkalmazás engedélyei:",
 	"mwoauth-consumer-wiki-thiswiki": "Jelenlegi projekt ($1)",
-	"mwoauth-consumer-rsakey": "Nyilvános RSA kulcs:",
+	"mwoauth-consumer-rsakey": "Nyilvános RSA-kulcs (nem kötelező):",
 	"mwoauth-consumer-reason": "Ok:",
 	"mwoauth-consumer-email-unconfirmed": "A fiókodhoz tartozó e-mail címet még nem erősítetted meg.",
 	"mwoauth-consumer-email-mismatched": "A megadott e-mail címnek azonosnak kell lennie a fiókodhoz tartozóval.",
