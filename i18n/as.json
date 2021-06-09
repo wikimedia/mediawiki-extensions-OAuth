@@ -8,6 +8,8 @@
 	},
 	"mwoauth-prefs-managegrants": "সংযুক্ত এপ্লিকেছনসমূহ:",
 	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|এটা সংযুক্ত এপ্লিকেছন|$1টা সংযুক্ত এপ্লিকেছন|0=সংযুক্ত এপ্লিকেছনসমূহ}} পৰিচালনা কৰক",
+	"mwoauthconsumerregistration-main": "মুখ্য",
+	"mwoauthmanageconsumers-main": "মুখ্য",
 	"oauthmanagemygrants": "সংযোজিত এপ্লিকেছনসমূহৰ ব্যৱস্থাপনা কৰক",
 	"grant-oauthmanageownclient": "আপোনাৰ OAuth ক্লায়েণ্ট পৰিচালনা কৰক",
 	"mwoauth-consumer-user-mismatch": "আপুনি সেইবোৰ ক্লায়েণ্টৰ ওপৰত কাৰ্য্য কৰিব নোৱাৰে যিবোৰ আপোনাৰ নহয়",
