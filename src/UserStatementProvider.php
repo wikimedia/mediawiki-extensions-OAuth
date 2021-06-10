@@ -6,6 +6,7 @@ use Config;
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserGroupManager;
 use MWException;
 use MWGrants;
 use User;
@@ -19,6 +20,8 @@ class UserStatementProvider {
 	protected $consumer;
 	/** @var array */
 	protected $grants;
+	/** @var UserGroupManager */
+	private $userGroupManager;
 
 	/**
 	 * @param User $user
@@ -28,7 +31,8 @@ class UserStatementProvider {
 	 */
 	public static function factory( User $user, Consumer $consumer, $grants = [] ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		return new static( $mainConfig, $user, $consumer, $grants );
+		$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
+		return new static( $mainConfig, $user, $consumer, $grants, $userGroupManager );
 	}
 
 	/**
@@ -37,12 +41,14 @@ class UserStatementProvider {
 	 * @param User $user
 	 * @param Consumer $consumer
 	 * @param array $grants
+	 * @param UserGroupManager $userGroupManager
 	 */
-	protected function __construct( $config, $user, $consumer, $grants ) {
+	protected function __construct( $config, $user, $consumer, $grants, $userGroupManager ) {
 		$this->config = $config;
 		$this->user = $user;
 		$this->consumer = $consumer;
 		$this->grants = $grants;
+		$this->userGroupManager = $userGroupManager;
 	}
 
 	/**
@@ -89,7 +95,7 @@ class UserStatementProvider {
 			$profile['confirmed_email'] = $this->user->isEmailConfirmed();
 			$profile['blocked'] = $this->user->getBlock() !== null;
 			$profile['registered'] = $this->user->getRegistration();
-			$profile['groups'] = $this->user->getEffectiveGroups();
+			$profile['groups'] = $this->userGroupManager->getUserEffectiveGroups( $this->user );
 			$profile['rights'] = array_values( array_unique(
 				MediaWikiServices::getInstance()->getPermissionManager()->getUserPermissions( $this->user )
 			) );
