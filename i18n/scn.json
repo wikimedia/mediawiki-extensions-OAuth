@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Sarvaturi"
 		]
 	},
+	"mwoauthconsumerregistration-main": "Principali",
+	"mwoauthmanageconsumers-main": "Principali",
 	"oauthlistconsumers": "Elencu di l'applicazzioni OAuth",
 	"oauthmanagemygrants": "Gistioni di l'applicazzioni cunnessi"
 }
