@@ -6,7 +6,9 @@
 		]
 	},
 	"mwoauthconsumerregistration-main": "Principali",
+	"mwoauthconsumerregistration-stage": "Statu",
 	"mwoauthmanageconsumers-main": "Principali",
 	"oauthlistconsumers": "Elencu di l'applicazzioni OAuth",
+	"mwoauthlistconsumers-status": "Statu",
 	"oauthmanagemygrants": "Gistioni di l'applicazzioni cunnessi"
 }
