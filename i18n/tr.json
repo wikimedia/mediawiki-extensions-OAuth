@@ -267,7 +267,7 @@
 	"mwoauth-error-missing-callback-url-non-owner": "callback_url sahibi olmayan istemciler için gereklidir",
 	"mwoauth-grants-heading": "İstenen izinler:",
 	"mwoauth-grants-nogrants": "Uygulama herhangi bir izin istemedi.",
-	"mwoauth-acceptance-cancelled": "\"$1\" hesabınızın hesabınıza erişmesine izin vermemeyi seçtiniz. Erişimine izin vermediğiniz sürece \"$1\" çalışmaz. Bağlı uygulamalarınıza \"$1\" veya [[Special:OAuthManageMyGrants|yönete]] geri dönebilirsiniz.",
+	"mwoauth-acceptance-cancelled": "\"$1\" uygulamasının hesabınıza erişmesine izin vermemeyi seçtiniz. Erişimine izin vermediğiniz sürece \"$1\" çalışmaz. \"$1\" uygulamasına geri dönebilir veya bağlı uygulamalarınızı [[Special:OAuthManageMyGrants|yönetebilirsiniz]].",
 	"mwoauth-granttype-normal": "Özel izinler için yetki talep et.",
 	"grant-mwoauth-authonly": "Yalnızca kullanıcı kimliği doğrulaması, sayfaları okuma veya kullanıcının adına işlem yapma yeteneği yoktur.",
 	"grant-mwoauth-authonlyprivate": "Kullanıcı kimliği doğrulaması yalnızca gerçek ad ve e-posta adresine erişimle, sayfaları okuyamaz veya kullanıcının adına hareket edemez.",
