@@ -117,5 +117,7 @@
 	"mwoauth-grants-heading": "Магийтар деха:",
 	"mwoauth-listgrants-extra-summary": "== OAuth лело ша-тайпа бакъоялар ==\nХӀара бакъояларш леррина ду OAuth клиенташна.",
 	"mwoauth-callback-not-oob": "oauth_callback хӀоттина хила йеза «oob» маьӀна а долуш (регистр лоруш)",
+	"echo-category-title-oauth-owner": "OAuth-тойар",
+	"echo-pref-tooltip-oauth-owner": "Аса кхоьллинчу OAuth-программах хиллачух соьга хаамбе.",
 	"notification-oauth-app-body": "Бахьана: $1"
 }
