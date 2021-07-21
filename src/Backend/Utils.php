@@ -283,16 +283,17 @@ class Utils {
 
 		// global ID required via hook
 		if ( $wgMWOAuthSharedUserIDs ) {
-			$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
+			$lookup = MediaWikiServices::getInstance()
+				->getCentralIdLookupFactory()
+				->getLookup( $wgMWOAuthSharedUserSource );
 			$user = $lookup->localUserFromCentralId( $userId );
 			if ( $user === null || !$lookup->isAttached( $user ) ) {
-				$user = false;
+				return false;
 			}
-		} else {
-			$user = \User::newFromId( $userId );
+			return User::newFromIdentity( $user );
 		}
 
-		return $user;
+		return User::newFromId( $userId );
 	}
 
 	/**
