@@ -30,7 +30,7 @@ abstract class DatabaseRepository {
 		) !== false;
 	}
 
-	abstract protected function getTableName() : string;
+	abstract protected function getTableName(): string;
 
-	abstract protected function getIdentifierField() : string;
+	abstract protected function getIdentifierField(): string;
 }

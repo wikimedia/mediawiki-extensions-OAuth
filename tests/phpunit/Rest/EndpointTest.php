@@ -24,7 +24,7 @@ abstract class EndpointTest extends \MediaWikiTestCase {
 	/**
 	 * @throws \Exception
 	 */
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

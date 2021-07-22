@@ -19,7 +19,7 @@ class ListClientsEndpointTest extends EndpointTest {
 	/**
 	 * @throws \Exception
 	 */
-	public function setUp() : void {
+	public function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed[] = 'oauth_registered_consumer';
 	}

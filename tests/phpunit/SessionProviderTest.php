@@ -34,7 +34,7 @@ use RecentChange;
  */
 class SessionProviderTest extends MediaWikiTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		// the SessionProvider constructor modifies $wgHooks, stash it
 		global $wgHooks;

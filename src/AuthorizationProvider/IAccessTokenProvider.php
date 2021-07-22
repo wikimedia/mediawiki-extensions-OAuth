@@ -14,5 +14,5 @@ interface IAccessTokenProvider extends IAuthorizationProvider {
 	 * @return ResponseInterface
 	 */
 	public function getAccessTokens( ServerRequestInterface $request,
-		ResponseInterface $response ) : ResponseInterface;
+		ResponseInterface $response ): ResponseInterface;
 }

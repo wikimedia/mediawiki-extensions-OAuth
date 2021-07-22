@@ -34,7 +34,7 @@ abstract class CacheRepository {
 	 *
 	 * @return string
 	 */
-	abstract protected function getCacheKeyType() : string;
+	abstract protected function getCacheKeyType(): string;
 
 	/**
 	 * Get the cache key based on unique identifier

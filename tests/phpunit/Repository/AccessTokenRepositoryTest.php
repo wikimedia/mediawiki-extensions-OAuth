@@ -21,7 +21,7 @@ class AccessTokenRepositoryTest extends MediaWikiTestCase {
 	/** @inheritDoc */
 	protected $tablesUsed = [ 'oauth2_access_tokens' ];
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->accessToken = new AccessTokenEntity(

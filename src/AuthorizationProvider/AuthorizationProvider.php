@@ -87,7 +87,7 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 	/**
 	 * @return GrantTypeInterface
 	 */
-	abstract protected function getGrant() : GrantTypeInterface;
+	abstract protected function getGrant(): GrantTypeInterface;
 
 	/**
 	 * @return GrantTypeInterface
