@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"NMW03",
 			"Serkanland",
 			"Wertuose"
 		]
@@ -11,7 +12,7 @@
 	"mwoauth-field-hidden": "(bu məlumat gizlədilib)",
 	"mwoauth-field-private": "(bu məlumat konfidensialdır)",
 	"mwoauth-prefs-managegrants": "Əlaqələndirilmiş tətbiqlər:",
-	"mwoauth-prefs-managegrantslink": "$1 qoşulu tətbiqi idarə et",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 qoşulu tətbiqi|0=Qoşulu tətbiqləri}} idarə et",
 	"mwoauth-consumer-stage-disabled": "söndürülüb",
 	"mwoauthconsumerregistration-stage": "Vəziyyəti",
 	"mwoauthconsumerregistration-lastchange": "Son redaktə",
