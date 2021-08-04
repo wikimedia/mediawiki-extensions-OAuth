@@ -6,9 +6,13 @@
 		]
 	},
 	"mwoauthconsumerregistration-main": "Principali",
+	"mwoauthconsumerregistration-description": "Discrizzioni",
 	"mwoauthconsumerregistration-stage": "Statu",
 	"mwoauthmanageconsumers-main": "Principali",
+	"mwoauthmanageconsumers-description": "Discrizzioni",
 	"oauthlistconsumers": "Elencu di l'applicazzioni OAuth",
+	"mwoauthlistconsumers-description": "Discrizzioni",
 	"mwoauthlistconsumers-status": "Statu",
-	"oauthmanagemygrants": "Gistioni di l'applicazzioni cunnessi"
+	"oauthmanagemygrants": "Gistioni di l'applicazzioni cunnessi",
+	"mwoauthmanagemygrants-description": "Discrizzioni"
 }
