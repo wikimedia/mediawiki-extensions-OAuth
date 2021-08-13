@@ -245,7 +245,9 @@ class Utils {
 
 		// global ID required via hook
 		if ( $wgMWOAuthSharedUserIDs ) {
-			$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
+			$lookup = MediaWikiServices::getInstance()
+				->getCentralIdLookupFactory()
+				->getLookup( $wgMWOAuthSharedUserSource );
 			$name = $lookup->nameFromCentralId(
 				$userId,
 				$audience === 'raw'
@@ -317,7 +319,9 @@ class Utils {
 				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$id = $user->oAuthUserData['centralId'];
 			} else {
-				$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
+				$lookup = MediaWikiServices::getInstance()
+					->getCentralIdLookupFactory()
+					->getLookup( $wgMWOAuthSharedUserSource );
 				if ( !$lookup->isAttached( $user ) ) {
 					$id = false;
 				} else {
@@ -347,7 +351,9 @@ class Utils {
 
 		// global ID required via hook
 		if ( $wgMWOAuthSharedUserIDs ) {
-			$lookup = \CentralIdLookup::factory( $wgMWOAuthSharedUserSource );
+			$lookup = MediaWikiServices::getInstance()
+				->getCentralIdLookupFactory()
+				->getLookup( $wgMWOAuthSharedUserSource );
 			$id = $lookup->centralIdFromName( $username );
 			if ( $id === 0 ) {
 				$id = false;
