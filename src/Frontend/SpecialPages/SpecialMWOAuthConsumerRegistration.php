@@ -159,7 +159,10 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'type' => 'check',
 						'label-message' => 'mwoauth-consumer-callbackisprefix',
 						'required' => true,
-						'hide-if' => [ '!==', 'ownerOnly', '' ],
+						'hide-if' => [ 'OR',
+							[ '!==', 'ownerOnly', '' ],
+							[ '===', 'oauthVersion', (string)Consumer::OAUTH_VERSION_2 ]
+						],
 					],
 					'email' => [
 						'type' => 'text',
