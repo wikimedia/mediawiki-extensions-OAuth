@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chinamoonroll"
+		]
+	},
+	"oauth": "OAuth",
+	"mwoauth-prefs-managegrants": "Aplikasi kahubung:",
+	"mwoauth-consumer-allwikis": "Makasami proyek ring situs puniki",
+	"mwoauth-consumer-key": "Sereg konsumén:",
+	"mwoauth-consumer-name": "Aran aplikasi:",
+	"mwoauth-consumer-version": "Vérsi konsumén:",
+	"mwoauth-consumer-user": "Pawedar:",
+	"mwoauth-consumer-stage": "Status mangkin:",
+	"mwoauth-consumer-email": "Kontak alamat rerepél:",
+	"mwoauth-consumer-description": "Pidarta aplikasi:",
+	"mwoauth-consumer-reason": "Hawanan:",
+	"mwoauth-consumer-stage-proposed": "proposal",
+	"mwoauth-consumer-stage-rejected": "katolak",
+	"mwoauth-consumer-stage-expired": "kadaluwarsa",
+	"mwoauth-consumer-stage-approved": "kacumpu",
+	"mwoauth-consumer-stage-disabled": "kapademang",
+	"mwoauth-consumer-stage-suppressed": "mati",
+	"mwoauthconsumerregistration-navigation": "Navigasi:",
+	"mwoauthconsumerregistration-email": "Kontak rerepél",
+	"mwoauthconsumerregistration-consumerkey": "Sereg konsumén",
+	"mwoauthconsumerregistration-stage": "Status",
+	"mwoauthconsumerregistration-lastchange": "Gentosan ungkur",
+	"mwoauthlistconsumers-version": "Vérsi konsumén",
+	"mwoauth-consumer-stage-any": "makasami",
+	"mwoauthlistconsumers-status-proposed": "proposal",
+	"mwoauthlistconsumers-status-approved": "kacumpu",
+	"mwoauthlistconsumers-status-disabled": "kapademang",
+	"mwoauthlistconsumers-status-rejected": "katolak",
+	"mwoauthlistconsumers-status-expired": "kadaluwarsa",
+	"mwoauthlistconsumers-navigation": "Navigasi",
+	"mwoauthmanagemygrants-grantsallowed": "Aksés sané kalugra",
+	"mwoauthmanagemygrants-applicablegrantsallowed": "Hak sané kalugra:",
+	"mwoauthmanagemygrants-action": "Gentos status:",
+	"echo-category-title-oauth-owner": "Pangembangan OAuth",
+	"mwoauth-oauth-version": "Vérsi protokol OAuth"
+}
