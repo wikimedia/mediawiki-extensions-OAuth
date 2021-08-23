@@ -40,7 +40,7 @@
 	"mwoauth-consumer-description": "Опис програми:",
 	"mwoauth-consumer-callbackurl": "URL «зворотного виклику» OAuth:",
 	"mwoauth-consumer-callbackurl-warning": "(маска порту)",
-	"mwoauth-consumer-callbackisprefix": "Дозволяти споживачеві вказати зворотний виклик у запиті використовувати URL «зворотного виклику» вище як обов'язковий префікс.",
+	"mwoauth-consumer-callbackisprefix": "Дозволяти споживачеві вказати зворотний виклик у запитах і використовувати URL «зворотного виклику» вище як обов'язковий префікс.",
 	"mwoauth-consumer-granttypes": "Типи доступу, які запитуються:",
 	"mwoauth-consumer-grantsneeded": "Придатні гранти:",
 	"mwoauth-consumer-required-grant": "Застосовні до споживача",
