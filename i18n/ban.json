@@ -26,6 +26,7 @@
 	"mwoauthconsumerregistration-consumerkey": "Sereg konsumén",
 	"mwoauthconsumerregistration-stage": "Status",
 	"mwoauthconsumerregistration-lastchange": "Gentosan ungkur",
+	"oauthlistconsumers": "Lis aplikasi OAuth",
 	"mwoauthlistconsumers-version": "Vérsi konsumén",
 	"mwoauth-consumer-stage-any": "makasami",
 	"mwoauthlistconsumers-status-proposed": "proposal",
