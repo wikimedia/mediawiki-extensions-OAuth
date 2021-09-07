@@ -44,7 +44,7 @@ class Utils {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		// T244415: Use the primary database if there were changes
-		if ( $index === DB_REPLICA && $lbFactory->hasOrMadeRecentMasterChanges() ) {
+		if ( $index === DB_REPLICA && $lbFactory->hasOrMadeRecentPrimaryChanges() ) {
 			$index = DB_PRIMARY;
 		}
 
