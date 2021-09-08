@@ -188,7 +188,6 @@ class MWOAuthServer extends OAuthServer {
 	private static function componentMatches(
 		$part, $expect, $got, $exact = false
 	) {
-		$match = false;
 		if ( !array_key_exists( $part, $expect ) ) {
 			// Anything in the request is ok if we do not have the URL part in
 			// the expected values

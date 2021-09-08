@@ -94,7 +94,6 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		} elseif ( count( $navigation ) === 1 && $navigation[0] ) {
 			$this->stage = array_search( $navigation[0], Consumer::$stageNames, true );
 			if ( $this->stage !== false ) {
-				$consumerKey = null;
 				$this->stageKey = $navigation[0];
 			} else {
 				$consumerKey = $navigation[0];

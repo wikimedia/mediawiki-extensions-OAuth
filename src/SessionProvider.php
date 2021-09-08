@@ -59,6 +59,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 		// is ready to catch it
 		$msg = wfMessage( $key, $params );
 		$exception = \ApiUsageException::newWithMessage( null, $msg );
+		// @phan-suppress-next-line PhanPluginNeverReturnFunction Closures should not get doc
 		$wgHooks['ApiBeforeMain'][] = static function () use ( $exception ) {
 			throw $exception;
 		};

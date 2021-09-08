@@ -100,6 +100,7 @@ class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	 * @return ConsumerAcceptance
 	 */
 	public function getDAO() {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $this->dao;
 	}
 }

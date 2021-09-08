@@ -258,6 +258,7 @@ class ConsumerAccessControl extends DAOAccessControl {
 	 * @return Consumer|ClientEntity
 	 */
 	public function getDAO() {
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $this->dao;
 	}
 }

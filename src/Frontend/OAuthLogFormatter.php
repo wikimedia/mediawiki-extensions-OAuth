@@ -24,6 +24,7 @@ class OAuthLogFormatter extends LogFormatter {
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 		if ( isset( $params[3] ) ) {
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			$params[3] = $this->getConsumerLink( $params[3] );
 		}
 		return $params;
