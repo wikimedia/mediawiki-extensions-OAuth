@@ -10,7 +10,7 @@ use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Extensions\OAuth\Entity\ScopeEntity;
 use MediaWiki\Extensions\OAuth\Entity\UserEntity;
-use MWGrants;
+use MediaWiki\MediaWikiServices;
 use WikiMap;
 
 class ScopeRepository implements ScopeRepositoryInterface {
@@ -24,7 +24,8 @@ class ScopeRepository implements ScopeRepositoryInterface {
 	];
 
 	public function __construct() {
-		$this->allowedScopes = array_merge( $this->allowedScopes, MWGrants::getValidGrants() );
+		$grantsInfo = MediaWikiServices::getInstance()->getGrantsInfo();
+		$this->allowedScopes = array_merge( $this->allowedScopes, $grantsInfo->getValidGrants() );
 	}
 
 	public function getAllowedScopes() {

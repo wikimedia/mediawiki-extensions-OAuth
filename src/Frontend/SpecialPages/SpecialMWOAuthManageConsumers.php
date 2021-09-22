@@ -30,6 +30,7 @@ use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Extensions\OAuth\Frontend\Pagers\ManageConsumersPager;
 use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\GrantsLocalization;
 use OOUI\HtmlSnippet;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -57,8 +58,15 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	public static $listStages = [ Consumer::STAGE_APPROVED,
 		Consumer::STAGE_DISABLED ];
 
-	public function __construct() {
+	/** @var GrantsLocalization */
+	private $grantsLocalization;
+
+	/**
+	 * @param GrantsLocalization $grantsLocalization
+	 */
+	public function __construct( GrantsLocalization $grantsLocalization ) {
 		parent::__construct( 'OAuthManageConsumers', 'mwoauthmanageconsumer' );
+		$this->grantsLocalization = $grantsLocalization;
 	}
 
 	public function doesWrites() {
@@ -394,8 +402,8 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 				null : ( $cmrAc->getCallbackIsPrefix() ?
 					$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ) ),
 			'mwoauth-consumer-grantsneeded' => $cmrAc->get( 'grants',
-				static function ( $grants ) use ( $lang ) {
-					return $lang->semicolonList( \MWGrants::grantNames( $grants, $lang ) );
+				function ( $grants ) use ( $lang ) {
+					return $lang->semicolonList( $this->grantsLocalization->getGrantDescriptions( $grants, $lang ) );
 				} ),
 			'mwoauth-consumer-email' => $cmrAc->getEmail(),
 			'mwoauth-consumer-wiki' => $cmrAc->getWiki()

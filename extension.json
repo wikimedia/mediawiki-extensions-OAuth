@@ -13,7 +13,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.37.0"
+		"MediaWiki": ">= 1.38.0"
 	},
 	"ExtensionFunctions": [
 		"MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onExtensionFunctions"
@@ -45,9 +45,25 @@
 		}
 	},
 	"SpecialPages": {
-		"OAuth": "MediaWiki\\Extensions\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuth",
-		"OAuthManageMyGrants": "MediaWiki\\Extensions\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthManageMyGrants",
-		"OAuthListConsumers": "MediaWiki\\Extensions\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthListConsumers"
+		"OAuth": {
+			"class": "MediaWiki\\Extensions\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuth",
+			"services": [
+				"GrantsLocalization"
+			]
+		},
+		"OAuthManageMyGrants": {
+			"class": "MediaWiki\\Extensions\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthManageMyGrants",
+			"services": [
+				"GrantsInfo",
+				"GrantsLocalization"
+			]
+		},
+		"OAuthListConsumers": {
+			"class": "MediaWiki\\Extensions\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthListConsumers",
+			"services": [
+				"GrantsLocalization"
+			]
+		}
 	},
 	"MessagesDirs": {
 		"MWOAuth": [

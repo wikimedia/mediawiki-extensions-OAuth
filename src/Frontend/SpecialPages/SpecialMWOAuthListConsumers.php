@@ -28,6 +28,7 @@ use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extensions\OAuth\Frontend\Pagers\ListConsumersPager;
 use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\GrantsLocalization;
 use OOUI\HtmlSnippet;
 use SpecialPage;
 use WikiMap;
@@ -38,8 +39,15 @@ use Wikimedia\Rdbms\DBConnRef;
  * their approval/rejection and also for listing approved/disabled consumers
  */
 class SpecialMWOAuthListConsumers extends \SpecialPage {
-	public function __construct() {
+	/** @var GrantsLocalization */
+	private $grantsLocalization;
+
+	/**
+	 * @param GrantsLocalization $grantsLocalization
+	 */
+	public function __construct( GrantsLocalization $grantsLocalization ) {
 		parent::__construct( 'OAuthListConsumers' );
+		$this->grantsLocalization = $grantsLocalization;
 	}
 
 	public function execute( $par ) {
@@ -98,7 +106,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		} elseif ( $grants === [ 'basic' ] ) {
 			$s = $this->msg( 'mwoauthlistconsumers-basicgrantsonly' )->plain();
 		} else {
-			$s = \MWGrants::getGrantsWikiText( $grants, $this->getLanguage() );
+			$s = $this->grantsLocalization->getGrantsWikiText( $grants, $this->getLanguage() );
 		}
 
 		$stageKey = Consumer::$stageNames[$cmrAc->getDAO()->getStage()];

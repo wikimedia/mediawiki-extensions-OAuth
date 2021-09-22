@@ -228,8 +228,19 @@ class UIHooks {
 	 */
 	public static function onSpecialPage_initList( array &$specialPages ) {
 		if ( Utils::isCentralWiki() ) {
-			$specialPages['OAuthConsumerRegistration'] = SpecialMWOAuthConsumerRegistration::class;
-			$specialPages['OAuthManageConsumers'] = SpecialMWOAuthManageConsumers::class;
+			$specialPages['OAuthConsumerRegistration'] = [
+				'class' => SpecialMWOAuthConsumerRegistration::class,
+				'services' => [
+					'GrantsInfo',
+					'GrantsLocalization',
+				],
+			];
+			$specialPages['OAuthManageConsumers'] = [
+				'class' => SpecialMWOAuthManageConsumers::class,
+				'services' => [
+					'GrantsLocalization',
+				],
+			];
 		}
 	}
 

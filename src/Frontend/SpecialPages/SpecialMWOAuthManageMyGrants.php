@@ -11,6 +11,8 @@ use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extensions\OAuth\Frontend\Pagers\ManageMyGrantsPager;
 use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\GrantsInfo;
+use MediaWiki\Permissions\GrantsLocalization;
 use SpecialPage;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -41,8 +43,23 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	/** @var string[]|null */
 	private static $irrevocableGrants = null;
 
-	public function __construct() {
+	/** @var GrantsInfo */
+	private $grantsInfo;
+
+	/** @var GrantsLocalization */
+	private $grantsLocalization;
+
+	/**
+	 * @param GrantsInfo $grantsInfo
+	 * @param GrantsLocalization $grantsLocalization
+	 */
+	public function __construct(
+		GrantsInfo $grantsInfo,
+		GrantsLocalization $grantsLocalization
+	) {
 		parent::__construct( 'OAuthManageMyGrants', 'mwoauthmanagemygrants' );
+		$this->grantsInfo = $grantsInfo;
+		$this->grantsLocalization = $grantsLocalization;
 	}
 
 	public function doesWrites() {
@@ -190,7 +207,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 						$this->msg( 'mwoauthmanagemygrants-grantaccept' )->escaped() => 'grant'
 					],
 					'rows' => array_combine(
-						array_map( 'MWGrants::getGrantsLink', $cmrAc->getGrants() ),
+						array_map( [ $this->grantsLocalization, 'getGrantsLink' ], $cmrAc->getGrants() ),
 						$cmrAc->getGrants()
 					),
 					'default' => array_map(
@@ -200,11 +217,11 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 						$cmraAc->getGrants()
 					),
 					'tooltips' => [
-						\MWGrants::getGrantsLink( 'basic' ) =>
+						$this->grantsLocalization->getGrantsLink( 'basic' ) =>
 							$this->msg( 'mwoauthmanagemygrants-basic-tooltip' )->text(),
-						\MWGrants::getGrantsLink( 'mwoauth-authonly' ) =>
+						$this->grantsLocalization->getGrantsLink( 'mwoauth-authonly' ) =>
 							$this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
-						\MWGrants::getGrantsLink( 'mwoauth-authonlyprivate' ) =>
+						$this->grantsLocalization->getGrantsLink( 'mwoauth-authonlyprivate' ) =>
 							$this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
 					],
 					'force-options-on' => array_map(
@@ -212,7 +229,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 							return "grant-$g";
 						},
 						( $type === 'revoke' )
-							? array_merge( \MWGrants::getValidGrants(), self::irrevocableGrants() )
+							? array_merge( $this->grantsInfo->getValidGrants(), self::irrevocableGrants() )
 							: self::irrevocableGrants()
 					),
 					'validation-callback' => null
@@ -349,7 +366,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	private static function irrevocableGrants() {
 		if ( self::$irrevocableGrants === null ) {
 			self::$irrevocableGrants = array_merge(
-				\MWGrants::getHiddenGrants(),
+				MediaWikiServices::getInstance()->getGrantsInfo()->getHiddenGrants(),
 				[ 'mwoauth-authonly', 'mwoauth-authonlyprivate' ]
 			);
 		}

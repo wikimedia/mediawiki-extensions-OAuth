@@ -10,6 +10,7 @@ use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extensions\OAuth\Backend\MWOAuthRequest;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
@@ -223,7 +224,9 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 				'oauthVersion' => $oauthVersion,
 				'consumerId' => $consumer->getOwnerOnly() ? null : $consumer->getId(),
 				'key' => $accessTokenKey,
-				'rights' => \MWGrants::getGrantRights( $access->getGrants() ),
+				'rights' => MediaWikiServices::getInstance()
+					->getGrantsInfo()
+					->getGrantRights( $access->getGrants() ),
 			],
 		] );
 	}

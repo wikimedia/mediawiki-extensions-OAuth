@@ -170,7 +170,9 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 			$grants = array_unique( array_intersect(
 				array_merge(
 					// implied grants
-					\MWGrants::getHiddenGrants(),
+					MediaWikiServices::getInstance()
+						->getGrantsInfo()
+						->getHiddenGrants(),
 					$grants
 				),
 				// Only keep the applicable ones
