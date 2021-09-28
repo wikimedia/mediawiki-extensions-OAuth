@@ -118,7 +118,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 
 		if ( $acceptanceId ) {
 			$dbr = Utils::getCentralDB( DB_REPLICA );
-			$cmraAc = ConsumerAcceptance::newFromId( $dbr, $acceptanceId );
+			$cmraAc = ConsumerAcceptance::newFromId( $dbr, (int)$acceptanceId );
 			$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 				$this->getPageTitle(),
 				$this->msg( 'mwoauthmanagemygrants-showlist' )->text()

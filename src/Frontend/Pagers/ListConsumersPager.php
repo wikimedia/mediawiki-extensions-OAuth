@@ -40,24 +40,25 @@ class ListConsumersPager extends \AlphabeticPager {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 
-		$this->mIndexField = null;
+		$indexField = null;
 		if ( $name !== '' ) {
 			$this->mConds['oarc_name'] = $name;
-			$this->mIndexField = 'oarc_id';
+			$indexField = 'oarc_id';
 		}
 		if ( $centralUserID !== null ) {
 			$this->mConds['oarc_user_id'] = $centralUserID;
-			$this->mIndexField = 'oarc_id';
+			$indexField = 'oarc_id';
 		}
 		if ( $stage >= 0 ) {
 			$this->mConds['oarc_stage'] = $stage;
-			if ( !$this->mIndexField ) {
-				$this->mIndexField = 'oarc_stage_timestamp';
+			if ( !$indexField ) {
+				$indexField = 'oarc_stage_timestamp';
 			}
 		}
-		if ( !$this->mIndexField ) {
-			$this->mIndexField = 'oarc_id';
+		if ( !$indexField ) {
+			$indexField = 'oarc_id';
 		}
+		$this->mIndexField = $indexField;
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( !$permissionManager->userHasRight( $this->getUser(), 'mwoauthviewsuppressed' ) ) {

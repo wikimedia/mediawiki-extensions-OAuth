@@ -40,7 +40,7 @@ class OAuth1Consumer extends Consumer {
 	 * @param User $mwUser
 	 * @param bool $update
 	 * @param array $grants
-	 * @param null $requestTokenKey
+	 * @param string|null $requestTokenKey
 	 * @return string
 	 * @throws MWOAuthException
 	 * @throws MWException

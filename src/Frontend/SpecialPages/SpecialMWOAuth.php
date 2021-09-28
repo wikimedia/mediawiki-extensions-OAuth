@@ -760,7 +760,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	 * Get the requested OAuth version from the request
 	 *
 	 * @param \WebRequest $request
-	 * @return string
+	 * @return int
 	 */
 	private function determineOAuthVersion( \WebRequest $request ) {
 		$this->oauthVersion = $request->getInt( 'oauth_version', Consumer::OAUTH_VERSION_1 );
@@ -769,14 +769,14 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param string $allowed Allowed version
+	 * @param int $allowed Allowed version
 	 * @throws MWOAuthException
 	 */
 	private function assertOAuthVersion( $allowed ) {
 		if ( $this->oauthVersion !== $allowed ) {
 			throw new MWOAuthException(
 				'mwoauth-oauth-unsupported-version',
-				$this->oauthVersion
+				[ $this->oauthVersion ]
 			);
 		}
 	}

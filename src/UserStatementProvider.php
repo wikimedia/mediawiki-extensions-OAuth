@@ -89,7 +89,7 @@ class UserStatementProvider {
 		// Audience(s) that this ID Token is intended for.
 		$statement['aud'] = $this->consumer->getConsumerKey();
 		// Expiration time on or after which the ID Token MUST NOT be accepted for processing.
-		$statement['exp'] = wfTimestamp() + 100;
+		$statement['exp'] = (int)wfTimestamp() + 100;
 		// Time at which the JWT was issued.
 		$statement['iat'] = (int)wfTimestamp();
 		// TODO: Add auth_time, if we start tracking last login timestamp

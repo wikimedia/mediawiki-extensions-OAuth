@@ -31,7 +31,7 @@ class UserEntity implements UserEntityInterface {
 	}
 
 	/**
-	 * @param string $identifier
+	 * @param int $identifier
 	 */
 	public function __construct( $identifier ) {
 		$this->identifier = $identifier;
@@ -40,7 +40,7 @@ class UserEntity implements UserEntityInterface {
 	/**
 	 * Return the user's identifier.
 	 *
-	 * @return mixed
+	 * @return int
 	 */
 	public function getIdentifier() {
 		return $this->identifier;

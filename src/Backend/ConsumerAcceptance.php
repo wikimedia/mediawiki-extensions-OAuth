@@ -107,11 +107,11 @@ class ConsumerAcceptance extends MWOAuthDAO {
 
 	/**
 	 * @param DBConnRef $db
-	 * @param string $userId of user who authorized (central wiki's id)
+	 * @param int $userId of user who authorized (central wiki's id)
 	 * @param Consumer $consumer
 	 * @param string $wiki wiki associated with the acceptance
 	 * @param int $flags ConsumerAcceptance::READ_* bitfield
-	 * @param string $oauthVersion
+	 * @param int $oauthVersion
 	 * @return ConsumerAcceptance|bool
 	 */
 	public static function newFromUserConsumerWiki(
@@ -121,7 +121,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
 			[
-				'oaac_user_id' => (int)$userId,
+				'oaac_user_id' => $userId,
 				'oaac_consumer_id' => $consumer->getId(),
 				'oaac_oauth_version' => $oauthVersion,
 				'oaac_wiki' => (string)$wiki

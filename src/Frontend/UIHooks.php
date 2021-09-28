@@ -89,7 +89,7 @@ class UIHooks {
 
 		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$cmrAc = ConsumerAccessControl::wrap(
-			Consumer::newFromId( $dbr, $m[1] ), $context
+			Consumer::newFromId( $dbr, (int)$m[1] ), $context
 		);
 		if ( !$cmrAc ) {
 			// Invalid consumer, skip it

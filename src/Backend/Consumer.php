@@ -64,7 +64,7 @@ abstract class Consumer extends MWOAuthDAO {
 	/** @var string OAuth callback URL for authorization step */
 	protected $callbackUrl;
 	/**
-	 * @var int OAuth callback URL is a prefix and we allow all URLs which
+	 * @var bool OAuth callback URL is a prefix and we allow all URLs which
 	 *   have callbackUrl as the prefix
 	 */
 	protected $callbackIsPrefix;
@@ -74,11 +74,11 @@ abstract class Consumer extends MWOAuthDAO {
 	protected $email;
 	/** @var string|null TS_MW timestamp of when email address was confirmed */
 	protected $emailAuthenticated;
-	/** @var int User accepted the developer agreement */
+	/** @var bool User accepted the developer agreement */
 	protected $developerAgreement;
-	/** @var int Consumer is for use by the owner only */
+	/** @var bool Consumer is for use by the owner only */
 	protected $ownerOnly;
-	/** @var string Version of the OAuth protocol */
+	/** @var int Version of the OAuth protocol */
 	protected $oauthVersion;
 	/** @var string Wiki ID the application can be used on (or "*" for all) */
 	protected $wiki;
@@ -96,7 +96,7 @@ abstract class Consumer extends MWOAuthDAO {
 	protected $stage;
 	/** @var string TS_MW timestamp of last stage change */
 	protected $stageTimestamp;
-	/** @var int Indicates (if non-zero) this consumer's information is suppressed */
+	/** @var bool Indicates this consumer's information is suppressed */
 	protected $deleted;
 	/** @var bool Indicates whether the client (consumer) is able to keep the secret */
 	protected $oauth2IsConfidential;

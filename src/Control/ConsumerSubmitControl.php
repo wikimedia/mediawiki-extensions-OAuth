@@ -298,7 +298,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				);
 			} else {
 				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['description'] );
-				$this->notify( $cmr, $user, $action,  null );
+				$this->notify( $cmr, $user, $action, '' );
 			}
 
 			// If it's owner-only, automatically accept it for the user too.
