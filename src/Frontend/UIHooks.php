@@ -127,8 +127,8 @@ class UIHooks {
 			\Html::openElement( 'table',
 			[ 'class' => 'wikitable mw-listgrouprights-table' ] ) .
 			'<tr>' .
-			\Html::element( 'th', null, $special->msg( 'listgrants-grant' )->text() ) .
-			\Html::element( 'th', null, $special->msg( 'listgrants-rights' )->text() ) .
+			\Html::element( 'th', [], $special->msg( 'listgrants-grant' )->text() ) .
+			\Html::element( 'th', [], $special->msg( 'listgrants-rights' )->text() ) .
 			'</tr>'
 		);
 
