@@ -88,8 +88,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 		// Format is Special:OAuthConsumerRegistration[/propose|/list|/update/<consumer key>]
 		$navigation = explode( '/', $par );
-		$action = $navigation[0] ?? null;
-		$consumerKey = $navigation[1] ?? null;
+		$action = $navigation[0] ?? '';
+		$consumerKey = $navigation[1] ?? '';
 
 		if ( $this->getConfig()->get( 'MWOAuthReadOnly' ) && $action !== 'list' ) {
 			throw new \ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );

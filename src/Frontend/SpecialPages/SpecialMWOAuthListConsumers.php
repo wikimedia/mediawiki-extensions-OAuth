@@ -48,7 +48,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		// Format is Special:OAuthListConsumers[/list|/view/[<consumer key>]]
 		$navigation = explode( '/', $par );
 		$type = $navigation[0] ?? null;
-		$consumerKey = $navigation[1] ?? null;
+		$consumerKey = $navigation[1] ?? '';
 
 		$this->showConsumerListForm();
 
