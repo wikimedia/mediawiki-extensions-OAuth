@@ -7,5 +7,6 @@
 	"mwoauth-prefs-managegrants": "ဆွိုက်ခါꩻဒါႏ သော့ဝွဲးအပ်ဖုံႏ:",
 	"mwoauth-prefs-managegrantslink": "စီႏမံႏဖန်းဖြယ် ဆွိုက်ခါꩻဒါႏ သော့ဝွဲး {{PLURAL:$1|အပလီကေးသိဥ်း|အပလီကေးသိဥ်းဖုံႏ}} $1 ဗာႏတာႏ",
 	"oauthmanagemygrants": "စီႏမံႏဖန်းဖြယ် ဆွိုက်ခါꩻဒါႏ သော့ဝွဲးအပလီကေးသိဥ်းဖုံႏ",
-	"mwoauthmanagemygrants-showlist": "ဆွိုက်ခါꩻဒါႏ သော့ဝွဲးအပလီကေးသိဥ်းစာႏရင်ꩻ"
+	"mwoauthmanagemygrants-showlist": "ဆွိုက်ခါꩻဒါႏ သော့ဝွဲးအပလီကေးသိဥ်းစာႏရင်ꩻ",
+	"mwoauthdatastore-request-token-not-found": "သꩻဟဝ်တဝ်းသွူ၊ ဆွိုက်သော့ဝွဲးအပလီကေးသိဥ်းကျာꩻ ထွာထိုꩻအမာႏတစွိုးစွိုး။ ထန်ႏသဲင်ꩻချာထွူ ကျိုꩻစာꩻဆွိုက်ချာယင်း နာꩻအကောက်နေား၊ တဝ်းလဲ့ သွုပ်ဆွိုက်သွော့ သော့ဝွဲးအပလီကေးသိဥ်းဗွေႏသား။ \n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth token မော့ꩻတဝ်း၊ $1</span>"
 }
