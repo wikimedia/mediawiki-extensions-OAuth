@@ -39,5 +39,7 @@
 	"mwoauthmanagemygrants-update": "Oppdater løyve",
 	"mwoauth-form-description-allwikis": "Hei $1,\n\nfor å fullføra førespurnaden treng '''$2''' løyve til å utføra desse handlingane på dine vegner på alle prosjekta på denne nettstaden:\n\n$4",
 	"mwoauth-form-description-onewiki": "Hei $1,\n\nfor å fullføra førespurnaden treng '''$2''' løyve til å utføra desse handlingane på dine vegner på ''$4'':\n\n$5",
-	"mwoauth-form-description-allwikis-nogrants": "Hei $1,\n\nFor å fullføra førespurnaden din treng '''$2''' løyve til å henta informasjon på dine vegner frå alle prosjekt på denne nettstaden. Ingen endringar vil gjerast med kontoen din."
+	"mwoauth-form-description-allwikis-nogrants": "Hei $1,\n\nFor å fullføra førespurnaden din treng '''$2''' løyve til å henta informasjon på dine vegner frå alle prosjekt på denne nettstaden. Ingen endringar vil gjerast med kontoen din.",
+	"mwoauth-form-description-allwikis-privateinfo-norealname": "Hei $1,\n\nFor å fullføra førespurnaden din treng '''$2''' tilgang til informasjon, inkludert e-postadressa di, på alle prosjekt på denne nettstaden. Ingen endringar vert gjorde med kontoen din.",
+	"mwoauth-form-description-onewiki-privateinfo-norealname": "Hei $1,\n\nFor å fullføra førespurnaden din treng '''$2''' tilgang til informasjon, inkludert e-postadressa di, på ''$4''. Ingen endringar vert gjorde med kontoen din."
 }
