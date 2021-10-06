@@ -261,5 +261,6 @@
 	"notification-oauth-app-reenable-primary-link": "Просмотр приложения.",
 	"notification-oauth-app-body": "Причина: $1",
 	"mwoauth-oauth2-granttype-auth-code": "Код авторизации",
+	"mwoauth-oauth2-granttype-refresh-token": "Обновить токен",
 	"mwoauthconsumer-application-view": "Посмотреть это приложение"
 }
