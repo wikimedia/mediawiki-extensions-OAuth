@@ -5,14 +5,14 @@ namespace MediaWiki\Extensions\OAuth\Tests\Repository;
 use MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity;
 use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extensions\OAuth\Tests\Entity\Mock_ClientEntity;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository
  * @group Database
  * @group OAuth
  */
-class AccessTokenRepositoryTest extends MediaWikiTestCase {
+class AccessTokenRepositoryTest extends MediaWikiIntegrationTestCase {
 	/** @var AccessTokenEntity */
 	protected $accessToken;
 	/** @var AccessTokenRepository */

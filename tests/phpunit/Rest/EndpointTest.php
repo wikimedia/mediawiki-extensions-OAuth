@@ -17,7 +17,7 @@ use User;
  * Class EndpointTest
  * @package MediaWiki\Extensions\OAuth\Tests\Rest
  */
-abstract class EndpointTest extends \MediaWikiTestCase {
+abstract class EndpointTest extends \MediaWikiIntegrationTestCase {
 
 	use HandlerTestTrait;
 

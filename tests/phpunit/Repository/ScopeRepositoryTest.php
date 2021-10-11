@@ -4,13 +4,13 @@ namespace MediaWiki\Extensions\OAuth\Tests\Repository;
 
 use MediaWiki\Extensions\OAuth\Entity\ScopeEntity;
 use MediaWiki\Extensions\OAuth\Repository\ScopeRepository;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Repository\ScopeRepository
  * @group OAuth
  */
-class ScopeRepositoryTest extends MediaWikiTestCase {
+class ScopeRepositoryTest extends MediaWikiIntegrationTestCase {
 	public function testScopes() {
 		$repo = new ScopeRepository();
 

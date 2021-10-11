@@ -4,13 +4,13 @@ namespace MediaWiki\Extensions\OAuth\Tests\Repository;
 
 use MediaWiki\Extensions\OAuth\Repository\AuthCodeRepository;
 use MediaWiki\Extensions\OAuth\Tests\Entity\Mock_ClientEntity;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Repository\AuthCodeRepository
  * @group OAuth
  */
-class AuthCodeRepositoryTest extends MediaWikiTestCase {
+class AuthCodeRepositoryTest extends MediaWikiIntegrationTestCase {
 	/** @var AuthCodeEntity */
 	protected $authCodeToken;
 	/** @var AuthCodeRepository */

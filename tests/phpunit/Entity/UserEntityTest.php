@@ -3,13 +3,13 @@
 namespace MediaWiki\Extensions\OAuth\Tests\Entity;
 
 use MediaWiki\Extensions\OAuth\Entity\UserEntity;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Entity\UserEntity
  * @group OAuth
  */
-class UserEntityTest extends MediaWikiTestCase {
+class UserEntityTest extends MediaWikiIntegrationTestCase {
 
 	public function testProperties() {
 		$userEntity = UserEntity::newFromMWUser(

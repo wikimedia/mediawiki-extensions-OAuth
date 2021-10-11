@@ -4,13 +4,13 @@ namespace MediaWiki\Extensions\OAuth\Tests\Entity;
 
 use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Entity\ClientEntity
  * @group OAuth
  */
-class ClientEntityTest extends MediaWikiTestCase {
+class ClientEntityTest extends MediaWikiIntegrationTestCase {
 
 	public function testProperties() {
 		$domain = 'http://domain.com/oauth2';

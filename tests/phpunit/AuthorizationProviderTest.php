@@ -11,7 +11,7 @@ use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\RefreshToken;
 use MediaWiki\Extensions\OAuth\AuthorizationProvider\IAuthorizationProvider;
 use MediaWiki\Extensions\OAuth\AuthorizationServerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use ReflectionClass;
 use User;
@@ -24,7 +24,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\RefreshToken
  * @group OAuth
  */
-class AuthorizationProviderTest extends MediaWikiTestCase {
+class AuthorizationProviderTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();

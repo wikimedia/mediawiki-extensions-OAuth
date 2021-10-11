@@ -6,14 +6,14 @@ use League\OAuth2\Server\Entities\ClientEntityInterface;
 use MediaWiki\Extensions\OAuth\Entity\ClaimEntity;
 use MediaWiki\Extensions\OAuth\Repository\ClaimStore;
 use MediaWiki\Extensions\OAuth\Tests\Entity\Mock_ClientEntity;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Repository\ClaimStore
  * @group Database
  * @group OAuth
  */
-class ClaimStoreTest extends MediaWikiTestCase {
+class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @var ClaimStore

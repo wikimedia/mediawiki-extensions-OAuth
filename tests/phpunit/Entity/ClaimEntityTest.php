@@ -3,12 +3,12 @@
 namespace MediaWiki\Extensions\OAuth\Tests\Entity;
 
 use MediaWiki\Extensions\OAuth\Entity\ClaimEntity;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group OAuth
  */
-class ClaimEntityTest extends MediaWikiTestCase {
+class ClaimEntityTest extends MediaWikiIntegrationTestCase {
 	public function provideClaims() {
 		yield 'string claim' => [
 			[ 'str' => 'string' ]

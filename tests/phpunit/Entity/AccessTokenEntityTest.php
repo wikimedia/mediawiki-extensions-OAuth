@@ -6,13 +6,13 @@ use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity;
 use MediaWiki\Extensions\OAuth\Entity\ClaimEntity;
 use MediaWiki\Extensions\OAuth\Entity\ScopeEntity;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity
  * @group OAuth
  */
-class AccessTokenEntityTest extends MediaWikiTestCase {
+class AccessTokenEntityTest extends MediaWikiIntegrationTestCase {
 
 	public function testProperties() {
 		$claims = [

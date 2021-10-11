@@ -24,7 +24,7 @@
 namespace MediaWiki\Extensions\OAuth\Tests;
 
 use MediaWiki\Extensions\OAuth\SessionProvider;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use RecentChange;
 
 /**
@@ -32,7 +32,7 @@ use RecentChange;
  * @group OAuth
  * @license GPL-2.0-or-later
  */
-class SessionProviderTest extends MediaWikiTestCase {
+class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
