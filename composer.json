@@ -11,7 +11,7 @@
 		}
 	],
 	"require": {
-		"firebase/php-jwt": "5.2.0",
+		"firebase/php-jwt": "^5.2.0",
 		"league/oauth2-server": "dev-v9.0.0-alpha as 9.0.0"
 	},
 	"require-dev": {
