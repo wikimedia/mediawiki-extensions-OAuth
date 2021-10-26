@@ -170,7 +170,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 			);
 		}
 		if ( $localUser->isLocked() ||
-			( $this->config->get( 'BlockDisablesLogin' ) && $localUser->isBlocked() )
+			( $this->config->get( 'BlockDisablesLogin' ) && $localUser->getBlock() )
 		) {
 			$this->logger->debug( 'OAuth request for blocked user {user}', $logData );
 			return $this->makeException( 'mwoauth-invalid-authorization-blocked-user' );

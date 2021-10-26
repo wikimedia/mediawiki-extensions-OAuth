@@ -230,7 +230,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 							) )
 						] );
 					} elseif ( $localUser->isLocked() ||
-						$config->get( 'BlockDisablesLogin' ) && $localUser->isBlocked()
+						$config->get( 'BlockDisablesLogin' ) && $localUser->getBlock()
 					) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-blocked-user' );
 					}
