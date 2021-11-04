@@ -147,7 +147,7 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 	 * Should never be called outside of client registration/manage code
 	 *
 	 * @param ConsumerAcceptance $approval
-	 * @param bool $revokeExisting - Delete all existing tokens
+	 * @param bool $revokeExisting Delete all existing tokens
 	 *
 	 * @return AccessTokenEntityInterface
 	 * @throws MWOAuthException
