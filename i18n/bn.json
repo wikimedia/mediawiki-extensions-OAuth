@@ -134,6 +134,7 @@
 	"mwoauth-form-button-cancel": "বাতিল",
 	"mwoauth-error": "অ্যাপ্লিকেশন সংযোগ ত্রুটি",
 	"mwoauth-grants-heading": "অনুরোধকৃত অনুমতি:",
+	"grant-mwoauth-authonly": "শুধু ব্যবহারকারী পরিচয় যাচাইকরণ। পাতা পড়ার বা ব্যবহারকারীর হয়ে কাজ করার সক্ষমতা থাকবে না",
 	"grant-mwoauth-authonlyprivate": "শুধুমাত্র প্রকৃত নাম ও ই-মেইল ঠিকানায় প্রবেশাধিকারসহ ব্যবহারকারী পরিচয় যাচাই করে, ব্যবহারকারীর পক্ষে পড়া বা কাজ করার ক্ষমতা নেই।",
 	"echo-category-title-oauth-owner": "OAuth উন্নয়ন",
 	"echo-category-title-oauth-admin": "OAuth প্রশাসক",

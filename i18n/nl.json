@@ -276,5 +276,6 @@
 	"notification-oauth-app-disable-primary-link": "Bekijk applicatie",
 	"notification-oauth-app-reenable-primary-link": "Bekijk applicatie",
 	"notification-oauth-app-body": "Reden: $1",
+	"mwoauth-oauth2-granttype-auth-code": "Autorisatiecode",
 	"mwoauth-oauth2-granttype-client-credentials": "Aanmeldgegevens klant"
 }

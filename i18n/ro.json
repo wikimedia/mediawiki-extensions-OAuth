@@ -12,6 +12,6 @@
 	"oauthmanagemygrants": "Administrare aplicații conectate",
 	"mwoauthmanagemygrants-text": "Această pagină afișează toate aplicațiile care pot folosi contul dumneavoastră. Pentru fiecare astfel de aplicație, accesul este limitat de permisiunile pe care le-ați acordat aplicației atunci când ați autorizat-o să acționeze în numele dumneavoastră. Dacă ați autorizat separat o aplicație să acceseze anumite proiecte în numele dumneavoastră, veți vedea mai jos configurări separate pentru fiecare proiect.\n\nAplicațiile conectate accesează contul dumneavoastră folosind protocolul OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Aflați mai multe despre aplicații conectate])</span>",
 	"mwoauthconsumer-consumer-logpage": "Jurnal consumatori OAuth",
-	"mwoauth-form-description-allwikis": "Bună $1,\n\nPentru a finaliza cererea dvs., '''$2''' are nevoie de permisiunea de a efectua următoarele acțiuni în numele dvs. pe toate proiectele acestui site:\n\n$4",
+	"mwoauth-form-description-allwikis": "Bună, $1,\n\nPentru a finaliza cererea dvs., '''$2''' are nevoie de permisiunea de a efectua următoarele acțiuni în numele dvs. pe toate proiectele acestui site:\n\n$4",
 	"echo-category-title-oauth-owner": "Dezvoltare OAuth"
 }

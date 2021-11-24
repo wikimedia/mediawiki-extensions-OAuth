@@ -12,6 +12,8 @@
 	"mwoauth-consumer-stage-any": "irga",
 	"mwoauth-form-description-allwikis-privateinfo-norealname": "Saluto $1,\n\nPor atendar komplete vua demando, '''$2''' bezonas acesar informi pri vu, inkluzite vua e-posto adreso, en omna projeti de ca retsituo. Nula modifikuri facesos en vua uzero-konto.",
 	"mwoauth-form-button-cancel": "Nuligar",
+	"grant-mwoauth-authonly": "Nur identifiko di uzero, ne esas posibla lektar pagini od agar por interesto di altru.",
+	"grant-mwoauth-authonlyprivate": "Nur esas posibla identifikar vera nomi e vera reto-adresi, ne esas posibla lektar pagini od agar por interesto di altra uzero.",
 	"notification-oauth-app-reject-primary-link": "Montrez 'app'",
 	"notification-oauth-app-disable-primary-link": "Vidar 'app'",
 	"notification-oauth-app-body": "Motivo: $1"
