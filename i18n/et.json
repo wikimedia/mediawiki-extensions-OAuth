@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Boxmein",
-			"Pikne"
+			"Pikne",
+			"Cumbril"
 		]
 	},
 	"mwoauth-desc": "Võimaldab kasutada OAuthi versioone 1.0a ja 2.0 API-volitamiseks.",
@@ -20,8 +21,8 @@
 	"mwoauth-consumer-owner-only": "Seda tarvitust kasutab ainult $1.",
 	"mwoauth-consumer-owner-only-help": "Selle valiku korral kiidetakse tarvitus automaatselt heaks ja selle kasutamine lubatakse kasutajale $1. Teised kasutajad seda kasutada ei saa ja harilik volitamisvoog ei toimi. Selle tarvitusega sooritatud toiminguid ei märgistata.",
 	"mwoauth-consumer-description": "Rakenduse kirjeldus:",
-	"mwoauth-consumer-callbackurl": "OAuthi tagasisuunamis-URL:",
-	"mwoauth-consumer-callbackisprefix": "Luba määrata tarvituses tagasihelistamine ja kasuta nõutava eesliitena ülaltoodud tagasihelistamis-URL-i.",
+	"mwoauth-consumer-callbackurl": "OAuthi tagasiaadress:",
+	"mwoauth-consumer-callbackisprefix": "Luba määrata tarvituse päringutes tagasikutse ja kasuta kohustusliku eesliitena ülaltoodud tagasiaadressi.",
 	"mwoauth-consumer-granttypes": "Taotlen järgmist tüüpi volitusi:",
 	"mwoauth-consumer-grantsneeded": "Rakendatavad volitused:",
 	"mwoauth-consumer-required-grant": "Tarvituse suhtes rakendatav",
@@ -58,6 +59,7 @@
 	"mwoauthmanageconsumers-showrejected": "tagasi lükatud taotlused",
 	"mwoauthmanageconsumers-showexpired": "iganenud taotlused",
 	"mwoauthmanageconsumers-main": "pealeht",
+	"mwoauthmanageconsumers-review": "vaata üle ja halda",
 	"mwoauthmanageconsumers-confirm-legend": "OAuthi tarvituse haldamine",
 	"mwoauthmanageconsumers-action": "Staatuse muutmine:",
 	"mwoauthmanageconsumers-approve": "Heaks kiidetud",
@@ -71,8 +73,8 @@
 	"mwoauthlistconsumers-user": "Väljaandja",
 	"mwoauthlistconsumers-description": "Kirjeldus",
 	"mwoauthlistconsumers-wiki": "Rakendamise projekt",
-	"mwoauthlistconsumers-callbackurl": "Rakenduse internetiaadress",
-	"mwoauthlistconsumers-callbackisprefix": "Luba määrata tarvituses tagasihelistamine ja kasuta nõutava eesliitena ülaltoodud tagasihelistamis-URL-i.",
+	"mwoauthlistconsumers-callbackurl": "OAuthi tagasiaadress",
+	"mwoauthlistconsumers-callbackisprefix": "Luba määrata tarvituse päringutes tagasikutse ja kasuta kohustusliku eesliitena ülaltoodud tagasiaadressi.",
 	"mwoauthlistconsumers-grants": "Rakendatavad volitused",
 	"mwoauthlistconsumers-basicgrantsonly": "(ainult põhijuurdepääs)",
 	"mwoauthlistconsumers-status": "Olek",
