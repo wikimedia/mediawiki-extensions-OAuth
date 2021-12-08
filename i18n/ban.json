@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chinamoonroll"
+			"Chinamoonroll",
+			"Joseagush"
 		]
 	},
 	"oauth": "OAuth",
@@ -22,10 +23,15 @@
 	"mwoauth-consumer-stage-disabled": "kapademang",
 	"mwoauth-consumer-stage-suppressed": "mati",
 	"mwoauthconsumerregistration-navigation": "Navigasi:",
+	"mwoauthconsumerregistration-main": "Utama",
+	"mwoauthconsumerregistration-name": "Konsumer",
+	"mwoauthconsumerregistration-user": "Pawedar",
+	"mwoauthconsumerregistration-description": "Déskripsi",
 	"mwoauthconsumerregistration-email": "Kontak rerepél",
 	"mwoauthconsumerregistration-consumerkey": "Sereg konsumén",
 	"mwoauthconsumerregistration-stage": "Status",
 	"mwoauthconsumerregistration-lastchange": "Gentosan ungkur",
+	"mwoauthmanageconsumers-main": "Utama",
 	"oauthlistconsumers": "Lis aplikasi OAuth",
 	"mwoauthlistconsumers-version": "Vérsi konsumén",
 	"mwoauth-consumer-stage-any": "makasami",
