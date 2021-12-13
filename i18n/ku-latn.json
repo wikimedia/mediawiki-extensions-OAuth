@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"George Animal"
+			"George Animal",
+			"Balyozxane"
 		]
 	},
+	"mwoauthconsumerregistration-description": "Danasîn",
 	"notification-oauth-app-approve-primary-link": "Sepanê bibîne",
 	"notification-oauth-app-reject-primary-link": "Sepanê bibîne",
 	"notification-oauth-app-disable-primary-link": "Sepanê bibîne",

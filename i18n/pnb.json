@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Abbas dhothar"
+		]
+	},
+	"mwoauth-consumer-reason": "وجہ:",
+	"mwoauthconsumerregistration-description": "تفصیل",
+	"mwoauthmanageconsumers-description": "تفصیل",
+	"mwoauthmanageconsumers-reason": "وجہ:",
+	"mwoauthlistconsumers-description": "تفصیل",
+	"mwoauthmanagemygrants-description": "تفصیل",
+	"mwoauth-form-button-cancel": "منسوخ کرو",
+	"notification-oauth-app-body": "وجہ: $1"
+}

@@ -3,11 +3,12 @@
 		"authors": [
 			"Fitoschido",
 			"Pginer",
-			"Townie"
+			"Townie",
+			"Jmarchn"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Aplicacions connectades:",
-	"mwoauth-prefs-managegrantslink": "Gestiona $1 {{PLURAL:$1|aplicació connectada|aplicacions connectades}}",
+	"mwoauth-prefs-managegrantslink": "Gestiona {{PLURAL:$1|$1 aplicació connectada|$1 aplicacions connectades|0=aplicacions connectades}}",
 	"mwoauth-consumer-allwikis": "Tots els projectes d’aquest lloc",
 	"mwoauth-consumer-name": "Nom de l’aplicació:",
 	"mwoauthconsumerregistration-navigation": "Navegació:",

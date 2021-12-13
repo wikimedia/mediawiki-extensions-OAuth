@@ -236,6 +236,7 @@
 	"action-mwoauthmanagemygrants": "내 OAuth 부여 관리",
 	"action-mwoauthproposeconsumer": "새 OAuth 컨슈머 제안",
 	"action-mwoauthupdateownconsumer": "내가 제어할 수 있는 OAuth 컨슈머 업데이트",
+	"action-mwoauthviewprivate": "비공개 OAuth 데이터 보기",
 	"action-mwoauthviewsuppressed": "표시하지 않은 OAuth 컨슈머 보기",
 	"mwoauth-botpasswords-note": "<strong>주의:</strong> <span class=\"plainlinks\">[$1 OAuth]</span>가 봇 비밀번호 보다 더 안전하며 봇이 이를 지원하면 이 기능이 더 선호됩니다.",
 	"mwoauth-api-module-disabled": "\"$1\" 모듈은 OAuth와 함께 사용할 수 없습니다.",
@@ -262,6 +263,9 @@
 	"notification-oauth-app-disable-primary-link": "앱 보기",
 	"notification-oauth-app-reenable-primary-link": "앱 보기",
 	"notification-oauth-app-body": "이유: $1",
+	"mwoauth-oauth-version": "OAuth 프로토콜 버전",
+	"mwoauth-oauth2-granttype-refresh-token": "리프레시 토큰",
+	"mwoauth-oauth2-invalid-access-token": "유효하지 않은 액세스 토큰",
 	"mwoauth-login-required-reason": "애플리케이션의 접근 인가를 위해 {{SITENAME}} 계정으로 로그인해야 합니다.",
 	"mwoauthconsumer-application-view": "이 애플리케이션 보기"
 }

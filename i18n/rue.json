@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tkalyn"
+		]
+	},
+	"mwoauth-prefs-managegrants": "Припоєны аплікації",
+	"mwoauth-prefs-managegrantslink": "Справовати {{PLURAL:$1|$1 припоєну аплікацію|$1 припоєны аплікації|0=припоєны аплікації}}"
+}

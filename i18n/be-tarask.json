@@ -10,6 +10,8 @@
 	"mwoauth-consumer-allwikis": "Усе праекты на гэтым сайце",
 	"mwoauth-consumer-name": "Назва праграмы:",
 	"mwoauth-consumer-stage": "Актуальны статус:",
+	"oauthconsumerregistration": "Рэгістрацыя спажыўца OAuth",
+	"oauthmanageconsumers": "Кіраваньне спажыўцамі OAuth",
 	"oauthlistconsumers": "Сьпіс праграмаў OAuth",
 	"mwoauthlistconsumers-legend": "Прагляд OAuth-праграмаў",
 	"oauthmanagemygrants": "Кіраваньне падключанымі праграмамі",

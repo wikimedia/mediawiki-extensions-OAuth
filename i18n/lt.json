@@ -4,10 +4,11 @@
 			"Eitvys200",
 			"Homo",
 			"Hugo.arg",
-			"Manvydasz"
+			"Manvydasz",
+			"Tomasdd"
 		]
 	},
-	"mwoauth-desc": "Leidžia naudoti OAuth 1.0a API autorizacijai",
+	"mwoauth-desc": "Leidžia naudoti OAuth 1.0a ir OAuth 2.0 API autorizacijai",
 	"mwoauth-prefs-managegrants": "Susieti programiniai įskiepiai:",
 	"mwoauth-prefs-managegrantslink": "Tvarkyti $1 {{PLURAL:$1|susietą programinį įskiepį|susietus programinius įskiepius|susietų programinių įskiepių}}",
 	"oauthmanagemygrants": "Tvarkyti susietas programas",

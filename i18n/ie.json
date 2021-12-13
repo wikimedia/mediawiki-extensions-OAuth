@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Renan"
+		]
+	},
+	"mwoauth-consumer-reason": "Rason:",
+	"mwoauthmanageconsumers-reason": "Rason:",
+	"notification-oauth-app-body": "Rason: $1"
+}

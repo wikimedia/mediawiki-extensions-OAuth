@@ -2,10 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Gitartha.bordoloi",
-			"Simbu123"
+			"Simbu123",
+			"Mohsin Ali"
 		]
 	},
-	"mwoauth-prefs-managegrants": "সংযুক্ত এপ্লিকেছনসমূহৰ",
-	"mwoauth-prefs-managegrantslink": "সংযুক্ত $1 {{PLURAL:$1|এপ্লিকেছনৰ|এপ্লিকেছনসমূহৰ}} পৰিচালনা কৰক",
+	"mwoauth-prefs-managegrants": "সংযুক্ত এপ্লিকেছনসমূহ:",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|এটা সংযুক্ত এপ্লিকেছন|$1টা সংযুক্ত এপ্লিকেছন|0=সংযুক্ত এপ্লিকেছনসমূহ}} পৰিচালনা কৰক",
+	"mwoauthconsumerregistration-main": "মুখ্য",
+	"mwoauthmanageconsumers-main": "মুখ্য",
 	"oauthmanagemygrants": "সংযোজিত এপ্লিকেছনসমূহৰ ব্যৱস্থাপনা কৰক"
 }

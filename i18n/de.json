@@ -7,7 +7,12 @@
 			"Metalhead64",
 			"Se4598",
 			"Umherirrender",
-			"Wnme"
+			"Wnme",
+			"Amire80",
+			"Gebu",
+			"McDutchie",
+			"Robby",
+			"Zabe"
 		]
 	},
 	"mwoauth-desc": "Ermöglicht die Nutzung von OAuth 1.0a und OAuth 2.0 zur API-Autorisierung",
@@ -165,6 +170,7 @@
 	"mwoauthlistconsumers-status-rejected": "abgelehnt",
 	"mwoauthlistconsumers-status-expired": "abgelaufen",
 	"mwoauthlistconsumers-navigation": "Navigation:",
+	"mwoauthlistconsumers-update-link": "Verbraucher aktualisieren",
 	"mwoauthlistconsumers-grants-link": "Rechte verwalten",
 	"mwoauthlistconsumers-rclink": "Letzte Änderungen durch diese Anwendung",
 	"oauthmanagemygrants": "Verbundene Anwendungen verwalten",
@@ -298,5 +304,8 @@
 	"notification-oauth-app-disable-primary-link": "Anwendung ansehen",
 	"notification-oauth-app-reenable-primary-link": "Anwendung ansehen",
 	"notification-oauth-app-body": "Grund: $1",
-	"mwoauth-oauth2-granttype-auth-code": "Autorisierungscode"
+	"mwoauth-oauth-version": "OAuth-Protokoll-Version",
+	"mwoauth-oauth2-granttype-auth-code": "Autorisierungscode",
+	"mwoauth-login-required-reason": "Dir musst Iech an Äre(n) {{SITENAME}}-Benotzerkont alogge fir d'Applikatioune z'autoriséieren fir dorop zou ze gräifen.",
+	"mwoauthconsumer-application-view": "Dës Ufro weisen"
 }
