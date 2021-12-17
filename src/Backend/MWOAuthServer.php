@@ -11,7 +11,7 @@ class MWOAuthServer extends OAuthServer {
 	/**
 	 * Return a consumer key associated with the given request token.
 	 *
-	 * @param MWOAuthToken $requestToken the request token
+	 * @param string $requestToken the request token
 	 * @return string|false the consumer key or false if nothing is stored for the request token
 	 */
 	public function getConsumerKey( $requestToken ) {

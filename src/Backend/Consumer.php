@@ -210,9 +210,9 @@ abstract class Consumer extends MWOAuthDAO {
 
 	/**
 	 * @param DBConnRef $db
-	 * @param string $key
+	 * @param string|null $key
 	 * @param int $flags MWOAuthConsumer::READ_* bitfield
-	 * @return Consumer|bool
+	 * @return Consumer|false
 	 */
 	public static function newFromKey( DBConnRef $db, $key, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),

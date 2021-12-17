@@ -77,6 +77,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$config = $this->getConfig();
 
 		$format = $request->getVal( 'format', 'raw' );
+		'@phan-var string $format';
 
 		try {
 			if ( $config->get( 'MWOAuthReadOnly' ) &&
@@ -267,6 +268,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 				default:
 					$format = $request->getVal( 'format', 'html' );
+					'@phan-var string $format';
 					$dbr = Utils::getCentralDB( DB_REPLICA );
 					$cmrAc = ConsumerAccessControl::wrap(
 						Consumer::newFromKey(
@@ -370,6 +372,11 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$this->showResponse( $JWT, $format );
 	}
 
+	/**
+	 * @param string|null $requestToken
+	 * @param string|null $consumerKey
+	 * @param bool $authenticate
+	 */
 	protected function handleAuthorizationForm( $requestToken, $consumerKey, $authenticate ) {
 		$output = $this->getOutput();
 
@@ -378,7 +385,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 		$oauthServer = Utils::newMWOAuthServer();
 
-		if ( !$consumerKey && $this->oauthVersion === Consumer::OAUTH_VERSION_1 ) {
+		if ( !$consumerKey && $requestToken && $this->oauthVersion === Consumer::OAUTH_VERSION_1 ) {
 			$consumerKey = $oauthServer->getConsumerKey( $requestToken );
 		}
 

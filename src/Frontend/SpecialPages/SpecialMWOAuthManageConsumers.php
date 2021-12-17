@@ -117,7 +117,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 * Show other sub-queue links. Grey out the current one.
 	 * When viewing a request, show them all and a link to current consumer view.
 	 *
-	 * @param string $consumerKey
+	 * @param string|null $consumerKey
 	 * @return void
 	 */
 	protected function addQueueSubtitleLinks( $consumerKey ) {

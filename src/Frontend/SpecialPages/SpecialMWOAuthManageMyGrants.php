@@ -78,7 +78,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		switch ( $typeKey ) {
 		case 'update':
 		case 'revoke':
-			$this->handleConsumerForm( $acceptanceId, $typeKey );
+			$this->handleConsumerForm( $acceptanceId ?? 0, $typeKey );
 			break;
 		default:
 			$this->showConsumerList();
@@ -129,7 +129,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	/**
 	 * Show the form to approve/reject/disable/re-enable consumers
 	 *
-	 * @param string $acceptanceId
+	 * @param int $acceptanceId
 	 * @param string $type One of (update,revoke)
 	 * @throws \PermissionsError
 	 */
