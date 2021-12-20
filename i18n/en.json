@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": []
 	},
+	"abusefilter-edit-builder-vars-oauth-consumer": "OAuth consumer used to perform this change",
 	"oauth": "OAuth",
 	"mwoauth-desc": "Allows usage of OAuth 1.0a and OAuth 2.0 for API authorization",
 	"mwoauth-nosubpage-explanation": "OAuth is a mechanism which allows external applications to identify a {{SITENAME}} user or act on their behalf, after receiving permission from that user.\n\nFor this page to do something, more parameters are required. If you were sent here from an external application, that was probably due to an error in that application; you should contact the author.",
