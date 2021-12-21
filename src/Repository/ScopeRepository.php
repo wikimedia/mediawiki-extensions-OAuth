@@ -11,6 +11,7 @@ use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
 use MediaWiki\Extensions\OAuth\Entity\ScopeEntity;
 use MediaWiki\Extensions\OAuth\Entity\UserEntity;
 use MWGrants;
+use WikiMap;
 
 class ScopeRepository implements ScopeRepositoryInterface {
 	/**
@@ -83,7 +84,7 @@ class ScopeRepository implements ScopeRepositoryInterface {
 
 		// Filter out not approved scopes
 		try {
-			$approval = $clientEntity->getCurrentAuthorization( $mwUser, wfWikiID() );
+			$approval = $clientEntity->getCurrentAuthorization( $mwUser, WikiMap::getCurrentWikiId() );
 			$approvedScopeIds = $approval->getGrants();
 		} catch ( MWOAuthException $ex ) {
 			$approvedScopeIds = [];

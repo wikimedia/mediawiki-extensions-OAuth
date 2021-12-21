@@ -29,6 +29,7 @@ use MediaWiki\Extensions\OAuth\Frontend\Pagers\ListMyConsumersPager;
 use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
 use User;
+use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
@@ -176,8 +177,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						'type' => $allWikis ? 'combobox' : 'select',
 						'options' => [
 							$this->msg( 'mwoauth-consumer-allwikis' )->escaped() => '*',
-							$this->msg( 'mwoauth-consumer-wiki-thiswiki', wfWikiID() )
-								->escaped() => wfWikiID()
+							$this->msg( 'mwoauth-consumer-wiki-thiswiki', WikiMap::getCurrentWikiId() )
+								->escaped() => WikiMap::getCurrentWikiId()
 						] + array_flip( $allWikis ),
 						'label-message' => 'mwoauth-consumer-wiki',
 						'required' => true,

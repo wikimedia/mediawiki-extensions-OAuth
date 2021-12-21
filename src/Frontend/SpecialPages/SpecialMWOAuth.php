@@ -36,6 +36,7 @@ use MediaWiki\Extensions\OAuth\Lib\OAuthUtil;
 use MediaWiki\Extensions\OAuth\UserStatementProvider;
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
+use WikiMap;
 
 /**
  * Page that handles OAuth consumer authorization and token exchange
@@ -218,7 +219,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					/** @var Consumer $consumer */
 					/** @var MWOAuthToken $token */
 
-					$wiki = wfWikiID();
+					$wiki = WikiMap::getCurrentWikiId();
 					$dbr = Utils::getCentralDB( DB_REPLICA );
 					$access = ConsumerAcceptance::newFromToken( $dbr, $token->key );
 					$localUser = Utils::getLocalUserFromCentralId( $access->getUserId() );
@@ -415,7 +416,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			);
 		}
 
-		$existing = $cmrAc->getDAO()->getCurrentAuthorization( $user, wfWikiID() );
+		$existing = $cmrAc->getDAO()->getCurrentAuthorization( $user, WikiMap::getCurrentWikiId() );
 
 		// If only authentication was requested, and the existing authorization
 		// matches, and the only grants are 'mwoauth-authonly' or 'mwoauth-authonlyprivate',

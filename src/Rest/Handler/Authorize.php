@@ -18,6 +18,7 @@ use MWExceptionHandler;
 use SpecialPage;
 use Throwable;
 use User;
+use WikiMap;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -231,7 +232,7 @@ class Authorize extends AuthenticationHandler {
 		try {
 			$approval = $client->getCurrentAuthorization(
 				$userEntity->getMwUser(),
-				wfWikiID()
+				WikiMap::getCurrentWikiId()
 			);
 		} catch ( Exception $ex ) {
 			return false;

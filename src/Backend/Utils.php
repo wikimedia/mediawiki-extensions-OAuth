@@ -6,6 +6,7 @@ use EchoEvent;
 use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
 use MediaWiki\MediaWikiServices;
 use User;
+use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -22,7 +23,7 @@ class Utils {
 	public static function isCentralWiki() {
 		global $wgMWOAuthCentralWiki;
 
-		return ( wfWikiId() === $wgMWOAuthCentralWiki );
+		return ( WikiMap::getCurrentWikiId() === $wgMWOAuthCentralWiki );
 	}
 
 	/**
