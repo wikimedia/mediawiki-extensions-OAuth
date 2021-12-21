@@ -9,7 +9,8 @@
 			"Priviet",
 			"Revi",
 			"Ykhwong",
-			"아라"
+			"아라",
+			"렌즈"
 		]
 	},
 	"mwoauth-desc": "API 인증을 위해 OAuth 1.0a를 사용할 수 있게 합니다",
@@ -33,7 +34,7 @@
 	"mwoauth-consumer-owner-only": "$1 사용자만 사용할 수 있습니다.",
 	"mwoauth-consumer-description": "애플리케이션 설명:",
 	"mwoauth-consumer-callbackurl": "OAuth \"콜백\" URL:",
-	"mwoauth-consumer-granttypes": "요청된 승인 유쳥들:",
+	"mwoauth-consumer-granttypes": "요청된 승인 유형들:",
 	"mwoauth-consumer-grantsneeded": "적용할 수 있는 부여:",
 	"mwoauth-consumer-required-grant": "컨슈머에게 적용할 수 있음",
 	"mwoauth-consumer-wiki": "적용할 수 있는 프로젝트:",
