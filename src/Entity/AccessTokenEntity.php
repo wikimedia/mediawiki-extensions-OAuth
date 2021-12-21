@@ -15,6 +15,7 @@ use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\MediaWikiServices;
 use Throwable;
 use User;
+use WikiMap;
 
 class AccessTokenEntity implements AccessTokenEntityInterface {
 	use AccessTokenTrait;
@@ -119,7 +120,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 		}
 		try {
 			$user = Utils::getLocalUserFromCentralId( $userIdentifier );
-			$approval = $clientEntity->getCurrentAuthorization( $user, wfWikiID() );
+			$approval = $clientEntity->getCurrentAuthorization( $user, WikiMap::getCurrentWikiId() );
 		} catch ( Throwable $ex ) {
 			return false;
 		}

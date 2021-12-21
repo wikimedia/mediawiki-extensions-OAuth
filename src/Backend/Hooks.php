@@ -5,6 +5,7 @@ namespace MediaWiki\Extensions\OAuth\Backend;
 use MediaWiki\Extensions\OAuth\Frontend\OAuthLogFormatter;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableAccessException;
+use WikiMap;
 
 /**
  * Class containing hooked functions for an OAuth environment
@@ -140,7 +141,7 @@ EOK;
 		$conds = [
 			$db->makeList( [
 				'oarc_wiki = ' . $db->addQuotes( '*' ),
-				'oarc_wiki = ' . $db->addQuotes( wfWikiId() ),
+				'oarc_wiki = ' . $db->addQuotes( WikiMap::getCurrentWikiId() ),
 			], LIST_OR ),
 			'oarc_deleted' => 0,
 		];
@@ -201,7 +202,7 @@ EOK;
 
 		if ( $wgMWOAuthCentralWiki === false ) {
 			// Treat each wiki as its own "central wiki" as there is no actual one
-			$wgMWOAuthCentralWiki = wfWikiId();
+			$wgMWOAuthCentralWiki = WikiMap::getCurrentWikiId();
 		} else {
 			// There is actually a central wiki, requiring global user IDs via hook
 			$wgMWOAuthSharedUserIDs = true;

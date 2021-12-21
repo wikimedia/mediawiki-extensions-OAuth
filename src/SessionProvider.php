@@ -17,6 +17,7 @@ use MediaWiki\Session\UserInfo;
 use MediaWiki\User\UserIdentity;
 use User;
 use WebRequest;
+use WikiMap;
 use Wikimedia\Rdbms\DBError;
 
 /**
@@ -146,7 +147,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 
 		$logData['user'] = Utils::getCentralUserNameFromId( $access->getUserId(), 'raw' );
 
-		$wiki = wfWikiID();
+		$wiki = WikiMap::getCurrentWikiId();
 		// Access token is for this wiki
 		if ( $access->getWiki() !== '*' && $access->getWiki() !== $wiki ) {
 			$this->logger->debug( 'OAuth request for wrong wiki from user {user}', $logData );

@@ -30,6 +30,7 @@ use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
 use OOUI\HtmlSnippet;
 use SpecialPage;
+use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
@@ -392,7 +393,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$wikiSpecificGrant =
 			ConsumerAcceptance::newFromUserConsumerWiki(
-				$dbr, $centralUserId, $consumer, wfWikiId() );
+				$dbr, $centralUserId, $consumer, WikiMap::getCurrentWikiId() );
 
 		$allWikiGrant = ConsumerAcceptance::newFromUserConsumerWiki(
 			$dbr, $centralUserId, $consumer, '*' );

@@ -29,7 +29,7 @@ class MigrateCentralWikiLogs extends Maintenance {
 
 	public function execute() {
 		$oldWiki = $this->getOption( 'old' );
-		$targetWiki = wfWikiID();
+		$targetWiki = WikiMap::getCurrentWikiId();
 
 		$this->output( "Moving OAuth logs from '$oldWiki' to '$targetWiki'\n" );
 
