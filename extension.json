@@ -90,7 +90,15 @@
 		"remoteExtPath": "OAuth/resources/modules"
 	},
 	"callback": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onRegistration",
+	"HookHandlers": {
+		"abusefilter": {
+			"class": "MediaWiki\\Extensions\\OAuth\\Backend\\AbuseFilterHookHandler"
+		}
+	},
 	"Hooks": {
+		"AbuseFilter-builder": "abusefilter",
+		"AbuseFilter-computeVariable": "abusefilter",
+		"AbuseFilter-generateUserVars": "abusefilter",
 		"ChangeTagCanCreate": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onChangeTagCanCreate",
 		"MergeAccountFromTo": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onMergeAccountFromTo",
 		"CentralAuthGlobalUserMerged": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onCentralAuthGlobalUserMerged",
