@@ -19,7 +19,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MWCryptRand;
 use MWException;
-use MWGrants;
 use Sanitizer;
 use SpecialPage;
 use Title;
@@ -257,7 +256,9 @@ class ConsumerSubmitControl extends SubmitControl {
 				case 'normal':
 					$grants = array_unique( array_merge(
 						// implied grants
-						MWGrants::getHiddenGrants(),
+						MediaWikiServices::getInstance()
+							->getGrantsInfo()
+							->getHiddenGrants(),
 						FormatJson::decode( $this->vals['grants'], true )
 					) );
 					break;

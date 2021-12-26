@@ -28,6 +28,8 @@ use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extensions\OAuth\Frontend\Pagers\ListMyConsumersPager;
 use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\GrantsInfo;
+use MediaWiki\Permissions\GrantsLocalization;
 use User;
 use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
@@ -36,9 +38,23 @@ use Wikimedia\Rdbms\DBConnRef;
  * Page that has registration request form and consumer update form
  */
 class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
+	/** @var GrantsInfo */
+	private $grantsInfo;
 
-	public function __construct() {
+	/** @var GrantsLocalization */
+	private $grantsLocalization;
+
+	/**
+	 * @param GrantsInfo $grantsInfo
+	 * @param GrantsLocalization $grantsLocalization
+	 */
+	public function __construct(
+		GrantsInfo $grantsInfo,
+		GrantsLocalization $grantsLocalization
+	) {
 		parent::__construct( 'OAuthConsumerRegistration' );
+		$this->grantsInfo = $grantsInfo;
+		$this->grantsLocalization = $grantsLocalization;
 	}
 
 	public function doesWrites() {
@@ -106,8 +122,8 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 
 			$allWikis = Utils::getAllWikiNames();
 
-			$showGrants = \MWGrants::getValidGrants();
-			$grantLinks = array_map( 'MWGrants::getGrantsLink', $showGrants );
+			$showGrants = $this->grantsInfo->getValidGrants();
+			$grantLinks = array_map( [ $this->grantsLocalization, 'getGrantsLink' ], $showGrants );
 
 			$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
 
@@ -242,7 +258,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 										'\User::getRightDescription', $rights ) );
 								},
 								array_intersect_key(
-									\MWGrants::getRightsByGrant(), array_flip( $showGrants )
+									$this->grantsInfo->getRightsByGrant(), array_flip( $showGrants )
 								)
 							)
 						),
@@ -250,7 +266,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 							static function ( $g ) {
 								return "grant-$g";
 							},
-							\MWGrants::getHiddenGrants()
+							$this->grantsInfo->getHiddenGrants()
 						),
 						// different format
 						'validation-callback' => null,

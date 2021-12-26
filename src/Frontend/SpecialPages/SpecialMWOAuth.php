@@ -35,6 +35,7 @@ use MediaWiki\Extensions\OAuth\Lib\OAuthToken;
 use MediaWiki\Extensions\OAuth\Lib\OAuthUtil;
 use MediaWiki\Extensions\OAuth\UserStatementProvider;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Permissions\GrantsLocalization;
 use Psr\Log\LoggerInterface;
 use WikiMap;
 
@@ -45,12 +46,19 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	/** @var LoggerInterface */
 	protected $logger;
 
+	/** @var GrantsLocalization */
+	private $grantsLocalization;
+
 	/** @var int Defaults to OAuth1 */
 	protected $oauthVersion = Consumer::OAUTH_VERSION_1;
 
-	public function __construct() {
+	/**
+	 * @param GrantsLocalization $grantsLocalization
+	 */
+	public function __construct( GrantsLocalization $grantsLocalization ) {
 		parent::__construct( 'OAuth' );
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
+		$this->grantsLocalization = $grantsLocalization;
 	}
 
 	public function doesWrites() {
@@ -493,7 +501,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$grants = $this->getRequestedGrants( $cmrAc );
 		}
 
-		$grantsText = \MWGrants::getGrantsWikiText( $grants, $this->getLanguage() );
+		$grantsText = $this->grantsLocalization->getGrantsWikiText( $grants, $this->getLanguage() );
 		if ( $grantsText === "\n" ) {
 			if ( in_array( 'mwoauth-authonlyprivate', $cmrAc->getGrants(), true ) ) {
 				$msgKey .= '-privateinfo';

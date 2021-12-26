@@ -6,9 +6,9 @@ use Config;
 use MediaWiki\Extensions\OAuth\Backend\Consumer;
 use MediaWiki\Extensions\OAuth\Backend\Utils;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\User\UserGroupManager;
 use MWException;
-use MWGrants;
 use User;
 
 class UserStatementProvider {
@@ -22,6 +22,8 @@ class UserStatementProvider {
 	protected $grants;
 	/** @var UserGroupManager */
 	private $userGroupManager;
+	/** @var GrantsInfo */
+	private $grantsInfo;
 
 	/**
 	 * @param User $user
@@ -30,9 +32,18 @@ class UserStatementProvider {
 	 * @return static
 	 */
 	public static function factory( User $user, Consumer $consumer, $grants = [] ) {
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
-		return new static( $mainConfig, $user, $consumer, $grants, $userGroupManager );
+		$services = MediaWikiServices::getInstance();
+		$mainConfig = $services->getMainConfig();
+		$userGroupManager = $services->getUserGroupManager();
+		$grantsInfo = $services->getGrantsInfo();
+		return new static(
+			$mainConfig,
+			$user,
+			$consumer,
+			$grants,
+			$userGroupManager,
+			$grantsInfo
+		);
 	}
 
 	/**
@@ -42,13 +53,22 @@ class UserStatementProvider {
 	 * @param Consumer $consumer
 	 * @param array $grants
 	 * @param UserGroupManager $userGroupManager
+	 * @param GrantsInfo $grantsInfo
 	 */
-	protected function __construct( $config, $user, $consumer, $grants, $userGroupManager ) {
+	protected function __construct(
+		$config,
+		$user,
+		$consumer,
+		$grants,
+		$userGroupManager,
+		$grantsInfo
+	) {
 		$this->config = $config;
 		$this->user = $user;
 		$this->consumer = $consumer;
 		$this->grants = $grants;
 		$this->userGroupManager = $userGroupManager;
+		$this->grantsInfo = $grantsInfo;
 	}
 
 	/**
@@ -102,7 +122,7 @@ class UserStatementProvider {
 			$profile['grants'] = $this->grants;
 
 			if ( in_array( 'mwoauth-authonlyprivate', $this->grants ) ||
-				in_array( 'viewmyprivateinfo', MWGrants::getGrantRights( $profile['grants'] ) )
+				in_array( 'viewmyprivateinfo', $this->grantsInfo->getGrantRights( $profile['grants'] ) )
 			) {
 				// Paranoia - avoid showing the real name if the wiki is not configured to use
 				// it but it somehow exists (from past configuration, or some identity management

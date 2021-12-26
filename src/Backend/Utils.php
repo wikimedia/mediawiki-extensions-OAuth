@@ -420,7 +420,9 @@ class Utils {
 	public static function grantsAreValid( array $grants ) {
 		// Remove our special grants before calling the core method
 		$grants = array_diff( $grants, [ 'mwoauth-authonly', 'mwoauth-authonlyprivate' ] );
-		return \MWGrants::grantsAreValid( $grants );
+		return MediaWikiServices::getInstance()
+			->getGrantsInfo()
+			->grantsAreValid( $grants );
 	}
 
 	/**
