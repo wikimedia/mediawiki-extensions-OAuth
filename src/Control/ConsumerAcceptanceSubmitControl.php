@@ -91,14 +91,16 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 
 	protected function checkBasePermissions() {
 		$user = $this->getUser();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$services = MediaWikiServices::getInstance();
+		$permissionManager = $services->getPermissionManager();
+		$readOnlyMode = $services->getReadOnlyMode();
 
 		if ( !$user->getID() ) {
 			return $this->failure( 'not_logged_in', 'badaccess-group0' );
 		} elseif ( !$permissionManager->userHasRight( $user, 'mwoauthmanagemygrants' ) ) {
 			return $this->failure( 'permission_denied', 'badaccess-group0' );
-		} elseif ( wfReadOnly() ) {
-			return $this->failure( 'readonly', 'readonlytext', wfReadOnlyReason() );
+		} elseif ( $readOnlyMode->isReadOnly() ) {
+			return $this->failure( 'readonly', 'readonlytext', $readOnlyMode->getReason() );
 		}
 		return $this->success();
 	}
