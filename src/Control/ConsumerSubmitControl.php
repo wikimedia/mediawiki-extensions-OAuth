@@ -174,12 +174,13 @@ class ConsumerSubmitControl extends SubmitControl {
 	protected function checkBasePermissions() {
 		global $wgBlockDisablesLogin;
 		$user = $this->getUser();
+		$readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
 		if ( !$user->getId() ) {
 			return $this->failure( 'not_logged_in', 'badaccess-group0' );
 		} elseif ( $user->isLocked() || $wgBlockDisablesLogin && $user->getBlock() ) {
 			return $this->failure( 'user_blocked', 'badaccess-group0' );
-		} elseif ( wfReadOnly() ) {
-			return $this->failure( 'readonly', 'readonlytext', wfReadOnlyReason() );
+		} elseif ( $readOnlyMode->isReadOnly() ) {
+			return $this->failure( 'readonly', 'readonlytext', $readOnlyMode->getReason() );
 		} elseif ( !Utils::isCentralWiki() ) {
 			// This logs consumer changes to the local logging table on the central wiki
 			throw new LogicException( "This can only be used from the OAuth management wiki." );
