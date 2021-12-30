@@ -118,7 +118,7 @@ class MigrateCentralWikiLogs extends Maintenance {
 				}
 				$logUser = MediaWikiServices::getInstance()->getActorNormalization()
 					->newActorFromRow( $row );
-				$params = unserialize( $row->log_params );
+				$params = LogEntryBase::extractParams( $row->log_params );
 				if ( !isset( $params['4:consumer'] ) ) {
 					$this->output( "Cannot transfer log_id: {$row->log_id}, param isn't correct" );
 					continue;
