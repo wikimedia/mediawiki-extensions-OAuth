@@ -12,7 +12,8 @@
 			"Gebu",
 			"McDutchie",
 			"Robby",
-			"Zabe"
+			"Zabe",
+			"Talex42"
 		]
 	},
 	"mwoauth-desc": "Ermöglicht die Nutzung von OAuth 1.0a und OAuth 2.0 zur API-Autorisierung",
@@ -217,7 +218,7 @@
 	"log-action-filter-mwoauthconsumer-update": "OAuth-Verbraucheraktualisierung",
 	"mwoauthconsumer-consumer-logpage": "OAuth-Anwendungs-Logbuch",
 	"mwoauthconsumer-consumer-logpagetext": "Logbuch von Bestätigungen, Ablehnungen und Deaktivierungen registrierter OAuth-Verbraucher.",
-	"mwoauth-bad-request-missing-params": "Leider ist etwas mit der Konfiguration dieser verbundenen Anwendung schief gelaufen. <span class=\"plainlinks\">[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Kontaktiere den Support]</span>, um Hilfe bei der Behebung zu erhalten.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Fehlende Parameter, $1</span>",
+	"mwoauth-bad-request-missing-params": "Leider ist etwas mit der Konfiguration dieser verbundenen Anwendung schief gelaufen. Kontaktiere den Entwickler der Anwendung.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth fehlende Parameter, $1</span>",
 	"mwoauth-bad-request-invalid-action": "Leider ist etwas schief gelaufen. Du wirst den Anwendungsautor kontaktieren müssen, um Hilfe für dieses Problem zu erhalten.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unbekannte URL, $1</span>",
 	"mwoauth-bad-request-invalid-action-contact": "Leider ist etwas schief gelaufen. Du wirst den Anwendungsautor [$1 kontaktieren] müssen, um Hilfe für dieses Problem zu erhalten.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unbekannte URL, $2</span>",
 	"mwoauthdatastore-access-token-not-found": "Für diesen Autorisierungstoken wurde keine bestätigte Berechtigung gefunden",
@@ -306,6 +307,6 @@
 	"notification-oauth-app-body": "Grund: $1",
 	"mwoauth-oauth-version": "OAuth-Protokoll-Version",
 	"mwoauth-oauth2-granttype-auth-code": "Autorisierungscode",
-	"mwoauth-login-required-reason": "Dir musst Iech an Äre(n) {{SITENAME}}-Benotzerkont alogge fir d'Applikatioune z'autoriséieren fir dorop zou ze gräifen.",
+	"mwoauth-login-required-reason": "Sie müssen sich in Ihr {{SITENAME}}-Konto einloggen, um Anwendungen zu erlauben, darauf zuzugreifen.",
 	"mwoauthconsumer-application-view": "Dës Ufro weisen"
 }
