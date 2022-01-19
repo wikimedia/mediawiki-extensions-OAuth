@@ -309,6 +309,6 @@
 	"notification-oauth-app-body": "Grund: $1",
 	"mwoauth-oauth-version": "OAuth-Protokoll-Version",
 	"mwoauth-oauth2-granttype-auth-code": "Autorisierungscode",
-	"mwoauth-login-required-reason": "Dir musst Iech an Äre(n) {{SITENAME}}-Benotzerkont alogge fir d'Applikatioune z'autoriséieren fir dorop zou ze gräifen.",
+	"mwoauth-login-required-reason": "Sie müssen sich in Ihr {{SITENAME}}-Konto einloggen, um Anwendungen zu erlauben, darauf zuzugreifen.",
 	"mwoauthconsumer-application-view": "Dës Ufro weisen"
 }
