@@ -21,7 +21,9 @@
 			"Xiaomingyan",
 			"Xiplus",
 			"Yfdyh000",
-			"Lakejason0"
+			"Lakejason0",
+			"Stang",
+			"Tranve"
 		]
 	},
 	"oauth": "OAuth",
@@ -191,7 +193,7 @@
 	"mwoauthmanagemygrants-text": "此页面列出了可以使用您的账户的所有应用程序。这些应用程序的可访问范围取决于您授予这些应用程序可代表您操作时所允许的限制条件。如果您单独授予一个应用程序可代表您访问不同的姊妹项目，那么您将会在下面看到每个项目的单独配置。\n\n已连接的应用程序将通过 OAuth 协议访问您的账户。<span class=\"plainlinks\">（[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth 详细了解有关已连接的应用程序]）</span>",
 	"mwoauthmanagemygrants-navigation": "导航：",
 	"mwoauthmanagemygrants-showlist": "连接的应用程序列表",
-	"mwoauthmanagemygrants-none": "没有应用程序连接到您的账户。",
+	"mwoauthmanagemygrants-none": "没有应用程序连接到您的账号。",
 	"mwoauthmanagemygrants-user": "发布者：",
 	"mwoauthmanagemygrants-description": "说明",
 	"mwoauthmanagemygrants-wikiallowed": "允许在项目上使用：",
@@ -209,7 +211,7 @@
 	"mwoauthmanagemygrants-action": "更新状态：",
 	"mwoauthmanagemygrants-confirm-submit": "更新授权令牌状态",
 	"mwoauthmanagemygrants-success-update": "您对此应用程序的参数设置已更新。",
-	"mwoauthmanagemygrants-success-renounce": "已取消应用程序对您账户的访问权。",
+	"mwoauthmanagemygrants-success-renounce": "已取消应用程序对您账号的访问权。",
 	"mwoauthmanagemygrants-basic-tooltip": "为何我不能更新此功能？此功能向您提供可连接应用基本权限，它要求功能正常。如果您不希望此可连接应用拥有这些权限，您需要移除应用访问权。",
 	"mwoauthmanagemygrants-authonly-tooltip": "为什么我不能更新此权限？如果您不希望这个连接的应用程序拥有此权限，您应该移除应用程序的访问权。",
 	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|您}}由此应用程序所做的编辑",
