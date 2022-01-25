@@ -24,6 +24,7 @@
 	"oauthmanagemygrants": "Gistioni di l'applicazzioni cunnessi",
 	"mwoauthmanagemygrants-description": "Discrizzioni",
 	"mwoauthmanagemygrants-action": "Cancia lu statu:",
+	"mwoauth-form-button-approve": "Cunsenti",
 	"mwoauth-form-button-cancel": "Annulla",
 	"notification-oauth-app-body": "Mutivu: $1"
 }
