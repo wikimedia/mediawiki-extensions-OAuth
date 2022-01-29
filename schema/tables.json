@@ -1,0 +1,308 @@
+[
+	{
+		"name": "oauth_registered_consumer",
+		"comment": "Client consumers (proposed as well as and accepted)",
+		"columns": [
+			{
+				"name": "oarc_id",
+				"comment": "Immutable fields below: Consumer ID (1:1 with oarc_consumer_key)",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "oarc_consumer_key",
+				"comment": "OAuth consumer key and secret (or RSA key)",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "oarc_name",
+				"comment": "Name of the application",
+				"type": "binary",
+				"options": { "notnull": true, "length": 128 }
+			},
+			{
+				"name": "oarc_user_id",
+				"comment": "(Central) user id of the user who proposed the application",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "oarc_version",
+				"comment": "Version of the application",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "oarc_callback_url",
+				"comment": "Callback URL",
+				"type": "blob",
+				"options": { "notnull": true, "length": 65530 }
+			},
+			{
+				"name": "oarc_callback_is_prefix",
+				"comment": "Is the consumer allowed to specify a callback URL? (See MWOAuthServer::checkCallback().)",
+				"type": "blob",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "oarc_description",
+				"comment": "Application description",
+				"type": "blob",
+				"options": { "notnull": true, "length": 65530 }
+			},
+			{
+				"name": "oarc_email",
+				"comment": "Contact email address",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "oarc_email_authenticated",
+				"comment": "Confirmation of contact email address",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "oarc_developer_agreement",
+				"comment": "Did the owner accept the developer agreement?",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "oarc_owner_only",
+				"comment": "Is this consumer owner-only",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "oarc_wiki",
+				"comment": "What wiki this is allowed on (a single wiki or '*' for all)",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "oarc_grants",
+				"comment": "Grants needed for client consumers",
+				"type": "blob",
+				"options": { "notnull": true, "length": 65530 }
+			},
+			{
+				"name": "oarc_registration",
+				"comment": "Timestamp of consumer proposal",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "oarc_secret_key",
+				"comment": "Mutable field",
+				"type": "binary",
+				"options": { "notnull": false, "length": 32 }
+			},
+			{
+				"name": "oarc_rsa_key",
+				"comment": "Mutable field",
+				"type": "blob",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "oarc_restrictions",
+				"comment": "JSON blob of allowed IP ranges",
+				"type": "blob",
+				"options": { "notnull": true, "length": 65530 }
+			},
+			{
+				"name": "oarc_stage",
+				"comment": "Stage in registration pipeline: (0=proposed, 1=approved, 2=rejected, 3=expired, 4=disabled)",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "oarc_stage_timestamp",
+				"comment": "Timestamp of the last stage change",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "oarc_deleted",
+				"comment": "Whether this consumer is suppressed (hidden)",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "oarc_oauth_version",
+				"comment": "Version of OAuth protocol this consumer uses",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 1 }
+			},
+			{
+				"name": "oarc_oauth2_allowed_grants",
+				"comment": "Allowed OAuth 2.0 grant types",
+				"type": "blob",
+				"options": { "notnull": false, "length": 65530 }
+			},
+			{
+				"name": "oarc_oauth2_is_confidential",
+				"comment": "OAuth2 flag indicating if consumer can be trusted with keeping secrets",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 1 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "oarc_consumer_key",
+				"columns": [ "oarc_consumer_key" ],
+				"unique": true
+			},
+			{
+				"name": "oarc_name_version_user",
+				"columns": [ "oarc_name", "oarc_user_id", "oarc_version" ],
+				"unique": true
+			},
+			{
+				"name": "oarc_user_id",
+				"columns": [ "oarc_user_id" ],
+				"unique": false
+			},
+			{
+				"name": "oarc_stage_timestamp",
+				"columns": [ "oarc_stage", "oarc_stage_timestamp" ],
+				"unique": false
+			}
+		],
+		"pk": [ "oarc_id" ]
+	},
+	{
+		"name": "oauth_accepted_consumer",
+		"comment": "Grant approvals by users for consumers",
+		"columns": [
+			{
+				"name": "oaac_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "oaac_wiki",
+				"comment": "The name of a wiki or '*'",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "oaac_user_id",
+				"comment": "Key to the user who approved the consumer (on the central wiki)",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "oaac_consumer_id",
+				"comment": "Key to the consumer",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "oaac_access_token",
+				"comment": "Tokens for the consumer to act on behave of the user",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "oaac_access_secret",
+				"comment": "Tokens for the consumer to act on behave of the user",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "oaac_grants",
+				"comment": "JSON blob of actually accepted grants",
+				"type": "blob",
+				"options": { "notnull": true, "length": 65530 }
+			},
+			{
+				"name": "oaac_accepted",
+				"comment": "Timestamp of grant approval by the user",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "oaac_oauth_version",
+				"comment": "Version of OAuth protocol this consumer uses",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 1 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "oaac_access_token",
+				"columns": [ "oaac_access_token" ],
+				"unique": true
+			},
+			{
+				"name": "oaac_user_consumer_wiki",
+				"columns": [ "oaac_user_id", "oaac_consumer_id", "oaac_wiki" ],
+				"unique": true
+			},
+			{
+				"name": "oaac_consumer_user",
+				"columns": [ "oaac_consumer_id", "oaac_user_id" ],
+				"unique": false
+			},
+			{
+				"name": "oaac_user_id",
+				"columns": [ "oaac_user_id", "oaac_id" ],
+				"unique": false
+			}
+		],
+		"pk": [ "oaac_id" ]
+	},
+	{
+		"name": "oauth2_access_tokens",
+		"comment": "Access tokens used on OAuth2 requests",
+		"columns": [
+			{
+				"name": "oaat_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "oaat_identifier",
+				"comment": "Access token identifier",
+				"type": "string",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "oaat_expires",
+				"comment": "Expiration timestamp",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true,
+					"CustomSchemaOptions": { "allowInfinite": true }
+				}
+			},
+			{
+				"name": "oaat_acceptance_id",
+				"comment": "Identifier of the acceptance that allows this access token to be created",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "oaat_revoked",
+				"comment": "Indicates if the access token has been revoked",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 0 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "oaat_identifier",
+				"columns": [ "oaat_identifier" ],
+				"unique": true
+			},
+			{
+				"name": "oaat_acceptance_id",
+				"columns": [ "oaat_acceptance_id" ],
+				"unique": false
+			}
+		],
+		"pk": [ "oaat_id" ]
+	}
+]
