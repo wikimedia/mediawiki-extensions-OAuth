@@ -4,9 +4,22 @@
 			"Joanmp17"
 		]
 	},
+	"mwoauth-field-hidden": "(እዚ ሓበሬታ እዚ ተሓቢኡ ኣሎ)",
+	"mwoauth-field-private": "(እዚ ሓበሬታ እዚ ብሕታዊ እዩ)",
+	"mwoauth-prefs-managegrants": "ዝተኣሳሰሩ መተግበሪታት፦",
+	"mwoauth-prefs-managegrantslink": "$1 {{PLURAL:$1|ዝተኣሳሰረ መተግበሪ|ዝተኣሳሰሩ መተግበሪታት|0=ዝተኣሳሰሩ መተግበሪታት}} ኣመሓድር",
+	"mwoauth-consumer-name": "ስም መተግበሪ፦",
 	"mwoauth-consumer-user": "ሓታሚ፦",
 	"mwoauthconsumerregistration-user": "ሓታሚ",
+	"mwoauthconsumerregistration-description": "መግለጺ",
+	"mwoauthconsumerregistration-manage": "ኣመሓድር",
 	"mwoauthmanageconsumers-user": "ሓታሚ",
+	"mwoauthmanageconsumers-description": "መግለጺ",
 	"mwoauthlistconsumers-user": "ሓታሚ",
-	"mwoauthmanagemygrants-user": "ሓታሚ፦"
+	"mwoauthlistconsumers-description": "መግለጺ",
+	"oauthmanagemygrants": "ዝተኣሳሰሩ መተግበሪታት ኣመሓድር",
+	"mwoauthmanagemygrants-showlist": "ዝርዝር ዝተኣሳሰሩ መተግበሪታት",
+	"mwoauthmanagemygrants-user": "ሓታሚ፦",
+	"mwoauthmanagemygrants-description": "መግለጺ",
+	"mwoauthmanagemygrants-confirm-legend": "ዝተኣሳሰረ መተግበሪ ኣመሓድር"
 }
