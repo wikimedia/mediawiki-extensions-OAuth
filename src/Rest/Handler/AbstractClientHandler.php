@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use MediaWiki\Extension\OAuth\Backend\Utils;
-use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Rest\Handler;
@@ -46,20 +45,12 @@ abstract class AbstractClientHandler extends Handler {
 			if ( isset( $value['result']['consumer'] ) ) {
 				/** @var ClientEntity $client */
 				$client = $value['result']['consumer'];
-				$clientAccess = ConsumerAccessControl::wrap( $client, RequestContext::getMain() );
-
-				if ( !$clientAccess ) {
-					throw new LocalizedHttpException(
-						MessageValue::new( 'mwoauth-invalid-consumer-key' ), 400
-					);
-				}
-
 				$data = [
-					'name' => $clientAccess->getName(),
-					'client_key' => $clientAccess->getConsumerKey(),
-					'secret' => Utils::hmacDBSecret( $clientAccess->getSecretKey() )
+					'name' => $client->getName(),
+					'client_key' => $client->getConsumerKey(),
+					'secret' => Utils::hmacDBSecret( $client->getSecretKey() )
 				];
-				if ( $clientAccess->getOwnerOnly() ) {
+				if ( $client->getOwnerOnly() ) {
 					$accessToken = $value['result']['accessToken'];
 					if ( $accessToken instanceof AccessTokenEntityInterface ) {
 						$data['access_token'] = (string)$accessToken;
