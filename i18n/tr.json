@@ -252,7 +252,7 @@
 	"mwoauth-invalid-authorization-wrong-user": "İsteğinizdeki yetkilendirme başlıkları farklı bir kullanıcı için",
 	"mwoauth-invalid-authorization-not-approved": "Bağlanmaya çalıştığınız uygulama yanlış ayarlanmış gibi görünüyor. Yardım için \"$1\" yazarı ile iletişim kurun.",
 	"mwoauth-invalid-authorization-blocked-user": "İsteğinizdeki yetkilendirme başlıkları engellenen bir kullanıcı içindir",
-	"mwoauth-form-description-allwikis": "Merahaba $1,\n\nİsteğinizi tamamlamak için '''$2''', bu sitenin tüm projelerinde sizin adınıza aşağıdaki işlemleri gerçekleştirmek için izne ihtiyaç duyuyor:\n\n$4",
+	"mwoauth-form-description-allwikis": "Merhaba $1,\n\n'''$2''' isteğinizi tamamlamak amacıyla, aşağıdaki işlemleri bu sitenin tüm projelerinde sizin adınıza gerçekleştirmek için izne ihtiyaç duyuyor:\n\n$4",
 	"mwoauth-form-description-onewiki": "Merhaba $1,\n\nİsteğinizi tamamlamak için '''$2''' sizin adınıza ''$4'' üzerinde aşağıdaki işlemleri gerçekleştirmek için izne ihtiyaç duyuyor:\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Merhaba $1,\n\nİsteğinizi tamamlamak için '''$2''' adının bu sitenin tüm projeleriyle ilgili bilgilere erişmek için izne ihtiyacı var. Hesabınızda hiçbir değişiklik yapılmayacak.",
 	"mwoauth-form-description-onewiki-nogrants": "Merhaba $1,\n\nTalebinizi tamamlamak için '''$2''' sizin adınıza ''$4'' ile ilgili bilgilere erişmek için izne ihtiyaç duyuyor. Hesabınızda hiçbir değişiklik yapılmayacak.",
