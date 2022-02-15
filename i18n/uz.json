@@ -1,8 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
+			"Malikxan",
 			"Sociologist"
 		]
 	},
-	"mwoauth-prefs-managegrants": "Yoqilgan dasturlar:"
+	"mwoauth-prefs-managegrants": "Yoqilgan dasturlar:",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 ta yoqilgan dasturni|$1 ta yoqilgan dasturlarni|0=yoqilgan dasturlarni}} boshqarish",
+	"mwoauth-consumer-name": "Dastur nomi:",
+	"mwoauth-consumer-user": "Nashriyot:",
+	"mwoauth-consumer-stage": "Joriy status:",
+	"mwoauth-consumer-reason": "Sabab:",
+	"mwoauth-consumer-stage-rejected": "rad etilgan",
+	"mwoauth-consumer-stage-approved": "maʼqullangan",
+	"mwoauth-consumer-stage-disabled": "oʻchirilgan",
+	"mwoauthconsumerregistration-navigation": "Navigatsiya:",
+	"mwoauthconsumerregistration-description": "Tavsif",
+	"mwoauthconsumerregistration-stage": "Status",
+	"mwoauthconsumerregistration-manage": "boshqarish"
 }
