@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Karapananguasú Kururú Teremembé"
+		]
+	},
+	"oauth": "OAuth",
+	"mwoauth-prefs-managegrants": "Mburipawa'etá tauyumũdiana:",
+	"mwoauth-prefs-managegrantslink": "Umumurikuá {{PLURAL:$1|$1 mburipawa uyumũdiana|$1 mburipawa'etá tauyumũdiana|0=mburipawa'etá tauyumũdiana}}",
+	"mwoauth-consumer-allwikis": "Panhẽ mumuekawaçawa'etá kuá rituya upé",
+	"mwoauth-consumer-stage": "Status kuiriwara:",
+	"mwoauth-consumer-email": "Email ikurẽdawa:",
+	"mwoauth-consumer-wiki-thiswiki": "Mumuekawaçawa kuiriwara ($1)",
+	"mwoauthconsumerregistration-main": "Yupirũgawa",
+	"mwoauthconsumerregistration-manage": "umumurikuá",
+	"mwoauthmanageconsumers-main": "Yupirũgawa",
+	"oauthmanagemygrants": "Umumurikuá mburipawa'etá tauyumũdiana",
+	"notification-oauth-app-propose-primary-link": "Uamũmaã mburipawa",
+	"notification-oauth-app-update-primary-link": "Uamũmaã mburipawa",
+	"notification-oauth-app-approve-primary-link": "Umaã mburipawa",
+	"notification-oauth-app-reject-primary-link": "Umaã mburipawa",
+	"notification-oauth-app-disable-primary-link": "Umaã mburipawa",
+	"notification-oauth-app-reenable-primary-link": "Umaã mburipawa"
+}
