@@ -1,9 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Seipinne",
 			"Yupik"
 		]
 	},
+	"mwoauth-consumer-reason": "Suijâ:",
 	"mwoauthconsumerregistration-main": "Ovdâsijđo",
-	"mwoauthmanageconsumers-main": "Ovdâsijđo"
+	"mwoauthmanageconsumers-main": "Ovdâsijđo",
+	"mwoauthmanageconsumers-reason": "Suijâ:",
+	"notification-oauth-app-body": "Suijâ: $1"
 }
