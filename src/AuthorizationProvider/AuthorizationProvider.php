@@ -117,18 +117,14 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 	 * @return RefreshTokenRepository
 	 */
 	protected function getRefreshTokenRepo() {
-		/** @var RefreshTokenRepository $repo */
-		$repo = RefreshTokenRepository::factory();
-		return $repo;
+		return RefreshTokenRepository::factory();
 	}
 
 	/**
 	 * @return AuthCodeRepository
 	 */
 	protected function getAuthCodeRepo() {
-		/** @var AuthCodeRepository $repo */
-		$repo = AuthCodeRepository::factory();
-		return $repo;
+		return AuthCodeRepository::factory();
 	}
 
 	/**
