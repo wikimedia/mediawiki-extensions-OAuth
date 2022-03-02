@@ -9,5 +9,9 @@
 	"mwoauth-prefs-managegrants": "అనుసంధానిత అనువర్తనాలు:",
 	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 అనుసంధానిత అనువర్తనాన్ని|$1 అనుసంధానిత అనువర్తనాలను|0=అనుసంధానిత అనువర్తనాలను}} నిర్వహించుకోండి",
 	"mwoauth-consumer-owner-only-label": "యజమాని-మాత్రమే:",
+	"oauthmanagemygrants": "అనుబంధిత అప్లికేషన్లను నిర్వహించు",
+	"mwoauthmanagemygrants-text": "మీ ఖాతాను వాడే అప్లికేషన్లను ఈ పేఝీలో చూడవచ్చు. ఆ అప్లికేషన్ల పరిధి, వాటికి మీరిచ్చిన అనుమతులపై ఆఅధారపడి ఉంటుంది. ఏదైనా అప్లికేషనుకు వేరువేరు ప్రాజెక్టులలో విడివిడిగా ఆథరైజు చేసి ఉంటే, వాటి కాన్ఫిగరేషన్ను విడివిడిగా కింద చూడవచ్చు.\n\nఅనుబంధిత అప్లికేషన్లు OAuth ప్రోటోకోల్‌ను వాడి మీ ఖాతాల్కు కనెక్టవుతాయి. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth అనుబంధిత అప్లికేషన్ల గురించి మరింత తెలుసుకోండి])</span>",
+	"mwoauthmanagemygrants-none": "మీఖాతాకు అనుబంధంగా అప్లికేషన్లేమీ లేవు.",
+	"mwoauthmanagemygrants-confirm-legend": "అనుబంధిత అప్లికేషన్లను నిర్వహించు",
 	"notification-oauth-app-body": "కారణం: $1"
 }
