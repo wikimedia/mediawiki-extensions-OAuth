@@ -49,7 +49,7 @@ class Utils {
 			$index = DB_PRIMARY;
 		}
 
-		$db = $lbFactory->getMainLB( $wgMWOAuthCentralWiki )->getLazyConnectionRef(
+		$db = $lbFactory->getMainLB( $wgMWOAuthCentralWiki )->getConnectionRef(
 			$index, [], $wgMWOAuthCentralWiki );
 		$db->daoReadOnly = $wgMWOAuthReadOnly;
 		return $db;
