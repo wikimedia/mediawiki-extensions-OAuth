@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
+namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -22,13 +22,13 @@ namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
  */
 
 use Html;
-use MediaWiki\Extensions\OAuth\Backend\Consumer;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
-use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
-use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
-use MediaWiki\Extensions\OAuth\Frontend\Pagers\ManageConsumersPager;
-use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Frontend\Pagers\ManageConsumersPager;
+use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsLocalization;
 use OOUI\HtmlSnippet;

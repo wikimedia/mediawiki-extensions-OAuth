@@ -1,8 +1,8 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Entity;
+namespace MediaWiki\Extension\OAuth\Tests\Entity;
 
-use MediaWiki\Extensions\OAuth\Entity\ClaimEntity;
+use MediaWiki\Extension\OAuth\Entity\ClaimEntity;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -31,8 +31,8 @@ class ClaimEntityTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideClaims
-	 * @covers \MediaWiki\Extensions\OAuth\Entity\ClaimEntity::getName
-	 * @covers \MediaWiki\Extensions\OAuth\Entity\ClaimEntity::getValue
+	 * @covers \MediaWiki\Extension\OAuth\Entity\ClaimEntity::getName
+	 * @covers \MediaWiki\Extension\OAuth\Entity\ClaimEntity::getValue
 	 */
 	public function testProperties( $claims ) {
 		foreach ( $claims as $name => $value ) {

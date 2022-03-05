@@ -1,13 +1,13 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Rest\Handler;
+namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
 use FormatJson;
 use GuzzleHttp\Psr7\ServerRequest;
-use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
-use MediaWiki\Extensions\OAuth\ResourceServer;
-use MediaWiki\Extensions\OAuth\Response;
-use MediaWiki\Extensions\OAuth\UserStatementProvider;
+use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
+use MediaWiki\Extension\OAuth\ResourceServer;
+use MediaWiki\Extension\OAuth\Response;
+use MediaWiki\Extension\OAuth\UserStatementProvider;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MWException;

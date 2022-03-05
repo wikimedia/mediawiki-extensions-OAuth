@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extension\OAuth;
 
 /**
  * Migrate oauth_registered_consumer and oauth_accepted_consumer tables to a
@@ -25,9 +25,9 @@ if ( getenv( 'MW_INSTALL_PATH' ) ) {
 
 require_once "$IP/maintenance/Maintenance.php";
 
-use MediaWiki\Extensions\OAuth\Backend\Consumer;
-use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
-use MediaWiki\Extensions\OAuth\Backend\MWOAuthDAO;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extension\OAuth\Backend\MWOAuthDAO;
 use MediaWiki\MediaWikiServices;
 
 class MigrateCentralWiki extends \Maintenance {

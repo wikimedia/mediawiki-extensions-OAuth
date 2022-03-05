@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Control;
+namespace MediaWiki\Extension\OAuth\Control;
 
 use Composer\Semver\VersionParser;
 use EchoEvent;
@@ -10,11 +10,11 @@ use FormatJson;
 use IContextSource;
 use LogicException;
 use ManualLogEntry;
-use MediaWiki\Extensions\OAuth\Backend\Consumer;
-use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
-use MediaWiki\Extensions\OAuth\Backend\MWOAuthDataStore;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extension\OAuth\Backend\MWOAuthDataStore;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MWCryptRand;

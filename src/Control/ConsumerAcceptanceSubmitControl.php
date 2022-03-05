@@ -19,14 +19,14 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-namespace MediaWiki\Extensions\OAuth\Control;
+namespace MediaWiki\Extension\OAuth\Control;
 
-use MediaWiki\Extensions\OAuth\Backend\Consumer;
-use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
-use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Lib\OAuthException;
-use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Lib\OAuthException;
+use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Logger\LoggerFactory;
 use Mediawiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBConnRef;

@@ -1,10 +1,10 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Rest\Handler;
+namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
-use MediaWiki\Extensions\OAuth\Backend\Consumer;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\SimpleHandler;

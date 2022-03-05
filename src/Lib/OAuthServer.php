@@ -24,11 +24,11 @@
  * THE SOFTWARE.
  */
 
-namespace MediaWiki\Extensions\OAuth\Lib;
+namespace MediaWiki\Extension\OAuth\Lib;
 
-use MediaWiki\Extensions\OAuth\Lib\OAuthDataStore;
-use MediaWiki\Extensions\OAuth\Lib\OAuthException;
-use MediaWiki\Extensions\OAuth\Lib\OAuthRequest;
+use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
+use MediaWiki\Extension\OAuth\Lib\OAuthException;
+use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Logger\LoggerFactory;
 
 class OAuthServer {

@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Entity;
+namespace MediaWiki\Extension\OAuth\Entity;
 
 use League\OAuth2\Server\Entities\UserEntityInterface;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Backend\Utils;
 use MWException;
 use User;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Backend;
+namespace MediaWiki\Extension\OAuth\Backend;
 
-use MediaWiki\Extensions\OAuth\Lib\OAuthConsumer;
-use MediaWiki\Extensions\OAuth\Lib\OAuthDataStore;
+use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
+use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DBConnRef;
 

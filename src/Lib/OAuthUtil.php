@@ -24,7 +24,7 @@
  * THE SOFTWARE.
  */
 
-namespace MediaWiki\Extensions\OAuth\Lib;
+namespace MediaWiki\Extension\OAuth\Lib;
 
 use MediaWiki\Logger\LoggerFactory;
 

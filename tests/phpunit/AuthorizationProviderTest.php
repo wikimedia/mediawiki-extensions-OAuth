@@ -1,15 +1,15 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests;
+namespace MediaWiki\Extension\OAuth\Tests;
 
 use DateTime;
-use MediaWiki\Extensions\OAuth\AuthorizationProvider\AuthorizationProvider;
-use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokens;
-use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization;
-use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\ClientCredentials;
-use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\RefreshToken;
-use MediaWiki\Extensions\OAuth\AuthorizationProvider\IAuthorizationProvider;
-use MediaWiki\Extensions\OAuth\AuthorizationServerFactory;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\AuthorizationProvider;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokens;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\ClientCredentials;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshToken;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\IAuthorizationProvider;
+use MediaWiki\Extension\OAuth\AuthorizationServerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
@@ -18,10 +18,10 @@ use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization
- * @covers \MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokens
- * @covers \MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\ClientCredentials
- * @covers \MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\RefreshToken
+ * @covers \MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization
+ * @covers \MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokens
+ * @covers \MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\ClientCredentials
+ * @covers \MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshToken
  * @group OAuth
  */
 class AuthorizationProviderTest extends MediaWikiIntegrationTestCase {

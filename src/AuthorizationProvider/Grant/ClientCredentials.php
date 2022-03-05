@@ -1,10 +1,10 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant;
+namespace MediaWiki\Extension\OAuth\AuthorizationProvider\Grant;
 
 use League\OAuth2\Server\Grant\ClientCredentialsGrant;
 use League\OAuth2\Server\Grant\GrantTypeInterface;
-use MediaWiki\Extensions\OAuth\AuthorizationProvider\AccessToken;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\AccessToken;
 
 class ClientCredentials extends AccessToken {
 

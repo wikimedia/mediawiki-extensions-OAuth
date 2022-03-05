@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant;
+namespace MediaWiki\Extension\OAuth\AuthorizationProvider\Grant;
 
 use DateInterval;
 use Exception;
@@ -8,9 +8,9 @@ use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Grant\AuthCodeGrant;
 use League\OAuth2\Server\Grant\GrantTypeInterface;
 use League\OAuth2\Server\RequestTypes\AuthorizationRequest;
-use MediaWiki\Extensions\OAuth\AuthorizationProvider\AuthorizationProvider;
-use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
-use MediaWiki\Extensions\OAuth\Entity\UserEntity;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\AuthorizationProvider;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 

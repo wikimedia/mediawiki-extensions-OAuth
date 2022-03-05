@@ -1,11 +1,11 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Repository;
+namespace MediaWiki\Extension\OAuth\Repository;
 
 use InvalidArgumentException;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 
 class ClientRepository implements ClientRepositoryInterface {
 
@@ -62,3 +62,5 @@ class ClientRepository implements ClientRepositoryInterface {
 		return $client->validate( $clientSecret, $grantType );
 	}
 }
+
+class_alias( ClientRepository::class, 'MediaWiki\Extensions\OAuth\Repository\ClientRepository' );

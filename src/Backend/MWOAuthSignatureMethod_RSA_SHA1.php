@@ -1,11 +1,11 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Backend;
+namespace MediaWiki\Extension\OAuth\Backend;
 
-use MediaWiki\Extensions\OAuth\Lib\OAuthDataStore;
-use MediaWiki\Extensions\OAuth\Lib\OAuthException;
-use MediaWiki\Extensions\OAuth\Lib\OAuthRequest;
-use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1;
+use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
+use MediaWiki\Extension\OAuth\Lib\OAuthException;
+use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1;
 
 class MWOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
 	/** @var MWOAuthDataStore */

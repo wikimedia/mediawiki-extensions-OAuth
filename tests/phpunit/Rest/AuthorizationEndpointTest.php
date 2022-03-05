@@ -1,12 +1,12 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Rest;
+namespace MediaWiki\Extension\OAuth\Tests\Rest;
 
-use MediaWiki\Extensions\OAuth\Rest\Handler\Authorize;
+use MediaWiki\Extension\OAuth\Rest\Handler\Authorize;
 use MediaWiki\Rest\Handler;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\Rest\Handler\Authorize
+ * @covers \MediaWiki\Extension\OAuth\Rest\Handler\Authorize
  * @group OAuth
  */
 class AuthorizationEndpointTest extends EndpointTest {

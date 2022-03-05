@@ -1,8 +1,8 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Rest\Handler;
+namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
-use MediaWiki\Extensions\OAuth\Repository\ScopeRepository;
+use MediaWiki\Extension\OAuth\Repository\ScopeRepository;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Validator\Validator;
 use MWRestrictions;

@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Frontend\Pagers;
+namespace MediaWiki\Extension\OAuth\Frontend\Pagers;
 
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
 
 /**
  * (c) Aaron Schulz 2013, GPL

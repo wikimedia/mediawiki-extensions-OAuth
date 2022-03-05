@@ -1,13 +1,13 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extension\OAuth;
 
 use InvalidArgumentException;
 use League\OAuth2\Server\AuthorizationServer;
-use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
-use MediaWiki\Extensions\OAuth\Repository\ClaimStore;
-use MediaWiki\Extensions\OAuth\Repository\ClientRepository;
-use MediaWiki\Extensions\OAuth\Repository\ScopeRepository;
+use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
+use MediaWiki\Extension\OAuth\Repository\ClaimStore;
+use MediaWiki\Extension\OAuth\Repository\ClientRepository;
+use MediaWiki\Extension\OAuth\Repository\ScopeRepository;
 use MediaWiki\MediaWikiServices;
 
 class AuthorizationServerFactory {

@@ -1,12 +1,12 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant;
+namespace MediaWiki\Extension\OAuth\AuthorizationProvider\Grant;
 
 use DateInterval;
 use Exception;
 use League\OAuth2\Server\Grant\AuthCodeGrant;
 use League\OAuth2\Server\Grant\GrantTypeInterface;
-use MediaWiki\Extensions\OAuth\AuthorizationProvider\AccessToken;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\AccessToken;
 
 class AuthorizationCodeAccessTokens extends AccessToken {
 

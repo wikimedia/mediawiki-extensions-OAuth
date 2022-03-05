@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Control;
+namespace MediaWiki\Extension\OAuth\Control;
 
 /**
  * (c) Aaron Schulz 2013, GPL

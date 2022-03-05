@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
+namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
 
 /**
  * (c) Chris Steipp, Aaron Schulz 2013, GPL
@@ -22,18 +22,18 @@ namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
  */
 
 use Firebase\JWT\JWT;
-use MediaWiki\Extensions\OAuth\Backend\Consumer;
-use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
-use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
-use MediaWiki\Extensions\OAuth\Backend\MWOAuthRequest;
-use MediaWiki\Extensions\OAuth\Backend\MWOAuthToken;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceSubmitControl;
-use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
-use MediaWiki\Extensions\OAuth\Lib\OAuthException;
-use MediaWiki\Extensions\OAuth\Lib\OAuthToken;
-use MediaWiki\Extensions\OAuth\Lib\OAuthUtil;
-use MediaWiki\Extensions\OAuth\UserStatementProvider;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
+use MediaWiki\Extension\OAuth\Backend\MWOAuthRequest;
+use MediaWiki\Extension\OAuth\Backend\MWOAuthToken;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceSubmitControl;
+use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\Lib\OAuthException;
+use MediaWiki\Extension\OAuth\Lib\OAuthToken;
+use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
+use MediaWiki\Extension\OAuth\UserStatementProvider;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Permissions\GrantsLocalization;
 use Psr\Log\LoggerInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Frontend;
+namespace MediaWiki\Extension\OAuth\Frontend;
 
 use IContextSource;
 use Message;

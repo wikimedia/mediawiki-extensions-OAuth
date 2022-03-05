@@ -24,9 +24,9 @@
  * THE SOFTWARE.
  */
 
-namespace MediaWiki\Extensions\OAuth\Lib;
+namespace MediaWiki\Extension\OAuth\Lib;
 
-use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod;
 
 /**
  * The RSA-SHA1 signature method uses the RSASSA-PKCS1-v1_5 signature algorithm as defined in

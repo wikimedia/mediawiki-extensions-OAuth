@@ -18,13 +18,13 @@
  * @file
  */
 
-namespace MediaWiki\Extensions\OAuth\Backend;
+namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\Extension\AbuseFilter\Hooks\AbuseFilterBuilderHook;
 use MediaWiki\Extension\AbuseFilter\Hooks\AbuseFilterComputeVariableHook;
 use MediaWiki\Extension\AbuseFilter\Hooks\AbuseFilterGenerateUserVarsHook;
 use MediaWiki\Extension\AbuseFilter\Variables\VariableHolder;
-use MediaWiki\Extensions\OAuth\SessionProvider;
+use MediaWiki\Extension\OAuth\SessionProvider;
 use RecentChange;
 use User;
 

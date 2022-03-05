@@ -1,8 +1,8 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Lib;
+namespace MediaWiki\Extension\OAuth\Tests\Lib;
 
-use MediaWiki\Extensions\OAuth\Lib\OAuthToken;
+use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 
 /**
  * The MIT License

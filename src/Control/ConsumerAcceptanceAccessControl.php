@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Control;
+namespace MediaWiki\Extension\OAuth\Control;
 
-use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extension\OAuth\Backend\Utils;
 
 class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	// accessor fields copied from ConsumerAcceptance, except they can return a Message

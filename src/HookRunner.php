@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extension\OAuth;
 
-use MediaWiki\Extensions\OAuth\Entity\MWClientEntityInterface;
-use MediaWiki\Extensions\OAuth\Repository\Hook\OAuthClaimStoreGetClaimsHook;
+use MediaWiki\Extension\OAuth\Entity\MWClientEntityInterface;
+use MediaWiki\Extension\OAuth\Repository\Hook\OAuthClaimStoreGetClaimsHook;
 use MediaWiki\HookContainer\HookContainer;
 
 class HookRunner implements OAuthClaimStoreGetClaimsHook {

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Repository;
+namespace MediaWiki\Extension\OAuth\Repository;
 
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
@@ -8,8 +8,8 @@ use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
-use MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity;
-use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Entity\AccessTokenEntity;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\MediaWikiServices;
 
 class AccessTokenRepository extends DatabaseRepository implements AccessTokenRepositoryInterface {

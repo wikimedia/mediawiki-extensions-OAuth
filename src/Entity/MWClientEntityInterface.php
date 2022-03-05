@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Entity;
+namespace MediaWiki\Extension\OAuth\Entity;
 
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 
@@ -13,3 +13,5 @@ use League\OAuth2\Server\Entities\ClientEntityInterface;
 interface MWClientEntityInterface extends ClientEntityInterface {
 
 }
+
+class_alias( MWClientEntityInterface::class, 'MediaWiki\Extensions\OAuth\Entity\MWClientEntityInterface' );

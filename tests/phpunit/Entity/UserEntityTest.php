@@ -1,12 +1,12 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Entity;
+namespace MediaWiki\Extension\OAuth\Tests\Entity;
 
-use MediaWiki\Extensions\OAuth\Entity\UserEntity;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\Entity\UserEntity
+ * @covers \MediaWiki\Extension\OAuth\Entity\UserEntity
  * @group OAuth
  */
 class UserEntityTest extends MediaWikiIntegrationTestCase {

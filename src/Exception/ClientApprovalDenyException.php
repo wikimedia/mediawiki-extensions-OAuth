@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Exception;
+namespace MediaWiki\Extension\OAuth\Exception;
 
 use League\OAuth2\Server\Exception\OAuthServerException;
 

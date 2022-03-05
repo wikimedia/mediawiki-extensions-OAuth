@@ -18,9 +18,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-namespace MediaWiki\Extensions\OAuth\Control;
+namespace MediaWiki\Extension\OAuth\Control;
 
-use MediaWiki\Extensions\OAuth\Backend\MWOAuthDAO;
+use MediaWiki\Extension\OAuth\Backend\MWOAuthDAO;
 use Message;
 
 /**

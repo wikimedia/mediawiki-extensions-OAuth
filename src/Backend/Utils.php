@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Backend;
+namespace MediaWiki\Extension\OAuth\Backend;
 
 use EchoEvent;
-use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
 use MediaWiki\MediaWikiServices;
 use User;
 use WikiMap;
@@ -495,3 +495,5 @@ class Utils {
 		return iterator_to_array( User::findUsersByGroup( $wgOAuthGroupsToNotify ) );
 	}
 }
+
+class_alias( Utils::class, 'MediaWiki\Extensions\OAuth\Backend\Utils' );

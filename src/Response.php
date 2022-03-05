@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extension\OAuth;
 
 use MediaWiki\Rest\Response as RestResponse;
 use Psr\Http\Message\ResponseInterface;

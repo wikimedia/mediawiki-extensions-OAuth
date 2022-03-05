@@ -1,13 +1,13 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Repository;
+namespace MediaWiki\Extension\OAuth\Tests\Repository;
 
-use MediaWiki\Extensions\OAuth\Repository\AuthCodeRepository;
-use MediaWiki\Extensions\OAuth\Tests\Entity\Mock_ClientEntity;
+use MediaWiki\Extension\OAuth\Repository\AuthCodeRepository;
+use MediaWiki\Extension\OAuth\Tests\Entity\Mock_ClientEntity;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\Repository\AuthCodeRepository
+ * @covers \MediaWiki\Extension\OAuth\Repository\AuthCodeRepository
  * @group OAuth
  */
 class AuthCodeRepositoryTest extends MediaWikiIntegrationTestCase {

@@ -21,7 +21,7 @@
  * @file
  */
 
-namespace MediaWiki\Extensions\OAuth\Tests\Backend;
+namespace MediaWiki\Extension\OAuth\Tests\Backend;
 
 class StubConsumer {
 	/** @var array */

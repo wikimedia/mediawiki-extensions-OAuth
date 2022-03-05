@@ -1,11 +1,11 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Rest;
+namespace MediaWiki\Extension\OAuth\Tests\Rest;
 
 use FormatJson;
-use MediaWiki\Extensions\OAuth\Backend\Consumer;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Rest\Handler\ResetClientSecret;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Rest\Handler\ResetClientSecret;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\ResponseInterface;
 use MWRestrictions;
@@ -13,7 +13,7 @@ use User;
 use WikiMap;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\Rest\Handler\ResetClientSecret
+ * @covers \MediaWiki\Extension\OAuth\Rest\Handler\ResetClientSecret
  * @group Database
  * @group OAuth
  */

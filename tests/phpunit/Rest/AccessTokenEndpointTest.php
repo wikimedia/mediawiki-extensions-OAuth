@@ -1,12 +1,12 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Rest;
+namespace MediaWiki\Extension\OAuth\Tests\Rest;
 
-use MediaWiki\Extensions\OAuth\Rest\Handler\AccessToken;
+use MediaWiki\Extension\OAuth\Rest\Handler\AccessToken;
 use MediaWiki\Rest\Handler;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\Rest\Handler\AccessToken
+ * @covers \MediaWiki\Extension\OAuth\Rest\Handler\AccessToken
  * @group OAuth
  */
 class AccessTokenEndpointTest extends EndpointTest {

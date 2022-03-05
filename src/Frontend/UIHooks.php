@@ -1,14 +1,14 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Frontend;
+namespace MediaWiki\Extension\OAuth\Frontend;
 
 use HTMLForm;
-use MediaWiki\Extensions\OAuth\Backend\Consumer;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
-use MediaWiki\Extensions\OAuth\Control\ConsumerSubmitControl;
-use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
-use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
+use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
+use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers;
 use MediaWiki\MediaWikiServices;
 use SpecialPage;
 

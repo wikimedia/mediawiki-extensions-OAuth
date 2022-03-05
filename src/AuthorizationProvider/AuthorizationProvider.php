@@ -1,15 +1,15 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\AuthorizationProvider;
+namespace MediaWiki\Extension\OAuth\AuthorizationProvider;
 
 use Config;
 use DateInterval;
 use Exception;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Grant\GrantTypeInterface;
-use MediaWiki\Extensions\OAuth\AuthorizationServerFactory;
-use MediaWiki\Extensions\OAuth\Repository\AuthCodeRepository;
-use MediaWiki\Extensions\OAuth\Repository\RefreshTokenRepository;
+use MediaWiki\Extension\OAuth\AuthorizationServerFactory;
+use MediaWiki\Extension\OAuth\Repository\AuthCodeRepository;
+use MediaWiki\Extension\OAuth\Repository\RefreshTokenRepository;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Http\Message\ServerRequestInterface;

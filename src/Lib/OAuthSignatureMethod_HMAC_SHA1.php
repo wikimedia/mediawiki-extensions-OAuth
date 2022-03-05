@@ -24,10 +24,10 @@
  * THE SOFTWARE.
  */
 
-namespace MediaWiki\Extensions\OAuth\Lib;
+namespace MediaWiki\Extension\OAuth\Lib;
 
-use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod;
-use MediaWiki\Extensions\OAuth\Lib\OAuthUtil;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod;
+use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 
 /**
  * The HMAC-SHA1 signature method uses the HMAC-SHA1 signature algorithm as defined in [RFC2104]

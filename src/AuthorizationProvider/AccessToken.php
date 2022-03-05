@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\AuthorizationProvider;
+namespace MediaWiki\Extension\OAuth\AuthorizationProvider;
 
 use League\OAuth2\Server\Exception\OAuthServerException;
 use Psr\Http\Message\ResponseInterface;

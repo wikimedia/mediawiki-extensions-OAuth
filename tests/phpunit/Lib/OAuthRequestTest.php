@@ -23,15 +23,15 @@
  * THE SOFTWARE.
  */
 
-namespace MediaWiki\Extensions\OAuth\Tests\Lib;
+namespace MediaWiki\Extension\OAuth\Tests\Lib;
 
 
-use MediaWiki\Extensions\OAuth\Lib\OAuthConsumer;
-use MediaWiki\Extensions\OAuth\Lib\OAuthException;
-use MediaWiki\Extensions\OAuth\Lib\OAuthRequest;
-use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
-use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod_PLAINTEXT;
-use MediaWiki\Extensions\OAuth\Lib\OAuthToken;
+use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
+use MediaWiki\Extension\OAuth\Lib\OAuthException;
+use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_PLAINTEXT;
+use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 
 /**
  * Tests of OAuthRequest

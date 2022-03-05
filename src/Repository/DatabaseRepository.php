@@ -1,8 +1,8 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Repository;
+namespace MediaWiki\Extension\OAuth\Repository;
 
-use MediaWiki\Extensions\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Backend\Utils;
 use Wikimedia\Rdbms\DBConnRef;
 
 abstract class DatabaseRepository {

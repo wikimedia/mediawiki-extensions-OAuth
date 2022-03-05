@@ -1,13 +1,13 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Entity;
+namespace MediaWiki\Extension\OAuth\Tests\Entity;
 
-use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
-use MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity;
+use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extension\OAuth\Entity\AccessTokenEntity;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\Entity\ClientEntity
+ * @covers \MediaWiki\Extension\OAuth\Entity\ClientEntity
  * @group OAuth
  */
 class ClientEntityTest extends MediaWikiIntegrationTestCase {

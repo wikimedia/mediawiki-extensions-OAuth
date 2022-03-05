@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Rest;
+namespace MediaWiki\Extension\OAuth\Tests\Rest;
 
 use FormatJson;
 use GuzzleHttp\Psr7\Uri;
@@ -15,7 +15,7 @@ use User;
 
 /**
  * Class EndpointTest
- * @package MediaWiki\Extensions\OAuth\Tests\Rest
+ * @package MediaWiki\Extension\OAuth\Tests\Rest
  */
 abstract class EndpointTest extends \MediaWikiIntegrationTestCase {
 

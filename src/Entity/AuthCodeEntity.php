@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Entity;
+namespace MediaWiki\Extension\OAuth\Entity;
 
 use JsonSerializable;
 use League\OAuth2\Server\Entities\AuthCodeEntityInterface;

@@ -24,10 +24,10 @@
  * THE SOFTWARE.
  */
 
-namespace MediaWiki\Extensions\OAuth\Lib;
+namespace MediaWiki\Extension\OAuth\Lib;
 
-use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod;
-use MediaWiki\Extensions\OAuth\Lib\OAuthUtil;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod;
+use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 
 /**
  * The PLAINTEXT method does not provide any security protection and SHOULD only be used

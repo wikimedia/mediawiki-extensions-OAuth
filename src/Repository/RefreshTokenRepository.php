@@ -1,12 +1,12 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Repository;
+namespace MediaWiki\Extension\OAuth\Repository;
 
 use InvalidArgumentException;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
-use MediaWiki\Extensions\OAuth\Entity\RefreshTokenEntity;
+use MediaWiki\Extension\OAuth\Entity\RefreshTokenEntity;
 
 class RefreshTokenRepository extends CacheRepository implements RefreshTokenRepositoryInterface {
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Rest;
+namespace MediaWiki\Extension\OAuth\Tests\Rest;
 
-use MediaWiki\Extensions\OAuth\Backend\Consumer;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Tests\TestHandlerFactory;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Tests\TestHandlerFactory;
 use MediaWiki\Rest\Handler;
 use MWRestrictions;
 use User;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\Rest\Handler\ListClients
+ * @covers \MediaWiki\Extension\OAuth\Rest\Handler\ListClients
  * @group Database
  * @group OAuth
  */

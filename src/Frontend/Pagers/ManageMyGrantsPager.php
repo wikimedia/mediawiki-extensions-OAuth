@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Frontend\Pagers;
+namespace MediaWiki\Extension\OAuth\Frontend\Pagers;
 
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageMyGrants;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageMyGrants;
 
 /**
  * (c) Aaron Schulz 2013, GPL

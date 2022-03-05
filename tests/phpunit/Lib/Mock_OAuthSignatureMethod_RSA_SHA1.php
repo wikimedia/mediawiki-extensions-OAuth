@@ -1,8 +1,8 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Lib;
+namespace MediaWiki\Extension\OAuth\Tests\Lib;
 
-use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1;
 
 /**
  * A mock implementation of OAuthSignatureMethod_RSA_SHA1

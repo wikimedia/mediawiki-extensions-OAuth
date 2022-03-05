@@ -1,8 +1,8 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extension\OAuth;
 
-use MediaWiki\Extensions\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Backend\Utils;
 
 /**
  * Class containing hooked functions for an OAuth environment

@@ -1,15 +1,15 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Frontend\SpecialPages;
+namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
 
-use MediaWiki\Extensions\OAuth\Backend\Consumer;
-use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceAccessControl;
-use MediaWiki\Extensions\OAuth\Control\ConsumerAcceptanceSubmitControl;
-use MediaWiki\Extensions\OAuth\Control\ConsumerAccessControl;
-use MediaWiki\Extensions\OAuth\Frontend\Pagers\ManageMyGrantsPager;
-use MediaWiki\Extensions\OAuth\Frontend\UIUtils;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceAccessControl;
+use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceSubmitControl;
+use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\Frontend\Pagers\ManageMyGrantsPager;
+use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;

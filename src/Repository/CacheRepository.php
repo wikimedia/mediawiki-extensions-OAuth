@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Repository;
+namespace MediaWiki\Extension\OAuth\Repository;
 
 use BagOStuff;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Backend\Utils;
 
 abstract class CacheRepository {
 

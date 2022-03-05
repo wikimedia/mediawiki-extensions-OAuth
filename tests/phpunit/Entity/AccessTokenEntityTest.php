@@ -1,15 +1,15 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Entity;
+namespace MediaWiki\Extension\OAuth\Tests\Entity;
 
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
-use MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity;
-use MediaWiki\Extensions\OAuth\Entity\ClaimEntity;
-use MediaWiki\Extensions\OAuth\Entity\ScopeEntity;
+use MediaWiki\Extension\OAuth\Entity\AccessTokenEntity;
+use MediaWiki\Extension\OAuth\Entity\ClaimEntity;
+use MediaWiki\Extension\OAuth\Entity\ScopeEntity;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity
+ * @covers \MediaWiki\Extension\OAuth\Entity\AccessTokenEntity
  * @group OAuth
  */
 class AccessTokenEntityTest extends MediaWikiIntegrationTestCase {

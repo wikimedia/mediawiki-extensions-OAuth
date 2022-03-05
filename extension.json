@@ -16,7 +16,7 @@
 		"MediaWiki": ">= 1.38.0"
 	},
 	"ExtensionFunctions": [
-		"MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onExtensionFunctions"
+		"MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onExtensionFunctions"
 	],
 	"DefaultUserOptions": {
 		"echo-subscriptions-web-oauth-owner": true,
@@ -39,27 +39,27 @@
 		"mwoauthmanagemygrants"
 	],
 	"SessionProviders": {
-		"MediaWiki\\Extensions\\OAuth\\SessionProvider": {
-			"class": "MediaWiki\\Extensions\\OAuth\\SessionProvider",
+		"MediaWiki\\Extension\\OAuth\\SessionProvider": {
+			"class": "MediaWiki\\Extension\\OAuth\\SessionProvider",
 			"args": []
 		}
 	},
 	"SpecialPages": {
 		"OAuth": {
-			"class": "MediaWiki\\Extensions\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuth",
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuth",
 			"services": [
 				"GrantsLocalization"
 			]
 		},
 		"OAuthManageMyGrants": {
-			"class": "MediaWiki\\Extensions\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthManageMyGrants",
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthManageMyGrants",
 			"services": [
 				"GrantsInfo",
 				"GrantsLocalization"
 			]
 		},
 		"OAuthListConsumers": {
-			"class": "MediaWiki\\Extensions\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthListConsumers",
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthListConsumers",
 			"services": [
 				"GrantsLocalization"
 			]
@@ -74,13 +74,15 @@
 		"MWOAuthAliases": "MWOAuth.alias.php"
 	},
 	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\OAuth\\": "src/",
 		"MediaWiki\\Extensions\\OAuth\\": "src/"
 	},
 	"TestAutoloadNamespaces": {
+		"MediaWiki\\Extension\\OAuth\\Tests\\": "tests/phpunit/",
 		"MediaWiki\\Extensions\\OAuth\\Tests\\": "tests/phpunit/"
 	},
 	"TestAutoloadClasses": {
-		"MediaWiki\\Extensions\\OAuth\\Tests\\TestHandlerFactory": "tests/TestHandlerFactory.php"
+		"MediaWiki\\Extension\\OAuth\\Tests\\TestHandlerFactory": "tests/TestHandlerFactory.php"
 	},
 	"ResourceModules": {
 		"ext.MWOAuth.styles": {
@@ -105,33 +107,33 @@
 		"localBasePath": "resources/modules",
 		"remoteExtPath": "OAuth/resources/modules"
 	},
-	"callback": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onRegistration",
+	"callback": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onRegistration",
 	"HookHandlers": {
 		"abusefilter": {
-			"class": "MediaWiki\\Extensions\\OAuth\\Backend\\AbuseFilterHookHandler"
+			"class": "MediaWiki\\Extension\\OAuth\\Backend\\AbuseFilterHookHandler"
 		}
 	},
 	"Hooks": {
 		"AbuseFilter-builder": "abusefilter",
 		"AbuseFilter-computeVariable": "abusefilter",
 		"AbuseFilter-generateUserVars": "abusefilter",
-		"ChangeTagCanCreate": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onChangeTagCanCreate",
-		"MergeAccountFromTo": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onMergeAccountFromTo",
-		"CentralAuthGlobalUserMerged": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onCentralAuthGlobalUserMerged",
-		"LoadExtensionSchemaUpdates": "MediaWiki\\Extensions\\OAuth\\Backend\\UpdaterHooks::addSchemaUpdates",
-		"GetPreferences": "MediaWiki\\Extensions\\OAuth\\Frontend\\UIHooks::onGetPreferences",
-		"MessagesPreLoad": "MediaWiki\\Extensions\\OAuth\\Frontend\\UIHooks::onMessagesPreLoad",
-		"SpecialPageAfterExecute": "MediaWiki\\Extensions\\OAuth\\Frontend\\UIHooks::onSpecialPageAfterExecute",
-		"SpecialPageBeforeFormDisplay": "MediaWiki\\Extensions\\OAuth\\Frontend\\UIHooks::onSpecialPageBeforeFormDisplay",
-		"BeforeCreateEchoEvent": "MediaWiki\\Extensions\\OAuth\\Frontend\\UIHooks::onBeforeCreateEchoEvent",
-		"CentralAuthAbortCentralAuthToken": "MediaWiki\\Extensions\\OAuth\\Setup::onCentralAuthAbortCentralAuthToken",
-		"TestCanonicalRedirect": "MediaWiki\\Extensions\\OAuth\\Setup::onTestCanonicalRedirect",
-		"SetupAfterCache": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onSetupAfterCache",
-		"ApiRsdServiceApis": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onApiRsdServiceApis",
-		"SpecialPage_initList": "MediaWiki\\Extensions\\OAuth\\Frontend\\UIHooks::onSpecialPage_initList",
-		"ListDefinedTags": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onListDefinedTags",
-		"ChangeTagsListActive": "MediaWiki\\Extensions\\OAuth\\Backend\\Hooks::onChangeTagsListActive",
-		"LoginFormValidErrorMessages": "MediaWiki\\Extensions\\OAuth\\Frontend\\UIHooks::onLoginFormValidErrorMessages"
+		"ChangeTagCanCreate": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onChangeTagCanCreate",
+		"MergeAccountFromTo": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onMergeAccountFromTo",
+		"CentralAuthGlobalUserMerged": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onCentralAuthGlobalUserMerged",
+		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\OAuth\\Backend\\UpdaterHooks::addSchemaUpdates",
+		"GetPreferences": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onGetPreferences",
+		"MessagesPreLoad": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onMessagesPreLoad",
+		"SpecialPageAfterExecute": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onSpecialPageAfterExecute",
+		"SpecialPageBeforeFormDisplay": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onSpecialPageBeforeFormDisplay",
+		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onBeforeCreateEchoEvent",
+		"CentralAuthAbortCentralAuthToken": "MediaWiki\\Extension\\OAuth\\Setup::onCentralAuthAbortCentralAuthToken",
+		"TestCanonicalRedirect": "MediaWiki\\Extension\\OAuth\\Setup::onTestCanonicalRedirect",
+		"SetupAfterCache": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onSetupAfterCache",
+		"ApiRsdServiceApis": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onApiRsdServiceApis",
+		"SpecialPage_initList": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onSpecialPage_initList",
+		"ListDefinedTags": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onListDefinedTags",
+		"ChangeTagsListActive": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onChangeTagsListActive",
+		"LoginFormValidErrorMessages": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onLoginFormValidErrorMessages"
 	},
 	"ConfigRegistry": {
 		"mwoauth": "GlobalVarConfig::newInstance"
@@ -218,30 +220,30 @@
 	"RestRoutes": [
 		{
 			"path": "/oauth2/authorize",
-			"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\Authorize::factory"
+			"factory": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\Authorize::factory"
 		},
 		{
 			"path": "/oauth2/access_token",
-			"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\AccessToken::factory",
+			"factory": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\AccessToken::factory",
 			"method": "POST"
 		},
 		{
 			"path": "/oauth2/resource/{type}",
-			"factory": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\Resource::factory"
+			"factory": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\Resource::factory"
 		},
 		{
 			"path": "/oauth2/client",
-			"class": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\RequestClient",
+			"class": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\RequestClient",
 			"method": "POST"
 		},
 		{
 			"path": "/oauth2/client/{client_key}/reset_secret",
-			"class": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\ResetClientSecret",
+			"class": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\ResetClientSecret",
 			"method": "POST"
 		},
 		{
 			"path": "/oauth2/client",
-			"class": "MediaWiki\\Extensions\\OAuth\\Rest\\Handler\\ListClients",
+			"class": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\ListClients",
 			"services": [
 				"DBLoadBalancer"
 			],

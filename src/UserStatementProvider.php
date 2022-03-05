@@ -1,10 +1,10 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extension\OAuth;
 
 use Config;
-use MediaWiki\Extensions\OAuth\Backend\Consumer;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\User\UserGroupManager;

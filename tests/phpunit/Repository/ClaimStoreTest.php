@@ -1,15 +1,15 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Repository;
+namespace MediaWiki\Extension\OAuth\Tests\Repository;
 
 use League\OAuth2\Server\Entities\ClientEntityInterface;
-use MediaWiki\Extensions\OAuth\Entity\ClaimEntity;
-use MediaWiki\Extensions\OAuth\Repository\ClaimStore;
-use MediaWiki\Extensions\OAuth\Tests\Entity\Mock_ClientEntity;
+use MediaWiki\Extension\OAuth\Entity\ClaimEntity;
+use MediaWiki\Extension\OAuth\Repository\ClaimStore;
+use MediaWiki\Extension\OAuth\Tests\Entity\Mock_ClientEntity;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\Repository\ClaimStore
+ * @covers \MediaWiki\Extension\OAuth\Repository\ClaimStore
  * @group Database
  * @group OAuth
  */
@@ -59,7 +59,7 @@ class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideClaims
-	 * @covers \MediaWiki\Extensions\OAuth\Repository\ClaimStore::getClaims
+	 * @covers \MediaWiki\Extension\OAuth\Repository\ClaimStore::getClaims
 	 */
 	public function testGetClaimsWithHook( $claims, $expectedClaims ) {
 		$client = Mock_ClientEntity::newMock( $this->getTestUser()->getUser() );

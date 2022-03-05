@@ -1,17 +1,17 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Entity;
+namespace MediaWiki\Extension\OAuth\Entity;
 
 use Exception;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
-use MediaWiki\Extensions\OAuth\Backend\Consumer;
-use MediaWiki\Extensions\OAuth\Backend\ConsumerAcceptance;
-use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
-use MediaWiki\Extensions\OAuth\Repository\ClaimStore;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
+use MediaWiki\Extension\OAuth\Repository\ClaimStore;
 use MWException;
 use User;
 
@@ -200,3 +200,5 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 		return array_intersect( $requested, $this->getGrants() );
 	}
 }
+
+class_alias( ClientEntity::class, 'MediaWiki\Extensions\OAuth\Entity\ClientEntity' );

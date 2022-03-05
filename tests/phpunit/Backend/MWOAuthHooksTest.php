@@ -1,14 +1,14 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Backend;
+namespace MediaWiki\Extension\OAuth\Tests\Backend;
 
-use MediaWiki\Extensions\OAuth\Backend\Hooks;
+use MediaWiki\Extension\OAuth\Backend\Hooks;
 use PHPUnit\Framework\TestCase;
 use Status;
 use User;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\Backend\MWOAuthServer
+ * @covers \MediaWiki\Extension\OAuth\Backend\MWOAuthServer
  * @group OAuth
  */
 class MWOAuthHooksTest extends TestCase {

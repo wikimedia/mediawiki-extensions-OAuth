@@ -1,14 +1,14 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Repository;
+namespace MediaWiki\Extension\OAuth\Tests\Repository;
 
-use MediaWiki\Extensions\OAuth\Entity\AccessTokenEntity;
-use MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository;
-use MediaWiki\Extensions\OAuth\Tests\Entity\Mock_ClientEntity;
+use MediaWiki\Extension\OAuth\Entity\AccessTokenEntity;
+use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
+use MediaWiki\Extension\OAuth\Tests\Entity\Mock_ClientEntity;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\Repository\AccessTokenRepository
+ * @covers \MediaWiki\Extension\OAuth\Repository\AccessTokenRepository
  * @group Database
  * @group OAuth
  */

@@ -21,13 +21,13 @@
  * @file
  */
 
-namespace MediaWiki\Extensions\OAuth\Tests\Backend;
+namespace MediaWiki\Extension\OAuth\Tests\Backend;
 
-use MediaWiki\Extensions\OAuth\Backend\MWOAuthException;
-use MediaWiki\Extensions\OAuth\Backend\MWOAuthServer;
+use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
+use MediaWiki\Extension\OAuth\Backend\MWOAuthServer;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\Backend\MWOAuthServer
+ * @covers \MediaWiki\Extension\OAuth\Backend\MWOAuthServer
  * @group OAuth
  */
 class MWOAuthServerTest extends \PHPUnit\Framework\TestCase {

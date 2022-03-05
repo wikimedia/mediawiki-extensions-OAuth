@@ -1,8 +1,8 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Backend;
+namespace MediaWiki\Extension\OAuth\Backend;
 
-use MediaWiki\Extensions\OAuth\Lib\OAuthException;
+use MediaWiki\Extension\OAuth\Lib\OAuthException;
 
 class MWOAuthException extends OAuthException {
 	/** @var string */

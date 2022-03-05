@@ -1,8 +1,8 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Repository\Hook;
+namespace MediaWiki\Extension\OAuth\Repository\Hook;
 
-use MediaWiki\Extensions\OAuth\Entity\MWClientEntityInterface;
+use MediaWiki\Extension\OAuth\Entity\MWClientEntityInterface;
 
 interface OAuthClaimStoreGetClaimsHook {
 
@@ -19,3 +19,5 @@ interface OAuthClaimStoreGetClaimsHook {
 		string $grantType, MWClientEntityInterface $clientEntity, array &$privateClaims, $userIdentifier = null
 	);
 }
+
+class_alias( OAuthClaimStoreGetClaimsHook::class, 'MediaWiki\Extensions\OAuth\Entity\OAuthClaimStoreGetClaimsHook' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Backend;
+namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBConnRef;

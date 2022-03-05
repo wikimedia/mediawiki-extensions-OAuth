@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Entity;
+namespace MediaWiki\Extension\OAuth\Tests\Entity;
 
-use MediaWiki\Extensions\OAuth\Backend\Consumer;
-use MediaWiki\Extensions\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MWRestrictions;
 use User;
 
@@ -38,3 +38,5 @@ class Mock_ClientEntity extends ClientEntity {
 		], $values ) );
 	}
 }
+
+class_alias( Mock_ClientEntity::class, 'MediaWiki\Extensions\OAuth\Tests\Entity\Mock_ClientEntity' );

@@ -1,13 +1,13 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Rest\Handler;
+namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
 use Config;
 use League\OAuth2\Server\Exception\OAuthServerException;
-use MediaWiki\Extensions\OAuth\AuthorizationProvider\AccessToken as AccessTokenProvider;
-use MediaWiki\Extensions\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization;
-use MediaWiki\Extensions\OAuth\Backend\Utils;
-use MediaWiki\Extensions\OAuth\Response;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\AccessToken as AccessTokenProvider;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Response;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;

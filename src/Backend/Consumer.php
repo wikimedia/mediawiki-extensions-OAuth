@@ -19,13 +19,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-namespace MediaWiki\Extensions\OAuth\Backend;
+namespace MediaWiki\Extension\OAuth\Backend;
 
 use FormatJson;
 use IContextSource;
 use Linker;
 use LogicException;
-use MediaWiki\Extensions\OAuth\Entity\ClientEntity as OAuth2Client;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity as OAuth2Client;
 use MediaWiki\MediaWikiServices;
 use Message;
 use MWException;

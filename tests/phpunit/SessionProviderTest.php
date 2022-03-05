@@ -21,14 +21,14 @@
  * @file
  */
 
-namespace MediaWiki\Extensions\OAuth\Tests;
+namespace MediaWiki\Extension\OAuth\Tests;
 
-use MediaWiki\Extensions\OAuth\SessionProvider;
+use MediaWiki\Extension\OAuth\SessionProvider;
 use MediaWikiIntegrationTestCase;
 use RecentChange;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\SessionProvider
+ * @covers \MediaWiki\Extension\OAuth\SessionProvider
  * @group OAuth
  * @license GPL-2.0-or-later
  */

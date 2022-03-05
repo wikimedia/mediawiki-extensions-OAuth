@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\AuthorizationProvider;
+namespace MediaWiki\Extension\OAuth\AuthorizationProvider;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

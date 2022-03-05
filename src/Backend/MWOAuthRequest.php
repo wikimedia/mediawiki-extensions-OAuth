@@ -1,9 +1,9 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Backend;
+namespace MediaWiki\Extension\OAuth\Backend;
 
-use MediaWiki\Extensions\OAuth\Lib\OAuthRequest;
-use MediaWiki\Extensions\OAuth\Lib\OAuthUtil;
+use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
+use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 
 /**
  * @file

@@ -1,8 +1,8 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests;
+namespace MediaWiki\Extension\OAuth\Tests;
 
-use MediaWiki\Extensions\OAuth\Rest\Handler\ListClients;
+use MediaWiki\Extension\OAuth\Rest\Handler\ListClients;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -10,7 +10,7 @@ use MediaWiki\MediaWikiServices;
  *
  * Used to retrieve Handlers for unit tests.
  *
- * @package MediaWiki\Extensions\OAuth\Rest\Handler
+ * @package MediaWiki\Extension\OAuth\Rest\Handler
  */
 class TestHandlerFactory {
 

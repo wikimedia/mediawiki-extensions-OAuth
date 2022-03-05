@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Entity;
+namespace MediaWiki\Extension\OAuth\Entity;
 
 use League\OAuth2\Server\Entities\ClaimEntityInterface;
 use League\OAuth2\Server\Entities\Traits\ClaimEntityTrait;
@@ -18,3 +18,5 @@ class ClaimEntity implements ClaimEntityInterface {
 		$this->value = $value;
 	}
 }
+
+class_alias( ClaimEntity::class, 'MediaWiki\Extensions\OAuth\Entity\ClaimEntity' );

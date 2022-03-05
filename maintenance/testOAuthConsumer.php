@@ -1,12 +1,12 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth;
+namespace MediaWiki\Extension\OAuth;
 
-use MediaWiki\Extensions\OAuth\Lib\OAuthConsumer;
-use MediaWiki\Extensions\OAuth\Lib\OAuthException;
-use MediaWiki\Extensions\OAuth\Lib\OAuthRequest;
-use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
-use MediaWiki\Extensions\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1;
+use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
+use MediaWiki\Extension\OAuth\Lib\OAuthException;
+use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1;
 
 /**
  * @ingroup Maintenance

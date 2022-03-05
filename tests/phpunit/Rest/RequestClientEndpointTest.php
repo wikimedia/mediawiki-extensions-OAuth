@@ -1,16 +1,16 @@
 <?php
 
-namespace MediaWiki\Extensions\OAuth\Tests\Rest;
+namespace MediaWiki\Extension\OAuth\Tests\Rest;
 
 use FormatJson;
-use MediaWiki\Extensions\OAuth\Rest\Handler\RequestClient;
+use MediaWiki\Extension\OAuth\Rest\Handler\RequestClient;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\ResponseInterface;
 use User;
 use WikiMap;
 
 /**
- * @covers \MediaWiki\Extensions\OAuth\Rest\Handler\RequestClient
+ * @covers \MediaWiki\Extension\OAuth\Rest\Handler\RequestClient
  * @group Database
  * @group OAuth
  */
