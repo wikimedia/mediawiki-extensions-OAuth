@@ -18,5 +18,3 @@ class ClaimEntity implements ClaimEntityInterface {
 		$this->value = $value;
 	}
 }
-
-class_alias( ClaimEntity::class, 'MediaWiki\Extensions\OAuth\Entity\ClaimEntity' );

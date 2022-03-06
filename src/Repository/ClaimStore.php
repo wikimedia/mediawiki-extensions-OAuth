@@ -38,5 +38,3 @@ class ClaimStore implements ClaimRepositoryInterface {
 		return $privateClaims;
 	}
 }
-
-class_alias( ClaimStore::class, 'MediaWiki\Extensions\OAuth\Repository\ClaimStore' );

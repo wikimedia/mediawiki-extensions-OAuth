@@ -495,5 +495,3 @@ class Utils {
 		return iterator_to_array( User::findUsersByGroup( $wgOAuthGroupsToNotify ) );
 	}
 }
-
-class_alias( Utils::class, 'MediaWiki\Extensions\OAuth\Backend\Utils' );

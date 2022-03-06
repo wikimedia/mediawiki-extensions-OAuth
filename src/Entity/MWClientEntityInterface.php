@@ -13,5 +13,3 @@ use League\OAuth2\Server\Entities\ClientEntityInterface;
 interface MWClientEntityInterface extends ClientEntityInterface {
 
 }
-
-class_alias( MWClientEntityInterface::class, 'MediaWiki\Extensions\OAuth\Entity\MWClientEntityInterface' );

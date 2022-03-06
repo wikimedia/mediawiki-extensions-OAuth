@@ -74,12 +74,10 @@
 		"MWOAuthAliases": "MWOAuth.alias.php"
 	},
 	"AutoloadNamespaces": {
-		"MediaWiki\\Extension\\OAuth\\": "src/",
-		"MediaWiki\\Extensions\\OAuth\\": "src/"
+		"MediaWiki\\Extension\\OAuth\\": "src/"
 	},
 	"TestAutoloadNamespaces": {
-		"MediaWiki\\Extension\\OAuth\\Tests\\": "tests/phpunit/",
-		"MediaWiki\\Extensions\\OAuth\\Tests\\": "tests/phpunit/"
+		"MediaWiki\\Extension\\OAuth\\Tests\\": "tests/phpunit/"
 	},
 	"TestAutoloadClasses": {
 		"MediaWiki\\Extension\\OAuth\\Tests\\TestHandlerFactory": "tests/TestHandlerFactory.php"

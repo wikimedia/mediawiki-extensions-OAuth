@@ -200,5 +200,3 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 		return array_intersect( $requested, $this->getGrants() );
 	}
 }
-
-class_alias( ClientEntity::class, 'MediaWiki\Extensions\OAuth\Entity\ClientEntity' );

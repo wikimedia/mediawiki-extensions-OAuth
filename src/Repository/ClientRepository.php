@@ -62,5 +62,3 @@ class ClientRepository implements ClientRepositoryInterface {
 		return $client->validate( $clientSecret, $grantType );
 	}
 }
-
-class_alias( ClientRepository::class, 'MediaWiki\Extensions\OAuth\Repository\ClientRepository' );

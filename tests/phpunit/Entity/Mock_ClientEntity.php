@@ -38,5 +38,3 @@ class Mock_ClientEntity extends ClientEntity {
 		], $values ) );
 	}
 }
-
-class_alias( Mock_ClientEntity::class, 'MediaWiki\Extensions\OAuth\Tests\Entity\Mock_ClientEntity' );

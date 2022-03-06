@@ -19,5 +19,3 @@ interface OAuthClaimStoreGetClaimsHook {
 		string $grantType, MWClientEntityInterface $clientEntity, array &$privateClaims, $userIdentifier = null
 	);
 }
-
-class_alias( OAuthClaimStoreGetClaimsHook::class, 'MediaWiki\Extensions\OAuth\Entity\OAuthClaimStoreGetClaimsHook' );

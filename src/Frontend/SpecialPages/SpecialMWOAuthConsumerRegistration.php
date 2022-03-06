@@ -649,8 +649,3 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		return 'users';
 	}
 }
-
-class_alias(
-	SpecialMWOAuthConsumerRegistration::class,
-	'MediaWiki\Extensions\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration'
-);
