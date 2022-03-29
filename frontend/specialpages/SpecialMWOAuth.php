@@ -155,10 +155,11 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 							'mwoauth-invalid-authorization-wrong-wiki',
 							array( $wiki )
 						);
-					} elseif ( !$consumer->isUsableBy( $localUser ) ) {
-						throw new MWOAuthException( 'mwoauth-invalid-authorization-not-approved',
-							$consumer->get( 'name' ) );
-					}
+					};
+                    //  elseif ( !$consumer->isUsableBy( $localUser ) ) {
+					// 	throw new MWOAuthException( 'mwoauth-invalid-authorization-not-approved',
+					// 		$consumer->get( 'name' ) );
+					// }
 
 					// We know the identity of the user who granted the authorization
 					$this->outputJWT( $localUser, $consumer, $oauthRequest, $format, $access );
