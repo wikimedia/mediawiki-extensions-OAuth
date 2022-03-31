@@ -173,7 +173,7 @@
 	"mwoauthlistconsumers-update-link": "עדכון צרכן",
 	"mwoauthlistconsumers-manage-link": "ניהול צרכן",
 	"mwoauthlistconsumers-grants-link": "ניהול זיכיונות",
-	"mwoauthlistconsumers-rclink": "שינויים אחרונים שנעשו על־די היישום הזה",
+	"mwoauthlistconsumers-rclink": "שינויים אחרונים שנעשו על־ידי היישום הזה",
 	"oauthmanagemygrants": "ניהול יישומים מחוברים",
 	"mwoauthmanagemygrants-text": "הדף הזה מציג רשימה של כל היישומים שיכולים להשתמש בחשבון שלך. לכל יישום כזה טווח הגישה מוגבל בהרשאות שנתת לו כאשר אישרת לו לפעול בשמך. אם נתת אישור נפרד ליישום לגשת בשמך למיזמים אחרים, תראה את ההגדרות הנפרדות לכל מיזם כזה להלן.\n\nהיישומים המחוברים ניגשים לחשבון שלך באמצעות פרוטוקול OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth מידע נוסף על יישומים מחוברים])</span>",
 	"mwoauthmanagemygrants-navigation": "ניווט:",

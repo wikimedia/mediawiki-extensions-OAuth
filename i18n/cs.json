@@ -273,5 +273,6 @@
 	"echo-pref-tooltip-oauth-owner": "Upozorněte mě na události týkající aplikací OAuth, které jsem {{GENDER:|vytvořil|vytvořila}}.",
 	"echo-category-title-oauth-admin": "správu OAuth",
 	"echo-pref-tooltip-oauth-admin": "Upozorněte mě na události týkající se schvalování aplikací OAuth.",
-	"notification-oauth-app-body": "Zdůvodnění: $1"
+	"notification-oauth-app-body": "Zdůvodnění: $1",
+	"grant-oauthmanageownclient": "Spravovat vaše OAuth klienty"
 }
