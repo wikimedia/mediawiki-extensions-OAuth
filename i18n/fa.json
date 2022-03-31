@@ -221,7 +221,7 @@
 	"mwoauth-invalid-authorization-blocked-user": "سرایندهای اصالت‌سنجیِ درخواست شما متعلق به کاربری بسته‌شده است",
 	"mwoauth-form-description-allwikis": "درود $1،\n\n'''$2''' خواهان انجام این اعمال از طرف شما در همهٔ پروژه‌های این وبگاه است:\n\n$4",
 	"mwoauth-form-description-onewiki": "درود $1،\n\n'''$2''' خواهان انجام این اعمال از طرف شما در ''$4'' است:\n\n$5",
-	"mwoauth-form-description-allwikis-nogrants": "درود $1،\n\n'''$2''' خواهان اخذ دسترسی اولیه‌ای از طرف شما در همهٔ پروژه‌های این وبگاه است.",
+	"mwoauth-form-description-allwikis-nogrants": "درود $1،\n\nبه منطور تکمیل درخواست شما، '''$2''' خواهان اخذ دسترسی اولیه‌ای از طرف شما در همهٔ پروژه‌های این وبگاه است.\nهیج تغییری برای حساب شما رخ نخواهد داد.",
 	"mwoauth-form-description-onewiki-nogrants": "درود $1،\n\n'''$2''' خواهان اخذ دسترسی اولیه‌ای از طرف شما در ''$4'' است.",
 	"mwoauth-form-button-approve": "پذیرفتن",
 	"mwoauth-form-button-cancel": "انصراف",
