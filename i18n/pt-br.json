@@ -15,7 +15,6 @@
 			"Rodrigo codignoli"
 		]
 	},
-	"oauth": "OAuth",
 	"mwoauth-desc": "Permite o uso do OAuth 1.0a e OAuth 2.0 para autorização da API",
 	"mwoauth-nosubpage-explanation": "OAuth é um mecanismo que permite que aplicativos externos identifiquem um usuário do {{SITENAME}} ou atuem em seu nome, depois de receber permissão desse usuário.\n\nPara que esta página faça alguma coisa, são necessários mais parâmetros. Se você foi enviado aqui de um aplicativo externo, isso provavelmente ocorreu devido a um erro nesse aplicativo; você deve entrar em contato com o autor.",
 	"mwoauth-verified": "O aplicativo possui permissão para acessar ao MediaWiki através da sua conta.\n\nPara concluir o processo, proceda à verificação para o aplicativo através deste valor: '''$1'''",

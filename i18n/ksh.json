@@ -4,7 +4,6 @@
 			"Purodha"
 		]
 	},
-	"oauth": "<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"an open standard for authorization\">OAuth</i>",
 	"mwoauth-desc": "Määd e müjjelesch, <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"an open standard for authorization\">OAuth</i> Väsjohn 1.0a för et Enlogge övver de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\">API</i> ze bruche.",
 	"mwoauth-db-readonly": "De Dahtebangk vum <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"an open standard for authorization\">OAuth</i> es em Momang jeschpächt. Versöhg et en e paa Menotte wider.",
 	"mwoauth-missing-field": "Ene Wäät för dat Väld „$1“ fählt",

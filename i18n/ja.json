@@ -13,7 +13,6 @@
 			"Yusuke1109"
 		]
 	},
-	"oauth": "OAuth",
 	"mwoauth-desc": "API 認証に OAuth 1.0a および OAuth 2.0 を使用できるようにする",
 	"mwoauth-verified": "このアプリケーションがあなたに代わって MediaWiki にアクセスすることが許可されました。\n\nこの手続きを完了するには次の検証トークンをアプリケーションに提供してください: '''$1'''",
 	"mwoauth-db-readonly": "OAuth データベースは一時的にロックされています。しばらくしてからもう一度お試しください。",
