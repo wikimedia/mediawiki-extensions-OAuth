@@ -6,6 +6,7 @@
 			"Pikne"
 		]
 	},
+	"abusefilter-edit-builder-vars-oauth-consumer": "OAuthi tarvitus, mida muudatuse tegemisel kasutatakse",
 	"mwoauth-desc": "Võimaldab kasutada OAuthi versioone 1.0a ja 2.0 API-volitamiseks.",
 	"mwoauth-nosubpage-explanation": "OAuth on mehhanism, mis võimaldab välistel rakendustel {{GRAMMAR:genitive|{{SITENAME}}}} kasutaja identida või toimida tema nimel, kui see kasutaja annab selleks loa.\n\nSelleks et see lehekülg midagi teeks, on vaja rohkem parameetreid. Kui väline rakendus suunas sind siia, siis on selles rakenduses tõenäoliselt viga. Peaksid võtma ühendust rakenduse autoriga.",
 	"mwoauth-prefs-managegrants": "Ühendatud rakendused:",
@@ -84,6 +85,10 @@
 	"mwoauthlistconsumers-status-disabled": "keelatud",
 	"mwoauthlistconsumers-status-rejected": "tagasilükatud",
 	"mwoauthlistconsumers-status-expired": "iganenud",
+	"mwoauthlistconsumers-navigation": "Navigeerimine:",
+	"mwoauthlistconsumers-update-link": "uuenda tarvitust",
+	"mwoauthlistconsumers-manage-link": "halda tarvitust",
+	"mwoauthlistconsumers-grants-link": "halda volitusi",
 	"mwoauthlistconsumers-rclink": "Selle rakendusega tehtud viimased muudatused",
 	"oauthmanagemygrants": "Ühendatud rakenduste haldamine",
 	"mwoauthmanagemygrants-text": "Siin leheküljel on loetletud kõik rakendused, mida ühenduses sinu kontoga saab kasutada. Kõigi nende rakendamise ulatus on piiratud volitustega, mille rakendusega sidusid, kui nõustusid seda enda nimel kasutama. Kui volitasid rakenduse enda nimel kasutuse eri sõsarprojektides eraldi, näed allpool iga projekti jaoks eraldi häälestust.\n\nRakendused kasutavad ühenduseks sinu kontoga OAuthi protokolli. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Lisateave ühendatud rakenduste kohta])</span>",
