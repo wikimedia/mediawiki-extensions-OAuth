@@ -237,7 +237,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			[],
 			$this->getRequest()->getValues( 'name', 'publisher', 'stage' )
 		);
-		if ( !$permMgr->userHasRight( $this->getUser(), 'mwoauthmanageconsumer' ) ) {
+		if ( $permMgr->userHasRight( $this->getUser(), 'mwoauthmanageconsumer' ) ) {
 			$links[] = $this->getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'OAuthManageConsumers', $cmrKey ),
 				$this->msg( 'mwoauthmanageconsumers-review' )->text()
