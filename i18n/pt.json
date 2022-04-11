@@ -251,7 +251,7 @@
 	"mwoauth-form-button-cancel": "Cancelar",
 	"mwoauth-error": "Erro de ligação da aplicação",
 	"mwoauth-grants-heading": "Permissões solicitadas:",
-	"mwoauth-grants-nogrants": "A aplicação não solicitou quaisquer permissões.",
+	"mwoauth-grants-nogrants": "A aplicação não pediu nenhuma permissão.",
 	"mwoauth-acceptance-cancelled": "Escolheu não permitir que a aplicação \"$1\" possa aceder à sua conta. \"$1\" não irá funcionar a menos que permita o acesso. Pode regressar a \"$1\" ou [[Special:OAuthManageMyGrants|gerir]] as suas aplicações ligadas.",
 	"mwoauth-granttype-normal": "Solicitar autorização para permissões específicas.",
 	"grant-mwoauth-authonly": "Apenas verificação da identidade do utilizador, sem capacidade de ler páginas ou agir em nome de um utilizador.",
