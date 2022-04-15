@@ -1,4 +1,5 @@
 {
+	"name": "OAuth",
 	"private": true,
 	"scripts": {
 		"test": "grunt test"
