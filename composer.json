@@ -9,7 +9,7 @@
 		"league/oauth2-server": "8.2.4"
 	},
 	"require-dev": {
-		"mediawiki/mediawiki-codesniffer": "31.0.0",
+		"mediawiki/mediawiki-codesniffer": "38.0.0",
 		"mediawiki/mediawiki-phan-config": "0.10.2",
 		"mediawiki/minus-x": "1.1.0",
 		"php-parallel-lint/php-console-highlighter": "0.5.0",
@@ -19,13 +19,14 @@
 	"scripts": {
 		"test": [
 			"parallel-lint . --exclude vendor --exclude node_modules",
-			"phpcs -p -s",
+			"@phpcs",
 			"minus-x check ."
 		],
 		"fix": [
 			"minus-x fix .",
 			"phpcbf"
 		],
-		"phan": "phan -d . --long-progress-bar"
+		"phan": "phan -d . --long-progress-bar",
+		"phpcs": "phpcs -sp --cache"
 	}
 }
