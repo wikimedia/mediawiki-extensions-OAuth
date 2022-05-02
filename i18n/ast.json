@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Xuacu"
+			"Xuacu",
+			"Fitoschido"
 		]
 	},
 	"mwoauth-desc": "Permite usar OAuth 1.0a y OAuth 2.0 pa la autorización de la API",
@@ -21,7 +22,7 @@
 	"mwoauth-consumer-version": "Versión de consumidor:",
 	"mwoauth-consumer-user": "Editorial:",
 	"mwoauth-consumer-stage": "Estáu actual:",
-	"mwoauth-consumer-email": "Direición de corréu-e de contautu:",
+	"mwoauth-consumer-email": "Señes electróniques de contautu:",
 	"mwoauth-consumer-email-help": "Visible namái pa los qu'aprueben consumidores nuevos",
 	"mwoauth-consumer-owner-only-label": "Sólo el propietariu:",
 	"mwoauth-consumer-owner-only": "Esti consumidor ye sólo pa usar por $1.",
