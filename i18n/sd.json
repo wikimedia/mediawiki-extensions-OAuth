@@ -45,6 +45,7 @@
 	"mwoauthmanageconsumers-reason": "ڪارڻ:",
 	"mwoauthlistconsumers-user": "ڇاپيندڙ",
 	"mwoauth-consumer-stage-any": "ڪابہ",
+	"mwoauthlistconsumers-rclink": "ھن ايپليڪيشن ذريعي تازيون تبديليون",
 	"oauthmanagemygrants": "ڳنڊيل اپليڪيشنن جو انتظام",
 	"mwoauthmanagemygrants-text": "هتي اهي ايپليڪيشنون ڏنل آهن، جيڪي اوهان جي کاتي سان ڳنڍيل آهن. ڪنھن بہ ايپليڪيشن کي ڪيترا اختيار ڏنل آهن، اهي اوهان ايپليڪشن کي پھرين ڀيري استعمال ڪرڻ وقت ڏيندا آهيو. جيڪڏهن اوهان ڪنھن ٻي وڪي پراجيڪٽ لاءِ ڪو ايپليڪشن الڳ سان استعمال ڪريو ٿا تہ ان جي لاءِ هيٺ الڳ ترتيبون ڏنل آهن. \n\nڳنڍيل ايپليڪشن OAuth protocol ذريعي اوهان جي کاتي جو اختيار رکي ٿي. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth ڳنڍيل ايپليڪشنن بابت وڌيڪ پرايو])</span>",
 	"mwoauthmanagemygrants-showlist": "فھرست ڳنڍيل ايپليڪشن",
@@ -59,5 +60,7 @@
 	"mwoauthmanagemygrants-update": "اجازتن جي ٻيهر ترتيب",
 	"mwoauthmanagemygrants-renounce": "خاتمو اختيار",
 	"mwoauthmanagemygrants-action": "حالت بدلايو:",
+	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|توھان جون}} ھن ايپليڪيشن ذريعي سنوارون",
+	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|توھان جا}} عمل ھن ايپليڪيشن ذريعي",
 	"mwoauth-form-button-cancel": "رد"
 }
