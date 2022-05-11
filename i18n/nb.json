@@ -6,6 +6,7 @@
 			"Jon Harald Søby"
 		]
 	},
+	"abusefilter-edit-builder-vars-oauth-consumer": "OAuth-konsument brukt til å utføre denne endringen",
 	"mwoauth-desc": "Muliggjør bruk av OAuth 1.0a og OAuth 2.0 for API-autorisering",
 	"mwoauth-nosubpage-explanation": "OAuth er en mekanisme som lar eksterne applikasjoner identifisere en {{SITENAME}}-bruker eller handle på deres vegne, etter at tillatelse er gitt av brukeren.\n\nFor at denne siden skal gjøre noe må flere parametere angis. Hvis du ble sendt hit av en ekstern applikasjon var det trolig på grunn av en feil i applikasjonen; du burde kontakte opphavspersonen dens.",
 	"mwoauth-verified": "Applikasjonen har nå tilgang til MediaWiki på dine vegne.\n\nFor å fullføre prosessen, vennligst angi verifikasjonsverdien til applikasjonen: '''$1'''",
