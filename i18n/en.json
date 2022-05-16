@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"EpicPupper"
+		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "OAuth consumer used to perform this change",
 	"oauth": "OAuth",
@@ -15,7 +17,7 @@
 	"mwoauth-field-private": "(this information is private)",
 	"mwoauth-prefs-managegrants": "Connected apps:",
 	"mwoauth-prefs-managegrantslink": "Manage {{PLURAL:$1|$1 connected application|$1 connected applications|0=connected applications}}",
-	"mwoauth-consumer-allwikis": "All projects on this site",
+	"mwoauth-consumer-allwikis": "All projects",
 	"mwoauth-consumer-key": "Consumer key:",
 	"mwoauth-consumer-name": "Application name:",
 	"mwoauth-consumer-version": "Consumer version:",
