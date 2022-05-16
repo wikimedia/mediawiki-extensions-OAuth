@@ -112,6 +112,7 @@
 	"mwoauthmanagemygrants-update": "Карладаха магийнарш",
 	"mwoauthmanagemygrants-renounce": "ДӀахадае авторизаци",
 	"mwoauth-form-description-allwikis": "Маршалла, $1!\n\nХьан дехар кхочушдан «$2», хьан цӀарах бакъо йеза, рогӀехь дерг йерриге проектан сайташкахь:\n\n$4",
+	"mwoauth-form-description-onewiki": "Маршалла $1!\n\nХьан дехар «$2» «$4» проектехь чекхдакха, хьан цӀарах бакъо йеза:\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Маршалла $1,\n\n'''$2''' хьан цӀарца болхбан хьан аккаунтан чугӀо.",
 	"mwoauth-form-button-approve": "Магаде",
 	"mwoauth-form-button-cancel": "Цаоьшу",
