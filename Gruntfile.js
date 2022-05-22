@@ -7,7 +7,12 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 
 	grunt.initConfig( {
-		banana: conf.MessagesDirs,
+		banana: {
+			...conf.MessagesDirs,
+			options: {
+				requireLowerCase: 'initial'
+			}
+		},
 		eslint: {
 			options: {
 				cache: true,

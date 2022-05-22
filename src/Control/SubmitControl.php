@@ -177,7 +177,9 @@ abstract class SubmitControl extends \ContextSource {
 			if ( !isset( $this->vals[$field] ) ) {
 				// @TODO: check for field-specific message first
 				return $this->failure( "missing_field_$field", 'mwoauth-missing-field', $field );
-			} elseif ( !is_scalar( $this->vals[$field] ) && $field !== 'restrictions' ) {
+			} elseif ( !is_scalar( $this->vals[$field] )
+				&& !in_array( $field, [ 'restrictions', 'oauth2GrantTypes' ], true )
+			) {
 				// @TODO: check for field-specific message first
 				return $this->failure( "invalid_field_$field", 'mwoauth-invalid-field', $field );
 			}

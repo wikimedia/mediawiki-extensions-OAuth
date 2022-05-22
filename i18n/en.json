@@ -11,6 +11,7 @@
 	"mwoauth-missing-field": "Missing value for \"$1\" field",
 	"mwoauth-invalid-field": "Invalid value provided for \"$1\" field",
 	"mwoauth-invalid-field-generic": "Invalid value provided",
+	"mwoauth-invalid-field-oauth2GrantTypes": "OAuth 2 apps must specify at least one grant type",
 	"mwoauth-field-hidden": "(this information is hidden)",
 	"mwoauth-field-private": "(this information is private)",
 	"mwoauth-prefs-managegrants": "Connected apps:",
