@@ -125,6 +125,9 @@ class ConsumerSubmitControl extends SubmitControl {
 						return false;
 					}
 				},
+				'oauthVersion' => static function ( $i ) {
+					return in_array( $i, [ Consumer::OAUTH_VERSION_1, Consumer::OAUTH_VERSION_2 ] );
+				},
 				'callbackUrl' => static function ( $s, $vals ) {
 					if ( strlen( $s ) > 2000 ) {
 						return false;
@@ -141,6 +144,10 @@ class ConsumerSubmitControl extends SubmitControl {
 						|| in_array( $s, $wgConf->getLocalDatabases() )
 						|| array_search( $s, Utils::getAllWikiNames() ) !== false
 					);
+				},
+				'oauth2GrantTypes' => static function ( $a, $vals ) {
+					// OAuth 2 apps must have at least one grant type
+					return $vals['oauthVersion'] == Consumer::OAUTH_VERSION_1 || count( $a ) > 0;
 				},
 				'granttype' => '/^(authonly|authonlyprivate|normal)$/',
 				'grants' => static function ( $s ) {

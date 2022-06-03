@@ -223,7 +223,6 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 						], static function ( $grantType ) use ( $config ) {
 							return in_array( $grantType, $config->get( 'OAuth2EnabledGrantTypes' ) );
 						} ),
-						'dropdown' => true,
 						'required' => true,
 						'default' => [ 'authorization_code', 'refresh_token' ]
 					],

@@ -26,6 +26,7 @@
 	"mwoauth-missing-field": "Parameters:\n* $1 - field name\nSee also:\n* {{msg-mw|Mwoauth-invalid-field}}",
 	"mwoauth-invalid-field": "Parameters:\n* $1 - field name\nSee also:\n* {{msg-mw|Mwoauth-missing-field}}",
 	"mwoauth-invalid-field-generic": "Used as generic error message for form field validation.",
+	"mwoauth-invalid-field-oauth2GrantTypes": "Used during form field validation when the oauth2GrantTypes field is empty.",
 	"mwoauth-field-hidden": "Used if the information has been deleted and the user is not allowed to view suppressed information.\n\nSee also:\n* {{msg-mw|Mwoauth-field-private}}",
 	"mwoauth-field-private": "Used if the user is not allowed to view private information.\n\nSee also:\n* {{msg-mw|Mwoauth-field-hidden}}",
 	"mwoauth-prefs-managegrants": "Used as label in [[Special:Preferences]].\n\nSee also:\n* {{msg-mw|Mwoauth-prefs-managegrantslink}}.",
