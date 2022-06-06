@@ -18,6 +18,7 @@
 	"mwoauth-missing-field": "חסר ערך עבור שדה \"$1\"",
 	"mwoauth-invalid-field": "ערך לא תקין עבור שדה \"$1\"",
 	"mwoauth-invalid-field-generic": "סופק ערך לא תקין",
+	"mwoauth-invalid-field-oauth2GrantTypes": "יישומי OAuth 2 חייבים לציין לפחות סוג אחד של זיכיון",
 	"mwoauth-field-hidden": "(מידע זה מוסתר)",
 	"mwoauth-field-private": "(מידע זה הוא פרטי)",
 	"mwoauth-prefs-managegrants": "יישומים מחוברים:",

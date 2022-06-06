@@ -15,6 +15,7 @@
 	"mwoauth-missing-field": "Недостасува вредност во полето „$1“",
 	"mwoauth-invalid-field": "Во полето „$1“ е зададена неважечка вредност",
 	"mwoauth-invalid-field-generic": "Укажана е неважечка вредност",
+	"mwoauth-invalid-field-oauth2GrantTypes": "Прилозите на OAuth 2 мора да укажуваат барем еден вид на доделба",
 	"mwoauth-field-hidden": "(оваа информација е скриена)",
 	"mwoauth-field-private": "(оваа информација е доверлива)",
 	"mwoauth-prefs-managegrants": "Поврзани извршници:",
