@@ -25,24 +25,7 @@ class UpdaterHooks {
 				self::getPath( 'OAuth.sql', $dbType )
 			);
 
-			$updater->addExtensionField(
-				'oauth_registered_consumer',
-				'oarc_callback_is_prefix',
-				self::getPath( 'callback_is_prefix.sql', $dbType )
-			);
-
-			$updater->addExtensionField(
-				'oauth_registered_consumer',
-				'oarc_developer_agreement',
-				self::getPath( 'developer_agreement.sql', $dbType )
-			);
-
-			$updater->addExtensionField(
-				'oauth_registered_consumer',
-				'oarc_owner_only',
-				self::getPath( 'owner_only.sql', $dbType )
-			);
-
+			// 1.35
 			$updater->addExtensionField(
 				'oauth_registered_consumer',
 				'oarc_oauth_version',
