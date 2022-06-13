@@ -110,6 +110,7 @@
 	"mwoauthmanagemygrants-success-update": "Sinu eelistused selle rakenduse jaoks on uuendatud.",
 	"mwoauthmanagemygrants-success-renounce": "Selle rakenduse juurdepääs sinu kontole on tühistatud.",
 	"mwoauthmanagemygrants-basic-tooltip": "Miks ma ei saa seda volitust uuendada? Sellega on ühendatud rakendusele antud põhilised õigused, mida on vaja, et rakendus õigesti toimiks. Kui sa ei taha, et ühendatud rakendusel oleks need õigused, siis peaksid tühistama selle rakenduse juurdepääsu.",
+	"mwoauthmanagemygrants-authonly-tooltip": "Miks ma ei saa seda volitust uuendada? Kui sa ei taha, et ühendatud rakendusel oleks need õigused, siis peaksid tühistama selle rakenduse juurdepääsu.",
 	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Sinu}} muudatused selle rakendusega",
 	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Sinu}} toimingud selle rakendusega",
 	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|tegi ettepaneku}} OAuthi tarvituse kohta (tarvituse võti $4)",
