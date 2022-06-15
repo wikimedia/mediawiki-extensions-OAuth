@@ -65,7 +65,6 @@
 	"mwoauth-consumer-stage-suppressed": "soppresso",
 	"oauthconsumerregistration": "Registrazione cliente OAuth",
 	"mwoauthconsumerregistration-navigation": "Navigazione:",
-	"mwoauthconsumerregistration-propose": "Proponi nuovo cliente",
 	"mwoauthconsumerregistration-list": "Miei clienti",
 	"mwoauthconsumerregistration-main": "Principale",
 	"mwoauthconsumerregistration-propose-text": "Gli sviluppatori dovrebbero usare il seguente modulo per proporre un nuovo cliente OAuth (vedi la [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth documentazione dell'estensione] per ulteriori dettagli). Dopo l'invio di questo modulo, riceverai un token che l'applicazione utilizzerà per identificarsi in MediaWiki. Un amministratore di OAuth dovrà approvare l'applicazione prima che questa potrà essere autorizzata da altri utenti.\n\nAlcune raccomandazioni e osservazioni:\n* cerca di utilizzare meno assegnazioni possibili. Cerca di evitare di assegnare diritti che non sono realmente necessari ora\n* le versioni sono nella forma \"major.minor.release\" (gli ultimi due sono opzionali) ed aumentala nel caso siano necessarie ulteriori assegnazioni di diritti\n* fornisce una chiave RSA pubblica (in formato PEM) se possibile; altrimenti dovrà essere utilizzato un token segreto (meno sicuro)\n* è possibile utilizzare un ID progetto per limitare il cliente ad un singolo progetto su questo sito (usa \"*\" per tutti i progetti).",

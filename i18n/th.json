@@ -49,7 +49,6 @@
 	"mwoauth-consumer-stage-disabled": "ปิดใช้งานแล้ว",
 	"oauthconsumerregistration": "การลงทะเบียนผู้บริโภค OAuth",
 	"mwoauthconsumerregistration-navigation": "การนำทาง:",
-	"mwoauthconsumerregistration-propose": "เสนอผู้บริโภคใหม่",
 	"mwoauthconsumerregistration-list": "รายชื่อผู้บริโภคของฉัน",
 	"mwoauthconsumerregistration-main": "หลัก",
 	"mwoauthconsumerregistration-update-legend": "อัปเดตแอปพลิเคชันผู้บริโภค OAuth",

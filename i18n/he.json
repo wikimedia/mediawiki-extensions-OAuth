@@ -73,7 +73,6 @@
 	"mwoauth-consumer-stage-suppressed": "מועלם",
 	"oauthconsumerregistration": "רישום צרכן OAuth",
 	"mwoauthconsumerregistration-navigation": "ניווט:",
-	"mwoauthconsumerregistration-propose": "הצעת צרכן חדש",
 	"mwoauthconsumerregistration-list": "רשימת הצרכנים שלי",
 	"mwoauthconsumerregistration-main": "ראשי",
 	"mwoauthconsumerregistration-propose-text": "המפתחים צריכים להשתמש בטופס להלן כדי להציע צרכן OAuth חדש (ר' את [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth תיעוד ההרחבה] לפרטים נוספים). אחרי שליחת הטופס הזה יישלח אליך אסימון שהיישום שלך ישתמש בו כדי להזדהות בפני מדיה־ויקי. מנהל OAuth יצטרך לאשר את הפנייה שלך לפני שהיא תאושר על־ידי משתמשים אחרים.\n\nכמה עצות והערות:\n* מומלץ להשתמש בכמה שפחות זיכיונות. מומלץ להימנע שאינם נחוצים כעת.\n* הגרסאות נכתבות בצורה \"major.minor.release\" (לא חובה לכתוב את שני החלקים האחרונים) ועולים בכל פעם שהזיכיונות משתנים.\n* נא לספק מפתח RSA ציבורי (בתסדיר PEM) אם אפשר; אחרת ישמש אסימון סודי אחור (מאובטח פחות).\n* באפשרותך להשתמש במזהה מיזם כדי להגביל את הצרכן למיזם אחד באתר הזה (אפשר להשתמש ב־\"*\" לכל המיזמים).",

@@ -66,7 +66,6 @@
 	"mwoauth-consumer-stage-suppressed": "supprimite",
 	"oauthconsumerregistration": "Registration de consumitor OAuth",
 	"mwoauthconsumerregistration-navigation": "Navigation:",
-	"mwoauthconsumerregistration-propose": "Proponer nove consumitor",
 	"mwoauthconsumerregistration-list": "Mi lista de consumitores",
 	"mwoauthconsumerregistration-main": "Principal",
 	"mwoauthconsumerregistration-propose-text": "Programmatores deberea usar le formulario hic infra pro proponer un nove consumitor OAuth (vide le [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth documentation del extension] pro plus detalios). Post haber submittite iste formulario, tu recipera un token, le qual tu application va usar pro identificar se pro MediaWiki. Un administrator de OAuth debera approbar tu application ante que illo pote esser autorisate per altere usatores.\n\nEcce alcun recommendationes e remarcas:\n* Concede le minus derectos possibile. Evita concessiones que non es necessari in iste momento.\n* Le versiones es in forma \"major.minor.edition\" (le ultime duo es optional) e augmenta quando cambiamentos de concession es necessari.\n* Forni un clave RSA (in formato PEM) si possibile; alteremente un token secrete (e minus secur) te essera assignate.\n* Tu pote usar un ID de projecto pro limitar le consumitor a un singule projecto in iste sito (usa \"*\" pro tote le projectos).",

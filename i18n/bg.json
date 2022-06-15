@@ -37,7 +37,6 @@
 	"mwoauth-consumer-stage-suppressed": "потиснато",
 	"oauthconsumerregistration": "Регистрация на клиент на OAuth",
 	"mwoauthconsumerregistration-navigation": "Навигация:",
-	"mwoauthconsumerregistration-propose": "Предложи нов клиент",
 	"mwoauthconsumerregistration-list": "Списък на мои клиенти",
 	"mwoauthconsumerregistration-main": "Главна",
 	"mwoauthconsumerregistration-propose-legend": "Ново клиентско приложение за OAuth",

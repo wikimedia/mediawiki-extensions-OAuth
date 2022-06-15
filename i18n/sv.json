@@ -74,7 +74,6 @@
 	"mwoauth-consumer-stage-suppressed": "undertryckta",
 	"oauthconsumerregistration": "Registrering för OAuth-konsumenter",
 	"mwoauthconsumerregistration-navigation": "Navigering:",
-	"mwoauthconsumerregistration-propose": "Föreslå ny kund",
 	"mwoauthconsumerregistration-list": "Min konsumentlista",
 	"mwoauthconsumerregistration-main": "Huvudsida",
 	"mwoauthconsumerregistration-propose-text": "Utvecklare bör använda formuläret nedan för att föreslå en ny OAuth-konsument (se [//www.mediawiki.org/wiki/Extension:OAuth dokumentationen för tillägget] för mer detaljer). Efter att ha skickat in detta formulär, får du en nyckel som din applikation kan använda för att identifiera sig gentemot MediaWiki. En OAuth-administratör måste godkänna din ansökan innan den kan tillåtas av andra användare.\n\nNågra rekommendationer och anmärkningar:\n* Försök att använda så få behörigheter som möjligt. Undvik behörigheter som egentligen inte behövs nu.\n* Versioner är av formen \"huvudversion.underversion.release\" (de två sista är valfria) och ökar allt eftersom behörighetsförändringar behövs.\n* Vänligen ange en publik RSA-nyckel (i PEM-format) om möjligt; annars måste en (mindre säker) hemlig nyckel användas.\n* Du kan använda ett projekt-id för att begränsa konsumenten till ett enskilt projekt på denna webbplats (använd \"*\" för alla projekt).",

@@ -73,7 +73,6 @@
 	"mwoauth-consumer-stage-suppressed": "onderdrukt",
 	"oauthconsumerregistration": "Registratie van OAuth-toepassingen",
 	"mwoauthconsumerregistration-navigation": "Navigatie:",
-	"mwoauthconsumerregistration-propose": "Nieuwe consumer voorstellen",
 	"mwoauthconsumerregistration-list": "Uw consumerlijst",
 	"mwoauthconsumerregistration-main": "Startpagina",
 	"mwoauthconsumerregistration-propose-text": "Ontwikkelaars moeten onderstaand formulier gebruiken om een nieuwe OAuth-toepassing voor te stellen (zie de [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth extension documentatie van de uitbreiding] voor meer details). Na het indienen van dit formulier ontvangt u een token waarmee uw toepassing zich gaat identificeren bij MediaWiki. Een OAuth-beheerder moet uw toepassing goedkeuren voordat andere gebruikers er toestemmingen aan kunnen geven.\n\nEen paar aanbevelingen en opmerkingen:\n* Probeer zo weinig mogelijk bevoegdheden te gebruiken. Vermijd bevoegdheden die niet echt nodig zijn.\n* Versies zijn in de vorm \"groot.klein.release\" (de laatste twee elementen zijn optioneel) en moeten oplopen als er wijzigingen voor bevoegdheden nodig zijn.\n* Verschaf indien mogelijk een publieke RSA-sleutel (in PEM-formaat); als dat niet mogelijk is, zal een (minder veilig) geheim token moeten worden gebruikt.\n* U kunt een project-ID gebruiken om de toepassing te beperken tot één enkel project op deze site (gebruik \"*\" voor alle projecten).",

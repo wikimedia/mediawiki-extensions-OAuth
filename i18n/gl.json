@@ -69,7 +69,6 @@
 	"mwoauth-consumer-stage-suppressed": "suprimido",
 	"oauthconsumerregistration": "Rexistro de consumidor OAuth",
 	"mwoauthconsumerregistration-navigation": "Navegación:",
-	"mwoauthconsumerregistration-propose": "Propoñer un novo consumidor",
 	"mwoauthconsumerregistration-list": "A miña lista de consumidores",
 	"mwoauthconsumerregistration-main": "Principal",
 	"mwoauthconsumerregistration-propose-text": "Os desenvolvedores deben utilizar o formulario inferior para propoñer un novo consumidor OAuth (véxase a [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth documentación da extensión] para atopar máis detalles). Despois de enviar este formulario, recibirá un pase que a súa aplicación usará para identificarse en MediaWiki. Un administrador de OAuth terá que aprobar a súa aplicación antes de poder ser autorizada por outros usuarios.\n\nAlgunhas recomendacións e observacións:\n* Intente utilizar as menos concesións posibles. Evite as concesións que non sexan realmente necesarias agora.\n* As versións son da forma \"maior.menor.lanzamento\" (os dous últimos son opcionais) e aumentan cando son necesarios cambios nas concesións.\n* Achegue unha clave RSA pública (en formato PEM) se fose posible; en caso contrario, haberá que utilizar un pase secreto (menos seguro).\n* Pode empregar o ID dun proxecto para restrinxir o consumidor a un único proxecto neste sitio (utilice \"*\" para todos os proxectos).",

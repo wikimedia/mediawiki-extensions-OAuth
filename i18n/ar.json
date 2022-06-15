@@ -74,7 +74,6 @@
 	"mwoauth-consumer-stage-suppressed": "المخفية",
 	"oauthconsumerregistration": "تسجيل مستهلك OAuth",
 	"mwoauthconsumerregistration-navigation": "تصفح:",
-	"mwoauthconsumerregistration-propose": "اقتراح مستهلك جديد",
 	"mwoauthconsumerregistration-list": "قائمة المستهلكين الخاصة بي",
 	"mwoauthconsumerregistration-main": "الرئيسي",
 	"mwoauthconsumerregistration-propose-text": "يجب على المطورين استخدام النموذج أدناه لاقتراح مستهلك OAuth جديد (راجع [//www.mediawiki.org/wiki/Extension:OAuth توثيق التمديد] لمزيد من التفاصيل)، بعد إرسال هذا النموذج، ستتلقى رمزا سيستخدمه تطبيقك لتعريف نفسه بميدياويكي، سيحتاج إداري OAuth إلى الموافقة على طلب اشتراكك قبل تفويضه من قبل مستخدمين آخرين.\n\nبعض التوصيات والملاحظات: \n* حاول استخدام عدد قليل من المنح قدر الإمكان، تجنب المنح التي ليست مطلوبة فعليا الآن. \n* تكون الإصدارات على شكل \"major.minor.release\" (الخياران الآخران اختياريان) وتزداد الحاجة إلى إجراء تغييرات على المنحة. \n* يُرجَى تقديم مفتاح RSA عام (بتنسيق PEM) إذا أمكن، وإلا يجب استخدام رمز سري (أقل أمانا).\n* يمكنك استخدام معرف مشروع لتقييد المستهلك إلى مشروع واحد في هذا الموقع (استخدم \"*\" لجميع المشاريع).",

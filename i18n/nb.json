@@ -68,7 +68,6 @@
 	"mwoauth-consumer-stage-suppressed": "underslått",
 	"oauthconsumerregistration": "OAuth-konsumentregistrering",
 	"mwoauthconsumerregistration-navigation": "Navigasjon:",
-	"mwoauthconsumerregistration-propose": "Foreslå ny konsument",
 	"mwoauthconsumerregistration-list": "Min konsumentliste",
 	"mwoauthconsumerregistration-main": "Hovedside",
 	"mwoauthconsumerregistration-propose-text": "Utviklere kan bruke skjemaet under for å søke om en ny OAuth-konsument (se [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth dokumentasjonen for MediaWiki-tillegget] for flere detaljer). Etter at skjemaet er sendt inn, vil du få et token som applikasjonen kan bruke for å identifisere seg for MediaWiki. En OAuth-administrator må godkjenne søknaden før applikasjonen kan brukes av andre brukere.\n\nNoen anbefalinger:\n* Prøv å bruke så få rettighetstildelinger som mulig. Unngå tildelinger som strengt tatt ikke er nødvendige.\n* Versjonsnumre følger formen «major.minor.release» (de siste to er valgfrie) og øker når endringer i tildelinger er nødvendige.\n* Du kan begrense applikasjonen til et bestemt prosjekt.",

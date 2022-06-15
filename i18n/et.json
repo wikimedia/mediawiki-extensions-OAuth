@@ -44,7 +44,6 @@
 	"mwoauth-consumer-stage-disabled": "keelatud",
 	"oauthconsumerregistration": "OAuthi tarvituse registreerimine",
 	"mwoauthconsumerregistration-navigation": "Navigeerimine:",
-	"mwoauthconsumerregistration-propose": "uue tarvituse ettepanek",
 	"mwoauthconsumerregistration-list": "minu tarvituste loend",
 	"mwoauthconsumerregistration-main": "pealeht",
 	"mwoauthconsumerregistration-propose-text": "Uue OAuthi tarvituse kohta ettepaneku tegemiseks peaks arendajad kasutama allpool olevat vormi (loe üksikasju [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth tarkvaralisa dokumentatsioonist]). Pärast selle vormi esitamist saad tõendi, mida sinu rakendus kasutab MediaWiki tarkvaras identimiseks.  Enne kui teised kasutajad saavad sinu rakendust volitamiseks kasutada, peab OAuthi administraator selle heaks kiitma.\n\nMõned soovitused ja märkused:\n* Proovi kasutada nii vähe volitusi kui võimalik. Väldi volitusi, mida pole tegelikult vaja.\n* Versioonid on kujul \"peaversioon.kõrvalversioon.väljaanne\" (viimased kaks on valikulised). Need kasvavad, kui volitusi on vaja muuta.\n* Palun too ära avalik RSA-võti (PEM-vormingus), kui võimalik. Vastasel juhul tuleb kasutada salajast tõendit, mis on vähem turvaline.\n* Saad kasutada projekti identifikaatorit, et piirata tarvitus selle saidi ühele projektile (kõigi projektide jaoks kirjuta \"*\").",

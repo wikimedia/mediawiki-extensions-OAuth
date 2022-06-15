@@ -91,7 +91,6 @@
 	"mwoauth-consumer-stage-suppressed": "подавлен",
 	"oauthconsumerregistration": "Регистрация клиента OAuth",
 	"mwoauthconsumerregistration-navigation": "Навигацияː",
-	"mwoauthconsumerregistration-propose": "Предложить новое клиентское подключение",
 	"mwoauthconsumerregistration-list": "Мой список клиентских подключений",
 	"mwoauthconsumerregistration-main": "Главная",
 	"mwoauthconsumerregistration-propose-legend": "Новое клиентское OAuth-приложение",

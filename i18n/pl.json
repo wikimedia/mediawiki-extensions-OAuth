@@ -75,7 +75,6 @@
 	"mwoauth-consumer-stage-suppressed": "ukryte",
 	"oauthconsumerregistration": "Rejestracja konsumenta OAuth",
 	"mwoauthconsumerregistration-navigation": "Nawigacja:",
-	"mwoauthconsumerregistration-propose": "Zaproponuj nowego konsumenta",
 	"mwoauthconsumerregistration-list": "Lista moich konsumentów",
 	"mwoauthconsumerregistration-main": "Główna",
 	"mwoauthconsumerregistration-propose-text": "Deweloperzy powinni używać poniższego formularza w celu zaproponowania nowego konsumenta OAuth (zobacz [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth dokumentację rozszerzenia] po więcej szczegółów). Po przesłaniu tego formularza otrzymasz token, którego używała będzie Twoja aplikacja w celu identyfikacji w MediaWiki. Administrator OAuth będzie musiał zatwierdzić twoją aplikację zanim będzie mogła być autoryzowana przez innych użytkowników.\n\nKika rekomendacji i uwag:\n* Staraj się używać tak niewielu dostępów, jak to możliwe. Unikaj dostępów, które nie są niezbędne w danej chwili.\n* Wersje podawane są w formacie „główne.poboczne.wydanie” (z czego dwa ostatnie są opcjonalne) i wzrastają, gdy zmiany w dostępach są konieczne.\n* Wprowadź publiczny klucz RSA (w formacie PEM) gdy to możliwe; w innym wypadku wykorzystany zostanie (mniej bezpieczny) token bezpieczeństwa.\n* Możesz użyć identyfikatora projektu aby ograniczyć konsumenta do pojedynczego projektu na stronie (użycie „*” da dostęp do wszystkich projektów).",

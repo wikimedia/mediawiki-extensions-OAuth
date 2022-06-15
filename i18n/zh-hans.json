@@ -89,7 +89,6 @@
 	"mwoauth-consumer-stage-suppressed": "已阻止",
 	"oauthconsumerregistration": "OAuth消费方注册",
 	"mwoauthconsumerregistration-navigation": "导航：",
-	"mwoauthconsumerregistration-propose": "提议新消费者",
 	"mwoauthconsumerregistration-list": "我的消费者列表",
 	"mwoauthconsumerregistration-main": "主要",
 	"mwoauthconsumerregistration-propose-text": "开发者应使用下面的表单提议新的OAuth应用程序（更多信息请参见[https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth 该扩展插件文档]）。提交表单后，您将收到与您应用程序相关的令牌，它用于验证身份。OAuth管理员会审核并可能通过您的提议，之后您的程序才能正常访问。\n\n一些建议与提醒：\n* 如果可能，尝试使用较少的功能，避免目前不需要的功能。\n* 版本应存在于表单“major.minor.release”（最新的两个作为选项）并在需要时增加功能。\n* 如果可能，请提供RSA公钥（PEM格式）；否则将会使用（较不安全的）私有领牌。\n* 您可使用项目ID限制应用程序访问此网站的单一项目（使用“ * ”访问所有项目）。",

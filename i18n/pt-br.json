@@ -76,7 +76,6 @@
 	"mwoauth-consumer-stage-suppressed": "suprimido",
 	"oauthconsumerregistration": "Registro do consumidor OAuth",
 	"mwoauthconsumerregistration-navigation": "Navegação:",
-	"mwoauthconsumerregistration-propose": "Propor novo consumidor",
 	"mwoauthconsumerregistration-list": "Minha lista de consumidores",
 	"mwoauthconsumerregistration-main": "Principal",
 	"mwoauthconsumerregistration-propose-text": "Os desenvolvedores devem usar a forma abaixo para propôr um novo consumidor da OAuth (veja a [//www.mediawiki.org/wiki/Extension:OAuth documentação da extensão] para obter mais detalhes). Depois de enviar esta forma você receberá um token que seu aplicativo usará para se identificar com o MediaWiki. Um administrador do OAuth precisará aprovar seu aplicativo antes que ele possa ser autorizado por outros usuários.\n\nAlgumas recomendações e observações:\n* Tente usar o mínimo possível de concessões. Evite concessões que não são realmente necessárias agora.\n* As versões são da forma \"major.minor.release\" (os últimos dois sendo opcionais) e aumentam à medida que são necessárias alterações de concessão.\n* Forneça uma chave pública RSA (em Formato PEM), se possível; Caso contrário, será necessário usar um token secreto (menos seguro). \n* Você pode usar uma ID do projeto para restringir o consumidor a um único projeto neste site (use \"*\" para todos os projetos).",

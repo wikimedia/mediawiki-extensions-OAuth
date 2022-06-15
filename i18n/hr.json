@@ -57,7 +57,6 @@
 	"mwoauth-consumer-grantshelp": "Svaka dozvola daje pristup navedenim suradničkim pravima koja su već dodijeljena suradničkom računu. Za više informacija vidi [[Special:ListGrants|tablicu dozvola]].",
 	"oauthconsumerregistration": "Registracija trošača OAutha",
 	"mwoauthconsumerregistration-navigation": "Orijentacija:",
-	"mwoauthconsumerregistration-propose": "Predložite novog korisnika",
 	"mwoauthconsumerregistration-list": "Popis mojih korisnika",
 	"mwoauthconsumerregistration-main": "Glavna",
 	"mwoauthconsumerregistration-update-text": "Donji obrazac služi za promjenu aspekata OAuth trošača koga kontrolirate.\n\nSve ovdje navedene vrijednosti bit će prepisane preko postojećih. Ne ostavljajte prazna polja, osim ako ne želite izbrisati njihove vrijednosti.",

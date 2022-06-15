@@ -64,7 +64,6 @@
 	"mwoauth-consumer-stage-suppressed": "potisnut",
 	"oauthconsumerregistration": "Registracija potrošača OAutha",
 	"mwoauthconsumerregistration-navigation": "Navigacija:",
-	"mwoauthconsumerregistration-propose": "Predloži novog potrošača",
 	"mwoauthconsumerregistration-list": "Popis mojih potrošača",
 	"mwoauthconsumerregistration-main": "Glavna",
 	"mwoauthconsumerregistration-propose-text": "Programeri bi trebali koristiti ovaj predložak za predlaganje novog potrošača OAutha (više ćete naći u [//www.mediawiki.org/wiki/Extension:OAuth dokumentaciji za dodatak]). Nakon što pošaljete obrazac, dobit ćete kod s kojim ćete biti predstavljeni na MediaWiki. Administrator usluge OAuth morat će odobriti vašu aplikaciju prije nego što mogu autorizirati korisnike.\n\n\nNekoliko preporuka i primjedbi:\n* Odobrava kao malo odobrenja. Izbjegavajte one koje trenutno nisu potrebne.\n* Verzije su \"major.minor.release\" (posljednja dva su opcionalna) i povećavaju se s potrebom za izmjenama u dozvolama.\n* Ako je moguće, unesite javni RSA ključ (u PEM formatu); inače (manje sigurni) dat ćemo vam tajni ključ.\n* Možete ograničiti potrošača na samo jedan projekt na ovom sajtu, unoseći naznaku projekta (\"*\" za sve projekte).",
