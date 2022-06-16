@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"mwoauthconsumerregistration-propose-text": "Je kunt:\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|Een OAuth 1.0a-consument voorstellen]].\n* [[Special:OAuthConsumerRegistration/propose/oauth2|Een OAuth 2.0-cliënt voorstellen]]."
+}

@@ -86,7 +86,7 @@
 	"mwoauthconsumerregistration-propose-oauth2": "Text for the link that developers follow to request that their application is accepted as an OAuth 2 application on this site.",
 	"mwoauthconsumerregistration-list": "Used in page subtitle link text",
 	"mwoauthconsumerregistration-main": "Used as label for \"View all\" link.\n\nPreceded by list of the links (\"|\" separated) which have any one of the following link texts:\n* {{msg-mw|Mwoauthconsumerregistration-propose}}\n* {{msg-mw|Mwoauthconsumerregistration-list}}\n{{Identical|Main}}",
-	"mwoauthconsumerregistration-propose-text": "Used on [[Special:OAuthConsumerRegistration/propose]]to direct proposers to either the OAuth 1.0a form or the OAuth 2.0 form.\n\n\"Application\" means \"app, software application\".",
+	"mwoauthconsumerregistration-propose-text": "Used on [[Special:OAuthConsumerRegistration/propose]] to direct proposers to either the OAuth 1.0a form or the OAuth 2.0 form.",
 	"mwoauthconsumerregistration-propose-text-oauth1a": "Used as introduction text for the OAuth 1.0a form at [[Special:OAuthConsumerRegistration/propose/oauth1a]].\n\n\"Application\" means \"app, software application\".",
 	"mwoauthconsumerregistration-propose-text-oauth2": "Used as introduction text for the OAuth 2.0 form at [[Special:OAuthConsumerRegistration/propose/oauth2]].\n\n\"Application\" means \"app, software application\".",
 	"mwoauthconsumerregistration-update-text": "Used as introduction text for the form.",

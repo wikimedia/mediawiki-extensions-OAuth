@@ -5,6 +5,7 @@
 			"Brettchenweber",
 			"ChrisiPK",
 			"Gebu",
+			"Johannnes89",
 			"Kghbln",
 			"Killarnee",
 			"McDutchie",
@@ -79,7 +80,7 @@
 	"mwoauthconsumerregistration-navigation": "Navigation:",
 	"mwoauthconsumerregistration-list": "Meine Verbraucherliste",
 	"mwoauthconsumerregistration-main": "Start",
-	"mwoauthconsumerregistration-propose-text": "Du kannst:\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|Einen OAuth 1.0a-Konsumenten vorschlagen]].\n* [[Special:OAuthConsumerRegistration/propose/oauth2|Einen OAuth 2.0-Konsumenten vorschlagen]].",
+	"mwoauthconsumerregistration-propose-text": "Du kannst:\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|Einen OAuth 1.0a-Konsumenten vorschlagen]].\n* [[Special:OAuthConsumerRegistration/propose/oauth2|Einen OAuth 2.0-Client vorschlagen]].",
 	"mwoauthconsumerregistration-update-text": "Verwende das unten stehende Formular, um Aspekte eines von dir kontrollierten OAuth-Verbrauchers zu aktualisieren.\n\nAlle Werte hier überschreiben alle vorherigen. Hinterlasse keine leeren Felder, außer du beabsichtigst, diese Werte zu löschen.",
 	"mwoauthconsumerregistration-maintext": "Diese Seite dient zum Vorschlagen und Aktualisieren von OAuth-Anwendungen in der Websiteregistrierung durch Entwickler.\n\nDu kannst hier\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|einen Token für eine neue OAuth 1.0a-Anwendung anfordern]]\n*[[Special:OAuthConsumerRegistration/propose/oauth2|einen Token für eine neue OAuth 2.0-Anwendung anfordern]]\n* [[Special:OAuthConsumerRegistration/list|deine vorhandenen Anwendungen verwalten]].\n\nFür mehr Informationen über OAuth, siehe die [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth Erweiterungsdokumentation].",
 	"mwoauthconsumerregistration-propose-legend": "Neue OAuth-Verbraucheranwendung",
@@ -321,6 +322,6 @@
 	"mwoauth-oauth2-error-request-not-verified": "Versuch, geprüfte Eigenschaften abzurufen, bevor die Anfrage verifiziert wurde",
 	"mwoauth-oauth2-invalid-access-token": "Ungültiges Zugriffstoken",
 	"mwoauth-login-required-reason": "Sie müssen sich in Ihr {{SITENAME}}-Konto einloggen, um Anwendungen zu erlauben, darauf zuzugreifen.",
-	"mwoauthconsumer-application-view": "Dës Ufro weisen",
+	"mwoauthconsumer-application-view": "Anwendung anzeigen",
 	"mwoauth-consumer-deleted-error": "Du kannst keine Aktionen für gelöschte Clients durchführen"
 }
