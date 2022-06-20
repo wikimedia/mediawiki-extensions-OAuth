@@ -16,7 +16,7 @@
 	"mwoauth-field-hidden": "(dës Informatioun ass verstoppt)",
 	"mwoauth-field-private": "(dës Informatioun ass privat)",
 	"mwoauth-prefs-managegrants": "Verbonnen Applicatiounen:",
-	"mwoauth-prefs-managegrantslink": "$1 Verbonnen {{PLURAL:$1|$1 Verbonnen Applicatioun|$1 Verbonnen Applicatioune|0=verbonnen Applicatioune}} geréieren",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 Verbonnen Applicatioun|$1 Verbonnen Applicatioune|0=verbonnen Applicatioune}} geréieren",
 	"mwoauth-consumer-allwikis": "All Projeten op dësem Site",
 	"mwoauth-consumer-name": "Numm vun der Applicatioun:",
 	"mwoauth-consumer-version": "Verbraucherversioun:",
