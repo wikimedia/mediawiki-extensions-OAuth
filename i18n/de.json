@@ -13,7 +13,9 @@
 			"McDutchie",
 			"Robby",
 			"Zabe",
-			"Talex42"
+			"Talex42",
+			"Brettchenweber",
+			"Johannnes89"
 		]
 	},
 	"mwoauth-desc": "Ermöglicht die Nutzung von OAuth 1.0a und OAuth 2.0 zur API-Autorisierung",
@@ -307,6 +309,17 @@
 	"notification-oauth-app-body": "Grund: $1",
 	"mwoauth-oauth-version": "OAuth-Protokoll-Version",
 	"mwoauth-oauth2-granttype-auth-code": "Autorisierungscode",
+	"mwoauth-oauth-unsupported-version": "Dieser Endpunkt ist für OAuth-Version $1 nicht zulässig",
+	"mwoauth-oauth2-unable-to-retrieve-access-token": "Zugriffstoken konnte nicht abgerufen werden: $1",
+	"mwoauth-oauth2-error-server-error": "Der Autorisierungsserver ist auf eine unerwartete Bedingung gestoßen, die ihn daran hinderte, die Anfrage zu erfüllen.",
+	"mwoauth-oauth2-error-invalid-request": "In der Anfrage fehlt ein erforderlicher Parameter, sie enthält einen ungültigen Parameterwert, sie enthält einen Parameter mehr als einmal oder ist anderweitig fehlerhaft.",
+	"mwoauth-oauth2-error-unauthorized-client": "Der Client ist nicht berechtigt, einen Autorisierungscode mit dieser Methode anzufordern.",
+	"mwoauth-oauth2-error-access-denied": "Der Eigentümer der Ressource oder der Autorisierungsserver hat die Anfrage abgelehnt.",
+	"mwoauth-oauth2-error-unsupported-response-type": "Der Autorisierungsserver unterstützt die Erlangung eines Autorisierungscodes mit dieser Methode nicht.",
+	"mwoauth-oauth2-error-invalid-scope": "Der angefragte Bereich ist ungültig, unbekannt oder fehlerhaft.",
+	"mwoauth-oauth2-error-temporarily-unavailable": "Der Autorisierungsserver ist derzeit nicht in der Lage, die Anfrage zu bearbeiten, da der Server vorübergehend überlastet ist oder gewartet wird.",
+	"mwoauth-oauth2-error-request-not-verified": "Versuch, geprüfte Eigenschaften abzurufen, bevor die Anfrage verifiziert wurde",
+	"mwoauth-oauth2-invalid-access-token": "Ungültiges Zugriffstoken",
 	"mwoauth-login-required-reason": "Sie müssen sich in Ihr {{SITENAME}}-Konto einloggen, um Anwendungen zu erlauben, darauf zuzugreifen.",
-	"mwoauthconsumer-application-view": "Dës Ufro weisen"
+	"mwoauthconsumer-application-view": "Anwendung anzeigen"
 }
