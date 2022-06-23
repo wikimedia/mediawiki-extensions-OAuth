@@ -14,7 +14,8 @@
 			"Umherirrender",
 			"Wnme",
 			"Zabe",
-			"Brettchenweber"
+			"Brettchenweber",
+			"Johannnes89"
 		]
 	},
 	"mwoauth-desc": "Ermöglicht die Nutzung von OAuth 1.0a und OAuth 2.0 zur API-Autorisierung",
@@ -322,6 +323,6 @@
 	"mwoauth-oauth2-error-request-not-verified": "Versuch, geprüfte Eigenschaften abzurufen, bevor die Anfrage verifiziert wurde",
 	"mwoauth-oauth2-invalid-access-token": "Ungültiges Zugriffstoken",
 	"mwoauth-login-required-reason": "Sie müssen sich in Ihr {{SITENAME}}-Konto einloggen, um Anwendungen zu erlauben, darauf zuzugreifen.",
-	"mwoauthconsumer-application-view": "Dës Ufro weisen",
+	"mwoauthconsumer-application-view": "Anwendung anzeigen",
 	"mwoauth-consumer-deleted-error": "Du kannst keine Aktionen für gelöschte Clients durchführen"
 }
