@@ -2,7 +2,15 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
+use Exception;
+use IContextSource;
+use IDBAccessObject;
+use LogicException;
 use MediaWiki\Logger\LoggerFactory;
+use Message;
+use MWException;
+use Psr\Log\LoggerInterface;
+use stdClass;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBReadOnlyError;
@@ -29,22 +37,22 @@ use Wikimedia\Rdbms\DBReadOnlyError;
 /**
  * Representation of a Data Access Object
  */
-abstract class MWOAuthDAO implements \IDBAccessObject {
+abstract class MWOAuthDAO implements IDBAccessObject {
 	/** @var string object construction origin */
 	private $daoOrigin = 'new';
 	/** @var bool whether fields changed or the field is new */
 	private $daoPending = true;
 
-	/** @var \Psr\Log\LoggerInterface */
+	/** @var LoggerInterface */
 	protected $logger;
 
 	/**
-	 * @throws \LogicException
+	 * @throws LogicException
 	 */
 	final protected function __construct() {
 		$fields = array_keys( static::getFieldPermissionChecks() );
 		if ( array_diff( $fields, $this->getFieldNames() ) ) {
-			throw new \LogicException( "Invalid field(s) defined in access check methods." );
+			throw new LogicException( "Invalid field(s) defined in access check methods." );
 		}
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
 	}
@@ -75,7 +83,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 
 	/**
 	 * @param DBConnRef $db
-	 * @param array|\stdClass $row
+	 * @param array|stdClass $row
 	 * @return static
 	 */
 	final public static function newFromRow( DBConnRef $db, $row ) {
@@ -115,11 +123,11 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 *
 	 * @param string $name
 	 * @return mixed
-	 * @throws \LogicException
+	 * @throws LogicException
 	 */
 	final public function get( $name ) {
 		if ( !static::hasField( $name ) ) {
-			throw new \LogicException( "Object has no '$name' field." );
+			throw new LogicException( "Object has no '$name' field." );
 		}
 		return $this->$name;
 	}
@@ -130,7 +138,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @param string $name
 	 * @param mixed $value
 	 * @return mixed The old value
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	final public function setField( $name, $value ) {
 		$old = $this->setFields( [ $name => $value ] );
@@ -141,14 +149,14 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * Set the values for a set of fields
 	 *
 	 * @param array $values (field => value) map
-	 * @throws \LogicException
+	 * @throws LogicException
 	 * @return array Map of old values
 	 */
 	final public function setFields( array $values ) {
 		$old = [];
 		foreach ( $values as $name => $value ) {
 			if ( !static::hasField( $name ) ) {
-				throw new \LogicException( "Object has no '$name' field." );
+				throw new LogicException( "Object has no '$name' field." );
 			}
 			$old[$name] = $this->$name;
 			$this->$name = $value;
@@ -250,12 +258,12 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 *   - table          : a table name
 	 *   - fieldColumnMap : a map of field names to column names
 	 *
-	 * @throws \MWException
+	 * @throws MWException
 	 * @return array
 	 */
 	protected static function getSchema() {
 		// Note: declaring this abstract raises E_STRICT
-		throw new \MWException( "getSchema() not defined in " . get_class() );
+		throw new MWException( "getSchema() not defined in " . get_class() );
 	}
 
 	/**
@@ -269,12 +277,12 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @see MWOAuthDAO::userCanAccess()
 	 * @see MWOAuthDAOAccessControl
 	 *
-	 * @throws \LogicException Subclasses must override
+	 * @throws LogicException Subclasses must override
 	 * @return array Map of (field name => name of method that checks access)
 	 */
 	protected static function getFieldPermissionChecks() {
 		// Note: declaring this abstract raises E_STRICT
-		throw new \LogicException( "getFieldPermissionChecks() not defined in " . get_class() );
+		throw new LogicException( "getFieldPermissionChecks() not defined in " . get_class() );
 	}
 
 	/**
@@ -338,12 +346,12 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 
 	/**
 	 * @param array $values
-	 * @throws \MWException
+	 * @throws MWException
 	 */
 	final protected function loadFromValues( array $values ) {
 		foreach ( static::getFieldColumnMap() as $field => $column ) {
 			if ( !array_key_exists( $field, $values ) ) {
-				throw new \MWException( get_class( $this ) . " requires '$field' field." );
+				throw new MWException( get_class( $this ) . " requires '$field' field." );
 			}
 			$this->$field = $values[$field];
 		}
@@ -361,7 +369,7 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 
 	/**
 	 * @param DBConnRef $db
-	 * @param \stdClass|array $row
+	 * @param stdClass|array $row
 	 * @return void
 	 */
 	final protected function loadFromRow( DBConnRef $db, $row ) {
@@ -415,10 +423,10 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	 * @see MWOAuthDAOAccessControl
 	 *
 	 * @param string $name
-	 * @param \IContextSource $context
-	 * @return \Message|true Returns on success or a Message if the user lacks access
+	 * @param IContextSource $context
+	 * @return Message|true Returns on success or a Message if the user lacks access
 	 */
-	final public function userCanAccess( $name, \IContextSource $context ) {
+	final public function userCanAccess( $name, IContextSource $context ) {
 		$map = static::getFieldPermissionChecks();
 		if ( isset( $map[$name] ) ) {
 			$method = $map[$name];
@@ -431,10 +439,10 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	/**
 	 * Get the current conflict token value for a user
 	 *
-	 * @param \IContextSource $context
+	 * @param IContextSource $context
 	 * @return string Hex token
 	 */
-	final public function getChangeToken( \IContextSource $context ) {
+	final public function getChangeToken( IContextSource $context ) {
 		$map = [];
 		foreach ( $this->getFieldNames() as $field ) {
 			if ( $this->userCanAccess( $field, $context ) ) {
@@ -454,11 +462,11 @@ abstract class MWOAuthDAO implements \IDBAccessObject {
 	/**
 	 * Compare an old change token to the current one
 	 *
-	 * @param \IContextSource $context
+	 * @param IContextSource $context
 	 * @param string $oldToken
 	 * @return bool Whether the current is unchanged
 	 */
-	final public function checkChangeToken( \IContextSource $context, $oldToken ) {
+	final public function checkChangeToken( IContextSource $context, $oldToken ) {
 		return ( $this->getChangeToken( $context ) === $oldToken );
 	}
 

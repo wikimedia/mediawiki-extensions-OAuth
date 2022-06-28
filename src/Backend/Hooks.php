@@ -5,6 +5,8 @@ namespace MediaWiki\Extension\OAuth\Backend;
 use MediaWiki\Extension\OAuth\Frontend\OAuthLogFormatter;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableAccessException;
+use Status;
+use User;
 use WikiMap;
 
 /**
@@ -65,11 +67,11 @@ EOK;
 	 * Reserve change tags that look like an OAuth change tag.
 	 *
 	 * @param string $tag
-	 * @param \User|null $user
-	 * @param \Status &$status
+	 * @param User|null $user
+	 * @param Status &$status
 	 * @return bool
 	 */
-	public static function onChangeTagCanCreate( $tag, ?\User $user, \Status &$status ) {
+	public static function onChangeTagCanCreate( $tag, ?User $user, Status &$status ) {
 		if ( Utils::isReservedTagName( $tag ) ) {
 			$status->fatal( 'mwoauth-tag-reserved' );
 		}

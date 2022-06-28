@@ -2,15 +2,17 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
+use DatabaseUpdater;
+
 /**
  * Class containing updater functions for an OAuth environment
  */
 class UpdaterHooks {
 	/**
-	 * @param \DatabaseUpdater $updater
+	 * @param DatabaseUpdater $updater
 	 * @return bool
 	 */
-	public static function addSchemaUpdates( \DatabaseUpdater $updater ) {
+	public static function addSchemaUpdates( DatabaseUpdater $updater ) {
 		if ( !Utils::isCentralWiki() ) {
 			// no tables to add
 			return true;

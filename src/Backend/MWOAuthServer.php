@@ -2,7 +2,11 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
+use Linker;
 use MediaWiki\Extension\OAuth\Lib\OAuthServer;
+use Message;
+use SpecialPage;
+use User;
 
 class MWOAuthServer extends OAuthServer {
 	/** @var MWOAuthDataStore */
@@ -36,10 +40,10 @@ class MWOAuthServer extends OAuthServer {
 		if ( $consumer->getOwnerOnly() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
 				$consumer->getName(),
-				\SpecialPage::getTitleFor(
+				SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
 				),
-				\Message::rawParam( \Linker::makeExternalLink(
+				Message::rawParam( Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
 					'E010',
 					true
@@ -50,7 +54,7 @@ class MWOAuthServer extends OAuthServer {
 		// Consumer must have a key for us to verify
 		if ( !$consumer->getSecretKey() && !$consumer->getRsaKey() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret', [
-				\Message::rawParam( \Linker::makeExternalLink(
+				Message::rawParam( Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E011',
 					'E011',
 					true
@@ -199,8 +203,7 @@ class MWOAuthServer extends OAuthServer {
 		} else {
 			$want = (string)$expect[$part];
 			$have = (string)$got[$part];
-			$len = strlen( $want );
-			$match = $want === substr( $have, 0, $len );
+			$match = strpos( $have, $want ) === 0;
 		}
 		return $match;
 	}
@@ -223,10 +226,10 @@ class MWOAuthServer extends OAuthServer {
 		if ( $consumer->getOwnerOnly() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
 				$consumer->getName(),
-				\SpecialPage::getTitleFor(
+				SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
 				),
-				\Message::rawParam( \Linker::makeExternalLink(
+				Message::rawParam( Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
 					'E010',
 					true
@@ -237,7 +240,7 @@ class MWOAuthServer extends OAuthServer {
 		// Consumer must have a key for us to verify
 		if ( !$consumer->getSecretKey() && !$consumer->getRsaKey() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret', [
-				\Message::rawParam( \Linker::makeExternalLink(
+				Message::rawParam( Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E011',
 					'E011',
 					true
@@ -260,9 +263,7 @@ class MWOAuthServer extends OAuthServer {
 		// Rev A change
 		$verifier = $request->get_parameter( 'oauth_verifier' );
 		$this->logger->debug( __METHOD__ . ": verify code is '$verifier'" );
-		$new_token = $this->data_store->new_access_token( $token, $consumer, $verifier );
-
-		return $new_token;
+		return $this->data_store->new_access_token( $token, $consumer, $verifier );
 	}
 
 	/**
@@ -297,11 +298,11 @@ class MWOAuthServer extends OAuthServer {
 	 *
 	 * @param string $consumerKey
 	 * @param string $requestTokenKey
-	 * @param \User $mwUser
+	 * @param User $mwUser
 	 * @param bool $update
 	 * @return string
 	 */
-	public function authorize( $consumerKey, $requestTokenKey, \User $mwUser, $update ) {
+	public function authorize( $consumerKey, $requestTokenKey, User $mwUser, $update ) {
 		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$consumer = Consumer::newFromKey( $dbr, $consumerKey );
 		return $consumer->authorize( $mwUser, $update, $consumer->getGrants(), $requestTokenKey );
@@ -319,14 +320,14 @@ class MWOAuthServer extends OAuthServer {
 	 * Users might want more grants on some wikis than on "*". Note that the reverse would not
 	 * make sense, since the consumer could just use the "*" acceptance if it has more grants.
 	 *
-	 * @param \User $mwUser (local wiki user) User who may or may not have authorizations
+	 * @param User $mwUser (local wiki user) User who may or may not have authorizations
 	 * @param Consumer $consumer
 	 * @param string $wikiId
 	 * @throws MWOAuthException
 	 * @return ConsumerAcceptance
 	 * @deprecated Use MWOAuthConsumer::getCurrentAuthorization(...)
 	 */
-	public function getCurrentAuthorization( \User $mwUser, $consumer, $wikiId ) {
+	public function getCurrentAuthorization( User $mwUser, $consumer, $wikiId ) {
 		wfDeprecated( __METHOD__ );
 		return $consumer->getCurrentAuthorization( $mwUser, $wikiId );
 	}

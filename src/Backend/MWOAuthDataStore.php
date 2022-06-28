@@ -2,9 +2,14 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
+use BagOStuff;
+use Linker;
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
 use MediaWiki\Logger\LoggerFactory;
+use Message;
+use MWCryptRand;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\DBConnRef;
 
 class MWOAuthDataStore extends OAuthDataStore {
@@ -16,16 +21,16 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 */
 	protected $centralPrimary;
 
-	/** @var \BagOStuff Cache for Tokens and Nonces */
+	/** @var BagOStuff Cache for Tokens and Nonces */
 	protected $cache;
 
-	/** @var \Psr\Log\LoggerInterface */
+	/** @var LoggerInterface */
 	protected $logger;
 
 	/**
 	 * @param DBConnRef $centralReplica Central DB replica
 	 * @param DBConnRef|null $centralPrimary Central DB primary (if different)
-	 * @param \BagOStuff $cache
+	 * @param BagOStuff $cache
 	 */
 	public function __construct( DBConnRef $centralReplica, $centralPrimary, \BagOStuff $cache ) {
 		if ( $centralPrimary !== null && !( $centralPrimary instanceof DBConnRef ) ) {
@@ -70,7 +75,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 			) );
 			if ( $returnToken === '**USED**' ) {
 				throw new MWOAuthException( 'mwoauthdatastore-request-token-already-used', [
-					\Message::rawParam( \Linker::makeExternalLink(
+					Message::rawParam( Linker::makeExternalLink(
 						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009',
 						'E009',
 						true
@@ -79,7 +84,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 			}
 			if ( $token === null || !( $returnToken instanceof MWOAuthToken ) ) {
 				throw new MWOAuthException( 'mwoauthdatastore-request-token-not-found', [
-					\Message::rawParam( \Linker::makeExternalLink(
+					Message::rawParam( Linker::makeExternalLink(
 						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004',
 						'E004',
 						true
@@ -142,8 +147,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 */
 	public static function newToken() {
 		return new MWOAuthToken(
-			\MWCryptRand::generateHex( 32 ),
-			\MWCryptRand::generateHex( 32 )
+			MWCryptRand::generateHex( 32 ),
+			MWCryptRand::generateHex( 32 )
 		);
 	}
 
@@ -181,8 +186,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 */
 	public function getConsumerKey( $requestToken ) {
 		$cacheKey = Utils::getCacheKey( 'consumer', 'request', $requestToken );
-		$consumerKey = $this->cache->get( $cacheKey );
-		return $consumerKey;
+		return $this->cache->get( $cacheKey );
 	}
 
 	/**

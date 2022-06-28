@@ -498,7 +498,7 @@ abstract class Consumer extends MWOAuthDAO {
 	 * Users might want more grants on some wikis than on "*". Note that the reverse would not
 	 * make sense, since the consumer could just use the "*" acceptance if it has more grants.
 	 *
-	 * @param \User $mwUser (local wiki user) User who may or may not have authorizations
+	 * @param User $mwUser (local wiki user) User who may or may not have authorizations
 	 * @param string $wikiId
 	 * @throws MWOAuthException
 	 * @return ConsumerAcceptance|bool

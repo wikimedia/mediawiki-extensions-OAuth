@@ -23,11 +23,7 @@ class MWOAuthRequest extends OAuthRequest {
 	}
 
 	public function getConsumerKey() {
-		$key = '';
-		if ( isset( $this->parameters['oauth_consumer_key'] ) ) {
-			$key = $this->parameters['oauth_consumer_key'];
-		}
-		return $key;
+		return $this->parameters['oauth_consumer_key'] ?? '';
 	}
 
 	/**
