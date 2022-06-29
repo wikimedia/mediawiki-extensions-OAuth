@@ -87,7 +87,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		// Format is Special:OAuthManageConsumers[/<stage>|/<consumer key>]
 		// B/C format is Special:OAuthManageConsumers/<stage>/<consumer key>
 		$consumerKey = null;
-		$navigation = explode( '/', $par );
+		$navigation = $par !== null ? explode( '/', $par ) : [];
 		if ( count( $navigation ) === 2 ) {
 			$this->stage = false;
 			$consumerKey = $navigation[1];
