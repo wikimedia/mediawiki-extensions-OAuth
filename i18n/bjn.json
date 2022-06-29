@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ezagren"
+		]
+	},
+	"echo-pref-tooltip-oauth-owner": "Padahi ulun pasal acara nang tarait lawan aplikasi OAuth nang sudah ulun ulah.",
+	"echo-pref-tooltip-oauth-admin": "Padahi ulun pasal acara nang tarait lawan paninjauan aplikasi OAuth."
+}
