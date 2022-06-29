@@ -104,7 +104,7 @@ class SpecialMWOAuthConsumerRegistration extends \SpecialPage {
 		}
 
 		// Format is Special:OAuthConsumerRegistration[/propose|/list|/update/<consumer key>]
-		$navigation = explode( '/', $par );
+		$navigation = $par !== null ? explode( '/', $par ) : [];
 		$action = $navigation[0] ?? '';
 		$consumerKey = $navigation[1] ?? '';
 

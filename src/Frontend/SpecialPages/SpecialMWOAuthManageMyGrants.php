@@ -83,7 +83,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		}
 
 		// Format is Special:OAuthManageMyGrants[/list|/manage/<accesstoken>]
-		$navigation = explode( '/', $par );
+		$navigation = $par !== null ? explode( '/', $par ) : [];
 		$typeKey = $navigation[0] ?? null;
 		$acceptanceId = $navigation[1] ?? null;
 
