@@ -13,7 +13,7 @@ class AuthCodeEntity implements AuthCodeEntityInterface, JsonSerializable {
 	use EntityTrait;
 	use AuthCodeTrait;
 
-	public function jsonSerialize() {
+	public function jsonSerialize(): array {
 		return [
 			'user' => $this->getUserIdentifier(),
 			'client' => $this->getClient()->getIdentifier(),

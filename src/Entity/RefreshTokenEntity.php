@@ -11,7 +11,7 @@ class RefreshTokenEntity implements RefreshTokenEntityInterface, JsonSerializabl
 	use RefreshTokenTrait;
 	use EntityTrait;
 
-	public function jsonSerialize() {
+	public function jsonSerialize(): array {
 		return [
 			'identifier' => $this->getIdentifier(),
 			'accessToken' => $this->getAccessToken()->getIdentifier(),
