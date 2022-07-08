@@ -90,12 +90,12 @@ class MigrateCentralWikiLogs extends Maintenance {
 				$oldLoggs->seek( $rowCount - 2 );
 				$last = $oldLoggs->fetchObject();
 				if ( $first->log_timestamp === $last->log_timestamp ) {
-					$this->error( "Batch size too low to avoid infinite loop.\n", 1 );
+					$this->fatalError( "Batch size too low to avoid infinite loop.\n" );
 				}
 				$extra = $oldLoggs->fetchObject();
 				if ( $last->log_timestamp === $extra->log_timestamp ) {
-					$this->error( "We hit an edge case. Please increase the batch " .
-						" size and restart the transfer.\n", 1 );
+					$this->fatalError( "We hit an edge case. Please increase the batch " .
+						" size and restart the transfer.\n" );
 				}
 				$oldLoggs->rewind();
 			}

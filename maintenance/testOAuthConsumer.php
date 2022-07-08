@@ -96,7 +96,7 @@ class TestOAuthConsumer extends \Maintenance {
 					}
 				};
 			} catch ( OAuthException $ex ) {
-				$this->error( $ex->getMessage(), 1 );
+				$this->fatalError( $ex->getMessage() );
 			}
 		} else {
 			$sig_method = new OAuthSignatureMethod_HMAC_SHA1();
@@ -126,7 +126,7 @@ class TestOAuthConsumer extends \Maintenance {
 
 		$token = json_decode( $data );
 		if ( !$token || !isset( $token->key ) ) {
-			$this->error( 'Could not fetch token', 1 );
+			$this->fatalError( 'Could not fetch token' );
 		}
 
 		$this->output( "Visit $baseurl/authorize" .

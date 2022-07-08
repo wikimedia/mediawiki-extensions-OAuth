@@ -57,9 +57,8 @@ class MigrateCentralWiki extends \Maintenance {
 			$cmrClass = ConsumerAcceptance::class;
 			$type = 'grant';
 		} else {
-			$this->error( "Invalid table name. Must be one of 'oauth_registered_consumer' " .
-				"or 'oauth_accepted_consumer'.\n", 1 );
-			throw new \LogicException();
+			$this->fatalError( "Invalid table name. Must be one of 'oauth_registered_consumer' " .
+				"or 'oauth_accepted_consumer'.\n" );
 		}
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
