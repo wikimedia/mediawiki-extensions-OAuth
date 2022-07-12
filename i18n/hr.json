@@ -6,11 +6,12 @@
 			"Excaliboor",
 			"MaGa",
 			"Neptune, the Mystic",
+			"Ponor",
 			"Vlad5250"
 		]
 	},
 	"mwoauth-desc": "Omogućuje upotrebu OAuth 1.0a i OAuth 2.0 za autorizaciju API-ja",
-	"mwoauth-verified": "Aplikaciji je dopušten pristup MediaWikiju u vaše ime.\n\nDa biste dovršili postupak, navedite kontrolnu vrijednost aplikacije: '''$1'''",
+	"mwoauth-verified": "Aplikaciji je sada dopušten pristup MediaWikiju u Vaše ime.\n\nDa biste dovršili postupak, u aplikaciji unesite sljedeću kontrolnu vrijednost: '''$1'''",
 	"mwoauth-db-readonly": "Baza podataka OAuth privremeno je zaključana. Pokušajte ponovo za nekoliko minuta.",
 	"mwoauth-missing-field": "Nedostaje vrijednost u polju »$1«",
 	"mwoauth-invalid-field": "U polju »$1« dana je nevažeća vrijednost",
