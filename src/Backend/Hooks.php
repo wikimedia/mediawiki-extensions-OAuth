@@ -92,16 +92,6 @@ EOK;
 		return true;
 	}
 
-	public static function onCentralAuthGlobalUserMerged( $oldname, $newname, $oldid, $newid ) {
-		global $wgMWOAuthSharedUserIDs;
-
-		if ( $wgMWOAuthSharedUserIDs && $oldid && $newid ) {
-			self::doUserIdMerge( $oldid, $newid );
-		}
-
-		return true;
-	}
-
 	protected static function doUserIdMerge( $oldid, $newid ) {
 		$dbw = Utils::getCentralDB( DB_PRIMARY );
 		// Merge any consumers register to this user

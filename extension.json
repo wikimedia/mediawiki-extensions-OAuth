@@ -117,7 +117,6 @@
 		"AbuseFilter-generateUserVars": "abusefilter",
 		"ChangeTagCanCreate": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onChangeTagCanCreate",
 		"MergeAccountFromTo": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onMergeAccountFromTo",
-		"CentralAuthGlobalUserMerged": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onCentralAuthGlobalUserMerged",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\OAuth\\Backend\\UpdaterHooks::addSchemaUpdates",
 		"GetPreferences": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onGetPreferences",
 		"MessagesPreLoad": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onMessagesPreLoad",
