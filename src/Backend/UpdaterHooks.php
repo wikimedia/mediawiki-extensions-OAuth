@@ -63,6 +63,19 @@ class UpdaterHooks {
 				self::getPath( 'index_on_oaat_acceptance_id.sql', $dbType )
 			);
 
+			// 1.39
+			$updater->modifyExtensionField(
+				'oauth_accepted_consumer',
+				'oaac_accepted',
+				self::getPath( 'patch-oauth_accepted_consumer-timestamp.sql', $dbType )
+			);
+
+			$updater->modifyExtensionField(
+				'oauth_registered_consumer',
+				'oarc_email_authenticated',
+				self::getPath( 'patch-oauth_registered_consumer-timestamp.sql', $dbType )
+			);
+
 		}
 		return true;
 	}

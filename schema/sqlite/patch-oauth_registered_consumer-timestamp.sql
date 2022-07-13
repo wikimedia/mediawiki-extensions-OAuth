@@ -1,0 +1,17 @@
+DROP  INDEX oarc_consumer_key;
+DROP  INDEX oarc_name_version_user;
+DROP  INDEX oarc_user_id;
+DROP  INDEX oarc_stage_timestamp;
+CREATE TEMPORARY TABLE /*_*/__temp__oauth_registered_consumer AS
+SELECT  oarc_id,  oarc_consumer_key,  oarc_name,  oarc_user_id,  oarc_version,  oarc_callback_url,  oarc_callback_is_prefix,  oarc_description,  oarc_email,  oarc_email_authenticated,  oarc_developer_agreement,  oarc_owner_only,  oarc_wiki,  oarc_grants,  oarc_registration,  oarc_secret_key,  oarc_rsa_key,  oarc_restrictions,  oarc_stage,  oarc_stage_timestamp,  oarc_deleted,  oarc_oauth_version,  oarc_oauth2_allowed_grants,  oarc_oauth2_is_confidential
+FROM  /*_*/oauth_registered_consumer;
+DROP  TABLE  /*_*/oauth_registered_consumer;
+CREATE TABLE  /*_*/oauth_registered_consumer (    oarc_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,    oarc_consumer_key BLOB NOT NULL, oarc_name BLOB NOT NULL,    oarc_user_id INTEGER UNSIGNED NOT NULL,    oarc_version BLOB NOT NULL, oarc_callback_url BLOB NOT NULL,    oarc_callback_is_prefix BLOB DEFAULT NULL,    oarc_description BLOB NOT NULL, oarc_email BLOB NOT NULL,    oarc_email_authenticated BLOB NULL,    oarc_developer_agreement SMALLINT DEFAULT 0 NOT NULL,    oarc_owner_only SMALLINT DEFAULT 0 NOT NULL,    oarc_wiki BLOB NOT NULL, oarc_grants BLOB NOT NULL,    oarc_registration BLOB NOT NULL, oarc_secret_key BLOB DEFAULT NULL,    oarc_rsa_key BLOB DEFAULT NULL, oarc_restrictions BLOB NOT NULL,    oarc_stage SMALLINT UNSIGNED DEFAULT 0 NOT NULL,    oarc_stage_timestamp BLOB NOT NULL,    oarc_deleted SMALLINT UNSIGNED DEFAULT 0 NOT NULL,    oarc_oauth_version SMALLINT DEFAULT 1 NOT NULL,    oarc_oauth2_allowed_grants BLOB DEFAULT NULL,    oarc_oauth2_is_confidential SMALLINT DEFAULT 1 NOT NULL  );
+INSERT INTO  /*_*/oauth_registered_consumer (    oarc_id, oarc_consumer_key, oarc_name,    oarc_user_id, oarc_version, oarc_callback_url,    oarc_callback_is_prefix, oarc_description,    oarc_email, oarc_email_authenticated,    oarc_developer_agreement, oarc_owner_only,    oarc_wiki, oarc_grants, oarc_registration,    oarc_secret_key, oarc_rsa_key, oarc_restrictions,    oarc_stage, oarc_stage_timestamp,    oarc_deleted, oarc_oauth_version,    oarc_oauth2_allowed_grants, oarc_oauth2_is_confidential  )
+SELECT  oarc_id,  oarc_consumer_key,  oarc_name,  oarc_user_id,  oarc_version,  oarc_callback_url,  oarc_callback_is_prefix,  oarc_description,  oarc_email,  oarc_email_authenticated,  oarc_developer_agreement,  oarc_owner_only,  oarc_wiki,  oarc_grants,  oarc_registration,  oarc_secret_key,  oarc_rsa_key,  oarc_restrictions,  oarc_stage,  oarc_stage_timestamp,  oarc_deleted,  oarc_oauth_version,  oarc_oauth2_allowed_grants,  oarc_oauth2_is_confidential
+FROM  /*_*/__temp__oauth_registered_consumer;
+DROP  TABLE /*_*/__temp__oauth_registered_consumer;
+CREATE UNIQUE INDEX oarc_consumer_key ON  /*_*/oauth_registered_consumer (oarc_consumer_key);
+CREATE UNIQUE INDEX oarc_name_version_user ON  /*_*/oauth_registered_consumer (    oarc_name, oarc_user_id, oarc_version  );
+CREATE INDEX oarc_user_id ON  /*_*/oauth_registered_consumer (oarc_user_id);
+CREATE INDEX oarc_stage_timestamp ON  /*_*/oauth_registered_consumer (    oarc_stage, oarc_stage_timestamp  );

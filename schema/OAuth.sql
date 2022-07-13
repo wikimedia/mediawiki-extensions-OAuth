@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_registered_consumer (
     -- Contact email address
     oarc_email varchar(255) binary NOT NULL,
     -- Confirmation of contact email address
-    oarc_email_authenticated varbinary(14) NULL,
+    oarc_email_authenticated binary(14) NULL,
     -- Did the owner accept the developer agreement?
     oarc_developer_agreement tinyint NOT NULL DEFAULT 0,
     -- Is this consumer owner-only
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_registered_consumer (
     -- Grants needed for client consumers
     oarc_grants blob NOT NULL,
     -- Timestamp of consumer proposal
-    oarc_registration varbinary(14) NOT NULL,
+    oarc_registration binary(14) NOT NULL,
 
     -- Mutable fields below:
     oarc_secret_key varbinary(32) NULL,
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_registered_consumer (
     -- (0=proposed, 1=approved, 2=rejected, 3=expired, 4=disabled)
     oarc_stage tinyint unsigned NOT NULL DEFAULT 0,
     -- Timestamp of the last stage change
-    oarc_stage_timestamp varbinary(14) NOT NULL,
+    oarc_stage_timestamp binary(14) NOT NULL,
     -- Whether this consumer is suppressed (hidden)
     oarc_deleted tinyint unsigned NOT NULL DEFAULT 0,
     -- Version of OAuth protocol this consumer uses
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS /*_*/oauth_accepted_consumer (
     -- JSON blob of actually accepted grants
     oaac_grants blob NOT NULL,
     -- Timestamp of grant approval by the user
-    oaac_accepted varbinary(14) NOT NULL,
+    oaac_accepted binary(14) NOT NULL,
     -- Version of OAuth protocol this consumer uses
     oaac_oauth_version TINYINT NOT NULL DEFAULT 1
 ) /*$wgDBTableOptions*/;
