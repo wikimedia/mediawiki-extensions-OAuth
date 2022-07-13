@@ -8,29 +8,21 @@
 
 	var mwoauth = {
 		init: function () {
-			var $form = $( '#mw-mwoauth-authorize-dialog' ),
-				$accept = $( '#mw-mwoauth-accept' );
-			$form.find( '.mw-htmlform-submit-buttons' ).addClass( 'mw-ui-flush-right' );
-			$form.dialog( {
-				dialogClass: 'mw-mwoauth-authorize-jQuery-dialog',
-				width: 0.3 * $( window ).width(),
-				title: mw.msg( 'mwoauth-desc' ),
-				draggable: false,
-				resizable: false,
-				open: function () {
-					$( window ).scrollTop( 0 );
-				},
-				create: function () {
-					$( this ).parents( '.ui-dialog:first' )
-						.find( '.ui-dialog-content' ).css( 'padding', '20px' );
-					$( this ).css( 'maxHeight', 0.9 * $( window ).height() );
-					$( this ).css( 'background-color', '#fff' );
-					$( this ).css( 'border', '1px #ccc' );
-					$( this ).dialog( 'option', 'modal', true );
-				}
+			var $form = $( '#mw-mwoauth-authorize-dialog' );
+
+			OO.ui.getWindowManager().openWindow( 'message', {
+				message: $form,
+				size: 'medium',
+				actions: []
+			} ).then( function () {
+				// Appending the <form> to a <label> makes the whole form a click target
+				// for 'Allow', so move it out of the <label>
+				OO.ui.getWindowManager().getCurrentWindow().text.$element.append( $form );
 			} );
+
+			$form.find( '.mw-htmlform-submit-buttons' ).addClass( 'mw-ui-flush-right' );
 			$form.on( 'submit', function () {
-				$accept.prop( 'disabled', true );
+				$( '#mw-mwoauth-accept' ).prop( 'disabled', true );
 			} );
 		}
 	};

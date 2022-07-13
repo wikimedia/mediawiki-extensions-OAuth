@@ -94,7 +94,7 @@
 				"ext.MWOAuth.AuthorizeDialog.js"
 			],
 			"dependencies": [
-				"jquery.ui"
+				"oojs-ui-windows"
 			],
 			"messages": [
 				"mwoauth-desc"
