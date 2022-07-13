@@ -20,12 +20,12 @@ class UpdaterHooks {
 
 		$dbType = $updater->getDB()->getType();
 
-		if ( $dbType == 'mysql' || $dbType == 'sqlite' ) {
+		$updater->addExtensionTable(
+			'oauth_registered_consumer',
+			self::getPath( 'tables-generated.sql', $dbType )
+		);
 
-			$updater->addExtensionTable(
-				'oauth_registered_consumer',
-				self::getPath( 'OAuth.sql', $dbType )
-			);
+		if ( $dbType == 'mysql' || $dbType == 'sqlite' ) {
 
 			// 1.35
 			$updater->addExtensionField(
