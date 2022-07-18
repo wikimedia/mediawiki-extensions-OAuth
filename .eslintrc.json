@@ -11,8 +11,8 @@
 	},
 	"overrides": [
 		{
-			"files": ["Gruntfile.js"],
-			"extends": ["wikimedia/server"]
+			"files": [ "Gruntfile.js" ],
+			"extends": [ "wikimedia/server" ]
 		}
 	]
 }
