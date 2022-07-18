@@ -1,0 +1,44 @@
+#mw-mwoauth-authorize-form {
+	/* Unify font size across various skins */
+	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
+	font-size: 14px;
+	color: #333;
+
+	> a {
+		font-size: 0.8em;
+	}
+
+	> p {
+		font-size: 1.2em;
+		line-height: 1.4;
+	}
+
+	> ul {
+		padding-top: 0.5em;
+		line-height: 1em;
+	}
+
+	span.mw-grantgroup {
+		font-weight: bold;
+		font-size: 1.2em;
+	}
+}
+
+input.mw-mwoauth-authorize-button {
+	float: right;
+	margin-left: 0.7em;
+	margin-right: 0.7em;
+	margin-bottom: 0.5em;
+}
+
+#mw-mwoauth-authorize-dialog {
+	.client-js .mw-body-content & {
+		display: none; /* no flicker */
+	}
+
+	.oo-ui-messageDialog-text &:after {
+		content: '';
+		clear: both;
+		display: block;
+	}
+}
