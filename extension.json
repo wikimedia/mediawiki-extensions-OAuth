@@ -85,8 +85,8 @@
 	"ResourceModules": {
 		"ext.MWOAuth.styles": {
 			"styles": [
-				"ext.MWOAuth.BasicStyles.css",
-				"ext.MWOAuth.AuthorizeForm.css"
+				"ext.MWOAuth.BasicStyles.less",
+				"ext.MWOAuth.AuthorizeForm.less"
 			]
 		},
 		"ext.MWOAuth.AuthorizeDialog": {
