@@ -4,7 +4,14 @@
 			"Yupik"
 		]
 	},
+	"mwoauth-consumer-reason": "Mäinn:",
 	"mwoauthconsumerregistration-main": "Ouddseidd",
+	"mwoauthconsumerregistration-description": "Deskriptt",
 	"mwoauthmanageconsumers-main": "Ouddseidd",
-	"mwoauthmanagemygrants-navigation": "Vaʹlljõk:"
+	"mwoauthmanageconsumers-description": "Deskriptt",
+	"mwoauthmanageconsumers-reason": "Mäinn:",
+	"mwoauthlistconsumers-description": "Deskriptt",
+	"mwoauthmanagemygrants-navigation": "Vaʹlljõk:",
+	"mwoauthmanagemygrants-description": "Deskriptt",
+	"notification-oauth-app-body": "Mäinn: $1"
 }
