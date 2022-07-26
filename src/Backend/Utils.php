@@ -75,6 +75,18 @@ class Utils {
 	}
 
 	/**
+	 * Get the cache type for OAuth 1.0 nonces
+	 * @return \BagOStuff
+	 */
+	public static function getNonceCache() {
+		global $wgMWOAuthNonceCacheType, $wgMWOAuthSessionCacheType, $wgSessionCacheType;
+
+		$cacheType = $wgMWOAuthNonceCacheType
+			?? $wgMWOAuthSessionCacheType ?? $wgSessionCacheType;
+		return ObjectCache::getInstance( $cacheType );
+	}
+
+	/**
 	 * @param DBConnRef $db
 	 * @return array
 	 */
@@ -236,7 +248,7 @@ class Utils {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$dbr = self::getCentralDB( DB_REPLICA );
 		$dbw = $lb->getServerCount() > 1 ? self::getCentralDB( DB_PRIMARY ) : null;
-		return new MWOAuthDataStore( $dbr, $dbw, self::getSessionCache() );
+		return new MWOAuthDataStore( $dbr, $dbw, self::getSessionCache(), self::getNonceCache() );
 	}
 
 	/**

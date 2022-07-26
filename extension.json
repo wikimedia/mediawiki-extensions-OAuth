@@ -169,7 +169,12 @@
 			"description": "User groups to notify about new consumers that need to be reviewed"
 		},
 		"MWOAuthSessionCacheType": {
-			"value": null
+			"value": null,
+			"description": "The cache type used for most temporary data storage. An index into $wgObjectCaches. The default is $wgSessionCacheType."
+		},
+		"MWOAuthNonceCacheType": {
+			"value": null,
+			"description": "The cache type used for OAuth 1.0 nonces. An index into $wgObjectCaches. The default is $wgMWOAuthSessionCacheType."
 		},
 		"OAuthSecretKey": {
 			"value": null,
