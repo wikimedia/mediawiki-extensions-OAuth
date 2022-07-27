@@ -113,7 +113,7 @@
 	"mwoauthconsumerregistration-secretreset": "Un jeton secret de consommateur de '''$1''' vous a été affecté. ''Veuillez le conserver pour tout besoin ultérieur.''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "Vos jetons de consommateur OAuth ont été réinitialisés. Les nouveaux jetons sont :\n; Jeton du consommateur <nowiki>:</nowiki>: $1\n; Secret du consommateur <nowiki>:</nowiki>: $2\n; Jeton d’accès <nowiki>:</nowiki>: $3\n; Secret d’accès <nowiki>:</nowiki>: $4\n<em>Veuillez les conserver pour tout besoin ultérieur.</em>",
 	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Vos jetons de consommateur OAuth 2.0 ont été réinitialisés. Les nouveaux jetons sont :\n; Jeton du consommateur <nowiki>:</nowiki>: $1\n; Secret du consommateur <nowiki>:</nowiki>: $2\n; Jeton d’accès <nowiki>:</nowiki>: $3\n<em>Veuillez les conserver pour tout besoin ultérieur.</em>",
-	"mwoauthconsumerregistration-need-emailconfirmed": "Vous devez confirmer votre adresse de messagerie avant de créer des applications OAuth.\nVeuillez fournir et valider votre adresse de messagerie via [[Special:Preferences|vos préférences utilisateur]].",
+	"mwoauthconsumerregistration-need-emailconfirmed": "Vous devez confirmer votre adresse de courriel avant de créer des applications OAuth.\nVeuillez définir et valider votre adresse de courriel via [[Special:Preferences|vos préférences d’utilisateur]].",
 	"oauthmanageconsumers": "Gérer les consommateurs OAuth",
 	"mwoauthmanageconsumers-notloggedin": "Vous devez être connecté(e) pour accéder à cette page.",
 	"mwoauthmanageconsumers-type": "Files :",
