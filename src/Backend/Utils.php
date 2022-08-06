@@ -48,7 +48,7 @@ class Utils {
 	 * @return DBConnRef
 	 */
 	public static function getCentralDB( $index ) {
-		global $wgMWOAuthCentralWiki, $wgMWOAuthReadOnly;
+		global $wgMWOAuthReadOnly;
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
@@ -56,9 +56,13 @@ class Utils {
 		if ( $index === DB_REPLICA && $lbFactory->hasOrMadeRecentPrimaryChanges() ) {
 			$index = DB_PRIMARY;
 		}
+		$wikiId = self::getCentralWiki();
+		if ( WikiMap::isCurrentWikiId( $wikiId ) ) {
+			$wikiId = false;
+		}
 
-		$db = $lbFactory->getMainLB( $wgMWOAuthCentralWiki )->getConnectionRef(
-			$index, [], $wgMWOAuthCentralWiki );
+		$db = $lbFactory->getMainLB( $wikiId )->getConnectionRef(
+			$index, [], $wikiId );
 		$db->daoReadOnly = $wgMWOAuthReadOnly;
 		return $db;
 	}
