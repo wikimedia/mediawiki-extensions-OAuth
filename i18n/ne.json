@@ -23,6 +23,7 @@
 	"mwoauthlistconsumers-status": "स्थिति",
 	"mwoauthlistconsumers-navigation": "पथ प्रर्दशन",
 	"mwoauthlistconsumers-update-link": "अद्यावधिक उपभोक्ता",
+	"oauthmanagemygrants": "जडान गरिएका अनुप्रयोगहरू व्यवस्थापन गर्नुहोस्",
 	"mwoauthmanagemygrants-description": "विवरण",
 	"mwoauth-form-button-cancel": "रद्द गर्नुहोस्",
 	"mwoauth-granttype-normal": "विशेष अनुमति अधिकारको लागि निवेदन गर्नुहोस् ।"
