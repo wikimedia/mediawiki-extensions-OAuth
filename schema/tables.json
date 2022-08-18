@@ -5,19 +5,19 @@
 		"columns": [
 			{
 				"name": "oarc_id",
-				"comment": "Immutable fields below: Consumer ID (1:1 with oarc_consumer_key)",
+				"comment": "Internal numeric consumer ID (1:1 with oarc_consumer_key)",
 				"type": "integer",
 				"options": { "autoincrement": true, "notnull": true, "unsigned": true }
 			},
 			{
 				"name": "oarc_consumer_key",
-				"comment": "OAuth consumer key and secret (or RSA key)",
+				"comment": "External consumer ID (OAuth 1 consumer key, OAuth 2 client ID)",
 				"type": "binary",
 				"options": { "notnull": true, "length": 32 }
 			},
 			{
 				"name": "oarc_name",
-				"comment": "Name of the application",
+				"comment": "Human-readable name of the application",
 				"type": "binary",
 				"options": { "notnull": true, "length": 128 }
 			},
@@ -41,7 +41,7 @@
 			},
 			{
 				"name": "oarc_callback_is_prefix",
-				"comment": "Is the consumer allowed to specify a callback URL? (See MWOAuthServer::checkCallback().)",
+				"comment": "Is the consumer allowed to specify a callback URL? (See MWOAuthServer::checkCallback().) Ignored for OAuth 2.",
 				"type": "blob",
 				"options": { "notnull": false, "length": 255 }
 			},
@@ -59,7 +59,7 @@
 			},
 			{
 				"name": "oarc_email_authenticated",
-				"comment": "Confirmation of contact email address",
+				"comment": "Confirmation time of contact email address",
 				"type": "mwtimestamp",
 				"options": { "notnull": false }
 			},
@@ -83,7 +83,7 @@
 			},
 			{
 				"name": "oarc_grants",
-				"comment": "Grants needed for client consumers",
+				"comment": "Grants (in OAuth 1 terminology, scopes in OAuth 2 terminology) available to the application, as a JSON array",
 				"type": "blob",
 				"options": { "notnull": true, "length": 65530 }
 			},
@@ -95,19 +95,19 @@
 			},
 			{
 				"name": "oarc_secret_key",
-				"comment": "Mutable field",
+				"comment": "Consumer secret / client secret (when not using RSA)",
 				"type": "binary",
 				"options": { "notnull": false, "length": 32 }
 			},
 			{
 				"name": "oarc_rsa_key",
-				"comment": "Mutable field",
+				"comment": "Consumer RSA key (when using RSA)",
 				"type": "blob",
 				"options": { "notnull": false, "length": 65530 }
 			},
 			{
 				"name": "oarc_restrictions",
-				"comment": "JSON blob of allowed IP ranges",
+				"comment": "JSON blob of allowed IP ranges, see MWRestrictions class",
 				"type": "blob",
 				"options": { "notnull": true, "length": 65530 }
 			},
@@ -201,19 +201,19 @@
 			},
 			{
 				"name": "oaac_access_token",
-				"comment": "Tokens for the consumer to act on behave of the user",
+				"comment": "Token for the consumer to act on behalf of the user (OAuth 1 access token)",
 				"type": "binary",
 				"options": { "notnull": true, "length": 32 }
 			},
 			{
 				"name": "oaac_access_secret",
-				"comment": "Tokens for the consumer to act on behave of the user",
+				"comment": "Token for the consumer to act on behalf of the user (OAuth 1 access secret)",
 				"type": "binary",
 				"options": { "notnull": true, "length": 32 }
 			},
 			{
 				"name": "oaac_grants",
-				"comment": "JSON blob of actually accepted grants",
+				"comment": "JSON blob of actually accepted grants (in OAuth 1 terminology; scopes in OAuth 2 terminology)",
 				"type": "blob",
 				"options": { "notnull": true, "length": 65530 }
 			},
@@ -260,12 +260,13 @@
 		"columns": [
 			{
 				"name": "oaat_id",
+				"comment": "Internal numeric identifier",
 				"type": "integer",
 				"options": { "autoincrement": true, "notnull": true, "unsigned": true }
 			},
 			{
 				"name": "oaat_identifier",
-				"comment": "Access token identifier",
+				"comment": "External access token identifier (JSON Web Token ID)",
 				"type": "string",
 				"options": { "notnull": true, "length": 255 }
 			},
@@ -280,7 +281,7 @@
 			},
 			{
 				"name": "oaat_acceptance_id",
-				"comment": "Identifier of the acceptance that allows this access token to be created",
+				"comment": "Identifier (oaac_id) of the acceptance that allows this access token to be created",
 				"type": "integer",
 				"options": { "notnull": true, "unsigned": true }
 			},
