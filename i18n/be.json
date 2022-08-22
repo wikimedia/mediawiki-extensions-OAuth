@@ -1,18 +1,36 @@
 {
 	"@metadata": {
 		"authors": [
-			"Artsiom91"
+			"Artsiom91",
+			"Vlad5250"
 		]
 	},
 	"mwoauth-desc": "Дазваляе ўжываць OAuth 1.0a і OAuth 2.0 для API аўтарызацыі",
 	"mwoauth-prefs-managegrants": "Падключаныя дадаткі:",
 	"mwoauth-prefs-managegrantslink": "Кіраванне {{PLURAL:$1|$1 падключаным дадаткам|$1 падключанымі дадаткамі|0=падключанымі дадаткамі}}",
+	"oauthmanageconsumers": "Кіраванне спажыўцамі OAuth",
+	"mwoauthmanageconsumers-main": "Галоўная",
+	"mwoauthmanageconsumers-confirm-legend": "Кіраванне спажыўцом OAuth",
+	"mwoauthmanageconsumers-action": "Змяніць статус:",
 	"oauthlistconsumers": "Спіс OAuth-дадаткаў",
 	"oauthmanagemygrants": "Кіраванне падключанымі дадаткамі",
 	"mwoauthmanagemygrants-confirm-legend": "Кіраванне падключаным дадаткам",
 	"mwoauth-form-description-allwikis": "Дзень добры, $1!\n\nДля таго, каб завяршыць ваш запыт, «$2» патрабуецца дазвол ад вашага імя на выкананне наступных дзеянняў ва ўсіх праектах гэтага сайта:\n\n$4",
 	"mwoauth-form-button-approve": "Дазволіць",
 	"mwoauth-form-button-cancel": "Адмяніць",
+	"right-mwoauthproposeconsumer": "Прапанаванне новых спажыўцоў OAuth",
+	"right-mwoauthupdateownconsumer": "Абнаўленне спажыўцоў OAuth, якімі вы кіруеце",
+	"right-mwoauthmanageconsumer": "Кіраванне спажыўцамі OAuth",
+	"right-mwoauthsuppress": "Падаўленне спажыўцоў OAuth",
+	"right-mwoauthviewsuppressed": "Прагляд падаўленых спажыўцоў OAuth",
+	"right-mwoauthviewprivate": "Прагляд прыватных дадзеных OAuth",
+	"right-mwoauthmanagemygrants": "Кіраванне грантамі OAuth",
+	"action-mwoauthmanageconsumer": "кіраваць спажыўцамі OAuth",
+	"action-mwoauthsuppress": "падаўляць спажыўцоў OAuth",
+	"action-mwoauthmanagemygrants": "кіраваць сваімі грантамі OAuth",
+	"action-mwoauthproposeconsumer": "прапаноўваць новых спажыўцоў OAuth",
+	"action-mwoauthupdateownconsumer": "абнавіць спажыўцоў OAuth, якімі вы кіруеце",
 	"echo-category-title-oauth-owner": "Распрацоўка OAuth",
-	"echo-pref-tooltip-oauth-owner": "Паведамляць мне пра падзеі, звязаныя са створанымі мной дадаткамі OAuth."
+	"echo-pref-tooltip-oauth-owner": "Паведамляць мне пра падзеі, звязаныя са створанымі мной дадаткамі OAuth.",
+	"echo-category-title-oauth-admin": "Адміністратар OAuth"
 }

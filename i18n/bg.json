@@ -156,7 +156,7 @@
 	"action-mwoauthsuppress": "потискане на клиенти на OAuth",
 	"action-mwoauthmanagemygrants": "управление на собствените разрешения за OAuth",
 	"action-mwoauthproposeconsumer": "предлагане на нови клиенти на OAuth",
-	"action-mwoauthupdateownconsumer": "промяна на клиенти на OAuth",
+	"action-mwoauthupdateownconsumer": "промяна на управляваните от Вас клиенти на OAuth",
 	"action-mwoauthviewprivate": "преглед на личните данни за OAuth",
 	"action-mwoauthviewsuppressed": "преглед на потиснати клиенти на OAuth",
 	"echo-category-title-oauth-owner": "Разработка на OAuth",
