@@ -125,19 +125,19 @@
 		"ChangeTagCanCreate": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onChangeTagCanCreate",
 		"MergeAccountFromTo": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onMergeAccountFromTo",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\OAuth\\Backend\\UpdaterHooks::addSchemaUpdates",
-		"GetPreferences": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onGetPreferences",
-		"MessagesPreLoad": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onMessagesPreLoad",
-		"SpecialPageAfterExecute": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onSpecialPageAfterExecute",
-		"SpecialPageBeforeFormDisplay": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onSpecialPageBeforeFormDisplay",
+		"GetPreferences": "frontend",
+		"MessagesPreLoad": "frontend",
+		"SpecialPageAfterExecute": "frontend",
+		"SpecialPageBeforeFormDisplay": "frontend",
 		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onBeforeCreateEchoEvent",
 		"CentralAuthAbortCentralAuthToken": "MediaWiki\\Extension\\OAuth\\Setup::onCentralAuthAbortCentralAuthToken",
 		"TestCanonicalRedirect": "setup",
 		"SetupAfterCache": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onSetupAfterCache",
 		"ApiRsdServiceApis": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onApiRsdServiceApis",
-		"SpecialPage_initList": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onSpecialPage_initList",
+		"SpecialPage_initList": "frontend",
 		"ListDefinedTags": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onListDefinedTags",
 		"ChangeTagsListActive": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onChangeTagsListActive",
-		"LoginFormValidErrorMessages": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onLoginFormValidErrorMessages"
+		"LoginFormValidErrorMessages": "frontend"
 	},
 	"ConfigRegistry": {
 		"mwoauth": "GlobalVarConfig::newInstance"

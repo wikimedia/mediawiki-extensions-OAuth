@@ -3,27 +3,44 @@
 namespace MediaWiki\Extension\OAuth\Frontend;
 
 use HTMLForm;
+use MediaWiki\Cache\Hook\MessagesPreLoadHook;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers;
+use MediaWiki\Hook\LoginFormValidErrorMessagesHook;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Preferences\Hook\GetPreferencesHook;
+use MediaWiki\SpecialPage\Hook\SpecialPage_initListHook;
+use MediaWiki\SpecialPage\Hook\SpecialPageAfterExecuteHook;
+use MediaWiki\SpecialPage\Hook\SpecialPageBeforeFormDisplayHook;
+use MWException;
 use SpecialPage;
+use User;
 
 /**
  * Class containing GUI even handler functions for an OAuth environment
+ *
+ * @phpcs:disable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
  */
-class UIHooks {
+class UIHooks implements
+	GetPreferencesHook,
+	LoginFormValidErrorMessagesHook,
+	MessagesPreLoadHook,
+	SpecialPageAfterExecuteHook,
+	SpecialPageBeforeFormDisplayHook,
+	SpecialPage_initListHook
+{
 
 	/**
-	 * @param \User $user
+	 * @param User $user
 	 * @param array &$preferences
 	 * @return bool
-	 * @throws \MWException
+	 * @throws MWException
 	 */
-	public static function onGetPreferences( $user, &$preferences ) {
+	public function onGetPreferences( $user, &$preferences ) {
 		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$conds = [
 			'oaac_consumer_id = oarc_id',
@@ -72,7 +89,7 @@ class UIHooks {
 	 * @param string $code Language code
 	 * @return bool false if we replaced $message
 	 */
-	public static function onMessagesPreLoad( $title, &$message, $code ) {
+	public function onMessagesPreLoad( $title, &$message, $code ) {
 		// Quick fail check
 		if ( substr( $title, 0, 15 ) !== 'Tag-OAuth_CID:_' ) {
 			return true;
@@ -114,8 +131,8 @@ class UIHooks {
 	 * @param string $par
 	 * @return bool
 	 */
-	public static function onSpecialPageAfterExecute( SpecialPage $special, $par ) {
-		if ( $special->getName() != 'Listgrants' ) {
+	public function onSpecialPageAfterExecute( $special, $par ) {
+		if ( $special->getName() !== 'Listgrants' ) {
 			return true;
 		}
 
@@ -172,7 +189,7 @@ class UIHooks {
 	 * @param HTMLForm $form
 	 * @return bool
 	 */
-	public static function onSpecialPageBeforeFormDisplay( $name, HTMLForm $form ) {
+	public function onSpecialPageBeforeFormDisplay( $name, $form ) {
 		global $wgMWOAuthCentralWiki;
 
 		if ( $name === 'BotPasswords' ) {
@@ -226,7 +243,7 @@ class UIHooks {
 	/**
 	 * @param array &$specialPages
 	 */
-	public static function onSpecialPage_initList( array &$specialPages ) {
+	public function onSpecialPage_initList( &$specialPages ) {
 		if ( Utils::isCentralWiki() ) {
 			$specialPages['OAuthConsumerRegistration'] = [
 				'class' => SpecialMWOAuthConsumerRegistration::class,
@@ -249,7 +266,7 @@ class UIHooks {
 	 * @param array &$messages
 	 * @return bool
 	 */
-	public static function onLoginFormValidErrorMessages( &$messages ) {
+	public function onLoginFormValidErrorMessages( &$messages ) {
 		$messages[] = 'mwoauth-login-required-reason';
 		return true;
 	}
