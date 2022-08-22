@@ -107,6 +107,15 @@
 	"HookHandlers": {
 		"abusefilter": {
 			"class": "MediaWiki\\Extension\\OAuth\\Backend\\AbuseFilterHookHandler"
+		},
+		"backend": {
+			"class": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks"
+		},
+		"frontend": {
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks"
+		},
+		"setup": {
+			"class": "MediaWiki\\Extension\\OAuth\\Setup"
 		}
 	},
 	"Hooks": {
@@ -122,7 +131,7 @@
 		"SpecialPageBeforeFormDisplay": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onSpecialPageBeforeFormDisplay",
 		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onBeforeCreateEchoEvent",
 		"CentralAuthAbortCentralAuthToken": "MediaWiki\\Extension\\OAuth\\Setup::onCentralAuthAbortCentralAuthToken",
-		"TestCanonicalRedirect": "MediaWiki\\Extension\\OAuth\\Setup::onTestCanonicalRedirect",
+		"TestCanonicalRedirect": "setup",
 		"SetupAfterCache": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onSetupAfterCache",
 		"ApiRsdServiceApis": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onApiRsdServiceApis",
 		"SpecialPage_initList": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onSpecialPage_initList",
