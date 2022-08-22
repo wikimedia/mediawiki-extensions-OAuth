@@ -18,7 +18,7 @@ class MWOAuthHooksTest extends TestCase {
 	 */
 	public function testOnChangeTagCanCreate( $tagName, $statusOk ) {
 		$status = Status::newGood();
-		Hooks::onChangeTagCanCreate( $tagName, new User, $status );
+		( new Hooks )->onChangeTagCanCreate( $tagName, new User, $status );
 		$this->assertSame( $statusOk, $status->isOK() );
 	}
 

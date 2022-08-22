@@ -2,7 +2,12 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
+use MediaWiki\Api\Hook\ApiRsdServiceApisHook;
+use MediaWiki\ChangeTags\Hook\ChangeTagCanCreateHook;
+use MediaWiki\ChangeTags\Hook\ChangeTagsListActiveHook;
+use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
 use MediaWiki\Extension\OAuth\Frontend\OAuthLogFormatter;
+use MediaWiki\Hook\SetupAfterCacheHook;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableAccessException;
 use Status;
@@ -12,7 +17,13 @@ use WikiMap;
 /**
  * Class containing hooked functions for an OAuth environment
  */
-class Hooks {
+class Hooks implements
+	ApiRsdServiceApisHook,
+	ChangeTagsListActiveHook,
+	ChangeTagCanCreateHook,
+	ListDefinedTagsHook,
+	SetupAfterCacheHook
+{
 
 	/**
 	 * Called right after configuration variables have been set.
@@ -69,13 +80,11 @@ EOK;
 	 * @param string $tag
 	 * @param User|null $user
 	 * @param Status &$status
-	 * @return bool
 	 */
-	public static function onChangeTagCanCreate( $tag, ?User $user, Status &$status ) {
+	public function onChangeTagCanCreate( $tag, $user, &$status ) {
 		if ( Utils::isReservedTagName( $tag ) ) {
 			$status->fatal( 'mwoauth-tag-reserved' );
 		}
-		return true;
 	}
 
 	public static function onMergeAccountFromTo( \User $oUser, \User $nUser ) {
@@ -107,11 +116,11 @@ EOK;
 		);
 	}
 
-	public static function onListDefinedTags( &$tags ) {
+	public function onListDefinedTags( &$tags ) {
 		return self::getUsedConsumerTags( false, $tags );
 	}
 
-	public static function onChangeTagsListActive( &$tags ) {
+	public function onChangeTagsListActive( &$tags ) {
 		return self::getUsedConsumerTags( true, $tags );
 	}
 
@@ -189,7 +198,7 @@ EOK;
 		return true;
 	}
 
-	public static function onSetupAfterCache() {
+	public function onSetupAfterCache() {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
 
 		if ( $wgMWOAuthCentralWiki === false ) {
@@ -201,7 +210,7 @@ EOK;
 		}
 	}
 
-	public static function onApiRsdServiceApis( array &$apis ) {
+	public function onApiRsdServiceApis( &$apis ) {
 		$apis['MediaWiki']['settings']['OAuth'] = true;
 	}
 }
