@@ -116,6 +116,9 @@
 		},
 		"setup": {
 			"class": "MediaWiki\\Extension\\OAuth\\Setup"
+		},
+		"schema": {
+			"class": "MediaWiki\\Extension\\OAuth\\Backend\\UpdaterHooks"
 		}
 	},
 	"Hooks": {
@@ -124,7 +127,7 @@
 		"AbuseFilter-generateUserVars": "abusefilter",
 		"ChangeTagCanCreate": "backend",
 		"MergeAccountFromTo": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onMergeAccountFromTo",
-		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\OAuth\\Backend\\UpdaterHooks::addSchemaUpdates",
+		"LoadExtensionSchemaUpdates": "schema",
 		"GetPreferences": "frontend",
 		"MessagesPreLoad": "frontend",
 		"SpecialPageAfterExecute": "frontend",
