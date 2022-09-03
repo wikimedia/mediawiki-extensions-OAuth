@@ -251,13 +251,17 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 				case 'rest_redirect':
 					$query = $this->getRequest()->getQueryValues();
+					if ( !array_key_exists( 'rest_url', $query ) ) {
+						throw new OAuthException( 'Invalid redirect' );
+					}
 					$restUrl = $query['rest_url'];
-					unset( $query['title'] );
-					unset( $query['rest_url'] );
+					// make sure there's no way to change the domain
+					if ( $restUrl[0] !== '/' ) {
+						$restUrl = '/' . $restUrl;
+					}
+					$target = wfGetServerUrl( PROTO_CURRENT ) . $restUrl;
 
-					$target = wfExpandUrl( $restUrl );
-
-					$output->redirect( wfAppendQuery( $target, $query ) );
+					$output->redirect( $target );
 					break;
 
 				case '':
