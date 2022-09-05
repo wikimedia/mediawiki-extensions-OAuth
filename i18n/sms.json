@@ -7,12 +7,15 @@
 	"mwoauth-consumer-reason": "Mäinn:",
 	"mwoauthconsumerregistration-main": "Ouddseidd",
 	"mwoauthconsumerregistration-description": "Deskriptt",
+	"mwoauthconsumerregistration-stage": "Status",
 	"mwoauthmanageconsumers-main": "Ouddseidd",
 	"mwoauthmanageconsumers-description": "Deskriptt",
 	"mwoauthmanageconsumers-reason": "Mäinn:",
 	"mwoauthlistconsumers-view": "teâđ",
 	"mwoauthlistconsumers-description": "Deskriptt",
+	"mwoauthlistconsumers-status": "Status",
 	"mwoauthmanagemygrants-navigation": "Vaʹlljõk:",
 	"mwoauthmanagemygrants-description": "Deskriptt",
+	"mwoauth-form-button-cancel": "Jõõsk",
 	"notification-oauth-app-body": "Mäinn: $1"
 }

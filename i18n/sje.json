@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Olve Utne"
+		]
+	},
+	"mwoauthconsumerregistration-description": "Gåvådibme",
+	"mwoauthmanageconsumers-description": "Gåvådibme",
+	"mwoauthlistconsumers-description": "Gåvådibme",
+	"mwoauthmanagemygrants-description": "Gåvådibme",
+	"echo-category-title-oauth-admin": "OAuth-háldadäjje"
+}
