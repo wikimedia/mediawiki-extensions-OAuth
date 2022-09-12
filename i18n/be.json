@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Artsiom91",
+			"No Sleep till Krupki",
 			"Vlad5250"
 		]
 	},
@@ -32,5 +33,6 @@
 	"action-mwoauthupdateownconsumer": "абнавіць спажыўцоў OAuth, якімі вы кіруеце",
 	"echo-category-title-oauth-owner": "Распрацоўка OAuth",
 	"echo-pref-tooltip-oauth-owner": "Паведамляць мне пра падзеі, звязаныя са створанымі мной дадаткамі OAuth.",
-	"echo-category-title-oauth-admin": "Адміністратар OAuth"
+	"echo-category-title-oauth-admin": "Адміністратар OAuth",
+	"grant-oauthmanageownclient": "Кіраваць сваімі кліентамі OAuth"
 }
