@@ -5,6 +5,7 @@
 			"Shirayuki"
 		]
 	},
+	"abusefilter-edit-builder-vars-oauth-consumer": "Consumitor OAuth usate pro effectuar iste cambiamento",
 	"mwoauth-desc": "Permitte usar OAuth 1.0a e OAuth 2.0 pro autorisation via API",
 	"mwoauth-nosubpage-explanation": "OAuth es un mechanismo que permitte a applicationes externe identificar un usator de {{SITENAME}} o ager in su nomine, post reciper permission de ille usator.\n\nPro facer que iste pagina face qualcosa, plus parametros es necessari. Si tu ha essite redirigite hic ab un application externe, isto esseva probabilemente a causa de un error in ille application; tu deberea contactar le autor.",
 	"mwoauth-verified": "Le application ha ora le permission de acceder a MediaWiki in tu nomine.\n\nPro concluder le processo, forni iste valor de verification al application: '''$1'''",
