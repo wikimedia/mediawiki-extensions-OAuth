@@ -52,6 +52,8 @@
 	"mwoauth-form-button-approve": "Dovoli",
 	"mwoauth-form-button-cancel": "Prekliči",
 	"mwoauth-acceptance-cancelled": "Odločili ste se, da »$1« na dovolite dostopa do svojega računa. Oseba »$1« ne bo delovala, razen če ji dovolite dostop. Greste lahko nazaj na »$1« ali na[[Special:OAuthManageMyGrants|urejanje]] vaših povezanih aplikacij.",
+	"grant-mwoauth-authonly": "Samo preverjanje identitete uporabnikov, brez možnosti branja strani ali delovanja v uporabnikovem imenu.",
+	"grant-mwoauth-authonlyprivate": "Samo preverjanje identitete uporabnikov z možnostjo dostopa do resničnega imena in e-poštnega naslova, brez možnosti branja strani ali delovanja v uporabnikovem imenu.",
 	"mwoauth-oauth-exception": "Napaka v protokolu OAuth: $1",
 	"echo-pref-tooltip-oauth-owner": "Obveščaj me o dogodkih, povezanih z aplikacijami OAuth, ki sem jih ustvaril/a.",
 	"echo-pref-tooltip-oauth-admin": "Obveščaj me o dogodkih, povezanih s pregledovanjem aplikacij OAuth.",
