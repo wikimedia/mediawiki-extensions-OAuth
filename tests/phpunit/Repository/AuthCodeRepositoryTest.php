@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Tests\Repository;
 
+use MediaWiki\Extension\OAuth\Entity\AuthCodeEntity;
 use MediaWiki\Extension\OAuth\Repository\AuthCodeRepository;
 use MediaWiki\Extension\OAuth\Tests\Entity\Mock_ClientEntity;
 use MediaWikiIntegrationTestCase;
