@@ -106,7 +106,7 @@ class ConsumerSubmitControl extends SubmitControl {
 		];
 
 		$validateBlobSize = static function ( $s ) {
-			return strlen( $s ) < self::BLOB_SIZE;
+			return strlen( $s ?? '' ) < self::BLOB_SIZE;
 		};
 
 		return [
@@ -129,7 +129,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					return in_array( $i, [ Consumer::OAUTH_VERSION_1, Consumer::OAUTH_VERSION_2 ] );
 				},
 				'callbackUrl' => static function ( $s, $vals ) {
-					if ( strlen( $s ) > 2000 ) {
+					if ( strlen( $s ?? '' ) > 2000 ) {
 						return false;
 					}
 					return $vals['ownerOnly'] || wfParseUrl( $s ) !== false;
