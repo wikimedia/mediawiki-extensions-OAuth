@@ -67,7 +67,7 @@
 	"mwoauth-consumer-email-mismatched": "L’adresse de courriel fournie doit correspondre à celle de votre compte.",
 	"mwoauth-consumer-alreadyexists": "Un consommateur avec cette combinaison de nom / version / éditeur existe déjà.",
 	"mwoauth-consumer-alreadyexistsversion": "Un consommateur avec cette combinaison de nom / éditeur existe déjà avec une version égale ou supérieure (« $1 »).",
-	"mwoauth-consumer-not-accepted": "Impossible de mettre à jour les informations pour une demande de consommateur en cours.",
+	"mwoauth-consumer-not-accepted": "Impossible de mettre à jour les informations pour une requête de consommateur en cours.",
 	"mwoauth-consumer-not-proposed": "Le consommateur n’est actuellement pas proposé.",
 	"mwoauth-consumer-not-disabled": "Le consommateur n’est pas désactivé pour le moment.",
 	"mwoauth-consumer-not-approved": "Le consommateur n’est pas approuvé (il peut avoir été désactivé).",
