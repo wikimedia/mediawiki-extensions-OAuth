@@ -8,7 +8,6 @@ use DeferredUpdates;
 use EchoEvent;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
 use MediaWiki\MediaWikiServices;
-use MWException;
 use ObjectCache;
 use RequestContext;
 use Title;
@@ -300,8 +299,7 @@ class Utils {
 	 * Given a central wiki user ID, get a local User object
 	 *
 	 * @param int $userId
-	 * @throws MWException
-	 * @return User|bool User or false if not found
+	 * @return User|false False if not found
 	 */
 	public static function getLocalUserFromCentralId( $userId ) {
 		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
@@ -325,7 +323,6 @@ class Utils {
 	 * Given a local User object, get the user ID for that user on the central wiki
 	 *
 	 * @param User $user
-	 * @throws MWException
 	 * @return int|bool ID or false if not found
 	 */
 	public static function getCentralIdFromLocalUser( \User $user ) {
@@ -366,7 +363,6 @@ class Utils {
 	/**
 	 * Given a username, get the user ID for that user on the central wiki.
 	 * @param string $username
-	 * @throws MWException
 	 * @return int|bool ID or false if not found
 	 */
 	public static function getCentralIdFromUserName( $username ) {

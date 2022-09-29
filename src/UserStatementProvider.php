@@ -8,7 +8,6 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\User\UserGroupManager;
-use MWException;
 use User;
 
 class UserStatementProvider {
@@ -75,7 +74,6 @@ class UserStatementProvider {
 	 * Retrieve user statement suitable for JWT encoding
 	 *
 	 * @return array
-	 * @throws MWException
 	 */
 	public function getUserStatement() {
 		$statement = [];

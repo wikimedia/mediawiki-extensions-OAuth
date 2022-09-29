@@ -41,7 +41,7 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 *
 	 * @param ClientEntityInterface|ClientEntity $clientEntity
 	 * @param ScopeEntityInterface[] $scopes
-	 * @param mixed|null $userIdentifier
+	 * @param string|int|null $userIdentifier
 	 * @return AccessTokenEntityInterface
 	 * @throws OAuthServerException
 	 */

@@ -10,7 +10,6 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
-use MWException;
 use RequestContext;
 use Wikimedia\Message\MessageValue;
 
@@ -25,7 +24,6 @@ abstract class AbstractClientHandler extends Handler {
 	/**
 	 * @return ResponseInterface
 	 * @throws HttpException
-	 * @throws MWException
 	 */
 	public function execute(): ResponseInterface {
 		// At this point we assume user is authenticated and has valid session
