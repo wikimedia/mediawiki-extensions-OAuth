@@ -11,6 +11,7 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "जडान गरिएका अनुप्रयाेगहरू",
+	"mwoauth-prefs-managegrantslink": "जडान {{PLURAL:$1|गरिएका $1 एप|गरिएका $1 एपहरू|0=गरिएका एपहरू}} प्रबन्ध गर्नुहोस्",
 	"mwoauth-consumer-granttypes": "निवेदन गरिएको अनुदानको प्रकारः",
 	"mwoauth-consumer-reason": "कारण:",
 	"mwoauth-consumer-email-unconfirmed": "तपाईंको खातामा इमेल ठेगाना प्रमाणित भएको छैन ।",
