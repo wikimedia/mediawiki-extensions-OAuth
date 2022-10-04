@@ -7,7 +7,9 @@
 			"Nemo bis",
 			"Ricordisamoa",
 			"Sakretsu",
-			"Selven"
+			"Selven",
+			"Amire80",
+			"Daimona Eaytoy"
 		]
 	},
 	"mwoauth-desc": "Consente l'utilizzo di OAuth 1.0a e OAuth 2.0 per le API di autorizzazione",
@@ -220,7 +222,7 @@
 	"mwoauth-error": "Errore di connessione dell'applicazione",
 	"mwoauth-grants-heading": "Autorizzazioni richieste:",
 	"mwoauth-grants-nogrants": "L'applicazione non ha richiesto alcuna autorizzazione.",
-	"mwoauth-acceptance-cancelled": "Hai scelto di non consentire a \"$1\" di accedere alla tua utenza. \"$1\" non funzionerà a meno che non consenti l'accesso. Puoi tornare a \"$1\" o alla [[Special:OAuthManageMyGrants|gestione]] delle tue applicazioni connesse.",
+	"mwoauth-acceptance-cancelled": "Hai scelto di non consentire a \"$1\" di accedere alla tua utenza. \"$1\" non funzionerà a meno che tu non consenta l'accesso. Puoi tornare a \"$1\" o alla [[Special:OAuthManageMyGrants|gestione]] delle tue applicazioni connesse.",
 	"grant-mwoauth-authonly": "Solo verifica identità utente, nessuna capacità di leggere pagine o agire per conto di un utente.",
 	"grant-mwoauth-authonlyprivate": "Verifica identità utente solo con accesso al nome reale e indirizzo email, nessuna capacità di leggere pagine o agire per conto di un utente.",
 	"mwoauth-listgrants-extra-summary": "== Assegnazioni specifiche OAuth ==\n\nQueste assegnazioni supplementari sono applicabili ai clienti OAuth.",
