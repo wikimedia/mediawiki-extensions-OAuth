@@ -143,6 +143,11 @@ class MWOAuthDataStore extends OAuthDataStore {
 		// Set timeout 5 minutes in the future of the timestamp as OAuthServer does. Use the
 		// timestamp so the client can also expire their nonce records after 5 mins.
 		if ( !$this->nonceCache->add( $key, 1, $timestamp + 300 ) ) {
+			// T308861
+			$key = preg_replace(
+				"/(oauth_token_secret\=\w+:)/",
+				"oauth_token_secret=[REDACTED]:",
+				$key );
 			$this->logger->info( "$key exists, so nonce has been used by this consumer+token" );
 			return true;
 		}
