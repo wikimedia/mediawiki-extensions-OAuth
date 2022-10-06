@@ -187,8 +187,8 @@ class Authorize extends AuthenticationHandler {
 		return $this->getResponseFactory()->createTemporaryRedirect(
 			SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
 				'returnto' => SpecialPage::getTitleFor( 'OAuth', 'rest_redirect' ),
-				'returntoquery' => $this->getQueryParamsCgi( [
-					'rest_url' => $this->getRequest()->getUri()->getPath()
+				'returntoquery' => wfArrayToCgi( [
+					'rest_url' => $this->getRequest()->getUri()->__toString(),
 				] ),
 			] )
 		);
