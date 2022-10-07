@@ -38,6 +38,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Permissions\GrantsLocalization;
 use OOUI;
 use Psr\Log\LoggerInterface;
+use Title;
 use WikiMap;
 
 /**
@@ -541,7 +542,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			'framed' => false,
 		] );
 
-		$form->addFooterText( $this->getSkin()->footerLink( 'privacy', 'privacypage' ) );
+		$form->addFooterText( $this->makePrivacyLink() );
 
 		$out = $this->getOutput();
 		$out->enableOOUI();
@@ -783,5 +784,27 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 				[ $this->oauthVersion ]
 			);
 		}
+	}
+
+	private function makePrivacyLink() {
+		// If the link description has been disabled in the default language,
+		if ( $this->msg( 'privacy' )->inContentLanguage()->isDisabled() ) {
+			// then it is disabled, for all languages.
+			$title = null;
+		} else {
+			// Otherwise, we display the link for the user, described in their
+			// language (which may or may not be the same as the default language),
+			// but we make the link target be the one site-wide page.
+			$title = Title::newFromText( $this->msg( 'privacypage' )->inContentLanguage()->text() );
+		}
+
+		if ( !$title ) {
+			return '';
+		}
+
+		return $this->getLinkRenderer()->makeKnownLink(
+			$title,
+			$this->msg( 'privacy' )->text()
+		);
 	}
 }
