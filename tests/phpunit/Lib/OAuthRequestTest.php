@@ -125,7 +125,7 @@ class OAuthRequestTest extends \PHPUnit\Framework\TestCase {
 		$this->assertEquals($cons->key, $request->get_parameter('oauth_consumer_key'));
 		$this->assertEquals($token->key, $request->get_parameter('oauth_token'));
 		$this->assertEquals(time(), $request->get_parameter('oauth_timestamp'));
-		$this->assertRegExp('/[0-9a-f]{32}/', $request->get_parameter('oauth_nonce'));
+		$this->assertMatchesRegularExpression('/[0-9a-f]{32}/', $request->get_parameter('oauth_nonce'));
 		// We don't know what the nonce will be, except it'll be md5 and hence 32 hexa digits
 
 		$request = OAuthRequest::from_consumer_and_token($cons, $token, 'POST', 'http://example.com', array('oauth_nonce'=>'foo'));

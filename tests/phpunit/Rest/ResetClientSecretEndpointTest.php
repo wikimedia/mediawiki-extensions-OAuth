@@ -290,7 +290,7 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 						true
 					);
 					$this->assertArrayHasKey( 'access_token', $responseBody );
-					$this->assertRegExp( '/((.*)\.(.*)\.(.*))/', $responseBody['access_token'] );
+					$this->assertMatchesRegularExpression( '/((.*)\.(.*)\.(.*))/', $responseBody['access_token'] );
 				}
 			],
 		];
