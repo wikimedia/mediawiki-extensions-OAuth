@@ -30,6 +30,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 
 /**
  * @group OAuth
+ * @covers \MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1
  */
 class OAuthSignatureMethodRsaSha1Test extends \PHPUnit\Framework\TestCase {
 	private $method;

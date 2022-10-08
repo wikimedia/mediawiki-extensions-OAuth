@@ -25,7 +25,6 @@
 
 namespace MediaWiki\Extension\OAuth\Tests\Lib;
 
-
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
@@ -37,13 +36,14 @@ use MediaWiki\Extension\OAuth\Lib\OAuthToken;
  * Tests of OAuthRequest
  *
  * The tests works by using OAuthTestUtils::build_request
- * to populare $_SERVER, $_GET & $_POST.
+ * to populate $_SERVER, $_GET & $_POST.
  *
  * Most of the base string and signature tests
  * are either very simple or based upon
  * http://wiki.oauth.net/TestCases
  *
  * @group OAuth
+ * @covers \MediaWiki\Extension\OAuth\Lib\OAuthRequest
  */
 class OAuthRequestTest extends \PHPUnit\Framework\TestCase {
 

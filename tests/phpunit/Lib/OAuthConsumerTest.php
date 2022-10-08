@@ -30,6 +30,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 
 /**
  * @group OAuth
+ * @covers \MediaWiki\Extension\OAuth\Lib\OAuthConsumer
  */
 class OAuthConsumerTest extends \PHPUnit\Framework\TestCase {
 	public function testConvertToString() {

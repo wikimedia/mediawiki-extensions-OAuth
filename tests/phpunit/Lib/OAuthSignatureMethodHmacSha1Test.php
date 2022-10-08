@@ -32,6 +32,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 
 /**
  * @group OAuth
+ * @covers \MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1
  */
 class OAuthSignatureMethodHmacSha1Test extends \PHPUnit\Framework\TestCase {
 	private $method;

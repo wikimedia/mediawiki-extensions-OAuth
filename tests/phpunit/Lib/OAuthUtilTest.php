@@ -31,6 +31,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 /**
  * Tests of OAuthUtil
  * @group OAuth
+ * @covers \MediaWiki\Extension\OAuth\Lib\OAuthUtil
  */
 class OAuthUtilTest extends \PHPUnit\Framework\TestCase {
 	public function testUrlencode() {

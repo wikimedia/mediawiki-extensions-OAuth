@@ -30,6 +30,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 
 /**
  * @group OAuth
+ * @covers \MediaWiki\Extension\OAuth\Lib\OAuthToken
  */
 class OAuthTokenTest extends \PHPUnit\Framework\TestCase {
 	public function testSerialize() {

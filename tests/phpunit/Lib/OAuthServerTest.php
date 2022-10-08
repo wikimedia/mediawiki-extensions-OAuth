@@ -36,6 +36,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 /**
  * Tests of OAuthUtil
  * @group OAuth
+ * @covers \MediaWiki\Extension\OAuth\Lib\OAuthServer
  */
 class OAuthServerTest extends \PHPUnit\Framework\TestCase {
 
