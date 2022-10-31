@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Control;
 
+use ApiMessage;
 use Composer\Semver\VersionParser;
 use EchoEvent;
 use Exception;
@@ -17,14 +18,15 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\WikiMap\WikiMap;
 use MWCryptRand;
 use MWException;
 use Sanitizer;
 use SpecialPage;
+use StatusValue;
 use Title;
 use UnexpectedValueException;
 use User;
-use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
@@ -129,10 +131,41 @@ class ConsumerSubmitControl extends SubmitControl {
 					return in_array( $i, [ Consumer::OAUTH_VERSION_1, Consumer::OAUTH_VERSION_2 ] );
 				},
 				'callbackUrl' => static function ( $s, $vals ) {
+					$isOAuth1 = (int)$vals['oauthVersion'] === Consumer::OAUTH_VERSION_1;
+					$isOAuth2 = !$isOAuth1;
+
 					if ( strlen( $s ?? '' ) > 2000 ) {
 						return false;
+					} elseif ( $vals['ownerOnly'] ) {
+						return true;
 					}
-					return $vals['ownerOnly'] || wfParseUrl( $s ) !== false;
+
+					$urlParts = wfParseUrl( $s );
+					if ( !$urlParts ) {
+						return false;
+					} elseif ( $isOAuth2 && $urlParts['scheme'] === 'http' ) {
+						return StatusValue::newFatal(
+							new ApiMessage( 'mwoauth-error-callback-url-must-be-https', 'invalid_callback_url' )
+						);
+					} elseif ( ( $isOAuth1 || $vals['oauth2IsConfidential'] )
+						&& WikiMap::getWikiFromUrl( $s )
+					) {
+						return StatusValue::newGood()->warning(
+							new ApiMessage( 'mwoauth-error-callback-server-url', 'invalid_callback_url' )
+						);
+					} elseif ( ( $isOAuth2 || !$vals['callbackIsPrefix'] )
+						&& in_array( $urlParts['path'] ?? '', [ '', '/' ], true )
+						&& !( $urlParts['query'] ?? false )
+						&& !( $urlParts['fragment'] ?? false )
+					) {
+						$message = $isOAuth1
+							? 'mwoauth-error-callback-bare-domain-oauth1'
+							: 'mwoauth-error-callback-bare-domain-oauth2';
+						return StatusValue::newGood()->warning(
+							new ApiMessage( $message, 'invalid_callback_url' )
+						);
+					}
+					return true;
 				},
 				'description' => $validateBlobSize,
 				'email' => static function ( $s ) {

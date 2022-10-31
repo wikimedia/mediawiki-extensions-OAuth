@@ -54,7 +54,8 @@ dl.mw-mwoauth-infotable dl dd {
 	font-size: 0.9em;
 }
 
-.mw-oauth-form-ignorewarnings-hidden {
+// need extra specificity because of some conflicting OOUI styles
+.mw-htmlform .mw-oauth-form-ignorewarnings-hidden {
 	display: none;
 
 	#oauth-form-with-warnings& {
