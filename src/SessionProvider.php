@@ -8,12 +8,15 @@ use ApiUsageException;
 use Exception;
 use GuzzleHttp\Psr7\ServerRequest;
 use InvalidArgumentException;
+use MediaWiki\Api\Hook\ApiCheckCanExecuteHook;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthRequest;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
+use MediaWiki\Hook\MarkPatrolledHook;
+use MediaWiki\Hook\RecentChange_saveHook;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\ImmutableSessionProviderWithCookie;
@@ -43,16 +46,21 @@ use Wikimedia\Rdbms\DBError;
  * purposes (limiting the rights to those included in the grant), and
  * registers some hooks to tag actions made via the provider.
  */
-class SessionProvider extends ImmutableSessionProviderWithCookie {
+class SessionProvider
+	extends ImmutableSessionProviderWithCookie
+	implements ApiCheckCanExecuteHook, RecentChange_saveHook, MarkPatrolledHook
+{
 
 	public function __construct( array $params = [] ) {
-		global $wgHooks;
-
 		parent::__construct( $params );
+	}
 
-		$wgHooks['ApiCheckCanExecute'][] = $this;
-		$wgHooks['RecentChange_save'][] = $this;
-		$wgHooks['MarkPatrolled'][] = $this;
+	protected function postInitSetup() {
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+
+		$hookContainer->register( 'ApiCheckCanExecute', $this );
+		$hookContainer->register( 'RecentChange_save', $this );
+		$hookContainer->register( 'MarkPatrolled', $this );
 	}
 
 	/**
@@ -63,16 +71,18 @@ class SessionProvider extends ImmutableSessionProviderWithCookie {
 	 * @return SessionInfo
 	 */
 	private function makeException( $key, ...$params ) {
-		global $wgHooks;
-
 		// First, schedule the throwing of the exception for later when the API
 		// is ready to catch it
 		$msg = wfMessage( $key, $params );
 		$exception = ApiUsageException::newWithMessage( null, $msg );
-		// @phan-suppress-next-line PhanPluginNeverReturnFunction Closures should not get doc
-		$wgHooks['ApiBeforeMain'][] = static function () use ( $exception ) {
-			throw $exception;
-		};
+
+		MediaWikiServices::getInstance()->getHookContainer()->register(
+			'ApiBeforeMain',
+			// @phan-suppress-next-line PhanPluginNeverReturnFunction Closures should not get doc
+			static function () use ( $exception ) {
+				throw $exception;
+			}
+		);
 
 		// Then return an appropriate SessionInfo
 		$id = $this->hashToSessionId( 'bogus' );
@@ -145,7 +155,7 @@ class SessionProvider extends ImmutableSessionProviderWithCookie {
 				$server = Utils::newMWOAuthServer();
 				$oauthRequest = MWOAuthRequest::fromRequest( $request );
 				$logData['consumer'] = $oauthRequest->getConsumerKey();
-				list( , $accessToken ) = $server->verify_request( $oauthRequest );
+				[ , $accessToken ] = $server->verify_request( $oauthRequest );
 				$accessTokenKey = $accessToken->key;
 				$access = ConsumerAcceptance::newFromToken( $dbr, $accessTokenKey );
 			}
@@ -371,7 +381,7 @@ class SessionProvider extends ImmutableSessionProviderWithCookie {
 	 * @param string|array &$message
 	 * @return bool
 	 */
-	public function onApiCheckCanExecute( ApiBase $module, UserIdentity $userIdentity, &$message ) {
+	public function onApiCheckCanExecute( $module, $userIdentity, &$message ) {
 		global $wgMWOauthDisabledApiModules;
 		if ( !$this->getSessionData( $userIdentity ) ) {
 			return true;
@@ -432,10 +442,10 @@ class SessionProvider extends ImmutableSessionProviderWithCookie {
 	 */
 	public function onMarkPatrolled(
 		$rcid,
-		User $user,
+		$user,
 		$wcOnlySysopsCanPatrol,
 		$auto,
-		array &$tags
+		&$tags
 	) {
 		$consumerId = $this->getPublicConsumerId( $user );
 		if ( $consumerId !== null ) {
