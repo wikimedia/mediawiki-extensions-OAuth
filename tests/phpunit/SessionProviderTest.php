@@ -36,9 +36,6 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		// the SessionProvider constructor modifies $wgHooks, stash it
-		global $wgHooks;
-		$this->setMwGlobals( 'wgHooks', $wgHooks );
 	}
 
 	public function testSafeAgainstCsrf() {
