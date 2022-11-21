@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
-use MWException;
 use User;
 
 /**
@@ -43,7 +42,6 @@ class OAuth1Consumer extends Consumer {
 	 * @param string|null $requestTokenKey
 	 * @return string
 	 * @throws MWOAuthException
-	 * @throws MWException
 	 */
 	public function authorize( \User $mwUser, $update, $grants, $requestTokenKey = null ) {
 		$this->conductAuthorizationChecks( $mwUser );

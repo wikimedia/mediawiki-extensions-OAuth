@@ -13,7 +13,6 @@ use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Exception\ClientApprovalDenyException;
 use MediaWiki\Extension\OAuth\Response;
 use MediaWiki\Rest\Response as RestResponse;
-use MWException;
 use MWExceptionHandler;
 use SpecialPage;
 use Throwable;
@@ -167,7 +166,6 @@ class Authorize extends AuthenticationHandler {
 	/**
 	 * @param AuthorizationRequest $authRequest
 	 * @return RestResponse
-	 * @throws MWException
 	 */
 	private function getApprovalRedirectResponse( AuthorizationRequest $authRequest ) {
 		return $this->getResponseFactory()->createTemporaryRedirect(

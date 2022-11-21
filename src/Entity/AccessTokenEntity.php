@@ -30,15 +30,15 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 	/**
 	 * User approval of the client
 	 *
-	 * @var ConsumerAcceptance|bool
+	 * @var ConsumerAcceptance|false
 	 */
-	private $approval = false;
+	private $approval;
 
 	/**
 	 * @param ClientEntity $clientEntity
 	 * @param ScopeEntityInterface[] $scopes
 	 * @param string $issuer
-	 * @param string|null $userIdentifier
+	 * @param string|int|null $userIdentifier
 	 * @throws OAuthServerException
 	 */
 	public function __construct(
@@ -80,7 +80,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 	/**
 	 * Get the approval that allows this AT to be created
 	 *
-	 * @return ConsumerAcceptance
+	 * @return ConsumerAcceptance|false
 	 */
 	public function getApproval() {
 		return $this->approval;
@@ -108,8 +108,8 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 	/**
 	 * @param ClientEntity $clientEntity
 	 * @param array $scopes
-	 * @param null $userIdentifier
-	 * @return ConsumerAcceptance|bool
+	 * @param string|int|null $userIdentifier
+	 * @return ConsumerAcceptance|false
 	 */
 	private function setApprovalFromClientScopesUser(
 		ClientEntity $clientEntity, array $scopes, $userIdentifier = null
@@ -117,6 +117,9 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 		if ( $clientEntity->getOwnerOnly() && $userIdentifier === null ) {
 			$userIdentifier = $clientEntity->getUserId();
 			$scopes = $clientEntity->getScopes();
+		}
+		if ( !$userIdentifier ) {
+			return false;
 		}
 		try {
 			$user = Utils::getLocalUserFromCentralId( $userIdentifier );

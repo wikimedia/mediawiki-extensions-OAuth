@@ -12,7 +12,6 @@ use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extension\OAuth\Repository\ClaimStore;
-use MWException;
 use User;
 
 class ClientEntity extends Consumer implements MWClientEntityInterface {
@@ -77,7 +76,6 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 
 	/**
 	 * @return bool|User
-	 * @throws MWException
 	 */
 	public function getUser() {
 		return Utils::getLocalUserFromCentralId( $this->getUserId() );
@@ -130,7 +128,6 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 	 * @param array $grants
 	 * @param null $requestTokenKey
 	 * @return bool
-	 * @throws MWException
 	 * @throws MWOAuthException
 	 */
 	public function authorize( User $mwUser, $update, $grants, $requestTokenKey = null ) {

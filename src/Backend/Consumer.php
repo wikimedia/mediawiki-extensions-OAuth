@@ -28,7 +28,6 @@ use LogicException;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity as OAuth2Client;
 use MediaWiki\MediaWikiServices;
 use Message;
-use MWException;
 use MWRestrictions;
 use SpecialPage;
 use User;
@@ -49,7 +48,7 @@ abstract class Consumer extends MWOAuthDAO {
 		'authonlyprivate' => 'mwoauth-authonlyprivate',
 	];
 
-	/** @var int Unique ID */
+	/** @var int|null Unique ID */
 	protected $id;
 	/** @var string Hex token */
 	protected $consumerKey;
@@ -560,7 +559,6 @@ abstract class Consumer extends MWOAuthDAO {
 	 *
 	 * @param User $mwUser
 	 * @throws MWOAuthException
-	 * @throws MWException
 	 */
 	protected function conductAuthorizationChecks( User $mwUser ) {
 		global $wgBlockDisablesLogin;
@@ -620,7 +618,6 @@ abstract class Consumer extends MWOAuthDAO {
 	 * @param array $grants
 	 * @return ConsumerAcceptance
 	 * @throws MWOAuthException
-	 * @throws MWException
 	 */
 	protected function saveAuthorization( User $mwUser, $update, $grants ) {
 		// CentralAuth may abort here if there is no global account for this user

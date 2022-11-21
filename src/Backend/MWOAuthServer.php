@@ -15,7 +15,7 @@ class MWOAuthServer extends OAuthServer {
 	/**
 	 * Return a consumer key associated with the given request token.
 	 *
-	 * @param string $requestToken the request token
+	 * @param string $requestToken
 	 * @return string|false the consumer key or false if nothing is stored for the request token
 	 */
 	public function getConsumerKey( $requestToken ) {
@@ -26,7 +26,7 @@ class MWOAuthServer extends OAuthServer {
 	 * Process a request_token request returns the request token on success. This
 	 * also checks the IP restriction, which the OAuthServer method did not.
 	 *
-	 * @param MWOAuthRequest &$request the request
+	 * @param MWOAuthRequest &$request
 	 * @return MWOAuthToken
 	 * @throws MWOAuthException
 	 */
@@ -212,7 +212,7 @@ class MWOAuthServer extends OAuthServer {
 	 * process an access_token request
 	 * returns the access token on success
 	 *
-	 * @param MWOAuthRequest &$request the request
+	 * @param MWOAuthRequest &$request
 	 * @return MWOAuthToken
 	 * @throws MWOAuthException
 	 */

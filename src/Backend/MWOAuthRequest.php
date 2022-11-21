@@ -28,7 +28,7 @@ class MWOAuthRequest extends OAuthRequest {
 
 	/**
 	 * Track the source IP of the request, so we can enforce the allowed IP list
-	 * @return string $ip the ip of the source
+	 * @return string
 	 */
 	public function getSourceIP() {
 		return $this->sourceIP;

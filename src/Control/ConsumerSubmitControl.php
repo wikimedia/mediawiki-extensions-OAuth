@@ -142,7 +142,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					global $wgConf;
 					return ( $s === '*'
 						|| in_array( $s, $wgConf->getLocalDatabases() )
-						|| array_search( $s, Utils::getAllWikiNames() ) !== false
+						|| in_array( $s, Utils::getAllWikiNames() )
 					);
 				},
 				'oauth2GrantTypes' => static function ( $a, $vals ) {
@@ -568,9 +568,8 @@ class ConsumerSubmitControl extends SubmitControl {
 	/**
 	 * @param Consumer $cmr Consumer which was the subject of the action
 	 * @param User $user User who performed the action
-	 * @param string $actionType Action type
+	 * @param string $actionType
 	 * @param string $comment
-	 * @throws MWException
 	 */
 	protected function notify( $cmr, $user, $actionType, $comment ) {
 		if ( !in_array( $actionType, self::$actions, true ) ) {

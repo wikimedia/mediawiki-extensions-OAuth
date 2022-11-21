@@ -258,7 +258,6 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	 *   - table          : a table name
 	 *   - fieldColumnMap : a map of field names to column names
 	 *
-	 * @throws MWException
 	 * @return array
 	 */
 	protected static function getSchema() {
@@ -346,7 +345,6 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 
 	/**
 	 * @param array $values
-	 * @throws MWException
 	 */
 	final protected function loadFromValues( array $values ) {
 		foreach ( static::getFieldColumnMap() as $field => $column ) {
@@ -455,7 +453,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 		return hash_hmac(
 			'sha1',
 			serialize( $map ),
-			"{$context->getUser()->getId()}#{$this->getIdValue()}"
+			$context->getUser()->getId() . '#' . $this->getIdValue()
 		);
 	}
 
