@@ -111,7 +111,7 @@ abstract class Consumer extends MWOAuthDAO {
 
 	/**
 	 * Maps stage ids to human-readable names which describe them as a state
-	 * @var array
+	 * @var array<int,string>
 	 */
 	public static $stageNames = [
 		self::STAGE_PROPOSED => 'proposed',
@@ -124,7 +124,7 @@ abstract class Consumer extends MWOAuthDAO {
 	/**
 	 * Maps stage ids to human-readable names which describe them as an action (which would result
 	 * in that stage)
-	 * @var array
+	 * @var array<int,string>
 	 */
 	public static $stageActionNames = [
 		self::STAGE_PROPOSED => 'propose',
@@ -259,14 +259,14 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public static function newGrants() {
 		return [];
 	}
 
 	/**
-	 * @return array
+	 * @return int[]
 	 */
 	public static function getAllStages() {
 		return [
@@ -615,7 +615,7 @@ abstract class Consumer extends MWOAuthDAO {
 	/**
 	 * @param User $mwUser
 	 * @param bool $update
-	 * @param array $grants
+	 * @param string[] $grants
 	 * @return ConsumerAcceptance
 	 * @throws MWOAuthException
 	 */

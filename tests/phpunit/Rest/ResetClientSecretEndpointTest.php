@@ -72,9 +72,6 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 		$this->tablesUsed[] = 'oauth_registered_consumer';
 	}
 
-	/**
-	 * @return array
-	 */
 	public function provideTestHandlerExecute() {
 		return [
 			'Unsupported Media Type' => [

@@ -58,9 +58,6 @@ class ListClientsEndpointTest extends EndpointTest {
 		$this->assertFalse( $this->newHandler()->needsWriteAccess() );
 	}
 
-	/**
-	 * @return array
-	 */
 	public function provideTestHandlerExecute() {
 		return [
 			'Non-empty result OAuth 1' => [

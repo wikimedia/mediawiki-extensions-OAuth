@@ -601,6 +601,10 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		);
 	}
 
+	/**
+	 * @param array $data
+	 * @return array[]
+	 */
 	private function getRequestValidators( $data = [] ) {
 		$validators = [
 			'action' => [
@@ -663,7 +667,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	 * Get only the grants (scopes) that were actually requested (and are allowed)
 	 *
 	 * @param ConsumerAccessControl $cmrAc
-	 * @return array
+	 * @return string[]
 	 */
 	private function getRequestedGrants( $cmrAc ) {
 		$allowed = $cmrAc->getGrants();

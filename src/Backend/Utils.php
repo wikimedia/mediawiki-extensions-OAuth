@@ -91,7 +91,7 @@ class Utils {
 
 	/**
 	 * @param DBConnRef $db
-	 * @return array
+	 * @return int[]
 	 */
 	public static function getConsumerStateCounts( DBConnRef $db ) {
 		$res = $db->select( 'oauth_registered_consumer',
@@ -219,7 +219,7 @@ class Utils {
 	/**
 	 * Get the pretty names of all local wikis
 	 *
-	 * @return array associative array of local wiki names indexed by wiki ID
+	 * @return string[] associative array of local wiki names indexed by wiki ID
 	 */
 	public static function getAllWikiNames() {
 		global $wgConf;

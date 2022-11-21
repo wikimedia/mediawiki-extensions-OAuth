@@ -82,8 +82,8 @@ abstract class SubmitControl extends \ContextSource {
 	/**
 	 * Given an HTMLForm descriptor array, register the field validation callbacks
 	 *
-	 * @param array $descriptors
-	 * @return array
+	 * @param array[] $descriptors
+	 * @return array[]
 	 */
 	public function registerValidators( array $descriptors ) {
 		foreach ( $descriptors as $field => &$description ) {

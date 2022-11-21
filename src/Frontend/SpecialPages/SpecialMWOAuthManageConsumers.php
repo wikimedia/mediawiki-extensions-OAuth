@@ -46,14 +46,14 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 	/**
 	 * Stages which are shown in a queue (they are in an actionable state and can form a backlog)
-	 * @var array
+	 * @var int[]
 	 */
 	public static $queueStages = [ Consumer::STAGE_PROPOSED,
 		Consumer::STAGE_REJECTED, Consumer::STAGE_EXPIRED ];
 
 	/**
 	 * Stages which cannot form a backlog and are shown in a list
-	 * @var array
+	 * @var int[]
 	 */
 	public static $listStages = [ Consumer::STAGE_APPROVED,
 		Consumer::STAGE_DISABLED ];

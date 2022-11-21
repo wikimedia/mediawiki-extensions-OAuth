@@ -328,7 +328,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 * @param ConsumerAccessControl $cmrAc
 	 * @param int $centralUserId Add update link for this user id, if they can update the consumer
 	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
-	 * @return array
+	 * @return string[]
 	 * @throws \MWException
 	 */
 	private function updateLink(
@@ -350,7 +350,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 * @param Consumer $consumer
 	 * @param \User $user
 	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
-	 * @return array
+	 * @return string[]
 	 * @throws \MWException
 	 */
 	private function manageConsumerLink(
@@ -374,7 +374,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 * @param int $centralUserId Add link to manage grants for this user, if they've granted this
 	 * consumer
 	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
-	 * @return array
+	 * @return string[]
 	 * @throws \MWException
 	 */
 	private function manageMyGrantsLink(

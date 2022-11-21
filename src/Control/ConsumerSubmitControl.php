@@ -58,7 +58,7 @@ class ConsumerSubmitControl extends SubmitControl {
 	/**
 	 * Names of the actions that can be performed on a consumer. These are the same as the
 	 * options in getRequiredFields().
-	 * @var array
+	 * @var string[]
 	 */
 	public static $actions = [ 'propose', 'update', 'approve', 'reject', 'disable', 'reenable' ];
 

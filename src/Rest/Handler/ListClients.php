@@ -89,10 +89,7 @@ class ListClients extends SimpleHandler {
 		return $responseFactory->createJson( $response );
 	}
 
-	/**
-	 *
-	 * @return array
-	 */
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'limit' => [
