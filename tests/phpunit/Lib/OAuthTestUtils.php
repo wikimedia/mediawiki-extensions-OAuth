@@ -33,8 +33,8 @@ class OAuthTestUtils {
 		$scheme = $parts['scheme'];
 		$port   = isset( $parts['port'] ) && $parts['port'] ? $parts['port'] : ( $scheme === 'https' ? '443' : '80' );
 		$host   = $parts['host'];
-		$path   = isset( $parts['path'] )  ? $parts['path']  : NULL;
-		$query  = isset( $parts['query'] ) ? $parts['query'] : NULL;
+		$path   = $parts['path'] ?? NULL;
+		$query  = $parts['query'] ?? '';
 
 		if( $scheme == 'https') {
 			$_SERVER['HTTPS'] = 'on';
@@ -46,7 +46,7 @@ class OAuthTestUtils {
 		$_SERVER['SERVER_PORT'] = $port;
 		$_SERVER['SCRIPT_NAME'] = $path;
 		$_SERVER['REQUEST_URI'] = $path . '?' . $query;
-		$_SERVER['QUERY_STRING'] = $query.'';
+		$_SERVER['QUERY_STRING'] = $query;
 		parse_str($query, $_GET);
 
 		if( $method == 'POST' ) {
