@@ -96,7 +96,7 @@
 	"mwoauthconsumerregistration-updated": "Your OAuth consumer registry was updated.",
 	"mwoauthconsumerregistration-secretreset": "You have been assigned a consumer secret token of '''$1'''. ''Please record this for future reference.''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "Your OAuth consumer tokens have been reset. The new tokens are:\n; Consumer token: $1\n; Consumer secret: $2\n; Access token: $3\n; Access secret: $4\n<em>Please record these for future reference.</em>",
-	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Your OAuth 2.0 client tokens have been reset. The new tokens are:\n; Client application key: $1\n; Client application secret secret: $2\n; Access token: $3\n<em>Please record these for future reference.</em>",
+	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Your OAuth 2.0 client tokens have been reset. The new tokens are:\n; Client application key: $1\n; Client application secret: $2\n; Access token: $3\n<em>Please record these for future reference.</em>",
 	"mwoauthconsumerregistration-need-emailconfirmed": "You must confirm your email address before creating OAuth applications.\nPlease set and validate your email address through your [[Special:Preferences|user preferences]].",
 	"oauthmanageconsumers": "Manage OAuth consumers",
 	"mwoauthmanageconsumers-notloggedin": "You have to be logged in to access this page.",
