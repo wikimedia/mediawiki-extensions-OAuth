@@ -2,11 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Ernác",
-			"Iltever"
+			"Iltever",
+			"Къарачайлы"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Ишлеген къошакъ программала:",
 	"mwoauth-prefs-managegrantslink": "$1 джандырылгъан {{PLURAL:$1|къошакъ программаны}} джюрютюу",
+	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Сизни OAuth 2.0 клиент токенлери къоратылгъандыла. Джангы токенле:\n; Клиент аппликация ачхыч: $1\n; Таша клиент аппликация ачхыч: $2\n; Кириш токен: $3\n<em>Андан ары хайырланыр ючюн джаздырыгъыз.</em>",
 	"mwoauthmanageconsumers-user": "Басмагъа чыгъаргъан",
 	"mwoauthmanageconsumers-description": "Ачыкълау",
 	"mwoauthmanageconsumers-email": "Контактлы e-mail адрес",

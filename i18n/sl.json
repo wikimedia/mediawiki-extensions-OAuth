@@ -28,6 +28,7 @@
 	"mwoauthconsumerregistration-propose-oauth2": "Predlagaj novo stranko OAuth 2.0",
 	"mwoauthconsumerregistration-user": "Avtor",
 	"mwoauthconsumerregistration-description": "Opis",
+	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Vaši odjemalski žetoni OAuth 2.0 so bili ponastavljeni. Novi žetoni so:\n; Ključ odjemalske aplikacije: $1 \n; Skrivnost odjemalske aplikacije: $2 \n; Žeton za dostop: $3 \n <em>Zabeležite si jih za prihodnjo uporabo.</em>",
 	"oauthmanageconsumers": "Upravljanje strank OAuth",
 	"mwoauthmanageconsumers-user": "Avtor",
 	"mwoauthmanageconsumers-description": "Opis",
