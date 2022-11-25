@@ -115,7 +115,7 @@
 	"mwoauthconsumerregistration-updated": "已更新您的OAuth消费方注册信息。",
 	"mwoauthconsumerregistration-secretreset": "您已分配了'''$1'''的消费者密钥。''请保留好它以供今后参考。''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "已重置您的OAuth消费方令牌。新的令牌是：\n; 消费方令牌：$1\n; 消费方密钥：$2\n; 访问令牌：$3\n; 访问密钥：$4\n<em>请记住上述信息，以便今后参考。</em>",
-	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "您的OAuth 2.0消费者令牌已重置。新令牌是：\n; 消费者令牌：$1\n; 消费者密码：$2\n; 访问令牌：$3\n<em>请记录这些以备将来参考。</em>",
+	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "您的OAuth 2.0客户端令牌已重置。新令牌是：\n; 客户端应用程序密钥：$1\n; 客户端应用程序密码：$2\n; 访问令牌：$3\n<em>请记录这些以备将来参考。</em>",
 	"mwoauthconsumerregistration-need-emailconfirmed": "您必须确认您的电子邮件地址才能创建OAuth应用程序。请通过[[Special:Preferences|系统设置]]设置并确认您的电子邮件地址。",
 	"oauthmanageconsumers": "管理OAuth消费方",
 	"mwoauthmanageconsumers-notloggedin": "您必须登录后才能访问此页。",
