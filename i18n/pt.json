@@ -97,7 +97,7 @@
 	"mwoauthconsumerregistration-resetsecretkey": "Reiniciar chave secreta para um novo valor",
 	"mwoauthconsumerregistration-proposed": "O seu pedido de consumidor OAuth foi recebido.\n\nFoi-lhe atribuída a chave de consumidor '''$1''' e a chave secreta '''$2'''. ''Anote estes valores para referência futura, por favor.''",
 	"mwoauthconsumerregistration-created-owner-only": "O seu consumidor OAuth foi criado.\n\nAs suas chaves são:\n; Chave de consumidor: $1\n; Segredo de consumidor: $2\n; Chave de acesso: $3\n; Segredo de acesso: $4\n<em>Anote estes valores para referência futura, por favor.</em>",
-	"mwoauthconsumerregistration-created-owner-only-oauth2": "O seu cliente OAuth 2.0 foi criado.\n\nAs suas chaves são:\n; Chave da aplicação cliente: $1 \n; Segredo da aplicação cliente: $2 \n; Chave de acesso: $3 \n; <em>Anote estes valores para referência futura, por favor.</em>",
+	"mwoauthconsumerregistration-created-owner-only-oauth2": "O seu cliente OAuth 2.0 foi criado.\n\nAs suas chaves são:\n; Chave da aplicação cliente: $1 \n; Segredo da aplicação cliente: $2 \n; Chave de acesso: $3 \n;<em>Anote estes valores para referência futura, por favor.</em>",
 	"mwoauthconsumerregistration-updated": "O registo do seu consumidor OAuth foi atualizado.",
 	"mwoauthconsumerregistration-secretreset": "Foi-lhe atribuído o segredo de consumidor '''$1'''. ''Anote estes valores para referência futura, por favor.''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "As suas chaves de consumidor OAuth foram reiniciadas. As novas chaves são:\n; Chave de consumidor: $1\n; Segredo de consumidor: $2\n; Chave de acesso: $3\n; Segredo de acesso: $4\n<em>Anote estes valores para referência futura, por favor.</em>",
