@@ -245,6 +245,7 @@
 	"mwoauthgrants-general-error": "Generic error, when something unexpected happened while processing the OAuth request",
 	"mwoauthserver-bad-consumer": "Error message when an invalid consumer identifier was submitted. Parameters:\n* $1 - application name\n* $2 - central wiki's user talk page\n* $3 - a link to the explanation of the error. The text link is the error code.",
 	"mwoauthserver-bad-consumer-key": "Generic error for users when a 3rd-party OAuth developer sends users to an invalid url\n* $1 - a link to the explanation of the error. The text link is the error code.",
+	"mwoauthserver-bad-consumer-version": "Error message when the consumer is registered for a different OAuth version than what this request was made with. Parameters:\n* $1 - URL to contact the application owner\n* $2 - a link to the explanation of the error. The text link is the error code",
 	"mwoauthserver-insufficient-rights": "Error message that the user does not have the required rights to perform this request",
 	"mwoauthserver-invalid-request-token": "Error message when an invalid request token was submitted",
 	"mwoauthserver-invalid-user": "Error when the user attempts to use OAuth, but they do not have a unified (SUL) account, which is required.\n\nParameters:\n* $1 - application name\n* $2 - a link to the explanation of the error. The text link is the error code.",
