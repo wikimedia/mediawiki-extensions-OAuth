@@ -32,22 +32,30 @@ use Wikimedia\Rdbms\DBConnRef;
 class ConsumerAcceptance extends MWOAuthDAO {
 	/** @var int Unique ID */
 	protected $id;
+
 	/** @var string Wiki ID the application can be used on (or "*" for all) */
 	protected $wiki;
+
 	/** @var int Publisher user ID (on central wiki) */
 	protected $userId;
+
 	/** @var int */
 	protected $consumerId;
+
 	/** @var string Hex token */
 	protected $accessToken;
+
 	/** @var string Secret HMAC key */
 	protected $accessSecret;
+
 	/** @var array List of grants */
 	protected $grants;
+
 	/** @var string TS_MW timestamp of acceptance */
 	protected $accepted;
+
 	/** @var string */
-	protected $oauthVersion;
+	protected $oauth_version;
 
 	protected static function getSchema() {
 		return [
