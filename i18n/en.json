@@ -166,6 +166,7 @@
 	"mwoauthlistconsumers-callbackisprefix": "Allow consumer to specify a callback in requests and use \"callback\" URL above as a required prefix.",
 	"mwoauthlistconsumers-grants": "Applicable grants",
 	"mwoauthlistconsumers-basicgrantsonly": "(basic access only)",
+	"mwoauthlistconsumers-oauth2-is-confidential": "Client is confidential",
 	"mwoauthlistconsumers-status": "Status",
 	"mwoauth-consumer-stage-any": "any",
 	"mwoauthlistconsumers-status-proposed": "proposed",

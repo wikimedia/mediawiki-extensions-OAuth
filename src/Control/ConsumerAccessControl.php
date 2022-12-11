@@ -258,6 +258,16 @@ class ConsumerAccessControl extends DAOAccessControl {
 	}
 
 	/**
+	 * Whether the consumer is confidential or not.
+	 * Only meaningful for OAuth 2.0 consumers (see {@link getOAuthVersion()})
+	 * and must not be called otherwise.
+	 * @return bool
+	 */
+	public function isConfidential() {
+		return (bool)$this->get( 'oauth2IsConfidential' );
+	}
+
+	/**
 	 * @return Consumer|ClientEntity
 	 */
 	public function getDAO() {

@@ -134,6 +134,12 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 				$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
 			'mwoauthlistconsumers-grants' => new HtmlSnippet( $out->parseInlineAsInterface( $s ) ),
 		];
+		if ( $cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
+			$data += [
+				'mwoauthlistconsumers-oauth2-is-confidential' => $cmrAc->isConfidential() ?
+					$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
+			];
+		}
 
 		$out->addHTML( UIUtils::generateInfoTable( $data, $this->getContext() ) );
 
