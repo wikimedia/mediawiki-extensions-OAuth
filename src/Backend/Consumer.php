@@ -742,7 +742,7 @@ abstract class Consumer extends MWOAuthDAO {
 		$row['oarc_email_authenticated'] =
 			wfTimestampOrNull( TS_MW, $row['oarc_email_authenticated'] );
 		$row['oarc_oauth2_allowed_grants'] = FormatJson::decode(
-			$row['oarc_oauth2_allowed_grants'], true
+			$row['oarc_oauth2_allowed_grants'] ?? 'null', true
 		);
 
 		// For backwards compatibility, remap some grants
