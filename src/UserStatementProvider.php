@@ -17,7 +17,7 @@ class UserStatementProvider {
 	protected $user;
 	/** @var Consumer */
 	protected $consumer;
-	/** @var array */
+	/** @var string[] */
 	protected $grants;
 	/** @var UserGroupManager */
 	private $userGroupManager;

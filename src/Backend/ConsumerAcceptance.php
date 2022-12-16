@@ -49,7 +49,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 	/** @var string Secret HMAC key */
 	protected $accessSecret;
 
-	/** @var array List of grants */
+	/** @var string[] List of grants */
 	protected $grants;
 
 	/** @var string TS_MW timestamp of acceptance */

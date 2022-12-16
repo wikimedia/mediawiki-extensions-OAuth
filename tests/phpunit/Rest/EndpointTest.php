@@ -8,6 +8,7 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
+use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
 use RequestContext;
 use Title;

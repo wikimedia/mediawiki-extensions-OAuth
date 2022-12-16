@@ -10,9 +10,7 @@ use MediaWiki\Rest\Handler;
  * @group OAuth
  */
 class AuthorizationEndpointTest extends EndpointTest {
-	/**
-	 * @return array
-	 */
+
 	public function provideTestHandlerExecute() {
 		return [
 			'redirect to login' => [

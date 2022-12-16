@@ -58,7 +58,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * Get an MWOAuthConsumer from the consumer's key
 	 *
 	 * @param string $consumerKey the string value of the Consumer's key
-	 * @return Consumer|bool
+	 * @return Consumer|false
 	 */
 	public function lookup_consumer( $consumerKey ) {
 		return Consumer::newFromKey( $this->centralReplica, $consumerKey );

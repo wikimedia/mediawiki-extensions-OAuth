@@ -17,7 +17,7 @@ use WikiMap;
 class RequestClientEndpointTest extends EndpointTest {
 
 	/**
-	 * @var array[]
+	 * @var array
 	 */
 	private $postParams = [
 		'name' => 'TestName',
@@ -34,7 +34,7 @@ class RequestClientEndpointTest extends EndpointTest {
 	];
 
 	/**
-	 * @var array[]
+	 * @var array
 	 */
 	private $postParamsOwnerOnlyRestriction = [
 		'callback_url' => false,
@@ -78,9 +78,6 @@ class RequestClientEndpointTest extends EndpointTest {
 		$this->tablesUsed[] = 'oauth_registered_consumer';
 	}
 
-	/**
-	 * @return array
-	 */
 	public function provideTestHandlerExecute() {
 		return [
 			'No POST params' => [

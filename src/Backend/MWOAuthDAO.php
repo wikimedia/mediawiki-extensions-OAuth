@@ -169,7 +169,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	final public function getFieldNames() {
 		return array_keys( static::getFieldColumnMap() );
@@ -277,7 +277,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	 * @see MWOAuthDAOAccessControl
 	 *
 	 * @throws LogicException Subclasses must override
-	 * @return array Map of (field name => name of method that checks access)
+	 * @return array<string,string> Map of (field name => name of method that checks access)
 	 */
 	protected static function getFieldPermissionChecks() {
 		// Note: declaring this abstract raises E_STRICT
@@ -293,7 +293,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	}
 
 	/**
-	 * @return array
+	 * @return array<string,string>
 	 */
 	final protected static function getFieldColumnMap() {
 		$schema = static::getSchema();

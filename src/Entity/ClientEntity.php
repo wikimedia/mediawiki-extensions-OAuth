@@ -53,7 +53,7 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 	/**
 	 * Get the grant types this client is allowed to use
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getAllowedGrants() {
 		return $this->oauth2GrantTypes;
@@ -125,7 +125,7 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 	/**
 	 * @param User $mwUser
 	 * @param bool $update
-	 * @param array $grants
+	 * @param string[] $grants
 	 * @param null $requestTokenKey
 	 * @return bool
 	 * @throws MWOAuthException
@@ -190,8 +190,8 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 	/**
 	 * Filter out scopes that application cannot use
 	 *
-	 * @param array $requested
-	 * @return array
+	 * @param string[] $requested
+	 * @return string[]
 	 */
 	private function getVerifiedScopes( $requested ) {
 		return array_intersect( $requested, $this->getGrants() );
