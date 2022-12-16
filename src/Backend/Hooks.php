@@ -8,8 +8,8 @@ use MediaWiki\ChangeTags\Hook\ChangeTagsListActiveHook;
 use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
 use MediaWiki\Extension\OAuth\Frontend\OAuthLogFormatter;
 use MediaWiki\Hook\SetupAfterCacheHook;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\Storage\NameTableStore;
 use Status;
 use User;
 use WikiMap;
@@ -24,6 +24,16 @@ class Hooks implements
 	ListDefinedTagsHook,
 	SetupAfterCacheHook
 {
+
+	/** @var NameTableStore */
+	private $changeTagDefStore;
+
+	/**
+	 * @param NameTableStore $changeTagDefStore
+	 */
+	public function __construct( NameTableStore $changeTagDefStore ) {
+		$this->changeTagDefStore = $changeTagDefStore;
+	}
 
 	/**
 	 * Called right after configuration variables have been set.
@@ -117,11 +127,11 @@ EOK;
 	}
 
 	public function onListDefinedTags( &$tags ) {
-		return self::getUsedConsumerTags( false, $tags );
+		return $this->getUsedConsumerTags( false, $tags );
 	}
 
 	public function onChangeTagsListActive( &$tags ) {
-		return self::getUsedConsumerTags( true, $tags );
+		return $this->getUsedConsumerTags( true, $tags );
 	}
 
 	/**
@@ -136,7 +146,7 @@ EOK;
 	 * @param array &$tags
 	 * @return bool
 	 */
-	private static function getUsedConsumerTags( $activeOnly, &$tags ) {
+	private function getUsedConsumerTags( $activeOnly, &$tags ) {
 		// Step 1: Get the list of (active) consumers' tags for this wiki
 		$db = Utils::getCentralDB( DB_REPLICA );
 		$conds = [
@@ -165,11 +175,10 @@ EOK;
 		}
 
 		// Step 2: Return only those that are in use.
-		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 		$tagIds = [];
 		foreach ( $allTags as $tag ) {
 			try {
-				$tagIds[] = $changeTagDefStore->getId( $tag );
+				$tagIds[] = $this->changeTagDefStore->getId( $tag );
 			} catch ( NameTableAccessException $ex ) {
 				continue;
 			}
@@ -191,7 +200,7 @@ EOK;
 				[ 'DISTINCT' ]
 			);
 			foreach ( $res as $row ) {
-				$tags[] = $changeTagDefStore->getName( intval( $row->ct_tag_id ) );
+				$tags[] = $this->changeTagDefStore->getName( intval( $row->ct_tag_id ) );
 			}
 		}
 

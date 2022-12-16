@@ -11,7 +11,7 @@ use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers;
 use MediaWiki\Hook\LoginFormValidErrorMessagesHook;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\SpecialPage\Hook\SpecialPage_initListHook;
 use MediaWiki\SpecialPage\Hook\SpecialPageAfterExecuteHook;
@@ -34,6 +34,16 @@ class UIHooks implements
 	SpecialPage_initListHook
 {
 
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/**
+	 * @param PermissionManager $permissionManager
+	 */
+	public function __construct( PermissionManager $permissionManager ) {
+		$this->permissionManager = $permissionManager;
+	}
+
 	/**
 	 * @param User $user
 	 * @param array &$preferences
@@ -47,8 +57,7 @@ class UIHooks implements
 			'oaac_user_id' => Utils::getCentralIdFromLocalUser( $user ),
 		];
 
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( !$permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
+		if ( !$this->permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
 			$conds['oarc_deleted'] = 0;
 		}
 		$count = $dbr->selectField(

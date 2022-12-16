@@ -109,10 +109,16 @@
 			"class": "MediaWiki\\Extension\\OAuth\\Backend\\AbuseFilterHookHandler"
 		},
 		"backend": {
-			"class": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks"
+			"class": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks",
+			"services": [
+				"ChangeTagDefStore"
+			]
 		},
 		"frontend": {
-			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks"
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks",
+			"services": [
+				"PermissionManager"
+			]
 		},
 		"setup": {
 			"class": "MediaWiki\\Extension\\OAuth\\Setup"
