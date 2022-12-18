@@ -53,7 +53,7 @@ class MigrateCentralWikiLogs extends Maintenance {
 			$lastMinTimestamp = $targetMinTS;
 		}
 
-		$commentStore = CommentStore::getStore();
+		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
 		$commentQuery = $commentStore->getJoin( 'log_comment' );
 
 		do {
