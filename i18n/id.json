@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Agam Riyandana",
 			"Diki Ananta",
 			"Ilham151096",
 			"Iwan Novirion",
@@ -36,6 +37,7 @@
 	"mwoauthconsumerregistration-stage": "Status",
 	"mwoauthconsumerregistration-lastchange": "Perubahan terakhir",
 	"mwoauthconsumerregistration-manage": "kelola",
+	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Token klien OAuth 2.0 Anda telah disetel ulang. Token baru adalah:\n; Kunci aplikasi klien: $1 \n; Rahasia aplikasi klien: $2 \n; Token akses: $3 \n <em>Harap rekam ini untuk referensi di masa mendatang.</em>",
 	"mwoauthmanageconsumers-description": "Deskripsi",
 	"mwoauthmanageconsumers-search-publisher": "konsumen dari pengguna ini",
 	"oauthlistconsumers": "Daftar aplikasi OAuth",
