@@ -11,7 +11,8 @@
 			"SupaplexTW",
 			"Waihorace",
 			"Xiplus",
-			"一個正常人"
+			"一個正常人",
+			"捍粵者"
 		]
 	},
 	"mwoauth-desc": "允許使用 OAuth 1.0a 與 OAuth 2.0 作為 API 授權程式",
@@ -59,7 +60,7 @@
 	"mwoauth-consumer-alreadyexistsversion": "使用此名稱/版本/發佈者的 Consumer 已存在且使用相等或較高的版本 (\"$1\")",
 	"mwoauth-consumer-not-accepted": "無法更新待申請 Consumer 請求的資訊",
 	"mwoauth-consumer-not-proposed": "該 Consumer 尚未提出申請",
-	"mwoauth-consumer-not-disabled": "該 Consumer 尚未被停用",
+	"mwoauth-consumer-not-disabled": "該Consumer並未停用",
 	"mwoauth-consumer-not-approved": "該 Consumer 尚未被批准 (可能已停用)",
 	"mwoauth-missing-consumer-key": "未提供 Consumer 金鑰。",
 	"mwoauth-invalid-consumer-key": "沒有使用此金鑰的 Consumer。",
