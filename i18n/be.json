@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Artsiom91",
+			"Maksim L.",
 			"No Sleep till Krupki",
 			"Vlad5250"
 		]
@@ -24,7 +25,7 @@
 	"right-mwoauthmanageconsumer": "Кіраванне спажыўцамі OAuth",
 	"right-mwoauthsuppress": "Падаўленне спажыўцоў OAuth",
 	"right-mwoauthviewsuppressed": "Прагляд падаўленых спажыўцоў OAuth",
-	"right-mwoauthviewprivate": "Прагляд прыватных дадзеных OAuth",
+	"right-mwoauthviewprivate": "Прагляд прыватных даных OAuth",
 	"right-mwoauthmanagemygrants": "Кіраванне грантамі OAuth",
 	"action-mwoauthmanageconsumer": "кіраваць спажыўцамі OAuth",
 	"action-mwoauthsuppress": "падаўляць спажыўцоў OAuth",
