@@ -106,7 +106,9 @@
 	"action-mwoauthupdateownconsumer": "posodabljati strank OAuth, ki jih nadzorujete",
 	"action-mwoauthviewprivate": "dostopati do zasebnih podatkov OAuth",
 	"action-mwoauthviewsuppressed": "dostopati do odstranjenih strank OAuth",
-	"echo-pref-tooltip-oauth-owner": "Obveščaj me o dogodkih, povezanih z aplikacijami OAuth, ki sem jih ustvaril/a.",
+	"echo-category-title-oauth-owner": "Razvoj OAuth",
+	"echo-pref-tooltip-oauth-owner": "Obveščaj me o dogodkih, povezanih z aplikacijami OAuth, ki sem jih ustvaril_a.",
+	"echo-category-title-oauth-admin": "Administracija OAuth",
 	"echo-pref-tooltip-oauth-admin": "Obveščaj me o dogodkih, povezanih s pregledovanjem aplikacij OAuth.",
 	"mwoauth-oauth-version": "Različica protokola OAuth",
 	"mwoauthconsumer-application-view": "Ogled aplikacije"

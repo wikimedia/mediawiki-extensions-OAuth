@@ -105,7 +105,7 @@
 	"log-action-filter-mwoauthconsumer-update": "OAuth потрошачко ажурирање",
 	"mwoauthconsumer-consumer-logpagetext": "Дневник одобравања, одбијања и онемогућавања регистрованих корисника OAuth-а.",
 	"mwoauthdatastore-request-token-already-used": "Захтев је већ извршен и не може се поново поднети.\nВратите се на апликацију и покушајте поново да повежете свој налог или се обратите аутору апликације.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth токен је већ искоришћен, $1</span>",
-	"mwoauth-form-description-allwikis-nogrants": "Здраво $1,\n\nУ циљу завршавања вашег захтева, апликацији '''$2''' је потребна дозвола за приступ информацијама на свим пројектима овог сајта у ваше име. Никакве промене неће бити направљене са вашим налогом.",
+	"mwoauth-form-description-allwikis-nogrants": "Здраво $1,\n\nУ циљу извршавања вашег захтева, апликацији '''$2''' је потребна дозвола за приступ информацијама на свим пројектима овог сајта у ваше име. Никакве измене неће бити направљене вашим налогом.",
 	"mwoauth-form-button-approve": "Дозволи",
 	"mwoauth-form-button-cancel": "Откажи",
 	"mwoauth-grants-heading": "Тражене дозволе:",
