@@ -25,7 +25,7 @@
 	"mwoauth-consumer-stage-suppressed": "skrita",
 	"mwoauthconsumerregistration-navigation": "Navigacija:",
 	"mwoauthconsumerregistration-propose-oauth1a": "Predlagaj novo stranko OAuth 1.0a",
-	"mwoauthconsumerregistration-propose-oauth2": "Predlagaj novo stranko OAuth 2.0",
+	"mwoauthconsumerregistration-propose-oauth2": "Predlagaj novega odjemalca OAuth 2.0",
 	"mwoauthconsumerregistration-user": "Avtor",
 	"mwoauthconsumerregistration-description": "Opis",
 	"oauthmanageconsumers": "Upravljanje strank OAuth",
@@ -114,5 +114,6 @@
 	"echo-pref-tooltip-oauth-admin": "Obveščaj me o dogodkih, povezanih s pregledovanjem aplikacij OAuth.",
 	"mwoauth-oauth-version": "Različica protokola OAuth",
 	"mwoauthconsumer-application-view": "Ogled aplikacije",
-	"grant-oauthmanageownclient": "Upravljanje svojih strank OAuth"
+	"grant-oauthmanageownclient": "Upravljanje svojih strank OAuth",
+	"mwoauth-consumer-submit-error": "Pri shranjevanju stranke je prišlo do napake."
 }
