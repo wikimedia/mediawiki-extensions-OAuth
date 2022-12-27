@@ -327,7 +327,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 
 		$form->setWrapperLegendMsg( 'mwoauthmanageconsumers-confirm-legend' );
 		$form->setSubmitTextMsg( 'mwoauthmanageconsumers-confirm-submit' );
-		$form->addPreText(
+		$form->addPreHtml(
 			$this->msg( 'mwoauthmanageconsumers-confirm-text' )->parseAsBlock() );
 
 		$status = $form->show();

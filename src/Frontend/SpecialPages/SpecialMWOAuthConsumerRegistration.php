@@ -239,7 +239,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			);
 			$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-update-legend' );
 			$form->setSubmitTextMsg( 'mwoauthconsumerregistration-update-submit' );
-			$form->addPreText(
+			$form->addPreHtml(
 				$this->msg( 'mwoauthconsumerregistration-update-text' )->parseAsBlock() );
 
 			$status = $form->show();
@@ -617,7 +617,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		);
 		$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-propose-legend' );
 		$form->setSubmitTextMsg( 'mwoauthconsumerregistration-propose-submit' );
-		$form->addPreText(
+		$form->addPreHtml(
 			$this->msg( 'mwoauthconsumerregistration-propose-text-oauth1a' )->parseAsBlock() );
 
 		$status = $form->show();
@@ -811,7 +811,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		);
 		$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-propose-legend' );
 		$form->setSubmitTextMsg( 'mwoauthconsumerregistration-propose-submit' );
-		$form->addPreText(
+		$form->addPreHtml(
 			$this->msg( 'mwoauthconsumerregistration-propose-text-oauth2' )->parseAsBlock() );
 
 		$status = $form->show();

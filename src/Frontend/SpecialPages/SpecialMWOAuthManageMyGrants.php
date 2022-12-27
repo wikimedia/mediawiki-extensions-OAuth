@@ -281,7 +281,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 				'flags' => [ 'primary', 'progressive' ],
 			] );
 		}
-		$form->addPreText(
+		$form->addPreHtml(
 			$this->msg( "mwoauthmanagemygrants-$type-text" )->parseAsBlock() );
 
 		$status = $form->show();

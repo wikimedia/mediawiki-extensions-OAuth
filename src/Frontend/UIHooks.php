@@ -218,7 +218,7 @@ class UIHooks implements
 					'Special:OAuthConsumerRegistration'
 				);
 			}
-			$form->addPreText( $form->msg( 'mwoauth-botpasswords-note', $url )->parseAsBlock() );
+			$form->addPreHtml( $form->msg( 'mwoauth-botpasswords-note', $url )->parseAsBlock() );
 		}
 		return true;
 	}

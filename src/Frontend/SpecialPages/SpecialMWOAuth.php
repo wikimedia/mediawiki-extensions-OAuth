@@ -533,8 +533,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		} else {
 			$params[] = $grantsText;
 		}
-		$form->addHeaderText( $this->msg( $msgKey, $params )->parseAsBlock() );
-		$form->addHeaderText( $this->msg( 'mwoauth-form-legal' )->text() );
+		$form->addHeaderHtml( $this->msg( $msgKey, $params )->parseAsBlock() );
+		$form->addHeaderHtml( $this->msg( 'mwoauth-form-legal' )->text() );
 
 		$form->suppressDefaultSubmit();
 		$form->addButton( [
@@ -555,7 +555,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			'framed' => false,
 		] );
 
-		$form->addFooterText( $this->makePrivacyLink() );
+		$form->addFooterHtml( $this->makePrivacyLink() );
 
 		$out = $this->getOutput();
 		$out->enableOOUI();
