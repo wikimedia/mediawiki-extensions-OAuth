@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth;
 
+use InvalidArgumentException;
 use MediaWiki\Rest\Response as RestResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
@@ -44,7 +45,7 @@ class Response extends RestResponse implements ResponseInterface {
 	 * @param string $name Case-insensitive header field name.
 	 * @param string|string[] $value Header value(s).
 	 * @return static
-	 * @throws \InvalidArgumentException for invalid header names or values.
+	 * @throws InvalidArgumentException for invalid header names or values.
 	 */
 	public function withHeader( $name, $value ) {
 		$response = clone $this;
@@ -66,7 +67,7 @@ class Response extends RestResponse implements ResponseInterface {
 	 * @param string $name Case-insensitive header field name to add.
 	 * @param string|string[] $value Header value(s).
 	 * @return static
-	 * @throws \InvalidArgumentException for invalid header names or values.
+	 * @throws InvalidArgumentException for invalid header names or values.
 	 */
 	public function withAddedHeader( $name, $value ) {
 		$response = clone $this;
@@ -103,7 +104,7 @@ class Response extends RestResponse implements ResponseInterface {
 	 *
 	 * @param StreamInterface $body
 	 * @return static
-	 * @throws \InvalidArgumentException When the body is not valid.
+	 * @throws InvalidArgumentException When the body is not valid.
 	 */
 	public function withBody( StreamInterface $body ) {
 		$response = clone $this;
@@ -129,7 +130,7 @@ class Response extends RestResponse implements ResponseInterface {
 	 *     provided status code; if none is provided, implementations MAY
 	 *     use the defaults as suggested in the HTTP specification.
 	 * @return static
-	 * @throws \InvalidArgumentException For invalid status code arguments.
+	 * @throws InvalidArgumentException For invalid status code arguments.
 	 */
 	public function withStatus( $code, $reasonPhrase = '' ) {
 		$response = clone $this;

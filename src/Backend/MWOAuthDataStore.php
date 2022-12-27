@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Backend;
 
 use BagOStuff;
+use InvalidArgumentException;
 use Linker;
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
@@ -39,11 +40,11 @@ class MWOAuthDataStore extends OAuthDataStore {
 	public function __construct(
 		DBConnRef $centralReplica,
 		$centralPrimary,
-		\BagOStuff $tokenCache,
-		\BagOStuff $nonceCache
+		BagOStuff $tokenCache,
+		BagOStuff $nonceCache
 	) {
 		if ( $centralPrimary !== null && !( $centralPrimary instanceof DBConnRef ) ) {
-			throw new \InvalidArgumentException(
+			throw new InvalidArgumentException(
 				__METHOD__ . ': $centralPrimary must be a DB or null'
 			);
 		}

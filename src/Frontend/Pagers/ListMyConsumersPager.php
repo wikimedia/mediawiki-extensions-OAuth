@@ -25,11 +25,14 @@ use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegist
  */
 
 use MediaWiki\MediaWikiServices;
+use ReverseChronologicalPager;
+use stdClass;
+use Title;
 
 /**
  * Query to list out consumers
  */
-class ListMyConsumersPager extends \ReverseChronologicalPager {
+class ListMyConsumersPager extends ReverseChronologicalPager {
 	/** @var SpecialMWOAuthConsumerRegistration */
 	public $mForm;
 
@@ -55,14 +58,14 @@ class ListMyConsumersPager extends \ReverseChronologicalPager {
 	}
 
 	/**
-	 * @return \Title
+	 * @return Title
 	 */
 	public function getTitle() {
 		return $this->mForm->getFullTitle();
 	}
 
 	/**
-	 * @param \stdClass $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	public function formatRow( $row ) {

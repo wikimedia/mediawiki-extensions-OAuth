@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extension\OAuth\Entity;
 
+use DateInterval;
+use DateTimeImmutable;
 use Exception;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
@@ -176,8 +178,8 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 		foreach ( $claims as $claim ) {
 			$accessToken->addClaim( $claim );
 		}
-		$accessToken->setExpiryDateTime( ( new \DateTimeImmutable() )->add(
-			new \DateInterval( 'P1000Y' )
+		$accessToken->setExpiryDateTime( ( new DateTimeImmutable() )->add(
+			new DateInterval( 'P1000Y' )
 		) );
 		$accessToken->setPrivateKeyFromConfig();
 		$accessToken->setIdentifier( bin2hex( random_bytes( 40 ) ) );

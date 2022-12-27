@@ -29,6 +29,7 @@ namespace MediaWiki\Extension\OAuth\Lib;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
 
 class OAuthRequest {
 	protected $parameters;
@@ -39,7 +40,7 @@ class OAuthRequest {
 	public static $version = '1.0';
 	public static $POST_INPUT = 'php://input';
 
-	/** @var \\Psr\\Log\\LoggerInterface */
+	/** @var LoggerInterface */
 	protected $logger;
 
 	function __construct( $http_method, $http_url, $parameters = null ) {

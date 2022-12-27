@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
+use WebRequest;
 
 /**
  * @file
@@ -34,7 +35,7 @@ class MWOAuthRequest extends OAuthRequest {
 		return $this->sourceIP;
 	}
 
-	public static function fromRequest( \WebRequest $request ) {
+	public static function fromRequest( WebRequest $request ) {
 		$httpMethod = strtoupper( $request->getMethod() );
 		$httpUrl = $request->getFullRequestURL();
 

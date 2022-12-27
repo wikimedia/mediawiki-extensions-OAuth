@@ -25,11 +25,14 @@ use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageMyGrants
  */
 
 use MediaWiki\MediaWikiServices;
+use ReverseChronologicalPager;
+use stdClass;
+use Title;
 
 /**
  * Query to list out consumers that have an access token for this user
  */
-class ManageMyGrantsPager extends \ReverseChronologicalPager {
+class ManageMyGrantsPager extends ReverseChronologicalPager {
 	/** @var SpecialMWOAuthManageMyGrants */
 	public $mForm;
 	/** @var array */
@@ -60,14 +63,14 @@ class ManageMyGrantsPager extends \ReverseChronologicalPager {
 	}
 
 	/**
-	 * @return \Title
+	 * @return Title
 	 */
 	public function getTitle() {
 		return $this->mForm->getFullTitle();
 	}
 
 	/**
-	 * @param \stdClass $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	public function formatRow( $row ) {

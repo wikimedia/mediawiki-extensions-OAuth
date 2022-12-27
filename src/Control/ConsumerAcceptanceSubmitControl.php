@@ -21,6 +21,8 @@
 
 namespace MediaWiki\Extension\OAuth\Control;
 
+use FormatJson;
+use IContextSource;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
@@ -47,13 +49,13 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 	protected $oauthVersion;
 
 	/**
-	 * @param \IContextSource $context
+	 * @param IContextSource $context
 	 * @param array $params
 	 * @param DBConnRef $dbw Result of Utils::getCentralDB( DB_PRIMARY )
 	 * @param int $oauthVersion
 	 */
 	public function __construct(
-		\IContextSource $context, array $params, DBConnRef $dbw, $oauthVersion
+		IContextSource $context, array $params, DBConnRef $dbw, $oauthVersion
 	) {
 		parent::__construct( $context, $params );
 		$this->dbw = $dbw;
@@ -65,7 +67,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 			'update'   => [
 				'acceptanceId' => '/^\d+$/',
 				'grants'      => static function ( $s ) {
-					$grants = \FormatJson::decode( $s, true );
+					$grants = FormatJson::decode( $s, true );
 					return is_array( $grants ) && Utils::grantsAreValid( $grants );
 				}
 			],
@@ -168,7 +170,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 			$cmr = Consumer::newFromId( $dbw, $cmra->getConsumerId() );
 
 			// requested grants
-			$grants = \FormatJson::decode( $this->vals['grants'], true );
+			$grants = FormatJson::decode( $this->vals['grants'], true );
 			$grants = array_unique( array_intersect(
 				array_merge(
 					// implied grants

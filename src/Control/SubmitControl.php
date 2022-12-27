@@ -2,6 +2,12 @@
 
 namespace MediaWiki\Extension\OAuth\Control;
 
+use ContextSource;
+use HTMLForm;
+use IContextSource;
+use MWException;
+use Status;
+
 /**
  * (c) Aaron Schulz 2013, GPL
  *
@@ -24,15 +30,15 @@ namespace MediaWiki\Extension\OAuth\Control;
 /**
  * Handle the logic of submitting a client request
  */
-abstract class SubmitControl extends \ContextSource {
+abstract class SubmitControl extends ContextSource {
 	/** @var array (field name => value) */
 	protected $vals;
 
 	/**
-	 * @param \IContextSource $context
+	 * @param IContextSource $context
 	 * @param array $params
 	 */
-	public function __construct( \IContextSource $context, array $params ) {
+	public function __construct( IContextSource $context, array $params ) {
 		$this->setContext( $context );
 		$this->vals = $params;
 	}
@@ -50,8 +56,8 @@ abstract class SubmitControl extends \ContextSource {
 	 * This will check basic permissions, validate the action and parameters
 	 * and route the submission handling to the internal subclass function.
 	 *
-	 * @throws \MWException
-	 * @return \Status
+	 * @throws MWException
+	 * @return Status
 	 */
 	public function submit() {
 		$status = $this->checkBasePermissions();
@@ -72,10 +78,10 @@ abstract class SubmitControl extends \ContextSource {
 		}
 
 		$status = $this->processAction( $action );
-		if ( $status instanceof \Status ) {
+		if ( $status instanceof Status ) {
 			return $status;
 		} else {
-			throw new \MWException( "Submission action '$action' not handled." );
+			throw new MWException( "Submission action '$action' not handled." );
 		}
 	}
 
@@ -105,8 +111,8 @@ abstract class SubmitControl extends \ContextSource {
 	 * @param string $field
 	 * @param mixed $value
 	 * @param array $allValues
-	 * @param \HTMLForm $form
-	 * @throws \MWException
+	 * @param HTMLForm $form
+	 * @throws MWException
 	 * @return bool|string
 	 */
 	public function validateFieldInternal( $field, $value, $allValues, $form ) {
@@ -116,7 +122,7 @@ abstract class SubmitControl extends \ContextSource {
 			$allValues['action'] = $this->vals['action'];
 		}
 		if ( !isset( $allValues['action'] ) ) {
-			throw new \MWException( "No form action defined; cannot validate fields." );
+			throw new MWException( "No form action defined; cannot validate fields." );
 		}
 		$validators = $this->getRequiredFields();
 		if ( !isset( $validators[$allValues['action']][$field] ) ) {
@@ -162,7 +168,7 @@ abstract class SubmitControl extends \ContextSource {
 	/**
 	 * Check action-independent permissions against the user for this submission
 	 *
-	 * @return \Status
+	 * @return Status
 	 */
 	abstract protected function checkBasePermissions();
 
@@ -170,7 +176,7 @@ abstract class SubmitControl extends \ContextSource {
 	 * Check that the action is valid and that the required fields are valid
 	 *
 	 * @param array $required (field => regex or callback)
-	 * @return \Status
+	 * @return Status
 	 */
 	protected function validateFields( array $required ) {
 		foreach ( $required as $field => $validator ) {
@@ -201,7 +207,7 @@ abstract class SubmitControl extends \ContextSource {
 	 * Attempt to validate and submit this data for the given action
 	 *
 	 * @param string $action
-	 * @return \Status
+	 * @return Status
 	 */
 	abstract protected function processAction( $action );
 
@@ -209,23 +215,23 @@ abstract class SubmitControl extends \ContextSource {
 	 * @param string $error API error key
 	 * @param string $msg Message key
 	 * @param mixed ...$params Additional arguments used as message parameters
-	 * @return \Status
+	 * @return Status
 	 */
 	protected function failure( $error, $msg, ...$params ) {
 		// Use the same logic as wfMessage
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
-		$status = \Status::newFatal( $this->msg( $msg, $params ) );
+		$status = Status::newFatal( $this->msg( $msg, $params ) );
 		$status->value = [ 'error' => $error, 'result' => null ];
 		return $status;
 	}
 
 	/**
 	 * @param mixed|null $value
-	 * @return \Status
+	 * @return Status
 	 */
 	protected function success( $value = null ) {
-		return \Status::newGood( [ 'error' => null, 'result' => $value ] );
+		return Status::newGood( [ 'error' => null, 'result' => $value ] );
 	}
 }

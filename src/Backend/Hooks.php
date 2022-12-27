@@ -97,7 +97,7 @@ EOK;
 		}
 	}
 
-	public static function onMergeAccountFromTo( \User $oUser, \User $nUser ) {
+	public static function onMergeAccountFromTo( User $oUser, User $nUser ) {
 		global $wgMWOAuthSharedUserIDs;
 
 		if ( !$wgMWOAuthSharedUserIDs ) {

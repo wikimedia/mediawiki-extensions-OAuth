@@ -30,6 +30,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
 
 /**
  * A class for implementing a Signature Method
@@ -37,7 +38,7 @@ use MediaWiki\Logger\LoggerFactory;
  */
 abstract class OAuthSignatureMethod {
 
-	/** @var \\Psr\\Log\\LoggerInterface */
+	/** @var LoggerInterface */
 	protected $logger;
 
 	public function __construct() {

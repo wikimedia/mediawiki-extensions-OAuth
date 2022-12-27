@@ -22,6 +22,11 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
  */
 
 use Firebase\JWT\JWT;
+use FormatJson;
+use Html;
+use HTMLForm;
+use IContextSource;
+use Linker;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
@@ -36,15 +41,23 @@ use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 use MediaWiki\Extension\OAuth\UserStatementProvider;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Permissions\GrantsLocalization;
+use Message;
+use MWException;
 use OOUI;
+use OOUI\HtmlSnippet;
 use Psr\Log\LoggerInterface;
+use SpecialPage;
+use Status;
 use Title;
+use UnlistedSpecialPage;
+use User;
+use WebRequest;
 use WikiMap;
 
 /**
  * Page that handles OAuth consumer authorization and token exchange
  */
-class SpecialMWOAuth extends \UnlistedSpecialPage {
+class SpecialMWOAuth extends UnlistedSpecialPage {
 	/** @var LoggerInterface */
 	protected $logger;
 
@@ -194,7 +207,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					$requestToken = $request->getVal( 'oauth_token' );
 					if ( !$verifier || !$requestToken ) {
 						throw new MWOAuthException( 'mwoauth-bad-request-missing-params', [
-							\Message::rawParam( \Linker::makeExternalLink(
+							Message::rawParam( Linker::makeExternalLink(
 								'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001',
 								'E001',
 								true
@@ -214,7 +227,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 				case 'grants':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
 					// Backwards compatibility
-					$listGrants = \SpecialPage::getTitleFor( 'ListGrants' );
+					$listGrants = SpecialPage::getTitleFor( 'ListGrants' );
 					$output->redirect( $listGrants->getFullURL() );
 					break;
 
@@ -235,7 +248,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					$localUser = Utils::getLocalUserFromCentralId( $access->getUserId() );
 					if ( !$localUser || !$localUser->isRegistered() ) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-invalid-user', [
-							\Message::rawParam( \Linker::makeExternalLink(
+							Message::rawParam( Linker::makeExternalLink(
 								'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
 								'E008',
 								true
@@ -296,7 +309,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 					if ( !$cmrAc || !$cmrAc->userCanAccess( 'userId' ) ) {
 						$this->showError(
 							$this->msg( 'mwoauth-bad-request-invalid-action' )->rawParams(
-								\Linker::makeExternalLink(
+								Linker::makeExternalLink(
 									'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002',
 									'E002',
 									true
@@ -309,7 +322,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 						$this->showError(
 							$this->msg( 'mwoauth-bad-request-invalid-action-contact',
 								Utils::getCentralUserTalk( $owner )
-							)->rawParams( \Linker::makeExternalLink(
+							)->rawParams( Linker::makeExternalLink(
 								'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003',
 								'E003',
 								true
@@ -363,13 +376,13 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			'mwoauth-acceptance-cancelled',
 			$cmrAc->getName()
 		);
-		$output->addReturnTo( \Title::newMainPage() );
+		$output->addReturnTo( Title::newMainPage() );
 	}
 
 	/**
 	 * Make statements about the user, and sign the json with
 	 * a key shared with the Consumer.
-	 * @param \User $user the user who is the subject of this request
+	 * @param User $user the user who is the subject of this request
 	 * @param Consumer $consumer
 	 * @param MWOAuthRequest $request
 	 * @param string $format the format of the response: raw, json, or html
@@ -411,7 +424,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 
 		if ( !$cmrAc || !$cmrAc->userCanAccess( [ 'name', 'userId', 'grants' ] ) ) {
 			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key', [
-				\Message::rawParam( \Linker::makeExternalLink(
+				Message::rawParam( Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006',
 					'E006',
 					true
@@ -457,7 +470,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$this->getContext(), [], Utils::getCentralDB( DB_PRIMARY ), $this->oauthVersion
 		);
 
-		$form = \HTMLForm::factory( 'ooui',
+		$form = HTMLForm::factory( 'ooui',
 			$control->registerValidators( $this->getRequestValidators( [
 				'existing' => $existing,
 				'consumerKey' => $consumerKey,
@@ -466,9 +479,9 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
-			static function ( array $data, \IContextSource $context ) use ( $control ) {
+			static function ( array $data, IContextSource $context ) use ( $control ) {
 				if ( $context->getRequest()->getCheck( 'cancel' ) ) {
-					throw new \MWException( 'Received request for a form cancellation.' );
+					throw new MWException( 'Received request for a form cancellation.' );
 				}
 				$control->setInputParameters( $data );
 				return $control->submit();
@@ -555,10 +568,10 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		$out->addHtml( new OOUI\PanelLayout( [
 			'id' => 'mw-mwoauth-authorize-panel',
 			'expanded' => false,
-			'content' => new OOUI\HtmlSnippet( $form->getHTML( $status ) ),
+			'content' => new HtmlSnippet( $form->getHTML( $status ) ),
 		] ) );
 
-		if ( $status instanceof \Status && $status->isOK() ) {
+		if ( $status instanceof Status && $status->isOK() ) {
 			if ( $this->oauthVersion === Consumer::OAUTH_VERSION_2 ) {
 				$this->redirectToREST( [
 					'approval_pass' => true
@@ -677,14 +690,14 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param \Message $message to return to the user
+	 * @param Message $message to return to the user
 	 * @param string $format the format of the response: html, raw, or json
 	 */
 	private function showError( $message, $format ) {
 		if ( $format == 'raw' ) {
 			$this->showResponse( 'Error: ' . $message->escaped(), 'raw' );
 		} elseif ( $format == 'json' ) {
-			$error = \FormatJson::encode( [
+			$error = FormatJson::encode( [
 				'error' => $message->getKey(),
 				'message' => $message->text(),
 			] );
@@ -705,24 +718,24 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 			$return .= '&oauth_callback_confirmed=true';
 			$this->showResponse( $return, 'raw' );
 		} elseif ( $format == 'json' ) {
-			$this->showResponse( \FormatJson::encode( $token ), 'json' );
+			$this->showResponse( FormatJson::encode( $token ), 'json' );
 		} elseif ( $format == 'html' ) {
-			$html = \Html::element(
+			$html = Html::element(
 				'li',
 				[],
 				'oauth_token = ' . OAuthUtil::urlencode_rfc3986( $token->key )
 			);
-			$html .= \Html::element(
+			$html .= Html::element(
 				'li',
 				[],
 				'oauth_token_secret = ' . OAuthUtil::urlencode_rfc3986( $token->secret )
 			);
-			$html .= \Html::element(
+			$html .= Html::element(
 				'li',
 				[],
 				'oauth_callback_confirmed = true'
 			);
-			$html = \Html::rawElement( 'ul', [], $html );
+			$html = Html::rawElement( 'ul', [], $html );
 			$this->showResponse( $html, 'html' );
 		}
 	}
@@ -768,10 +781,10 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 	/**
 	 * Get the requested OAuth version from the request
 	 *
-	 * @param \WebRequest $request
+	 * @param WebRequest $request
 	 * @return int
 	 */
-	private function determineOAuthVersion( \WebRequest $request ) {
+	private function determineOAuthVersion( WebRequest $request ) {
 		$this->oauthVersion = $request->getInt( 'oauth_version', Consumer::OAUTH_VERSION_1 );
 
 		return $this->oauthVersion;

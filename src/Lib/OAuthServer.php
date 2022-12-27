@@ -30,6 +30,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerInterface;
 
 class OAuthServer {
 	protected $timestamp_threshold = 300; // in seconds, five minutes
@@ -39,7 +40,7 @@ class OAuthServer {
 	/** @var OAuthDataStore */
 	protected $data_store;
 
-	/** @var \\Psr\\Log\\LoggerInterface */
+	/** @var LoggerInterface */
 	protected $logger;
 
 	function __construct( $data_store ) {

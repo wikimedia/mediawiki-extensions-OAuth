@@ -11,7 +11,7 @@ use SpecialPage;
 use User;
 
 class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
-	/** @var User[] OAuth admins who should be notified about additiions to the review queue */
+	/** @var User[] OAuth admins who should be notified about additions to the review queue */
 	protected static $oauthAdmins;
 
 	/** @var Consumer|false */
@@ -35,7 +35,9 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 		}
 
 		return [
-			EchoAttributeManager::ATTR_LOCATORS => [ Utils::class . '::locateUsersToNotify' ],
+			EchoAttributeManager::ATTR_LOCATORS => [
+				[ [ Utils::class, 'locateUsersToNotify' ] ]
+			],
 			'category' => $category,
 			'presentation-model' => self::class,
 			'icon' => 'oauth',

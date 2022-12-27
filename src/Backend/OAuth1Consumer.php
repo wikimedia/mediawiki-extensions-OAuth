@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
+use MWCryptRand;
 use User;
 
 /**
@@ -43,7 +44,7 @@ class OAuth1Consumer extends Consumer {
 	 * @return string
 	 * @throws MWOAuthException
 	 */
-	public function authorize( \User $mwUser, $update, $grants, $requestTokenKey = null ) {
+	public function authorize( User $mwUser, $update, $grants, $requestTokenKey = null ) {
 		$this->conductAuthorizationChecks( $mwUser );
 
 		// Generate and Update the tokens:
@@ -51,7 +52,7 @@ class OAuth1Consumer extends Consumer {
 		// * Either add or update the authorization
 		// ** Generate a new access token if this is a new authorization
 		// * Resave request token with the access token
-		$verifyCode = \MWCryptRand::generateHex( 32 );
+		$verifyCode = MWCryptRand::generateHex( 32 );
 		$store = Utils::newMWOAuthDataStore();
 		$requestToken = $store->lookup_token( $this, 'request', $requestTokenKey );
 		if ( !$requestToken || !( $requestToken instanceof MWOAuthToken ) ) {

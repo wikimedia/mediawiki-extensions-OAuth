@@ -2,6 +2,10 @@
 
 namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
 
+use ErrorPageError;
+use FormatJson;
+use HTMLForm;
+use IContextSource;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\Utils;
@@ -13,7 +17,11 @@ use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
+use PermissionsError;
 use SpecialPage;
+use Status;
+use stdClass;
+use UserNotLoggedIn;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
@@ -74,12 +82,12 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$this->addHelpLink( 'Help:OAuth' );
 
 		if ( !$this->getUser()->isRegistered() ) {
-			throw new \UserNotLoggedIn();
+			throw new UserNotLoggedIn();
 		}
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( !$permissionManager->userHasRight( $user, 'mwoauthmanagemygrants' ) ) {
-			throw new \PermissionsError( 'mwoauthmanagemygrants' );
+			throw new PermissionsError( 'mwoauthmanagemygrants' );
 		}
 
 		// Format is Special:OAuthManageMyGrants[/list|/manage/<accesstoken>]
@@ -88,8 +96,9 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$acceptanceId = $navigation[1] ?? null;
 
 		if ( $this->getConfig()->get( 'MWOAuthReadOnly' )
-				&& in_array( $typeKey, [ 'update', 'revoke' ] ) ) {
-			throw new \ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
+				&& in_array( $typeKey, [ 'update', 'revoke' ] )
+		) {
+			throw new ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
 		}
 
 		switch ( $typeKey ) {
@@ -148,7 +157,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	 *
 	 * @param int $acceptanceId
 	 * @param string $type One of (update,revoke)
-	 * @throws \PermissionsError
+	 * @throws PermissionsError
 	 */
 	protected function handleConsumerForm( $acceptanceId, $type ) {
 		$user = $this->getUser();
@@ -172,7 +181,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			Consumer::newFromId( $dbr, $cmraAc->getConsumerId() ), $this->getContext() );
 		if ( $cmrAc->getDeleted()
 			&& !$permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
-			throw new \PermissionsError( 'mwoauthviewsuppressed' );
+			throw new PermissionsError( 'mwoauthviewsuppressed' );
 		}
 
 		$this->getOutput()->addModuleStyles( 'mediawiki.ui.button' );
@@ -188,7 +197,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$control = new ConsumerAcceptanceSubmitControl(
 			$this->getContext(), $data, $dbr, $cmraAc->getDAO()->getOAuthVersion()
 		);
-		$form = \HTMLForm::factory( 'ooui',
+		$form = HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
 				'info' => [
 					'type' => 'info',
@@ -242,10 +251,10 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
-			static function ( array $data, \IContextSource $context ) use ( $action, $cmraAc ) {
+			static function ( array $data, IContextSource $context ) use ( $action, $cmraAc ) {
 				$data['action'] = $action;
 				// adapt form to controller
-				$data['grants'] = \FormatJson::encode(
+				$data['grants'] = FormatJson::encode(
 					preg_replace( '/^grant-/', '', $data['grants'] )
 				);
 
@@ -276,7 +285,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			$this->msg( "mwoauthmanagemygrants-$type-text" )->parseAsBlock() );
 
 		$status = $form->show();
-		if ( $status instanceof \Status && $status->isOK() ) {
+		if ( $status instanceof Status && $status->isOK() ) {
 			// Messages: mwoauthmanagemygrants-success-update, mwoauthmanagemygrants-success-renounce
 			$this->getOutput()->addWikiMsg( "mwoauthmanagemygrants-success-$action" );
 		}
@@ -303,7 +312,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 
 	/**
 	 * @param DBConnRef $db
-	 * @param \stdClass $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	public function formatRow( DBConnRef $db, $row ) {

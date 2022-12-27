@@ -21,7 +21,12 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use ErrorPageError;
 use Html;
+use HTMLForm;
+use IContextSource;
+use LogEventsList;
+use LogPage;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
@@ -31,14 +36,21 @@ use MediaWiki\Extension\OAuth\Frontend\Pagers\ManageConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsLocalization;
+use MWRestrictions;
 use OOUI\HtmlSnippet;
+use PermissionsError;
+use SpecialPage;
+use Status;
+use stdClass;
+use Title;
 use Wikimedia\Rdbms\DBConnRef;
+use Xml;
 
 /**
  * Special page for listing the queue of consumer requests and managing
  * their approval/rejection and also for listing approved/disabled consumers
  */
-class SpecialMWOAuthManageConsumers extends \SpecialPage {
+class SpecialMWOAuthManageConsumers extends SpecialPage {
 	/** @var bool|int An Consumer::STAGE_* constant on queue/list subpages, false otherwise */
 	protected $stage = false;
 	/** @var string A stage key from Consumer::$stageNames */
@@ -85,11 +97,11 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			$this->getOutput()->addWikiMsg( 'mwoauthmanageconsumers-notloggedin' );
 			return;
 		} elseif ( !$permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' ) ) {
-			throw new \PermissionsError( 'mwoauthmanageconsumer' );
+			throw new PermissionsError( 'mwoauthmanageconsumer' );
 		}
 
 		if ( $this->getConfig()->get( 'MWOAuthReadOnly' ) ) {
-			throw new \ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
+			throw new ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
 		}
 
 		// Format is Special:OAuthManageConsumers[/<stage>|/<consumer key>]
@@ -147,7 +159,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 		if ( $consumerKey ) {
 			$consumerViewLink = "[" . $linkRenderer->makeKnownLink(
-				\SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$consumerKey" ),
+				SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$consumerKey" ),
 				$this->msg( 'mwoauthconsumer-consumer-view' )->text() ) . "]";
 		} else {
 			$consumerViewLink = '';
@@ -224,7 +236,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 	 * Show the form to approve/reject/disable/re-enable consumers
 	 *
 	 * @param string $consumerKey
-	 * @throws \PermissionsError
+	 * @throws PermissionsError
 	 */
 	protected function handleConsumerForm( $consumerKey ) {
 		$user = $this->getUser();
@@ -238,7 +250,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			return;
 		} elseif ( $cmrAc->getDeleted()
 			&& !$permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
-			throw new \PermissionsError( 'mwoauthviewsuppressed' );
+			throw new PermissionsError( 'mwoauthviewsuppressed' );
 		}
 		$startingStage = $cmrAc->getStage();
 		$pending = !in_array( $startingStage, [
@@ -266,7 +278,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 		$dbw = Utils::getCentralDB( DB_PRIMARY );
 		$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
-		$form = \HTMLForm::factory( 'ooui',
+		$form = HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
 				'info' => [
 					'type' => 'info',
@@ -301,7 +313,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
-			static function ( array $data, \IContextSource $context ) use ( $control ) {
+			static function ( array $data, IContextSource $context ) use ( $control ) {
 				$data['suppress'] = 0;
 				if ( $data['action'] === 'dsuppress' ) {
 					$data = [ 'action' => 'disable', 'suppress' => 1 ] + $data;
@@ -319,7 +331,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			$this->msg( 'mwoauthmanageconsumers-confirm-text' )->parseAsBlock() );
 
 		$status = $form->show();
-		if ( $status instanceof \Status && $status->isOK() ) {
+		if ( $status instanceof Status && $status->isOK() ) {
 			/** @var Consumer $cmr */
 			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$cmr = $status->value['result'];
@@ -329,7 +341,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			// Messages: mwoauthmanageconsumers-success-approved, mwoauthmanageconsumers-success-rejected,
 			// mwoauthmanageconsumers-success-disabled
 			$this->getOutput()->addWikiMsg( "mwoauthmanageconsumers-success-$newStageKey" );
-			$returnTo = \Title::newFromText( 'Special:OAuthManageConsumers/' . $oldStageKey );
+			$returnTo = Title::newFromText( 'Special:OAuthManageConsumers/' . $oldStageKey );
 			$this->getOutput()->addReturnTo( $returnTo, [],
 				// Messages: mwoauthmanageconsumers-linkproposed,
 				// mwoauthmanageconsumers-linkrejected, mwoauthmanageconsumers-linkexpired,
@@ -338,14 +350,14 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		} else {
 			$out = $this->getOutput();
 			// Show all of the status updates
-			$logPage = new \LogPage( 'mwoauthconsumer' );
-			$out->addHTML( \Xml::element( 'h2', null, $logPage->getName()->text() ) );
-			\LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '', [
+			$logPage = new LogPage( 'mwoauthconsumer' );
+			$out->addHTML( Xml::element( 'h2', null, $logPage->getName()->text() ) );
+			LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '', [
 				'conds' => [
 					'ls_field' => 'OAuthConsumer',
 					'ls_value' => $cmrAc->getConsumerKey(),
 				],
-				'flags' => \LogEventsList::NO_EXTRA_USER_LINKS,
+				'flags' => LogEventsList::NO_EXTRA_USER_LINKS,
 			] );
 		}
 	}
@@ -359,7 +371,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		$lang = $this->getLanguage();
 
 		$link = $this->getLinkRenderer()->makeKnownLink(
-			$title = \SpecialPage::getTitleFor( 'OAuthListConsumers' ),
+			$title = SpecialPage::getTitleFor( 'OAuthListConsumers' ),
 			$this->msg( 'mwoauthmanageconsumers-search-publisher' )->text(),
 			[],
 			[ 'publisher' => $owner ]
@@ -380,7 +392,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 			'mwoauth-consumer-key' => $cmrAc->getConsumerKey(),
 			'mwoauth-consumer-name' => new HtmlSnippet( $cmrAc->get( 'name', function ( $s ) {
 				$link = $this->getLinkRenderer()->makeKnownLink(
-					\SpecialPage::getTitleFor( 'OAuthListConsumers' ),
+					SpecialPage::getTitleFor( 'OAuthListConsumers' ),
 					$this->msg( 'mwoauthmanageconsumers-search-name' )->text(),
 					[],
 					[ 'name' => $s ]
@@ -429,7 +441,7 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 		// Add optional parameters
 		$options += [
-			'mwoauth-consumer-restrictions-json' => $restrictions instanceof \MWRestrictions ?
+			'mwoauth-consumer-restrictions-json' => $restrictions instanceof MWRestrictions ?
 				$restrictions->toJson( true ) : $restrictions,
 			'mwoauth-consumer-rsakey' => $cmrAc->getRsaKey(),
 		];
@@ -479,12 +491,13 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 
 	/**
 	 * @param DBConnRef $db
-	 * @param \stdClass $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
 		$cmrAc = ConsumerAccessControl::wrap(
-			Consumer::newFromRow( $db, $row ), $this->getContext() );
+			Consumer::newFromRow( $db, $row ), $this->getContext()
+		);
 
 		$cmrKey = $cmrAc->getConsumerKey();
 		$stageKey = Consumer::$stageNames[$cmrAc->getStage()];
@@ -505,14 +518,14 @@ class SpecialMWOAuthManageConsumers extends \SpecialPage {
 		// Show last log entry (@TODO: title namespace?)
 		// @TODO: inject DB
 		$logHtml = '';
-		\LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '', [
+		LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '', [
 			'action' => Consumer::$stageActionNames[$cmrAc->getStage()],
 			'conds'  => [
 				'ls_field' => 'OAuthConsumer',
 				'ls_value' => $cmrAc->getConsumerKey(),
 			],
 			'lim'    => 1,
-			'flags'  => \LogEventsList::NO_EXTRA_USER_LINKS,
+			'flags'  => LogEventsList::NO_EXTRA_USER_LINKS,
 		] );
 
 		$lang = $this->getLanguage();

@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
+use FormatJson;
+use IContextSource;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBConnRef;
 
@@ -239,13 +241,13 @@ class ConsumerAcceptance extends MWOAuthDAO {
 			}
 		}
 
-		$row['oaac_grants'] = \FormatJson::encode( $row['oaac_grants'] );
+		$row['oaac_grants'] = FormatJson::encode( $row['oaac_grants'] );
 		$row['oaac_accepted'] = $db->timestamp( $row['oaac_accepted'] );
 		return $row;
 	}
 
 	protected function decodeRow( DBConnRef $db, $row ) {
-		$row['oaac_grants'] = \FormatJson::decode( $row['oaac_grants'], true );
+		$row['oaac_grants'] = FormatJson::decode( $row['oaac_grants'], true );
 		$row['oaac_accepted'] = wfTimestamp( TS_MW, $row['oaac_accepted'] );
 
 		// For backwards compatibility, remap some grants
@@ -258,7 +260,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		return $row;
 	}
 
-	protected function userCanSee( $name, \IContextSource $context ) {
+	protected function userCanSee( $name, IContextSource $context ) {
 		$centralUserId = Utils::getCentralIdFromLocalUser( $context->getUser() );
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
@@ -271,7 +273,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		}
 	}
 
-	protected function userCanSeePrivate( $name, \IContextSource $context ) {
+	protected function userCanSeePrivate( $name, IContextSource $context ) {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		if ( !$permissionManager->userHasRight( $context->getUser(), 'mwoauthviewprivate' ) ) {
@@ -281,7 +283,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		}
 	}
 
-	protected function userCanSeeSecret( $name, \IContextSource $context ) {
+	protected function userCanSeeSecret( $name, IContextSource $context ) {
 		return $context->msg( 'mwoauth-field-private' );
 	}
 }

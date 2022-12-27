@@ -21,24 +21,33 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use HTMLForm;
+use LogEventsList;
+use LogPage;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ListConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsLocalization;
+use MWException;
 use OOUI\HtmlSnippet;
+use PermissionsError;
 use SpecialPage;
+use stdClass;
+use User;
 use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
+use Xml;
 
 /**
  * Special page for listing the queue of consumer requests and managing
  * their approval/rejection and also for listing approved/disabled consumers
  */
-class SpecialMWOAuthListConsumers extends \SpecialPage {
+class SpecialMWOAuthListConsumers extends SpecialPage {
 	/** @var GrantsLocalization */
 	private $grantsLocalization;
 
@@ -77,7 +86,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 * Show the form to approve/reject/disable/re-enable consumers
 	 *
 	 * @param string $consumerKey
-	 * @throws \PermissionsError
+	 * @throws PermissionsError
 	 */
 	protected function showConsumerInfo( $consumerKey ) {
 		$user = $this->getUser();
@@ -97,7 +106,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 			return;
 		} elseif ( $cmrAc->getDeleted()
 			&& !$permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
-			throw new \PermissionsError( 'mwoauthviewsuppressed' );
+			throw new PermissionsError( 'mwoauthviewsuppressed' );
 		}
 
 		$grants = $cmrAc->getGrants();
@@ -132,14 +141,14 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 		if ( Utils::isCentralWiki() ) {
 			// Show all of the status updates
-			$logPage = new \LogPage( 'mwoauthconsumer' );
-			$out->addHTML( \Xml::element( 'h2', null, $logPage->getName()->text() ) );
-			\LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '', [
+			$logPage = new LogPage( 'mwoauthconsumer' );
+			$out->addHTML( Xml::element( 'h2', null, $logPage->getName()->text() ) );
+			LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '', [
 				'conds' => [
 					'ls_field' => 'OAuthConsumer',
 					'ls_value' => $cmrAc->getConsumerKey(),
 				],
-				'flags' => \LogEventsList::NO_EXTRA_USER_LINKS,
+				'flags' => LogEventsList::NO_EXTRA_USER_LINKS,
 			] );
 		}
 	}
@@ -148,7 +157,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 * Show a form for the paged list of consumers
 	 */
 	protected function showConsumerListForm() {
-		$form = \HTMLForm::factory( 'ooui',
+		$form = HTMLForm::factory( 'ooui',
 			[
 				'name' => [
 					'name'     => 'name',
@@ -229,7 +238,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 	/**
 	 * @param DBConnRef $db
-	 * @param \stdClass $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	public function formatRow( DBConnRef $db, $row ) {
@@ -302,7 +311,7 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 	/**
 	 * @param ConsumerAccessControl $cmrAc
-	 * @throws \MWException
+	 * @throws MWException
 	 */
 	private function addNavigationSubtitle( ConsumerAccessControl $cmrAc ): void {
 		$user = $this->getUser();
@@ -327,13 +336,13 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	/**
 	 * @param ConsumerAccessControl $cmrAc
 	 * @param int $centralUserId Add update link for this user id, if they can update the consumer
-	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
+	 * @param LinkRenderer $linkRenderer
 	 * @return string[]
-	 * @throws \MWException
+	 * @throws MWException
 	 */
 	private function updateLink(
 		ConsumerAccessControl $cmrAc, $centralUserId,
-		\MediaWiki\Linker\LinkRenderer $linkRenderer
+		LinkRenderer $linkRenderer
 	): array {
 		if ( Utils::isCentralWiki() && $cmrAc->getDAO()->getUserId() === $centralUserId ) {
 			return [
@@ -348,13 +357,13 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 
 	/**
 	 * @param Consumer $consumer
-	 * @param \User $user
-	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
+	 * @param User $user
+	 * @param LinkRenderer $linkRenderer
 	 * @return string[]
-	 * @throws \MWException
+	 * @throws MWException
 	 */
 	private function manageConsumerLink(
-		Consumer $consumer, \User $user, \MediaWiki\Linker\LinkRenderer $linkRenderer
+		Consumer $consumer, User $user, LinkRenderer $linkRenderer
 	): array {
 		$permMgr = MediaWikiServices::getInstance()->getPermissionManager();
 
@@ -373,12 +382,12 @@ class SpecialMWOAuthListConsumers extends \SpecialPage {
 	 * @param Consumer $consumer
 	 * @param int $centralUserId Add link to manage grants for this user, if they've granted this
 	 * consumer
-	 * @param \MediaWiki\Linker\LinkRenderer $linkRenderer
+	 * @param LinkRenderer $linkRenderer
 	 * @return string[]
-	 * @throws \MWException
+	 * @throws MWException
 	 */
 	private function manageMyGrantsLink(
-		Consumer $consumer, $centralUserId, \MediaWiki\Linker\LinkRenderer $linkRenderer
+		Consumer $consumer, $centralUserId, LinkRenderer $linkRenderer
 	): array {
 		$acceptance = $this->userGrantedAcceptance( $consumer, $centralUserId );
 		if ( $acceptance !== false ) {

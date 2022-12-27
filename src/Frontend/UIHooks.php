@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extension\OAuth\Frontend;
 
+use DerivativeContext;
+use Html;
 use HTMLForm;
 use MediaWiki\Cache\Hook\MessagesPreLoadHook;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
@@ -17,8 +19,12 @@ use MediaWiki\SpecialPage\Hook\SpecialPage_initListHook;
 use MediaWiki\SpecialPage\Hook\SpecialPageAfterExecuteHook;
 use MediaWiki\SpecialPage\Hook\SpecialPageBeforeFormDisplayHook;
 use MWException;
+use OOUI\ButtonWidget;
+use RequestContext;
+use Sanitizer;
 use SpecialPage;
 use User;
+use WikiMap;
 
 /**
  * Class containing GUI even handler functions for an OAuth environment
@@ -67,7 +73,7 @@ class UIHooks implements
 			__METHOD__
 		);
 
-		$control = new \OOUI\ButtonWidget( [
+		$control = new ButtonWidget( [
 			'href' => SpecialPage::getTitleFor( 'OAuthManageMyGrants' )->getLinkURL(),
 			'label' => wfMessage( 'mwoauth-prefs-managegrantslink' )->numParams( $count )->text()
 		] );
@@ -110,12 +116,13 @@ class UIHooks implements
 		}
 
 		// Put the correct language in the context, so that later uses of $context->msg() will use it
-		$context = new \DerivativeContext( \RequestContext::getMain() );
+		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setLanguage( $code );
 
 		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$cmrAc = ConsumerAccessControl::wrap(
-			Consumer::newFromId( $dbr, (int)$m[1] ), $context
+			Consumer::newFromId( $dbr, (int)$m[1] ),
+			$context
 		);
 		if ( !$cmrAc ) {
 			// Invalid consumer, skip it
@@ -125,7 +132,7 @@ class UIHooks implements
 		if ( $m[2] ) {
 			$message = $cmrAc->escapeForWikitext( $cmrAc->getDescription() );
 		} else {
-			$target = \SpecialPage::getTitleFor( 'OAuthListConsumers',
+			$target = SpecialPage::getTitleFor( 'OAuthListConsumers',
 				'view/' . $cmrAc->getConsumerKey()
 			);
 			$encName = $cmrAc->escapeForWikitext( $cmrAc->getNameAndVersion() );
@@ -150,11 +157,11 @@ class UIHooks implements
 		$out->addWikiMsg( 'mwoauth-listgrants-extra-summary' );
 
 		$out->addHTML(
-			\Html::openElement( 'table',
+			Html::openElement( 'table',
 			[ 'class' => 'wikitable mw-listgrouprights-table' ] ) .
 			'<tr>' .
-			\Html::element( 'th', [], $special->msg( 'listgrants-grant' )->text() ) .
-			\Html::element( 'th', [], $special->msg( 'listgrants-rights' )->text() ) .
+			Html::element( 'th', [], $special->msg( 'listgrants-grant' )->text() ) .
+			Html::element( 'th', [], $special->msg( 'listgrants-rights' )->text() ) .
 			'</tr>'
 		);
 
@@ -169,7 +176,7 @@ class UIHooks implements
 			foreach ( $rights as $permission => $granted ) {
 				$descs[] = $special->msg(
 					'listgrouprights-right-display',
-					\User::getRightDescription( $permission ),
+					User::getRightDescription( $permission ),
 					'<span class="mw-listgrants-right-name">' . $permission . '</span>'
 				)->parse();
 			}
@@ -180,14 +187,14 @@ class UIHooks implements
 				$grantCellHtml = '<ul><li>' . implode( "</li>\n<li>", $descs ) . '</li></ul>';
 			}
 
-			$id = \Sanitizer::escapeIdForAttribute( $grant );
-			$out->addHTML( \Html::rawElement( 'tr', [ 'id' => $id ],
+			$id = Sanitizer::escapeIdForAttribute( $grant );
+			$out->addHTML( Html::rawElement( 'tr', [ 'id' => $id ],
 				"<td>" . $special->msg( "grant-$grant" )->escaped() . "</td>" .
 				"<td>" . $grantCellHtml . '</td>'
 			) );
 		}
 
-		$out->addHTML( \Html::closeElement( 'table' ) );
+		$out->addHTML( Html::closeElement( 'table' ) );
 
 		return true;
 	}
@@ -205,7 +212,7 @@ class UIHooks implements
 			if ( Utils::isCentralWiki() ) {
 				$url = SpecialPage::getTitleFor( 'OAuthConsumerRegistration' )->getFullURL();
 			} else {
-				$url = \WikiMap::getForeignURL(
+				$url = WikiMap::getForeignURL(
 					$wgMWOAuthCentralWiki,
 					// Cross-wiki, so don't localize
 					'Special:OAuthConsumerRegistration'

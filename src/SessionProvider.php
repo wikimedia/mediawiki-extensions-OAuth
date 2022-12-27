@@ -2,20 +2,28 @@
 
 namespace MediaWiki\Extension\OAuth;
 
+use ApiBase;
 use ApiMessage;
+use ApiUsageException;
+use Exception;
 use GuzzleHttp\Psr7\ServerRequest;
+use InvalidArgumentException;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthRequest;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
+use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Session\ImmutableSessionProviderWithCookie;
 use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\User\UserIdentity;
+use Message;
+use RecentChange;
 use User;
 use WebRequest;
 use WikiMap;
@@ -35,7 +43,7 @@ use Wikimedia\Rdbms\DBError;
  * purposes (limiting the rights to those included in the grant), and
  * registers some hooks to tag actions made via the provider.
  */
-class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCookie {
+class SessionProvider extends ImmutableSessionProviderWithCookie {
 
 	public function __construct( array $params = [] ) {
 		global $wgHooks;
@@ -60,7 +68,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 		// First, schedule the throwing of the exception for later when the API
 		// is ready to catch it
 		$msg = wfMessage( $key, $params );
-		$exception = \ApiUsageException::newWithMessage( null, $msg );
+		$exception = ApiUsageException::newWithMessage( null, $msg );
 		// @phan-suppress-next-line PhanPluginNeverReturnFunction Closures should not get doc
 		$wgHooks['ApiBeforeMain'][] = static function () use ( $exception ) {
 			throw $exception;
@@ -141,7 +149,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 				$accessTokenKey = $accessToken->key;
 				$access = ConsumerAcceptance::newFromToken( $dbr, $accessTokenKey );
 			}
-		} catch ( \Exception $ex ) {
+		} catch ( Exception $ex ) {
 			$this->logger->info( 'Bad OAuth request from {ip}', $logData + [ 'exception' => $ex ] );
 			return $this->makeException( 'mwoauth-invalid-authorization', $ex->getMessage() );
 		}
@@ -164,7 +172,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 		if ( $access->getId() > 0 && $localUser->getId() === 0 ) {
 			$this->logger->debug( 'OAuth request for invalid or non-local user {user}', $logData );
 			return $this->makeException( 'mwoauth-invalid-authorization-invalid-user',
-				\Message::rawParam( \Linker::makeExternalLink(
+				Message::rawParam( Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
 					'E008',
 					true
@@ -343,7 +351,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 
 	public function getAllowedUserRights( SessionBackend $backend ) {
 		if ( $backend->getProvider() !== $this ) {
-			throw new \InvalidArgumentException( 'Backend\'s provider isn\'t $this' );
+			throw new InvalidArgumentException( 'Backend\'s provider isn\'t $this' );
 		}
 		$data = $backend->getProviderMetadata();
 		if ( $data ) {
@@ -358,12 +366,12 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 	/**
 	 * Disable certain API modules when used with OAuth
 	 *
-	 * @param \ApiBase $module
+	 * @param ApiBase $module
 	 * @param UserIdentity $userIdentity
 	 * @param string|array &$message
 	 * @return bool
 	 */
-	public function onApiCheckCanExecute( \ApiBase $module, UserIdentity $userIdentity, &$message ) {
+	public function onApiCheckCanExecute( ApiBase $module, UserIdentity $userIdentity, &$message ) {
 		global $wgMWOauthDisabledApiModules;
 		if ( !$this->getSessionData( $userIdentity ) ) {
 			return true;
@@ -385,7 +393,7 @@ class SessionProvider extends \MediaWiki\Session\ImmutableSessionProviderWithCoo
 	/**
 	 * Record the fact that OAuth was used for anything added to RecentChanges.
 	 *
-	 * @param \RecentChange $rc
+	 * @param RecentChange $rc
 	 * @return bool true
 	 */
 	public function onRecentChange_save( $rc ) {

@@ -20,38 +20,41 @@
 
 namespace MediaWiki\Extension\OAuth\Control;
 
+use ContextSource;
+use IContextSource;
+use LogicException;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthDAO;
 use Message;
 
 /**
  * Wrapper of an MWOAuthDAO that handles authorization to view fields
  */
-class DAOAccessControl extends \ContextSource {
+class DAOAccessControl extends ContextSource {
 	/** @var MWOAuthDAO */
 	protected $dao;
 
 	/**
 	 * @param MWOAuthDAO $dao
-	 * @param \IContextSource $context
+	 * @param IContextSource $context
 	 */
-	final protected function __construct( MWOAuthDAO $dao, \IContextSource $context ) {
+	final protected function __construct( MWOAuthDAO $dao, IContextSource $context ) {
 		$this->dao = $dao;
 		$this->setContext( $context );
 	}
 
 	/**
 	 * @param MWOAuthDAO|false|null $dao
-	 * @param \IContextSource $context
-	 * @throws \LogicException
+	 * @param IContextSource $context
+	 * @throws LogicException
 	 * @return static|null|false
 	 */
-	final public static function wrap( $dao, \IContextSource $context ) {
+	final public static function wrap( $dao, IContextSource $context ) {
 		if ( $dao instanceof MWOAuthDAO ) {
 			return new static( $dao, $context );
 		} elseif ( $dao === null || $dao === false ) {
 			return $dao;
 		} else {
-			throw new \LogicException( "Expected MWOAuthDAO object, null, or false." );
+			throw new LogicException( "Expected MWOAuthDAO object, null, or false." );
 		}
 	}
 

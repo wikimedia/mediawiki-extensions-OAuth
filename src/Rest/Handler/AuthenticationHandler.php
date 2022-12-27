@@ -102,7 +102,8 @@ abstract class AuthenticationHandler extends Handler {
 			$type = $exception->getErrorData()['error'] ?? 'parameter-validation-failed';
 			if ( $type === 'parameter-validation-failed' ) {
 				$missingParam = $exception->getErrorData()['name'] ?? '';
-				return $this->queueError( OAuthServerException::invalidRequest( $missingParam ) );
+				$this->queueError( OAuthServerException::invalidRequest( $missingParam ) );
+				return;
 			}
 			$this->queueError( OAuthServerException::serverError( $exception->getMessage() ) );
 		}

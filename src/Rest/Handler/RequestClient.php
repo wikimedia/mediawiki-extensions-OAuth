@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
+use FormatJson;
 use MediaWiki\Extension\OAuth\Repository\ScopeRepository;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Validator\Validator;
@@ -130,7 +131,7 @@ class RequestClient extends AbstractClientHandler {
 		if ( !in_array( 'basic', $scopes ) ) {
 			$scopes[] = 'basic';
 		}
-		$finalParams['grants'] = \FormatJson::encode( $scopes );
+		$finalParams['grants'] = FormatJson::encode( $scopes );
 
 		return $finalParams;
 	}

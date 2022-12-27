@@ -3,11 +3,13 @@
 namespace MediaWiki\Extension\OAuth\Backend;
 
 use AutoCommitUpdate;
+use BagOStuff;
 use CentralIdLookup;
 use DeferredUpdates;
 use EchoEvent;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
 use MediaWiki\MediaWikiServices;
+use MWException;
 use ObjectCache;
 use RequestContext;
 use Title;
@@ -67,7 +69,7 @@ class Utils {
 	}
 
 	/**
-	 * @return \BagOStuff
+	 * @return BagOStuff
 	 */
 	public static function getSessionCache() {
 		global $wgMWOAuthSessionCacheType;
@@ -79,7 +81,7 @@ class Utils {
 
 	/**
 	 * Get the cache type for OAuth 1.0 nonces
-	 * @return \BagOStuff
+	 * @return BagOStuff
 	 */
 	public static function getNonceCache() {
 		global $wgMWOAuthNonceCacheType, $wgMWOAuthSessionCacheType, $wgSessionCacheType;
@@ -255,12 +257,12 @@ class Utils {
 	}
 
 	/**
-	 * Given a central wiki user ID, get a central user name
+	 * Given a central wiki user ID, get a central username
 	 *
 	 * @param int $userId
-	 * @param bool|\User|string $audience show hidden names based on this user, or false for public
-	 * @throws \MWException
-	 * @return string|bool User name, false if not found, empty string if name is hidden
+	 * @param bool|User|string $audience show hidden names based on this user, or false for public
+	 * @throws MWException
+	 * @return string|bool Username, false if not found, empty string if name is hidden
 	 */
 	public static function getCentralUserNameFromId( $userId, $audience = false ) {
 		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
@@ -325,7 +327,7 @@ class Utils {
 	 * @param User $user
 	 * @return int|bool ID or false if not found
 	 */
-	public static function getCentralIdFromLocalUser( \User $user ) {
+	public static function getCentralIdFromLocalUser( User $user ) {
 		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		// global ID required via hook

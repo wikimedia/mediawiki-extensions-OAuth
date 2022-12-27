@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Control;
 
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use Message;
 
 class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	// accessor fields copied from ConsumerAcceptance, except they can return a Message
@@ -12,7 +13,7 @@ class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	/**
 	 * Database ID.
 	 * Returns a Message when the user does not have permission to see this field.
-	 * @return int|\Message
+	 * @return int|Message
 	 */
 	public function getId() {
 		return $this->get( 'id' );
@@ -22,7 +23,7 @@ class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	 * Wiki on which the user has authorized the consumer to access their account. Wiki ID or '*'
 	 * for all.
 	 * Returns a Message when the user does not have permission to see this field.
-	 * @return string|\Message
+	 * @return string|Message
 	 */
 	public function getWiki() {
 		return $this->get( 'wiki' );
@@ -31,7 +32,7 @@ class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	/**
 	 * Central user ID of the authorizing user.
 	 * Returns a Message when the user does not have permission to see this field.
-	 * @return int|\Message
+	 * @return int|Message
 	 */
 	public function getUserId() {
 		return $this->get( 'userId' );
@@ -40,7 +41,7 @@ class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	/**
 	 * Database ID of the consumer.
 	 * Returns a Message when the user does not have permission to see this field.
-	 * @return int|\Message
+	 * @return int|Message
 	 */
 	public function getConsumerId() {
 		return $this->get( 'consumerId' );
@@ -49,7 +50,7 @@ class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	/**
 	 * The access token for the OAuth protocol
 	 * Returns a Message when the user does not have permission to see this field.
-	 * @return string|\Message
+	 * @return string|Message
 	 */
 	public function getAccessToken() {
 		return $this->get( 'accessToken' );
@@ -60,7 +61,7 @@ class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	 * The actual access secret will be calculated via Utils::hmacDBSecret() to mitigate
 	 * DB leaks.
 	 * Returns a Message when the user does not have permission to see this field.
-	 * @return string|\Message
+	 * @return string|Message
 	 */
 	public function getAccessSecret() {
 		return $this->get( 'accessSecret' );
@@ -69,7 +70,7 @@ class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	/**
 	 * The list of grants which have been granted.
 	 * Returns a Message when the user does not have permission to see this field.
-	 * @return string[]|\Message
+	 * @return string[]|Message
 	 */
 	public function getGrants() {
 		return $this->get( 'grants' );
@@ -78,7 +79,7 @@ class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	/**
 	 * Date of the authorization, in TS_MW format.
 	 * Returns a Message when the user does not have permission to see this field.
-	 * @return string|\Message
+	 * @return string|Message
 	 */
 	public function getAccepted() {
 		return $this->get( 'accepted' );
@@ -88,7 +89,7 @@ class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 
 	/**
 	 * Pretty wiki name.
-	 * @return string|\Message
+	 * @return string|Message
 	 */
 	public function getWikiName() {
 		return $this->get( 'wiki', static function ( $wikiId ) {

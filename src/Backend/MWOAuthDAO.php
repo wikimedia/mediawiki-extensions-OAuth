@@ -271,7 +271,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	 * This returns a map of field names to method names.
 	 * The methods check if a context user has access to the field,
 	 * returning true if they do and a Message object otherwise.
-	 * The methods take (field name, \IContextSource) as arguments.
+	 * The methods take (field name, IContextSource) as arguments.
 	 *
 	 * @see MWOAuthDAO::userCanAccess()
 	 * @see MWOAuthDAOAccessControl

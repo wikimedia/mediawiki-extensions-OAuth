@@ -26,9 +26,11 @@
 
 namespace MediaWiki\Extension\OAuth\Lib;
 
+use Exception;
+
 /**
  * Generic exception class
  */
-class OAuthException extends \Exception {
+class OAuthException extends Exception {
 	// pass
 }
