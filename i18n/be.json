@@ -3,7 +3,8 @@
 		"authors": [
 			"Artsiom91",
 			"Vlad5250",
-			"No Sleep till Krupki"
+			"No Sleep till Krupki",
+			"Maksim L."
 		]
 	},
 	"mwoauth-desc": "Дазваляе ўжываць OAuth 1.0a і OAuth 2.0 для API аўтарызацыі",
@@ -24,7 +25,7 @@
 	"right-mwoauthmanageconsumer": "Кіраванне спажыўцамі OAuth",
 	"right-mwoauthsuppress": "Падаўленне спажыўцоў OAuth",
 	"right-mwoauthviewsuppressed": "Прагляд падаўленых спажыўцоў OAuth",
-	"right-mwoauthviewprivate": "Прагляд прыватных дадзеных OAuth",
+	"right-mwoauthviewprivate": "Прагляд прыватных даных OAuth",
 	"right-mwoauthmanagemygrants": "Кіраванне грантамі OAuth",
 	"action-mwoauthmanageconsumer": "кіраваць спажыўцамі OAuth",
 	"action-mwoauthsuppress": "падаўляць спажыўцоў OAuth",
