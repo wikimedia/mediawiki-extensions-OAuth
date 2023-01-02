@@ -7,8 +7,12 @@
 	},
 	"mwoauth-consumer-reason": "Suijâ:",
 	"mwoauthconsumerregistration-main": "Ovdâsijđo",
+	"mwoauthconsumerregistration-description": "Kuvvim",
 	"mwoauthmanageconsumers-main": "Ovdâsijđo",
+	"mwoauthmanageconsumers-description": "Kuvvim",
 	"mwoauthmanageconsumers-reason": "Suijâ:",
+	"mwoauthlistconsumers-description": "Kuvvim",
+	"mwoauthmanagemygrants-description": "Kuvvim",
 	"mwoauth-form-button-cancel": "Jooskâ",
 	"notification-oauth-app-body": "Suijâ: $1"
 }
