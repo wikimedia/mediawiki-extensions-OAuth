@@ -264,7 +264,7 @@
 	"mwoauth-granttype-normal": "Autorisierung für spezielle Berechtigungen beantragen.",
 	"grant-mwoauth-authonly": "Nur Verifizierung der Benutzeridentität, keine Möglichkeit zum Lesen von Seiten oder Handeln im Namen des Benutzers.",
 	"grant-mwoauth-authonlyprivate": "Nur Verifizierung der Benutzeridentität mit Zugriff auf den bürgerlichen Namen und die E-Mail-Adresse, keine Möglichkeit zum Lesen von Seiten oder Handeln im Namen des Benutzers.",
-	"mwoauth-listgrants-extra-summary": "== OAuth-spezifische Berechtigungen ==\n\nDiese zusätzlichen Berechtigungen sind auf OAuth-Verbraucher anwendbar.",
+	"mwoauth-listgrants-extra-summary": "== OAuth-spezifische Berechtigungen ==\n\nDiese zusätzlichen Berechtigungen sind auf OAuth-Benutzer anwendbar.",
 	"mwoauth-oauth-exception": "Im OAuth-Protokoll ist ein Fehler aufgetreten: $1",
 	"mwoauth-callback-not-oob": "oauth_callback muss auf „oob“ festgelegt sein (Groß-/Kleinschreibung beachten)",
 	"mwoauth-callback-not-oob-or-prefix": "oauth_callback muss auf „oob“ festgelegt (Groß-/Kleinschreibung beachten) oder der konfigurierte Callback muss ein Präfix des angegebenen Callbacks sein.",
