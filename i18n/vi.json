@@ -8,7 +8,9 @@
 			"Phjtieudoc",
 			"Withoutaname",
 			"Vinhtantran",
-			"NguoiDungKhongDinhDanh"
+			"NguoiDungKhongDinhDanh",
+			"Tryvix1509",
+			"Vanhdeeptryy"
 		]
 	},
 	"mwoauth-desc": "Cho phép sử dụng OAuth 1.0a và OAuth 2.0 để xác minh khi truy cập API",
@@ -134,6 +136,7 @@
 	"mwoauthlistconsumers-status-rejected": "từ chối",
 	"mwoauthlistconsumers-status-expired": "hết hạn",
 	"oauthmanagemygrants": "Quản lý các ứng dụng kết nối",
+	"mwoauthmanagemygrants-text": "Trang này liệt kê bất kỳ ứng dụng có thể sử dụng tài khoản của bạn. Đối với bất kỳ ứng dụng nào như vậy, phạm vi truy cập của nó bị giới hạn bởi các quyền mà bạn đã cấp cho ứng dụng khi bạn ủy quyền cho ứng dụng đó hành động thay mặt bạn. Nếu bạn ủy quyền riêng cho một ứng dụng thay mặt bạn truy cập các dự án chị em khác nhau, bạn sẽ thấy cấu hình riêng cho từng dự án như vậy bên dưới.\n\nCác ứng dụng được kết nối truy cập vào tài khoản của bạn bằng cách sử dụng giao thức OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Tìm hiểu thêm về các ứng dụng được kết nối])</span>",
 	"mwoauthmanagemygrants-navigation": "Điều hướng:",
 	"mwoauthmanagemygrants-showlist": "Danh sách các ứng dụng kết nối",
 	"mwoauthmanagemygrants-none": "Không có ứng dụng nào được kết nối với tài khoản của bạn.",
