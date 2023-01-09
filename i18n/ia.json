@@ -18,7 +18,7 @@
 	"mwoauth-field-private": "(iste information es private)",
 	"mwoauth-prefs-managegrants": "Applicationes connectite:",
 	"mwoauth-prefs-managegrantslink": "Gerer {{PLURAL:$1|$1 application|$1 applicationes|0=applicationes}} connectite",
-	"mwoauth-consumer-allwikis": "Tote le projectos sur iste sito",
+	"mwoauth-consumer-allwikis": "Tote le projectos",
 	"mwoauth-consumer-key": "Clave de consumitor:",
 	"mwoauth-consumer-name": "Nomine del application:",
 	"mwoauth-consumer-version": "Version del consumitor:",

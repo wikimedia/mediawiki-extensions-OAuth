@@ -2,11 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Ерней",
+			"Ильгиз",
 			"Ильнар"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Өстәмә кушымталар",
 	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 тоташтырган кушымта|0=тоташтырган кушымта}} белән идарә итү",
+	"mwoauth-consumer-allwikis": "Барлык проектлар",
 	"mwoauth-consumer-name": "Кушымта исеме:",
 	"mwoauth-consumer-stage-rejected": "кире кагылды",
 	"mwoauthmanageconsumers-reject": "Кире кагылды",
