@@ -65,7 +65,6 @@ class MigrateCentralWiki extends \Maintenance {
 		$oldDb = $lbFactory->getMainLB( $oldWiki )->getConnectionRef( DB_PRIMARY, [], $oldWiki );
 		$targetDb = $lbFactory->getMainLB( $targetWiki )
 			->getConnectionRef( DB_PRIMARY, [], $targetWiki );
-		$targetDb->daoReadOnly = false;
 
 		$newMax = $targetDb->selectField(
 			$table,
