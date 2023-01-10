@@ -49,8 +49,6 @@ class Utils {
 	 * @return DBConnRef
 	 */
 	public static function getCentralDB( $index ) {
-		global $wgMWOAuthReadOnly;
-
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		// T244415: Use the primary database if there were changes
@@ -62,10 +60,8 @@ class Utils {
 			$wikiId = false;
 		}
 
-		$db = $lbFactory->getMainLB( $wikiId )->getConnectionRef(
+		return $lbFactory->getMainLB( $wikiId )->getConnectionRef(
 			$index, [], $wikiId );
-		$db->daoReadOnly = $wgMWOAuthReadOnly;
-		return $db;
 	}
 
 	/**

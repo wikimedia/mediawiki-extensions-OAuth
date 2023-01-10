@@ -178,7 +178,7 @@
 		},
 		"MWOAuthReadOnly": {
 			"value": false,
-			"description": "Prevent write activity to the database. When this is set, consumers cannot be added or updated, and new authorizations are prohibited. Authorization headers for existing authorizations will continue to work. Useful for migrating database tables"
+			"description": "Prevent write activity to the database. When this is true, consumers cannot be added or updated, and new authorizations are prohibited. Authorization headers for existing authorizations will continue to work. Useful for migrating database tables"
 		},
 		"OAuthGroupsToNotify": {
 			"value": [],
