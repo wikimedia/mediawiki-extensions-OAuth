@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 
+#[\AllowDynamicProperties]
 class MWOAuthToken extends OAuthToken {
 	/** @var string|null Keep the verification code here */
 	protected $code;
