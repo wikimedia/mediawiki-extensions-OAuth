@@ -63,7 +63,7 @@ class OAuthUtil {
 	// parameters, has to do some unescaping
 	// Can filter out any non-oauth parameters if needed ( default behaviour )
 	// May 28th, 2010 - method updated to tjerk.meesters for a speed improvement.
-	//									see http://code.google.com/p/oauth/issues/detail?id = 163
+	// see http://code.google.com/p/oauth/issues/detail?id = 163
 	public static function split_header( $header, $only_allow_oauth_parameters = true ) {
 		$logger = LoggerFactory::getInstance( 'OAuth' );
 		$logger->debug( __METHOD__ . ": pulling headers from '$header'" );

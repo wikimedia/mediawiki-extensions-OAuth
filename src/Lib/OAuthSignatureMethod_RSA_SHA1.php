@@ -26,8 +26,6 @@
 
 namespace MediaWiki\Extension\OAuth\Lib;
 
-use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod;
-
 /**
  * The RSA-SHA1 signature method uses the RSASSA-PKCS1-v1_5 signature algorithm as defined in
  * [RFC3447] section 8.2 ( more simply known as PKCS#1 ), using SHA-1 as the hash function for
