@@ -37,7 +37,7 @@
 	"mwoauth-field-private": "(cette information est privée)",
 	"mwoauth-prefs-managegrants": "Applications connectées :",
 	"mwoauth-prefs-managegrantslink": "Gérer {{PLURAL:$1|$1|0=les}} application{{PLURAL:$1||s|0=s}} connectée{{PLURAL:$1||s|0=s}}",
-	"mwoauth-consumer-allwikis": "Tous les projets sur ce site",
+	"mwoauth-consumer-allwikis": "Tous les projets",
 	"mwoauth-consumer-key": "Clé du consommateur :",
 	"mwoauth-consumer-name": "Nom de l’application :",
 	"mwoauth-consumer-version": "Version du consommateur :",

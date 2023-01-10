@@ -31,7 +31,7 @@
 	"mwoauth-field-private": "(deze gegevens zijn persoonlijk)",
 	"mwoauth-prefs-managegrants": "Gekoppelde apps:",
 	"mwoauth-prefs-managegrantslink": "$1 gekoppelde {{PLURAL:$1|toepassing|toepassingen|0=toepassingen}} beheren",
-	"mwoauth-consumer-allwikis": "Alle projecten op deze site",
+	"mwoauth-consumer-allwikis": "Alle projecten",
 	"mwoauth-consumer-key": "Consumersleutel:",
 	"mwoauth-consumer-name": "Naam toepassing:",
 	"mwoauth-consumer-version": "Consumerversie:",
