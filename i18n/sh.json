@@ -15,7 +15,7 @@
 	"mwoauth-field-private": "(ovaj podatak je povjerljiv)",
 	"mwoauth-prefs-managegrants": "Povezani izvršnici:",
 	"mwoauth-prefs-managegrantslink": "Upravljanje {{PLURAL:$1|$1 povezanim izvršnikom|$1 povezanim izvršnicima|0=povezanim izvršnicima}}",
-	"mwoauth-consumer-allwikis": "Svi projekti na ovom sajtu",
+	"mwoauth-consumer-allwikis": "Svi projekti",
 	"mwoauth-consumer-key": "Potrošački ključ:",
 	"mwoauth-consumer-name": "Naziv izvršnika:",
 	"mwoauth-consumer-version": "Potrošačka verzija:",

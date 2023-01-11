@@ -5,6 +5,7 @@
 			"Bencemac",
 			"Csega",
 			"Dorgan",
+			"Hanna Tardos",
 			"Tacsipacsi"
 		]
 	},
@@ -18,7 +19,7 @@
 	"mwoauth-field-private": "(ez az információ titkos)",
 	"mwoauth-prefs-managegrants": "Összekapcsolt alkalmazások:",
 	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|0=Összekapcsolt alkalmazások|$1 összekapcsolt alkalmazás}} kezelése",
-	"mwoauth-consumer-allwikis": "Összes projekt ezen a weboldalon",
+	"mwoauth-consumer-allwikis": "Minden projekt",
 	"mwoauth-consumer-name": "Alkalmazás neve:",
 	"mwoauth-consumer-user": "Közzétevő:",
 	"mwoauth-consumer-stage": "Jelenlegi állapot:",
