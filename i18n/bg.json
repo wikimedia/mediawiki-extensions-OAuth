@@ -16,7 +16,7 @@
 	"mwoauth-field-private": "(тази информация е лична)",
 	"mwoauth-prefs-managegrants": "Свързани приложения:",
 	"mwoauth-prefs-managegrantslink": "Управление на {{PLURAL:$1|$1 свързано приложение|$1 свързани приложения|0=свързани приложения}}",
-	"mwoauth-consumer-allwikis": "Всички проекти на този сайт",
+	"mwoauth-consumer-allwikis": "Всички проекти",
 	"mwoauth-consumer-key": "Клиентски ключ:",
 	"mwoauth-consumer-name": "Име на приложението:",
 	"mwoauth-consumer-version": "Версия на клиента:",
