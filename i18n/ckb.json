@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aram",
 			"Arya sarhan",
 			"Calak",
 			"Lost Whispers",
@@ -10,6 +11,7 @@
 	},
 	"mwoauth-prefs-managegrants": "بەرنامە لکێنراوەکان:",
 	"mwoauth-prefs-managegrantslink": "بەڕێوەبردنی $1 بەرنامەی بەستراو بەم ھەژمارەوە",
+	"mwoauth-consumer-allwikis": "ھەموو پڕۆژەکان",
 	"oauthmanageconsumers": "بەڕێوەبەردنی بەکاربەرانی OAuth",
 	"oauthmanagemygrants": "بینین و دەستکاریکردنی ئاپە بەستراوەکان بەم ھەژمارەوە",
 	"right-mwoauthproposeconsumer": "پێشنیاری بەکاربەرانی OAuthی نوێ",

@@ -25,7 +25,7 @@
 	"mwoauth-field-private": "(이 정보는 비공개입니다)",
 	"mwoauth-prefs-managegrants": "연결된 앱:",
 	"mwoauth-prefs-managegrantslink": "연결된 {{PLURAL:$1|애플리케이션 $1개|0=애플리케이션}} 관리",
-	"mwoauth-consumer-allwikis": "이 사이트의 모든 프로젝트",
+	"mwoauth-consumer-allwikis": "모든 프로젝트",
 	"mwoauth-consumer-key": "컨슈머 키:",
 	"mwoauth-consumer-name": "애플리케이션 이름:",
 	"mwoauth-consumer-version": "컨슈머 버전:",
