@@ -7,6 +7,7 @@
 		]
 	},
 	"mwoauth-desc": "Omogoča uporabo OAuth 1.0a in OAuth 2.0 za avtorizacijo API-ja",
+	"mwoauth-missing-field": "Manjka vrednost polja »$1«",
 	"mwoauth-prefs-managegrants": "Povezani api:",
 	"mwoauth-prefs-managegrantslink": "Upravljaj {{PLURAL:$1|$1 povezani ap|$1 povezana apa|$1 povezane ape|$1 povezanih apov|0=povezane ape}}",
 	"mwoauth-consumer-allwikis": "vsi projekti tega spletnega mesta",
@@ -44,6 +45,7 @@
 	"mwoauthmanageconsumers-showproposed": "Predlagani zahtevki",
 	"mwoauthmanageconsumers-showrejected": "Zavrnjeni zahtevki",
 	"mwoauthmanageconsumers-showexpired": "Pretečeni zahtevki",
+	"mwoauthmanageconsumers-linkapproved": "Odobreni zahtevki",
 	"mwoauthmanageconsumers-linkdisabled": "onemogočeni zahtevki",
 	"mwoauthmanageconsumers-main": "Osnovno",
 	"mwoauthmanageconsumers-user": "Avtor",
@@ -59,6 +61,7 @@
 	"mwoauthmanageconsumers-disable": "Onemogočena",
 	"mwoauthmanageconsumers-dsuppress": "Onemogočena in ukinjena",
 	"mwoauthmanageconsumers-reenable": "Odobrena",
+	"mwoauthmanageconsumers-success-approved": "Zahtevek je bil odobren.",
 	"mwoauthmanageconsumers-success-rejected": "Zahtevek je bil zavrnjen.",
 	"mwoauthmanageconsumers-success-disabled": "Stranka je onemogočena.",
 	"oauthlistconsumers": "Seznam aplikacij OAuth",
