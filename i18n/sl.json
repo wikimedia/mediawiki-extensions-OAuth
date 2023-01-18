@@ -7,6 +7,7 @@
 		]
 	},
 	"mwoauth-desc": "Omogoča uporabo OAuth 1.0a in OAuth 2.0 za avtorizacijo API-ja",
+	"mwoauth-db-readonly": "Podatkovna zbirka OAuth je začasno zaklenjena. Prosimo, poskusite znova čez nekaj minut.",
 	"mwoauth-missing-field": "Manjka vrednost polja »$1«",
 	"mwoauth-prefs-managegrants": "Povezani api:",
 	"mwoauth-prefs-managegrantslink": "Upravljaj {{PLURAL:$1|$1 povezani ap|$1 povezana apa|$1 povezane ape|$1 povezanih apov|0=povezane ape}}",
