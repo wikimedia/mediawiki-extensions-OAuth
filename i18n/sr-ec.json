@@ -18,7 +18,7 @@
 	"mwoauth-field-private": "(ова информација је приватна)",
 	"mwoauth-prefs-managegrants": "Повезане апликације:",
 	"mwoauth-prefs-managegrantslink": "Управљај {{PLURAL:$1|1=повезаном апликацијом|повезаним апликацијама ($1)|0=повезаним апликацијама}}",
-	"mwoauth-consumer-allwikis": "Сви пројекти на овом сајту",
+	"mwoauth-consumer-allwikis": "Сви пројекти",
 	"mwoauth-consumer-name": "Име апликације:",
 	"mwoauth-consumer-user": "Издавач:",
 	"mwoauth-consumer-stage": "Актуелни статус:",
