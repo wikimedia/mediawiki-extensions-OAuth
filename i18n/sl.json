@@ -172,6 +172,7 @@
 	"mwoauth-oauth-version": "Različica protokola OAuth",
 	"mwoauth-oauth2-granttypes": "Dovoljene vrste pooblastil OAuth2",
 	"mwoauth-oauth2-granttype-refresh-token": "Osveži žeton",
+	"mwoauth-oauth2-error-server-error": "Pooblastitveni strežnik je naletel na nepričakovan pogoj, ki mu je preprečil izpolnitev zahtevka.",
 	"mwoauthconsumer-application-view": "Ogled aplikacije",
 	"grant-oauthmanageownclient": "Upravljanje svojih porabnikov OAuth",
 	"mwoauth-consumer-submit-error": "Pri shranjevanju porabnika je prišlo do napake."
