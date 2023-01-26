@@ -13,6 +13,7 @@
 	"require": {
 		"ext-openssl": "*",
 		"firebase/php-jwt": "^5.2.0",
+		"lcobucci/jwt": "^3.4 || ~4.0.0 || ~4.1.0",
 		"league/oauth2-server": "dev-v9.0.0-alpha#61d770dc284898ea2905d66e12f8f7e5f6664092 as 9.0.0"
 	},
 	"require-dev": {
