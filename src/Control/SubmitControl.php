@@ -103,7 +103,7 @@ abstract class SubmitControl extends \ContextSource {
 	 * This method should not be called outside SubmitControl
 	 *
 	 * @param string $field
-	 * @param string $value
+	 * @param mixed $value
 	 * @param array $allValues
 	 * @param \HTMLForm $form
 	 * @throws \MWException
@@ -125,7 +125,7 @@ abstract class SubmitControl extends \ContextSource {
 		}
 		$validator = $validators[$allValues['action']][$field];
 		$isValid = is_string( $validator )
-			? preg_match( $validator, $value )
+			? preg_match( $validator, $value ?? '' )
 			: $validator( $value, $allValues );
 		if ( !$isValid ) {
 			$errorMessage = $this->msg( 'mwoauth-invalid-field-' . $field );
