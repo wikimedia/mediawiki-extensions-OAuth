@@ -26,7 +26,7 @@
 	"mwoauth-field-private": "(esta informação é confidencial)",
 	"mwoauth-prefs-managegrants": "Aplicativos conectados:",
 	"mwoauth-prefs-managegrantslink": "Gerenciar {{PLURAL:$1|$1 aplicativo conectado|$1 aplicativos conectados|0=aplicativos conectados}}",
-	"mwoauth-consumer-allwikis": "Todos os projetos neste site",
+	"mwoauth-consumer-allwikis": "Todos os projetos",
 	"mwoauth-consumer-key": "Chave de consumidor:",
 	"mwoauth-consumer-name": "Nome do aplicativo:",
 	"mwoauth-consumer-version": "Versão do consumidor:",
