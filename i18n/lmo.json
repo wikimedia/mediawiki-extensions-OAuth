@@ -4,5 +4,6 @@
 			"Salvemm el lombard"
 		]
 	},
-	"oauthlistconsumers": "Lista di aplicazzion OAuth"
+	"oauthlistconsumers": "Lista di aplicazzion OAuth",
+	"oauthmanagemygrants": "Manesg di aplicazzion conesse"
 }
