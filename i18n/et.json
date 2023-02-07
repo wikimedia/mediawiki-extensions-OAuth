@@ -176,7 +176,7 @@
 	"notification-oauth-app-disable-primary-link": "Vaata rakendust",
 	"notification-oauth-app-reenable-primary-link": "Vaata rakendust",
 	"notification-oauth-app-body": "Põhjus: $1",
-	"mwoauth-oauth-version": "OAuthi protokolli versioon:",
+	"mwoauth-oauth-version": "OAuthi protokolli versioon",
 	"mwoauth-oauth2-is-confidential": "Klient on konfidentsiaalne",
 	"mwoauth-oauth2-is-confidential-help": "Konfidentsiaalne klient on rakendus, mis võimaldab hoida kliendi parooli maailma eest salajas. Mittekonfidentsiaalsed kliendid on vähem turvalised.",
 	"mwoauth-oauth2-granttypes": "Lubatud OAuth2 volituste tüübid",
