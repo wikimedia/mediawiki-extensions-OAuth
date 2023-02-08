@@ -193,6 +193,8 @@
 	"mwoauthmanagemygrants-success-update": "이 응용 프로그램의 환경 설정이 업데이트되었습니다.",
 	"mwoauthmanagemygrants-success-renounce": "당신의 계정에 대한 응용 프로그램의 접근이 취소되었습니다.",
 	"mwoauthmanagemygrants-basic-tooltip": "왜 내가 이 권한 부여를 업데이트할 수 없나요? 이 권한 부여는 당신의 연결된 애플리케이션에 제대로 작동하는데 필요한 기본 권한을 부여합니다. 만약 당신이 이 연결된 애플리케이션에 이 권한을 부여하고 싶지 않다면 애플리케이션의 접근을 취소해야 합니다.",
+	"mwoauthmanagemygrants-editslink": "이 애플리케이션에 의한 {{GENDER:$1|당신의}} 편집",
+	"mwoauthmanagemygrants-actionslink": "이 애플리케이션에 의한 {{GENDER:$1|당신의}} 조치",
 	"logentry-mwoauthconsumer-propose": "$1님이 OAuth 컨슈머를 {{GENDER:$2|제안했습니다}} (컨슈머 키 $4)",
 	"logentry-mwoauthconsumer-update": "$1님이 OAuth 컨슈머를 {{GENDER:$2|업데이트했습니다}} (컨슈머 키 $4)",
 	"logentry-mwoauthconsumer-approve": "$1님이 $3에 의해 OAuth 컨슈머를 {{GENDER:$2|승인했습니다}} (컨슈머 키 $4)",
