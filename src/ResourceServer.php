@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth;
 
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Middleware\ResourceServerMiddleware;
+use League\OAuth2\Server\ResourceServer as LeagueResourceServer;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
@@ -45,7 +46,7 @@ class ResourceServer {
 	protected function __construct( string $publicKey, string $canonicalServer ) {
 		$accessTokenRepository = new AccessTokenRepository( $canonicalServer );
 
-		$server = new \League\OAuth2\Server\ResourceServer(
+		$server = new LeagueResourceServer(
 			$accessTokenRepository,
 			$publicKey
 		);

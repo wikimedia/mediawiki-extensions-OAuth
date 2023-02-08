@@ -31,6 +31,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_PLAINTEXT;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests of OAuthRequest
@@ -45,7 +46,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthToken;
  * @group OAuth
  * @covers \MediaWiki\Extension\OAuth\Lib\OAuthRequest
  */
-class OAuthRequestTest extends \PHPUnit\Framework\TestCase {
+class OAuthRequestTest extends TestCase {
 
 	protected static $globals = [];
 

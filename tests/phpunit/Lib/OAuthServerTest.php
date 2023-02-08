@@ -32,13 +32,14 @@ use MediaWiki\Extension\OAuth\Lib\OAuthServer;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_PLAINTEXT;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests of OAuthUtil
  * @group OAuth
  * @covers \MediaWiki\Extension\OAuth\Lib\OAuthServer
  */
-class OAuthServerTest extends \PHPUnit\Framework\TestCase {
+class OAuthServerTest extends TestCase {
 
 	private $consumer;
 	private $request_token;

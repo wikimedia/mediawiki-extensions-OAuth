@@ -19,9 +19,13 @@
 
 namespace MediaWiki\Extension\OAuth;
 
+use Maintenance;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
+use MWRestrictions;
+use RequestContext;
+use User;
 
 /**
  * @ingroup Maintenance
@@ -35,7 +39,7 @@ if ( getenv( 'MW_INSTALL_PATH' ) ) {
 
 require_once "$IP/maintenance/Maintenance.php";
 
-class CreateOAuthConsumer extends \Maintenance {
+class CreateOAuthConsumer extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( "Create an OAuth consumer" );
@@ -56,7 +60,7 @@ class CreateOAuthConsumer extends \Maintenance {
 	}
 
 	public function execute() {
-		$user = \User::newFromName( $this->getOption( 'user' ) );
+		$user = User::newFromName( $this->getOption( 'user' ) );
 		if ( $user->isAnon() ) {
 			$this->fatalError( 'User must be registered' );
 		}
@@ -84,10 +88,10 @@ class CreateOAuthConsumer extends \Maintenance {
 			// Generate a key
 			'rsaKey' => '',
 			'agreement' => true,
-			'restrictions' => \MWRestrictions::newDefault(),
+			'restrictions' => MWRestrictions::newDefault(),
 		];
 
-		$context = \RequestContext::getMain();
+		$context = RequestContext::getMain();
 		$context->setUser( $user );
 
 		$dbw = Utils::getCentralDB( DB_PRIMARY );

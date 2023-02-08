@@ -3,6 +3,8 @@
 namespace MediaWiki\Extension\OAuth\Tests\Lib;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
+use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * The MIT License
@@ -33,7 +35,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
  * @group OAuth
  * @covers \MediaWiki\Extension\OAuth\Lib\OAuthUtil
  */
-class OAuthUtilTest extends \PHPUnit\Framework\TestCase {
+class OAuthUtilTest extends TestCase {
 	public function testUrlencode() {
 		// Tests taken from
 		// http://wiki.oauth.net/TestCases ("Parameter Encoding")
@@ -52,7 +54,7 @@ class OAuthUtilTest extends \PHPUnit\Framework\TestCase {
 
 		// A few tests to ensure code-coverage
 		$this->assertEquals( '', OAuthUtil::urlencode_rfc3986(NULL));
-		$this->assertEquals( '', OAuthUtil::urlencode_rfc3986(new \stdClass()));
+		$this->assertEquals( '', OAuthUtil::urlencode_rfc3986(new stdClass()));
 	}
 
 	public function testUrldecode() {

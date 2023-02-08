@@ -17,6 +17,7 @@
 		"league/oauth2-server": "dev-v9.0.0-alpha#61d770dc284898ea2905d66e12f8f7e5f6664092 as 9.0.0"
 	},
 	"require-dev": {
+		"ext-curl": "*",
 		"mediawiki/mediawiki-codesniffer": "38.0.0",
 		"mediawiki/mediawiki-phan-config": "0.11.1",
 		"mediawiki/minus-x": "1.1.1",

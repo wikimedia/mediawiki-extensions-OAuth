@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Tests\Rest;
 
+use Exception;
 use FormatJson;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
@@ -58,7 +59,7 @@ class ResetClientSecretEndpointTest extends EndpointTest {
 	];
 
 	/**
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	protected function setUp(): void {
 		parent::setUp();

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Tests\Rest;
 
+use Exception;
 use FormatJson;
 use MediaWiki\Extension\OAuth\Rest\Handler\RequestClient;
 use MediaWiki\Rest\Handler;
@@ -63,7 +64,7 @@ class RequestClientEndpointTest extends EndpointTest {
 	];
 
 	/**
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	protected function setUp(): void {
 		parent::setUp();

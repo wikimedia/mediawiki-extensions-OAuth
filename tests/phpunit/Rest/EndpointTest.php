@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Tests\Rest;
 
+use Exception;
 use FormatJson;
 use GuzzleHttp\Psr7\Uri;
 use MediaWiki\Rest\Handler;
@@ -10,6 +11,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
+use MediaWikiIntegrationTestCase;
 use RequestContext;
 use Title;
 use User;
@@ -18,12 +20,12 @@ use User;
  * Class EndpointTest
  * @package MediaWiki\Extension\OAuth\Tests\Rest
  */
-abstract class EndpointTest extends \MediaWikiIntegrationTestCase {
+abstract class EndpointTest extends MediaWikiIntegrationTestCase {
 
 	use HandlerTestTrait;
 
 	/**
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	protected function setUp(): void {
 		parent::setUp();

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Tests\Rest;
 
+use Exception;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Tests\TestHandlerFactory;
@@ -17,7 +18,7 @@ use User;
 class ListClientsEndpointTest extends EndpointTest {
 
 	/**
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function setUp(): void {
 		parent::setUp();

@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Tests\Lib;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
+use PHPUnit\Framework\TestCase;
 
 /**
  * The MIT License
@@ -32,7 +33,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthToken;
  * @group OAuth
  * @covers \MediaWiki\Extension\OAuth\Lib\OAuthToken
  */
-class OAuthTokenTest extends \PHPUnit\Framework\TestCase {
+class OAuthTokenTest extends TestCase {
 	public function testSerialize() {
 		$token = new OAuthToken('token', 'secret');
 		$this->assertEquals('oauth_token=token&oauth_token_secret=secret', $token->to_string());

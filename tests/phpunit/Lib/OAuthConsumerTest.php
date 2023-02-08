@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Tests\Lib;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
+use PHPUnit\Framework\TestCase;
 
 /**
  * The MIT License
@@ -32,7 +33,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
  * @group OAuth
  * @covers \MediaWiki\Extension\OAuth\Lib\OAuthConsumer
  */
-class OAuthConsumerTest extends \PHPUnit\Framework\TestCase {
+class OAuthConsumerTest extends TestCase {
 	public function testConvertToString() {
 		$consumer = new OAuthConsumer('key', 'secret');
 		$this->assertEquals('OAuthConsumer[key=key,secret=secret]', (string) $consumer);

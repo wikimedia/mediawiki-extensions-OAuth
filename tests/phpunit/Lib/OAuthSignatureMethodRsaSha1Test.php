@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Tests\Lib;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
+use PHPUnit\Framework\TestCase;
 
 /**
  * The MIT License
@@ -32,7 +33,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
  * @group OAuth
  * @covers \MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1
  */
-class OAuthSignatureMethodRsaSha1Test extends \PHPUnit\Framework\TestCase {
+class OAuthSignatureMethodRsaSha1Test extends TestCase {
 	private $method;
 
 	protected function setUp() : void {

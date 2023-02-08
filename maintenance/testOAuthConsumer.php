@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth;
 
+use Maintenance;
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
@@ -19,7 +20,7 @@ if ( getenv( 'MW_INSTALL_PATH' ) ) {
 
 require_once "$IP/maintenance/Maintenance.php";
 
-class TestOAuthConsumer extends \Maintenance {
+class TestOAuthConsumer extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( "Test an OAuth consumer" );

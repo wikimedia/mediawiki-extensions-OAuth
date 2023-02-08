@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extension\OAuth\Tests\Repository;
 
+use DateInterval;
+use DateTimeImmutable;
 use MediaWiki\Extension\OAuth\Entity\AccessTokenEntity;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extension\OAuth\Tests\Entity\Mock_ClientEntity;
@@ -30,7 +32,7 @@ class AccessTokenRepositoryTest extends MediaWikiIntegrationTestCase {
 		$identifier = bin2hex( random_bytes( 40 ) );
 		$this->accessToken->setIdentifier( $identifier );
 		$this->accessToken->setExpiryDateTime(
-			( new \DateTimeImmutable() )->add( new \DateInterval( 'PT1H' ) )
+			( new DateTimeImmutable() )->add( new DateInterval( 'PT1H' ) )
 		);
 
 		$this->accessTokenRepo = new AccessTokenRepository( 'dummy' );

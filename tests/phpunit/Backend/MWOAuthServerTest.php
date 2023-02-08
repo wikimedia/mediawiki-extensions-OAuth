@@ -25,12 +25,14 @@ namespace MediaWiki\Extension\OAuth\Tests\Backend;
 
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthServer;
+use PHPUnit\Framework\TestCase;
+use ReflectionMethod;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Backend\MWOAuthServer
  * @group OAuth
  */
-class MWOAuthServerTest extends \PHPUnit\Framework\TestCase {
+class MWOAuthServerTest extends TestCase {
 
 	/**
 	 * @param bool $expect Expectation
@@ -46,7 +48,7 @@ class MWOAuthServerTest extends \PHPUnit\Framework\TestCase {
 			'callbackUrl' => $registeredUrl,
 		] );
 
-		$method = new \ReflectionMethod( $fixture, 'checkCallback' );
+		$method = new ReflectionMethod( $fixture, 'checkCallback' );
 		$method->setAccessible( true );
 		$wasValid = null;
 		try {
