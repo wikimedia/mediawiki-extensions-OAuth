@@ -168,10 +168,7 @@ class ListClientsEndpointTest extends EndpointTest {
 					'statusCode' => 404,
 					'reasonPhrase' => 'Not Found',
 					'protocolVersion' => '1.1',
-					'body' => [
-						'httpCode' => 404,
-						'httpReason' => 'Not Found',
-					]
+					'body' => '{"errorKey":"rest-nonexistent-user","httpCode":404,"httpReason":"Not Found"}'
 				]
 			],
 		];
