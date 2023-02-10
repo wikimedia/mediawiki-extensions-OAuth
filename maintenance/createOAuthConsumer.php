@@ -79,9 +79,9 @@ class CreateOAuthConsumer extends Maintenance {
 			'grants' => '["' . implode( '","', $this->getOption( 'grants' ) ) . '"]',
 			'granttype' => 'normal',
 			'ownerOnly' => false,
-			// only support OAuth 1 for now
-			'oauth2IsConfidential' => false,
-			'oauth2GrantTypes' => null,
+			// Only support OAuth 1 for now, but that requires valid values for OAuth 2 fields
+			'oauth2IsConfidential' => true,
+			'oauth2GrantTypes' => [ 'authorization_code', 'refresh_token' ],
 			'email' => $user->getEmail(),
 			// All wikis
 			'wiki' => '*',
