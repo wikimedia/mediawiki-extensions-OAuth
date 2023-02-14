@@ -79,6 +79,7 @@
 	"mwoauthmanageconsumers-success-approved": "Zahtevek je bil odobren.",
 	"mwoauthmanageconsumers-success-rejected": "Zahtevek je bil zavrnjen.",
 	"mwoauthmanageconsumers-success-disabled": "Porabnik je onemogočen.",
+	"mwoauthmanageconsumers-search-name": "porabniki s tem imenom",
 	"oauthlistconsumers": "Seznam aplikacij OAuth",
 	"mwoauthlistconsumers-legend": "Pregledovanje aplikacij OAuth",
 	"mwoauthlistconsumers-view": "podrobnosti",
