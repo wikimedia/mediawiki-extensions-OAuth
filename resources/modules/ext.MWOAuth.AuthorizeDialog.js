@@ -14,7 +14,7 @@
 				message: $form,
 				size: 'medium',
 				actions: []
-			} ).opening.then( function () {
+			} ).opened.then( function () {
 				// Appending the <form> to a <label> makes the whole form a click target
 				// for 'Allow', so move it out of the <label>
 				OO.ui.getWindowManager().getCurrentWindow().text.$element.append( $form );
