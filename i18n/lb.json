@@ -4,7 +4,8 @@
 			"Les Meloures",
 			"Macofe",
 			"Robby",
-			"Soued031"
+			"Soued031",
+			"Volvox"
 		]
 	},
 	"mwoauth-desc": "Erlaabt de Gebrauch vun OAuth 1.0a an OAuth 2.0 fir API Autorisatioun",
@@ -31,7 +32,7 @@
 	"mwoauth-consumer-restrictions-json": "Limitatioun fir d'Benotzen (JSON):",
 	"mwoauth-consumer-reason": "Grond:",
 	"mwoauth-consumer-email-unconfirmed": "D'E-Mail-Adress vun Ärem Benotzerkont gouf nach net confirméiert.",
-	"mwoauth-consumer-email-mismatched": "D'E-Mail-Adress déi ugi gëtt muss déi sinn, déi an Ärem Benotzerkont uginn ass.",
+	"mwoauth-consumer-email-mismatched": "D'E-Mail-Adress, déi ugi gëtt, muss déi sinn, déi an Ärem Benotzerkont uginn ass.",
 	"mwoauth-consumer-not-proposed": "De Konsument gëtt elo net proposéiert",
 	"mwoauth-consumer-not-disabled": "De Konsument ass elo net desaktivéiert",
 	"mwoauth-invalid-consumer-key": "Et gëtt kee Konsument mat dem Schlëssel deen ugi gouf.",
