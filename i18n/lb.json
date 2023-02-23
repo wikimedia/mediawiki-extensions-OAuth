@@ -35,7 +35,7 @@
 	"mwoauth-consumer-email-mismatched": "D'E-Mail-Adress, déi ugi gëtt, muss déi sinn, déi an Ärem Benotzerkont uginn ass.",
 	"mwoauth-consumer-not-proposed": "De Konsument gëtt elo net proposéiert",
 	"mwoauth-consumer-not-disabled": "De Konsument ass elo net desaktivéiert",
-	"mwoauth-invalid-consumer-key": "Et gëtt kee Konsument mat dem Schlëssel deen ugi gouf.",
+	"mwoauth-invalid-consumer-key": "Et gëtt kee Konsument mat dem Schlëssel, deen ugi gouf.",
 	"mwoauth-consumer-stage-proposed": "geplangt",
 	"mwoauth-consumer-stage-rejected": "refuséiert",
 	"mwoauth-consumer-stage-expired": "ofgelaf",
