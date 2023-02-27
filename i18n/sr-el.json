@@ -23,6 +23,7 @@
 	"mwoauth-consumer-stage": "Aktuelni status:",
 	"mwoauth-consumer-email": "Imejl-adresa kontakta:",
 	"mwoauth-consumer-description": "Opis aplikacije:",
+	"mwoauth-consumer-grantsneeded": "Primenljive dozvole:",
 	"mwoauth-consumer-wiki": "Primenljivi projekti:",
 	"mwoauth-consumer-wiki-thiswiki": "Trenutni projekat ($1)",
 	"mwoauth-consumer-restrictions": "Ograničenja upotrebe:",
@@ -73,6 +74,7 @@
 	"mwoauthlistconsumers-status-disabled": "onemogućeno",
 	"mwoauthlistconsumers-status-rejected": "odbijeno",
 	"mwoauthlistconsumers-status-expired": "isteklo",
+	"mwoauthlistconsumers-navigation": "Navigacija:",
 	"oauthmanagemygrants": "Upravljanje povezanim aplikacijama",
 	"mwoauthmanagemygrants-text": "Ova stranica navodi sve aplikacije koje mogu da koriste vaš nalog. Za svaku takvu aplikaciju, opseg njenog pristupa ograničen je dozvolama koje ste dodelili aplikaciji kada ste je ovlastili da deluje u vaše ime. Ako ste zasebno ovlastili aplikaciju da pristupa drugom sestrinskom projektu u vaše ime, onda ćete videti zasebnu konfiguraciju za svaki takav projekat ispod.\n\nPovezane aplikacije pristupaju vašem nalogu korišćenjem OAuth protokola. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Detaljnije o povezanim aplikacijama])</span>",
 	"mwoauthmanagemygrants-navigation": "Navigacija:",
@@ -113,5 +115,6 @@
 	"echo-category-title-oauth-owner": "Razvoj OAuth-a",
 	"echo-category-title-oauth-admin": "Administrator OAuth-a",
 	"notification-oauth-app-body": "Razlog: $1",
-	"mwoauth-login-required-reason": "Morate se prijaviti na nalog na projektu{{SITENAME}} da biste ovlastili aplikacije da mu pristupe."
+	"mwoauth-login-required-reason": "Morate se prijaviti na nalog na projektu{{SITENAME}} da biste ovlastili aplikacije da mu pristupe.",
+	"mwoauthconsumer-application-view": "vidi aplikaciju"
 }
