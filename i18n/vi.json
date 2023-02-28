@@ -9,7 +9,8 @@
 			"Phjtieudoc",
 			"Vinhtantran",
 			"Withoutaname",
-			"Vanhdeeptryy"
+			"Vanhdeeptryy",
+			"Tryvix1509"
 		]
 	},
 	"mwoauth-desc": "Cho phép sử dụng OAuth 1.0a và OAuth 2.0 để xác minh khi truy cập API",
@@ -154,7 +155,11 @@
 	"mwoauthmanagemygrants-renounce": "Rút quyền",
 	"mwoauthmanagemygrants-action": "Thay đổi trạng thái:",
 	"mwoauthmanagemygrants-confirm-submit": "Cập nhật trạng thái của dấu hiệu truy cập",
+	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|đã đề xuất}} ứng dụng tiêu dùng OAuth (khóa tiêu dùng $4)",
+	"logentry-mwoauthconsumer-update": "$1 {{GENDER:$2|đã cập nhật}} ứng dụng tiêu dùng OAuth (khóa tiêu dùng $4)",
+	"logentry-mwoauthconsumer-create-owner-only": "$1 {{GENDER:$2|đã tạo}} ứng dụng tiêu dùng OAuth (khóa tiêu dùng $4)",
 	"mwoauthconsumer-consumer-logpage": "Nhật trình tiêu dùng OAuth",
+	"mwoauthconsumer-consumer-logpagetext": "Nhật trình phê duyệt, từ chối và vô hiệu hóa tiêu dùng OAuth đã đăng ký.",
 	"mwoauth-bad-request-missing-params": "Rất tiếc, đã xảy ra lỗi khi thiết lập ứng dụng kết nối này. Hãy liên lạc với nhà phát triển ứng dụng.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth thiếu tham số, $1</span>",
 	"mwoauth-bad-request-invalid-action": "Rất tiếc, đã xảy ra lỗi. Xin vui lòng liên lạc với tác giả ứng dụng để xin trợ giúp.\n\n<span class=\"plainlinks mw-mwoautherror-details\">URL bất ngờ, $1</span>",
 	"mwoauth-bad-request-invalid-action-contact": "Rất tiếc, đã xảy ra lỗi. Xin vui lòng [$1 liên lạc] với tác giả ứng dụng để xin trợ giúp.\n\n<span class=\"plainlinks mw-mwoautherror-details\">URL bất ngờ, $2</span>",
