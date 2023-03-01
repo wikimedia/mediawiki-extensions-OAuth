@@ -174,5 +174,6 @@
 	"mwoauth-oauth2-error-invalid-scope": "Zahtevani obseg je neveljaven, neznan ali napačno oblikovan.",
 	"mwoauthconsumer-application-view": "Ogled aplikacije",
 	"grant-oauthmanageownclient": "Upravljanje svojih porabnikov OAuth",
+	"mwoauth-consumer-deleted-error": "Na izbrisanih odjemalcih ne morete izvajati dejanj",
 	"mwoauth-consumer-submit-error": "Pri shranjevanju porabnika je prišlo do napake."
 }

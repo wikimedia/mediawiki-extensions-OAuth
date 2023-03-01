@@ -4,5 +4,7 @@
 			"Kimberli Mäkäräinen (WMNO)"
 		]
 	},
-	"mwoauth-consumer-email": "E-poastačujuhus:"
+	"mwoauth-consumer-email": "E-poastačujuhus:",
+	"mwoauth-form-button-approve": "Dohkket",
+	"mwoauth-form-button-cancel": "Šluhtte"
 }
