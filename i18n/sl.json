@@ -25,6 +25,7 @@
 	"mwoauth-consumer-grantsneeded": "Podeljena pooblastila:",
 	"mwoauth-consumer-wiki": "Projekt uporabe:",
 	"mwoauth-consumer-restrictions": "Omejitve uporabe:",
+	"mwoauth-consumer-rsakey": "Javni ključ RSA (izbirno):",
 	"mwoauth-consumer-accesstoken": "Dostopovni žeton:",
 	"mwoauth-consumer-not-proposed": "Ta porabnik trenutno ni predlagan",
 	"mwoauth-consumer-not-disabled": "Ta porabnik trenutno ni onemogočen",
