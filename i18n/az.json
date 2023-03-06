@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Eldarado",
 			"NMW03",
 			"Serkanland",
 			"Wertuose"
@@ -14,10 +15,12 @@
 	"mwoauth-prefs-managegrants": "Əlaqələndirilmiş tətbiqlər:",
 	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 qoşulu tətbiqi|0=Qoşulu tətbiqləri}} idarə et",
 	"mwoauth-consumer-stage-disabled": "söndürülüb",
+	"mwoauthconsumerregistration-email": "Əlaqə e-poçtu",
 	"mwoauthconsumerregistration-stage": "Vəziyyəti",
 	"mwoauthconsumerregistration-lastchange": "Son redaktə",
 	"mwoauthconsumerregistration-manage": "idarəetmə",
 	"mwoauthconsumerregistration-resetsecretkey": "Gizli açarı sıfırlayıb, yenisini təyin et",
+	"mwoauthmanageconsumers-email": "Əlaqə e-poçtu",
 	"mwoauthmanageconsumers-disable": "Söndürülüb",
 	"mwoauthlistconsumers-status-disabled": "söndürülüb",
 	"oauthmanagemygrants": "Qoşulmuş tətbiqləri idarə et",

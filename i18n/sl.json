@@ -8,6 +8,7 @@
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "Porabnik OAuth, uporabljen za izvedbo te spremembe",
 	"mwoauth-desc": "Omogoča uporabo OAuth 1.0a in OAuth 2.0 za avtorizacijo API-ja",
+	"mwoauth-nosubpage-explanation": "OAuth je mehanizem, ki omogoča zunanjim aplikacijam, da identificirajo uporabnika projekta {{SITENAME}} ali delujejo v njegovem imenu, ko prejmejo dovoljenje tega uporabnika.\n\nDa ta stran nekaj naredi, je potrebnih več parametrov. Če ste bili sem napoteni iz zunanje aplikacije, je to verjetno posledica napake v tej aplikaciji; obrnite se na avtorja.",
 	"mwoauth-db-readonly": "Podatkovna zbirka OAuth je začasno zaklenjena. Prosimo, poskusite znova čez nekaj minut.",
 	"mwoauth-missing-field": "Manjka vrednost polja »$1«",
 	"mwoauth-invalid-field-oauth2GrantTypes": "Aplikacije OAuth 2 morajo določiti vsaj eno vrsto pooblastila",
