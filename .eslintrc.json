@@ -7,12 +7,18 @@
 	],
 	"rules": {
 		"no-jquery/no-global-selector": "off",
-		"no-jquery/no-sizzle": "off"
+		"no-jquery/no-sizzle": "off",
+		"es-x/no-block-scoped-variables": "warn",
+		"es-x/no-rest-spread-properties": "warn"
 	},
 	"overrides": [
 		{
-			"files": [ "Gruntfile.js" ],
-			"extends": [ "wikimedia/server" ]
+			"files": [
+				"Gruntfile.js"
+			],
+			"extends": [
+				"wikimedia/server"
+			]
 		}
 	]
 }

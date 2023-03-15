@@ -334,7 +334,6 @@ class Utils {
 			}
 
 			if ( isset( $user->oAuthUserData['centralId'] ) ) {
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$id = $user->oAuthUserData['centralId'];
 			} else {
 				$lookup = MediaWikiServices::getInstance()

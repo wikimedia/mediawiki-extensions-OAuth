@@ -2,9 +2,6 @@
 
 namespace MediaWiki\Extension\OAuth\Frontend\Pagers;
 
-use MediaWiki\Extension\OAuth\Backend\Utils;
-use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers;
-
 /**
  * (c) Aaron Schulz 2013, GPL
  *
@@ -24,6 +21,8 @@ use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumer
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers;
 use MediaWiki\MediaWikiServices;
 use ReverseChronologicalPager;
 use stdClass;
