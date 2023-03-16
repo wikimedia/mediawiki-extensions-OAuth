@@ -2,9 +2,6 @@
 
 namespace MediaWiki\Extension\OAuth\Frontend\Pagers;
 
-use MediaWiki\Extension\OAuth\Backend\Utils;
-use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageMyGrants;
-
 /**
  * (c) Aaron Schulz 2013, GPL
  *
@@ -24,6 +21,8 @@ use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageMyGrants
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageMyGrants;
 use MediaWiki\MediaWikiServices;
 use ReverseChronologicalPager;
 use stdClass;
