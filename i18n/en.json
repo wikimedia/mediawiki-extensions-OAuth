@@ -112,7 +112,7 @@
 	"mwoauthmanageconsumers-linkapproved": "approved requests",
 	"mwoauthmanageconsumers-linkdisabled": "disabled requests",
 	"mwoauthmanageconsumers-main": "Main",
-	"mwoauthmanageconsumers-maintext": "This page is meant for handling OAuth (see http://oauth.net) consumer application requests and managing established OAuth consumers.",
+	"mwoauthmanageconsumers-maintext": "This page is meant for handling OAuth (see https://oauth.net) consumer application requests and managing established OAuth consumers.",
 	"mwoauthmanageconsumers-queues": "Select a consumer confirmation queue from below:",
 	"mwoauthmanageconsumers-q-proposed": "Queue of proposed consumer requests",
 	"mwoauthmanageconsumers-q-rejected": "Queue of rejected consumer requests",
