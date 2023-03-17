@@ -131,7 +131,7 @@
 	"mwoauthmanageconsumers-linkapproved": "requêtes approuvées",
 	"mwoauthmanageconsumers-linkdisabled": "requêtes désactivées",
 	"mwoauthmanageconsumers-main": "Principal",
-	"mwoauthmanageconsumers-maintext": "Cette page est conçue pour traiter les demandes d’applications consommatrices OAuth (voir http://oauth.net) et gérer les consommateurs OAuth existants.",
+	"mwoauthmanageconsumers-maintext": "Cette page est conçue pour traiter les demandes d’applications consommatrices OAuth (voir https://oauth.net/) et gérer les consommateurs OAuth existants.",
 	"mwoauthmanageconsumers-queues": "Sélectionner une file de confirmation de consommateur ci-dessous :",
 	"mwoauthmanageconsumers-q-proposed": "File des requêtes de consommateur proposés",
 	"mwoauthmanageconsumers-q-rejected": "File des requêtes de consommateur rejetées",

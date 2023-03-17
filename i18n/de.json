@@ -115,7 +115,7 @@
 	"mwoauthmanageconsumers-linkapproved": "genehmigte Anfragen",
 	"mwoauthmanageconsumers-linkdisabled": "deaktivierte Anfragen",
 	"mwoauthmanageconsumers-main": "Start",
-	"mwoauthmanageconsumers-maintext": "Diese Seite ist zur Abwicklung von OAuth-Anwendungsanträgen (siehe http://oauth.net) und zum Verwalten von bestehenden OAuth-Anwendungen gedacht.",
+	"mwoauthmanageconsumers-maintext": "Diese Seite ist zur Abwicklung von OAuth-Anwendungsanträgen (siehe https://oauth.net) und zum Verwalten von bestehenden OAuth-Anwendungen gedacht.",
 	"mwoauthmanageconsumers-queues": "Wähle von unten eine Verbraucherbestätigungswarteschlange aus:",
 	"mwoauthmanageconsumers-q-proposed": "Warteschlange geplanter Verbraucheranträge",
 	"mwoauthmanageconsumers-q-rejected": "Warteschlange abgelehnter Verbraucheranträge",

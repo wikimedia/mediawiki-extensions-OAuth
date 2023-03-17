@@ -68,7 +68,7 @@
 	"mwoauthmanageconsumers-linkapproved": "Odobreni zahtevki",
 	"mwoauthmanageconsumers-linkdisabled": "onemogočeni zahtevki",
 	"mwoauthmanageconsumers-main": "Osnovno",
-	"mwoauthmanageconsumers-maintext": "Ta stran je namenjena obravnavanju zahtevkov porabniških aplikacij OAuth (glejte http://oauth.net) in upravljanju vzpostavljenih porabnikov OAuth.",
+	"mwoauthmanageconsumers-maintext": "Ta stran je namenjena obravnavanju zahtevkov porabniških aplikacij OAuth (glejte https://oauth.net) in upravljanju vzpostavljenih porabnikov OAuth.",
 	"mwoauthmanageconsumers-user": "Avtor",
 	"mwoauthmanageconsumers-description": "Opis",
 	"mwoauthmanageconsumers-email": "E-pošta za stik",

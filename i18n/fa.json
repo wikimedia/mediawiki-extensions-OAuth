@@ -107,7 +107,7 @@
 	"mwoauthmanageconsumers-linkapproved": "درخواست‌های تاییدشده",
 	"mwoauthmanageconsumers-linkdisabled": "درخواست‌های غیرفعال‌شده",
 	"mwoauthmanageconsumers-main": "اصلی",
-	"mwoauthmanageconsumers-maintext": "این صفحه برای کنترل درخواست‌های برنامهٔ مصرف‌کننده (مشاهدهٔ  http://oauth.net) و مدیریت تآٔسیس مصرف‌کنند‌گان OAuth است.",
+	"mwoauthmanageconsumers-maintext": "این صفحه برای کنترل درخواست‌های برنامهٔ مصرف‌کننده (مشاهدهٔ  https://oauth.net) و مدیریت تآٔسیس مصرف‌کنند‌گان OAuth است.",
 	"mwoauthmanageconsumers-queues": "یک صف تأیید مصرف‌کننده از زیر انتخاب کنید:",
 	"mwoauthmanageconsumers-q-proposed": "به صف‌کردن درخواست پینشهاد مصرف‌کننده",
 	"mwoauthmanageconsumers-q-rejected": "صف درخواست‌های رده شده مصرف‌کننده",

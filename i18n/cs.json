@@ -105,7 +105,7 @@
 	"mwoauthmanageconsumers-showrejected": "Odmítnuté žádosti",
 	"mwoauthmanageconsumers-showexpired": "Propadlé žádosti",
 	"mwoauthmanageconsumers-main": "Hlavní",
-	"mwoauthmanageconsumers-maintext": "Tato stránka slouží k řešení požadavků na konzumentské aplikace OAuth (vizte http://oauth.net) a správě existujících konzumentů OAuth.",
+	"mwoauthmanageconsumers-maintext": "Tato stránka slouží k řešení požadavků na konzumentské aplikace OAuth (vizte https://oauth.net) a správě existujících konzumentů OAuth.",
 	"mwoauthmanageconsumers-queues": "Níže si vyberte frontu potvrzení konzumentů:",
 	"mwoauthmanageconsumers-q-proposed": "Fronta navržených žádostí o konzumenta",
 	"mwoauthmanageconsumers-q-rejected": "Fronta odmítnutých žádostí o konzumenta",

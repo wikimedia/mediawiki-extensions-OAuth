@@ -100,7 +100,7 @@
 	"mwoauthmanageconsumers-linkapproved": "richieste approvate",
 	"mwoauthmanageconsumers-linkdisabled": "richieste disabilitate",
 	"mwoauthmanageconsumers-main": "Principale",
-	"mwoauthmanageconsumers-maintext": "Questa pagina è usata per la gestione delle applicazioni OAuth (vedi http://oauth.net), delle richieste e dei clienti istituiti.",
+	"mwoauthmanageconsumers-maintext": "Questa pagina è usata per la gestione delle applicazioni OAuth (vedi https://oauth.net), delle richieste e dei clienti istituiti.",
 	"mwoauthmanageconsumers-queues": "Seleziona una coda di conferma dei clienti da sotto:",
 	"mwoauthmanageconsumers-q-proposed": "Coda delle richieste proposte",
 	"mwoauthmanageconsumers-q-rejected": "Coda delle richieste respinte",

@@ -112,7 +112,7 @@
 	"mwoauthmanageconsumers-linkapproved": "requestas approbate",
 	"mwoauthmanageconsumers-linkdisabled": "requestas disactivate",
 	"mwoauthmanageconsumers-main": "Principal",
-	"mwoauthmanageconsumers-maintext": "Iste pagina es pro gerer requestas de application de consumitor OAuth (vide http://oauth.net) e pro gerer le consumitores OAuth establite.",
+	"mwoauthmanageconsumers-maintext": "Iste pagina es pro gerer requestas de application de consumitor OAuth (vide https://oauth.net) e pro gerer le consumitores OAuth establite.",
 	"mwoauthmanageconsumers-queues": "Selige un cauda de confirmation de consumitor del lista sequente:",
 	"mwoauthmanageconsumers-q-proposed": "Cauda de requestas de consumitor proponite",
 	"mwoauthmanageconsumers-q-rejected": "Cauda de requestas de consumitor rejectate",

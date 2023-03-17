@@ -108,7 +108,7 @@
 	"mwoauthmanageconsumers-linkapproved": "승인된 요청",
 	"mwoauthmanageconsumers-linkdisabled": "비활성화된 요청",
 	"mwoauthmanageconsumers-main": "주요",
-	"mwoauthmanageconsumers-maintext": "이 문서는 OAuth(http://oauth.net 를 참조하세요) 컨슈머 지원서 요청을 관리하고 인증된 OAuth 컨슈머를 관리합니다.",
+	"mwoauthmanageconsumers-maintext": "이 문서는 OAuth(https://oauth.net 를 참조하세요) 컨슈머 지원서 요청을 관리하고 인증된 OAuth 컨슈머를 관리합니다.",
 	"mwoauthmanageconsumers-queues": "아래에서 컨슈머 확인 대기열을 선택하세요:",
 	"mwoauthmanageconsumers-q-proposed": "제안된 컨슈머 요청의 대기열",
 	"mwoauthmanageconsumers-q-rejected": "거부된 컨슈머 요청의 대기열",

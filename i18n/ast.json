@@ -104,7 +104,7 @@
 	"mwoauthmanageconsumers-linkapproved": "solicitúes aprobaes",
 	"mwoauthmanageconsumers-linkdisabled": "solicitúes desactivaes",
 	"mwoauthmanageconsumers-main": "Principal",
-	"mwoauthmanageconsumers-maintext": "Esta páxina tien l'envís de xestionar solicitúes d'aplicaciones de consumidor d'OAuth (ver http://oauth.net) y alministrar los consumidores d'OAuth establecíos.",
+	"mwoauthmanageconsumers-maintext": "Esta páxina tien l'envís de xestionar solicitúes d'aplicaciones de consumidor d'OAuth (ver https://oauth.net) y alministrar los consumidores d'OAuth establecíos.",
 	"mwoauthmanageconsumers-queues": "Seleicione una cola de confirmación de consumidor d'abaxo:",
 	"mwoauthmanageconsumers-q-proposed": "Cola de solicitúes de consumidor propuestes",
 	"mwoauthmanageconsumers-q-rejected": "Cola de solicitúes de consumidor refugaes",

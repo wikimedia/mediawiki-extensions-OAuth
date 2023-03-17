@@ -121,7 +121,7 @@
 	"mwoauthmanageconsumers-linkapproved": "pedidos aprovados",
 	"mwoauthmanageconsumers-linkdisabled": "pedidos desativados",
 	"mwoauthmanageconsumers-main": "Principal",
-	"mwoauthmanageconsumers-maintext": "Esta página destina-se a lidar com pedidos para aplicações consumidor OAuth (ver http://oauth.net) e gerir consumidores OAuth estabelecidos.",
+	"mwoauthmanageconsumers-maintext": "Esta página destina-se a lidar com pedidos para aplicações consumidor OAuth (ver https://oauth.net) e gerir consumidores OAuth estabelecidos.",
 	"mwoauthmanageconsumers-queues": "Selecione uma fila de confirmação de consumidores abaixo:",
 	"mwoauthmanageconsumers-q-proposed": "Fila de pedidos de consumidor propostos",
 	"mwoauthmanageconsumers-q-rejected": "Fila de pedidos de consumidor rejeitados",

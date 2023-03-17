@@ -106,7 +106,7 @@
 	"mwoauthmanageconsumers-linkapproved": "peticións aprobadas",
 	"mwoauthmanageconsumers-linkdisabled": "peticións desactivadas",
 	"mwoauthmanageconsumers-main": "Principal",
-	"mwoauthmanageconsumers-maintext": "Esta páxina está destinada a manexar solicitudes de aplicación de consumidor OAuth (véxase http://oauth.net) e a administrar os consumidores OAuth establecidos.",
+	"mwoauthmanageconsumers-maintext": "Esta páxina está destinada a manexar solicitudes de aplicación de consumidor OAuth (véxase https://oauth.net) e a administrar os consumidores OAuth establecidos.",
 	"mwoauthmanageconsumers-queues": "Seleccione unha cola de confirmación de consumidor a continuación:",
 	"mwoauthmanageconsumers-q-proposed": "Cola das solicitudes de consumidor propostas",
 	"mwoauthmanageconsumers-q-rejected": "Cola das solicitudes de consumidor rexeitadas",

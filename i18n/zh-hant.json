@@ -115,7 +115,7 @@
 	"mwoauthmanageconsumers-linkapproved": "通過的請求",
 	"mwoauthmanageconsumers-linkdisabled": "禁用的請求",
 	"mwoauthmanageconsumers-main": "主頁",
-	"mwoauthmanageconsumers-maintext": "此頁面可用來處理 OAuth (see http://oauth.net)Consumer 應用程式申請與管理已建立的 OAuth Consumer。",
+	"mwoauthmanageconsumers-maintext": "此頁面可用來處理 OAuth (see https://oauth.net)Consumer 應用程式申請與管理已建立的 OAuth Consumer。",
 	"mwoauthmanageconsumers-queues": "在下方選擇一個 consumer 確認佇列：",
 	"mwoauthmanageconsumers-q-proposed": "已提出申請的 Consumer 請求序列",
 	"mwoauthmanageconsumers-q-rejected": "已拒絕的 Consumer 請求序列",

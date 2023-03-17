@@ -107,7 +107,7 @@
 	"mwoauthmanageconsumers-linkapproved": "toegekende verzoeken",
 	"mwoauthmanageconsumers-linkdisabled": "uitgeschakelde verzoeken",
 	"mwoauthmanageconsumers-main": "Startpagina",
-	"mwoauthmanageconsumers-maintext": "Deze pagina is bedoeld voor het afhandelen van OAuth-applicatieverzoeken en het beheren van geregistreerde OAuth-applicaties. Zie http://oauth.net voor meer informatie over OAuth.",
+	"mwoauthmanageconsumers-maintext": "Deze pagina is bedoeld voor het afhandelen van OAuth-applicatieverzoeken en het beheren van geregistreerde OAuth-applicaties. Zie https://oauth.net voor meer informatie over OAuth.",
 	"mwoauthmanageconsumers-queues": "Kies hieronder een wachtrij voor applicatiebevestiging:",
 	"mwoauthmanageconsumers-q-proposed": "Wachtrij met voorgestelde toepassingsverzoeken",
 	"mwoauthmanageconsumers-q-rejected": "Wachtrij met afgewezen toepassingsverzoeken",

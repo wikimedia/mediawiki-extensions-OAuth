@@ -113,7 +113,7 @@
 	"mwoauthmanageconsumers-linkapproved": "godkända förfrågningar",
 	"mwoauthmanageconsumers-linkdisabled": "inaktiverade förfrågningar",
 	"mwoauthmanageconsumers-main": "Huvudsida",
-	"mwoauthmanageconsumers-maintext": "Denna sida är ämnad för hanteringen av OAuths (se http://oauth.net) konsumentapplikationsförfrågningar samt hanteringen av etablerade OAuth konsumenter.",
+	"mwoauthmanageconsumers-maintext": "Denna sida är ämnad för hanteringen av OAuths (se https://oauth.net) konsumentapplikationsförfrågningar samt hanteringen av etablerade OAuth konsumenter.",
 	"mwoauthmanageconsumers-queues": "Välj konsumentbekräftelsekö nedan:",
 	"mwoauthmanageconsumers-q-proposed": "Kö med föreslagna konsumentförfrågningar",
 	"mwoauthmanageconsumers-q-rejected": "Kö med avslagna konsumentförfrågningar",

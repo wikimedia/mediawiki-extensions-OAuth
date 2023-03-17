@@ -107,7 +107,7 @@
 	"mwoauthmanageconsumers-linkapproved": "godkjente forespørsler",
 	"mwoauthmanageconsumers-linkdisabled": "deaktiverte forespørsler",
 	"mwoauthmanageconsumers-main": "Hovedside",
-	"mwoauthmanageconsumers-maintext": "Denne siden er til for å behandle OAuth-konsumentapplikasjonforespørsler (se http://oauth.net) og håndtere etablerte OAuth-konsumenter.",
+	"mwoauthmanageconsumers-maintext": "Denne siden er til for å behandle OAuth-konsumentapplikasjonforespørsler (se https://oauth.net) og håndtere etablerte OAuth-konsumenter.",
 	"mwoauthmanageconsumers-queues": "Velg en konsumentsøknadskø under:",
 	"mwoauthmanageconsumers-q-proposed": "Kø av ubehandlede konsumentsøknader",
 	"mwoauthmanageconsumers-q-rejected": "Kø av avslåtte konsumentsøknader",

@@ -122,7 +122,7 @@
 	"mwoauthmanageconsumers-linkapproved": "схвалені запити",
 	"mwoauthmanageconsumers-linkdisabled": "відключені запити",
 	"mwoauthmanageconsumers-main": "Головна",
-	"mwoauthmanageconsumers-maintext": "Ця сторінка призначена для обробки запитів на створення OAuth-споживачів (див. http://oauth.net) і управління дійсними OAuth-споживачами.",
+	"mwoauthmanageconsumers-maintext": "Ця сторінка призначена для обробки запитів на створення OAuth-споживачів (див. https://oauth.net) і управління дійсними OAuth-споживачами.",
 	"mwoauthmanageconsumers-queues": "Оберіть чергу підтвердження споживачів нижче:",
 	"mwoauthmanageconsumers-q-proposed": "Черга пропонованих запитів споживачів",
 	"mwoauthmanageconsumers-q-rejected": "Черга відхилених запитів споживачів",

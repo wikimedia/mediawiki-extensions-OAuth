@@ -130,7 +130,7 @@
 	"mwoauthmanageconsumers-linkapproved": "通过的请求",
 	"mwoauthmanageconsumers-linkdisabled": "禁用的请求",
 	"mwoauthmanageconsumers-main": "主要",
-	"mwoauthmanageconsumers-maintext": "本页面用于处理OAuth（参见http://oauth.net）消费方应用程序请求和管理已有OAuth消费方。",
+	"mwoauthmanageconsumers-maintext": "本页面用于处理OAuth（参见https://oauth.net）消费方应用程序请求和管理已有OAuth消费方。",
 	"mwoauthmanageconsumers-queues": "在下方选择消费者确认队列：",
 	"mwoauthmanageconsumers-q-proposed": "已提议消费者请求队列",
 	"mwoauthmanageconsumers-q-rejected": "已拒绝消费者请求队列",

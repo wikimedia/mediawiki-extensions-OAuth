@@ -111,7 +111,7 @@
 	"mwoauthmanageconsumers-linkapproved": "الطلبات المعتمدة",
 	"mwoauthmanageconsumers-linkdisabled": "الطلبات المعطلة",
 	"mwoauthmanageconsumers-main": "الرئيسية",
-	"mwoauthmanageconsumers-maintext": "تهدف هذه الصفحة إلى التعامل مع طلبات تقديم طلبات OAuth (انظر http://oauth.net) للمستهلكين وإدارة مستهلكي OAuth مؤكدين.",
+	"mwoauthmanageconsumers-maintext": "تهدف هذه الصفحة إلى التعامل مع طلبات تقديم طلبات OAuth (انظر https://oauth.net) للمستهلكين وإدارة مستهلكي OAuth مؤكدين.",
 	"mwoauthmanageconsumers-queues": "حدد قائمة انتظار تأكيد مستهلك من الأسفل:",
 	"mwoauthmanageconsumers-q-proposed": "قائمة انتظار طلبات المستهلك المقترحة",
 	"mwoauthmanageconsumers-q-rejected": "قائمة انتظار طلبات المستهلك المرفوضة",

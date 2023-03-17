@@ -117,7 +117,7 @@
 	"mwoauthmanageconsumers-linkapproved": "בקשות מאושרות",
 	"mwoauthmanageconsumers-linkdisabled": "בקשות שכובו",
 	"mwoauthmanageconsumers-main": "ראשי",
-	"mwoauthmanageconsumers-maintext": "הדף הזה מיועד לטיפול בבקשות יישומים צרכנים של OAuth (ר' http://oauth.net) וניהול צרכני OAuth מוּכרים.",
+	"mwoauthmanageconsumers-maintext": "הדף הזה מיועד לטיפול בבקשות יישומים צרכנים של OAuth (ר' https://oauth.net) וניהול צרכני OAuth מוּכרים.",
 	"mwoauthmanageconsumers-queues": "בחירת תור אישור צרכן להלן:",
 	"mwoauthmanageconsumers-q-proposed": "תור בקשות צרכן",
 	"mwoauthmanageconsumers-q-rejected": "תור בקשות צרכן דחויות",

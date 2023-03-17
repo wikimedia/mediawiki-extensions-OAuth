@@ -112,7 +112,7 @@
 	"mwoauthmanageconsumers-linkapproved": "odobreni zahtjevi",
 	"mwoauthmanageconsumers-linkdisabled": "onemogućeni zahtjevi",
 	"mwoauthmanageconsumers-main": "Glavna",
-	"mwoauthmanageconsumers-maintext": "Ova je stranica predviđena za rad sa zahtjevima korisničkih OAuth izvršnika (vidi http://oauth.net) i upravljanje postojećim potrošačima.",
+	"mwoauthmanageconsumers-maintext": "Ova je stranica predviđena za rad sa zahtjevima korisničkih OAuth izvršnika (vidi https://oauth.net) i upravljanje postojećim potrošačima.",
 	"mwoauthmanageconsumers-queues": "Niže odaberite red potrošača za odobrenje:",
 	"mwoauthmanageconsumers-q-proposed": "Red zahtjeva predlaganja potrošača",
 	"mwoauthmanageconsumers-q-rejected": "Red odbijenih zahtjeva potrošača",
