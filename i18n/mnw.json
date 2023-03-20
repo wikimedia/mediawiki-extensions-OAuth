@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"咽頭べさ"
+		]
+	},
+	"mwoauth-consumer-name": "ယၟုအာက်ပလေကေဃှေန်:",
+	"mwoauth-consumer-description": "တၚ်ထမံက်ထ္ၜးပွမသုၚ်စောဲမာန်:",
+	"mwoauth-consumer-wiki": "ပရဝ်ဂျေတ်ပွမသုၚ်စောဲမာန်:",
+	"mwoauth-consumer-stage-rejected": "ပါဲတးထောံ",
+	"mwoauth-consumer-stage-approved": "တုပ်စိုတ်ဒုၚ်တဲလဝ်",
+	"mwoauthmanageconsumers-approve": "တုပ်စိုတ်ဒုၚ်တဲလဝ်",
+	"mwoauthmanageconsumers-reject": "ပါဲတးထောံ",
+	"mwoauthmanageconsumers-reenable": "တုပ်စိုတ်ဒုၚ်တဲလဝ်",
+	"mwoauthlistconsumers-name": "ယၟုအာက်ပလေကေဃှေန်",
+	"mwoauthlistconsumers-wiki": "ပရဝ်ဂျေတ်ပွမသုၚ်စောဲမာန်",
+	"mwoauth-consumer-stage-any": "အရာမဒးစိုတ်",
+	"mwoauthlistconsumers-status-approved": "တုပ်စိုတ်ဒုၚ်တဲလဝ်",
+	"mwoauthlistconsumers-status-rejected": "ပါဲတးထောံ",
+	"mwoauth-form-button-approve": "ကဵုအခေါင်"
+}
