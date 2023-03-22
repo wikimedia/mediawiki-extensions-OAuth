@@ -13,7 +13,8 @@
 			"Vlad5250",
 			"Vuh",
 			"WTM",
-			"Tsca"
+			"Tsca",
+			"Woytecr"
 		]
 	},
 	"mwoauth-desc": "Umożliwia korzystanie z OAuth 1.0a i OAuth 2.0 w celu autoryzacji API",
@@ -226,7 +227,7 @@
 	"mwoauth-bad-request-invalid-action": "Przepraszamy, coś poszło nie tak. Musisz skontaktować się z autorem aplikacji aby uzyskać pomoc.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Nieznany adres URL – $1</span>",
 	"mwoauth-bad-request-invalid-action-contact": "Przepraszamy, coś poszło nie tak. Musisz [$1 skontaktować się] z autorem aplikacji aby uzyskać pomoc.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Nieznany adres URL – $2</span>",
 	"mwoauthdatastore-access-token-not-found": "Nie odnaleziono zatwierdzonego dostępu dla tego tokena uwierzytelniającego.",
-	"mwoauthdatastore-request-token-not-found": "Przepraszamy, coś poszło nie tak podczas łączenia z ta aplikacją.\nWróć i spróbuj połączyć swoje konto ponownie, lub skontaktuj się z autorem aplikacji.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Nie odnaleziono tokena OAuth – $1</span>",
+	"mwoauthdatastore-request-token-not-found": "Przepraszamy, coś poszło nie tak podczas łączenia tej aplikacji.\nWróć i spróbuj połączyć swoje konto ponownie, lub skontaktuj się z autorem aplikacji.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Nie odnaleziono tokena OAuth – $1</span>",
 	"mwoauthdatastore-callback-not-found": "Nie odnaleziono adresu URL wywołania zwrotnego OAuth w pamięci podręcznej. Prawdopodobnie jest to błąd w sposobie w jaki aplikacja wykonuje żądania do serwera.",
 	"mwoauthdatastore-request-token-already-used": "To żądanie zostało już wykonane i nie można go przesłać ponownie.\nWróć do aplikacji i spróbuj ponownie połączyć ją ze swoim kontem, lub skontaktuj się z autorem aplikacji.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Token OAuth znajduje się już w użytku – $1</span>",
 	"mwoauthdatastore-bad-token": "Nie odnaleziono tokena pasującego do Twojego żądania.",

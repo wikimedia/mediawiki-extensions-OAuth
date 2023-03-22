@@ -3,7 +3,8 @@
 		"authors": [
 			"Cocu",
 			"Danmichaelo",
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"EdoAug"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "OAuth-konsument brukt til å utføre denne endringen",
@@ -188,7 +189,7 @@
 	"mwoauthmanagemygrants-revoke-text": "Bruk skjemaet under for å tilbakekalle en applikasjons tilgang til å handle på dine vegne.",
 	"mwoauthmanagemygrants-confirm-legend": "Håndter tilkoblet applikasjon",
 	"mwoauthmanagemygrants-update": "Oppdater tildelinger",
-	"mwoauthmanagemygrants-renounce": "Avautorisér",
+	"mwoauthmanagemygrants-renounce": "Avautoriser",
 	"mwoauthmanagemygrants-action": "Endre status:",
 	"mwoauthmanagemygrants-confirm-submit": "Oppdater status for tilgangstoken",
 	"mwoauthmanagemygrants-success-update": "Innstillingene dine for denne applikasjonen har blitt oppdatert.",
