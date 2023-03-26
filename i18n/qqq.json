@@ -80,6 +80,7 @@
 	"mwoauth-consumer-stage-approved": "{{Related|Mwoauth-consumer-stage}}\n{{Identical|Approved}}",
 	"mwoauth-consumer-stage-disabled": "{{Related|Mwoauth-consumer-stage}}\n{{Identical|Disabled}}",
 	"mwoauth-consumer-stage-suppressed": "{{Related|Mwoauth-consumer-stage}}\n{{Identical|Suppressed}}",
+	"mwoauth-ignorewarnings": "Shown in OAuth forms when the submission failed due to skippable warnings.",
 	"oauthconsumerregistration": "{{doc-special|MWOAuthConsumerRegistration}}",
 	"mwoauthconsumerregistration-navigation": "Used in page subtitle.\n{{Identical|Navigation}}",
 	"mwoauthconsumerregistration-propose-oauth1a": "Text for the link that developers follow to request that their application is accepted as an OAuth 1a application on this site.",

@@ -67,6 +67,7 @@
 	"mwoauth-consumer-stage-approved": "approved",
 	"mwoauth-consumer-stage-disabled": "disabled",
 	"mwoauth-consumer-stage-suppressed": "suppressed",
+	"mwoauth-ignorewarnings": "Ignore warnings",
 	"oauthconsumerregistration": "OAuth consumer registration",
 	"mwoauthconsumerregistration-navigation": "Navigation:",
 	"mwoauthconsumerregistration-propose-oauth1a": "Propose new OAuth 1.0a consumer",

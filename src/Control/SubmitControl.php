@@ -2,12 +2,16 @@
 
 namespace MediaWiki\Extension\OAuth\Control;
 
+use ApiMessage;
 use ContextSource;
 use HTMLForm;
 use IContextSource;
+use LogicException;
+use Message;
 use MessageSpecifier;
 use MWException;
 use Status;
+use StatusValue;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -87,7 +91,10 @@ abstract class SubmitControl extends ContextSource {
 	}
 
 	/**
-	 * Given an HTMLForm descriptor array, register the field validation callbacks
+	 * Add the validators from getRequiredFields() to the given HTMLForm descriptor.
+	 * Existing validators are not overridden.
+	 *
+	 * It also adds a checkbox to override warnings when necessary.
 	 *
 	 * @param array[] $descriptors
 	 * @return array[]
@@ -103,20 +110,26 @@ abstract class SubmitControl extends ContextSource {
 					return $this->validateFieldInternal( $field, $value, $allValues, $form );
 				};
 		}
+		$descriptors['ignorewarnings'] = [
+			'type' => 'check',
+			'label-message' => 'mwoauth-ignorewarnings',
+			'cssclass' => 'mw-oauth-form-ignorewarnings-hidden',
+		];
 		return $descriptors;
 	}
 
 	/**
-	 * This method should not be called outside SubmitControl
+	 * Do some basic checks and call the validator provided by getRequiredFields().
+	 * This method should not be called outside SubmitControl.
 	 *
 	 * @param string $field
 	 * @param mixed $value
 	 * @param array $allValues
 	 * @param HTMLForm $form
 	 * @throws MWException
-	 * @return bool|string
+	 * @return true|string
 	 */
-	public function validateFieldInternal( $field, $value, $allValues, $form ) {
+	public function validateFieldInternal( string $field, $value, array $allValues, HTMLForm $form ) {
 		if ( !isset( $allValues['action'] ) && isset( $this->vals['action'] ) ) {
 			// The action may be derived, especially for multi-button forms.
 			// Such an HTMLForm will not have an action key set in $allValues.
@@ -131,38 +144,105 @@ abstract class SubmitControl extends ContextSource {
 			return true;
 		}
 		$validator = $validators[$allValues['action']][$field];
-		$isValid = is_string( $validator )
-			? preg_match( $validator, $value ?? '' )
-			: $validator( $value, $allValues );
-		if ( !$isValid ) {
-			$errorMessage = $this->msg( 'mwoauth-invalid-field-' . $field );
-			if ( !$errorMessage->isDisabled() ) {
-				return $errorMessage->text();
-			}
-
-			$generic = '';
-			if ( $form->getField( $field )->canDisplayErrors() ) {
-				// error can be attached to the field so no need to mention the field name
-				$generic = '-generic';
-			}
-
-			$problem = 'invalid';
-			if ( $value === '' && !$generic ) {
-				$problem = 'missing';
-			}
-
-			// messages: mwoauth-missing-field, mwoauth-invalid-field, mwoauth-invalid-field-generic
-			return $this->msg( "mwoauth-$problem-field$generic", $field )->text();
+		$validationResult = $this->getValidationResult( $validator, $value, $allValues, $form );
+		if ( $validationResult === false ) {
+			return $this->getDefaultValidationError( $field, $value, $form )->text();
+		} elseif ( $validationResult instanceof ApiMessage ) {
+			return $validationResult->parse();
 		}
 		return true;
 	}
 
 	/**
-	 * Get the field names and their validation regexes or functions
-	 * (which return a boolean) for each action that this controller handles.
-	 * When functions are used, they take (field value, field/value map) as params.
+	 * Generate an error message for a field. Used when the validator returns false.
+	 *
+	 * @param string $field
+	 * @param mixed $value
+	 * @param HTMLForm|null $form
+	 * @return Message Error message (to be rendered via text()).
+	 */
+	private function getDefaultValidationError( string $field, $value, HTMLForm $form = null ): Message {
+		$errorMessage = $this->msg( 'mwoauth-invalid-field-' . $field );
+		if ( !$errorMessage->isDisabled() ) {
+			return $errorMessage;
+		}
+
+		$generic = '';
+		if ( $form && $form->getField( $field )->canDisplayErrors() ) {
+			// error can be shown right next to the field so no need to mention the field name
+			$generic = '-generic';
+		}
+
+		$problem = 'invalid';
+		if ( $value === '' && !$generic ) {
+			$problem = 'missing';
+		}
+
+		// messages: mwoauth-missing-field, mwoauth-invalid-field, mwoauth-invalid-field-generic
+		return $this->msg( "mwoauth-$problem-field$generic", $field );
+	}
+
+	/**
+	 * @param mixed $validator One of the callbacks registered via registerValidator.
+	 * @param mixed $value The value of the field being validated.
+	 * @param array $allValues All field values, keyed by field name.
+	 * @param HTMLForm|null $form
+	 * @return bool|ApiMessage
+	 * @phan-param string|callable(mixed,array):(bool|StatusValue) $validator
+	 */
+	private function getValidationResult( $validator, $value, array $allValues, HTMLForm $form = null ) {
+		if ( is_string( $validator ) ) {
+			return preg_match( $validator, $value ?? '' );
+		}
+		$result = $validator( $value, $allValues );
+		if ( $result instanceof StatusValue ) {
+			if ( $result->isGood() ) {
+				return true;
+			} elseif ( count( $result->getErrors() ) !== 1 ) {
+				throw new LogicException( 'Validator return status has too many errors: '
+					. $result );
+			}
+			[ $errors, $warnings ] = $result->splitByErrorType();
+			if ( $errors->isOK() ) {
+				// $result is a warning -  if the user checked "ignore warnings", ignore;
+				// otherwise show the checkbox
+				if ( $form ) {
+					// This is a horrible hack. There doesn't seem to be a way to modify a form's
+					// CSS classes or other display properties between validation and rendering.
+					$form->setId( 'oauth-form-with-warnings' );
+				}
+
+				if ( $allValues['ignorewarnings'] ?? false ) {
+					return true;
+				}
+			}
+			$result = $result->getErrors()[0]['message'];
+		}
+		if ( is_bool( $result ) || $result instanceof ApiMessage ) {
+			return $result;
+		}
+
+		$type = gettype( $result );
+		if ( $type === 'object' ) {
+			$type = get_class( $result );
+		}
+		throw new LogicException( 'Invalid validator return type: ' . $type );
+	}
+
+	/**
+	 * Get the field names and their validation methods. Fields can be omitted. Fields that are
+	 * not
+	 *
+	 * A validation method is either a regex string or a callable.
+	 * Callables take (field value, field/value map) as params and must return a boolean or a
+	 * StatusValue with a single ApiMessage in it. If that is a warning, the user will be allowed
+	 * to override it. A StatusValue with an error of boolean false will prevent submission.
+	 *
+	 * When false is returned, the error message mwoauth-invalid-field-<fieldname> will be shown
+	 * if it exists. Otherwise, a generic message will be used (see getDefaultValidationError()).
 	 *
 	 * @return array (action => (field name => validation regex or function))
+	 * @phan-return array<string,array<string,string|callable(mixed):(bool|StatusValue)|callable(mixed,array):(bool|StatusValue)>>
 	 */
 	abstract protected function getRequiredFields();
 
@@ -177,28 +257,27 @@ abstract class SubmitControl extends ContextSource {
 	 * Check that the action is valid and that the required fields are valid
 	 *
 	 * @param array $required (field => regex or callback)
+	 * @phan-param array<string,string|callable(mixed,array):bool|StatusValue> $required
 	 * @return Status
 	 */
 	protected function validateFields( array $required ) {
 		foreach ( $required as $field => $validator ) {
 			if ( !isset( $this->vals[$field] ) ) {
-				// @TODO: check for field-specific message first
 				return $this->failure( "missing_field_$field", 'mwoauth-missing-field', $field );
 			} elseif ( !is_scalar( $this->vals[$field] )
 				&& !in_array( $field, [ 'restrictions', 'oauth2GrantTypes' ], true )
 			) {
-				// @TODO: check for field-specific message first
 				return $this->failure( "invalid_field_$field", 'mwoauth-invalid-field', $field );
 			}
 			if ( is_string( $this->vals[$field] ) ) {
 				$this->vals[$field] = trim( $this->vals[$field] );
 			}
-			$valid = is_string( $validator )
-				? preg_match( $validator, $this->vals[$field] )
-				: $validator( $this->vals[$field], $this->vals );
-			if ( !$valid ) {
-				// @TODO: check for field-specific message first
-				return $this->failure( "invalid_field_$field", 'mwoauth-invalid-field', $field );
+			$validationResult = $this->getValidationResult( $validator, $this->vals[$field], $this->vals );
+			if ( $validationResult === false ) {
+				$message = $this->getDefaultValidationError( $field, $this->vals[$field] );
+				return $this->failure( "invalid_field_$field", $message );
+			} elseif ( $validationResult instanceof ApiMessage ) {
+				return $this->failure( $validationResult->getApiCode(), $validationResult, $field );
 			}
 		}
 		return $this->success();
