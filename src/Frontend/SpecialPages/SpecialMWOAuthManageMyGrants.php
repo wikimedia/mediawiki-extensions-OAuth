@@ -383,6 +383,6 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	}
 
 	protected function getGroupName() {
-		return 'users';
+		return 'login';
 	}
 }
