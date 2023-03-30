@@ -29,6 +29,7 @@
 	"mwoauth-consumer-restrictions": "Omejitve uporabe:",
 	"mwoauth-consumer-rsakey": "Javni ključ RSA (izbirno):",
 	"mwoauth-consumer-accesstoken": "Dostopovni žeton:",
+	"mwoauth-consumer-email-unconfirmed": "Vaš e-poštni račun še ni potrjen.",
 	"mwoauth-consumer-not-proposed": "Ta porabnik trenutno ni predlagan",
 	"mwoauth-consumer-not-disabled": "Ta porabnik trenutno ni onemogočen",
 	"mwoauth-invalid-consumer-key": "Ne obstaja noben uporabnik z navedenim ključem.",
