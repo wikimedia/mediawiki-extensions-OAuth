@@ -6,5 +6,7 @@
 	},
 	"mwoauth-prefs-managegrants": "Хьатесса приложенеш:",
 	"mwoauth-prefs-managegrantslink": "Урхалду {{PLURAL:$1|$1 хьалсегача приложененна|0=хьалсегача приложенешта}}",
+	"mwoauthconsumerregistration-lastchange": "ТӀеххьара хувцам",
+	"mwoauthmanageconsumers-lastchange": "ТӀеххьара хувцам",
 	"oauthmanagemygrants": "Хьатессача приложенешта урхалдар"
 }
