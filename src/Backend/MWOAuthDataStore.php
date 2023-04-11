@@ -149,7 +149,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 				"/(oauth_token_secret\=\w+:)/",
 				"oauth_token_secret=[REDACTED]:",
 				$key );
-			$this->logger->info( "$key exists, so nonce has been used by this consumer+token" );
+			$this->logger->info( '{key} exists, so nonce has been used by this consumer+token',
+				[ 'key' => $key, 'consumer' => $consumer->key, 'oauth_timestamp' => $timestamp ] );
 			return true;
 		}
 		return false;
