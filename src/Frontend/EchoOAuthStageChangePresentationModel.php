@@ -44,6 +44,15 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 		];
 	}
 
+	/**
+	 * Hide notifications that were already handled by another OAuth admin
+	 * @inheritDoc
+	 */
+	public function canRender() {
+		$action = $this->event->getExtraParam( 'action' );
+		return !( $action === 'propose' && $this->getConsumerStage() !== Consumer::STAGE_PROPOSED );
+	}
+
 	public function getHeaderMessage() {
 		$action = $this->event->getExtraParam( 'action' );
 		return $this->msg( "notification-oauth-app-$action-title",
@@ -119,5 +128,13 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 	protected function getConsumerName() {
 		$consumer = $this->getConsumer();
 		return $consumer ? $consumer->getName() : false;
+	}
+
+	/**
+	 * @return int The stage, or -1 if the consumer doesn't exist
+	 */
+	protected function getConsumerStage() {
+		$consumer = $this->getConsumer();
+		return $consumer ? $consumer->getStage() : -1;
 	}
 }
