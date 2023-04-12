@@ -90,7 +90,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009',
 						'E009',
 						true
-					) )
+					) ),
+					'consumer' => $consumer->key,
 				] );
 			}
 			if ( $token === null || !( $returnToken instanceof MWOAuthToken ) ) {
@@ -99,7 +100,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004',
 						'E004',
 						true
-					) )
+					) ),
+					'consumer' => $consumer->key,
 				] );
 			}
 		} elseif ( $token_type === 'access' ) {
@@ -116,13 +118,18 @@ class MWOAuthDataStore extends OAuthDataStore {
 			$mwconsumer = ( $consumer instanceof Consumer )
 				? $consumer : $this->lookup_consumer( $consumer->key );
 			if ( !$mwconsumer || $mwconsumer->getId() !== $cmra->getConsumerId() ) {
-				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found' );
+				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found', [
+					'consumer' => $mwconsumer ? $mwconsumer->getConsumerKey() : '',
+					'cmra_id' => $cmra->getId(),
+				] );
 			}
 
 			$secret = Utils::hmacDBSecret( $cmra->getAccessSecret() );
 			$returnToken = new MWOAuthToken( $cmra->getAccessToken(), $secret );
 		} else {
-			throw new MWOAuthException( 'mwoauthdatastore-invalid-token-type' );
+			throw new MWOAuthException( 'mwoauthdatastore-invalid-token-type', [
+				'token_type' => $token_type,
+			] );
 		}
 
 		return $returnToken;
@@ -220,7 +227,9 @@ class MWOAuthDataStore extends OAuthDataStore {
 		$cacheKey = Utils::getCacheKey( 'callback', $consumerKey, 'request', $requestKey );
 		$callback = $this->tokenCache->get( $cacheKey );
 		if ( $callback === null || !is_string( $callback ) ) {
-			throw new MWOAuthException( 'mwoauthdatastore-callback-not-found' );
+			throw new MWOAuthException( 'mwoauthdatastore-callback-not-found', [
+				'consumer' => $consumerKey,
+			] );
 		}
 		$this->tokenCache->delete( $cacheKey );
 		return $callback;
@@ -241,9 +250,17 @@ class MWOAuthDataStore extends OAuthDataStore {
 			": Getting new access token for token {$token->key}, consumer {$consumer->key}" );
 
 		if ( !$token->getVerifyCode() || !$token->getAccessKey() ) {
-			throw new MWOAuthException( 'mwoauthdatastore-bad-token' );
+			throw new MWOAuthException( 'mwoauthdatastore-bad-token', [
+				'consumer' => $consumer->getConsumerKey(),
+				'consumer_name' => $consumer->getName(),
+				'token' => $token->key,
+			] );
 		} elseif ( $token->getVerifyCode() !== $verifier ) {
-			throw new MWOAuthException( 'mwoauthdatastore-bad-verifier' );
+			throw new MWOAuthException( 'mwoauthdatastore-bad-verifier', [
+				'consumer' => $consumer->getConsumerKey(),
+				'consumer_name' => $consumer->getName(),
+				'token' => $token->key,
+			] );
 		}
 
 		$cacheKey = Utils::getCacheKey( 'token',

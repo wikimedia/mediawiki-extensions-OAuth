@@ -510,14 +510,13 @@ abstract class Consumer extends MWOAuthDAO {
 			throw new MWOAuthException(
 				'mwoauthserver-invalid-user',
 				[
-					$this->getName(),
-					Message::rawParam(
-						Linker::makeExternalLink(
-							'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
-							'E008',
-							true
-						)
-					)
+					'consumer_name' => $this->getName(),
+					Message::rawParam( Linker::makeExternalLink(
+						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
+						'E008',
+						true
+					) ),
+					'consumer' => $this->getConsumerKey(),
 				]
 			);
 		}
@@ -570,7 +569,9 @@ abstract class Consumer extends MWOAuthDAO {
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007',
 					'E007',
 					true
-				) )
+				) ),
+				'consumer' => $this->getConsumerKey(),
+				'consumer_name' => $this->getName(),
 			] );
 		}
 
@@ -580,7 +581,9 @@ abstract class Consumer extends MWOAuthDAO {
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006',
 					'E006',
 					true
-				) )
+				) ),
+				'consumer' => $this->getConsumerKey(),
+				'consumer_name' => $this->getName(),
 			] );
 		} elseif ( !$this->isUsableBy( $mwUser ) ) {
 			$owner = Utils::getCentralUserNameFromId(
@@ -589,17 +592,20 @@ abstract class Consumer extends MWOAuthDAO {
 			);
 			throw new MWOAuthException(
 				'mwoauthserver-bad-consumer',
-				[ $this->getName(), Utils::getCentralUserTalk( $owner ), Message::rawParam(
-					Linker::makeExternalLink(
+				[
+					'consumer_name' => $this->getName(),
+					'talkpage' => Utils::getCentralUserTalk( $owner ),
+					Message::rawParam( Linker::makeExternalLink(
 						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005',
 						'E005',
 						true
-					)
-				) ]
+					) ),
+					'consumer' => $this->getConsumerKey(),
+				]
 			);
 		} elseif ( $this->getOwnerOnly() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
-				$this->getName(),
+				'consumer_name' => $this->getName(),
 				SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $this->getConsumerKey()
 				),
@@ -607,7 +613,8 @@ abstract class Consumer extends MWOAuthDAO {
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
 					'E010',
 					true
-				) )
+				) ),
+				'consumer' => $this->getConsumerKey(),
 			] );
 		}
 	}
@@ -626,14 +633,13 @@ abstract class Consumer extends MWOAuthDAO {
 			throw new MWOAuthException(
 				'mwoauthserver-invalid-user',
 				[
-					$this->getName(),
-					Message::rawParam(
-						Linker::makeExternalLink(
-							'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
-							'E008',
-							true
-						)
-					)
+					'consumer_name' => $this->getName(),
+					Message::rawParam( Linker::makeExternalLink(
+						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
+						'E008',
+						true
+					) ),
+					'consumer' => $this->getConsumerKey(),
 				]
 			);
 		}
@@ -646,7 +652,10 @@ abstract class Consumer extends MWOAuthDAO {
 			// This should be an update to an existing authorization
 			if ( !$cmra ) {
 				// update requested, but no existing key
-				throw new MWOAuthException( 'mwoauthserver-invalid-request' );
+				throw new MWOAuthException( 'mwoauthserver-invalid-request', [
+					'consumer' => $this->getConsumerKey(),
+					'consumer_name' => $this->getName(),
+				] );
 			}
 			$cmra->setFields( [
 				'wiki'   => $this->getWiki(),

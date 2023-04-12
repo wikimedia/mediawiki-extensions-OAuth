@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth\Control;
 use ContextSource;
 use HTMLForm;
 use IContextSource;
+use MessageSpecifier;
 use MWException;
 use Status;
 
@@ -213,7 +214,7 @@ abstract class SubmitControl extends ContextSource {
 
 	/**
 	 * @param string $error API error key
-	 * @param string $msg Message key
+	 * @param string|MessageSpecifier $msg Message
 	 * @param mixed ...$params Additional arguments used as message parameters
 	 * @return Status
 	 */

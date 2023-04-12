@@ -39,15 +39,16 @@ class MWOAuthServer extends OAuthServer {
 		// Consumer must not be owner-only
 		if ( $consumer->getOwnerOnly() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
-				$consumer->getName(),
-				SpecialPage::getTitleFor(
+				'consumer_name' => $consumer->getName(),
+				'update_url' => SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
 				),
 				Message::rawParam( Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
 					'E010',
 					true
-				) )
+				) ),
+				'consumer' => $consumer->getConsumerKey(),
 			] );
 		}
 
@@ -58,7 +59,9 @@ class MWOAuthServer extends OAuthServer {
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E011',
 					'E011',
 					true
-				) )
+				) ),
+				'consumer' => $consumer->getConsumerKey(),
+				'consumer_name' => $consumer->getName(),
 			] );
 		}
 
@@ -104,14 +107,21 @@ class MWOAuthServer extends OAuthServer {
 	private function checkCallback( $consumer, $callback ) {
 		if ( !$consumer->getCallbackIsPrefix() ) {
 			if ( $callback !== 'oob' ) {
-				throw new MWOAuthException( 'mwoauth-callback-not-oob' );
+				throw new MWOAuthException( 'mwoauth-callback-not-oob', [
+					'consumer' => $consumer->getConsumerKey(),
+					'consumer_name' => $consumer->getName(),
+					'callback_url' => $callback,
+				] );
 			}
 
 			return;
 		}
 
 		if ( !$callback ) {
-			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix' );
+			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix', [
+				'consumer' => $consumer->getConsumerKey(),
+				'consumer_name' => $consumer->getName(),
+			] );
 		}
 		if ( $callback === 'oob' ) {
 			return;
@@ -119,7 +129,11 @@ class MWOAuthServer extends OAuthServer {
 
 		$reqCallback = wfParseUrl( $callback );
 		if ( $reqCallback === false ) {
-			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix' );
+			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix', [
+				'consumer' => $consumer->getConsumerKey(),
+				'consumer_name' => $consumer->getName(),
+				'callback_url' => $callback,
+			] );
 		}
 
 		$knownCallback = wfParseUrl( $consumer->getCallbackUrl() );
@@ -147,7 +161,12 @@ class MWOAuthServer extends OAuthServer {
 			static::componentMatches( 'query', $knownCallback, $reqCallback );
 
 		if ( !$match ) {
-			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix' );
+			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix', [
+				'consumer' => $consumer->getConsumerKey(),
+				'consumer_name' => $consumer->getName(),
+				'callback_url' => $callback,
+				'consumer_callback_prefix' => $consumer->getCallbackUrl(),
+			] );
 		}
 	}
 
@@ -225,15 +244,16 @@ class MWOAuthServer extends OAuthServer {
 		// Consumer must not be owner-only
 		if ( $consumer->getOwnerOnly() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
-				$consumer->getName(),
-				SpecialPage::getTitleFor(
+				'consumer_name' => $consumer->getName(),
+				'update_url' => SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
 				),
 				Message::rawParam( Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
 					'E010',
 					true
-				) )
+				) ),
+				'consumer' => $consumer->getConsumerKey(),
 			] );
 		}
 
@@ -244,18 +264,25 @@ class MWOAuthServer extends OAuthServer {
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E011',
 					'E011',
 					true
-				) )
+				) ),
+				'consumer' => $consumer->getConsumerKey(),
+				'consumer_name' => $consumer->getName(),
 			] );
 		}
 
 		$this->checkSourceIP( $consumer, $request );
 
 		// requires authorized request token
+		/** @var MWOAuthToken $token */
 		$token = $this->get_token( $request, $consumer, 'request' );
 
 		if ( !$token->secret ) {
 			// This token has a blank secret.. something is wrong
-			throw new MWOAuthException( 'mwoauthdatastore-bad-token' );
+			throw new MWOAuthException( 'mwoauthdatastore-bad-token', [
+				'consumer' => $consumer->getConsumerKey(),
+				'consumer_name' => $consumer->getName(),
+				'token' => $token->key,
+			] );
 		}
 
 		$this->check_signature( $request, $consumer, $token );
@@ -273,7 +300,7 @@ class MWOAuthServer extends OAuthServer {
 	 * @return array
 	 */
 	public function verify_request( &$request ) {
-		list( $consumer, $token ) = parent::verify_request( $request );
+		[ $consumer, $token ] = parent::verify_request( $request );
 		$this->checkSourceIP( $consumer, $request );
 		return [ $consumer, $token ];
 	}
@@ -289,7 +316,11 @@ class MWOAuthServer extends OAuthServer {
 	private function checkSourceIP( $consumer, $request ) {
 		$restrictions = $consumer->getRestrictions();
 		if ( !$restrictions->checkIP( $request->getSourceIP() ) ) {
-			throw new MWOAuthException( 'mwoauthdatastore-bad-source-ip' );
+			throw new MWOAuthException( 'mwoauthdatastore-bad-source-ip', [
+				'consumer' => $consumer->getConsumerKey(),
+				'consumer_name' => $consumer->getName(),
+				'request_ip' => $request->getSourceIP(),
+			] );
 		}
 	}
 

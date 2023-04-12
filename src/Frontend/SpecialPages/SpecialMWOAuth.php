@@ -238,7 +238,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$server = Utils::newMWOAuthServer();
 					$oauthRequest = MWOAuthRequest::fromRequest( $request );
 					// verify_request throws an exception if anything isn't verified
-					list( $consumer, $token ) = $server->verify_request( $oauthRequest );
+					[ $consumer, $token ] = $server->verify_request( $oauthRequest );
 					/** @var Consumer $consumer */
 					/** @var MWOAuthToken $token */
 
@@ -252,22 +252,37 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 								'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
 								'E008',
 								true
-							) )
+							) ),
+							'consumer' => $consumer->getConsumerKey(),
+							'consumer_name' => $consumer->getName(),
+							'cmra_id' => $access->getId(),
 						] );
 					} elseif ( $localUser->isLocked() ||
 						$config->get( 'BlockDisablesLogin' ) && $localUser->getBlock()
 					) {
-						throw new MWOAuthException( 'mwoauth-invalid-authorization-blocked-user' );
+						throw new MWOAuthException( 'mwoauth-invalid-authorization-blocked-user', [
+							'consumer' => $consumer->getConsumerKey(),
+							'consumer_name' => $consumer->getName(),
+							'user_name' => $localUser->getName(),
+						] );
 					}
 					// Access token is for this wiki
 					if ( $access->getWiki() !== '*' && $access->getWiki() !== $wiki ) {
 						throw new MWOAuthException(
 							'mwoauth-invalid-authorization-wrong-wiki',
-							[ $wiki ]
+							[
+								'request_wiki' => $wiki,
+								'consumer' => $consumer->getConsumerKey(),
+								'consumer_name' => $consumer->getName(),
+								'consumer_wiki' => $access->getWiki(),
+							]
 						);
 					} elseif ( !$consumer->isUsableBy( $localUser ) ) {
-						throw new MWOAuthException( 'mwoauth-invalid-authorization-not-approved',
-							$consumer->getName() );
+						throw new MWOAuthException( 'mwoauth-invalid-authorization-not-approved', [
+							'consumer_name' => $consumer->getName(),
+							'consumer' => $consumer->getConsumerKey(),
+							'user_name' => $localUser->getName(),
+						] );
 					}
 
 					// We know the identity of the user who granted the authorization
@@ -332,9 +347,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					}
 			}
 		} catch ( MWOAuthException $exception ) {
-			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(),
-				[ 'exception' => $exception ] );
-			$this->showError( $this->msg( $exception->msg, $exception->params ), $format );
+			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getNormalizedMessage(),
+				[ 'exception' => $exception ] + $exception->getMessageContext() );
+			$this->showError( $this->msg( $exception->getMessageObject() ), $format );
 		} catch ( OAuthException $exception ) {
 			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(),
 				[ 'exception' => $exception ] );
@@ -358,7 +373,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			$this->getContext()
 		);
 		if ( !$cmrAc ) {
-			throw new MWOAuthException( 'mwoauth-invalid-consumer-key' );
+			throw new MWOAuthException( 'mwoauth-invalid-consumer-key', [
+				'consumer' => $consumerKey,
+			] );
 		}
 
 		if ( $cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
@@ -428,7 +445,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006',
 					'E006',
 					true
-				) )
+				) ),
+				'consumer' => $consumerKey,
 			] );
 		} elseif (
 			!$cmrAc->getDAO()->isUsableBy( $user ) ||
