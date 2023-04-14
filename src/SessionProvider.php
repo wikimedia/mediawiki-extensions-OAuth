@@ -146,6 +146,7 @@ class SessionProvider
 					);
 				}
 				if ( !$access ) {
+					$logData['consumer'] = $resourceServer->getClient()->getConsumerKey();
 					throw new MWOAuthException( 'mwoauth-oauth2-error-create-at-no-user-approval' );
 				}
 

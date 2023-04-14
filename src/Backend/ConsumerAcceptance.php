@@ -232,7 +232,9 @@ class ConsumerAcceptance extends MWOAuthDAO {
 
 	protected function encodeRow( DBConnRef $db, $row ) {
 		if ( (int)$row['oaac_user_id'] === 0 ) {
-			throw new MWOAuthException( 'mwoauth-consumer-access-no-user' );
+			throw new MWOAuthException( 'mwoauth-consumer-access-no-user', [
+				'consumer_id' => $row['oaac_consumer_id'],
+			] );
 		}
 		// For compatibility with other wikis in the farm, un-remap some grants
 		foreach ( Consumer::$mapBackCompatGrants as $old => $new ) {

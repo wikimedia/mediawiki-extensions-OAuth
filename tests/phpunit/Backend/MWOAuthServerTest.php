@@ -44,6 +44,8 @@ class MWOAuthServerTest extends TestCase {
 	public function testCheckCallback( $expect, $registeredUrl, $got, $isPrefix = true ) {
 		$fixture = new MWOAuthServer( null );
 		$consumer = new StubConsumer( [
+			'consumerKey' => '1234567890abcdef',
+			'name' => 'test',
 			'callbackIsPrefix' => $isPrefix,
 			'callbackUrl' => $registeredUrl,
 		] );

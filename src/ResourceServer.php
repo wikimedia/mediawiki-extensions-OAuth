@@ -228,7 +228,10 @@ class ResourceServer {
 
 	private function assertVerified() {
 		if ( !$this->verified ) {
-			throw new MWOAuthException( 'mwoauth-oauth2-error-request-not-verified' );
+			throw new MWOAuthException( 'mwoauth-oauth2-error-request-not-verified', [
+				'consumer' => $this->getClient()->getConsumerKey(),
+				'consumer_name' => $this->getClient()->getName(),
+			] );
 		}
 	}
 }

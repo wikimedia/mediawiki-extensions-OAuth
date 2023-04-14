@@ -163,7 +163,10 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 		) {
 			// make sure client is allowed *only* client_credentials grant,
 			// so that this AT cannot be used in other grant type requests
-			throw new MWOAuthException( 'mwoauth-oauth2-error-owner-only-invalid-grant' );
+			throw new MWOAuthException( 'mwoauth-oauth2-error-owner-only-invalid-grant', [
+				'consumer' => $this->getConsumerKey(),
+				'consumer_name' => $this->getName(),
+			] );
 		}
 		$accessToken = null;
 		$accessTokenRepo = new AccessTokenRepository();

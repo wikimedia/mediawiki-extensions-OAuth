@@ -142,7 +142,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 					$payload = [ 'callbackUrl' => $callback ];
 				}
 			} catch ( MWOAuthException $exception ) {
-				return $this->failure( 'oauth_exception', $exception->msg, $exception->params );
+				return $this->failure( 'oauth_exception', $exception->getMessageObject() );
 			} catch ( OAuthException $exception ) {
 				return $this->failure( 'oauth_exception',
 					'mwoauth-oauth-exception', $exception->getMessage() );

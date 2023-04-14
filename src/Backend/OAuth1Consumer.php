@@ -56,7 +56,11 @@ class OAuth1Consumer extends Consumer {
 		$store = Utils::newMWOAuthDataStore();
 		$requestToken = $store->lookup_token( $this, 'request', $requestTokenKey );
 		if ( !$requestToken || !( $requestToken instanceof MWOAuthToken ) ) {
-			throw new MWOAuthException( 'mwoauthserver-invalid-request-token' );
+			throw new MWOAuthException( 'mwoauthserver-invalid-request-token', [
+				'consumer' => $this->getConsumerKey(),
+				'consumer_name' => $this->getName(),
+				'token_key' => $requestTokenKey,
+			] );
 		}
 		$requestToken->addVerifyCode( $verifyCode );
 
