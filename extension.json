@@ -18,6 +18,9 @@
 	"ExtensionFunctions": [
 		"MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onExtensionFunctions"
 	],
+	"ServiceWiringFiles": [
+		"src/ServiceWiring.php"
+	],
 	"DefaultUserOptions": {
 		"echo-subscriptions-web-oauth-owner": true,
 		"echo-subscriptions-email-oauth-owner": true,
@@ -179,6 +182,10 @@
 		"MWOAuthReadOnly": {
 			"value": false,
 			"description": "Prevent write activity to the database. When this is true, consumers cannot be added or updated, and new authorizations are prohibited. Authorization headers for existing authorizations will continue to work. Useful for migrating database tables"
+		},
+		"OAuthAutoApprove": {
+			"value": [],
+			"description": "Rules for automatically approving new consumers (instead of requiring manual review by an OAuth admin before they are usable). Takes a list of conditions; meeting any one of the conditions results in auto-approval. Conditions are an associative array of <rule name> => <rule value>; the condition is met if every one of its rules is satisfied. Current the only supported rule is 'grants', which takes a list of grant names, and is satisfied when all the grants requested for the consumer are within that list."
 		},
 		"OAuthGroupsToNotify": {
 			"value": [],

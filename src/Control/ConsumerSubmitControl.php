@@ -16,6 +16,7 @@ use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthDataStore;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
@@ -327,6 +328,13 @@ class ConsumerSubmitControl extends SubmitControl {
 					'deleted'            => 0
 				] + $this->vals
 			);
+
+			$oauthServices = OAuthServices::wrap( MediaWikiServices::getInstance() );
+			$workflow = $oauthServices->getWorkflow();
+			if ( $workflow->consumerCanBeAutoApproved( $cmr ) ) {
+				$cmr->setField( 'stage', Consumer::STAGE_APPROVED );
+			}
+
 			$cmr->save( $dbw );
 
 			if ( $cmr->getOwnerOnly() ) {
@@ -335,7 +343,10 @@ class ConsumerSubmitControl extends SubmitControl {
 				);
 			} else {
 				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['description'] );
-				$this->notify( $cmr, $user, $action, '' );
+				// Do not notify admins if the consumer got auto-approved.
+				if ( $cmr->getStage() === Consumer::STAGE_PROPOSED ) {
+					$this->notify( $cmr, $user, $action, '' );
+				}
 			}
 
 			// If it's owner-only, automatically accept it for the user too.

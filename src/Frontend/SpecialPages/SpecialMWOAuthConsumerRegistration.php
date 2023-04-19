@@ -635,8 +635,13 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 					$accessToken->key,
 					Utils::hmacDBSecret( $accessToken->secret )
 				);
+			} elseif ( $cmr->getStage() === Consumer::STAGE_APPROVED ) {
+				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-autoapproved-oauth1',
+					$cmr->getConsumerKey(),
+					Utils::hmacDBSecret( $cmr->getSecretKey() )
+				);
 			} else {
-				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-proposed',
+				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-proposed-oauth1',
 					$cmr->getConsumerKey(),
 					Utils::hmacDBSecret( $cmr->getSecretKey() ) );
 			}
@@ -833,8 +838,13 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 					Utils::hmacDBSecret( $cmr->getSecretKey() ),
 					Message::rawParam( $accessToken )
 				);
+			} elseif ( $cmr->getStage() === Consumer::STAGE_APPROVED ) {
+				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-autoapproved-oauth2',
+					$cmr->getConsumerKey(),
+					Utils::hmacDBSecret( $cmr->getSecretKey() )
+				);
 			} else {
-				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-proposed',
+				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-proposed-oauth2',
 					$cmr->getConsumerKey(),
 					Utils::hmacDBSecret( $cmr->getSecretKey() )
 				);

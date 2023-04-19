@@ -36,6 +36,9 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 		global $wgGroupPermissions;
 		$this->setMwGlobals( [
 			'wgMWOAuthCentralWiki' => WikiMap::getCurrentWikiId(),
+			'wgOAuthAutoApprove' => [ [
+				'grants' => [ 'mwoauth-authonly', 'mwoauth-authonlyprivate', 'basic' ],
+			] ],
 		] );
 		$this->mergeMwGlobalArrayValue( 'wgGroupPermissions', [
 			'user' => [ 'mwoauthproposeconsumer' => true ] + $wgGroupPermissions['user'],
@@ -85,7 +88,7 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 			'oauth2IsConfidential' => null,
 			'oauth2GrantTypes' => [],
 			'granttype' => 'normal',
-			'grants' => json_encode( [ 'basic' ] ),
+			'grants' => json_encode( [ 'editpage' ] ),
 			'restrictions' => MWRestrictions::newDefault(),
 			'rsaKey' => '',
 			'agreement' => true,
@@ -103,7 +106,18 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 					/** @var OAuth1Consumer $consumer */
 					$this->assertSame( $owner->getId(), $consumer->getUserId() );
 					$this->assertFalse( $consumer->getOwnerOnly() );
+					$this->assertSame( [ 'editpage' ], $consumer->getGrants() );
+					$this->assertSame( Consumer::STAGE_PROPOSED, $consumer->getStage() );
+				},
+			],
+			'auto-approved' => [
+				[
+					'grants' => json_encode( [ 'basic' ] ),
+				] + $baseConsumerData,
+				StatusValue::newGood(),
+				function ( $consumer ) {
 					$this->assertSame( [ 'basic' ], $consumer->getGrants() );
+					$this->assertSame( Consumer::STAGE_APPROVED, $consumer->getStage() );
 				},
 			],
 			'invalid version string' => [
@@ -142,7 +156,7 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 			'oauth2IsConfidential' => true,
 			'oauth2GrantTypes' => [ 'authorization_code', 'refresh_token' ],
 			'granttype' => 'normal',
-			'grants' => json_encode( [ 'basic' ] ),
+			'grants' => json_encode( [ 'editpage' ] ),
 			'restrictions' => MWRestrictions::newDefault(),
 			'rsaKey' => '',
 			'agreement' => true,
@@ -160,7 +174,7 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 					/** @var ClientEntity $consumer */
 					$this->assertSame( $owner->getId(), $consumer->getUserId() );
 					$this->assertFalse( $consumer->getOwnerOnly() );
-					$this->assertSame( [ 'basic' ], $consumer->getGrants() );
+					$this->assertSame( [ 'editpage' ], $consumer->getGrants() );
 				},
 			],
 			'http protocol' => [
