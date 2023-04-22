@@ -268,7 +268,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 							);
 						} else {
 							$this->getOutput()->addWikiMsg(
-								'mwoauthconsumerregistration-secretreset-owner-only',
+								'mwoauthconsumerregistration-secretreset-owner-only-oauth1',
 								$cmr->getConsumerKey(),
 								Utils::hmacDBSecret( $curSecretKey ),
 								$accessToken->key,
@@ -329,7 +329,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$listLinks = [];
 		if ( $action === 'propose' && $subPage ) {
 			if ( $subPage === 'oauth1a' ) {
-				$listLinks[] = $this->msg( 'mwoauthconsumerregistration-propose-oauth1a' )->escaped();
+				$listLinks[] = $this->msg( 'mwoauthconsumerregistration-propose-oauth1' )->escaped();
 				$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 					$this->getPageTitle( 'propose/oauth2' ),
 					$this->msg( 'mwoauthconsumerregistration-propose-oauth2' )->text()
@@ -337,14 +337,14 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			} elseif ( $subPage === 'oauth2' ) {
 				$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 					$this->getPageTitle( 'propose/oauth1a' ),
-					$this->msg( 'mwoauthconsumerregistration-propose-oauth1a' )->text()
+					$this->msg( 'mwoauthconsumerregistration-propose-oauth1' )->text()
 				);
 				$listLinks[] = $this->msg( 'mwoauthconsumerregistration-propose-oauth2' )->escaped();
 			}
 		} else {
 			$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 				$this->getPageTitle( 'propose/oauth1a' ),
-				$this->msg( 'mwoauthconsumerregistration-propose-oauth1a' )->text()
+				$this->msg( 'mwoauthconsumerregistration-propose-oauth1' )->text()
 			);
 			$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 				$this->getPageTitle( 'propose/oauth2' ),
@@ -618,7 +618,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-propose-legend' );
 		$form->setSubmitTextMsg( 'mwoauthconsumerregistration-propose-submit' );
 		$form->addPreHtml(
-			$this->msg( 'mwoauthconsumerregistration-propose-text-oauth1a' )->parseAsBlock() );
+			$this->msg( 'mwoauthconsumerregistration-propose-text-oauth1' )->parseAsBlock() );
 
 		$status = $form->show();
 		if ( $status instanceof Status && $status->isOK() ) {
@@ -629,7 +629,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$accessToken = $status->value['result']['accessToken'];
 				$this->getOutput()->addWikiMsg(
-					'mwoauthconsumerregistration-created-owner-only',
+					'mwoauthconsumerregistration-created-owner-only-oauth1',
 					$cmr->getConsumerKey(),
 					Utils::hmacDBSecret( $cmr->getSecretKey() ),
 					$accessToken->key,
