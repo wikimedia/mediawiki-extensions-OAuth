@@ -78,7 +78,7 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 			'version' => '1.0',
 			'description' => 'test',
 			'ownerOnly' => false,
-			'callbackUrl' => 'https://example.com',
+			'callbackUrl' => 'https://example.com/oauth',
 			'callbackIsPrefix' => false,
 			'email' => 'owner@wiki.domain',
 			'wiki' => '*',
@@ -112,6 +112,19 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 				] + $baseConsumerData,
 				StatusValue::newFatal( 'mwoauth-invalid-field', 'version' ),
 			],
+			'bare domain' => [
+				[
+					'callbackUrl' => 'https://example.com/',
+				] + $baseConsumerData,
+				StatusValue::newFatal( 'mwoauth-error-callback-bare-domain-oauth1', ),
+			],
+			'ignore warnings' => [
+				[
+					'callbackUrl' => 'https://example.com/',
+					'ignorewarnings' => true,
+				] + $baseConsumerData,
+				StatusValue::newGood(),
+			],
 		];
 	}
 
@@ -122,7 +135,7 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 			'version' => '1.0',
 			'description' => 'test',
 			'ownerOnly' => false,
-			'callbackUrl' => 'https://example.com',
+			'callbackUrl' => 'https://example.com/oauth',
 			'callbackIsPrefix' => null,
 			'email' => 'owner@wiki.domain',
 			'wiki' => '*',
@@ -149,6 +162,12 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 					$this->assertFalse( $consumer->getOwnerOnly() );
 					$this->assertSame( [ 'basic' ], $consumer->getGrants() );
 				},
+			],
+			'http protocol' => [
+				[
+					'callbackUrl' => 'http://example.com',
+				] + $baseConsumerData,
+				StatusValue::newFatal( 'mwoauth-error-callback-url-must-be-https' ),
 			],
 		];
 	}

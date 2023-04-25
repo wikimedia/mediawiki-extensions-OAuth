@@ -26,7 +26,7 @@ class RequestClientEndpointTest extends EndpointTest {
 		'description' => 'TestDescription',
 		'wiki' => '*',
 		'owner_only' => false,
-		'callback_url' => 'https://test.com',
+		'callback_url' => 'https://test.com/oauth',
 		'callback_is_prefix' => false,
 		'email' => 'test@test.com',
 		'is_confidential' => false,
