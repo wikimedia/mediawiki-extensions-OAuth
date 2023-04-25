@@ -25,11 +25,11 @@ use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\WikiMap\WikiMap;
 use Message;
 use RecentChange;
 use User;
 use WebRequest;
-use WikiMap;
 use Wikimedia\Rdbms\DBError;
 
 /**

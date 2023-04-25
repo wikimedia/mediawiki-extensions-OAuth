@@ -10,9 +10,9 @@ use MediaWiki\Extension\OAuth\Frontend\OAuthLogFormatter;
 use MediaWiki\Hook\SetupAfterCacheHook;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\WikiMap\WikiMap;
 use Status;
 use User;
-use WikiMap;
 
 /**
  * Class containing hooked functions for an OAuth environment

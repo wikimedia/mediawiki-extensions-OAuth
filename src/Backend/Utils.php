@@ -9,13 +9,13 @@ use DeferredUpdates;
 use EchoEvent;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\WikiMap\WikiMap;
 use MWException;
 use ObjectCache;
 use RequestContext;
 use Title;
 use User;
 use WebRequest;
-use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 

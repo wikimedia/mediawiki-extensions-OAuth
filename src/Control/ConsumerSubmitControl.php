@@ -17,6 +17,7 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\WikiMap\WikiMap;
 use MWCryptRand;
 use MWException;
 use Sanitizer;
@@ -24,7 +25,6 @@ use SpecialPage;
 use Title;
 use UnexpectedValueException;
 use User;
-use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**

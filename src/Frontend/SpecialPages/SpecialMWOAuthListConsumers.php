@@ -33,13 +33,13 @@ use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsLocalization;
+use MediaWiki\WikiMap\WikiMap;
 use MWException;
 use OOUI\HtmlSnippet;
 use PermissionsError;
 use SpecialPage;
 use stdClass;
 use User;
-use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
 use Xml;
 
