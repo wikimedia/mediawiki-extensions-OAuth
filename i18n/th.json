@@ -62,7 +62,7 @@
 	"mwoauthconsumerregistration-stage": "สถานะ",
 	"mwoauthconsumerregistration-lastchange": "การเปลี่ยนแปลงล่าสุด",
 	"mwoauthconsumerregistration-manage": "จัดการ",
-	"mwoauthconsumerregistration-created-owner-only": "สร้างผู้บริโภค OAuth ของคุณแล้ว\n\nโทเค็นของคุณคือ:\n; โทเค็นผู้บริโภค: $1\n; ข้อมูลลับผู้บริโภค: $2\n; โทเค็นการเข้าถึง: $3\n; ข้อมูลลับการเข้าถึง: $4\n<em>โปรดจดบันทึกข้อมูลเหล่านี้ไว้เพื่อใช้อ้างอิงในภายหลัง</em>",
+	"mwoauthconsumerregistration-created-owner-only-oauth1": "สร้างผู้บริโภค OAuth ของคุณแล้ว\n\nโทเค็นของคุณคือ:\n; โทเค็นผู้บริโภค: $1\n; ข้อมูลลับผู้บริโภค: $2\n; โทเค็นการเข้าถึง: $3\n; ข้อมูลลับการเข้าถึง: $4\n<em>โปรดจดบันทึกข้อมูลเหล่านี้ไว้เพื่อใช้อ้างอิงในภายหลัง</em>",
 	"mwoauthconsumerregistration-updated": "อัปเดตรีจิสทรีผู้บริโภค OAuth ของคุณแล้ว",
 	"mwoauthconsumerregistration-secretreset": "คุณได้กำหนดโทเค็นข้อมูลลับผู้บริโภคของ '''$1''' แล้ว ''โปรดจดบันทึกข้อมูลเหล่านี้ไว้เพื่อใช้อ้างอิงในภายหลัง''",
 	"oauthmanageconsumers": "จัดการผู้บริโภค OAuth",

@@ -76,7 +76,7 @@
 	"mwoauthconsumerregistration-stage": "状態",
 	"mwoauthconsumerregistration-lastchange": "最新の変更",
 	"mwoauthconsumerregistration-manage": "管理",
-	"mwoauthconsumerregistration-created-owner-only": "OAuth コンシューマーが作成されました。\n\nトークンは以下のとおりです:\n; コンシューマートークン: $1\n; コンシューマーシークレット: $2\n; アクセストークン: $3\n; アクセスシークレット: $4\n<em>今後のためにこれらの情報を控えておいてください。</em>",
+	"mwoauthconsumerregistration-created-owner-only-oauth1": "OAuth コンシューマーが作成されました。\n\nトークンは以下のとおりです:\n; コンシューマートークン: $1\n; コンシューマーシークレット: $2\n; アクセストークン: $3\n; アクセスシークレット: $4\n<em>今後のためにこれらの情報を控えておいてください。</em>",
 	"mwoauthconsumerregistration-updated": "あなたの OAuth コンシューマー レジストリを更新しました。",
 	"mwoauthconsumerregistration-secretreset": "「'''$1'''」のコンシューマー秘密トークンを割り当てました。''今後のためこれを記録しておいてください。''",
 	"oauthmanageconsumers": "OAuthコンシューマー管理",

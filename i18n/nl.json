@@ -92,7 +92,6 @@
 	"mwoauthconsumerregistration-lastchange": "Laatste wijziging",
 	"mwoauthconsumerregistration-manage": "beheren",
 	"mwoauthconsumerregistration-resetsecretkey": "Geheime sleutel op een nieuwe waarde instellen",
-	"mwoauthconsumerregistration-proposed": "Uw OAuth-applicatieverzoek is geregistreerd.\n\nU hebt het applicatietoken <strong>$1</strong> toegewezen gekregen en een geheim token <strong>$2</strong>. <em>Bewaar deze gegevens zorgvuldig.</em>",
 	"mwoauthconsumerregistration-updated": "Uw OAuth-applicatieregister is bijgewerkt.",
 	"mwoauthconsumerregistration-secretreset": "U hebt het geheime applicatietoken <strong>$1</strong>toegewezen gekregen. <em>Bewaar deze gegevens zorgvuldig.</em>",
 	"oauthmanageconsumers": "OAuth-toepassingen beheren",

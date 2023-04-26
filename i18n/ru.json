@@ -108,7 +108,7 @@
 	"mwoauthconsumerregistration-lastchange": "Последнее изменение",
 	"mwoauthconsumerregistration-manage": "управление",
 	"mwoauthconsumerregistration-resetsecretkey": "Сбросить секретный ключ, установив новое значение",
-	"mwoauthconsumerregistration-secretreset-owner-only": "Ваши OAuth-токены были сброшены. Новые токены:\n; Токен клиента: $1\n; Секрет клиента: $2\n; Токен доступа: $3\n; Секрет доступа: $4\n<em>Пожалуйста, сохраните эти данные для будущего использования.</em>",
+	"mwoauthconsumerregistration-secretreset-owner-only-oauth1": "Ваши OAuth-токены были сброшены. Новые токены:\n; Токен клиента: $1\n; Секрет клиента: $2\n; Токен доступа: $3\n; Секрет доступа: $4\n<em>Пожалуйста, сохраните эти данные для будущего использования.</em>",
 	"mwoauthconsumerregistration-need-emailconfirmed": "Вы должны подтвердить ваш адрес электронной почты, прежде чем создавать приложения с OAuth.\nПожалуйста, задайте и подтвердите адрес электронной почты через ваши [[Special:Preferences|пользовательские настройки]].",
 	"oauthmanageconsumers": "Управление клиентскими OAuth-приложениями",
 	"mwoauthmanageconsumers-notloggedin": "Вы должны авторизоваться на сайте для доступа к этой странице.",
