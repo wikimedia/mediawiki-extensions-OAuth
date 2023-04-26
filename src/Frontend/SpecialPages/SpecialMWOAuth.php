@@ -448,10 +448,19 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				) ),
 				'consumer' => $consumerKey,
 			] );
-		} elseif (
-			!$cmrAc->getDAO()->isUsableBy( $user ) ||
-			$cmrAc->getDAO()->getOAuthVersion() !== $this->oauthVersion
-		) {
+		} elseif ( $cmrAc->getDAO()->getOAuthVersion() !== $this->oauthVersion ) {
+			throw new MWOAuthException(
+				'mwoauthserver-bad-consumer-version',
+				[
+					Utils::getCentralUserTalk( $cmrAc->getUserName() ),
+					\Message::rawParam( \Linker::makeExternalLink(
+						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E012',
+						'E012',
+						true
+					) )
+				]
+			);
+		} elseif ( !$cmrAc->getDAO()->isUsableBy( $user ) ) {
 			throw new MWOAuthException(
 				'mwoauthserver-bad-consumer',
 				[
