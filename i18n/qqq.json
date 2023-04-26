@@ -13,7 +13,8 @@
 			"Siebrand",
 			"Sunny00217",
 			"Tgr",
-			"Umherirrender"
+			"Umherirrender",
+			"SunAfterRain"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "Abuse filter syntax option in a dropdown from the group {{msg-mw|Abusefilter-edit-builder-group-vars}}.",
@@ -263,7 +264,7 @@
 	"mwoauth-form-button-approve": "Button label, indicating the user wants to allow access.\n\nSee also:\n* {{msg-mw|Mwoauth-form-button-cancel}}\n{{Identical|Allow}}",
 	"mwoauth-form-button-cancel": "Button label, indicating the user wants to cancel granting access.\n\nSee also:\n* {{msg-mw|Mwoauth-form-button-approve}}\n{{Identical|Cancel}}",
 	"mwoauth-error": "Heading on the page, whenever an OAuth error is presented to a user.",
-	"mwoauth-error-missing-callback-url-non-owner": "Error when callback_url is not provided for a non-owner-only client",
+	"mwoauth-error-missing-callback-url-non-owner": "Error when callback_url is not provided or not well-formed for a non-owner-only client",
 	"mwoauth-grants-heading": "Used as label for the grants list.\n\nSee also:\n* {{msg-mw|Grant-blockusers}}\n* {{msg-mw|Grant-createaccount}}\n* {{msg-mw|Grant-createeditmovepage}}\n* {{msg-mw|Grant-delete}}\n* {{msg-mw|Grant-editinterface}}\n* {{msg-mw|Grant-editmycssjs}}\n* {{msg-mw|Grant-editmywatchlist}}\n* {{msg-mw|Grant-editpage}}\n* {{msg-mw|Grant-editprotected}}\n* {{msg-mw|Grant-highvolume}}\n* {{msg-mw|Grant-oversight}}\n* {{msg-mw|Grant-patrol}}\n* {{msg-mw|Grant-protect}}\n* {{msg-mw|Grant-rollback}}\n* {{msg-mw|Grant-sendemail}}\n* {{msg-mw|Grant-uploadeditmovefile}}\n* {{msg-mw|Grant-uploadfile}}\n* {{msg-mw|Grant-basic}}\n* {{msg-mw|Grant-viewdeleted}}\n* {{msg-mw|Grant-viewmywatchlist}}",
 	"mwoauth-grants-nogrants": "Warning message that the OAuth consumer has not requested any permissions",
 	"mwoauth-acceptance-cancelled": "Message shown when an OAuth authorization request is declined. Parameters:\n* $1 - consumer name",
