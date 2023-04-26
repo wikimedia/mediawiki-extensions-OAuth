@@ -27,11 +27,11 @@ use Linker;
 use LogicException;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity as OAuth2Client;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\WikiMap\WikiMap;
 use Message;
 use MWRestrictions;
 use SpecialPage;
 use User;
-use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**

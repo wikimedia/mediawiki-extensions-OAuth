@@ -18,13 +18,13 @@ use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\SpecialPage\Hook\SpecialPage_initListHook;
 use MediaWiki\SpecialPage\Hook\SpecialPageAfterExecuteHook;
 use MediaWiki\SpecialPage\Hook\SpecialPageBeforeFormDisplayHook;
+use MediaWiki\WikiMap\WikiMap;
 use MWException;
 use OOUI\ButtonWidget;
 use RequestContext;
 use Sanitizer;
 use SpecialPage;
 use User;
-use WikiMap;
 
 /**
  * Class containing GUI even handler functions for an OAuth environment

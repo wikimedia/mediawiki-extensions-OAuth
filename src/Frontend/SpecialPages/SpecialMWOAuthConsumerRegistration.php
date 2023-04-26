@@ -39,6 +39,7 @@ use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
+use MediaWiki\WikiMap\WikiMap;
 use Message;
 use MWRestrictions;
 use PermissionsError;
@@ -48,7 +49,6 @@ use stdClass;
 use User;
 use UserBlockedError;
 use UserNotLoggedIn;
-use WikiMap;
 use Wikimedia\Rdbms\DBConnRef;
 use Xml;
 

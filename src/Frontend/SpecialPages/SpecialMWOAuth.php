@@ -41,6 +41,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 use MediaWiki\Extension\OAuth\UserStatementProvider;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Permissions\GrantsLocalization;
+use MediaWiki\WikiMap\WikiMap;
 use Message;
 use MWException;
 use OOUI;
@@ -52,7 +53,6 @@ use Title;
 use UnlistedSpecialPage;
 use User;
 use WebRequest;
-use WikiMap;
 
 /**
  * Page that handles OAuth consumer authorization and token exchange

@@ -13,11 +13,11 @@ use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Exception\ClientApprovalDenyException;
 use MediaWiki\Extension\OAuth\Response;
 use MediaWiki\Rest\Response as RestResponse;
+use MediaWiki\WikiMap\WikiMap;
 use MWExceptionHandler;
 use SpecialPage;
 use Throwable;
 use User;
-use WikiMap;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
