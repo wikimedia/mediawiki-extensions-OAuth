@@ -233,7 +233,7 @@
 	"mwoauthdatastore-bad-verifier": "Der angegebene Verifikationscode war nicht gültig",
 	"mwoauthdatastore-invalid-token-type": "Der angeforderte Tokentyp ist ungültig",
 	"mwoauthgrants-general-error": "In deiner OAuth-Anfrage gab es einen Fehler",
-	"mwoauthserver-bad-consumer": "„$1“ ist nicht als verbundene Anwendung bestätigt. Um Hilfe zu erhalten, [$2 kontaktiere] den Anwendungsautor.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Verbundene OAuth-Anwendung nicht bestätigt, $3</span>",
+	"mwoauthserver-bad-consumer": "„$1“ ist nicht als verbundene Anwendung bestätigt. Um Hilfe zu erhalten, [$2 kontaktiere] den Anwendungsautor.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Verbundene OAuth-Anwendung nicht bestätigt.</span>",
 	"mwoauthserver-bad-consumer-key": "Bei der Verbindung dieser Anwendung ist leider etwas schiefgelaufen.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unbekannter OAuth-Schlüssel, $1</span>",
 	"mwoauthserver-insufficient-rights": "Dein Benutzerkonto ist nicht berechtigt, verbundene Anwendungen zu verwenden. Kontaktiere deinen Websiteadministrator, um den Grund herauszufinden.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Nicht ausreichende OAuth-Benutzerrechte, $1</span>",
 	"mwoauthserver-invalid-request-token": "Deine Anfrage enthält einen ungültigen Token",

@@ -60,6 +60,7 @@
 	"mwoauth-consumer-stage-expired": "期限切れ",
 	"mwoauth-consumer-stage-approved": "承認済",
 	"mwoauth-consumer-stage-disabled": "無効",
+	"mwoauth-ignorewarnings": "警告を無視",
 	"oauthconsumerregistration": "OAuth コンシューマー登録",
 	"mwoauthconsumerregistration-navigation": "ナビゲーション:",
 	"mwoauthconsumerregistration-list": "自分のコンシューマー一覧",

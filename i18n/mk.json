@@ -70,6 +70,7 @@
 	"mwoauth-consumer-stage-approved": "одобрен",
 	"mwoauth-consumer-stage-disabled": "оневозможен",
 	"mwoauth-consumer-stage-suppressed": "притаен",
+	"mwoauth-ignorewarnings": "Занемари предупредувања",
 	"oauthconsumerregistration": "Пријава на потрошувач на OAuth",
 	"mwoauthconsumerregistration-navigation": "Прегледник:",
 	"mwoauthconsumerregistration-propose-oauth1": "Предложи нов потрошувач на OAuth 1.0a",
