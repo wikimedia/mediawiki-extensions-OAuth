@@ -76,6 +76,7 @@
 	"mwoauth-consumer-stage-approved": "zatwierdzone",
 	"mwoauth-consumer-stage-disabled": "wyłączone",
 	"mwoauth-consumer-stage-suppressed": "ukryte",
+	"mwoauth-ignorewarnings": "Ignoruj ostrzeżenia",
 	"oauthconsumerregistration": "Rejestracja konsumenta OAuth",
 	"mwoauthconsumerregistration-navigation": "Nawigacja:",
 	"mwoauthconsumerregistration-list": "Lista moich konsumentów",

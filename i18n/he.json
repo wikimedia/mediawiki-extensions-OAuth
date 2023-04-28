@@ -237,6 +237,7 @@
 	"mwoauthgrants-general-error": "אירעה שגיאה בבקשת OAuth.",
 	"mwoauthserver-bad-consumer": "\"$1\" אינו נתמך בתור יישום מחובר. נא [$2 ליצור קשר] עם מחבר היישום כדי לקבל עזרה.\n\n<span class=\"plainlinks mw-mwoautherror-details\">יישום ה־OAuth אינו מאושר, $3</span>",
 	"mwoauthserver-bad-consumer-key": "מצטערים, משהו השתבש עם חיבור היישום הזה.\n\n<span class=\"plainlinks mw-mwoautherror-details\">מפתח OAuth לא ידוע, $1</span>",
+	"mwoauthserver-bad-consumer-version": "מצטערים, משהו השתבש. עליך [$1 ליצור קשר] עם יוצר היישום כדי לקבל עזרה עם זה.\n\n<span class=\"plainlinks mw-mwoautherror-details\">גרסת OAuth שגויה, $2</span>",
 	"mwoauthserver-insufficient-rights": "לחשבון שלך אין אישור להשתמש ביישומים מחוברים. נא ליצור קשר עם מנהל האתר שלך כדי להבין למה.\n\n<span class=\"plainlinks mw-mwoautherror-details\">הרשאות משתמש OAuth לא מספיקות, $1</span>",
 	"mwoauthserver-invalid-request-token": "אסימון לא תקין בבקשתך.",
 	"mwoauthserver-invalid-user": "כדי להשתמש ביישומים מחוברים באתר הזה, צריך להיות לך חשבון בכל המיזמים. כאשר יהיה לך חשבון בכל המיזמים, אפשר לנסות לחבר את \"$1\" שוב.\n\n<span class=\"plainlinks mw-mwoautherror-details\">דרושה כניסה מאוחדת, $2</span>",

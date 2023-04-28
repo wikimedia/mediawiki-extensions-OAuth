@@ -263,6 +263,8 @@
 	"mwoauth-error-missing-callback-url-non-owner": "callback_url es obligatori pro clientes non limitate al proprietario",
 	"mwoauth-error-callback-url-must-be-https": "URLs de retorno OAuth 2 debe usar le schema HTTPS",
 	"mwoauth-error-callback-server-url": "Le URL de retorno debe punctar a un servitor que tu possede",
+	"mwoauth-error-callback-bare-domain-oauth1": "Tu non ha seligite le option \"usar le URL de retorno como prefixo\", dunque tu debe fornir un URL exacte. Un nomine de dominio simple probabilemente non es lo que tu vole.",
+	"mwoauth-error-callback-bare-domain-oauth2": "Applicationes OAuth 2 debe usar un URL de retorno exacte. Un nomine de dominio simple probabilemente non es lo que tu vole.",
 	"mwoauth-grants-heading": "Permissiones requestate:",
 	"mwoauth-grants-nogrants": "Le application non ha requestate alcun permission.",
 	"mwoauth-acceptance-cancelled": "Tu ha refusate a \"$1\" le accesso a tu conto. \"$1\" non pote functionar si tu non lo permitte de acceder. Tu pote retornar a \"$1\" o [[Special:OAuthManageMyGrants|gerer]] tu applicationes connectite.",
