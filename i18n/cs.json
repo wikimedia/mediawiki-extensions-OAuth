@@ -218,7 +218,7 @@
 	"mwoauthdatastore-bad-verifier": "Poskytnutý ověřovací kód nebyl platný.",
 	"mwoauthdatastore-invalid-token-type": "Požadovaný typ tokenu není platný.",
 	"mwoauthgrants-general-error": "Ve vašem OAuth požadavku byla chyba.",
-	"mwoauthserver-bad-consumer": "„$1“ není schválená Připojená aplikace. Pro pomoc [$2 kontaktujte] autora aplikace.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Připojená OAuth aplikace není schválena, $3</span>",
+	"mwoauthserver-bad-consumer": "„$1“ není schválená Připojená aplikace. Pro pomoc [$2 kontaktujte] autora aplikace.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Připojená OAuth aplikace není schválena.</span>",
 	"mwoauthserver-bad-consumer-key": "Omlouváme se, ale při připojování této aplikace se něco nepovedlo.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Neznámý klíč OAuth, $1</span>",
 	"mwoauthserver-insufficient-rights": "Váš účet nemá dovoleno využívat Připojené aplikace, pro zjištění důvodů kontaktujte správce vašeho serveru.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Nedostatečná práva uživatele OAuth, $1</span>",
 	"mwoauthserver-invalid-request-token": "Váš požadavek obsahuje neplatný token.",
