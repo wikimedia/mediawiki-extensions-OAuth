@@ -41,6 +41,7 @@
 	"mwoauth-consumer-owner-only-help": "Die Auswahl dieser Option verursacht die automatische Bestätigung und Akzeptierung des Verbrauchers für die Verwendung durch $1. Er wird für andere Benutzer nicht nutzbar sein und der übliche Autorisierungsablauf wird nicht funktionieren. Aufgenommene Aktionen mit diesem Verbraucher werden nicht markiert.",
 	"mwoauth-consumer-description": "Anwendungsbeschreibung:",
 	"mwoauth-consumer-callbackurl": "OAuth-Callback-URL:",
+	"mwoauth-consumer-callbackurl-help": "Im Gegensatz zu OAuth 1.0a wird diese URL genau abgeglichen",
 	"mwoauth-consumer-callbackurl-warning": "(Wildcard-Port)",
 	"mwoauth-consumer-callbackisprefix": "Dem Verbraucher die Angabe eines Callbacks in Anfragen ermöglichen und die obige Callback-URL als ein erforderliches Präfix verwenden.",
 	"mwoauth-consumer-granttypes": "Typen der angefragten Berechtigungen:",
