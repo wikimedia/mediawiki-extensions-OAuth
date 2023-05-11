@@ -162,27 +162,45 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 			'agreement' => true,
 			'action' => 'propose',
 		];
+		$assertGoodConsumer = function ( $consumer ) {
+			$owner = $this->getServiceContainer()->getUserFactory()->newFromName( 'OAuthOwner' );
 
-		return [
-			'good' => [
-				$baseConsumerData,
-				StatusValue::newGood(),
-				function ( $consumer ) {
-					$owner = $this->getServiceContainer()->getUserFactory()->newFromName( 'OAuthOwner' );
+			$this->assertInstanceOf( ClientEntity::class, $consumer );
+			/** @var ClientEntity $consumer */
+			$this->assertSame( $owner->getId(), $consumer->getUserId() );
+			$this->assertFalse( $consumer->getOwnerOnly() );
+			$this->assertSame( [ 'editpage' ], $consumer->getGrants() );
+		};
 
-					$this->assertInstanceOf( ClientEntity::class, $consumer );
-					/** @var ClientEntity $consumer */
-					$this->assertSame( $owner->getId(), $consumer->getUserId() );
-					$this->assertFalse( $consumer->getOwnerOnly() );
-					$this->assertSame( [ 'editpage' ], $consumer->getGrants() );
-				},
-			],
-			'http protocol' => [
+		yield 'good' => [
+			$baseConsumerData,
+			StatusValue::newGood(),
+			$assertGoodConsumer,
+		];
+
+		foreach ( [
+			'localhost',
+			'127.0.0.1',
+			'[::1]',
+			'dev.whatever.localhost',
+			'foo.wiki.local.wmftest.com',
+			'striker.local.wmftest.net',
+			'dev-portal.local.wmftest.org',
+		] as $host ) {
+			yield "http protocol ($host), allowed" => [
 				[
-					'callbackUrl' => 'http://example.com',
+					'callbackUrl' => "http://$host:8080/oauth",
 				] + $baseConsumerData,
-				StatusValue::newFatal( 'mwoauth-error-callback-url-must-be-https' ),
-			],
+				StatusValue::newGood(),
+				$assertGoodConsumer,
+			];
+		}
+
+		yield 'http protocol (non-localhost), not allowed' => [
+			[
+				'callbackUrl' => 'http://example.com',
+			] + $baseConsumerData,
+			StatusValue::newFatal( 'mwoauth-error-callback-url-must-be-https' ),
 		];
 	}
 

@@ -144,7 +144,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					$urlParts = wfParseUrl( $s );
 					if ( !$urlParts ) {
 						return false;
-					} elseif ( $isOAuth2 && $urlParts['scheme'] === 'http' ) {
+					} elseif ( $isOAuth2 && !self::isSecureContext( $urlParts ) ) {
 						return StatusValue::newFatal(
 							new ApiMessage( 'mwoauth-error-callback-url-must-be-https', 'invalid_callback_url' )
 						);
@@ -639,5 +639,38 @@ class ConsumerSubmitControl extends SubmitControl {
 				'comment' => $comment,
 			],
 		] );
+	}
+
+	/**
+	 * Decide whether the given (parsed) URL corresponds to a secure context.
+	 * (This is only an approximation of the algorithm browsers use,
+	 * since some considerations such as frames don't apply here.)
+	 *
+	 * @see https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts
+	 *
+	 * @param array $urlParts As returned by {@link wfParseUrl()}.
+	 * @return bool
+	 */
+	protected static function isSecureContext( array $urlParts ): bool {
+		if ( $urlParts['scheme'] === 'https' ) {
+			return true;
+		}
+
+		$host = $urlParts['host'];
+		if ( $host === 'localhost'
+			|| $host === '127.0.0.1'
+			|| $host === '[::1]'
+			|| str_ends_with( $host, '.localhost' )
+			// The wmftest.{com,net,org} domains hosted by the Wikimedia
+			// Foundation include a '*.local IN A 127.0.0.1' that is used in
+			// some local development environments.
+			|| str_ends_with( $host, '.local.wmftest.com' )
+			|| str_ends_with( $host, '.local.wmftest.net' )
+			|| str_ends_with( $host, '.local.wmftest.org' )
+		) {
+			return true;
+		}
+
+		return false;
 	}
 }
