@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajiniyaz Nurniyazov",
 			"Nurlan"
 		]
 	},
-	"mwoauth-prefs-managegrants": "Qosılǵan qosımshalar:"
+	"mwoauth-prefs-managegrants": "Qosılǵan qosımshalar:",
+	"mwoauth-prefs-managegrantslink": "Qosılǵan $1 dana qosımshanı basqarıw"
 }

@@ -208,7 +208,7 @@
 	"mwoauthdatastore-bad-verifier": "De opgegeven verificatiecode is niet geldig.",
 	"mwoauthdatastore-invalid-token-type": "Het type van het aangevraagde token is ongeldig.",
 	"mwoauthgrants-general-error": "Er is een fout opgetreden in uw OAth-verzoek.",
-	"mwoauthserver-bad-consumer": "\"$1\" is niet toegestaan als gekoppelde toepassing. [$2 Neem contact op] met de maker van de toepassing.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Gekoppelde OAuth-toepassing niet toegestaan, $3</span>",
+	"mwoauthserver-bad-consumer": "\"$1\" is niet toegestaan als gekoppelde toepassing. [$2 Neem contact op] met de maker van de toepassing.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Gekoppelde OAuth-toepassing niet toegestaan.</span>",
 	"mwoauthserver-bad-consumer-key": "Er is helaas iets misgegaan tijdens het koppelen van deze toepassing.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Onbekende OAuth-sleutel, $1</span>",
 	"mwoauthserver-insufficient-rights": "Uw account mag geen toepassingen koppelen. Neem contact op met de beheerder als u wilt weten waarom dit zo is.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Onvoldoende gebruikersrechten voor OAuth, $1</span>",
 	"mwoauthserver-invalid-request-token": "Ongeldig token in uw verzoek.",
