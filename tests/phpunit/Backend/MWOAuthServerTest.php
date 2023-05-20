@@ -62,7 +62,7 @@ class MWOAuthServerTest extends TestCase {
 		$this->assertSame( $expect, $wasValid );
 	}
 
-	public function provideCheckCallback() {
+	public static function provideCheckCallback() {
 		return [
 			// [ $expect, $registeredUrl, $got, $isPrefix=true ]
 			[ true, '', 'oob', false ],

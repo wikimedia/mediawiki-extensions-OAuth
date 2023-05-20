@@ -108,7 +108,7 @@ class AuthorizationProviderTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideGrantsArguments() {
+	public static function provideGrantsArguments() {
 		return [
 			[ AuthorizationCodeAuthorization::class, 'authorization_code', true ],
 			[ AuthorizationCodeAccessTokens::class, 'authorization_code', false ],
@@ -171,7 +171,7 @@ class AuthorizationProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expect, $actual );
 	}
 
-	public function provideExpirationInterval() {
+	public static function provideExpirationInterval() {
 		return [
 			[ 'P30D', 2592000 ],
 			[ false, 31556995200 ],

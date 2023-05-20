@@ -28,7 +28,7 @@ class WorkflowTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expectedResult, $workflow->consumerCanBeAutoApproved( $consumer ) );
 	}
 
-	public function provideConsumerCanBeAutoApproved() {
+	public static function provideConsumerCanBeAutoApproved() {
 		return [
 			'empty' => [ [], [ 'basic' ], false ],
 			'good grants' => [ [ [ 'grants' => [ 'basic', 'editpage' ] ] ], [ 'basic' ], true ],

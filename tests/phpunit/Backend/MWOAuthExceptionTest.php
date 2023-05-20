@@ -27,7 +27,7 @@ class MWOAuthExceptionTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expectedContext, $exception->getMessageContext() );
 	}
 
-	public function provideParameterHandling() {
+	public static function provideParameterHandling() {
 		return [
 			'empty' => [
 				'msg' => 'mwoauth-invalid-field-generic',

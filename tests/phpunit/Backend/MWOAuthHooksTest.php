@@ -24,7 +24,7 @@ class MWOAuthHooksTest extends TestCase {
 		$this->assertSame( $statusOk, $status->isOK() );
 	}
 
-	public function provideOnChangeTagCanCreate() {
+	public static function provideOnChangeTagCanCreate() {
 		return [
 			[ 'foo', true ],
 			[ 'OAuth CID', true ],

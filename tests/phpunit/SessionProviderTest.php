@@ -70,7 +70,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideOnMarkPatrolledArguments() {
+	public static function provideOnMarkPatrolledArguments() {
 		yield 'no consumer, manually patrolled' => [
 			null,
 			false,
@@ -121,7 +121,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $provider->onRecentChange_save( $rc ) );
 	}
 
-	public function provideOnRecentChangeSave() {
+	public static function provideOnRecentChangeSave() {
 		yield 'no consumer' => [
 			null,
 		];

@@ -92,7 +92,7 @@ class OAuthServerTest extends TestCase {
 		$this->server->verify_request( $request );
 	}
 
-	public function requiredParameterProvider() {
+	public static function requiredParameterProvider() {
 		// The list of required parameters is taken from
 		// Chapter 7 ("Accessing Protected Resources")
 		return array(

@@ -9,7 +9,7 @@ use MediaWikiIntegrationTestCase;
  * @group OAuth
  */
 class ClaimEntityTest extends MediaWikiIntegrationTestCase {
-	public function provideClaims() {
+	public static function provideClaims() {
 		yield 'string claim' => [
 			[ 'str' => 'string' ]
 		];

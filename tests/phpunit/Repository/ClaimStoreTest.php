@@ -24,7 +24,7 @@ class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 		$this->oAuthClaimStore = new ClaimStore();
 	}
 
-	public function provideClaims() {
+	public static function provideClaims() {
 		yield 'empty claims' => [
 			[], []
 		];
