@@ -31,7 +31,7 @@
 	"mwoauth-field-private": "(bu bilgi gizlidir)",
 	"mwoauth-prefs-managegrants": "Bağlı uygulamalar:",
 	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 bağlı uygulamayı|$1 bağlı uygulamayı|0=Bağlı uygulamaları}} yönet",
-	"mwoauth-consumer-allwikis": "Bu sitedeki bütün projeler",
+	"mwoauth-consumer-allwikis": "Tüm projeler",
 	"mwoauth-consumer-key": "Tüketici anahtarı:",
 	"mwoauth-consumer-name": "Uygulama adı:",
 	"mwoauth-consumer-version": "Tüketici sürümü:",
