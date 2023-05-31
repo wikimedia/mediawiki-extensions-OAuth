@@ -16,7 +16,8 @@
 			"Ovruni",
 			"Rodney Araujo",
 			"Ryo567",
-			"Tiberius1701"
+			"Tiberius1701",
+			"No se"
 		]
 	},
 	"mwoauth-desc": "Permite el uso de OAuth 1.0a y OAuth 2.0 para la autorización de la API",
@@ -232,6 +233,7 @@
 	"mwoauth-botpasswords-note": "<strong>Nota:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> es más seguro que las contraseñas de bots, y debería ser la opción prioritaria en caso de que el bot lo permitiese.",
 	"mwoauth-api-module-disabled": "El módulo «$1» no está disponible con OAuth.",
 	"echo-category-title-oauth-owner": "Desarrollo de OAuth",
+	"echo-pref-tooltip-oauth-owner": "Notificarme sobre eventos relacionados con las aplicaciones OAuth que he creado.",
 	"echo-category-title-oauth-admin": "Administrador de OAuth",
 	"echo-pref-tooltip-oauth-admin": "Notificarme sobre eventos relacionados con la revisión de aplicaciones OAuth.",
 	"notification-oauth-app-propose-title": "$1 {{GENDER:$1|propuso}} una aplicación OAuth nueva: $2",
