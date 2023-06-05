@@ -184,6 +184,7 @@
 	"action-mwoauthupdateownconsumer": "posodabljati porabnikov OAuth, ki jih nadzorujete",
 	"action-mwoauthviewprivate": "dostopati do zasebnih podatkov OAuth",
 	"action-mwoauthviewsuppressed": "dostopati do odstranjenih porabnikov OAuth",
+	"mwoauth-api-module-disabled": "Modul »$1« ni na voljo z OAuth.",
 	"echo-category-title-oauth-owner": "Razvoj OAuth",
 	"echo-pref-tooltip-oauth-owner": "Obveščaj me o dogodkih, povezanih z aplikacijami OAuth, ki sem jih ustvaril_a.",
 	"echo-category-title-oauth-admin": "Administracija OAuth",
