@@ -66,6 +66,7 @@
 	"mwoauthlistconsumers-rclink": "Recenta modifikuri facita da ca ''app''",
 	"oauthmanagemygrants": "Administrar konektita aplikaji",
 	"mwoauthmanagemygrants-navigation": "Navigado:",
+	"mwoauthmanagemygrants-user": "Editero:",
 	"mwoauthmanagemygrants-description": "Deskripto",
 	"mwoauth-form-description-allwikis-privateinfo-norealname": "Saluto $1,\n\nPor atendar komplete vua demando, '''$2''' bezonas acesar informi pri vu, inkluzite vua e-posto adreso, en omna projeti de ca retsituo. Nula modifikuri facesos en vua uzero-konto.",
 	"mwoauth-form-button-cancel": "Nuligar",
