@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Frontend;
 
 use EchoAttributeManager;
-use EchoEventPresentationModel;
+use MediaWiki\Extension\Notifications\Formatters\EchoEventPresentationModel;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MWException;

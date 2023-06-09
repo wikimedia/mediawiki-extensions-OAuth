@@ -4,13 +4,13 @@ namespace MediaWiki\Extension\OAuth\Control;
 
 use ApiMessage;
 use Composer\Semver\VersionParser;
-use EchoEvent;
 use Exception;
 use ExtensionRegistry;
 use FormatJson;
 use IContextSource;
 use LogicException;
 use ManualLogEntry;
+use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthDataStore;
@@ -629,7 +629,7 @@ class ConsumerSubmitControl extends SubmitControl {
 			return;
 		}
 
-		EchoEvent::create( [
+		Event::create( [
 			'type' => 'oauth-app-' . $actionType,
 			'agent' => $user,
 			'extra' => [
