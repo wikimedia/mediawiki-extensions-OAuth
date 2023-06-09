@@ -6,7 +6,7 @@ use AutoCommitUpdate;
 use BagOStuff;
 use CentralIdLookup;
 use DeferredUpdates;
-use EchoEvent;
+use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
@@ -443,10 +443,10 @@ class Utils {
 	/**
 	 * Given an OAuth consumer stage change event, find out who needs to be notified.
 	 * Will be used as an EchoAttributeManager::ATTR_LOCATORS callback.
-	 * @param EchoEvent $event
+	 * @param Event $event
 	 * @return User[]
 	 */
-	public static function locateUsersToNotify( EchoEvent $event ) {
+	public static function locateUsersToNotify( Event $event ) {
 		$agent = $event->getAgent();
 		$owner = self::getLocalUserFromCentralId( $event->getExtraParam( 'owner-id' ) );
 
