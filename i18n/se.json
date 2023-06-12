@@ -1,10 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kimberli Mäkäräinen (WMNO)"
+			"Kimberli Mäkäräinen (WMNO)",
+			"Yupik"
 		]
 	},
 	"mwoauth-consumer-email": "E-poastačujuhus:",
+	"mwoauthconsumerregistration-description": "Govvádus",
+	"mwoauthmanageconsumers-description": "Govvádus",
+	"mwoauthlistconsumers-description": "Govvádus",
+	"mwoauthmanagemygrants-description": "Govvádus",
 	"mwoauth-form-button-approve": "Dohkket",
 	"mwoauth-form-button-cancel": "Šluhtte"
 }
