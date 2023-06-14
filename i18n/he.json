@@ -171,6 +171,7 @@
 	"mwoauthlistconsumers-callbackisprefix": "לאפשר לצרכן להגדיר מענה (callback) בבקשות ולהשתמש בכתובת ה־\"callback\" לעיל בתור תחילית דרושה.",
 	"mwoauthlistconsumers-grants": "זיכיונות מתאימים",
 	"mwoauthlistconsumers-basicgrantsonly": "(רק גישה בסיסית)",
+	"mwoauthlistconsumers-oauth2-is-confidential": "הלקוח סודי",
 	"mwoauthlistconsumers-status": "מצב",
 	"mwoauth-consumer-stage-any": "הכול",
 	"mwoauthlistconsumers-status-proposed": "מוצע",

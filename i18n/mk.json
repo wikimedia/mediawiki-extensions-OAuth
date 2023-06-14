@@ -169,6 +169,7 @@
 	"mwoauthlistconsumers-callbackisprefix": "Овозможи му на потрошувачот да укаже возврат во барањата и погоре да користи URL за повратен повик како задолжителна претставка.",
 	"mwoauthlistconsumers-grants": "Применливи доделувања",
 	"mwoauthlistconsumers-basicgrantsonly": "(само основен пристап)",
+	"mwoauthlistconsumers-oauth2-is-confidential": "Клиентот е доверлив",
 	"mwoauthlistconsumers-status": "Статус",
 	"mwoauth-consumer-stage-any": "било кој",
 	"mwoauthlistconsumers-status-proposed": "предложен",

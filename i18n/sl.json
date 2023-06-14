@@ -104,6 +104,7 @@
 	"mwoauthlistconsumers-callbackurl": "URL protokola OAuth za povratni klic",
 	"mwoauthlistconsumers-callbackisprefix": "Dovoli porabniku, da pri zahtevkih določi povratni klic in kot obvezno predpono uporablja zgornji URL za povratni klic.",
 	"mwoauthlistconsumers-grants": "Podeljena pooblastila",
+	"mwoauthlistconsumers-oauth2-is-confidential": "Stranka je zaupna",
 	"mwoauthlistconsumers-status": "Stanje",
 	"mwoauth-consumer-stage-any": "kateri koli",
 	"mwoauthlistconsumers-status-proposed": "predlagano",

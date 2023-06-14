@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Alshamiri1",
+			"Asma",
 			"Claw eg",
 			"Ibrahim.ID",
 			"Maqu630",
@@ -177,6 +178,7 @@
 	"mwoauthlistconsumers-callbackisprefix": "السماح للمستهلك بتحديد رد اتصال في الطلبات واستخدام مسار \"معاودة الاتصال\" أعلاه كبادئة مطلوبة.",
 	"mwoauthlistconsumers-grants": "المنح القابلة للتطبيق",
 	"mwoauthlistconsumers-basicgrantsonly": "(الوصول الأساسي فقط)",
+	"mwoauthlistconsumers-oauth2-is-confidential": "العميل سري",
 	"mwoauthlistconsumers-status": "الحالة",
 	"mwoauth-consumer-stage-any": "أي",
 	"mwoauthlistconsumers-status-proposed": "مقترح",

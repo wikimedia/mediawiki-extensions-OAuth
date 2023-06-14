@@ -185,6 +185,7 @@
 	"mwoauthlistconsumers-callbackisprefix": "Permettre au consommateur de spécifier un rappel dans les requêtes et utiliser l’URL de « rappel » ci-dessus comme préfixe obligatoire.",
 	"mwoauthlistconsumers-grants": "Droits applicables",
 	"mwoauthlistconsumers-basicgrantsonly": "(accès de base uniquement)",
+	"mwoauthlistconsumers-oauth2-is-confidential": "Le client est confidentiel",
 	"mwoauthlistconsumers-status": "État",
 	"mwoauth-consumer-stage-any": "tous",
 	"mwoauthlistconsumers-status-proposed": "proposé",

@@ -166,6 +166,7 @@
 	"mwoauthlistconsumers-callbackisprefix": "Permitte al consumitor specificar un appello de retorno in requestas e usar le URL \"callback\" hic supra como prefixo obligatori.",
 	"mwoauthlistconsumers-grants": "Concessiones applicabile",
 	"mwoauthlistconsumers-basicgrantsonly": "(accesso basic solmente)",
+	"mwoauthlistconsumers-oauth2-is-confidential": "Cliente es confidential",
 	"mwoauthlistconsumers-status": "Stato",
 	"mwoauth-consumer-stage-any": "omne",
 	"mwoauthlistconsumers-status-proposed": "proponite",
