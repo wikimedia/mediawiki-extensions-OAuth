@@ -318,7 +318,7 @@
 	"mwoauth-oauth-version": "Used as a label in multiple places for the field indicating OAuth version consumer is registered to use",
 	"mwoauth-oauth-version-1": "{{notranslate}}\nLabel for OAuth version 1.0a",
 	"mwoauth-oauth-version-2": "{{notranslate}}\nLabel for OAuth version 2.0",
-	"mwoauth-oauth2-is-confidential": "Used as a field label that indicates if the consumer (client) is confidential",
+	"mwoauth-oauth2-is-confidential": "Used as a field label that indicates if the consumer (client) is confidential.\n{{Identical|Client is confidential}}",
 	"mwoauth-oauth2-is-confidential-help": "Help message for the field that indicates if the consumer (client) is confidential",
 	"mwoauth-oauth2-granttypes": "Used as a label for field that determines which types of OAuth2 grants consumer can use",
 	"mwoauth-oauth2-granttype-auth-code": "Display label for grant type authorization_code",
