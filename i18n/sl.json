@@ -173,6 +173,8 @@
 	"echo-pref-tooltip-oauth-owner": "Obveščaj me o dogodkih, povezanih z aplikacijami OAuth, ki sem jih ustvaril_a.",
 	"echo-category-title-oauth-admin": "Administracija OAuth",
 	"echo-pref-tooltip-oauth-admin": "Obveščaj me o dogodkih, povezanih s pregledovanjem aplikacij OAuth.",
+	"notification-oauth-app-propose-primary-link": "Pregled aplikacije",
+	"notification-oauth-app-update-primary-link": "Pregled aplikacije",
 	"mwoauth-oauth-version": "Različica protokola OAuth",
 	"mwoauth-oauth2-granttypes": "Dovoljene vrste pooblastil OAuth2",
 	"mwoauth-oauth2-granttype-refresh-token": "Osveži žeton",

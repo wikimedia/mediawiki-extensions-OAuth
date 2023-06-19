@@ -91,5 +91,6 @@
 	"mwoauth-grants-heading": "Pyydetyt oikeudet:",
 	"right-mwoauthviewprivate": "Nähdä yksityisiä OAuth-tietoja",
 	"echo-category-title-oauth-owner": "OAuth-kehitys",
-	"notification-oauth-app-body": "Syy: $1"
+	"notification-oauth-app-body": "Syy: $1",
+	"mwoauth-oauth-version": "OAuth-protokollan versio"
 }
