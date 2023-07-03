@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth;
 use ApiBase;
 use ApiMessage;
 use ApiUsageException;
+use ErrorPageError;
 use Exception;
 use GuzzleHttp\Psr7\ServerRequest;
 use InvalidArgumentException;
@@ -28,6 +29,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use Message;
 use RecentChange;
+use RequestContext;
 use User;
 use WebRequest;
 use Wikimedia\Rdbms\DBError;
@@ -64,27 +66,44 @@ class SessionProvider
 	}
 
 	/**
-	 * Throw an exception, later
+	 * Throw an exception, later.
+	 *
+	 * During session initialization, the framework isn't quite ready to handle an exception.
+	 * Return an anonymous session, and make sure an exception gets thrown once possible.
 	 *
 	 * @param string $key Key for the error message
 	 * @param mixed ...$params Parameters as strings.
 	 * @return SessionInfo
 	 */
 	private function makeException( $key, ...$params ) {
-		// First, schedule the throwing of the exception for later when the API
-		// is ready to catch it
 		$msg = wfMessage( $key, $params );
-		$exception = ApiUsageException::newWithMessage( null, $msg );
 
-		MediaWikiServices::getInstance()->getHookContainer()->register(
-			'ApiBeforeMain',
-			// @phan-suppress-next-line PhanPluginNeverReturnFunction Closures should not get doc
-			static function () use ( $exception ) {
-				throw $exception;
-			}
-		);
+		if ( defined( 'MW_API' ) ) {
+			MediaWikiServices::getInstance()->getHookContainer()->register(
+				'ApiBeforeMain',
+				// @phan-suppress-next-line PhanPluginNeverReturnFunction Closures should not get doc
+				static function () use ( $msg ) {
+					throw ApiUsageException::newWithMessage( null, $msg );
+				}
+			);
+		} else {
+			MediaWikiServices::getInstance()->getHookContainer()->register(
+				'BeforeInitialize',
+				// @phan-suppress-next-line PhanPluginNeverReturnFunction Closures should not get doc
+				static function () use ( $msg ) {
+					RequestContext::getMain()->getOutput()->setStatusCode( 400 );
+					throw new ErrorPageError( 'errorpagetitle', $msg );
+				}
+			);
+			// Disable file cache, which would be looked up before the BeforeInitialize hook call.
+			MediaWikiServices::getInstance()->getHookContainer()->register(
+				'HTMLFileCache__useFileCache',
+				static function () {
+					return false;
+				}
+			);
+		}
 
-		// Then return an appropriate SessionInfo
 		$id = $this->hashToSessionId( 'bogus' );
 		return new SessionInfo( SessionInfo::MAX_PRIORITY, [
 			'provider' => $this,
@@ -95,15 +114,15 @@ class SessionProvider
 	}
 
 	public function provideSessionInfo( WebRequest $request ) {
-		// For some reason MWOAuth is restricted to be API-only.
-		if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) ) {
-			return null;
-		}
-
 		$oauthVersion = $this->getOAuthVersionFromRequest( $request );
 		if ( $oauthVersion === null ) {
 			// Not an OAuth request
 			return null;
+		}
+
+		// OAuth is restricted to be API-only.
+		if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) ) {
+			return $this->makeException( 'mwoauth-not-api' );
 		}
 
 		$logData = [
