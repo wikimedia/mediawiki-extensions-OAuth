@@ -250,6 +250,7 @@
 	"mwoauth-invalid-authorization-wrong-user": "The authorization headers in your request are for a different user",
 	"mwoauth-invalid-authorization-not-approved": "The app that you are trying to connect seems to be set up incorrectly. Contact the author of \"$1\" for help.",
 	"mwoauth-invalid-authorization-blocked-user": "The authorization headers in your request are for a user who is blocked",
+	"mwoauth-not-api": "OAuth can only be used with the API",
 	"mwoauth-form-description-allwikis": "Hi $1,\n\nIn order to complete your request, '''$2''' needs permission to perform the following actions on your behalf on all projects of this site:\n\n$4",
 	"mwoauth-form-description-onewiki": "Hi $1,\n\nIn order to complete your request, '''$2''' needs permission to perform the following actions on your behalf on ''$4'':\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Hi $1,\n\nIn order to complete your request, '''$2''' needs permission to access information on all projects of this site on your behalf. No changes will be made with your account.",

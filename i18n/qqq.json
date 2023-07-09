@@ -263,6 +263,7 @@
 	"mwoauth-invalid-authorization-wrong-user": "Text of the error page when the Authorization header is for the wrong user",
 	"mwoauth-invalid-authorization-not-approved": "Text of the error page when the Authorization header is for a consumer that isn't approved.\n\nParameters:\n* $1 - ...",
 	"mwoauth-invalid-authorization-blocked-user": "Text of the error page when Authorization header is for a user who is blocked",
+	"mwoauth-not-api": "Text of the error page when OAuth is used with a non-OAuth entry point such as index.php",
 	"mwoauth-form-description-allwikis": "Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf.\n\nParameters:\n* $1 - the username\n* $2 - application name\n* $3 - application publisher\n* $4 - formatted list of grants\nSee also:\n{{related|mwoauth-form-description}}",
 	"mwoauth-form-description-onewiki": "Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.\n\nParameters:\n* $1 - the username\n* $2 - application name\n* $3 - application publisher\n* $4 - wiki project name\nSee also:{{related|mwoauth-form-description}}",
 	"mwoauth-form-description-allwikis-nogrants": "Description of a form requesting the user authorize an OAuth consumer to use MediaWiki on their behalf, without any non-hidden grants.\n\nParameters:\n* $1 - the username\n* $2 - application name\n* $3 - application publisher\nSee also:\n{{related|mwoauth-form-description}}",
