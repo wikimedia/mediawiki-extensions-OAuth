@@ -7,6 +7,10 @@
 			"Eldarado"
 		]
 	},
+	"oauth": "OAuth",
+	"mwoauth-desc": "API icazəsi üçün OAuth 1.0a və OAuth 2.0 istifadəsinə icazə verir",
+	"mwoauth-nosubpage-explanation": "OAuth xarici tətbiqlərə istifadəçidən icazə aldıqdan sonra {{SITENAME}} istifadəçisini tanımağa və ya onun adından davranma icazəsi verən mexanizmdir.\n\nBu səhifənin bir şey etməsi üçün daha çox parametr tələb olunur. Əgər siz bura xarici proqramdan göndərilibsinizsə, bu, yəqin ki, həmin proqramdakı xəta ilə bağlıdır; bu zaman siz müəlliflə əlaqə saxlamalısınız.",
+	"mwoauth-verified": "Bu tətbiqə artıq sizin adınızdan MediaWiki-yə daxil olmağa icazə verilir.\n\nProssesi tamamlamaq üçün bu təsdiqlənmə dəyərini tətbiqə verin: '''$1'''",
 	"mwoauth-missing-field": "\"$1\" üçün heç bir göstərici qeyd edilməyib",
 	"mwoauth-invalid-field": "\"$1\" üçün yanlış göstərici daxil etmisiniz",
 	"mwoauth-invalid-field-generic": "Yanlış göstərici daxil etmisiniz",
@@ -24,5 +28,13 @@
 	"mwoauthmanageconsumers-disable": "Söndürülüb",
 	"mwoauthlistconsumers-status-disabled": "söndürülüb",
 	"oauthmanagemygrants": "Qoşulmuş tətbiqləri idarə et",
-	"mwoauthmanagemygrants-confirm-legend": "Qoşulmuş tətbiqin idarə edilməsi"
+	"mwoauthmanagemygrants-confirm-legend": "Qoşulmuş tətbiqin idarə edilməsi",
+	"mwoauth-form-description-allwikis": "Salam $1,\n\nSorğunuzu tamamlamaq üçün '''$2''' sizin adınızdan bu saytın bütün layihələrində aşağıdakı fəaliyyətləri yerinə yetirmək üçün icazə istəyir:\n\n$4",
+	"mwoauth-form-description-onewiki": "Salam $1,\n\nSorğunuzu tamamlamaq üçün '''$2''' sizin adınızdan '''$4''' saytında aşağıdakı fəaliyyətləri yerinə yetirmək üçün icazə istəyir:\n\n$5",
+	"mwoauth-form-description-allwikis-nogrants": "Salam $1, \n\nSorğunuzu tamamlamaq üçün, '''$2''', sizin adınızdan bu saytın bütün layihələrindəki məlumatları əldə etmək üçün icazə istəyir. Hesabınızda heç bir dəyişiklik olmayacaq.",
+	"mwoauth-form-description-onewiki-nogrants": "Salam $1, \n\nSorğunuzu tamamlamaq üçün, '''$2''', sizin adınızdan '''$4''' ilə əlaqəli məlumatları əldə etmək üçün icazə istəyir. Hesabınızda heç bir dəyişiklik olmayacaq.",
+	"mwoauth-form-description-onewiki-privateinfo": "Salam $1, \n\nSorğunuzu tamamlamaq üçün, '''$2''', sizin adınızdan '''$4''' saytındakı (həqiqi adınız və e-poçt ünvanı da daxil olmaqla) məlumatları əldə etmək üçün icazə istəyir. Hesabınızda heç bir dəyişiklik olmayacaq.",
+	"mwoauth-form-description-allwikis-privateinfo-norealname": "Salam $1, \n\nSorğunuzu tamamlamaq üçün, '''$2''', sizin adınızdan bu saytın bütün layihələrindəki (e-poçt ünvanı da daxil olmaqla) sizin haqqınızdakı məlumatları əldə etmək üçün icazə istəyir. Hesabınızda heç bir dəyişiklik olmayacaq.",
+	"mwoauth-form-description-onewiki-privateinfo-norealname": "Salam $1, \n\nSorğunuzu tamamlamaq üçün, '''$2''', sizin adınızdan '''$4''' saytındakı (e-poçt ünvanı da daxil olmaqla) məlumatları əldə etmək üçün icazə istəyir. Hesabınızda heç bir dəyişiklik olmayacaq.",
+	"mwoauth-form-button-approve": "İcazə ver"
 }
