@@ -269,6 +269,7 @@
 	"mwoauth-invalid-authorization-wrong-user": "Les entêtes d’autorisation dans votre requête concernent un autre utilisateur.",
 	"mwoauth-invalid-authorization-not-approved": "L’application à laquelle vous essayez de vous connecter semble mal paramétrée, contactez l’auteur de $1 pour obtenir de l’aide.",
 	"mwoauth-invalid-authorization-blocked-user": "Les entêtes d’autorisation dans votre requête concernent un utilisateur qui est bloqué.",
+	"mwoauth-not-api": "OAuth ne peut être utilisé qu’avec l’API",
 	"mwoauth-form-description-allwikis": "Bonjour $1,\n\nAfin de finaliser votre demande, '''$2''' a besoin de l'autorisation pour effectuer les actions suivantes en votre nom sur tous les projets de ce site :\n\n$4",
 	"mwoauth-form-description-onewiki": "Bonjour $1,\n\nAfin de finaliser votre demande, '''$2''' a besoin de votre permission pour effectuer les actions suivantes en votre nom sur ''$4'' :\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Bonjour $1,\n\nAfin de finaliser votre demande, '''$2''' a besoin de votre permission pour accéder en votre nom aux informations concernant tous les projets de ce site. Aucune modification ne sera effectuée avec votre compte.",
