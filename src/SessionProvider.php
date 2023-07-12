@@ -122,7 +122,9 @@ class SessionProvider
 
 		// OAuth is restricted to be API-only.
 		if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) ) {
-			return $this->makeException( 'mwoauth-not-api' );
+			// TODO return $this->makeException( 'mwoauth-not-api' );
+			// (but Special:OAuth needs to keep working, T341656)
+			return null;
 		}
 
 		$logData = [
