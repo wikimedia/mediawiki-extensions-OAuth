@@ -250,6 +250,7 @@
 	"mwoauth-invalid-authorization-wrong-user": "Le capites de autorisation in tu requesta es pro un altere usator",
 	"mwoauth-invalid-authorization-not-approved": "Le application que tu tenta connecter sembla mal configurate. Contacta le autor de \"$1\" pro adjuta.",
 	"mwoauth-invalid-authorization-blocked-user": "Le capites de autorisation in tu requesta es pro un usator blocate",
+	"mwoauth-not-api": "OAuth pote solmente esser usate con le API",
 	"mwoauth-form-description-allwikis": "Salute $1,\n\nA fin de concluder tu requesta, '''$2''' require le permission de exequer le sequente actiones in tu nomine sur tote le projectos de iste sito:\n\n$4",
 	"mwoauth-form-description-onewiki": "Salute $1,\n\nA fin de concluder tu requesta, '''$2''' require le permission de exequer le sequente actiones in tu nomine sur ''$4'':\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Salute $1,\n\nA fin de concluder tu requesta, '''$2''' require le permission de acceder in tu nomine a informationes sur tote le projectos de iste sito. Nulle modification essera facite con tu conto.",

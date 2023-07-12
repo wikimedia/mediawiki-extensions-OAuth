@@ -255,6 +255,7 @@
 	"mwoauth-invalid-authorization-wrong-user": "כותרות האישור בבקשה שלך מיועדות למשתמש אחר",
 	"mwoauth-invalid-authorization-not-approved": "נראה שהיישום שניסית לחבר מוגדר באופן שגוי. נא ליצור קשר עם היוצר של $1 כדי לקבל עזרה.",
 	"mwoauth-invalid-authorization-blocked-user": "כותרות האישור בבקשה שלך הן עבור משתמש חסום",
+	"mwoauth-not-api": "ניתן להשתמש ב־OAuth רק עם ה־API",
 	"mwoauth-form-description-allwikis": "שלום $1,\n\nכדי לבצע את בקשתך, היישום '''$2''' זקוק להרשאה לבצע בשמך את הפעולות הבאות באתר הזה:\n\n$4",
 	"mwoauth-form-description-onewiki": "שלום $1,\n\nכדי לבצע את בקשתך, היישום '''$2''' זקוק להרשאות לעשות בשמך את הפעולות הבאות במיזם \"$4\":\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "שלום $1,\n\nכדי לבצע את בקשתך, היישום '''$2''' זקוק להרשאה לקבל גישה למידע בכל המיזמים בשמך. זה לא יעשה שום שינוי בחשבון שלך.",

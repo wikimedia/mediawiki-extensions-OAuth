@@ -152,6 +152,7 @@
 	"mwoauthserver-bad-consumer-version": "Oprostite, nekaj je šlo narobe. Za pomoč pri tem boste morali [$1 kontaktirati] avtorja aplikacije.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Napačna različica OAuth, $2</span>",
 	"mwoauthserver-invalid-user": "Za uporabo povezane aplikacije na tem spletnem mestu morate imeti račun v vseh projektih. Ko boste imeli račun v vseh projektih, lahko poskusite »$1« znova povezati.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Potrebna je enotna prijava, $2</span>",
 	"mwoauth-invalid-authorization-title": "Napaka avtorizacije OAuth",
+	"mwoauth-not-api": "OAuth se lahko uporablja samo z API-jem",
 	"mwoauth-form-description-allwikis": "Pozdravljeni, $1,\n\nza dokončanje zahtevka potrebuje '''$2''' dovoljenje, da lahko v vašem imenu v vseh projektih tega spletišča izvaja naslednja dejanja:\n\n\n$4",
 	"mwoauth-form-description-onewiki": "Pozdravljeni, $1,\n\nza dokončanje zahtevka potrebuje '''$2''' dovoljenje, da lahko v projektu '''$4''' v vašem imenu izvaja naslednja dejanja:\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Pozdravljeni, $1,\n\nza dokončanje zahtevka potrebuje '''$2''' dovoljenje, da lahko v vašem imenu dostopa do informacij v vseh projektih tega spletišča. Z vašim računom ne bo opravljena nobena sprememba.",
