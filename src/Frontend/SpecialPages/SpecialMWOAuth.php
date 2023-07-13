@@ -100,6 +100,11 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 
 		$config = $this->getConfig();
 
+		// 'raw' for plaintext, 'html' or 'json'.
+		// For the initiate and token endpoints, 'raw' also handles the formatting required by
+		// https://oauth.net/core/1.0a/#response_parameters
+		// Other than that, there is no reason to use anything but JSON, but the others are
+		// supported for B/C.
 		$format = $request->getVal( 'format', 'raw' );
 		'@phan-var string $format';
 
@@ -112,6 +117,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 
 			$this->determineOAuthVersion( $request );
 			switch ( $subpage ) {
+				// Return a request token (first leg of 3-legged OAuth 1 handshake).
 				case 'initiate':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
 					$oauthServer = Utils::newMWOAuthServer();
@@ -122,6 +128,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$this->returnToken( $token, $format );
 					break;
 
+				// Show an authorization dialog to the user where they can grant permissions
+				// to the app. Used in OAuth 2, by the oauth2/authorize REST endpoint.
 				case 'approve':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_2 );
 					$format = 'html';
@@ -144,6 +152,10 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 
 					break;
 
+				// Show an authorization dialog to the user where they can grant permissions
+				// to the app (second leg of 3-legged OAuth 1 handshake).
+				// 'authenticate' might skip user interaction if the grants are
+				// limited and the user already authorized in the past.
 				case 'authorize':
 				case 'authenticate':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
@@ -171,6 +183,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					}
 					break;
 
+				// Return an access token (third leg of 3-legged OAuth 1 handshake).
 				case 'token':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
 					$oauthServer = Utils::newMWOAuthServer();
@@ -200,6 +213,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$this->returnToken( $token, $format );
 					break;
 
+				// Can be used as a return URL for non-web-based OAuth 1 applications which cannot
+				// provide their own return URL. It just displays the parameters that would
+				// normally be passed to the application via the return URL.
 				case 'verified':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
 					$format = 'html';
@@ -224,6 +240,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					);
 					break;
 
+				// Was used to list grants and their descriptions. With grants now in core,
+				// it just redirects to Special:ListGrants.
 				case 'grants':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
 					// Backwards compatibility
@@ -231,6 +249,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$output->redirect( $listGrants->getFullURL() );
 					break;
 
+				// Return a JWT with the identity of the user, based on the OAuth signature.
+				// Our homegrown OIDC equivalent for OAuth 1.
 				case 'identify':
 					$this->assertOAuthVersion( Consumer::OAUTH_VERSION_1 );
 					// we only return JWT, so we assume json
@@ -289,6 +309,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$this->outputJWT( $localUser, $consumer, $oauthRequest, $format, $access );
 					break;
 
+				// Redirect to the REST API. A hack to reuse the OAuth 1 codebase and entry
+				// point for OAuth 2 workflows.
 				case 'rest_redirect':
 					$query = $this->getRequest()->getQueryValues();
 					if ( !array_key_exists( 'rest_url', $query ) ) {
@@ -309,6 +331,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$output->addWikiMsg( 'mwoauth-nosubpage-explanation' );
 					break;
 
+				// Typo in app code? Show an error.
 				default:
 					$format = $request->getVal( 'format', 'html' );
 					'@phan-var string $format';
