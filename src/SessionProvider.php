@@ -25,6 +25,7 @@ use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\UserInfo;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use Message;
@@ -122,9 +123,23 @@ class SessionProvider
 
 		// OAuth is restricted to be API-only.
 		if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) ) {
-			// TODO return $this->makeException( 'mwoauth-not-api' );
-			// (but Special:OAuth needs to keep working, T341656)
-			return null;
+			$globalRequest = RequestContext::getMain()->getRequest();
+			if ( $request !== $globalRequest ) {
+				// We are looking at something other than the global request. No easy way to
+				// find out the title, and showing an error should be handled in the global
+				// request anyway. Bail out.
+				return null;
+			}
+			// The global Title object is not set up yet.
+			$title = Title::newFromText( $request->getText( 'title' ) );
+			if ( $title && $title->isSpecial( 'OAuth' ) ) {
+				// Some Special:OAuth subpages expect an OAuth request header, but process it
+				// manually, not via SessionManager. We mustn't break those.
+				// TODO: this can probably be limited to /token and /identify
+				return null;
+			}
+
+			return $this->makeException( 'mwoauth-not-api' );
 		}
 
 		$logData = [
