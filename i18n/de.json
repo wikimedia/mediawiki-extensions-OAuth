@@ -15,7 +15,8 @@
 			"Zabe",
 			"Talex42",
 			"Brettchenweber",
-			"Johannnes89"
+			"Johannnes89",
+			"Justman10000"
 		]
 	},
 	"mwoauth-desc": "Ermöglicht die Nutzung von OAuth 1.0a und OAuth 2.0 zur API-Autorisierung",
@@ -310,6 +311,7 @@
 	"mwoauth-oauth-version": "OAuth-Protokoll-Version",
 	"mwoauth-oauth2-granttype-auth-code": "Autorisierungscode",
 	"mwoauth-oauth2-granttype-refresh-token": "Token aktualisieren",
+	"mwoauth-oauth2-error-create-at-no-user-approval": "Das Zugriffstoken kann nicht erstellt werden, da der Benutzer die Ausstellung dieses Zugriffstokens nicht genehmigt hat",
 	"mwoauth-oauth-unsupported-version": "Dieser Endpunkt ist für OAuth-Version $1 nicht zulässig",
 	"mwoauth-oauth2-unable-to-retrieve-access-token": "Zugriffstoken konnte nicht abgerufen werden: $1",
 	"mwoauth-oauth2-error-server-error": "Der Autorisierungsserver ist auf eine unerwartete Bedingung gestoßen, die ihn daran hinderte, die Anfrage zu erfüllen.",
