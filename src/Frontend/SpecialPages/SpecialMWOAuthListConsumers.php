@@ -143,6 +143,14 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 
 		$out->addHTML( UIUtils::generateInfoTable( $data, $this->getContext() ) );
 
+		$rcLink = $this->getLinkRenderer()->makeKnownLink(
+			SpecialPage::getTitleFor( 'Recentchanges' ),
+			$this->msg( 'mwoauthlistconsumers-rclink' )->plain(),
+			[],
+			[ 'tagfilter' => Utils::getTagName( $cmrAc->getId() ) ]
+		);
+		$out->addHTML( "<p>$rcLink</p>" );
+
 		$this->addNavigationSubtitle( $cmrAc );
 
 		if ( Utils::isCentralWiki() ) {
