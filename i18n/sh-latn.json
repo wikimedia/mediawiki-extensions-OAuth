@@ -1,8 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
-			"Conquistador",
-			"Vlad5250"
+			"Winston Sung"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "OAuth potrošač koji se koristi za izvođenje ove promjene",
