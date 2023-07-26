@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"mwoauth-form-button-approve": "允許",
+	"mwoauth-form-button-cancel": "取消"
+}

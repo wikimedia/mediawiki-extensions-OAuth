@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"mwoauth-prefs-managegrants": "連咗嘅應用程式：",
+	"mwoauth-prefs-managegrantslink": "管理{{PLURAL:$1|$1個|$1個|0=}}連咗嘅應用程式",
+	"mwoauthlistconsumers-status": "狀態"
+}
