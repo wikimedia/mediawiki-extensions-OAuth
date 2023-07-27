@@ -4,5 +4,12 @@
 			"Bosogo"
 		]
 	},
-	"mwoauth-form-button-cancel": "Жокко чыгаруу"
+	"mwoauth-consumer-reason": "Себеп:",
+	"mwoauthconsumerregistration-description": "Сыпаттама",
+	"mwoauthmanageconsumers-description": "Сыпаттама",
+	"mwoauthmanageconsumers-reason": "Себеп:",
+	"mwoauthlistconsumers-description": "Сыпаттама",
+	"mwoauthmanagemygrants-description": "Сыпаттама",
+	"mwoauth-form-button-cancel": "Жокко чыгаруу",
+	"notification-oauth-app-body": "Себеп: $1"
 }
