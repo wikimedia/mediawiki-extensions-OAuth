@@ -118,7 +118,7 @@ class ListClients extends SimpleHandler {
 	 * @return array the results
 	 */
 	private function getDbResults( int $centralId ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 
 		$params = $this->getValidatedParams();
 		$limit = $params['limit'];

@@ -59,7 +59,7 @@ class Utils {
 			$wikiId = false;
 		}
 
-		return $lbFactory->getMainLB( $wikiId )->getConnectionRef(
+		return $lbFactory->getMainLB( $wikiId )->getConnection(
 			$index, [], $wikiId );
 	}
 
