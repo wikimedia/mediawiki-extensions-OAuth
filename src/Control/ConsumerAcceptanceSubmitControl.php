@@ -31,7 +31,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * This handles the core logic of submitting/approving application
@@ -42,7 +42,7 @@ use Wikimedia\Rdbms\DBConnRef;
  * @TODO: improve error messages
  */
 class ConsumerAcceptanceSubmitControl extends SubmitControl {
-	/** @var DBConnRef */
+	/** @var IDatabase */
 	protected $dbw;
 
 	/** @var int */
@@ -51,11 +51,11 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 	/**
 	 * @param IContextSource $context
 	 * @param array $params
-	 * @param DBConnRef $dbw Result of Utils::getCentralDB( DB_PRIMARY )
+	 * @param IDatabase $dbw Result of Utils::getCentralDB( DB_PRIMARY )
 	 * @param int $oauthVersion
 	 */
 	public function __construct(
-		IContextSource $context, array $params, DBConnRef $dbw, $oauthVersion
+		IContextSource $context, array $params, IDatabase $dbw, $oauthVersion
 	) {
 		parent::__construct( $context, $params );
 		$this->dbw = $dbw;

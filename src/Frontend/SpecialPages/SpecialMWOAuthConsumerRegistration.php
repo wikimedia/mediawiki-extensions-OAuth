@@ -49,7 +49,7 @@ use stdClass;
 use User;
 use UserBlockedError;
 use UserNotLoggedIn;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
 use Xml;
 
 /**
@@ -381,11 +381,11 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param IDatabase $db
 	 * @param stdClass $row
 	 * @return string
 	 */
-	public function formatRow( DBConnRef $db, $row ) {
+	public function formatRow( IDatabase $db, $row ) {
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromRow( $db, $row ), $this->getContext() );
 		$cmrKey = $cmrAc->getConsumerKey();

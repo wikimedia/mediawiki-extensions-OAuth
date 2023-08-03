@@ -11,13 +11,13 @@ use MediaWiki\Logger\LoggerFactory;
 use Message;
 use MWCryptRand;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
 
 class MWOAuthDataStore extends OAuthDataStore {
-	/** @var DBConnRef DB for the consumer/grant registry */
+	/** @var IDatabase DB for the consumer/grant registry */
 	protected $centralReplica;
 
-	/** @var DBConnRef|null Primary DB for repeated lookup in case of replication lag problems;
+	/** @var IDatabase|null Primary DB for repeated lookup in case of replication lag problems;
 	 *    null if there is no separate primary DB and replica DB
 	 */
 	protected $centralPrimary;
@@ -32,18 +32,18 @@ class MWOAuthDataStore extends OAuthDataStore {
 	protected $logger;
 
 	/**
-	 * @param DBConnRef $centralReplica Central DB replica
-	 * @param DBConnRef|null $centralPrimary Central DB primary (if different)
+	 * @param IDatabase $centralReplica Central DB replica
+	 * @param IDatabase|null $centralPrimary Central DB primary (if different)
 	 * @param BagOStuff $tokenCache
 	 * @param BagOStuff $nonceCache
 	 */
 	public function __construct(
-		DBConnRef $centralReplica,
+		IDatabase $centralReplica,
 		$centralPrimary,
 		BagOStuff $tokenCache,
 		BagOStuff $nonceCache
 	) {
-		if ( $centralPrimary !== null && !( $centralPrimary instanceof DBConnRef ) ) {
+		if ( $centralPrimary !== null && !( $centralPrimary instanceof IDatabase ) ) {
 			throw new InvalidArgumentException(
 				__METHOD__ . ': $centralPrimary must be a DB or null'
 			);

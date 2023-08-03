@@ -11,9 +11,9 @@ use Message;
 use MWException;
 use Psr\Log\LoggerInterface;
 use stdClass;
-use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBReadOnlyError;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -82,11 +82,11 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param IDatabase $db
 	 * @param array|stdClass $row
 	 * @return static
 	 */
-	final public static function newFromRow( DBConnRef $db, $row ) {
+	final public static function newFromRow( IDatabase $db, $row ) {
 		$class = static::getConsumerClass( (array)$row );
 		$consumer = new $class();
 		$consumer->loadFromRow( $db, $row );
@@ -94,13 +94,13 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param IDatabase $db
 	 * @param int $id
 	 * @param int $flags MWOAuthDAO::READ_* bitfield
 	 * @return static|bool Returns false if not found
 	 * @throws DBError
 	 */
-	final public static function newFromId( DBConnRef $db, $id, $flags = 0 ) {
+	final public static function newFromId( IDatabase $db, $id, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
 			[ static::getIdColumn() => (int)$id ],
@@ -176,11 +176,11 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	}
 
 	/**
-	 * @param DBConnRef $dbw
+	 * @param IDatabase $dbw
 	 * @return bool
 	 * @throws DBReadOnlyError
 	 */
-	public function save( DBConnRef $dbw ) {
+	public function save( IDatabase $dbw ) {
 		global $wgMWOAuthReadOnly;
 
 		$uniqueId = $this->getIdValue();
@@ -228,11 +228,11 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	}
 
 	/**
-	 * @param DBConnRef $dbw
+	 * @param IDatabase $dbw
 	 * @return bool
 	 * @throws DBReadOnlyError
 	 */
-	public function delete( DBConnRef $dbw ) {
+	public function delete( IDatabase $dbw ) {
 		global $wgMWOAuthReadOnly;
 
 		$uniqueId = $this->getIdValue();
@@ -370,11 +370,11 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	abstract protected function normalizeValues();
 
 	/**
-	 * @param DBConnRef $db
+	 * @param IDatabase $db
 	 * @param stdClass|array $row
 	 * @return void
 	 */
-	final protected function loadFromRow( DBConnRef $db, $row ) {
+	final protected function loadFromRow( IDatabase $db, $row ) {
 		$row = $this->decodeRow( $db, (array)$row );
 		$values = [];
 		foreach ( static::getFieldColumnMap() as $field => $column ) {
@@ -389,28 +389,28 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	 * Subclasses should make this to encode DB fields (e.g. timestamps).
 	 * This must also flatten any PHP data structures into flat values.
 	 *
-	 * @param DBConnRef $db
+	 * @param IDatabase $db
 	 * @param array $row
 	 * @return array
 	 */
-	abstract protected function encodeRow( DBConnRef $db, $row );
+	abstract protected function encodeRow( IDatabase $db, $row );
 
 	/**
 	 * Subclasses should make this to decode DB fields (e.g. timestamps).
 	 * This can also expand some flat values (e.g. JSON) into PHP data structures.
 	 * Note: this does not need to handle what normalizeValues() already does.
 	 *
-	 * @param DBConnRef $db
+	 * @param IDatabase $db
 	 * @param array $row
 	 * @return array
 	 */
-	abstract protected function decodeRow( DBConnRef $db, $row );
+	abstract protected function decodeRow( IDatabase $db, $row );
 
 	/**
-	 * @param DBConnRef $db
+	 * @param IDatabase $db
 	 * @return array
 	 */
-	final protected function getRowArray( DBConnRef $db ) {
+	final protected function getRowArray( IDatabase $db ) {
 		$row = [];
 		foreach ( static::getFieldColumnMap() as $field => $column ) {
 			$row[$column] = $this->$field;

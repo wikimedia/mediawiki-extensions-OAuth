@@ -16,7 +16,6 @@ use RequestContext;
 use Title;
 use User;
 use WebRequest;
-use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -46,7 +45,7 @@ class Utils {
 
 	/**
 	 * @param int $index DB_PRIMARY/DB_REPLICA
-	 * @return DBConnRef
+	 * @return IDatabase
 	 */
 	public static function getCentralDB( $index ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
@@ -88,10 +87,10 @@ class Utils {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param IDatabase $db
 	 * @return int[]
 	 */
-	public static function getConsumerStateCounts( DBConnRef $db ) {
+	public static function getConsumerStateCounts( IDatabase $db ) {
 		$res = $db->select( 'oauth_registered_consumer',
 			[ 'oarc_stage', 'count' => 'COUNT(*)' ],
 			[],
@@ -159,10 +158,10 @@ class Utils {
 	}
 
 	/**
-	 * @param DBConnRef $dbw
+	 * @param IDatabase $dbw
 	 * @return void
 	 */
-	public static function runAutoMaintenance( DBConnRef $dbw ) {
+	public static function runAutoMaintenance( IDatabase $dbw ) {
 		global $wgMWOAuthRequestExpirationAge;
 
 		if ( $wgMWOAuthRequestExpirationAge <= 0 ) {

@@ -28,7 +28,7 @@ use StatusValue;
 use Title;
 use UnexpectedValueException;
 use User;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -65,7 +65,7 @@ class ConsumerSubmitControl extends SubmitControl {
 	 */
 	public static $actions = [ 'propose', 'update', 'approve', 'reject', 'disable', 'reenable' ];
 
-	/** @var DBConnRef */
+	/** @var IDatabase */
 	protected $dbw;
 
 	/**
@@ -77,9 +77,9 @@ class ConsumerSubmitControl extends SubmitControl {
 	/**
 	 * @param IContextSource $context
 	 * @param array $params
-	 * @param DBConnRef $dbw Result of Utils::getCentralDB( DB_PRIMARY )
+	 * @param IDatabase $dbw Result of Utils::getCentralDB( DB_PRIMARY )
 	 */
-	public function __construct( IContextSource $context, array $params, DBConnRef $dbw ) {
+	public function __construct( IContextSource $context, array $params, IDatabase $dbw ) {
 		parent::__construct( $context, $params );
 		$this->dbw = $dbw;
 	}
@@ -571,17 +571,17 @@ class ConsumerSubmitControl extends SubmitControl {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param IDatabase $db
 	 * @param int $userId
 	 * @return Title
 	 */
-	protected function getLogTitle( DBConnRef $db, $userId ) {
+	protected function getLogTitle( IDatabase $db, $userId ) {
 		$name = Utils::getCentralUserNameFromId( $userId );
 		return Title::makeTitleSafe( NS_USER, $name );
 	}
 
 	/**
-	 * @param DBConnRef $dbw
+	 * @param IDatabase $dbw
 	 * @param Consumer $cmr
 	 * @param string $action
 	 * @param User $performer

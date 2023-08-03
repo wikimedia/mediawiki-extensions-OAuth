@@ -32,7 +32,7 @@ use Message;
 use MWRestrictions;
 use SpecialPage;
 use User;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Representation of an OAuth consumer.
@@ -209,12 +209,12 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param IDatabase $db
 	 * @param string|null $key
 	 * @param int $flags MWOAuthConsumer::READ_* bitfield
 	 * @return Consumer|false
 	 */
-	public static function newFromKey( DBConnRef $db, $key, $flags = 0 ) {
+	public static function newFromKey( IDatabase $db, $key, $flags = 0 ) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
 			[ 'oarc_consumer_key' => (string)$key ],
@@ -230,7 +230,7 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param DBConnRef $db
+	 * @param IDatabase $db
 	 * @param string $name
 	 * @param string $version
 	 * @param int $userId Central user ID
@@ -238,7 +238,7 @@ abstract class Consumer extends MWOAuthDAO {
 	 * @return Consumer|bool
 	 */
 	public static function newFromNameVersionUser(
-		DBConnRef $db, $name, $version, $userId, $flags = 0
+		IDatabase $db, $name, $version, $userId, $flags = 0
 	) {
 		$row = $db->selectRow( static::getTable(),
 			array_values( static::getFieldColumnMap() ),
@@ -721,7 +721,7 @@ abstract class Consumer extends MWOAuthDAO {
 		$this->oauth2IsConfidential = (bool)$this->oauth2IsConfidential;
 	}
 
-	protected function encodeRow( DBConnRef $db, $row ) {
+	protected function encodeRow( IDatabase $db, $row ) {
 		// For compatibility with other wikis in the farm, un-remap some grants
 		foreach ( self::$mapBackCompatGrants as $old => $new ) {
 			while ( ( $i = array_search( $new, $row['oarc_grants'], true ) ) !== false ) {
@@ -741,7 +741,7 @@ abstract class Consumer extends MWOAuthDAO {
 		return $row;
 	}
 
-	protected function decodeRow( DBConnRef $db, $row ) {
+	protected function decodeRow( IDatabase $db, $row ) {
 		$row['oarc_registration'] = wfTimestamp( TS_MW, $row['oarc_registration'] );
 		$row['oarc_stage'] = (int)$row['oarc_stage'];
 		$row['oarc_stage_timestamp'] = wfTimestamp( TS_MW, $row['oarc_stage_timestamp'] );
