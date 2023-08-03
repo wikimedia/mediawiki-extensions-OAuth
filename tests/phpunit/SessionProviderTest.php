@@ -30,6 +30,7 @@ use RecentChange;
 /**
  * @covers \MediaWiki\Extension\OAuth\SessionProvider
  * @group OAuth
+ * @group Database
  * @license GPL-2.0-or-later
  */
 class SessionProviderTest extends MediaWikiIntegrationTestCase {

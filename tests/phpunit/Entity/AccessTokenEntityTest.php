@@ -11,6 +11,7 @@ use MediaWikiIntegrationTestCase;
 /**
  * @covers \MediaWiki\Extension\OAuth\Entity\AccessTokenEntity
  * @group OAuth
+ * @group Database
  */
 class AccessTokenEntityTest extends MediaWikiIntegrationTestCase {
 

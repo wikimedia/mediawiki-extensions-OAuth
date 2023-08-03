@@ -15,6 +15,7 @@ use StatusValue;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl
+ * @group Database
  */
 class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 
@@ -51,7 +52,7 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 		$user->saveSettings();
 		$context->setUser( $user );
 
-		$dbw = $this->getDb( DB_PRIMARY );
+		$dbw = $this->getDb();
 		$control = new ConsumerSubmitControl( $context, [], $dbw );
 		$control->registerValidators( [] );
 		$control->setInputParameters( $data );

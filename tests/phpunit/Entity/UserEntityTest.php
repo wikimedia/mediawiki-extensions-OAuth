@@ -8,6 +8,7 @@ use MediaWikiIntegrationTestCase;
 /**
  * @covers \MediaWiki\Extension\OAuth\Entity\UserEntity
  * @group OAuth
+ * @group Database
  */
 class UserEntityTest extends MediaWikiIntegrationTestCase {
 

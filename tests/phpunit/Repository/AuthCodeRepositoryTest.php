@@ -12,6 +12,7 @@ use MediaWikiIntegrationTestCase;
 /**
  * @covers \MediaWiki\Extension\OAuth\Repository\AuthCodeRepository
  * @group OAuth
+ * @group Database
  */
 class AuthCodeRepositoryTest extends MediaWikiIntegrationTestCase {
 	/** @var AuthCodeEntity */
