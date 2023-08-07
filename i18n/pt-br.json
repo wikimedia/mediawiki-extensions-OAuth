@@ -11,7 +11,9 @@
 			"Leonardo9387",
 			"Luckas",
 			"Opraco",
-			"Rodrigo codignoli"
+			"Rodrigo codignoli",
+			"Albertoleoncio",
+			"Eduardoaddad"
 		]
 	},
 	"oauth": "OAuth",
@@ -204,7 +206,7 @@
 	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Suas}} ações por este aplicativo",
 	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|propos}} um consumidor da OAuth (chave do consumidor $4)",
 	"logentry-mwoauthconsumer-update": "$1 {{GENDER:$2|atualizou}} um consumidor OAuth (chave do consumidor $4)",
-	"logentry-mwoauthconsumer-approve": "$1 {{GENDER:$2|aprovOU}} uma chave de consumidor OAuth por $3 (chave do consumidor $4)",
+	"logentry-mwoauthconsumer-approve": "$1 {{GENDER:$2|aprovou}} uma chave de consumidor OAuth por $3 (chave do consumidor $4)",
 	"logentry-mwoauthconsumer-reject": "$1 {{GENDER:$2|rejeitou}} um consumidor da OAuth por $3 (chave do consumidor $4)",
 	"logentry-mwoauthconsumer-disable": "$1 {{GENDER:$2|desativou}} uma chave de consumidor OAuth por $3 (chave do consumidor $4)",
 	"logentry-mwoauthconsumer-reenable": "$1 {{GENDER:$2|reativou}} um consumidor OAuth por $3 (chave do consumidor $4)",
