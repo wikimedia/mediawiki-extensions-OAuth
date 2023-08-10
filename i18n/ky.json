@@ -4,12 +4,18 @@
 			"Bosogo"
 		]
 	},
+	"mwoauth-prefs-managegrants": "Туташкан колдонмолор:",
 	"mwoauth-consumer-reason": "Себеп:",
+	"mwoauth-consumer-email-unconfirmed": "Аккаунтуңуздун электрондук почтасы ырастала элек.",
 	"mwoauthconsumerregistration-description": "Сыпаттама",
+	"mwoauthconsumerregistration-stage": "Макам",
+	"mwoauthconsumerregistration-manage": "тескөө",
 	"mwoauthmanageconsumers-description": "Сыпаттама",
 	"mwoauthmanageconsumers-reason": "Себеп:",
 	"mwoauthlistconsumers-description": "Сыпаттама",
+	"oauthmanagemygrants": "Туташкан колдонмолорду тескөө",
 	"mwoauthmanagemygrants-description": "Сыпаттама",
+	"mwoauthmanagemygrants-confirm-legend": "Туташкан колдонмолорду тескөө",
 	"mwoauth-form-button-cancel": "Жокко чыгаруу",
 	"notification-oauth-app-body": "Себеп: $1"
 }
