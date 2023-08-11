@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"A2093064",
+			"CrownedWharf566",
 			"Cwek",
 			"Diskdance",
 			"Duolaimi",
@@ -251,7 +252,7 @@
 	"mwoauthdatastore-bad-verifier": "提交的验证代码无效。",
 	"mwoauthdatastore-invalid-token-type": "请求令牌的类型无效。",
 	"mwoauthgrants-general-error": "您的OAuth请求中存在错误。",
-	"mwoauthserver-bad-consumer": "“$1”未被批准作为可连接的应用程序。请[$2 联络]应用程序作者获得帮助。\n\n<span class=\"plainlinks mw-mwoautherror-details\">已连接的OAuth应用程序未获批准，$3</span>",
+	"mwoauthserver-bad-consumer": "“$1”未被批准作为可连接的应用程序。请[$2 联络]应用程序作者获得帮助。\n\n<span class=\"plainlinks mw-mwoautherror-details\">已连接的OAuth应用程序未获批准</span>",
 	"mwoauthserver-bad-consumer-key": "抱歉，此程序连接时出现一些错误。\n\n<span class=\"plainlinks mw-mwoautherror-details\">未知的OAuth密钥，$1</span>",
 	"mwoauthserver-insufficient-rights": "您的账户不允许使用连接的应用程序，请联系您的网站管理员了解原因。\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth用户权限不足，$1</span>",
 	"mwoauthserver-invalid-request-token": "您的申请中有无效令牌。",
