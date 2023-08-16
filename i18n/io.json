@@ -55,6 +55,7 @@
 	"mwoauthmanageconsumers-reason": "Motivo:",
 	"oauthlistconsumers": "Listar utensili OAuth",
 	"mwoauthlistconsumers-name": "Nomo di la programo ''app''",
+	"mwoauthlistconsumers-description": "Deskripto",
 	"mwoauth-consumer-stage-any": "irga",
 	"mwoauthlistconsumers-status-approved": "aprobita",
 	"mwoauthlistconsumers-status-disabled": "sen efekto",
