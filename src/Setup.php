@@ -4,9 +4,9 @@ namespace MediaWiki\Extension\OAuth;
 
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Hook\TestCanonicalRedirectHook;
+use MediaWiki\Title\Title;
 use OutputPage;
 use RequestContext;
-use Title;
 use WebRequest;
 
 /**

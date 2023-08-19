@@ -24,9 +24,9 @@ namespace MediaWiki\Extension\OAuth\Frontend\Pagers;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageMyGrants;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use ReverseChronologicalPager;
 use stdClass;
-use Title;
 
 /**
  * Query to list out consumers that have an access token for this user

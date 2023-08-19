@@ -36,13 +36,13 @@ use MediaWiki\Extension\OAuth\Frontend\Pagers\ManageConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsLocalization;
+use MediaWiki\Title\Title;
 use MWRestrictions;
 use OOUI\HtmlSnippet;
 use PermissionsError;
 use SpecialPage;
 use Status;
 use stdClass;
-use Title;
 use Wikimedia\Rdbms\IDatabase;
 use Xml;
 
