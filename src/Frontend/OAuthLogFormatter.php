@@ -6,8 +6,8 @@ use LogEntry;
 use LogFormatter;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Message;
-use Title;
 
 /**
  * Formatter for OAuth log events

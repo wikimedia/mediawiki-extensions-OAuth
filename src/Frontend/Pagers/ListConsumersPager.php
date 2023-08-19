@@ -6,8 +6,8 @@ use AlphabeticPager;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthListConsumers;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use stdClass;
-use Title;
 
 /**
  * (c) Aaron Schulz 2013, GPL
