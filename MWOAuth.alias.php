@@ -43,6 +43,15 @@ $specialPageAliases['bgn'] = [
 	'OAuthManageMyGrants' => [ 'نی_OAuth_ئی_بخش_یی_مدیریت' ],
 ];
 
+/** Bengali (বাংলা) */
+$specialPageAliases['bn'] = [
+	'OAuthConsumerRegistration' => [ 'ওআউথ_গ্ৰাহক_নিবন্ধন', 'ওআউথ_ভোক্তা_নিবন্ধন', 'ওআউথ_নিবন্ধন' ],
+	'OAuthManageConsumers' => [ 'ওআউথ_গ্ৰাহক_নিয়ন্ত্রণ', 'ওআউথ_ভোক্তা_নিয়ন্ত্রণ' ],
+	'OAuthListConsumers' => [ 'ওআউথ_গ্ৰাহকের_তালিকা', 'ওআউথ_ভোক্তার_তালিকা' ],
+	'OAuthManageMyGrants' => [ 'ওআউথ_আমার_অনুমোদন_পরিচালনা', 'ওআউথ_অনুমোদন' ],
+	'OAuth' => [ 'ওআউথ', 'মিডিয়াউইকি_ওআউথ' ],
+];
+
 /** Czech (čeština) */
 $specialPageAliases['cs'] = [
 	'OAuthConsumerRegistration' => [ 'Registrace_aplikace_OAuth' ],
