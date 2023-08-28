@@ -278,7 +278,7 @@
 	"action-mwoauthviewprivate": "לצפות בנתונים פרטיים של OAuth",
 	"action-mwoauthviewsuppressed": "לצפות בצרכני OAuth שהועלמו",
 	"mwoauth-tag-reserved": "תגים שמתחילים ב־<code dir=\"ltr\">OAuth CID:</code> שמורים לשימוש על־ידי OAuth.",
-	"mwoauth-botpasswords-note": "<strong>לתשומת לבך:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> בטוח יותר מסיסמאות בוט ויש להשתמש בו כשהבוט תומך בזה.",
+	"mwoauth-botpasswords-note": "<strong>לתשומת ליבך:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> בטוח יותר מסיסמאות בוט ויש להשתמש בו כשהבוט תומך בזה.",
 	"mwoauth-api-module-disabled": "המודול \"$1\" אינו זמין עם OAuth.",
 	"echo-category-title-oauth-owner": "פיתוח OAuth",
 	"echo-pref-tooltip-oauth-owner": "להודיע לי על אירועים הקשורים לפיתוח יישומי OAuth שיצרתי.",
