@@ -29,7 +29,8 @@
 			"Yurik",
 			"Дмитрий",
 			"WindEwriX",
-			"Kareyac"
+			"Kareyac",
+			"Tucvbif"
 		]
 	},
 	"mwoauth-desc": "Позволяет использование OAuth 1.0a и OAuth 2.0 для авторизации через API",
@@ -181,12 +182,12 @@
 	"mwoauthmanagemygrants-none": "Ещё нет приложений, подключенных к вашей учётной записи.",
 	"mwoauthmanagemygrants-user": "Издатель:",
 	"mwoauthmanagemygrants-description": "Описание",
-	"mwoauthmanagemygrants-wikiallowed": "Одобрено для проекта:",
+	"mwoauthmanagemygrants-wikiallowed": "Проекты, в которых оно доступно:",
 	"mwoauthmanagemygrants-grants": "Применимые разрешения",
 	"mwoauthmanagemygrants-grantsallowed": "Одобренные разрешения",
 	"mwoauthmanagemygrants-applicablegrantsallowed": "Одобрены следующие разрешения:",
 	"mwoauthmanagemygrants-review": "управлять доступом",
-	"mwoauthmanagemygrants-revoke": "отменить доступ",
+	"mwoauthmanagemygrants-revoke": "отключить",
 	"mwoauthmanagemygrants-grantaccept": "Разрешено",
 	"mwoauthmanagemygrants-update-text": "Используйте форму ниже, чтобы изменить разрешения, предоставленные приложению для действий от вашего имени.",
 	"mwoauthmanagemygrants-revoke-text": "Используйте форму ниже, чтобы отозвать полномочия, выданные приложению для действий от вашего имени.",
@@ -197,6 +198,8 @@
 	"mwoauthmanagemygrants-confirm-submit": "Обновить состояние кода (токена) доступа",
 	"mwoauthmanagemygrants-success-update": "Настройки для этого приложения были обновлены.",
 	"mwoauthmanagemygrants-success-renounce": "Доступ приложения к вашей учётной записи аннулирован.",
+	"mwoauthmanagemygrants-editslink": "Правки, сделанные через это приложение",
+	"mwoauthmanagemygrants-actionslink": "Прочие действия, выполненные через это приложение",
 	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|предложил|предложила}} клиент OAuth (ключ клиента: $4)",
 	"logentry-mwoauthconsumer-update": "$1 {{GENDER:$2|обновил|обновила}} клиент OAuth (ключ клиента: $4)",
 	"log-action-filter-mwoauthconsumer": "Тип клиентского действия с OAuth:",
