@@ -8,6 +8,7 @@ use MediaWiki\Rest\Handler;
 /**
  * @covers \MediaWiki\Extension\OAuth\Rest\Handler\AccessToken
  * @group OAuth
+ * @group Database
  */
 class AccessTokenEndpointTest extends EndpointTest {
 	public function provideTestHandlerExecute() {
