@@ -15,6 +15,7 @@ use MediaWiki\Rest\Response as RestResponse;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\User\User;
+use Message;
 use Psr\Http\Message\ResponseInterface;
 use RequestContext;
 
@@ -145,10 +146,9 @@ abstract class AuthenticationHandler extends Handler {
 		}
 
 		$out = RequestContext::getMain()->getOutput();
-		// TODO: Should we include message/hint eventhough they are not localized?
 		$out->showErrorPage(
 			'mwoauth-error',
-			$this->getLocalizedErrorMessage( $exception->getErrorType() )
+			$this->getLocalizedErrorMessage( $exception )
 		);
 
 		ob_start();
@@ -163,26 +163,26 @@ abstract class AuthenticationHandler extends Handler {
 		return $response;
 	}
 
-	/**
-	 * @param string $type
-	 * @return string
-	 */
-	private function getLocalizedErrorMessage( $type ) {
+	private function getLocalizedErrorMessage( OAuthServerException $exception ): Message {
+		$type = $exception->getErrorType();
 		$map = [
 			'invalid_client' => 'mwoauth-oauth2-error-invalid-client',
-			'server_error' => 'mwoauth-oauth2-error-server-error',
 			'invalid_request' => 'mwoauth-oauth2-error-invalid-request',
 			'unauthorized_client' => 'mwoauth-oauth2-error-unauthorized-client',
 			'access_denied' => 'mwoauth-oauth2-error-access-denied',
 			'unsupported_response_type' => 'mwoauth-oauth2-error-unsupported-response-type',
 			'invalid_scope' => 'mwoauth-oauth2-error-invalid-scope',
-			'temporarily_unavailable' => 'mwoauth-oauth2-error-temporarily-unavailable'
+			'temporarily_unavailable' => 'mwoauth-oauth2-error-temporarily-unavailable',
+			// 'server_error' is passed through to the catch-all handler below
 		];
-		if ( isset( $map[$type] ) ) {
-			return $map[$type];
+		$msg = isset( $map[$type] )
+			? wfMessage( $map[$type] )
+			: wfMessage( 'mwoauth-oauth2-error-server-error', $exception->getMessage() );
+		if ( $exception->getHint() ) {
+			return wfMessage( 'mwoauth-oauth2-error-serverexception-withhint', $msg, $exception->getHint() );
+		} else {
+			return $msg;
 		}
-
-		return 'mwoauth-oauth2-error-server-error';
 	}
 
 	/**
