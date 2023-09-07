@@ -42,7 +42,7 @@ class Hooks implements
 		global $wgOAuth2PrivateKey, $wgOAuth2PublicKey;
 
 		// Set $wgOAuth2PrivateKey and $wgOAuth2PublicKey for Wikimedia Jenkins, PHPUnit.
-		if ( defined( 'MW_PHPUNIT_TEST' ) || getenv( 'MW_QUIBBLE_CI' ) ) {
+		if ( defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_QUIBBLE_CI' ) ) {
 			$wgOAuth2PrivateKey = <<<EOK
 -----BEGIN RSA PRIVATE KEY-----
 MIIBOwIBAAJBAMBGXQYJ2lXzLuQkRlWoqYJvSnNGfRvPBUVsbHfFPyCr8i6jBPcO
