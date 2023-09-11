@@ -30,7 +30,8 @@
 			"Дмитрий",
 			"WindEwriX",
 			"Kareyac",
-			"Tucvbif"
+			"Tucvbif",
+			"Pacha Tchernof"
 		]
 	},
 	"mwoauth-desc": "Позволяет использование OAuth 1.0a и OAuth 2.0 для авторизации через API",
@@ -198,8 +199,8 @@
 	"mwoauthmanagemygrants-confirm-submit": "Обновить состояние кода (токена) доступа",
 	"mwoauthmanagemygrants-success-update": "Настройки для этого приложения были обновлены.",
 	"mwoauthmanagemygrants-success-renounce": "Доступ приложения к вашей учётной записи аннулирован.",
-	"mwoauthmanagemygrants-editslink": "Правки, сделанные через это приложение",
-	"mwoauthmanagemygrants-actionslink": "Прочие действия, выполненные через это приложение",
+	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Ваши}} правки, сделанные через это приложение",
+	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Ваши}} действия, выполненные через это приложение",
 	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|предложил|предложила}} клиент OAuth (ключ клиента: $4)",
 	"logentry-mwoauthconsumer-update": "$1 {{GENDER:$2|обновил|обновила}} клиент OAuth (ключ клиента: $4)",
 	"log-action-filter-mwoauthconsumer": "Тип клиентского действия с OAuth:",
