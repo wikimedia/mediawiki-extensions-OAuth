@@ -127,5 +127,5 @@
 	"echo-category-title-oauth-owner": "OAuth-тойар",
 	"echo-pref-tooltip-oauth-owner": "Аса кхоьллинчу OAuth-программах хиллачух соьга хаамбе.",
 	"notification-oauth-app-body": "Бахьана: $1",
-	"mwoauth-login-required-reason": "Хьо хьай аккаунтан чувахавеза(йахайеза) {{SITENAME}} тӀехь болх бан."
+	"mwoauth-login-required-reason": "{{SITENAME}} тӀехь болх бан хьай аккаунтан чугӀо."
 }
