@@ -6,23 +6,12 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Hook\TestCanonicalRedirectHook;
 use MediaWiki\Title\Title;
 use OutputPage;
-use RequestContext;
 use WebRequest;
 
 /**
  * Class containing hooked functions for an OAuth environment
  */
 class Setup implements TestCanonicalRedirectHook {
-	/**
-	 * Prevent CentralAuth from issuing centralauthtokens if we have
-	 * OAuth headers in this request.
-	 * @return bool
-	 */
-	public static function onCentralAuthAbortCentralAuthToken() {
-		$request = RequestContext::getMain()->getRequest();
-		return !self::isOAuthRequest( $request );
-	}
-
 	/**
 	 * Prevent redirects to canonical titles, since that's not what the OAuth
 	 * request signed.

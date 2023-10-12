@@ -142,7 +142,6 @@
 		"SpecialPageAfterExecute": "frontend",
 		"SpecialPageBeforeFormDisplay": "frontend",
 		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onBeforeCreateEchoEvent",
-		"CentralAuthAbortCentralAuthToken": "MediaWiki\\Extension\\OAuth\\Setup::onCentralAuthAbortCentralAuthToken",
 		"TestCanonicalRedirect": "setup",
 		"SetupAfterCache": "backend",
 		"ApiRsdServiceApis": "backend",
