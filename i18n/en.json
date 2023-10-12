@@ -161,6 +161,7 @@
 	"mwoauthlistconsumers-version": "Consumer version",
 	"mwoauthlistconsumers-user": "Publisher",
 	"mwoauthlistconsumers-description": "Description",
+	"mwoauthlistconsumers-owner-only": "Owner-only",
 	"mwoauthlistconsumers-wiki": "Applicable project",
 	"mwoauthlistconsumers-callbackurl": "OAuth \"callback URL\"",
 	"mwoauthlistconsumers-callbackisprefix": "Allow consumer to specify a callback in requests and use \"callback\" URL above as a required prefix.",
