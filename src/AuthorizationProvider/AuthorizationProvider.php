@@ -132,10 +132,7 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 	 * @throws Exception
 	 */
 	protected function getGrantExpirationInterval() {
-		$intervalSpec = 'PT1H';
-		if ( $this->config->has( 'OAuth2GrantExpirationInterval' ) ) {
-			$intervalSpec = $this->parseExpiration( $this->config->get( 'OAuth2GrantExpirationInterval' ) );
-		}
+		$intervalSpec = $this->parseExpiration( $this->config->get( 'OAuth2GrantExpirationInterval' ) );
 		return new DateInterval( $intervalSpec );
 	}
 
@@ -144,11 +141,7 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 	 * @throws Exception
 	 */
 	protected function getRefreshTokenTTL() {
-		$intervalSpec = 'PT1M';
-		if ( $this->config->has( 'OAuth2RefreshTokenTTL' ) ) {
-			$intervalSpec = $this->parseExpiration( $this->config->get( 'OAuth2RefreshTokenTTL' ) );
-		}
-
+		$intervalSpec = $this->parseExpiration( $this->config->get( 'OAuth2RefreshTokenTTL' ) );
 		return new DateInterval( $intervalSpec );
 	}
 
