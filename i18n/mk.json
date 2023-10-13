@@ -164,6 +164,7 @@
 	"mwoauthlistconsumers-version": "Потрошувачка верзија",
 	"mwoauthlistconsumers-user": "Издавач",
 	"mwoauthlistconsumers-description": "Опис",
+	"mwoauthlistconsumers-owner-only": "Само сопственик",
 	"mwoauthlistconsumers-wiki": "Применлив проект",
 	"mwoauthlistconsumers-callbackurl": "Возвратна URL-адреса на OAuth",
 	"mwoauthlistconsumers-callbackisprefix": "Овозможи му на потрошувачот да укаже возврат во барањата и погоре да користи URL за повратен повик како задолжителна претставка.",

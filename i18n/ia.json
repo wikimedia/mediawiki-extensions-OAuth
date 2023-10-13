@@ -161,6 +161,7 @@
 	"mwoauthlistconsumers-version": "Version del consumitor",
 	"mwoauthlistconsumers-user": "Editor",
 	"mwoauthlistconsumers-description": "Description",
+	"mwoauthlistconsumers-owner-only": "Proprietario solmente",
 	"mwoauthlistconsumers-wiki": "Projecto applicabile",
 	"mwoauthlistconsumers-callbackurl": "URL de retorno pro OAuth",
 	"mwoauthlistconsumers-callbackisprefix": "Permitte al consumitor specificar un appello de retorno in requestas e usar le URL \"callback\" hic supra como prefixo obligatori.",
