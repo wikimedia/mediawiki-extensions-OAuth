@@ -138,7 +138,7 @@ abstract class AuthenticationHandler extends Handler {
 	 * @return ResponseInterface|RestResponse
 	 */
 	protected function errorResponse( $exception, $response = null ) {
-		$response = $response ?? new Response();
+		$response ??= new Response();
 		$response = $exception->generateHttpResponse( $response );
 		if ( $exception->hasRedirect() || $this->getRequest()->getMethod() === 'POST' ) {
 			return $response;
