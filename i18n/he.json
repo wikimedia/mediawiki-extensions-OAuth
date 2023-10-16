@@ -166,6 +166,7 @@
 	"mwoauthlistconsumers-version": "גרסת צרכן",
 	"mwoauthlistconsumers-user": "מפרסם",
 	"mwoauthlistconsumers-description": "תיאור",
+	"mwoauthlistconsumers-owner-only": "לבעלים בלבד",
 	"mwoauthlistconsumers-wiki": "מיזם מתאים",
 	"mwoauthlistconsumers-callbackurl": "כתובת מענה (callback) של OAuth",
 	"mwoauthlistconsumers-callbackisprefix": "לאפשר לצרכן להגדיר מענה (callback) בבקשות ולהשתמש בכתובת ה־\"callback\" לעיל בתור תחילית דרושה.",
