@@ -68,6 +68,7 @@
 	"mwoauthlistconsumers-name": "Име апликације",
 	"mwoauthlistconsumers-user": "Издавач",
 	"mwoauthlistconsumers-description": "Опис",
+	"mwoauthlistconsumers-owner-only": "Само власник",
 	"mwoauthlistconsumers-wiki": "Применљиви пројекат",
 	"mwoauthlistconsumers-basicgrantsonly": "(само основни приступ)",
 	"mwoauthlistconsumers-status": "Статус",
