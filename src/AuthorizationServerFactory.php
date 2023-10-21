@@ -44,7 +44,7 @@ class AuthorizationServerFactory {
 		$this->privateKey = $privateKey;
 		$this->encryptionKey = trim( $encryptionKey );
 
-		if ( empty( $this->encryptionKey ) ) {
+		if ( $this->encryptionKey === '' ) {
 			// Empty encryption key would not break the workflow, but would cause security issues
 			throw new InvalidArgumentException( 'Encryption key must be set' );
 		}
