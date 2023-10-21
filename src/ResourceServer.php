@@ -66,7 +66,7 @@ class ResourceServer {
 		if ( is_string( $authHeader ) ) {
 			$authHeader = [ $authHeader ];
 		}
-		if ( !empty( $authHeader ) && strpos( $authHeader[0], 'Bearer' ) === 0 ) {
+		if ( $authHeader && strpos( $authHeader[0], 'Bearer' ) === 0 ) {
 			return true;
 		}
 		return false;

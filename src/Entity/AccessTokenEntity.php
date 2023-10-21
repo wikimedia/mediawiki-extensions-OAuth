@@ -139,7 +139,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 			}
 		);
 
-		return empty( $notApproved ) ? $approval : false;
+		return !$notApproved ? $approval : false;
 	}
 
 	private function confirmClientUsable() {

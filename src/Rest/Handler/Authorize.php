@@ -244,7 +244,7 @@ class Authorize extends AuthenticationHandler {
 		$scopes = $approval->getGrants();
 		$requestedScopes = $this->getFlatScopes( $authRequest->getScopes() );
 		$missing = array_diff( $requestedScopes, $scopes );
-		if ( !empty( $missing ) ) {
+		if ( $missing ) {
 			return false;
 		}
 
