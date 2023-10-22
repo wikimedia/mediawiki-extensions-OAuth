@@ -224,6 +224,7 @@
 	"log-action-filter-mwoauthconsumer-update": "OAuth consumer update",
 	"mwoauthconsumer-consumer-logpage": "OAuth consumer log",
 	"mwoauthconsumer-consumer-logpagetext": "Log of approvals, rejections, and disabling of registered OAuth consumers.",
+	"mwoauth-centralauth-account-link": "global accounts",
 	"mwoauth-bad-request-missing-params": "Sorry, something went wrong configuring this connected application. Contact the application's developer.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth missing parameters, $1</span>",
 	"mwoauth-bad-request-invalid-action": "Sorry, something went wrong, you'll need to contact the application author for help with this.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unknown URL, $1</span>",
 	"mwoauth-bad-request-invalid-action-contact": "Sorry, something went wrong. You'll need to [$1 contact] the application author for help with this.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unknown URL, $2</span>",
