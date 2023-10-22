@@ -398,11 +398,7 @@ class Utils {
 	public static function hmacDBSecret( $secret ) {
 		global $wgOAuthSecretKey, $wgSecretKey;
 
-		if ( empty( $wgOAuthSecretKey ) ) {
-			$secretKey = $wgSecretKey;
-		} else {
-			$secretKey = $wgOAuthSecretKey;
-		}
+		$secretKey = $wgOAuthSecretKey ?? $wgSecretKey;
 
 		return $secretKey ? hash_hmac( 'sha1', $secret, $secretKey ) : $secret;
 	}
