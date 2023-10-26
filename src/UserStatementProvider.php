@@ -110,7 +110,8 @@ class UserStatementProvider {
 		if ( !$this->user->isHidden() ) {
 			$profile['username'] = $this->user->getName();
 			$profile['editcount'] = intval( $this->user->getEditCount() );
-			$profile['confirmed_email'] = $this->user->isEmailConfirmed();
+			// Use confirmed_email for B/C and email_verified because it's in the OIDC spec
+			$profile['confirmed_email'] = $profile['email_verified'] = $this->user->isEmailConfirmed();
 			$profile['blocked'] = $this->user->getBlock() !== null;
 			$profile['registered'] = $this->user->getRegistration();
 			$profile['groups'] = $this->userGroupManager->getUserEffectiveGroups( $this->user );

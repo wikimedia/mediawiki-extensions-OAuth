@@ -66,6 +66,7 @@ class UserStatementProviderTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( $user->getName(), $data['username'] );
 			$this->assertSame( 0, $data['editcount'] );
 			$this->assertSame( false, $data['confirmed_email'] );
+			$this->assertSame( false, $userProfile['email_verified'] );
 			$this->assertSame( false, $data['blocked'] );
 			$this->assertEqualsWithDelta( $time, 100, wfTimestamp( TS_UNIX, $data['registered'] ) );
 			$this->assertContains( 'user', $data['groups'] );
@@ -82,6 +83,7 @@ class UserStatementProviderTest extends MediaWikiIntegrationTestCase {
 		$userStatementProvider = $this->getUserStatementProvider( $config, $user, $consumer, $grants );
 		$userProfile = $userStatementProvider->getUserProfile();
 		$this->assertSame( true, $userProfile['confirmed_email'] );
+		$this->assertSame( true, $userProfile['email_verified'] );
 		$this->assertSame( 'test@example.com', $userProfile['email'] );
 	}
 
