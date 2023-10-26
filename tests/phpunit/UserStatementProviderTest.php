@@ -72,7 +72,7 @@ class UserStatementProviderTest extends MediaWikiIntegrationTestCase {
 			$this->assertContains( 'user', $data['groups'] );
 			$this->assertContains( 'edit', $data['rights'] );
 			$this->assertSame( 'John Doe', $data['realname'] );
-			$this->assertSame( null, $data['email'] );
+			$this->assertSame( '', $data['email'] );
 		}
 		$this->assertSame( 'https://example.com/', $userStatement['iss'] );
 		$this->assertSame( 'key', $userStatement['aud'] );

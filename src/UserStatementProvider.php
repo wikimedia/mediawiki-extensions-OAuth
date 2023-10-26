@@ -131,7 +131,7 @@ class UserStatementProvider {
 				$profile['realname'] = !in_array(
 					'realname', $this->config->get( 'HiddenPrefs' ), true
 				) ? $this->user->getRealName() : '';
-				$profile['email'] = $this->user->isEmailConfirmed() ? $this->user->getEmail() : null;
+				$profile['email'] = $this->user->isEmailConfirmed() ? $this->user->getEmail() : '';
 			}
 		} else {
 			$profile['blocked'] = true;
