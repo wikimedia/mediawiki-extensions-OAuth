@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Fitoschido",
-			"Xuacu"
+			"Xuacu",
+			"YoaR"
 		]
 	},
 	"mwoauth-desc": "Permite usar OAuth 1.0a y OAuth 2.0 pa la autorización de la API",
@@ -245,7 +246,7 @@
 	"mwoauth-form-description-allwikis-privateinfo-norealname": "Bones $1,\n\nPa completar la to solicitú, '''$2''' precisa permisu d'accesu a la to información, incluyendo la direición de corréu, en tolos proyeutos d'esti sitiu. Nun van facese cambios cola to cuenta.",
 	"mwoauth-form-description-onewiki-privateinfo-norealname": "Bones $1,\n\nPa completar la to solicitú, '''$2''' precisa permisu d'accesu a la to información, incluyendo la direición de corréu, en ''$4''. Nun van facese cambios cola to cuenta.",
 	"mwoauth-form-button-approve": "Permitir",
-	"mwoauth-form-button-cancel": "Encaboxar",
+	"mwoauth-form-button-cancel": "Zarrar",
 	"mwoauth-error": "Error de conexón de l'aplicación",
 	"mwoauth-grants-heading": "Permisos solicitaos:",
 	"mwoauth-grants-nogrants": "L'aplicación nun solicitó nengún permisu.",
