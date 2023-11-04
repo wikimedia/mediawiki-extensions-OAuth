@@ -29,6 +29,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use Message;
+use MWRestrictions;
 use RecentChange;
 use RequestContext;
 use User;
@@ -282,6 +283,7 @@ class SessionProvider
 				'rights' => MediaWikiServices::getInstance()
 					->getGrantsInfo()
 					->getGrantRights( $access->getGrants() ),
+				'restrictions' => $consumer->getRestrictions()->toJson(),
 			],
 		] );
 	}
@@ -408,6 +410,20 @@ class SessionProvider
 		// Should never happen
 		$this->logger->debug( __METHOD__ . ': No provider metadata, returning no rights allowed' );
 		return [];
+	}
+
+	public function getRestrictions( ?array $data ): ?MWRestrictions {
+		if ( $data && isset( $data['restrictions'] ) && is_string( $data['restrictions'] ) ) {
+			try {
+				return MWRestrictions::newFromJson( $data['restrictions'] );
+			} catch ( \InvalidArgumentException $e ) {
+				$this->logger->warning( __METHOD__ . ': Failed to parse restrictions: {restrictions}', [
+					'restrictions' => $data['restrictions']
+				] );
+				return null;
+			}
+		}
+		return null;
 	}
 
 	/**
