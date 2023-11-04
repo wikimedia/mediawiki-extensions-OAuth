@@ -241,6 +241,9 @@
 	"GrantPermissionGroups": {
 		"oauthmanageownclient": "administration"
 	},
+	"GrantRiskGroups": {
+		"oauthmanageownclient": "internal"
+	},
 	"RestRoutes": [
 		{
 			"path": "/oauth2/authorize",
