@@ -107,6 +107,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 		$this->setHeaders();
 		$this->getOutput()->disallowUserJs();
+		$this->getOutput()->addModules( 'mediawiki.special' );
 		$this->addHelpLink( 'Help:OAuth' );
 
 		$block = $user->getBlock();
@@ -140,12 +141,11 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 			$allWikis = Utils::getAllWikiNames();
 			$showGrants = $this->grantsInfo->getValidGrants();
-			$grantLinks = array_map( [ $this->grantsLocalization, 'getGrantsLink' ], $showGrants );
 			if ( $subPage === 'oauth2' ) {
-				$this->proposeOAuth( Consumer::OAUTH_VERSION_2, $user, $allWikis, $lang, $showGrants, $grantLinks );
+				$this->proposeOAuth( Consumer::OAUTH_VERSION_2, $user, $allWikis, $lang, $showGrants );
 				break;
 			} elseif ( $subPage === 'oauth1a' ) {
-				$this->proposeOAuth( Consumer::OAUTH_VERSION_1, $user, $allWikis, $lang, $showGrants, $grantLinks );
+				$this->proposeOAuth( Consumer::OAUTH_VERSION_1, $user, $allWikis, $lang, $showGrants );
 				break;
 			} else {
 				$this->getOutput()->redirect( 'Special:OAuthConsumerRegistration/propose' );
@@ -458,13 +458,15 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		return 'users';
 	}
 
-	private function proposeOAuth( int $oauthVersion, User $user, $allWikis, $lang, $showGrants, $grantLinks ) {
+	private function proposeOAuth( int $oauthVersion, User $user, $allWikis, $lang, $showGrants ) {
 		if ( !in_array( $oauthVersion, [ Consumer::OAUTH_VERSION_1, Consumer::OAUTH_VERSION_2 ] ) ) {
 			throw new InvalidArgumentException( 'Invalid OAuth version' );
 		}
 		$dbw = Utils::getCentralDB( DB_PRIMARY );
 		$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
 
+		$grantNames = $this->grantsLocalization->getGrantDescriptionsWithClasses(
+			$showGrants, $this->getLanguage() );
 		$formDescriptor = [
 			'oauthVersion' => [
 				'class' => HTMLHiddenField::class,
@@ -556,32 +558,32 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				'label-message' => 'mwoauth-consumer-granttypes',
 				'default' => 'normal',
 			],
+			// HACK separate field from grants because HTMLFormField cannot position help text on top
+			'grantsHelp' => [
+				'type' => 'info',
+				'default' => '',
+				'help-message' => 'mwoauth-consumer-grantshelp',
+			],
 			'grants' => [
 				'type' => 'checkmatrix',
 				'label-message' => 'mwoauth-consumer-grantsneeded',
-				'help-message' => 'mwoauth-consumer-grantshelp',
 				'hide-if' => [ '!==', 'granttype', 'normal' ],
 				'columns' => [
 					$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
 				],
 				'rows' => array_combine(
-					$grantLinks,
+					$grantNames,
 					$showGrants
 				),
-				'tooltips' => array_combine(
-					$grantLinks,
+				'tooltips-html' => array_combine(
+					$grantNames,
 					array_map(
-						static function ( $rights ) use ( $lang ) {
-							return $lang->semicolonList(
-								array_map(
-									[ User::class, 'getRightDescription' ],
-									$rights
-								)
-							);
-						},
-						array_intersect_key(
-							$this->grantsInfo->getRightsByGrant(), array_flip( $showGrants )
-						)
+						fn ( $rights ) => Html::rawElement( 'ul', [], implode( '', array_map(
+							fn ( $right ) => Html::rawElement( 'li', [], $this->msg( "right-$right" )->parse() ),
+							$rights
+						) ) ),
+						array_intersect_key( $this->grantsInfo->getRightsByGrant(),
+							array_fill_keys( $showGrants, true ) )
 					)
 				),
 				'force-options-on' => array_map(
