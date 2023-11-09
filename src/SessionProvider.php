@@ -226,11 +226,17 @@ class SessionProvider
 				) )
 			);
 		}
-		if ( $localUser->isLocked() ||
-			( $this->config->get( 'BlockDisablesLogin' ) && $localUser->getBlock() )
-		) {
-			$this->logger->debug( 'OAuth request for blocked user {user}', $logData );
+		if ( $localUser->isLocked() ) {
+			$this->logger->debug( 'OAuth request for locked user {user}', $logData );
 			return $this->makeException( 'mwoauth-invalid-authorization-blocked-user' );
+		}
+		if ( $this->config->get( 'BlockDisablesLogin' ) ) {
+			$block = MediaWikiServices::getInstance()->getBlockManager()
+				->getBlock( $localUser, null );
+			if ( $block && $block->isSitewide() ) {
+				$this->logger->debug( 'OAuth request for blocked user {user}', $logData );
+				return $this->makeException( 'mwoauth-invalid-authorization-blocked-user' );
+			}
 		}
 
 		// The consumer is approved or owned by $localUser, and is for this wiki.
