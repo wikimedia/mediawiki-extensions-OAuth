@@ -214,7 +214,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 					'reason' => [
 						'type' => 'text',
 						'label-message' => 'mwoauth-consumer-reason',
-						'required' => true
+						'required' => !$cmrAc->getOwnerOnly(),
 					],
 					'consumerKey' => [
 						'type' => 'hidden',
