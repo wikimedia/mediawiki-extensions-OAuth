@@ -44,7 +44,7 @@
 	"mwoauth-consumer-owner-only-help": "Used as help text for the \"Owner only\" checkbox.",
 	"mwoauth-consumer-description": "Used as label for the \"description\" textarea.\n{{Identical|Application description}}",
 	"mwoauth-consumer-callbackurl": "Used as label for the \"Callback URL\" input box.\n\nSee [[w:Callback (computer programming)]].",
-	"mwoauth-consumer-callbackurl-help": "\"Used as help message for the \\\"Callback URL\\\" input box, in the OAuth 2.0 consumer registration form.\".",
+	"mwoauth-consumer-callbackurl-help": "Used as help message for the “Callback URL” input box, in the OAuth 2.0 consumer registration form.",
 	"mwoauth-consumer-callbackurl-warning": "Used as a warning shown alongside {{msg-mw|mwoauth-consumer-callbackurl}} sometimes, when the callback URL allows arbitrary [[w:Port (computer networking)|port numbers]].",
 	"mwoauth-consumer-callbackisprefix": "Used as a label for the check box where user can decide if their consumer should use \"Callback URL\" as a string prefix (checked), or if the consumer cannot customize the callback URL in its requests as is required to specify \"oob\" (unchecked, default).",
 	"mwoauth-consumer-granttypes": "Used as label to select between authorization-only (with or without private info) and normal API access",
