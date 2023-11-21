@@ -173,6 +173,7 @@
 	"logentry-mwoauthconsumer-disable": "$1 {{GENDER:$2|desactivó}} un consumidor OAuth por $3 (clave de consumidor $4)",
 	"logentry-mwoauthconsumer-reenable": "$1 {{GENDER:$2|reactivó}} un consumidor OAuth por $3 (clave de consumidor $4)",
 	"logentry-mwoauthconsumer-create-owner-only": "$1 {{GENDER:$2|creó}} un consumidor OAuth con un solo propietario (clave de consumidor $4)",
+	"log-action-filter-mwoauthconsumer": "Tipo de acción del consumidor OAuth:",
 	"log-action-filter-mwoauthconsumer-approve": "Aprobación del consumidor OAuth",
 	"log-action-filter-mwoauthconsumer-create-owner-only": "Creación del consumidor OAuth sólo para propietarios",
 	"log-action-filter-mwoauthconsumer-disable": "Desactivación del consumidor OAuth",
