@@ -15,7 +15,7 @@ use User;
  * @group Database
  * @group OAuth
  */
-class ListClientsEndpointTest extends EndpointTest {
+class ListClientsEndpointTest extends EndpointTestBase {
 
 	/**
 	 * @throws Exception

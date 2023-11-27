@@ -18,7 +18,7 @@ use User;
  * @group Database
  * @group OAuth
  */
-class ResetClientSecretEndpointTest extends EndpointTest {
+class ResetClientSecretEndpointTest extends EndpointTestBase {
 
 	/**
 	 * @var array

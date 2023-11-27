@@ -15,7 +15,7 @@ use User;
  * @group Database
  * @group OAuth
  */
-class RequestClientEndpointTest extends EndpointTest {
+class RequestClientEndpointTest extends EndpointTestBase {
 
 	/**
 	 * @var array

@@ -9,7 +9,7 @@ use MediaWiki\Rest\Handler;
  * @covers \MediaWiki\Extension\OAuth\Rest\Handler\Authorize
  * @group OAuth
  */
-class AuthorizationEndpointTest extends EndpointTest {
+class AuthorizationEndpointTest extends EndpointTestBase {
 
 	public function provideTestHandlerExecute() {
 		return [

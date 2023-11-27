@@ -10,7 +10,7 @@ use MediaWiki\Rest\Handler;
  * @group OAuth
  * @group Database
  */
-class AccessTokenEndpointTest extends EndpointTest {
+class AccessTokenEndpointTest extends EndpointTestBase {
 	public function provideTestHandlerExecute() {
 		return [
 			'normal' => [
