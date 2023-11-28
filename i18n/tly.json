@@ -1,10 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Patriot Kur"
+			"Patriot Kur",
+			"Patriot Kor",
+			"Гусейн"
 		]
 	},
+	"mwoauthconsumerregistration-main": "Əsosə",
 	"mwoauthconsumerregistration-description": "Təsvir",
+	"mwoauthmanageconsumers-main": "Əsosə",
 	"mwoauthmanageconsumers-description": "Təsvir",
 	"mwoauthlistconsumers-description": "Təsvir",
 	"mwoauthmanagemygrants-description": "Təsvir",
