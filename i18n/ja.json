@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ant176",
 			"Buntschann",
 			"Fryed-peach",
 			"Kkairri",
@@ -37,6 +38,7 @@
 	"mwoauth-consumer-description": "アプリケーションの説明:",
 	"mwoauth-consumer-callbackurl": "OAuth コールバック URL:",
 	"mwoauth-consumer-granttypes": "申請中の助成金：",
+	"mwoauth-consumer-wiki": "対象プロジェクト:",
 	"mwoauth-consumer-wiki-thiswiki": "現在のプロジェクト ($1)",
 	"mwoauth-consumer-restrictions": "使用制限:",
 	"mwoauth-consumer-restrictions-json": "使用制限 (JSON):",
@@ -189,7 +191,7 @@
 	"mwoauth-grants-nogrants": "アプリケーションはアクセス権を要求していません。",
 	"grant-mwoauth-authonly": "利用者の識別情報の検証のみで、ページを閲覧したり、利用者の代理として操作する権限はない。",
 	"grant-mwoauth-authonlyprivate": "利用者の識別情報の検証は本名とメールアドレスへのアクセスのみで、ページを閲覧したり、利用者の代理として操作する権限はない。",
-	"mwoauth-listgrants-extra-summary": "== OAuth特定の助成金 ==\n\n以下のその他の助成金も OAuth 利用者に適用されます。",
+	"mwoauth-listgrants-extra-summary": "== OAuth固有の許可 ==\n\n以下の追加の許可は OAuth 利用者に適用されます。",
 	"mwoauth-oauth-exception": "OAuth プロトコルでエラーが発生しました: $1",
 	"mwoauth-callback-not-oob": "oauth_callback に「oob」を設定してください (大文字小文字を区別)",
 	"right-mwoauthproposeconsumer": "新しいコンシューマーを提案",
@@ -227,6 +229,7 @@
 	"notification-oauth-app-disable-primary-link": "アプリを表示",
 	"notification-oauth-app-reenable-primary-link": "アプリを表示",
 	"notification-oauth-app-body": "理由: $1",
+	"mwoauth-oauth-version": "OAuth プロトコルのバージョン",
 	"mwoauth-oauth2-granttype-refresh-token": "トークンの更新",
 	"mwoauth-oauth2-invalid-access-token": "無効なアクセストークン"
 }
