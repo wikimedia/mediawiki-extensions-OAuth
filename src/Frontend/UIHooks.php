@@ -264,6 +264,7 @@ class UIHooks implements
 			$specialPages['OAuthConsumerRegistration'] = [
 				'class' => SpecialMWOAuthConsumerRegistration::class,
 				'services' => [
+					'PermissionManager',
 					'GrantsInfo',
 					'GrantsLocalization',
 				],

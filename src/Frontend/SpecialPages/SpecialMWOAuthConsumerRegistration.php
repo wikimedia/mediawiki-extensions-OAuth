@@ -37,9 +37,9 @@ use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ListMyConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\Html\Html;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
@@ -57,21 +57,17 @@ use Xml;
  * Page that has registration request form and consumer update form
  */
 class SpecialMWOAuthConsumerRegistration extends SpecialPage {
-	/** @var GrantsInfo */
-	private $grantsInfo;
+	private PermissionManager $permissionManager;
+	private GrantsInfo $grantsInfo;
+	private GrantsLocalization $grantsLocalization;
 
-	/** @var GrantsLocalization */
-	private $grantsLocalization;
-
-	/**
-	 * @param GrantsInfo $grantsInfo
-	 * @param GrantsLocalization $grantsLocalization
-	 */
 	public function __construct(
+		PermissionManager $permissionManager,
 		GrantsInfo $grantsInfo,
 		GrantsLocalization $grantsLocalization
 	) {
 		parent::__construct( 'OAuthConsumerRegistration' );
+		$this->permissionManager = $permissionManager;
 		$this->grantsInfo = $grantsInfo;
 		$this->grantsLocalization = $grantsLocalization;
 	}
@@ -131,11 +127,9 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			throw new ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
 		}
 
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-
 		switch ( $action ) {
 		case 'propose':
-			if ( !$permissionManager->userHasRight( $user, 'mwoauthproposeconsumer' ) ) {
+			if ( !$this->permissionManager->userHasRight( $user, 'mwoauthproposeconsumer' ) ) {
 				throw new PermissionsError( 'mwoauthproposeconsumer' );
 			}
 
@@ -158,7 +152,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			}
 			break;
 		case 'update':
-			if ( !$permissionManager->userHasRight( $user, 'mwoauthupdateownconsumer' ) ) {
+			if ( !$this->permissionManager->userHasRight( $user, 'mwoauthupdateownconsumer' ) ) {
 				throw new PermissionsError( 'mwoauthupdateownconsumer' );
 			}
 
@@ -169,7 +163,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 				break;
 			} elseif ( $cmrAc->getDAO()->getDeleted()
-				&& !$permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' )
+				&& !$this->permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' )
 			) {
 				throw new PermissionsError( 'mwoauthviewsuppressed' );
 			} elseif ( $cmrAc->getDAO()->getUserId() !== $centralUserId ) {
@@ -468,7 +462,6 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		if ( !in_array( $oauthVersion, [ Consumer::OAUTH_VERSION_1, Consumer::OAUTH_VERSION_2 ] ) ) {
 			throw new InvalidArgumentException( 'Invalid OAuth version' );
 		}
-		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
 		$dbw = Utils::getCentralDB( DB_PRIMARY );
 		$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
 
@@ -546,15 +539,10 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				'label-message' => 'mwoauth-oauth2-granttypes',
 				'hide-if' => [ '!==', 'ownerOnly', '' ],
 				'options' => array_filter( [
-					$this->msg( 'mwoauth-oauth2-granttype-auth-code' )->escaped() =>
-						'authorization_code',
-					$this->msg( 'mwoauth-oauth2-granttype-refresh-token' )->escaped() =>
-						'refresh_token',
-					$this->msg( 'mwoauth-oauth2-granttype-client-credentials' )->escaped() =>
-						'client_credentials',
-				], static function ( $grantType ) use ( $config ) {
-					return in_array( $grantType, $config->get( 'OAuth2EnabledGrantTypes' ) );
-				} ),
+					$this->msg( 'mwoauth-oauth2-granttype-auth-code' )->escaped() => 'authorization_code',
+					$this->msg( 'mwoauth-oauth2-granttype-refresh-token' )->escaped() => 'refresh_token',
+					$this->msg( 'mwoauth-oauth2-granttype-client-credentials' )->escaped() => 'client_credentials',
+				], fn ( $grantType ) => in_array( $grantType, $this->getConfig()->get( 'OAuth2EnabledGrantTypes' ) ) ),
 				'required' => true,
 				'default' => [ 'authorization_code', 'refresh_token' ]
 			],
