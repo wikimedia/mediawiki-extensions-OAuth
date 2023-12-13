@@ -184,8 +184,6 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			throw new PermissionsError( 'mwoauthviewsuppressed' );
 		}
 
-		$this->getOutput()->addModuleStyles( 'mediawiki.ui.button' );
-
 		$action = '';
 		if ( $this->getRequest()->getCheck( 'renounce' ) ) {
 			$action = 'renounce';
