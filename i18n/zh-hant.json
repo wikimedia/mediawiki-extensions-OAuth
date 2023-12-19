@@ -13,9 +13,12 @@
 			"Xiplus",
 			"一個正常人",
 			"捍粵者",
-			"Winston Sung"
+			"Winston Sung",
+			"H78c67c",
+			"SunAfterRain"
 		]
 	},
+	"abusefilter-edit-builder-vars-oauth-consumer": "用於執行此變更的OAuth消費者",
 	"mwoauth-desc": "允許使用 OAuth 1.0a 與 OAuth 2.0 作為 API 授權程式",
 	"mwoauth-nosubpage-explanation": "OAuth 是允許外部應用程式在收到來自使用者的許可後，去識別出{{SITENAME}}使用者或是代表他們做出行動的一種機制。\n\n要讓此頁面做出某些事情，會需要更多的參數。如果您是從外部應用程式發出，可能會是該應用程式的錯誤所導致，您應得向該應用程式的作者聯絡。",
 	"mwoauth-verified": "應用程式現在已允許您以個人的名義連結 MediaWiki。\n\n要完成這個程序，請提供應用程式此確認金鑰：'''$1'''",
