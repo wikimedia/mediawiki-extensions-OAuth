@@ -77,6 +77,7 @@ EOK;
 				'create-owner-only' => [ 'create-owner-only' ],
 				'disable' => [ 'disable' ],
 				'propose' => [ 'propose' ],
+				'propose-autoapproved' => [ 'propose-autoapproved' ],
 				'reenable' => [ 'reenable' ],
 				'reject' => [ 'reject' ],
 				'update' => [ 'update' ],
