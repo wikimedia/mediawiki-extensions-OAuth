@@ -9,7 +9,7 @@
 	"mwoauth-field-private": "(ဤသတင်းအချက်အလက်သည် ပုဂ္ဂလိကဖြစ်သည်)",
 	"mwoauth-prefs-managegrants": "ဆက်သွယ်ထားသော အက်ပ်များ -",
 	"mwoauth-prefs-managegrantslink": "ချိတ်ဆက်ထားသော {{PLURAL:$1|အပလေကေးရှင်း|အပလေကေးရှင်းများ}} $1 ခုကို စီမံခန့်ခွဲရန်",
-	"mwoauth-consumer-allwikis": "ဤဆိုဒ်ပေါ်ရှိ ပရောဂျက်အားလုံး",
+	"mwoauth-consumer-allwikis": "ပရောဂျက်အားလုံး",
 	"mwoauth-consumer-name": "အပလေကေးရှင်းအမည်-",
 	"mwoauth-consumer-version": "အသုံးပြုသူ ဗားရှင်း-",
 	"mwoauth-consumer-user": "ထုတ်ဝေသူ:",
