@@ -357,7 +357,6 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					'ls_field' => 'OAuthConsumer',
 					'ls_value' => $cmrAc->getConsumerKey(),
 				],
-				'flags' => LogEventsList::NO_EXTRA_USER_LINKS,
 			] );
 		}
 	}
