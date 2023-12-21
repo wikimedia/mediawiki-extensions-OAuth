@@ -237,6 +237,7 @@
 	"log-action-filter-mwoauthconsumer-update": "{{doc-log-action-filter-action|mwoauthconsumer|update}}",
 	"mwoauthconsumer-consumer-logpage": "{{doc-logpage}}",
 	"mwoauthconsumer-consumer-logpagetext": "Description of the OAuth consumer log.",
+	"mwoauth-centralauth-account-link": "Used as a user tool link text in the consumer log. {{identical|centralauth-contribs-link}}",
 	"mwoauth-bad-request-missing-params": "Error message when MediaWiki makes an error during the authorization process, and fails to send all the required url parameters\n* $1 - a link to the explanation of the error. The text link is the error code.",
 	"mwoauth-bad-request-invalid-action": "Error, when the 3rd-party OAuth developers sends users to a bad authorization url\n* $1 - a link to the explanation of the error. The text link is the error code.",
 	"mwoauth-bad-request-invalid-action-contact": "Error, when the 3rd-party OAuth developers sends users to a bad authorization url, but we know which application made the request and we can link the user to a page to contact the developer.\n\nParameters:\n* $1 - an URL to contact with the author.\n* $2 - a link to the explanation of the error. The text link is the error code.",
