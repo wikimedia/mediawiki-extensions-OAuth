@@ -228,6 +228,7 @@
 	"log-action-filter-mwoauthconsumer-update": "OAuth-Verbraucheraktualisierung",
 	"mwoauthconsumer-consumer-logpage": "OAuth-Anwendungs-Logbuch",
 	"mwoauthconsumer-consumer-logpagetext": "Logbuch von Bestätigungen, Ablehnungen und Deaktivierungen registrierter OAuth-Verbraucher.",
+	"mwoauth-centralauth-account-link": "globale Konten",
 	"mwoauth-bad-request-missing-params": "Leider ist etwas mit der Konfiguration dieser verbundenen Anwendung schiefgelaufen. Kontaktiere den Entwickler der Anwendung.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth fehlende Parameter, $1</span>",
 	"mwoauth-bad-request-invalid-action": "Leider ist etwas schiefgelaufen. Du wirst den Anwendungsautor kontaktieren müssen, um Hilfe für dieses Problem zu erhalten.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unbekannte URL, $1</span>",
 	"mwoauth-bad-request-invalid-action-contact": "Leider ist etwas schiefgelaufen. Du wirst den Anwendungsautor [$1 kontaktieren] müssen, um Hilfe für dieses Problem zu erhalten.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Unbekannte URL, $2</span>",
