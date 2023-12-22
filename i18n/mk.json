@@ -227,6 +227,7 @@
 	"log-action-filter-mwoauthconsumer-update": "Потрошувачка поднова со OAuth",
 	"mwoauthconsumer-consumer-logpage": "Потрошувачки дневник за OAuth",
 	"mwoauthconsumer-consumer-logpagetext": "Дневник на одобрувања, одбивања и оневозможувања на зачленети потрошувачи на OAuth.",
+	"mwoauth-centralauth-account-link": "глобални сметки",
 	"mwoauth-bad-request-missing-params": "За жал, се јави проблем при поставувањето на прилогот. Обратете се кај неговиот разработувач.\n\n<span class=\"plainlinks mw-mwoautherror-details\">На OAuth му недостасуваат параметри, $1</span>",
 	"mwoauth-bad-request-invalid-action": "За жал, се јави проблем при поставувањето на извршнико. Обратете се кај неговиот автор за да го решите.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Непозната URL, $1</span>",
 	"mwoauth-bad-request-invalid-action-contact": "За жал, се јави некаков проблем. Ќе треба да се [$1 обратите] кај авторот на извршникот за да го решите.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Непозната URL, $2</span>",

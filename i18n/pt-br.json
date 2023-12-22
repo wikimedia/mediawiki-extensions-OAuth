@@ -3,6 +3,7 @@
 		"authors": [
 			"Albertoleoncio",
 			"Araceletorres",
+			"CorraleH",
 			"Cybermandrake",
 			"Eduardo Addad de Oliveira",
 			"Eduardoaddad",
@@ -219,6 +220,7 @@
 	"log-action-filter-mwoauthconsumer-update": "Atualização do consumidor OAuth",
 	"mwoauthconsumer-consumer-logpage": "Registro de consumidor OAuth",
 	"mwoauthconsumer-consumer-logpagetext": "Registro de aprovações, rejeições e desativação de consumidores registrados da OAuth.",
+	"mwoauth-centralauth-account-link": "contas globais",
 	"mwoauth-bad-request-missing-params": "Desculpe, mas algo correu mal ao configurar esta aplicação ligada. Contacte o programador da aplicação.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Faltam parâmetros do OAuth, $1</span>",
 	"mwoauth-bad-request-invalid-action": "Desculpe, mas algo correu mal e precisa de contactar o autor da aplicação para obter ajuda com o problema.\n\n<span class=\"plainlinks mw-mwoautherror-details\">URL desconhecido, $1</span>",
 	"mwoauth-bad-request-invalid-action-contact": "Desculpe, mas algo correu mal. Precisa de [$1 contactar] o autor da aplicação para obter ajuda.\n\n<span class=\"plainlinks mw-mwoautherror-details\">URL desconhecido, $2</span>",
