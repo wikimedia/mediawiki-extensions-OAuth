@@ -150,7 +150,7 @@
 	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Vaša}} urejanja s to aplikacijo",
 	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Vaša}} dejanja s to aplikacijo",
 	"logentry-mwoauthconsumer-propose": "$1 je {{GENDER:$2|predlagal|predlagala|predlagal_a}} porabnika OAuth (porabniški ključ $4)",
-	"logentry-mwoauthconsumer-approve": "$1 je {{GENDER:$2|odobril|odobrila|odobril/a}} porabnika OAuth za $3 (porabniški ključ $4)",
+	"logentry-mwoauthconsumer-approve": "$1 je {{GENDER:$2|odobril|odobrila|odobril_a}} porabnika OAuth za $3 (porabniški ključ $4)",
 	"logentry-mwoauthconsumer-disable": "$1 je {{GENDER:$2|onemogočil|onemogočila|onemogočil_a}} porabnika OAuth za $3 (porabniški ključ $4)",
 	"logentry-mwoauthconsumer-create-owner-only": "$1 je {{GENDER:$2|ustvaril|ustvarila|ustvaril_a}} izključno lastniškega porabnika OAuth (porabniški ključ $4)",
 	"log-action-filter-mwoauthconsumer-approve": "Odobritev porabnika OAuth",

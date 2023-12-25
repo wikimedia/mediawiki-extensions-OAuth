@@ -129,6 +129,7 @@
 	"mwoauthlistconsumers-version": "コンシューマーのバージョン",
 	"mwoauthlistconsumers-user": "発行者",
 	"mwoauthlistconsumers-description": "説明",
+	"mwoauthlistconsumers-wiki": "対象プロジェクト",
 	"mwoauthlistconsumers-callbackurl": "OAuth コールバック URL",
 	"mwoauthlistconsumers-grants": "該当する権限群",
 	"mwoauthlistconsumers-basicgrantsonly": "(基本的なアクセスのみ)",
