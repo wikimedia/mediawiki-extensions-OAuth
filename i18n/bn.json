@@ -8,7 +8,8 @@
 			"Gitartha.bordoloi",
 			"Nokib Sarkar",
 			"Tauhid16",
-			"আফতাবুজ্জামান"
+			"আফতাবুজ্জামান",
+			"Aishik Rehman"
 		]
 	},
 	"oauth": "ওআউথ",
@@ -95,7 +96,7 @@
 	"mwoauthlistconsumers-grants": "প্রযোজ্য অনুমতি",
 	"mwoauthlistconsumers-basicgrantsonly": "(শুধুমাত্র মৌলিক প্রবেশাধিকার)",
 	"mwoauthlistconsumers-status": "অবস্থা",
-	"mwoauth-consumer-stage-any": "যেকোন",
+	"mwoauth-consumer-stage-any": "যেকোনো",
 	"mwoauthlistconsumers-status-proposed": "প্রস্তাবিত",
 	"mwoauthlistconsumers-status-approved": "অনুমোদিত",
 	"mwoauthlistconsumers-status-disabled": "নিস্ক্রিয়",
@@ -108,7 +109,7 @@
 	"mwoauthmanagemygrants-text": "এই পাতাটি যে অ্যাপ্লিকেশনগুলি আপনার অ্যাকাউন্ট ব্যবহার করতে পারে তা তালিকাবদ্ধ করে। এই জাতীয় যে কোনও অ্যাপ্লিকেশনের প্রবেশের পরিধি, আপনি যখন অ্যাপ্লিকেশনটিকে আপনার পক্ষ থেকে কাজ করার অনুমতি দিয়েছিলেন তখন আপনি এটিকে যে অনুমতি দিয়েছিলেন তার উপর সীমাবদ্ধ। আপনি যদি আলাদাভাবে বিভিন্ন সহপ্রকল্পগুলিতে আপনার পক্ষ থেকে প্রবেশের জন্য কোনও অ্যাপ্লিকেশনকে অনুমোদন দিয়ে থাকেন, তবে নীচে প্রতিটি প্রকল্পের জন্য আপনি পৃথক কনফিগারেশন দেখতে পাবেন।\n\nসংযুক্ত অ্যাপ্লিকেশনগুলি OAuth প্রোটোকল ব্যবহার করে আপনার অ্যাকাউন্টে প্রবেশ করে। <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth সংযুক্ত অ্যাপ্লিকেশনগুলি সম্পর্কে আরও জানুন])</span>",
 	"mwoauthmanagemygrants-navigation": "পরিভ্রমণ:",
 	"mwoauthmanagemygrants-showlist": "সংযুক্ত অ্যাপ্লিকেশনের তালিকা",
-	"mwoauthmanagemygrants-none": "আপনার অ্যাকাউন্টের সাথে কোন অ্যাপ্লিকেশন সংযুক্ত নেই।",
+	"mwoauthmanagemygrants-none": "আপনার অ্যাকাউন্টের সাথে কোনো অ্যাপ্লিকেশন সংযুক্ত নেই।",
 	"mwoauthmanagemygrants-user": "প্রকাশক:",
 	"mwoauthmanagemygrants-description": "বিবরণ",
 	"mwoauthmanagemygrants-wikiallowed": "প্রকল্পে অনুমোদিত:",
