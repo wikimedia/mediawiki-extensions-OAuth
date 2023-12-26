@@ -106,6 +106,7 @@
 	"mwoauthmanagemygrants-action": "Status änneren:",
 	"mwoauthmanagemygrants-success-update": "Är Astellunge fir dës Applikatioun goufen aktualiséiert.",
 	"mwoauthmanagemygrants-success-renounce": "Den Accès vun der Applikatioun op Är Benotzerkont gouf ewechgeholl.",
+	"mwoauth-centralauth-account-link": "Global Benotzerkonten",
 	"mwoauthdatastore-request-token-not-found": "Leider ass eppes schif gaange beim Verbanne mat dëser Applikatioun.\nGitt zréck a probéiert !Are Benotzerkont nach eng Kéier ze verbannen oder kontaktéiert den Auteur vun der Applikatioun.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth Token net fonnt, $1</span>",
 	"mwoauthdatastore-bad-token": "Et gouf keen Token fonnt deen op Är Ufro passt.",
 	"mwoauthdatastore-bad-source-ip": "D'Ufro koum vun enger net autoriséierter IP-Adress.",
