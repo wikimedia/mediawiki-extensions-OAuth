@@ -357,7 +357,7 @@
 	"mwoauth-oauth2-error-request-not-verified": "Er wordt geprobeerd geverifieerde eigendommen op te halen voordat het verzoek wordt geverifieerd.",
 	"mwoauth-oauth2-invalid-access-token": "Ongeldig toegangstoken",
 	"mwoauth-consumer-access-no-user": "De goedkeuring van de consument moet gebonden zijn aan een geldige gebruiker, maar een gebruiker met ID 0 is opgegeven",
-	"mwoauth-login-required-reason": "U moet inloggen op uw {{SITENAME}}-account om applicaties ertoe toegang te geven.",
+	"mwoauth-login-required-reason": "U moet zich aanmelden bij uw {{SITENAME}}-account om applicaties er toegang toe te geven.",
 	"mwoauthconsumer-consumer-view": "Deze consument bekijken",
 	"mwoauthconsumer-application-view": "Deze applicatie bekijken",
 	"grant-oauthmanageownclient": "Uw OAuth-cliënten beheren",
