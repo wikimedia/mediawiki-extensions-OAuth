@@ -24,8 +24,8 @@ namespace MediaWiki\Extension\OAuth\Frontend\Pagers;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageMyGrants;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Title\Title;
-use ReverseChronologicalPager;
 use stdClass;
 
 /**

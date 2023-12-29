@@ -23,15 +23,15 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use FormatJson;
 use IContextSource;
-use Linker;
 use LogicException;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity as OAuth2Client;
+use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use Message;
 use MWRestrictions;
-use SpecialPage;
-use User;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

@@ -13,9 +13,9 @@ use League\OAuth2\Server\Exception\OAuthServerException;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use Throwable;
-use User;
 
 class AccessTokenEntity implements AccessTokenEntityInterface {
 	use AccessTokenTrait;

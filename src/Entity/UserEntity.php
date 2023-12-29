@@ -4,8 +4,8 @@ namespace MediaWiki\Extension\OAuth\Entity;
 
 use League\OAuth2\Server\Entities\UserEntityInterface;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\User\User;
 use MWException;
-use User;
 
 class UserEntity implements UserEntityInterface {
 

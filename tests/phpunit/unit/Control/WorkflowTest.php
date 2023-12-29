@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Tests\Control;
 
-use HashConfig;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Control\Workflow;

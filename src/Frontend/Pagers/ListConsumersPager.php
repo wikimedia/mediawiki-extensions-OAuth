@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Extension\OAuth\Frontend\Pagers;
 
-use AlphabeticPager;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthListConsumers;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Pager\AlphabeticPager;
 use MediaWiki\Title\Title;
 use stdClass;
 

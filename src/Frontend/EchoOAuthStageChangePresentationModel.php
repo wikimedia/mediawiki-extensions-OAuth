@@ -6,9 +6,9 @@ use EchoAttributeManager;
 use MediaWiki\Extension\Notifications\Formatters\EchoEventPresentationModel;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\User;
 use MWException;
-use SpecialPage;
-use User;
 
 class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 	/** @var User[] OAuth admins who should be notified about additions to the review queue */

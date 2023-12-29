@@ -12,9 +12,9 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
-use User;
 
 /**
  * Class EndpointTest

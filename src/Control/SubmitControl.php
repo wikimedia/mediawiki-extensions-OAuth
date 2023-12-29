@@ -7,10 +7,10 @@ use ContextSource;
 use HTMLForm;
 use IContextSource;
 use LogicException;
+use MediaWiki\Status\Status;
 use Message;
 use MessageSpecifier;
 use MWException;
-use Status;
 use StatusValue;
 
 /**

@@ -23,13 +23,13 @@
 
 namespace MediaWiki\Extension\OAuth\Tests;
 
-use Config;
-use HashConfig;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\UserStatementProvider;
 use MediaWiki\User\User;
+use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
-use MWTimestamp;
 use Wikimedia\TestingAccessWrapper;
 
 /**

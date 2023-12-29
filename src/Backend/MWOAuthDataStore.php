@@ -4,9 +4,9 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use BagOStuff;
 use InvalidArgumentException;
-use Linker;
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
+use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use Message;
 use MWCryptRand;

@@ -14,7 +14,7 @@ use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extension\OAuth\Repository\ClaimStore;
-use User;
+use MediaWiki\User\User;
 
 class ClientEntity extends Consumer implements MWClientEntityInterface {
 

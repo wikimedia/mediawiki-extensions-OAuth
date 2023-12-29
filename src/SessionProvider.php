@@ -20,20 +20,20 @@ use MediaWiki\Hook\MarkPatrolledHook;
 use MediaWiki\Hook\RecentChange_saveHook;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\ImmutableSessionProviderWithCookie;
 use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use Message;
 use MWRestrictions;
 use RecentChange;
 use RequestContext;
-use User;
-use WebRequest;
 use Wikimedia\Rdbms\DBError;
 
 /**

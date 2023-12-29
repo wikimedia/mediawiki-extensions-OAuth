@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\AuthorizationProvider;
 
-use User;
+use MediaWiki\User\User;
 
 interface IAuthorizationProvider {
 

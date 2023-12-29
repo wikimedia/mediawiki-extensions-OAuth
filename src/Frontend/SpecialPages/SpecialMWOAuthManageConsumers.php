@@ -22,7 +22,6 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
  */
 
 use ErrorPageError;
-use Html;
 use HTMLForm;
 use IContextSource;
 use LogEventsList;
@@ -34,14 +33,15 @@ use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ManageConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsLocalization;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MWRestrictions;
 use OOUI\HtmlSnippet;
 use PermissionsError;
-use SpecialPage;
-use Status;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 use Xml;

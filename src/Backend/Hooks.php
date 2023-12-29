@@ -8,11 +8,11 @@ use MediaWiki\ChangeTags\Hook\ChangeTagsListActiveHook;
 use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
 use MediaWiki\Extension\OAuth\Frontend\OAuthLogFormatter;
 use MediaWiki\Hook\SetupAfterCacheHook;
+use MediaWiki\Status\Status;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
-use Status;
-use User;
 
 /**
  * Class containing hooked functions for an OAuth environment

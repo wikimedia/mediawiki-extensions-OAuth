@@ -4,9 +4,9 @@ namespace MediaWiki\Extension\OAuth;
 
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Hook\TestCanonicalRedirectHook;
+use MediaWiki\Output\OutputPage;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
-use OutputPage;
-use WebRequest;
 
 /**
  * Class containing hooked functions for an OAuth environment

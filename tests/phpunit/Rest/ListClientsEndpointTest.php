@@ -7,8 +7,8 @@ use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Tests\TestHandlerFactory;
 use MediaWiki\Rest\Handler;
+use MediaWiki\User\User;
 use MWRestrictions;
-use User;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Rest\Handler\ListClients

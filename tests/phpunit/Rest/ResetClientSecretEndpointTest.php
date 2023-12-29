@@ -9,9 +9,9 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Rest\Handler\ResetClientSecret;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\ResponseInterface;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use MWRestrictions;
-use User;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Rest\Handler\ResetClientSecret

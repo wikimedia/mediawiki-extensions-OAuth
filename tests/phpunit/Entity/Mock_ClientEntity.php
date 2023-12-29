@@ -4,8 +4,8 @@ namespace MediaWiki\Extension\OAuth\Tests\Entity;
 
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\User\User;
 use MWRestrictions;
-use User;
 
 class Mock_ClientEntity extends ClientEntity {
 	public static function newMock( User $user, $values = [] ) {

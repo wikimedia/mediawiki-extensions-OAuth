@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
-use Linker;
 use MediaWiki\Extension\OAuth\Lib\OAuthServer;
+use MediaWiki\Linker\Linker;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\User;
 use Message;
-use SpecialPage;
-use User;
 
 class MWOAuthServer extends OAuthServer {
 	/** @var MWOAuthDataStore */

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\OAuth\Control\Workflow;
 use MediaWiki\MediaWikiServices;
 

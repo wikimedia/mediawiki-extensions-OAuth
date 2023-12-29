@@ -23,9 +23,9 @@ use Maintenance;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
+use MediaWiki\User\User;
 use MWRestrictions;
 use RequestContext;
-use User;
 
 /**
  * @ingroup Maintenance

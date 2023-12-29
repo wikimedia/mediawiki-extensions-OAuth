@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Extension\OAuth;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsInfo;
+use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
-use User;
 
 class UserStatementProvider {
 	/** @var Config */

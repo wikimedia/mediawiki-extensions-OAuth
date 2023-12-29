@@ -23,10 +23,8 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
 
 use Firebase\JWT\JWT;
 use FormatJson;
-use Html;
 use HTMLForm;
 use IContextSource;
-use Linker;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
@@ -39,20 +37,22 @@ use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 use MediaWiki\Extension\OAuth\UserStatementProvider;
+use MediaWiki\Html\Html;
+use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Permissions\GrantsLocalization;
+use MediaWiki\Request\WebRequest;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use Message;
 use MWException;
 use OOUI;
 use OOUI\HtmlSnippet;
 use Psr\Log\LoggerInterface;
-use SpecialPage;
-use Status;
-use UnlistedSpecialPage;
-use User;
-use WebRequest;
 
 /**
  * Page that handles OAuth consumer authorization and token exchange
@@ -476,7 +476,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				'mwoauthserver-bad-consumer-version',
 				[
 					Utils::getCentralUserTalk( $cmrAc->getUserName() ),
-					\Message::rawParam( \Linker::makeExternalLink(
+					\Message::rawParam( Linker::makeExternalLink(
 						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E012',
 						'E012',
 						true

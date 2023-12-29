@@ -2,20 +2,20 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
-use AutoCommitUpdate;
 use BagOStuff;
-use CentralIdLookup;
-use DeferredUpdates;
+use MediaWiki\Deferred\AutoCommitUpdate;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
+use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use MWException;
 use ObjectCache;
 use RequestContext;
-use User;
-use WebRequest;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

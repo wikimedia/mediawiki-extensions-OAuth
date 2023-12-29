@@ -4,9 +4,9 @@ namespace MediaWiki\Extension\OAuth\Tests\Backend;
 
 use MediaWiki\Extension\OAuth\Backend\Hooks;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
+use MediaWiki\User\User;
 use PHPUnit\Framework\TestCase;
-use Status;
-use User;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Backend\MWOAuthServer

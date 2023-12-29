@@ -4,7 +4,7 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
-use WebRequest;
+use MediaWiki\Request\WebRequest;
 
 /**
  * @file

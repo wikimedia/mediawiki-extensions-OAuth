@@ -19,15 +19,15 @@ use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Sanitizer;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use MWCryptRand;
 use MWException;
-use Sanitizer;
-use SpecialPage;
 use StatusValue;
 use UnexpectedValueException;
-use User;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

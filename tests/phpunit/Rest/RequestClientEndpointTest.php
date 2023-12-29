@@ -7,8 +7,8 @@ use FormatJson;
 use MediaWiki\Extension\OAuth\Rest\Handler\RequestClient;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\ResponseInterface;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
-use User;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Rest\Handler\RequestClient

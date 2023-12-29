@@ -11,10 +11,10 @@ use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshToken;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\IAuthorizationProvider;
 use MediaWiki\Extension\OAuth\AuthorizationServerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use ReflectionClass;
-use User;
 use Wikimedia\TestingAccessWrapper;
 
 /**

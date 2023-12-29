@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\OAuth\Control\Workflow;
 use MediaWiki\Extension\OAuth\OAuthServices;
