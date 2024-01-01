@@ -60,7 +60,7 @@
 	"mwoauth-invalid-consumer-key": "אין צרכן עם המפתח שניתן.",
 	"mwoauth-invalid-access-token": "אין אסימון גישה עם המפתח שניתן.",
 	"mwoauth-invalid-access-wrongwiki": "הצרכן יכול לשמש רק במיזם \"$1\".",
-	"mwoauth-consumer-conflict": "מישהו שינה את המאפיינים של הצרכן הזה בזמן שצפית בו. נא לנסות שוב. אפשר לבדוק את יומן השינויים.",
+	"mwoauth-consumer-conflict": "מישהו שינה את התכונות של הצרכן הזה בזמן שצפית בו. נא לנסות שוב. אפשר לבדוק את יומן השינויים.",
 	"mwoauth-consumer-grantshelp": "כל זיכיון נותן גישה להרשאות המשתמש הרשומות שכבר ניתנו לחשבון משתמש. ר' את הדף [[Special:ListGrants|טבלת הזיכיונות]] למידע נוסף.",
 	"mwoauth-consumer-stage-proposed": "מוצע",
 	"mwoauth-consumer-stage-rejected": "דחוי",
