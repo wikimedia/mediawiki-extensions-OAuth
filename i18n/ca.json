@@ -4,6 +4,7 @@
 			"Fitoschido",
 			"Jmarchn",
 			"Pginer",
+			"SMP",
 			"Townie"
 		]
 	},
@@ -21,6 +22,10 @@
 	"mwoauthmanagemygrants-navigation": "Navegació:",
 	"mwoauthmanagemygrants-description": "Descripció",
 	"mwoauthdatastore-bad-source-ip": "La sol·licitud provenia d’una adreça IP no vàlida.",
+	"right-mwoauthproposeconsumer": "Proposar nous clients OAuth",
+	"right-mwoauthmanageconsumer": "Gestionar clients d'OAuth",
+	"right-mwoauthviewprivate": "Veure dades privades d'OAuth",
+	"right-mwoauthmanagemygrants": "Gestionar els drets d'OAuth",
 	"action-mwoauthviewprivate": "veure dades privades de l’OAuth",
 	"notification-oauth-app-body": "Motiu: $1",
 	"mwoauthconsumer-application-view": "Mostra aquesta aplicació"
