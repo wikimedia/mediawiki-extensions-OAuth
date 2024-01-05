@@ -266,7 +266,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	 */
 	protected static function getSchema() {
 		// Note: declaring this abstract raises E_STRICT
-		throw new MWException( "getSchema() not defined in " . get_class() );
+		throw new MWException( "getSchema() not defined in " . self::class );
 	}
 
 	/**
@@ -285,7 +285,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	 */
 	protected static function getFieldPermissionChecks() {
 		// Note: declaring this abstract raises E_STRICT
-		throw new LogicException( "getFieldPermissionChecks() not defined in " . get_class() );
+		throw new LogicException( "getFieldPermissionChecks() not defined in " . self::class );
 	}
 
 	/**
