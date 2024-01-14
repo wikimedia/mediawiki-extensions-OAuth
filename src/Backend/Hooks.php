@@ -71,7 +71,14 @@ EOK;
 			$wgLogTypes[] = 'mwoauthconsumer';
 			$wgLogNames['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpage';
 			$wgLogHeaders['mwoauthconsumer'] = 'mwoauthconsumer-consumer-logpagetext';
-			$wgLogActionsHandlers['mwoauthconsumer/*'] = OAuthLogFormatter::class;
+			$wgLogActionsHandlers['mwoauthconsumer/*'] = [
+				'class' => OAuthLogFormatter::class,
+				'services' => [
+					'LinkRenderer',
+					'TitleFactory',
+					'UserEditTracker',
+				],
+			];
 			$wgActionFilteredLogs['mwoauthconsumer'] = [
 				'approve' => [ 'approve' ],
 				'create-owner-only' => [ 'create-owner-only' ],

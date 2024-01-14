@@ -23,12 +23,17 @@ class OAuthLogFormatter extends LogFormatter {
 	protected TitleFactory $titleFactory;
 	protected UserEditTracker $userEditTracker;
 
-	public function __construct( LogEntry $entry ) {
+	public function __construct(
+		LogEntry $entry,
+		LinkRenderer $linkRenderer,
+		TitleFactory $titleFactory,
+		UserEditTracker $userEditTracker
+	) {
 		parent::__construct( $entry );
 		$this->extensionRegistry = ExtensionRegistry::getInstance();
-		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		$this->titleFactory = MediaWikiServices::getInstance()->getTitleFactory();
-		$this->userEditTracker = MediaWikiServices::getInstance()->getUserEditTracker();
+		$this->linkRenderer = $linkRenderer;
+		$this->titleFactory = $titleFactory;
+		$this->userEditTracker = $userEditTracker;
 	}
 
 	protected function getMessageParameters() {
