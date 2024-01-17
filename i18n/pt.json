@@ -323,7 +323,7 @@
 	"mwoauth-oauth2-granttype-client-credentials": "Credenciais do cliente",
 	"mwoauth-oauth2-error-create-at-no-user-approval": "Não é possível criar a chave de acesso; o utilizador não aprovou a emissão desta chave de acesso",
 	"mwoauth-oauth2-error-user-approval-deny": "O utilizador rejeitou o pedido da aplicação cliente",
-	"mwoauth-oauth-unsupported-version": "Este ponto final não é permitido para a versão $1 do OAuth",
+	"mwoauth-oauth-unsupported-version": "Este ponto de terminação não é permitido para a versão $1 do OAuth",
 	"mwoauth-oauth2-error-unauthorized-scope": "O âmbito \"$1\" não é permitido para esta aplicação",
 	"mwoauth-oauth2-error-owner-only-invalid-grant": "Os clientes reservados ao proprietário têm de ter permissão para usar ''client_credentials''",
 	"mwoauth-oauth2-unable-to-retrieve-access-token": "Não foi possível obter a chave de acesso: $1",
