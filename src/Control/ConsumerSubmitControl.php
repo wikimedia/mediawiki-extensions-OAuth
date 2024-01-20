@@ -329,21 +329,22 @@ class ConsumerSubmitControl extends SubmitControl {
 				] + $this->vals
 			);
 
+			$logAction = 'propose';
 			$oauthServices = OAuthServices::wrap( MediaWikiServices::getInstance() );
 			$workflow = $oauthServices->getWorkflow();
-			if ( $workflow->consumerCanBeAutoApproved( $cmr ) ) {
+			$autoApproved = $workflow->consumerCanBeAutoApproved( $cmr );
+			if ( $cmr->getOwnerOnly() ) {
+				// FIXME the stage is set a few dozen lines earlier - should simplify this
+				$logAction = 'create-owner-only';
+			} elseif ( $autoApproved ) {
 				$cmr->setField( 'stage', Consumer::STAGE_APPROVED );
+				$logAction = 'propose-autoapproved';
 			}
 
 			$cmr->save( $dbw );
-
-			if ( $cmr->getOwnerOnly() ) {
-				$this->makeLogEntry(
-					$dbw, $cmr, 'create-owner-only', $user, $this->vals['description']
-				);
-			} else {
-				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['description'] );
-				// Do not notify admins if the consumer got auto-approved.
+			$this->makeLogEntry( $dbw, $cmr, $logAction, $user, $this->vals['description'] );
+			if ( !$cmr->getOwnerOnly() && !$autoApproved ) {
+				// Notify admins if the consumer needs to be approved.
 				if ( $cmr->getStage() === Consumer::STAGE_PROPOSED ) {
 					$this->notify( $cmr, $user, $action, '' );
 				}
