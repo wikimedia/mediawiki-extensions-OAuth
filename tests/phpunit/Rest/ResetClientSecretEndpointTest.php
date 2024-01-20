@@ -70,7 +70,6 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 				'*' => [ 'mwoauthupdateownconsumer' => true ]
 			],
 		] );
-		$this->tablesUsed[] = 'oauth_registered_consumer';
 	}
 
 	public function provideTestHandlerExecute() {

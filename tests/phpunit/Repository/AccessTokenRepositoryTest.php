@@ -20,9 +20,6 @@ class AccessTokenRepositoryTest extends MediaWikiIntegrationTestCase {
 	/** @var AccessTokenRepository */
 	protected $accessTokenRepo;
 
-	/** @inheritDoc */
-	protected $tablesUsed = [ 'oauth2_access_tokens' ];
-
 	protected function setUp(): void {
 		parent::setUp();
 

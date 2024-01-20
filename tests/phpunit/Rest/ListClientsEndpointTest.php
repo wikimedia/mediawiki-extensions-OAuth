@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\OAuth\Tests\Rest;
 
-use Exception;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Tests\TestHandlerFactory;
@@ -16,14 +15,6 @@ use MWRestrictions;
  * @group OAuth
  */
 class ListClientsEndpointTest extends EndpointTestBase {
-
-	/**
-	 * @throws Exception
-	 */
-	public function setUp(): void {
-		parent::setUp();
-		$this->tablesUsed[] = 'oauth_registered_consumer';
-	}
 
 	/**
 	 * @var array

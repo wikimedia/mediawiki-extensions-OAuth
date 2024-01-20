@@ -76,7 +76,6 @@ class RequestClientEndpointTest extends EndpointTestBase {
 			],
 			'wgEmailAuthentication' => false
 		] );
-		$this->tablesUsed[] = 'oauth_registered_consumer';
 	}
 
 	public function provideTestHandlerExecute() {
