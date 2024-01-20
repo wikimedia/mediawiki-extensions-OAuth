@@ -27,6 +27,7 @@ use HTMLForm;
 use HTMLHiddenField;
 use HTMLRestrictionsField;
 use IContextSource;
+use InvalidArgumentException;
 use LogEventsList;
 use LogPage;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
@@ -147,10 +148,10 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			$showGrants = $this->grantsInfo->getValidGrants();
 			$grantLinks = array_map( [ $this->grantsLocalization, 'getGrantsLink' ], $showGrants );
 			if ( $subPage === 'oauth2' ) {
-				$this->proposeOAuth2( $user, $allWikis, $lang, $showGrants, $grantLinks );
+				$this->proposeOAuth( Consumer::OAUTH_VERSION_2, $user, $allWikis, $lang, $showGrants, $grantLinks );
 				break;
 			} elseif ( $subPage === 'oauth1a' ) {
-				$this->proposeOAuth1( $user, $allWikis, $lang, $showGrants, $grantLinks );
+				$this->proposeOAuth( Consumer::OAUTH_VERSION_1, $user, $allWikis, $lang, $showGrants, $grantLinks );
 				break;
 			} else {
 				$this->getOutput()->redirect( 'Special:OAuthConsumerRegistration/propose' );
@@ -463,138 +464,177 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		return 'users';
 	}
 
-	private function proposeOAuth1( User $user, $allWikis, $lang, $showGrants, $grantLinks ) {
+	private function proposeOAuth( int $oauthVersion, User $user, $allWikis, $lang, $showGrants, $grantLinks ) {
+		if ( !in_array( $oauthVersion, [ Consumer::OAUTH_VERSION_1, Consumer::OAUTH_VERSION_2 ] ) ) {
+			throw new InvalidArgumentException( 'Invalid OAuth version' );
+		}
+		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
 		$dbw = Utils::getCentralDB( DB_PRIMARY );
 		$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
-		$form = HTMLForm::factory( 'ooui',
-			$control->registerValidators( [
-				'oauthVersion' => [
-					'class' => HTMLHiddenField::class,
-					'default' => Consumer::OAUTH_VERSION_1,
+
+		$formDescriptor = [
+			'oauthVersion' => [
+				'class' => HTMLHiddenField::class,
+				'default' => $oauthVersion,
+			],
+			'name' => [
+				'type' => 'text',
+				'label-message' => 'mwoauth-consumer-name',
+				'size' => '45',
+				'required' => true
+			],
+			'version' => [
+				'type' => 'text',
+				'label-message' => 'mwoauth-consumer-version',
+				'required' => true,
+				'default' => "1.0"
+			],
+			'description' => [
+				'type' => 'textarea',
+				'label-message' => 'mwoauth-consumer-description',
+				'required' => true,
+				'rows' => 5
+			],
+			'ownerOnly' => [
+				'type' => 'check',
+				'label-message' => [ 'mwoauth-consumer-owner-only', $user->getName() ],
+				'help-message' => [ 'mwoauth-consumer-owner-only-help', $user->getName() ],
+			],
+			'callbackUrl' => [
+				'type' => 'text',
+				'label-message' => 'mwoauth-consumer-callbackurl',
+				'help-message' => ( $oauthVersion === Consumer::OAUTH_VERSION_2 )
+					? 'mwoauth-consumer-callbackurl-help' : null,
+				'required' => true,
+				'hide-if' => [ '!==', 'ownerOnly', '' ],
+			],
+			'callbackIsPrefix' => [
+				'oauthVersion' => Consumer::OAUTH_VERSION_1,
+				'type' => 'check',
+				'label-message' => 'mwoauth-consumer-callbackisprefix',
+				'hide-if' => [ '!==', 'ownerOnly', '' ],
+			],
+			'email' => [
+				'type' => 'text',
+				'label-message' => 'mwoauth-consumer-email',
+				'required' => true,
+				'readonly' => true,
+				'default' => $user->getEmail(),
+				'help-message' => 'mwoauth-consumer-email-help',
+			],
+			'wiki' => [
+				'type' => $allWikis ? 'combobox' : 'select',
+				'options' => [
+					 $this->msg( 'mwoauth-consumer-allwikis' )->escaped() => '*',
+					 $this->msg( 'mwoauth-consumer-wiki-thiswiki', WikiMap::getCurrentWikiId() )
+						 ->escaped() => WikiMap::getCurrentWikiId()
+				 ] + array_flip( $allWikis ),
+				'label-message' => 'mwoauth-consumer-wiki',
+				'required' => true,
+				'default' => '*'
+			],
+			'oauth2IsConfidential' => [
+				'oauthVersion' => Consumer::OAUTH_VERSION_2,
+				'type' => 'check',
+				'label-message' => 'mwoauth-oauth2-is-confidential',
+				'help-message' => 'mwoauth-oauth2-is-confidential-help',
+				'default' => 1
+			],
+			'oauth2GrantTypes' => [
+				'oauthVersion' => Consumer::OAUTH_VERSION_2,
+				'type' => 'multiselect',
+				'label-message' => 'mwoauth-oauth2-granttypes',
+				'hide-if' => [ '!==', 'ownerOnly', '' ],
+				'options' => array_filter( [
+					$this->msg( 'mwoauth-oauth2-granttype-auth-code' )->escaped() =>
+						'authorization_code',
+					$this->msg( 'mwoauth-oauth2-granttype-refresh-token' )->escaped() =>
+						'refresh_token',
+					$this->msg( 'mwoauth-oauth2-granttype-client-credentials' )->escaped() =>
+						'client_credentials',
+				], static function ( $grantType ) use ( $config ) {
+					return in_array( $grantType, $config->get( 'OAuth2EnabledGrantTypes' ) );
+				} ),
+				'required' => true,
+				'default' => [ 'authorization_code', 'refresh_token' ]
+			],
+			'granttype' => [
+				'type' => 'radio',
+				'options-messages' => [
+					'grant-mwoauth-authonly' => 'authonly',
+					'grant-mwoauth-authonlyprivate' => 'authonlyprivate',
+					'mwoauth-granttype-normal' => 'normal',
 				],
-				'name' => [
-					'type' => 'text',
-					'label-message' => 'mwoauth-consumer-name',
-					'size' => '45',
-					'required' => true
+				'label-message' => 'mwoauth-consumer-granttypes',
+				'default' => 'normal',
+			],
+			'grants' => [
+				'type' => 'checkmatrix',
+				'label-message' => 'mwoauth-consumer-grantsneeded',
+				'help-message' => 'mwoauth-consumer-grantshelp',
+				'hide-if' => [ '!==', 'granttype', 'normal' ],
+				'columns' => [
+					$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
 				],
-				'version' => [
-					'type' => 'text',
-					'label-message' => 'mwoauth-consumer-version',
-					'required' => true,
-					'default' => "1.0"
-				],
-				'description' => [
-					'type' => 'textarea',
-					'label-message' => 'mwoauth-consumer-description',
-					'required' => true,
-					'rows' => 5
-				],
-				'ownerOnly' => [
-					'type' => 'check',
-					'label-message' => [ 'mwoauth-consumer-owner-only', $user->getName() ],
-					'help-message' => [ 'mwoauth-consumer-owner-only-help', $user->getName() ],
-				],
-				'callbackUrl' => [
-					'type' => 'text',
-					'label-message' => 'mwoauth-consumer-callbackurl',
-					'required' => true,
-					'hide-if' => [ '!==', 'ownerOnly', '' ],
-				],
-				'callbackIsPrefix' => [
-					'type' => 'check',
-					'label-message' => 'mwoauth-consumer-callbackisprefix',
-					'hide-if' => [ '!==', 'ownerOnly', '' ],
-				],
-				'email' => [
-					'type' => 'text',
-					'label-message' => 'mwoauth-consumer-email',
-					'required' => true,
-					'readonly' => true,
-					'default' => $user->getEmail(),
-					'help-message' => 'mwoauth-consumer-email-help',
-				],
-				'wiki' => [
-					'type' => $allWikis ? 'combobox' : 'select',
-					'options' => [
-							$this->msg( 'mwoauth-consumer-allwikis' )->escaped() => '*',
-							$this->msg( 'mwoauth-consumer-wiki-thiswiki', WikiMap::getCurrentWikiId() )
-								->escaped() => WikiMap::getCurrentWikiId()
-						] + array_flip( $allWikis ),
-					'label-message' => 'mwoauth-consumer-wiki',
-					'required' => true,
-					'default' => '*'
-				],
-				'granttype' => [
-					'type' => 'radio',
-					'options-messages' => [
-						'grant-mwoauth-authonly' => 'authonly',
-						'grant-mwoauth-authonlyprivate' => 'authonlyprivate',
-						'mwoauth-granttype-normal' => 'normal',
-					],
-					'label-message' => 'mwoauth-consumer-granttypes',
-					'default' => 'normal',
-				],
-				'grants' => [
-					'type' => 'checkmatrix',
-					'label-message' => 'mwoauth-consumer-grantsneeded',
-					'help-message' => 'mwoauth-consumer-grantshelp',
-					'hide-if' => [ '!==', 'granttype', 'normal' ],
-					'columns' => [
-						$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
-					],
-					'rows' => array_combine(
-						$grantLinks,
-						$showGrants
-					),
-					'tooltips' => array_combine(
-						$grantLinks,
-						array_map(
-							static function ( $rights ) use ( $lang ) {
-								return $lang->semicolonList(
-									array_map(
-										[ User::class, 'getRightDescription' ],
-										$rights
-									)
-								);
-							},
-							array_intersect_key(
-								$this->grantsInfo->getRightsByGrant(), array_flip( $showGrants )
-							)
-						)
-					),
-					'force-options-on' => array_map(
-						static function ( $g ) {
-							return "grant-$g";
+				'rows' => array_combine(
+					$grantLinks,
+					$showGrants
+				),
+				'tooltips' => array_combine(
+					$grantLinks,
+					array_map(
+						static function ( $rights ) use ( $lang ) {
+							return $lang->semicolonList(
+								array_map(
+									[ User::class, 'getRightDescription' ],
+									$rights
+								)
+							);
 						},
-						$this->grantsInfo->getHiddenGrants()
-					),
-					// different format
-					'validation-callback' => null,
-				],
-				'restrictions' => [
-					'class' => HTMLRestrictionsField::class,
-					'required' => true,
-					'default' => MWRestrictions::newDefault(),
-				],
-				'rsaKey' => [
-					'type' => 'textarea',
-					'label-message' => 'mwoauth-consumer-rsakey',
-					'help-message' => 'mwoauth-consumer-rsakey-help',
-					'required' => false,
-					'default' => '',
-					'rows' => 5
-				],
-				'agreement' => [
-					'type' => 'check',
-					'label-message' => 'mwoauth-consumer-developer-agreement',
-					'required' => true,
-				],
-				'action' => [
-					'type'    => 'hidden',
-					'default' => 'propose'
-				]
-			] ),
+						array_intersect_key(
+							$this->grantsInfo->getRightsByGrant(), array_flip( $showGrants )
+						)
+					)
+				),
+				'force-options-on' => array_map(
+					static function ( $g ) {
+						return "grant-$g";
+					},
+					$this->grantsInfo->getHiddenGrants()
+				),
+				// different format
+				'validation-callback' => null,
+			],
+			'restrictions' => [
+				'class' => HTMLRestrictionsField::class,
+				'required' => true,
+				'default' => MWRestrictions::newDefault(),
+			],
+			'rsaKey' => [
+				'oauthVersion' => Consumer::OAUTH_VERSION_1,
+				'type' => 'textarea',
+				'label-message' => 'mwoauth-consumer-rsakey',
+				'help-message' => 'mwoauth-consumer-rsakey-help',
+				'required' => false,
+				'default' => '',
+				'rows' => 5
+			],
+			'agreement' => [
+				'type' => 'check',
+				'label-message' => 'mwoauth-consumer-developer-agreement',
+				'required' => true,
+			],
+			'action' => [
+				'type'    => 'hidden',
+				'default' => 'propose'
+			]
+		];
+		$formDescriptor = array_filter( $formDescriptor,
+			fn ( $field ) => !isset( $field['oauthVersion'] ) || $field['oauthVersion'] === $oauthVersion
+		);
+
+		$form = HTMLForm::factory( 'ooui',
+			$control->registerValidators( $formDescriptor ),
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
@@ -618,7 +658,9 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-propose-legend' );
 		$form->setSubmitTextMsg( 'mwoauthconsumerregistration-propose-submit' );
 		$form->addPreHtml(
-			$this->msg( 'mwoauthconsumerregistration-propose-text-oauth1' )->parseAsBlock() );
+			// mwoauthconsumerregistration-propose-text-oauth1
+			// mwoauthconsumerregistration-propose-text-oauth2
+			$this->msg( "mwoauthconsumerregistration-propose-text-oauth$oauthVersion" )->parseAsBlock() );
 
 		$status = $form->show();
 		if ( $status instanceof Status && $status->isOK() ) {
@@ -628,226 +670,39 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			if ( $cmr->getOwnerOnly() ) {
 				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$accessToken = $status->value['result']['accessToken'];
-				$this->getOutput()->addWikiMsg(
-					'mwoauthconsumerregistration-created-owner-only-oauth1',
-					$cmr->getConsumerKey(),
-					Utils::hmacDBSecret( $cmr->getSecretKey() ),
-					$accessToken->key,
-					Utils::hmacDBSecret( $accessToken->secret )
-				);
+				if ( $oauthVersion === Consumer::OAUTH_VERSION_1 ) {
+					$this->getOutput()->addWikiMsg(
+						"mwoauthconsumerregistration-created-owner-only-oauth1",
+						$cmr->getConsumerKey(),
+						Utils::hmacDBSecret( $cmr->getSecretKey() ),
+						$accessToken->key,
+						Utils::hmacDBSecret( $accessToken->secret )
+					);
+				} else {
+					// OAuth 2 access tokens are very long
+					$accessToken = Html::element( 'span', [
+						'style' => 'overflow-wrap: break-word'
+					], (string)$accessToken );
+					$this->getOutput()->addWikiMsg(
+						'mwoauthconsumerregistration-created-owner-only-oauth2',
+						$cmr->getConsumerKey(),
+						Utils::hmacDBSecret( $cmr->getSecretKey() ),
+						Message::rawParam( $accessToken )
+					);
+				}
 			} elseif ( $cmr->getStage() === Consumer::STAGE_APPROVED ) {
-				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-autoapproved-oauth1',
+				// mwoauthconsumerregistration-autoapproved-oauth1
+				// mwoauthconsumerregistration-autoapproved-oauth2
+				$this->getOutput()->addWikiMsg( "mwoauthconsumerregistration-autoapproved-oauth$oauthVersion",
 					$cmr->getConsumerKey(),
 					Utils::hmacDBSecret( $cmr->getSecretKey() )
 				);
 			} else {
-				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-proposed-oauth1',
+				// mwoauthconsumerregistration-proposed-oauth1
+				// mwoauthconsumerregistration-proposed-oauth2
+				$this->getOutput()->addWikiMsg( "mwoauthconsumerregistration-proposed-oauth$oauthVersion",
 					$cmr->getConsumerKey(),
 					Utils::hmacDBSecret( $cmr->getSecretKey() ) );
-			}
-			$this->getOutput()->returnToMain();
-		}
-	}
-
-	private function proposeOAuth2( User $user, $allWikis, $lang, $showGrants, $grantLinks ) {
-		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
-
-		$dbw = Utils::getCentralDB( DB_PRIMARY );
-		$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
-		$form = HTMLForm::factory( 'ooui',
-			$control->registerValidators( [
-				'oauthVersion' => [
-					'class' => HTMLHiddenField::class,
-					'default' => Consumer::OAUTH_VERSION_2,
-				],
-				'name' => [
-					'type' => 'text',
-					'label-message' => 'mwoauth-consumer-name',
-					'size' => '45',
-					'required' => true
-				],
-				'version' => [
-					'type' => 'text',
-					'label-message' => 'mwoauth-consumer-version',
-					'required' => true,
-					'default' => "1.0"
-				],
-				'description' => [
-					'type' => 'textarea',
-					'label-message' => 'mwoauth-consumer-description',
-					'required' => true,
-					'rows' => 5
-				],
-				'ownerOnly' => [
-					'type' => 'check',
-					'label-message' => [ 'mwoauth-consumer-owner-only', $user->getName() ],
-					'help-message' => [ 'mwoauth-consumer-owner-only-help', $user->getName() ],
-				],
-				'callbackUrl' => [
-					'type' => 'text',
-					'label-message' => 'mwoauth-consumer-callbackurl',
-					'help-message' => 'mwoauth-consumer-callbackurl-help',
-					'required' => true,
-					'hide-if' => [ '!==', 'ownerOnly', '' ],
-				],
-				'email' => [
-					'type' => 'text',
-					'label-message' => 'mwoauth-consumer-email',
-					'required' => true,
-					'readonly' => true,
-					'default' => $user->getEmail(),
-					'help-message' => 'mwoauth-consumer-email-help',
-				],
-				'wiki' => [
-					'type' => $allWikis ? 'combobox' : 'select',
-					'options' => [
-							$this->msg( 'mwoauth-consumer-allwikis' )->escaped() => '*',
-							$this->msg( 'mwoauth-consumer-wiki-thiswiki', WikiMap::getCurrentWikiId() )
-								->escaped() => WikiMap::getCurrentWikiId()
-						] + array_flip( $allWikis ),
-					'label-message' => 'mwoauth-consumer-wiki',
-					'required' => true,
-					'default' => '*'
-				],
-				'oauth2IsConfidential' => [
-					'type' => 'check',
-					'label-message' => 'mwoauth-oauth2-is-confidential',
-					'help-message' => 'mwoauth-oauth2-is-confidential-help',
-					'default' => 1
-				],
-				'oauth2GrantTypes' => [
-					'type' => 'multiselect',
-					'label-message' => 'mwoauth-oauth2-granttypes',
-					'hide-if' => [ '!==', 'ownerOnly', '' ],
-					'options' => array_filter( [
-						$this->msg( 'mwoauth-oauth2-granttype-auth-code' )->escaped() =>
-							'authorization_code',
-						$this->msg( 'mwoauth-oauth2-granttype-refresh-token' )->escaped() =>
-							'refresh_token',
-						$this->msg( 'mwoauth-oauth2-granttype-client-credentials' )->escaped() =>
-							'client_credentials',
-					], static function ( $grantType ) use ( $config ) {
-						return in_array( $grantType, $config->get( 'OAuth2EnabledGrantTypes' ) );
-					} ),
-					'required' => true,
-					'default' => [ 'authorization_code', 'refresh_token' ]
-				],
-				'granttype' => [
-					'type' => 'radio',
-					'options-messages' => [
-						'grant-mwoauth-authonly' => 'authonly',
-						'grant-mwoauth-authonlyprivate' => 'authonlyprivate',
-						'mwoauth-granttype-normal' => 'normal',
-					],
-					'label-message' => 'mwoauth-consumer-granttypes',
-					'default' => 'normal',
-				],
-				'grants' => [
-					'type' => 'checkmatrix',
-					'label-message' => 'mwoauth-consumer-grantsneeded',
-					'help-message' => 'mwoauth-consumer-grantshelp',
-					'hide-if' => [ '!==', 'granttype', 'normal' ],
-					'columns' => [
-						$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
-					],
-					'rows' => array_combine(
-						$grantLinks,
-						$showGrants
-					),
-					'tooltips' => array_combine(
-						$grantLinks,
-						array_map(
-							static function ( $rights ) use ( $lang ) {
-								return $lang->semicolonList(
-									array_map(
-										[ User::class, 'getRightDescription' ],
-										$rights
-									)
-								);
-							},
-							array_intersect_key(
-								$this->grantsInfo->getRightsByGrant(), array_flip( $showGrants )
-							)
-						)
-					),
-					'force-options-on' => array_map(
-						static function ( $g ) {
-							return "grant-$g";
-						},
-						$this->grantsInfo->getHiddenGrants()
-					),
-					// different format
-					'validation-callback' => null,
-				],
-				'restrictions' => [
-					'class' => HTMLRestrictionsField::class,
-					'required' => true,
-					'default' => MWRestrictions::newDefault(),
-				],
-				'agreement' => [
-					'type' => 'check',
-					'label-message' => 'mwoauth-consumer-developer-agreement',
-					'required' => true,
-				],
-				'action' => [
-					'type'    => 'hidden',
-					'default' => 'propose'
-				]
-			] ),
-			$this->getContext()
-		);
-		$form->setSubmitCallback(
-			function ( array $data, IContextSource $context ) use ( $control ) {
-				// adapt form to controller
-				$data = $this->fillDefaultFields( $data );
-
-				$data['grants'] = FormatJson::encode(
-					preg_replace( '/^grant-/', '', $data['grants'] )
-				);
-
-				// Force all ownerOnly clients to use client_credentials
-				if ( $data['ownerOnly'] ) {
-					$data['oauth2GrantTypes'] = [ 'client_credentials' ];
-				}
-
-				$control->setInputParameters( $data );
-				return $control->submit();
-			}
-		);
-		$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-propose-legend' );
-		$form->setSubmitTextMsg( 'mwoauthconsumerregistration-propose-submit' );
-		$form->addPreHtml(
-			$this->msg( 'mwoauthconsumerregistration-propose-text-oauth2' )->parseAsBlock() );
-
-		$status = $form->show();
-		if ( $status instanceof Status && $status->isOK() ) {
-			/** @var Consumer $cmr */
-			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-			$cmr = $status->value['result']['consumer'];
-			if ( $cmr->getOwnerOnly() ) {
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-				$accessToken = $status->value['result']['accessToken'];
-				// If we just add raw AT to the page, it would go 3000px wide
-				$accessToken = Html::element( 'span', [
-					'style' => 'overflow-wrap: break-word'
-				], (string)$accessToken );
-
-				$this->getOutput()->addWikiMsg(
-					'mwoauthconsumerregistration-created-owner-only-oauth2',
-					$cmr->getConsumerKey(),
-					Utils::hmacDBSecret( $cmr->getSecretKey() ),
-					Message::rawParam( $accessToken )
-				);
-			} elseif ( $cmr->getStage() === Consumer::STAGE_APPROVED ) {
-				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-autoapproved-oauth2',
-					$cmr->getConsumerKey(),
-					Utils::hmacDBSecret( $cmr->getSecretKey() )
-				);
-			} else {
-				$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-proposed-oauth2',
-					$cmr->getConsumerKey(),
-					Utils::hmacDBSecret( $cmr->getSecretKey() )
-				);
 			}
 			$this->getOutput()->returnToMain();
 		}
