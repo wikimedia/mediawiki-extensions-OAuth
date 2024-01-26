@@ -49,7 +49,6 @@ use MWRestrictions;
 use PermissionsError;
 use stdClass;
 use UserBlockedError;
-use UserNotLoggedIn;
 use Wikimedia\Rdbms\IDatabase;
 use Xml;
 
@@ -85,7 +84,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		$this->requireLogin();
+		$this->requireNamedUser( 'mwoauth-named-account-required-reason' );
 		$this->checkPermissions();
 
 		$request = $this->getRequest();
@@ -115,9 +114,6 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			throw new UserBlockedError( $block );
 		}
 		$this->checkReadOnly();
-		if ( !$this->getUser()->isRegistered() ) {
-			throw new UserNotLoggedIn();
-		}
 
 		// Format is Special:OAuthConsumerRegistration[/propose/<oauth1a|oauth2>|/list|/update/<consumer key>]
 		$navigation = $par !== null ? explode( '/', $par ) : [];

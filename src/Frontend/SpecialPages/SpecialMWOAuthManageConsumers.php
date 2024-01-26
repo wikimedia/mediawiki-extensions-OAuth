@@ -92,11 +92,9 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		$this->setHeaders();
 		$this->getOutput()->disallowUserJs();
 		$this->addHelpLink( 'Help:OAuth' );
+		$this->requireNamedUser( 'mwoauth-available-only-to-registered' );
 
-		if ( !$user->isRegistered() ) {
-			$this->getOutput()->addWikiMsg( 'mwoauthmanageconsumers-notloggedin' );
-			return;
-		} elseif ( !$permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' ) ) {
+		if ( !$permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' ) ) {
 			throw new PermissionsError( 'mwoauthmanageconsumer' );
 		}
 

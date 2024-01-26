@@ -44,7 +44,7 @@ class Authorize extends AuthenticationHandler {
 			// Note: Owner-only clients can only use client_credentials grant
 			// so would be rejected from this endpoint with invalid_client error
 			// automatically, no need for additional checks
-			if ( !$this->user instanceof User || $this->user->isAnon() ) {
+			if ( !$this->user instanceof User || !$this->user->isNamed() ) {
 				return $this->getLoginRedirectResponse();
 			}
 

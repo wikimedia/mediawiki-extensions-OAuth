@@ -21,7 +21,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use PermissionsError;
 use stdClass;
-use UserNotLoggedIn;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -75,16 +74,12 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		$user = $this->getUser();
-
 		$this->setHeaders();
 		$this->getOutput()->disallowUserJs();
 		$this->addHelpLink( 'Help:OAuth' );
+		$this->requireNamedUser( 'mwoauth-available-only-to-registered' );
 
-		if ( !$this->getUser()->isRegistered() ) {
-			throw new UserNotLoggedIn();
-		}
-
+		$user = $this->getUser();
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( !$permissionManager->userHasRight( $user, 'mwoauthmanagemygrants' ) ) {
 			throw new PermissionsError( 'mwoauthmanagemygrants' );
