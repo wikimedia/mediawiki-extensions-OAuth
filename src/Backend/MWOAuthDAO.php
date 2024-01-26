@@ -37,7 +37,7 @@ use Wikimedia\Rdbms\IDatabase;
 /**
  * Representation of a Data Access Object
  */
-abstract class MWOAuthDAO implements IDBAccessObject {
+abstract class MWOAuthDAO {
 	/** @var string object construction origin */
 	private $daoOrigin = 'new';
 	/** @var bool whether fields changed or the field is new */
@@ -96,7 +96,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 	/**
 	 * @param IDatabase $db
 	 * @param int $id
-	 * @param int $flags MWOAuthDAO::READ_* bitfield
+	 * @param int $flags IDBAccessObject::READ_* bitfield
 	 * @return static|bool Returns false if not found
 	 * @throws DBError
 	 */
@@ -105,7 +105,7 @@ abstract class MWOAuthDAO implements IDBAccessObject {
 			array_values( static::getFieldColumnMap() ),
 			[ static::getIdColumn() => (int)$id ],
 			__METHOD__,
-			( $flags & self::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
+			( $flags & IDBAccessObject::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
 		);
 
 		if ( $row ) {

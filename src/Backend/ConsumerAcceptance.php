@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use FormatJson;
 use IContextSource;
+use IDBAccessObject;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -103,7 +104,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 			array_values( static::getFieldColumnMap() ),
 			[ 'oaac_access_token' => (string)$token ],
 			__METHOD__,
-			( $flags & self::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
+			( $flags & IDBAccessObject::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
 		);
 
 		if ( $row ) {
@@ -137,7 +138,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 				'oaac_wiki' => (string)$wiki
 			],
 			__METHOD__,
-			( $flags & self::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
+			( $flags & IDBAccessObject::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
 		);
 
 		if ( $row ) {

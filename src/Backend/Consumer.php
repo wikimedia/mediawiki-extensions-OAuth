@@ -23,6 +23,7 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use FormatJson;
 use IContextSource;
+use IDBAccessObject;
 use LogicException;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity as OAuth2Client;
 use MediaWiki\Linker\Linker;
@@ -211,7 +212,7 @@ abstract class Consumer extends MWOAuthDAO {
 	/**
 	 * @param IDatabase $db
 	 * @param string|null $key
-	 * @param int $flags MWOAuthConsumer::READ_* bitfield
+	 * @param int $flags IDBAccessObject::READ_* bitfield
 	 * @return Consumer|false
 	 */
 	public static function newFromKey( IDatabase $db, $key, $flags = 0 ) {
@@ -219,7 +220,7 @@ abstract class Consumer extends MWOAuthDAO {
 			array_values( static::getFieldColumnMap() ),
 			[ 'oarc_consumer_key' => (string)$key ],
 			__METHOD__,
-			( $flags & self::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
+			( $flags & IDBAccessObject::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
 		);
 
 		if ( $row ) {
@@ -234,7 +235,7 @@ abstract class Consumer extends MWOAuthDAO {
 	 * @param string $name
 	 * @param string $version
 	 * @param int $userId Central user ID
-	 * @param int $flags MWOAuthConsumer::READ_* bitfield
+	 * @param int $flags IDBAccessObject::READ_* bitfield
 	 * @return Consumer|bool
 	 */
 	public static function newFromNameVersionUser(
@@ -248,7 +249,7 @@ abstract class Consumer extends MWOAuthDAO {
 				'oarc_user_id' => (int)$userId
 			],
 			__METHOD__,
-			( $flags & self::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
+			( $flags & IDBAccessObject::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
 		);
 
 		if ( $row ) {
