@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kojo Owusu 2020"
+		]
+	},
+	"mwoauth-oauth2-error-serverexception-withhint": "$1 Nkyerɛkyerɛmu foforo a wɔde siesie asɛm: $2",
+	"mwoauth-oauth2-error-server-error": "Ɔhwɛfoɔ no hyiaa tebea bi a wɔnhwɛ kwan a ɛmma ɔntumi nni adesrɛ no ho dwuma.\n\nDebug information: $1"
+}

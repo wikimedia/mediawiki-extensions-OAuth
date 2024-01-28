@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Như Gây Mê"
+		]
+	},
+	"mwoauth-consumer-grantshelp": "Gitugotan sa mga grant ang pag-access sa mga katungod nga gihuptan na sa imong user account. Ang pagpagana sa usa ka grant dinhi wala maghatag ug access sa bisan unsang mga katungod nga dili maangkon sa imong user account. Tan-awa ang [[Special:ListGrants|talaan sa mga grant]] para sa dugang nga impormasyon.\n\nRisky grants gimarkahan. Ang wala'y marka nga mga hatag kasagaran lisud abusuhon kung ang aplikasyon gi-hijack sa usa ka tawo nga adunay daotan nga katuyoan. Mga grant nga adunay peligro sa bandalismo (<span class=\"mw-grantriskgroup-vandalism\"></span> ) mahimong gamiton sa pagpahinabog pagkabalda nga nagkinahanglan ug dakong paningkamot sa paglimpyo. Mga grant nga adunay peligro sa seguridad (<span class=\"mw-grantriskgroup-security\"></span> ) mahimong hinungdan sa malungtarong kadaot (sama sa pagpangawat sa pribadong datos). Internal nga grants (<span class=\"mw-grantriskgroup-internal\"></span> ) kasagarang gigamit lamang sa operator sa site, ug ang mga hangyo alang kanila halos dili gayud maaprobahan. Palihug ayaw pagpangayo ug peligroso nga mga hatag gawas kung kinahanglan nimo kini.",
+	"logentry-mwoauthconsumer-propose-autoapproved": "$1 {{GENDER:$2| gisugyot}} usa ka OAuth nga konsumidor (konsumo nga yawe $4 ) ug kini awtomatik nga giaprobahan",
+	"mwoauth-oauth2-error-serverexception-withhint": "$1 \n\nDugang nga impormasyon sa debug: $2",
+	"mwoauth-oauth2-error-server-error": "Ang server sa pagtugot nakasugat ug wala damhang kondisyon nga nakapugong niini sa pagtuman sa hangyo.\n\nDebug nga impormasyon: $1"
+}

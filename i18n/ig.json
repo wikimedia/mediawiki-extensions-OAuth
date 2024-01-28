@@ -1,10 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
+			"Excel mimi",
 			"Ukabia"
 		]
 	},
+	"mwoauth-consumer-grantshelp": "Enyemaka na-enye ohere ịnweta ikike nke akaụntụ onye ọrụ gị nwere. Ịkwanye onyinye ebe a anaghị enye ohere ịnweta ikike ọ bụla nke akaụntụ onye ọrụ gị na-agaghị enwe ma ọ bụghị. Hụ [[Special:ListGrants|tebụ onyinye onyinye]] maka ozi ndị ọzọ. Akara akara onyinye dị ize ndụ. Enyemaka enweghị akara na-esikarị ike ịmebi ihe mgbe onye nwere ebumnuche ọjọọ wetara ngwa ahụ. Enwere ike iji onyinye nwere ihe egwu imebi ihe (<span class=\"mw-grantriskgroup-vandalism\"></span>) iji kpata ọgba aghara nke na-ewe nnukwu mbọ iji hichaa. Enyemaka nwere ihe egwu nchekwa (<span class=\"mw-grantriskgroup-security\"></span>) nwere ike ibute mmerụ ahụ na-adịgide adịgide (dịka izu ohi data nkeonwe). Enyemaka nke ime (<span class=\"mw-grantriskgroup-internal\"></span>) bụ naanị onye na-ahụ maka saịtị na-eji ya eme ihe, ọ fọrọ nke nta ka ọ bụrụ anabataghị arịrịọ maka ha. Biko arịọla onyinye dị ize ndụ ma ọ bụrụ na ị chọrọ ha n'ezie.",
 	"mwoauthconsumerregistration-navigation": "Nturuụzọ̀:",
 	"mwoauthmanagemygrants-navigation": "Nturuụzọ̀:",
-	"mwoauth-form-button-cancel": "Hapụ̀"
+	"logentry-mwoauthconsumer-propose-autoapproved": "$1 {{GENDER:$2|atụpụtara}} onye ahịa OAuth ( igodo ahịa $4) ma kwado ya ozugbo.",
+	"log-action-filter-mwoauthconsumer-propose-autoapproved": "Amụma ndị ahịa OAuth (mmanye na-akpaghị aka)",
+	"mwoauth-form-button-cancel": "Hapụ̀",
+	"mwoauth-oauth2-error-serverexception-withhint": "$1 Ozi mgbazi agbakwunyere: $2",
+	"mwoauth-oauth2-error-server-error": "Ihe nkesa ikike ahụ zutere ọnọdụ a na-atụghị anya ya nke gbochiri ya imezu arịrịọ ahụ. Ozi nbipu: $1"
 }

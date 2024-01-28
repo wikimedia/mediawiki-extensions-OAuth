@@ -342,7 +342,7 @@
 	"mwoauth-oauth2-error-unauthorized-scope": "此应用程序不允许范围“$1”",
 	"mwoauth-oauth2-error-owner-only-invalid-grant": "必须允许所有者专用客户端使用client_credentials",
 	"mwoauth-oauth2-unable-to-retrieve-access-token": "无法检索访问令牌：$1",
-	"mwoauth-oauth2-error-server-error": "授权服务器遇到了阻止它完成请求的意外情况。",
+	"mwoauth-oauth2-error-server-error": "授权服务器遇到了阻止它完成请求的意外情况。\n\n调试信息：$1",
 	"mwoauth-oauth2-error-invalid-request": "请求缺少必需的参数、包含无效的参数值、包含不止一次的参数或格式不正确。",
 	"mwoauth-oauth2-error-unauthorized-client": "客户端无权使用此方法请求授权码。",
 	"mwoauth-oauth2-error-access-denied": "资源所有者或授权服务器拒绝了请求。",

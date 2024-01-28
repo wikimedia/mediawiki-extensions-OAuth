@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yusuf Sa'adu"
+		]
+	},
+	"log-action-filter-mwoauthconsumer-propose-autoapproved": "Shawarwarin mabukaci na OAuth (wanda aka amince da kansa)",
+	"mwoauth-oauth2-error-serverexception-withhint": "$ 1 __hau Ƙarin bayani game da: $ 2",
+	"mwoauth-oauth2-error-server-error": "Sabon izini ya gamu da yanayin da ba a tsammani ba wanda ya hana shi cika buƙatar.$1"
+}

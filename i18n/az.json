@@ -4,6 +4,7 @@
 			"Eldarado",
 			"NMW03",
 			"Serkanland",
+			"Toghrul Rahimli",
 			"Wertuose"
 		]
 	},
@@ -31,7 +32,7 @@
 	"oauthmanagemygrants": "Qoşulmuş tətbiqləri idarə et",
 	"mwoauthmanagemygrants-confirm-legend": "Qoşulmuş tətbiqin idarə edilməsi",
 	"mwoauth-form-description-allwikis": "Salam $1,\n\nSorğunuzu tamamlamaq üçün '''$2''' sizin adınızdan bu saytın bütün layihələrində aşağıdakı fəaliyyətləri yerinə yetirmək üçün icazə istəyir:\n\n$4",
-	"mwoauth-form-description-onewiki": "Salam $1,\n\nSorğunuzu tamamlamaq üçün '''$2''' sizin adınızdan '''$4''' saytında aşağıdakı fəaliyyətləri yerinə yetirmək üçün icazə istəyir:\n\n$5",
+	"mwoauth-form-description-onewiki": "Salam, $1,\n\nSorğunuzu tamamlamaq üçün '''$2''' sizin adınızdan '''$4''' saytında aşağıdakı fəaliyyətləri yerinə yetirmək üçün icazə istəyir:\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Salam $1, \n\nSorğunuzu tamamlamaq üçün, '''$2''', sizin adınızdan bu saytın bütün layihələrindəki məlumatları əldə etmək üçün icazə istəyir. Hesabınızda heç bir dəyişiklik olmayacaq.",
 	"mwoauth-form-description-onewiki-nogrants": "Salam $1, \n\nSorğunuzu tamamlamaq üçün, '''$2''', sizin adınızdan '''$4''' ilə əlaqəli məlumatları əldə etmək üçün icazə istəyir. Hesabınızda heç bir dəyişiklik olmayacaq.",
 	"mwoauth-form-description-onewiki-privateinfo": "Salam $1, \n\nSorğunuzu tamamlamaq üçün, '''$2''', sizin adınızdan '''$4''' saytındakı (həqiqi adınız və e-poçt ünvanı da daxil olmaqla) məlumatları əldə etmək üçün icazə istəyir. Hesabınızda heç bir dəyişiklik olmayacaq.",
