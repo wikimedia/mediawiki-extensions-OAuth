@@ -3,7 +3,8 @@
 		"authors": [
 			"Aefgh39622",
 			"Patsagorn Y.",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"Ekminarin"
 		]
 	},
 	"mwoauth-desc": "อนุญาตการใช้ OAuth 1.0a สำหรับการยืนยันตัวบุคคล API",
@@ -17,7 +18,7 @@
 	"mwoauth-field-private": "(สารสนเทศนี้เป็นความลับ)",
 	"mwoauth-prefs-managegrants": "แอปที่เชื่อมต่อ:",
 	"mwoauth-prefs-managegrantslink": "จัดการ{{PLURAL:$1|&#32;$1 แอปพลิเคชัน|0=แอปพลิเคชัน}}ที่เชื่อมต่อ",
-	"mwoauth-consumer-allwikis": "โครงการทั้งหมดบนไซต์นี้",
+	"mwoauth-consumer-allwikis": "ทุกโครงการ",
 	"mwoauth-consumer-key": "คีย์ผู้บริโภค:",
 	"mwoauth-consumer-name": "ชื่อแอปพลิเคชัน:",
 	"mwoauth-consumer-version": "รุ่นผู้บริโภค:",
@@ -129,12 +130,14 @@
 	"mwoauthmanagemygrants-action": "เปลี่ยนสถานะ:",
 	"mwoauthmanagemygrants-confirm-submit": "อัปเดตสถานะโทเค็นการเข้าถึง",
 	"mwoauthmanagemygrants-success-update": "การตั้งค่าแอปพลิเคชันนี้ถูกอัปเดตเรียบร้อยแล้ว",
+	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|คุณ}}แก้ไขโดยแอปพลิเคชันนี้",
+	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|คุณ}}กระทำโดยแอปพลิเคชันนี้",
 	"logentry-mwoauthconsumer-propose": "$1 ได้เสนอผู้บริโภค OAuth (คีย์ผู้บริโภค $4)",
-	"logentry-mwoauthconsumer-update": "$1 ได้อัปเดตผู้บริโภค OAuth (คีย์ผู้บริโภค $4)",
-	"logentry-mwoauthconsumer-approve": "$1 ได้อนุมัติผู้บริโภค OAuth โดย $3 (คีย์ผู้บริโภค $4)",
-	"logentry-mwoauthconsumer-reject": "$1 ได้ปฏิเสธผู้บริโภค OAuth โดย $3 (คีย์ผู้บริโภค $4)",
-	"logentry-mwoauthconsumer-disable": "$1 ได้ปิดใช้งานผู้บริโภค OAuth โดย $3 (คีย์ผู้บริโภค $4)",
-	"logentry-mwoauthconsumer-reenable": "$1 ได้เปิดใช้งานผู้บริโภค OAuth โดย $3 ใหม่ (คีย์ผู้บริโภค $4)",
+	"logentry-mwoauthconsumer-update": "$1 ได้{{GENDER:$2|อัปเดต}}ผู้บริโภค OAuth (คีย์ผู้บริโภค $4)",
+	"logentry-mwoauthconsumer-approve": "$1 ได้{{GENDER:$2|อนุมัติ}}ผู้บริโภค OAuth โดย $3 (คีย์ผู้บริโภค $4)",
+	"logentry-mwoauthconsumer-reject": "$1 ได้{{GENDER:$2|ปฏิเสธ}}ผู้บริโภค OAuth โดย $3 (คีย์ผู้บริโภค $4)",
+	"logentry-mwoauthconsumer-disable": "$1 ได้{{GENDER:$2|ปิดใช้งาน}}ผู้บริโภค OAuth โดย $3 (คีย์ผู้บริโภค $4)",
+	"logentry-mwoauthconsumer-reenable": "$1 ได้{{GENDER:$2|เปิดใช้งาน}}ผู้บริโภค OAuth โดย $3 ใหม่ (คีย์ผู้บริโภค $4)",
 	"mwoauthconsumer-consumer-logpage": "ปูมผู้บริโภค OAuth",
 	"mwoauth-bad-request-missing-params": "ขออภัย เกิดข้อผิดพลาดบางประการในการปรับตั้งค่าการเชื่อมต่อแอปพลิเคชันนี้ กรุณาติดต่อผู้พัฒนาแอปพลิเคชัน\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth ขาดพารามิเตอร์ $1 (OAuth missing parameters)</span>",
 	"mwoauth-bad-request-invalid-action": "ขออภัย เกิดข้อผิดพลาดบางประการ คุณจำเป็นต้องติดต่อผู้พัฒนาแอปพลิเคชันนี้เพื่อให้สามารถแก้ปัญหานี้ได้อย่างถูกต้อง\n\n<span class=\"plainlinks mw-mwoautherror-details\">ยูอาร์แอลที่ไม่รุ้จัก $1 (Unknown URL)</span>",
@@ -179,9 +182,9 @@
 	"echo-pref-tooltip-oauth-admin": "เตือนฉันเกี่ยวกับเหตุการณ์ที่เกี่ยวข้องกับการตรวจสอบแอปพลิเคชัน OAuth",
 	"notification-oauth-app-propose-title": "$1 ได้เสนอแอป OAuth ใหม่: $2",
 	"notification-oauth-app-update-title": "$1 ได้อัปเดตแอป OAuth $2",
-	"notification-oauth-app-approve-title": "$1 ได้อนุมัติแอป OAuth ของคุณ ($2)",
-	"notification-oauth-app-reject-title": "$1 ได้ปฏิเสธแอป OAuth ของคุณ ($2)",
-	"notification-oauth-app-disable-title": "$1 ได้ปิดใช้งานแอป OAuth ของคุณ ($2)",
+	"notification-oauth-app-approve-title": "$1 ได้{{GENDER:$1|อนุมัติ}}แอป OAuth ของ{{GENDER:$3|คุณ}} ($2)",
+	"notification-oauth-app-reject-title": "$1 ได้{{GENDER:$1|ปฏิเสธ}}แอป OAuth ของ{{GENDER:$3|คุณ}} ($2)",
+	"notification-oauth-app-disable-title": "$1 ได้{{GENDER:$1|ปิดใช้งาน}}แอป OAuth ของ{{GENDER:$3|คุณ}} ($2)",
 	"notification-oauth-app-reenable-title": "$1 ได้เปิดใช้งานแอป OAuth ของคุณใหม่ ($2)",
 	"notification-oauth-app-propose-subject": "$1 ได้เสนอแอป OAuth ใหม่บน {{SITENAME}}",
 	"notification-oauth-app-update-subject": "$1 ได้อัปเดตแอป OAuth บน {{SITENAME}}",
@@ -193,5 +196,6 @@
 	"notification-oauth-app-reject-primary-link": "แสดงแอป",
 	"notification-oauth-app-disable-primary-link": "แสดงแอป",
 	"notification-oauth-app-reenable-primary-link": "แสดงแอป",
-	"notification-oauth-app-body": "สาเหตุ: $1"
+	"notification-oauth-app-body": "สาเหตุ: $1",
+	"mwoauth-login-required-reason": "คุณต้องลงชื่อเข้าใช้บัญชี {{SITENAME}} ของคุณเพื่ออนุญาตให้แอปพลิเคชันเข้าถึงได้"
 }
