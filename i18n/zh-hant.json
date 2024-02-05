@@ -327,6 +327,7 @@
 	"mwoauth-oauth2-error-unauthorized-scope": "範圍「$1」不允許用於此應用程式",
 	"mwoauth-oauth2-error-owner-only-invalid-grant": "僅限擁有者的客戶端必須被允許使用 client_credentials",
 	"mwoauth-oauth2-unable-to-retrieve-access-token": "無法取回存取權杖：$1",
+	"mwoauth-oauth2-error-serverexception-withhint": "$1\n\n其他偵錯資訊：$2",
 	"mwoauth-oauth2-error-server-error": "授權伺服器遭遇到意外情況，導致無法應付請求。",
 	"mwoauth-oauth2-error-invalid-request": "請求缺少所需要的參數、包含無效的參數值、包含出現一次以上的參數、或是其它格式錯誤。",
 	"mwoauth-oauth2-error-unauthorized-client": "客戶端無權請求一個使用此方法的授權碼。",
