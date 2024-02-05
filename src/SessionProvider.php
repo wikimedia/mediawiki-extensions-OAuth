@@ -77,7 +77,7 @@ class SessionProvider
 	 * @param mixed ...$params Parameters as strings.
 	 * @return SessionInfo
 	 */
-	private function makeException( $key, ...$params ) {
+	protected function makeException( $key, ...$params ): SessionInfo {
 		$msg = wfMessage( $key, $params );
 
 		if ( defined( 'MW_API' ) ) {
