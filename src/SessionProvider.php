@@ -4,8 +4,6 @@ namespace MediaWiki\Extension\OAuth;
 
 use ApiBase;
 use ApiMessage;
-use ApiUsageException;
-use ErrorPageError;
 use Exception;
 use GuzzleHttp\Psr7\ServerRequest;
 use InvalidArgumentException;
@@ -65,54 +63,6 @@ class SessionProvider
 		$hookContainer->register( 'ApiCheckCanExecute', $this );
 		$hookContainer->register( 'RecentChange_save', $this );
 		$hookContainer->register( 'MarkPatrolled', $this );
-	}
-
-	/**
-	 * Throw an exception, later.
-	 *
-	 * During session initialization, the framework isn't quite ready to handle an exception.
-	 * Return an anonymous session, and make sure an exception gets thrown once possible.
-	 *
-	 * @param string $key Key for the error message
-	 * @param mixed ...$params Parameters as strings.
-	 * @return SessionInfo
-	 */
-	protected function makeException( $key, ...$params ): SessionInfo {
-		$msg = wfMessage( $key, $params );
-
-		if ( defined( 'MW_API' ) ) {
-			MediaWikiServices::getInstance()->getHookContainer()->register(
-				'ApiBeforeMain',
-				// @phan-suppress-next-line PhanPluginNeverReturnFunction Closures should not get doc
-				static function () use ( $msg ) {
-					throw ApiUsageException::newWithMessage( null, $msg );
-				}
-			);
-		} else {
-			MediaWikiServices::getInstance()->getHookContainer()->register(
-				'BeforeInitialize',
-				// @phan-suppress-next-line PhanPluginNeverReturnFunction Closures should not get doc
-				static function () use ( $msg ) {
-					RequestContext::getMain()->getOutput()->setStatusCode( 400 );
-					throw new ErrorPageError( 'errorpagetitle', $msg );
-				}
-			);
-			// Disable file cache, which would be looked up before the BeforeInitialize hook call.
-			MediaWikiServices::getInstance()->getHookContainer()->register(
-				'HTMLFileCache__useFileCache',
-				static function () {
-					return false;
-				}
-			);
-		}
-
-		$id = $this->hashToSessionId( 'bogus' );
-		return new SessionInfo( SessionInfo::MAX_PRIORITY, [
-			'provider' => $this,
-			'id' => $id,
-			'userInfo' => UserInfo::newAnonymous(),
-			'persisted' => false,
-		] );
 	}
 
 	public function provideSessionInfo( WebRequest $request ) {
