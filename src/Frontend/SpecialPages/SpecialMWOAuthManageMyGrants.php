@@ -223,13 +223,13 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 						},
 						$cmraAc->getGrants()
 					),
-					'tooltips' => [
+					'tooltips-html' => [
 						$this->grantsLocalization->getGrantsLink( 'basic' ) =>
-							$this->msg( 'mwoauthmanagemygrants-basic-tooltip' )->text(),
+							$this->msg( 'mwoauthmanagemygrants-basic-tooltip' )->parse(),
 						$this->grantsLocalization->getGrantsLink( 'mwoauth-authonly' ) =>
-							$this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
+							$this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->parse(),
 						$this->grantsLocalization->getGrantsLink( 'mwoauth-authonlyprivate' ) =>
-							$this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->text(),
+							$this->msg( 'mwoauthmanagemygrants-authonly-tooltip' )->parse(),
 					],
 					'force-options-on' => array_map(
 						static function ( $g ) {
