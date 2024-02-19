@@ -110,6 +110,9 @@ abstract class Consumer extends MWOAuthDAO {
 	public const STAGE_EXPIRED  = 3;
 	public const STAGE_DISABLED = 4;
 
+	/** @var int|false|null Cache for local ID looked up from $userId */
+	protected $localUserId;
+
 	/**
 	 * Maps stage ids to human-readable names which describe them as a state
 	 * @var array<int,string>
@@ -186,7 +189,7 @@ abstract class Consumer extends MWOAuthDAO {
 			'rsaKey'           => 'userCanSee',
 			'email'            => 'userCanSeeEmail',
 			'secretKey'        => 'userCanSeeSecret',
-			'restrictions'     => 'userCanSeePrivate',
+			'restrictions'     => 'userCanSeeSecurity',
 		];
 	}
 
@@ -465,6 +468,22 @@ abstract class Consumer extends MWOAuthDAO {
 	 */
 	public function getDeleted() {
 		return $this->get( 'deleted' );
+	}
+
+	/**
+	 * Local ID of the owner (or false if there is no local account).
+	 * @return int|false
+	 */
+	public function getLocalUserId() {
+		if ( $this->localUserId === null ) {
+			$user = Utils::getLocalUserFromCentralId( $this->getUserId() );
+			if ( $user ) {
+				$this->localUserId = $user->getId();
+			} else {
+				$this->localUserId = false;
+			}
+		}
+		return $this->localUserId;
 	}
 
 	/**
@@ -784,6 +803,12 @@ abstract class Consumer extends MWOAuthDAO {
 		}
 	}
 
+	/**
+	 * Can the user see a field with "standard" visibility?
+	 * @param string $name Field name
+	 * @param IContextSource $context
+	 * @return true|Message True if allowed, error message otherwise.
+	 */
 	protected function userCanSee( $name, IContextSource $context ) {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
@@ -796,6 +821,12 @@ abstract class Consumer extends MWOAuthDAO {
 		}
 	}
 
+	/**
+	 * Can the user see a private field?
+	 * @param string $name Field name
+	 * @param IContextSource $context
+	 * @return true|Message True if allowed, error message otherwise.
+	 */
 	protected function userCanSeePrivate( $name, IContextSource $context ) {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
@@ -806,16 +837,49 @@ abstract class Consumer extends MWOAuthDAO {
 		}
 	}
 
+	/**
+	 * Can the user see the app owner's email?
+	 * @param string $name Field name
+	 * @param IContextSource $context
+	 * @return true|Message True if allowed, error message otherwise.
+	 */
 	protected function userCanSeeEmail( $name, IContextSource $context ) {
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		// although email is not a security-related field, it's handled the same way
+		return $this->userCanSeeSecurity( $name, $context );
+	}
 
-		if ( !$permissionManager->userHasRight( $context->getUser(), 'mwoauthmanageconsumer' ) ) {
+	/**
+	 * Can the user see a field that relates to how the app's owner manages application
+	 * security?
+	 * @param string $name Field name
+	 * @param IContextSource $context
+	 * @return true|Message True if allowed, error message otherwise.
+	 */
+	protected function userCanSeeSecurity( $name, IContextSource $context ) {
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$user = $context->getUser();
+
+		if ( $user->getId() === $this->getLocalUserId() ) {
+			// owners can always see the details of their apps, unless the app got deleted-suppressed
+			return $this->userCanSee( $name, $context );
+		} elseif ( $this->getOwnerOnly() ) {
+			// owner-only apps are essentially personal API tokens, nobody else's business
+			return $context->msg( 'mwoauth-field-private' );
+		} elseif ( !$permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' ) ) {
+			// if you are not the owner or an admin you definitely shouldn't see security details
 			return $context->msg( 'mwoauth-field-private' );
 		} else {
+			// OAuth admin looking at non-owner-only app. Just need to check  suppression.
 			return $this->userCanSee( $name, $context );
 		}
 	}
 
+	/**
+	 * Can the user see a given field containing credentials? (No.)
+	 * @param string $name Field name
+	 * @param IContextSource $context
+	 * @return true|Message True if allowed, error message otherwise.
+	 */
 	protected function userCanSeeSecret( $name, IContextSource $context ) {
 		return $context->msg( 'mwoauth-field-private' );
 	}
