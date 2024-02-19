@@ -28,7 +28,8 @@
 			"Yfdyh000",
 			"Hehua",
 			"CrownedWharf566",
-			"LittlePaw365"
+			"LittlePaw365",
+			"Anterdc99"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "用于执行此更改的OAuth消费者",
@@ -99,7 +100,7 @@
 	"mwoauthconsumerregistration-propose-oauth2": "提议新的OAuth 2.0客户端",
 	"mwoauthconsumerregistration-list": "我的消费者列表",
 	"mwoauthconsumerregistration-main": "主要",
-	"mwoauthconsumerregistration-propose-text": "您可以：\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|题名一个OAuth 1.0a消费方]]。\n* [[Special:OAuthConsumerRegistration/propose/oauth2|题名一个OAuth 2.0客户]]。",
+	"mwoauthconsumerregistration-propose-text": "您可以：\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|提名一个OAuth 1.0a消费方]]。\n* [[Special:OAuthConsumerRegistration/propose/oauth2|提名一个OAuth 2.0客户]]。",
 	"mwoauthconsumerregistration-update-text": "使用下面的表格更新您控制的OAuth消费方信息。\n\n此处所有的值将覆盖之前设定。不要将字段留空，除非您要清除这些值。",
 	"mwoauthconsumerregistration-maintext": "此页面用于让开发人员在此网站的注册信息中提议和更新OAuth新消费方应用程序。\n\n在此，您可以：\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|为新OAuth 1.0a消费方申请令牌]]。\n* [[Special:OAuthConsumerRegistration/propose/oauth2|为新OAuth 2.0客户申请令牌]]。\n* [[Special:OAuthConsumerRegistration/list|管理您现有的消费方]]。\n\n关于OAuth的更多信息，请参见[https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth 扩展程序的说明文档]。",
 	"mwoauthconsumerregistration-propose-legend": "新OAuth消费方应用程序",
