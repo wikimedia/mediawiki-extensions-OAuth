@@ -94,7 +94,7 @@
 	"mwoauthconsumerregistration-updated": "Ditt OAuth-konsumentregister ble oppdatert.",
 	"mwoauthconsumerregistration-secretreset": "Du har fått tildelt et hemmelig konsumenttoken '''$1'''. ''Vennligst ta vare på denne til fremtidig bruk.''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "Dine OAuth-konsumentnøkler har blitt endret. De nye nøklene er:\n;Konsumentnøkkel: $1\n;Konsumenthemmelighet: $2\n;Tilgangsnøkkel: $3\n;Tilgangshemmelighet: $4\n<em>Ta vare på disse for fremtidig bruk.</em>",
-	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Dine konsumentnøkler for OAuth 2.0 har blitt tilbakestilt. De nye nøklene er:\n;Konsumentnøkkel: $1\n;Konsumenthemmelighet: $2\n;Tilgangsnøkkel: $3\n<em>Ta vare på disse til framtidig bruk.</em>",
+	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Dine klientnøkler for OAuth 2.0 har blitt tilbakestilt. De nye nøklene er:\n;Klientapplikasjonsnøkkel: $1\n;Klientapplikasjonshemmelighet: $2\n;Tilgangsnøkkel: $3\n<em>Ta vare på disse til framtidig bruk.</em>",
 	"mwoauthconsumerregistration-need-emailconfirmed": "Du må bekrefte epostadressa di før du oppretter OAuth-applikasjoner.\nSett og valider epostadressa di via [[Special:Preferences|innstillingene dine]].",
 	"oauthmanageconsumers": "Håndter OAuth-konsumenter",
 	"mwoauthmanageconsumers-notloggedin": "Du må være innlogget for å vise denne siden.",

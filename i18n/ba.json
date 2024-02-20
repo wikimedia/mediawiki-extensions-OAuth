@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bashkorttan"
+		]
+	},
+	"mwoauth-prefs-managegrants": "Бәйле ҡушымталар:",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 бәйле ҡушымтаны|0=Бәйле ҡушымтаны}} идаралау",
+	"oauthmanagemygrants": "Бәйле ҡушымталарҙы идаралау"
+}
