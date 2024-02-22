@@ -136,7 +136,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$clientId = $request->getVal( 'client_id', '' );
 					$this->logger->debug( __METHOD__ . ": doing '$subpage' for OAuth2 with " .
 						"client_id '$clientId' for '{$user->getName()}'" );
-					if ( $user->isAnon() ) {
+					if ( !$user->isNamed() ) {
 						// Should not happen, as user login status will already be checked at this point
 						// Just redirect back to REST, it will then redirect to login
 						$this->redirectToREST();
@@ -168,11 +168,10 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$this->logger->debug( __METHOD__ . ": doing '$subpage' with " .
 						"'$requestToken' '$consumerKey' for '{$user->getName()}'" );
 
+					$this->requireNamedUser( 'mwoauth-named-account-required-reason' );
+
 					// TODO? Test that $requestToken exists in memcache
-					if ( $user->isAnon() ) {
-						// Login required on provider wiki
-						$this->requireLogin( 'mwoauth-login-required-reason' );
-					} elseif ( $request->wasPosted() && $request->getCheck( 'cancel' ) ) {
+					if ( $request->wasPosted() && $request->getCheck( 'cancel' ) ) {
 						// Show acceptance cancellation confirmation
 						$this->showCancelPage( $consumerKey );
 					} else {
@@ -266,7 +265,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$dbr = Utils::getCentralDB( DB_REPLICA );
 					$access = ConsumerAcceptance::newFromToken( $dbr, $token->key );
 					$localUser = Utils::getLocalUserFromCentralId( $access->getUserId() );
-					if ( !$localUser || !$localUser->isRegistered() ) {
+					if ( !$localUser || !$localUser->isNamed() ) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-invalid-user', [
 							Message::rawParam( Linker::makeExternalLink(
 								'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',

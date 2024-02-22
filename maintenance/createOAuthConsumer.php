@@ -61,7 +61,7 @@ class CreateOAuthConsumer extends Maintenance {
 
 	public function execute() {
 		$user = User::newFromName( $this->getOption( 'user' ) );
-		if ( $user->isAnon() ) {
+		if ( !$user->isNamed() ) {
 			$this->fatalError( 'User must be registered' );
 		}
 		if ( $user->getEmail() === '' ) {
