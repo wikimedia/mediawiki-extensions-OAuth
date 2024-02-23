@@ -89,7 +89,6 @@
 	"mwoauthconsumerregistration-manage": "quản lý",
 	"mwoauthconsumerregistration-resetsecretkey": "Đặt lại một giá trị mới cho chìa khóa bí mật",
 	"oauthmanageconsumers": "Quản lý tiêu dùng OAuth",
-	"mwoauthmanageconsumers-notloggedin": "Bạn phải đăng nhập để truy cấp trang này.",
 	"mwoauthmanageconsumers-type": "Hàng đợi:",
 	"mwoauthmanageconsumers-showproposed": "Yêu cầu được đề xuất",
 	"mwoauthmanageconsumers-showrejected": "Yêu cầu bị từ chối",

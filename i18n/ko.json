@@ -97,7 +97,6 @@
 	"mwoauthconsumerregistration-updated": "OAuth 컨슈머 등록을 업데이트했습니다.",
 	"mwoauthconsumerregistration-secretreset": "고객에게 '''$1'''의 비밀 토큰을 할당했습니다. \"나중에 참조하기 위해서 이것을 기록해주세요.\"",
 	"oauthmanageconsumers": "OAuth 컨슈머 관리",
-	"mwoauthmanageconsumers-notloggedin": "이 페이지에 접근하려면 로그인해야 합니다.",
 	"mwoauthmanageconsumers-type": "대기열:",
 	"mwoauthmanageconsumers-showproposed": "제안된 요청",
 	"mwoauthmanageconsumers-showrejected": "거부된 요청",
@@ -289,7 +288,6 @@
 	"mwoauth-oauth-version": "OAuth 프로토콜 버전",
 	"mwoauth-oauth2-granttype-refresh-token": "리프레시 토큰",
 	"mwoauth-oauth2-invalid-access-token": "유효하지 않은 액세스 토큰",
-	"mwoauth-login-required-reason": "애플리케이션의 접근 인가를 위해 {{SITENAME}} 계정으로 로그인해야 합니다.",
 	"mwoauthconsumer-consumer-view": "이 컨슈머 보기",
 	"mwoauthconsumer-application-view": "이 애플리케이션 보기",
 	"grant-oauthmanageownclient": "내 OAuth 클라이언트 관리"

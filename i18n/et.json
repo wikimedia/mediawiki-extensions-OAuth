@@ -183,7 +183,6 @@
 	"mwoauth-oauth2-granttype-auth-code": "Volitamiskood",
 	"mwoauth-oauth2-granttype-refresh-token": "Uuendamisluba",
 	"mwoauth-oauth2-granttype-client-credentials": "Kliendi autentimisandmed",
-	"mwoauth-login-required-reason": "Rakenduse juurdepääsu volitamiseks tuleb saidi {{SITENAME}} kontoga sisse logida.",
 	"mwoauthconsumer-application-view": "vaata seda rakendust",
 	"grant-oauthmanageownclient": "Enda OAuthi-klientide haldamine"
 }

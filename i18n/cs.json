@@ -98,7 +98,6 @@
 	"mwoauthconsumerregistration-secretreset-owner-only-oauth1": "Tokeny vašeho konzument OAuth byly resetovány. Nové tokeny jsou:\n; Token konzumenta: $1\n; Tajemství konzumenta: $2\n; Přístupový token: $3\n; Přístupové tajemství: $4\n<em>Zaznamenejte si je pro budoucí použití.</em>",
 	"mwoauthconsumerregistration-need-emailconfirmed": "Před vytvořením OAuth aplikace musíte ověřit svou e-mailovou adresu.\nZadejte a ověřte svou e-mailovou adresu v [[Special:Preferences|nastavení]].",
 	"oauthmanageconsumers": "Správa konzumentů OAuth",
-	"mwoauthmanageconsumers-notloggedin": "Pro přístup k této stránce musíte být přihlášen(a).",
 	"mwoauthmanageconsumers-type": "Fronty:",
 	"mwoauthmanageconsumers-showproposed": "Navržené žádosti",
 	"mwoauthmanageconsumers-showrejected": "Odmítnuté žádosti",

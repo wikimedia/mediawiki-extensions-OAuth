@@ -67,7 +67,6 @@
 	"mwoauthconsumerregistration-updated": "อัปเดตรีจิสทรีผู้บริโภค OAuth ของคุณแล้ว",
 	"mwoauthconsumerregistration-secretreset": "คุณได้กำหนดโทเค็นข้อมูลลับผู้บริโภคของ '''$1''' แล้ว ''โปรดจดบันทึกข้อมูลเหล่านี้ไว้เพื่อใช้อ้างอิงในภายหลัง''",
 	"oauthmanageconsumers": "จัดการผู้บริโภค OAuth",
-	"mwoauthmanageconsumers-notloggedin": "คุณจำเป็นต้องล็อกอินเพื่อเข้าถึงหน้านี้",
 	"mwoauthmanageconsumers-type": "คิว:",
 	"mwoauthmanageconsumers-main": "หลัก",
 	"mwoauthmanageconsumers-queues": "เลือกคิวการยืนยันผู้บริโภคจากด้านล่าง:",
@@ -196,6 +195,5 @@
 	"notification-oauth-app-reject-primary-link": "แสดงแอป",
 	"notification-oauth-app-disable-primary-link": "แสดงแอป",
 	"notification-oauth-app-reenable-primary-link": "แสดงแอป",
-	"notification-oauth-app-body": "สาเหตุ: $1",
-	"mwoauth-login-required-reason": "คุณต้องลงชื่อเข้าใช้บัญชี {{SITENAME}} ของคุณเพื่ออนุญาตให้แอปพลิเคชันเข้าถึงได้"
+	"notification-oauth-app-body": "สาเหตุ: $1"
 }

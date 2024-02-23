@@ -112,7 +112,6 @@
 	"mwoauthconsumerregistration-secretreset-owner-only-oauth1": "Deine OAuth-Verbrauchertokens wurden zurückgesetzt. Die neuen Tokens sind:\n; Verbrauchertoken: $1\n; Verbrauchergeheimnis: $2\n; Zugriffstoken: $3\n; Zugriffsgeheimnis: $4\n<em>Bitte bewahre dies für zukünftige Zwecke auf.</em>",
 	"mwoauthconsumerregistration-need-emailconfirmed": "Du musst deine E-Mail-Adresse bestätigen, bevor du OAuth-Anwendungen erstellst.\nBitte hinterlege und bestätige deine E-Mail-Adresse in deinen [[Special:Preferences|Benutzereinstellungen]].",
 	"oauthmanageconsumers": "OAuth-Anwendungen verwalten",
-	"mwoauthmanageconsumers-notloggedin": "Du musst angemeldet sein, um auf diese Seite zugreifen zu können.",
 	"mwoauthmanageconsumers-type": "Warteschlangen:",
 	"mwoauthmanageconsumers-showproposed": "Geplante Anträge",
 	"mwoauthmanageconsumers-showrejected": "Abgelehnte Anträge",
@@ -338,7 +337,6 @@
 	"mwoauth-oauth2-error-temporarily-unavailable": "Der Autorisierungsserver ist derzeit nicht in der Lage, die Anfrage zu bearbeiten, da der Server vorübergehend überlastet ist oder gewartet wird.",
 	"mwoauth-oauth2-error-request-not-verified": "Versuch, geprüfte Eigenschaften abzurufen, bevor die Anfrage verifiziert wurde",
 	"mwoauth-oauth2-invalid-access-token": "Ungültiges Zugriffstoken",
-	"mwoauth-login-required-reason": "Sie müssen sich in Ihr {{SITENAME}}-Konto einloggen, um Anwendungen zu erlauben, darauf zuzugreifen.",
 	"mwoauthconsumer-application-view": "Anwendung anzeigen",
 	"mwoauth-consumer-deleted-error": "Du kannst keine Aktionen für gelöschte Clients durchführen"
 }

@@ -88,7 +88,6 @@
 	"mwoauthconsumerregistration-updated": "La registrazione del tuo cliente OAuth è stata aggiornata.",
 	"mwoauthconsumerregistration-secretreset": "Ti è stato assegnato il token segreto '''$1'''. ''Prendi nota per farne uso in futuro.''",
 	"oauthmanageconsumers": "Gestione clienti OAuth",
-	"mwoauthmanageconsumers-notloggedin": "Devi effettuare l'accesso per accedere a questa pagina.",
 	"mwoauthmanageconsumers-type": "Code:",
 	"mwoauthmanageconsumers-showproposed": "Richieste proposte",
 	"mwoauthmanageconsumers-showrejected": "Richieste respinte",

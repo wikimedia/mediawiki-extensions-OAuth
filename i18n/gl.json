@@ -94,7 +94,6 @@
 	"mwoauthconsumerregistration-secretreset-owner-only-oauth1": "Os identificadores do seu consumidor OAuth foron reinicializados. Os novos identificadores son:\n\nOs seus identificadores son:\n; Identificador do consumidor: $1\n; Secreto do consumidor: $2\n; Identificador de acceso: $3\n; Secreto de acceso: $4\n<em>Por favor garde esta información para futuras referencias.</em>",
 	"mwoauthconsumerregistration-need-emailconfirmed": "Debe confirmar o seu enderezo de correo antes de crear aplicacións OAuth.\nPor favor, envíe e valide o seu enderezo de correo a través das súas [[Special:Preferences|preferencias de usuario]].",
 	"oauthmanageconsumers": "Administrar os consumidores OAuth",
-	"mwoauthmanageconsumers-notloggedin": "Debe acceder ao sistema para acceder a esta páxina.",
 	"mwoauthmanageconsumers-type": "Colas:",
 	"mwoauthmanageconsumers-showproposed": "Solicitudes propostas",
 	"mwoauthmanageconsumers-showrejected": "Solicitudes rexeitadas",

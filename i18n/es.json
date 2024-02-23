@@ -79,7 +79,6 @@
 	"mwoauthconsumerregistration-lastchange": "Último cambio",
 	"mwoauthconsumerregistration-manage": "gestionar",
 	"mwoauthconsumerregistration-resetsecretkey": "Restablecer clave secreta a un valor nuevo",
-	"mwoauthmanageconsumers-notloggedin": "Debes iniciar sesión para acceder a esta página.",
 	"mwoauthmanageconsumers-type": "Colas:",
 	"mwoauthmanageconsumers-showproposed": "Solicitudes propuestas",
 	"mwoauthmanageconsumers-showrejected": "Solicitudes rechazadas",

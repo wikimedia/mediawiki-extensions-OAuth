@@ -28,6 +28,5 @@
 	"mwoauth-oauth2-error-unauthorized-client": "The client is not authorised to request an authorisation code using this method.",
 	"mwoauth-oauth2-error-access-denied": "The resource owner or authorisation server denied the request.",
 	"mwoauth-oauth2-error-unsupported-response-type": "The authorisation server does not support obtaining an authorisation code using this method.",
-	"mwoauth-oauth2-error-temporarily-unavailable": "The authorisation server is currently unable to handle the request due to a temporary overloading or maintenance of the server.",
-	"mwoauth-login-required-reason": "You need to log into your {{SITENAME}} account to authorise applications to access it."
+	"mwoauth-oauth2-error-temporarily-unavailable": "The authorisation server is currently unable to handle the request due to a temporary overloading or maintenance of the server."
 }

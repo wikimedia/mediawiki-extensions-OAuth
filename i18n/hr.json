@@ -85,7 +85,6 @@
 	"mwoauthconsumerregistration-updated": "Vaš korisnički OAuth registar je ažururan.",
 	"mwoauthconsumerregistration-need-emailconfirmed": "Morate potvrditi svoju adresu e-pošte prije stvaranja OAuth aplikacija.\nMolimo unesite i ovjerite svoju adresu e-pošte u [[Special:Preferences|suradničkim postavkama]].",
 	"oauthmanageconsumers": "Upravljanje korisnicima OAutha",
-	"mwoauthmanageconsumers-notloggedin": "Da biste otvorili ovu stranicu, morate biti prijavljeni.",
 	"mwoauthmanageconsumers-showproposed": "Predloženi zahtjevi",
 	"mwoauthmanageconsumers-showrejected": "Odbijeni zahtjevi",
 	"mwoauthmanageconsumers-showexpired": "Istekli zahtjevi",

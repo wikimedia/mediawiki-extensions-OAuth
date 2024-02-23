@@ -99,7 +99,6 @@
 	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Vaši OAuth 2.0 klijentski žetoni su resetirani. Novi su žetoni:\n; Ključ priloga klijenta: $1\n; Tajna priloga klijenta: $2\n; Pristupni žeton: $3\n<em>Spremite ih za buduće konzultacije.</em>",
 	"mwoauthconsumerregistration-need-emailconfirmed": "Morate potvtditi vašu adresu e-pošte prije stvaranja priloga s OAuthom.\nMolimo unesite i potvrdite vašu adresu e-pošte u [[Special:Preferences|korisničkim postavkama]].",
 	"oauthmanageconsumers": "Upravljanje potrošačima OAutha",
-	"mwoauthmanageconsumers-notloggedin": "Morate biti prijavljeni da biste otvorili stranicu.",
 	"mwoauthmanageconsumers-type": "Redovi:",
 	"mwoauthmanageconsumers-showproposed": "Predloženi zahtjevi",
 	"mwoauthmanageconsumers-showrejected": "Odbijeni zahtjevi",

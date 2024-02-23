@@ -95,7 +95,6 @@
 	"mwoauthconsumerregistration-updated": "ثبت مصرف‌کنندهٔ OAuth شما روزآمدسازی شد.",
 	"mwoauthconsumerregistration-secretreset": "شما یک نشانهٔ سری مصرف‌کنندهٔ '''$1''' را تعیین کرده‌اید. ''لطفاً این را برای منبع آینده ضبط کنید.''",
 	"oauthmanageconsumers": "مدیریت مصرف‌کننده‌های OAuth",
-	"mwoauthmanageconsumers-notloggedin": "شما برای دسترسی به این صفحه باید وارد شده باشید.",
 	"mwoauthmanageconsumers-type": "صف:",
 	"mwoauthmanageconsumers-showproposed": "درخواست‌های پیشنهادی",
 	"mwoauthmanageconsumers-showrejected": "درخواست‌های رد شده",

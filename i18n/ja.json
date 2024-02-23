@@ -88,7 +88,6 @@
 	"mwoauthconsumerregistration-updated": "あなたの OAuth コンシューマー レジストリを更新しました。",
 	"mwoauthconsumerregistration-secretreset": "「'''$1'''」のコンシューマー秘密トークンを割り当てました。''今後のためこれを記録しておいてください。''",
 	"oauthmanageconsumers": "OAuthコンシューマー管理",
-	"mwoauthmanageconsumers-notloggedin": "このページにアクセスするにはログインしてください。",
 	"mwoauthmanageconsumers-type": "キュー:",
 	"mwoauthmanageconsumers-showproposed": "提案された要求",
 	"mwoauthmanageconsumers-showrejected": "拒否されたリクエスト",

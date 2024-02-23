@@ -93,7 +93,6 @@
 	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Reaniciáronse los tos pases de consumidor OAuth 2.0. Los nuevos pases son:\n; Pase de consumidor: $1\n; Secretu de consumidor: $2\n; Pase d'accesu: $3\n<em>Por favor guarda estos pa futures referencies.</em>",
 	"mwoauthconsumerregistration-need-emailconfirmed": "Tienes de confirmar la direición de corréu electrónicu enantes de crear aplicaciones OAuth.\nPor favor, configura y valida la direición de corréu nes [[Special:Preferences|preferencies d'usuariu]].",
 	"oauthmanageconsumers": "Xestionar consumidores d'Oauth",
-	"mwoauthmanageconsumers-notloggedin": "Tien d'aniciar sesión pa entrar nesta páxina.",
 	"mwoauthmanageconsumers-type": "Coles:",
 	"mwoauthmanageconsumers-showproposed": "Solicitúes propuestes",
 	"mwoauthmanageconsumers-showrejected": "Solicitúes refugaes",
