@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sveinn í Felli"
+			"Sveinn í Felli",
+			"Stefán Örvar Sigmundsson"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Tengd forrit:",
@@ -12,7 +13,7 @@
 	"mwoauth-consumer-stage": "Núverandi staða:",
 	"mwoauth-consumer-reason": "Ástæða:",
 	"mwoauth-consumer-stage-rejected": "hafnað",
-	"mwoauth-consumer-stage-expired": "útrunnið",
+	"mwoauth-consumer-stage-expired": "fyrnt",
 	"mwoauth-consumer-stage-approved": "samþykkt",
 	"mwoauth-consumer-stage-disabled": "óvirkt",
 	"mwoauthconsumerregistration-navigation": "Flakk:",
@@ -45,7 +46,7 @@
 	"mwoauthlistconsumers-status-approved": "samþykkt",
 	"mwoauthlistconsumers-status-disabled": "óvirkt",
 	"mwoauthlistconsumers-status-rejected": "hafnað",
-	"mwoauthlistconsumers-status-expired": "útrunnið",
+	"mwoauthlistconsumers-status-expired": "fyrnt",
 	"oauthmanagemygrants": "Sýsla með tengd forrit",
 	"mwoauthmanagemygrants-navigation": "Flakk:",
 	"mwoauthmanagemygrants-user": "Útgefandi:",
