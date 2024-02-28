@@ -120,6 +120,7 @@
 	"mwoauth-grants-heading": "Тражене дозволе:",
 	"mwoauth-acceptance-cancelled": "Одлучили сте да не дозволите да \"$1\" приступи вашем налогу. \"$1\" неће радити ако му не дозволите приступ. Можете се вратити на \"$1\" или [[Special:OAuthManageMyGrants|управљати]] вашим повезаним апликацијама.",
 	"action-mwoauthmanageconsumer": "управљате потрошачима OAuth-а",
+	"mwoauth-botpasswords-note": "<strong>Напомена:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> је безбедни од лозинке бота и треба га користити кад год га бот подржава.",
 	"echo-category-title-oauth-owner": "Развој OAuth-а",
 	"echo-category-title-oauth-admin": "Администратор OAuth-а",
 	"notification-oauth-app-body": "Разлог: $1",
