@@ -19,7 +19,9 @@ class MWOAuthHooksTest extends TestCase {
 	 */
 	public function testOnChangeTagCanCreate( $tagName, $statusOk ) {
 		$status = Status::newGood();
-		$hooks = new Hooks( MediaWikiServices::getInstance()->getChangeTagDefStore() );
+		$services = MediaWikiServices::getInstance();
+
+		$hooks = new Hooks( $services->getChangeTagDefStore(), $services->getConnectionProvider() );
 		$hooks->onChangeTagCanCreate( $tagName, new User, $status );
 		$this->assertSame( $statusOk, $status->isOK() );
 	}

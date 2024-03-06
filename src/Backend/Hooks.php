@@ -13,6 +13,7 @@ use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Class containing hooked functions for an OAuth environment
@@ -28,11 +29,17 @@ class Hooks implements
 	/** @var NameTableStore */
 	private $changeTagDefStore;
 
+	/** @var IConnectionProvider */
+	private $connectionProvider;
+
 	/**
 	 * @param NameTableStore $changeTagDefStore
+	 * @param IConnectionProvider $connectionProvider
 	 */
-	public function __construct( NameTableStore $changeTagDefStore ) {
+	public function __construct( NameTableStore $changeTagDefStore, IConnectionProvider $connectionProvider
+	) {
 		$this->changeTagDefStore = $changeTagDefStore;
+		$this->connectionProvider = $connectionProvider;
 	}
 
 	/**
@@ -199,7 +206,8 @@ EOK;
 		$field = 'ct_tag_id';
 
 		if ( $allTags ) {
-			$db = wfGetDB( DB_REPLICA );
+			$db = $this->connectionProvider->getReplicaDatabase();
+
 			$res = $db->select(
 				'change_tag',
 				[ $field ],
