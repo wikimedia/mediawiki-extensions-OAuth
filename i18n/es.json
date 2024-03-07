@@ -20,6 +20,7 @@
 			"Tiberius1701"
 		]
 	},
+	"abusefilter-edit-builder-vars-oauth-consumer": "El consumidor de OAuth solía realizar este cambio",
 	"mwoauth-desc": "Permite el uso de OAuth 1.0a y OAuth 2.0 para la autorización de la API",
 	"mwoauth-verified": "La aplicación ahora puede acceder a MediaWiki en tu nombre.\n\nPara completar el proceso, proporciona este valor de comprobación a la aplcación: '''$1'''",
 	"mwoauth-db-readonly": "La base de datos OAuth está bloqueada temporalmente. Inténtalo de nuevo en unos minutos.",
