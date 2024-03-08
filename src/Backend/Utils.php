@@ -183,8 +183,7 @@ class Utils {
 						],
 						[
 							'oarc_stage' => Consumer::STAGE_PROPOSED,
-							'oarc_stage_timestamp < ' .
-								$dbw->addQuotes( $dbw->timestamp( $cutoff ) )
+							$dbw->expr( 'oarc_stage_timestamp', '<', $dbw->timestamp( $cutoff ) )
 						],
 						$fname
 					);

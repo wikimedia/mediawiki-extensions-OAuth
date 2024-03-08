@@ -165,18 +165,11 @@ EOK;
 		// Step 1: Get the list of (active) consumers' tags for this wiki
 		$db = Utils::getCentralDB( DB_REPLICA );
 		$conds = [
-			$db->makeList( [
-				'oarc_wiki = ' . $db->addQuotes( '*' ),
-				'oarc_wiki = ' . $db->addQuotes( WikiMap::getCurrentWikiId() ),
-			], LIST_OR ),
+			$db->expr( 'oarc_wiki', '=', [ '*', WikiMap::getCurrentWikiId() ] ),
 			'oarc_deleted' => 0,
 		];
 		if ( $activeOnly ) {
-			$conds[] = $db->makeList( [
-				'oarc_stage = ' . Consumer::STAGE_APPROVED,
-				// Proposed consumers are active for the owner, so count them too
-				'oarc_stage = ' . Consumer::STAGE_PROPOSED,
-			], LIST_OR );
+			$conds[] = $db->expr( 'oarc_stage', '=', [ Consumer::STAGE_APPROVED, Consumer::STAGE_PROPOSED ] );
 		}
 		$res = $db->select(
 			'oauth_registered_consumer',

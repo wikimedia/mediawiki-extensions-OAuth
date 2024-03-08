@@ -64,8 +64,7 @@ class MigrateCentralWikiLogs extends Maintenance {
 			// This assumes that we don't have more than mBatchSize oauth log entries
 			// with the same timestamp. Otherwise this will go into an infinite loop.
 			if ( $lastMinTimestamp !== null ) {
-				$conds[] = 'log_timestamp < ' .
-					$oldDb->addQuotes( $oldDb->timestamp( $lastMinTimestamp ) );
+				$conds[] = $oldDb->expr( 'log_timestamp', '<', $oldDb->timestamp( $lastMinTimestamp ) );
 			}
 
 			$oldLoggs = $oldDb->select(
