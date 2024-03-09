@@ -41,14 +41,12 @@ class MigrateCentralWikiLogs extends Maintenance {
 		$targetDb = $lbFactory->getMainLB( $targetWiki )
 			->getConnection( DB_PRIMARY, [], $targetWiki );
 
-		$targetMinTS = $targetDb->selectField(
-			'logging',
-			"MIN(log_timestamp)",
-			[
-				'log_type' => 'mwoauthconsumer',
-			],
-			__METHOD__
-		);
+		$targetMinTS = $targetDb->newSelectQueryBuilder()
+			->select( 'MIN(log_timestamp)' )
+			->from( 'logging' )
+			->where( [ 'log_type' => 'mwoauthconsumer' ] )
+			->caller( __METHOD__ )
+			->fetchField();
 
 		$lastMinTimestamp = null;
 		if ( $targetMinTS !== false ) {

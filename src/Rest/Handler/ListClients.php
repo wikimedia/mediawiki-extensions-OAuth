@@ -13,6 +13,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Handles the oauth2/consumers endpoint, which returns
@@ -124,32 +125,28 @@ class ListClients extends SimpleHandler {
 		$limit = $params['limit'];
 		$offset = $params['offset'];
 
-		$options = [
-			'LIMIT' => $limit,
-			'OFFSET' => $offset
-		];
-
 		$oauthVersion = $params['oauth_version'];
 		$conds = [ 'oarc_user_id' => $centralId ];
 		if ( $oauthVersion !== null ) {
 			$conds['oarc_oauth_version'] = (int)$oauthVersion;
 		}
 
-		$options['ORDER BY'] = 'oarc_id DESC';
+		$res = $dbr->newSelectQueryBuilder()
+			->select( array_values( $this->propertyMapping ) )
+			->from( 'oauth_registered_consumer' )
+			->where( $conds )
+			->orderBy( 'oarc_id', SelectQueryBuilder::SORT_DESC )
+			->limit( $limit )
+			->offset( $offset )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
-		$res = $dbr->select(
-			'oauth_registered_consumer',
-			array_values( $this->propertyMapping ),
-			$conds,
-			__METHOD__,
-			$options
-		);
-
-		$total = $dbr->selectRowCount(
-			'oauth_registered_consumer',
-			'oarc_consumer_key',
-			$conds
-		);
+		$total = $dbr->newSelectQueryBuilder()
+			->select( 'oarc_consumer_key' )
+			->from( 'oauth_registered_consumer' )
+			->where( $conds )
+			->caller( __METHOD__ )
+			->fetchRowCount();
 
 		return [
 			'clients' => $this->processDbResults( $res ),

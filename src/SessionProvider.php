@@ -305,18 +305,18 @@ class SessionProvider
 				[ 'oarc_user_id' => $id ],
 				__METHOD__
 			);
-			$dbw->delete(
-				'oauth_registered_consumer',
-				[ 'oarc_user_id' => $id ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'oauth_registered_consumer' )
+				->where( [ 'oarc_user_id' => $id ] )
+				->caller( __METHOD__ )
+				->execute();
 
 			// Remove any approvals by this user, too
-			$dbw->delete(
-				'oauth_accepted_consumer',
-				[ 'oaac_user_id' => $id ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( 'oauth_accepted_consumer' )
+				->where( [ 'oaac_user_id' => $id ] )
+				->caller( __METHOD__ )
+				->execute();
 		} catch ( DBError $e ) {
 			$dbw->rollback( __METHOD__ );
 			throw $e;

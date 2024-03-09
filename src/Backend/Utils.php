@@ -91,12 +91,12 @@ class Utils {
 	 * @return int[]
 	 */
 	public static function getConsumerStateCounts( IDatabase $db ) {
-		$res = $db->select( 'oauth_registered_consumer',
-			[ 'oarc_stage', 'count' => 'COUNT(*)' ],
-			[],
-			__METHOD__,
-			[ 'GROUP BY' => 'oarc_stage' ]
-		);
+		$res = $db->newSelectQueryBuilder()
+			->select( [ 'oarc_stage', 'count' => 'COUNT(*)' ] )
+			->from( 'oauth_registered_consumer' )
+			->groupBy( 'oarc_stage' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$table = [
 			Consumer::STAGE_APPROVED => 0,
 			Consumer::STAGE_DISABLED => 0,
@@ -175,18 +175,18 @@ class Utils {
 				$dbw,
 				__METHOD__,
 				static function ( IDatabase $dbw ) use ( $cutoff, $fname ) {
-					$dbw->update(
-						'oauth_registered_consumer',
-						[
+					$dbw->newUpdateQueryBuilder()
+						->update( 'oauth_registered_consumer' )
+						->set( [
 							'oarc_stage' => Consumer::STAGE_EXPIRED,
 							'oarc_stage_timestamp' => $dbw->timestamp()
-						],
-						[
+						] )
+						->where( [
 							'oarc_stage' => Consumer::STAGE_PROPOSED,
 							$dbw->expr( 'oarc_stage_timestamp', '<', $dbw->timestamp( $cutoff ) )
-						],
-						$fname
-					);
+						] )
+						->caller( $fname )
+						->execute();
 				}
 			)
 		);
