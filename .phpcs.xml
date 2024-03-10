@@ -8,7 +8,6 @@
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
 		<exclude name="Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeClassBrace.BraceNotOnOwnLine" />
-		<exclude name="Generic.WhiteSpace.ScopeIndent" />
 	</rule>
 	<file>.</file>
 	<arg name="extensions" value="php"/>

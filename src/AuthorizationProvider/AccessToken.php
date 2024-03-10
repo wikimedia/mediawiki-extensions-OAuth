@@ -28,8 +28,8 @@ abstract class AccessToken extends AuthorizationProvider implements IAccessToken
 	protected function logAccessTokenRequest( ServerRequestInterface $request ) {
 		$this->logger->info(
 			"OAuth2: Access token request - Grant type {grant}, client id: {client}", [
-			'grant' => $this->getGrantSingleton()->getIdentifier(),
-			'client' => $this->getClientIdFromRequest( $request )
-		] );
+				'grant' => $this->getGrantSingleton()->getIdentifier(),
+				'client' => $this->getClientIdFromRequest( $request )
+			] );
 	}
 }

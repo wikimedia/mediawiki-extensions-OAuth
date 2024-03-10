@@ -97,13 +97,13 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		}
 
 		switch ( $typeKey ) {
-		case 'update':
-		case 'revoke':
-			$this->handleConsumerForm( $acceptanceId ?? 0, $typeKey );
-			break;
-		default:
-			$this->showConsumerList();
-			break;
+			case 'update':
+			case 'revoke':
+				$this->handleConsumerForm( $acceptanceId ?? 0, $typeKey );
+				break;
+			default:
+				$this->showConsumerList();
+				break;
 		}
 
 		$this->addSubtitleLinks( $acceptanceId );
