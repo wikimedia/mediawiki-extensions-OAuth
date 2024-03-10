@@ -43,7 +43,7 @@ class ScopeRepository implements ScopeRepositoryInterface {
 	 * @return ScopeEntityInterface|null
 	 */
 	public function getScopeEntityByIdentifier( $identifier ) {
-		if ( in_array( $identifier,  $this->allowedScopes, true ) ) {
+		if ( in_array( $identifier, $this->allowedScopes, true ) ) {
 			return new ScopeEntity( $identifier );
 		}
 

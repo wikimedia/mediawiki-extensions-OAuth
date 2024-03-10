@@ -65,7 +65,7 @@ class AccessTokenEntityTest extends MediaWikiIntegrationTestCase {
 			'Access tokens should have the same scopes as the ones that were passed'
 		);
 		$tokenClaims = $accessToken->getClaims();
-		$this->assertCount( count( $claims ), $tokenClaims );
+		$this->assertSameSize( $claims, $tokenClaims );
 		foreach ( $claims as $index => $claim ) {
 			$this->assertSame( $claim->getName(), $tokenClaims[$index]->getName() );
 			$this->assertSame( $claim->getValue(), $tokenClaims[$index]->getValue() );
