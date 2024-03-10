@@ -47,7 +47,7 @@ class MWOAuthException extends OAuthException implements INormalizedException, I
 	 * @inheritDoc
 	 */
 	public function getMessageContext(): array {
-		return array_filter( $this->params, fn( $key ) => !is_numeric( $key ), ARRAY_FILTER_USE_KEY );
+		return array_filter( $this->params, fn ( $key ) => !is_numeric( $key ), ARRAY_FILTER_USE_KEY );
 	}
 
 	/**

@@ -496,7 +496,7 @@ abstract class Consumer extends MWOAuthDAO {
 		$callback = $dataStore->getCallbackUrl( $this->key, $requestKey );
 
 		if ( $callback === 'oob' ) {
-		  $callback = $this->getCallbackUrl();
+			$callback = $this->getCallbackUrl();
 		}
 
 		return wfAppendQuery( $callback, [

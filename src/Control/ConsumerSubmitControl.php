@@ -414,7 +414,7 @@ class ConsumerSubmitControl extends SubmitControl {
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
 				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
-				$this->notify( $cmr, $user, $action,  $this->vals['reason'] );
+				$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 			}
 
 			$accessToken = null;
@@ -474,7 +474,7 @@ class ConsumerSubmitControl extends SubmitControl {
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
 				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
-				$this->notify( $cmr, $user, $action,  $this->vals['reason'] );
+				$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 			}
 
 			return $this->success( $cmr );
@@ -504,7 +504,7 @@ class ConsumerSubmitControl extends SubmitControl {
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
 				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
-				$this->notify( $cmr, $user, $action,  $this->vals['reason'] );
+				$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 			}
 
 			return $this->success( $cmr );
@@ -536,7 +536,7 @@ class ConsumerSubmitControl extends SubmitControl {
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
 				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
-				$this->notify( $cmr, $user, $action,  $this->vals['reason'] );
+				$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 			}
 
 			return $this->success( $cmr );
@@ -564,7 +564,7 @@ class ConsumerSubmitControl extends SubmitControl {
 			// Log if something actually changed
 			if ( $cmr->save( $dbw ) ) {
 				$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
-				$this->notify( $cmr, $user, $action,  $this->vals['reason'] );
+				$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 			}
 
 			return $this->success( $cmr );

@@ -215,7 +215,7 @@ class MWOAuthServer extends OAuthServer {
 			// Anything in the request is ok if we do not have the URL part in
 			// the expected values
 			$match = true;
-		} elseif ( !array_key_exists( $part,  $got ) ) {
+		} elseif ( !array_key_exists( $part, $got ) ) {
 			$match = false;
 		} elseif ( $exact ) {
 			$match = $expect[$part] === $got[$part];
