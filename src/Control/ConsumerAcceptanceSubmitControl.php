@@ -118,113 +118,113 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 		}
 
 		switch ( $action ) {
-		case 'accept':
-			$payload = [];
-			$identifier = $this->isOAuth2() ? 'client_id' : 'consumerKey';
-			$cmr = Consumer::newFromKey( $this->dbw, $this->vals[$identifier] );
-			if ( !$cmr ) {
-				return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
-			} elseif ( !$cmr->isUsableBy( $user ) ) {
-				return $this->failure( 'permission_denied', 'badaccess-group0' );
-			}
-
-			try {
-				if ( $this->isOAuth2() ) {
-					$scopes = isset( $this->vals['scope'] ) ? explode( ' ', $this->vals['scope'] ) : [];
-					$payload = $cmr->authorize( $this->getUser(), (bool)$this->vals['confirmUpdate'], $scopes );
-				} else {
-					$callback = $cmr->authorize(
-						$this->getUser(),
-						(bool)$this->vals[ 'confirmUpdate' ],
-						$cmr->getGrants(),
-						$this->vals[ 'requestToken' ]
-					);
-					$payload = [ 'callbackUrl' => $callback ];
+			case 'accept':
+				$payload = [];
+				$identifier = $this->isOAuth2() ? 'client_id' : 'consumerKey';
+				$cmr = Consumer::newFromKey( $this->dbw, $this->vals[$identifier] );
+				if ( !$cmr ) {
+					return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
+				} elseif ( !$cmr->isUsableBy( $user ) ) {
+					return $this->failure( 'permission_denied', 'badaccess-group0' );
 				}
-			} catch ( MWOAuthException $exception ) {
-				return $this->failure( 'oauth_exception', $exception->getMessageObject() );
-			} catch ( OAuthException $exception ) {
-				return $this->failure( 'oauth_exception',
-					'mwoauth-oauth-exception', $exception->getMessage() );
-			}
 
-			LoggerFactory::getInstance( 'OAuth' )->info(
-				'{user} performed action {action} on consumer {consumer}', [
-					'action' => 'accept',
-					'user' => $user->getName(),
-					'consumer' => $cmr->getConsumerKey(),
-					'target' => Utils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
-					'comment' => '',
-					'clientip' => $this->getContext()->getRequest()->getIP(),
-				]
-			);
+				try {
+					if ( $this->isOAuth2() ) {
+						$scopes = isset( $this->vals['scope'] ) ? explode( ' ', $this->vals['scope'] ) : [];
+						$payload = $cmr->authorize( $this->getUser(), (bool)$this->vals['confirmUpdate'], $scopes );
+					} else {
+						$callback = $cmr->authorize(
+							$this->getUser(),
+							(bool)$this->vals[ 'confirmUpdate' ],
+							$cmr->getGrants(),
+							$this->vals[ 'requestToken' ]
+						);
+						$payload = [ 'callbackUrl' => $callback ];
+					}
+				} catch ( MWOAuthException $exception ) {
+					return $this->failure( 'oauth_exception', $exception->getMessageObject() );
+				} catch ( OAuthException $exception ) {
+					return $this->failure( 'oauth_exception',
+						'mwoauth-oauth-exception', $exception->getMessage() );
+				}
 
-			return $this->success( $payload );
-		case 'update':
-			$cmra = ConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
-			if ( !$cmra ) {
-				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
-			} elseif ( $cmra->getUserId() !== $centralUserId ) {
-				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
-			}
-			$cmr = Consumer::newFromId( $dbw, $cmra->getConsumerId() );
+				LoggerFactory::getInstance( 'OAuth' )->info(
+					'{user} performed action {action} on consumer {consumer}', [
+						'action' => 'accept',
+						'user' => $user->getName(),
+						'consumer' => $cmr->getConsumerKey(),
+						'target' => Utils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
+						'comment' => '',
+						'clientip' => $this->getContext()->getRequest()->getIP(),
+					]
+				);
 
-			// requested grants
-			$grants = FormatJson::decode( $this->vals['grants'], true );
-			$grants = array_unique( array_intersect(
-				array_merge(
-					// implied grants
-					MediaWikiServices::getInstance()
-						->getGrantsInfo()
-						->getHiddenGrants(),
-					$grants
-				),
-				// Only keep the applicable ones
-				$cmr->getGrants()
-			) );
+				return $this->success( $payload );
+			case 'update':
+				$cmra = ConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
+				if ( !$cmra ) {
+					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
+				} elseif ( $cmra->getUserId() !== $centralUserId ) {
+					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
+				}
+				$cmr = Consumer::newFromId( $dbw, $cmra->getConsumerId() );
 
-			LoggerFactory::getInstance( 'OAuth' )->info(
-				'{user} performed action {action} on consumer {consumer}', [
-					'action' => 'update-acceptance',
-					'user' => $user->getName(),
-					'consumer' => $cmr->getConsumerKey(),
-					'target' => Utils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
-					'comment' => '',
-					'clientip' => $this->getContext()->getRequest()->getIP(),
-				]
-			);
-			$cmra->setFields( [
-				'grants' => array_intersect( $grants, $cmr->getGrants() )
-			] );
-			$cmra->save( $dbw );
+				// requested grants
+				$grants = FormatJson::decode( $this->vals['grants'], true );
+				$grants = array_unique( array_intersect(
+					array_merge(
+						// implied grants
+						MediaWikiServices::getInstance()
+							->getGrantsInfo()
+							->getHiddenGrants(),
+						$grants
+					),
+					// Only keep the applicable ones
+					$cmr->getGrants()
+				) );
 
-			return $this->success( $cmra );
-		case 'renounce':
-			$cmra = ConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
-			if ( !$cmra ) {
-				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
-			} elseif ( $cmra->getUserId() !== $centralUserId ) {
-				return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
-			}
+				LoggerFactory::getInstance( 'OAuth' )->info(
+					'{user} performed action {action} on consumer {consumer}', [
+						'action' => 'update-acceptance',
+						'user' => $user->getName(),
+						'consumer' => $cmr->getConsumerKey(),
+						'target' => Utils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
+						'comment' => '',
+						'clientip' => $this->getContext()->getRequest()->getIP(),
+					]
+				);
+				$cmra->setFields( [
+					'grants' => array_intersect( $grants, $cmr->getGrants() )
+				] );
+				$cmra->save( $dbw );
 
-			$cmr = Consumer::newFromId( $dbw, $cmra->get( 'consumerId' ) );
-			LoggerFactory::getInstance( 'OAuth' )->info(
-				'{user} performed action {action} on consumer {consumer}', [
-					'action' => 'renounce',
-					'user' => $user->getName(),
-					'consumer' => $cmr->getConsumerKey(),
-					'target' => Utils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
-					'comment' => '',
-					'clientip' => $this->getContext()->getRequest()->getIP(),
-				]
-			);
+				return $this->success( $cmra );
+			case 'renounce':
+				$cmra = ConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
+				if ( !$cmra ) {
+					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
+				} elseif ( $cmra->getUserId() !== $centralUserId ) {
+					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
+				}
 
-			if ( $cmr->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
-				$this->removeOAuth2AccessTokens( $cmra->getId() );
-			}
-			$cmra->delete( $dbw );
+				$cmr = Consumer::newFromId( $dbw, $cmra->get( 'consumerId' ) );
+				LoggerFactory::getInstance( 'OAuth' )->info(
+					'{user} performed action {action} on consumer {consumer}', [
+						'action' => 'renounce',
+						'user' => $user->getName(),
+						'consumer' => $cmr->getConsumerKey(),
+						'target' => Utils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
+						'comment' => '',
+						'clientip' => $this->getContext()->getRequest()->getIP(),
+					]
+				);
 
-			return $this->success( $cmra );
+				if ( $cmr->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
+					$this->removeOAuth2AccessTokens( $cmra->getId() );
+				}
+				$cmra->delete( $dbw );
+
+				return $this->success( $cmra );
 		}
 	}
 

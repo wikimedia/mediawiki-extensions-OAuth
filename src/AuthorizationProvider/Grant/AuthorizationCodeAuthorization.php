@@ -91,10 +91,10 @@ class AuthorizationCodeAuthorization extends AuthorizationProvider {
 		$this->logger->info(
 			"OAuth2: Authorization request, func {func}, for client {client} " .
 			"and user (id) {user} using grant \"{grant}\"", [
-			'func' => $method,
-			'client' => $authRequest->getClient()->getIdentifier(),
-			'user' => $authRequest->getUser()->getIdentifier(),
-			'grant' => $authRequest->getGrantTypeId()
-		] );
+				'func' => $method,
+				'client' => $authRequest->getClient()->getIdentifier(),
+				'user' => $authRequest->getUser()->getIdentifier(),
+				'grant' => $authRequest->getGrantTypeId()
+			] );
 	}
 }

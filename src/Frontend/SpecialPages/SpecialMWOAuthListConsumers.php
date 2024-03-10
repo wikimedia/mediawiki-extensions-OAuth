@@ -71,12 +71,12 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		$this->showConsumerListForm();
 
 		switch ( $type ) {
-		case 'view':
-			$this->showConsumerInfo( $consumerKey );
-			break;
-		default:
-			$this->showConsumerList();
-			break;
+			case 'view':
+				$this->showConsumerInfo( $consumerKey );
+				break;
+			default:
+				$this->showConsumerList();
+				break;
 		}
 
 		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.styles' );
