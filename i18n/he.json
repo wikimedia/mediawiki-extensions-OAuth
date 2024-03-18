@@ -346,7 +346,7 @@
 	"mwoauth-oauth2-error-unauthorized-client": "הלקוח אינו מאושר לבקש קוד אישור באמצעות השיטה הזאת.",
 	"mwoauth-oauth2-error-access-denied": "בעלת המשאב או שרת האישור דחה את הבקשה הזאת.",
 	"mwoauth-oauth2-error-unsupported-response-type": "שרת האישור אינו תומך בקבלת קוד אישור באמצעות השיטה הזאת.",
-	"mwoauth-oauth2-error-invalid-scope": "הטווח המבוקש אינו תקין, אינו ידוע, או פגום.",
+	"mwoauth-oauth2-error-invalid-scope": "הטווח המבוקש אינו תקין, אינו ידוע או פגום.",
 	"mwoauth-oauth2-error-temporarily-unavailable": "שרת האישור אינו יכול לטפל עכשיו בבקשה בשל עומס־יתר זמני או עבודות תחזוקה בשרת.",
 	"mwoauth-oauth2-error-invalid-client": "אימות הלקוח נכשל (למשל, לקוח לא ידוע, לא נכלל אימות לקוח, או שיטת אימות שאינה נתמכת)",
 	"mwoauth-oauth2-error-request-not-verified": "ניסיון לאחזר מאפיין מאומת לפני אימות הבקשה",
