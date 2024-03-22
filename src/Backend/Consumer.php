@@ -583,7 +583,7 @@ abstract class Consumer extends MWOAuthDAO {
 		global $wgBlockDisablesLogin;
 
 		// Check that user and consumer are in good standing
-		if ( $mwUser->isLocked() || $wgBlockDisablesLogin && $mwUser->getBlock() ) {
+		if ( $mwUser->isLocked() || ( $wgBlockDisablesLogin && $mwUser->getBlock() ) ) {
 			throw new MWOAuthException( 'mwoauthserver-insufficient-rights', [
 				Message::rawParam( Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007',

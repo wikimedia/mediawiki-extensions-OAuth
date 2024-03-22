@@ -277,7 +277,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 							'cmra_id' => $access->getId(),
 						] );
 					} elseif ( $localUser->isLocked() ||
-						$config->get( 'BlockDisablesLogin' ) && $localUser->getBlock()
+						( $config->get( 'BlockDisablesLogin' ) && $localUser->getBlock() )
 					) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-blocked-user', [
 							'consumer' => $consumer->getConsumerKey(),

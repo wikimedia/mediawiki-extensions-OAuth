@@ -222,7 +222,7 @@ class ConsumerSubmitControl extends SubmitControl {
 		$readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
 		if ( !$user->getId() ) {
 			return $this->failure( 'not_logged_in', 'badaccess-group0' );
-		} elseif ( $user->isLocked() || $wgBlockDisablesLogin && $user->getBlock() ) {
+		} elseif ( $user->isLocked() || ( $wgBlockDisablesLogin && $user->getBlock() ) ) {
 			return $this->failure( 'user_blocked', 'badaccess-group0' );
 		} elseif ( $readOnlyMode->isReadOnly() ) {
 			return $this->failure( 'readonly', 'readonlytext', $readOnlyMode->getReason() );
