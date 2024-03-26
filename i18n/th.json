@@ -198,7 +198,7 @@
 	"notification-oauth-app-reject-primary-link": "แสดงแอป",
 	"notification-oauth-app-disable-primary-link": "แสดงแอป",
 	"notification-oauth-app-reenable-primary-link": "แสดงแอป",
-	"notification-oauth-app-body": "สาเหตุ: $1",
+	"notification-oauth-app-body": "เหตุผล: $1",
 	"mwoauth-oauth-version": "รุ่นโพรโทคอล OAuth",
 	"mwoauth-login-required-reason": "คุณต้องลงชื่อเข้าใช้บัญชี {{SITENAME}} ของคุณเพื่ออนุญาตให้แอปพลิเคชันเข้าถึงได้",
 	"mwoauthconsumer-consumer-view": "ดูผู้บริโภคนี้",
