@@ -11,7 +11,7 @@ use MediaWiki\Rest\Handler;
  * @group Database
  */
 class AccessTokenEndpointTest extends EndpointTestBase {
-	public function provideTestHandlerExecute() {
+	public static function provideTestHandlerExecute() {
 		return [
 			'normal' => [
 				[

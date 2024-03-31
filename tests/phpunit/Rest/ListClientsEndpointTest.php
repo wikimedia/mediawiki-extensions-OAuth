@@ -19,7 +19,7 @@ class ListClientsEndpointTest extends EndpointTestBase {
 	/**
 	 * @var array
 	 */
-	protected $consumerData = [
+	protected const DEFAULT_CONSUMER_DATA = [
 		'id' => null,
 		'consumerKey' => null,
 		'name' => 'lc_test_name',
@@ -50,7 +50,7 @@ class ListClientsEndpointTest extends EndpointTestBase {
 		$this->assertFalse( $this->newHandler()->needsWriteAccess() );
 	}
 
-	public function provideTestHandlerExecute() {
+	public static function provideTestHandlerExecute() {
 		return [
 			'Non-empty result OAuth 1' => [
 				[
@@ -70,20 +70,16 @@ class ListClientsEndpointTest extends EndpointTestBase {
 						'"client_key":"lc111111111111111111111111111111", "owner_only":false,' .
 						'"email": "test@test.com"}],"total":1}',
 				],
-				function () {
+				static function () {
 					$user = User::createNew( 'ListClientsTestUser1' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
 					$db = Utils::getCentralDB( DB_PRIMARY );
 
-					$this->consumerData['userId'] = $centralId;
-					$this->consumerData['consumerKey'] = 'lc111111111111111111111111111111';
-
-					if ( isset( $this->consumerData['restrictions'] ) ) {
-						$this->consumerData['restrictions'] =
-							MWRestrictions::newFromJson( $this->consumerData['restrictions'] );
-					}
-
-					Consumer::newFromArray( $this->consumerData )->save( $db );
+					$consumerData = self::DEFAULT_CONSUMER_DATA;
+					$consumerData['userId'] = $centralId;
+					$consumerData['consumerKey'] = 'lc111111111111111111111111111111';
+					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
+					Consumer::newFromArray( $consumerData )->save( $db );
 
 					return $user;
 				}
@@ -104,21 +100,17 @@ class ListClientsEndpointTest extends EndpointTestBase {
 						'"scopes":["[\"test\"]"],"client_key":"lc222222222222222222222222222222",' .
 						'"email": "test@test.com","owner_only":false}],"total":1}'
 				],
-				function () {
+				static function () {
 					$user = User::createNew( 'ListClientsTestUser2' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
 					$db = Utils::getCentralDB( DB_PRIMARY );
 
-					$this->consumerData['userId'] = $centralId;
-					$this->consumerData['consumerKey'] = 'lc222222222222222222222222222222';
-					$this->consumerData['oauthVersion'] = '2';
-
-					if ( isset( $this->consumerData['restrictions'] ) ) {
-						$this->consumerData['restrictions'] =
-							MWRestrictions::newFromJson( $this->consumerData['restrictions'] );
-					}
-
-					Consumer::newFromArray( $this->consumerData )->save( $db );
+					$consumerData = self::DEFAULT_CONSUMER_DATA;
+					$consumerData['userId'] = $centralId;
+					$consumerData['consumerKey'] = 'lc222222222222222222222222222222';
+					$consumerData['oauthVersion'] = '2';
+					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
+					Consumer::newFromArray( $consumerData )->save( $db );
 
 					return $user;
 				}
@@ -135,18 +127,19 @@ class ListClientsEndpointTest extends EndpointTestBase {
 					'protocolVersion' => '1.1',
 					'body' => '{"clients":[],"total":0}'
 				],
-				function () {
+				static function () {
 					$user = User::createNew( 'ListClientsTestUser3' );
 					$db = Utils::getCentralDB( DB_PRIMARY );
 
+					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					/*
 					 * Inserting client id for a different user than the one making the request.
 					 * This proves filtering works.
 					 */
-					$this->consumerData['userId'] = 99999;
-					$this->consumerData['consumerKey'] = 'lc333333333333333333333333333333';
-
-					Consumer::newFromArray( $this->consumerData )->save( $db );
+					$consumerData['userId'] = 99999;
+					$consumerData['consumerKey'] = 'lc333333333333333333333333333333';
+					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
+					Consumer::newFromArray( $consumerData )->save( $db );
 
 					return $user;
 				}
