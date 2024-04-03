@@ -7,7 +7,6 @@ use LogEntry;
 use LogFormatter;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserEditTracker;
@@ -73,7 +72,6 @@ class OAuthLogFormatter extends LogFormatter {
 			$user->getId(),
 			$user->getName()
 		);
-		$this->userEditTracker = MediaWikiServices::getInstance()->getUserEditTracker();
 		$editCount = $user->getId()
 			? $this->userEditTracker->getUserEditCount( $user )
 			: null;
