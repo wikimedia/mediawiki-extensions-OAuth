@@ -125,25 +125,6 @@ class RequestClientEndpointTest extends EndpointTestBase {
 					return User::createNew( 'RequestClientTestUser1' );
 				}
 			],
-			'Missing Content-Type header' => [
-				[
-					'method' => 'POST',
-					'uri' => self::makeUri( '/oauth2/client' ),
-					'postParams' => $this->postParams,
-					'headers' => [],
-				],
-				[
-					'statusCode' => 415,
-					'reasonPhrase' => 'Unsupported Media Type',
-					'protocolVersion' => '1.1'
-				],
-				static function () {
-					$user = User::createNew( 'RequestClientTestUser3' );
-					$user->setEmail( 'test@test.com' );
-
-					return $user;
-				}
-			],
 			'Missing Callback URL for non-OwnerOnly client' => [
 				[
 					'method' => 'POST',

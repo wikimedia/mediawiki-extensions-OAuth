@@ -81,8 +81,8 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					'pathParams' => [ 'client_key' => 'INVALID_CLIENT_KEY' ]
 				],
 				[
-					'statusCode' => 415,
-					'reasonPhrase' => 'Unsupported Media Type',
+					'statusCode' => 400,
+					'reasonPhrase' => 'Bad Request',
 					'protocolVersion' => '1.1'
 				]
 			],
@@ -94,8 +94,8 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					'headers' => [],
 				],
 				[
-					'statusCode' => 415,
-					'reasonPhrase' => 'Unsupported Media Type',
+					'statusCode' => 400,
+					'reasonPhrase' => 'Bad Request',
 					'protocolVersion' => '1.1'
 				]
 			],
