@@ -7,6 +7,7 @@ use MediaWiki\Extension\OAuth\Backend\OAuth1Consumer;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Status\Status;
+use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWikiIntegrationTestCase;
 use MWRestrictions;
@@ -19,18 +20,28 @@ use StatusValue;
  */
 class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 
+	private string $oauthOwnerUsername;
+
 	/**
 	 * @dataProvider provideSubmit_propose_OAuth1
 	 */
-	public function testSubmit_propose_OAuth1( array $data, StatusValue $expectedStatus ) {
-		$this->doSubmit( $data, $expectedStatus );
+	public function testSubmit_propose_OAuth1(
+		array $data,
+		StatusValue $expectedStatus,
+		callable $consumerCheck = null
+	) {
+		$this->doSubmit( $data, $expectedStatus, $consumerCheck );
 	}
 
 	/**
 	 * @dataProvider provideSubmit_propose_OAuth2
 	 */
-	public function testSubmit_propose_OAuth2( array $data, StatusValue $expectedStatus ) {
-		$this->doSubmit( $data, $expectedStatus );
+	public function testSubmit_propose_OAuth2(
+		array $data,
+		StatusValue $expectedStatus,
+		callable $consumerCheck = null
+	) {
+		$this->doSubmit( $data, $expectedStatus, $consumerCheck );
 	}
 
 	private function doSubmit( array $data, StatusValue $expectedStatus, callable $consumerCheck = null ) {
@@ -46,11 +57,12 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$context = RequestContext::getMain();
-		$user = $this->getMutableTestUser( 'OAuthOwner' )->getUser();
+		$user = $this->getMutableTestUser()->getUser();
 		$user->setEmail( 'owner@wiki.domain' );
 		$user->confirmEmail();
 		$user->saveSettings();
 		$context->setUser( $user );
+		$this->oauthOwnerUsername = $user->getName();
 
 		$dbw = $this->getDb();
 		$control = new ConsumerSubmitControl( $context, [], $dbw );
@@ -65,8 +77,9 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 			: $this->assertStatusNotOK( $actualStatus );
 		$this->assertSame( $expectedStatus->isGood(), $actualStatus->isGood() );
 		if ( $expectedStatus->isOK() && $consumerCheck ) {
-			$this->assertArrayHasKey( 'consumer', $actualStatus->getValue() );
-			$consumerCheck( $actualStatus->getValue()['consumer'] );
+			$this->assertArrayHasKey( 'result', $actualStatus->getValue() );
+			$this->assertArrayHasKey( 'consumer', $actualStatus->getValue()['result'] );
+			$consumerCheck( $this, $user, $actualStatus->getValue()['result']['consumer'] );
 		}
 		if ( !$expectedStatus->isGood() ) {
 			$this->assertSame(
@@ -75,7 +88,7 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideSubmit_propose_OAuth1() {
+	public static function provideSubmit_propose_OAuth1() {
 		$baseConsumerData = [
 			'oauthVersion' => Consumer::OAUTH_VERSION_1,
 			'name' => 'test consumer',
@@ -100,15 +113,13 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 			'good' => [
 				$baseConsumerData,
 				StatusValue::newGood(),
-				function ( $consumer ) {
-					$owner = $this->getServiceContainer()->getUserFactory()->newFromName( 'OAuthOwner' );
-
-					$this->assertInstanceOf( OAuth1Consumer::class, $consumer );
+				static function ( MediaWikiIntegrationTestCase $testCase, User $owner, $consumer ) {
+					$testCase->assertInstanceOf( OAuth1Consumer::class, $consumer );
 					/** @var OAuth1Consumer $consumer */
-					$this->assertSame( $owner->getId(), $consumer->getUserId() );
-					$this->assertFalse( $consumer->getOwnerOnly() );
-					$this->assertSame( [ 'editpage' ], $consumer->getGrants() );
-					$this->assertSame( Consumer::STAGE_PROPOSED, $consumer->getStage() );
+					$testCase->assertSame( $owner->getId(), $consumer->getUserId() );
+					$testCase->assertFalse( $consumer->getOwnerOnly() );
+					$testCase->assertSame( [ 'basic', 'editpage' ], $consumer->getGrants() );
+					$testCase->assertSame( Consumer::STAGE_PROPOSED, $consumer->getStage() );
 				},
 			],
 			'auto-approved' => [
@@ -116,9 +127,9 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 					'grants' => json_encode( [ 'basic' ] ),
 				] + $baseConsumerData,
 				StatusValue::newGood(),
-				function ( $consumer ) {
-					$this->assertSame( [ 'basic' ], $consumer->getGrants() );
-					$this->assertSame( Consumer::STAGE_APPROVED, $consumer->getStage() );
+				static function ( MediaWikiIntegrationTestCase $testCase, User $owner, $consumer ) {
+					$testCase->assertSame( [ 'basic' ], $consumer->getGrants() );
+					$testCase->assertSame( Consumer::STAGE_APPROVED, $consumer->getStage() );
 				},
 			],
 			'invalid version string' => [
@@ -143,7 +154,7 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function provideSubmit_propose_OAuth2() {
+	public static function provideSubmit_propose_OAuth2() {
 		$baseConsumerData = [
 			'oauthVersion' => Consumer::OAUTH_VERSION_2,
 			'name' => 'test',
@@ -163,14 +174,12 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 			'agreement' => true,
 			'action' => 'propose',
 		];
-		$assertGoodConsumer = function ( $consumer ) {
-			$owner = $this->getServiceContainer()->getUserFactory()->newFromName( 'OAuthOwner' );
-
-			$this->assertInstanceOf( ClientEntity::class, $consumer );
+		$assertGoodConsumer = static function ( MediaWikiIntegrationTestCase $testCase, User $owner, $consumer ) {
+			$testCase->assertInstanceOf( ClientEntity::class, $consumer );
 			/** @var ClientEntity $consumer */
-			$this->assertSame( $owner->getId(), $consumer->getUserId() );
-			$this->assertFalse( $consumer->getOwnerOnly() );
-			$this->assertSame( [ 'editpage' ], $consumer->getGrants() );
+			$testCase->assertSame( $owner->getId(), $consumer->getUserId() );
+			$testCase->assertFalse( $consumer->getOwnerOnly() );
+			$testCase->assertSame( [ 'basic', 'editpage' ], $consumer->getGrants() );
 		};
 
 		yield 'good' => [
