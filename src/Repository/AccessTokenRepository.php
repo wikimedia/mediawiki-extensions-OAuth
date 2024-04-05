@@ -65,11 +65,11 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 
 		$data = $this->getDbDataFromTokenEntity( $accessTokenEntity );
 
-		$this->getDB( DB_PRIMARY )->insert(
-			$this->getTableName(),
-			$data,
-			__METHOD__
-		);
+		$this->getDB( DB_PRIMARY )->newInsertQueryBuilder()
+			->insertInto( $this->getTableName() )
+			->row( $data )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -79,12 +79,12 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 */
 	public function revokeAccessToken( $tokenId ) {
 		if ( $this->identifierExists( $tokenId ) ) {
-			$this->getDB( DB_PRIMARY )->update(
-				$this->getTableName(),
-				[ static::FIELD_REVOKED => 1 ],
-				[ $this->getIdentifierField() => $tokenId ],
-				__METHOD__
-			);
+			$this->getDB( DB_PRIMARY )->newUpdateQueryBuilder()
+				->update( $this->getTableName() )
+				->set( [ static::FIELD_REVOKED => 1 ] )
+				->where( [ $this->getIdentifierField() => $tokenId ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 	}
 
@@ -114,13 +114,11 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 * @param int $approvalId
 	 */
 	public function deleteForApprovalId( $approvalId ) {
-		$this->getDB( DB_PRIMARY )->delete(
-			$this->getTableName(),
-			[
-				static::FIELD_ACCEPTANCE_ID => $approvalId
-			],
-			__METHOD__
-		);
+		$this->getDB( DB_PRIMARY )->newDeleteQueryBuilder()
+			->deleteFrom( $this->getTableName() )
+			->where( [ static::FIELD_ACCEPTANCE_ID => $approvalId ] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**

@@ -191,12 +191,12 @@ abstract class MWOAuthDAO {
 		if ( $this->daoOrigin === 'db' ) {
 			if ( $this->daoPending ) {
 				$this->logger->debug( get_class( $this ) . ': performing DB update; object changed.' );
-				$dbw->update(
-					static::getTable(),
-					$this->getRowArray( $dbw ),
-					[ $idColumn => $uniqueId ],
-					__METHOD__
-				);
+				$dbw->newUpdateQueryBuilder()
+					->update( static::getTable() )
+					->set( $this->getRowArray( $dbw ) )
+					->where( [ $idColumn => $uniqueId ] )
+					->caller( __METHOD__ )
+					->execute();
 				$this->daoPending = false;
 				return $dbw->affectedRows() > 0;
 			} else {
@@ -213,11 +213,11 @@ abstract class MWOAuthDAO {
 				// auto-incrementing behavior
 				unset( $row[$acolumn] );
 			}
-			$dbw->insert(
-				static::getTable(),
-				$row,
-				__METHOD__
-			);
+			$dbw->newInsertQueryBuilder()
+				->insertInto( static::getTable() )
+				->row( $row )
+				->caller( __METHOD__ )
+				->execute();
 			if ( $afield !== null ) {
 				// update field for auto-increment field
 				$this->$afield = $dbw->insertId();
@@ -241,11 +241,11 @@ abstract class MWOAuthDAO {
 			throw new DBReadOnlyError( $dbw, __CLASS__ . ": tried to delete while db is read-only" );
 		}
 		if ( $this->daoOrigin === 'db' ) {
-			$dbw->delete(
-				static::getTable(),
-				[ $idColumn => $uniqueId ],
-				__METHOD__
-			);
+			$dbw->newDeleteQueryBuilder()
+				->deleteFrom( static::getTable() )
+				->where( [ $idColumn => $uniqueId ] )
+				->caller( __METHOD__ )
+				->execute();
 			$this->daoPending = true;
 			return $dbw->affectedRows() > 0;
 		} else {

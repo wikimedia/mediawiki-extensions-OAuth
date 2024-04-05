@@ -129,16 +129,18 @@ EOK;
 	protected static function doUserIdMerge( $oldid, $newid ) {
 		$dbw = Utils::getCentralDB( DB_PRIMARY );
 		// Merge any consumers register to this user
-		$dbw->update( 'oauth_registered_consumer',
-			[ 'oarc_user_id' => $newid ],
-			[ 'oarc_user_id' => $oldid ],
-			__METHOD__
-		);
+		$dbw->newUpdateQueryBuilder()
+			->update( 'oauth_registered_consumer' )
+			->set( [ 'oarc_user_id' => $newid ] )
+			->where( [ 'oarc_user_id' => $oldid ] )
+			->caller( __METHOD__ )
+			->execute();
 		// Delete any acceptance tokens by the old user ID
-		$dbw->delete( 'oauth_accepted_consumer',
-			[ 'oaac_user_id' => $oldid ],
-			__METHOD__
-		);
+		$dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'oauth_accepted_consumer' )
+			->where( [ 'oaac_user_id' => $oldid ] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	public function onListDefinedTags( &$tags ) {
@@ -171,12 +173,12 @@ EOK;
 		if ( $activeOnly ) {
 			$conds[] = $db->expr( 'oarc_stage', '=', [ Consumer::STAGE_APPROVED, Consumer::STAGE_PROPOSED ] );
 		}
-		$res = $db->select(
-			'oauth_registered_consumer',
-			[ 'oarc_id' ],
-			$conds,
-			__METHOD__
-		);
+		$res = $db->newSelectQueryBuilder()
+			->select( 'oarc_id' )
+			->from( 'oauth_registered_consumer' )
+			->where( $conds )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$allTags = [];
 		foreach ( $res as $row ) {
 			$allTags[] = Utils::getTagName( $row->oarc_id );
@@ -201,13 +203,13 @@ EOK;
 		if ( $allTags ) {
 			$db = $this->connectionProvider->getReplicaDatabase();
 
-			$res = $db->select(
-				'change_tag',
-				[ $field ],
-				$conditions,
-				__METHOD__,
-				[ 'DISTINCT' ]
-			);
+			$res = $db->newSelectQueryBuilder()
+				->select( $field )
+				->distinct()
+				->from( 'change_tag' )
+				->where( $conditions )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			foreach ( $res as $row ) {
 				$tags[] = $this->changeTagDefStore->getName( intval( $row->ct_tag_id ) );
 			}
