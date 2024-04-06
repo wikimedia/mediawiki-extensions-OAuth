@@ -11,7 +11,7 @@ use MediaWiki\Rest\Handler;
  */
 class AuthorizationEndpointTest extends EndpointTestBase {
 
-	public function provideTestHandlerExecute() {
+	public static function provideTestHandlerExecute() {
 		return [
 			'redirect to login' => [
 				[

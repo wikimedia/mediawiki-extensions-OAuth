@@ -40,7 +40,7 @@ abstract class EndpointTestBase extends MediaWikiIntegrationTestCase {
 	/**
 	 * @return mixed
 	 */
-	abstract public function provideTestHandlerExecute();
+	abstract public static function provideTestHandlerExecute();
 
 	/**
 	 * @param string $path
@@ -109,7 +109,7 @@ abstract class EndpointTestBase extends MediaWikiIntegrationTestCase {
 			'$responseInfo may not contain unknown keys' );
 
 		if ( $extraValidationCallback ) {
-			$extraValidationCallback( $response );
+			$extraValidationCallback( $this, $response );
 		}
 	}
 
