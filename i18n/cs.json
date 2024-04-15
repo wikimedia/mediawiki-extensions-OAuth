@@ -35,6 +35,8 @@
 	"mwoauth-consumer-owner-only-help": "Zaškrtnutí této možnosti způsobí, že tento konzument bude automaticky schválen a přijat pro použití uživatelem $1. Nebude ho moci použít žádný jiný uživatel a běžný autentizační postup nebude fungovat. Akce provedené tímto konzumentem nebudou označeny.",
 	"mwoauth-consumer-description": "Popis aplikace:",
 	"mwoauth-consumer-callbackurl": "URL pro OAuth „callback“:",
+	"mwoauth-consumer-callbackurl-help": "Na rozdíl od OAuth 1.0a se toto URL porovnává přesně",
+	"mwoauth-consumer-callbackurl-warning": "(libovolný port)",
 	"mwoauth-consumer-callbackisprefix": "Umožnit konzumentovi, aby v požadavcích uvedl callback a URL „callback“ výše používat jako povinný prefix.",
 	"mwoauth-consumer-granttypes": "Typy požadovaných oprávnění:",
 	"mwoauth-consumer-grantsneeded": "Použitelná oprávnění:",
@@ -71,9 +73,10 @@
 	"mwoauth-consumer-stage-suppressed": "utajený",
 	"oauthconsumerregistration": "Registrace konzumenta OAuth",
 	"mwoauthconsumerregistration-navigation": "Navigace:",
+	"mwoauthconsumerregistration-propose-oauth2": "Navrhnout nového klienta OAuth 2.0",
 	"mwoauthconsumerregistration-list": "Seznam mých konzumentů",
 	"mwoauthconsumerregistration-main": "Hlavní",
-	"mwoauthconsumerregistration-propose-text": "Vývojáři by měli používat níže zobrazený formulář k navržení nového konzumenta OAuth (podrobnosti najdete v [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth?uselang=cs dokumentaci rozšíření]). Po odeslání tohoto formuláře obdržíte token, pomocí kterého se vaše aplikace bude identifikovat MediaWiki. Předtím, než budou moci ostatní uživatelé autorizovat vaši aplikaci, bude ji muset schválit některý správce OAuth.\n\nNěkolik doporučení a poznámek:\n* Snažte se používat co nejméně oprávnění. Vyhněte se těm, která ve skutečnosti zatím nepotřebujete.\n* Verze má tvar „major.minor.release“ (poslední dvě části jsou nepovinné) a zvyšuje se, když jsou potřeba změny oprávnění.\n* Pokud je to možné, poskytněte veřejný klíč RSA (ve formátu PEM), jinak se musí používat (méně bezpečný) tajný token.\n* Pomocí ID wiki můžete omezit tohoto konzumenta na jediný projekt na tomto serveru (pro všechny projekty uveďte „*“).",
+	"mwoauthconsumerregistration-propose-text": "Můžete:\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|Navrhnout konzumenta OAuth 1.0a]].\n* [[Special:OAuthConsumerRegistration/propose/oauth2|Navrhnout klienta OAuth 2.0]].",
 	"mwoauthconsumerregistration-propose-text-oauth1a": "Vývojáři by měli používat níže zobrazený formulář k navržení nového konzumenta OAuth 1.0a (podrobnosti najdete v [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth?uselang=cs dokumentaci rozšíření]). Po odeslání tohoto formuláře obdržíte token, pomocí kterého se vaše aplikace bude identifikovat MediaWiki. Předtím, než budou moci ostatní uživatelé autorizovat vaši aplikaci, ji bude muset schválit některý správce OAuth.\n\nNěkolik doporučení a poznámek:\n* Snažte se používat co nejméně oprávnění. Vyhněte se těm, která ve skutečnosti zatím nepotřebujete.\n* Verze má tvar „major.minor.release“ (poslední dvě části jsou nepovinné) a zvyšuje se, když jsou potřeba změny oprávnění.\n* Pokud je to možné, poskytněte veřejný klíč RSA (ve formátu PEM), jinak se musí používat (méně bezpečný) tajný token.\n* Pomocí ID wiki můžete omezit tohoto konzumenta na jediný projekt na tomto serveru (pro všechny projekty uveďte „*“).",
 	"mwoauthconsumerregistration-propose-text-oauth2": "Vývojáři by měli používat níže zobrazený formulář k navržení nového konzumenta OAuth 2.0 (podrobnosti najdete v [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth?uselang=cs dokumentaci rozšíření]). Po odeslání tohoto formuláře obdržíte token, pomocí kterého se vaše aplikace bude identifikovat MediaWiki. Předtím, než budou moci ostatní uživatelé autorizovat vaši aplikaci, ji bude muset schválit některý správce OAuth.\n\nNěkolik doporučení a poznámek:\n* Snažte se používat co nejméně oprávnění. Vyhněte se těm, která ve skutečnosti zatím nepotřebujete.\n* Verze má tvar „major.minor.release“ (poslední dvě části jsou nepovinné) a zvyšuje se, když jsou potřeba změny oprávnění.\n* Pomocí ID wiki můžete omezit tohoto konzumenta na jediný projekt na tomto serveru (pro všechny projekty uveďte „*“).",
 	"mwoauthconsumerregistration-update-text": "Pomocí níže uvedeného formuláře můžete změnit vlastnosti konzumenta OAuth, kterého spravujete.\n\nVšechny uvedené hodnoty přepíšou ty původní. Neponechávejte žádná pole prázdná, pokud nechcete jejich hodnoty smazat.",
@@ -275,5 +278,7 @@
 	"echo-category-title-oauth-admin": "správu OAuth",
 	"echo-pref-tooltip-oauth-admin": "Upozorněte mě na události týkající se schvalování aplikací OAuth.",
 	"notification-oauth-app-body": "Zdůvodnění: $1",
+	"mwoauth-oauth-version": "Verze protokolu OAuth",
+	"mwoauthconsumer-application-view": "Zobrazit tuto aplikaci",
 	"grant-oauthmanageownclient": "Spravovat vaše OAuth klienty"
 }
