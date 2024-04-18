@@ -36,6 +36,8 @@
 	"mwoauth-desc": "允许使用OAuth 1.0a与OAuth 2.0进行API授权",
 	"mwoauth-nosubpage-explanation": "OAuth 是一种机制，允许外部应用程序在收到用户的许可后识别{{SITENAME}}用户或代表他们行事。\n\n为了让这个页面做一些事情，需要更多的参数。如果您是从外部应用程序发送到这里的，那可能是由于该应用程序中的错误；你应该联系作者。",
 	"mwoauth-verified": "现在该应用以允许以您的名义访问MediaWiki。\n\n要完成这个过程，请为该应用提供这个校验值：'''$1'''",
+	"mwoauth-named-account-required-reason": "此功能仅供注册用户使用。您需要登录您的{{SITENAME}}帐户才能授权应用程序访问此功能。",
+	"mwoauth-available-only-to-registered": "此页面仅对注册账户开放。",
 	"mwoauth-db-readonly": "OAuth数据库暂时锁定。请几分钟后重试。",
 	"mwoauth-missing-field": "缺少值为“$1”字段",
 	"mwoauth-invalid-field": "为\"$1\"字段提供的值无效",
