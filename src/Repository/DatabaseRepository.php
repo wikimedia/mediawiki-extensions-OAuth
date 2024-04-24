@@ -22,12 +22,12 @@ abstract class DatabaseRepository {
 	 * @return bool
 	 */
 	public function identifierExists( $identifier ) {
-		return $this->getDB()->selectRow(
-			$this->getTableName(),
-			[ $this->getIdentifierField() ],
-			[ $this->getIdentifierField() => $identifier ],
-			__METHOD__
-		) !== false;
+		return $this->getDB()->newSelectQueryBuilder()
+			->select( $this->getIdentifierField() )
+			->from( $this->getTableName() )
+			->where( [ $this->getIdentifierField() => $identifier ] )
+			->caller( __METHOD__ )
+			->fetchRow() !== false;
 	}
 
 	abstract protected function getTableName(): string;

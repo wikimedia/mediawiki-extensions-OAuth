@@ -100,12 +100,15 @@ class ConsumerAcceptance extends MWOAuthDAO {
 	 * @return ConsumerAcceptance|bool
 	 */
 	public static function newFromToken( IDatabase $db, $token, $flags = 0 ) {
-		$row = $db->selectRow( static::getTable(),
-			array_values( static::getFieldColumnMap() ),
-			[ 'oaac_access_token' => (string)$token ],
-			__METHOD__,
-			( $flags & IDBAccessObject::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
-		);
+		$queryBuilder = $db->newSelectQueryBuilder()
+			->select( array_values( static::getFieldColumnMap() ) )
+			->from( static::getTable() )
+			->where( [ 'oaac_access_token' => (string)$token ] )
+			->caller( __METHOD__ );
+		if ( $flags & IDBAccessObject::READ_LOCKING ) {
+			$queryBuilder->forUpdate();
+		}
+		$row = $queryBuilder->fetchRow();
 
 		if ( $row ) {
 			$consumer = new self();
@@ -129,17 +132,20 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		IDatabase $db, $userId, $consumer,
 		$wiki, $flags = 0, $oauthVersion = Consumer::OAUTH_VERSION_1
 	) {
-		$row = $db->selectRow( static::getTable(),
-			array_values( static::getFieldColumnMap() ),
-			[
+		$queryBuilder = $db->newSelectQueryBuilder()
+			->select( array_values( static::getFieldColumnMap() ) )
+			->from( static::getTable() )
+			->where( [
 				'oaac_user_id' => $userId,
 				'oaac_consumer_id' => $consumer->getId(),
 				'oaac_oauth_version' => $oauthVersion,
 				'oaac_wiki' => (string)$wiki
-			],
-			__METHOD__,
-			( $flags & IDBAccessObject::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
-		);
+			] )
+			->caller( __METHOD__ );
+		if ( $flags & IDBAccessObject::READ_LOCKING ) {
+			$queryBuilder->forUpdate();
+		}
+		$row = $queryBuilder->fetchRow();
 
 		if ( $row ) {
 			$consumer = new self();

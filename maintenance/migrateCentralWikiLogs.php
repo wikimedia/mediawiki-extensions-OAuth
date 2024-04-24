@@ -19,6 +19,7 @@ require_once "$IP/maintenance/Maintenance.php";
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class MigrateCentralWikiLogs extends Maintenance {
 	public function __construct() {
@@ -65,22 +66,19 @@ class MigrateCentralWikiLogs extends Maintenance {
 				$conds[] = $oldDb->expr( 'log_timestamp', '<', $oldDb->timestamp( $lastMinTimestamp ) );
 			}
 
-			$oldLoggs = $oldDb->select(
-				[ 'logging', 'actor' ] + $commentQuery['tables'],
-				[
+			$oldLoggs = $oldDb->newSelectQueryBuilder()
+				->select( [
 					'log_id', 'log_action', 'log_timestamp', 'log_params', 'log_deleted',
 					'actor_id', 'actor_name', 'actor_user'
-				] + $commentQuery['fields'],
-				$conds,
-				__METHOD__,
-				[
-					'ORDER BY' => 'log_timestamp DESC',
-					'LIMIT' => $this->mBatchSize + 1,
-				],
-				[
-					'actor' => [ 'JOIN', 'actor_id=log_actor' ]
-				] + $commentQuery['joins']
-			);
+				] )
+				->from( 'logging' )
+				->join( 'actor', null, 'actor_id=log_actor' )
+				->where( $conds )
+				->queryInfo( $commentQuery )
+				->orderBy( 'log_timestamp', SelectQueryBuilder::SORT_DESC )
+				->limit( $this->mBatchSize + 1 )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 
 			$rowCount = $oldLoggs->numRows();
 

@@ -101,12 +101,15 @@ abstract class MWOAuthDAO {
 	 * @throws DBError
 	 */
 	final public static function newFromId( IDatabase $db, $id, $flags = 0 ) {
-		$row = $db->selectRow( static::getTable(),
-			array_values( static::getFieldColumnMap() ),
-			[ static::getIdColumn() => (int)$id ],
-			__METHOD__,
-			( $flags & IDBAccessObject::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
-		);
+		$queryBuilder = $db->newSelectQueryBuilder()
+			->select( array_values( static::getFieldColumnMap() ) )
+			->from( static::getTable() )
+			->where( [ static::getIdColumn() => (int)$id ] )
+			->caller( __METHOD__ );
+		if ( $flags & IDBAccessObject::READ_LOCKING ) {
+			$queryBuilder->forUpdate();
+		}
+		$row = $queryBuilder->fetchRow();
 
 		if ( $row ) {
 			$class = static::getConsumerClass( (array)$row );

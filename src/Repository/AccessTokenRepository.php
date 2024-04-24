@@ -96,12 +96,12 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 * @return bool Return true if this token has been revoked
 	 */
 	public function isAccessTokenRevoked( $tokenId ) {
-		$row = $this->getDB()->selectRow(
-			$this->getTableName(),
-			[ static::FIELD_REVOKED ],
-			[ $this->getIdentifierField() => $tokenId ],
-			__METHOD__
-		);
+		$row = $this->getDB()->newSelectQueryBuilder()
+			->select( static::FIELD_REVOKED )
+			->from( $this->getTableName() )
+			->where( [ $this->getIdentifierField() => $tokenId ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		if ( !$row ) {
 			return true;
 		}
@@ -128,12 +128,12 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 * @return bool|int
 	 */
 	public function getApprovalId( $tokenId ) {
-		$row = $this->getDB()->selectRow(
-			$this->getTableName(),
-			[ static::FIELD_ACCEPTANCE_ID ],
-			[ $this->getIdentifierField() => $tokenId ],
-			__METHOD__
-		);
+		$row = $this->getDB()->newSelectQueryBuilder()
+			->select( static::FIELD_ACCEPTANCE_ID )
+			->from( $this->getTableName() )
+			->where( [ $this->getIdentifierField() => $tokenId ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 
 		if ( $row ) {
 			return (int)$row->{static::FIELD_ACCEPTANCE_ID};

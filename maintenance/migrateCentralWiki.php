@@ -67,19 +67,17 @@ class MigrateCentralWiki extends Maintenance {
 		$targetDb = $lbFactory->getMainLB( $targetWiki )
 			->getConnection( DB_PRIMARY, [], $targetWiki );
 
-		$newMax = $targetDb->selectField(
-			$table,
-			"MAX($idKey)",
-			[],
-			__METHOD__
-		);
+		$newMax = $targetDb->newSelectQueryBuilder()
+			->select( "MAX($idKey)" )
+			->from( $table )
+			->caller( __METHOD__ )
+			->fetchField();
 
-		$oldMax = $oldDb->selectField(
-			$table,
-			"MAX($idKey)",
-			[],
-			__METHOD__
-		);
+		$oldMax = $oldDb->newSelectQueryBuilder()
+			->select( "MAX($idKey)" )
+			->from( $table )
+			->caller( __METHOD__ )
+			->fetchField();
 
 		if ( $newMax >= $oldMax ) {
 			$this->output( "No new rows.\n" );
