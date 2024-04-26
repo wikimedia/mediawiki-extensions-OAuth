@@ -29,6 +29,7 @@ use MWException;
 use StatusValue;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -269,12 +270,14 @@ class ConsumerSubmitControl extends SubmitControl {
 					$this->vals['wiki'] = $dbKey;
 				}
 
-				$curVer = $dbw->selectField( 'oauth_registered_consumer',
-					'oarc_version',
-					[ 'oarc_name' => $this->vals['name'], 'oarc_user_id' => $centralUserId ],
-					__METHOD__,
-					[ 'ORDER BY' => 'oarc_registration DESC', 'FOR UPDATE' ]
-				);
+				$curVer = $dbw->newSelectQueryBuilder()
+					->select( 'oarc_version' )
+					->from( 'oauth_registered_consumer' )
+					->where( [ 'oarc_name' => $this->vals['name'], 'oarc_user_id' => $centralUserId ] )
+					->orderBy( 'oarc_registration', SelectQueryBuilder::SORT_DESC )
+					->forUpdate()
+					->caller( __METHOD__ )
+					->fetchField();
 				if ( $curVer !== false && version_compare( $curVer, $this->vals['version'], '>=' ) ) {
 					return $this->failure( 'consumer_exists',
 						'mwoauth-consumer-alreadyexistsversion', $curVer );

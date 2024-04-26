@@ -59,19 +59,19 @@ class UIHooks implements
 	public function onGetPreferences( $user, &$preferences ) {
 		$dbr = Utils::getCentralDB( DB_REPLICA );
 		$conds = [
-			'oaac_consumer_id = oarc_id',
 			'oaac_user_id' => Utils::getCentralIdFromLocalUser( $user ),
 		];
 
 		if ( !$this->permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
 			$conds['oarc_deleted'] = 0;
 		}
-		$count = $dbr->selectField(
-			[ 'oauth_accepted_consumer', 'oauth_registered_consumer' ],
-			'COUNT(*)',
-			$conds,
-			__METHOD__
-		);
+		$count = $dbr->newSelectQueryBuilder()
+			->select( 'COUNT(*)' )
+			->from( 'oauth_accepted_consumer' )
+			->join( 'oauth_registered_consumer', null, 'oaac_consumer_id = oarc_id' )
+			->where( $conds )
+			->caller( __METHOD__ )
+			->fetchField();
 
 		$control = new ButtonWidget( [
 			'href' => SpecialPage::getTitleFor( 'OAuthManageMyGrants' )->getLinkURL(),

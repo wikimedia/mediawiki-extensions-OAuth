@@ -219,12 +219,15 @@ abstract class Consumer extends MWOAuthDAO {
 	 * @return Consumer|false
 	 */
 	public static function newFromKey( IDatabase $db, $key, $flags = 0 ) {
-		$row = $db->selectRow( static::getTable(),
-			array_values( static::getFieldColumnMap() ),
-			[ 'oarc_consumer_key' => (string)$key ],
-			__METHOD__,
-			( $flags & IDBAccessObject::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
-		);
+		$queryBuilder = $db->newSelectQueryBuilder()
+			->select( array_values( static::getFieldColumnMap() ) )
+			->from( static::getTable() )
+			->where( [ 'oarc_consumer_key' => (string)$key ] )
+			->caller( __METHOD__ );
+		if ( $flags & IDBAccessObject::READ_LOCKING ) {
+			$queryBuilder->forUpdate();
+		}
+		$row = $queryBuilder->fetchRow();
 
 		if ( $row ) {
 			return static::newFromRow( $db, $row );
@@ -244,16 +247,19 @@ abstract class Consumer extends MWOAuthDAO {
 	public static function newFromNameVersionUser(
 		IDatabase $db, $name, $version, $userId, $flags = 0
 	) {
-		$row = $db->selectRow( static::getTable(),
-			array_values( static::getFieldColumnMap() ),
-			[
+		$queryBuilder = $db->newSelectQueryBuilder()
+			->select( array_values( static::getFieldColumnMap() ) )
+			->from( static::getTable() )
+			->where( [
 				'oarc_name' => (string)$name,
 				'oarc_version' => (string)$version,
 				'oarc_user_id' => (int)$userId
-			],
-			__METHOD__,
-			( $flags & IDBAccessObject::READ_LOCKING ) ? [ 'FOR UPDATE' ] : []
-		);
+			] )
+			->caller( __METHOD__ );
+		if ( $flags & IDBAccessObject::READ_LOCKING ) {
+			$queryBuilder->forUpdate();
+		}
+		$row = $queryBuilder->fetchRow();
 
 		if ( $row ) {
 			return static::newFromRow( $db, $row );
