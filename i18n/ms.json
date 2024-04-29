@@ -6,7 +6,7 @@
 			"Tofeiku"
 		]
 	},
-	"mwoauth-desc": "Kelulusan OAuth 1.0a API",
+	"mwoauth-desc": "Membenarkan penggunaan OAuth 1.0a dan OAuth 2.0 untuk kebenaran API",
 	"mwoauth-verified": "Aplikasi ini kini dibenarkan untuk mengakses MediaWiki bagi pihak anda.\n\nUntuk melengkapkan proses ini, berikan nilai penentusahan ini kepada aplikasi: '''$1'''",
 	"mwoauth-missing-field": "Nilai tertinggal untuk ruangan \"$1\"",
 	"mwoauth-invalid-field": "Nilai yang diberikan tidak sah untuk ruangan \"$1\"",
@@ -16,5 +16,8 @@
 	"mwoauth-prefs-managegrants": "Aplikasi terhubung:",
 	"mwoauth-prefs-managegrantslink": "Urus {{PLURAL:$1|$1 aplikasi terhubung|0=aplikasi terhubung}}",
 	"oauthmanagemygrants": "Uruskan aplikasi terhubung",
+	"mwoauth-form-description-allwikis": "Salam $1,\n\nUntuk melengkapkan permintaan anda, '''$2''' memerlukan kebenaran dari pihak anda untuk melakukan tindakan berikut pada semua projek tapak ini:\n\n$4",
+	"mwoauth-form-button-approve": "Benarkan",
+	"mwoauth-form-button-cancel": "Batalkan",
 	"mwoauth-tag-reserved": "Teg-teg yang berawalan <code>OAuth CID:</code> adalah untuk kegunaan OAuth sahaja."
 }
