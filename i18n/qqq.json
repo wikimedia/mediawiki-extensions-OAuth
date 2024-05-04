@@ -17,7 +17,7 @@
 			"Umherirrender"
 		]
 	},
-	"abusefilter-edit-builder-vars-oauth-consumer": "Abuse filter syntax option in a dropdown from the group {{msg-mw|Abusefilter-edit-builder-group-vars}}.",
+	"abusefilter-edit-builder-vars-oauth-consumer": "Abuse filter syntax option in a dropdown from the group {{msg-mw|Abusefilter-edit-builder-group-vars}}. ($1 is the text that will be inserted into the filter code editor.)",
 	"oauth": "{{Optional}}\nTitle of MWOAuth page.\n{{Identical|OAuth}}",
 	"mwoauth-desc": "{{desc|name=OAuth|url=https://www.mediawiki.org/wiki/Extension:OAuth}}",
 	"mwoauth-nosubpage-explanation": "Non-technical explanation shown to when a person accidentally lands on Special:OAuth\n\n{{Doc-singularthey}}",
