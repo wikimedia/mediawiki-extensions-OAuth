@@ -22,7 +22,7 @@
 			"Southparkfan"
 		]
 	},
-	"abusefilter-edit-builder-vars-oauth-consumer": "De OAuth-consument die is gebruikt om deze verandering door te voeren",
+	"abusefilter-edit-builder-vars-oauth-consumer": "De OAuth-consument die is gebruikt om deze verandering door te voeren ($1)",
 	"mwoauth-desc": "Maakt het mogelijk OAuth 1.0a en OAuth 2.0 te gebruiken voor API-toestemming",
 	"mwoauth-nosubpage-explanation": "OAuth is een mechanisme waarmee externe applicaties een gebruiker van {{SITENAME}} kunnen identificeren of, met toestemming van die gebruiker, in diens naam kunnen handelen.\n\nOm deze pagina iets te laten doen zijn er meer parameters vereist. Als u vanuit een externe applicatie hierheen werd gestuurd, komt dat waarschijnlijk door een fout in die applicatie; neem dan contact op met de auteur.",
 	"mwoauth-verified": "De toepassing heeft nu namens u toegang tot MediaWiki.\n\nGeef deze controlewaarde op in de toepassing om het proces te voltooien: '''$1'''",

@@ -8,7 +8,7 @@
 			"Upwinxp"
 		]
 	},
-	"abusefilter-edit-builder-vars-oauth-consumer": "Porabnik OAuth, uporabljen za izvedbo te spremembe",
+	"abusefilter-edit-builder-vars-oauth-consumer": "Porabnik OAuth, uporabljen za izvedbo te spremembe ($1)",
 	"oauth": "OAuth",
 	"mwoauth-desc": "Omogoča uporabo OAuth 1.0a in OAuth 2.0 za pooblaščanje z API-jem",
 	"mwoauth-nosubpage-explanation": "OAuth je mehanizem, ki omogoča zunanjim aplikacijam, da identificirajo uporabnika projekta {{SITENAME}} ali delujejo v njegovem imenu, ko prejmejo dovoljenje tega uporabnika.\n\nDa ta stran nekaj naredi, je potrebnih več parametrov. Če ste bili sem napoteni iz zunanje aplikacije, je to verjetno posledica napake v tej aplikaciji; obrnite se na avtorja.",
