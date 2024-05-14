@@ -14,7 +14,6 @@ use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use MWException;
-use ObjectCache;
 use RequestContext;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -71,7 +70,8 @@ class Utils {
 		global $wgSessionCacheType;
 
 		$sessionCacheType = $wgMWOAuthSessionCacheType ?? $wgSessionCacheType;
-		return ObjectCache::getInstance( $sessionCacheType );
+		return MediaWikiServices::getInstance()
+			->getObjectCacheFactory()->getInstance( $sessionCacheType );
 	}
 
 	/**
@@ -83,7 +83,8 @@ class Utils {
 
 		$cacheType = $wgMWOAuthNonceCacheType
 			?? $wgMWOAuthSessionCacheType ?? $wgSessionCacheType;
-		return ObjectCache::getInstance( $cacheType );
+		return MediaWikiServices::getInstance()
+			->getObjectCacheFactory()->getInstance( $cacheType );
 	}
 
 	/**
