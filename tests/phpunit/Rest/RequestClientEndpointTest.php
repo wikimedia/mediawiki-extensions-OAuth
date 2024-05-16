@@ -195,7 +195,7 @@ class RequestClientEndpointTest extends EndpointTestBase {
 					'uri' => self::makeUri( '/oauth2/client' ),
 					'postParams' => self::DEFAULT_POST_PARAMS,
 					'headers' => [
-						'Content-Type' => 'application/json'
+						'Content-Type' => 'application/x-www-form-urlencoded'
 					],
 				],
 				[
@@ -216,7 +216,7 @@ class RequestClientEndpointTest extends EndpointTestBase {
 					'uri' => self::makeUri( '/oauth2/client' ),
 					'postParams' => array_merge( self::DEFAULT_POST_PARAMS, self::POST_PARAMS_OWNERS_ONLY ),
 					'headers' => [
-						'Content-Type' => 'application/json'
+						'Content-Type' => 'application/x-www-form-urlencoded'
 					],
 				],
 				[
@@ -245,7 +245,7 @@ class RequestClientEndpointTest extends EndpointTestBase {
 					'uri' => self::makeUri( '/oauth2/client' ),
 					'postParams' => [ 'scopes' => 'basic' ] + self::DEFAULT_POST_PARAMS,
 					'headers' => [
-						'Content-Type' => 'application/json'
+						'Content-Type' => 'application/x-www-form-urlencoded'
 					],
 				],
 				[
@@ -266,7 +266,7 @@ class RequestClientEndpointTest extends EndpointTestBase {
 					'uri' => self::makeUri( '/oauth2/client' ),
 					'postParams' => [ 'scopes' => 'mwoauth-authonly' ] + self::DEFAULT_POST_PARAMS,
 					'headers' => [
-						'Content-Type' => 'application/json'
+						'Content-Type' => 'application/x-www-form-urlencoded'
 					],
 				],
 				[
@@ -287,7 +287,7 @@ class RequestClientEndpointTest extends EndpointTestBase {
 					'uri' => self::makeUri( '/oauth2/client' ),
 					'postParams' => [ 'scopes' => 'mwoauth-authonlyprivate' ] + self::DEFAULT_POST_PARAMS,
 					'headers' => [
-						'Content-Type' => 'application/json'
+						'Content-Type' => 'application/x-www-form-urlencoded'
 					],
 				],
 				[

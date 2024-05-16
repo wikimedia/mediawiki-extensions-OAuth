@@ -18,7 +18,7 @@ class AccessTokenEndpointTest extends EndpointTestBase {
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/access_token' ),
 					'headers' => [
-						'Content-Type' => 'application/json'
+						'Content-Type' => 'application/x-www-form-urlencoded'
 					],
 					'postParams' => [
 						'grant_type' => 'authorization_code',
