@@ -1,8 +1,11 @@
+/* stylelint-disable no-descending-specificity */
 #mw-mwoauth-authorize-form {
-	/* Unify font size across various skins */
-	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
-	font-size: 14px;
-	color: #333;
+	body:not( .mw-authentication-popup ) & {
+		/* Unify font size across various skins */
+		/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
+		font-size: 14px;
+		color: #333;
+	}
 
 	> a {
 		// "Privacy policy" link
@@ -18,8 +21,10 @@
 		margin-top: 0;
 	}
 
-	.client-js .mw-body-content & {
-		display: none; /* no flicker */
+	html.client-js body:not( .mw-authentication-popup ) .mw-body-content & {
+		// Hide the original form if we're about to display it in the overlaid dialog, to avoid flicker.
+		// Don't hide it inside the dialog, in popup mode (where there's no dialog) or in no-JS mode.
+		display: none;
 	}
 
 	.mw-htmlform-submit-buttons {
@@ -27,7 +32,7 @@
 		margin-right: 1em;
 	}
 
-	.oo-ui-messageDialog-text & { /* stylelint-disable-line no-descending-specificity */
+	.oo-ui-messageDialog-text & {
 		.mw-htmlform-submit-buttons {
 			float: right;
 			margin-right: 0;

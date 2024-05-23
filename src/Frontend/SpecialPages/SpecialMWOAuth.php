@@ -53,27 +53,27 @@ use MWException;
 use OOUI;
 use OOUI\HtmlSnippet;
 use Psr\Log\LoggerInterface;
+use SkinFactory;
 
 /**
  * Page that handles OAuth consumer authorization and token exchange
  */
 class SpecialMWOAuth extends UnlistedSpecialPage {
-	/** @var LoggerInterface */
-	protected $logger;
-
-	/** @var GrantsLocalization */
-	private $grantsLocalization;
+	protected LoggerInterface $logger;
+	private GrantsLocalization $grantsLocalization;
+	private SkinFactory $skinFactory;
 
 	/** @var int Defaults to OAuth1 */
 	protected $oauthVersion = Consumer::OAUTH_VERSION_1;
 
-	/**
-	 * @param GrantsLocalization $grantsLocalization
-	 */
-	public function __construct( GrantsLocalization $grantsLocalization ) {
+	public function __construct(
+		GrantsLocalization $grantsLocalization,
+		SkinFactory $skinFactory
+	) {
 		parent::__construct( 'OAuth' );
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
 		$this->grantsLocalization = $grantsLocalization;
+		$this->skinFactory = $skinFactory;
 	}
 
 	public function doesWrites() {
@@ -90,6 +90,13 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	}
 
 	public function execute( $subpage ) {
+		if ( $this->getRequest()->getRawVal( 'display' ) === 'popup' ) {
+			// Replace the default skin with a "micro-skin" that omits most of the interface. (T362706)
+			// In the future, we might allow normal skins to serve this mode too, if they advise that
+			// they support it by setting a skin option, so that colors and fonts could stay consistent.
+			$this->getContext()->setSkin( $this->skinFactory->makeSkin( 'authentication-popup' ) );
+		}
+
 		$this->setHeaders();
 
 		$user = $this->getUser();
@@ -415,7 +422,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			'mwoauth-acceptance-cancelled',
 			$cmrAc->getName()
 		);
-		$output->addReturnTo( Title::newMainPage() );
+		if ( $this->getRequest()->getRawVal( 'display' ) !== 'popup' ) {
+			$output->addReturnTo( Title::newMainPage() );
+		}
 	}
 
 	/**
@@ -537,6 +546,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			}
 		);
 		$form->setId( 'mw-mwoauth-authorize-form' );
+		$form->addHiddenField( 'display', $this->getRequest()->getRawVal( 'display' ) );
 
 		// Possible messages are:
 		// * mwoauth-form-description-allwikis
@@ -604,12 +614,20 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			'framed' => false,
 		] );
 
-		$form->addFooterHtml( $this->makePrivacyLink() );
+		if ( $this->getRequest()->getRawVal( 'display' ) !== 'popup' ) {
+			// If not in popup mode, duplicate the "Privacy policy" link from the site footer for
+			// easy access, as the overlaid dialog would cover it. In popup mode, the site footer
+			// with the link is easily accessible below the form, so don't duplicate it.
+			// This should be replaced with the app's own privacy policy link eventually (T64686).
+			$form->addFooterHtml( $this->makePrivacyLink() );
+		}
 
 		$out = $this->getOutput();
 		$out->enableOOUI();
 		$out->addModuleStyles( 'ext.MWOAuth.AuthorizeForm' );
-		$out->addModules( 'ext.MWOAuth.AuthorizeDialog' );
+		if ( $this->getRequest()->getRawVal( 'display' ) !== 'popup' ) {
+			$out->addModules( 'ext.MWOAuth.AuthorizeDialog' );
+		}
 
 		$form->prepareForm();
 		$status = $form->tryAuthorizedSubmit();
