@@ -6,7 +6,7 @@
 			"Pikne"
 		]
 	},
-	"abusefilter-edit-builder-vars-oauth-consumer": "OAuthi tarvitus, mida muudatuse tegemisel kasutatakse",
+	"abusefilter-edit-builder-vars-oauth-consumer": "OAuthi tarvitus, mida muudatuse tegemisel kasutatakse ($1)",
 	"mwoauth-desc": "Võimaldab kasutada OAuthi versioone 1.0a ja 2.0 API-volitamiseks.",
 	"mwoauth-nosubpage-explanation": "OAuth on mehhanism, mis võimaldab välistel rakendustel {{GRAMMAR:genitive|{{SITENAME}}}} kasutaja identida või toimida tema nimel, kui see kasutaja annab selleks loa.\n\nSelleks et see lehekülg midagi teeks, on vaja rohkem parameetreid. Kui väline rakendus suunas sind siia, siis on selles rakenduses tõenäoliselt viga. Peaksid võtma ühendust rakenduse autoriga.",
 	"mwoauth-prefs-managegrants": "Ühendatud rakendused:",
