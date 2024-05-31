@@ -195,16 +195,16 @@ class Authorize extends AuthenticationHandler {
 	/**
 	 * @return string
 	 */
-	protected function getGrantKey() {
-		return 'response_type';
+	protected function getGrantType() {
+		return $this->getValidatedParams()['response_type'];
 	}
 
 	/**
-	 * @param string $grantKey
+	 * @param string $grantType
 	 * @return string|false
 	 */
-	protected function getGrantClass( $grantKey ) {
-		switch ( $grantKey ) {
+	protected function getGrantClass( $grantType ) {
+		switch ( $grantType ) {
 			case static::RESPONSE_TYPE_CODE:
 				return AuthorizationCodeAuthorization::class;
 			default:

@@ -65,6 +65,11 @@ abstract class EndpointTestBase extends MediaWikiIntegrationTestCase {
 		callable $userCreateCallback = null,
 		callable $extraValidationCallback = null
 	) {
+		if ( isset( $requestInfo['postParams'] ) ) {
+			$requestInfo['method'] = 'POST';
+			$requestInfo['headers']['content-type'] = 'application/x-www-form-urlencoded';
+		}
+
 		$request = new RequestData( $requestInfo );
 
 		if ( $userCreateCallback ) {
@@ -87,12 +92,18 @@ abstract class EndpointTestBase extends MediaWikiIntegrationTestCase {
 		if ( isset( $responseInfo['protocolVersion'] ) ) {
 			$this->assertSame( $responseInfo['protocolVersion'], $response->getProtocolVersion() );
 		}
+		if ( isset( $responseInfo['bodyPattern'] ) ) {
+			$expectedPattern = $responseInfo['bodyPattern'];
+			$responseBody = (string)$response->getBody();
+
+			$this->assertMatchesRegularExpression( $expectedPattern, $responseBody );
+		}
 		if ( isset( $responseInfo['body'] ) ) {
 			$expectedBody = is_array( $responseInfo['body'] ) ?
 				$responseInfo['body'] :
 				FormatJson::decode( $responseInfo['body'], true );
 
-			$responseBody = FormatJson::decode( $response->getBody()->getContents(), true );
+			$responseBody = FormatJson::decode( (string)$response->getBody(), true );
 
 			unset( $expectedBody['messageTranslations'] );
 			unset( $responseBody['messageTranslations'] );
@@ -104,7 +115,8 @@ abstract class EndpointTestBase extends MediaWikiIntegrationTestCase {
 				'statusCode',
 				'reasonPhrase',
 				'protocolVersion',
-				'body'
+				'bodyPattern',
+				'body',
 			] ),
 			'$responseInfo may not contain unknown keys' );
 
