@@ -3,11 +3,11 @@
 namespace MediaWiki\Extension\OAuth\Backend;
 
 use Exception;
-use IContextSource;
 use IDBAccessObject;
 use LogicException;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Logger\LoggerFactory;
-use Message;
+use MediaWiki\Message\Message;
 use MWException;
 use Psr\Log\LoggerInterface;
 use stdClass;

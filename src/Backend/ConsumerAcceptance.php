@@ -3,8 +3,8 @@
 namespace MediaWiki\Extension\OAuth\Backend;
 
 use FormatJson;
-use IContextSource;
 use IDBAccessObject;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 

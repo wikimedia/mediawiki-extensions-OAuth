@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
@@ -10,7 +11,6 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
-use RequestContext;
 use Wikimedia\Message\MessageValue;
 
 /**

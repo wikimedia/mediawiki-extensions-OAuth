@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Tests\Control;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\OAuth1Consumer;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
@@ -11,7 +12,6 @@ use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWikiIntegrationTestCase;
 use MWRestrictions;
-use RequestContext;
 use StatusValue;
 
 /**

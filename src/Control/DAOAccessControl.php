@@ -20,11 +20,11 @@
 
 namespace MediaWiki\Extension\OAuth\Control;
 
-use ContextSource;
-use IContextSource;
 use LogicException;
+use MediaWiki\Context\ContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthDAO;
-use Message;
+use MediaWiki\Message\Message;
 
 /**
  * Wrapper of an MWOAuthDAO that handles authorization to view fields

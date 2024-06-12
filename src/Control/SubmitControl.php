@@ -3,12 +3,12 @@
 namespace MediaWiki\Extension\OAuth\Control;
 
 use ApiMessage;
-use ContextSource;
-use HTMLForm;
-use IContextSource;
 use LogicException;
+use MediaWiki\Context\ContextSource;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
-use Message;
 use MessageSpecifier;
 use MWException;
 use StatusValue;

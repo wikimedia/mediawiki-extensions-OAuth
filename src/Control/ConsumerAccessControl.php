@@ -5,8 +5,8 @@ namespace MediaWiki\Extension\OAuth\Control;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\Message\Message;
 use MediaWiki\User\User;
-use Message;
 use MWRestrictions;
 
 class ConsumerAccessControl extends DAOAccessControl {

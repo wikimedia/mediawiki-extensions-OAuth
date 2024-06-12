@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Extension\OAuth\Frontend;
 
-use DerivativeContext;
-use HTMLForm;
 use MediaWiki\Cache\Hook\MessagesPreLoadHook;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
@@ -13,6 +13,7 @@ use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegist
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers;
 use MediaWiki\Hook\LoginFormValidErrorMessagesHook;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
@@ -24,7 +25,6 @@ use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use MWException;
 use OOUI\ButtonWidget;
-use RequestContext;
 
 /**
  * Class containing GUI even handler functions for an OAuth environment

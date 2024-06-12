@@ -8,6 +8,7 @@ use Exception;
 use GuzzleHttp\Psr7\ServerRequest;
 use InvalidArgumentException;
 use MediaWiki\Api\Hook\ApiCheckCanExecuteHook;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
@@ -18,6 +19,7 @@ use MediaWiki\Hook\MarkPatrolledHook;
 use MediaWiki\Hook\RecentChange_saveHook;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\ImmutableSessionProviderWithCookie;
 use MediaWiki\Session\SessionBackend;
@@ -28,10 +30,8 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
-use Message;
 use MWRestrictions;
 use RecentChange;
-use RequestContext;
 use Wikimedia\Rdbms\DBError;
 
 /**

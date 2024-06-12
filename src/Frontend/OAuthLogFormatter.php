@@ -7,11 +7,11 @@ use LogEntry;
 use LogFormatter;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserIdentity;
-use Message;
 
 /**
  * Formatter for OAuth log events

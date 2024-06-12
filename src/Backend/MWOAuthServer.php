@@ -4,9 +4,9 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthServer;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
-use Message;
 
 class MWOAuthServer extends OAuthServer {
 	/** @var MWOAuthDataStore */

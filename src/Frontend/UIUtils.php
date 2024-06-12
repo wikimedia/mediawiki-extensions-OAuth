@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\OAuth\Frontend;
 
-use IContextSource;
-use Message;
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Message\Message;
 use OOUI\Tag;
 
 /**

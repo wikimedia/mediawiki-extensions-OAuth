@@ -22,10 +22,9 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
  */
 
 use ErrorPageError;
-use HTMLForm;
-use IContextSource;
 use LogEventsList;
 use LogPage;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
@@ -34,6 +33,7 @@ use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ManageConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\SpecialPage;

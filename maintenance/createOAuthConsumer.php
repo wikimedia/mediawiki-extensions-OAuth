@@ -20,12 +20,12 @@
 namespace MediaWiki\Extension\OAuth;
 
 use Maintenance;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\User\User;
 use MWRestrictions;
-use RequestContext;
 
 /**
  * @ingroup Maintenance

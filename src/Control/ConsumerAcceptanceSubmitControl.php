@@ -22,7 +22,7 @@
 namespace MediaWiki\Extension\OAuth\Control;
 
 use FormatJson;
-use IContextSource;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;

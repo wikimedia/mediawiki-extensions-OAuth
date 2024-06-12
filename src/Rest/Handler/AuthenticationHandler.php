@@ -4,20 +4,20 @@ namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
 use League\OAuth2\Server\Exception\OAuthServerException;
 use MediaWiki\Config\Config;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\AccessToken as AccessTokenProvider;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Response;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\Response as RestResponse;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\User\User;
-use Message;
 use Psr\Http\Message\ResponseInterface;
-use RequestContext;
 
 abstract class AuthenticationHandler extends Handler {
 

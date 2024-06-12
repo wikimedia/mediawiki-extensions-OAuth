@@ -4,7 +4,7 @@ namespace MediaWiki\Extension\OAuth\Control;
 
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\Utils;
-use Message;
+use MediaWiki\Message\Message;
 
 class ConsumerAcceptanceAccessControl extends DAOAccessControl {
 	// accessor fields copied from ConsumerAcceptance, except they can return a Message

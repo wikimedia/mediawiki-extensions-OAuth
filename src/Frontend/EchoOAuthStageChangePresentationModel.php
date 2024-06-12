@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Frontend;
 
-use EchoAttributeManager;
+use MediaWiki\Extension\Notifications\AttributeManager;
 use MediaWiki\Extension\Notifications\Formatters\EchoEventPresentationModel;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
@@ -35,7 +35,7 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 		}
 
 		return [
-			EchoAttributeManager::ATTR_LOCATORS => [
+			AttributeManager::ATTR_LOCATORS => [
 				[ [ Utils::class, 'locateUsersToNotify' ] ]
 			],
 			'category' => $category,

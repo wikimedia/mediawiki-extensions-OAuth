@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
-use DatabaseUpdater;
+use MediaWiki\Installer\DatabaseUpdater;
 use MediaWiki\Installer\Hook\LoadExtensionSchemaUpdatesHook;
 
 /**
