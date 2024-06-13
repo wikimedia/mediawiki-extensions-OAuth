@@ -75,13 +75,12 @@ abstract class AuthenticationHandler extends Handler {
 	}
 
 	/**
-	 * Support form data.
+	 * Support x-www-form-urlencoded (and nothing else), as required by RFC 6749.
 	 * @return string[]
 	 */
 	public function getSupportedRequestTypes(): array {
 		return [
 			'application/x-www-form-urlencoded',
-			'multipart/form-data'
 		];
 	}
 
