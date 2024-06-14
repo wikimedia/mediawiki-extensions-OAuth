@@ -33,7 +33,7 @@ class AccessToken extends AuthenticationHandler {
 				throw $this->queuedError;
 			}
 			$request = ServerRequest::fromGlobals()->withParsedBody(
-				$this->getValidatedParams()
+				$this->getValidatedBody()
 			);
 
 			$authProvider = $this->getAuthorizationProvider();
@@ -52,10 +52,10 @@ class AccessToken extends AuthenticationHandler {
 	/**
 	 * @inheritDoc
 	 */
-	public function getParamSettings() {
+	public function getBodyParamSettings(): array {
 		return [
 			'grant_type' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => [
 					self::GRANT_TYPE_CLIENT_CREDENTIALS,
 					self::GRANT_TYPE_AUTHORIZATION_CODE,
@@ -64,37 +64,37 @@ class AccessToken extends AuthenticationHandler {
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'client_id' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 			],
 			'client_secret' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 			],
 			'redirect_uri' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 			],
 			'scope' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 			],
 			'code' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 			],
 			'refresh_token' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 			],
 			'code_verifier' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 			]
@@ -104,16 +104,18 @@ class AccessToken extends AuthenticationHandler {
 	/**
 	 * @return string
 	 */
-	protected function getGrantKey() {
-		return 'grant_type';
+	protected function getGrantType() {
+		$body = $this->getValidatedBody();
+		'@phan-var array $body';
+		return $body['grant_type'];
 	}
 
 	/**
-	 * @param string $grantKey
+	 * @param string $grantType
 	 * @return string|false
 	 */
-	protected function getGrantClass( $grantKey ) {
-		switch ( $grantKey ) {
+	protected function getGrantClass( $grantType ) {
+		switch ( $grantType ) {
 			case static::GRANT_TYPE_AUTHORIZATION_CODE:
 				return AuthorizationCodeAccessTokens::class;
 			case static::GRANT_TYPE_CLIENT_CREDENTIALS:

@@ -75,15 +75,24 @@ abstract class AuthenticationHandler extends Handler {
 	}
 
 	/**
+	 * Support form data.
+	 * @return string[]
+	 */
+	public function getSupportedRequestTypes(): array {
+		return [
+			'application/x-www-form-urlencoded',
+			'multipart/form-data'
+		];
+	}
+
+	/**
 	 * @throws HttpException
 	 * @return AccessTokenProvider|AuthorizationCodeAuthorization
 	 */
 	protected function getAuthorizationProvider() {
-		$grantKey = $this->getGrantKey();
-		$validated = $this->getValidatedParams();
-		$grantKeyValue = $validated[$grantKey];
+		$grantType = $this->getGrantType();
 
-		$class = $this->getGrantClass( $grantKeyValue );
+		$class = $this->getGrantClass( $grantType );
 		if ( !$class || !is_callable( [ $class, 'factory' ] ) ) {
 			throw new HttpException( 'invalid_request', 400 );
 		}
@@ -157,6 +166,7 @@ abstract class AuthenticationHandler extends Handler {
 
 		$response = $this->getResponseFactory()->create();
 		$stream = new StringStream( $html );
+		$response->setStatus( $exception->getHttpStatusCode() );
 		$response->setHeader( 'Content-Type', 'text/html' );
 		$response->setBody( $stream );
 
@@ -188,11 +198,11 @@ abstract class AuthenticationHandler extends Handler {
 	/**
 	 * @return string
 	 */
-	abstract protected function getGrantKey();
+	abstract protected function getGrantType();
 
 	/**
-	 * @param string $grantKey
+	 * @param string $grantType
 	 * @return string|false
 	 */
-	abstract protected function getGrantClass( $grantKey );
+	abstract protected function getGrantClass( $grantType );
 }

@@ -33,65 +33,65 @@ class RequestClient extends AbstractClientHandler {
 	/**
 	 * @inheritDoc
 	 */
-	public function getParamSettings() {
+	public function getBodyParamSettings(): array {
 		$scopeRepo = new ScopeRepository();
 		return [
 			'name' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'version' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => [ '1.0', '2.0' ],
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => '1.0',
 			],
 			'description' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'wiki' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => '*',
 			],
 			'owner_only' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'boolean'
 			],
 			'callback_url' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => ''
 			],
 			'callback_is_prefix' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'boolean',
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => false,
 			],
 			'email' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'is_confidential' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'boolean',
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'grant_types'  => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 				ParamValidator::PARAM_ISMULTI => true
 			],
 			'scopes' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => $scopeRepo->getAllowedScopes(),
 				ParamValidator::PARAM_REQUIRED => true,
 				ParamValidator::PARAM_ISMULTI => true
@@ -157,7 +157,7 @@ class RequestClient extends AbstractClientHandler {
 	public function validate( Validator $restValidator ) {
 		parent::validate( $restValidator );
 
-		$params = $this->getValidatedParams();
+		$params = $this->getValidatedBody();
 
 		if (
 			( isset( $params['owner_only'] ) && !$params['owner_only'] ) &&

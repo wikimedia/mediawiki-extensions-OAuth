@@ -114,11 +114,31 @@ abstract class AbstractClientHandler extends Handler {
 			}
 		}
 
+		$bodyParams = $this->getValidatedBody();
+		foreach ( $bodyParams as $name => $value ) {
+			if ( isset( $mapping[$name] ) ) {
+				$finalParams[$mapping[$name]] = $value;
+			} else {
+				$finalParams[$name] = $value;
+			}
+		}
+
 		$finalParams = array_merge(
 			$finalParams,
 			$this->getFixedParams()
 		);
 
 		return $finalParams;
+	}
+
+	/**
+	 * Support form data.
+	 * @return string[]
+	 */
+	public function getSupportedRequestTypes(): array {
+		return [
+			'application/x-www-form-urlencoded',
+			'multipart/form-data'
+		];
 	}
 }

@@ -71,12 +71,21 @@ class ResetClientSecret extends AbstractClientHandler {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 			],
+		];
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getBodyParamSettings(): array {
+		return [
 			'reason' => [
-				self::PARAM_SOURCE => 'post',
+				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => '',
 			],
 		];
 	}
+
 }
