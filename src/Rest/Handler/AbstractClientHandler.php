@@ -132,12 +132,12 @@ abstract class AbstractClientHandler extends Handler {
 	}
 
 	/**
-	 * Support x-www-form-urlencoded (and nothing else), as required by RFC 6749.
 	 * @return string[]
 	 */
 	public function getSupportedRequestTypes(): array {
 		return [
-			'application/x-www-form-urlencoded',
+			'application/json',
+			'application/x-www-form-urlencoded'
 		];
 	}
 }
