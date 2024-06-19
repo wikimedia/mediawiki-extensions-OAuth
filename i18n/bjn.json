@@ -4,6 +4,7 @@
 			"Ezagren"
 		]
 	},
+	"mwoauth-prefs-managegrants": "Aplikasi tahubung:",
 	"mwoauth-prefs-managegrantslink": "Haragu {{PLURAL:$1|$1 aplikasi tahubung|$1 aplikasi tahubung|0=aplikasi tahubung}}",
 	"oauthmanagemygrants": "Haragu aplikasi tahubung",
 	"mwoauthmanagemygrants-confirm-legend": "Haragu aplikasi tahubung",
