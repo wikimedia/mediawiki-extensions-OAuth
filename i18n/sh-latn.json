@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung"
+			"Winston Sung",
+			"BadDog"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "OAuth potrošač koji se koristi za izvođenje ove promjene",
@@ -93,7 +94,7 @@
 	"mwoauthconsumerregistration-resetsecretkey": "Daj novu vrijednost tajnom ključu",
 	"mwoauthconsumerregistration-created-owner-only-oauth1": "Vaš je korisnik OAuth izrađen.\n\nVaši su žetoni:\n; Potrošački žeton: $1\n; Potrošačka tajna: $2\n; Pristupni kod: $3\n; Pristupna tajna: $4\n<em>Spremite ih za buduće konzultacije.</em>",
 	"mwoauthconsumerregistration-created-owner-only-oauth2": "Vaš OAuth 2.0 klijent je napravljen.\n\nVaši su žetoni:\n; Ključ priloga klijenta: $1\n; Tajna priloga klijenta: $2\n; Pristupni žeton: $3\n<em>Spremite ih za buduće konzultacije.</em>",
-	"mwoauthconsumerregistration-updated": "Vaš potrošački registar OAutha je izmijenjen.",
+	"mwoauthconsumerregistration-updated": "Vaš korisnički registar OAutha je izmijenjen.",
 	"mwoauthconsumerregistration-secretreset": "Vaš tajni potrošački kod čita '''$1'''. ''Spremi ga jer će ti možda trebati u budućnosti.''",
 	"mwoauthconsumerregistration-secretreset-owner-only-oauth1": "Vaši OAuth potrošački žetoni su promijenjeni. Evo novih:\n\n; Potrošački žeton: $1\n; Potrošačka tajna: $2\n; Pristupni žeton: $3\n; Pristupna tajna: $4\n<em>Spremite ih za buduće konzultacije.</em>",
 	"mwoauthconsumerregistration-secretreset-owner-only-oauth2": "Vaši OAuth 2.0 klijentski žetoni su resetirani. Novi su žetoni:\n; Ključ priloga klijenta: $1\n; Tajna priloga klijenta: $2\n; Pristupni žeton: $3\n<em>Spremite ih za buduće konzultacije.</em>",
