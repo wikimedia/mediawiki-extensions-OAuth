@@ -2,9 +2,6 @@
 
 $cfg = require __DIR__ . '/../vendor/mediawiki/mediawiki-phan-config/src/config.php';
 
-// MWOAuthToken->oauth_callback_confirmed
-$cfg['suppress_issue_types'][] = 'PhanUndeclaredProperty';
-
 $cfg['directory_list'] = array_merge(
 	$cfg['directory_list'],
 	[

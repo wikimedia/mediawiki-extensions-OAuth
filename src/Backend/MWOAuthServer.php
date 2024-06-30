@@ -77,6 +77,7 @@ class MWOAuthServer extends OAuthServer {
 		$this->checkCallback( $consumer, $callback );
 
 		$new_token = $this->data_store->new_request_token( $consumer, $callback );
+		// @phan-suppress-next-line PhanUndeclaredProperty Class uses AllowDynamicProperties for php8.2
 		$new_token->oauth_callback_confirmed = 'true';
 		return $new_token;
 	}
