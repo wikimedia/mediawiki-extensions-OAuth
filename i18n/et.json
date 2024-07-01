@@ -77,6 +77,7 @@
 	"mwoauthlistconsumers-version": "Tarvituse versioon",
 	"mwoauthlistconsumers-user": "Väljaandja",
 	"mwoauthlistconsumers-description": "Kirjeldus",
+	"mwoauthlistconsumers-owner-only": "Ainult omaniku jaoks",
 	"mwoauthlistconsumers-wiki": "Rakendamise projekt",
 	"mwoauthlistconsumers-callbackurl": "OAuthi tagasiaadress",
 	"mwoauthlistconsumers-callbackisprefix": "Luba määrata tarvituse päringutes tagasikutse ja kasuta kohustusliku eesliitena ülaltoodud tagasiaadressi.",
