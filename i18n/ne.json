@@ -27,6 +27,8 @@
 	"mwoauthlistconsumers-update-link": "अद्यावधिक उपभोक्ता",
 	"oauthmanagemygrants": "जडान गरिएका अनुप्रयोगहरू व्यवस्थापन गर्नुहोस्",
 	"mwoauthmanagemygrants-description": "विवरण",
+	"mwoauth-form-description-onewiki": "नमस्ते $1,\n\nतपाईको अनुरोध पूरा गर्नको लागि, ''' $2 ''' लाई '' $4''मा तपाईको तर्फबाट निम्न कार्यहरू गर्न अनुमति चाहिन्छ:\n\n $5",
+	"mwoauth-form-button-approve": "अनुमति दिनुहोस्",
 	"mwoauth-form-button-cancel": "रद्द गर्नुहोस्",
 	"mwoauth-granttype-normal": "विशेष अनुमति अधिकारको लागि निवेदन गर्नुहोस् ।"
 }
