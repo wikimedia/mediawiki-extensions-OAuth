@@ -4,7 +4,8 @@
 			"Artsiom91",
 			"Maksim L.",
 			"No Sleep till Krupki",
-			"Vlad5250"
+			"Vlad5250",
+			"Kapatych"
 		]
 	},
 	"mwoauth-desc": "Дазваляе ўжываць OAuth 1.0a і OAuth 2.0 для API аўтарызацыі",
@@ -16,7 +17,7 @@
 	"mwoauthmanageconsumers-action": "Змяніць статус:",
 	"oauthlistconsumers": "Спіс OAuth-дадаткаў",
 	"oauthmanagemygrants": "Кіраванне падключанымі дадаткамі",
-	"mwoauthmanagemygrants-confirm-legend": "Кіраванне падключаным дадаткам",
+	"mwoauthmanagemygrants-confirm-legend": "Кіраванне падключанай праграмай",
 	"mwoauth-form-description-allwikis": "Дзень добры, $1!\n\nДля таго, каб завяршыць ваш запыт, «$2» патрабуецца дазвол ад вашага імя на выкананне наступных дзеянняў ва ўсіх праектах гэтага сайта:\n\n$4",
 	"mwoauth-form-button-approve": "Дазволіць",
 	"mwoauth-form-button-cancel": "Адмяніць",
