@@ -72,7 +72,7 @@ abstract class OAuthSignatureMethod {
 	 * @return bool
 	 */
 	public function check_signature( $request, $consumer, $token, $signature ) {
-		$signature = $signature ?? '';
+		$signature ??= '';
 		$this->logger->debug( __METHOD__ . ": Expecting: '$signature'" );
 		$built = $this->build_signature( $request, $consumer, $token );
 		$this->logger->debug( __METHOD__ . ": Built: '$built'" );

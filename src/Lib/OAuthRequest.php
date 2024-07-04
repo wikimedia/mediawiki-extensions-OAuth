@@ -44,7 +44,7 @@ class OAuthRequest {
 	protected $logger;
 
 	function __construct( $http_method, $http_url, $parameters = null ) {
-		$parameters = ( $parameters ) ? $parameters : array();
+		$parameters = $parameters ?: array();
 		$parameters = array_merge(
 			OAuthUtil::parse_parameters( parse_url( $http_url, PHP_URL_QUERY ) ),
 			$parameters
@@ -60,8 +60,8 @@ class OAuthRequest {
 	 */
 	public static function from_request( $http_method = null, $http_url = null, $parameters = null ) {
 		$scheme = ( !isset( $_SERVER['HTTPS'] ) || $_SERVER['HTTPS'] != "on" ) ? 'http' : 'https';
-		$http_url = ( $http_url ) ? $http_url : $scheme . '://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI'];
-		$http_method = ( $http_method ) ? $http_method : $_SERVER['REQUEST_METHOD'];
+		$http_url = $http_url ?: $scheme . '://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI'];
+		$http_method = $http_method ?: $_SERVER['REQUEST_METHOD'];
 
 		// We weren't handed any parameters, so let's find the ones relevant to
 		// this request.
@@ -105,7 +105,7 @@ class OAuthRequest {
 	 * pretty much a helper function to set up the request
 	 */
 	public static function from_consumer_and_token( $consumer, $token, $http_method, $http_url, $parameters = null ) {
-		$parameters = ( $parameters ) ? $parameters : array();
+		$parameters = $parameters ?: array();
 		$defaults = array(
 			"oauth_version" => OAuthRequest::$version,
 			"oauth_nonce" => OAuthRequest::generate_nonce(),
@@ -137,7 +137,7 @@ class OAuthRequest {
 	}
 
 	public function get_parameter( $name ) {
-		return isset( $this->parameters[$name] ) ? $this->parameters[$name] : null;
+		return $this->parameters[$name] ?? null;
 	}
 
 	public function get_parameters() {
@@ -198,10 +198,10 @@ class OAuthRequest {
 	public function get_normalized_http_url() {
 		$parts = parse_url( $this->http_url );
 
-		$scheme = ( isset( $parts['scheme'] ) ) ? $parts['scheme'] : 'http';
-		$port = ( isset( $parts['port'] ) ) ? $parts['port'] : ( ( $scheme == 'https' ) ? '443' : '80' );
-		$host = ( isset( $parts['host'] ) ) ? strtolower( $parts['host'] ) : '';
-		$path = ( isset( $parts['path'] ) ) ? $parts['path'] : '';
+		$scheme = $parts['scheme'] ?? 'http';
+		$port = $parts['port'] ?? ( ( $scheme == 'https' ) ? '443' : '80' );
+		$host = strtolower( $parts['host'] ?? '' );
+		$path = $parts['path'] ?? '';
 
 		if ( ( $scheme == 'https' && $port != '443' ) || ( $scheme == 'http' && $port != '80' ) ) {
 			$host = "$host:$port";
