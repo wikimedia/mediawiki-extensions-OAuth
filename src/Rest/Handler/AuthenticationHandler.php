@@ -184,6 +184,13 @@ abstract class AuthenticationHandler extends Handler {
 		}
 	}
 
+	/** @inheritDoc */
+	protected function detectExtraneousBodyFields( Validator $restValidator ) {
+		// Ignore unexpected parameters per https://datatracker.ietf.org/doc/html/rfc6749#section-3.1
+		// and https://datatracker.ietf.org/doc/html/rfc6749#section-3.2 :
+		// "The authorization server MUST ignore unrecognized request parameters."
+	}
+
 	/**
 	 * @return string
 	 */
@@ -194,4 +201,5 @@ abstract class AuthenticationHandler extends Handler {
 	 * @return string|false
 	 */
 	abstract protected function getGrantClass( $grantType );
+
 }
