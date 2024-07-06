@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
 use League\OAuth2\Server\Exception\OAuthServerException;
+use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\AccessToken as AccessTokenProvider;
@@ -83,7 +84,7 @@ abstract class AuthenticationHandler extends Handler {
 
 		$class = $this->getGrantClass( $grantType );
 		if ( !$class || !is_callable( [ $class, 'factory' ] ) ) {
-			throw new HttpException( 'invalid_request', 400 );
+			throw new LogicException( 'Could not find grant class factory' );
 		}
 
 		/** @var AccessTokenProvider|AuthorizationCodeAuthorization $authProvider */
