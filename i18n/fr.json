@@ -17,6 +17,7 @@
 			"Od1n",
 			"Orlodrim",
 			"Pols12",
+			"SleaY",
 			"Thibaut120094",
 			"Urhixidur",
 			"VIGNERON",
@@ -25,7 +26,7 @@
 			"Wyz"
 		]
 	},
-	"abusefilter-edit-builder-vars-oauth-consumer": "Consommateur OAuth utilisé pour effectuer cette modification",
+	"abusefilter-edit-builder-vars-oauth-consumer": "Consommateur OAuth utilisé pour effectuer cette modification ($1)",
 	"oauth": "OAuth",
 	"mwoauth-desc": "Autorise l’utilisation de OAuth 1.0a et 2.0 pour l’authentification de l’API.",
 	"mwoauth-nosubpage-explanation": "OAuth est un mécanisme qui permet aux applications externes d’identifier un utilisateur de {{SITENAME}} ou d’agir en son nom après avoir reçu la permission de cet utilisateur.\n\nPour que cette page fasse quelque chose, d’autres paramètres sont nécessaires. Si vous avez été redirigé ici par une application externe, il s’agit probablement d’une erreur de cette application; veuillez en contacter l’auteur.",
