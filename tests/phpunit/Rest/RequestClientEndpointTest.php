@@ -26,20 +26,20 @@ class RequestClientEndpointTest extends EndpointTestBase {
 		'version' => '1.0',
 		'description' => 'TestDescription',
 		'wiki' => '*',
-		'owner_only' => false,
+		'owner_only' => '',
 		'callback_url' => 'https://test.com/oauth',
-		'callback_is_prefix' => false,
+		'callback_is_prefix' => '',
 		'email' => 'test@test.com',
-		'is_confidential' => false,
-		'grant_types' => [ 'client_credentials' ],
-		'scopes' => [],
+		'is_confidential' => '',
+		'grant_types' => 'client_credentials',
+		'scopes' => '',
 	];
 
 	/**
 	 * @var array
 	 */
 	private const POST_PARAMS_OWNERS_ONLY_RESTRICTION = [
-		'callback_url' => false,
+		'callback_url' => '',
 	];
 
 	/**
@@ -53,15 +53,15 @@ class RequestClientEndpointTest extends EndpointTestBase {
 	 * @var array
 	 */
 	private const POST_PARAMS_WRONG_GRANT_TYPES = [
-		'owner_only' => true,
-		'grant_types' => [ 'authorization_code', 'refresh_token' ],
+		'owner_only' => '1',
+		'grant_types' => 'authorization_code|refresh_token',
 	];
 
 	/**
 	 * @var array
 	 */
 	private const POST_PARAMS_OWNERS_ONLY = [
-		'owner_only' => true,
+		'owner_only' => '1',
 	];
 
 	/**
