@@ -17,7 +17,7 @@
 	"mwoauth-field-hidden": "(ข้อมูลนี้ถูกซ่อนไว้)",
 	"mwoauth-field-private": "(สารสนเทศนี้เป็นความลับ)",
 	"mwoauth-prefs-managegrants": "แอปที่เชื่อมต่อ:",
-	"mwoauth-prefs-managegrantslink": "จัดการ{{PLURAL:$1|&#32;$1 แอปพลิเคชัน|0=แอปพลิเคชัน}}ที่เชื่อมต่อ",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|จัดการ $1 แอปพลิเคชัน|0=จัดการแอปพลิเคชัน}}ที่เชื่อมต่อ",
 	"mwoauth-consumer-allwikis": "ทุกโครงการ",
 	"mwoauth-consumer-key": "คีย์ผู้บริโภค:",
 	"mwoauth-consumer-name": "ชื่อแอปพลิเคชัน:",
