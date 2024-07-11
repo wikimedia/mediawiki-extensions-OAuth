@@ -14,6 +14,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response as RestResponse;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Rest\Validator\Validator;
@@ -97,15 +98,28 @@ abstract class AuthenticationHandler extends Handler {
 		try {
 			parent::validate( $restValidator );
 		} catch ( HttpException $exception ) {
+			if ( $exception instanceof LocalizedHttpException ) {
+				$formatted = $this->getResponseFactory()->formatMessage( $exception->getMessageValue() );
+				$message = $formatted['messageTranslations']['en'] ?? reset( $formatted['messageTranslations'] );
+			} else {
+				$message = $exception->getMessage();
+			}
 			// Catch and store any validation errors, so they can be thrown
 			// during the execution, and get caught by appropriate error handling code
 			$type = $exception->getErrorData()['error'] ?? 'parameter-validation-failed';
 			if ( $type === 'parameter-validation-failed' ) {
 				$missingParam = $exception->getErrorData()['name'] ?? '';
-				$this->queueError( OAuthServerException::invalidRequest( $missingParam ) );
+				$this->queueError( new OAuthServerException(
+					// OAuthServerException::invalidRequest() but with more useful text
+					'Invalid request: ' . $message,
+					3,
+					'invalid_request',
+					400,
+					$missingParam ? \sprintf( 'Check the `%s` parameter', $missingParam ) : null
+				) );
 				return;
 			}
-			$this->queueError( OAuthServerException::serverError( $exception->getMessage() ) );
+			$this->queueError( OAuthServerException::serverError( $message ) );
 		}
 	}
 
