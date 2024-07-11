@@ -4,5 +4,7 @@
 			"Merrahtar"
 		]
 	},
-	"mwoauth-prefs-managegrants": "Корнэдтма приложенья:"
+	"mwoauth-prefs-managegrants": "Корнэдтма приложенья:",
+	"mwoauth-prefs-managegrantslink": "Вӯййкъе {{PLURAL:$1|$1 корнэдтма приложеньянҍ|$1 корнэдтма приложеньянҍ|$1 корнэдтма приложеньедтӭ|0=корнэдтма приложеньянҍ}}",
+	"oauthmanagemygrants": "Вӯййкъе корнэдтма приложеньятҍ"
 }
