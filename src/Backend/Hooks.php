@@ -175,33 +175,14 @@ EOK;
 		}
 
 		// Step 2: Return only those that are in use.
-		$tagIds = [];
 		foreach ( $allTags as $tag ) {
 			try {
-				$tagIds[] = $this->changeTagDefStore->getId( $tag );
+				$this->changeTagDefStore->getId( $tag );
 			} catch ( NameTableAccessException $ex ) {
 				continue;
 			}
-		}
-		if ( $tagIds === [] ) {
-			// Nothing to add, return
-			return true;
-		}
-		$conditions = [ 'ct_tag_id' => $tagIds ];
-		$field = 'ct_tag_id';
-
-		if ( $allTags ) {
-			$db = wfGetDB( DB_REPLICA );
-			$res = $db->select(
-				'change_tag',
-				[ $field ],
-				$conditions,
-				__METHOD__,
-				[ 'DISTINCT' ]
-			);
-			foreach ( $res as $row ) {
-				$tags[] = $this->changeTagDefStore->getName( intval( $row->ct_tag_id ) );
-			}
+			// if it has an ID, it's in use
+			$tags[] = $tag;
 		}
 
 		return true;
