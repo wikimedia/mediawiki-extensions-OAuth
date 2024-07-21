@@ -35,26 +35,40 @@ class RequestClientEndpointTest extends EndpointTestBase {
 		'scopes' => '',
 	];
 
-	/**
-	 * @var array
-	 */
-	private const POST_PARAMS_OWNERS_ONLY_RESTRICTION = [
-		'callback_url' => '',
+	private const DEFAULT_JSON_BODY = [
+		'name' => 'TestName',
+		'version' => '1.0',
+		'description' => 'TestDescription',
+		'wiki' => '*',
+		'owner_only' => false,
+		'callback_url' => 'https://test.com/oauth',
+		'callback_is_prefix' => false,
+		'email' => 'test@test.com',
+		'is_confidential' => false,
+		'grant_types' => [ 'client_credentials' ],
+		'scopes' => [],
 	];
 
 	/**
 	 * @var array
 	 */
-	private const POST_PARAMS_EMAIL_MISTMATCH = [
+	private const JSON_BODY_OWNERS_ONLY_RESTRICTION = [
+		'callback_url' => false,
+	];
+
+	/**
+	 * @var array
+	 */
+	private const JSON_BODY_EMAIL_MISTMATCH = [
 		'email' => '_test@test.com',
 	];
 
 	/**
 	 * @var array
 	 */
-	private const POST_PARAMS_WRONG_GRANT_TYPES = [
-		'owner_only' => '1',
-		'grant_types' => 'authorization_code|refresh_token',
+	private const JSON_BODY_WRONG_GRANT_TYPES = [
+		'owner_only' => true,
+		'grant_types' => [ 'authorization_code', 'refresh_token' ],
 	];
 
 	/**
@@ -97,7 +111,7 @@ class RequestClientEndpointTest extends EndpointTestBase {
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client' ),
-					'postParams' => self::DEFAULT_POST_PARAMS,
+					'parsedBody' => self::DEFAULT_JSON_BODY,
 					'headers' => [
 						'Content-Type' => 'application/json'
 					],
@@ -112,7 +126,7 @@ class RequestClientEndpointTest extends EndpointTestBase {
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client' ),
-					'postParams' => self::DEFAULT_POST_PARAMS,
+					'parsedBody' => self::DEFAULT_JSON_BODY,
 					'headers' => [
 						'Content-Type' => 'application/json'
 					],
@@ -130,7 +144,7 @@ class RequestClientEndpointTest extends EndpointTestBase {
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client' ),
-					'postParams' => array_merge( self::DEFAULT_POST_PARAMS, self::POST_PARAMS_OWNERS_ONLY_RESTRICTION ),
+					'parsedBody' => array_merge( self::DEFAULT_JSON_BODY, self::JSON_BODY_OWNERS_ONLY_RESTRICTION ),
 					'headers' => [
 						'Content-Type' => 'application/json'
 					],
@@ -151,7 +165,7 @@ class RequestClientEndpointTest extends EndpointTestBase {
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client' ),
-					'postParams' => array_merge( self::DEFAULT_POST_PARAMS, self::POST_PARAMS_EMAIL_MISTMATCH ),
+					'parsedBody' => array_merge( self::DEFAULT_JSON_BODY, self::JSON_BODY_EMAIL_MISTMATCH ),
 					'headers' => [
 						'Content-Type' => 'application/json'
 					],
@@ -172,7 +186,7 @@ class RequestClientEndpointTest extends EndpointTestBase {
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client' ),
-					'postParams' => array_merge( self::DEFAULT_POST_PARAMS, self::POST_PARAMS_WRONG_GRANT_TYPES ),
+					'parsedBody' => array_merge( self::DEFAULT_JSON_BODY, self::JSON_BODY_WRONG_GRANT_TYPES ),
 					'headers' => [
 						'Content-Type' => 'application/json'
 					],
@@ -306,7 +320,7 @@ class RequestClientEndpointTest extends EndpointTestBase {
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client' ),
-					'postParams' => [ 'scopes' => 'wrong' ] + self::DEFAULT_POST_PARAMS,
+					'parsedBody' => [ 'scopes' => 'wrong' ] + self::DEFAULT_JSON_BODY,
 					'headers' => [
 						'Content-Type' => 'application/json'
 					],
