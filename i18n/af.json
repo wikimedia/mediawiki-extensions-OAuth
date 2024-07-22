@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Joris Darlington Quarshie",
-			"Naudefj"
+			"Naudefj",
+			"Rooiratel"
 		]
 	},
 	"mwoauth-desc": "Laat gebruik van OAuth 1.0a en OAuth 2.0 toe vir API matiging",
@@ -12,6 +13,7 @@
 	"oauthlistconsumers": "Lys van OAuth-toepassings",
 	"oauthmanagemygrants": "Beheer gekoppelde toepassings",
 	"mwoauthmanagemygrants-confirm-legend": "Bestuur gekoppelde toepassing",
+	"mwoauth-centralauth-account-link": "globale rekenings",
 	"mwoauth-oauth-version": "OAuth protokolweergawe",
 	"mwoauth-oauth2-is-confidential": "Client is confidential",
 	"mwoauth-oauth2-is-confidential-help": "'N Vertroulike kliënt is 'n toepassing wat die kliëntwagwoord vir die wêreld vertroulik kan hou.Nie-verttroulike kliënte is minder veilig.",

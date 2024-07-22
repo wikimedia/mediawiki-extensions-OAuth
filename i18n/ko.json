@@ -14,7 +14,7 @@
 			"아라"
 		]
 	},
-	"abusefilter-edit-builder-vars-oauth-consumer": "이 변경을 수행하기 위해 사용되는 OAuth 컨슈머",
+	"abusefilter-edit-builder-vars-oauth-consumer": "이 변경을 수행하기 위해 사용되는 OAuth 컨슈머 ($1)",
 	"mwoauth-desc": "API 인증을 위해 OAuth 1.0a와 OAuth 2.0을 사용할 수 있게 합니다",
 	"mwoauth-verified": "프로세스를 완성하기 위해서는 이 증명값을 이 응용프로그램에 입력해야 합니다: '''$1'''",
 	"mwoauth-db-readonly": "OAuth 데이터베이스가 현재 잠겨 있습니다. 다시 시도해 주세요.",
