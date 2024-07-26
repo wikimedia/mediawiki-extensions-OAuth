@@ -104,6 +104,7 @@
 	"mwoauthlistconsumers-callbackisprefix": "Клиентана шен дехаршкахь йухакхайкхаран адрес дӀадала бакъо ло, лакхахь хьахийна адрес леладе оьшу префикс санна.",
 	"mwoauthlistconsumers-grants": "Лелош йолу шоралаш:",
 	"mwoauthlistconsumers-basicgrantsonly": "(базан тӀекхачар бен)",
+	"mwoauthlistconsumers-oauth2-is-confidential": "Конфиденциаллалин клиент",
 	"mwoauthlistconsumers-status": "Cтатус",
 	"mwoauth-consumer-stage-any": "муьлха",
 	"mwoauthlistconsumers-status-proposed": "кховдийна",
