@@ -9,9 +9,9 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
-use MessageSpecifier;
 use MWException;
 use StatusValue;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * (c) Aaron Schulz 2013, GPL
