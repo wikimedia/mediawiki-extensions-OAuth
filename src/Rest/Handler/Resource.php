@@ -146,7 +146,9 @@ class Resource extends Handler {
 	 * @return ResponseInterface
 	 */
 	private function respond( $response, $data = [] ) {
-		$response->getBody()->write( FormatJson::encode( $data ) );
+		$response->withHeader( 'Content-Type', 'application/json' )
+			->getBody()
+			->write( FormatJson::encode( $data ) );
 		return $response;
 	}
 
