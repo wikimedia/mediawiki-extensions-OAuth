@@ -7,6 +7,7 @@ use FormatJson;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Rest\Handler\ResetClientSecret;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\User\User;
@@ -65,9 +66,9 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgMWOAuthCentralWiki' => WikiMap::getCurrentWikiId(),
-			'wgGroupPermissions' => [
+		$this->overrideConfigValues( [
+			'MWOAuthCentralWiki' => WikiMap::getCurrentWikiId(),
+			MainConfigNames::GroupPermissions => [
 				'*' => [ 'mwoauthupdateownconsumer' => true ]
 			],
 		] );

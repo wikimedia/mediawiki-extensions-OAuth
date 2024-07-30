@@ -25,9 +25,9 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 	/** @return OAuth1Consumer|ClientEntity|null */
 	private function doSubmit( array $data, StatusValue $expectedStatus ) {
 		global $wgGroupPermissions;
-		$this->setMwGlobals( [
-			'wgMWOAuthCentralWiki' => WikiMap::getCurrentWikiId(),
-			'wgOAuthAutoApprove' => [ [
+		$this->overrideConfigValues( [
+			'MWOAuthCentralWiki' => WikiMap::getCurrentWikiId(),
+			'OAuthAutoApprove' => [ [
 				'grants' => [ 'mwoauth-authonly', 'mwoauth-authonlyprivate', 'basic' ],
 			] ],
 		] );

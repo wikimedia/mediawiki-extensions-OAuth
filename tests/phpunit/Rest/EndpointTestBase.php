@@ -30,8 +30,8 @@ abstract class EndpointTestBase extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgOAuthSecretKey' => base64_encode( random_bytes( 32 ) )
+		$this->overrideConfigValues( [
+			'OAuthSecretKey' => base64_encode( random_bytes( 32 ) )
 		] );
 
 		RequestContext::getMain()->setTitle( Title::newMainPage() );

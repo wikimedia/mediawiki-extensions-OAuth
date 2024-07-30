@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth\Tests\Rest;
 use Exception;
 use FormatJson;
 use MediaWiki\Extension\OAuth\Rest\Handler\RequestClient;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\User\User;
@@ -84,12 +85,12 @@ class RequestClientEndpointTest extends EndpointTestBase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgMWOAuthCentralWiki' => WikiMap::getCurrentWikiId(),
-			'wgGroupPermissions' => [
+		$this->overrideConfigValues( [
+			'MWOAuthCentralWiki' => WikiMap::getCurrentWikiId(),
+			MainConfigNames::GroupPermissions => [
 				'*' => [ 'mwoauthproposeconsumer' => true ]
 			],
-			'wgEmailAuthentication' => false
+			MainConfigNames::EmailAuthentication => false,
 		] );
 	}
 

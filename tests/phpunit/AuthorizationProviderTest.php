@@ -30,8 +30,8 @@ class AuthorizationProviderTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgOAuthSecretKey' => base64_encode( random_bytes( 32 ) )
+		$this->overrideConfigValues( [
+			'OAuthSecretKey' => base64_encode( random_bytes( 32 ) )
 		] );
 	}
 
@@ -124,7 +124,7 @@ class AuthorizationProviderTest extends MediaWikiIntegrationTestCase {
 	 * @param int $expect Expected DateTimeInterval->getTimestamp()
 	 */
 	public function testGetGrantExpirationInterval( $global, $expect ) {
-		$this->setMwGlobals( [ 'wgOAuth2GrantExpirationInterval' => $global ] );
+		$this->overrideConfigValue( 'OAuth2GrantExpirationInterval', $global );
 
 		$server = $this->getServer();
 		/** @var IAuthorizationProvider $authorizationProvider */
@@ -151,7 +151,7 @@ class AuthorizationProviderTest extends MediaWikiIntegrationTestCase {
 	 * @param int $expect Expected DateTimeInterval->getTimestamp()
 	 */
 	public function testGetRefreshTokenTTL( $global, $expect ) {
-		$this->setMwGlobals( [ 'wgOAuth2RefreshTokenTTL' => $global ] );
+		$this->overrideConfigValue( 'OAuth2RefreshTokenTTL', $global );
 
 		$server = $this->getServer();
 		/** @var IAuthorizationProvider $authorizationProvider */

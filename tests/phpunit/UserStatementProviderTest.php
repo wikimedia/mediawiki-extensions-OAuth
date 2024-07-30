@@ -27,6 +27,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\UserStatementProvider;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
@@ -41,8 +42,8 @@ use Wikimedia\TestingAccessWrapper;
 class UserStatementProviderTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetUserStatement() {
-		$this->setMwGlobals( [
-			'wgEmailAuthentication' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::EmailAuthentication => true,
 		] );
 		$time = wfTimestamp();
 		MWTimestamp::setFakeTime( $time );
