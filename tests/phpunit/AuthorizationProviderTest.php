@@ -10,7 +10,6 @@ use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\ClientCredentials;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshToken;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\IAuthorizationProvider;
 use MediaWiki\Extension\OAuth\AuthorizationServerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
@@ -42,7 +41,7 @@ class AuthorizationProviderTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function getOAuthConfig() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		return $services->getConfigFactory()->makeConfig( 'mwoauth' );
 	}
 
