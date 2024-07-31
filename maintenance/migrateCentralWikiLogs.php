@@ -136,7 +136,7 @@ class MigrateCentralWikiLogs extends Maintenance {
 			}
 			$targetDb->commit( __METHOD__ );
 
-			$lbFactory->waitForReplication();
+			$this->waitForReplication();
 
 		} while ( $rowCount );
 	}
