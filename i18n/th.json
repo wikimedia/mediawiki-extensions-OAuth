@@ -125,6 +125,7 @@
 	"mwoauthmanagemygrants-none": "ไม่มีแอปพลิเคชันที่เชื่อมต่อกับบัญชีของคุณ",
 	"mwoauthmanagemygrants-user": "ผู้เผยแพร่:",
 	"mwoauthmanagemygrants-description": "คำอธิบาย",
+	"mwoauthmanagemygrants-wikiallowed": "อนุญาตบนโครงการ:",
 	"mwoauthmanagemygrants-review": "จัดการการเข้าถึง",
 	"mwoauthmanagemygrants-revoke": "เพิกถอนการเข้าถึง",
 	"mwoauthmanagemygrants-confirm-legend": "จัดการแอปพลิเคชันที่เชื่อมต่อ",
