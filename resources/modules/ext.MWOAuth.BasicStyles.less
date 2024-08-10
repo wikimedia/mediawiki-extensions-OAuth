@@ -1,29 +1,31 @@
+@import 'mediawiki.skin.variables.less';
+
 .mw-mwoauthconsumerregistration-body,
 .mw-mwoauthmanageconsumers-body {
-	background-color: #f0f0f0;
+	background-color: @background-color-notice-subtle;
 }
 
 .mw-mwoauthmanageconsumers,
 .mw-mwoauthmanagemygrants,
 .mw-mwoauthconsumerregistration {
 	&-proposed {
-		background-color: #b7b8e1;
+		background-color: @background-color-progressive-subtle;
 	}
 
 	&-rejected {
-		background-color: #e1b7ba;
+		background-color: @background-color-destructive-subtle;
 	}
 
 	&-expired {
-		background-color: #e1cdb7;
+		background-color: @background-color-warning-subtle;
 	}
 
 	&-approved {
-		background-color: #bae1b7;
+		background-color: @background-color-success-subtle;
 	}
 
 	&-disabled {
-		background-color: #ceb7e1;
+		background-color: @background-color-disabled-subtle;
 	}
 }
 
@@ -32,7 +34,7 @@
 }
 
 .mw-mwoautherror-details {
-	color: #72777d;
+	color: @color-disabled;
 	font-size: 0.7em;
 }
 
