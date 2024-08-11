@@ -7,7 +7,6 @@
 		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
 		<exclude name="Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition" />
-		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeClassBrace.BraceNotOnOwnLine" />
 	</rule>
 	<file>.</file>
 	<arg name="extensions" value="php"/>
