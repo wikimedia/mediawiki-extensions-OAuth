@@ -1,10 +1,12 @@
 /* stylelint-disable no-descending-specificity */
+@import 'mediawiki.skin.variables.less';
+
 #mw-mwoauth-authorize-form {
 	body:not( .mw-authentication-popup ) & {
 		/* Unify font size across various skins */
 		/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
 		font-size: 14px;
-		color: #333;
+		color: @color-base;
 	}
 
 	> a {
