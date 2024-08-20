@@ -222,10 +222,7 @@ abstract class SubmitControl extends ContextSource {
 			return $result;
 		}
 
-		$type = gettype( $result );
-		if ( $type === 'object' ) {
-			$type = get_class( $result );
-		}
+		$type = get_debug_type( $result );
 		throw new LogicException( 'Invalid validator return type: ' . $type );
 	}
 
