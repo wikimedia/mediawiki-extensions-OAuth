@@ -158,7 +158,7 @@
 	"mwoauthmanageconsumers-search-publisher": "потрошувачи од овој корисник",
 	"oauthlistconsumers": "Список на извршници на OAuth",
 	"mwoauthlistconsumers-legend": "Прелистај извршници на OAuth",
-	"mwoauthlistconsumers-view": "подробности",
+	"mwoauthlistconsumers-view": "поединости",
 	"mwoauthlistconsumers-none": "Нема извршници што одговараат на дадените услови.",
 	"mwoauthlistconsumers-name": "Назив на извршникот",
 	"mwoauthlistconsumers-version": "Потрошувачка верзија",
