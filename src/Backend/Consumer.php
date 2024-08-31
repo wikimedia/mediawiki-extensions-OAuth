@@ -750,6 +750,7 @@ abstract class Consumer extends MWOAuthDAO {
 	protected function encodeRow( IDatabase $db, $row ) {
 		// For compatibility with other wikis in the farm, un-remap some grants
 		foreach ( self::$mapBackCompatGrants as $old => $new ) {
+			// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 			while ( ( $i = array_search( $new, $row['oarc_grants'], true ) ) !== false ) {
 				$row['oarc_grants'][$i] = $old;
 			}
@@ -782,6 +783,7 @@ abstract class Consumer extends MWOAuthDAO {
 
 		// For backwards compatibility, remap some grants
 		foreach ( self::$mapBackCompatGrants as $old => $new ) {
+			// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 			while ( ( $i = array_search( $old, $row['oarc_grants'], true ) ) !== false ) {
 				$row['oarc_grants'][$i] = $new;
 			}

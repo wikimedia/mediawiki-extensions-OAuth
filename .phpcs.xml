@@ -6,7 +6,6 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate"/>
 		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
-		<exclude name="Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition" />
 	</rule>
 	<file>.</file>
 	<arg name="extensions" value="php"/>
