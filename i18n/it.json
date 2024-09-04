@@ -9,7 +9,8 @@
 			"Nemo bis",
 			"Ricordisamoa",
 			"Sakretsu",
-			"Selven"
+			"Selven",
+			"Dream Indigo"
 		]
 	},
 	"mwoauth-desc": "Consente l'utilizzo di OAuth 1.0a e OAuth 2.0 per le API di autorizzazione",
@@ -135,7 +136,7 @@
 	"mwoauthmanageconsumers-success-disabled": "Il cliente è stato disabilitato.",
 	"mwoauthmanageconsumers-success-reanable": "Il cliente è stato riabilitato.",
 	"mwoauthmanageconsumers-search-name": "clienti con questo nome",
-	"mwoauthmanageconsumers-search-publisher": "clienti di questo utente",
+	"mwoauthmanageconsumers-search-publisher": "clienti di quest'utente",
 	"oauthlistconsumers": "Elenco delle applicazioni OAuth",
 	"mwoauthlistconsumers-legend": "Naviga applicazioni OAuth",
 	"mwoauthlistconsumers-view": "dettagli",
