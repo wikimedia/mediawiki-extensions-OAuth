@@ -48,6 +48,7 @@ use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use MWException;
 use OOUI;
@@ -62,18 +63,21 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	protected LoggerInterface $logger;
 	private GrantsLocalization $grantsLocalization;
 	private SkinFactory $skinFactory;
+	private UrlUtils $urlUtils;
 
 	/** @var int Defaults to OAuth1 */
 	protected $oauthVersion = Consumer::OAUTH_VERSION_1;
 
 	public function __construct(
 		GrantsLocalization $grantsLocalization,
-		SkinFactory $skinFactory
+		SkinFactory $skinFactory,
+		UrlUtils $urlUtils
 	) {
 		parent::__construct( 'OAuth' );
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
 		$this->grantsLocalization = $grantsLocalization;
 		$this->skinFactory = $skinFactory;
+		$this->urlUtils = $urlUtils;
 	}
 
 	public function doesWrites() {
@@ -327,7 +331,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					if ( $restUrl[0] !== '/' ) {
 						$restUrl = '/' . $restUrl;
 					}
-					$target = wfGetServerUrl( PROTO_CURRENT ) . $restUrl;
+					$target = ( $this->urlUtils->getServer( PROTO_CURRENT ) ?? '' ) . $restUrl;
 
 					$output->redirect( $target );
 					break;

@@ -52,7 +52,8 @@
 			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuth",
 			"services": [
 				"GrantsLocalization",
-				"SkinFactory"
+				"SkinFactory",
+				"UrlUtils"
 			]
 		},
 		"OAuthManageMyGrants": {
