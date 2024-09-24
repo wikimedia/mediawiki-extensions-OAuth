@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Tests\Lib;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
-use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 use PHPUnit\Framework\TestCase;
 
@@ -33,13 +33,13 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group OAuth
- * @covers \MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1
+ * @covers \MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1
  */
 class OAuthSignatureMethodHmacSha1Test extends TestCase {
 	private $method;
 
 	protected function setUp() : void {
-		$this->method = new OAuthSignatureMethod_HMAC_SHA1();
+		$this->method = new OAuthSignatureMethodHmacSha1();
 	}
 
 	public function testIdentifyAsHmacSha1() {

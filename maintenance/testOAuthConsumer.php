@@ -6,8 +6,8 @@ use Maintenance;
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
-use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
-use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodRsaSha1;
 
 /**
  * @ingroup Maintenance
@@ -59,7 +59,7 @@ class TestOAuthConsumer extends Maintenance {
 		$req_req = OAuthRequest::from_consumer_and_token( $c, null, "GET", $endpoint, $params );
 		if ( $rsaKeyFile ) {
 			try {
-				$sig_method = new class ( $rsaKeyFile ) extends OAuthSignatureMethod_RSA_SHA1 {
+				$sig_method = new class ( $rsaKeyFile ) extends OAuthSignatureMethodRsaSha1 {
 					/** @var string */
 					private $privKey;
 					/** @var string */
@@ -100,7 +100,7 @@ class TestOAuthConsumer extends Maintenance {
 				$this->fatalError( $ex->getMessage() );
 			}
 		} else {
-			$sig_method = new OAuthSignatureMethod_HMAC_SHA1();
+			$sig_method = new OAuthSignatureMethodHmacSha1();
 		}
 		$req_req->sign_request( $sig_method, $c, null );
 

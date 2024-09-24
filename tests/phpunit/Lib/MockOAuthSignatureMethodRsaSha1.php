@@ -2,14 +2,14 @@
 
 namespace MediaWiki\Extension\OAuth\Tests\Lib;
 
-use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodRsaSha1;
 
 /**
- * A mock implementation of OAuthSignatureMethod_RSA_SHA1
+ * A mock implementation of OAuthSignatureMethodRsaSha1
  * Always returns the signatures described in
  * http://wiki.oauth.net/TestCases section 9.3 ("RSA-SHA1")
  */
-class MockOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
+class MockOAuthSignatureMethodRsaSha1 extends OAuthSignatureMethodRsaSha1 {
   public function fetch_private_cert(&$request) {
     $cert = <<<EOD
 -----BEGIN PRIVATE KEY-----

@@ -31,13 +31,13 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group OAuth
- * @covers \MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1
+ * @covers \MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodRsaSha1
  */
 class OAuthSignatureMethodRsaSha1Test extends TestCase {
 	private $method;
 
 	protected function setUp() : void {
-		$this->method = new MockOAuthSignatureMethod_RSA_SHA1();
+		$this->method = new MockOAuthSignatureMethodRsaSha1();
 	}
 
 	public function testIdentifyAsRsaSha1() {

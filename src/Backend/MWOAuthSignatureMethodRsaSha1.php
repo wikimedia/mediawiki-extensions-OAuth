@@ -5,9 +5,9 @@ namespace MediaWiki\Extension\OAuth\Backend;
 use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
-use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodRsaSha1;
 
-class MWOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
+class MWOAuthSignatureMethodRsaSha1 extends OAuthSignatureMethodRsaSha1 {
 	/** @var MWOAuthDataStore */
 	protected $store;
 	/** @var string PEM encoded RSA private key */

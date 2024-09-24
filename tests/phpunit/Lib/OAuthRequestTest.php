@@ -28,8 +28,8 @@ namespace MediaWiki\Extension\OAuth\Tests\Lib;
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
-use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
-use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_PLAINTEXT;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodPlaintext;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 use PHPUnit\Framework\TestCase;
 
@@ -335,8 +335,8 @@ class OAuthRequestTest extends TestCase {
 		$cons = new OAuthConsumer('key', 'kd94hf93k423kf44');
 		$token = new OAuthToken('token', 'pfkkdhi9sl3r4s00');
 
-		$hmac = new OAuthSignatureMethod_HMAC_SHA1();
-		$plaintext = new OAuthSignatureMethod_PLAINTEXT();
+		$hmac = new OAuthSignatureMethodHmacSha1();
+		$plaintext = new OAuthSignatureMethodPlaintext();
 
 		$this->assertEquals('tR3+Ty81lMeYAr/Fid0kMTYa/WM=', $r->build_signature($hmac, $cons, $token));
 		$this->assertEquals('kd94hf93k423kf44&pfkkdhi9sl3r4s00', $r->build_signature($plaintext, $cons, $token));
@@ -352,8 +352,8 @@ class OAuthRequestTest extends TestCase {
 		$cons = new OAuthConsumer('key', 'kd94hf93k423kf44');
 		$token = new OAuthToken('token', 'pfkkdhi9sl3r4s00');
 
-		$hmac = new OAuthSignatureMethod_HMAC_SHA1();
-		$plaintext = new OAuthSignatureMethod_PLAINTEXT();
+		$hmac = new OAuthSignatureMethodHmacSha1();
+		$plaintext = new OAuthSignatureMethodPlaintext();
 
 		// We need to test both what the parameter is, and how the serialized request is..
 

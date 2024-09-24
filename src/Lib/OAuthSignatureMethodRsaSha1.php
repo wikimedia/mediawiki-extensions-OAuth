@@ -34,7 +34,7 @@ namespace MediaWiki\Extension\OAuth\Lib;
  * specification.
  *     - Chapter 9.3 ( "RSA-SHA1" )
  */
-abstract class OAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod {
+abstract class OAuthSignatureMethodRsaSha1 extends OAuthSignatureMethod {
 	public function get_name() {
 		return "RSA-SHA1";
 	}

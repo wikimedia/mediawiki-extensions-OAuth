@@ -114,7 +114,7 @@ $parsed = parse_url( $request_token_url );
 $params = [];
 parse_str( $parsed['query'], $params );
 $req_req = OAuthRequest::from_consumer_and_token( $c, null, "GET", $request_token_url, $params );
-$hmac_method = new OAuthSignatureMethod_HMAC_SHA1();
+$hmac_method = new OAuthSignatureMethodHmacSha1();
 $sig_method = $hmac_method;
 $req_req->sign_request( $sig_method, $c, null );
 

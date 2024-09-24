@@ -7,7 +7,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Extension\Notifications\Model\Event;
-use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_HMAC_SHA1;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
@@ -238,8 +238,8 @@ class Utils {
 	public static function newMWOAuthServer() {
 		$store = static::newMWOAuthDataStore();
 		$server = new MWOAuthServer( $store );
-		$server->add_signature_method( new OAuthSignatureMethod_HMAC_SHA1() );
-		$server->add_signature_method( new MWOAuthSignatureMethod_RSA_SHA1( $store ) );
+		$server->add_signature_method( new OAuthSignatureMethodHmacSha1() );
+		$server->add_signature_method( new MWOAuthSignatureMethodRsaSha1( $store ) );
 
 		return $server;
 	}
