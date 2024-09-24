@@ -284,8 +284,11 @@ class UIHooks implements
 	 * @return bool
 	 */
 	public function onLoginFormValidErrorMessages( &$messages ) {
-		$messages[] = 'mwoauth-named-account-required-reason';
-		$messages[] = 'mwoauth-available-only-to-registered';
+		$messages = array_merge( $messages, [
+			'mwoauth-named-account-required-reason',
+			'mwoauth-named-account-required-reason-for-temp-user',
+			'mwoauth-available-only-to-registered',
+		] );
 		return true;
 	}
 }
