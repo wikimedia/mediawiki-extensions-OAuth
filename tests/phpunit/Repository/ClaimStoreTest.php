@@ -5,7 +5,7 @@ namespace MediaWiki\Extension\OAuth\Tests\Repository;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use MediaWiki\Extension\OAuth\Entity\ClaimEntity;
 use MediaWiki\Extension\OAuth\Repository\ClaimStore;
-use MediaWiki\Extension\OAuth\Tests\Entity\Mock_ClientEntity;
+use MediaWiki\Extension\OAuth\Tests\Entity\MockClientEntity;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -62,7 +62,7 @@ class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Extension\OAuth\Repository\ClaimStore::getClaims
 	 */
 	public function testGetClaimsWithHook( $claims, $expectedClaims ) {
-		$client = Mock_ClientEntity::newMock( $this->getTestUser()->getUser() );
+		$client = MockClientEntity::newMock( $this->getTestUser()->getUser() );
 		$hookCalled = false;
 
 		$this->setTemporaryHook(
@@ -92,7 +92,7 @@ class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 	public function testGetClaimsWithoutHook() {
 		$res = $this->oAuthClaimStore->getClaims(
 			'fake_type',
-			Mock_ClientEntity::newMock( $this->getTestUser()->getUser() )
+			MockClientEntity::newMock( $this->getTestUser()->getUser() )
 		);
 
 		$this->assertEquals( [], $res );

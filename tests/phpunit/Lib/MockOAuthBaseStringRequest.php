@@ -6,7 +6,7 @@ namespace MediaWiki\Extension\OAuth\Tests\Lib;
  * A very simple class that you can pass a base-string, and then have it returned again.
  * Used for testing the signature-methods
  */
-class Mock_OAuthBaseStringRequest {
+class MockOAuthBaseStringRequest {
 	private $provided_base_string;
 	public $base_string; // legacy
 	public function __construct($bs) { $this->provided_base_string = $bs; }

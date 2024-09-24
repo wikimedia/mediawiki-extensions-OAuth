@@ -48,17 +48,17 @@ class OAuthSignatureMethodHmacSha1Test extends TestCase {
 
 	public function testBuildSignature() {
 		// Tests taken from http://wiki.oauth.net/TestCases section 9.2 ("HMAC-SHA1")
-		$request  = new Mock_OAuthBaseStringRequest('bs');
+		$request  = new MockOAuthBaseStringRequest('bs');
 		$consumer = new OAuthConsumer('__unused__', 'cs');
 		$token    = NULL;
 		$this->assertEquals('egQqG5AJep5sJ7anhXju1unge2I=', $this->method->build_signature( $request, $consumer, $token) );
 
-		$request  = new Mock_OAuthBaseStringRequest('bs');
+		$request  = new MockOAuthBaseStringRequest('bs');
 		$consumer = new OAuthConsumer('__unused__', 'cs');
 		$token    = new OAuthToken('__unused__', 'ts');
 		$this->assertEquals('VZVjXceV7JgPq/dOTnNmEfO0Fv8=', $this->method->build_signature( $request, $consumer, $token) );
 
-		$request  = new Mock_OAuthBaseStringRequest('GET&http%3A%2F%2Fphotos.example.net%2Fphotos&file%3Dvacation.jpg%26'
+		$request  = new MockOAuthBaseStringRequest('GET&http%3A%2F%2Fphotos.example.net%2Fphotos&file%3Dvacation.jpg%26'
 			. 'oauth_consumer_key%3Ddpf43f3p2l4k3l03%26oauth_nonce%3Dkllo9940pd9333jh%26oauth_signature_method%3DHMAC-SHA1%26'
 			. 'oauth_timestamp%3D1191242096%26oauth_token%3Dnnch734d00sl2jdk%26oauth_version%3D1.0%26size%3Doriginal');
 		$consumer = new OAuthConsumer('__unused__', 'kd94hf93k423kf44');
@@ -68,19 +68,19 @@ class OAuthSignatureMethodHmacSha1Test extends TestCase {
 
 	public function testVerifySignature() {
 		// Tests taken from http://wiki.oauth.net/TestCases section 9.2 ("HMAC-SHA1")
-		$request   = new Mock_OAuthBaseStringRequest('bs');
+		$request   = new MockOAuthBaseStringRequest('bs');
 		$consumer  = new OAuthConsumer('__unused__', 'cs');
 		$token     = NULL;
 		$signature = 'egQqG5AJep5sJ7anhXju1unge2I=';
 		$this->assertTrue( $this->method->check_signature( $request, $consumer, $token, $signature) );
 
-		$request   = new Mock_OAuthBaseStringRequest('bs');
+		$request   = new MockOAuthBaseStringRequest('bs');
 		$consumer  = new OAuthConsumer('__unused__', 'cs');
 		$token     = new OAuthToken('__unused__', 'ts');
 		$signature = 'VZVjXceV7JgPq/dOTnNmEfO0Fv8=';
 		$this->assertTrue($this->method->check_signature( $request, $consumer, $token, $signature) );
 
-		$request   = new Mock_OAuthBaseStringRequest('GET&http%3A%2F%2Fphotos.example.net%2Fphotos&file%3Dvacation.jpg%26'
+		$request   = new MockOAuthBaseStringRequest('GET&http%3A%2F%2Fphotos.example.net%2Fphotos&file%3Dvacation.jpg%26'
 			. 'oauth_consumer_key%3Ddpf43f3p2l4k3l03%26oauth_nonce%3Dkllo9940pd9333jh%26oauth_signature_method%3DHMAC-SHA1%26'
 			. 'oauth_timestamp%3D1191242096%26oauth_token%3Dnnch734d00sl2jdk%26oauth_version%3D1.0%26size%3Doriginal');
 		$consumer  = new OAuthConsumer('__unused__', 'kd94hf93k423kf44');

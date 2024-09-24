@@ -9,7 +9,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethod_RSA_SHA1;
  * Always returns the signatures described in
  * http://wiki.oauth.net/TestCases section 9.3 ("RSA-SHA1")
  */
-class Mock_OAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
+class MockOAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod_RSA_SHA1 {
   public function fetch_private_cert(&$request) {
     $cert = <<<EOD
 -----BEGIN PRIVATE KEY-----

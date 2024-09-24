@@ -56,7 +56,7 @@ class OAuthServerTest extends TestCase {
 		$this->hmac_sha1      = new OAuthSignatureMethod_HMAC_SHA1();
 		$this->plaintext      = new OAuthSignatureMethod_PLAINTEXT();
 
-		$this->server         = new OAuthServer( new Mock_OAuthDataStore() );
+		$this->server         = new OAuthServer( new MockOAuthDataStore() );
 		$this->server->add_signature_method( $this->hmac_sha1 );
 		$this->server->add_signature_method( $this->plaintext );
 	}
@@ -191,7 +191,7 @@ class OAuthServerTest extends TestCase {
 		$request = OAuthRequest::from_consumer_and_token( $this->consumer, $this->access_token, 'POST', 'http://example.com');
 		$request->sign_request( $this->plaintext, $this->consumer, $this->access_token );
 
-		$server = new OAuthServer( new Mock_OAuthDataStore() );
+		$server = new OAuthServer( new MockOAuthDataStore() );
 		$server->add_signature_method( $this->hmac_sha1 );
 
 		$this->expectException(OAuthException::class);

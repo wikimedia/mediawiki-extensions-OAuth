@@ -16,7 +16,7 @@ class ClientEntityTest extends MediaWikiIntegrationTestCase {
 	public function testProperties() {
 		$domain = 'http://domain.com/oauth2';
 		$now = wfTimestampNow();
-		$client = Mock_ClientEntity::newMock( $this->getTestUser()->getUser(), [
+		$client = MockClientEntity::newMock( $this->getTestUser()->getUser(), [
 			'consumerKey' => '123456789',
 			'callbackUrl' => $domain,
 			'name' => 'Test client',
@@ -91,7 +91,7 @@ class ClientEntityTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNullEmailAuthenticated() {
-		$client = Mock_ClientEntity::newMock( $this->getTestUser()->getUser(), [
+		$client = MockClientEntity::newMock( $this->getTestUser()->getUser(), [
 			'emailAuthenticated' => null,
 		] );
 

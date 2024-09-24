@@ -6,7 +6,7 @@ use DateInterval;
 use DateTimeImmutable;
 use MediaWiki\Extension\OAuth\Entity\AuthCodeEntity;
 use MediaWiki\Extension\OAuth\Repository\AuthCodeRepository;
-use MediaWiki\Extension\OAuth\Tests\Entity\Mock_ClientEntity;
+use MediaWiki\Extension\OAuth\Tests\Entity\MockClientEntity;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -27,7 +27,7 @@ class AuthCodeRepositoryTest extends MediaWikiIntegrationTestCase {
 		$this->authCodeToken = $this->authCodeTokenRepo->getNewAuthCode();
 		$this->authCodeToken->setIdentifier( bin2hex( random_bytes( 20 ) ) );
 		$this->authCodeToken->setClient(
-			Mock_ClientEntity::newMock( $this->getTestUser()->getUser() )
+			MockClientEntity::newMock( $this->getTestUser()->getUser() )
 		);
 		$this->authCodeToken->setExpiryDateTime(
 			( new DateTimeImmutable() )->add( new DateInterval( 'PT1H' ) )

@@ -9,7 +9,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 /**
  * A mock store for testing
  */
-class Mock_OAuthDataStore extends OAuthDataStore {
+class MockOAuthDataStore extends OAuthDataStore {
 	private $consumer;
 	private $request_token;
 	private $access_token;

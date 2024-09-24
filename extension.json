@@ -84,6 +84,10 @@
 	"TestAutoloadNamespaces": {
 		"MediaWiki\\Extension\\OAuth\\Tests\\": "tests/phpunit/"
 	},
+	"TestAutoloadClasses": {
+		"MediaWiki\\Extension\\OAuth\\Tests\\Entity\\MockClientEntity": "tests/phpunit/Entity/MockClientEntity.php",
+		"MediaWiki\\Extension\\OAuth\\Tests\\Entity\\Mock_ClientEntity": "tests/phpunit/Entity/MockClientEntity.php"
+	},
 	"ResourceModules": {
 		"ext.MWOAuth.styles": {
 			"styles": [

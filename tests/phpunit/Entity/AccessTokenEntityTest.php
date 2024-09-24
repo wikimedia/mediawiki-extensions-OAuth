@@ -27,7 +27,7 @@ class AccessTokenEntityTest extends MediaWikiIntegrationTestCase {
 			)
 		];
 		$accessToken = new AccessTokenEntity(
-			Mock_ClientEntity::newMock( $this->getTestUser()->getUser(), [
+			MockClientEntity::newMock( $this->getTestUser()->getUser(), [
 				'consumerKey' => 'dummykey'
 			] ),
 			[

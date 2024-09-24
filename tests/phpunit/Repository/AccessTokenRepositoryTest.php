@@ -6,7 +6,7 @@ use DateInterval;
 use DateTimeImmutable;
 use MediaWiki\Extension\OAuth\Entity\AccessTokenEntity;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
-use MediaWiki\Extension\OAuth\Tests\Entity\Mock_ClientEntity;
+use MediaWiki\Extension\OAuth\Tests\Entity\MockClientEntity;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -24,7 +24,7 @@ class AccessTokenRepositoryTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$this->accessToken = new AccessTokenEntity(
-			Mock_ClientEntity::newMock( $this->getTestUser()->getUser() ), [], 'dummy'
+			MockClientEntity::newMock( $this->getTestUser()->getUser() ), [], 'dummy'
 		);
 		$identifier = bin2hex( random_bytes( 40 ) );
 		$this->accessToken->setIdentifier( $identifier );
@@ -54,7 +54,7 @@ class AccessTokenRepositoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetNewToken() {
-		$client = Mock_ClientEntity::newMock( $this->getTestUser()->getUser() );
+		$client = MockClientEntity::newMock( $this->getTestUser()->getUser() );
 		$token = $this->accessTokenRepo->getNewToken( $client, [] );
 		$this->assertSame( 'dummy', $token->getIssuer() );
 		$this->assertSame( $client, $token->getClient() );
