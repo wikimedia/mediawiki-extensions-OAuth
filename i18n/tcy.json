@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Pragathi. BH",
 			"Ravi Mundkur"
 		]
 	},
+	"mwoauth-named-account-required-reason-for-temp-user": "ಈ ವೈಶಿಷ್ಟ್ಯ ನೋಂದಾಯಿತ ಬಳಕೆದಾರೆರೆಗ್ ಮಾತ್ರ ಲಭ್ಯ ಉಂಡು. ಅಪ್ಲಿಕೇಶನ್ ಲೆನ್ ಅಧಿಕೃತ ಮಲ್ಪೆರೆ {{SITENAME}} ಡ್ ಒಂಜಿ ಖಾತೆನ್ ರಚನೆ ಮಲ್ಪೊಡು.",
 	"mwoauth-prefs-managegrantslink": "ನಡಪಾಲೆ {{PLURAL:$1|$1 connected application|$1  connected applications|0=connected applications}}"
 }
