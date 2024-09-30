@@ -8,6 +8,7 @@
 	},
 	"mwoauth-desc": "Membenarkan penggunaan OAuth 1.0a dan OAuth 2.0 untuk kebenaran API",
 	"mwoauth-verified": "Aplikasi ini kini dibenarkan untuk mengakses MediaWiki bagi pihak anda.\n\nUntuk melengkapkan proses ini, berikan nilai penentusahan ini kepada aplikasi: '''$1'''",
+	"mwoauth-named-account-required-reason-for-temp-user": "Ciri ini hanya tersedia untuk pengguna berdaftar. Anda perlu buka akaun di {{SITENAME}} untuk memberikan kebenaran untuk aplikasi.",
 	"mwoauth-missing-field": "Nilai tertinggal untuk ruangan \"$1\"",
 	"mwoauth-invalid-field": "Nilai yang diberikan tidak sah untuk ruangan \"$1\"",
 	"mwoauth-invalid-field-generic": "Nilai yang diberikan tidak sah",
