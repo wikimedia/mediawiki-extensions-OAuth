@@ -14,6 +14,7 @@
 	"mwoauth-nosubpage-explanation": "OAuth je mehanizem, ki omogoča zunanjim aplikacijam, da identificirajo uporabnika projekta {{SITENAME}} ali delujejo v njegovem imenu, ko prejmejo dovoljenje tega uporabnika.\n\nDa ta stran nekaj naredi, je potrebnih več parametrov. Če ste bili sem napoteni iz zunanje aplikacije, je to verjetno posledica napake v tej aplikaciji; obrnite se na avtorja.",
 	"mwoauth-verified": "Aplikaciji je zdaj dovoljen dostop do MediaWikija v vašem imenu.\n\nZa dokončanje postopka vnesite v aplikacijo naslednjo kontrolno vrednost: '''$1'''",
 	"mwoauth-named-account-required-reason": "Ta možnost je na voljo samo registriranim uporabnikom. Za pooblastitev aplikacij za dostop do nje se prijavite v svoj {{SITENAME}} račun.",
+	"mwoauth-named-account-required-reason-for-temp-user": "Ta možnost je na voljo samo registriranim uporabnikom. Za avtorizacijo aplikacij si morate v projektu {{SITENAME}} ustvariti račun.",
 	"mwoauth-available-only-to-registered": "Ta stran je na voljo samo registriranim računom.",
 	"mwoauth-db-readonly": "Podatkovna zbirka OAuth je začasno zaklenjena. Prosimo, poskusite znova čez nekaj minut.",
 	"mwoauth-missing-field": "Manjka vrednost polja »$1«",
