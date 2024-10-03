@@ -5,12 +5,13 @@
 			"Jmarchn",
 			"Pginer",
 			"SMP",
-			"Townie"
+			"Townie",
+			"Lluis Cat"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Aplicacions connectades:",
 	"mwoauth-prefs-managegrantslink": "Gestiona {{PLURAL:$1|$1 aplicació connectada|$1 aplicacions connectades|0=aplicacions connectades}}",
-	"mwoauth-consumer-allwikis": "Tots els projectes d’aquest lloc",
+	"mwoauth-consumer-allwikis": "Tots els projectes",
 	"mwoauth-consumer-name": "Nom de l’aplicació:",
 	"mwoauthconsumerregistration-navigation": "Navegació:",
 	"mwoauthconsumerregistration-description": "Descripció",
