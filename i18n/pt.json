@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Albertoleoncio",
 			"Athena in Wonderland",
 			"Dannyps",
 			"Fúlvio",
@@ -18,6 +19,7 @@
 	"mwoauth-desc": "Permite o uso do OAuth 1.0a e OAuth 2.0 para autorização da API",
 	"mwoauth-nosubpage-explanation": "O OAuth é um mecanismo que permite que aplicações externas identifiquem um utilizador da wiki {{SITENAME}} ou ajam em seu nome, após receberem permissão desse utilizador.\n\nPara que esta página faça alguma coisa, são necessários mais parâmetros. Se chegou cá vindo de uma aplicação externa, isso provavelmente deve-se a um erro nessa aplicação; deve contactar o respetivo autor.",
 	"mwoauth-verified": "A aplicação tem agora permissão para aceder ao MediaWiki em seu nome.\n\nPara concluir o processo, forneça à aplicação este valor de verificação: '''$1'''",
+	"mwoauth-named-account-required-reason": "Este recurso está disponível apenas para usuários registrados. Você precisa fazer login na sua conta {{SITENAME}} para autorizar aplicativos a acessá-lo.",
 	"mwoauth-db-readonly": "A base de dados do OAuth está temporariamente bloqueada. Por favor, tente novamente dentro de alguns minutos.",
 	"mwoauth-missing-field": "Valor em falta para o campo \"$1\"",
 	"mwoauth-invalid-field": "Valor inválido fornecido para o campo \"$1\"",
