@@ -28,7 +28,7 @@
 	"mwoauth-consumer-owner-only-label": "Йолчуьна бен:",
 	"mwoauth-consumer-owner-only": "ХӀара клиент $1 декъашхочо бен лелош йац.",
 	"mwoauth-consumer-owner-only-help": "ХӀокху опцица клиент авто магор йу, $1 декъашхочо лело тӀеоьцур йу. Иза лело аьтто хир бац кхечу декъашхочун, ткъа нийсачу авторизацин процедурино болх бийр бац. ХӀокху клиентан ардамаш тегашца билгалдохура дац.",
-	"mwoauth-consumer-description": "Цунах лаьцна:",
+	"mwoauth-consumer-description": "Цуьнах лаьцна:",
 	"mwoauth-consumer-callbackurl": "«URL-адрес йуха кхайкхаман» OAuth:",
 	"mwoauth-consumer-callbackisprefix": "Клиентана шен дехаршкахь йухакхайкхаран адрес дӀадала бакъо ло, лакхахь хьахийна адрес леладе оьшу префикс санна.",
 	"mwoauth-consumer-granttypes": "Йоьхуш йолу бакъонаш:",
