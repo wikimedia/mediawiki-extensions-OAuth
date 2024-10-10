@@ -5,5 +5,9 @@
 		]
 	},
 	"mwoauth-consumer-allwikis": "سارے منصوبے",
+	"mwoauth-consumer-stage-rejected": "مسترد تھیا",
+	"mwoauth-consumer-stage-expired": "مُک ڳیا",
+	"mwoauth-consumer-stage-approved": "منظور تھی ڳیا",
+	"mwoauth-consumer-stage-disabled": "غیر فعال",
 	"mwoauthlistconsumers-oauth2-is-confidential": "کلائنٹ خفیہ ہے"
 }
