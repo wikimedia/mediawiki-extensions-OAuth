@@ -13,7 +13,8 @@
 			"Sujiniku",
 			"Whym",
 			"Yusuke1109",
-			"Waki285"
+			"Waki285",
+			"IAX86"
 		]
 	},
 	"mwoauth-desc": "API 認証に OAuth 1.0a および OAuth 2.0 を使用できるようにする",
@@ -262,6 +263,7 @@
 	"action-mwoauthproposeconsumer": "新しいコンシューマーの提案",
 	"action-mwoauthupdateownconsumer": "自分が制御できるOAuthコンシューマーの更新",
 	"action-mwoauthviewsuppressed": "秘匿されたOAuthコンシューマーの閲覧",
+	"mwoauth-botpasswords-note": "<strong>注意:</strong> <span class=\"plainlinks\">[$1 OAuth]</span>はボットパスワードよりも安全であるため、サポートするボットを使用する場合はこれを優先してください。",
 	"mwoauth-api-module-disabled": "\"$1\"モジュールはOAuthで利用できません。",
 	"echo-category-title-oauth-owner": "OAuthの開発",
 	"echo-pref-tooltip-oauth-owner": "自身が作成した OAuth アプリケーションについて動きがあったときに通知する。",
