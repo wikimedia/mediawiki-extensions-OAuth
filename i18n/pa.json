@@ -1,9 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cabal"
+			"Cabal",
+			"Kuldeepburjbhalaike"
 		]
 	},
-	"mwoauthconsumerregistration-main": "ਮੁੱਢਲਾ",
-	"mwoauthmanageconsumers-main": "ਮੁੱਢਲਾ"
+	"mwoauth-consumer-stage-rejected": "ਨਕਾਰਿਆ ਗਿਆ",
+	"mwoauth-consumer-stage-expired": "ਮਿਆਦ ਪੁੱਗ ਗਈ",
+	"mwoauth-consumer-stage-approved": "ਮਨਜ਼ੂਰ ਕੀਤਾ ਗਿਆ",
+	"mwoauth-consumer-stage-suppressed": "ਦਬਾਇਆ ਗਿਆ",
+	"mwoauthconsumerregistration-main": "ਮੁੱਖ",
+	"mwoauthmanageconsumers-main": "ਮੁੱਖ"
 }

@@ -8,12 +8,14 @@
 			"Elias Ahmmad",
 			"Gitartha.bordoloi",
 			"Nokib Sarkar",
+			"San1joy23",
 			"Tauhid16",
 			"আফতাবুজ্জামান"
 		]
 	},
 	"oauth": "ওআউথ",
 	"mwoauth-desc": "API অনুমোদনের জন্য OAuth 1.0a ও OAuth 2.0 ব্যবহার করার অনুমতি দেয়",
+	"mwoauth-named-account-required-reason-for-temp-user": "এই বৈশিষ্ট্য শুধুমাত্র নিবন্ধিত ব্যবহারকারীদের জন্য উপলব্ধ. অ্যাপ্লিকেশন অনুমোদন করার জন্য আপনাকে {{SITENAME}}-এ একটি অ্যাকাউন্ট তৈরি করতে হবে।",
 	"mwoauth-invalid-field-generic": "অবৈধ মান দেয়া হয়েছে",
 	"mwoauth-field-hidden": "(এই তথ্য গোপন করা)",
 	"mwoauth-field-private": "(এই তথ্য ব্যক্তিগত)",
@@ -47,7 +49,7 @@
 	"mwoauth-consumer-stage-expired": "মেয়াদোত্তীর্ণ",
 	"mwoauth-consumer-stage-approved": "অনুমোদিত",
 	"mwoauth-consumer-stage-disabled": "নিস্ক্রিয়",
-	"mwoauth-consumer-stage-suppressed": "নিরুদ্ধ",
+	"mwoauth-consumer-stage-suppressed": "দমনকৃত",
 	"mwoauth-ignorewarnings": "সতর্কতা উপেক্ষা করুন",
 	"mwoauthconsumerregistration-navigation": "পরিভ্রমণ:",
 	"mwoauthconsumerregistration-list": "আমার ক্লায়েন্ট তালিকা",
