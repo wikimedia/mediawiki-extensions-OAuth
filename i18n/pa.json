@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cabal"
+			"Cabal",
+			"Kuldeepburjbhalaike"
 		]
 	},
-	"mwoauthconsumerregistration-main": "ਮੁੱਢਲਾ",
-	"mwoauthmanageconsumers-main": "ਮੁੱਢਲਾ"
+	"mwoauthconsumerregistration-main": "ਮੁੱਖ",
+	"mwoauthmanageconsumers-main": "ਮੁੱਖ"
 }
