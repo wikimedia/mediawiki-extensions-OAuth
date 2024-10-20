@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Extension\OAuth;
 
-use ApiBase;
-use ApiMessage;
 use Exception;
 use GuzzleHttp\Psr7\ServerRequest;
 use InvalidArgumentException;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMessage;
 use MediaWiki\Api\Hook\ApiCheckCanExecuteHook;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;

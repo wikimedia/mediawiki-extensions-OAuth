@@ -3,10 +3,10 @@
 namespace MediaWiki\Extension\OAuth\Tests\Rest;
 
 use Exception;
-use FormatJson;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Rest\Handler\ResetClientSecret;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\ResponseInterface;

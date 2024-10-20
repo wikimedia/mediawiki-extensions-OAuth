@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extension\OAuth\Frontend;
 
-use ExtensionRegistry;
 use LogEntry;
 use LogFormatter;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Message\Message;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserEditTracker;

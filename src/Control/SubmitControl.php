@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\OAuth\Control;
 
-use ApiMessage;
 use LogicException;
+use MediaWiki\Api\ApiMessage;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HTMLForm\HTMLForm;

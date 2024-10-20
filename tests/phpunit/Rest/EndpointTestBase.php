@@ -3,9 +3,9 @@
 namespace MediaWiki\Extension\OAuth\Tests\Rest;
 
 use Exception;
-use FormatJson;
 use GuzzleHttp\Psr7\Uri;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\RequestData;

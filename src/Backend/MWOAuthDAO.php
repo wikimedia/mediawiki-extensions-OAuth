@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\OAuth\Backend;
 
 use Exception;
-use IDBAccessObject;
 use LogicException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Logger\LoggerFactory;
@@ -14,6 +13,7 @@ use stdClass;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBReadOnlyError;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * (c) Aaron Schulz 2013, GPL

@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extension\OAuth;
 
-use Maintenance;
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodRsaSha1;
+use MediaWiki\Maintenance\Maintenance;
 
 /**
  * @ingroup Maintenance

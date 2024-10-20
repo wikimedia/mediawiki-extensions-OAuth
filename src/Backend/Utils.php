@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
-use BagOStuff;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -15,6 +14,7 @@ use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use MWException;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

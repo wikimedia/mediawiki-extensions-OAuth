@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
-use FormatJson;
-use IDBAccessObject;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * (c) Aaron Schulz 2013, GPL

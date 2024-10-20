@@ -21,11 +21,10 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
-use FormatJson;
-use IDBAccessObject;
 use LogicException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity as OAuth2Client;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -34,6 +33,7 @@ use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use MWRestrictions;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Representation of an OAuth consumer.

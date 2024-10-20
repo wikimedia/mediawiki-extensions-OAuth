@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
 
 use ErrorPageError;
-use FormatJson;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
@@ -14,6 +13,7 @@ use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ManageMyGrantsPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;

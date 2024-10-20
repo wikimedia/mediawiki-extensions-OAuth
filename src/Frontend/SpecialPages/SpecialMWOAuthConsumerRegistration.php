@@ -22,7 +22,6 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
  */
 
 use ErrorPageError;
-use FormatJson;
 use InvalidArgumentException;
 use LogEventsList;
 use LogPage;
@@ -37,6 +36,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLHiddenField;
 use MediaWiki\HTMLForm\Field\HTMLRestrictionsField;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
@@ -45,12 +45,12 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
+use MediaWiki\Xml\Xml;
 use MWRestrictions;
 use PermissionsError;
 use stdClass;
 use UserBlockedError;
 use Wikimedia\Rdbms\IDatabase;
-use Xml;
 
 /**
  * Page that has registration request form and consumer update form

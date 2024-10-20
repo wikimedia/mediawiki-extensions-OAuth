@@ -39,12 +39,12 @@ use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\Xml\Xml;
 use MWRestrictions;
 use OOUI\HtmlSnippet;
 use PermissionsError;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
-use Xml;
 
 /**
  * Special page for listing the queue of consumer requests and managing

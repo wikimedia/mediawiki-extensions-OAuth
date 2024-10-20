@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
-use FormatJson;
 use MediaWiki\Extension\OAuth\Repository\ScopeRepository;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Validator\Validator;
 use MWRestrictions;

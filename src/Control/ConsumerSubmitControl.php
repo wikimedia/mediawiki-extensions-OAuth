@@ -2,13 +2,11 @@
 
 namespace MediaWiki\Extension\OAuth\Control;
 
-use ApiMessage;
 use Composer\Semver\VersionParser;
 use Exception;
-use ExtensionRegistry;
-use FormatJson;
 use LogicException;
 use ManualLogEntry;
+use MediaWiki\Api\ApiMessage;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
@@ -17,9 +15,11 @@ use MediaWiki\Extension\OAuth\Backend\MWOAuthDataStore;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\OAuthServices;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

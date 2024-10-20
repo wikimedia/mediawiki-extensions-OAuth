@@ -22,7 +22,6 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
  */
 
 use Firebase\JWT\JWT;
-use FormatJson;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
@@ -38,6 +37,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 use MediaWiki\Extension\OAuth\UserStatementProvider;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;

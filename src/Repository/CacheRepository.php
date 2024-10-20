@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\OAuth\Repository;
 
-use BagOStuff;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use Wikimedia\ObjectCache\BagOStuff;
 
 abstract class CacheRepository {
 

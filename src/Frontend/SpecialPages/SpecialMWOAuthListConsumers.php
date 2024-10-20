@@ -36,12 +36,12 @@ use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
+use MediaWiki\Xml\Xml;
 use MWException;
 use OOUI\HtmlSnippet;
 use PermissionsError;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
-use Xml;
 
 /**
  * Special page for listing the queue of consumer requests and managing
