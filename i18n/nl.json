@@ -27,6 +27,7 @@
 	"mwoauth-nosubpage-explanation": "OAuth is een mechanisme waarmee externe applicaties een gebruiker van {{SITENAME}} kunnen identificeren of, met toestemming van die gebruiker, in diens naam kunnen handelen.\n\nOm deze pagina iets te laten doen zijn er meer parameters vereist. Als u vanuit een externe applicatie hierheen werd gestuurd, komt dat waarschijnlijk door een fout in die applicatie; neem dan contact op met de auteur.",
 	"mwoauth-verified": "De toepassing heeft nu namens u toegang tot MediaWiki.\n\nGeef deze controlewaarde op in de toepassing om het proces te voltooien: '''$1'''",
 	"mwoauth-named-account-required-reason": "Deze functie is alleen beschikbaar voor geregistreerde gebruikers. U moet u aanmelden bij uw {{SITENAME}}-account om toepassingen toegang te geven.",
+	"mwoauth-named-account-required-reason-for-temp-user": "Deze functie is alleen beschikbaar voor geregistreerde gebruikers. U moet een account aanmaken op {{SITENAME}} om applicaties te autoriseren.",
 	"mwoauth-available-only-to-registered": "Deze pagina is alleen beschikbaar voor geregistreerde accounts.",
 	"mwoauth-db-readonly": "De OAuth-database is tijdelijk vergrendeld. Probeer het over enkele minuten opnieuw.",
 	"mwoauth-missing-field": "Waarde voor het veld \"$1\" ontbreekt",

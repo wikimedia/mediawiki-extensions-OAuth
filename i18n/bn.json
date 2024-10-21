@@ -15,7 +15,7 @@
 	},
 	"oauth": "ওআউথ",
 	"mwoauth-desc": "API অনুমোদনের জন্য OAuth 1.0a ও OAuth 2.0 ব্যবহার করার অনুমতি দেয়",
-	"mwoauth-named-account-required-reason-for-temp-user": "এই বৈশিষ্ট্য শুধুমাত্র নিবন্ধিত ব্যবহারকারীদের জন্য উপলব্ধ. অ্যাপ্লিকেশন অনুমোদন করার জন্য আপনাকে {{SITENAME}}-এ একটি অ্যাকাউন্ট তৈরি করতে হবে।",
+	"mwoauth-named-account-required-reason-for-temp-user": "এই বৈশিষ্ট্য শুধু নিবন্ধিত ব্যবহারকারীদের জন্য উপলব্ধ। অ্যাপ্লিকেশন অনুমোদন করার জন্য আপনাকে {{SITENAME}}-এ একটি অ্যাকাউন্ট তৈরি করতে হবে।",
 	"mwoauth-invalid-field-generic": "অবৈধ মান দেয়া হয়েছে",
 	"mwoauth-field-hidden": "(এই তথ্য গোপন করা)",
 	"mwoauth-field-private": "(এই তথ্য ব্যক্তিগত)",
