@@ -140,7 +140,7 @@ class OAuthUtil {
 	// parameters like this
 	// array( 'a' => array( 'b','c' ), 'd' => 'e' )
 	public static function parse_parameters( $input ) {
-		if ( !isset( $input ) || !$input ) {
+		if ( !$input ) {
 			return array();
 		}
 
