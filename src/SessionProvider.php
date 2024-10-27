@@ -335,7 +335,7 @@ class SessionProvider
 	 * @param UserIdentity|null $userIdentity
 	 * @return array|null
 	 */
-	private function getSessionData( UserIdentity $userIdentity = null ) {
+	private function getSessionData( ?UserIdentity $userIdentity = null ) {
 		if ( $userIdentity ) {
 			$user = User::newFromIdentity( $userIdentity );
 			$session = $user->getRequest()->getSession();
@@ -428,7 +428,7 @@ class SessionProvider
 	 * @param UserIdentity|null $userIdentity
 	 * @return int|null
 	 */
-	protected function getPublicConsumerId( UserIdentity $userIdentity = null ) {
+	protected function getPublicConsumerId( ?UserIdentity $userIdentity = null ) {
 		$data = $this->getSessionData( $userIdentity );
 		if ( $data && isset( $data['consumerId'] ) ) {
 			return $data['consumerId'];
