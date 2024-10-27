@@ -5,7 +5,6 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected"/>
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate"/>
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
-		<exclude name="MediaWiki.Usage.NullableType.ExplicitNullableTypes" />
 	</rule>
 	<file>.</file>
 	<arg name="extensions" value="php"/>
