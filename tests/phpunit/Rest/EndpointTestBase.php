@@ -62,8 +62,8 @@ abstract class EndpointTestBase extends MediaWikiIntegrationTestCase {
 	public function testHandlerExecute(
 		array $requestInfo = [],
 		array $responseInfo = [],
-		callable $userCreateCallback = null,
-		callable $extraValidationCallback = null
+		?callable $userCreateCallback = null,
+		?callable $extraValidationCallback = null
 	) {
 		if ( isset( $requestInfo['postParams'] ) ) {
 			$requestInfo['method'] = 'POST';

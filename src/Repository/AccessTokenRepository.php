@@ -24,7 +24,7 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 * @param string|null $issuer
 	 */
 	public function __construct(
-		string $issuer = null
+		?string $issuer = null
 	) {
 		if ( !$issuer ) {
 			// TODO: When the extension is converted to proper use of DI,

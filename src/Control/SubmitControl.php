@@ -161,7 +161,7 @@ abstract class SubmitControl extends ContextSource {
 	 * @param HTMLForm|null $form
 	 * @return Message Error message (to be rendered via text()).
 	 */
-	private function getDefaultValidationError( string $field, $value, HTMLForm $form = null ): Message {
+	private function getDefaultValidationError( string $field, $value, ?HTMLForm $form = null ): Message {
 		$errorMessage = $this->msg( 'mwoauth-invalid-field-' . $field );
 		if ( !$errorMessage->isDisabled() ) {
 			return $errorMessage;
@@ -190,7 +190,7 @@ abstract class SubmitControl extends ContextSource {
 	 * @return bool|ApiMessage
 	 * @phan-param string|callable(mixed,array):(bool|StatusValue) $validator
 	 */
-	private function getValidationResult( $validator, $value, array $allValues, HTMLForm $form = null ) {
+	private function getValidationResult( $validator, $value, array $allValues, ?HTMLForm $form = null ) {
 		if ( is_string( $validator ) ) {
 			return preg_match( $validator, $value ?? '' );
 		}
