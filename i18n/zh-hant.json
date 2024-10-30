@@ -15,7 +15,9 @@
 			"一個正常人",
 			"捍粵者",
 			"H78c67c",
-			"SunAfterRain"
+			"SunAfterRain",
+			"LowensteinYang",
+			"沈澄心"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "用於執行此變更的OAuth消費者",
@@ -78,6 +80,7 @@
 	"mwoauth-consumer-stage-approved": "已核准",
 	"mwoauth-consumer-stage-disabled": "已停用",
 	"mwoauth-consumer-stage-suppressed": "已禁止",
+	"mwoauth-ignorewarnings": "忽略警告",
 	"oauthconsumerregistration": "OAuth Consumer 註冊",
 	"mwoauthconsumerregistration-navigation": "導覽：",
 	"mwoauthconsumerregistration-list": "我的 Consumer 清單",
