@@ -16,7 +16,8 @@
 			"Winston Sung",
 			"Xiplus",
 			"一個正常人",
-			"捍粵者"
+			"捍粵者",
+			"沈澄心"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "用於執行此變更的OAuth消費者",
@@ -79,6 +80,7 @@
 	"mwoauth-consumer-stage-approved": "已核准",
 	"mwoauth-consumer-stage-disabled": "已停用",
 	"mwoauth-consumer-stage-suppressed": "已禁止",
+	"mwoauth-ignorewarnings": "忽略警告",
 	"oauthconsumerregistration": "OAuth Consumer 註冊",
 	"mwoauthconsumerregistration-navigation": "導覽：",
 	"mwoauthconsumerregistration-list": "我的 Consumer 清單",
@@ -163,6 +165,7 @@
 	"mwoauthlistconsumers-version": "Consumer 版本",
 	"mwoauthlistconsumers-user": "發佈者",
 	"mwoauthlistconsumers-description": "描述",
+	"mwoauthlistconsumers-owner-only": "僅限擁有者",
 	"mwoauthlistconsumers-wiki": "適用的專案",
 	"mwoauthlistconsumers-callbackurl": "OAuth \"回呼 URL\"",
 	"mwoauthlistconsumers-callbackisprefix": "允許 Consumer 在請求中指定一個回呼並使用上面的「回呼」URL 作為一個必需的前綴。",
