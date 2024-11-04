@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Joris Darlington Quarshie",
-			"Naudefj"
+			"Naudefj",
+			"Rooiratel"
 		]
 	},
 	"mwoauth-desc": "Laat gebruik van OAuth 1.0a en OAuth 2.0 toe vir API matiging",
