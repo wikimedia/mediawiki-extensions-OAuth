@@ -193,6 +193,7 @@
 	"right-mwoauthviewprivate": "Xem dữ liệu riêng OAuth",
 	"right-mwoauthmanagemygrants": "Quản lý các quyền OAuth được cấp",
 	"action-mwoauthmanageconsumer": "quản lý tiêu dùng OAuth",
+	"action-mwoauthsuppress": "niêm phong các trình tiêu dùng OAuth",
 	"action-mwoauthmanagemygrants": "quản lý các quyền OAuth mà bạn cấp",
 	"action-mwoauthproposeconsumer": "đề xuất tiêu dùng OAuth mới",
 	"mwoauth-botpasswords-note": "<strong>Lưu ý:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> an toàn hơn mật khẩu bot và nên được ưu tiên dùng khi bot có hỗ trợ nó.",
