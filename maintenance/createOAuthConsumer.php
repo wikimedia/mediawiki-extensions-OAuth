@@ -56,6 +56,11 @@ class CreateOAuthConsumer extends Maintenance {
 		$this->addOption( 'grants', 'Grants', true, true, false, true );
 		$this->addOption( 'jsonOnSuccess', 'Output successful results as JSON' );
 		$this->addOption( 'approve', 'Accept the consumer' );
+		$this->addOption(
+			'ownerOnly',
+			'Make the consumer only usable by the given user; see ' .
+				'https://www.mediawiki.org/wiki/OAuth/Owner-only_consumers.'
+		);
 		$this->requireExtension( "OAuth" );
 	}
 
@@ -78,7 +83,7 @@ class CreateOAuthConsumer extends Maintenance {
 			'callbackIsPrefix' => $this->hasOption( 'callbackIsPrefix' ),
 			'grants' => '["' . implode( '","', $this->getOption( 'grants' ) ) . '"]',
 			'granttype' => 'normal',
-			'ownerOnly' => false,
+			'ownerOnly' => $this->hasOption( 'ownerOnly' ),
 			// Only support OAuth 1 for now, but that requires valid values for OAuth 2 fields
 			'oauth2IsConfidential' => true,
 			'oauth2GrantTypes' => [ 'authorization_code', 'refresh_token' ],
