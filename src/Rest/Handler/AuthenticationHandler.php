@@ -14,6 +14,7 @@ use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\Response as RestResponse;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Title\Title;
 use Psr\Http\Message\ResponseInterface;
 use RequestContext;
 use User;
@@ -143,7 +144,11 @@ abstract class AuthenticationHandler extends Handler {
 			return $response;
 		}
 
-		$out = RequestContext::getMain()->getOutput();
+		$context = RequestContext::getMain();
+		// T379504: Set dummy context title
+		$context->setTitle( Title::makeTitle( NS_SPECIAL, 'Api/Rest' ) );
+		$out = $context->getOutput();
+
 		// TODO: Should we include message/hint eventhough they are not localized?
 		$out->showErrorPage(
 			'mwoauth-error',
