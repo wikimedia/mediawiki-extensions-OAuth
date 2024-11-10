@@ -18,6 +18,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response as RestResponse;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Psr\Http\Message\ResponseInterface;
 
@@ -158,7 +159,11 @@ abstract class AuthenticationHandler extends Handler {
 			return $response;
 		}
 
-		$out = RequestContext::getMain()->getOutput();
+		$context = RequestContext::getMain();
+		// T379504: Set dummy context title
+		$context->setTitle( Title::makeTitle( NS_SPECIAL, 'Api/Rest' ) );
+		$out = $context->getOutput();
+
 		$out->showErrorPage(
 			'mwoauth-error',
 			$this->getLocalizedErrorMessage( $exception )
