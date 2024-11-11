@@ -104,7 +104,7 @@
 	"mwoauthconsumerregistration-resetsecretkey": "إعادة تعيين المفتاح السري إلى قيمة جديدة",
 	"mwoauthconsumerregistration-proposed": "تم استلام طلب مستهلك OAuth الخاص بك.\n\nلقد تم تعيين رمز مستهلك لـ'''$1'''  ورمز سري لـ'''$2'''. ''الرجاء تسجيلهما للرجوع إليها مستقبلا.''",
 	"mwoauthconsumerregistration-created-owner-only": "تم إنشاء مستهلك OAuth الخاص بك.\n\nرموزك المميزة هي:\n; رمز المستهلك: $1\n; سر المستهلك: $2\n;  رمز الوصول: $3\n; سر الوصول: $4\n<em>الرجاء تسجيلها للرجوع إليها مستقبلا.</em>",
-	"mwoauthconsumerregistration-created-owner-only-oauth2": "تم إنشاء عميل OAuth 2.0 الخاص بك.! N !! N! الرموز المميزة الخاصة بك هي:! N !؛ مفتاح تطبيق العميل: $1 ! N !؛ سر تطبيق العميل: $2 ! N !؛ رمز الوصول: $3 ! N !؛ <em>يرجى تسجيل هذه للرجوع إليها في المستقبل.</em>",
+	"mwoauthconsumerregistration-created-owner-only-oauth2": "تم إنشاء موظف \"أوث 2.0\" الخاص بك \n\nرموزك هي:؛ مفتاح تطبيق العميل: $1; سر تطبيق عميل: $2; رموز الوصول: $3; <em>يرجى تسجيل هذه للمراجعة المستقبلية.</em>",
 	"mwoauthconsumerregistration-updated": "تم تحديث سجل مستهلك OAuth الخاص بك.",
 	"mwoauthconsumerregistration-secretreset": "لقد تم تعيين الرمز السري للمستهلك '''$1'''، ''الرجاء تسجيله للرجوع إليه في المستقبل.''",
 	"mwoauthconsumerregistration-secretreset-owner-only": "تمت إعادة تعيين الرموز المميزة للمستهلك في OAuth، الرموز الجديدة هي:\n\nرموزك المميزة هي:\n; رمز المستهلك: $1\n; سر المستهلك: $2\n;  رمز الوصول: $3\n; سر الوصول: $4\n<em>الرجاء تسجيلها للرجوع إليها مستقبلا.</em>",
