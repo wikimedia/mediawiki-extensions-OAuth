@@ -6,7 +6,8 @@
 			"Nemoralis",
 			"Serkanland",
 			"Toghrul Rahimli",
-			"Wertuose"
+			"Wertuose",
+			"Əkrəm Cəfər"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "Bu dəyişikliyi həyata keçirmək üçün istifadə olunan OAuth istifadəçisi ($1)",
@@ -69,12 +70,12 @@
 	"mwoauth-invalid-access-wrongwiki": "İstehlakçı yalnız \"$1\" layihəsində istifadə edilə bilər.",
 	"mwoauth-consumer-conflict": "Siz baxdığınız zaman kimsə bu istehlakçının atributlarını dəyişdi. Yenidən cəhd edin. Dəyişiklik jurnalını yoxlamaq istəyə bilərsiniz.",
 	"mwoauth-consumer-grantshelp": "İcazələr istifadəçi hesabınızda olan hüquqlara giriş imkanı verir. Burada icazənin aktivləşdirilməsi istifadəçi hesabınızın başqa cür ola bilməyəcəyi hüquqlara girişi təmin etmir. Ətraflı məlumat üçün [[Special:ListGrants|qrantlar cədvəlinə]] baxın.\n\nRiskli icazələr qeyd olunub. Tətbiq zərərli niyyəti olan biri tərəfindən ələ keçirildikdə qeyd edilməmiş icazələrdən sui-istifadə etmək demək olar ki, mümkünsüzdür. Vandalizm riski olan icazələr (<span class=\"mw-grantriskgroup-vandalism\"></span>) geri qaytarmaq üçün çox səy tələb edən pozulmalara səbəb olmaq üçün istifadə edilə bilər. Təhlükəsizlik riski olan icazələr (<span class=\"mw-grantriskgroup-security\"></span>) qalıcı zərər verə bilər (məsələn, şəxsi məlumatların oğurlanması). Daxili icazələr (<span class=\"mw-grantriskgroup-internal\"></span>) adətən yalnız sayt operatoru tərəfindən istifadə olunur və onlar üçün sorğular demək olar ki, təsdiqlənmir. Zəhmət olmasa, həqiqətən ehtiyacınız olmadıqca riskli icazələr tələb etməyin.",
-	"mwoauth-consumer-stage-proposed": "təklif edilən",
-	"mwoauth-consumer-stage-rejected": "rədd edilib",
-	"mwoauth-consumer-stage-expired": "müddəti bitib",
-	"mwoauth-consumer-stage-approved": "təsdiqlənib",
-	"mwoauth-consumer-stage-disabled": "söndürülüb",
-	"mwoauth-consumer-stage-suppressed": "gizlədilib",
+	"mwoauth-consumer-stage-proposed": "Təklif edilib",
+	"mwoauth-consumer-stage-rejected": "Rədd edilib",
+	"mwoauth-consumer-stage-expired": "Müddəti bitib",
+	"mwoauth-consumer-stage-approved": "Təsdiqlənib",
+	"mwoauth-consumer-stage-disabled": "Söndürülüb",
+	"mwoauth-consumer-stage-suppressed": "Gizlədilib",
 	"mwoauth-ignorewarnings": "Xəbərdarlıqlara məhəl qoyma",
 	"oauthconsumerregistration": "OAuth istehlakçı qeydiyyatı",
 	"mwoauthconsumerregistration-navigation": "Naviqasiya:",

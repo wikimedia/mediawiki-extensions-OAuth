@@ -30,7 +30,8 @@
 			"VulpesVulpes825",
 			"Xiaomingyan",
 			"Xiplus",
-			"Yfdyh000"
+			"Yfdyh000",
+			"沈澄心"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "用于执行此更改的OAuth消费方（$1）",
@@ -38,6 +39,7 @@
 	"mwoauth-nosubpage-explanation": "OAuth是允许外部应用程序在收到用户的许可后识别{{SITENAME}}用户或代表他们行事的一种机制。\n\n为了让这个页面做一些事情，需要更多的参数。如果您是从外部应用程序来到这里的，可能是由于该应用程序中的错误；你应该联系作者。",
 	"mwoauth-verified": "现在该应用程序已允许以您的名义访问MediaWiki。\n\n要完成这个过程，请为该应用提供这个验证值：'''$1'''",
 	"mwoauth-named-account-required-reason": "此功能仅供注册用户使用。您需要登录您的{{SITENAME}}账号才能授权应用程序访问此功能。",
+	"mwoauth-named-account-required-reason-for-temp-user": "此功能仅供注册用户使用。您需要在{{SITENAME}}上创建一个账号才能授权应用程序。",
 	"mwoauth-available-only-to-registered": "此页面仅对注册账号开放。",
 	"mwoauth-db-readonly": "OAuth数据库暂时锁定。请几分钟后重试。",
 	"mwoauth-missing-field": "“$1”字段缺少值",
