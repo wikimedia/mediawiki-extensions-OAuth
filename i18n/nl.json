@@ -224,7 +224,7 @@
 	"mwoauthmanagemygrants-basic-tooltip": "'''Waarom kan ik deze toestemming niet bijwerken?'''\nDeze toestemming geeft uw gekoppelde toepassing basisrechten die nodig zijn om goed te kunnen werken. Als u niet wilt dat deze gekoppelde toepassing deze rechten heeft, trek dan de toegang van de toepassing in.",
 	"mwoauthmanagemygrants-authonly-tooltip": "'''Waarom kan ik deze machtiging niet bijwerken?'''\nAls u niet wilt dat deze verbonden applicatie dit recht heeft, moet u de toegang tot de applicatie intrekken.",
 	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Uw}} bewerkingen gemaakt door deze applicatie",
-	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Uw}} handelingen uitgevoerd door deze applicatie",
+	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Uw}} handelingen met deze applicatie",
 	"logentry-mwoauthconsumer-propose": "$1 {{GENDER:$2|heeft}} een OAuth-toepassing (toepassingssleutel $4) voorgesteld",
 	"logentry-mwoauthconsumer-propose-autoapproved": "$1 {{GENDER:$2|heeft}} een OAuth-consument voorgesteld (consumentensleutel $4) en die is automatisch goedgekeurd",
 	"logentry-mwoauthconsumer-update": "$1 {{GENDER:$2|heeft}} een OAuth-toepassing (toepassingssleutel $4) bijgewerkt",
