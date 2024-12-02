@@ -25,7 +25,7 @@
 	"mwoauth-invalid-authorization-blocked-user": "The authorisation headers in your request are for a user who is blocked",
 	"mwoauth-granttype-normal": "Request authorisation for specific permissions.",
 	"mwoauth-oauth2-granttype-auth-code": "Authorisation code",
-	"mwoauth-oauth2-error-server-error": "The authorisation server encountered an unexpected condition that prevented it from fulfilling the request.",
+	"mwoauth-oauth2-error-server-error": "The authorisation server encountered an unexpected condition that prevented it from fulfilling the request.\n\nDebug information: $1",
 	"mwoauth-oauth2-error-unauthorized-client": "The client is not authorised to request an authorisation code using this method.",
 	"mwoauth-oauth2-error-access-denied": "The resource owner or authorisation server denied the request.",
 	"mwoauth-oauth2-error-unsupported-response-type": "The authorisation server does not support obtaining an authorisation code using this method.",
