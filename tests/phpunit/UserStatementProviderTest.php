@@ -62,7 +62,7 @@ class UserStatementProviderTest extends MediaWikiIntegrationTestCase {
 		$userProfile = $userStatementProvider->getUserProfile();
 
 		foreach ( [ $userStatement, $userProfile ] as $data ) {
-			$this->assertSame( $user->getId(), $data['sub'] );
+			$this->assertSame( (string)$user->getId(), $data['sub'] );
 			$this->assertSame( $user->getName(), $data['username'] );
 			$this->assertSame( 0, $data['editcount'] );
 			$this->assertSame( false, $data['confirmed_email'] );
