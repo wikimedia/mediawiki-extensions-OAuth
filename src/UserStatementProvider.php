@@ -104,7 +104,8 @@ class UserStatementProvider {
 	 */
 	public function getUserProfile() {
 		$profile = [
-			'sub' => Utils::getCentralIdFromLocalUser( $this->user ),
+			// 'sub' should be a StringOrURI - https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.2
+			'sub' => (string)Utils::getCentralIdFromLocalUser( $this->user ),
 		];
 		// Include some MediaWiki info about the user
 		if ( !$this->user->isHidden() ) {
