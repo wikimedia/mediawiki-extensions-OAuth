@@ -76,20 +76,24 @@ class UserStatementProvider {
 	 * @return array
 	 */
 	public function getUserStatement() {
-		$statement = [];
+		$statement = [
+			// Include some of the OpenID Connect attributes
+			// http://openid.net/specs/openid-connect-core-1_0.html (draft 14)
+			// Issuer Identifier for the Issuer of the response.
+			'iss' => $this->config->get( 'CanonicalServer' ),
 
-		// Include some of the OpenID Connect attributes
-		// http://openid.net/specs/openid-connect-core-1_0.html (draft 14)
-		// Issuer Identifier for the Issuer of the response.
-		$statement['iss'] = $this->config->get( 'CanonicalServer' );
-		// Subject identifier. A locally unique and never reassigned identifier.
-		// T264560: sub added via $this->getUserProfile()
-		// Audience(s) that this ID Token is intended for.
-		$statement['aud'] = $this->consumer->getConsumerKey();
-		// Expiration time on or after which the ID Token MUST NOT be accepted for processing.
-		$statement['exp'] = (int)wfTimestamp() + 100;
-		// Time at which the JWT was issued.
-		$statement['iat'] = (int)wfTimestamp();
+			// Subject identifier. A locally unique and never reassigned identifier.
+			// T264560: sub added via $this->getUserProfile()
+			// Audience(s) that this ID Token is intended for.
+			'aud' => $this->consumer->getConsumerKey(),
+
+			// Expiration time on or after which the ID Token MUST NOT be accepted for processing.
+			'exp' => (int)wfTimestamp() + 100,
+
+			// Time at which the JWT was issued.
+			'iat' => (int)wfTimestamp(),
+		];
+
 		// TODO: Add auth_time, if we start tracking last login timestamp
 
 		$statement += $this->getUserProfile();
