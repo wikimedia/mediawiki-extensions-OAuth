@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Extension\OAuth\Tests\Backend;
 
+use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthServer;
 use PHPUnit\Framework\TestCase;
@@ -43,12 +44,11 @@ class MWOAuthServerTest extends TestCase {
 	 */
 	public function testCheckCallback( $expect, $registeredUrl, $got, $isPrefix = true ) {
 		$fixture = new MWOAuthServer( null );
-		$consumer = new StubConsumer( [
-			'consumerKey' => '1234567890abcdef',
-			'name' => 'test',
-			'callbackIsPrefix' => $isPrefix,
-			'callbackUrl' => $registeredUrl,
-		] );
+		$consumer = $this->createMock( Consumer::class );
+		$consumer->method( 'getConsumerKey' )->willReturn( '1234567890abcdef' );
+		$consumer->method( 'getName' )->willReturn( 'test' );
+		$consumer->method( 'getCallbackIsPrefix' )->willReturn( $isPrefix );
+		$consumer->method( 'getCallbackUrl' )->willReturn( $registeredUrl );
 
 		$method = new ReflectionMethod( $fixture, 'checkCallback' );
 		$method->setAccessible( true );
