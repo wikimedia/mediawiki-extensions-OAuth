@@ -36,11 +36,13 @@ class AbuseFilterHookHandler implements
 	AbuseFilterComputeVariableHook,
 	AbuseFilterGenerateUserVarsHook
 {
+	/** @inheritDoc */
 	public function onAbuseFilter_builder( array &$realValues ) {
 		// Uses: 'abusefilter-edit-builder-vars-oauth-consumer'
 		$realValues['vars']['oauth_consumer'] = 'oauth-consumer';
 	}
 
+	/** @inheritDoc */
 	public function onAbuseFilter_computeVariable(
 		string $method,
 		VariableHolder $vars,
@@ -68,6 +70,7 @@ class AbuseFilterHookHandler implements
 		return false;
 	}
 
+	/** @inheritDoc */
 	public function onAbuseFilter_generateUserVars( VariableHolder $vars, User $user, ?RecentChange $rc ) {
 		$vars->setLazyLoadVar(
 			'oauth_consumer',

@@ -53,27 +53,32 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 		return !( $action === 'propose' && $this->getConsumerStage() !== Consumer::STAGE_PROPOSED );
 	}
 
+	/** @inheritDoc */
 	public function getHeaderMessage() {
 		$action = $this->event->getExtraParam( 'action' );
 		return $this->msg( "notification-oauth-app-$action-title",
 			$this->event->getAgent(), $this->getConsumerName(), $this->getOwner() );
 	}
 
+	/** @inheritDoc */
 	public function getSubjectMessage() {
 		$action = $this->event->getExtraParam( 'action' );
 		return $this->msg( "notification-oauth-app-$action-subject",
 			$this->event->getAgent(), $this->getConsumerName(), $this->getOwner() );
 	}
 
+	/** @inheritDoc */
 	public function getBodyMessage() {
 		$comment = $this->event->getExtraParam( 'comment' );
 		return $comment ? $this->msg( 'notification-oauth-app-body', $comment ) : false;
 	}
 
+	/** @inheritDoc */
 	public function getIconType() {
 		return 'oauth';
 	}
 
+	/** @inheritDoc */
 	public function getPrimaryLink() {
 		$consumerKey = $this->event->getExtraParam( 'app-key' );
 		$action = $this->event->getExtraParam( 'action' );
@@ -95,6 +100,7 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 		];
 	}
 
+	/** @inheritDoc */
 	public function getSecondaryLinks() {
 		return [ $this->getAgentLink() ];
 	}

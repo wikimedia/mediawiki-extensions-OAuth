@@ -59,6 +59,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		$this->grantsLocalization = $grantsLocalization;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->addHelpLink( 'Help:OAuth' );
@@ -326,6 +327,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		return $r;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}

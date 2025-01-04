@@ -112,6 +112,7 @@ EOK;
 		}
 	}
 
+	/** @inheritDoc */
 	public static function onMergeAccountFromTo( User $oUser, User $nUser ) {
 		global $wgMWOAuthSharedUserIDs;
 
@@ -147,10 +148,12 @@ EOK;
 			->execute();
 	}
 
+	/** @inheritDoc */
 	public function onListDefinedTags( &$tags ) {
 		return $this->getUsedConsumerTags( false, $tags );
 	}
 
+	/** @inheritDoc */
 	public function onChangeTagsListActive( &$tags ) {
 		return $this->getUsedConsumerTags( true, $tags );
 	}
@@ -202,6 +205,7 @@ EOK;
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function onSetupAfterCache() {
 		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
 
@@ -214,6 +218,7 @@ EOK;
 		}
 	}
 
+	/** @inheritDoc */
 	public function onApiRsdServiceApis( &$apis ) {
 		$apis['MediaWiki']['settings']['OAuth'] = true;
 	}
