@@ -9,10 +9,6 @@ use Psr\Http\Message\StreamInterface;
 
 class Response extends RestResponse implements ResponseInterface {
 
-	public function __construct( $bodyContents = '' ) {
-		parent::__construct( $bodyContents );
-	}
-
 	/**
 	 * Return an instance with the specified HTTP protocol version.
 	 *
