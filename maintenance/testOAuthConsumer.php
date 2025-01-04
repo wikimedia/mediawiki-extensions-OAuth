@@ -65,7 +65,7 @@ class TestOAuthConsumer extends Maintenance {
 					/** @var string */
 					private $pubKey;
 
-					public function __construct( $privKeyFile ) {
+					public function __construct( string $privKeyFile ) {
 						$key = file_get_contents( $privKeyFile );
 						if ( !$key ) {
 							throw new OAuthException( "Could not read private key file $privKeyFile" );

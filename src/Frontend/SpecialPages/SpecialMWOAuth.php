@@ -655,7 +655,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		}
 	}
 
-	private function redirectToREST( $queryAppend = [] ) {
+	private function redirectToREST( array $queryAppend = [] ) {
 		$redirectParams = [
 			'returnto' => $this->getRequest()->getText(
 				'returnto', $this->getRequest()->getText( 'returnto' )

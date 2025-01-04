@@ -23,7 +23,7 @@ class MWOAuthRequest extends OAuthRequest {
 		parent::__construct( $httpMethod, $httpUrl, $parameters );
 	}
 
-	public function getConsumerKey() {
+	public function getConsumerKey(): string {
 		return $this->parameters['oauth_consumer_key'] ?? '';
 	}
 
@@ -35,7 +35,7 @@ class MWOAuthRequest extends OAuthRequest {
 		return $this->sourceIP;
 	}
 
-	public static function fromRequest( WebRequest $request ) {
+	public static function fromRequest( WebRequest $request ): self {
 		$httpMethod = strtoupper( $request->getMethod() );
 		$httpUrl = $request->getFullRequestURL();
 

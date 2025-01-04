@@ -178,7 +178,7 @@ abstract class Consumer extends MWOAuthDAO {
 		];
 	}
 
-	protected static function getFieldPermissionChecks() {
+	protected static function getFieldPermissionChecks(): array {
 		return [
 			'name'             => 'userCanSee',
 			'userId'           => 'userCanSee',

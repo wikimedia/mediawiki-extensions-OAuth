@@ -61,7 +61,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 	/** @var string */
 	protected $oauth_version;
 
-	protected static function getSchema() {
+	protected static function getSchema(): array {
 		return [
 			'table'               => 'oauth_accepted_consumer',
 			'fieldColumnMap'      => [
@@ -80,7 +80,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		];
 	}
 
-	protected static function getFieldPermissionChecks() {
+	protected static function getFieldPermissionChecks(): array {
 		return [
 			'wiki'          => 'userCanSee',
 			'userId'        => 'userCanSee',

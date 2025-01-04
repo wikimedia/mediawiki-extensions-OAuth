@@ -142,7 +142,7 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 		return false;
 	}
 
-	private function getDbDataFromTokenEntity( AccessTokenEntity $accessTokenEntity ) {
+	private function getDbDataFromTokenEntity( AccessTokenEntity $accessTokenEntity ): array {
 		$expiry = $accessTokenEntity->getExpiryDateTime()->getTimestamp();
 		if ( $expiry > 9223371197536780800 ) {
 			$expiry = 'infinity';
