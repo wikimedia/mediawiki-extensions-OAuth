@@ -181,6 +181,9 @@ class Authorize extends AuthenticationHandler {
 		);
 	}
 
+	/**
+	 * @return RestResponse
+	 */
 	private function getLoginRedirectResponse() {
 		return $this->getResponseFactory()->createTemporaryRedirect(
 			SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [

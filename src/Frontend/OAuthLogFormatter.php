@@ -12,6 +12,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Message\ScalarParam;
 
 /**
  * Formatter for OAuth log events
@@ -43,6 +44,10 @@ class OAuthLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	/**
+	 * @param string $consumerKey
+	 * @return string|ScalarParam
+	 */
 	protected function getConsumerLink( $consumerKey ) {
 		$title = Title::newFromText( 'Special:OAuthListConsumers/view/' . $consumerKey );
 		if ( $this->plaintext ) {

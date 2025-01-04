@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth\Backend;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -271,6 +272,11 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		return $row;
 	}
 
+	/**
+	 * @param string $name
+	 * @param IContextSource $context
+	 * @return Message|true
+	 */
 	protected function userCanSee( $name, IContextSource $context ) {
 		$centralUserId = Utils::getCentralIdFromLocalUser( $context->getUser() );
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
@@ -284,6 +290,11 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		}
 	}
 
+	/**
+	 * @param string $name
+	 * @param IContextSource $context
+	 * @return Message|true
+	 */
 	protected function userCanSeePrivate( $name, IContextSource $context ) {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
@@ -294,6 +305,11 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		}
 	}
 
+	/**
+	 * @param string $name
+	 * @param IContextSource $context
+	 * @return Message|true
+	 */
 	protected function userCanSeeSecret( $name, IContextSource $context ) {
 		return $context->msg( 'mwoauth-field-private' );
 	}

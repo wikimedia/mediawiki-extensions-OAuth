@@ -8,6 +8,11 @@ use MediaWiki\User\User;
 use MWRestrictions;
 
 class MockClientEntity extends ClientEntity {
+	/**
+	 * @param User $user
+	 * @param array $values
+	 * @return Consumer|false
+	 */
 	public static function newMock( User $user, $values = [] ) {
 		$now = wfTimestampNow();
 		return ClientEntity::newFromArray( array_merge( [

@@ -156,6 +156,10 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 		return $params['client_id'] ?? $default;
 	}
 
+	/**
+	 * @param string|false $expiration
+	 * @return string
+	 */
 	private function parseExpiration( $expiration ) {
 		if ( $expiration === false || $expiration === 'infinity' ) {
 			// Effectively non-expiring tokens

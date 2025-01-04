@@ -126,6 +126,10 @@ EOK;
 		return true;
 	}
 
+	/**
+	 * @param int $oldid
+	 * @param int $newid
+	 */
 	protected static function doUserIdMerge( $oldid, $newid ) {
 		$dbw = Utils::getCentralDB( DB_PRIMARY );
 		// Merge any consumers register to this user
