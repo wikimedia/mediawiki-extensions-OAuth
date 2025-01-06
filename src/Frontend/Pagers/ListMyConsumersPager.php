@@ -38,6 +38,11 @@ class ListMyConsumersPager extends ReverseChronologicalPager {
 	/** @var array */
 	public $mConds;
 
+	/**
+	 * @param SpecialMWOAuthConsumerRegistration $form
+	 * @param array $conds
+	 * @param int $centralUserId
+	 */
 	public function __construct( $form, $conds, $centralUserId ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;

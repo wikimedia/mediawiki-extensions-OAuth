@@ -38,6 +38,13 @@ class ListConsumersPager extends AlphabeticPager {
 	/** @var array */
 	public $mConds;
 
+	/**
+	 * @param SpecialMWOAuthListConsumers $form
+	 * @param array $conds
+	 * @param string|null $name
+	 * @param int|null $centralUserID
+	 * @param int $stage
+	 */
 	public function __construct( $form, $conds, $name, $centralUserID, $stage ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;

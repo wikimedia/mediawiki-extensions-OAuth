@@ -18,6 +18,12 @@ class MWOAuthRequest extends OAuthRequest {
 	/** @var string|false */
 	private $sourceIP;
 
+	/**
+	 * @param string $httpMethod
+	 * @param string $httpUrl
+	 * @param array|null $parameters
+	 * @param string|false $sourcIP
+	 */
 	public function __construct( $httpMethod, $httpUrl, $parameters, $sourcIP = false ) {
 		$this->sourceIP = $sourcIP;
 		parent::__construct( $httpMethod, $httpUrl, $parameters );

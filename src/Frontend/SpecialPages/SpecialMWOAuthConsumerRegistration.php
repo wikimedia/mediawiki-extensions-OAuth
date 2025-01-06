@@ -37,6 +37,7 @@ use MediaWiki\HTMLForm\Field\HTMLHiddenField;
 use MediaWiki\HTMLForm\Field\HTMLRestrictionsField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Language\Language;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
@@ -454,6 +455,13 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		return 'users';
 	}
 
+	/**
+	 * @param int $oauthVersion
+	 * @param User $user
+	 * @param string[] $allWikis
+	 * @param Language $lang
+	 * @param array $showGrants
+	 */
 	private function proposeOAuth( int $oauthVersion, User $user, $allWikis, $lang, $showGrants ) {
 		if ( !in_array( $oauthVersion, [ Consumer::OAUTH_VERSION_1, Consumer::OAUTH_VERSION_2 ] ) ) {
 			throw new InvalidArgumentException( 'Invalid OAuth version' );
