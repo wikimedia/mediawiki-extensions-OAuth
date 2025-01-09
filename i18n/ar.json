@@ -14,7 +14,8 @@
 			"علاء",
 			"محمد أحمد عبد الفتاح",
 			"مشعل الحربي",
-			"منصةشليلة"
+			"منصةشليلة",
+			"Cigaryno"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "اعتاد مستهلك OAuth إجراء هذا التغيير",
@@ -173,6 +174,7 @@
 	"mwoauthlistconsumers-version": "إصدار المستهلك",
 	"mwoauthlistconsumers-user": "الناشر",
 	"mwoauthlistconsumers-description": "الوصف",
+	"mwoauthlistconsumers-owner-only": "المالك فقط:",
 	"mwoauthlistconsumers-wiki": "مشروع قابل للتطبيق",
 	"mwoauthlistconsumers-callbackurl": "\"مسار معاودة اتصال\" OAuth:",
 	"mwoauthlistconsumers-callbackisprefix": "السماح للمستهلك بتحديد رد اتصال في الطلبات واستخدام مسار \"معاودة الاتصال\" أعلاه كبادئة مطلوبة.",
@@ -235,6 +237,7 @@
 	"log-action-filter-mwoauthconsumer-update": "تحديث مستهلك OAuth",
 	"mwoauthconsumer-consumer-logpage": "سجل عميل OAuth",
 	"mwoauthconsumer-consumer-logpagetext": "سجل موافقات ورفض وتعطيل عملاء OAuth المسجلين.",
+	"mwoauth-centralauth-account-link": "حسابات عالمية",
 	"mwoauth-bad-request-missing-params": "عذرا، حدث خطأ ما في تهيئة هذا التطبيق المتصل; اتصل بمطور التطبيق.\n\n<span class=\"plainlinks mw-mwoautherror-details\">وسيط OAuth مفقود: $1</span>",
 	"mwoauth-bad-request-invalid-action": "عذرا، حدث خطأ ما; ستحتاج إلى الاتصال بكاتب التطبيق للحصول على مساعدة بشأن ذلك.\n\n<span class=\"plainlinks mw-mwoautherror-details\">مسار غير معروف: $1</span>",
 	"mwoauth-bad-request-invalid-action-contact": "عذرا، هناك خطأ ما; ستحتاج إلى [$1 الاتصال]  بكاتب التطبيق للحصول على مساعدة بشأن ذلك. \n\n<span class=\"plainlinks mw-mwoautherror-details\">مسار غير معروف: $2</span>",
