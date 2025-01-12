@@ -328,7 +328,6 @@ class Utils {
 		// global ID required via hook
 		if ( $wgMWOAuthSharedUserIDs ) {
 			// T227688 do not rely on array auto-creation for non-stdClass
-			// @phan-suppress-next-line MediaWikiNoIssetIfDefined Phan confused by magic methods, maybe?
 			if ( !isset( $user->oAuthUserData ) ) {
 				$user->oAuthUserData = [];
 			}
