@@ -6,9 +6,12 @@
 		]
 	},
 	"mwoauth-consumer-email": "E-poastačujuhus:",
+	"mwoauth-consumer-stage-disabled": "Váldojuvvon eret anus",
 	"mwoauthconsumerregistration-description": "Govvádus",
 	"mwoauthmanageconsumers-description": "Govvádus",
+	"mwoauthmanageconsumers-disable": "Váldojuvvon eret anus",
 	"mwoauthlistconsumers-description": "Govvádus",
+	"mwoauthlistconsumers-status-disabled": "váldojuvvon eret anus",
 	"mwoauthmanagemygrants-description": "Govvádus",
 	"mwoauth-form-button-approve": "Dohkket",
 	"mwoauth-form-button-cancel": "Gaskkalduhte"
