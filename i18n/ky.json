@@ -4,9 +4,14 @@
 			"Bosogo"
 		]
 	},
+	"mwoauth-field-hidden": "(бул маалымат жашырылган)",
+	"mwoauth-field-private": "(бул маалымат купуя)",
 	"mwoauth-prefs-managegrants": "Туташкан колдонмолор:",
+	"mwoauth-consumer-allwikis": "Бардык долбоорлор",
+	"mwoauth-consumer-owner-only-label": "Ээси үчүн гана:",
 	"mwoauth-consumer-reason": "Себеп:",
 	"mwoauth-consumer-email-unconfirmed": "Аккаунтуңуздун электрондук почтасы ырастала элек.",
+	"mwoauthconsumerregistration-navigation": "Навигация:",
 	"mwoauthconsumerregistration-description": "Сыпаттама",
 	"mwoauthconsumerregistration-stage": "Макам",
 	"mwoauthconsumerregistration-manage": "тескөө",
@@ -14,6 +19,8 @@
 	"mwoauthmanageconsumers-reason": "Себеп:",
 	"mwoauthlistconsumers-description": "Сыпаттама",
 	"oauthmanagemygrants": "Туташкан колдонмолорду тескөө",
+	"mwoauthmanagemygrants-navigation": "Навигация:",
+	"mwoauthmanagemygrants-showlist": "Туташкан колдонмолордун тизмеси",
 	"mwoauthmanagemygrants-description": "Сыпаттама",
 	"mwoauthmanagemygrants-confirm-legend": "Туташкан колдонмолорду тескөө",
 	"mwoauth-form-button-cancel": "Жокко чыгаруу",

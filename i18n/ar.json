@@ -264,6 +264,7 @@
 	"mwoauth-invalid-authorization-wrong-user": "رؤوس التفويض في طلبك مخصصة لمستخدم مختلف",
 	"mwoauth-invalid-authorization-not-approved": "يبدو أن التطبيق الذي تحاول الاتصال به غير صحيح; اتصل بكاتب \"$1\" للحصول على المساعدة.",
 	"mwoauth-invalid-authorization-blocked-user": "رؤوس التراخيص في طلبك لمستخدم تم منعه",
+	"mwoauth-not-api": "لا يمكن استخدام OAuth إلا مع واجهة برمجة التطبيقات (API)",
 	"mwoauth-form-description-allwikis": "مرحبا $1،\n\nلإكمال طلبك; يحتاج '''$2''' إلى إذن لتنفيذ الإجراءات التالية نيابة عنك في جميع مشاريع هذا الموقع:\n\n$4",
 	"mwoauth-form-description-onewiki": "مرحبا $1،\n\nلإكمال طلبك; يحتاج '''$2''' إلى إذن لتنفيذ الإجراءات التالية نيابة عنك في ''$4'':\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "مرحبا $1،\n\nلإكمال طلبك; يحتاج '''$2''' إلى إذن للوصول إلى معلومات حول جميع مشاريع هذا الموقع نيابة عنك، لن يتم إجراء أي تغييرات على حسابك.",
