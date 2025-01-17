@@ -81,10 +81,12 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		$this->grantsLocalization = $grantsLocalization;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$user = $this->getUser();
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
@@ -559,6 +561,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		return $r;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}

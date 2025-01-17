@@ -72,18 +72,22 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$this->grantsLocalization = $grantsLocalization;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function userCanExecute( User $user ) {
 		return $user->isEmailConfirmed();
 	}
 
+	/** @inheritDoc */
 	public function displayRestrictionError() {
 		throw new PermissionsError( null, [ 'mwoauthconsumerregistration-need-emailconfirmed' ] );
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->requireNamedUser( 'mwoauth-named-account-required-reason' );
 		$this->checkPermissions();
@@ -451,6 +455,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		return $r;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'users';
 	}

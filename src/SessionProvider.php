@@ -65,6 +65,7 @@ class SessionProvider
 		$hookContainer->register( 'MarkPatrolled', $this );
 	}
 
+	/** @inheritDoc */
 	public function provideSessionInfo( WebRequest $request ) {
 		$oauthVersion = $this->getOAuthVersionFromRequest( $request );
 		if ( $oauthVersion === null ) {
@@ -290,6 +291,7 @@ class SessionProvider
 		throw new MWOAuthException( 'mwoauth-oauth2-invalid-access-token' );
 	}
 
+	/** @inheritDoc */
 	public function preventSessionsForUser( $username ) {
 		$id = Utils::getCentralIdFromUserName( $username );
 		$dbw = Utils::getCentralDB( DB_PRIMARY );
@@ -324,6 +326,7 @@ class SessionProvider
 		$dbw->endAtomic( __METHOD__ );
 	}
 
+	/** @inheritDoc */
 	public function getVaryHeaders() {
 		return [
 			'Authorization' => null,
@@ -354,6 +357,7 @@ class SessionProvider
 		return null;
 	}
 
+	/** @inheritDoc */
 	public function getAllowedUserRights( SessionBackend $backend ) {
 		if ( $backend->getProvider() !== $this ) {
 			throw new InvalidArgumentException( 'Backend\'s provider isn\'t $this' );

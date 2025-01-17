@@ -88,10 +88,12 @@ class TestOAuthConsumer extends Maintenance {
 						$this->pubKey = $details['key'];
 					}
 
+					/** @inheritDoc */
 					protected function fetch_public_cert( &$request ) {
 						return $this->pubKey;
 					}
 
+					/** @inheritDoc */
 					protected function fetch_private_cert( &$request ) {
 						return $this->privKey;
 					}

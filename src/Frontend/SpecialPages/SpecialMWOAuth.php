@@ -80,10 +80,12 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$this->urlUtils = $urlUtils;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function getLocalName() {
 		// Force the canonical name when OAuth headers are present,
 		// otherwise SpecialPageFactory redirects and breaks the signature.
@@ -93,6 +95,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		return parent::getLocalName();
 	}
 
+	/** @inheritDoc */
 	public function execute( $subpage ) {
 		if ( $this->getRequest()->getRawVal( 'display' ) === 'popup' ) {
 			// Replace the default skin with a "micro-skin" that omits most of the interface. (T362706)

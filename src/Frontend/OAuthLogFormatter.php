@@ -36,6 +36,7 @@ class OAuthLogFormatter extends LogFormatter {
 		$this->userEditTracker = $userEditTracker;
 	}
 
+	/** @inheritDoc */
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 		if ( isset( $params[3] ) ) {

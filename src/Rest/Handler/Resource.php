@@ -152,6 +152,7 @@ class Resource extends Handler {
 		return $response;
 	}
 
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'type' => [

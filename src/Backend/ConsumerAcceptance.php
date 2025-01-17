@@ -238,6 +238,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		$this->grants = (array)$this->grants;
 	}
 
+	/** @inheritDoc */
 	protected function encodeRow( IDatabase $db, $row ) {
 		if ( (int)$row['oaac_user_id'] === 0 ) {
 			throw new MWOAuthException( 'mwoauth-consumer-access-no-user', [
@@ -257,6 +258,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		return $row;
 	}
 
+	/** @inheritDoc */
 	protected function decodeRow( IDatabase $db, $row ) {
 		$row['oaac_grants'] = FormatJson::decode( $row['oaac_grants'], true );
 		$row['oaac_accepted'] = wfTimestamp( TS_MW, $row['oaac_accepted'] );

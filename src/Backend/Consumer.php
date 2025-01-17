@@ -747,6 +747,7 @@ abstract class Consumer extends MWOAuthDAO {
 		$this->oauth2IsConfidential = (bool)$this->oauth2IsConfidential;
 	}
 
+	/** @inheritDoc */
 	protected function encodeRow( IDatabase $db, $row ) {
 		// For compatibility with other wikis in the farm, un-remap some grants
 		foreach ( self::$mapBackCompatGrants as $old => $new ) {
@@ -768,6 +769,7 @@ abstract class Consumer extends MWOAuthDAO {
 		return $row;
 	}
 
+	/** @inheritDoc */
 	protected function decodeRow( IDatabase $db, $row ) {
 		$row['oarc_registration'] = wfTimestamp( TS_MW, $row['oarc_registration'] );
 		$row['oarc_stage'] = (int)$row['oarc_stage'];

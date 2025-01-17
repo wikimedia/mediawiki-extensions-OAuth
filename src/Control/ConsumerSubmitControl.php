@@ -85,6 +85,7 @@ class ConsumerSubmitControl extends SubmitControl {
 		$this->dbw = $dbw;
 	}
 
+	/** @inheritDoc */
 	protected function getRequiredFields() {
 		$validateRsaKey = static function ( $s ) {
 			if ( trim( $s ) === '' ) {
@@ -234,6 +235,7 @@ class ConsumerSubmitControl extends SubmitControl {
 		return $this->success();
 	}
 
+	/** @inheritDoc */
 	protected function processAction( $action ) {
 		$context = $this->getContext();
 		// proposer or admin

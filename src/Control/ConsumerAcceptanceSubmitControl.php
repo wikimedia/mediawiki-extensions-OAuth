@@ -62,6 +62,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 		$this->oauthVersion = (int)$oauthVersion;
 	}
 
+	/** @inheritDoc */
 	protected function getRequiredFields() {
 		$required = [
 			'update'   => [
@@ -107,6 +108,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 		return $this->success();
 	}
 
+	/** @inheritDoc */
 	protected function processAction( $action ) {
 		// proposer or admin
 		$user = $this->getUser();

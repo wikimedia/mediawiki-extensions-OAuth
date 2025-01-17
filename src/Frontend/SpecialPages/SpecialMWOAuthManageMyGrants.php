@@ -73,6 +73,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		return true;
 	}
 
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->getOutput()->disallowUserJs();
@@ -375,6 +376,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		return self::$irrevocableGrants;
 	}
 
+	/** @inheritDoc */
 	protected function getGroupName() {
 		return 'login';
 	}
