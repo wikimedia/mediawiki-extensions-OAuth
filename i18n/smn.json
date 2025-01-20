@@ -11,8 +11,10 @@
 	"mwoauthconsumerregistration-description": "Kuvvim",
 	"mwoauthmanageconsumers-main": "Ovdâsijđo",
 	"mwoauthmanageconsumers-description": "Kuvvim",
+	"mwoauthmanageconsumers-disable": "Meddâlistum kiävtust",
 	"mwoauthmanageconsumers-reason": "Suijâ:",
 	"mwoauthlistconsumers-description": "Kuvvim",
+	"mwoauthlistconsumers-status-disabled": "meddâlistum kiävtust",
 	"mwoauthmanagemygrants-description": "Kuvvim",
 	"mwoauth-form-button-cancel": "Jooskâ",
 	"notification-oauth-app-body": "Suijâ: $1"
