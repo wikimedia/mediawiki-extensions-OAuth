@@ -81,6 +81,9 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\OAuth\\": "src/"
 	},
+	"AutoloadClasses": {
+		"MWOA": "src/MWOA.php"
+	},
 	"TestAutoloadNamespaces": {
 		"MediaWiki\\Extension\\OAuth\\Tests\\": "tests/phpunit/"
 	},
