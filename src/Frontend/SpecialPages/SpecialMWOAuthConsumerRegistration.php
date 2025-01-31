@@ -629,7 +629,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			]
 		];
 		$formDescriptor = array_filter( $formDescriptor,
-			fn ( $field ) => !isset( $field['oauthVersion'] ) || $field['oauthVersion'] === $oauthVersion
+			static fn ( $field ) => !isset( $field['oauthVersion'] ) || $field['oauthVersion'] === $oauthVersion
 		);
 
 		$form = HTMLForm::factory( 'ooui',
