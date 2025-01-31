@@ -110,7 +110,7 @@ class DAOAccessControl extends ContextSource {
 			return $msg;
 		} else {
 			$value = $this->dao->get( $name );
-			return $sCallback ? call_user_func( $sCallback, $value ) : $value;
+			return $sCallback ? $sCallback( $value ) : $value;
 		}
 	}
 
