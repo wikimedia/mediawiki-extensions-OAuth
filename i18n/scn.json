@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ajeje Brazorf",
+			"GianAntonucci",
 			"Sarvaturi"
 		]
 	},
@@ -23,7 +24,7 @@
 	"mwoauthmanageconsumers-approve": "Appruvatu",
 	"mwoauthmanageconsumers-reenable": "Appruvatu",
 	"mwoauthmanageconsumers-reason": "Mutivu:",
-	"oauthlistconsumers": "Elencu di l'applicazzioni OAuth",
+	"oauthlistconsumers": "Lista di l'appricazzioni OAuth",
 	"mwoauthlistconsumers-view": "dittagghî",
 	"mwoauthlistconsumers-name": "Nomu di l'appricazzioni",
 	"mwoauthlistconsumers-description": "Discrizzioni",
