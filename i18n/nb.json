@@ -4,7 +4,8 @@
 			"Cocu",
 			"Danmichaelo",
 			"Jon Harald Søby",
-			"EdoAug"
+			"EdoAug",
+			"Njardarlogar"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "OAuth-konsument brukt til å utføre denne endringen",
@@ -71,7 +72,7 @@
 	"mwoauth-consumer-stage-suppressed": "underslått",
 	"oauthconsumerregistration": "OAuth-konsumentregistrering",
 	"mwoauthconsumerregistration-navigation": "Navigasjon:",
-	"mwoauthconsumerregistration-propose-oauth2": "Foreslå en ny OAuth 2.0-klient",
+	"mwoauthconsumerregistration-propose-oauth2": "Føreslå ein ny OAuth 2.0-klient",
 	"mwoauthconsumerregistration-list": "Min konsumentliste",
 	"mwoauthconsumerregistration-main": "Hovedside",
 	"mwoauthconsumerregistration-propose-text": "Du kan:\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|Foreslå en OAuth 1.0a-konsument]].\n* [[Special:OAuthConsumerRegistration/propose/oauth2|Foreslå en OAuth 2.0-klient]].",
