@@ -9,7 +9,6 @@ use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
 use MediaWiki\Extension\OAuth\Frontend\OAuthLogFormatter;
 use MediaWiki\Hook\SetupAfterCacheHook;
 use MediaWiki\Status\Status;
-use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
@@ -171,9 +170,23 @@ EOK;
 	 * @return bool
 	 */
 	private function getUsedConsumerTags( $activeOnly, &$tags ) {
-		// Step 1: Get the list of (active) consumers' tags for this wiki
+		// Step 1: Get a list of all change tags that have ever been used on this wiki
+		// that look like our tags, and extract the consumer IDs from them
+		$consumerIds = [];
+		foreach ( $this->changeTagDefStore->getMap() as $tagName ) {
+			$consumerId = Utils::parseTagName( $tagName );
+			if ( $consumerId ) {
+				$consumerIds[] = $consumerId;
+			}
+		}
+		if ( !$consumerIds ) {
+			return true;
+		}
+
+		// Step 2: Verify that the consumers actually exist and are still valid
 		$db = Utils::getCentralDB( DB_REPLICA );
 		$conds = [
+			'oarc_id' => $consumerIds,
 			$db->expr( 'oarc_wiki', '=', [ '*', WikiMap::getCurrentWikiId() ] ),
 			'oarc_deleted' => 0,
 		];
@@ -186,20 +199,9 @@ EOK;
 			->where( $conds )
 			->caller( __METHOD__ )
 			->fetchResultSet();
-		$allTags = [];
-		foreach ( $res as $row ) {
-			$allTags[] = Utils::getTagName( $row->oarc_id );
-		}
 
-		// Step 2: Return only those that are in use.
-		foreach ( $allTags as $tag ) {
-			try {
-				$this->changeTagDefStore->getId( $tag );
-			} catch ( NameTableAccessException $ex ) {
-				continue;
-			}
-			// if it has an ID, it's in use
-			$tags[] = $tag;
+		foreach ( $res as $row ) {
+			$tags[] = Utils::getTagName( $row->oarc_id );
 		}
 
 		return true;

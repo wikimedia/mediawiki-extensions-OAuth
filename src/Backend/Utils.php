@@ -481,6 +481,18 @@ class Utils {
 	}
 
 	/**
+	 * Get the consumer ID from the given change tag name.
+	 * @param string $tagName
+	 * @return ?int Consumer ID, or null if the change tag doesn't look like one of ours
+	 */
+	public static function parseTagName( string $tagName ): ?int {
+		if ( preg_match( '/^OAuth CID: (\d+)$/', $tagName, $matches ) ) {
+			return (int)$matches[1];
+		}
+		return null;
+	}
+
+	/**
 	 * Check if a given change tag name should be reserved for this extension.
 	 * @param string $tagName
 	 * @return bool
