@@ -111,7 +111,7 @@ class UIHooks implements
 		}
 
 		// More expensive check
-		if ( !preg_match( '!^Tag-OAuth_CID:_(\d+)((?:-description)?)(?:/|$)!', $title, $m ) ) {
+		if ( !preg_match( '!^Tag-OAuth_CID:_(\d+)(-description|-helppage|)(?:/|$)!', $title, $m ) ) {
 			return true;
 		}
 
@@ -129,14 +129,14 @@ class UIHooks implements
 			return true;
 		}
 
-		if ( $m[2] ) {
+		if ( $m[2] === '-description' ) {
 			$message = $cmrAc->escapeForWikitext( $cmrAc->getDescription() );
-		} else {
-			$target = SpecialPage::getTitleFor( 'OAuthListConsumers',
+		} elseif ( $m[2] === '-helppage' ) {
+			$message = SpecialPage::getTitleFor( 'OAuthListConsumers',
 				'view/' . $cmrAc->getConsumerKey()
-			);
-			$encName = $cmrAc->escapeForWikitext( $cmrAc->getNameAndVersion() );
-			$message = "[[$target|$encName]]";
+			)->getPrefixedText();
+		} else {
+			$message = $cmrAc->escapeForWikitext( $cmrAc->getNameAndVersion() );
 		}
 		return false;
 	}
