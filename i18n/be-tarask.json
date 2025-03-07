@@ -49,6 +49,8 @@
 	"mwoauth-consumer-secretkey": "Сакрэтны жэтон спажывальніка:",
 	"mwoauth-consumer-accesstoken": "Жэтон досягу:",
 	"mwoauth-consumer-reason": "Прычына:",
+	"mwoauth-consumer-email-unconfirmed": "Электронны адрас вашага ўліковага запісу яшчэ не пацьверджаны.",
+	"mwoauth-consumer-email-mismatched": "Пазначаны адрас электроннай пошты павінен адпавядаць адрасу вашага ўліковага запісу.",
 	"mwoauth-consumer-stage-proposed": "Прапанаваны",
 	"mwoauth-consumer-stage-rejected": "Адхілены",
 	"mwoauth-consumer-stage-expired": "Састарэлы",
