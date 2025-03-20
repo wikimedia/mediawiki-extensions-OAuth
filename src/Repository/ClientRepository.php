@@ -55,7 +55,7 @@ class ClientRepository implements ClientRepositoryInterface {
 		$client = $this->getClientEntity( $clientIdentifier );
 		if ( !$client || !$client instanceof ClientEntity ) {
 			throw new InvalidArgumentException(
-				"Client with identifier $clientIdentifier does not exist!"
+				"Client with identifier '$clientIdentifier' does not exist!"
 			);
 		}
 
