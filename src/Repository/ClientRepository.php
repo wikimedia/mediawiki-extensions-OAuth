@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Extension\OAuth\Repository;
 
-use InvalidArgumentException;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use Wikimedia\NormalizedException\NormalizedException;
 
 class ClientRepository implements ClientRepositoryInterface {
 
@@ -49,13 +49,16 @@ class ClientRepository implements ClientRepositoryInterface {
 	 * @param null|string $grantType The type of grant the client is using (if sent)
 	 *
 	 * @return bool
-	 * @throws InvalidArgumentException
+	 * @throws NormalizedException
 	 */
 	public function validateClient( $clientIdentifier, $clientSecret, $grantType ) {
 		$client = $this->getClientEntity( $clientIdentifier );
 		if ( !$client || !$client instanceof ClientEntity ) {
-			throw new InvalidArgumentException(
-				"Client with identifier '$clientIdentifier' does not exist!"
+			throw new NormalizedException(
+				"Client with identifier '{clientIdentifier}' does not exist!",
+				[
+					'clientIdentifier' => $clientIdentifier,
+				]
 			);
 		}
 
