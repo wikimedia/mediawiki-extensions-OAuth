@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthServer;
 use MediaWiki\Linker\Linker;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
@@ -127,8 +128,10 @@ class MWOAuthServer extends OAuthServer {
 			return;
 		}
 
-		$reqCallback = wfParseUrl( $callback );
-		if ( $reqCallback === false ) {
+		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
+
+		$reqCallback = $urlUtils->parse( $callback );
+		if ( $reqCallback === null ) {
 			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix', [
 				'consumer' => $consumer->getConsumerKey(),
 				'consumer_name' => $consumer->getName(),
@@ -136,7 +139,7 @@ class MWOAuthServer extends OAuthServer {
 			] );
 		}
 
-		$knownCallback = wfParseUrl( $consumer->getCallbackUrl() );
+		$knownCallback = $urlUtils->parse( $consumer->getCallbackUrl() ) ?? [];
 		$exactPath = array_key_exists( 'query', $knownCallback );
 
 		$match =

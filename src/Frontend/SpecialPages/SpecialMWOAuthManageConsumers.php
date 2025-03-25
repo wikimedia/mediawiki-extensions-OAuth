@@ -40,6 +40,7 @@ use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\UrlUtils;
 use MWRestrictions;
 use OOUI\HtmlSnippet;
 use stdClass;
@@ -71,13 +72,15 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 
 	/** @var GrantsLocalization */
 	private $grantsLocalization;
+	private UrlUtils $urlUtils;
 
-	/**
-	 * @param GrantsLocalization $grantsLocalization
-	 */
-	public function __construct( GrantsLocalization $grantsLocalization ) {
+	public function __construct(
+		GrantsLocalization $grantsLocalization,
+		UrlUtils $urlUtils
+	) {
 		parent::__construct( 'OAuthManageConsumers', 'mwoauthmanageconsumer' );
 		$this->grantsLocalization = $grantsLocalization;
+		$this->urlUtils = $urlUtils;
 	}
 
 	/** @inheritDoc */
@@ -456,7 +459,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	protected function formatCallbackUrl( ConsumerAccessControl $cmrAc ) {
 		$url = $cmrAc->getCallbackUrl();
 		if ( $cmrAc->getDAO()->getCallbackIsPrefix() ) {
-			$urlParts = wfParseUrl( $cmrAc->getDAO()->getCallbackUrl() );
+			$urlParts = $this->urlUtils->parse( $cmrAc->getDAO()->getCallbackUrl() );
 			if ( ( $urlParts['port'] ?? null ) === 1 ) {
 				$warning = Html::element( 'span', [ 'class' => 'warning' ],
 					$this->msg( 'mwoauth-consumer-callbackurl-warning' )->text() );

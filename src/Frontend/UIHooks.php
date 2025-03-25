@@ -267,12 +267,14 @@ class UIHooks implements
 					'PermissionManager',
 					'GrantsInfo',
 					'GrantsLocalization',
+					'UrlUtils',
 				],
 			];
 			$specialPages['OAuthManageConsumers'] = [
 				'class' => SpecialMWOAuthManageConsumers::class,
 				'services' => [
 					'GrantsLocalization',
+					'UrlUtils',
 				],
 			];
 		}

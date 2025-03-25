@@ -47,6 +47,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
+use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use MWRestrictions;
 use stdClass;
@@ -59,16 +60,19 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	private PermissionManager $permissionManager;
 	private GrantsInfo $grantsInfo;
 	private GrantsLocalization $grantsLocalization;
+	private UrlUtils $urlUtils;
 
 	public function __construct(
 		PermissionManager $permissionManager,
 		GrantsInfo $grantsInfo,
-		GrantsLocalization $grantsLocalization
+		GrantsLocalization $grantsLocalization,
+		UrlUtils $urlUtils
 	) {
 		parent::__construct( 'OAuthConsumerRegistration' );
 		$this->permissionManager = $permissionManager;
 		$this->grantsInfo = $grantsInfo;
 		$this->grantsLocalization = $grantsLocalization;
+		$this->urlUtils = $urlUtils;
 	}
 
 	/** @inheritDoc */
@@ -100,7 +104,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		// Proposals and updates to consumers can involve sending new secrets.
 		if ( $this->getConfig()->get( 'MWOAuthSecureTokenTransfer' )
 			&& $request->detectProtocol() == 'http'
-			&& substr( wfExpandUrl( '/', PROTO_HTTPS ), 0, 8 ) === 'https://'
+			&& substr( $this->urlUtils->expand( '/', PROTO_HTTPS ) ?? '', 0, 8 ) === 'https://'
 		) {
 			$redirUrl = str_replace( 'http://', 'https://', $request->getFullRequestURL() );
 			$this->getOutput()->redirect( $redirUrl );

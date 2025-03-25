@@ -208,7 +208,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					// for RSA we don't need to return a token secret, so HTTP is ok.
 					if ( $config->get( 'MWOAuthSecureTokenTransfer' ) && !$isRsa
 						&& $request->detectProtocol() == 'http'
-						&& substr( wfExpandUrl( '/', PROTO_HTTPS ), 0, 8 ) === 'https://'
+						&& substr( $this->urlUtils->expand( '/', PROTO_HTTPS ) ?? '', 0, 8 ) === 'https://'
 					) {
 						$redirUrl = str_replace(
 							'http://', 'https://', $request->getFullRequestURL()
@@ -670,7 +670,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			)
 		];
 
-		$expanded = wfExpandUrl( $redirectParams['returnto'] );
+		$expanded = $this->urlUtils->expand( $redirectParams['returnto'] );
 		if ( !$expanded ) {
 			return;
 		}
@@ -684,7 +684,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$output = $this->getOutput();
 		$output->disable();
 		$output->getRequest()->response()->header(
-			'Location: ' . "$expanded?{$returnToQuery}"
+			"Location: $expanded?$returnToQuery"
 		);
 	}
 
