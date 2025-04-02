@@ -244,7 +244,7 @@ class Utils {
 		return $server;
 	}
 
-	public static function newMWOAuthDataStore() {
+	public static function newMWOAuthDataStore(): MWOAuthDataStore {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$dbr = self::getCentralDB( DB_REPLICA );
 		$dbw = $lb->getServerCount() > 1 ? self::getCentralDB( DB_PRIMARY ) : null;

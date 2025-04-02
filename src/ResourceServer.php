@@ -34,7 +34,7 @@ class ResourceServer {
 	/** @var bool */
 	protected $verified = false;
 
-	public static function factory() {
+	public static function factory(): self {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
 		return new static( $config->get( 'OAuth2PublicKey' ), $config->get( 'CanonicalServer' ) );
 	}

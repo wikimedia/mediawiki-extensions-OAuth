@@ -218,6 +218,7 @@ class ConsumerSubmitControl extends SubmitControl {
 		];
 	}
 
+	/** @inheritDoc */
 	protected function checkBasePermissions() {
 		global $wgBlockDisablesLogin;
 		$user = $this->getUser();

@@ -92,6 +92,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 		return $required;
 	}
 
+	/** @inheritDoc */
 	protected function checkBasePermissions() {
 		$user = $this->getUser();
 		$services = MediaWikiServices::getInstance();
