@@ -877,7 +877,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		}
 	}
 
-	private function makePrivacyLink() {
+	private function makePrivacyLink(): string {
 		// If the link description has been disabled in the default language,
 		if ( $this->msg( 'privacy' )->inContentLanguage()->isDisabled() ) {
 			// then it is disabled, for all languages.

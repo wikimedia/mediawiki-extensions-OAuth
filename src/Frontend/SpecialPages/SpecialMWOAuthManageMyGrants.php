@@ -69,6 +69,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$this->grantsLocalization = $grantsLocalization;
 	}
 
+	/** @inheritDoc */
 	public function doesWrites() {
 		return true;
 	}
@@ -366,7 +367,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		return $r;
 	}
 
-	private static function irrevocableGrants() {
+	private static function irrevocableGrants(): array {
 		if ( self::$irrevocableGrants === null ) {
 			self::$irrevocableGrants = array_merge(
 				MediaWikiServices::getInstance()->getGrantsInfo()->getHiddenGrants(),
