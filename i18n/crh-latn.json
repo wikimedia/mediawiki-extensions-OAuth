@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Don Alessandro"
+		]
+	},
+	"mwoauth-prefs-managegrants": "Bağlı qullanımlar:",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 bağlı qullanımnı|$1 bağlı qullanımnı|0=Bağlı qullanımlarnı}} idare et",
+	"oauthmanagemygrants": "Bağlı qullanımlarnı idare et",
+	"mwoauthmanagemygrants-confirm-legend": "Bağlı qullanımnı idare et"
+}
