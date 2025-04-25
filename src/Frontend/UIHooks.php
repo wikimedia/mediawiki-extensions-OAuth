@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth\Frontend;
 use MediaWiki\Cache\Hook\MessagesPreLoadHook;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
@@ -23,7 +24,6 @@ use MediaWiki\SpecialPage\Hook\SpecialPageBeforeFormDisplayHook;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
-use MWException;
 use OOUI\ButtonWidget;
 
 /**

@@ -16,6 +16,8 @@ if ( getenv( 'MW_INSTALL_PATH' ) ) {
 
 require_once "$IP/maintenance/Maintenance.php";
 
+use MediaWiki\Logging\LogEntryBase;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;

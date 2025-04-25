@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth\Backend;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\MediaWikiServices;
@@ -13,7 +14,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
-use MWException;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IDatabase;
 

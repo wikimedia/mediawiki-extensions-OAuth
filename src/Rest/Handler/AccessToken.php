@@ -4,11 +4,11 @@ namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
 use GuzzleHttp\Psr7\ServerRequest;
 use League\OAuth2\Server\Exception\OAuthServerException;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokens;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\ClientCredentials;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshToken;
 use MediaWiki\Extension\OAuth\Response;
-use MWExceptionHandler;
 use Throwable;
 use Wikimedia\ParamValidator\ParamValidator;
 

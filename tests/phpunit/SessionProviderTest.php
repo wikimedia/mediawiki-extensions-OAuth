@@ -24,8 +24,8 @@
 namespace MediaWiki\Extension\OAuth\Tests;
 
 use MediaWiki\Extension\OAuth\SessionProvider;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWikiIntegrationTestCase;
-use RecentChange;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\SessionProvider

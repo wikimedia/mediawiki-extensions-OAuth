@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
 use GuzzleHttp\Psr7\ServerRequest;
+use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\ResourceServer;
 use MediaWiki\Extension\OAuth\Response;
@@ -10,7 +11,6 @@ use MediaWiki\Extension\OAuth\UserStatementProvider;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
-use MWException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Wikimedia\ParamValidator\ParamValidator;

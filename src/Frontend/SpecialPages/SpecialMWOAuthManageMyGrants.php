@@ -2,8 +2,9 @@
 
 namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
 
-use ErrorPageError;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\Utils;
@@ -19,7 +20,6 @@ use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
-use PermissionsError;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 

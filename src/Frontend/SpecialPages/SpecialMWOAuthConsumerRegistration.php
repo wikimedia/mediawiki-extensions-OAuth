@@ -21,11 +21,11 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-use ErrorPageError;
 use InvalidArgumentException;
-use LogEventsList;
-use LogPage;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\PermissionsError;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
@@ -38,6 +38,8 @@ use MediaWiki\HTMLForm\Field\HTMLRestrictionsField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Language\Language;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
@@ -48,9 +50,7 @@ use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWiki\Xml\Xml;
 use MWRestrictions;
-use PermissionsError;
 use stdClass;
-use UserBlockedError;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

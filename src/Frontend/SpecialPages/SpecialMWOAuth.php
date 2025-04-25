@@ -23,6 +23,7 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
 
 use Firebase\JWT\JWT;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
@@ -43,6 +44,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Skin\SkinFactory;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
@@ -50,11 +52,9 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
-use MWException;
 use OOUI;
 use OOUI\HtmlSnippet;
 use Psr\Log\LoggerInterface;
-use SkinFactory;
 
 /**
  * Page that handles OAuth consumer authorization and token exchange
