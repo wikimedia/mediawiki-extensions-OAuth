@@ -67,6 +67,7 @@
 	"mwoauth-consumer-stage-approved": "Aprobado",
 	"mwoauth-consumer-stage-disabled": "Desactivado",
 	"mwoauth-consumer-stage-suppressed": "Suprimido",
+	"mwoauth-ignorewarnings": "Ignorar as advertencias",
 	"oauthconsumerregistration": "Rexistro de consumidor OAuth",
 	"mwoauthconsumerregistration-navigation": "Navegación:",
 	"mwoauthconsumerregistration-list": "A miña lista de consumidores",
