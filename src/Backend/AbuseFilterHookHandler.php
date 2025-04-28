@@ -25,8 +25,8 @@ use MediaWiki\Extension\AbuseFilter\Hooks\AbuseFilterComputeVariableHook;
 use MediaWiki\Extension\AbuseFilter\Hooks\AbuseFilterGenerateUserVarsHook;
 use MediaWiki\Extension\AbuseFilter\Variables\VariableHolder;
 use MediaWiki\Extension\OAuth\SessionProvider;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\User\User;
-use RecentChange;
 
 /**
  * @author Taavi "Majavah" Väänänen <hi@taavi.wtf>

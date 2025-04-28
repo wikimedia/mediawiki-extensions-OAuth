@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Middleware\ResourceServerMiddleware;
 use League\OAuth2\Server\ResourceServer as LeagueResourceServer;
+use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
@@ -16,7 +17,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\User\User;
-use MWException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 

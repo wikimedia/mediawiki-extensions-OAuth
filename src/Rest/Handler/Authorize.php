@@ -7,6 +7,7 @@ use GuzzleHttp\Psr7\ServerRequest;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\RequestTypes\AuthorizationRequest;
+use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Entity\UserEntity;
@@ -16,7 +17,6 @@ use MediaWiki\Rest\Response as RestResponse;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
-use MWExceptionHandler;
 use Throwable;
 use Wikimedia\ParamValidator\ParamValidator;
 

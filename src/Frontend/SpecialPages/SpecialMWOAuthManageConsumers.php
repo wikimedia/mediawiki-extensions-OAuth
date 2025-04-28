@@ -21,10 +21,9 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-use ErrorPageError;
-use LogEventsList;
-use LogPage;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\ErrorPageError;
+use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
@@ -34,6 +33,8 @@ use MediaWiki\Extension\OAuth\Frontend\Pagers\ManageConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -42,7 +43,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Xml\Xml;
 use MWRestrictions;
 use OOUI\HtmlSnippet;
-use PermissionsError;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 

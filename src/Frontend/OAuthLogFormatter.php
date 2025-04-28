@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Extension\OAuth\Frontend;
 
-use LogEntry;
-use LogFormatter;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Logging\LogEntry;
+use MediaWiki\Logging\LogFormatter;
 use MediaWiki\Message\Message;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Title\Title;

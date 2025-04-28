@@ -6,10 +6,10 @@ use LogicException;
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\MWException;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
-use MWException;
 use StatusValue;
 use Wikimedia\Message\MessageSpecifier;
 

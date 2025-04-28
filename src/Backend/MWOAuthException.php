@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
-use ILocalizedException;
+use MediaWiki\Exception\ILocalizedException;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Message\Message;
 use Wikimedia\NormalizedException\INormalizedException;

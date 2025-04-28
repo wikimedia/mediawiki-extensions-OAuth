@@ -20,6 +20,7 @@ use MediaWiki\Hook\RecentChange_saveHook;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\ImmutableSessionProviderWithCookie;
 use MediaWiki\Session\SessionBackend;
@@ -31,7 +32,6 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use MWRestrictions;
-use RecentChange;
 use Wikimedia\Rdbms\DBError;
 
 /**
