@@ -35,10 +35,6 @@ use MediaWikiIntegrationTestCase;
  */
 class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp(): void {
-		parent::setUp();
-	}
-
 	public function testSafeAgainstCsrf() {
 		$provider = $this->getMockBuilder( SessionProvider::class )
 			->setMethodsExcept( [ 'safeAgainstCsrf' ] )
