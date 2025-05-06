@@ -29,6 +29,7 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ListConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
+use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logging\LogEventsList;
@@ -38,7 +39,6 @@ use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
-use MediaWiki\Xml\Xml;
 use OOUI\HtmlSnippet;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
@@ -159,7 +159,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		if ( Utils::isCentralWiki() ) {
 			// Show all of the status updates
 			$logPage = new LogPage( 'mwoauthconsumer' );
-			$out->addHTML( Xml::element( 'h2', null, $logPage->getName()->text() ) );
+			$out->addHTML( Html::element( 'h2', [], $logPage->getName()->text() ) );
 			LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '', [
 				'conds' => [
 					'ls_field' => 'OAuthConsumer',
