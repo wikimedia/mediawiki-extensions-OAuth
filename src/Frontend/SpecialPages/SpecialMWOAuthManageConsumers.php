@@ -40,7 +40,6 @@ use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MediaWiki\Xml\Xml;
 use MWRestrictions;
 use OOUI\HtmlSnippet;
 use stdClass;
@@ -351,7 +350,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 			$out = $this->getOutput();
 			// Show all of the status updates
 			$logPage = new LogPage( 'mwoauthconsumer' );
-			$out->addHTML( Xml::element( 'h2', null, $logPage->getName()->text() ) );
+			$out->addHTML( Html::element( 'h2', [], $logPage->getName()->text() ) );
 			LogEventsList::showLogExtract( $out, 'mwoauthconsumer', '', '', [
 				'conds' => [
 					'ls_field' => 'OAuthConsumer',
