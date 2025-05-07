@@ -7,6 +7,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodRsaSha1;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\Maintenance;
 
 /**
@@ -35,14 +36,15 @@ class TestOAuthConsumer extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgServer, $wgScriptPath;
-
 		$consumerKey = $this->getOption( 'consumerKey' );
 		$consumerSecret = $this->getOption( 'consumerSecret' );
 		$rsaKeyFile = $this->getOption( 'RSAKeyFile' );
+		$config = $this->getServiceContainer()->getMainConfig();
+		$script = $config->get( MainConfigNames::Server ) .
+			$config->get( MainConfigNames::ScriptPath );
 		$baseurl = wfExpandUrl(
-			"{$wgServer}{$wgScriptPath}/index.php?title=Special:OAuth", PROTO_CANONICAL );
-		$endpoint = "{$baseurl}/initiate&format=json&oauth_callback=oob";
+			"$script/index.php?title=Special:OAuth", PROTO_CANONICAL );
+		$endpoint = "$baseurl/initiate&format=json&oauth_callback=oob";
 
 		$endpoint_acc = "{$baseurl}/token&format=json";
 
