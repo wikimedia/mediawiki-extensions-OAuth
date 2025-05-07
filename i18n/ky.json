@@ -28,6 +28,8 @@
 	"mwoauthmanagemygrants-description": "Сыпаттама",
 	"mwoauthmanagemygrants-confirm-legend": "Туташкан колдонмолорду тескөө",
 	"mwoauthmanagemygrants-update": "Уруксаттарды жаңыртуу",
+	"mwoauth-form-description-onewiki-privateinfo": "Арыбаңыз $1,\n\nСурамыңызды аткаруу үчүн '''$2''' ''$4'' долбоорундагы сиз тууралуу маалымат (анын ичинде чыныгы аты-жөнүңүз жана электрондук почтаңыз) алууга уруксат алышы керек. Аккаунтуңуз эч кандай өзгөртүлбөйт.",
+	"mwoauth-form-button-approve": "Уруксат берүү",
 	"mwoauth-form-button-cancel": "Жокко чыгаруу",
 	"notification-oauth-app-body": "Себеп: $1"
 }
