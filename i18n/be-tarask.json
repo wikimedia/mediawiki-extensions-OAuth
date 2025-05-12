@@ -143,6 +143,6 @@
 	"mwoauth-form-button-cancel": "Скасаваць",
 	"right-mwoauthproposeconsumer": "прапаноўваць новых спажыўцоў OAuth",
 	"right-mwoauthupdateownconsumer": "абнаўленьне кантраляваных вамі OAuth-дадаткаў",
-	"right-mwoauthmanagemygrants": "кіраваньне OAuth-дазволамі",
+	"right-mwoauthmanagemygrants": "Кіраваньне OAuth-дазволамі",
 	"action-mwoauthproposeconsumer": "прапанову новых спажыўцоў OAuth"
 }
