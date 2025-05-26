@@ -14,7 +14,8 @@
 			"Opraco",
 			"Rodrigo codignoli",
 			"Albertoleoncio",
-			"CorraleH"
+			"CorraleH",
+			"EGobi"
 		]
 	},
 	"mwoauth-desc": "Permite o uso do OAuth 1.0a e OAuth 2.0 para autorização da API",
@@ -188,7 +189,7 @@
 	"mwoauthmanagemygrants-grants": "Permissões aplicáveis",
 	"mwoauthmanagemygrants-grantsallowed": "Concessões permitidas",
 	"mwoauthmanagemygrants-applicablegrantsallowed": "Permissões aplicáveis permitidas:",
-	"mwoauthmanagemygrants-review": "administrar acesso",
+	"mwoauthmanagemygrants-review": "gerenciar acesso",
 	"mwoauthmanagemygrants-revoke": "revogar acesso",
 	"mwoauthmanagemygrants-grantaccept": "Concedido",
 	"mwoauthmanagemygrants-update-text": "Use o formulário abaixo para modificar as permissões concedidas a um aplicativo para atuar em seu nome.",
