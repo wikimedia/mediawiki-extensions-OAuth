@@ -4,12 +4,13 @@
 			"Af420",
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
 			"Amjad Khan",
-			"Baloch Khan"
+			"Baloch Khan",
+			"شاه زمان پټان"
 		]
 	},
 	"mwoauth-prefs-managegrants": "اړيکمن کاريالونه:",
-	"mwoauth-prefs-managegrantslink": "$1 {{PLURAL:$1|نښلېدلی کاريال|نښلېدلي کاريالونه}} مهارول",
-	"mwoauth-consumer-allwikis": "په دې ويبځي ټولې پروژې",
+	"mwoauth-prefs-managegrantslink": "{{PLURAL:$1|$1 نښلېدلی کاريال|$1 نښلېدلي کاريالونه|0=نښلېدلي کاريالونه}}",
+	"mwoauth-consumer-allwikis": "ټولې پروژې",
 	"mwoauth-consumer-name": "کاريال نوم:",
 	"mwoauth-consumer-user": "خپروونکی:",
 	"mwoauth-consumer-owner-only-label": "يوازې-خاوند:",
