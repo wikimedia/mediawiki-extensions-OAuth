@@ -6,6 +6,7 @@ use MediaWiki\Extension\OAuth\Control\Workflow;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\MediaWikiServices;
 
+/** @phpcs-require-sorted-array */
 return [
 
 	'OAuthConfig' => static function ( MediaWikiServices $services ): Config {
