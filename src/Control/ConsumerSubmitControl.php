@@ -143,7 +143,9 @@ class ConsumerSubmitControl extends SubmitControl {
 						return true;
 					}
 
-					$urlParts = wfParseUrl( $s );
+					$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
+
+					$urlParts = $urlUtils->parse( $s );
 					if ( !$urlParts ) {
 						return false;
 					} elseif ( $isOAuth2 && !self::isSecureContext( $urlParts ) ) {
@@ -655,7 +657,7 @@ class ConsumerSubmitControl extends SubmitControl {
 	 *
 	 * @see https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts
 	 *
-	 * @param array $urlParts As returned by {@link wfParseUrl()}.
+	 * @param array $urlParts As returned by {@link UrlUtils::parse()}.
 	 * @return bool
 	 */
 	protected static function isSecureContext( array $urlParts ): bool {

@@ -42,11 +42,11 @@ class TestOAuthConsumer extends Maintenance {
 		$config = $this->getServiceContainer()->getMainConfig();
 		$script = $config->get( MainConfigNames::Server ) .
 			$config->get( MainConfigNames::ScriptPath );
-		$baseurl = wfExpandUrl(
+		$baseurl = $this->getServiceContainer()->getUrlUtils()->expand(
 			"$script/index.php?title=Special:OAuth", PROTO_CANONICAL );
 		$endpoint = "$baseurl/initiate&format=json&oauth_callback=oob";
 
-		$endpoint_acc = "{$baseurl}/token&format=json";
+		$endpoint_acc = "$baseurl/token&format=json";
 
 		if ( !$consumerSecret && !$rsaKeyFile ) {
 			$this->error( "Either consumerSecret or RSAKeyFile required!" );
