@@ -19,6 +19,7 @@
 	"mwoauth-consumer-wiki": "Gjeld prosjekt:",
 	"mwoauth-consumer-stage-proposed": "framlagd",
 	"mwoauth-consumer-stage-approved": "godkjent",
+	"mwoauthconsumerregistration-propose-oauth2": "Føreslå ein ny OAuth 2.0-klient",
 	"mwoauthconsumerregistration-propose-submit": "Føreslå konsument",
 	"mwoauthconsumerregistration-user": "Utgjevar",
 	"mwoauthconsumerregistration-manage": "handsam",
