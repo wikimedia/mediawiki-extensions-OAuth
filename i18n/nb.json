@@ -76,7 +76,7 @@
 	"oauthconsumerregistration": "OAuth-konsumentregistrering",
 	"mwoauthconsumerregistration-navigation": "Navigasjon:",
 	"mwoauthconsumerregistration-propose-oauth1": "Foreslå en ny OAuth 1.0a-konsument",
-	"mwoauthconsumerregistration-propose-oauth2": "Føreslå ein ny OAuth 2.0-klient",
+	"mwoauthconsumerregistration-propose-oauth2": "Foreslå en ny OAuth 2.0-klient",
 	"mwoauthconsumerregistration-list": "Min konsumentliste",
 	"mwoauthconsumerregistration-main": "Hovedside",
 	"mwoauthconsumerregistration-propose-text": "Du kan:\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|Foreslå en OAuth 1.0a-konsument]].\n* [[Special:OAuthConsumerRegistration/propose/oauth2|Foreslå en OAuth 2.0-klient]].",
