@@ -285,6 +285,7 @@
 	"mwoauth-form-button-cancel": "Button label, indicating the user wants to cancel granting access.\n\nSee also:\n* {{msg-mw|Mwoauth-form-button-approve}}\n{{Identical|Cancel}}",
 	"mwoauth-error": "Heading on the page, whenever an OAuth error is presented to a user.",
 	"mwoauth-error-missing-callback-url-non-owner": "Error when callback_url is not provided or not well-formed for a non-owner-only client",
+	"mwoauth-error-callback-url-custom-protocol-nonconfidential": "Error when an OAuth app is registered with a custom protocol.",
 	"mwoauth-error-callback-url-must-be-https": "Error when an OAuth 2 app is registered with a http:// URL",
 	"mwoauth-error-callback-server-url": "Error when an app that should have a server component is registered with the OAuth server as callback URL",
 	"mwoauth-error-callback-bare-domain-oauth1": "Error when an OAuth 1 app is registered with a callback URL pointing to the domain root and without the \"use callback URL as prefix\" option",

@@ -270,6 +270,7 @@
 	"mwoauth-form-button-cancel": "Cancel",
 	"mwoauth-error": "Application Connection Error",
 	"mwoauth-error-missing-callback-url-non-owner": "callback_url is required for non-owner-only clients",
+	"mwoauth-error-callback-url-custom-protocol-nonconfidential": "You must use an OAuth 2 non-confidential client for custom protocols.",
 	"mwoauth-error-callback-url-must-be-https": "OAuth 2 callback URLs must use the HTTPS scheme",
 	"mwoauth-error-callback-server-url": "The callback URL must point to a server you own",
 	"mwoauth-error-callback-bare-domain-oauth1": "You have not selected the \"use callback URL as prefix\" option, so you must provide an exact URL. A bare domain is probably not what you want.",

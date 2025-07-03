@@ -136,6 +136,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				'callbackUrl' => static function ( $s, $vals ) {
 					$isOAuth1 = (int)$vals['oauthVersion'] === Consumer::OAUTH_VERSION_1;
 					$isOAuth2 = !$isOAuth1;
+					$clientIsConfidential = $isOAuth1 || $vals['oauth2IsConfidential'];
 
 					if ( strlen( $s ?? '' ) > 2000 ) {
 						return false;
@@ -144,17 +145,29 @@ class ConsumerSubmitControl extends SubmitControl {
 					}
 
 					$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
-
 					$urlParts = $urlUtils->parse( $s );
 					if ( !$urlParts ) {
 						return false;
+					}
+					$isCustomProtocol = !in_array( $urlParts['scheme'], [ '', 'http', 'https' ], true );
+
+					if ( $isCustomProtocol ) {
+						if ( $clientIsConfidential ) {
+							// Custom protocols are handled by an application installed on the device;
+							// so it cannot possibly be confidential.
+							return StatusValue::newFatal(
+								new ApiMessage( 'mwoauth-error-callback-url-custom-protocol-nonconfidential',
+									'invalid_callback_url' )
+							);
+						}
 					} elseif ( $isOAuth2 && !self::isSecureContext( $urlParts ) ) {
+						// The OAuth 2 spec requires an encrypted transport.
 						return StatusValue::newFatal(
 							new ApiMessage( 'mwoauth-error-callback-url-must-be-https', 'invalid_callback_url' )
 						);
-					} elseif ( ( $isOAuth1 || $vals['oauth2IsConfidential'] )
-						&& WikiMap::getWikiFromUrl( $s )
-					) {
+					} elseif ( $clientIsConfidential && WikiMap::getWikiFromUrl( $s ) ) {
+						// Reduce noise from clueless people using Wikipedia's URL as callback
+						// (except for public clients; it can be valid e.g. for gadgets).
 						return StatusValue::newGood()->warning(
 							new ApiMessage( 'mwoauth-error-callback-server-url', 'invalid_callback_url' )
 						);
@@ -163,6 +176,8 @@ class ConsumerSubmitControl extends SubmitControl {
 						&& !( $urlParts['query'] ?? false )
 						&& !( $urlParts['fragment'] ?? false )
 					) {
+						// Warn people using a bare domain name with no path or query part as
+						// the exact callback URL. It is valid, but it's rare that they actually mean it.
 						$message = $isOAuth1
 							? 'mwoauth-error-callback-bare-domain-oauth1'
 							: 'mwoauth-error-callback-bare-domain-oauth2';
