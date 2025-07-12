@@ -37,7 +37,6 @@ use MediaWiki\HTMLForm\Field\HTMLHiddenField;
 use MediaWiki\HTMLForm\Field\HTMLRestrictionsField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\Language\Language;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Message\Message;
@@ -146,10 +145,10 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				$allWikis = Utils::getAllWikiNames();
 				$showGrants = $this->grantsInfo->getValidGrants();
 				if ( $subPage === 'oauth2' ) {
-					$this->proposeOAuth( Consumer::OAUTH_VERSION_2, $user, $allWikis, $lang, $showGrants );
+					$this->proposeOAuth( Consumer::OAUTH_VERSION_2, $user, $allWikis, $showGrants );
 					break;
 				} elseif ( $subPage === 'oauth1a' ) {
-					$this->proposeOAuth( Consumer::OAUTH_VERSION_1, $user, $allWikis, $lang, $showGrants );
+					$this->proposeOAuth( Consumer::OAUTH_VERSION_1, $user, $allWikis, $showGrants );
 					break;
 				} else {
 					$this->getOutput()->redirect( 'Special:OAuthConsumerRegistration/propose' );
@@ -467,10 +466,9 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	 * @param int $oauthVersion
 	 * @param User $user
 	 * @param string[] $allWikis
-	 * @param Language $lang
 	 * @param array $showGrants
 	 */
-	private function proposeOAuth( int $oauthVersion, User $user, $allWikis, $lang, $showGrants ) {
+	private function proposeOAuth( int $oauthVersion, User $user, $allWikis, $showGrants ) {
 		if ( !in_array( $oauthVersion, [ Consumer::OAUTH_VERSION_1, Consumer::OAUTH_VERSION_2 ] ) ) {
 			throw new InvalidArgumentException( 'Invalid OAuth version' );
 		}
