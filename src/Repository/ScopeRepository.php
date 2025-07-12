@@ -93,7 +93,7 @@ class ScopeRepository implements ScopeRepositoryInterface {
 		try {
 			$approval = $clientEntity->getCurrentAuthorization( $mwUser, WikiMap::getCurrentWikiId() );
 			$approvedScopeIds = $approval->getGrants();
-		} catch ( MWOAuthException $ex ) {
+		} catch ( MWOAuthException ) {
 			$approvedScopeIds = [];
 		}
 

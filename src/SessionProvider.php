@@ -376,7 +376,7 @@ class SessionProvider
 		if ( $data && isset( $data['restrictions'] ) && is_string( $data['restrictions'] ) ) {
 			try {
 				return MWRestrictions::newFromJson( $data['restrictions'] );
-			} catch ( \InvalidArgumentException $e ) {
+			} catch ( \InvalidArgumentException ) {
 				$this->logger->warning( __METHOD__ . ': Failed to parse restrictions: {restrictions}', [
 					'restrictions' => $data['restrictions']
 				] );

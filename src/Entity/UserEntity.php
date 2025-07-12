@@ -25,7 +25,7 @@ class UserEntity implements UserEntityInterface {
 				return null;
 			}
 			return new static( $userId );
-		} catch ( MWException $ex ) {
+		} catch ( MWException ) {
 			return null;
 		}
 	}

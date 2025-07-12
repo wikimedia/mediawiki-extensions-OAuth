@@ -235,7 +235,7 @@ class Authorize extends AuthenticationHandler {
 				$userEntity->getMwUser(),
 				WikiMap::getCurrentWikiId()
 			);
-		} catch ( Exception $ex ) {
+		} catch ( Exception ) {
 			return false;
 		}
 
