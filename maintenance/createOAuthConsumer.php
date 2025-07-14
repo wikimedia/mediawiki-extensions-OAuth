@@ -31,6 +31,7 @@ use MWRestrictions;
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 if ( getenv( 'MW_INSTALL_PATH' ) ) {
 	$IP = getenv( 'MW_INSTALL_PATH' );
 } else {
@@ -38,6 +39,7 @@ if ( getenv( 'MW_INSTALL_PATH' ) ) {
 }
 
 require_once "$IP/maintenance/Maintenance.php";
+// @codeCoverageIgnoreEnd
 
 class CreateOAuthConsumer extends Maintenance {
 	public function __construct() {
@@ -181,5 +183,7 @@ class CreateOAuthConsumer extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CreateOAuthConsumer::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

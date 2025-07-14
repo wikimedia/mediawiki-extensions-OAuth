@@ -8,6 +8,7 @@
  *
  * @ingroup Maintenance
  */
+// @codeCoverageIgnoreStart
 if ( getenv( 'MW_INSTALL_PATH' ) ) {
 	$IP = getenv( 'MW_INSTALL_PATH' );
 } else {
@@ -15,6 +16,7 @@ if ( getenv( 'MW_INSTALL_PATH' ) ) {
 }
 
 require_once "$IP/maintenance/Maintenance.php";
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\Logging\ManualLogEntry;
@@ -146,5 +148,7 @@ class MigrateCentralWikiLogs extends Maintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MigrateCentralWikiLogs::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

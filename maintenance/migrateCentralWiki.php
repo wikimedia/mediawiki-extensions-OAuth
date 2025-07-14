@@ -17,6 +17,7 @@ namespace MediaWiki\Extension\OAuth;
  *
  * @ingroup Maintenance
  */
+// @codeCoverageIgnoreStart
 if ( getenv( 'MW_INSTALL_PATH' ) ) {
 	$IP = getenv( 'MW_INSTALL_PATH' );
 } else {
@@ -24,6 +25,7 @@ if ( getenv( 'MW_INSTALL_PATH' ) ) {
 }
 
 require_once "$IP/maintenance/Maintenance.php";
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
@@ -106,5 +108,7 @@ class MigrateCentralWiki extends Maintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MigrateCentralWiki::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd
