@@ -3,6 +3,7 @@
 		"authors": [
 			"A2093064",
 			"Anterdc99",
+			"Aoum",
 			"CrownedWharf566",
 			"Cwek",
 			"Diskdance",
@@ -299,6 +300,7 @@
 	"mwoauth-form-button-cancel": "取消",
 	"mwoauth-error": "应用程序连接错误",
 	"mwoauth-error-missing-callback-url-non-owner": "非拥有者专用的客户端需要callback_url",
+	"mwoauth-error-callback-url-custom-protocol-nonconfidential": "您必须使用 OAuth 2 非机密客户端来执行自定义协议。",
 	"mwoauth-error-callback-url-must-be-https": "OAuth 2回调URL必须使用HTTPS方案",
 	"mwoauth-error-callback-server-url": "回调URL必须指向您拥有的服务器",
 	"mwoauth-error-callback-bare-domain-oauth1": "您未选择“使用回调URL为前缀”选项，所以您必须提供一个准确的URL。裸域名可能不是您想要的。",

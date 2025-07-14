@@ -4,6 +4,7 @@
 			"Knud Winckelmann",
 			"KnudW",
 			"Kranix",
+			"Naitsa",
 			"Saederup92",
 			"Sarrus",
 			"Weblars"
@@ -66,5 +67,6 @@
 	"mwoauth-form-description-onewiki-nogrants": "Hej $1,\n\nFor at kunne udføre din anmodning, skal '''$2''' have tilladelse til at tilgå information på ''$4'' på dine vegne. Der vil ikke ske nogen ændringer af din brugerkonto.",
 	"mwoauth-form-button-approve": "Tillad",
 	"mwoauth-form-button-cancel": "Annullér",
+	"mwoauth-error-callback-url-custom-protocol-nonconfidential": "Du skal bruge en ikke-fortrolig OAuth 2-klient til brugerdefinerede protokoller.",
 	"notification-oauth-app-body": "Begrundelse: $1"
 }

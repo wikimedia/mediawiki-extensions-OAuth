@@ -271,6 +271,7 @@
 	"mwoauth-form-button-cancel": "Откажи",
 	"mwoauth-error": "Грешка во поврзувањето со извршникот",
 	"mwoauth-error-missing-callback-url-non-owner": "Се бара callback_url за само несопственички клиенти",
+	"mwoauth-error-callback-url-custom-protocol-nonconfidential": "Мора да користите недоверлив клиент на OAuth 2 за прилагодени протоколи.",
 	"mwoauth-error-callback-url-must-be-https": "Возвратните URL-адреси на OAuth 2 мора да ја кристат шемата HTTPS",
 	"mwoauth-error-callback-server-url": "URL-адресата за возврат мора да води кон опслужувач што го поседувате",
 	"mwoauth-error-callback-bare-domain-oauth1": "Не ја имате избрно можноста „користи возвратна URL-адреса како претставка“, па затоа ќе мора да ја укажете точната URL-адреса. Не се бара гол домен.",

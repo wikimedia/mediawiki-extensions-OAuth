@@ -274,6 +274,7 @@
 	"mwoauth-form-button-cancel": "Cancelar",
 	"mwoauth-error": "Erro de conexión da aplicación",
 	"mwoauth-error-missing-callback-url-non-owner": "«callback_url» é obrigatorio para os clientes que non estean reservados ao propietario",
+	"mwoauth-error-callback-url-custom-protocol-nonconfidential": "Debes usar un cliente non confidencial de OAuth 2 para os protocolos personalizados.",
 	"mwoauth-error-callback-url-must-be-https": "Os enderezos URL de chamada de retorno de OAuth 2 deben utilizar o esquema HTTPS",
 	"mwoauth-error-callback-server-url": "O enderezo URL de chamada de retorno debe apuntar a un servidor da túa propiedade",
 	"mwoauth-error-callback-bare-domain-oauth1": "Non seleccionaches a opción \"usar o enderezo URL de chamada de retorno como prefixo\", polo que debes indicar un enderezo URL exacto. Probablemente non queiras unicamente un nome de dominio.",
