@@ -159,7 +159,7 @@
 	"mwoauthmanageconsumers-search-publisher": "由此使用者申請的 Consumer",
 	"oauthlistconsumers": "OAuth 應用程式清單",
 	"mwoauthlistconsumers-legend": "瀏覽 OAuth 應用程式",
-	"mwoauthlistconsumers-view": "詳細資料",
+	"mwoauthlistconsumers-view": "詳細資訊",
 	"mwoauthlistconsumers-none": "沒有應用程式符合此條件。",
 	"mwoauthlistconsumers-name": "應用程式名稱",
 	"mwoauthlistconsumers-version": "Consumer 版本",
