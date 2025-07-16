@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Yusuf Sa'adu"
+			"Yusuf Sa'adu",
+			"Gwanki"
 		]
 	},
 	"log-action-filter-mwoauthconsumer-propose-autoapproved": "Shawarwarin mabukaci na OAuth (wanda aka amince da kansa)",
