@@ -8,7 +8,7 @@
 			"Volvox"
 		]
 	},
-	"mwoauth-desc": "Erlaabt de Gebrauch vun OAuth 1.0a an OAuth 2.0 fir API Autorisatioun",
+	"mwoauth-desc": "Erlaabt de Gebrauch vun OAuth 1.0a an OAuth 2.0 fir API-Autorisatioun",
 	"mwoauth-verified": "D'Applikatioun ass elo berechtegt op MediaWiki an Ärem Numm zouzegräifen.\n\nFir de Prozess ofzeschléissen, gitt wgl. dëse Kontrollwäert un d'Applatioun virun: '''$1'''",
 	"mwoauth-db-readonly": "D'OAuth-Datebank ass temporär gespaart. Probéiert wgl. an e puer Minutte nach eng Kéier.",
 	"mwoauth-missing-field": "De Wäert fir d'Feld „$1“ feelt",
