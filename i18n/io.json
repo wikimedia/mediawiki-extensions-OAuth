@@ -33,6 +33,7 @@
 	"mwoauthconsumerregistration-lastchange": "Lasta modifikuro",
 	"mwoauthconsumerregistration-manage": "administrar",
 	"mwoauthconsumerregistration-resetsecretkey": "Chanjar la sekreta vorto a nova valoro",
+	"mwoauthconsumerregistration-secretreset": "Vu recevis sekreta ''token'' del uzero '''$1'''. ''Mantenez ca informo por futura refero.''",
 	"mwoauthmanageconsumers-showproposed": "Demandi propozita",
 	"mwoauthmanageconsumers-showrejected": "Demandi refuzita",
 	"mwoauthmanageconsumers-showexpired": "Demandi expirita",
