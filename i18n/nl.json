@@ -286,6 +286,7 @@
 	"mwoauth-form-button-cancel": "Annuleren",
 	"mwoauth-error": "Fout bij koppelen toepassing",
 	"mwoauth-error-missing-callback-url-non-owner": "callback_url is vereist voor cliënten die niet alleen voor de eigenaar zijn",
+	"mwoauth-error-callback-url-custom-protocol-nonconfidential": "Voor aangepaste protocollen moet u een niet-vertrouwelijke OAuth 2-cliënt gebruiken.",
 	"mwoauth-error-callback-url-must-be-https": "OAuth 2-callback-URL’s moeten het HTTPS-schema gebruiken",
 	"mwoauth-error-callback-server-url": "De callback-URL moet verwijzen naar een server waarvan u de eigenaar bent",
 	"mwoauth-error-callback-bare-domain-oauth1": "U heeft de optie “callback-URL als voorvoegsel gebruiken” niet geselecteerd, dus u moet een exacte URL opgeven. Een kaal domein is waarschijnlijk niet wat u zoekt.",
