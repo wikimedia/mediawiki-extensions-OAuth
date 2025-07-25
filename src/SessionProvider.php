@@ -442,8 +442,8 @@ class SessionProvider
 
 	/**
 	 * Record the fact that OAuth was used for marking an existing RecentChange as patrolled.
-	 * (RecentChange::doMarkPatrolled() does not use RecentChange::save()
-	 * and therefore bypasses the above hook handler.)
+	 * (RecentChange::markPatrolled does not use RecentChange::save,
+	 * and therefore bypasses our onRecentChange_save hook handler.)
 	 *
 	 * @param int $rcid
 	 * @param User $user
