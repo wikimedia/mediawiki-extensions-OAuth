@@ -161,6 +161,7 @@
 	"notification-oauth-app-body": "Grond: $1",
 	"mwoauth-oauth-version": "OAuth-Protokoll-Versioun",
 	"mwoauth-oauth2-granttype-auth-code": "Autorisatiouns-Code",
+	"mwoauth-oauth2-invalid-access-token": "Ongültegen Zougangstoken",
 	"mwoauthconsumer-consumer-view": "Dëse Konsument weisen",
 	"mwoauthconsumer-application-view": "Dës Applikatioun weisen",
 	"grant-oauthmanageownclient": "Geréiert Är OAuth-Clienten"
