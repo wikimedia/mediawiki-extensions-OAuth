@@ -114,6 +114,7 @@
 	"mwoauthmanagemygrants-authonly-tooltip": "'''Miksi en voi päivittää tätä oikeutta?'''\n\nJos et halua tällä liitetyllä sovelluksella olevan tätä oikeutta, sinun tulee poistaa sovelluksen valtuutus.",
 	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Muokkauksesi}} tämän sovelluksen kautta",
 	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Toimintosi}} tämän sovelluksen kautta",
+	"mwoauthconsumer-consumer-logpage": "OAuth-asiakasloki",
 	"mwoauth-centralauth-account-link": "järjestelmänlaajuiset tunnukset",
 	"mwoauth-bad-request-missing-params": "Pahoittelut, jotain meni pieleen tämän yhdistetyn sovelluksen määrittämisessä. Ota yhteyttä sovelluksen kehittäjään.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuthista puuttuu parametereja, $1</span>",
 	"mwoauth-bad-request-invalid-action": "Pahoittelut, jotain meni pieleen. Sinun täytyy ottaa yhteyttä sovelluksen tekijään saadaksesi apua.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Tuntematon URL, $1</span>",
