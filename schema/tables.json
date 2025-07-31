@@ -276,7 +276,7 @@
 				"type": "mwtimestamp",
 				"options": {
 					"notnull": true,
-					"CustomSchemaOptions": { "allowInfinite": true }
+					"PlatformOptions": { "allowInfinite": true }
 				}
 			},
 			{
