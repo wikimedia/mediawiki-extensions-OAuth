@@ -283,6 +283,7 @@
 	"mwoauth-form-button-cancel": "إلغاء",
 	"mwoauth-error": "خطأ في اتصال التطبيق",
 	"mwoauth-error-missing-callback-url-non-owner": "callback_url مطلوب للعملاء غير المالكين فقط",
+	"mwoauth-error-callback-url-custom-protocol-nonconfidential": "يجب عليك استخدام عميل OAuth 2 غير سري للبروتوكولات المخصصة.",
 	"mwoauth-error-callback-url-must-be-https": "يجب أن تستخدم عناوين URL لمعاودة الاتصال في OAuth 2 مخطط HTTPS",
 	"mwoauth-error-callback-server-url": "يجب أن يشير عنوان URL لمعاودة الاتصال إلى خادم تملكه",
 	"mwoauth-error-callback-bare-domain-oauth1": "لم تحدد خيار \"استخدام عنوان URL لمعاودة الاتصال كبادئة\" ، لذا يجب تقديم عنوان URL دقيق. ربما لا يكون المجال المجرد هو ما تريده.",
