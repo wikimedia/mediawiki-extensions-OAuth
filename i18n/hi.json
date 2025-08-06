@@ -10,5 +10,9 @@
 	"mwoauth-prefs-managegrantslink": "जुड़े हुए {{PLURAL:$1|$1 ऐप|$1 ऐप्स|0=ऐप्स}} को प्रबंधित करें",
 	"mwoauth-consumer-email-unconfirmed": "आप के खाता पर इमेल पता प्रमाणित नही है।",
 	"mwoauthdatastore-bad-source-ip": "यह अनुरोध एक अवैध आईपी पते से आया है।",
+	"right-mwoauthproposeconsumer": "नए OAuth ग्राहक प्रस्तावित करना",
+	"right-mwoauthupdateownconsumer": "आपके द्वारा नियंत्रित OAuth ग्राहक अपडेट करना",
+	"action-mwoauthproposeconsumer": "नए OAuth ग्राहक प्रस्तावित करने",
+	"action-mwoauthupdateownconsumer": "आपके द्वारा नियंत्रित OAuth ग्राहक अपडेट करने",
 	"echo-category-title-oauth-owner": "OAuth विकास"
 }
