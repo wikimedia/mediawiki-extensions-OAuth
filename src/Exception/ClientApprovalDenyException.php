@@ -6,7 +6,7 @@ use League\OAuth2\Server\Exception\OAuthServerException;
 
 class ClientApprovalDenyException extends OAuthServerException {
 
-	public function __construct( string $redirectUri ) {
+	public function __construct( ?string $redirectUri ) {
 		parent::__construct(
 			wfMessage( 'mwoauth-oauth2-error-user-approval-deny' )->plain(),
 			401,
