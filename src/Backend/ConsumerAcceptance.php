@@ -247,6 +247,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		}
 		// For compatibility with other wikis in the farm, un-remap some grants
 		foreach ( Consumer::$mapBackCompatGrants as $old => $new ) {
+			// @phan-suppress-next-next-line PhanPossiblyInfiniteLoop False positive
 			// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 			while ( ( $i = array_search( $new, $row['oaac_grants'], true ) ) !== false ) {
 				$row['oaac_grants'][$i] = $old;
@@ -265,6 +266,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 
 		// For backwards compatibility, remap some grants
 		foreach ( Consumer::$mapBackCompatGrants as $old => $new ) {
+			// @phan-suppress-next-next-line PhanPossiblyInfiniteLoop False positive
 			// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 			while ( ( $i = array_search( $old, $row['oaac_grants'], true ) ) !== false ) {
 				$row['oaac_grants'][$i] = $new;
