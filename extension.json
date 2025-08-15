@@ -161,7 +161,7 @@
 		"LoginFormValidErrorMessages": "frontend"
 	},
 	"ConfigRegistry": {
-		"mwoauth": "GlobalVarConfig::newInstance"
+		"mwoauth": "MediaWiki\\Config\\GlobalVarConfig::newInstance"
 	},
 	"config": {
 		"MWOAuthCentralWiki": {
