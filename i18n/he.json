@@ -274,6 +274,7 @@
 	"mwoauth-form-button-cancel": "ביטול",
 	"mwoauth-error": "שגיאה בחיבור היישום",
 	"mwoauth-error-missing-callback-url-non-owner": "נדרש callback_url עבור לקוחות non-owner-only",
+	"mwoauth-error-callback-url-custom-protocol-nonconfidential": "יש להשתמש בלקוח OAuth 2 שאינו סודי עבור פרוטוקולים מותאמים אישית.",
 	"mwoauth-error-callback-url-must-be-https": "כתובות URL למענה OAuth 2 חייבות להשתמש בסכֵמת HTTPS",
 	"mwoauth-error-callback-server-url": "כתובות URL למענה OAuth 2 חייבות להצביע לשרת בבעלותך",
 	"mwoauth-error-callback-bare-domain-oauth1": "לא בחרת באפשרות \"להשתמש ב־URL למענה בתור תחילית\", ולכן יש לספק כתובת URL מדויקת. תחום חשוף הוא כנראה לא מה שרצית.",
