@@ -2,12 +2,19 @@
 	"@metadata": {
 		"authors": [
 			"Winston Sung",
-			"Ktchankt"
+			"Ktchankt",
+			"Yueman"
 		]
 	},
 	"mwoauth-prefs-managegrants": "連咗嘅應用程式：",
 	"mwoauth-prefs-managegrantslink": "管理{{PLURAL:$1|$1個|$1個|0=}}連咗嘅應用程式",
+	"mwoauthconsumerregistration-navigation": "導覽：",
+	"mwoauthconsumerregistration-description": "描述",
+	"mwoauthmanageconsumers-description": "描述",
 	"oauthlistconsumers": "OAuth應用程式清單",
 	"mwoauthlistconsumers-legend": "瀏覽OAuth應用程式",
-	"mwoauthlistconsumers-status": "狀態"
+	"mwoauthlistconsumers-description": "描述",
+	"mwoauthlistconsumers-status": "狀態",
+	"mwoauthmanagemygrants-navigation": "導覽：",
+	"mwoauthmanagemygrants-description": "描述"
 }
