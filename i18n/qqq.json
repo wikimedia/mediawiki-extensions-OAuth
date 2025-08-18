@@ -347,7 +347,7 @@
 	"mwoauth-oauth2-is-confidential-help": "Help message for the field that indicates if the consumer (client) is confidential",
 	"mwoauth-oauth2-granttypes": "Used as a label for field that determines which types of OAuth2 grants consumer can use",
 	"mwoauth-oauth2-granttype-auth-code": "Display label for grant type authorization_code",
-	"mwoauth-oauth2-granttype-refresh-token": "Display label for grant type refresh_token",
+	"mwoauth-oauth2-granttype-refresh-token": "Display label for grant type refresh_token. Note: This means \"the token of refreshing\"; this doesn't mean \"to refresh the token\".",
 	"mwoauth-oauth2-granttype-client-credentials": "Display label for grant type client_credentials",
 	"mwoauth-oauth2-error-create-at-no-user-approval": "Error when client application attempts to retrieve access token, without having the user approve the application first",
 	"mwoauth-oauth2-error-user-approval-deny": "Error message returned to the client application if user rejected the approval request",
