@@ -16,5 +16,6 @@
 	"mwoauthlistconsumers-description": "描述",
 	"mwoauthlistconsumers-status": "狀態",
 	"mwoauthmanagemygrants-navigation": "導覽：",
-	"mwoauthmanagemygrants-description": "描述"
+	"mwoauthmanagemygrants-description": "描述",
+	"mwoauth-centralauth-account-link": "全域戶口"
 }
