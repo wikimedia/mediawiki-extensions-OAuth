@@ -13,10 +13,16 @@
 	"right-mwoauthproposeconsumer": "नए OAuth ग्राहक प्रस्तावित करना",
 	"right-mwoauthupdateownconsumer": "आपके द्वारा नियंत्रित OAuth ग्राहक अपडेट करना",
 	"right-mwoauthmanageconsumer": "OAuth ग्राहक प्रबंधित करना",
+	"right-mwoauthsuppress": "OAuth ग्राहक सप्रेस करना",
+	"right-mwoauthviewsuppressed": "सप्रेस किए गए OAuth ग्राहक देखना",
+	"right-mwoauthviewprivate": "गोपनीय OAuth डेटा देखना",
 	"right-mwoauthmanagemygrants": "OAuth अनुदान प्रबंधित करना",
 	"action-mwoauthmanageconsumer": "OAuth ग्राहक प्रबंधित करने",
+	"action-mwoauthsuppress": "OAuth ग्राहक सप्रेस करने",
 	"action-mwoauthmanagemygrants": "अपनी OAuth अनुदान प्रबंधित करने",
 	"action-mwoauthproposeconsumer": "नए OAuth ग्राहक प्रस्तावित करने",
 	"action-mwoauthupdateownconsumer": "आपके द्वारा नियंत्रित OAuth ग्राहक अपडेट करने",
+	"action-mwoauthviewprivate": "गोपनीय OAuth डेटा देखने",
+	"action-mwoauthviewsuppressed": "सप्रेस किए गए OAuth ग्राहक देखने",
 	"echo-category-title-oauth-owner": "OAuth विकास"
 }
