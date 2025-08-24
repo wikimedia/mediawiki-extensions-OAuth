@@ -45,7 +45,7 @@ class Hooks implements
 	 * Called right after configuration variables have been set.
 	 */
 	public static function onRegistration() {
-		global $wgOAuth2PrivateKey, $wgOAuth2PublicKey;
+		global $wgOAuth2PrivateKey, $wgOAuth2PublicKey, $wgJwtPublicKey, $wgJwtPrivateKey;
 
 		// Set $wgOAuth2PrivateKey and $wgOAuth2PublicKey for Wikimedia Jenkins, PHPUnit.
 		if ( defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_QUIBBLE_CI' ) ) {
@@ -66,6 +66,9 @@ MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMBGXQYJ2lXzLuQkRlWoqYJvSnNGfRvP
 BUVsbHfFPyCr8i6jBPcOvtMLFMRAaq4quRDFgQ7YQLvKTqjpN+bo7RECAwEAAQ==
 -----END PUBLIC KEY-----
 EOK;
+		} elseif ( !$wgOAuth2PrivateKey && $wgJwtPrivateKey ) {
+			$wgOAuth2PrivateKey = $wgJwtPrivateKey;
+			$wgOAuth2PublicKey = $wgJwtPublicKey;
 		}
 	}
 
