@@ -15,7 +15,12 @@
 	"mwoauthlistconsumers-legend": "瀏覽OAuth應用程式",
 	"mwoauthlistconsumers-description": "描述",
 	"mwoauthlistconsumers-status": "狀態",
+	"oauthmanagemygrants": "管理相聯應用程式",
+	"mwoauthmanagemygrants-text": "呢版列晒你戶口嘅相聯應用程式。呢啲程式拎到改到幾多嘢，係根據你俾個程式幾多而定，程式會代你做事。如果你批准個程式，用你名義讀改各個成員項目，你會見喺下面見到各個唔同設定。\n\n用喺你戶口嘅相聯應用程式，用OAuth規格駁通。<span class=\"plainlinks\">（[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth 知多啲相聯應用程式]）</span>",
 	"mwoauthmanagemygrants-navigation": "導覽：",
+	"mwoauthmanagemygrants-showlist": "相聯應用程式一覽",
+	"mwoauthmanagemygrants-none": "你個戶口未有同任何應用程式相聯。",
 	"mwoauthmanagemygrants-description": "描述",
+	"mwoauthmanagemygrants-renounce": "收返批准",
 	"mwoauth-centralauth-account-link": "全域戶口"
 }
