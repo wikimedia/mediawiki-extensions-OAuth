@@ -243,14 +243,12 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				$status = $form->show();
 				if ( $status instanceof Status && $status->isOK() ) {
 					/** @var Consumer $cmr */
-					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					$cmr = $status->value['result']['consumer'];
 					$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-updated' );
 					$curSecretKey = $cmr->getSecretKey();
 					// token reset?
 					if ( $oldSecretKey !== $curSecretKey ) {
 						if ( $cmr->getOwnerOnly() ) {
-							// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 							$accessToken = $status->value['result']['accessToken'];
 							if ( $cmr->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
 								// If we just add raw AT to the page, it would go 3000px wide
@@ -665,10 +663,8 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$status = $form->show();
 		if ( $status instanceof Status && $status->isOK() ) {
 			/** @var Consumer $cmr */
-			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$cmr = $status->value['result']['consumer'];
 			if ( $cmr->getOwnerOnly() ) {
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$accessToken = $status->value['result']['accessToken'];
 				if ( $oauthVersion === Consumer::OAUTH_VERSION_1 ) {
 					$this->getOutput()->addWikiMsg(

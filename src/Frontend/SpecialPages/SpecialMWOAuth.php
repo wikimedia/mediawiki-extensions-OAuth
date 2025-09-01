@@ -652,7 +652,6 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				] );
 			} else {
 				// Redirect to callback url
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$output->redirect( $status->value['result']['callbackUrl'] );
 			}
 		}

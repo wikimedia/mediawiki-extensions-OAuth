@@ -335,7 +335,6 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		$status = $form->show();
 		if ( $status instanceof Status && $status->isOK() ) {
 			/** @var Consumer $cmr */
-			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			$cmr = $status->value['result'];
 			'@phan-var Consumer $cmr';
 			$oldStageKey = Consumer::$stageNames[$startingStage];
