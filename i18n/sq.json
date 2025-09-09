@@ -36,7 +36,7 @@
 	"mwoauth-consumer-wiki-thiswiki": "Projekti aktual ($1)",
 	"mwoauth-consumer-restrictions": "Kufizimet e përdorimit:",
 	"mwoauth-consumer-restrictions-json": "Kufizimet e përdorimit (JSON):",
-	"mwoauth-consumer-rsakey": "Çelësi publik RSA (jo i domosdoshëm):",
+	"mwoauth-consumer-rsakey": "Çelësi publik RSA (i padomosdoshëm):",
 	"mwoauth-consumer-reason": "Arsyeja:",
 	"mwoauthmanageconsumers-reason": "Arsyeja:",
 	"oauthmanagemygrants": "Menaxho aplikacionet e lidhura",
