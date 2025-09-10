@@ -56,7 +56,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  *
  * This control can only be used on the management wiki
  *
- * @TODO: improve error messages
+ * @todo improve error messages
  */
 class ConsumerSubmitControl extends SubmitControl {
 	/**

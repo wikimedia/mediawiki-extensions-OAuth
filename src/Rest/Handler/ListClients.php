@@ -50,7 +50,6 @@ class ListClients extends SimpleHandler {
 	];
 
 	/**
-	 *
 	 * @var ILoadBalancer
 	 */
 	private $loadBalancer;

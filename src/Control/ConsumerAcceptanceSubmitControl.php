@@ -39,7 +39,7 @@ use Wikimedia\Rdbms\IDatabase;
  *
  * This control can be used on any wiki, not just the management one
  *
- * @TODO: improve error messages
+ * @todo improve error messages
  */
 class ConsumerAcceptanceSubmitControl extends SubmitControl {
 	/** @var IDatabase */
