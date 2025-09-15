@@ -269,6 +269,7 @@
 	"mwoauth-form-button-cancel": "Йухайаккха",
 	"mwoauth-error": "Программа тӀетасаран гӀалат",
 	"mwoauth-error-missing-callback-url-non-owner": "callback_url оьшу долахой боцчу клиенташна",
+	"mwoauth-error-callback-url-custom-protocol-nonconfidential": "Ахь лело йеза OAuth 2 конфиденциаллалин йоцу клиент леррина протоколашна.",
 	"mwoauth-error-callback-url-must-be-https": "OAuth 2 йухакхайкхаран URL-аш лело йеза HTTPS схема",
 	"mwoauth-error-callback-server-url": "Йухакхайкхаран URL хьажо йеза хьан долахь йолчу сервере",
 	"mwoauth-error-callback-bare-domain-oauth1": "Ахь ца хаьржина \"йухакхайкхаран URL префикс санна лело\" опци, цундела ахь нийса URL дӀайала йеза. Ӏаьржа домен хир дац хьуна оьшуш дерг.",
