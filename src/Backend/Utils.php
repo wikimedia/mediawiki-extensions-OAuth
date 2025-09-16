@@ -20,7 +20,6 @@ use Wikimedia\Rdbms\IDatabase;
 /**
  * Static utility functions for OAuth
  *
- * @file
  * @ingroup OAuth
  */
 class Utils {

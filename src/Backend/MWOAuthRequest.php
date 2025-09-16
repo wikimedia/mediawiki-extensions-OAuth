@@ -7,13 +7,11 @@ use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 use MediaWiki\Request\WebRequest;
 
 /**
- * @file
  * @ingroup OAuth
  *
  * @license GPL-2.0-or-later
  * @author Chris Steipp
  */
-
 class MWOAuthRequest extends OAuthRequest {
 	/** @var string|false */
 	private $sourceIP;
