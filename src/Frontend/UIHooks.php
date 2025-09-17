@@ -28,8 +28,6 @@ use OOUI\ButtonWidget;
 
 /**
  * Class containing GUI even handler functions for an OAuth environment
- *
- * @phpcs:disable MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName
  */
 class UIHooks implements
 	GetPreferencesHook,
