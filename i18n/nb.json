@@ -77,7 +77,7 @@
 	"mwoauthconsumerregistration-main": "Hovedside",
 	"mwoauthconsumerregistration-propose-text": "Du kan:\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|Foreslå en OAuth 1.0a-konsument]].\n* [[Special:OAuthConsumerRegistration/propose/oauth2|Foreslå en OAuth 2.0-klient]].",
 	"mwoauthconsumerregistration-update-text": "Bruk skjemaet under for å oppdatere innstillinger for en OAuth-konsument du kontrollerer.",
-	"mwoauthconsumerregistration-maintext": "Denne siden er for å la utviklere foreslå og oppdatere OAuth-konsumentapplikasjoner i registeret.\n\nHerfra kan du\n* [[Special:OAuthConsumerRegistration/propose|Søke om et token for en ny konsumentapplikasjon]].\n* [[Special:OAuthConsumerRegistration/list|Håndtere dine eksisterende konsumentapplikasjoner]].\n\nFor mer informasjon om OAuth, se [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth dokumentasjonen for MediaWiki-tillegget].",
+	"mwoauthconsumerregistration-maintext": "Denne siden er for å la utviklere foreslå og oppdatere OAuth-konsumentapplikasjoner i registeret.\n\nHerfra kan du\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|Be om en nøkkel for en ny OAuth 1.0a-konsument]].\n* [[Special:OAuthConsumerRegistration/propose/oauth2|Be om en nøkkel for en ny OAuth 2.0-klient]].\n* [[Special:OAuthConsumerRegistration/list|Håndtere dine eksisterende konsumentapplikasjoner]].\n\nFor mer informasjon om OAuth, se [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth dokumentasjonen for MediaWiki-tillegget].",
 	"mwoauthconsumerregistration-propose-legend": "Ny OAuth-konsumentapplikasjon",
 	"mwoauthconsumerregistration-update-legend": "Oppdater OAuth-konsumentapplikasjon",
 	"mwoauthconsumerregistration-propose-submit": "Foreslå konsument",
