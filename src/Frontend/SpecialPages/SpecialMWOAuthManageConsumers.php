@@ -512,6 +512,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 
 		$encStageKey = htmlspecialchars( $stageKey );
 		$r = "<li class='mw-mwoauthmanageconsumers-{$encStageKey}'>";
+		$r .= "<span class='mw-mwoauth-stage-icon'></span> ";
 
 		$r .= $time . " (<strong>{$link}</strong>)";
 
@@ -547,11 +548,10 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 			'mwoauthmanageconsumers-lastchange' => $logHtml,
 		];
 
-		$r .= "<table class='mw-mwoauthmanageconsumers-body' " .
-			"cellspacing='1' cellpadding='3' border='1' width='100%'>";
+		$r .= "<table class='mw-mwoauthmanageconsumers-body mw-datatable'>";
 		foreach ( $data as $msg => $encValue ) {
 			$r .= '<tr>' .
-				'<td><strong>' . $this->msg( $msg )->escaped() . '</strong></td>' .
+				'<th>' . $this->msg( $msg )->escaped() . '</th>' .
 				'<td width=\'90%\'>' . $encValue . '</td>' .
 				'</tr>';
 		}

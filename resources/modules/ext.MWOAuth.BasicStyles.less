@@ -1,31 +1,47 @@
 @import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
 
 .mw-mwoauthconsumerregistration-body,
 .mw-mwoauthmanageconsumers-body {
-	background-color: @background-color-notice-subtle;
+	margin-bottom: 1em;
+}
+
+.mwoauth-circle-icon( @icon, @color ) {
+	width: @size-125;
+	height: @size-125;
+	padding: @spacing-25;
+	margin-bottom: @spacing-25;
+	display: inline-block;
+	background-color: @color;
+	border-radius: 100px;
+
+	&:before {
+		content: '';
+		.cdx-mixin-css-icon( @icon, @color-inverted, @size-125 );
+	}
 }
 
 .mw-mwoauthmanageconsumers,
 .mw-mwoauthmanagemygrants,
 .mw-mwoauthconsumerregistration {
-	&-proposed {
-		background-color: @background-color-progressive-subtle;
+	&-proposed .mw-mwoauth-stage-icon {
+		.mwoauth-circle-icon( @cdx-icon-feedback, @color-progressive );
 	}
 
-	&-rejected {
-		background-color: @background-color-destructive-subtle;
+	&-rejected .mw-mwoauth-stage-icon {
+		.mwoauth-circle-icon( @cdx-icon-block, @color-destructive );
 	}
 
-	&-expired {
-		background-color: @background-color-warning-subtle;
+	&-expired .mw-mwoauth-stage-icon {
+		.mwoauth-circle-icon( @cdx-icon-history, @color-warning );
 	}
 
-	&-approved {
-		background-color: @background-color-success-subtle;
+	&-approved .mw-mwoauth-stage-icon {
+		.mwoauth-circle-icon( @cdx-icon-check, @color-success );
 	}
 
-	&-disabled {
-		background-color: @background-color-disabled-subtle;
+	&-disabled .mw-mwoauth-stage-icon {
+		.mwoauth-circle-icon( @cdx-icon-trash, @color-disabled );
 	}
 }
 

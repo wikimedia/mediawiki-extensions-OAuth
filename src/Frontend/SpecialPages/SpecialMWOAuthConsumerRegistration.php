@@ -439,12 +439,12 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		];
 
 		$r = "<li class='mw-mwoauthconsumerregistration-{$encStageKey}'>";
+		$r .= "<span class='mw-mwoauth-stage-icon'></span> ";
 		$r .= "<span>$time (<strong>{$links}</strong>)</span>";
-		$r .= "<table class='mw-mwoauthconsumerregistration-body' " .
-			"cellspacing='1' cellpadding='3' border='1' width='100%'>";
+		$r .= "<table class='mw-mwoauthconsumerregistration-body mw-datatable'>";
 		foreach ( $data as $msg => $encValue ) {
 			$r .= '<tr>' .
-				'<td><strong>' . $this->msg( $msg )->escaped() . '</strong></td>' .
+				'<th>' . $this->msg( $msg )->escaped() . '</th>' .
 				'<td width=\'90%\'>' . $encValue . '</td>' .
 				'</tr>';
 		}
