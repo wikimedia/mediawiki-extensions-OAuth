@@ -8,6 +8,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
@@ -41,6 +42,19 @@ class Utils {
 		global $wgMWOAuthCentralWiki;
 
 		return $wgMWOAuthCentralWiki;
+	}
+
+	/**
+	 * Get the URL to be used as the issuer ('iss') claim in JWTs.
+	 */
+	public static function getJwtIssuer(): string {
+		$centralWiki = self::getCentralWiki() ?: WikiMap::getCurrentWikiId();
+		$wiki = WikiMap::getWiki( $centralWiki );
+		if ( !$wiki ) {
+			LoggerFactory::getInstance( 'OAuth' )->error( 'WikiMap not configured' );
+			return MediaWikiServices::getInstance()->getUrlUtils()->getCanonicalServer();
+		}
+		return $wiki->getCanonicalServer();
 	}
 
 	/**

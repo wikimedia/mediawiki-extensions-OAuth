@@ -28,6 +28,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\UserStatementProvider;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Tests\MockWikiMapTrait;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
@@ -40,16 +41,21 @@ use Wikimedia\TestingAccessWrapper;
  * @license GPL-2.0-or-later
  */
 class UserStatementProviderTest extends MediaWikiIntegrationTestCase {
+	use MockWikiMapTrait;
 
 	public function testGetUserStatement() {
 		$this->overrideConfigValues( [
 			MainConfigNames::EmailAuthentication => true,
+			'MWOAuthCentralWiki' => 'centralwiki',
 		] );
 		$time = wfTimestamp();
 		MWTimestamp::setFakeTime( $time );
 		$config = new HashConfig( [
-			'CanonicalServer' => 'https://example.com/',
+			'CanonicalServer' => 'https://canonical.server/',
 			'HiddenPrefs' => [],
+		] );
+		$this->mockWikiMap( 'https://canonical.server/', [
+			[ 'wikiId' => 'centralwiki', 'server' => 'https://central.server' ],
 		] );
 
 		$user = $this->getMutableTestUser()->getUser();
@@ -75,7 +81,7 @@ class UserStatementProviderTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( 'John Doe', $data['realname'] );
 			$this->assertSame( '', $data['email'] );
 		}
-		$this->assertSame( 'https://example.com/', $userStatement['iss'] );
+		$this->assertSame( 'https://central.server', $userStatement['iss'] );
 		$this->assertSame( 'key', $userStatement['aud'] );
 		$this->assertEqualsWithDelta( $time, $userStatement['exp'], 3600 );
 		$this->assertSame( (int)$time, $userStatement['iat'] );

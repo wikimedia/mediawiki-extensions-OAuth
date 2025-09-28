@@ -80,7 +80,7 @@ class UserStatementProvider {
 			// Include some of the OpenID Connect attributes
 			// http://openid.net/specs/openid-connect-core-1_0.html (draft 14)
 			// Issuer Identifier for the Issuer of the response.
-			'iss' => $this->config->get( 'CanonicalServer' ),
+			'iss' => Utils::getJwtIssuer(),
 
 			// Subject identifier. A locally unique and never reassigned identifier.
 			// T264560: sub added via $this->getUserProfile()
