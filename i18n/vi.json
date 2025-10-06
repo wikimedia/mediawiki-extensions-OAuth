@@ -11,7 +11,8 @@
 			"Withoutaname",
 			"Vanhdeeptryy",
 			"Tryvix1509",
-			"Hide on Rosé"
+			"Hide on Rosé",
+			"Nvdtn19"
 		]
 	},
 	"mwoauth-desc": "Cho phép sử dụng OAuth 1.0a và OAuth 2.0 để xác minh khi truy cập API",
@@ -87,7 +88,7 @@
 	"mwoauthconsumerregistration-stage": "Trạng thái",
 	"mwoauthconsumerregistration-lastchange": "Thay đổi cuối cùng",
 	"mwoauthconsumerregistration-manage": "quản lý",
-	"mwoauthconsumerregistration-resetsecretkey": "Đặt lại một giá trị mới cho chìa khóa bí mật",
+	"mwoauthconsumerregistration-resetsecretkey": "Đặt lại mã bảo mật",
 	"oauthmanageconsumers": "Quản lý tiêu dùng OAuth",
 	"mwoauthmanageconsumers-notloggedin": "Bạn phải đăng nhập để truy cấp trang này.",
 	"mwoauthmanageconsumers-type": "Hàng đợi:",
@@ -152,7 +153,7 @@
 	"mwoauthmanagemygrants-revoke": "thu hồi quyền truy cập",
 	"mwoauthmanagemygrants-grantaccept": "Cấp quyền",
 	"mwoauthmanagemygrants-confirm-legend": "Quản lý ứng dụng kết nối",
-	"mwoauthmanagemygrants-update": "Cập nhật các chìa khóa được cấp",
+	"mwoauthmanagemygrants-update": "Cập nhật các mã được cấp",
 	"mwoauthmanagemygrants-renounce": "Rút quyền",
 	"mwoauthmanagemygrants-action": "Thay đổi trạng thái:",
 	"mwoauthmanagemygrants-confirm-submit": "Cập nhật trạng thái của dấu hiệu truy cập",
