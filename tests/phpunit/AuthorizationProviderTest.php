@@ -58,7 +58,6 @@ class AuthorizationProviderTest extends MediaWikiIntegrationTestCase {
 
 		$authReflection = new ReflectionClass( $class );
 		$userProperty = $authReflection->getProperty( 'user' );
-		$userProperty->setAccessible( true );
 
 		$user = $this->getTestUser()->getUser();
 		$authorizationProvider->setUser( $user );
@@ -98,7 +97,6 @@ class AuthorizationProviderTest extends MediaWikiIntegrationTestCase {
 		// Test if the provider enabled corresponding grant on the server
 		$serverReflection = new ReflectionClass( get_class( $server ) );
 		$enabledGrantsProp = $serverReflection->getProperty( 'enabledGrantTypes' );
-		$enabledGrantsProp->setAccessible( true );
 		$enabledGrants = $enabledGrantsProp->getValue( $server );
 		// In our case, each class is handling a single grant, so only that grant must be enabled
 		$this->assertCount( 1, $enabledGrants,
