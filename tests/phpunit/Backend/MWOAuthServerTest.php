@@ -51,7 +51,6 @@ class MWOAuthServerTest extends TestCase {
 		$consumer->method( 'getCallbackUrl' )->willReturn( $registeredUrl );
 
 		$method = new ReflectionMethod( $fixture, 'checkCallback' );
-		$method->setAccessible( true );
 		$wasValid = null;
 		try {
 			$method->invoke( $fixture, $consumer, $got );
