@@ -16,6 +16,8 @@ use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILBFactory;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Static utility functions for OAuth
@@ -43,22 +45,21 @@ class Utils {
 
 	/**
 	 * @param int $index DB_PRIMARY/DB_REPLICA
-	 * @return IDatabase
+	 * @return IDatabase|IReadableDatabase
 	 */
 	public static function getCentralDB( $index ) {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		/** @var ILBFactory $connProvider To support hasOrMadeRecentPrimaryChanges() */
+		$connProvider = MediaWikiServices::getInstance()->getConnectionProvider();
+		'@phan-var ILBFactory $connProvider';
 
 		// T244415: Use the primary database if there were changes
-		if ( $index === DB_REPLICA && $lbFactory->hasOrMadeRecentPrimaryChanges() ) {
-			$index = DB_PRIMARY;
-		}
-		$wikiId = self::getCentralWiki();
-		if ( WikiMap::isCurrentWikiId( $wikiId ) ) {
-			$wikiId = false;
+		if ( $index === DB_PRIMARY ||
+			( $index === DB_REPLICA && $connProvider->hasOrMadeRecentPrimaryChanges() )
+		) {
+			return $connProvider->getPrimaryDatabase( 'virtual-oauth' );
 		}
 
-		return $lbFactory->getMainLB( $wikiId )->getConnection(
-			$index, [], $wikiId );
+		return $connProvider->getReplicaDatabase( 'virtual-oauth' );
 	}
 
 	/**

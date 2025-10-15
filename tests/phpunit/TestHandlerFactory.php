@@ -18,12 +18,8 @@ class TestHandlerFactory {
 	 * @return ListClients
 	 */
 	public static function getListClients() {
-		$loadBalancer = MediaWikiServices::getInstance()
-			->getDBLoadBalancerFactory()
-			->getMainLB();
+		$connProvider = MediaWikiServices::getInstance()->getConnectionProvider();
 
-		return new ListClients(
-			$loadBalancer
-		);
+		return new ListClients( $connProvider );
 	}
 }

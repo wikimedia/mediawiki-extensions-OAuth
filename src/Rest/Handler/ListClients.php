@@ -11,7 +11,7 @@ use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\SimpleHandler;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -50,15 +50,15 @@ class ListClients extends SimpleHandler {
 	];
 
 	/**
-	 * @var ILoadBalancer
+	 * @var IConnectionProvider
 	 */
-	private $loadBalancer;
+	private $connProvider;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $connProvider
 	 */
-	public function __construct( ILoadBalancer $loadBalancer ) {
-		$this->loadBalancer = $loadBalancer;
+	public function __construct( IConnectionProvider $connProvider ) {
+		$this->connProvider = $connProvider;
 	}
 
 	/**
@@ -118,7 +118,7 @@ class ListClients extends SimpleHandler {
 	 * @return array the results
 	 */
 	private function getDbResults( int $centralId ) {
-		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+		$dbr = $this->connProvider->getReplicaDatabase( 'virtual-oauth' );
 
 		$params = $this->getValidatedParams();
 		$limit = $params['limit'];

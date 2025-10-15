@@ -133,6 +133,9 @@
 				"PermissionManager"
 			]
 		},
+		"mwservices": {
+			"class": "MediaWiki\\Extension\\OAuth\\MWServicesHookHandler"
+		},
 		"setup": {
 			"class": "MediaWiki\\Extension\\OAuth\\Setup"
 		},
@@ -158,7 +161,8 @@
 		"SpecialPage_initList": "frontend",
 		"ListDefinedTags": "backend",
 		"ChangeTagsListActive": "backend",
-		"LoginFormValidErrorMessages": "frontend"
+		"LoginFormValidErrorMessages": "frontend",
+		"MediaWikiServices": "mwservices"
 	},
 	"ConfigRegistry": {
 		"mwoauth": "MediaWiki\\Config\\GlobalVarConfig::newInstance"
@@ -166,7 +170,7 @@
 	"config": {
 		"MWOAuthCentralWiki": {
 			"value": false,
-			"description": "Wiki ID of OAuth management wiki. On wiki farms, it makes sense to set this to a wiki that acts as a portal site, is decidated to management, or just handles login/authentication. It can, however, be set to any wiki if the farm. For single-wiki sites or farms where each wiki manages consumers separately, it should be left as false."
+			"description": "Deprecated, configure the virtual-oauth virtual domain instead."
 		},
 		"MWOAuthSharedUserIDs": {
 			"value": false,
@@ -282,10 +286,13 @@
 			"path": "/oauth2/client",
 			"class": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\ListClients",
 			"services": [
-				"DBLoadBalancer"
+				"ConnectionProvider"
 			],
 			"method": "GET"
 		}
+	],
+	"DatabaseVirtualDomains": [
+		"virtual-oauth"
 	],
 	"load_composer_autoloader": true,
 	"manifest_version": 2
