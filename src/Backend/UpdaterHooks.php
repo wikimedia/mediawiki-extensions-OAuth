@@ -14,70 +14,93 @@ class UpdaterHooks implements LoadExtensionSchemaUpdatesHook {
 	 * @return bool
 	 */
 	public function onLoadExtensionSchemaUpdates( $updater ) {
-		if ( !Utils::isCentralWiki() ) {
-			// no tables to add
-			return true;
-		}
-
 		$dbType = $updater->getDB()->getType();
 
-		$updater->addExtensionTable(
+		$updater->addExtensionUpdateOnVirtualDomain( [
+			'virtual-oauth',
+			'addTable',
 			'oauth_registered_consumer',
-			$this->getPath( 'tables-generated.sql', $dbType )
-		);
+			$this->getPath( 'tables-generated.sql', $dbType ),
+			true
+		] );
 
+		// PostgreSQL support was added in 1.39 with migration to abstract schema (T268565),
+		// so these schema patches are not needed for it
 		if ( $dbType == 'mysql' || $dbType == 'sqlite' ) {
-
 			// 1.35
-			$updater->addExtensionField(
+			$updater->addExtensionUpdateOnVirtualDomain( [
+				'virtual-oauth',
+				'addField',
 				'oauth_registered_consumer',
 				'oarc_oauth_version',
-				$this->getPath( 'oauth_version_registered.sql', $dbType )
-			);
+				$this->getPath( 'oauth_version_registered.sql', $dbType ),
+				true
+			] );
 
-			$updater->addExtensionField(
+			$updater->addExtensionUpdateOnVirtualDomain( [
+				'virtual-oauth',
+				'addField',
 				'oauth_registered_consumer',
 				'oarc_oauth2_is_confidential',
-				$this->getPath( 'oauth2_is_confidential.sql', $dbType )
-			);
+				$this->getPath( 'oauth2_is_confidential.sql', $dbType ),
+				true
+			] );
 
-			$updater->addExtensionField(
+			$updater->addExtensionUpdateOnVirtualDomain( [
+				'virtual-oauth',
+				'addField',
 				'oauth_registered_consumer',
 				'oarc_oauth2_allowed_grants',
-				$this->getPath( 'oauth2_allowed_grants.sql', $dbType )
-			);
+				$this->getPath( 'oauth2_allowed_grants.sql', $dbType ),
+				true
+			] );
 
-			$updater->addExtensionField(
+			$updater->addExtensionUpdateOnVirtualDomain( [
+				'virtual-oauth',
+				'addField',
 				'oauth_accepted_consumer',
 				'oaac_oauth_version',
-				$this->getPath( 'oauth_version_accepted.sql', $dbType )
-			);
+				$this->getPath( 'oauth_version_accepted.sql', $dbType ),
+				true
+			] );
 
-			$updater->addExtensionTable(
+			$updater->addExtensionUpdateOnVirtualDomain( [
+				'virtual-oauth',
+				'addTable',
 				'oauth2_access_tokens',
-				$this->getPath( 'oauth2_access_tokens.sql', $dbType )
-			);
+				$this->getPath( 'oauth2_access_tokens.sql', $dbType ),
+				true
+			] );
 
-			$updater->addExtensionIndex(
+			$updater->addExtensionUpdateOnVirtualDomain( [
+				'virtual-oauth',
+				'addIndex',
 				'oauth2_access_tokens',
 				'oaat_acceptance_id',
-				$this->getPath( 'index_on_oaat_acceptance_id.sql', $dbType )
-			);
+				$this->getPath( 'index_on_oaat_acceptance_id.sql', $dbType ),
+				true
+			] );
 
 			// 1.39
-			$updater->modifyExtensionField(
+			$updater->addExtensionUpdateOnVirtualDomain( [
+				'virtual-oauth',
+				'modifyField',
 				'oauth_accepted_consumer',
 				'oaac_accepted',
-				$this->getPath( 'patch-oauth_accepted_consumer-timestamp.sql', $dbType )
-			);
+				$this->getPath( 'patch-oauth_accepted_consumer-timestamp.sql', $dbType ),
+				true
+			] );
 
-			$updater->modifyExtensionField(
+			$updater->addExtensionUpdateOnVirtualDomain( [
+				'virtual-oauth',
+				'modifyField',
 				'oauth_registered_consumer',
 				'oarc_email_authenticated',
-				$this->getPath( 'patch-oauth_registered_consumer-timestamp.sql', $dbType )
-			);
-
+				$this->getPath( 'patch-oauth_registered_consumer-timestamp.sql', $dbType ),
+				true
+			] );
 		}
+
 		return true;
 	}
 
