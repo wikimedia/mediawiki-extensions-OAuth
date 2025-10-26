@@ -7,7 +7,9 @@ use MediaWiki\Extension\OAuth\Entity\MWClientEntityInterface;
 interface OAuthClaimStoreGetClaimsHook {
 
 	/**
-	 * Use this hook to add a list of private claims to a client's JWT
+	 * Use this hook to add a list of private claims to a client's JWT.
+	 *
+	 * $privateClaims will already include those added by the GetSessionJwtData hook.
 	 *
 	 * @param string $grantType Type of OAuth grant
 	 * @param MWClientEntityInterface $clientEntity Client that is making the request

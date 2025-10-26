@@ -13,7 +13,7 @@ class MockClientEntity extends ClientEntity {
 	 * @param array $values
 	 * @return Consumer|false
 	 */
-	public static function newMock( User $user, $values = [] ) {
+	public static function newMock( User $user, $values = [] ): ClientEntity {
 		$now = wfTimestampNow();
 		return ClientEntity::newFromArray( array_merge( [
 			'id'                   => null,

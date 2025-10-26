@@ -5,20 +5,23 @@ namespace MediaWiki\Extension\OAuth\Repository;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\ClaimRepositoryInterface;
 use LogicException;
+use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\ClaimEntity;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Entity\MWClientEntityInterface;
 use MediaWiki\Extension\OAuth\HookRunner;
+use MediaWiki\HookContainer\HookRunner as CoreHookRunner;
 use MediaWiki\MediaWikiServices;
 
 class ClaimStore implements ClaimRepositoryInterface {
 
-	/**
-	 * @var HookRunner
-	 */
-	private $hookRunner;
+	private HookRunner $hookRunner;
+	private CoreHookRunner $coreHookRunner;
 
 	public function __construct() {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->coreHookRunner = new CoreHookRunner( $hookContainer );
 	}
 
 	/**
@@ -32,9 +35,48 @@ class ClaimStore implements ClaimRepositoryInterface {
 				MWClientEntityInterface::class . ', got ' . get_class( $clientEntity ) . ' instead' );
 		}
 
-		$privateClaims = [];
-		$this->hookRunner->onOAuthClaimStoreGetClaims( $grantType, $clientEntity, $privateClaims );
+		$claims = [];
+		$user = null;
+		if ( $clientEntity instanceof ClientEntity ) {
+			$user = $clientEntity->getUser();
+		}
+		// FIXME getLocalUserFromCentralId claims to return false on not found but can return an anon User
+		if ( ( !$user || !$user->getId() ) && $userIdentifier ) {
+			$user = Utils::getLocalUserFromCentralId( (int)$userIdentifier );
+		}
+		if ( $user && $user->getId() ) {
+			$this->coreHookRunner->onGetSessionJwtData( $user, $claims );
+		}
 
-		return $privateClaims;
+		$claimEntities = $this->claimMapToEntityList( $claims );
+		$this->hookRunner->onOAuthClaimStoreGetClaims( $grantType, $clientEntity, $claimEntities );
+
+		// Deduplicate claims; when there are multiple claims with the same name, let the last one win,
+		// as that one probably comes from the extension hook, which has a more specific purpose.
+		return $this->claimMapToEntityList( $this->claimEntityListToMap( $claimEntities ) );
+	}
+
+	/**
+	 * @param ClaimEntity[] $claimEntityList
+	 * @return array<string,array|string|int|float|bool|null>
+	 */
+	private function claimEntityListToMap( array $claimEntityList ): array {
+		$claimMap = [];
+		foreach ( $claimEntityList as $claimEntity ) {
+			$claimMap[ $claimEntity->getName() ] = $claimEntity->getValue();
+		}
+		return $claimMap;
+	}
+
+	/**
+	 * @param array<string,array|string|int|float|bool|null> $claimMap
+	 * @return ClaimEntity[]
+	 */
+	private function claimMapToEntityList( array $claimMap ): array {
+		$claimEntityList = [];
+		foreach ( $claimMap as $name => $value ) {
+			$claimEntityList[] = new ClaimEntity( $name, $value );
+		}
+		return $claimEntityList;
 	}
 }
