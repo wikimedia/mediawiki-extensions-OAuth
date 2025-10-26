@@ -55,7 +55,7 @@ abstract class Consumer extends MWOAuthDAO {
 	protected $consumerKey;
 	/** @var string Name of connected application */
 	protected $name;
-	/** @var int Publisher's central user ID. $wgMWOAuthSharedUserIDs defines which central ID
+	/** @var int Publisher's central user ID. $wgMWOAuthSharedUserSource defines which central ID
 	 *    provider to use.
 	 */
 	protected $userId;

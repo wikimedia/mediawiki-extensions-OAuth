@@ -40,11 +40,10 @@ class ClaimStore implements ClaimRepositoryInterface {
 		if ( $clientEntity instanceof ClientEntity ) {
 			$user = $clientEntity->getUser();
 		}
-		// FIXME getLocalUserFromCentralId claims to return false on not found but can return an anon User
-		if ( ( !$user || !$user->getId() ) && $userIdentifier ) {
+		if ( !$user && $userIdentifier ) {
 			$user = Utils::getLocalUserFromCentralId( (int)$userIdentifier );
 		}
-		if ( $user && $user->getId() ) {
+		if ( $user ) {
 			$this->coreHookRunner->onGetSessionJwtData( $user, $claims );
 		}
 

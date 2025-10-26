@@ -174,11 +174,11 @@
 		},
 		"MWOAuthSharedUserIDs": {
 			"value": false,
-			"description": "Whether shared global user IDs are stored in the oauth tables. On wiki farms with a central authentication system (with integer user IDs) that share a single OAuth management wiki, this must be set to true. If wikis have a central authentication system but have their own OAuth management, then this can be either true or false. Otherwise it should always be set to false Setting this to true requires CentralIdLookup or an MWOAuth aware authentication extension. This value should not be changed after the fact to avoid ambigious IDs. Proper user ID migration should be done before any such changes."
+			"description": "Deprecated, will be dropped in a future release with default behavior becoming the same as $wgMWOAuthSharedUserIDs=true. If you have set this to false and are getting deprecation warnings, you need to set $wgMWOAuthSharedUserIDs=true, $wgMWOAuthSharedUserSource='local'.\n\n(On wikis which are not part of a wiki farm or don't use a central user system, the value of this configuration variable is inconsequential, and $wgMWOAuthSharedUserIDs=true,$wgMWOAuthSharedUserSource=null also works. If you aren't sure, just set 'local'.)\n\nDetermines whether OAuth stores local user IDs or central IDs."
 		},
 		"MWOAuthSharedUserSource": {
 			"value": null,
-			"description": "Source of shared user IDs, if enabled. If CentralIdLookup is available, this is the $providerId for CentralIdLookupFactory::getLookup(). Generally null would be what you want, to use the default provider. If that class is not available or the named provider is not found, this is\n * passed to the 'OAuthGetUserNamesFromCentralIds', 'OAuthGetLocalUserFromCentralId', 'OAuthGetCentralIdFromLocalUser', and 'OAuthGetCentralIdFromUserName' hooks. This has no effect if $wgMWOAuthSharedUserIDs is set to false."
+			"description": "Source of shared user IDs. Used as the $providerId parameter for CentralIdLookupFactory::getLookup(). Generally null would be what you want, to use the default provider.\n\nThis value should not be changed after the fact to avoid ambiguous IDs. Proper user ID migration should be done before any such changes."
 		},
 		"MWOAuthRequestExpirationAge": {
 			"value": 2592000,

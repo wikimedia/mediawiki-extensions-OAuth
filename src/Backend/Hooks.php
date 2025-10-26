@@ -116,14 +116,10 @@ EOK;
 
 	/** @inheritDoc */
 	public static function onMergeAccountFromTo( User $oUser, User $nUser ) {
-		global $wgMWOAuthSharedUserIDs;
-
-		if ( !$wgMWOAuthSharedUserIDs ) {
-			$oldid = $oUser->getId();
-			$newid = $nUser->getId();
-			if ( $oldid && $newid ) {
-				self::doUserIdMerge( $oldid, $newid );
-			}
+		$oldid = Utils::getCentralIdFromLocalUser( $oUser );
+		$newid = Utils::getCentralIdFromLocalUser( $nUser );
+		if ( $oldid && $newid ) {
+			self::doUserIdMerge( $oldid, $newid );
 		}
 
 		return true;
@@ -212,7 +208,7 @@ EOK;
 
 	/** @inheritDoc */
 	public function onSetupAfterCache() {
-		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
+		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		if ( $wgMWOAuthCentralWiki === false ) {
 			// Treat each wiki as its own "central wiki" as there is no actual one
@@ -220,6 +216,14 @@ EOK;
 		} else {
 			// There is actually a central wiki, requiring global user IDs via hook
 			$wgMWOAuthSharedUserIDs = true;
+		}
+
+		if ( $wgMWOAuthSharedUserIDs === false ) {
+			if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_QUIBBLE_CI' ) ) {
+				wfDeprecatedMsg( '$wgMWOAuthSharedUserIDs=false is deprecated, set '
+					. '$wgMWOAuthSharedUserIDs=true, $wgMWOAuthSharedUserSource=\'local\' instead', '1.45', 'OAuth' );
+			}
+			$wgMWOAuthSharedUserSource = 'local';
 		}
 	}
 

@@ -13,6 +13,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -272,36 +273,12 @@ class Utils {
 	 * @return string|bool Username, false if not found, empty string if name is hidden
 	 */
 	public static function getCentralUserNameFromId( $userId, $audience = false ) {
-		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
-
-		// global ID required via hook
-		if ( $wgMWOAuthSharedUserIDs ) {
-			$lookup = MediaWikiServices::getInstance()
-				->getCentralIdLookupFactory()
-				->getLookup( $wgMWOAuthSharedUserSource );
-			$name = $lookup->nameFromCentralId(
-				$userId,
-				$audience === 'raw'
-					? CentralIdLookup::AUDIENCE_RAW
-					: ( $audience ?: CentralIdLookup::AUDIENCE_PUBLIC )
-			);
-			if ( $name === null ) {
-				$name = false;
-			}
-		} else {
-			$name = '';
-			$user = User::newFromId( $userId );
-			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-
-			if ( $audience === 'raw'
-				|| !$user->isHidden()
-				|| ( $audience instanceof User && $permissionManager->userHasRight( $audience, 'hideuser' ) )
-			) {
-				$name = $user->getName();
-			}
-		}
-
-		return $name;
+		return self::getCentralIdLookup()->nameFromCentralId(
+			$userId,
+			$audience === 'raw'
+				? CentralIdLookup::AUDIENCE_RAW
+				: ( $audience ?: CentralIdLookup::AUDIENCE_PUBLIC )
+		) ?? false;
 	}
 
 	/**
@@ -311,21 +288,24 @@ class Utils {
 	 * @return User|false False if not found
 	 */
 	public static function getLocalUserFromCentralId( $userId ) {
-		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
-
-		// global ID required via hook
-		if ( $wgMWOAuthSharedUserIDs ) {
-			$lookup = MediaWikiServices::getInstance()
-				->getCentralIdLookupFactory()
-				->getLookup( $wgMWOAuthSharedUserSource );
-			$user = $lookup->localUserFromCentralId( $userId );
-			if ( $user === null || !$lookup->isAttached( $user ) ) {
-				return false;
-			}
-			return User::newFromIdentity( $user );
+		$lookup = self::getCentralIdLookup();
+		$user = $lookup->localUserFromCentralId( $userId );
+		if ( $user === null || !$lookup->isAttached( $user ) ) {
+			return false;
 		}
+		return User::newFromIdentity( $user );
+	}
 
-		return User::newFromId( $userId );
+	public static function getCentralIdLookup(): CentralIdLookup {
+		global $wgMWOAuthSharedUserSource;
+
+		return MediaWikiServices::getInstance()
+			->getCentralIdLookupFactory()
+			->getLookup( $wgMWOAuthSharedUserSource );
+	}
+
+	private static function usingCentralIds(): bool {
+		return !( self::getCentralIdLookup() instanceof LocalIdLookup );
 	}
 
 	/**
@@ -335,34 +315,25 @@ class Utils {
 	 * @return int|bool ID or false if not found
 	 */
 	public static function getCentralIdFromLocalUser( User $user ) {
-		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
+		// T227688 do not rely on array auto-creation for non-stdClass
+		if ( !isset( $user->oAuthUserData ) ) {
+			$user->oAuthUserData = [];
+		}
 
-		// global ID required via hook
-		if ( $wgMWOAuthSharedUserIDs ) {
-			// T227688 do not rely on array auto-creation for non-stdClass
-			if ( !isset( $user->oAuthUserData ) ) {
-				$user->oAuthUserData = [];
-			}
-
-			if ( isset( $user->oAuthUserData['centralId'] ) ) {
-				$id = $user->oAuthUserData['centralId'];
-			} else {
-				$lookup = MediaWikiServices::getInstance()
-					->getCentralIdLookupFactory()
-					->getLookup( $wgMWOAuthSharedUserSource );
-				if ( !$lookup->isAttached( $user ) ) {
-					$id = false;
-				} else {
-					$id = $lookup->centralIdFromLocalUser( $user );
-					if ( $id === 0 ) {
-						$id = false;
-					}
-				}
-				// Process cache the result to avoid queries
-				$user->oAuthUserData['centralId'] = $id;
-			}
+		if ( isset( $user->oAuthUserData['centralId'] ) ) {
+			$id = $user->oAuthUserData['centralId'];
 		} else {
-			$id = $user->getId();
+			$lookup = self::getCentralIdLookup();
+			if ( !$lookup->isAttached( $user ) ) {
+				$id = false;
+			} else {
+				$id = $lookup->centralIdFromLocalUser( $user );
+				if ( $id === 0 ) {
+					$id = false;
+				}
+			}
+			// Process cache the result to avoid queries
+			$user->oAuthUserData['centralId'] = $id;
 		}
 
 		return $id;
@@ -374,26 +345,7 @@ class Utils {
 	 * @return int|bool ID or false if not found
 	 */
 	public static function getCentralIdFromUserName( $username ) {
-		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
-
-		// global ID required via hook
-		if ( $wgMWOAuthSharedUserIDs ) {
-			$lookup = MediaWikiServices::getInstance()
-				->getCentralIdLookupFactory()
-				->getLookup( $wgMWOAuthSharedUserSource );
-			$id = $lookup->centralIdFromName( $username );
-			if ( $id === 0 ) {
-				$id = false;
-			}
-		} else {
-			$id = false;
-			$user = User::newFromName( $username );
-			if ( $user instanceof User && $user->getId() > 0 ) {
-				$id = $user->getId();
-			}
-		}
-
-		return $id;
+		return self::getCentralIdLookup()->centralIdFromName( $username ) ?: false;
 	}
 
 	/**
@@ -422,9 +374,9 @@ class Utils {
 	 * @return string the (proto-relative, urlencoded) url of the central wiki's user talk page
 	 */
 	public static function getCentralUserTalk( $username ) {
-		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs;
+		global $wgMWOAuthCentralWiki;
 
-		if ( $wgMWOAuthSharedUserIDs ) {
+		if ( self::usingCentralIds() ) {
 			$url = WikiMap::getForeignURL(
 				$wgMWOAuthCentralWiki,
 				"User_talk:$username"
