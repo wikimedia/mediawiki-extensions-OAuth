@@ -48,7 +48,8 @@ class ResourceServer {
 
 		$server = new LeagueResourceServer(
 			$accessTokenRepository,
-			$publicKey
+			$publicKey,
+			new BearerTokenValidator( $accessTokenRepository ),
 		);
 		$this->middleware = new ResourceServerMiddleware( $server );
 	}
