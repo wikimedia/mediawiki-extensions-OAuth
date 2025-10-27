@@ -107,6 +107,8 @@
 	"mwoauthmanagemygrants-update": "Ажурирај дозволе",
 	"mwoauthmanagemygrants-renounce": "Скини овлашћења",
 	"mwoauthmanagemygrants-action": "Промени статус:",
+	"mwoauthmanagemygrants-success-update": "Ваша подешавања за ову апликацију су ажурирана.",
+	"mwoauthmanagemygrants-success-renounce": "Приступ апликације Вашем налогу је опозван.",
 	"mwoauthmanagemygrants-basic-tooltip": "Зашто не могу да ажурирам ову дозволу? Ова дозвола даје повезаној апликацији основна права која су јој потребна да би исправно функционисала. Ако не желите да повезана апликација има ова права, треба да јој одузмете приступ.",
 	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Ваше}} измене помоћу ове апликације",
 	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Ваше}} радње помоћу ове апликације",
