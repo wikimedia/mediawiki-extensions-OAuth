@@ -30,9 +30,7 @@ class Utils {
 	 * @return bool
 	 */
 	public static function isCentralWiki() {
-		global $wgMWOAuthCentralWiki;
-
-		return ( WikiMap::getCurrentWikiId() === $wgMWOAuthCentralWiki );
+		return ( WikiMap::getCurrentWikiId() === self::getCentralWiki() );
 	}
 
 	/**

@@ -170,7 +170,7 @@
 	"config": {
 		"MWOAuthCentralWiki": {
 			"value": false,
-			"description": "Deprecated, configure the virtual-oauth virtual domain instead."
+			"description": "Wiki ID of OAuth management wiki. On wiki farms, it makes sense to set this to a wiki that acts as a portal site, is decidated to management, or just handles login/authentication. It can, however, be set to any wiki if the farm. For single-wiki sites or farms where each wiki manages consumers separately, it should be left as false."
 		},
 		"MWOAuthSharedUserIDs": {
 			"value": false,
