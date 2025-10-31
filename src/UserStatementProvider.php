@@ -71,7 +71,7 @@ class UserStatementProvider {
 	}
 
 	/**
-	 * Retrieve user statement suitable for JWT encoding
+	 * Retrieve user statement suitable for the JWT returned by the OAuth 1 /identify endpoint.
 	 *
 	 * @return array
 	 */
@@ -80,7 +80,7 @@ class UserStatementProvider {
 			// Include some of the OpenID Connect attributes
 			// http://openid.net/specs/openid-connect-core-1_0.html (draft 14)
 			// Issuer Identifier for the Issuer of the response.
-			'iss' => Utils::getJwtIssuer(),
+			'iss' => $this->config->get( 'CanonicalServer' ),
 
 			// Subject identifier. A locally unique and never reassigned identifier.
 			// T264560: sub added via $this->getUserProfile()
