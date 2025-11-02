@@ -132,6 +132,14 @@ $specialPageAliases['nl'] = [
 	'OAuthListConsumers' => [ 'OAuthLijstGebruikers' ],
 ];
 
+/** Slovak (slovenčina) */
+$specialPageAliases['sk'] = [
+	'OAuthConsumerRegistration' => [ 'RegistráciaAplikácieOAuth' ],
+	'OAuthManageConsumers' => [ 'SprávaAplikáciíOAuth' ],
+	'OAuthListConsumers' => [ 'ZoznamAplikáciíOAuth' ],
+	'OAuthManageMyGrants' => [ 'SprávaPripojenýchAplikácií' ],
+];
+
 /** Serbian Cyrillic (српски (ћирилица)) */
 $specialPageAliases['sr-ec'] = [
 	'OAuthConsumerRegistration' => [ 'OAuth_регистрација_апликације', 'OAuth_регистрација' ],
