@@ -59,7 +59,7 @@
 	"oauthmanagemygrants": "نښلېدلي کاريالونه مهارول",
 	"mwoauthmanagemygrants-text": "دا پاڼه هر هغه کاريال لړليکوي چې ستاسو گڼون يې کارولی شي. د هر داسې کاريال د لاسرسي سيمه د هغه اجازو له مخې محدوده ده چې تاسو کاريال ته په خپل استازيتوب د چارو ترسره کولو لپاره ورکړې وې. که تاسو په جلا توگه يو کاريال ته په خپل استازيبتوب د بېلابېلو خورلڼو پروژو د لاسرسي اجازه وکړې وي: نو تاسو به د هرې داسې پروژې لپاره جلا ترتيب وگورئ.\n\nنښلېدلي کاريالونه ستاسو گڼون ته د OAuth پروتوکول کارولو سره لاسرسي مومي. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth نښلېدلو کاريالونو په اړه نور زده کړئ])</span>",
 	"mwoauthmanagemygrants-navigation": "چلند:",
-	"mwoauthmanagemygrants-showlist": "نښلېدلو کاريانو لړليک",
+	"mwoauthmanagemygrants-showlist": "نښلېدلو کاريالونو لړليک",
 	"mwoauthmanagemygrants-user": "خپروونکی:",
 	"mwoauthmanagemygrants-description": "څرگندونه",
 	"mwoauthmanagemygrants-wikiallowed": "پروژه کې اجازه ورکړل‌شوې:",
