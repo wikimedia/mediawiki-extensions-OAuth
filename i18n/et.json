@@ -73,6 +73,7 @@
 	"oauthlistconsumers": "OAuthi-rakenduste loend",
 	"mwoauthlistconsumers-legend": "OAuthi-rakenduste sirvimine",
 	"mwoauthlistconsumers-view": "üksikasjad",
+	"mwoauthlistconsumers-none": "Neile kriteeriumitele vastavaid rakendusi ei leitud.",
 	"mwoauthlistconsumers-name": "Rakenduse nimi",
 	"mwoauthlistconsumers-version": "Tarvituse versioon",
 	"mwoauthlistconsumers-user": "Väljaandja",
