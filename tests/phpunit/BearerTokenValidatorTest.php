@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extension\OAuth\Tests;
 
+use GuzzleHttp\Psr7\ServerRequest;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Validation\Constraint\IssuedBy;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use MediaWiki\Extension\OAuth\BearerTokenValidator;
-use MediaWiki\Extension\WebAuthn\Request;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWikiIntegrationTestCase;
@@ -41,7 +41,7 @@ class BearerTokenValidatorTest extends MediaWikiIntegrationTestCase {
 			->relatedTo( $jwtSubject )
 			->identifiedBy( '123' )
 			->getToken( $wrapper->jwtConfiguration->signer(), $wrapper->jwtConfiguration->signingKey() );
-		$request = new Request( 'GET', 'https://example.org', headers: [
+		$request = new ServerRequest( 'GET', 'https://example.org', headers: [
 			'Authorization' => 'Bearer ' . $jwt->toString(),
 		] );
 		if ( $expectedUserId === null ) {
