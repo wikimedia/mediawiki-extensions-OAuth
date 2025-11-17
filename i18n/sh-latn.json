@@ -18,7 +18,7 @@
 	"mwoauth-field-hidden": "(ovaj podatak je skriven)",
 	"mwoauth-field-private": "(ovaj podatak je povjerljiv)",
 	"mwoauth-prefs-managegrants": "Povezane aplikacije:",
-	"mwoauth-prefs-managegrantslink": "Upravljaj {{PLURAL:$1|1=povezanom aplikacijom|povezanim aplikacijama ($1)|0=povezanim aplikacijama}}",
+	"mwoauth-prefs-managegrantslink": "Upravljanje {{PLURAL:$1|1=povezanom aplikacijom|povezanim aplikacijama ($1)|0=povezanim aplikacijama}}",
 	"mwoauth-consumer-key": "Potrošački ključ:",
 	"mwoauth-consumer-name": "Naziv izvršnika:",
 	"mwoauth-consumer-version": "Potrošačka verzija:",
