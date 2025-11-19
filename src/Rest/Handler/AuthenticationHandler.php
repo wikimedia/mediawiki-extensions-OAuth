@@ -44,7 +44,7 @@ abstract class AuthenticationHandler extends Handler {
 	 */
 	public static function factory() {
 		$centralId = Utils::getCentralIdFromLocalUser( RequestContext::getMain()->getUser() );
-		$user = $centralId ? Utils::getLocalUserFromCentralId( $centralId ) : User::newFromId( 0 );
+		$user = $centralId ? RequestContext::getMain()->getUser() : User::newFromId( 0 );
 		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
 		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
 		return new static( $user, $config );
