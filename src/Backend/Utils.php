@@ -8,6 +8,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\CentralId\CentralIdLookup;
@@ -293,7 +294,8 @@ class Utils {
 	}
 
 	/**
-	 * Given a central wiki user ID, get a local User object
+	 * Given a central wiki user ID, get a local User object.
+	 * No audience checks are done for the lookup.
 	 *
 	 * @param int $userId
 	 * @return User|false False if not found
@@ -306,7 +308,7 @@ class Utils {
 			$lookup = MediaWikiServices::getInstance()
 				->getCentralIdLookupFactory()
 				->getLookup( $wgMWOAuthSharedUserSource );
-			$user = $lookup->localUserFromCentralId( $userId );
+			$user = $lookup->localUserFromCentralId( $userId, CentralIdLookup::AUDIENCE_RAW );
 			if ( $user === null || !$lookup->isAttached( $user ) ) {
 				return false;
 			}
@@ -317,7 +319,8 @@ class Utils {
 	}
 
 	/**
-	 * Given a local User object, get the user ID for that user on the central wiki
+	 * Given a local User object, get the user ID for that user on the central wiki.
+	 * No audience checks are done for the lookup.
 	 *
 	 * @param User $user
 	 * @return int|bool ID or false if not found
@@ -341,7 +344,7 @@ class Utils {
 				if ( !$lookup->isAttached( $user ) ) {
 					$id = false;
 				} else {
-					$id = $lookup->centralIdFromLocalUser( $user );
+					$id = $lookup->centralIdFromLocalUser( $user, CentralIdLookup::AUDIENCE_RAW );
 					if ( $id === 0 ) {
 						$id = false;
 					}
@@ -359,9 +362,10 @@ class Utils {
 	/**
 	 * Given a username, get the user ID for that user on the central wiki.
 	 * @param string $username
+	 * @param int|Authority $audience CentralIdLookup::AUDIENCE_* flag or user
 	 * @return int|bool ID or false if not found
 	 */
-	public static function getCentralIdFromUserName( $username ) {
+	public static function getCentralIdFromUserName( $username, $audience = CentralIdLookup::AUDIENCE_PUBLIC ) {
 		global $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
 
 		// global ID required via hook
@@ -369,7 +373,7 @@ class Utils {
 			$lookup = MediaWikiServices::getInstance()
 				->getCentralIdLookupFactory()
 				->getLookup( $wgMWOAuthSharedUserSource );
-			$id = $lookup->centralIdFromName( $username );
+			$id = $lookup->centralIdFromName( $username, $audience );
 			if ( $id === 0 ) {
 				$id = false;
 			}

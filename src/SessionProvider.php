@@ -27,6 +27,7 @@ use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
@@ -291,7 +292,7 @@ class SessionProvider
 	}
 
 	public function preventSessionsForUser( $username ) {
-		$id = Utils::getCentralIdFromUserName( $username );
+		$id = Utils::getCentralIdFromUserName( $username, CentralIdLookup::AUDIENCE_RAW );
 		$dbw = Utils::getCentralDB( DB_PRIMARY );
 
 		$dbw->startAtomic( __METHOD__ );
