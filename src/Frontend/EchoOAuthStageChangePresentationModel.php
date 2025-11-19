@@ -125,6 +125,8 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 			$this->owner = Utils::getLocalUserFromCentralId(
 				$this->event->getExtraParam( 'owner-id' ) );
 		}
+		// No need to check whether the user is hidden, the only messages in which the owner
+		// is a parameter are only shown to the owner.
 		return $this->owner;
 	}
 
