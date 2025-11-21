@@ -16,10 +16,7 @@ use MediaWikiIntegrationTestCase;
  */
 class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 
-	/**
-	 * @var ClaimStore
-	 */
-	private $oAuthClaimStore;
+	private ClaimStore $oAuthClaimStore;
 
 	protected function setUp(): void {
 		$this->oAuthClaimStore = new ClaimStore();
@@ -70,7 +67,6 @@ class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideClaims
-	 * @covers \MediaWiki\Extension\OAuth\Repository\ClaimStore::getClaims
 	 */
 	public function testGetClaims( $coreHookClaims, $extensionHookclaims, $expectedClaims ) {
 		$client = MockClientEntity::newMock( $this->getTestUser()->getUser() );
@@ -107,7 +103,7 @@ class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayEquals( $makeReadableWhenPrinted( $expectedClaims ), $makeReadableWhenPrinted( $res ) );
 	}
 
-	public function provideGetClaims_userIdentity() {
+	public static function provideGetClaims_userIdentity(): array {
 		return [
 			[ false, false, false ],
 			[ false, true, true ],
@@ -118,7 +114,6 @@ class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetClaims_userIdentity
-	 * @covers \MediaWiki\Extension\OAuth\Repository\ClaimStore::getClaims
 	 */
 	public function testGetClaims_userIdentity( $clientUserId, $explicitUserId, $expectCoreHook ) {
 		$user = $this->getTestUser()->getUser();
