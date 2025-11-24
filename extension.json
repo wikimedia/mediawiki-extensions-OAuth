@@ -123,8 +123,7 @@
 		"backend": {
 			"class": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks",
 			"services": [
-				"ChangeTagDefStore",
-				"ConnectionProvider"
+				"ChangeTagDefStore"
 			]
 		},
 		"frontend": {

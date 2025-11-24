@@ -12,7 +12,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
-use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Class containing hooked functions for an OAuth environment
@@ -28,17 +27,11 @@ class Hooks implements
 	/** @var NameTableStore */
 	private $changeTagDefStore;
 
-	/** @var IConnectionProvider */
-	private $connectionProvider;
-
 	/**
 	 * @param NameTableStore $changeTagDefStore
-	 * @param IConnectionProvider $connectionProvider
 	 */
-	public function __construct( NameTableStore $changeTagDefStore, IConnectionProvider $connectionProvider
-	) {
+	public function __construct( NameTableStore $changeTagDefStore ) {
 		$this->changeTagDefStore = $changeTagDefStore;
-		$this->connectionProvider = $connectionProvider;
 	}
 
 	/**
