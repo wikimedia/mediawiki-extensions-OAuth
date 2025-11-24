@@ -41,6 +41,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
+use MediaWiki\WikiMap\WikiMap;
 use MWRestrictions;
 use OOUI\HtmlSnippet;
 use stdClass;
@@ -90,13 +91,26 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 
 	/** @inheritDoc */
 	public function execute( $par ) {
-		$user = $this->getUser();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-
 		$this->setHeaders();
 		$this->getOutput()->disallowUserJs();
 		$this->addHelpLink( 'Help:OAuth' );
+
+		if ( !Utils::isCentralWiki() ) {
+			$this->getOutput()->addWikiMsg( 'mwoauth-consumers-central-wiki' );
+			$wiki = WikiMap::getWiki( Utils::getCentralWiki() ?: WikiMap::getCurrentWikiId() );
+			if ( $wiki ) {
+				$this->getOutput()->addHTML( Html::element( 'a', [
+					// Cross-wiki, so don't localize
+					'href' => $wiki->getUrl( 'Special:OAuthManageConsumers' . ( $par !== null ? "/$par" : '' ) ),
+				], $this->msg( 'mwoauth-consumers-central-wiki-go', $wiki->getDisplayName() )->text() ) );
+			}
+			return;
+		}
+
 		$this->requireNamedUser( 'mwoauth-available-only-to-registered' );
+
+		$user = $this->getUser();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		if ( !$permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' ) ) {
 			throw new PermissionsError( 'mwoauthmanageconsumer' );

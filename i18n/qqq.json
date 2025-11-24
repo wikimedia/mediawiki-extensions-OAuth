@@ -86,6 +86,8 @@
 	"mwoauth-consumer-stage-disabled": "{{Related|Mwoauth-consumer-stage}}\n{{Identical|Disabled}}",
 	"mwoauth-consumer-stage-suppressed": "{{Related|Mwoauth-consumer-stage}}\n{{Identical|Suppressed}}",
 	"mwoauth-ignorewarnings": "Shown in OAuth forms when the submission failed due to skippable warnings.",
+	"mwoauth-consumers-central-wiki": "Error message. Button to visit the central wiki is shown below.",
+	"mwoauth-consumers-central-wiki-go": "Label for a button. Parameters: $1 - site name, e.g. meta.wikimedia.org",
 	"oauthconsumerregistration": "{{doc-special|OAuthConsumerRegistration}}",
 	"mwoauthconsumerregistration-navigation": "Used in page subtitle.\n{{Identical|Navigation}}",
 	"mwoauthconsumerregistration-propose-oauth1": "Text for the link that developers follow to request that their application is accepted as an OAuth 1a application on this site.",

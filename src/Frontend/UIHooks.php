@@ -258,24 +258,22 @@ class UIHooks implements
 	 * @param array &$specialPages
 	 */
 	public function onSpecialPage_initList( &$specialPages ) {
-		if ( Utils::isCentralWiki() ) {
-			$specialPages['OAuthConsumerRegistration'] = [
-				'class' => SpecialMWOAuthConsumerRegistration::class,
-				'services' => [
-					'PermissionManager',
-					'GrantsInfo',
-					'GrantsLocalization',
-					'UrlUtils',
-				],
-			];
-			$specialPages['OAuthManageConsumers'] = [
-				'class' => SpecialMWOAuthManageConsumers::class,
-				'services' => [
-					'GrantsLocalization',
-					'UrlUtils',
-				],
-			];
-		}
+		$specialPages['OAuthConsumerRegistration'] = [
+			'class' => SpecialMWOAuthConsumerRegistration::class,
+			'services' => [
+				'PermissionManager',
+				'GrantsInfo',
+				'GrantsLocalization',
+				'UrlUtils',
+			],
+		];
+		$specialPages['OAuthManageConsumers'] = [
+			'class' => SpecialMWOAuthManageConsumers::class,
+			'services' => [
+				'GrantsLocalization',
+				'UrlUtils',
+			],
+		];
 	}
 
 	/**

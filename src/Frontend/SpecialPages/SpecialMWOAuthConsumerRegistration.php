@@ -91,7 +91,24 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 	/** @inheritDoc */
 	public function execute( $par ) {
+		$this->setHeaders();
+		$this->getOutput()->disallowUserJs();
+		$this->addHelpLink( 'Help:OAuth' );
+
+		if ( !Utils::isCentralWiki() ) {
+			$this->getOutput()->addWikiMsg( 'mwoauth-consumers-central-wiki' );
+			$wiki = WikiMap::getWiki( Utils::getCentralWiki() ?: WikiMap::getCurrentWikiId() );
+			if ( $wiki ) {
+				$this->getOutput()->addHTML( Html::element( 'a', [
+					// Cross-wiki, so don't localize
+					'href' => $wiki->getUrl( 'Special:OAuthConsumerRegistration' . ( $par !== null ? "/$par" : '' ) ),
+				], $this->msg( 'mwoauth-consumers-central-wiki-go', $wiki->getDisplayName() )->text() ) );
+			}
+			return;
+		}
+
 		$this->requireNamedUser( 'mwoauth-named-account-required-reason' );
+
 		$this->checkPermissions();
 
 		$request = $this->getRequest();
@@ -111,10 +128,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			return;
 		}
 
-		$this->setHeaders();
-		$this->getOutput()->disallowUserJs();
 		$this->getOutput()->addModules( 'mediawiki.special' );
-		$this->addHelpLink( 'Help:OAuth' );
 
 		$block = $user->getBlock();
 		if ( $block ) {
