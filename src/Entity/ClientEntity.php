@@ -177,7 +177,7 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 		$accessToken = $accessTokenRepo->getNewToken( $this, $this->getScopes(), $approval->getUserId() );
 		'@phan-var AccessTokenEntity $accessToken';
 		$claimStore = new ClaimStore();
-		$claims = $claimStore->getClaims( $grantType, $this );
+		$claims = $claimStore->getClaims( $grantType, $this, ownerOnly: true );
 		foreach ( $claims as $claim ) {
 			$accessToken->addClaim( $claim );
 		}

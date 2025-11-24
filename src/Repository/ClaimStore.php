@@ -26,9 +26,10 @@ class ClaimStore implements ClaimRepositoryInterface {
 
 	/**
 	 * @inheritDoc
+	 * @param bool $ownerOnly True for owner-only apps.
 	 */
 	public function getClaims(
-		string $grantType, ClientEntityInterface $clientEntity, $userIdentifier = null
+		string $grantType, ClientEntityInterface $clientEntity, $userIdentifier = null, bool $ownerOnly = false
 	) {
 		if ( !( $clientEntity instanceof MWClientEntityInterface ) ) {
 			throw new LogicException( '$clientEntity must be instance of ' .
@@ -36,6 +37,11 @@ class ClaimStore implements ClaimRepositoryInterface {
 		}
 
 		$claims = [];
+		if ( $ownerOnly ) {
+			// HACK: add a fake 'ownerOnly' claim to allow hooks to differentiate - owner-only tokens
+			// never expire so often it makes sense to use different claims
+			$claims['ownerOnly'] = true;
+		}
 		$user = null;
 		if ( $clientEntity instanceof ClientEntity ) {
 			$user = $clientEntity->getUser();
@@ -50,9 +56,12 @@ class ClaimStore implements ClaimRepositoryInterface {
 		$claimEntities = $this->claimMapToEntityList( $claims );
 		$this->hookRunner->onOAuthClaimStoreGetClaims( $grantType, $clientEntity, $claimEntities );
 
-		// Deduplicate claims; when there are multiple claims with the same name, let the last one win,
+		// Remove fake 'ownerOnly' claim.
+		// This also deduplicates claims; when there are multiple claims with the same name, the last one wins,
 		// as that one probably comes from the extension hook, which has a more specific purpose.
-		return $this->claimMapToEntityList( $this->claimEntityListToMap( $claimEntities ) );
+		$claims = $this->claimEntityListToMap( $claimEntities );
+		unset( $claims['ownerOnly'] );
+		return $this->claimMapToEntityList( $claims );
 	}
 
 	/**

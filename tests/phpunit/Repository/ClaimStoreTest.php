@@ -146,4 +146,56 @@ class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( [ 'ext' ], $claims );
 		}
 	}
+
+	/**
+	 * @dataProvider provideGetClaims_ownerOnly
+	 */
+	public function testGetClaims_ownerOnly( bool $isOwnerOnly, array $expectedClaims ) {
+		$client = MockClientEntity::newMock( $this->getTestUser()->getUser() );
+
+		$this->setTemporaryHook(
+			'GetSessionJwtData',
+			static function ( ?UserIdentity $user, array &$jwtData ) {
+				$jwtData['isOwnerOnlyCore'] = isset( $jwtData['ownerOnly'] );
+			}
+		);
+		$this->setTemporaryHook(
+			'OAuthClaimStoreGetClaims',
+			static function ( string $grantType, ClientEntityInterface $clientEntity, array &$privateClaims ) {
+				foreach ( $privateClaims as $claim ) {
+					if ( $claim->getName() === 'ownerOnly' ) {
+						$privateClaims[] = new ClaimEntity( 'isOwnerOnlyExt', true );
+						return;
+					}
+					$privateClaims[] = new ClaimEntity( 'isOwnerOnlyExt', false );
+				}
+			}
+		);
+
+		$res = $this->oAuthClaimStore->getClaims(
+			'fake_type',
+			$client,
+			$client->getUserId(),
+			$isOwnerOnly
+		);
+
+		$makeReadableWhenPrinted = static fn ( array $claims ) => array_map(
+			static fn ( ClaimEntity $claim ) => $claim->getName() . ':' . json_encode( $claim->getValue() ),
+			$claims
+		);
+		$this->assertArrayEquals( $makeReadableWhenPrinted( $expectedClaims ), $makeReadableWhenPrinted( $res ) );
+	}
+
+	public static function provideGetClaims_ownerOnly() {
+		return [
+			'non-owner-only' => [ false, [
+				new ClaimEntity( 'isOwnerOnlyCore', false ),
+				new ClaimEntity( 'isOwnerOnlyExt', false ),
+			] ],
+			'owner-only' => [ true, [
+				new ClaimEntity( 'isOwnerOnlyCore', true ),
+				new ClaimEntity( 'isOwnerOnlyExt', true ),
+			] ],
+		];
+	}
 }
