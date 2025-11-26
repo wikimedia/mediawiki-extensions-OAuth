@@ -17,7 +17,7 @@
 	"mwoauth-invalid-field-oauth2GrantTypes": "OAuth 2 prilozi moraju navesti barem jednu vrstu odobrenja",
 	"mwoauth-field-hidden": "(ovaj podatak je skriven)",
 	"mwoauth-field-private": "(ovaj podatak je povjerljiv)",
-	"mwoauth-prefs-managegrants": "Povezane aplikacije:",
+	"mwoauth-prefs-managegrants": "Povezane aplikacije",
 	"mwoauth-prefs-managegrantslink": "Upravljaj {{PLURAL:$1|1=povezanom aplikacijom|povezanim aplikacijama ($1)|0=povezanim aplikacijama}}",
 	"mwoauth-consumer-allwikis": "Svi projekti",
 	"mwoauth-consumer-key": "Potrošački ključ:",
