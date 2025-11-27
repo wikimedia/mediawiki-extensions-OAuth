@@ -85,6 +85,8 @@
 	"mwoauth-consumer-stage-disabled": "Deaktiviert",
 	"mwoauth-consumer-stage-suppressed": "Unterdrückt",
 	"mwoauth-ignorewarnings": "Warnungen ignorieren",
+	"mwoauth-consumers-central-wiki": "Verbraucher können nur auf dem zentralen Wiki verwaltet werden.",
+	"mwoauth-consumers-central-wiki-go": "Gehe zu dieser Seite auf $1",
 	"oauthconsumerregistration": "OAuth-Anwendungsregistrierung",
 	"mwoauthconsumerregistration-navigation": "Navigation:",
 	"mwoauthconsumerregistration-propose-oauth1": "Neuen OAuth 1.0a Verbraucher vorschlagen",
