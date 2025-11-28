@@ -65,6 +65,7 @@
 	"mwoauth-consumer-stage-approved": "Approvato",
 	"mwoauth-consumer-stage-disabled": "Disabilitato",
 	"mwoauth-consumer-stage-suppressed": "Soppresso",
+	"mwoauth-consumers-central-wiki-go": "Vai a questa pagina su $1",
 	"oauthconsumerregistration": "Registrazione cliente OAuth",
 	"mwoauthconsumerregistration-navigation": "Navigazione:",
 	"mwoauthconsumerregistration-list": "Miei clienti",
