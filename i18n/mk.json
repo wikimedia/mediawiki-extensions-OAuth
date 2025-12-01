@@ -73,6 +73,8 @@
 	"mwoauth-consumer-stage-disabled": "Оневозможен",
 	"mwoauth-consumer-stage-suppressed": "Притаен",
 	"mwoauth-ignorewarnings": "Занемари предупредувања",
+	"mwoauth-consumers-central-wiki": "Со потрошувачите може да се управува само од централното вики.",
+	"mwoauth-consumers-central-wiki-go": "Појдете на оваа страница на $1",
 	"oauthconsumerregistration": "Пријава на потрошувач на OAuth",
 	"mwoauthconsumerregistration-navigation": "Прегледник:",
 	"mwoauthconsumerregistration-propose-oauth1": "Предложи нов потрошувач на OAuth 1.0a",

@@ -76,6 +76,8 @@
 	"mwoauth-consumer-stage-disabled": "כבוי",
 	"mwoauth-consumer-stage-suppressed": "מועלם",
 	"mwoauth-ignorewarnings": "להתעלם מאזהרות",
+	"mwoauth-consumers-central-wiki": "ניתן לנהל צרכנים רק בוויקי המרכזי.",
+	"mwoauth-consumers-central-wiki-go": "לעבור לדף הזה באתר $1",
 	"oauthconsumerregistration": "רישום צרכן OAuth",
 	"mwoauthconsumerregistration-navigation": "ניווט:",
 	"mwoauthconsumerregistration-propose-oauth1": "הצעת צרכן OAuth 1.0a חדש",

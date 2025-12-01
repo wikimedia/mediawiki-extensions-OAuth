@@ -5,6 +5,7 @@
 			"Diki Ananta",
 			"Ilham151096",
 			"Iwan Novirion",
+			"Penyuwangi",
 			"Raynasution",
 			"Sumbukompor"
 		]
@@ -30,6 +31,8 @@
 	"mwoauth-consumer-stage-approved": "diterima",
 	"mwoauth-consumer-stage-disabled": "nonaktif",
 	"mwoauth-consumer-stage-suppressed": "mati",
+	"mwoauth-consumers-central-wiki": "Pelanggan hanya dapat dikelola di wiki pusat.",
+	"mwoauth-consumers-central-wiki-go": "Pergi ke halaman ini di $1",
 	"mwoauthconsumerregistration-navigation": "Navigasi:",
 	"mwoauthconsumerregistration-user": "Pengembang",
 	"mwoauthconsumerregistration-description": "Deskripsi",

@@ -11,6 +11,7 @@
 			"Lijealso",
 			"Macofe",
 			"Mansil",
+			"Maria Manuela Silva",
 			"MokaAkashiyaPT",
 			"Vitorvicentevalente"
 		]
@@ -78,6 +79,7 @@
 	"mwoauth-consumer-stage-approved": "aprovado",
 	"mwoauth-consumer-stage-disabled": "desativado",
 	"mwoauth-consumer-stage-suppressed": "suprimido",
+	"mwoauth-consumers-central-wiki-go": "Ir para esta página em $1",
 	"oauthconsumerregistration": "Registo de consumidores OAuth",
 	"mwoauthconsumerregistration-navigation": "Navegação:",
 	"mwoauthconsumerregistration-propose-oauth1": "Propor novo consumidor OAuth 1.0a",
