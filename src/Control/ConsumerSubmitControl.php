@@ -78,7 +78,7 @@ class ConsumerSubmitControl extends SubmitControl {
 	/**
 	 * @param IContextSource $context
 	 * @param array $params
-	 * @param IDatabase $dbw Result of Utils::getCentralDB( DB_PRIMARY )
+	 * @param IDatabase $dbw Result of Utils::getOAuthDB( DB_PRIMARY )
 	 */
 	public function __construct( IContextSource $context, array $params, IDatabase $dbw ) {
 		parent::__construct( $context, $params );
@@ -365,7 +365,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				}
 
 				$cmr->save( $dbw );
-				$this->makeLogEntry( $dbw, $cmr, $logAction, $user, $this->vals['description'] );
+				$this->makeLogEntry( Utils::getCentralWikiDB(), $cmr, $logAction, $user, $this->vals['description'] );
 				if ( !$cmr->getOwnerOnly() && !$autoApproved ) {
 					// Notify admins if the consumer needs to be approved.
 					if ( $cmr->getStage() === Consumer::STAGE_PROPOSED ) {
@@ -436,7 +436,7 @@ class ConsumerSubmitControl extends SubmitControl {
 
 				// Log if something actually changed
 				if ( $cmr->save( $dbw ) ) {
-					$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
+					$this->makeLogEntry( Utils::getCentralWikiDB(), $cmr, $action, $user, $this->vals['reason'] );
 					$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 				}
 
@@ -496,7 +496,7 @@ class ConsumerSubmitControl extends SubmitControl {
 
 				// Log if something actually changed
 				if ( $cmr->save( $dbw ) ) {
-					$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
+					$this->makeLogEntry( Utils::getCentralWikiDB(), $cmr, $action, $user, $this->vals['reason'] );
 					$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 				}
 
@@ -526,7 +526,7 @@ class ConsumerSubmitControl extends SubmitControl {
 
 				// Log if something actually changed
 				if ( $cmr->save( $dbw ) ) {
-					$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
+					$this->makeLogEntry( Utils::getCentralWikiDB(), $cmr, $action, $user, $this->vals['reason'] );
 					$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 				}
 
@@ -558,7 +558,7 @@ class ConsumerSubmitControl extends SubmitControl {
 
 				// Log if something actually changed
 				if ( $cmr->save( $dbw ) ) {
-					$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
+					$this->makeLogEntry( Utils::getCentralWikiDB(), $cmr, $action, $user, $this->vals['reason'] );
 					$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 				}
 
@@ -586,7 +586,7 @@ class ConsumerSubmitControl extends SubmitControl {
 
 				// Log if something actually changed
 				if ( $cmr->save( $dbw ) ) {
-					$this->makeLogEntry( $dbw, $cmr, $action, $user, $this->vals['reason'] );
+					$this->makeLogEntry( Utils::getCentralWikiDB(), $cmr, $action, $user, $this->vals['reason'] );
 					$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 				}
 

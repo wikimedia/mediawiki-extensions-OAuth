@@ -123,7 +123,7 @@ EOK;
 	 * @param int $newid
 	 */
 	protected static function doUserIdMerge( $oldid, $newid ) {
-		$dbw = Utils::getCentralDB( DB_PRIMARY );
+		$dbw = Utils::getOAuthDB( DB_PRIMARY );
 		// Merge any consumers register to this user
 		$dbw->newUpdateQueryBuilder()
 			->update( 'oauth_registered_consumer' )
@@ -176,7 +176,7 @@ EOK;
 		}
 
 		// Step 2: Verify that the consumers actually exist and are still valid
-		$db = Utils::getCentralDB( DB_REPLICA );
+		$db = Utils::getOAuthDB( DB_REPLICA );
 		$conds = [
 			'oarc_id' => $consumerIds,
 			$db->expr( 'oarc_wiki', '=', [ '*', WikiMap::getCurrentWikiId() ] ),

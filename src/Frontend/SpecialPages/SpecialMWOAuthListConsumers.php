@@ -97,7 +97,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			$out->addWikiMsg( 'mwoauth-missing-consumer-key' );
 		}
 
-		$dbr = Utils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getOAuthDB( DB_REPLICA );
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
@@ -249,7 +249,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		}
 		# Every 30th view, prune old deleted items
 		if ( mt_rand( 0, 29 ) == 0 ) {
-			Utils::runAutoMaintenance( Utils::getCentralDB( DB_PRIMARY ) );
+			Utils::runAutoMaintenance( Utils::getOAuthDB( DB_PRIMARY ) );
 		}
 	}
 
@@ -430,7 +430,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 	 * @return bool|ConsumerAcceptance
 	 */
 	private function userGrantedAcceptance( Consumer $consumer, $centralUserId ) {
-		$dbr = Utils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getOAuthDB( DB_REPLICA );
 		$wikiSpecificGrant =
 			ConsumerAcceptance::newFromUserConsumerWiki(
 				$dbr, $centralUserId, $consumer, WikiMap::getCurrentWikiId() );

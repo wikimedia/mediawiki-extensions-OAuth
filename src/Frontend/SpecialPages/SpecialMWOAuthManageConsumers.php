@@ -210,7 +210,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 
 		$out->addWikiMsg( 'mwoauthmanageconsumers-maintext' );
 
-		$counts = Utils::getConsumerStateCounts( Utils::getCentralDB( DB_REPLICA ) );
+		$counts = Utils::getConsumerStateCounts( Utils::getOAuthDB( DB_REPLICA ) );
 
 		$out->wrapWikiMsg( "<p><strong>$1</strong></p>", 'mwoauthmanageconsumers-queues' );
 		$out->addHTML( '<ul>' );
@@ -256,7 +256,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	 */
 	protected function handleConsumerForm( $consumerKey ) {
 		$user = $this->getUser();
-		$dbr = Utils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getOAuthDB( DB_REPLICA );
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
@@ -292,7 +292,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 			}
 		}
 
-		$dbw = Utils::getCentralDB( DB_PRIMARY );
+		$dbw = Utils::getOAuthDB( DB_PRIMARY );
 		$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
 		$form = HTMLForm::factory( 'ooui',
 			$control->registerValidators( [
@@ -499,7 +499,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		}
 		# Every 30th view, prune old deleted items
 		if ( mt_rand( 0, 29 ) == 0 ) {
-			Utils::runAutoMaintenance( Utils::getCentralDB( DB_PRIMARY ) );
+			Utils::runAutoMaintenance( Utils::getOAuthDB( DB_PRIMARY ) );
 		}
 	}
 

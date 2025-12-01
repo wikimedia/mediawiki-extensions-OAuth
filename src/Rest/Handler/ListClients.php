@@ -167,7 +167,7 @@ class ListClients extends SimpleHandler {
 			$consumer = [];
 
 			$cmrAc = ConsumerAccessControl::wrap(
-				Consumer::newFromRow( Utils::getCentralDB( DB_REPLICA ), $row ),
+				Consumer::newFromRow( Utils::getOAuthDB( DB_REPLICA ), $row ),
 				$requestContext
 			);
 

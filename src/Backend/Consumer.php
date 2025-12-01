@@ -529,7 +529,7 @@ abstract class Consumer extends MWOAuthDAO {
 	 * @return ConsumerAcceptance|bool
 	 */
 	public function getCurrentAuthorization( User $mwUser, $wikiId ) {
-		$dbr = Utils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getOAuthDB( DB_REPLICA );
 
 		$centralUserId = Utils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
@@ -670,7 +670,7 @@ abstract class Consumer extends MWOAuthDAO {
 			);
 		}
 
-		$dbw = Utils::getCentralDB( DB_PRIMARY );
+		$dbw = Utils::getOAuthDB( DB_PRIMARY );
 		// Check if this authorization exists
 		$cmra = $this->getCurrentAuthorization( $mwUser, WikiMap::getCurrentWikiId() );
 

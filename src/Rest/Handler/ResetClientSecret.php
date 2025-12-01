@@ -33,7 +33,7 @@ class ResetClientSecret extends AbstractClientHandler {
 		$params['client_key'] = $this->getRequest()->getPathParam( 'client_key' );
 
 		$requestContext = RequestContext::getMain();
-		$dbr = Utils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getOAuthDB( DB_REPLICA );
 		$clientAccess = ConsumerAccessControl::wrap(
 			Consumer::newFromKey( $dbr, $params['consumerKey'] ), $requestContext
 		);

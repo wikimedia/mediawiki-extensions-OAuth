@@ -193,7 +193,7 @@ class ResourceServer {
 	 */
 	private function setClient( ServerRequestInterface $request ) {
 		$this->client = ClientEntity::newFromKey(
-			Utils::getCentralDB( DB_REPLICA ),
+			Utils::getOAuthDB( DB_REPLICA ),
 			$request->getAttribute( 'oauth_client_id' )
 		);
 		if ( !$this->client || $this->client->getOAuthVersion() !== Consumer::OAUTH_VERSION_2 ) {

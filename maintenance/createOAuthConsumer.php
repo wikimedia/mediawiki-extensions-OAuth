@@ -137,7 +137,7 @@ class CreateOAuthConsumer extends Maintenance {
 		$context = RequestContext::getMain();
 		$context->setUser( $user );
 
-		$dbw = Utils::getCentralDB( DB_PRIMARY );
+		$dbw = Utils::getOAuthDB( DB_PRIMARY );
 		$control = new ConsumerSubmitControl( $context, $data, $dbw );
 		$status = $control->submit();
 

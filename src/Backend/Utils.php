@@ -7,6 +7,7 @@ use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\Notifications\Model\Event;
+use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -36,12 +37,28 @@ class Utils {
 	}
 
 	/**
-	 * @return string|bool
+	 * @return string|false The Wiki ID or false (for local DB).
 	 */
 	public static function getCentralWiki() {
 		global $wgMWOAuthCentralWiki;
 
 		return $wgMWOAuthCentralWiki;
+	}
+
+	/**
+	 * Database connection of the OAuth's central wiki as specified
+	 * by $wgMWOAuthCentralWiki. This is different from ::getCentralDB()
+	 * which is OAuth's database.
+	 *
+	 * This method, for example, is used for logging OAuth actions.
+	 * @see ConsumerSubmitControl::makeLogEntry()
+	 *
+	 * @return false|IDatabase
+	 */
+	public static function getCentralWikiDB() {
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
+		return $lbFactory->getMainLB( self::getCentralWiki() )->getConnection( DB_PRIMARY );
 	}
 
 	/**
@@ -58,10 +75,20 @@ class Utils {
 	}
 
 	/**
+	 * @deprecated Use getOAuthDB() instead.
+	 */
+	public static function getCentralDB( $index ) {
+		return self::getOAuthDB( $index );
+	}
+
+	/**
+	 * OAuth's database as specified by the virtual domain setting. To
+	 * access the MediaWiki's central wiki, use getCentralWikiDB().
+	 *
 	 * @param int $index DB_PRIMARY/DB_REPLICA
 	 * @return IDatabase|IReadableDatabase
 	 */
-	public static function getCentralDB( $index ) {
+	public static function getOAuthDB( int $index ) {
 		/** @var ILBFactory $connProvider To support hasOrMadeRecentPrimaryChanges() */
 		$connProvider = MediaWikiServices::getInstance()->getConnectionProvider();
 		'@phan-var ILBFactory $connProvider';
@@ -260,8 +287,8 @@ class Utils {
 
 	public static function newMWOAuthDataStore(): MWOAuthDataStore {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbr = self::getCentralDB( DB_REPLICA );
-		$dbw = $lb->getServerCount() > 1 ? self::getCentralDB( DB_PRIMARY ) : null;
+		$dbr = self::getOAuthDB( DB_REPLICA );
+		$dbw = $lb->getServerCount() > 1 ? self::getOAuthDB( DB_PRIMARY ) : null;
 		return new MWOAuthDataStore( $dbr, $dbw, self::getSessionCache(), self::getNonceCache() );
 	}
 

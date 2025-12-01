@@ -337,7 +337,7 @@ class MWOAuthServer extends OAuthServer {
 	 * @return string
 	 */
 	public function authorize( $consumerKey, $requestTokenKey, User $mwUser, $update ) {
-		$dbr = Utils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getOAuthDB( DB_REPLICA );
 		$consumer = Consumer::newFromKey( $dbr, $consumerKey );
 		return $consumer->authorize( $mwUser, $update, $consumer->getGrants(), $requestTokenKey );
 	}

@@ -55,7 +55,7 @@ class UIHooks implements
 	 * @throws MWException
 	 */
 	public function onGetPreferences( $user, &$preferences ) {
-		$dbr = Utils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getOAuthDB( DB_REPLICA );
 		$conds = [
 			'oaac_user_id' => Utils::getCentralIdFromLocalUser( $user ),
 		];
@@ -117,7 +117,7 @@ class UIHooks implements
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setLanguage( $code );
 
-		$dbr = Utils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getOAuthDB( DB_REPLICA );
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromId( $dbr, (int)$m[1] ),
 			$context

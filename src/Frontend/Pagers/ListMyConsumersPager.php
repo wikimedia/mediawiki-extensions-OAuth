@@ -53,7 +53,7 @@ class ListMyConsumersPager extends ReverseChronologicalPager {
 			$this->mConds['oarc_deleted'] = 0;
 		}
 
-		$this->mDb = Utils::getCentralDB( DB_REPLICA );
+		$this->mDb = Utils::getOAuthDB( DB_REPLICA );
 		parent::__construct();
 
 		# Treat 20 as the default limit, since each entry takes up 5 rows.

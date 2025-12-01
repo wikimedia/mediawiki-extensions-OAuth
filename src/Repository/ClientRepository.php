@@ -18,7 +18,7 @@ class ClientRepository implements ClientRepositoryInterface {
 	 */
 	public function getClientEntity( $clientIdentifier ) {
 		$client = ClientEntity::newFromKey(
-			Utils::getCentralDB( DB_REPLICA ),
+			Utils::getOAuthDB( DB_REPLICA ),
 			$clientIdentifier
 		);
 		if ( !$client instanceof ClientEntity ) {
@@ -33,7 +33,7 @@ class ClientRepository implements ClientRepositoryInterface {
 	 * @return ClientEntity|bool
 	 */
 	public function getClientEntityByDBId( $clientId ) {
-		$client = ClientEntity::newFromId( Utils::getCentralDB( DB_REPLICA ), $clientId );
+		$client = ClientEntity::newFromId( Utils::getOAuthDB( DB_REPLICA ), $clientId );
 		if ( !$client instanceof ClientEntity ) {
 			return false;
 		}

@@ -173,7 +173,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 					throw new PermissionsError( 'mwoauthupdateownconsumer' );
 				}
 
-				$dbr = Utils::getCentralDB( DB_REPLICA );
+				$dbr = Utils::getOAuthDB( DB_REPLICA );
 				$cmrAc = ConsumerAccessControl::wrap(
 				Consumer::newFromKey( $dbr, $subPage ), $this->getContext() );
 				if ( !$cmrAc ) {
@@ -190,7 +190,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				}
 				$oldSecretKey = $cmrAc->getDAO()->getSecretKey();
 
-				$dbw = Utils::getCentralDB( DB_PRIMARY );
+				$dbw = Utils::getOAuthDB( DB_PRIMARY );
 				$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
 				$form = HTMLForm::factory( 'ooui',
 					$control->registerValidators( [
@@ -316,7 +316,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				}
 				# Every 30th view, prune old deleted items
 				if ( mt_rand( 0, 29 ) == 0 ) {
-					Utils::runAutoMaintenance( Utils::getCentralDB( DB_PRIMARY ) );
+					Utils::runAutoMaintenance( Utils::getOAuthDB( DB_PRIMARY ) );
 				}
 				break;
 			default:
@@ -484,7 +484,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		if ( !in_array( $oauthVersion, [ Consumer::OAUTH_VERSION_1, Consumer::OAUTH_VERSION_2 ] ) ) {
 			throw new InvalidArgumentException( 'Invalid OAuth version' );
 		}
-		$dbw = Utils::getCentralDB( DB_PRIMARY );
+		$dbw = Utils::getOAuthDB( DB_PRIMARY );
 		$control = new ConsumerSubmitControl( $this->getContext(), [], $dbw );
 
 		$grantNames = $this->grantsLocalization->getGrantDescriptionsWithClasses(

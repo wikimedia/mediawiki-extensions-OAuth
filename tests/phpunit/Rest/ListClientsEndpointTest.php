@@ -73,7 +73,7 @@ class ListClientsEndpointTest extends EndpointTestBase {
 				static function () {
 					$user = User::createNew( 'ListClientsTestUser1' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getCentralDB( DB_PRIMARY );
+					$db = Utils::getOAuthDB( DB_PRIMARY );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;
@@ -103,7 +103,7 @@ class ListClientsEndpointTest extends EndpointTestBase {
 				static function () {
 					$user = User::createNew( 'ListClientsTestUser2' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getCentralDB( DB_PRIMARY );
+					$db = Utils::getOAuthDB( DB_PRIMARY );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;
@@ -129,7 +129,7 @@ class ListClientsEndpointTest extends EndpointTestBase {
 				],
 				static function () {
 					$user = User::createNew( 'ListClientsTestUser3' );
-					$db = Utils::getCentralDB( DB_PRIMARY );
+					$db = Utils::getOAuthDB( DB_PRIMARY );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					/*

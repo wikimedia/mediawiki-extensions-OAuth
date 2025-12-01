@@ -110,7 +110,7 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 	 */
 	protected function getConsumer() {
 		if ( $this->consumer === null ) {
-			$dbr = Utils::getCentralDB( DB_REPLICA );
+			$dbr = Utils::getOAuthDB( DB_REPLICA );
 			$this->consumer =
 				Consumer::newFromKey( $dbr, $this->event->getExtraParam( 'app-key' ) );
 		}

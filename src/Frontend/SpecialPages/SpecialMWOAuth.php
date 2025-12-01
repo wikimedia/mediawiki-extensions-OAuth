@@ -276,7 +276,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					/** @var MWOAuthToken $token */
 
 					$wiki = WikiMap::getCurrentWikiId();
-					$dbr = Utils::getCentralDB( DB_REPLICA );
+					$dbr = Utils::getOAuthDB( DB_REPLICA );
 					$access = ConsumerAcceptance::newFromToken( $dbr, $token->key );
 					$localUser = Utils::getLocalUserFromCentralId( $access->getUserId() );
 					if ( !$localUser || !$localUser->isNamed() ) {
@@ -348,7 +348,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				default:
 					$format = $request->getVal( 'format', 'html' );
 					'@phan-var string $format';
-					$dbr = Utils::getCentralDB( DB_REPLICA );
+					$dbr = Utils::getOAuthDB( DB_REPLICA );
 					$cmrAc = ConsumerAccessControl::wrap(
 						Consumer::newFromKey(
 							$dbr,
@@ -403,7 +403,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	 * @throws MWOAuthException
 	 */
 	protected function showCancelPage( $consumerKey ) {
-		$dbr = Utils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getOAuthDB( DB_REPLICA );
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromKey( $dbr, $consumerKey ),
 			$this->getContext()
@@ -473,7 +473,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		}
 
 		$cmrAc = ConsumerAccessControl::wrap(
-			Consumer::newFromKey( Utils::getCentralDB( DB_REPLICA ), $consumerKey ),
+			Consumer::newFromKey( Utils::getOAuthDB( DB_REPLICA ), $consumerKey ),
 			$this->getContext()
 		);
 
@@ -532,7 +532,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		}
 
 		$control = new ConsumerAcceptanceSubmitControl(
-			$this->getContext(), [], Utils::getCentralDB( DB_PRIMARY ), $this->oauthVersion
+			$this->getContext(), [], Utils::getOAuthDB( DB_PRIMARY ), $this->oauthVersion
 		);
 
 		$form = HTMLForm::factory( 'ooui',

@@ -123,7 +123,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$listLinks = [];
 
 		if ( $acceptanceId ) {
-			$dbr = Utils::getCentralDB( DB_REPLICA );
+			$dbr = Utils::getOAuthDB( DB_REPLICA );
 			$cmraAc = ConsumerAcceptance::newFromId( $dbr, (int)$acceptanceId );
 			$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 				$this->getPageTitle(),
@@ -158,7 +158,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	 */
 	protected function handleConsumerForm( $acceptanceId, $type ) {
 		$user = $this->getUser();
-		$dbr = Utils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getOAuthDB( DB_REPLICA );
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
@@ -253,7 +253,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 					preg_replace( '/^grant-/', '', $data['grants'] )
 				);
 
-				$dbw = Utils::getCentralDB( DB_PRIMARY );
+				$dbw = Utils::getOAuthDB( DB_PRIMARY );
 				$control = new ConsumerAcceptanceSubmitControl(
 					$context, $data, $dbw, $cmraAc->getDAO()->getOAuthVersion()
 				);

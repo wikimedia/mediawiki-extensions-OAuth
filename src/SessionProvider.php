@@ -102,7 +102,7 @@ class SessionProvider
 			'result' => 'fail',
 		];
 
-		$dbr = Utils::getCentralDB( DB_REPLICA );
+		$dbr = Utils::getOAuthDB( DB_REPLICA );
 		$access = null;
 		try {
 			if ( $oauthVersion === Consumer::OAUTH_VERSION_2 ) {
@@ -131,7 +131,7 @@ class SessionProvider
 					}
 				} else {
 					$access = ConsumerAcceptance::newFromId(
-						Utils::getCentralDB( DB_REPLICA ), $accessId
+						Utils::getOAuthDB( DB_REPLICA ), $accessId
 					);
 				}
 				if ( !$access ) {
@@ -306,7 +306,7 @@ class SessionProvider
 	/** @inheritDoc */
 	public function preventSessionsForUser( $username ) {
 		$id = Utils::getCentralIdFromUserName( $username, CentralIdLookup::AUDIENCE_RAW );
-		$dbw = Utils::getCentralDB( DB_PRIMARY );
+		$dbw = Utils::getOAuthDB( DB_PRIMARY );
 
 		$dbw->startAtomic( __METHOD__ );
 		try {

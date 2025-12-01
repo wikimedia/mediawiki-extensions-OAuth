@@ -13,7 +13,7 @@ abstract class DatabaseRepository {
 	 * @return IDatabase|IReadableDatabase
 	 */
 	public function getDB( $index = DB_REPLICA ) {
-		return Utils::getCentralDB( $index );
+		return Utils::getOAuthDB( $index );
 	}
 
 	/**
