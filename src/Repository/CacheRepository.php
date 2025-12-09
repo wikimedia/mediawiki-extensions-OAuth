@@ -8,11 +8,6 @@ use Wikimedia\ObjectCache\BagOStuff;
 abstract class CacheRepository {
 
 	/**
-	 * @var BagOStuff
-	 */
-	protected $cache;
-
-	/**
 	 * @return static
 	 */
 	public static function factory() {
@@ -22,11 +17,9 @@ abstract class CacheRepository {
 		return new static( $cache );
 	}
 
-	/**
-	 * @param BagOStuff $cache
-	 */
-	protected function __construct( BagOStuff $cache ) {
-		$this->cache = $cache;
+	protected function __construct(
+		protected readonly BagOStuff $cache,
+	) {
 	}
 
 	/**

@@ -24,14 +24,9 @@ class Hooks implements
 	SetupAfterCacheHook
 {
 
-	/** @var NameTableStore */
-	private $changeTagDefStore;
-
-	/**
-	 * @param NameTableStore $changeTagDefStore
-	 */
-	public function __construct( NameTableStore $changeTagDefStore ) {
-		$this->changeTagDefStore = $changeTagDefStore;
+	public function __construct(
+		private readonly NameTableStore $changeTagDefStore,
+	) {
 	}
 
 	/**

@@ -18,22 +18,16 @@ use Wikimedia\Message\ScalarParam;
  * Formatter for OAuth log events
  */
 class OAuthLogFormatter extends LogFormatter {
-	protected ExtensionRegistry $extensionRegistry;
-	protected LinkRenderer $linkRenderer;
-	protected TitleFactory $titleFactory;
-	protected UserEditTracker $userEditTracker;
+	protected readonly ExtensionRegistry $extensionRegistry;
 
 	public function __construct(
 		LogEntry $entry,
-		LinkRenderer $linkRenderer,
-		TitleFactory $titleFactory,
-		UserEditTracker $userEditTracker
+		protected readonly LinkRenderer $linkRenderer,
+		protected readonly TitleFactory $titleFactory,
+		protected readonly UserEditTracker $userEditTracker,
 	) {
 		parent::__construct( $entry );
 		$this->extensionRegistry = ExtensionRegistry::getInstance();
-		$this->linkRenderer = $linkRenderer;
-		$this->titleFactory = $titleFactory;
-		$this->userEditTracker = $userEditTracker;
 	}
 
 	/** @inheritDoc */

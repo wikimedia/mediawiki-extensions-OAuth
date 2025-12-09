@@ -49,16 +49,9 @@ class ListClients extends SimpleHandler {
 		'oauth2_is_confidential' => 'oarc_oauth2_is_confidential',
 	];
 
-	/**
-	 * @var IConnectionProvider
-	 */
-	private $connProvider;
-
-	/**
-	 * @param IConnectionProvider $connProvider
-	 */
-	public function __construct( IConnectionProvider $connProvider ) {
-		$this->connProvider = $connProvider;
+	public function __construct(
+		private readonly IConnectionProvider $connProvider,
+	) {
 	}
 
 	/**

@@ -37,23 +37,11 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	/** @var string[]|null */
 	private static $irrevocableGrants = null;
 
-	/** @var GrantsInfo */
-	private $grantsInfo;
-
-	/** @var GrantsLocalization */
-	private $grantsLocalization;
-
-	/**
-	 * @param GrantsInfo $grantsInfo
-	 * @param GrantsLocalization $grantsLocalization
-	 */
 	public function __construct(
-		GrantsInfo $grantsInfo,
-		GrantsLocalization $grantsLocalization
+		private readonly GrantsInfo $grantsInfo,
+		private readonly GrantsLocalization $grantsLocalization,
 	) {
 		parent::__construct( 'OAuthManageMyGrants', 'mwoauthmanagemygrants' );
-		$this->grantsInfo = $grantsInfo;
-		$this->grantsLocalization = $grantsLocalization;
 	}
 
 	/** @inheritDoc */

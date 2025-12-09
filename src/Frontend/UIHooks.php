@@ -38,14 +38,9 @@ class UIHooks implements
 	SpecialPage_initListHook
 {
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/**
-	 * @param PermissionManager $permissionManager
-	 */
-	public function __construct( PermissionManager $permissionManager ) {
-		$this->permissionManager = $permissionManager;
+	public function __construct(
+		private readonly PermissionManager $permissionManager,
+	) {
 	}
 
 	/**

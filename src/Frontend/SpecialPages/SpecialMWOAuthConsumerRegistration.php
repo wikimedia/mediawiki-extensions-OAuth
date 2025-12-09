@@ -43,22 +43,13 @@ use Wikimedia\Rdbms\IDatabase;
  * Page that has registration request form and consumer update form
  */
 class SpecialMWOAuthConsumerRegistration extends SpecialPage {
-	private PermissionManager $permissionManager;
-	private GrantsInfo $grantsInfo;
-	private GrantsLocalization $grantsLocalization;
-	private UrlUtils $urlUtils;
-
 	public function __construct(
-		PermissionManager $permissionManager,
-		GrantsInfo $grantsInfo,
-		GrantsLocalization $grantsLocalization,
-		UrlUtils $urlUtils
+		private readonly PermissionManager $permissionManager,
+		private readonly GrantsInfo $grantsInfo,
+		private readonly GrantsLocalization $grantsLocalization,
+		private readonly UrlUtils $urlUtils,
 	) {
 		parent::__construct( 'OAuthConsumerRegistration' );
-		$this->permissionManager = $permissionManager;
-		$this->grantsInfo = $grantsInfo;
-		$this->grantsLocalization = $grantsLocalization;
-		$this->urlUtils = $urlUtils;
 	}
 
 	/** @inheritDoc */

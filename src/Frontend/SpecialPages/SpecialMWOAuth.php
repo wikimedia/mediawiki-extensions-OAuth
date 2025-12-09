@@ -47,24 +47,18 @@ use Psr\Log\LoggerInterface;
  * Page that handles OAuth consumer authorization and token exchange
  */
 class SpecialMWOAuth extends UnlistedSpecialPage {
-	protected LoggerInterface $logger;
-	private GrantsLocalization $grantsLocalization;
-	private SkinFactory $skinFactory;
-	private UrlUtils $urlUtils;
+	protected readonly LoggerInterface $logger;
 
 	/** @var int Defaults to OAuth1 */
 	protected $oauthVersion = Consumer::OAUTH_VERSION_1;
 
 	public function __construct(
-		GrantsLocalization $grantsLocalization,
-		SkinFactory $skinFactory,
-		UrlUtils $urlUtils
+		private readonly GrantsLocalization $grantsLocalization,
+		private readonly SkinFactory $skinFactory,
+		private readonly UrlUtils $urlUtils,
 	) {
 		parent::__construct( 'OAuth' );
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
-		$this->grantsLocalization = $grantsLocalization;
-		$this->skinFactory = $skinFactory;
-		$this->urlUtils = $urlUtils;
 	}
 
 	/** @inheritDoc */

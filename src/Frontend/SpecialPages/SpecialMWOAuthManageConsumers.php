@@ -58,17 +58,11 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	public static $listStages = [ Consumer::STAGE_APPROVED,
 		Consumer::STAGE_DISABLED ];
 
-	/** @var GrantsLocalization */
-	private $grantsLocalization;
-	private UrlUtils $urlUtils;
-
 	public function __construct(
-		GrantsLocalization $grantsLocalization,
-		UrlUtils $urlUtils
+		private readonly GrantsLocalization $grantsLocalization,
+		private readonly UrlUtils $urlUtils,
 	) {
 		parent::__construct( 'OAuthManageConsumers', 'mwoauthmanageconsumer' );
-		$this->grantsLocalization = $grantsLocalization;
-		$this->urlUtils = $urlUtils;
 	}
 
 	/** @inheritDoc */

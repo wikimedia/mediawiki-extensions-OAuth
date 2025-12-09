@@ -8,14 +8,7 @@ use MediaWiki\MediaWikiServices;
 
 class OAuthServices {
 
-	/** @var MediaWikiServices */
-	private $coreServices;
-
-	/**
-	 * @param MediaWikiServices $coreServices
-	 */
-	public function __construct( MediaWikiServices $coreServices ) {
-		$this->coreServices = $coreServices;
+	public function __construct( private readonly MediaWikiServices $coreServices ) {
 	}
 
 	/**

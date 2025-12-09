@@ -35,15 +35,10 @@ use Wikimedia\Rdbms\IDatabase;
  * their approval/rejection and also for listing approved/disabled consumers
  */
 class SpecialMWOAuthListConsumers extends SpecialPage {
-	/** @var GrantsLocalization */
-	private $grantsLocalization;
-
-	/**
-	 * @param GrantsLocalization $grantsLocalization
-	 */
-	public function __construct( GrantsLocalization $grantsLocalization ) {
+	public function __construct(
+		private readonly GrantsLocalization $grantsLocalization,
+	) {
 		parent::__construct( 'OAuthListConsumers' );
-		$this->grantsLocalization = $grantsLocalization;
 	}
 
 	/** @inheritDoc */
