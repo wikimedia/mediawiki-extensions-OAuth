@@ -21,8 +21,8 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsLocalization;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
@@ -37,6 +37,7 @@ use Wikimedia\Rdbms\IDatabase;
 class SpecialMWOAuthListConsumers extends SpecialPage {
 	public function __construct(
 		private readonly GrantsLocalization $grantsLocalization,
+		private readonly PermissionManager $permissionManager
 	) {
 		parent::__construct( 'OAuthListConsumers' );
 	}
@@ -82,13 +83,12 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		$dbr = Utils::getOAuthDB( DB_REPLICA );
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		if ( !$cmrAc ) {
 			$out->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 			return;
 		} elseif ( $cmrAc->getDeleted()
-			&& !$permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
+			&& !$this->permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
 			throw new PermissionsError( 'mwoauthviewsuppressed' );
 		}
 
@@ -245,7 +245,6 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			Consumer::newFromRow( $db, $row ), $this->getContext() );
 		$cmrKey = $cmrAc->getConsumerKey();
 		$stageKey = Consumer::$stageNames[$cmrAc->getStage()];
-		$permMgr = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$links = [];
 		$links[] = $this->getLinkRenderer()->makeKnownLink(
@@ -254,7 +253,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			[],
 			$this->getRequest()->getValues( 'name', 'publisher', 'stage' )
 		);
-		if ( $permMgr->userHasRight( $this->getUser(), 'mwoauthmanageconsumer' ) ) {
+		if ( $this->permissionManager->userHasRight( $this->getUser(), 'mwoauthmanageconsumer' ) ) {
 			$links[] = $this->getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'OAuthManageConsumers', $cmrKey ),
 				$this->msg( 'mwoauthmanageconsumers-review' )->text()
@@ -370,9 +369,9 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 	private function manageConsumerLink(
 		Consumer $consumer, User $user, LinkRenderer $linkRenderer
 	): array {
-		$permMgr = MediaWikiServices::getInstance()->getPermissionManager();
-
-		if ( Utils::isCentralWiki() && $permMgr->userHasRight( $user, 'mwoauthmanageconsumer' ) ) {
+		if ( Utils::isCentralWiki() &&
+			$this->permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' )
+		) {
 			return [
 				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'OAuthManageConsumers',
 					$consumer->getConsumerKey() ),
