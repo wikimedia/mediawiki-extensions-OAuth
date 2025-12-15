@@ -76,7 +76,7 @@
 	"mwoauth-invalid-authorization-title": "Galat otorisasi OAuth",
 	"mwoauth-form-button-approve": "Izinkan",
 	"mwoauth-form-button-cancel": "Batal",
-	"mwoauth-error": "Galat Koneksi Aplikasi",
+	"mwoauth-error": "Galat Sambungan Aplikasi",
 	"mwoauth-grants-heading": "Mohon izin:",
 	"mwoauth-grants-nogrants": "Aplikasi tidak ada mengajukan permohonan izin."
 }
