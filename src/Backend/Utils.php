@@ -184,7 +184,7 @@ class Utils {
 	public static function hasOAuthHeaders( WebRequest $request ) {
 		$header = $request->getHeader( 'Authorization' );
 
-		return $header !== false && strpos( $header, 'OAuth ' ) === 0;
+		return $header !== false && str_starts_with( $header, 'OAuth ' );
 	}
 
 	/**
