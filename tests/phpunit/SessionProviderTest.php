@@ -25,6 +25,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 	public function testSafeAgainstCsrf() {
 		$provider = $this->getMockBuilder( SessionProvider::class )
 			->setMethodsExcept( [ 'safeAgainstCsrf' ] )
+			->disableOriginalConstructor()
 			->getMock();
 		$this->assertTrue( $provider->safeAgainstCsrf() );
 	}
@@ -35,6 +36,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 	public function testOnMarkPatrolled( $consumerId, $auto, $expectedExtraTag ) {
 		$provider = $this->getMockBuilder( SessionProvider::class )
 			->onlyMethods( [ 'getPublicConsumerId' ] )
+			->disableOriginalConstructor()
 			->getMock();
 		$provider->expects( $this->once() )
 			->method( 'getPublicConsumerId' )
@@ -87,6 +89,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$provider = $this->getMockBuilder( SessionProvider::class )
 			->setMethodsExcept( [ 'onRecentChange_save' ] )
 			->onlyMethods( [ 'getPublicConsumerId' ] )
+			->disableOriginalConstructor()
 			->getMock();
 		$provider->expects( $this->once() )
 			->method( 'getPublicConsumerId' )

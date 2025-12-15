@@ -44,7 +44,11 @@
 	"SessionProviders": {
 		"MediaWiki\\Extension\\OAuth\\SessionProvider": {
 			"class": "MediaWiki\\Extension\\OAuth\\SessionProvider",
-			"args": []
+			"args": [],
+			"services": [
+				"BlockManager",
+				"GrantsInfo"
+			]
 		}
 	},
 	"SpecialPages": {

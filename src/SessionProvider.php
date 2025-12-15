@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Api\Hook\ApiCheckCanExecuteHook;
+use MediaWiki\Block\BlockManager;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
@@ -18,8 +19,10 @@ use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Hook\MarkPatrolledHook;
 use MediaWiki\Hook\RecentChange_saveHook;
 use MediaWiki\Linker\Linker;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\ImmutableSessionProviderWithCookie;
@@ -54,7 +57,11 @@ class SessionProvider
 	implements ApiCheckCanExecuteHook, RecentChange_saveHook, MarkPatrolledHook
 {
 
-	public function __construct( array $params = [] ) {
+	public function __construct(
+		private readonly BlockManager $blockManager,
+		private readonly GrantsInfo $grantsInfo,
+		array $params = []
+	) {
 		parent::__construct( $params );
 	}
 
@@ -108,15 +115,17 @@ class SessionProvider
 			if ( $oauthVersion === Consumer::OAUTH_VERSION_2 ) {
 				$resourceServer = ResourceServer::factory();
 				$accessTokenKey = $this->verifyOAuth2Request( $resourceServer, $request );
-				$accessTokenRepo = new AccessTokenRepository( $this->config->get( 'CanonicalServer' ) );
+				$accessTokenRepo = new AccessTokenRepository(
+					$this->config->get( MainConfigNames::CanonicalServer )
+				);
 				$accessId = $accessTokenRepo->getApprovalId( $accessTokenKey );
 				if ( $accessId === 0 ) {
 					if (
 						$resourceServer->getUser()->getId() === 0 &&
 						$resourceServer->getClient()->getOwnerOnly() === false
 					) {
-						// This tell us, with good degree of certainty, that the AT
-						// was issued to a machine and represents no particular user
+						// This tells us, with a good degree of certainty, that the access
+						// token was issued to a machine and represents no particular user.
 						$access = ConsumerAcceptance::newFromArray( [
 							'id'           => null,
 							'wiki'         => $resourceServer->getClient()->getWiki(),
@@ -130,9 +139,7 @@ class SessionProvider
 						] );
 					}
 				} else {
-					$access = ConsumerAcceptance::newFromId(
-						Utils::getOAuthDB( DB_REPLICA ), $accessId
-					);
+					$access = ConsumerAcceptance::newFromId( $dbr, $accessId );
 				}
 				if ( !$access ) {
 					$logData['consumer'] = $resourceServer->getClient()->getConsumerKey();
@@ -194,9 +201,8 @@ class SessionProvider
 			$this->logger->debug( 'OAuth request for locked user {user}', $logData );
 			return $this->makeException( 'mwoauth-invalid-authorization-blocked-user' );
 		}
-		if ( $this->config->get( 'BlockDisablesLogin' ) ) {
-			$block = MediaWikiServices::getInstance()->getBlockManager()
-				->getBlock( $localUser, null );
+		if ( $this->config->get( MainConfigNames::BlockDisablesLogin ) ) {
+			$block = $this->blockManager->getBlock( $localUser, null );
 			if ( $block && $block->isSitewide() ) {
 				$this->logger->debug( 'OAuth request for blocked user {user}', $logData );
 				return $this->makeException( 'mwoauth-invalid-authorization-blocked-user' );
@@ -232,7 +238,7 @@ class SessionProvider
 			$forceUse = true;
 		} else {
 			$id = $this->getSessionIdFromCookie( $request );
-			$persisted = $id !== null;
+			$persisted = ( $id !== null );
 			$forceUse = false;
 		}
 
@@ -249,9 +255,7 @@ class SessionProvider
 				'oauthVersion' => $oauthVersion,
 				'consumerId' => $consumer->getOwnerOnly() ? null : $consumer->getId(),
 				'key' => $accessTokenKey,
-				'rights' => MediaWikiServices::getInstance()
-					->getGrantsInfo()
-					->getGrantRights( $access->getGrants() ),
+				'rights' => $this->grantsInfo->getGrantRights( $access->getGrants() ),
 				'restrictions' => $consumer->getRestrictions()->toJson(),
 			],
 		] );
