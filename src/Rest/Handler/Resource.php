@@ -9,6 +9,7 @@ use MediaWiki\Extension\OAuth\ResourceServer;
 use MediaWiki\Extension\OAuth\Response;
 use MediaWiki\Extension\OAuth\UserStatementProvider;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use Psr\Http\Message\ResponseInterface;
@@ -109,8 +110,20 @@ class Resource extends Handler {
 	 * @throws MWOAuthException
 	 */
 	private function getProfile( $response ) {
+		$resourceServerScopes = $this->resourceServer->getScopes();
+		if ( $resourceServerScopes === null ) {
+			// NOTE: logging to the same channel as SessionProvider class.
+			$logger = LoggerFactory::getInstance( 'session' );
+			$logger->warning( 'Application: {app} has no scopes for {user} account', [
+				'appId' => $this->resourceServer->getClient()->getId(),
+				'app' => $this->resourceServer->getClient()->getName(),
+				'user' => (string)$this->resourceServer->getUser(),
+			] );
+		}
+
 		// Intersection between approved and requested scopes
-		$scopes = array_keys( $this->resourceServer->getScopes() );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
+		$scopes = array_keys( $resourceServerScopes );
 		$userStatementProvider = UserStatementProvider::factory(
 			$this->resourceServer->getUser(),
 			$this->resourceServer->getClient(),
