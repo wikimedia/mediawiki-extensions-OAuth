@@ -382,7 +382,7 @@ class SpecialMWOAuth extends \UnlistedSpecialPage {
 		// String value used to associate a Client session with an ID Token, and to mitigate
 		// replay attacks. The value is passed through unmodified from the Authorization Request.
 		$statement['nonce'] = $request->get_parameter( 'oauth_nonce' );
-		$JWT = JWT::encode( $statement, $consumer->secret );
+		$JWT = JWT::encode( $statement, $consumer->secret, 'HS256' );
 		$this->showResponse( $JWT, $format );
 	}
 
