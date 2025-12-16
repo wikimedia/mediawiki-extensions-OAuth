@@ -66,8 +66,7 @@ class ListClients extends SimpleHandler {
 	 * @throws LocalizedHttpException
 	 */
 	public function run(): ResponseInterface {
-		// @todo Inject this, when there is a good way to do that, see T239753
-		$user = RequestContext::getMain()->getUser();
+		$user = $this->getAuthority()->getUser();
 
 		$centralId = Utils::getCentralIdFromUserName( $user->getName() );
 		$responseFactory = $this->getResponseFactory();
@@ -153,7 +152,7 @@ class ListClients extends SimpleHandler {
 	private function processDbResults( $res ) {
 		$consumers = [];
 		$requestContext = RequestContext::getMain();
-		$user = $requestContext->getUser();
+		$user = $this->getAuthority()->getUser();
 
 		foreach ( $res as $row ) {
 
