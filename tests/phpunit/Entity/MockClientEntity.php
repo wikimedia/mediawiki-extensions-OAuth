@@ -11,7 +11,7 @@ class MockClientEntity extends ClientEntity {
 	/**
 	 * @param User $user
 	 * @param array $values
-	 * @return Consumer|false
+	 * @return ClientEntity
 	 */
 	public static function newMock( User $user, $values = [] ): ClientEntity {
 		$now = wfTimestampNow();
@@ -43,6 +43,3 @@ class MockClientEntity extends ClientEntity {
 		], $values ) );
 	}
 }
-
-/** @deprecated class alias since 1.43 */
-class_alias( MockClientEntity::class, 'MediaWiki\\Extension\\OAuth\\Tests\\Entity\\Mock_ClientEntity' );
