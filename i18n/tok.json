@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tamzin"
+		]
+	},
+	"right-mwoauthproposeconsumer": "nasin OAuth la ona li ken alasa pali e ilo kepeken sin",
+	"right-mwoauthupdateownconsumer": "nasin OAuth la ona li ken sin e ilo kepeken ona",
+	"right-mwoauthmanageconsumer": "nasin OAuth la ona li ken ante e ilo kepeken",
+	"right-mwoauthsuppress": "nasin OAuth la ona li ken len wawa e ilo kepeken",
+	"right-mwoauthviewsuppressed": "nasin OAuth la ona li ken lukin e ilo kepeken pi len wawa",
+	"right-mwoauthviewprivate": "nasin OAuth la ona li ken lukin e sona len",
+	"right-mwoauthmanagemygrants": "nasin OAuth la ona li ken ante e pana wawa"
+}
