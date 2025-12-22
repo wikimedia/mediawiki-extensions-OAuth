@@ -96,6 +96,7 @@
 	"mwoauth-consumer-stage-disabled": "Désactivé",
 	"mwoauth-consumer-stage-suppressed": "Supprimé",
 	"mwoauth-ignorewarnings": "Ignorer les avertissements",
+	"mwoauth-consumers-central-wiki": "Les consommateurs ne peuvent être gérés que sur le wiki central.",
 	"mwoauth-consumers-central-wiki-go": "Accéder à cette page sur $1",
 	"oauthconsumerregistration": "Inscription de consommateur OAuth",
 	"mwoauthconsumerregistration-navigation": "Navigation :",

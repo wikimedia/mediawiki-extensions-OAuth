@@ -85,6 +85,8 @@
 	"mwoauth-consumer-stage-disabled": "المعطلة",
 	"mwoauth-consumer-stage-suppressed": "المخفية",
 	"mwoauth-ignorewarnings": "تجاهل التحذيرات",
+	"mwoauth-consumers-central-wiki": "لا يمكن إدارة المستهلكين إلا من خلال موقع الويكي المركزي.",
+	"mwoauth-consumers-central-wiki-go": "انتقل إلى هذه الصفحة مقابل $1",
 	"oauthconsumerregistration": "تسجيل مستهلك OAuth",
 	"mwoauthconsumerregistration-navigation": "تصفح:",
 	"mwoauthconsumerregistration-propose-oauth1": "اقتراح مستهلك OAuth 1.0a جديد",
