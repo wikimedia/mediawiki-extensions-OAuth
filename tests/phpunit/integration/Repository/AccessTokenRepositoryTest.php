@@ -24,8 +24,12 @@ class AccessTokenRepositoryTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$this->accessToken = new AccessTokenEntity(
-			MockClientEntity::newMock( $this->getTestUser()->getUser() ), [], 'dummy'
+			MockClientEntity::newMock( $this->getTestUser()->getUser() ),
+			[],
+			'dummy',
+			(string)$this->getTestUser()->getUser()->getId()
 		);
+
 		$identifier = bin2hex( random_bytes( 40 ) );
 		$this->accessToken->setIdentifier( $identifier );
 		$this->accessToken->setExpiryDateTime(
@@ -55,7 +59,11 @@ class AccessTokenRepositoryTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetNewToken() {
 		$client = MockClientEntity::newMock( $this->getTestUser()->getUser() );
-		$token = $this->accessTokenRepo->getNewToken( $client, [] );
+		$token = $this->accessTokenRepo->getNewToken(
+			$client,
+			[],
+			(string)$this->getTestUser()->getUser()->getId()
+		);
 		$this->assertSame( 'dummy', $token->getIssuer() );
 		$this->assertSame( $client, $token->getClient() );
 	}

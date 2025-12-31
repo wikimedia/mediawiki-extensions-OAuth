@@ -10,7 +10,7 @@ use Psr\Http\Message\ServerRequestInterface;
 class BearerTokenValidator extends LeagueBearerTokenValidator {
 
 	/** @inheritDoc */
-	public function validateAuthorization( ServerRequestInterface $request ) {
+	public function validateAuthorization( ServerRequestInterface $request ): ServerRequestInterface {
 		$request = parent::validateAuthorization( $request );
 		$sub = $request->getAttribute( 'oauth_user_id' );
 		if ( str_starts_with( $sub, 'mw:' ) ) {

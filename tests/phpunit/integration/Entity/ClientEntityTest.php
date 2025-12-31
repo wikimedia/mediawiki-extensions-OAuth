@@ -68,7 +68,7 @@ class ClientEntityTest extends MediaWikiIntegrationTestCase {
 
 		$approval = ConsumerAcceptance::newFromArray(
 			[
-				'id' 		   => 2,
+				'id'           => 2,
 				'accessToken'  => '98764erf',
 				'accepted'     => wfTimestampNow(),
 				'wiki'         => 'dummy',

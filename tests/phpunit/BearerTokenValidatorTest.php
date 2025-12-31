@@ -4,6 +4,8 @@ namespace MediaWiki\Extension\OAuth\Tests;
 
 use GuzzleHttp\Psr7\ServerRequest;
 use Lcobucci\JWT\Configuration;
+use Lcobucci\JWT\Signer\Blake2b;
+use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Validation\Constraint\IssuedBy;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
@@ -27,7 +29,12 @@ class BearerTokenValidatorTest extends MediaWikiIntegrationTestCase {
 		$accessTokenRepository->method( 'isAccessTokenRevoked' )->willReturn( false );
 		$validator = new BearerTokenValidator( $accessTokenRepository );
 		$wrapper = TestingAccessWrapper::newFromObject( $validator );
-		$wrapper->jwtConfiguration = Configuration::forUnsecuredSigner();
+		// https://lcobucci-jwt.readthedocs.io/en/stable/upgrading/#removal-of-none-algorithm
+		$wrapper->jwtConfiguration = Configuration::forSymmetricSigner(
+			new Blake2b(),
+			InMemory::base64Encoded( 'MpQd6dDPiqnzFSWmpUfLy4+Rdls90Ca4C8e0QD0IxqY=' )
+		);
+		// TODO: setValidationConstraints is deprecated...
 		$wrapper->jwtConfiguration->setValidationConstraints( new IssuedBy( 'https://example.org' ) );
 		$lookup = $this->createNoOpMock( CentralIdLookup::class, [ 'getScope' ] );
 		$lookup->method( 'getScope' )->willReturn( 'mock:scope' );

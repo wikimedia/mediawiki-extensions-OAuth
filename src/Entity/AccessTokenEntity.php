@@ -6,10 +6,10 @@ use DateTimeImmutable;
 use InvalidArgumentException;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer\Key\InMemory;
-use Lcobucci\JWT\Signer\Key\LocalFileReference;
 use Lcobucci\JWT\Signer\Rsa\Sha256;
 use Lcobucci\JWT\Token;
 use League\OAuth2\Server\CryptKey;
+use League\OAuth2\Server\CryptKeyInterface;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;
@@ -22,14 +22,12 @@ use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use Throwable;
 
+/**
+ * @method ClientEntity getClient()
+ */
 class AccessTokenEntity implements AccessTokenEntityInterface {
 	use EntityTrait;
 	use TokenEntityTrait;
-
-	/**
-	 * @var ClientEntity
-	 */
-	protected $client;
 
 	/**
 	 * User approval of the client
@@ -60,16 +58,17 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 		$this->setClient( $clientEntity );
 		$this->setIssuer( $issuer );
 		if ( $clientEntity->getOwnerOnly() ) {
-			if ( $userIdentifier !== null && $userIdentifier !== $clientEntity->getUserId() ) {
+			if ( $userIdentifier !== null && (string)$userIdentifier !== (string)$clientEntity->getUserId() ) {
 				throw new InvalidArgumentException(
 					'$userIdentifier must be null, or match the client owner user id,' .
-					' for owner-only clients, ' . $userIdentifier . ' given'
+					' for owner-only clients, ' . $userIdentifier . ' given; user id from ClientEntity is '
+					. $clientEntity->getUserId() . '.'
 				);
 			}
 			foreach ( $clientEntity->getScopes() as $scope ) {
 				$this->addScope( $scope );
 			}
-			$this->setUserIdentifier( $clientEntity->getUserId() );
+			$this->setUserIdentifier( (string)$clientEntity->getUserId() );
 		} else {
 			foreach ( $scopes as $scope ) {
 				if ( !in_array( $scope->getIdentifier(), $clientEntity->getGrants() ) ) {
@@ -87,22 +86,33 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 		return $this->convertToJWT()->toString();
 	}
 
+	public function toString(): string {
+		return $this->__toString();
+	}
+
 	/** @inheritDoc */
-	public function setPrivateKey( CryptKey $privateKey ) {
+	public function setPrivateKey( CryptKeyInterface $privateKey ): void {
+		$key = InMemory::plainText(
+			$privateKey->getKeyContents(),
+			$privateKey->getPassPhrase() ?? ''
+		);
 		$this->setJwtConfiguration( Configuration::forAsymmetricSigner(
 			new Sha256(),
-			LocalFileReference::file( $privateKey->getKeyPath(), $privateKey->getPassPhrase() ?? '' ),
-			InMemory::plainText( '' )
+			$key,
+			$key
 		) );
 	}
 
 	/**
-	 * Set configured private key
+	 * Set the configured private key
 	 */
 	public function setPrivateKeyFromConfig() {
 		$oauthConfig = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
 		// Private key to sign the token
-		$privateKey = new CryptKey( $oauthConfig->get( 'OAuth2PrivateKey' ) );
+		$privateKey = new CryptKey(
+			$oauthConfig->get( 'OAuth2PrivateKey' ),
+			$oauthConfig->get( 'OAuth2Passphrase' )
+		);
 		$this->setPrivateKey( $privateKey );
 	}
 
@@ -113,15 +123,6 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 	 */
 	public function getApproval() {
 		return $this->approval;
-	}
-
-	/**
-	 * Get the client that the token was issued to.
-	 *
-	 * @return ClientEntity
-	 */
-	public function getClient() {
-		return $this->client;
 	}
 
 	public function isOwnerOnly(): bool {
@@ -142,7 +143,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 	private function setApprovalFromClientScopesUser(
 		ClientEntity $clientEntity, array $scopes, $userIdentifier = null
 	) {
-		if ( $clientEntity->getOwnerOnly() && $userIdentifier === null ) {
+		if ( $userIdentifier === null && $clientEntity->getOwnerOnly() ) {
 			$userIdentifier = $clientEntity->getUserId();
 			$scopes = $clientEntity->getScopes();
 		}
@@ -197,8 +198,9 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 			->expiresAt( $this->getExpiryDateTime() )
 			->relatedTo( $this->getUserIdentifierForJwt() );
 
-		if ( $this->getIssuer() ) {
-			$builder->issuedBy( $this->getIssuer() );
+		$issuer = $this->getIssuer();
+		if ( $issuer !== null ) {
+			$builder->issuedBy( $issuer );
 		}
 
 		foreach ( $this->getClaims() as $claim ) {
@@ -206,7 +208,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 		}
 
 		return $builder
-			// Set scope claim late to prevent it from being overridden.
+			// Set the scope claim late to prevent it from being overridden.
 			->withClaim( 'scopes', $this->getScopes() )
 			->getToken( $this->jwtConfiguration->signer(), $this->jwtConfiguration->signingKey() );
 	}
@@ -235,5 +237,4 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 			return "mw:$lookupScope:$centralId";
 		}
 	}
-
 }

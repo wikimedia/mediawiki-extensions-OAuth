@@ -180,21 +180,13 @@ abstract class Consumer extends MWOAuthDAO {
 		];
 	}
 
-	/**
-	 * @param array $data
-	 * @return string
-	 */
-	protected static function getConsumerClass( array $data ) {
+	protected static function getConsumerClass( array $data ): string {
 		return static::isOAuth2( $data ) ?
 			OAuth2Client::class :
 			OAuth1Consumer::class;
 	}
 
-	/**
-	 * @param array $data
-	 * @return bool
-	 */
-	protected static function isOAuth2( array $data = [] ) {
+	protected static function isOAuth2( array $data = [] ): bool {
 		$oauthVersion = $data['oarc_oauth_version'] ?? $data['oauthVersion'];
 		return (int)$oauthVersion === self::OAUTH_VERSION_2;
 	}
@@ -277,52 +269,46 @@ abstract class Consumer extends MWOAuthDAO {
 
 	/**
 	 * Internal ID (DB primary key).
-	 * @return int
 	 */
-	public function getId() {
+	public function getId(): int {
 		return $this->get( 'id' );
 	}
 
 	/**
 	 * Consumer key (32-character hexadecimal string that's used in the OAuth protocol
 	 * and in URLs). This is used as the consumer ID for most external purposes.
-	 * @return string
 	 */
-	public function getConsumerKey() {
+	public function getConsumerKey(): string {
 		return $this->get( 'consumerKey' );
 	}
 
 	/**
 	 * Name of the consumer.
-	 * @return string
 	 */
-	public function getName() {
+	public function getName(): string {
 		return $this->get( 'name' );
 	}
 
 	/**
 	 * Central ID of the owner.
-	 * @return int
 	 */
-	public function getUserId() {
+	public function getUserId(): int {
 		return $this->get( 'userId' );
 	}
 
 	/**
 	 * Consumer version. This is mostly meant for humans: different versions of the same
 	 * application have different keys and are handled as different consumers internally.
-	 * @return string
 	 */
-	public function getVersion() {
+	public function getVersion(): string {
 		return $this->get( 'version' );
 	}
 
 	/**
 	 * Callback URL (or prefix). The browser will be redirected to this URL at the end of
 	 * an OAuth handshake. See getCallbackIsPrefix() for the interpretation of this field.
-	 * @return string
 	 */
-	public function getCallbackUrl() {
+	public function getCallbackUrl(): string {
 		return $this->get( 'callbackUrl' );
 	}
 
@@ -331,44 +317,39 @@ abstract class Consumer extends MWOAuthDAO {
 	 * getCallbackUrl() returns a prefix; the callback URL must be provided by the caller
 	 * and must match the prefix. For the exact definition of "match", see
 	 * MWOAuthServer::checkCallback().
-	 * @return bool
 	 */
-	public function getCallbackIsPrefix() {
+	public function getCallbackIsPrefix(): bool {
 		return $this->get( 'callbackIsPrefix' );
 	}
 
 	/**
 	 * Description of the consumer. Currently interpreted as plain text; might change to wikitext
 	 * in the future.
-	 * @return string
 	 */
-	public function getDescription() {
+	public function getDescription(): string {
 		return $this->get( 'description' );
 	}
 
 	/**
 	 * Email address of the owner.
-	 * @return string
 	 */
-	public function getEmail() {
+	public function getEmail(): string {
 		return $this->get( 'email' );
 	}
 
 	/**
 	 * Date of verifying the email, in TS_MW format. In practice this will be the same as
 	 * getRegistration().
-	 * @return string|null
 	 */
-	public function getEmailAuthenticated() {
+	public function getEmailAuthenticated(): ?string {
 		return $this->get( 'emailAuthenticated' );
 	}
 
 	/**
 	 * Did the user accept the developer agreement (the terms of use checkbox at the bottom of the
 	 * registration form)? Except for very old users, always true.
-	 * @return bool
 	 */
-	public function getDeveloperAgreement() {
+	public function getDeveloperAgreement(): bool {
 		return $this->get( 'developerAgreement' );
 	}
 
@@ -383,16 +364,12 @@ abstract class Consumer extends MWOAuthDAO {
 		return $this->get( 'ownerOnly' );
 	}
 
-	/**
-	 * @return int
-	 */
-	abstract public function getOAuthVersion();
+	abstract public function getOAuthVersion(): int;
 
 	/**
 	 * The wiki on which the consumer is allowed to access user accounts. A wiki ID or '*' for all.
-	 * @return string
 	 */
-	public function getWiki() {
+	public function getWiki(): string {
 		return $this->get( 'wiki' );
 	}
 
@@ -400,15 +377,14 @@ abstract class Consumer extends MWOAuthDAO {
 	 * The list of grants required by this application.
 	 * @return string[]
 	 */
-	public function getGrants() {
+	public function getGrants(): array {
 		return $this->get( 'grants' );
 	}
 
 	/**
 	 * Consumer registration date in TS_MW format.
-	 * @return string
 	 */
-	public function getRegistration() {
+	public function getRegistration(): string {
 		return $this->get( 'registration' );
 	}
 
@@ -416,25 +392,22 @@ abstract class Consumer extends MWOAuthDAO {
 	 * Secret key used to derive the consumer secret for HMAC-SHA1 signed OAuth requests.
 	 * The actual consumer secret will be calculated via Utils::hmacDBSecret() to mitigate
 	 * DB leaks.
-	 * @return string
 	 */
-	public function getSecretKey() {
+	public function getSecretKey(): string {
 		return $this->get( 'secretKey' );
 	}
 
 	/**
 	 * Public RSA key for RSA-SHA1 signed OAuth requests.
-	 * @return string
 	 */
-	public function getRsaKey() {
+	public function getRsaKey(): string {
 		return $this->get( 'rsaKey' );
 	}
 
 	/**
 	 * Application restrictions (such as allowed IPs).
-	 * @return MWRestrictions
 	 */
-	public function getRestrictions() {
+	public function getRestrictions(): MWRestrictions {
 		return $this->get( 'restrictions' );
 	}
 
@@ -442,24 +415,22 @@ abstract class Consumer extends MWOAuthDAO {
 	 * Stage at which the consumer is in the review workflow (proposed, approved etc).
 	 * @return int One of the STAGE_* constants
 	 */
-	public function getStage() {
+	public function getStage(): int {
 		return $this->get( 'stage' );
 	}
 
 	/**
 	 * Date at which the consumer was moved to the current stage, in TS_MW format.
-	 * @return string
 	 */
-	public function getStageTimestamp() {
+	public function getStageTimestamp(): string {
 		return $this->get( 'stageTimestamp' );
 	}
 
 	/**
 	 * Is the consumer suppressed? (There is no plain deletion; the closest equivalent is the
 	 * rejected/disabled stage.)
-	 * @return bool
 	 */
-	public function getDeleted() {
+	public function getDeleted(): bool {
 		return $this->get( 'deleted' );
 	}
 
@@ -702,14 +673,13 @@ abstract class Consumer extends MWOAuthDAO {
 	 * - Approved for multi-user use
 	 * - Approved for owner-only use and is owned by $user
 	 * - Still pending approval and is owned by $user
-	 *
-	 * @param User $user
-	 * @return bool
 	 */
-	public function isUsableBy( User $user ) {
+	public function isUsableBy( User $user ): bool {
 		if ( $this->stage === self::STAGE_APPROVED && !$this->getOwnerOnly() ) {
 			return true;
-		} elseif ( $this->stage === self::STAGE_PROPOSED || $this->stage === self::STAGE_APPROVED ) {
+		}
+
+		if ( $this->stage === self::STAGE_PROPOSED || $this->stage === self::STAGE_APPROVED ) {
 			$centralId = Utils::getCentralIdFromLocalUser( $user );
 			return ( $centralId && $this->userId === $centralId );
 		}

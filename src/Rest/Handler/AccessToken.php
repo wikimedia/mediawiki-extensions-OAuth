@@ -125,15 +125,11 @@ class AccessToken extends AuthenticationHandler {
 	 * @return string|false
 	 */
 	protected function getGrantClass( $grantType ) {
-		switch ( $grantType ) {
-			case static::GRANT_TYPE_AUTHORIZATION_CODE:
-				return AuthorizationCodeAccessTokens::class;
-			case static::GRANT_TYPE_CLIENT_CREDENTIALS:
-				return ClientCredentials::class;
-			case static::GRANT_TYPE_REFRESH_TOKEN:
-				return RefreshToken::class;
-			default:
-				return false;
-		}
+		return match ( $grantType ) {
+			static::GRANT_TYPE_AUTHORIZATION_CODE => AuthorizationCodeAccessTokens::class,
+			static::GRANT_TYPE_CLIENT_CREDENTIALS => ClientCredentials::class,
+			static::GRANT_TYPE_REFRESH_TOKEN => RefreshToken::class,
+			default => false,
+		};
 	}
 }

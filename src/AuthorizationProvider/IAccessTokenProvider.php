@@ -8,11 +8,9 @@ use Psr\Http\Message\ServerRequestInterface;
 interface IAccessTokenProvider extends IAuthorizationProvider {
 	/**
 	 * Retrieve access tokens
-	 *
-	 * @param ServerRequestInterface $request
-	 * @param ResponseInterface $response
-	 * @return ResponseInterface
 	 */
-	public function getAccessTokens( ServerRequestInterface $request,
-		ResponseInterface $response ): ResponseInterface;
+	public function getAccessTokens(
+		ServerRequestInterface $request,
+		ResponseInterface $response
+	): ResponseInterface;
 }

@@ -60,7 +60,7 @@ class ResourceServer {
 	 * @param WebRequest|ServerRequestInterface $request
 	 * @return bool
 	 */
-	public static function isOAuth2Request( $request ) {
+	public static function isOAuth2Request( $request ): bool {
 		$authHeader = $request->getHeader( 'authorization' );
 
 		// Normalize to array
@@ -91,19 +91,17 @@ class ResourceServer {
 	}
 
 	/**
-	 * @return User
 	 * @throws MWOAuthException
 	 */
-	public function getUser() {
+	public function getUser(): User {
 		$this->assertVerified();
 		return $this->user;
 	}
 
 	/**
-	 * @return ClientEntity
 	 * @throws MWOAuthException
 	 */
-	public function getClient() {
+	public function getClient(): ClientEntity {
 		$this->assertVerified();
 		return $this->client;
 	}
@@ -112,7 +110,7 @@ class ResourceServer {
 	 * @return ScopeEntity[]
 	 * @throws MWOAuthException
 	 */
-	public function getScopes() {
+	public function getScopes(): array {
 		$this->assertVerified();
 		return $this->scopes;
 	}
@@ -120,10 +118,9 @@ class ResourceServer {
 	/**
 	 * Get access token this request was made with
 	 *
-	 * @return string
 	 * @throws MWOAuthException
 	 */
-	public function getAccessTokenId() {
+	public function getAccessTokenId(): string {
 		$this->assertVerified();
 		return $this->accessTokenId;
 	}
@@ -135,7 +132,7 @@ class ResourceServer {
 	 * @return bool
 	 * @throws MWOAuthException
 	 */
-	public function isScopeAllowed( $scope ) {
+	public function isScopeAllowed( $scope ): bool {
 		$this->assertVerified();
 
 		if ( $scope instanceof ScopeEntityInterface ) {
@@ -148,7 +145,6 @@ class ResourceServer {
 	/**
 	 * Read out the verified request and get relevant information
 	 *
-	 * @param ServerRequestInterface $request
 	 * @throws HttpException
 	 */
 	public function setVerifiedInfo( ServerRequestInterface $request ) {
@@ -161,9 +157,8 @@ class ResourceServer {
 	}
 
 	/**
-	 * Set authorized user to the global context
+	 * Set the authorized user to the global context
 	 *
-	 * @param ServerRequestInterface $request
 	 * @throws HttpException
 	 */
 	private function setUser( ServerRequestInterface $request ) {
@@ -184,9 +179,8 @@ class ResourceServer {
 	}
 
 	/**
-	 * Set the ClientEntity from validated request
+	 * Set the ClientEntity from a validated request
 	 *
-	 * @param ServerRequestInterface $request
 	 * @throws HttpException
 	 */
 	private function setClient( ServerRequestInterface $request ) {
@@ -201,8 +195,6 @@ class ResourceServer {
 
 	/**
 	 * Set validated scopes
-	 *
-	 * @param ServerRequestInterface $request
 	 */
 	private function setScopes( ServerRequestInterface $request ) {
 		$scopeNames = $request->getAttribute( 'oauth_scopes', [] );
@@ -218,8 +210,6 @@ class ResourceServer {
 
 	/**
 	 * Set the access token this request was made with
-	 *
-	 * @param ServerRequestInterface $request
 	 */
 	private function setAccessTokenId( ServerRequestInterface $request ) {
 		$this->accessTokenId = $request->getAttribute( 'oauth_access_token_id' );

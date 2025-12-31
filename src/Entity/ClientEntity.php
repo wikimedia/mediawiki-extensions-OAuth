@@ -21,27 +21,22 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 	/**
 	 * Returns the registered redirect URI (as a string).
 	 *
-	 * Alternatively return an indexed array of redirect URIs.
+	 * Alternatively, return an indexed array of redirect URIs.
 	 *
 	 * @return string|string[]
 	 */
-	public function getRedirectUri() {
+	public function getRedirectUri(): string|array {
 		return $this->getCallbackUrl();
 	}
 
 	/**
 	 * Returns true if the client is confidential.
-	 *
-	 * @return bool
 	 */
-	public function isConfidential() {
+	public function isConfidential(): bool {
 		return $this->oauth2IsConfidential;
 	}
 
-	/**
-	 * @return mixed
-	 */
-	public function getIdentifier() {
+	public function getIdentifier(): string {
 		return $this->getConsumerKey();
 	}
 
@@ -100,10 +95,7 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 		return true;
 	}
 
-	/**
-	 * @return int
-	 */
-	public function getOAuthVersion() {
+	public function getOAuthVersion(): int {
 		return static::OAUTH_VERSION_2;
 	}
 
@@ -111,16 +103,12 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 	 * @param null|string $secret
 	 * @return bool
 	 */
-	private function isSecretValid( $secret ) {
+	private function isSecretValid( $secret ): bool {
 		return is_string( $secret )
 			&& hash_equals( $secret, Utils::hmacDBSecret( $this->secretKey ) );
 	}
 
-	/**
-	 * @param string $grantType
-	 * @return bool
-	 */
-	public function isGrantAllowed( $grantType ) {
+	public function isGrantAllowed( string $grantType ): bool {
 		return in_array( $grantType, $this->getAllowedGrants() );
 	}
 
@@ -168,13 +156,12 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 				'consumer_name' => $this->getName(),
 			] );
 		}
-		$accessToken = null;
 		$accessTokenRepo = new AccessTokenRepository();
 		if ( $revokeExisting ) {
 			$accessTokenRepo->deleteForApprovalId( $approval->getId() );
 		}
 		/** @var AccessTokenEntity $accessToken */
-		$accessToken = $accessTokenRepo->getNewToken( $this, $this->getScopes(), $approval->getUserId() );
+		$accessToken = $accessTokenRepo->getNewToken( $this, $this->getScopes(), (string)$approval->getUserId() );
 		'@phan-var AccessTokenEntity $accessToken';
 		$claimStore = new ClaimStore();
 		$claims = $claimStore->getClaims( $grantType, $this, ownerOnly: true );

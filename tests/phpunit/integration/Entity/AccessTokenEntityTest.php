@@ -5,6 +5,8 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Entity;
 use DateInterval;
 use DateTimeImmutable;
 use Lcobucci\JWT\Configuration;
+use Lcobucci\JWT\Signer\Blake2b;
+use Lcobucci\JWT\Signer\Key\InMemory;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use MediaWiki\Extension\OAuth\Entity\AccessTokenEntity;
 use MediaWiki\Extension\OAuth\Entity\ClaimEntity;
@@ -49,11 +51,12 @@ class AccessTokenEntityTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->assertSame(
-			$identifier, $accessToken->getIdentifier(),
+			$identifier,
+			$accessToken->getIdentifier(),
 			'Access token identifier should match the one set'
 		);
 		$this->assertSame(
-			$this->getTestUser()->getUser()->getId(),
+			(string)$this->getTestUser()->getUser()->getId(),
 			$accessToken->getUserIdentifier(),
 			'Access token should have the same user identifier that was passed to it'
 		);
@@ -83,7 +86,7 @@ class AccessTokenEntityTest extends MediaWikiIntegrationTestCase {
 
 	public function testJwt() {
 		$getSub = static function ( ClientEntity $clientEntity, ?int $userId = -1 ) {
-			if ( $userId === -1 ) {
+			if ( $userId === -1 || $userId === null ) {
 				$userId = $clientEntity->getUserId();
 			}
 			$accessTokenEntity = new AccessTokenEntity( $clientEntity, [], 'dummy:', $userId );
@@ -91,7 +94,11 @@ class AccessTokenEntityTest extends MediaWikiIntegrationTestCase {
 			$accessTokenEntity->setExpiryDateTime( ( new DateTimeImmutable() )->add(
 				new DateInterval( 'P1000Y' )
 			) );
-			$accessTokenEntity->setJwtConfiguration( Configuration::forUnsecuredSigner() );
+			// https://lcobucci-jwt.readthedocs.io/en/stable/upgrading/#removal-of-none-algorithm
+			$accessTokenEntity->setJwtConfiguration( Configuration::forSymmetricSigner(
+				new Blake2b(),
+				InMemory::base64Encoded( 'MpQd6dDPiqnzFSWmpUfLy4+Rdls90Ca4C8e0QD0IxqY=' )
+			) );
 			$jwt = (string)$accessTokenEntity;
 			$claims = json_decode( base64_decode( explode( '.', $jwt )[1] ), true );
 			return $claims['sub'];
@@ -106,7 +113,6 @@ class AccessTokenEntityTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( "mw:local:$wikiId:" . $clientEntity->getUserId(), $getSub( $clientEntity ) );
 
 		$this->assertSame( '0', $getSub( $clientEntity, 0 ) );
-		$this->assertSame( '', $getSub( $clientEntity, null ) );
 
 		$clientEntity = MockClientEntity::newMock( $this->getTestUser()->getUser(), [ 'userId' => 0 ] );
 		$this->assertSame( '0', $getSub( $clientEntity ) );

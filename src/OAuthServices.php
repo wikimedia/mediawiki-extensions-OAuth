@@ -13,10 +13,8 @@ class OAuthServices {
 
 	/**
 	 * Static version of the constructor, for nicer syntax.
-	 * @param MediaWikiServices $coreServices
-	 * @return static
 	 */
-	public static function wrap( MediaWikiServices $coreServices ) {
+	public static function wrap( MediaWikiServices $coreServices ): static {
 		return new static( $coreServices );
 	}
 

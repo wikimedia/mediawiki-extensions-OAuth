@@ -36,6 +36,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
 use MWRestrictions;
+use Psr\Http\Message\ResponseInterface;
 use Wikimedia\Rdbms\DBError;
 
 /**
@@ -149,7 +150,7 @@ class SessionProvider
 				$scopes = $resourceServer->getScopes();
 
 				// T409901: Turns out some apps can have no scopes to a user account, let's log those.
-				if ( $scopes === null ) {
+				if ( $scopes === [] ) {
 					$this->logger->warning( 'Application: {app} has no scopes for {user} account', [
 						'appId' => $resourceServer->getClient()->getId(),
 						'app' => $resourceServer->getClient()->getName(),
@@ -279,12 +280,12 @@ class SessionProvider
 	}
 
 	/**
-	 * @param ResourceServer &$resourceServer
+	 * @param ResourceServer $resourceServer
 	 * @param WebRequest $request
 	 * @return string
 	 * @throws MWOAuthException
 	 */
-	private function verifyOAuth2Request( ResourceServer &$resourceServer, WebRequest $request ) {
+	private function verifyOAuth2Request( ResourceServer $resourceServer, WebRequest $request ) {
 		$request = ServerRequest::fromGlobals()->withHeader(
 			'authorization',
 			$request->getHeader( 'authorization' )
@@ -295,8 +296,9 @@ class SessionProvider
 		$resourceServer->verify(
 			$request,
 			$response,
-			static function () use ( &$valid ) {
+			static function ( ResponseInterface $response ) use ( &$valid ) {
 				$valid = true;
+				return $response;
 			}
 		);
 

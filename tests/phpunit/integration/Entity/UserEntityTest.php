@@ -18,7 +18,7 @@ class UserEntityTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->assertSame(
-			$this->getTestUser()->getUser()->getId(),
+			(string)$this->getTestUser()->getUser()->getId(),
 			$userEntity->getIdentifier(),
 			'User identifier should be the same as the id of the user it represents'
 		);

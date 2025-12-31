@@ -250,7 +250,11 @@
 		},
 		"OAuth2PrivateKey": {
 			"value": "",
-			"description": "Private key or a path to the private key used to sign OAuth2 JWT being transmitted"
+			"description": "Private key or a path to the private key used to sign OAuth2 JWT being transmitted. Key needs to be >= 2048 bits"
+		},
+		"OAuth2Passphrase": {
+			"value": "",
+			"description": "Passphrase used to decrypt OAuth2 private key. Leave empty if the key is not encrypted"
 		},
 		"OAuth2PublicKey": {
 			"value": "",

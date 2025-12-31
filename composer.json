@@ -12,7 +12,7 @@
 	],
 	"require": {
 		"firebase/php-jwt": "^6.10.0",
-		"league/oauth2-server": "dev-v9.0.0-alpha#61d770dc284898ea2905d66e12f8f7e5f6664092 as 9.0.0",
+		"league/oauth2-server": "dev-9.3.0-WMF#b8b36aa0627c81093b77705b78d832d0a7ef2eec as 9.3.0",
 		"okvpn/clock-lts": "^1.0.0"
 	},
 	"require-dev": {

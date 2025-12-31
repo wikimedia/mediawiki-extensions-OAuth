@@ -10,7 +10,6 @@ use MediaWiki\Extension\OAuth\AuthorizationProvider\AccessToken;
 class RefreshToken extends AccessToken {
 
 	/**
-	 * @return GrantTypeInterface
 	 * @throws Exception
 	 */
 	protected function getGrant(): GrantTypeInterface {

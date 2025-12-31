@@ -8,11 +8,7 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\User\User;
 
 class UserEntity implements UserEntityInterface {
-
-	/**
-	 * @var int
-	 */
-	private $identifier;
+	private int $identifier;
 
 	/**
 	 * @param User $user
@@ -30,20 +26,15 @@ class UserEntity implements UserEntityInterface {
 		}
 	}
 
-	/**
-	 * @param int $identifier
-	 */
-	public function __construct( $identifier ) {
+	public function __construct( int $identifier ) {
 		$this->identifier = $identifier;
 	}
 
 	/**
 	 * Return the user's identifier.
-	 *
-	 * @return int
 	 */
-	public function getIdentifier() {
-		return $this->identifier;
+	public function getIdentifier(): string {
+		return (string)$this->identifier;
 	}
 
 	/**

@@ -12,10 +12,8 @@ class AuthCodeRepository extends CacheRepository implements AuthCodeRepositoryIn
 
 	/**
 	 * Creates a new AuthCode
-	 *
-	 * @return AuthCodeEntityInterface
 	 */
-	public function getNewAuthCode() {
+	public function getNewAuthCode(): AuthCodeEntityInterface {
 		return new AuthCodeEntity();
 	}
 
@@ -26,7 +24,7 @@ class AuthCodeRepository extends CacheRepository implements AuthCodeRepositoryIn
 	 *
 	 * @throws UniqueTokenIdentifierConstraintViolationException
 	 */
-	public function persistNewAuthCode( AuthCodeEntityInterface $authCodeEntity ) {
+	public function persistNewAuthCode( AuthCodeEntityInterface $authCodeEntity ): void {
 		if ( !$authCodeEntity instanceof AuthCodeEntity ) {
 			throw new InvalidArgumentException(
 				'$authCodeEntity must be instance of ' .
@@ -46,10 +44,8 @@ class AuthCodeRepository extends CacheRepository implements AuthCodeRepositoryIn
 
 	/**
 	 * Revoke an auth code.
-	 *
-	 * @param string $codeId
 	 */
-	public function revokeAuthCode( $codeId ) {
+	public function revokeAuthCode( string $codeId ): void {
 		$this->delete( $codeId );
 	}
 
@@ -60,7 +56,7 @@ class AuthCodeRepository extends CacheRepository implements AuthCodeRepositoryIn
 	 *
 	 * @return bool Return true if this code has been revoked
 	 */
-	public function isAuthCodeRevoked( $codeId ) {
+	public function isAuthCodeRevoked( string $codeId ): bool {
 		return $this->has( $codeId ) === false;
 	}
 

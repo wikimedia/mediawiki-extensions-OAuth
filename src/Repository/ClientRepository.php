@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Repository;
 
+use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
@@ -9,20 +10,13 @@ use Wikimedia\NormalizedException\NormalizedException;
 
 class ClientRepository implements ClientRepositoryInterface {
 
-	/**
-	 * Get a client.
-	 *
-	 * @param string $clientIdentifier The client's identifier
-	 *
-	 * @return ClientEntity|bool
-	 */
-	public function getClientEntity( $clientIdentifier ) {
+	public function getClientEntity( string $clientIdentifier ): ?ClientEntityInterface {
 		$client = ClientEntity::newFromKey(
 			Utils::getOAuthDB( DB_REPLICA ),
 			$clientIdentifier
 		);
 		if ( !$client instanceof ClientEntity ) {
-			return false;
+			return null;
 		}
 
 		return $client;
@@ -45,13 +39,13 @@ class ClientRepository implements ClientRepositoryInterface {
 	 * Validate a client's secret.
 	 *
 	 * @param string $clientIdentifier The client's identifier
-	 * @param null|string $clientSecret The client's secret (if sent)
-	 * @param null|string $grantType The type of grant the client is using (if sent)
+	 * @param ?string $clientSecret The client's secret (if sent)
+	 * @param ?string $grantType The type of grant the client is using (if sent)
 	 *
 	 * @return bool
 	 * @throws NormalizedException
 	 */
-	public function validateClient( $clientIdentifier, $clientSecret, $grantType ) {
+	public function validateClient( string $clientIdentifier, ?string $clientSecret, ?string $grantType ): bool {
 		$client = $this->getClientEntity( $clientIdentifier );
 		if ( !$client || !$client instanceof ClientEntity ) {
 			throw new NormalizedException(

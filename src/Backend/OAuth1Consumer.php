@@ -61,10 +61,7 @@ class OAuth1Consumer extends Consumer {
 		);
 	}
 
-	/**
-	 * @return int
-	 */
-	public function getOAuthVersion() {
+	public function getOAuthVersion(): int {
 		return static::OAUTH_VERSION_1;
 	}
 }

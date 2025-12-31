@@ -12,10 +12,8 @@ use MediaWiki\Extension\OAuth\Repository\ScopeRepository;
 use MediaWiki\MediaWikiServices;
 
 class AuthorizationServerFactory {
-	/**
-	 * @return static
-	 */
-	public static function factory() {
+
+	public static function factory(): static {
 		$services = MediaWikiServices::getInstance();
 		$extConfig = $services->getConfigFactory()->makeConfig( 'mwoauth' );
 		$mainConfig = $services->getMainConfig();
@@ -37,10 +35,7 @@ class AuthorizationServerFactory {
 		}
 	}
 
-	/**
-	 * @return AuthorizationServer
-	 */
-	public function getAuthorizationServer() {
+	public function getAuthorizationServer(): AuthorizationServer {
 		return new AuthorizationServer(
 			new ClientRepository(),
 			new AccessTokenRepository( $this->issuer ),

@@ -37,12 +37,8 @@ class ScopeRepository implements ScopeRepositoryInterface {
 
 	/**
 	 * Return information about a scope.
-	 *
-	 * @param string $identifier The scope identifier
-	 *
-	 * @return ScopeEntityInterface|null
 	 */
-	public function getScopeEntityByIdentifier( $identifier ) {
+	public function getScopeEntityByIdentifier( string $identifier ): ?ScopeEntityInterface {
 		if ( in_array( $identifier, $this->allowedScopes, true ) ) {
 			return new ScopeEntity( $identifier );
 		}
@@ -58,12 +54,18 @@ class ScopeRepository implements ScopeRepositoryInterface {
 	 * @param ScopeEntityInterface[] $scopes
 	 * @param string $grantType
 	 * @param ClientEntityInterface|ClientEntity $clientEntity
-	 * @param null|string $userIdentifier
+	 * @param ?string $userIdentifier
+	 * @param ?string $authCodeId
 	 *
 	 * @return ScopeEntityInterface[]
 	 */
-	public function finalizeScopes( array $scopes, $grantType,
-		ClientEntityInterface $clientEntity, $userIdentifier = null ) {
+	public function finalizeScopes(
+		array $scopes,
+		string $grantType,
+		ClientEntityInterface $clientEntity,
+		?string $userIdentifier = null,
+		?string $authCodeId = null
+	): array {
 		$scopes = $this->replaceDefaultScope( $scopes, $clientEntity );
 
 		if ( $grantType !== 'authorization_code' ) {

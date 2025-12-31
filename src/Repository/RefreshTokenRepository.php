@@ -12,21 +12,17 @@ class RefreshTokenRepository extends CacheRepository implements RefreshTokenRepo
 
 	/**
 	 * Creates a new refresh token
-	 *
-	 * @return RefreshTokenEntityInterface|null
 	 */
-	public function getNewRefreshToken() {
+	public function getNewRefreshToken(): ?RefreshTokenEntityInterface {
 		return new RefreshTokenEntity();
 	}
 
 	/**
 	 * Create a new refresh token_name.
 	 *
-	 * @param RefreshTokenEntityInterface $refreshTokenEntity
-	 *
 	 * @throws UniqueTokenIdentifierConstraintViolationException
 	 */
-	public function persistNewRefreshToken( RefreshTokenEntityInterface $refreshTokenEntity ) {
+	public function persistNewRefreshToken( RefreshTokenEntityInterface $refreshTokenEntity ): void {
 		if ( !$refreshTokenEntity instanceof RefreshTokenEntity ) {
 			throw new InvalidArgumentException(
 				'$refreshTokenEntity must be instance of ' .
@@ -46,10 +42,8 @@ class RefreshTokenRepository extends CacheRepository implements RefreshTokenRepo
 
 	/**
 	 * Revoke the refresh token.
-	 *
-	 * @param string $tokenId
 	 */
-	public function revokeRefreshToken( $tokenId ) {
+	public function revokeRefreshToken( string $tokenId ): void {
 		$this->delete( $tokenId );
 	}
 
@@ -60,7 +54,7 @@ class RefreshTokenRepository extends CacheRepository implements RefreshTokenRepo
 	 *
 	 * @return bool Return true if this token has been revoked
 	 */
-	public function isRefreshTokenRevoked( $tokenId ) {
+	public function isRefreshTokenRevoked( string $tokenId ): bool {
 		// Refresh tokens cannot be mass-revoked when the user revokes the approval for a client
 		// via SpecialMWOAuthManageMyGrants, because they are stored in a key-value store.
 		// instead we rely on the fact that the refresh token contains the access token ID
@@ -77,8 +71,6 @@ class RefreshTokenRepository extends CacheRepository implements RefreshTokenRepo
 
 	/**
 	 * Get object type for session key
-	 *
-	 * @return string
 	 */
 	protected function getCacheKeyType(): string {
 		return "RefreshToken";

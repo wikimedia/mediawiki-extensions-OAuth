@@ -29,8 +29,11 @@ class ClaimStore implements ClaimRepositoryInterface {
 	 * @param bool $ownerOnly True for owner-only apps.
 	 */
 	public function getClaims(
-		string $grantType, ClientEntityInterface $clientEntity, $userIdentifier = null, bool $ownerOnly = false
-	) {
+		string $grantType,
+		ClientEntityInterface $clientEntity,
+		?string $userIdentifier = null,
+		bool $ownerOnly = false
+	): array {
 		if ( !( $clientEntity instanceof MWClientEntityInterface ) ) {
 			throw new LogicException( '$clientEntity must be instance of ' .
 				MWClientEntityInterface::class . ', got ' . get_class( $clientEntity ) . ' instead' );

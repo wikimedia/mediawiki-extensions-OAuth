@@ -104,7 +104,7 @@ class Resource extends Handler {
 	 */
 	private function getProfile( $response ) {
 		$resourceServerScopes = $this->resourceServer->getScopes();
-		if ( $resourceServerScopes === null ) {
+		if ( $resourceServerScopes === [] ) {
 			// NOTE: logging to the same channel as SessionProvider class.
 			$logger = LoggerFactory::getInstance( 'session' );
 			$logger->warning( 'Application: {app} has no scopes for {user} account', [
@@ -115,7 +115,6 @@ class Resource extends Handler {
 		}
 
 		// Intersection between approved and requested scopes
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
 		$scopes = array_keys( $resourceServerScopes );
 		$userStatementProvider = UserStatementProvider::factory(
 			$this->resourceServer->getUser(),
