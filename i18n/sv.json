@@ -10,7 +10,8 @@
 			"Mjälten",
 			"Sabelöga",
 			"Skalman",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Stefan2255"
 		]
 	},
 	"mwoauth-desc": "Tillåter användning av OAuth 1.0a och OAuth 2.0 för API-tillstånd",
@@ -76,9 +77,9 @@
 	"mwoauthconsumerregistration-navigation": "Navigering:",
 	"mwoauthconsumerregistration-list": "Min konsumentlista",
 	"mwoauthconsumerregistration-main": "Huvudsida",
-	"mwoauthconsumerregistration-propose-text": "Utvecklare bör använda formuläret nedan för att föreslå en ny OAuth-konsument (se [//www.mediawiki.org/wiki/Extension:OAuth dokumentationen för tillägget] för mer detaljer). Efter att ha skickat in detta formulär, får du en nyckel som din applikation kan använda för att identifiera sig gentemot MediaWiki. En OAuth-administratör måste godkänna din ansökan innan den kan tillåtas av andra användare.\n\nNågra rekommendationer och anmärkningar:\n* Försök att använda så få behörigheter som möjligt. Undvik behörigheter som egentligen inte behövs nu.\n* Versioner är av formen \"huvudversion.underversion.release\" (de två sista är valfria) och ökar allt eftersom behörighetsförändringar behövs.\n* Vänligen ange en publik RSA-nyckel (i PEM-format) om möjligt; annars måste en (mindre säker) hemlig nyckel användas.\n* Du kan använda ett projekt-id för att begränsa konsumenten till ett enskilt projekt på denna webbplats (använd \"*\" för alla projekt).",
+	"mwoauthconsumerregistration-propose-text": "Du kan:\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|Föreslå en OAuth 1.0a-konsument]].\n* [[Special:OAuthConsumerRegistration/propose/oauth2|Föreslå en OAuth 2.0-klient]].",
 	"mwoauthconsumerregistration-update-text": "Använd formuläret nedan för att uppdatera delar av en OAuth-konsument du styr.\n\nAlla värden här skriver över eventuella tidigare värden. Lämna inte tomma fält om du inte tänker ta bort dessa värden.",
-	"mwoauthconsumerregistration-maintext": "Denna sida är till för att låta utvecklare föreslå och uppdatera OAuth-konsumentapplikationer i webbplatsens register.\n\nHärifrån kan du:\n* [[Special:OAuthConsumerRegistration/propose|Begära en nyckel för en ny konsument]].\n* [[Special:OAuthConsumerRegistration/list|Hantera dina existerande konsumenter]].\n\nFör mer information om OAuth, se [//www.mediawiki.org/wiki/Extension:OAuth dokumentationen för tillägget].",
+	"mwoauthconsumerregistration-maintext": "Denna sida är till för att låta utvecklare föreslå och uppdatera OAuth-konsumentapplikationer i webbplatsens register.\n\nHärifrån kan du:\n* [[Special:OAuthConsumerRegistration/propose/oauth1a|Begär en token för en ny OAuth 1.0a-konsument]].\n* [[Special:OAuthConsumerRegistration/propose/oauth2|Begär en token för en ny OAuth 2.0-klient]].\n* [[Special:OAuthConsumerRegistration/list|Hantera dina befintliga konsumenter]].\n\nFör mer information om OAuth, se [https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:OAuth extension dokumentationen].",
 	"mwoauthconsumerregistration-propose-legend": "Ny OAuth-konsumentapplikation",
 	"mwoauthconsumerregistration-update-legend": "Uppdatera OAuth-konsumentapplikation",
 	"mwoauthconsumerregistration-propose-submit": "Föreslå konsument",
