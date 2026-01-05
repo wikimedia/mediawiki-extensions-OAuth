@@ -95,7 +95,7 @@ class UIHooks implements
 	 */
 	public function onMessagesPreLoad( $title, &$message, $code ) {
 		// Quick fail check
-		if ( substr( $title, 0, 15 ) !== 'Tag-OAuth_CID:_' ) {
+		if ( !str_starts_with( $title, 'Tag-OAuth_CID:_' ) ) {
 			return true;
 		}
 
