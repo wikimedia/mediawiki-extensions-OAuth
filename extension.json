@@ -73,6 +73,22 @@
 				"GrantsLocalization",
 				"PermissionManager"
 			]
+		},
+		"OAuthConsumerRegistration": {
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthConsumerRegistration",
+			"services": [
+				"PermissionManager",
+				"GrantsInfo",
+				"GrantsLocalization",
+				"UrlUtils"
+			]
+		},
+		"OAuthManageConsumers": {
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthManageConsumers",
+			"services": [
+				"GrantsLocalization",
+				"UrlUtils"
+			]
 		}
 	},
 	"MessagesDirs": {
@@ -161,7 +177,6 @@
 		"TestCanonicalRedirect": "setup",
 		"SetupAfterCache": "backend",
 		"ApiRsdServiceApis": "backend",
-		"SpecialPage_initList": "frontend",
 		"ListDefinedTags": "backend",
 		"ChangeTagsListActive": "backend",
 		"LoginFormValidErrorMessages": "frontend",

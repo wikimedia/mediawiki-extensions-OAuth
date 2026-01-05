@@ -10,15 +10,12 @@ use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
-use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
-use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers;
 use MediaWiki\Hook\LoginFormValidErrorMessagesHook;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
-use MediaWiki\SpecialPage\Hook\SpecialPage_initListHook;
 use MediaWiki\SpecialPage\Hook\SpecialPageAfterExecuteHook;
 use MediaWiki\SpecialPage\Hook\SpecialPageBeforeFormDisplayHook;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -34,8 +31,7 @@ class UIHooks implements
 	LoginFormValidErrorMessagesHook,
 	MessagesPreLoadHook,
 	SpecialPageAfterExecuteHook,
-	SpecialPageBeforeFormDisplayHook,
-	SpecialPage_initListHook
+	SpecialPageBeforeFormDisplayHook
 {
 
 	public function __construct(
@@ -247,28 +243,6 @@ class UIHooks implements
 		}
 
 		$icons['oauth'] = [ 'path' => 'OAuth/resources/assets/echo-icon.png' ];
-	}
-
-	/**
-	 * @param array &$specialPages
-	 */
-	public function onSpecialPage_initList( &$specialPages ) {
-		$specialPages['OAuthConsumerRegistration'] = [
-			'class' => SpecialMWOAuthConsumerRegistration::class,
-			'services' => [
-				'PermissionManager',
-				'GrantsInfo',
-				'GrantsLocalization',
-				'UrlUtils',
-			],
-		];
-		$specialPages['OAuthManageConsumers'] = [
-			'class' => SpecialMWOAuthManageConsumers::class,
-			'services' => [
-				'GrantsLocalization',
-				'UrlUtils',
-			],
-		];
 	}
 
 	/**
