@@ -295,7 +295,7 @@ class SessionProvider
 		$resourceServer->verify(
 			$request,
 			$response,
-			static function ( $request, $response ) use ( &$valid ) {
+			static function () use ( &$valid ) {
 				$valid = true;
 			}
 		);

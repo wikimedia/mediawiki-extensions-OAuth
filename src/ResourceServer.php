@@ -85,7 +85,7 @@ class ResourceServer {
 			$response,
 			function ( $request, $response ) use ( $callback ) {
 				$this->setVerifiedInfo( $request );
-				return $callback( $request, $response );
+				return $callback( $response );
 			}
 		);
 	}
