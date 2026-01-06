@@ -12,6 +12,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
 use StatusValue;
+use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -192,7 +193,7 @@ abstract class SubmitControl extends ContextSource {
 		if ( $result instanceof StatusValue ) {
 			if ( $result->isGood() ) {
 				return true;
-			} elseif ( count( $result->getErrors() ) !== 1 ) {
+			} elseif ( count( $result->getMessages() ) !== 1 ) {
 				throw new LogicException( 'Validator return status has too many errors: '
 					. $result );
 			}
@@ -210,7 +211,7 @@ abstract class SubmitControl extends ContextSource {
 					return true;
 				}
 			}
-			$result = $result->getErrors()[0]['message'];
+			$result = $result->getMessages()[0];
 		}
 		if ( is_bool( $result ) || $result instanceof ApiMessage ) {
 			return $result;
@@ -221,16 +222,15 @@ abstract class SubmitControl extends ContextSource {
 	}
 
 	/**
-	 * Get the field names and their validation methods. Fields can be omitted. Fields that are
-	 * not
+	 * Get the field names and their validation methods. Fields can be omitted.
 	 *
 	 * A validation method is either a regex string or a callable.
 	 * Callables take (field value, field/value map) as params and must return a boolean or a
 	 * StatusValue with a single ApiMessage in it. If that is a warning, the user will be allowed
-	 * to override it. A StatusValue with an error of boolean false will prevent submission.
+	 * to override it. A StatusValue with an error or boolean false will prevent submission.
 	 *
-	 * When false is returned, the error message mwoauth-invalid-field-<fieldname> will be shown
-	 * if it exists. Otherwise, a generic message will be used (see getDefaultValidationError()).
+	 * When false is returned, the error message will be 'mwoauth-invalid-field-<fieldname>'
+	 * if it exists, or a generic message otherwise (see getDefaultValidationError()).
 	 *
 	 * @return array (action => (field name => validation regex or function))
 	 * @phan-return array<string,array<string,string|callable(mixed):(bool|StatusValue)|callable(mixed,array):(bool|StatusValue)>>
@@ -268,7 +268,7 @@ abstract class SubmitControl extends ContextSource {
 				$message = $this->getDefaultValidationError( $field, $this->vals[$field] );
 				return $this->failure( "invalid_field_$field", $message );
 			} elseif ( $validationResult instanceof ApiMessage ) {
-				return $this->failure( $validationResult->getApiCode(), $validationResult, $field );
+				return $this->failure( $validationResult->getApiCode(), $validationResult );
 			}
 		}
 		return $this->success();
@@ -285,15 +285,11 @@ abstract class SubmitControl extends ContextSource {
 	/**
 	 * @param string $error API error key
 	 * @param string|MessageSpecifier $msg Message
-	 * @param mixed ...$params Additional arguments used as message parameters
+	 * @param MessageParam|MessageSpecifier|string|int|float ...$params Additional arguments used as message parameters
 	 * @return Status
 	 */
 	protected function failure( $error, $msg, ...$params ) {
-		// Use the same logic as wfMessage
-		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
-			$params = $params[0];
-		}
-		$status = Status::newFatal( $this->msg( $msg, $params ) );
+		$status = Status::newFatal( $msg, ...$params );
 		$status->value = [ 'error' => $error, 'result' => null ];
 		return $status;
 	}
