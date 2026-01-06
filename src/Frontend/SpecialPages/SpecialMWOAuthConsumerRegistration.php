@@ -9,7 +9,6 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
  */
 
 use InvalidArgumentException;
-use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\UserBlockedError;
@@ -38,6 +37,7 @@ use MediaWiki\WikiMap\WikiMap;
 use MWRestrictions;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Timestamp\TimestampFormat;
 
 /**
  * Page that has registration request form and consumer update form
@@ -91,14 +91,13 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 		$request = $this->getRequest();
 		$user = $this->getUser();
-		$lang = $this->getLanguage();
 		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
 
 		// Redirect to HTTPs if attempting to access this page via HTTP.
 		// Proposals and updates to consumers can involve sending new secrets.
 		if ( $this->getConfig()->get( 'MWOAuthSecureTokenTransfer' )
-			&& $request->detectProtocol() == 'http'
-			&& substr( $this->urlUtils->expand( '/', PROTO_HTTPS ) ?? '', 0, 8 ) === 'https://'
+			&& $request->getProtocol() === 'http'
+			&& str_starts_with( $this->urlUtils->expand( '/', PROTO_HTTPS ) ?? '', 'https://' )
 		) {
 			$redirUrl = str_replace( 'http://', 'https://', $request->getFullRequestURL() );
 			$this->getOutput()->redirect( $redirUrl );
@@ -222,7 +221,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 					$this->getContext()
 				);
 				$form->setSubmitCallback(
-					static function ( array $data, IContextSource $context ) use ( $control ) {
+					static function ( array $data ) use ( $control ) {
 						$control->setInputParameters( $data );
 						return $control->submit();
 					}
@@ -347,7 +346,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		} else {
 			$listLinks[] = $this->msg( 'mwoauthconsumerregistration-list' )->escaped();
 		}
-		if ( $subPage && $action == 'update' ) {
+		if ( $subPage && $action === 'update' ) {
 			$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$subPage" ),
 				$this->msg( 'mwoauthconsumer-consumer-view' )->text()
@@ -392,7 +391,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$links = $this->getLanguage()->pipeList( $links );
 
 		$time = htmlspecialchars( $this->getLanguage()->timeanddate(
-			wfTimestamp( TS_MW, $cmrAc->getRegistration() ), true ) );
+			wfTimestamp( TimestampFormat::MW, $cmrAc->getRegistration() ), true ) );
 
 		$stageKey = Consumer::$stageNames[$cmrAc->getStage()];
 		$encStageKey = htmlspecialchars( $stageKey );
@@ -628,7 +627,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			$this->getContext()
 		);
 		$form->setSubmitCallback(
-			function ( array $data, IContextSource $context ) use ( $control ) {
+			function ( array $data ) use ( $control ) {
 				// adapt form to controller
 				$data = $this->fillDefaultFields( $data );
 
