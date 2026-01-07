@@ -11,6 +11,7 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceAccessControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceSubmitControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\Control\SubmitControl;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ManageMyGrantsPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\HTMLForm\HTMLForm;
@@ -34,9 +35,6 @@ use Wikimedia\Rdbms\IDatabase;
  * for manage the specific grants given or revoking access for the consumer
  */
 class SpecialMWOAuthManageMyGrants extends SpecialPage {
-	/** @var string[]|null */
-	private static $irrevocableGrants = null;
-
 	public function __construct(
 		private readonly GrantsInfo $grantsInfo,
 		private readonly GrantsLocalization $grantsLocalization,
@@ -208,8 +206,8 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 							return "grant-$g";
 						},
 						( $type === 'revoke' )
-							? array_merge( $this->grantsInfo->getValidGrants(), self::irrevocableGrants() )
-							: self::irrevocableGrants()
+							? array_merge( $this->grantsInfo->getValidGrants(), SubmitControl::getIrrevocableGrants() )
+							: SubmitControl::getIrrevocableGrants()
 					),
 					'validation-callback' => null
 				],
@@ -294,7 +292,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$linkRenderer = $this->getLinkRenderer();
 
 		$links = [];
-		if ( array_diff( $cmrAc->getGrants(), self::irrevocableGrants() ) ) {
+		if ( array_diff( $cmrAc->getGrants(), SubmitControl::getIrrevocableGrants() ) ) {
 			$links[] = $linkRenderer->makeKnownLink(
 				$this->getPageTitle( 'update/' . $cmraAc->getId() ),
 				$this->msg( 'mwoauthmanagemygrants-review' )->text()
@@ -340,16 +338,6 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$r .= '</li>';
 
 		return $r;
-	}
-
-	private static function irrevocableGrants(): array {
-		if ( self::$irrevocableGrants === null ) {
-			self::$irrevocableGrants = array_merge(
-				MediaWikiServices::getInstance()->getGrantsInfo()->getHiddenGrants(),
-				[ 'mwoauth-authonly', 'mwoauth-authonlyprivate' ]
-			);
-		}
-		return self::$irrevocableGrants;
 	}
 
 	/** @inheritDoc */

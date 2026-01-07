@@ -8,6 +8,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
+use MediaWiki\Extension\OAuth\Control\SubmitControl;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -417,7 +418,7 @@ class Utils {
 	 */
 	public static function grantsAreValid( array $grants ) {
 		// Remove our special grants before calling the core method
-		$grants = array_diff( $grants, [ 'mwoauth-authonly', 'mwoauth-authonlyprivate' ] );
+		$grants = array_diff( $grants, SubmitControl::AUTH_ONLY_GRANTS );
 		return MediaWikiServices::getInstance()
 			->getGrantsInfo()
 			->grantsAreValid( $grants );

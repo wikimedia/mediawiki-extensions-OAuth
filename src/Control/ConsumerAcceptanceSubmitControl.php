@@ -161,17 +161,16 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 
 				// requested grants
 				$grants = FormatJson::decode( $this->vals['grants'], true );
-				$grants = array_unique( array_intersect(
-					array_merge(
-						// implied grants
-						MediaWikiServices::getInstance()
-							->getGrantsInfo()
-							->getHiddenGrants(),
-						$grants
-					),
-					// Only keep the applicable ones
-					$cmr->getGrants()
-				) );
+				// T413947: If the grant(s) match(es) the authonly case, treat them differently
+				// otherwise we might end up with an empty array in the DB when this is clearly not a revoke
+				// action.
+				$grants = array_unique(
+					array_intersect(
+						array_merge( SubmitControl::getIrrevocableGrants(), $grants ),
+						// Only keep the applicable ones
+						$cmr->getGrants()
+					)
+				);
 
 				LoggerFactory::getInstance( 'OAuth' )->info(
 					'{user} performed action {action} on consumer {consumer}', [

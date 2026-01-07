@@ -8,6 +8,7 @@ use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\MWException;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
 use StatusValue;
@@ -23,6 +24,12 @@ use Wikimedia\Message\MessageSpecifier;
  * Handle the logic of submitting a client request
  */
 abstract class SubmitControl extends ContextSource {
+	/** @var string[]|null */
+	private static $irrevocableGrants = null;
+
+	/** @var string[] */
+	public const AUTH_ONLY_GRANTS = [ 'mwoauth-authonlyprivate', 'mwoauth-authonly' ];
+
 	/** @var array (field name => value) */
 	protected $vals;
 
@@ -297,5 +304,15 @@ abstract class SubmitControl extends ContextSource {
 	 */
 	protected function success( $value = null ) {
 		return Status::newGood( [ 'error' => null, 'result' => $value ] );
+	}
+
+	public static function getIrrevocableGrants(): array {
+		if ( self::$irrevocableGrants === null ) {
+			self::$irrevocableGrants = array_merge(
+				MediaWikiServices::getInstance()->getGrantsInfo()->getHiddenGrants(),
+				self::AUTH_ONLY_GRANTS
+			);
+		}
+		return self::$irrevocableGrants;
 	}
 }
