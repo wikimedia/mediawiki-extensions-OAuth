@@ -71,6 +71,8 @@
 	"mwoauth-consumer-stage-disabled": "Disactivate",
 	"mwoauth-consumer-stage-suppressed": "Supprimite",
 	"mwoauth-ignorewarnings": "Ignorar advertimentos",
+	"mwoauth-consumers-central-wiki": "Le consumitores pote solmente esser gerite sur le wiki central.",
+	"mwoauth-consumers-central-wiki-go": "Visitar iste pagina sur $1",
 	"oauthconsumerregistration": "Registration de consumitor OAuth",
 	"mwoauthconsumerregistration-navigation": "Navigation:",
 	"mwoauthconsumerregistration-propose-oauth1": "Proponer nove consumitor OAuth 1.0a",
