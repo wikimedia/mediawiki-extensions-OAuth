@@ -502,7 +502,7 @@ class Utils {
 	 * Should be called on the central OAuth wiki.
 	 * @return User[]
 	 */
-	protected static function getOAuthAdmins() {
+	private static function getOAuthAdmins() {
 		global $wgOAuthGroupsToNotify;
 
 		if ( !$wgOAuthGroupsToNotify ) {
