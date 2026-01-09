@@ -47,7 +47,7 @@ class Utils {
 
 	/**
 	 * Database connection of the OAuth's central wiki as specified
-	 * by $wgMWOAuthCentralWiki. This is different from ::getCentralDB()
+	 * by $wgMWOAuthCentralWiki. This is different from ::getOAuthDB()
 	 * which is OAuth's database.
 	 *
 	 * This method, for example, is used for logging OAuth actions.
@@ -72,13 +72,6 @@ class Utils {
 			return MediaWikiServices::getInstance()->getUrlUtils()->getCanonicalServer();
 		}
 		return $wiki->getCanonicalServer();
-	}
-
-	/**
-	 * @deprecated Use getOAuthDB() instead.
-	 */
-	public static function getCentralDB( $index ) {
-		return self::getOAuthDB( $index );
 	}
 
 	/**
