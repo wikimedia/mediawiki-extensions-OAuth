@@ -163,6 +163,9 @@
 		},
 		"schema": {
 			"class": "MediaWiki\\Extension\\OAuth\\Backend\\UpdaterHooks"
+		},
+		"usermerge": {
+			"class": "MediaWiki\\Extension\\OAuth\\Backend\\UserMergeHook"
 		}
 	},
 	"Hooks": {
@@ -170,7 +173,7 @@
 		"AbuseFilter-computeVariable": "abusefilter",
 		"AbuseFilter-generateUserVars": "abusefilter",
 		"ChangeTagCanCreate": "backend",
-		"MergeAccountFromTo": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onMergeAccountFromTo",
+		"MergeAccountFromTo": "usermerge",
 		"LoadExtensionSchemaUpdates": "schema",
 		"GetPreferences": "frontend",
 		"MessagesPreLoad": "frontend",
