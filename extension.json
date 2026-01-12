@@ -146,6 +146,9 @@
 				"ChangeTagDefStore"
 			]
 		},
+		"echo": {
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\EchoHooks"
+		},
 		"frontend": {
 			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks",
 			"services": [
@@ -173,7 +176,7 @@
 		"MessagesPreLoad": "frontend",
 		"SpecialPageAfterExecute": "frontend",
 		"SpecialPageBeforeFormDisplay": "frontend",
-		"BeforeCreateEchoEvent": "MediaWiki\\Extension\\OAuth\\Frontend\\UIHooks::onBeforeCreateEchoEvent",
+		"BeforeCreateEchoEvent": "echo",
 		"TestCanonicalRedirect": "setup",
 		"SetupAfterCache": "backend",
 		"ApiRsdServiceApis": "backend",
