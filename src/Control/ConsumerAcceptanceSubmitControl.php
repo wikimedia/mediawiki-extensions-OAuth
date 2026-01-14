@@ -121,6 +121,11 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 				try {
 					if ( $this->isOAuth2() ) {
 						$scopes = isset( $this->vals['scope'] ) ? explode( ' ', $this->vals['scope'] ) : [];
+
+						// T413947: Ensure that the 'basic'/'useoauth' scope can't be removed, e.g. by setting
+						// the 'scope' parameter to the /oauth2/authorize endpoint incorrectly
+						$scopes = $this->getAcceptedConsumerGrants( $scopes, $cmr );
+
 						$payload = $cmr->authorize( $this->getUser(), (bool)$this->vals['confirmUpdate'], $scopes );
 					} else {
 						$callback = $cmr->authorize(
@@ -164,13 +169,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 				// T413947: If the grant(s) match(es) the authonly case, treat them differently
 				// otherwise we might end up with an empty array in the DB when this is clearly not a revoke
 				// action.
-				$grants = array_values( array_unique(
-					array_intersect(
-						array_merge( SubmitControl::getIrrevocableGrants(), $grants ),
-						// Only keep the applicable ones
-						$cmr->getGrants()
-					)
-				) );
+				$grants = $this->getAcceptedConsumerGrants( $grants, $cmr );
 
 				LoggerFactory::getInstance( 'OAuth' )->info(
 					'{user} performed action {action} on consumer {consumer}', [
