@@ -74,6 +74,8 @@
 	"mwoauth-consumer-stage-disabled": "Deaktivert",
 	"mwoauth-consumer-stage-suppressed": "Underslått",
 	"mwoauth-ignorewarnings": "Ignorer advarsler",
+	"mwoauth-consumers-central-wiki": "Konsumenter kan kun behandles på den sentrale wikien.",
+	"mwoauth-consumers-central-wiki-go": "Gå til denne siden på $1",
 	"oauthconsumerregistration": "OAuth-konsumentregistrering",
 	"mwoauthconsumerregistration-navigation": "Navigasjon:",
 	"mwoauthconsumerregistration-propose-oauth1": "Foreslå en ny OAuth 1.0a-konsument",
