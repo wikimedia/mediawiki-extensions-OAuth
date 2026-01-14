@@ -164,13 +164,13 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 				// T413947: If the grant(s) match(es) the authonly case, treat them differently
 				// otherwise we might end up with an empty array in the DB when this is clearly not a revoke
 				// action.
-				$grants = array_unique(
+				$grants = array_values( array_unique(
 					array_intersect(
 						array_merge( SubmitControl::getIrrevocableGrants(), $grants ),
 						// Only keep the applicable ones
 						$cmr->getGrants()
 					)
-				);
+				) );
 
 				LoggerFactory::getInstance( 'OAuth' )->info(
 					'{user} performed action {action} on consumer {consumer}', [
@@ -183,7 +183,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 					]
 				);
 				$cmra->setFields( [
-					'grants' => array_intersect( $grants, $cmr->getGrants() )
+					'grants' => $grants
 				] );
 				$cmra->save( $dbw );
 
