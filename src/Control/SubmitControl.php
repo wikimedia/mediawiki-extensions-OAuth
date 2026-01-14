@@ -7,6 +7,7 @@ use MediaWiki\Api\ApiMessage;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\MWException;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -310,5 +311,22 @@ abstract class SubmitControl extends ContextSource {
 			);
 		}
 		return self::$irrevocableGrants;
+	}
+
+	/**
+	 * Given a list of accepted grants (in OAuth 1 terminology; scopes in OAuth 2 terminology),
+	 * assumed to be from user input, filter them to those allowed by the consumer,
+	 * and make sure that irrevocable grants needed by the consumer are included.
+	 */
+	protected function getAcceptedConsumerGrants( array $grants, Consumer $cmr ): array {
+		return array_values(
+			array_unique(
+				array_intersect(
+					array_merge( self::getIrrevocableGrants(), $grants ),
+					// Only keep the applicable ones
+					$cmr->getGrants()
+				)
+			)
+		);
 	}
 }
