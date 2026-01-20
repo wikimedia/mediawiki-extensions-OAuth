@@ -260,6 +260,12 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$wiki = WikiMap::getCurrentWikiId();
 					$dbr = Utils::getOAuthDB( DB_REPLICA );
 					$access = ConsumerAcceptance::newFromToken( $dbr, $token->key );
+					if ( !$access ) {
+						throw new MWOAuthException( 'mwoauth-access-token-not-found', [
+							'consumer' => $consumer->getConsumerKey(),
+							'consumer_name' => $consumer->getName(),
+						] );
+					}
 					$localUser = Utils::getLocalUserFromCentralId( $access->getUserId() );
 					if ( !$localUser || !$localUser->isNamed() ) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-invalid-user', [

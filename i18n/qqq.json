@@ -76,6 +76,7 @@
 	"mwoauth-missing-consumer-key": "Used as error message when showing consumer information.",
 	"mwoauth-invalid-consumer-key": "Used as failure message.",
 	"mwoauth-invalid-access-token": "Used as failure message.",
+	"mwoauth-access-token-not-found": "Used as failure message to indicate the request trying to identify the consumer does not have a valid access token.",
 	"mwoauth-invalid-access-wrongwiki": "Used as error message. Parameters:\n* $1 - the wiki ID the consumer is applicable to",
 	"mwoauth-consumer-conflict": "Used as failure message.",
 	"mwoauth-consumer-grantshelp": "Help text shown on consumer proposal form.\n\nIdentical:\n* {{msg-mw|Botpasswords-help-grants}}",
