@@ -7,7 +7,8 @@
 			"Iwan Novirion",
 			"Raynasution",
 			"Sumbukompor",
-			"Penyuwangi"
+			"Penyuwangi",
+			"Bennylin"
 		]
 	},
 	"mwoauth-invalid-field": "Terjadi nilai tidak valid untuk bidang \"$1\"",
@@ -27,7 +28,7 @@
 	"mwoauth-consumer-wiki": "Digunakan pada",
 	"mwoauth-consumer-stage-proposed": "proposal",
 	"mwoauth-consumer-stage-rejected": "ditolak",
-	"mwoauth-consumer-stage-expired": "kadaluarsa",
+	"mwoauth-consumer-stage-expired": "Kedaluwarsa",
 	"mwoauth-consumer-stage-approved": "diterima",
 	"mwoauth-consumer-stage-disabled": "nonaktif",
 	"mwoauth-consumer-stage-suppressed": "mati",
@@ -52,7 +53,7 @@
 	"mwoauthlistconsumers-status-approved": "diterima",
 	"mwoauthlistconsumers-status-disabled": "nonaktif",
 	"mwoauthlistconsumers-status-rejected": "ditolak",
-	"mwoauthlistconsumers-status-expired": "kadaluarsa",
+	"mwoauthlistconsumers-status-expired": "kedaluwarsa",
 	"oauthmanagemygrants": "Kelola aplikasi terhubung",
 	"mwoauthmanagemygrants-text": "Halaman ini berisi daftar aplikasi yang dapat menggunakan akun Anda. Aplikasi-aplikasi tersebut, ruang lingkup aksesnya terbatas pada hak akses yang Anda berikan saat Anda memberi wewenang untuk bertindak atas nama Anda. Jika Anda secara terpisah memberi wewenang pada aplikasi untuk mengakses proyek wiki yang berbeda atas nama Anda, maka Anda akan melihat konfigurasi terpisah untuk setiap proyek seperti di bawah ini.\n\nAplikasi yang terhubung mengakses akun Anda dengan menggunakan protokol OAuth. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Pelajari lebih lanjut mengenai aplikasi yang terhubung])</span>",
 	"mwoauthmanagemygrants-navigation": "Navigasi:",
