@@ -157,9 +157,11 @@
 	"action-mwoauthupdateownconsumer": "päivittää hallitsemiasi OAuth-asiakkaita",
 	"action-mwoauthviewprivate": "nähdä yksityisiä OAuth-tietoja",
 	"action-mwoauthviewsuppressed": "nähdä lakkautettuja OAuth-asiakkaita",
+	"mwoauth-botpasswords-note": "<strong>Huom.</strong> <span class=\"plainlinks\">[$1 OAuth]</span> on turvallisempi keino kuin bottisalasanat, ja sitä tulisi suosia aina, kun botti tukee sitä.",
 	"echo-category-title-oauth-owner": "OAuth-kehitys",
 	"echo-category-title-oauth-admin": "OAuth-ylläpitäjä",
 	"notification-oauth-app-body": "Syy: $1",
 	"mwoauth-oauth-version": "OAuth-protokollan versio",
-	"mwoauthconsumer-application-view": "Tarkastele tätä sovellusta"
+	"mwoauthconsumer-application-view": "Tarkastele tätä sovellusta",
+	"grant-oauthmanageownclient": "Hallinoida OAuth-asiakkaitasi"
 }
