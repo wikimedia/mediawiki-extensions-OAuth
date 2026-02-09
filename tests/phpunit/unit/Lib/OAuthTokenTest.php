@@ -1,5 +1,10 @@
 <?php
-// vim: foldmethod=marker
+
+namespace MediaWiki\Extension\OAuth\Tests\Unit\Lib;
+
+use MediaWiki\Extension\OAuth\Lib\OAuthToken;
+use PHPUnit\Framework\TestCase;
+
 /**
  * The MIT License
  *
@@ -24,30 +29,24 @@
  * THE SOFTWARE.
  */
 
-namespace MediaWiki\Extension\OAuth\Lib;
+/**
+ * @group OAuth
+ * @covers \MediaWiki\Extension\OAuth\Lib\OAuthToken
+ */
+class OAuthTokenTest extends TestCase {
+	public function testSerialize() {
+		$token = new OAuthToken( 'token', 'secret' );
+		$this->assertEquals( 'oauth_token=token&oauth_token_secret=secret', $token->to_string() );
 
-class OAuthDataStore {
-	public function lookup_consumer( $consumer_key ) {
-		// implement me
+		$token = new OAuthToken( 'token&', 'secret%' );
+		$this->assertEquals( 'oauth_token=token%26&oauth_token_secret=secret%25', $token->to_string() );
 	}
 
-	public function lookup_token( $consumer, $token_type, $token ) {
-		// implement me
-	}
+	public function testConvertToString() {
+		$token = new OAuthToken( 'token', 'secret' );
+		$this->assertEquals( 'oauth_token=token&oauth_token_secret=secret', (string)$token );
 
-	public function lookup_nonce( $consumer, $token, $nonce, $timestamp ) {
-		// implement me
+		$token = new OAuthToken( 'token&', 'secret%' );
+		$this->assertEquals( 'oauth_token=token%26&oauth_token_secret=secret%25', (string)$token );
 	}
-
-	public function new_request_token( $consumer, $callback = null ) {
-		// return a new token attached to this consumer
-	}
-
-	public function new_access_token( $token, $consumer, $verifier = null ) {
-		// return a new access token attached to this consumer
-		// for the user associated with this token if the request token
-		// is authorized
-		// should also invalidate the request token
-	}
-
 }

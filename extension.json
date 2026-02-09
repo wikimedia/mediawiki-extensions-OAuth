@@ -109,7 +109,7 @@
 		"MediaWiki\\Extension\\OAuth\\Tests\\": "tests/phpunit/"
 	},
 	"TestAutoloadClasses": {
-		"MediaWiki\\Extension\\OAuth\\Tests\\Entity\\MockClientEntity": "tests/phpunit/Entity/MockClientEntity.php"
+		"MediaWiki\\Extension\\OAuth\\Tests\\Integration\\Entity\\MockClientEntity": "tests/phpunit/integration/Entity/MockClientEntity.php"
 	},
 	"ResourceModules": {
 		"ext.MWOAuth.styles": {
