@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\OAuth\Tests;
+namespace MediaWiki\Extension\OAuth\Tests\Unit\Lib;
 
 /**
  * A very simple class that you can pass a base-string, and then have it returned again.

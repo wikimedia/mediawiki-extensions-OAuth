@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Rest;
 
 use Exception;
 use MediaWiki\Extension\OAuth\Rest\Handler\RequestClient;
-use MediaWiki\Extension\OAuth\Tests\EndpointTestBase;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler;

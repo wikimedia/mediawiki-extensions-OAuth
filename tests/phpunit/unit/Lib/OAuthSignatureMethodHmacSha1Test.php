@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\OAuth\Tests\Unit\Lib;
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
-use MediaWiki\Extension\OAuth\Tests\MockOAuthBaseStringRequest;
 use PHPUnit\Framework\TestCase;
 
 /**

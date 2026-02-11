@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\OAuth\Tests\Unit\Lib;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
-use MediaWiki\Extension\OAuth\Tests\MockOAuthBaseStringRequest;
 use MediaWiki\Extension\OAuth\Tests\MockOAuthSignatureMethodRsaSha1;
 use PHPUnit\Framework\TestCase;
 

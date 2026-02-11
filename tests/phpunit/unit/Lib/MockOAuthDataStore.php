@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\OAuth\Tests;
+namespace MediaWiki\Extension\OAuth\Tests\Unit\Lib;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;

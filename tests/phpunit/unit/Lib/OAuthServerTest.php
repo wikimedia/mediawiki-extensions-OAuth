@@ -32,7 +32,6 @@ use MediaWiki\Extension\OAuth\Lib\OAuthServer;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodPlaintext;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
-use MediaWiki\Extension\OAuth\Tests\MockOAuthDataStore;
 use PHPUnit\Framework\TestCase;
 
 /**

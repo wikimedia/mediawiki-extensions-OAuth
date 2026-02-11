@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\OAuth\Tests;
+namespace MediaWiki\Extension\OAuth\Tests\Integration\Rest;
 
 use Exception;
 use GuzzleHttp\Psr7\Uri;

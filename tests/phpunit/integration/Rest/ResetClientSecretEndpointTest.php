@@ -6,7 +6,6 @@ use Exception;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Rest\Handler\ResetClientSecret;
-use MediaWiki\Extension\OAuth\Tests\EndpointTestBase;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler;

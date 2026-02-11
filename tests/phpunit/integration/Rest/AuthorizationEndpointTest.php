@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Rest;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Rest\Handler\Authorize;
-use MediaWiki\Extension\OAuth\Tests\EndpointTestBase;
 use MediaWiki\Rest\Handler;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWRestrictions;

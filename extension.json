@@ -111,7 +111,10 @@
 		"MediaWiki\\Extension\\OAuth\\Tests\\": "tests/phpunit/"
 	},
 	"TestAutoloadClasses": {
-		"MediaWiki\\Extension\\OAuth\\Tests\\Integration\\Entity\\MockClientEntity": "tests/phpunit/integration/Entity/MockClientEntity.php"
+		"MediaWiki\\Extension\\OAuth\\Tests\\Unit\\Lib\\MockOAuthBaseStringRequest": "tests/phpunit/unit/Lib/MockOAuthBaseStringRequest.php",
+		"MediaWiki\\Extension\\OAuth\\Tests\\Unit\\Lib\\MockOAuthDataStore": "tests/phpunit/unit/Lib/MockOAuthDataStore.php",
+		"MediaWiki\\Extension\\OAuth\\Tests\\Integration\\Entity\\MockClientEntity": "tests/phpunit/integration/Entity/MockClientEntity.php",
+		"MediaWiki\\Extension\\OAuth\\Tests\\Integration\\Rest\\EndpointTestBase": "tests/phpunit/integration/Rest/EndpointTestBase.php"
 	},
 	"ResourceModules": {
 		"ext.MWOAuth.styles": {
