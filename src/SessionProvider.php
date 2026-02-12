@@ -147,19 +147,8 @@ class SessionProvider
 					throw new MWOAuthException( 'mwoauth-oauth2-error-create-at-no-user-approval' );
 				}
 
-				$scopes = $resourceServer->getScopes();
-
-				// T409901: Turns out some apps can have no scopes to a user account, let's log those.
-				if ( $scopes === [] ) {
-					$this->logger->warning( 'Application: {app} has no scopes for {user} account', [
-						'appId' => $resourceServer->getClient()->getId(),
-						'app' => $resourceServer->getClient()->getName(),
-						'user' => (string)$resourceServer->getUser(),
-					] );
-				} else {
-					// Set the scopes that are verified for this request
-					$access->setField( 'grants', array_keys( $scopes ) );
-				}
+				// Set the scopes that are verified for this request
+				$access->setField( 'grants', array_keys( $resourceServer->getScopes() ) );
 			} else {
 				$server = Utils::newMWOAuthServer();
 				$oauthRequest = MWOAuthRequest::fromRequest( $request );
