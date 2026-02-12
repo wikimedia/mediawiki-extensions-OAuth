@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Repository;
 
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
+use League\OAuth2\Server\Entities\ClaimEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -42,6 +43,7 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 * @param ClientEntityInterface|ClientEntity $clientEntity
 	 * @param ScopeEntityInterface[] $scopes
 	 * @param ?string $userIdentifier
+	 * @param ClaimEntityInterface[] $claims
 	 * @return AccessTokenEntityInterface
 	 * @throws OAuthServerException
 	 */
@@ -51,12 +53,16 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 		?string $userIdentifier = null,
 		array $claims = []
 	): AccessTokenEntityInterface {
-		return new AccessTokenEntity(
+		$accessTokenEntity = new AccessTokenEntity(
 			$clientEntity,
 			$scopes,
 			$this->issuer,
 			$userIdentifier
 		);
+		foreach ( $claims as $claim ) {
+			$accessTokenEntity->addClaim( $claim );
+		}
+		return $accessTokenEntity;
 	}
 
 	/**
