@@ -76,7 +76,9 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 				}
 				$this->addScope( $scope );
 			}
-			$this->setUserIdentifier( $userIdentifier );
+			if ( $userIdentifier !== null ) {
+				$this->setUserIdentifier( $userIdentifier );
+			}
 		}
 
 		$this->confirmClientUsable();
