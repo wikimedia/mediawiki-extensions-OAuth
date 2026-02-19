@@ -202,11 +202,11 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 
 		$issuer = $this->getIssuer();
 		if ( $issuer !== null ) {
-			$builder->issuedBy( $issuer );
+			$builder = $builder->issuedBy( $issuer );
 		}
 
 		foreach ( $this->getClaims() as $claim ) {
-			$builder->withClaim( $claim->getName(), $claim->getValue() );
+			$builder = $builder->withClaim( $claim->getName(), $claim->getValue() );
 		}
 
 		return $builder
