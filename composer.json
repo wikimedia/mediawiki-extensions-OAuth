@@ -4,15 +4,9 @@
 	"description": "Allows usage of OAuth 1.0a and OAuth 2.0 for API authorization",
 	"license": "GPL-2.0-or-later",
 	"prefer-stable": true,
-	"repositories": [
-		{
-			"type": "git",
-			"url": "https://github.com/wikimedia/oauth2-server.git"
-		}
-	],
 	"require": {
 		"firebase/php-jwt": "^7.0.2",
-		"league/oauth2-server": "dev-9.3.0-WMF#a5181fb4d7356939567d4524a714f9a892ce66e3 as 9.3.0",
+		"league/oauth2-server": "9.3.0",
 		"okvpn/clock-lts": "^1.0.0"
 	},
 	"require-dev": {

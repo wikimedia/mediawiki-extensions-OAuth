@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\OAuth\AuthorizationProvider\Grant;
 use DateInterval;
 use Exception;
 use League\OAuth2\Server\Exception\OAuthServerException;
-use League\OAuth2\Server\Grant\AuthCodeGrant;
 use League\OAuth2\Server\Grant\GrantTypeInterface;
 use League\OAuth2\Server\RequestTypes\AuthorizationRequestInterface;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\AuthorizationProvider;
@@ -30,9 +29,9 @@ class AuthorizationCodeProvider extends AuthorizationProvider {
 	protected function getGrant(): GrantTypeInterface {
 		$authCodeRepo = $this->getAuthCodeRepo();
 		$refreshTokenRepo = $this->getRefreshTokenRepo();
-		$grant = new AuthCodeGrant(
-			$authCodeRepo, $refreshTokenRepo, new DateInterval( 'PT10M' )
-		);
+		// May not need custom claims here?
+		$grant = new AuthCodeGrantWithCustomClaims(
+			$authCodeRepo, $refreshTokenRepo, new DateInterval( 'PT10M' ) );
 		if ( !$this->config->get( 'OAuth2RequireCodeChallengeForPublicClients' ) ) {
 			$grant->disableRequireCodeChallengeForPublicClients();
 		}

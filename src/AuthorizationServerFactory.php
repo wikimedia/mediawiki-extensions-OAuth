@@ -6,7 +6,6 @@ use InvalidArgumentException;
 use League\OAuth2\Server\AuthorizationServer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
-use MediaWiki\Extension\OAuth\Repository\ClaimStore;
 use MediaWiki\Extension\OAuth\Repository\ClientRepository;
 use MediaWiki\Extension\OAuth\Repository\ScopeRepository;
 use MediaWiki\MediaWikiServices;
@@ -43,7 +42,9 @@ class AuthorizationServerFactory {
 			$this->privateKey,
 			$this->encryptionKey,
 			null,
-			new ClaimStore()
+			// TODO: This should be injected here.
+			// See https://github.com/thephpleague/oauth2-server/pull/1122
+			// new ClaimStore()
 		);
 	}
 }

@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\OAuth\Repository;
 
 use League\OAuth2\Server\Entities\ClientEntityInterface;
-use League\OAuth2\Server\Repositories\ClaimRepositoryInterface;
 use LogicException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClaimEntity;
@@ -13,7 +12,7 @@ use MediaWiki\Extension\OAuth\HookRunner;
 use MediaWiki\HookContainer\HookRunner as CoreHookRunner;
 use MediaWiki\MediaWikiServices;
 
-class ClaimStore implements ClaimRepositoryInterface {
+class ClaimStore {
 
 	private HookRunner $hookRunner;
 	private CoreHookRunner $coreHookRunner;

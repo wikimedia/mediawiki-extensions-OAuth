@@ -38,6 +38,10 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 
 	private Configuration $jwtConfiguration;
 
+	private string $issuer;
+
+	private array $claims = [];
+
 	/**
 	 * @param ClientEntity $clientEntity
 	 * @param ScopeEntityInterface[] $scopes
@@ -90,6 +94,22 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 
 	public function toString(): string {
 		return $this->__toString();
+	}
+
+	public function setIssuer( string $issuer ): void {
+		$this->issuer = $issuer;
+	}
+
+	public function getIssuer(): string {
+		return $this->issuer;
+	}
+
+	public function addClaim( ClaimEntity $claim ): void {
+		$this->claims[] = $claim;
+	}
+
+	public function getClaims(): array {
+		return $this->claims;
 	}
 
 	/** @inheritDoc */
@@ -189,8 +209,10 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 	}
 
 	private function convertToJWT(): Token {
-		// This is a copy of league/oauth-server's AccessTokenTrait, except we use a different
-		// 'sub' claim (relatedTo()).
+		// Changes from league/oauth-server's AccessTokenTrait:
+		// - Add support for 'iss' claim (issuedBy())
+		// - Add support for custom claims
+		// - Use different value for 'sub' claim (relatedTo())
 
 		$builder = $this->jwtConfiguration->builder()
 			->permittedFor( $this->getClient()->getIdentifier() )
@@ -198,12 +220,8 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 			->issuedAt( new DateTimeImmutable() )
 			->canOnlyBeUsedAfter( new DateTimeImmutable() )
 			->expiresAt( $this->getExpiryDateTime() )
-			->relatedTo( $this->getUserIdentifierForJwt() );
-
-		$issuer = $this->getIssuer();
-		if ( $issuer !== null ) {
-			$builder = $builder->issuedBy( $issuer );
-		}
+			->relatedTo( $this->getUserIdentifierForJwt() )
+			->issuedBy( $this->getIssuer() );
 
 		foreach ( $this->getClaims() as $claim ) {
 			$builder = $builder->withClaim( $claim->getName(), $claim->getValue() );
