@@ -5,6 +5,7 @@
 			"Kapatych",
 			"Maksim L.",
 			"No Sleep till Krupki",
+			"Ucukor",
 			"Vlad5250",
 			"ZlyiLev"
 		]
@@ -28,7 +29,7 @@
 	"mwoauth-form-description-allwikis-privateinfo-norealname": "Вітаем, $1,\n\nКаб выканаць ваш запыт, '''$2''' патрэбны дазвол на доступ да інфармацыі пра вас, у тым ліку пра адрас электроннай пошты, ва ўсіх праектах гэтага сайта. Ад вашага імя ніякія змены здзяйсняцца не будуць.",
 	"mwoauth-form-description-onewiki-privateinfo-norealname": "Вітаем, $1,\n\nКаб выканаць ваш запыт, '''$2''' патрэбны дазвол на доступ да інфармацыі пра вас, у тым ліку пра адрас электроннай пошты, на ''$4''. Ад вашага імя ніякія змены здзяйсняцца не будуць.",
 	"mwoauth-form-button-approve": "Дазволіць",
-	"mwoauth-form-button-cancel": "Адмяніць",
+	"mwoauth-form-button-cancel": "Скасаваць",
 	"right-mwoauthproposeconsumer": "Прапанаванне новых спажыўцоў OAuth",
 	"right-mwoauthupdateownconsumer": "Абнаўленне спажыўцоў OAuth, якімі вы кіруеце",
 	"right-mwoauthmanageconsumer": "Кіраванне спажыўцамі OAuth",
