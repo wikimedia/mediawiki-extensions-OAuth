@@ -16,9 +16,9 @@ use MediaWiki\Extension\OAuth\Frontend\Pagers\ManageMyGrantsPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use stdClass;
@@ -38,6 +38,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	public function __construct(
 		private readonly GrantsInfo $grantsInfo,
 		private readonly GrantsLocalization $grantsLocalization,
+		private readonly PermissionManager $permissionManager,
 	) {
 		parent::__construct( 'OAuthManageMyGrants', 'mwoauthmanagemygrants' );
 	}
@@ -55,8 +56,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$this->requireNamedUser( 'mwoauth-available-only-to-registered' );
 
 		$user = $this->getUser();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( !$permissionManager->userHasRight( $user, 'mwoauthmanagemygrants' ) ) {
+		if ( !$this->permissionManager->userHasRight( $user, 'mwoauthmanagemygrants' ) ) {
 			throw new PermissionsError( 'mwoauthmanagemygrants' );
 		}
 
@@ -132,7 +132,6 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	protected function handleConsumerForm( $acceptanceId, $type ) {
 		$user = $this->getUser();
 		$dbr = Utils::getOAuthDB( DB_REPLICA );
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
 		if ( !$centralUserId ) {
@@ -150,7 +149,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromId( $dbr, $cmraAc->getConsumerId() ), $this->getContext() );
 		if ( $cmrAc->getDeleted()
-			&& !$permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
+			&& !$this->permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
 			throw new PermissionsError( 'mwoauthviewsuppressed' );
 		}
 
