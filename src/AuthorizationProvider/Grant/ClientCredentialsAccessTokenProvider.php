@@ -4,9 +4,12 @@ namespace MediaWiki\Extension\OAuth\AuthorizationProvider\Grant;
 
 use League\OAuth2\Server\Grant\ClientCredentialsGrant;
 use League\OAuth2\Server\Grant\GrantTypeInterface;
-use MediaWiki\Extension\OAuth\AuthorizationProvider\AccessToken;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\AccessTokenProvider;
 
-class ClientCredentials extends AccessToken {
+/**
+ * Provides access tokens for a client credentials grant.
+ */
+class ClientCredentialsAccessTokenProvider extends AccessTokenProvider {
 
 	/**
 	 * @return GrantTypeInterface

@@ -4,10 +4,10 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\AuthorizationProvider;
 
 use DateTime;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\AuthorizationProvider;
-use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokens;
-use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization;
-use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\ClientCredentials;
-use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshToken;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokenProvider;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeProvider;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\ClientCredentialsAccessTokenProvider;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshTokenAccessTokenProvider;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\IAuthorizationProvider;
 use MediaWiki\Extension\OAuth\AuthorizationServerFactory;
 use MediaWiki\User\User;
@@ -17,10 +17,10 @@ use ReflectionClass;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization
- * @covers \MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokens
- * @covers \MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\ClientCredentials
- * @covers \MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshToken
+ * @covers \MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeProvider
+ * @covers \MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokenProvider
+ * @covers \MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\ClientCredentialsAccessTokenProvider
+ * @covers \MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshTokenAccessTokenProvider
  * @group OAuth
  * @group Database
  */
@@ -108,10 +108,10 @@ class AuthorizationProviderTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideGrantsArguments() {
 		return [
-			[ AuthorizationCodeAuthorization::class, 'authorization_code', true ],
-			[ AuthorizationCodeAccessTokens::class, 'authorization_code', false ],
-			[ ClientCredentials::class, 'client_credentials', false ],
-			[ RefreshToken::class, 'refresh_token', false ],
+			[ AuthorizationCodeProvider::class, 'authorization_code', true ],
+			[ AuthorizationCodeAccessTokenProvider::class, 'authorization_code', false ],
+			[ ClientCredentialsAccessTokenProvider::class, 'client_credentials', false ],
+			[ RefreshTokenAccessTokenProvider::class, 'refresh_token', false ],
 		];
 	}
 

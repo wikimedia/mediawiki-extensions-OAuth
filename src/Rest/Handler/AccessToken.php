@@ -5,9 +5,9 @@ namespace MediaWiki\Extension\OAuth\Rest\Handler;
 use GuzzleHttp\Psr7\ServerRequest;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use MediaWiki\Exception\MWExceptionHandler;
-use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokens;
-use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\ClientCredentials;
-use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshToken;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokenProvider;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\ClientCredentialsAccessTokenProvider;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshTokenAccessTokenProvider;
 use MediaWiki\Extension\OAuth\Response;
 use Throwable;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -126,9 +126,9 @@ class AccessToken extends AuthenticationHandler {
 	 */
 	protected function getGrantClass( $grantType ) {
 		return match ( $grantType ) {
-			static::GRANT_TYPE_AUTHORIZATION_CODE => AuthorizationCodeAccessTokens::class,
-			static::GRANT_TYPE_CLIENT_CREDENTIALS => ClientCredentials::class,
-			static::GRANT_TYPE_REFRESH_TOKEN => RefreshToken::class,
+			static::GRANT_TYPE_AUTHORIZATION_CODE => AuthorizationCodeAccessTokenProvider::class,
+			static::GRANT_TYPE_CLIENT_CREDENTIALS => ClientCredentialsAccessTokenProvider::class,
+			static::GRANT_TYPE_REFRESH_TOKEN => RefreshTokenAccessTokenProvider::class,
 			default => false,
 		};
 	}

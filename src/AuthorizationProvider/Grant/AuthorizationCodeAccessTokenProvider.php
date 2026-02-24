@@ -6,9 +6,12 @@ use DateInterval;
 use Exception;
 use League\OAuth2\Server\Grant\AuthCodeGrant;
 use League\OAuth2\Server\Grant\GrantTypeInterface;
-use MediaWiki\Extension\OAuth\AuthorizationProvider\AccessToken;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\AccessTokenProvider;
 
-class AuthorizationCodeAccessTokens extends AccessToken {
+/**
+ * Provides access tokens for an authorization code grant.
+ */
+class AuthorizationCodeAccessTokenProvider extends AccessTokenProvider {
 
 	/**
 	 * @return GrantTypeInterface

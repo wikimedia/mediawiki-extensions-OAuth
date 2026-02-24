@@ -8,7 +8,7 @@ use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\RequestTypes\AuthorizationRequest;
 use MediaWiki\Exception\MWExceptionHandler;
-use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAuthorization;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeProvider;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Response;
@@ -202,7 +202,7 @@ class Authorize extends AuthenticationHandler {
 	 */
 	protected function getGrantClass( $grantType ) {
 		return match ( $grantType ) {
-			static::RESPONSE_TYPE_CODE => AuthorizationCodeAuthorization::class,
+			static::RESPONSE_TYPE_CODE => AuthorizationCodeProvider::class,
 			default => false,
 		};
 	}

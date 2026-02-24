@@ -5,9 +5,12 @@ namespace MediaWiki\Extension\OAuth\AuthorizationProvider\Grant;
 use Exception;
 use League\OAuth2\Server\Grant\GrantTypeInterface;
 use League\OAuth2\Server\Grant\RefreshTokenGrant;
-use MediaWiki\Extension\OAuth\AuthorizationProvider\AccessToken;
+use MediaWiki\Extension\OAuth\AuthorizationProvider\AccessTokenProvider;
 
-class RefreshToken extends AccessToken {
+/**
+ * Provides access tokens for a refresh token grant.
+ */
+class RefreshTokenAccessTokenProvider extends AccessTokenProvider {
 
 	/**
 	 * @throws Exception

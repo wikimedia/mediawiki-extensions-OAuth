@@ -14,7 +14,10 @@ use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class AuthorizationCodeAuthorization extends AuthorizationProvider {
+/**
+ * Provides authorization codes.
+ */
+class AuthorizationCodeProvider extends AuthorizationProvider {
 
 	/** @inheritDoc */
 	public function needsUserApproval() {
