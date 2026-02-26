@@ -255,5 +255,13 @@
 	"notification-oauth-app-reenable-primary-link": "ऐप देखें",
 	"notification-oauth-app-body": "कारण: $1",
 	"mwoauth-oauth-version": "OAuth प्रोटोकॉल संस्करण",
-	"mwoauth-oauth2-is-confidential": "क्लाइंट गोपनीय है"
+	"mwoauth-oauth2-is-confidential": "क्लाइंट गोपनीय है",
+	"mwoauth-oauth2-invalid-access-token": "अमान्य पहुँच टोकन",
+	"mwoauth-consumer-access-no-user": "ग्राहक स्वीकृति किसी मान्य सदस्य से संबद्ध होनी चाहिए; ID 0 वाला एक सदस्य दिया गया है",
+	"mwoauthconsumer-consumer-view": "यह ग्राहक देखें",
+	"mwoauthconsumer-application-view": "यह ऐप्लिकेशन देखें",
+	"grant-oauthmanageownclient": "अपने OAuth क्लाइंट्स प्रबंधित करें",
+	"mwoauth-consumer-user-mismatch": "आप उन क्लाइंट्स पर क्रियाएँ नहीं कर सकते जो आपके नहीं हैं",
+	"mwoauth-consumer-deleted-error": "आप हटाए गए क्लाइंट्स पर क्रियाएँ नहीं कर सकते",
+	"mwoauth-consumer-submit-error": "ग्राहक सहेजते समय त्रुटि उत्पन्न हुई"
 }
