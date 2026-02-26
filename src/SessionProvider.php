@@ -18,6 +18,7 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Hook\MarkPatrolledHook;
 use MediaWiki\Hook\RecentChange_saveHook;
+use MediaWiki\Json\JwtException;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -67,8 +68,9 @@ class SessionProvider
 	}
 
 	protected function postInitSetup() {
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		parent::postInitSetup();
 
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		// @phan-suppress-next-line PhanTypeMismatchArgument
 		$hookContainer->register( 'ApiCheckCanExecute', $this );
 		// @phan-suppress-next-line PhanTypeMismatchArgument
@@ -235,7 +237,7 @@ class SessionProvider
 		$logData['result'] = 'success';
 		$this->logger->debug( 'OAuth request for consumer {consumer} by user {user}', $logData );
 
-		return new SessionInfo( SessionInfo::MAX_PRIORITY, [
+		$sessionInfo = new SessionInfo( SessionInfo::MAX_PRIORITY, [
 			'provider' => $this,
 			'id' => $id,
 			'userInfo' => UserInfo::newFromUser( $localUser, true ),
@@ -249,6 +251,34 @@ class SessionProvider
 				'restrictions' => $consumer->getRestrictions()->toJson(),
 			],
 		] );
+		if ( $this->shouldUseJwtCookie( $sessionInfo ) ) {
+			try {
+				// OAuth cannot use the 'refresh' flag, so set it in the metadata instead.
+				// Use a fake sessioninfo because only persisted sessions can be refreshed
+				// (and to avoid actually setting the refresh flag).
+				$sessionInfoCopy = new SessionInfo( $sessionInfo->getPriority(), [
+					'persisted' => true,
+					'copyFrom' => $sessionInfo,
+				] );
+				$this->jwtSessionCookieHelper->verifyJwtCookie(
+					$request,
+					$sessionInfoCopy,
+					$this->getJwtCookieOptions(),
+					$this->getJwtClaimOverrides( $this->jwtSessionCookieHelper->getJwtCookieSessionExpiration() )
+				);
+			} catch ( JwtException $e ) {
+				$this->logger->info( 'JWT validation failed: ' . $e->getNormalizedMessage(),
+					$e->getMessageContext() + [ 'exception' => $e ] );
+				return $this->makeException( 'mwoauth-invalid-authorization-jwt', $e->getMessage() );
+			}
+			if ( $sessionInfoCopy->needsRefresh() ) {
+				$sessionInfo = new SessionInfo( $sessionInfo->getPriority(), [
+					'metadata' => [ 'refreshJwtCookie' => true ] + $sessionInfo->getProviderMetadata(),
+					'copyFrom' => $sessionInfo,
+				] );
+			}
+		}
+		return $sessionInfo;
 	}
 
 	/**
@@ -296,6 +326,29 @@ class SessionProvider
 		}
 
 		throw new MWOAuthException( 'mwoauth-oauth2-invalid-access-token' );
+	}
+
+	/** @inheritDoc */
+	public function mergeMetadata( array $savedMetadata, array $providedMetadata ) {
+		// In the unlikely case that we have saved metadata (because someone used OAuth to access
+		// some API endpoint that explicitly requested a session save), make sure the 'refreshJwtCookie'
+		// flag, which is only meant to be used within the current request, is ignored.
+		unset( $savedMetadata['refreshJwtCookie'] );
+		return parent::mergeMetadata( $savedMetadata, $providedMetadata );
+	}
+
+	/** @inheritDoc */
+	public function sessionWasAttachedToRequest( SessionInfo $sessionInfo, WebRequest $request ): void {
+		if ( $this->shouldUseJwtCookie( $sessionInfo )
+			&& ( $sessionInfo->getProviderMetadata()['refreshJwtCookie'] ?? false )
+		) {
+			$this->jwtSessionCookieHelper->setJwtCookie(
+				$sessionInfo->getUserInfo()->getUser(),
+				$request,
+				$this->getJwtCookieOptions(),
+				$this->getJwtClaimOverrides( $this->jwtSessionCookieHelper->getJwtCookieSessionExpiration() )
+			);
+		}
 	}
 
 	/** @inheritDoc */
@@ -482,4 +535,34 @@ class SessionProvider
 	public function safeAgainstCsrf() {
 		return true;
 	}
+
+	/**
+	 * Should we output a JWT cookie to supplement the information in the access token?
+	 */
+	private function shouldUseJwtCookie( SessionInfo $sessionInfo ): bool {
+		// Use a cookie when JWT cookies are enabled generally, and
+		// the consumer uses OAuth 1 (the access token is not readable
+		// outside MediaWiki) or is an owner-only consumer (the access
+		// token is valid forever so its contents are outdated).
+		//
+		// Note that we intentionally avoid using parent's useJwtCookie() mechanism.
+		// In part because that can't depend on the consumer, in part because it
+		// assumes sessions get persisted, but we don't want to persist OAuth
+		// sessions (which would lead to unnecessary session writes).
+		$providerMetadata = $sessionInfo->getProviderMetadata() ?? [];
+		return $this->jwtSessionCookieHelper->useJwtCookie()
+			&& $this->config->get( OAuthConfigNames::OAuthUseJwtCookie )
+			// Ignore empty session info returned by makeException()
+			&& $providerMetadata
+			&& ( $providerMetadata['oauthVersion'] === Consumer::OAUTH_VERSION_1
+				// owner-only
+				|| $providerMetadata['consumerId'] === null );
+	}
+
+	protected function getJwtClaimOverrides( int $expirationDuration ): array {
+		return [
+			'iss' => Utils::getJwtIssuer(),
+		] + parent::getJwtClaimOverrides( $expirationDuration );
+	}
+
 }
