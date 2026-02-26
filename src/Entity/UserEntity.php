@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\OAuth\Entity;
 
 use League\OAuth2\Server\Entities\UserEntityInterface;
-use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\User\User;
 
@@ -15,15 +14,8 @@ class UserEntity implements UserEntityInterface {
 	 * @return UserEntity|null
 	 */
 	public static function newFromMWUser( User $user ) {
-		try {
-			$userId = Utils::getCentralIdFromLocalUser( $user );
-			if ( !$userId ) {
-				return null;
-			}
-			return new static( $userId );
-		} catch ( MWException ) {
-			return null;
-		}
+		$userId = Utils::getCentralIdFromLocalUser( $user );
+		return $userId ? new static( $userId ) : null;
 	}
 
 	public function __construct( int $identifier ) {

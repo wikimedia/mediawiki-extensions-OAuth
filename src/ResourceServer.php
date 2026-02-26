@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\OAuth;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Middleware\ResourceServerMiddleware;
 use League\OAuth2\Server\ResourceServer as LeagueResourceServer;
-use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
@@ -169,13 +168,7 @@ class ResourceServer {
 			return;
 		}
 
-		try {
-			$user = Utils::getLocalUserFromCentralId( $userId );
-		} catch ( MWException $ex ) {
-			throw new HttpException( $ex->getMessage(), 403 );
-		}
-
-		$this->user = $user;
+		$this->user = Utils::getLocalUserFromCentralId( $userId );
 	}
 
 	/**
