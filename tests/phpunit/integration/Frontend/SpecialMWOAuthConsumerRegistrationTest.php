@@ -150,8 +150,9 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 		$specialConReg->setContext( $context );
 
 		$this->expectException( PermissionsError::class );
-		$this->expectExceptionMessage( "You must confirm your email address before creating OAuth applications.\n" .
-			"Please set and validate your email address through your [[Special:Preferences|user preferences]]." );
+		$this->expectExceptionMessage(
+			wfMessage( 'mwoauthconsumerregistration-need-emailconfirmed' )->plain()
+		);
 
 		$specialConReg->execute( 'list' );
 	}
@@ -184,7 +185,7 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 
 		$pageHtml = $specialConReg->getContext()->getOutput()->getHTML();
 		$this->assertStringContainsString(
-			'Consumers can only be managed on the central wiki', $pageHtml
+			wfMessage( 'mwoauth-consumers-central-wiki' )->plain(), $pageHtml
 		);
 		// The URL in the assertion should match the wiki wgServer in the setupAnotherWiki() above.
 		$this->assertStringContainsString( '>Go to this page on en.example.org<', $pageHtml );
@@ -268,7 +269,7 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 
 		$outputPage = $specialConReg->getContext()->getOutput();
 		$this->assertStringContainsString(
-			'>You do not control any OAuth consumers.', $outputPage->getHTML()
+			wfMessage( 'mwoauthconsumerregistration-none' )->plain(), $outputPage->getHTML()
 		);
 	}
 
@@ -460,9 +461,7 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 		$specialConReg->setContext( $this->prepareRequestContext( $user ) );
 
 		$this->expectException( ErrorPageError::class );
-		$this->expectExceptionMessage(
-			'The OAuth database is temporarily locked. Please try again in a few minutes.'
-		);
+		$this->expectExceptionMessage( wfMessage( 'mwoauth-db-readonly' )->plain() );
 
 		$specialConReg->execute( 'propose/oauth2' );
 	}
@@ -518,7 +517,7 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 
 		$outputPage = $specialConReg->getContext()->getOutput();
 		$this->assertStringContainsString(
-			'>No consumer exists with the given key', $outputPage->getHTML()
+			wfMessage( 'mwoauth-invalid-consumer-key' )->plain(), $outputPage->getHTML()
 		);
 	}
 
