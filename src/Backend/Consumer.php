@@ -131,7 +131,7 @@ abstract class Consumer extends MWOAuthDAO {
 	 *
 	 * @return array
 	 */
-	protected static function getSchema() {
+	protected static function getSchema(): array {
 		return [
 			'table'          => 'oauth_registered_consumer',
 			'fieldColumnMap' => [

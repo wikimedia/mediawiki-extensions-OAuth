@@ -7,7 +7,6 @@ use Exception;
 use LogicException;
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
@@ -22,6 +21,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
@@ -241,7 +241,7 @@ class ConsumerSubmitControl extends SubmitControl {
 	}
 
 	/** @inheritDoc */
-	protected function processAction( $action ) {
+	protected function processAction( $action ): Status {
 		$context = $this->getContext();
 		// proposer or admin
 		$user = $this->getUser();
@@ -632,7 +632,7 @@ class ConsumerSubmitControl extends SubmitControl {
 	 */
 	protected function notify( $cmr, $user, $actionType, $comment ) {
 		if ( !in_array( $actionType, self::$actions, true ) ) {
-			throw new MWException( "Invalid action type: $actionType" );
+			throw new LogicException( "Invalid action type: $actionType" );
 		} elseif ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			return;
 		} elseif ( !Utils::isCentralWiki() ) {

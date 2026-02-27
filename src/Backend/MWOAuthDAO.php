@@ -2,10 +2,8 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
-use Exception;
 use LogicException;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Exception\MWException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
 use Psr\Log\LoggerInterface;
@@ -128,7 +126,6 @@ abstract class MWOAuthDAO {
 	 * @param string $name
 	 * @param mixed $value
 	 * @return mixed The old value
-	 * @throws Exception
 	 */
 	final public function setField( $name, $value ) {
 		$old = $this->setFields( [ $name => $value ] );
@@ -139,7 +136,6 @@ abstract class MWOAuthDAO {
 	 * Set the values for a set of fields
 	 *
 	 * @param array $values (field => value) map
-	 * @throws LogicException
 	 * @return array Map of old values
 	 */
 	final public function setFields( array $values ) {
@@ -254,10 +250,7 @@ abstract class MWOAuthDAO {
 	 *
 	 * @return array
 	 */
-	protected static function getSchema() {
-		// Note: declaring this abstract raises E_STRICT
-		throw new MWException( "getSchema() not defined in " . self::class );
-	}
+	abstract protected static function getSchema(): array;
 
 	/**
 	 * Get the access control check methods for this object type
@@ -270,18 +263,15 @@ abstract class MWOAuthDAO {
 	 * @see MWOAuthDAO::userCanAccess()
 	 * @see MWOAuthDAOAccessControl
 	 *
-	 * @throws LogicException Subclasses must override
 	 * @return array<string,string> Map of (field name => name of method that checks access)
 	 */
-	protected static function getFieldPermissionChecks() {
-		// Note: declaring this abstract raises E_STRICT
-		throw new LogicException( "getFieldPermissionChecks() not defined in " . self::class );
-	}
+	abstract protected static function getFieldPermissionChecks(): array;
 
 	/**
 	 * @return string
 	 */
 	final protected static function getTable() {
+		// @phan-suppress-next-line PhanAbstractStaticMethodCallInStatic
 		$schema = static::getSchema();
 		return $schema['table'];
 	}
@@ -290,6 +280,7 @@ abstract class MWOAuthDAO {
 	 * @return array<string,string>
 	 */
 	final protected static function getFieldColumnMap() {
+		// @phan-suppress-next-line PhanAbstractStaticMethodCallInStatic
 		$schema = static::getSchema();
 		return $schema['fieldColumnMap'];
 	}
@@ -299,6 +290,7 @@ abstract class MWOAuthDAO {
 	 * @return string
 	 */
 	final protected static function getColumn( $field ) {
+		// @phan-suppress-next-line PhanAbstractStaticMethodCallInStatic
 		$schema = static::getSchema();
 		return $schema['fieldColumnMap'][$field];
 	}
@@ -308,6 +300,7 @@ abstract class MWOAuthDAO {
 	 * @return bool
 	 */
 	final protected static function hasField( $field ) {
+		// @phan-suppress-next-line PhanAbstractStaticMethodCallInStatic
 		$schema = static::getSchema();
 		return isset( $schema['fieldColumnMap'][$field] );
 	}
@@ -316,6 +309,7 @@ abstract class MWOAuthDAO {
 	 * @return string|null
 	 */
 	final protected static function getAutoIncrField() {
+		// @phan-suppress-next-line PhanAbstractStaticMethodCallInStatic
 		$schema = static::getSchema();
 		return $schema['autoIncrField'] ?? null;
 	}
@@ -324,6 +318,7 @@ abstract class MWOAuthDAO {
 	 * @return string
 	 */
 	final protected static function getIdColumn() {
+		// @phan-suppress-next-line PhanAbstractStaticMethodCallInStatic
 		$schema = static::getSchema();
 		return $schema['fieldColumnMap'][$schema['idField']];
 	}
@@ -343,7 +338,7 @@ abstract class MWOAuthDAO {
 	final protected function loadFromValues( array $values ) {
 		foreach ( static::getFieldColumnMap() as $field => $column ) {
 			if ( !array_key_exists( $field, $values ) ) {
-				throw new MWException( get_class( $this ) . " requires '$field' field." );
+				throw new LogicException( get_class( $this ) . " requires '$field' field." );
 			}
 			$this->$field = $values[$field];
 		}

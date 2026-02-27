@@ -78,12 +78,7 @@ abstract class SubmitControl extends ContextSource {
 			return $status;
 		}
 
-		$status = $this->processAction( $action );
-		if ( $status instanceof Status ) {
-			return $status;
-		} else {
-			throw new MWException( "Submission action '$action' not handled." );
-		}
+		return $this->processAction( $action );
 	}
 
 	/**
@@ -132,7 +127,7 @@ abstract class SubmitControl extends ContextSource {
 			$allValues['action'] = $this->vals['action'];
 		}
 		if ( !isset( $allValues['action'] ) ) {
-			throw new MWException( "No form action defined; cannot validate fields." );
+			throw new LogicException( "No form action defined; cannot validate fields." );
 		}
 		$validators = $this->getRequiredFields();
 		if ( !isset( $validators[$allValues['action']][$field] ) ) {
@@ -281,7 +276,7 @@ abstract class SubmitControl extends ContextSource {
 	 * @param string $action
 	 * @return Status
 	 */
-	abstract protected function processAction( $action );
+	abstract protected function processAction( $action ): Status;
 
 	/**
 	 * @param string $error API error key

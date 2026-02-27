@@ -18,6 +18,7 @@ use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -97,7 +98,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 	}
 
 	/** @inheritDoc */
-	protected function processAction( $action ) {
+	protected function processAction( $action ): Status {
 		// proposer or admin
 		$user = $this->getUser();
 		$dbw = $this->dbw;
