@@ -105,7 +105,7 @@
 	"mwoauthlistconsumers-legend": "Прагляд OAuth-праграмаў",
 	"mwoauthlistconsumers-callbackisprefix": "Дазваляць спажыўцу пазначаць зваротны выклік у запытах і выкарыстоўваць вышэйшы URL „зваротнага выкліку“ як абавязковы прэфікс.",
 	"mwoauthlistconsumers-status": "Статус",
-	"mwoauth-consumer-stage-any": "любы",
+	"mwoauth-consumer-stage-any": "усякае",
 	"mwoauthlistconsumers-status-proposed": "прапанаваны",
 	"mwoauthlistconsumers-status-approved": "зацьверджаны",
 	"mwoauthlistconsumers-status-disabled": "адключаны",
