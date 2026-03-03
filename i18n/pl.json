@@ -15,7 +15,8 @@
 			"Vlad5250",
 			"Vuh",
 			"WTM",
-			"Woytecr"
+			"Woytecr",
+			"Matma Rex"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "Aplikacja użytkująca OAuth użyta do wykonania zmiany ($1)",
@@ -321,8 +322,8 @@
 	"mwoauth-oauth2-is-confidential-help": "Prywatny klient jest aplikacją zdolną do przechowywania hasła klienta jako poufnego dla świata. Nieprywatne klienty są mniej bezpieczne.",
 	"mwoauth-oauth2-granttypes": "Dozwolone typy dostępów OAuth 2.0",
 	"mwoauth-oauth2-granttype-auth-code": "Kod autoryzacyjny",
-	"mwoauth-oauth2-granttype-refresh-token": "Odśwież token",
-	"mwoauth-oauth2-granttype-client-credentials": "Poświadczenia konsumenta",
+	"mwoauth-oauth2-granttype-refresh-token": "Token odświeżania",
+	"mwoauth-oauth2-granttype-client-credentials": "Poświadczenia klienta",
 	"mwoauth-oauth2-error-create-at-no-user-approval": "Nie można pozyskać klucza dostępu, użytkownik nie zaakceptował wydania tego klucza",
 	"mwoauth-oauth2-error-user-approval-deny": "Użytkownik odrzucił żądanie od aplikacji konsumenta",
 	"mwoauth-oauth-unsupported-version": "Ten punkt końcowy nie jest dostępny dla OAuth w wersji $1",
