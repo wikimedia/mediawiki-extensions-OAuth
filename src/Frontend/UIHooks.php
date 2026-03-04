@@ -21,6 +21,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use OOUI\ButtonWidget;
+use Wikimedia\ArrayUtils\ArrayUtils;
 
 /**
  * Class containing GUI even handler functions for an OAuth environment
@@ -76,8 +77,10 @@ class UIHooks implements
 			],
 		];
 
-		if ( array_key_exists( 'usergroups', $preferences ) ) {
-			$preferences = wfArrayInsertAfter( $preferences, $prefInsert, 'usergroups' );
+		if ( array_key_exists( 'usergroups-disabled', $preferences ) ) {
+			$preferences = ArrayUtils::insertAfter( $preferences, $prefInsert, 'usergroups-disabled' );
+		} elseif ( array_key_exists( 'usergroups', $preferences ) ) {
+			$preferences = ArrayUtils::insertAfter( $preferences, $prefInsert, 'usergroups' );
 		} else {
 			$preferences += $prefInsert;
 		}
