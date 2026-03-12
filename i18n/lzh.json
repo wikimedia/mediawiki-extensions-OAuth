@@ -2,8 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Honoka55",
-			"灰太狼Wolffy55"
+			"灰太狼Wolffy55",
+			"Davidzdh"
 		]
 	},
+	"mwoauth-form-button-cancel": "罷休",
 	"mwoauth-tag-reserved": "箋始于<code> OAuth之CID：</ code>为过OAuth之用而留焉。"
 }
