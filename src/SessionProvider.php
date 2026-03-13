@@ -69,8 +69,11 @@ class SessionProvider
 	protected function postInitSetup() {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 
+		// @phan-suppress-next-line PhanTypeMismatchArgument
 		$hookContainer->register( 'ApiCheckCanExecute', $this );
+		// @phan-suppress-next-line PhanTypeMismatchArgument
 		$hookContainer->register( 'RecentChange_save', $this );
+		// @phan-suppress-next-line PhanTypeMismatchArgument
 		$hookContainer->register( 'MarkPatrolled', $this );
 	}
 

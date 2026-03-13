@@ -627,7 +627,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		$form->prepareForm();
 		$status = $form->tryAuthorizedSubmit();
 
-		$out->addHtml( new OOUI\PanelLayout( [
+		$out->addHtml( (string)new OOUI\PanelLayout( [
 			'id' => 'mw-mwoauth-authorize-panel',
 			'expanded' => false,
 			'content' => new HtmlSnippet( $form->getHTML( $status ) ),

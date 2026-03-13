@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
-use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodRsaSha1;
@@ -14,10 +13,10 @@ class MWOAuthSignatureMethodRsaSha1 extends OAuthSignatureMethodRsaSha1 {
 	private $privateKey;
 
 	/**
-	 * @param OAuthDataStore $store
+	 * @param MWOAuthDataStore $store
 	 * @param string|null $privateKey RSA private key, passed to openssl_get_privatekey
 	 */
-	public function __construct( OAuthDataStore $store, $privateKey = null ) {
+	public function __construct( MWOAuthDataStore $store, $privateKey = null ) {
 		$this->store = $store;
 		$this->privateKey = $privateKey;
 

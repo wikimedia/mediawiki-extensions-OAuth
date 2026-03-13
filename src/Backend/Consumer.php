@@ -195,7 +195,7 @@ abstract class Consumer extends MWOAuthDAO {
 	 * @param IReadableDatabase $db
 	 * @param string|null $key
 	 * @param int $flags IDBAccessObject::READ_* bitfield
-	 * @return Consumer|false
+	 * @return static|false
 	 */
 	public static function newFromKey( IReadableDatabase $db, $key, $flags = 0 ) {
 		$queryBuilder = $db->newSelectQueryBuilder()
@@ -221,7 +221,7 @@ abstract class Consumer extends MWOAuthDAO {
 	 * @param string $version
 	 * @param int $userId Central user ID
 	 * @param int $flags IDBAccessObject::READ_* bitfield
-	 * @return Consumer|bool
+	 * @return static|false
 	 */
 	public static function newFromNameVersionUser(
 		IReadableDatabase $db, $name, $version, $userId, $flags = 0
@@ -708,7 +708,6 @@ abstract class Consumer extends MWOAuthDAO {
 	protected function encodeRow( IReadableDatabase $db, $row ) {
 		// For compatibility with other wikis in the farm, un-remap some grants
 		foreach ( self::$mapBackCompatGrants as $old => $new ) {
-			// @phan-suppress-next-next-line PhanPossiblyInfiniteLoop False positive
 			// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 			while ( ( $i = array_search( $new, $row['oarc_grants'], true ) ) !== false ) {
 				$row['oarc_grants'][$i] = $old;
@@ -743,7 +742,6 @@ abstract class Consumer extends MWOAuthDAO {
 
 		// For backwards compatibility, remap some grants
 		foreach ( self::$mapBackCompatGrants as $old => $new ) {
-			// @phan-suppress-next-next-line PhanPossiblyInfiniteLoop False positive
 			// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 			while ( ( $i = array_search( $old, $row['oarc_grants'], true ) ) !== false ) {
 				$row['oarc_grants'][$i] = $new;

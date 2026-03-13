@@ -715,6 +715,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 		// 'callbackUrl' must be present,
 		// otherwise SubmitControl::validateFields() fails.
+		// @phan-suppress-next-line PhanTypeInvalidDimOffset
 		if ( $form['ownerOnly'] && !isset( $form['callbackUrl'] ) ) {
 			$form['callbackUrl'] = '';
 		}

@@ -9,7 +9,6 @@ use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
-use MediaWiki\Extension\OAuth\Entity\ScopeEntity;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extension\OAuth\Repository\ScopeRepository;
 use MediaWiki\MediaWikiServices;
@@ -26,7 +25,7 @@ class ResourceServer {
 	protected $user;
 	/** @var ClientEntity */
 	protected $client;
-	/** @var ScopeEntity[] */
+	/** @var ScopeEntityInterface[] */
 	protected $scopes;
 	/** @var string */
 	protected $accessTokenId;
@@ -106,7 +105,7 @@ class ResourceServer {
 	}
 
 	/**
-	 * @return ScopeEntity[]
+	 * @return ScopeEntityInterface[]
 	 * @throws MWOAuthException
 	 */
 	public function getScopes(): array {

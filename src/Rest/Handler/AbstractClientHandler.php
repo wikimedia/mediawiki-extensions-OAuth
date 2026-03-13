@@ -67,7 +67,7 @@ abstract class AbstractClientHandler extends Handler {
 			throw new HttpException( $value['error'], 400 );
 		}
 
-		throw new HttpException( $status->getMessage() );
+		throw new HttpException( $status->getMessage()->text() );
 	}
 
 	/**
