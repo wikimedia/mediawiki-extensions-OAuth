@@ -3,9 +3,9 @@
 // This class is intentionally not in the normal OAuth namespace, for easy access.
 
 use Defuse\Crypto\Crypto;
-use League\OAuth2\Server\AuthorizationValidators\BearerTokenValidator;
 use League\OAuth2\Server\CryptKey;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\BearerTokenValidator;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ObjectCache\BagOStuff;
