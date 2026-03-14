@@ -121,12 +121,9 @@ class SessionProvider
 				);
 				$accessId = $accessTokenRepo->getApprovalId( $accessTokenKey );
 				if ( $accessId === 0 ) {
-					if (
-						$resourceServer->getUser()->getId() === 0 &&
-						$resourceServer->getClient()->getOwnerOnly() === false
-					) {
-						// This tells us, with a good degree of certainty, that the access
-						// token was issued to a machine and represents no particular user.
+					if ( $resourceServer->getClient()->getOwnerOnly() === false ) {
+						// Access token created via client credentials flow.
+						// Requests signed by such tokens are intentionally anonymous (for now).
 						$access = ConsumerAcceptance::newFromArray( [
 							'id'           => null,
 							'wiki'         => $resourceServer->getClient()->getWiki(),
