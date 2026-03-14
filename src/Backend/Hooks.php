@@ -101,6 +101,7 @@ EOK;
 					'LinkRenderer',
 					'TitleFactory',
 					'UserEditTracker',
+					'UserFactory',
 				],
 			];
 			$wgActionFilteredLogs['mwoauthconsumer'] = [

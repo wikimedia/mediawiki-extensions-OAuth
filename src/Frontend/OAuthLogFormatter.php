@@ -11,7 +11,9 @@ use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserEditTracker;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserRigorOptions;
 use Wikimedia\Message\ScalarParam;
 
 /**
@@ -25,6 +27,7 @@ class OAuthLogFormatter extends LogFormatter {
 		protected readonly LinkRenderer $linkRenderer,
 		protected readonly TitleFactory $titleFactory,
 		protected readonly UserEditTracker $userEditTracker,
+		protected readonly UserFactory $userFactory,
 	) {
 		parent::__construct( $entry );
 		$this->extensionRegistry = ExtensionRegistry::getInstance();
@@ -33,6 +36,15 @@ class OAuthLogFormatter extends LogFormatter {
 	/** @inheritDoc */
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
+		if ( $this->entry->getTargetPage()->getNamespace() === NS_USER ) {
+			$user = $this->userFactory->newFromName(
+				$this->entry->getTarget()->getText(),
+				UserRigorOptions::RIGOR_NONE
+			);
+			if ( $user ) {
+				$params[2] = Message::rawParam( $this->makeUserLink( $user ) );
+			}
+		}
 		if ( isset( $params[3] ) ) {
 			$params[3] = $this->getConsumerLink( $params[3] );
 		}
