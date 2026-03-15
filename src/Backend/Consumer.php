@@ -19,8 +19,8 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use MWRestrictions;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Representation of an OAuth consumer.
@@ -192,12 +192,12 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param string|null $key
 	 * @param int $flags IDBAccessObject::READ_* bitfield
 	 * @return Consumer|false
 	 */
-	public static function newFromKey( IDatabase $db, $key, $flags = 0 ) {
+	public static function newFromKey( IReadableDatabase $db, $key, $flags = 0 ) {
 		$queryBuilder = $db->newSelectQueryBuilder()
 			->select( array_values( static::getFieldColumnMap() ) )
 			->from( static::getTable() )
@@ -216,7 +216,7 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param string $name
 	 * @param string $version
 	 * @param int $userId Central user ID
@@ -224,7 +224,7 @@ abstract class Consumer extends MWOAuthDAO {
 	 * @return Consumer|bool
 	 */
 	public static function newFromNameVersionUser(
-		IDatabase $db, $name, $version, $userId, $flags = 0
+		IReadableDatabase $db, $name, $version, $userId, $flags = 0
 	) {
 		$queryBuilder = $db->newSelectQueryBuilder()
 			->select( array_values( static::getFieldColumnMap() ) )
@@ -705,7 +705,7 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	/** @inheritDoc */
-	protected function encodeRow( IDatabase $db, $row ) {
+	protected function encodeRow( IReadableDatabase $db, $row ) {
 		// For compatibility with other wikis in the farm, un-remap some grants
 		foreach ( self::$mapBackCompatGrants as $old => $new ) {
 			// @phan-suppress-next-next-line PhanPossiblyInfiniteLoop False positive
@@ -728,7 +728,7 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	/** @inheritDoc */
-	protected function decodeRow( IDatabase $db, $row ) {
+	protected function decodeRow( IReadableDatabase $db, $row ) {
 		$row['oarc_registration'] = wfTimestamp( TS_MW, $row['oarc_registration'] );
 		$row['oarc_stage'] = (int)$row['oarc_stage'];
 		$row['oarc_stage_timestamp'] = wfTimestamp( TS_MW, $row['oarc_stage_timestamp'] );

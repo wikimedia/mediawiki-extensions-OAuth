@@ -36,7 +36,7 @@ use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use MWRestrictions;
 use stdClass;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Timestamp\TimestampFormat;
 
 /**
@@ -368,11 +368,11 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param stdClass $row
 	 * @return string
 	 */
-	public function formatRow( IDatabase $db, $row ) {
+	public function formatRow( IReadableDatabase $db, $row ) {
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromRow( $db, $row ), $this->getContext() );
 		$cmrKey = $cmrAc->getConsumerKey();

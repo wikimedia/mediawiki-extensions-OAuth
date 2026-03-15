@@ -28,7 +28,7 @@ use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use OOUI\HtmlSnippet;
 use stdClass;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Special page for listing the queue of consumer requests and managing
@@ -236,11 +236,11 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param stdClass $row
 	 * @return string
 	 */
-	public function formatRow( IDatabase $db, $row ) {
+	public function formatRow( IReadableDatabase $db, $row ) {
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromRow( $db, $row ), $this->getContext() );
 		$cmrKey = $cmrAc->getConsumerKey();

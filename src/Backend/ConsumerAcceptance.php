@@ -6,8 +6,8 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -82,12 +82,12 @@ class ConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param string $token Access token
 	 * @param int $flags ConsumerAcceptance::READ_* bitfield
 	 * @return ConsumerAcceptance|bool
 	 */
-	public static function newFromToken( IDatabase $db, $token, $flags = 0 ) {
+	public static function newFromToken( IReadableDatabase $db, $token, $flags = 0 ) {
 		$queryBuilder = $db->newSelectQueryBuilder()
 			->select( array_values( static::getFieldColumnMap() ) )
 			->from( static::getTable() )
@@ -108,7 +108,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param int $userId of user who authorized (central wiki's id)
 	 * @param Consumer $consumer
 	 * @param string $wiki wiki associated with the acceptance
@@ -117,7 +117,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 	 * @return ConsumerAcceptance|bool
 	 */
 	public static function newFromUserConsumerWiki(
-		IDatabase $db, $userId, $consumer,
+		IReadableDatabase $db, $userId, $consumer,
 		$wiki, $flags = 0, $oauthVersion = Consumer::OAUTH_VERSION_1
 	) {
 		$queryBuilder = $db->newSelectQueryBuilder()
@@ -226,7 +226,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	/** @inheritDoc */
-	protected function encodeRow( IDatabase $db, $row ) {
+	protected function encodeRow( IReadableDatabase $db, $row ) {
 		if ( (int)$row['oaac_user_id'] === 0 ) {
 			throw new MWOAuthException( 'mwoauth-consumer-access-no-user', [
 				'consumer_id' => $row['oaac_consumer_id'],
@@ -247,7 +247,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	/** @inheritDoc */
-	protected function decodeRow( IDatabase $db, $row ) {
+	protected function decodeRow( IReadableDatabase $db, $row ) {
 		$row['oaac_grants'] = FormatJson::decode( $row['oaac_grants'], true );
 		$row['oaac_accepted'] = wfTimestamp( TS_MW, $row['oaac_accepted'] );
 

@@ -22,7 +22,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use stdClass;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -278,11 +278,11 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param stdClass $row
 	 * @return string
 	 */
-	public function formatRow( IDatabase $db, $row ) {
+	public function formatRow( IReadableDatabase $db, $row ) {
 		$cmrAc = ConsumerAccessControl::wrap(
 			Consumer::newFromRow( $db, $row ), $this->getContext() );
 		$cmraAc = ConsumerAcceptanceAccessControl::wrap(
