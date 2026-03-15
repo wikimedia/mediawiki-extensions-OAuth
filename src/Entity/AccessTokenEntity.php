@@ -193,6 +193,9 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 		return !$notApproved ? $approval : false;
 	}
 
+	/**
+	 * @throws OAuthServerException
+	 */
 	private function confirmClientUsable() {
 		$userId = $this->getUserIdentifier() ?? 0;
 		$user = Utils::getLocalUserFromCentralId( $userId );

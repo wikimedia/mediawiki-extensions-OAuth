@@ -9,7 +9,10 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class BearerTokenValidator extends LeagueBearerTokenValidator {
 
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 * @throws OAuthServerException
+	 */
 	public function validateAuthorization( ServerRequestInterface $request ): ServerRequestInterface {
 		$request = parent::validateAuthorization( $request );
 		$sub = $request->getAttribute( 'oauth_user_id' );

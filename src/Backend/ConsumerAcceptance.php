@@ -225,7 +225,10 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		$this->grants = (array)$this->grants;
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 * @throws MWOAuthException
+	 */
 	protected function encodeRow( IReadableDatabase $db, $row ) {
 		if ( (int)$row['oaac_user_id'] === 0 ) {
 			throw new MWOAuthException( 'mwoauth-consumer-access-no-user', [

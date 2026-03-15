@@ -447,6 +447,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	 * @param string|null $requestToken
 	 * @param string|null $consumerKey
 	 * @param bool $authenticate
+	 * @throws MWOAuthException
 	 */
 	protected function handleAuthorizationForm( $requestToken, $consumerKey, $authenticate ) {
 		$output = $this->getOutput();

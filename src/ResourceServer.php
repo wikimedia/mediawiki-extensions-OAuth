@@ -207,6 +207,9 @@ class ResourceServer {
 		$this->accessTokenId = $request->getAttribute( 'oauth_access_token_id' );
 	}
 
+	/**
+	 * @throws MWOAuthException
+	 */
 	private function assertVerified() {
 		if ( !$this->verified ) {
 			throw new MWOAuthException( 'mwoauth-oauth2-error-request-not-verified', [

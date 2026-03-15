@@ -115,6 +115,8 @@ class OAuthServer {
 
 	/**
 	 * version 1
+	 *
+	 * @throws OAuthException
 	 */
 	protected function get_version( &$request ) {
 		$version = $request->get_parameter( "oauth_version" );
@@ -132,6 +134,8 @@ class OAuthServer {
 
 	/**
 	 * figure out the signature with some defaults
+	 *
+	 * @throws OAuthException
 	 */
 	private function get_signature_method( $request ) {
 		$signature_method = $request instanceof OAuthRequest ? $request->get_parameter(
@@ -158,6 +162,8 @@ class OAuthServer {
 
 	/**
 	 * try to find the consumer for the provided request's consumer key
+	 *
+	 * @throws OAuthException
 	 */
 	protected function get_consumer( $request ) {
 		$consumer_key = $request instanceof OAuthRequest ? $request->get_parameter(
@@ -178,6 +184,8 @@ class OAuthServer {
 
 	/**
 	 * try to find the token for the provided request's token key
+	 *
+	 * @throws OAuthException
 	 */
 	protected function get_token( $request, $consumer, $token_type = "access" ) {
 		$token_field = $request instanceof OAuthRequest ? $request->get_parameter(
@@ -199,6 +207,8 @@ class OAuthServer {
 	/**
 	 * all-in-one function to check the signature on a request
 	 * should guess the signature method appropriately
+	 *
+	 * @throws OAuthException
 	 */
 	protected function check_signature( $request, $consumer, $token ) {
 		// this should probably be in a different method
@@ -229,6 +239,8 @@ class OAuthServer {
 
 	/**
 	 * check that the timestamp is new enough
+	 *
+	 * @throws OAuthException
 	 */
 	private function check_timestamp( $timestamp ) {
 		if ( !$timestamp ) {
@@ -248,6 +260,8 @@ class OAuthServer {
 
 	/**
 	 * check that the nonce is not repeated
+	 *
+	 * @throws OAuthException
 	 */
 	private function check_nonce( $consumer, $token, $nonce, $timestamp ) {
 		if ( !$nonce ) {

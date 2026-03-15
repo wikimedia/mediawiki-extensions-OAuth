@@ -15,6 +15,7 @@ class MWOAuthSignatureMethodRsaSha1 extends OAuthSignatureMethodRsaSha1 {
 	/**
 	 * @param MWOAuthDataStore $store
 	 * @param string|null $privateKey RSA private key, passed to openssl_get_privatekey
+	 * @throws OAuthException
 	 */
 	public function __construct( MWOAuthDataStore $store, $privateKey = null ) {
 		$this->store = $store;
