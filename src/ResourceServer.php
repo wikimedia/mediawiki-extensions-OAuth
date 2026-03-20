@@ -191,6 +191,7 @@ class ResourceServer {
 	private function setScopes( ServerRequestInterface $request ) {
 		$scopeNames = $request->getAttribute( 'oauth_scopes', [] );
 		$scopeRepo = new ScopeRepository();
+		$this->scopes = [];
 		foreach ( $scopeNames as $scopeName ) {
 			$scope = $scopeRepo->getScopeEntityByIdentifier( $scopeName );
 			if ( !$scope ) {
