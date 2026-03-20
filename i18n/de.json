@@ -287,7 +287,7 @@
 	"mwoauth-error": "Anwendungsverbindungsfehler",
 	"mwoauth-error-missing-callback-url-non-owner": "callback_url ist für Nicht-Eigentümer-Clients erforderlich",
 	"mwoauth-error-callback-url-custom-protocol-nonconfidential": "Du musst für benutzerdefinierte Protokolle einen nicht vertraulichen OAuth 2-Client verwenden.",
-	"mwoauth-error-callback-url-must-be-https": "OAuth 2 Callback-URLs müssen das HTTPS-Schema verwenden",
+	"mwoauth-error-callback-url-must-be-https": "Nicht lokaler OAuth 2 Callback-URLs müssen das HTTPS-Schema verwenden",
 	"mwoauth-error-callback-server-url": "Die Callback-URL muss auf einen Server verweisen, den du besitzt",
 	"mwoauth-error-callback-bare-domain-oauth1": "Du hast die Option \"Rückruf-URL als Präfix verwenden\" nicht ausgewählt, also musst du eine genaue URL angeben. Eine bloße Domain ist wahrscheinlich nicht das, was du willst.",
 	"mwoauth-error-callback-bare-domain-oauth2": "OAuth 2-Anwendungen müssen eine genaue Callback-URL verwenden. Eine bloße Domain ist wahrscheinlich nicht das, was du willst.",
