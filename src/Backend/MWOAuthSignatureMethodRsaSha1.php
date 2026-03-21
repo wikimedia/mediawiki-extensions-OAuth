@@ -30,7 +30,6 @@ class MWOAuthSignatureMethodRsaSha1 extends OAuthSignatureMethodRsaSha1 {
 			if ( $details['type'] !== OPENSSL_KEYTYPE_RSA ) {
 				throw new OAuthException( "Key is not an RSA key" );
 			}
-			openssl_pkey_free( $key );
 		}
 	}
 
