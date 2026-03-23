@@ -130,7 +130,7 @@
 	"mwoauth-form-description-onewiki-privateinfo-norealname": "Bonjour $1,\n\nFir Är Ufro ofzeschléisse brauch '''$2''' d'Autorisatioun fir op Informatiounen inklusiv Ärer E-Mail-Adress op ''$4'' zouzegräifen. Et gi keng Ännerungen un Ärem Benotzerkont gemaach.",
 	"mwoauth-form-button-approve": "Erlaben",
 	"mwoauth-form-button-cancel": "Ofbriechen",
-	"mwoauth-error": "Verbinndungsfeeler vun der Software",
+	"mwoauth-error": "Verbindungsfeeler vun der Applikatioun",
 	"mwoauth-grants-heading": "Ugefroten Autorisatiounen:",
 	"mwoauth-grants-nogrants": "Dës Applikatioun huet keng Autorisatiounen ugefrot.",
 	"grant-mwoauth-authonly": "Nëmmen Iwwerpréiwung vun der Benotzer-Identitéit, keng Méiglechkeet fir Säiten ze liesen oder aplaz vum Benotzer z'agéieren.",
