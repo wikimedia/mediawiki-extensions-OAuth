@@ -87,8 +87,10 @@ class SessionProvider
 			return null;
 		}
 
-		// OAuth is restricted to be API-only.
-		if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) ) {
+		// OAuth is restricted to be API-only or test environments.
+		if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) &&
+			!defined( 'MW_PHPUNIT_TEST' )
+		) {
 			$globalRequest = RequestContext::getMain()->getRequest();
 			if ( $request !== $globalRequest ) {
 				// We are looking at something other than the global request. No easy way to
@@ -251,33 +253,54 @@ class SessionProvider
 				'restrictions' => $consumer->getRestrictions()->toJson(),
 			],
 		] );
+
 		if ( $this->shouldUseJwtCookie( $sessionInfo ) ) {
-			try {
-				// OAuth cannot use the 'refresh' flag, so set it in the metadata instead.
-				// Use a fake sessioninfo because only persisted sessions can be refreshed
-				// (and to avoid actually setting the refresh flag).
-				$sessionInfoCopy = new SessionInfo( $sessionInfo->getPriority(), [
-					'persisted' => true,
-					'copyFrom' => $sessionInfo,
-				] );
-				$this->jwtSessionCookieHelper->verifyJwtCookie(
-					$request,
-					$sessionInfoCopy,
-					$this->getJwtCookieOptions(),
-					$this->getJwtClaimOverrides( $this->jwtSessionCookieHelper->getJwtCookieSessionExpiration() )
-				);
-			} catch ( JwtException $e ) {
-				$this->logger->info( 'JWT validation failed: ' . $e->getNormalizedMessage(),
-					$e->getMessageContext() + [ 'exception' => $e ] );
-				return $this->makeException( 'mwoauth-invalid-authorization-jwt', $e->getMessage() );
-			}
-			if ( $sessionInfoCopy->needsRefresh() ) {
-				$sessionInfo = new SessionInfo( $sessionInfo->getPriority(), [
-					'metadata' => [ 'refreshJwtCookie' => true ] + $sessionInfo->getProviderMetadata(),
-					'copyFrom' => $sessionInfo,
-				] );
-			}
+			$sessionInfo = $this->provideSessionInfoWithJwtCookie( $sessionInfo, $request );
 		}
+
+		return $sessionInfo;
+	}
+
+	/**
+	 * Provide SessionInfo with a JWT session cookie available so
+	 * that the server can use it for request validation. This is called
+	 * only when the use of JWT cookie is enabled.
+	 *
+	 * @param SessionInfo $sessionInfo
+	 * @param WebRequest $request
+	 *
+	 * @return SessionInfo
+	 */
+	private function provideSessionInfoWithJwtCookie( SessionInfo $sessionInfo, WebRequest $request ) {
+		try {
+			// OAuth cannot use the 'refresh' flag, so set it in the metadata instead.
+			// Use a fake sessioninfo because only persisted sessions can be refreshed
+			// (and to avoid actually setting the refresh flag).
+			$sessionInfoCopy = new SessionInfo( $sessionInfo->getPriority(), [
+				'persisted' => true,
+				'copyFrom' => $sessionInfo,
+			] );
+			$this->jwtSessionCookieHelper->verifyJwtCookie(
+				$request,
+				$sessionInfoCopy,
+				$this->getJwtCookieOptions(),
+				$this->getJwtClaimOverrides( $this->jwtSessionCookieHelper->getJwtCookieSessionExpiration() )
+			);
+		} catch ( JwtException $e ) {
+			$this->logger->info( 'JWT validation failed: ' . $e->getNormalizedMessage(),
+				$e->getMessageContext() + [ 'exception' => $e ] );
+			return $this->makeException( 'mwoauth-invalid-authorization-jwt', $e->getMessage() );
+		}
+		if ( $sessionInfoCopy->needsRefresh() ) {
+			// Indicate to the request using sessionWasAttachedToRequest() that the JWT would
+			// need to be refreshed after verifying the JWT session. A refresh can be triggered
+			// when the JWT session cookie is near expiry.
+			$sessionInfo = new SessionInfo( $sessionInfo->getPriority(), [
+				'metadata' => [ 'refreshJwtCookie' => true ] + $sessionInfo->getProviderMetadata(),
+				'copyFrom' => $sessionInfo,
+			] );
+		}
+
 		return $sessionInfo;
 	}
 
