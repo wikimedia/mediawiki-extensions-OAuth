@@ -352,6 +352,7 @@
 	"mwoauth-oauth2-error-request-not-verified": "Attempting to retrieve verified property before verifying the request",
 	"mwoauth-oauth2-invalid-access-token": "Invalid access token",
 	"mwoauth-consumer-access-no-user": "Consumer approval must be bound to a valid user, user with ID 0 given",
+	"mwoauth-consumer-access-grants-too-long": "Consumer approval has too many grants",
 	"mwoauthconsumer-consumer-view": "View this consumer",
 	"mwoauthconsumer-application-view": "View this application",
 	"grant-oauthmanageownclient": "Manage your OAuth clients",
