@@ -368,6 +368,7 @@
 	"mwoauth-oauth2-error-request-not-verified": "Error message when verified properties are accessed before verifying the request",
 	"mwoauth-oauth2-invalid-access-token": "Error when verifying the access token and the token is invalid",
 	"mwoauth-consumer-access-no-user": "Error message when trying to save user approval with anonymous user",
+	"mwoauth-consumer-access-grants-too-long": "Error message when trying to save user approval with too many grants",
 	"mwoauthconsumer-consumer-view": "Used as link text in a navigation menu.",
 	"mwoauthconsumer-application-view": "Used as link text in a navigation menu.",
 	"grant-oauthmanageownclient": "Name for grant \"oauthmanageownclient\".\n{{Related|Grant}}",
