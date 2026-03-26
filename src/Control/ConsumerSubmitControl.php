@@ -73,7 +73,7 @@ class ConsumerSubmitControl extends SubmitControl {
 	 * MySQL Blob Size is 2^16 - 1 = 65535 as per "L + 2 bytes, where L < 216" on
 	 * https://dev.mysql.com/doc/refman/8.0/en/storage-requirements.html
 	 */
-	private const BLOB_SIZE = 65535;
+	public const BLOB_SIZE = 65535;
 
 	/**
 	 * @param IContextSource $context
