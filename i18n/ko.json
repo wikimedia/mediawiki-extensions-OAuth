@@ -238,7 +238,7 @@
 	"mwoauth-form-button-approve": "허용합니다",
 	"mwoauth-form-button-cancel": "취소합니다.",
 	"mwoauth-error": "애플리케이션 연결 오류",
-	"mwoauth-error-callback-url-must-be-https": "OAuth 2 콜백 URL은 HTTPS 스킴을 사용해야 합니다",
+	"mwoauth-error-callback-url-must-be-https": "로컬이 아닌 OAuth 2 콜백 URL은 HTTPS 스킴을 사용해야 합니다.",
 	"mwoauth-error-callback-server-url": "콜백 URL은 당신이 소유한 서버를 가리켜야 합니다",
 	"mwoauth-grants-heading": "요청된 권한:",
 	"mwoauth-grants-nogrants": "애플리케이션은 권한을 요청하지 않았습니다.",

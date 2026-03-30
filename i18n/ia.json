@@ -352,6 +352,7 @@
 	"mwoauth-oauth2-error-request-not-verified": "Le systema ora tenta recuperar le proprietate verificate ante de verificar le requesta",
 	"mwoauth-oauth2-invalid-access-token": "Token de accesso non valide",
 	"mwoauth-consumer-access-no-user": "Le approbation del consumitor debe esser ligate a un usator valide, ma un usator con ID 0 ha essite fornite",
+	"mwoauth-consumer-access-grants-too-long": "Le approbation del consumitor ha troppo de concessiones",
 	"mwoauthconsumer-consumer-view": "Vider iste consumitor",
 	"mwoauthconsumer-application-view": "Vider iste application",
 	"grant-oauthmanageownclient": "Gerer tu clientes OAuth",
