@@ -10,20 +10,25 @@
 
 namespace MediaWiki\Extension\OAuth\Tests;
 
+use DateInterval;
+use DateTimeImmutable;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthRequest;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthToken;
 use MediaWiki\Extension\OAuth\Backend\OAuth1Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceSubmitControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
+use MediaWiki\Extension\OAuth\Entity\AccessTokenEntity;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 use MediaWiki\Extension\OAuth\OAuthConfigNames;
+use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extension\OAuth\SessionProvider;
 use MediaWiki\MainConfigNames;
 use MediaWiki\RecentChanges\RecentChange;
@@ -39,6 +44,7 @@ use MediaWiki\User\User;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWikiIntegrationTestCase;
+use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use TestLogger;
@@ -54,6 +60,8 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 class SessionProviderTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;
 
+	private LoggerInterface $logger;
+
 	public function setUp(): void {
 		$this->overrideConfigValues( [
 			'MWOAuthCentralWiki' => WikiMap::getCurrentWikiId(),
@@ -68,6 +76,8 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 				'mwoauthmanageconsumer' => true,
 			],
 		] );
+
+		$this->logger = new TestLogger( true );
 	}
 
 	public function testSafeAgainstCsrf() {
@@ -254,38 +264,17 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 			'sxp' => $startTime + $jwtExpiry,
 			'sub' => 'mw:mock::123',
 		];
-		$logger = new TestLogger( true );
 
 		$provider = $this->getProvider();
-		$this->initProvider( $provider, $logger, $config, $this->getServiceContainer()->getSessionManager() );
+		$this->initProvider( $provider, $this->logger, $config, $this->getServiceContainer()->getSessionManager() );
 
 		$user = $this->getTestSysop()->getUser();
 		$centralIdMap = [ $user->getName() => 123 ];
-		$context = RequestContext::getMain();
 
 		$consumer = $this->createOAuth1Consumer( $user );
 		// Create a new request token in preparation to authorize the consumer.
 		$requestToken = Utils::newMWOAuthDataStore()->new_request_token( $consumer );
-
-		$cmrAc = new ConsumerAcceptanceSubmitControl( $context, [], $this->getDb(), $consumer->getOAuthVersion() );
-		$cmrAc->registerValidators( [] );
-		$cmrAc->setInputParameters( [
-			'consumerKey' => $consumer->getConsumerKey(),
-			'requestToken' => $requestToken->key,
-			'confirmUpdate' => false,
-			'action' => 'accept',
-		] );
-
-		// Authorize the consumer using the request token above.
-		$res = $cmrAc->submit();
-		$callbackUrl = $res->getValue()['result']['callbackUrl'];
-		$params = [];
-		parse_str( parse_url( $callbackUrl, PHP_URL_QUERY ), $params );
-
-		// After authorization, create an access token using the verifier URL parameter.
-		// This is the access token that will be used to make requests to the server.
-		$accessToken = Utils::newMWOAuthDataStore()
-			->new_access_token( $requestToken, $consumer, $params['oauth_verifier'] );
+		$accessToken = $this->approveAndAuthorizeOAuth1Consumer( $consumer, $requestToken );
 
 		// User with mismatching issuer
 		$info = $provider->provideSessionInfo(
@@ -298,9 +287,9 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
 				[ LogLevel::INFO, 'JWT validation failed: JWT error: wrong issuer' ],
 			],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 
 		// Anon JWT for non-anon user
 		$info = $provider->provideSessionInfo( $this->getRequestForOAuth1(
@@ -316,9 +305,9 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
 				[ LogLevel::INFO, 'JWT validation failed: JWT error: wrong subject' ],
 			],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 
 		// User with valid JWT
 		$info = $provider->provideSessionInfo( $this->getRequestForOAuth1( $defaultClaims, $consumer, $accessToken ) );
@@ -333,9 +322,9 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 			[
 				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
 			],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 
 		// near-expired JWT
 		ConvertibleTimestamp::setFakeTime( $startTime + $jwtExpiry - 1 );
@@ -346,9 +335,9 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 			[
 				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
 			],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 
 		// JWT with valid hard-expiry
 		ConvertibleTimestamp::setFakeTime( $startTime );
@@ -360,9 +349,9 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $user->getName(), $info->getUserInfo()->getName() );
 		$this->assertSame(
 			[ [ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ] ],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 
 		// JWT with expired hard-expiry
 		ConvertibleTimestamp::setFakeTime( $startTime + $jwtExpiry + ExpirationAwareness::TTL_MINUTE + 1 );
@@ -375,12 +364,12 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
 				[ LogLevel::INFO, 'JWT validation failed: The token is expired' ],
 			],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 	}
 
-	public function testOAuth2ProvideSessionInfoWithJwtCookie() {
+	public function testOAuth2OwnerOnlyProvideSessionInfoWithJwtCookie() {
 		$centralIdMap = &$this->mockCentralIdLookup();
 
 		$config = $this->getConfig();
@@ -400,15 +389,14 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 			'sxp' => $startTime + $jwtExpiry,
 			'sub' => 'mw:mock::123',
 		];
-		$logger = new TestLogger( true );
 
 		$provider = $this->getProvider();
-		$this->initProvider( $provider, $logger, $config, $this->getServiceContainer()->getSessionManager() );
+		$this->initProvider( $provider, $this->logger, $config, $this->getServiceContainer()->getSessionManager() );
 
 		$user = $this->getTestSysop()->getUser();
 		$centralIdMap = [ $user->getName() => 123 ];
 
-		$status = $this->createOAuth2Consumer( $user );
+		$status = $this->createOAuth2OwnerOnlyConsumer( $user );
 		$accessToken = $status->getValue()['result']['accessToken'];
 
 		// User with mismatching issuer
@@ -424,9 +412,9 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
 				[ LogLevel::INFO, 'JWT validation failed: JWT error: wrong issuer' ],
 			],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 
 		// Anon JWT for non-anon user
 		$info = $provider->provideSessionInfo( $this->getRequestForOAuth2(
@@ -441,9 +429,9 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
 				[ LogLevel::INFO, 'JWT validation failed: JWT error: wrong subject' ],
 			],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 
 		// User with valid JWT
 		$info = $provider->provideSessionInfo( $this->getRequestForOAuth2( $defaultClaims, $accessToken ) );
@@ -458,9 +446,9 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 			[
 				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
 			],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 
 		// near-expired JWT
 		ConvertibleTimestamp::setFakeTime( $startTime + $jwtExpiry - 1 );
@@ -471,9 +459,9 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 			[
 				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
 			],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 
 		// JWT with valid hard-expiry
 		ConvertibleTimestamp::setFakeTime( $startTime );
@@ -485,9 +473,9 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $user->getName(), $info->getUserInfo()->getName() );
 		$this->assertSame(
 			[ [ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ] ],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 
 		// JWT with expired hard-expiry
 		ConvertibleTimestamp::setFakeTime( $startTime + $jwtExpiry + ExpirationAwareness::TTL_MINUTE + 1 );
@@ -500,11 +488,82 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
 				[ LogLevel::INFO, 'JWT validation failed: The token is expired' ],
 			],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 	}
 
+	/**
+	 * OAuth2 non-owner-only consumers shouldn't emit a JWT session cookie.
+	 */
+	public function testOAuth2SessionProviderDoesNotEmitJwtCookie() {
+		$centralIdMap = &$this->mockCentralIdLookup();
+
+		$config = $this->getConfig();
+		// Let's ensure this issuer matches with wgMWOAuthCentralWiki which happens to
+		// be a wiki ID and must match whatever URL we set here.
+		$issuer = $this->getServiceContainer()->getUrlUtils()->getCanonicalServer();
+		$config->set( MainConfigNames::UseSessionCookieJwt, true );
+		$config->set( OAuthConfigNames::OAuthUseJwtCookie, true );
+		$config->set( MainConfigNames::CanonicalServer, $issuer );
+
+		$provider = $this->getProvider();
+		$this->initProvider( $provider, $this->logger, $config, $this->getServiceContainer()->getSessionManager() );
+
+		$user = $this->getTestSysop()->getUser();
+		$centralIdMap = [ $user->getName() => 123 ];
+
+		// Since this is a non-owner-only OAuth2 consumer, we'll need to
+		// approve and authorize it.
+		$status = $this->createOAuth2Consumer( $user );
+
+		/** @var ClientEntity $consumer */
+		$consumer = $status->getValue()['result']['consumer'];
+		$context = RequestContext::getMain();
+		// Create a new request token in preparation to authorize the consumer.
+		$requestToken = Utils::newMWOAuthDataStore()->new_request_token( $consumer );
+		$cmrAc = new ConsumerAcceptanceSubmitControl( $context, [], $this->getDb(), $consumer->getOAuthVersion() );
+		$cmrAc->registerValidators( [] );
+		$cmrAc->setInputParameters( [
+			'client_id' => $consumer->getConsumerKey(),
+			'requestToken' => $requestToken->key,
+			'confirmUpdate' => false,
+			'action' => 'accept',
+		] );
+
+		// Approve the OAuth2 consumer
+		$status = $cmrAc->submit();
+		// Should pass if the consumer was approved successfully.
+		$this->assertStatusGood( $status );
+
+		$cmrAc = ConsumerAcceptance::newFromId( $this->getDb(), $consumer->getId() );
+		$accessTokenRepo = new AccessTokenRepository();
+		/** @var AccessTokenEntity $accessToken */
+		$accessToken = $accessTokenRepo->getNewToken( $consumer, $consumer->getScopes(), $cmrAc->getUserId() );
+		$accessToken->setExpiryDateTime( ( new DateTimeImmutable() )->add(
+			new DateInterval( 'PT1H' )
+		) );
+		$accessToken->setPrivateKeyFromConfig();
+		$accessToken->setIdentifier( bin2hex( random_bytes( 40 ) ) );
+		$accessToken->setUserIdentifier( $cmrAc->getUserId() );
+		$accessTokenRepo->persistNewAccessToken( $accessToken );
+
+		$requestOAuth2 = $this->getOAuth2RequestWithNoJwtHeader( $accessToken );
+		$responseOAuth2 = $requestOAuth2->response();
+		$this->assertArrayNotHasKey( 'sessionJwt', $responseOAuth2->getCookies() );
+
+		$info = $provider->provideSessionInfo( $requestOAuth2 );
+		$info->getProvider()->sessionWasAttachedToRequest( $info, $requestOAuth2 );
+
+		$responseOAuth2 = RequestContext::getMain()->getRequest()->response();
+		// OAuth2 non-owner-only consumers shouldn't emit a `sessionJwt` cookie.
+		$this->assertArrayNotHasKey( 'sessionJwt', $responseOAuth2->getCookies() );
+	}
+
+	/**
+	 * OAuth1 consumers and OAuth2 owner-only consumers should emit
+	 * a JWT session cookie.
+	 */
 	public function testSessionProviderEmitsJwtCookie() {
 		$centralIdMap = &$this->mockCentralIdLookup();
 
@@ -526,32 +585,12 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$user = $this->getTestSysop()->getUser();
 		$centralIdMap = [ $user->getName() => 123 ];
-		$context = RequestContext::getMain();
 
 		// -- OAuth1 emission of sessionJwt cookie --
 		$consumer = $this->createOAuth1Consumer( $user );
 		// Create a new request token in preparation to authorize the consumer.
 		$requestToken = Utils::newMWOAuthDataStore()->new_request_token( $consumer );
-
-		$cmrAc = new ConsumerAcceptanceSubmitControl( $context, [], $this->getDb(), $consumer->getOAuthVersion() );
-		$cmrAc->registerValidators( [] );
-		$cmrAc->setInputParameters( [
-			'consumerKey' => $consumer->getConsumerKey(),
-			'requestToken' => $requestToken->key,
-			'confirmUpdate' => false,
-			'action' => 'accept',
-		] );
-
-		// Authorize the consumer using the request token above.
-		$res = $cmrAc->submit();
-		$callbackUrl = $res->getValue()['result']['callbackUrl'];
-		$params = [];
-		parse_str( parse_url( $callbackUrl, PHP_URL_QUERY ), $params );
-
-		// After authorization, create an access token using the verifier URL parameter.
-		// This is the access token that will be used to make requests to the server.
-		$accessToken = Utils::newMWOAuthDataStore()
-			->new_access_token( $requestToken, $consumer, $params['oauth_verifier'] );
+		$accessToken = $this->approveAndAuthorizeOAuth1Consumer( $consumer, $requestToken );
 
 		// Confirm we don't have any sessionJwt set by now.
 		$requestOAuth1 = $this->getOAuth1RequestWithNoJwtHeader( $consumer, $accessToken );
@@ -565,7 +604,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'sessionJwt', $responseOAuth1->getCookies() );
 
 		// -- OAuth2-owner-only emission of sessionJwt cookie --
-		$status = $this->createOAuth2Consumer( $user );
+		$status = $this->createOAuth2OwnerOnlyConsumer( $user );
 		$accessToken = $status->getValue()['result']['accessToken'];
 
 		$requestOAuth2 = $this->getOAuth2RequestWithNoJwtHeader( $accessToken );
@@ -586,37 +625,16 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$config->set( MainConfigNames::UseSessionCookieJwt, true );
 		$config->set( OAuthConfigNames::OAuthUseJwtCookie, true );
 
-		$logger = new TestLogger( true );
 		$provider = $this->getProvider();
-		$this->initProvider( $provider, $logger, $config, $this->getServiceContainer()->getSessionManager() );
+		$this->initProvider( $provider, $this->logger, $config, $this->getServiceContainer()->getSessionManager() );
 
 		$user = $this->getTestSysop()->getUser();
 		$centralIdMap = [ $user->getName() => 123 ];
-		$context = RequestContext::getMain();
 
 		$consumer = $this->createOAuth1Consumer( $user );
 		// Create a new request token in preparation to authorize the consumer.
 		$requestToken = Utils::newMWOAuthDataStore()->new_request_token( $consumer );
-
-		$cmrAc = new ConsumerAcceptanceSubmitControl( $context, [], $this->getDb(), $consumer->getOAuthVersion() );
-		$cmrAc->registerValidators( [] );
-		$cmrAc->setInputParameters( [
-			'consumerKey' => $consumer->getConsumerKey(),
-			'requestToken' => $requestToken->key,
-			'confirmUpdate' => false,
-			'action' => 'accept',
-		] );
-
-		// Authorize the consumer using the request token above.
-		$res = $cmrAc->submit();
-		$callbackUrl = $res->getValue()['result']['callbackUrl'];
-		$params = [];
-		parse_str( parse_url( $callbackUrl, PHP_URL_QUERY ), $params );
-
-		// After authorization, create an access token using the verifier URL parameter.
-		// This is the access token that will be used to make requests to the server.
-		$accessToken = Utils::newMWOAuthDataStore()
-			->new_access_token( $requestToken, $consumer, $params['oauth_verifier'] );
+		$accessToken = $this->approveAndAuthorizeOAuth1Consumer( $consumer, $requestToken );
 
 		$request = new FauxRequest();
 		// This request doesn't have sufficient request headers, but at least it has a header
@@ -632,12 +650,12 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $info?->__toString() );
 		$this->assertSame(
 			[ [ LogLevel::INFO, 'Bad OAuth request from {ip}' ] ],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 
 		// OAuth2 owner-only
-		$this->createOAuth2Consumer( $user );
+		$this->createOAuth2OwnerOnlyConsumer( $user );
 
 		$request = new FauxRequest();
 		$request->setHeader( 'Authorization', 'Bearer badtoken' );
@@ -646,9 +664,9 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $info?->__toString() );
 		$this->assertSame(
 			[ [ LogLevel::INFO, 'Bad OAuth request from {ip}' ] ],
-			$logger->getBuffer()
+			$this->logger->getBuffer()
 		);
-		$logger->clearBuffer();
+		$this->logger->clearBuffer();
 	}
 
 	private function &mockCentralIdLookup(): array {
@@ -856,10 +874,10 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Create and approve OAuth2 consumer.
+	 * Create and approve OAuth2 owner-only consumer.
 	 * @return Status
 	 */
-	private function createOAuth2Consumer( User $user ) {
+	private function createOAuth2OwnerOnlyConsumer( User $user ) {
 		$context = RequestContext::getMain();
 		$user->setEmail( 'owner@wiki.domain' );
 		$user->confirmEmail();
@@ -897,5 +915,77 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( ClientEntity::class, $consumer );
 
 		return $actualStatus;
+	}
+
+	/**
+	 * Create and approve OAuth2 consumer. NOTE that this is
+	 * a non-owner-only consumer, so it'll require separate
+	 * approval and authorization steps.
+	 * @return Status
+	 */
+	private function createOAuth2Consumer( User $user ) {
+		$context = RequestContext::getMain();
+		$user->setEmail( 'owner@wiki.domain' );
+		$user->confirmEmail();
+		$user->saveSettings();
+		$context->setUser( $user );
+
+		$dbw = $this->getDb();
+		$control = new ConsumerSubmitControl( $context, [], $dbw );
+		$control->registerValidators( [] );
+		$control->setInputParameters( [
+			'oauthVersion' => Consumer::OAUTH_VERSION_2,
+			'name' => 'OAuth2 consumer',
+			'version' => '1.0',
+			'description' => 'test',
+			'ownerOnly' => false,
+			'callbackUrl' => 'https://example.com/callback',
+			'callbackIsPrefix' => false,
+			'email' => 'owner@wiki.domain',
+			'wiki' => '*',
+			'oauth2IsConfidential' => true,
+			'oauth2GrantTypes' => [ 'authorization_code', 'refresh_token' ],
+			'granttype' => 'normal',
+			'grants' => json_encode( [ 'basic' ] ),
+			'restrictions' => MWRestrictions::newDefault(),
+			'rsaKey' => '',
+			'agreement' => true,
+			'action' => 'propose',
+		] );
+
+		// NOTE: Owner-only consumers are approved on submission automatically, so no extra
+		// approval step is needed.
+		$actualStatus = $control->submit();
+		/** @var ClientEntity $consumer */
+		$consumer = $actualStatus->getValue()['result']['consumer'];
+		$this->assertInstanceOf( ClientEntity::class, $consumer );
+
+		return $actualStatus;
+	}
+
+	private function approveAndAuthorizeOAuth1Consumer( OAuth1Consumer $consumer, MWOAuthToken $requestToken ) {
+		$cmrAc = new ConsumerAcceptanceSubmitControl(
+			RequestContext::getMain(), [], $this->getDb(), $consumer->getOAuthVersion()
+		);
+		$cmrAc->registerValidators( [] );
+		$cmrAc->setInputParameters( [
+			'consumerKey' => $consumer->getConsumerKey(),
+			'requestToken' => $requestToken->key,
+			'confirmUpdate' => false,
+			'action' => 'accept',
+		] );
+
+		// Authorize the consumer using the request token above.
+		$res = $cmrAc->submit();
+		$callbackUrl = $res->getValue()['result']['callbackUrl'];
+		$params = [];
+		parse_str( parse_url( $callbackUrl, PHP_URL_QUERY ), $params );
+
+		// After authorization, create an access token using the verifier URL parameter.
+		// This is the access token that will be used to make requests to the server.
+		$accessToken = Utils::newMWOAuthDataStore()
+			->new_access_token( $requestToken, $consumer, $params['oauth_verifier'] );
+
+		return $accessToken;
 	}
 }
