@@ -119,6 +119,7 @@
 	"mwoauthserver-invalid-request-token": "Ongültegen Token an Ärer Ufro.",
 	"mwoauth-invalid-authorization-title": "OAuth Autorisatioun's-Feeler",
 	"mwoauth-invalid-authorization-blocked-user": "D'Autorisatiounen an Ärer Ufro si fir ee Benotzer dee gespaart ass",
+	"mwoauth-invalid-authorization-jwt": "Ongültege „sessionJwt“-Cookie: $1",
 	"mwoauth-not-api": "OAuth kann nëmme mat der API benotzt ginn",
 	"mwoauth-form-description-allwikis": "Bonjour $1,\n\nFir Är Ufro ofzeschléisse brauch '''$2''' d'Autorisatioun fir dës Aktiounen an Ärem Numm op alle Projete vun dësem Site ze maachen:\n\n$4",
 	"mwoauth-form-description-onewiki": "Bonjour $1,\n\nFir Är Ufro ofzeschléisse brauch '''$2''' d'Autorisatioun fir dës Aktiounen an Ärem Numm op ''$4'' ze maachen:\n\n$5",

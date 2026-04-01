@@ -273,6 +273,7 @@
 	"mwoauth-invalid-authorization-wrong-user": "Die Autorisierungsheader in deiner Anfrage sind für einen anderen Benutzer",
 	"mwoauth-invalid-authorization-not-approved": "Die Anwendung, die du verbinden willst, scheint nicht korrekt konfiguriert zu sein. Kontaktiere für Hilfe den Autor von $1.",
 	"mwoauth-invalid-authorization-blocked-user": "Die Autorisierungsheader in deiner Anfrage sind für einen Benutzer, der gesperrt ist.",
+	"mwoauth-invalid-authorization-jwt": "Ungültiges Cookie „sessionJwt“: $1",
 	"mwoauth-not-api": "OAuth kann nur mit der API verwendet werden",
 	"mwoauth-form-description-allwikis": "Hallo $1,\n\num deine Anfrage abzuschließen, benötigt '''$2''' die Berechtigung, die folgenden Aktionen in deinem Namen auf allen Projekten dieser Website auszuführen:\n\n$4.",
 	"mwoauth-form-description-onewiki": "Hallo $1,\n\num deine Anfrage abzuschließen, benötigt '''$2''' die Berechtigung, um die folgenden Aktionen in deinem Namen auf ''$4'' auszuführen:\n\n$5",

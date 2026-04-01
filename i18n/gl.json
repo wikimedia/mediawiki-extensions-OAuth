@@ -264,6 +264,7 @@
 	"mwoauth-invalid-authorization-wrong-user": "As cabeceiras de autorización da túa solicitude son para un usuario diferente",
 	"mwoauth-invalid-authorization-not-approved": "Parece que a aplicación que estás tentando conectar non está configurada correctamente. Contacta co autor de «$1» para solicitar axuda.",
 	"mwoauth-invalid-authorization-blocked-user": "As cabeceiras de autorización da túa solicitude son para un usuario que está bloqueado",
+	"mwoauth-invalid-authorization-jwt": "A cookie «sessionJwt» non é válida: $1",
 	"mwoauth-not-api": "OAuth só se pode usar coa API",
 	"mwoauth-form-description-allwikis": "Boas, $1:\n\nPara completar a túa solicitude, '''$2''' precisa permiso para realizar as seguintes accións no teu nome en todos os proxectos deste sitio:\n\n$4",
 	"mwoauth-form-description-onewiki": "Boas, $1:\n\nPara completar a túa solicitude, '''$2''' precisa permiso para realizar as seguintes accións no teu nome en ''$4'':\n\n\n$5",
