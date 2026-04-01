@@ -362,6 +362,7 @@
 	"mwoauth-oauth2-error-request-not-verified": "Versuch, geprüfte Eigenschaften abzurufen, bevor die Anfrage verifiziert wurde",
 	"mwoauth-oauth2-invalid-access-token": "Ungültiges Zugriffstoken",
 	"mwoauth-consumer-access-no-user": "Die Consumer-Genehmigung muss an einen gültigen Benutzer gebunden sein, Benutzer mit der ID 0 angegeben",
+	"mwoauth-consumer-access-grants-too-long": "Die Genehmigungen der Verbraucher sind zu zahlreich",
 	"mwoauthconsumer-consumer-view": "Diesen Consumer anzeigen",
 	"mwoauthconsumer-application-view": "Anwendung anzeigen",
 	"grant-oauthmanageownclient": "Verwalte deine OAuth-Clients",

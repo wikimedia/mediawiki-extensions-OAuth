@@ -353,6 +353,7 @@
 	"mwoauth-oauth2-error-request-not-verified": "Intentando recuperar a propiedade verificada antes de verificar a solicitude",
 	"mwoauth-oauth2-invalid-access-token": "Pase de acceso non válido",
 	"mwoauth-consumer-access-no-user": "A aprobación do consumidor debe estar ligada a un usuario válido. Indicouse un usuario co identificador 0.",
+	"mwoauth-consumer-access-grants-too-long": "A aprobación do consumidor ten demasiadas concesións",
 	"mwoauthconsumer-consumer-view": "Ver este consumidor",
 	"mwoauthconsumer-application-view": "Ver esta aplicación",
 	"grant-oauthmanageownclient": "Administrar os teus clientes OAuth",
