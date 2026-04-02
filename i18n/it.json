@@ -212,6 +212,7 @@
 	"mwoauth-invalid-authorization-wrong-user": "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un altro utente",
 	"mwoauth-invalid-authorization-not-approved": "L'applicazione a cui stai tentando di connetterti sembra essere impostata in modo errato. Contatta l'autore di \"$1\" per avere aiuto.",
 	"mwoauth-invalid-authorization-blocked-user": "L'intestazione dell'autorizzazione nella tua richiesta si riferisce ad un utente che è bloccato",
+	"mwoauth-invalid-authorization-jwt": "Cookie 'sessionJwt' non valido: $1",
 	"mwoauth-form-description-allwikis": "Ciao $1,\n\nPer completare la tua richiesta, '''$2''' necessita dell'autorizzazione per eseguire le seguenti azioni per tuo conto su tutti i progetti di questo sito:\n\n$4",
 	"mwoauth-form-description-onewiki": "Ciao $1,\n\nPer completare la tua richiesta, '''$2''' necessita dell'autorizzazione per eseguire le seguenti azioni per tuo conto su ''$4'':\n\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "Ciao $1,\n\nPer completare la tua richiesta, '''$2''' necessita dell'autorizzazione per accedere alle informazioni per tuo conto su tutti i progetti di questo sito. Nessuna modifica sarà effettuata con la tua utenza.",

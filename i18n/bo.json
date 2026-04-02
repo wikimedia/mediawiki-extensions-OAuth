@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pecha-G.Dhargyal"
+		]
+	},
+	"mwoauth-invalid-authorization-jwt": "\"sessionJwt\" cookie ཚད་ལྡན་མིན་པ།: $1"
+}
