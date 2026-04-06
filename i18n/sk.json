@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"KormiSK",
 			"Kusavica",
 			"Luky001",
 			"Robert Važan",
@@ -78,6 +79,7 @@
 	"mwoauthmanagemygrants-basic-tooltip": "'''Prečo nemôžem zmeniť toto povolenie?'''\n\nToto povolenie poskytuje pripojenej aplikácii základný prístup, ktorý potrebuje na správne fungovanie. Ak nechcete, aby pripojená aplikácia mala toto oprávnenie, mali by ste jej odobrať prístup.",
 	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Vaše}} úpravy vykonané touto aplikáciou",
 	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Vaše}} činnosti vykonané touto aplikáciou",
+	"mwoauth-invalid-authorization-jwt": "Neplatný súbor cookie „sessionJwt“: $1",
 	"mwoauth-form-description-allwikis": "{{GENDER:$1|Užívateľ|Užívateľka}} $1,\n\npre dokončenie vašej požiadavky potrebuje '''$2''' povolenie vykonávať vo vašom mene nasledujúce úkony na všetkých projektoch tohoto webu:\n\n$4",
 	"mwoauth-form-description-onewiki": "{{GENDER:$1|Užívateľ|Užívateľka}} $1,\n\npre dokončenie vašej požiadavky potrebuje '''$2''' povolenie vykonávať vo vašom mene nasledujúce úkony na ''{{grammar:5sg|$4}}'':\n\n$5",
 	"mwoauth-form-description-allwikis-nogrants": "{{GENDER:$1|Užívateľ|Užívateľka}} $1,\n\npre dokončenie vašej požiadavky potrebuje '''$2''' povolenie pristupovať vo vašom mene k informáciám na všetkých projektoch tohoto webu. Vo vašom mene nebudú vykonané žiadne zmeny.",
