@@ -31,6 +31,7 @@
 	"mwoauth-consumer-stage": "Nykyinen tila:",
 	"mwoauth-consumer-email": "Sähköpostiosoite:",
 	"mwoauth-consumer-email-help": "Näkyy vain heille, jotka hyväksyvät uusia asiakkaita",
+	"mwoauth-consumer-owner-only-label": "Vain-omistaja:",
 	"mwoauth-consumer-owner-only": "Tämä asiakas on tarkoitettu vain käyttäjän $1 käytettäväksi.",
 	"mwoauth-consumer-description": "Sovelluksen kuvaus:",
 	"mwoauth-consumer-grantsneeded": "Valittavissa olevat oikeudet:",
