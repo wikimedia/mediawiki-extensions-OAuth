@@ -237,8 +237,6 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 	}
 
 	private function getUserIdentifierForJwt(): string {
-		global $wgOAuth2UsePrefixedSub;
-
 		$centralId = $this->getUserIdentifier();
 		if (
 			// FIXME is this possible? is it the same as T407655?
@@ -249,8 +247,6 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 			// we want to minimize the number of legacy formats we'll have to support forever, so we
 			// go with the already-established legacy format where 'sub' is just a user ID.
 			|| $this->isOwnerOnly()
-			// Temporary feature flag in case something needs to be adapted to the change in the JWT.
-			|| !$wgOAuth2UsePrefixedSub
 		) {
 			return (string)$centralId;
 		} else {

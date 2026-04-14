@@ -105,11 +105,7 @@ class AccessTokenEntityTest extends MediaWikiIntegrationTestCase {
 		};
 		$wikiId = WikiMap::getCurrentWikiId();
 
-		$this->overrideConfigValue( 'OAuth2UsePrefixedSub', false );
 		$clientEntity = MockClientEntity::newMock( $this->getTestUser()->getUser() );
-		$this->assertSame( (string)$clientEntity->getUserId(), $getSub( $clientEntity ) );
-
-		$this->overrideConfigValue( 'OAuth2UsePrefixedSub', true );
 		$this->assertSame( "mw:local:$wikiId:" . $clientEntity->getUserId(), $getSub( $clientEntity ) );
 
 		$this->assertSame( '0', $getSub( $clientEntity, 0 ) );
