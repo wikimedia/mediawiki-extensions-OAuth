@@ -8,7 +8,7 @@ use MediaWiki\Extension\OAuth\Rest\Handler\Authorize;
 use MediaWiki\Extension\OAuth\Tests\EndpointTestBase;
 use MediaWiki\Rest\Handler;
 use MediaWiki\User\User;
-use MWRestrictions;
+use MediaWiki\Utils\MWRestrictions;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Rest\Handler\Authorize

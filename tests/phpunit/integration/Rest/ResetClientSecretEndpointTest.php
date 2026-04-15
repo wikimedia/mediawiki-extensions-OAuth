@@ -12,9 +12,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\User\User;
+use MediaWiki\Utils\MWRestrictions;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWikiIntegrationTestCase;
-use MWRestrictions;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Rest\Handler\ResetClientSecret

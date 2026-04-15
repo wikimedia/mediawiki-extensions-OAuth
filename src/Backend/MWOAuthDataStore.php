@@ -8,7 +8,7 @@ use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
-use MWCryptRand;
+use MediaWiki\Utils\MWCryptRand;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IDatabase;

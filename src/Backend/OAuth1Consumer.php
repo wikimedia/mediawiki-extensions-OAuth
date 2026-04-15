@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\User\User;
-use MWCryptRand;
+use MediaWiki\Utils\MWCryptRand;
 
 /**
  * (c) Dejan Savuljesku 2019, GPL

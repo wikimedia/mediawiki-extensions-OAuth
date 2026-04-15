@@ -6,7 +6,7 @@ use MediaWiki\Extension\OAuth\Repository\ScopeRepository;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Validator\Validator;
-use MWRestrictions;
+use MediaWiki\Utils\MWRestrictions;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 

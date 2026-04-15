@@ -7,7 +7,7 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Message\Message;
 use MediaWiki\User\User;
-use MWRestrictions;
+use MediaWiki\Utils\MWRestrictions;
 
 class ConsumerAccessControl extends DAOAccessControl {
 	// accessor fields copied from MWOAuthConsumer, except they can return a Message on access error

@@ -5,7 +5,7 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Entity;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\User\User;
-use MWRestrictions;
+use MediaWiki\Utils\MWRestrictions;
 
 class MockClientEntity extends ClientEntity {
 	/**
