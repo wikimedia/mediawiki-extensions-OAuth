@@ -363,6 +363,7 @@
 	"mwoauth-oauth2-error-request-not-verified": "محاولة الحصول على خاصية متحقق منها قبل التحقق من الطلب",
 	"mwoauth-oauth2-invalid-access-token": "رمز وصول غير صحيح",
 	"mwoauth-consumer-access-no-user": "يجب أن تكون موافقة المستهلك ملزمة بمستخدم صالح ، مستخدم بمعرف 0 معين",
+	"mwoauth-consumer-access-grants-too-long": "موافقة المستهلك لديها الكثير من المنح",
 	"mwoauthconsumer-consumer-view": "عرض هذا المستهلك",
 	"mwoauthconsumer-application-view": "عرض هذا التطبيق",
 	"grant-oauthmanageownclient": "إدارة عملاء OAuth",
