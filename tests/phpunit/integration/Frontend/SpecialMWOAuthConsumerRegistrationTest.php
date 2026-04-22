@@ -233,6 +233,8 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 	 * the given subpage to the /propose endpoint is invalid.
 	 */
 	public function testExecuteInvalidProposeSubpage(): void {
+		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
+
 		$specialConReg = $this->newSpecialPage();
 		$user = $this->getTestSysop()->getUser();
 		$specialConReg->setContext( $this->prepareRequestContext( $user ) );
@@ -240,7 +242,7 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 		$specialConReg->execute( 'propose/invalidSubpage' );
 
 		$outputPage = $specialConReg->getContext()->getOutput();
-		$this->assertSame( 'Special:OAuthConsumerRegistration/propose', $outputPage->getRedirect() );
+		$this->assertSame( '/wiki/Special:OAuthConsumerRegistration/propose', $outputPage->getRedirect() );
 	}
 
 	public function testExecuteInvalidSpecialPageSubpage(): void {

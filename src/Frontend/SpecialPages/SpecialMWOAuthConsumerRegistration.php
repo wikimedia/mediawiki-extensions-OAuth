@@ -142,7 +142,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 					$this->proposeOAuth( Consumer::OAUTH_VERSION_1, $user, $allWikis, $showGrants );
 					break;
 				} else {
-					$this->getOutput()->redirect( 'Special:OAuthConsumerRegistration/propose' );
+					$this->getOutput()->redirect( $this->getPageTitle( 'propose' )->getLocalURL() );
 				}
 				break;
 			case 'update':
