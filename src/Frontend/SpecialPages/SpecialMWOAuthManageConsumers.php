@@ -63,7 +63,12 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		private readonly PermissionManager $permissionManager,
 		private readonly UrlUtils $urlUtils,
 	) {
-		parent::__construct( 'OAuthManageConsumers', 'mwoauthmanageconsumer' );
+		parent::__construct( 'OAuthManageConsumers' );
+	}
+
+	/** @inheritDoc */
+	public function getRestriction(): string {
+		return 'mwoauthmanageconsumer';
 	}
 
 	/** @inheritDoc */

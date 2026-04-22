@@ -40,7 +40,12 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		private readonly GrantsLocalization $grantsLocalization,
 		private readonly PermissionManager $permissionManager,
 	) {
-		parent::__construct( 'OAuthManageMyGrants', 'mwoauthmanagemygrants' );
+		parent::__construct( 'OAuthManageMyGrants' );
+	}
+
+	/** @inheritDoc */
+	public function getRestriction(): string {
+		return 'mwoauthmanagemygrants';
 	}
 
 	/** @inheritDoc */
