@@ -35,8 +35,7 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 	protected function setUp(): void {
 		parent::setUp();
 		$this->overrideConfigValues( [
-			'MWOAuthCentralWiki' => 'metawiki-unittest_',
-			MainConfigNames::DBname => 'metawiki',
+			'MWOAuthCentralWiki' => WikiMap::getCurrentWikiId(),
 			'MWOAuthSharedUserSource' => 'local',
 		] );
 
