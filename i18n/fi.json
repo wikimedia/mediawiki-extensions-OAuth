@@ -51,7 +51,7 @@
 	"mwoauth-consumer-stage-disabled": "Poistettu käytöstä",
 	"mwoauth-consumer-stage-suppressed": "Häivytetty",
 	"mwoauth-ignorewarnings": "Ohita varoitukset",
-	"mwoauth-consumers-central-wiki": "Asiakkaita voi hallinta vain keskuswikissä.",
+	"mwoauth-consumers-central-wiki": "Asiakashallinta on mahdollista vain keskuswikissä.",
 	"mwoauth-consumers-central-wiki-go": "Siirry tälle sivulle {{GRAMMAR:inessive|$1}}",
 	"oauthconsumerregistration": "OAuth-asiakasrekisteröinti",
 	"mwoauthconsumerregistration-navigation": "Valikko:",
