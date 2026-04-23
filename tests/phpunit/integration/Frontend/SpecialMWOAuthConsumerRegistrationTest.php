@@ -28,6 +28,8 @@ use StatusValue;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration
+ * @covers \MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl
+ * @covers \MediaWiki\Extension\OAuth\Control\SubmitControl
  * @group Database
  */
 class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCase {
