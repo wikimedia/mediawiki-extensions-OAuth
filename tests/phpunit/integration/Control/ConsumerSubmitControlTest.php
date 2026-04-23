@@ -19,6 +19,7 @@ use StatusValue;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl
+ * @covers \MediaWiki\Extension\OAuth\Control\SubmitControl
  * @group Database
  */
 class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
