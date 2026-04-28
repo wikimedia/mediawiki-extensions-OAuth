@@ -14,7 +14,7 @@
 	"mwoauth-named-account-required-reason-for-temp-user": "Гэтая функцыя даступная толькі зарэгістраваным карыстальнікам. Вы мусіце стварыць рахунак {{SITENAME}}, каб аўтарызаваць праґрамы.",
 	"mwoauth-available-only-to-registered": "Гэтая старонка даступная толькі для зарэгістраваных удзельнікаў.",
 	"mwoauth-db-readonly": "База зьвестак OAuth часткова заблякаваная. Калі ласка, паспрабуйце праз колькі хвілінаў.",
-	"mwoauth-missing-field": "Адсутнае значэньне для поля „$1“",
+	"mwoauth-missing-field": "Бракуе значэньня для поля „$1“",
 	"mwoauth-invalid-field": "Недапушчальнае значэньне для поля „$1“",
 	"mwoauth-invalid-field-generic": "Нададзенае недапушчальнае значэньне",
 	"mwoauth-invalid-field-oauth2GrantTypes": "Праграмы OAuth 2 павінны мець прынамсі адзін тып дазволу",
