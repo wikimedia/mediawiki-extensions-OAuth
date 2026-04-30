@@ -14,7 +14,8 @@
 			"Sujiniku",
 			"Waki285",
 			"Whym",
-			"Yusuke1109"
+			"Yusuke1109",
+			"Tensama0415"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "この変更を実行するために使用された OAuth コンシューマー ($1)",
@@ -279,6 +280,7 @@
 	"right-mwoauthviewprivate": "非公開OAuthデータを閲覧",
 	"right-mwoauthmanagemygrants": "OAuth付与を管理",
 	"action-mwoauthmanageconsumer": "OAuthコンシューマーの管理",
+	"action-mwoauthsuppress": "OAuthコンシューマーを秘匿",
 	"action-mwoauthmanagemygrants": "OAuth付与の管理",
 	"action-mwoauthproposeconsumer": "新しいコンシューマーの提案",
 	"action-mwoauthupdateownconsumer": "自分が制御できるOAuthコンシューマーの更新",
@@ -308,6 +310,7 @@
 	"notification-oauth-app-reenable-primary-link": "アプリを表示",
 	"notification-oauth-app-body": "理由: $1",
 	"mwoauth-oauth-version": "OAuth プロトコルのバージョン",
+	"mwoauth-oauth2-is-confidential": "機密クライアントを使用していますか？",
 	"mwoauth-oauth2-granttype-refresh-token": "トークンの更新",
 	"mwoauth-oauth2-invalid-access-token": "無効なアクセストークン",
 	"grant-oauthmanageownclient": "OAuth クライアントを管理"
