@@ -12,6 +12,8 @@ use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeProvi
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Response;
+use MediaWiki\Language\LanguageCode;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Response as RestResponse;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
@@ -23,6 +25,9 @@ use Wikimedia\ParamValidator\ParamValidator;
  * Handles the oauth2/authorize endpoint, which displays an authorization dialog to the user if
  * needed (by redirecting to Special:OAuth/approve), and returns an authorization code that can be
  * traded for the access token.
+ *
+ * Supports some OIDC parameters.
+ * @see https://openid.net/specs/openid-connect-basic-1_0.html#RequestParameters
  */
 class Authorize extends AuthenticationHandler {
 	private const RESPONSE_TYPE_CODE = 'code';
@@ -162,22 +167,70 @@ class Authorize extends AuthenticationHandler {
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
-			]
+			],
+			'display' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => [ 'page', 'popup', 'touch', 'wap' ],
+				ParamValidator::PARAM_DEFAULT => 'page',
+				ParamValidator::PARAM_REQUIRED => false,
+			],
+			'ui_locales' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false,
+			],
+		];
+	}
+
+	/**
+	 * Get generic query parameters to pass to Special:OAuth / Special:Userlogin
+	 */
+	private function getSpecialPageQueryParameters(): array {
+		$params = $this->getValidatedParams();
+		return [
+			// use popup mode for 'touch' and 'wap' as we don't have anything better
+			'display' => ( $params['display'] === 'page' ) ? null : 'popup',
+			'uselang' => $this->getUselangFromUiLocales( $params['ui_locales'] ?? null ),
 		];
 	}
 
 	private function getApprovalRedirectResponse( AuthorizationRequest $authRequest ): RestResponse {
+		$queryParams = [
+			'returnto' => $this->getRequest()->getUri()->getPath(),
+			'returntoquery' => $this->getQueryParamsCgi(),
+			'client_id' => $authRequest->getClient()->getIdentifier(),
+			'oauth_version' => ClientEntity::OAUTH_VERSION_2,
+			'scope' => implode( ' ', array_map( static function ( ScopeEntityInterface $scope ) {
+				return $scope->getIdentifier();
+			}, $authRequest->getScopes() ) ),
+		] + $this->getSpecialPageQueryParameters();
 		return $this->getResponseFactory()->createTemporaryRedirect(
-			SpecialPage::getTitleFor( 'OAuth', 'approve' )->getFullURL( [
-				'returnto' => $this->getRequest()->getUri()->getPath(),
-				'returntoquery' => $this->getQueryParamsCgi(),
-				'client_id' => $authRequest->getClient()->getIdentifier(),
-				'oauth_version' => ClientEntity::OAUTH_VERSION_2,
-				'scope' => implode( ' ', array_map( static function ( ScopeEntityInterface $scope ) {
-					return $scope->getIdentifier();
-				}, $authRequest->getScopes() ) )
-			] )
+			SpecialPage::getTitleFor( 'OAuth', 'approve' )->getFullURL( $queryParams )
 		);
+	}
+
+	/**
+	 * Converts the OIDC ui_locales parameter (a space-separated list of BCP47 codes) into a
+	 * MediaWiki language code.
+	 * @param string|null $uiLocales Value of ui_locales parameter (or null if not given).
+	 * @return string|null MediaWiki language code that can be used with the 'uselang' parameter
+	 *   (or null if ui_locales was not given or none of its values were valid / known).
+	 */
+	private function getUselangFromUiLocales( ?string $uiLocales ): ?string {
+		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+		$localeList = $uiLocales ? explode( ' ', $uiLocales ) : [];
+		foreach ( $localeList as $locale ) {
+			if ( !$languageNameUtils->isKnownLanguageTag( $locale ) ) {
+				continue;
+			}
+			// Does not handle most BCP47 tags with a region part (e.g. fr-CA) as LanguageCode
+			// doesn't. Didn't seem worthwhile to fix.
+			$code = LanguageCode::replaceDeprecatedCodes( LanguageCode::bcp47ToInternal( $locale ) );
+			if ( $code ) {
+				return $code;
+			}
+		}
+		return null;
 	}
 
 	private function getLoginRedirectResponse(): RestResponse {
@@ -187,7 +240,7 @@ class Authorize extends AuthenticationHandler {
 				'returntoquery' => wfArrayToCgi( [
 					'rest_url' => $this->getRequest()->getUri()->__toString(),
 				] ),
-			] )
+			] + $this->getSpecialPageQueryParameters() )
 		);
 	}
 

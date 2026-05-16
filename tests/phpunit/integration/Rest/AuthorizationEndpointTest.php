@@ -54,15 +54,36 @@ class AuthorizationEndpointTest extends EndpointTestBase {
 					'uri' => self::makeUri( '/oauth2/authorize' ),
 					'queryParams' => [
 						'client_id' => 'dummy',
-						'response_type' => 'code'
-					]
+						'response_type' => 'code',
+					],
 				],
 				[
 					'statusCode' => 307,
 					'reasonPhrase' => 'Temporary Redirect',
 					'protocolVersion' => '1.1',
-					'bodyPattern' => '/title=Special:UserLogin/'
-				]
+					'bodyPattern' => '/\btitle=Special:UserLogin\b/',
+				],
+			],
+
+			'redirect to login and preserve display/lang' => [
+				[
+					'method' => 'GET',
+					'uri' => self::makeUri( '/oauth2/authorize' ),
+					'queryParams' => [
+						'client_id' => 'dummy',
+						'response_type' => 'code',
+						'display' => 'popup',
+						'ui_locales' => 'fake fr en',
+					],
+				],
+				[
+					'statusCode' => 307,
+					'bodyPatterns' => [
+						'/\btitle=Special:UserLogin\b/',
+						'/\bdisplay=popup\b/',
+						'/\buselang=fr\b/',
+					],
+				],
 			],
 
 			'unknown consumer' => [
@@ -71,8 +92,8 @@ class AuthorizationEndpointTest extends EndpointTestBase {
 					'uri' => self::makeUri( '/oauth2/authorize' ),
 					'queryParams' => [
 						'client_id' => '1234567',
-						'response_type' => 'code'
-					]
+						'response_type' => 'code',
+					],
 				],
 				[
 					'statusCode' => 401,
@@ -85,20 +106,20 @@ class AuthorizationEndpointTest extends EndpointTestBase {
 
 			],
 
-			'success' => [
+			'redirect to authorization dialog' => [
 				[
 					'method' => 'GET',
 					'uri' => self::makeUri( '/oauth2/authorize' ),
 					'queryParams' => [
 						'client_id' => '33333333333333333333333333333333',
-						'response_type' => 'code'
-					]
+						'response_type' => 'code',
+					],
 				],
 				[
 					'statusCode' => 307,
 					'reasonPhrase' => 'Temporary Redirect',
 					'protocolVersion' => '1.1',
-					'bodyPattern' => '/title=Special:OAuth/'
+					'bodyPattern' => '/title=Special:OAuth/',
 				],
 				static function () {
 					$user = User::createNew( 'ResetClientSecretTestUser2' );
@@ -115,9 +136,49 @@ class AuthorizationEndpointTest extends EndpointTestBase {
 					Consumer::newFromArray( $consumerData )->save( $db );
 
 					return $user;
-				}
+				},
+			],
 
-			]
+			'redirect to authorization dialog and preserve display/lang' => [
+				[
+					'method' => 'GET',
+					'uri' => self::makeUri( '/oauth2/authorize' ),
+					'queryParams' => [
+						'client_id' => '33333333333333333333333333333333',
+						'response_type' => 'code',
+						'display' => 'popup',
+						'ui_locales' => 'fake fr en',
+					],
+				],
+				[
+					'statusCode' => 307,
+					'reasonPhrase' => 'Temporary Redirect',
+					'protocolVersion' => '1.1',
+					'bodyPatterns' => [
+						'/title=Special:OAuth/',
+						'/\bdisplay=popup\b/',
+						'/\buselang=fr\b/',
+					],
+				],
+				static function () {
+					$user = User::createNew( 'ResetClientSecretTestUser2' );
+
+					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
+					$db = Utils::getOAuthDB( DB_PRIMARY );
+
+					$consumerData = self::DEFAULT_CONSUMER_DATA;
+					$consumerData['userId'] = $centralId;
+					$consumerData['consumerKey'] = '33333333333333333333333333333333';
+					$consumerData['oauthVersion'] = '2';
+					$consumerData['name'] = 'test_name_user_successful';
+					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
+					Consumer::newFromArray( $consumerData )->save( $db );
+
+					return $user;
+				},
+			],
+
+			// TODO test actual authorization
 		];
 	}
 

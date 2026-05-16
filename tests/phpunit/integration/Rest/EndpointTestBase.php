@@ -92,11 +92,16 @@ abstract class EndpointTestBase extends MediaWikiIntegrationTestCase {
 		if ( isset( $responseInfo['protocolVersion'] ) ) {
 			$this->assertSame( $responseInfo['protocolVersion'], $response->getProtocolVersion() );
 		}
+		$bodyPatterns = [];
 		if ( isset( $responseInfo['bodyPattern'] ) ) {
-			$expectedPattern = $responseInfo['bodyPattern'];
-			$responseBody = (string)$response->getBody();
-
+			$bodyPatterns[] = $responseInfo['bodyPattern'];
+		} elseif ( isset( $responseInfo['bodyPatterns'] ) ) {
+			$bodyPatterns = $responseInfo['bodyPatterns'];
+		}
+		$responseBody = (string)$response->getBody();
+		foreach ( $bodyPatterns as $expectedPattern ) {
 			$this->assertMatchesRegularExpression( $expectedPattern, $responseBody );
+
 		}
 		if ( isset( $responseInfo['body'] ) ) {
 			$expectedBody = is_array( $responseInfo['body'] ) ?
@@ -116,6 +121,7 @@ abstract class EndpointTestBase extends MediaWikiIntegrationTestCase {
 				'reasonPhrase',
 				'protocolVersion',
 				'bodyPattern',
+				'bodyPatterns',
 				'body',
 			] ),
 			'$responseInfo may not contain unknown keys' );
