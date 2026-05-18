@@ -10,6 +10,7 @@ use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Control\SubmitControl;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
@@ -17,6 +18,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\User\User;
+use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IDatabase;
@@ -502,5 +504,23 @@ class Utils {
 		}
 
 		return iterator_to_array( User::findUsersByGroup( $wgOAuthGroupsToNotify ) );
+	}
+
+	/**
+	 * Get a UrlUtils instance suitable for validating OAuth app callback URLs.
+	 * Currently this allows using any protocols, not just those valid in wikitext links. (T412542)
+	 */
+	public static function getOAuthUrlUtils(): UrlUtils {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		// Yes, UrlUtils is @newable, so this is fine. (If you're here because you dislike that,
+		// consider migrating the validation code to use PHP 8.5 Uri\WhatWg\Url class.)
+		return new UrlUtils( [
+			UrlUtils::SERVER => $config->get( MainConfigNames::Server ),
+			UrlUtils::CANONICAL_SERVER => $config->get( MainConfigNames::CanonicalServer ),
+			UrlUtils::INTERNAL_SERVER => $config->get( MainConfigNames::InternalServer ),
+			UrlUtils::FALLBACK_PROTOCOL => WebRequest::detectProtocol(),
+			UrlUtils::HTTPS_PORT => $config->get( MainConfigNames::HttpsPort ),
+			UrlUtils::VALID_PROTOCOLS => UrlUtils::ALL_PROTOCOLS,
+		] );
 	}
 }

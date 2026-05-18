@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthServer;
 use MediaWiki\Linker\Linker;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
@@ -128,7 +127,7 @@ class MWOAuthServer extends OAuthServer {
 			return;
 		}
 
-		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
+		$urlUtils = Utils::getOAuthUrlUtils();
 
 		$reqCallback = $urlUtils->parse( $callback );
 		if ( $reqCallback === null ) {

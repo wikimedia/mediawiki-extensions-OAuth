@@ -181,7 +181,7 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function testSubmitOAuth1IgnoreWarwnings() {
+	public function testSubmitOAuth1IgnoreWarnings() {
 		$user = $this->getMutableTestUser()->getUser();
 		$this->doSubmit(
 			[
@@ -255,6 +255,26 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 				]
 			];
 		}
+
+		yield "https" => [
+			[
+				'callbackUrl' => 'https://example.com/oauth',
+			]
+		];
+
+		yield "custom app protocol, no slashes" => [
+			[
+				'callbackUrl' => 'example.app:oauth',
+				'oauth2IsConfidential' => false,
+			]
+		];
+
+		yield "custom app protocol, slashes" => [
+			[
+				'callbackUrl' => 'example.app://oauth',
+				'oauth2IsConfidential' => false,
+			]
+		];
 	}
 
 	/**
@@ -277,9 +297,31 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getMutableTestUser()->getUser();
 		$this->doSubmit(
 			[
-				'callbackUrl' => 'http://example.com',
+				'callbackUrl' => 'http://example.com/oauth',
 			] + $this->getNonOwnerOnlyOAuth2ConsumerFormData(),
 			StatusValue::newFatal( 'mwoauth-error-callback-url-must-be-https' ),
+			$user
+		);
+	}
+
+	public function testSubmitOAuth2InvalidProtocol() {
+		$user = $this->getMutableTestUser()->getUser();
+		$this->doSubmit(
+			[
+				'callbackUrl' => 'invalid_protocol://oauth',
+			] + $this->getNonOwnerOnlyOAuth2ConsumerFormData(),
+			StatusValue::newFatal( 'mwoauth-invalid-field', 'callbackUrl' ),
+			$user
+		);
+	}
+
+	public function testSubmitOAuth2ForgotProtocol() {
+		$user = $this->getMutableTestUser()->getUser();
+		$this->doSubmit(
+			[
+				'callbackUrl' => 'example.com/oauth',
+			] + $this->getNonOwnerOnlyOAuth2ConsumerFormData(),
+			StatusValue::newFatal( 'mwoauth-invalid-field', 'callbackUrl' ),
 			$user
 		);
 	}

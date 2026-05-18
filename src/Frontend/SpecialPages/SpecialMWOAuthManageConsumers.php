@@ -457,7 +457,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	protected function formatCallbackUrl( ConsumerAccessControl $cmrAc ) {
 		$url = $cmrAc->getCallbackUrl();
 		if ( $cmrAc->getDAO()->getCallbackIsPrefix() ) {
-			$urlParts = $this->urlUtils->parse( $cmrAc->getDAO()->getCallbackUrl() );
+			$urlParts = Utils::getOAuthUrlUtils()->parse( $cmrAc->getDAO()->getCallbackUrl() );
 			if ( ( $urlParts['port'] ?? null ) === 1 ) {
 				$warning = Html::element( 'span', [ 'class' => 'warning' ],
 					$this->msg( 'mwoauth-consumer-callbackurl-warning' )->text() );

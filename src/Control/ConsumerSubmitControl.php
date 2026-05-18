@@ -131,7 +131,7 @@ class ConsumerSubmitControl extends SubmitControl {
 						return true;
 					}
 
-					$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
+					$urlUtils = Utils::getOAuthUrlUtils();
 					$urlParts = $urlUtils->parse( $s );
 					if ( !$urlParts ) {
 						return false;
