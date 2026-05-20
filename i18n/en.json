@@ -333,7 +333,7 @@
 	"mwoauth-oauth-version-1": "OAuth 1.0a",
 	"mwoauth-oauth-version-2": "OAuth 2.0",
 	"mwoauth-oauth2-is-confidential": "Client is confidential",
-	"mwoauth-oauth2-is-confidential-help": "A confidential client is an application that is capable of keeping a client password confidential to the world. Non-confidential clients are less secure",
+	"mwoauth-oauth2-is-confidential-help": "A confidential client can store a client secret securely since it runs on a server that is inaccessible to end users. A public client (such as an installed app or a web app without a server component) cannot store a client secret securely since it runs on a device controlled by the end user.",
 	"mwoauth-oauth2-granttypes": "Allowed OAuth2 grant types",
 	"mwoauth-oauth2-granttype-auth-code": "Authorization code",
 	"mwoauth-oauth2-granttype-refresh-token": "Refresh token",
