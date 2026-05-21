@@ -113,7 +113,8 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		}
 		$this->checkReadOnly();
 
-		// Format is Special:OAuthConsumerRegistration[/propose/<oauth1a|oauth2>|/list|/update/<consumer key>]
+		// Format is Special:
+		// OAuthConsumerRegistration[/propose/<oauth1a|oauth2>|/list|/update/<consumer key>|/copy/<consumer key>]
 		$navigation = $par !== null ? explode( '/', $par ) : [];
 		$action = $navigation[0] ?? '';
 		$subPage = $navigation[1] ?? '';
@@ -144,6 +145,29 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				} else {
 					$this->getOutput()->redirect( $this->getPageTitle( 'propose' )->getLocalURL() );
 				}
+				break;
+			case 'copy':
+				if ( !$this->permissionManager->userHasRight( $user, 'mwoauthproposeconsumer' ) ) {
+					throw new PermissionsError( 'mwoauthproposeconsumer' );
+				}
+
+				$dbr = Utils::getOAuthDB( DB_REPLICA );
+				$cmrAc = ConsumerAccessControl::wrap(
+					Consumer::newFromKey( $dbr, $subPage ), $this->getContext() );
+				if ( !$cmrAc ) {
+					$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
+					break;
+				} elseif ( $cmrAc->getDAO()->getUserId() !== $centralUserId ) {
+					// Do not allow copying another user's consumer
+					$this->getOutput()->addWikiMsg( 'mwoauth-consumer-not-owned-by-user' );
+					break;
+				}
+
+				$allWikis = Utils::getAllWikiNames();
+				$showGrants = $this->grantsInfo->getValidGrants();
+				$this->proposeOAuth(
+					$cmrAc->getDAO()->getOAuthVersion(), $user, $allWikis, $showGrants, $cmrAc->getDAO()
+				);
 				break;
 			case 'update':
 				if ( !$this->permissionManager->userHasRight( $user, 'mwoauthupdateownconsumer' ) ) {
@@ -388,6 +412,11 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			$this->msg( 'mwoauthconsumerregistration-manage' )->text()
 		);
 
+		$links[] = $this->getLinkRenderer()->makeKnownLink(
+			$this->getPageTitle( 'copy/' . $cmrKey ),
+			$this->msg( 'mwoauthconsumerregistration-copy' )->text()
+		);
+
 		$links = $this->getLanguage()->pipeList( $links );
 
 		$time = htmlspecialchars( $this->getLanguage()->timeanddate(
@@ -456,8 +485,9 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 	 * @param User $user
 	 * @param string[] $allWikis
 	 * @param array $showGrants
+	 * @param Consumer|null $copyFrom If set, pre-fill the form with this consumer's details
 	 */
-	private function proposeOAuth( int $oauthVersion, User $user, $allWikis, $showGrants ) {
+	private function proposeOAuth( int $oauthVersion, User $user, $allWikis, $showGrants, ?Consumer $copyFrom = null ) {
 		if ( !in_array( $oauthVersion, [ Consumer::OAUTH_VERSION_1, Consumer::OAUTH_VERSION_2 ] ) ) {
 			throw new InvalidArgumentException( 'Invalid OAuth version' );
 		}
@@ -618,6 +648,39 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				'default' => 'propose'
 			]
 		];
+
+		// Pre-fill fields from an existing consumer when copying
+		if ( $copyFrom !== null ) {
+			$formDescriptor['name']['default'] = $copyFrom->getName();
+			$formDescriptor['version']['default'] = $copyFrom->getVersion();
+			$formDescriptor['description']['default'] = $copyFrom->getDescription();
+			$formDescriptor['ownerOnly']['default'] = $copyFrom->getOwnerOnly();
+			$formDescriptor['callbackUrl']['default'] = $copyFrom->getCallbackUrl();
+			$formDescriptor['callbackIsPrefix']['default'] = $copyFrom->getCallbackIsPrefix();
+			$formDescriptor['wiki']['default'] = $copyFrom->getWiki();
+			$formDescriptor['rsaKey']['default'] = $copyFrom->getRsaKey();
+			if ( $oauthVersion === Consumer::OAUTH_VERSION_2 ) {
+				$formDescriptor['oauth2IsConfidential']['default'] = $copyFrom->get( 'oauth2IsConfidential' );
+				$formDescriptor['oauth2GrantTypes']['default'] = $copyFrom->get( 'oauth2GrantTypes' );
+			}
+			// Derive granttype and grants from the stored grants array
+			$grants = $copyFrom->getGrants();
+			if ( in_array( 'mwoauth-authonly', $grants ) ) {
+				$formDescriptor['granttype']['default'] = 'authonly';
+			} elseif ( in_array( 'mwoauth-authonlyprivate', $grants ) ) {
+				$formDescriptor['granttype']['default'] = 'authonlyprivate';
+			} else {
+				$formDescriptor['granttype']['default'] = 'normal';
+				// Strip hidden or implied grants. they are re-added automatically on submit
+				$hiddenGrants = $this->grantsInfo->getHiddenGrants();
+				$visibleGrants = array_values( array_diff( $grants, $hiddenGrants ) );
+				$formDescriptor['grants']['default'] = array_map(
+					static fn ( $g ) => "grant-$g",
+					$visibleGrants
+				);
+			}
+		}
+
 		$formDescriptor = array_filter( $formDescriptor,
 			static fn ( $field ) => !isset( $field['oauthVersion'] ) || $field['oauthVersion'] === $oauthVersion
 		);
@@ -644,12 +707,18 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				return $control->submit();
 			}
 		);
-		$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-propose-legend' );
 		$form->setSubmitTextMsg( 'mwoauthconsumerregistration-propose-submit' );
-		$form->addPreHtml(
-			// mwoauthconsumerregistration-propose-text-oauth1
-			// mwoauthconsumerregistration-propose-text-oauth2
-			$this->msg( "mwoauthconsumerregistration-propose-text-oauth$oauthVersion" )->parseAsBlock() );
+		if ( $copyFrom !== null ) {
+			$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-copy-legend' );
+			$form->addPreHtml(
+			$this->msg( 'mwoauthconsumerregistration-copy-text' )->parseAsBlock() );
+		} else {
+			$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-propose-legend' );
+			$form->addPreHtml(
+				// mwoauthconsumerregistration-propose-text-oauth1
+				// mwoauthconsumerregistration-propose-text-oauth2
+				$this->msg( "mwoauthconsumerregistration-propose-text-oauth$oauthVersion" )->parseAsBlock() );
+		}
 
 		$status = $form->show();
 		if ( $status instanceof Status && $status->isOK() ) {
