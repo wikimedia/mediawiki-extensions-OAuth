@@ -227,7 +227,7 @@
 		},
 		"OAuthAutoApprove": {
 			"value": [],
-			"description": "Rules for automatically approving new consumers (instead of requiring manual review by an OAuth admin before they are usable). Takes a list of conditions; meeting any one of the conditions results in auto-approval. Conditions are an associative array of <rule name> => <rule value>; the condition is met if every one of its rules is satisfied. Current the only supported rule is 'grants', which takes a list of grant names, and is satisfied when all the grants requested for the consumer are within that list."
+			"description": "Rules for automatically approving new consumers (instead of requiring manual review by an OAuth admin before they are usable). Takes a list of conditions; meeting any one of the conditions results in auto-approval. Conditions are an associative array of <rule name> => <rule value>; the condition is met if every one of its rules is satisfied. Supported rules are: 'grants', which takes a list of grant names, and is satisfied when all the grants requested for the consumer are within that list; 'protocols', which takes an array of protocol names like 'https', and is satisfied when the callback URL's protocol is within that list."
 		},
 		"OAuthGroupsToNotify": {
 			"value": [],

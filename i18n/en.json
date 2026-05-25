@@ -36,6 +36,7 @@
 	"mwoauth-consumer-callbackurl": "OAuth \"callback\" URL:",
 	"mwoauth-consumer-callbackurl-help": "Unlike OAuth 1.0a, this URL is exactly matched",
 	"mwoauth-consumer-callbackurl-warning": "(wildcard port)",
+	"mwoauth-consumer-callbackurl-protocol": "(unusual protocol)",
 	"mwoauth-consumer-callbackisprefix": "Allow consumer to specify a callback in requests and use \"callback\" URL above as a required prefix.",
 	"mwoauth-consumer-granttypes": "Types of grants being requested:",
 	"mwoauth-consumer-grantsneeded": "Applicable grants:",

@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\Workflow;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\MediaWikiServices;
@@ -15,7 +16,8 @@ return [
 
 	'OAuthWorkflow' => static function ( MediaWikiServices $services ): Workflow {
 		$oauthConfig = OAuthServices::wrap( $services )->getConfig();
-		return new Workflow( new ServiceOptions( Workflow::CONSTRUCTOR_OPTIONS, $oauthConfig ) );
+		$oauthUrlUtils = Utils::getOAuthUrlUtils( $services->getMainConfig() );
+		return new Workflow( new ServiceOptions( Workflow::CONSTRUCTOR_OPTIONS, $oauthConfig ), $oauthUrlUtils );
 	},
 
 ];

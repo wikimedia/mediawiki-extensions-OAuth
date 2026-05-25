@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
+use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -510,8 +511,8 @@ class Utils {
 	 * Get a UrlUtils instance suitable for validating OAuth app callback URLs.
 	 * Currently this allows using any protocols, not just those valid in wikitext links. (T412542)
 	 */
-	public static function getOAuthUrlUtils(): UrlUtils {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+	public static function getOAuthUrlUtils( ?Config $config = null ): UrlUtils {
+		$config ??= MediaWikiServices::getInstance()->getMainConfig();
 		// Yes, UrlUtils is @newable, so this is fine. (If you're here because you dislike that,
 		// consider migrating the validation code to use PHP 8.5 Uri\WhatWg\Url class.)
 		return new UrlUtils( [

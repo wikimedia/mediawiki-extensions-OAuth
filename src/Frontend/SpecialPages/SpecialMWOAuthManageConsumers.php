@@ -133,6 +133,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		$this->addQueueSubtitleLinks( $consumerKey );
 
 		$this->getOutput()->addModuleStyles( 'ext.MWOAuth.styles' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 	}
 
 	/**
@@ -455,16 +456,19 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	 * @return HtmlSnippet|string Formatted callback URL, as a plaintext or HTML string
 	 */
 	protected function formatCallbackUrl( ConsumerAccessControl $cmrAc ) {
-		$url = $cmrAc->getCallbackUrl();
-		if ( $cmrAc->getDAO()->getCallbackIsPrefix() ) {
-			$urlParts = Utils::getOAuthUrlUtils()->parse( $cmrAc->getDAO()->getCallbackUrl() );
-			if ( ( $urlParts['port'] ?? null ) === 1 ) {
-				$warning = Html::element( 'span', [ 'class' => 'warning' ],
-					$this->msg( 'mwoauth-consumer-callbackurl-warning' )->text() );
-				$url = new HtmlSnippet( $url . ' ' . $warning );
-			}
+		$warnings = [];
+		$oauthUrlUtils = Utils::getOAuthUrlUtils( $this->getConfig() );
+
+		$urlParts = $oauthUrlUtils->parse( $cmrAc->getDAO()->getCallbackUrl() );
+		if ( !in_array( $urlParts['scheme'] ?? null, [ 'http', 'https' ], true ) ) {
+			$warnings[] = Html::warningBox( $this->msg( 'mwoauth-consumer-callbackurl-protocol' )->escaped() );
 		}
-		return $url;
+		if ( $cmrAc->getDAO()->getCallbackIsPrefix() && ( $urlParts['port'] ?? null ) === 1 ) {
+			$warnings[] = Html::warningBox( $this->msg( 'mwoauth-consumer-callbackurl-warning' )->escaped() );
+		}
+		return new HtmlSnippet(
+			htmlspecialchars( $cmrAc->getCallbackUrl() ) . implode( '', $warnings )
+		);
 	}
 
 	/**
