@@ -344,7 +344,7 @@
 	"notification-oauth-app-body": "Grund: $1",
 	"mwoauth-oauth-version": "OAuth-Protokoll-Version",
 	"mwoauth-oauth2-is-confidential": "Client ist vertraulich",
-	"mwoauth-oauth2-is-confidential-help": "Ein vertraulicher Client ist eine Anwendung, die ein Client-Passwort vertraulich halten kann. Nicht vertrauliche Clients sind weniger sicher",
+	"mwoauth-oauth2-is-confidential-help": "Ein vertraulicher Client kann ein Client-Geheimnis sicher speichern, da er auf einem Server läuft, auf den Endbenutzer keinen Zugriff haben. Ein öffentlicher Client (wie beispielsweise eine installierte App oder eine Web-App ohne Serverkomponente) kann ein Client-Geheimnis nicht sicher speichern, da er auf einem Gerät läuft, das vom Endbenutzer kontrolliert wird.",
 	"mwoauth-oauth2-granttypes": "Zulässige OAuth2-Berechtigungstypen",
 	"mwoauth-oauth2-granttype-auth-code": "Autorisierungscode",
 	"mwoauth-oauth2-granttype-refresh-token": "Token aktualisieren",

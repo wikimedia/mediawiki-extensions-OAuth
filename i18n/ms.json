@@ -21,5 +21,6 @@
 	"mwoauth-form-description-allwikis": "Salam $1,\n\nUntuk melengkapkan permintaan anda, '''$2''' memerlukan kebenaran dari pihak anda untuk melakukan tindakan berikut pada semua projek tapak ini:\n\n$4",
 	"mwoauth-form-button-approve": "Benarkan",
 	"mwoauth-form-button-cancel": "Batalkan",
-	"mwoauth-tag-reserved": "Teg-teg yang berawalan <code>OAuth CID:</code> adalah untuk kegunaan OAuth sahaja."
+	"mwoauth-tag-reserved": "Teg-teg yang berawalan <code>OAuth CID:</code> adalah untuk kegunaan OAuth sahaja.",
+	"echo-category-title-oauth-owner": "Pembangunan OAuth"
 }
