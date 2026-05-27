@@ -330,7 +330,7 @@
 	"notification-oauth-app-body": "Motivo: $1",
 	"mwoauth-oauth-version": "Version del protocollo OAuth",
 	"mwoauth-oauth2-is-confidential": "Cliente es confidential",
-	"mwoauth-oauth2-is-confidential-help": "Un cliente confidential es un application que es capace de guardar le contrasigno de un cliente confidential pro le mundo. Clientes non confidential es minus secur.",
+	"mwoauth-oauth2-is-confidential-help": "Un cliente confidential pote immagazinar un secreto de cliente de maniera secur perque illo se executa sur un servitor que es inaccessibile al usatores final. Un cliente public (p.ex. un application installate o un application web sin componente de servitor) non pote immagazinar un secreto de cliente de maniera secur perque illo se executa sur un dispositivo controlate per le usator final.",
 	"mwoauth-oauth2-granttypes": "Typos de concession OAuth2 permittite",
 	"mwoauth-oauth2-granttype-auth-code": "Codice de autorisation",
 	"mwoauth-oauth2-granttype-refresh-token": "Token de refrescamento",

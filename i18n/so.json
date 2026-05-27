@@ -30,5 +30,7 @@
 	"notification-oauth-app-approve-subject": "$1 {{GENDER:$1|wuu ansixiyey}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}",
 	"notification-oauth-app-reject-subject": "$1 {{GENDER:$1|wuu diiday}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}",
 	"notification-oauth-app-disable-subject": "$1 {{GENDER:$1|wuu damiyay}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}",
-	"notification-oauth-app-reenable-subject": "$1 {{GENDER:$1|dib u hawlgeliyey}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}"
+	"notification-oauth-app-reenable-subject": "$1 {{GENDER:$1|dib u hawlgeliyey}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}",
+	"mwoauth-oauth2-is-confidential-help": "Macaamiil sir ah wuxuu si ammaan ah u kaydin karaa sirta macmiilka maadaama uu ku shaqeeyo server aanay isticmaalayaashu si toos ah u geli karin. Macmiil furan (sida barnaamij la rakibo ama web app aan lahayn qayb adeega ah) ma kaydin karo sirta macmiilka si ammaan ah maadaama uu ku shaqeeyo qalab uu maamulo isticmaalaha.",
+	"mwoauthconsumer-application-view": "Eeg codsigan"
 }

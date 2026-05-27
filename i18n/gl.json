@@ -335,7 +335,7 @@
 	"notification-oauth-app-body": "Motivo: $1",
 	"mwoauth-oauth-version": "Versión do protocolo OAuth",
 	"mwoauth-oauth2-is-confidential": "O cliente é confidencial",
-	"mwoauth-oauth2-is-confidential-help": "Un cliente confidencial é unha aplicación capaz de manter o contrasinal dun cliente agochado para o resto do mundo. Os clientes non confidenciais son menos seguros.",
+	"mwoauth-oauth2-is-confidential-help": "Un cliente confidencial pode almacenar o segredo dun cliente de xeito seguro xa que se executa nun servidor que é inaccesible para os usuarios finais. Un cliente público (como unha aplicación instalada ou unha aplicación web sen un compoñente de servidor) non pode almacenar o segredo dun cliente de xeito seguro xa que se executa nun dispositivo controlado polo usuario final.",
 	"mwoauth-oauth2-granttypes": "Tipos de concesións de OAuth2 permitidas",
 	"mwoauth-oauth2-granttype-auth-code": "Código de autorización",
 	"mwoauth-oauth2-granttype-refresh-token": "Pase de actualización",
