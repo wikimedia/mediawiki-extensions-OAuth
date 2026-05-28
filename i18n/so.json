@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Abshirdheere"
+			"Abshirdheere",
+			"AhmedG612"
 		]
 	},
 	"mwoauth-prefs-managegrants": "Adeegyada ku xidhan",
@@ -23,5 +24,12 @@
 	"mwoauthmanagemygrants-review": "Maamulka galista",
 	"mwoauthmanagemygrants-revoke": "Ka laabasho gaarista",
 	"mwoauthmanagemygrants-grantaccept": "Siismo",
-	"mwoauthmanagemygrants-update": "Cusbonaysii siismada"
+	"mwoauthmanagemygrants-update": "Cusbonaysii siismada",
+	"mwoauthdatastore-request-token-already-used": "Codsigan hore ayaa loo dhammaystiray lamana soo gudbin karo mar kale.\nKu laabo barnaamijka oo isku day inaad mar kale ku xidhid akoonkaaga, ama la xiriir qoraha barnaamijka.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Calaamadda OAuth hore ayaa loo isticmaalay, $1</span>",
+	"mwoauthserver-consumer-owner-only": "\"$1\" waa barnaamij isku xiran oo kaliya milkiilaha isticmaali karo. Si aad u hesho calaamadda gelitaanka, eeg [[$2]].\n\n<span class=\"plainlinks mw-mwoautherror-details\">Isticmaaluhu waa kaliya milkiile, $3</span>",
+	"notification-oauth-app-approve-subject": "$1 {{GENDER:$1|wuu ansixiyey}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}",
+	"notification-oauth-app-reject-subject": "$1 {{GENDER:$1|wuu diiday}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}",
+	"notification-oauth-app-disable-subject": "$1 {{GENDER:$1|wuu damiyay}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}",
+	"notification-oauth-app-reenable-subject": "$1 {{GENDER:$1|dib u hawlgeliyey}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}",
+	"mwoauthconsumer-application-view": "Eeg codsigan"
 }
