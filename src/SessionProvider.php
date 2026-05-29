@@ -146,8 +146,8 @@ class SessionProvider
 				} else {
 					$access = ConsumerAcceptance::newFromId( $dbr, $accessId );
 				}
+				$logData['consumer'] = $resourceServer->getClient()->getConsumerKey();
 				if ( !$access ) {
-					$logData['consumer'] = $resourceServer->getClient()->getConsumerKey();
 					throw new MWOAuthException( 'mwoauth-oauth2-error-create-at-no-user-approval' );
 				}
 
