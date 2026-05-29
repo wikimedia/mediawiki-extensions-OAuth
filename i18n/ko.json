@@ -66,7 +66,7 @@
 	"mwoauth-consumer-email-mismatched": "제공한 이메일 주소는 계정과 일치하지 않습니다.",
 	"mwoauth-consumer-alreadyexists": "이 이름/버전/게시자 조합으로 된 컨슈머가 이미 존재합니다",
 	"mwoauth-consumer-alreadyexistsversion": "이 이름/게시자 조합으로 된 컨슈머가 같거나 높은 버전(\"$1\")으로 이미 존재합니다",
-	"mwoauth-consumer-not-accepted": "보류 중인 컨슈머 요청에 대한 정보를 업데이트할 수 없습니다",
+	"mwoauth-consumer-not-accepted": "대기 중인 컨슈머 요청에 대한 정보를 업데이트할 수 없습니다",
 	"mwoauth-consumer-not-proposed": "컨슈머가 현재 제안되어 있지 않습니다",
 	"mwoauth-consumer-not-disabled": "컨슈머가 현재 비활성화되어 있지 않습니다",
 	"mwoauth-consumer-not-approved": "컨슈머가 현재 승인되어 있지 않습니다 (비활성화되었을 수 있습니다)",

@@ -30,5 +30,6 @@
 	"notification-oauth-app-approve-subject": "$1 {{GENDER:$1|wuu ansixiyey}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}",
 	"notification-oauth-app-reject-subject": "$1 {{GENDER:$1|wuu diiday}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}",
 	"notification-oauth-app-disable-subject": "$1 {{GENDER:$1|wuu damiyay}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}",
-	"notification-oauth-app-reenable-subject": "$1 {{GENDER:$1|dib u hawlgeliyey}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}"
+	"notification-oauth-app-reenable-subject": "$1 {{GENDER:$1|dib u hawlgeliyey}} {{GENDER:$3|barnaamijkaaga OAuth}} ee {{SITENAME}}",
+	"mwoauthconsumer-application-view": "Eeg codsigan"
 }
