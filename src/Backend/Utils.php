@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\OAuth\Backend;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
-use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Control\SubmitControl;
@@ -291,7 +290,6 @@ class Utils {
 	 *
 	 * @param int $userId
 	 * @param bool|User|string $audience show hidden names based on this user, or false for public
-	 * @throws MWException
 	 * @return string|bool Username, false if not found, empty string if name is hidden
 	 */
 	public static function getCentralUserNameFromId( $userId, $audience = false ) {
