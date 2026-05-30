@@ -39,7 +39,10 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Mocks\Json\PlainJsonJwtCodec;
 use MediaWiki\Tests\Session\SessionProviderTestTrait;
+use MediaWiki\User\ActorStore;
+use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWiki\WikiMap\WikiMap;
@@ -561,6 +564,78 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * This should work with any kind of consumer. The test uses OAuth 2 owner-only to keep things simple.
+	 */
+	public function testAutocreateFromSession() {
+		$unregisteredUser = User::newFromName( __METHOD__ );
+		$this->assertFalse( $unregisteredUser->isRegistered() );
+
+		// In a real-world scenario, this consumer would be created on another wiki, where the user
+		// would be registered. To create it on *this* wiki in the test, mock a registered User object
+		// with the same name.
+		$mockUser = $this->createMock( User::class );
+		$mockUser->method( 'getId' )->willReturn( 999 );
+		$mockUser->method( 'isRegistered' )->willReturn( true );
+		$mockUser->method( 'getName' )->willReturn( __METHOD__ );
+		$mockUser->method( 'isEmailConfirmed' )->willReturn( true );
+		$mockUser->method( 'getEmail' )->willReturn( 'owner@wiki.domain' );
+
+		// We need a more thorough mock than in other tests to allow operations using the mock User object to succeed
+		$lookup = $this->createMock( CentralIdLookup::class );
+		$lookup->method( 'getScope' )->willReturn( 'mock:' );
+		$lookup->method( 'getProviderId' )->willReturn( 'mock' );
+		$lookup->method( 'lookupOwnedUserNames' )->willReturn( [ __METHOD__ => 456 ] );
+		$lookup->method( 'centralIdFromLocalUser' )->willReturn( 456 );
+		$lookup->method( 'nameFromCentralId' )->willReturn( __METHOD__ );
+		$lookup->method( 'localUserFromCentralId' )->willReturn( $unregisteredUser );
+		$lookup->method( 'isAttached' )->willReturn( true );
+		$this->setService( 'CentralIdLookup', $lookup );
+
+		$lookupFactory = $this->createMock( CentralIdLookupFactory::class );
+		$lookupFactory->method( 'getLookup' )->willReturn( $lookup );
+		$this->setService( 'CentralIdLookupFactory', $lookupFactory );
+
+		// Ensure that registering the consumer doesn't create broken actor entries
+		$this->setService( 'ActorStore', $this->createMock( ActorStore::class ) );
+		$this->setService( 'ActorStoreFactory', $this->createMock( ActorStoreFactory::class ) );
+
+		$config = $this->getConfig();
+		// Let's ensure this issuer matches with wgMWOAuthCentralWiki which happens to
+		// be a wiki ID and must match whatever URL we set here.
+		$issuer = $this->getServiceContainer()->getUrlUtils()->getCanonicalServer();
+		$config->set( MainConfigNames::UseSessionCookieJwt, false );
+		$config->set( OAuthConfigNames::OAuthUseJwtCookie, false );
+		$config->set( MainConfigNames::CanonicalServer, $issuer );
+		$startTime = 1_000_000;
+		ConvertibleTimestamp::setFakeTime( $startTime );
+
+		$provider = $this->getProvider();
+		$this->initProvider( $provider, $this->logger, $config, $this->getServiceContainer()->getSessionManager() );
+
+		$status = $this->createOAuth2OwnerOnlyConsumer( $mockUser );
+		$accessToken = $status->getValue()['result']['accessToken'];
+		$requestOAuth2 = $this->getOAuth2RequestWithNoJwtHeader( $accessToken );
+
+		$info = $provider->provideSessionInfo( $requestOAuth2 );
+		$this->assertNotNull( $info?->__toString() );
+		$this->assertNotNull( $info->getUserInfo() );
+		$this->assertSame( __METHOD__, $info->getUserInfo()->getName() );
+		$this->assertTrue( $info->getUserInfo()->isVerified() );
+		$this->assertSame(
+			[
+				[ LogLevel::DEBUG, 'OAuth request for missing local user {user}, will be autocreated later' ],
+				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
+			],
+			$this->logger->getBuffer()
+		);
+		$this->logger->clearBuffer();
+
+		$sessionUser = $requestOAuth2->getSession()->getUser();
+		$this->assertTrue( $sessionUser->equals( $unregisteredUser ) );
+		$this->assertFalse( $sessionUser->isRegistered() );
+	}
+
+	/**
 	 * OAuth1 consumers and OAuth2 owner-only consumers should emit
 	 * a JWT session cookie.
 	 */
@@ -910,6 +985,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		// NOTE: Owner-only consumers are approved on submission automatically, so no extra
 		// approval step is needed.
 		$actualStatus = $control->submit();
+		$this->assertStatusGood( $actualStatus );
 		/** @var ClientEntity $consumer */
 		$consumer = $actualStatus->getValue()['result']['consumer'];
 		$this->assertInstanceOf( ClientEntity::class, $consumer );

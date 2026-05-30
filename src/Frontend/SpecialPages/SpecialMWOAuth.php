@@ -9,6 +9,8 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
  */
 
 use Firebase\JWT\JWT;
+use LogicException;
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
@@ -29,6 +31,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Request\WebRequest;
@@ -266,8 +269,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 							'consumer_name' => $consumer->getName(),
 						] );
 					}
-					$localUser = Utils::getLocalUserFromCentralId( $access->getUserId() );
-					if ( !$localUser || !$localUser->isNamed() ) {
+
+					$username = Utils::getCentralUserNameFromId( $access->getUserId() );
+					if ( $username === false || $username === '' ) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-invalid-user', [
 							Message::rawParam( Linker::makeExternalLink(
 								'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
@@ -278,7 +282,31 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 							'consumer_name' => $consumer->getName(),
 							'cmra_id' => $access->getId(),
 						] );
-					} elseif ( $localUser->isLocked() ||
+					}
+
+					$localUser = User::newFromName( $username );
+
+					// Since we skipped normal session handling,
+					// attempt to autocreate the user now if it does not exist locally
+					if ( !$localUser->isRegistered() &&
+						MediaWikiServices::getInstance()->getUserNameUtils()->isValid( $localUser->getName() )
+					) {
+						$status = MediaWikiServices::getInstance()->getAuthManager()->autoCreateUser(
+							$localUser,
+							AuthManager::AUTOCREATE_SOURCE_SESSION,
+							false
+						);
+						if ( !$status->isOK() ) {
+							throw new MWOAuthException( 'mwoauth-invalid-authorization', [ $status->getMessage() ] );
+						}
+					}
+
+					if ( !$localUser->isRegistered() ) {
+						// If we got here and the user still does not exist locally, something is wrong
+						throw new LogicException( "Should have a local user at this point" );
+					}
+
+					if ( $localUser->isLocked() ||
 						( $config->get( 'BlockDisablesLogin' ) && $localUser->getBlock() )
 					) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-blocked-user', [

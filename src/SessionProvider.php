@@ -175,14 +175,8 @@ class SessionProvider
 			return $this->makeException( 'mwoauth-invalid-authorization-wrong-wiki', $wiki );
 		}
 
-		// There exists a local user
-		$localUser = Utils::getLocalUserFromCentralId( $access->getUserId() );
-		if ( !$localUser ) {
-			$localUser = User::newFromId( 0 );
-		}
-		// If there is an actual approval, but user bound to it does not exist
-		if ( $access->getId() > 0 && $localUser->getId() === 0 ) {
-			$this->logger->debug( 'OAuth request for invalid or non-local user {user}', $logData );
+		$username = Utils::getCentralUserNameFromId( $access->getUserId() );
+		if ( $username === false || $username === '' ) {
 			return $this->makeException( 'mwoauth-invalid-authorization-invalid-user',
 				Message::rawParam( Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
@@ -190,6 +184,12 @@ class SessionProvider
 					true
 				) )
 			);
+		}
+
+		// It's okay if the user does not exist locally, it should be autocreated later
+		$localUser = User::newFromName( $username );
+		if ( $access->getId() > 0 && $localUser->getId() === 0 ) {
+			$this->logger->debug( 'OAuth request for missing local user {user}, will be autocreated later', $logData );
 		}
 		if ( $localUser->isLocked() ) {
 			$this->logger->debug( 'OAuth request for locked user {user}', $logData );
