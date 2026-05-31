@@ -162,6 +162,13 @@ $specialPageAliases['sv'] = [
 	'OAuthManageMyGrants' => [ 'Anslutna_applikationer' ],
 ];
 
+/** Ukrainian (Українська) */
+$specialPageAliases['uk'] = [
+	'OAuthConsumerRegistration' => [ 'Реєстрація_споживача_OAuth' ],
+	'OAuthListConsumers' => [ 'Список_програм_OAuth' ],
+	'OAuthManageMyGrants' => [ 'Управління_підключеними_програмами' ],
+];
+
 /** Urdu (اردو) */
 $specialPageAliases['ur'] = [
 	'OAuthConsumerRegistration' => [ 'اندراج_اوآتھ_صارف', 'اوآتھ_اندراج' ],
