@@ -182,7 +182,7 @@
 	"notification-oauth-app-body": "Põhjus: $1",
 	"mwoauth-oauth-version": "OAuthi protokolli versioon",
 	"mwoauth-oauth2-is-confidential": "Klient on konfidentsiaalne",
-	"mwoauth-oauth2-is-confidential-help": "Konfidentsiaalne klient on rakendus, mis võimaldab hoida kliendi parooli maailma eest salajas. Mittekonfidentsiaalsed kliendid on vähem turvalised.",
+	"mwoauth-oauth2-is-confidential-help": "Konfidentsiaalne klient on kliendi saladuse talletamiseks turvaline, sest see töötab serveris, millele lõppkasutajatel puudub juurdepääs. Avalik klient nagu paigaldatud rakendus või veebirakendus ilma serverikomponendita ei võimalda kliendi saladust turvaliselt talletada, sest see töötab seadmes, mis on lõppkasutaja kontrolli all.",
 	"mwoauth-oauth2-granttypes": "Lubatud OAuth2 volituste tüübid",
 	"mwoauth-oauth2-granttype-auth-code": "Volitamiskood",
 	"mwoauth-oauth2-granttype-refresh-token": "Uuendamisluba",

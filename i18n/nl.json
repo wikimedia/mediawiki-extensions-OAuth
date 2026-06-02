@@ -347,7 +347,7 @@
 	"notification-oauth-app-body": "Reden: $1",
 	"mwoauth-oauth-version": "OAuth-protocolversie",
 	"mwoauth-oauth2-is-confidential": "Cliënt is vertrouwelijk",
-	"mwoauth-oauth2-is-confidential-help": "Een vertrouwelijke client is een toepassing die in staat is een clientwachtwoord vertrouwelijk te houden voor de wereld. Niet-vertrouwelijke clients zijn minder veilig.",
+	"mwoauth-oauth2-is-confidential-help": "Een vertrouwelijke client kan een clientgeheim veilig opslaan, omdat deze draait op een server die ontoegankelijk is voor eindgebruikers. Een openbare client (zoals een geïnstalleerde app of een webapplicatie zonder servercomponent) kan een clientgeheim niet veilig opslaan, omdat deze draait op een apparaat dat door de eindgebruiker wordt beheerd.",
 	"mwoauth-oauth2-granttypes": "Toegestane OAuth2-toekenningstypen",
 	"mwoauth-oauth2-granttype-auth-code": "Autorisatiecode",
 	"mwoauth-oauth2-granttype-refresh-token": "Token vernieuwen",
