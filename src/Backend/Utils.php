@@ -340,28 +340,12 @@ class Utils {
 	 * @return int|bool ID or false if not found
 	 */
 	public static function getCentralIdFromLocalUser( User $user ) {
-		// T227688 do not rely on array auto-creation for non-stdClass
-		if ( !isset( $user->oAuthUserData ) ) {
-			$user->oAuthUserData = [];
-		}
-
-		if ( isset( $user->oAuthUserData['centralId'] ) ) {
-			$id = $user->oAuthUserData['centralId'];
+		$lookup = self::getCentralIdLookup();
+		if ( !$lookup->isAttached( $user ) ) {
+			return false;
 		} else {
-			$lookup = self::getCentralIdLookup();
-			if ( !$lookup->isAttached( $user ) ) {
-				$id = false;
-			} else {
-				$id = $lookup->centralIdFromLocalUser( $user, CentralIdLookup::AUDIENCE_RAW );
-				if ( $id === 0 ) {
-					$id = false;
-				}
-			}
-			// Process cache the result to avoid queries
-			$user->oAuthUserData['centralId'] = $id;
+			return $lookup->centralIdFromLocalUser( $user, CentralIdLookup::AUDIENCE_RAW ) ?: false;
 		}
-
-		return $id;
 	}
 
 	/**
