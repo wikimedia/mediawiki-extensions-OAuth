@@ -104,6 +104,7 @@
 	"grant-mwoauth-authonlyprivate": "د کارن د پېژندنې تاييد یوازې د رښتيني نوم او برېښليک له لارې، د پاڼو د لوستلو يا د کارن په استازيتوب د چارو ترسراوي وړتيا نه لري.",
 	"mwoauth-listgrants-extra-summary": "== OAuth-ځانگړې وربښنې ==\n\nدا زياتي وربښنې د OAuth لگوونکو لپاره دي.",
 	"right-mwoauthproposeconsumer": "د نوي OAuth مصرفوونکو وړانديز",
+	"right-mwoauthupdateownconsumer": "د OAuth مصرفوونکي چې تاسو يې کنترولوئ، هممهالول",
 	"right-mwoauthmanagemygrants": "OAuth وربښنو مهارول",
 	"action-mwoauthmanagemygrants": "خپلې OAuth وربښنې مهارول",
 	"action-mwoauthproposeconsumer": "د نوي OAuth مصرفوونکي وړانديز",
