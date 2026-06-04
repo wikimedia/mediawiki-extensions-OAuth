@@ -35,7 +35,8 @@
 			"Yfdyh000",
 			"沈澄心",
 			"ExoHyper2026",
-			"Peterxy12"
+			"Peterxy12",
+			"Peterxy"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "用于执行此更改的OAuth客户端（$1）",
@@ -382,6 +383,7 @@
 	"mwoauth-oauth2-error-request-not-verified": "在验证请求之前尝试检索已验证的属性",
 	"mwoauth-oauth2-invalid-access-token": "无效的访问令牌",
 	"mwoauth-consumer-access-no-user": "客户端批准必须绑定到有效用户，给定了ID为0的用户",
+	"mwoauth-consumer-access-grants-too-long": "客户端批准的授权过多",
 	"mwoauthconsumer-consumer-view": "查看此客户端",
 	"mwoauthconsumer-application-view": "查看此应用程序",
 	"grant-oauthmanageownclient": "管理您的OAuth客户端",
