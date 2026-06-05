@@ -35,7 +35,8 @@
 			"Xiaomingyan",
 			"Xiplus",
 			"Yfdyh000",
-			"沈澄心"
+			"沈澄心",
+			"Peterxy"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "用于执行此更改的OAuth客户端（$1）",
@@ -292,6 +293,7 @@
 	"mwoauth-invalid-authorization-wrong-user": "您的请求中的授权标头用于另一用户",
 	"mwoauth-invalid-authorization-not-approved": "您尝试连接的应用程序似乎设置不正确。请联系作者“$1”获得帮助。",
 	"mwoauth-invalid-authorization-blocked-user": "您的请求中的授权标头来自被封禁用户",
+	"mwoauth-invalid-authorization-jwt": "无效的'sessionJwt' cookie：$1",
 	"mwoauth-not-api": "OAuth只能与API一起使用",
 	"mwoauth-form-description-allwikis": "您好$1，\n\n为了完成您的请求，'''$2'''需要权限以代表您在此网站所有项目上执行以下操作：\n\n$4",
 	"mwoauth-form-description-onewiki": "您好$1，\n\n为了完成您的请求，'''$2'''需要权限以代表您在''$4''上执行以下操作：\n\n$5",
@@ -385,6 +387,7 @@
 	"mwoauth-oauth2-error-request-not-verified": "在验证请求之前尝试检索已验证的属性",
 	"mwoauth-oauth2-invalid-access-token": "无效的访问令牌",
 	"mwoauth-consumer-access-no-user": "客户端批准必须绑定到有效用户，给定了ID为0的用户",
+	"mwoauth-consumer-access-grants-too-long": "客户端批准的授权过多",
 	"mwoauthconsumer-consumer-view": "查看此客户端",
 	"mwoauthconsumer-application-view": "查看此应用程序",
 	"grant-oauthmanageownclient": "管理您的OAuth客户端",

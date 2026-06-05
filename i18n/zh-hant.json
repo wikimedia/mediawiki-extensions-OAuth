@@ -286,7 +286,7 @@
 	"mwoauth-error": "應用程式連接錯誤",
 	"mwoauth-error-missing-callback-url-non-owner": "非擁有者的客戶端需要 callback_url",
 	"mwoauth-error-callback-url-custom-protocol-nonconfidential": "您必須使用 OAuth 2 非機密客戶端來自訂協議。",
-	"mwoauth-error-callback-url-must-be-https": "OAuth 2 回呼 URL 必須使用 HTTPS 架構",
+	"mwoauth-error-callback-url-must-be-https": "非本地的OAuth 2回呼URL必須使用HTTPS策略",
 	"mwoauth-error-callback-server-url": "回呼 URL 必須指向您擁有的伺服器。",
 	"mwoauth-error-callback-bare-domain-oauth1": "您未選擇「使用回呼 URL 作為前綴」選項，因此必須提供完整的 URL。僅給網域可能不會是您要的結果。",
 	"mwoauth-error-callback-bare-domain-oauth2": "OAuth 2 應用程式必須使用完整的回呼 URL。僅給網域可能不會是您要的結果。",
