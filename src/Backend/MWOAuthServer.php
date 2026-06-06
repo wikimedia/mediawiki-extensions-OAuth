@@ -135,6 +135,13 @@ class MWOAuthServer extends OAuthServer {
 				'consumer_name' => $consumer->getName(),
 				'callback_url' => $callback,
 			] );
+		} elseif ( isset( $reqCallback['user'] ) || isset( $reqCallback['pass'] ) ) {
+			// T428324 no need for user/pass and it could be used to confuse URL parsing
+			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix', [
+				'consumer' => $consumer->getConsumerKey(),
+				'consumer_name' => $consumer->getName(),
+				'callback_url' => $callback,
+			] );
 		}
 
 		$knownCallback = wfParseUrl( $consumer->getCallbackUrl() );
