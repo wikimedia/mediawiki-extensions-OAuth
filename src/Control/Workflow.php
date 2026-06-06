@@ -31,6 +31,12 @@ class Workflow {
 	 * @return bool
 	 */
 	public function consumerCanBeAutoApproved( Consumer $consumer ): bool {
+		$urlParts = $this->oauthUrlUtils->parse( $consumer->getCallbackUrl() );
+		if ( ( ( $urlParts['port'] ?? null ) === 1 ) && $consumer->getCallbackIsPrefix() ) {
+			// wildcard port
+			return false;
+		}
+
 		foreach ( $this->options->get( 'OAuthAutoApprove' ) as $condition ) {
 			// check 'grants' rule
 			if ( array_key_exists( self::AUTOAPPROVE_RULE_GRANTS, $condition ) ) {
@@ -44,7 +50,6 @@ class Workflow {
 			// check 'protocols' rule
 			if ( array_key_exists( self::AUTOAPPROVE_RULE_PROTOCOLS, $condition ) ) {
 				$allowedProtocols = $condition[self::AUTOAPPROVE_RULE_PROTOCOLS];
-				$urlParts = $this->oauthUrlUtils->parse( $consumer->getCallbackUrl() );
 				if ( !in_array( $urlParts['scheme'] ?? null, $allowedProtocols, true ) ) {
 					continue;
 				}
@@ -58,7 +63,7 @@ class Workflow {
 
 			return true;
 		}
-		// none of the conditions matched
+		// some of the conditions didn't match
 		return false;
 	}
 
