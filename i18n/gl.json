@@ -41,6 +41,7 @@
 	"mwoauth-consumer-callbackurl": "URL de chamada de retorno de OAuth:",
 	"mwoauth-consumer-callbackurl-help": "A diferenza de OAuth 1.0a, este enderezo URL ten que coincidir exactamente",
 	"mwoauth-consumer-callbackurl-warning": "(porto xenérico)",
+	"mwoauth-consumer-callbackurl-protocol": "(protocolo pouco común)",
 	"mwoauth-consumer-callbackisprefix": "Permite que o consumidor especifique unha chamada de retorno nas solicitudes e utilice o enderezo URL de chamada retorno anterior como prefixo obrigatorio.",
 	"mwoauth-consumer-granttypes": "Tipos de concesións que están a solicitarse:",
 	"mwoauth-consumer-grantsneeded": "Concesións aplicables:",

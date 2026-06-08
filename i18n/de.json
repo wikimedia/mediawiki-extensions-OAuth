@@ -50,6 +50,7 @@
 	"mwoauth-consumer-callbackurl": "OAuth-Callback-URL:",
 	"mwoauth-consumer-callbackurl-help": "Im Gegensatz zu OAuth 1.0a wird diese URL genau abgeglichen",
 	"mwoauth-consumer-callbackurl-warning": "(Wildcard-Port)",
+	"mwoauth-consumer-callbackurl-protocol": "(unübliches Protokoll)",
 	"mwoauth-consumer-callbackisprefix": "Dem Verbraucher die Angabe eines Callbacks in Anfragen ermöglichen und die obige Callback-URL als ein erforderliches Präfix verwenden.",
 	"mwoauth-consumer-granttypes": "Typen der angefragten Berechtigungen:",
 	"mwoauth-consumer-grantsneeded": "Anwendbare Berechtigungen:",

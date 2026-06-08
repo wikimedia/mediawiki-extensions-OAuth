@@ -26,6 +26,7 @@
 	"mwoauth-consumer-stage": "Актуелни статус:",
 	"mwoauth-consumer-email": "Имејл-адреса контакта:",
 	"mwoauth-consumer-description": "Опис апликације:",
+	"mwoauth-consumer-callbackurl-protocol": "(необичан протокол)",
 	"mwoauth-consumer-grantsneeded": "Применљиве дозволе:",
 	"mwoauth-consumer-wiki": "Применљиви пројекти:",
 	"mwoauth-consumer-wiki-thiswiki": "Тренутни пројекат ($1)",

@@ -34,6 +34,7 @@
 	"mwoauth-consumer-owner-only": "Questo cliente può essere usato solo da $1.",
 	"mwoauth-consumer-description": "Descrizione applicazione:",
 	"mwoauth-consumer-callbackurl": "URL di \"callback\" OAuth:",
+	"mwoauth-consumer-callbackurl-protocol": "(protocollo insolito)",
 	"mwoauth-consumer-granttypes": "Tipi di assegnazioni che saranno richieste:",
 	"mwoauth-consumer-grantsneeded": "Assegnazioni applicabili:",
 	"mwoauth-consumer-required-grant": "Applicabile al cliente",

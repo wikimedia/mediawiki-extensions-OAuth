@@ -29,6 +29,7 @@
 	"mwoauth-consumer-owner-only-label": "Besëtzer-nëmmen:",
 	"mwoauth-consumer-description": "Beschreiwung vum Programm:",
 	"mwoauth-consumer-callbackurl": "OAuth-Callback-URL:",
+	"mwoauth-consumer-callbackurl-protocol": "(ongewéinleche Protokoll)",
 	"mwoauth-consumer-wiki-thiswiki": "Aktuelle Projet ($1)",
 	"mwoauth-consumer-restrictions": "Limitatioune fir d'Benotzen:",
 	"mwoauth-consumer-restrictions-json": "Limitatioun fir d'Benotzen (JSON):",

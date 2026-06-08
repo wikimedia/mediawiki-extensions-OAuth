@@ -48,6 +48,7 @@
 	"mwoauth-consumer-callbackurl": "OAuth \"콜백\" URL:",
 	"mwoauth-consumer-callbackurl-help": "OAuth 1.0a와 달리 이 URL은 정확히 일치합니다",
 	"mwoauth-consumer-callbackurl-warning": "(와일드카드 포트)",
+	"mwoauth-consumer-callbackurl-protocol": "(드문 프로토콜)",
 	"mwoauth-consumer-callbackisprefix": "컨슈머가 요청에서 콜백을 지정할 수 있게 하고 위의 \"콜백\" URL을 필수 접두사로 사용합니다.",
 	"mwoauth-consumer-granttypes": "요청된 승인 유형들:",
 	"mwoauth-consumer-grantsneeded": "적용할 수 있는 부여:",
