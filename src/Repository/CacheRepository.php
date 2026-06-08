@@ -7,10 +7,7 @@ use Wikimedia\ObjectCache\BagOStuff;
 
 abstract class CacheRepository {
 
-	/**
-	 * @return static
-	 */
-	public static function factory() {
+	public static function factory(): static {
 		$cache = Utils::getSessionCache();
 
 		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic

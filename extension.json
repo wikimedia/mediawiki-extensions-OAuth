@@ -277,6 +277,10 @@
 			"description": "Controls validity period for refresh tokens (stored in the cache configured in MWOAuthSessionCacheType). Accepts ISO 8601 durations or can be set to \"infinity\" or false for non-expiring tokens. Defaults to one month.",
 			"value": "P1M"
 		},
+		"OAuth2RefreshTokenGracePeriod": {
+			"description": "Grace period in seconds after using a refresh token. During the grace period the token can be used again (to account for the client not receiving the new refresh token e.g. because of network errors, and having to retry the request).",
+			"value": 600
+		},
 		"OAuthUseJwtCookie": {
 			"description": "Whether to emit a JWT cookie when responding to an OAuth request which has no short-lived JWT (ie. it is either an OAuth 1 request or uses an owner-only consumer).",
 			"value": false

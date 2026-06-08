@@ -6,9 +6,25 @@ use InvalidArgumentException;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
+use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\RefreshTokenEntity;
+use MediaWiki\MediaWikiServices;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 class RefreshTokenRepository extends CacheRepository implements RefreshTokenRepositoryInterface {
+	public static function factory(): static {
+		$cache = Utils::getSessionCache();
+		$gracePeriod = MediaWikiServices::getInstance()->getMainConfig()->get( 'OAuth2RefreshTokenGracePeriod' );
+		return new static( $cache, $gracePeriod );
+	}
+
+	protected function __construct(
+		BagOStuff $cache,
+		protected readonly int $gracePeriod
+	) {
+		parent::__construct( $cache );
+	}
 
 	/**
 	 * Creates a new refresh token
@@ -44,7 +60,21 @@ class RefreshTokenRepository extends CacheRepository implements RefreshTokenRepo
 	 * Revoke the refresh token.
 	 */
 	public function revokeRefreshToken( string $tokenId ): void {
-		$this->delete( $tokenId );
+		$mergeFunction = function ( BagOStuff $cache, $cacheKey, $value ) {
+			if ( $value !== false ) {
+				/** @var array{identifier:string,accessToken:string,expires:int,graceExpires?: ?int} $value */
+				'@phan-var array{identifier:string,accessToken:string,expires:int,graceExpires?:?int} $value';
+				$graceExpiry = $value['graceExpires'] ?? null;
+				if ( $graceExpiry !== null ) {
+					// Already in grace period, nothing to do
+					return false;
+				} else {
+					$value['graceExpires'] = ConvertibleTimestamp::time() + $this->gracePeriod;
+				}
+			}
+			return $value;
+		};
+		$this->cache->merge( $this->getCacheKey( $tokenId ), $mergeFunction, $this->gracePeriod );
 	}
 
 	/**
@@ -63,6 +93,14 @@ class RefreshTokenRepository extends CacheRepository implements RefreshTokenRepo
 		// TODO would be nicer to directly store the approval ID (oaac_id) in the refresh token repo.
 		$refreshTokenData = $this->get( $tokenId );
 		if ( $refreshTokenData === false ) {
+			return true;
+		}
+		/** @var array{identifier:string,accessToken:string,expires:int,graceExpires?: ?int} $refreshTokenData */
+		'@phan-var array{identifier:string,accessToken:string,expires:int,graceExpires?:?int} $refreshTokenData';
+		$expiry = $refreshTokenData['graceExpires'] ?? $refreshTokenData['expires'];
+		if ( $expiry < ConvertibleTimestamp::time() ) {
+			// In theory this check is not needed because the cache item would have expired
+			// already, but no harm in checking just in case.
 			return true;
 		}
 		$accessTokenRepository = new AccessTokenRepository();
