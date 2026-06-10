@@ -36,6 +36,7 @@
 	"mwoauth-consumer-callbackurl": "URL de retorno pro OAuth:",
 	"mwoauth-consumer-callbackurl-help": "A differentia de OAuth 1.0a, iste adresse URL se verifica con precision",
 	"mwoauth-consumer-callbackurl-warning": "(porto arbitrari)",
+	"mwoauth-consumer-callbackurl-protocol": "(protocollo insolite)",
 	"mwoauth-consumer-callbackisprefix": "Permitte al consumitor specificar un appello de retorno in requestas e usar le URL \"callback\" hic supra como prefixo obligatori.",
 	"mwoauth-consumer-granttypes": "Typos de concession requestate:",
 	"mwoauth-consumer-grantsneeded": "Concessiones applicabile:",
