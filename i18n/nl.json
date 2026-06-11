@@ -32,7 +32,7 @@
 	"mwoauth-db-readonly": "De OAuth-database is tijdelijk vergrendeld. Probeer het over enkele minuten opnieuw.",
 	"mwoauth-missing-field": "Waarde voor het veld \"$1\" ontbreekt",
 	"mwoauth-invalid-field": "Er is een ongeldige waarde opgegeven voor het veld \"$1\"",
-	"mwoauth-invalid-field-generic": "Er is een ongeldige waarde opgegeven",
+	"mwoauth-invalid-field-generic": "Er is een onjuiste waarde opgegeven",
 	"mwoauth-invalid-field-oauth2GrantTypes": "OAuth 2-apps moeten ten minste één toewijzingstype aangeven",
 	"mwoauth-field-hidden": "(deze gegevens zijn verborgen)",
 	"mwoauth-field-private": "(deze gegevens zijn persoonlijk)",
