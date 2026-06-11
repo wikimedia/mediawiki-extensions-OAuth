@@ -6,13 +6,14 @@
 			"Robert Važan",
 			"Sudo77(new)",
 			"Teslaton",
-			"KormiSK"
+			"KormiSK",
+			"Wizzard"
 		]
 	},
 	"mwoauth-desc": "Umožňuje použitie OAuth 1.0a a OAuth 2.0 pre povolenie prístupu k API",
 	"mwoauth-prefs-managegrants": "Pripojené aplikácie:",
 	"mwoauth-prefs-managegrantslink": "Spravovať {{PLURAL:$1|$1 pripojenú aplikáciu|$1 pripojené aplikácie|$1 pripojených aplikácií|0=pripojené aplikácie}}",
-	"mwoauth-consumer-allwikis": "Všetky projekty na tomto webe",
+	"mwoauth-consumer-allwikis": "Všetky projekty",
 	"mwoauth-consumer-name": "Názov aplikácie:",
 	"mwoauth-consumer-version": "Verzia konzumenta:",
 	"mwoauth-consumer-user": "Vydavateľ:",
@@ -26,7 +27,7 @@
 	"mwoauth-consumer-restrictions-json": "Obmedzenie použitia (JSON):",
 	"mwoauth-consumer-rsakey": "Verejný RSA kľúč (nepovinný):",
 	"mwoauth-consumer-reason": "Dôvod:",
-	"mwoauth-consumer-grantshelp": "Každé oprávnenie prideľuje prístup k uvedeným používateľským právam, ktoré príslušný používateľský účet už má. Viac informácií nájdete v [[Special:ListGrants|tabuľke oprávnení]].",
+	"mwoauth-consumer-grantshelp": "Oprávnenia umožňujú prístup k právam, ktoré váš používateľský účet už má. Zapnutie oprávnenia tu neposkytuje prístup k žiadnym právam, ktoré by váš účet inak nemal. Viac informácií nájdete v [[Special:ListGrants|tabuľke oprávnení]].\n\nRizikové oprávnenia sú označené. Neoznačené oprávnenia je vo všeobecnosti ťažké zneužiť, ak aplikáciu unesie niekto so zlými úmyslami. Oprávnenia s rizikom vandalizmu (<span class=\"mw-grantriskgroup-vandalism\"></span>) možno použiť na spôsobenie škôd, ktorých odstránenie vyžaduje veľa úsilia. Oprávnenia s bezpečnostným rizikom (<span class=\"mw-grantriskgroup-security\"></span>) môžu spôsobiť trvalú škodu (napríklad krádež súkromných údajov). Interné oprávnenia (<span class=\"mw-grantriskgroup-internal\"></span>) zvyčajne používa len prevádzkovateľ stránky a žiadosti o ne sa takmer nikdy neschvaľujú. Nežiadajte prosím o rizikové oprávnenia, pokiaľ ich naozaj nepotrebujete.",
 	"mwoauth-consumer-stage-proposed": "navrhnuté",
 	"mwoauth-consumer-stage-rejected": "odmietnuté",
 	"mwoauth-consumer-stage-expired": "exspirované",
