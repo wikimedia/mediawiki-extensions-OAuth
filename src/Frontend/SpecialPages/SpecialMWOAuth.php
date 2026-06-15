@@ -505,7 +505,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		if ( $existing && $authenticate &&
 			$existing->getWiki() === $cmrAc->getDAO()->getWiki() &&
 			$existing->getGrants() === $cmrAc->getDAO()->getGrants() &&
-			 !array_diff( $existing->getGrants(), SubmitControl::AUTH_ONLY_GRANTS )
+			!array_diff( $existing->getGrants(), SubmitControl::AUTH_ONLY_GRANTS ) &&
+			$cmrAc->getDAO()->isConfidential()
 		) {
 			if ( $this->oauthVersion === Consumer::OAUTH_VERSION_2 ) {
 				$this->redirectToREST( [
