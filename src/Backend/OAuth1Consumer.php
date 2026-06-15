@@ -80,4 +80,8 @@ class OAuth1Consumer extends Consumer {
 	public function getOAuthVersion() {
 		return static::OAUTH_VERSION_1;
 	}
+
+	public function isConfidential(): bool {
+		return true;
+	}
 }

@@ -402,6 +402,12 @@ abstract class Consumer extends MWOAuthDAO {
 	abstract public function getOAuthVersion();
 
 	/**
+	 * Returns true if the client is able to keep secrets and thus can reliably identify itself
+	 * to the server.
+	 */
+	abstract public function isConfidential(): bool;
+
+	/**
 	 * The wiki on which the consumer is allowed to access user accounts. A wiki ID or '*' for all.
 	 * @return string
 	 */
