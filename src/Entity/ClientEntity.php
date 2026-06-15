@@ -29,9 +29,6 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 		return $this->getCallbackUrl();
 	}
 
-	/**
-	 * Returns true if the client is confidential.
-	 */
 	public function isConfidential(): bool {
 		return $this->oauth2IsConfidential;
 	}

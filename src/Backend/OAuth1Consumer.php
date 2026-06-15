@@ -64,4 +64,8 @@ class OAuth1Consumer extends Consumer {
 	public function getOAuthVersion(): int {
 		return static::OAUTH_VERSION_1;
 	}
+
+	public function isConfidential(): bool {
+		return true;
+	}
 }
