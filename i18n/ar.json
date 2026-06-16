@@ -344,7 +344,7 @@
 	"notification-oauth-app-body": "السبب: $1",
 	"mwoauth-oauth-version": "نسخة بروتوكول OAuth",
 	"mwoauth-oauth2-is-confidential": "العميل سري",
-	"mwoauth-oauth2-is-confidential-help": "العميل السري هو تطبيق قادر على الحفاظ على سرية كلمة مرور العميل للعالم. العملاء غير السريين أقل أمانًا",
+	"mwoauth-oauth2-is-confidential-help": "يستطيع العميل السري تخزين بيانات العميل السرية بأمان لأنه يعمل على خادم لا يمكن للمستخدمين النهائيين الوصول إليه. أما العميل العام (مثل تطبيق مثبت أو تطبيق ويب بدون مكون خادم) فلا يستطيع تخزين بيانات العميل السرية بأمان لأنه يعمل على جهاز يتحكم فيه المستخدم النهائي.",
 	"mwoauth-oauth2-granttypes": "أنواع منح OAuth2 المسموح بها",
 	"mwoauth-oauth2-granttype-auth-code": "كود التحقق",
 	"mwoauth-oauth2-granttype-refresh-token": "تحديث الرمز",
