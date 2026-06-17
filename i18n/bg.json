@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"ArcaneIE",
 			"Dicto23456",
 			"ShockD",
 			"Spiritia",
@@ -53,6 +54,10 @@
 	"mwoauthconsumerregistration-stage": "Статус",
 	"mwoauthconsumerregistration-lastchange": "Последна промяна",
 	"mwoauthconsumerregistration-manage": "управление",
+	"mwoauthconsumerregistration-copy": "Създайте ново приложение въз основа на това",
+	"mwoauthconsumerregistration-copy-legend": "Ново потребителско приложение за OAuth (копирано от съществуващо)",
+	"mwoauthconsumerregistration-copy-text": "Този формуляр е предварително попълнен с данните на съществуващо заявление. Коригирайте го, ако е необходимо, и го изпратете, за да го регистрирате като ново заявление.",
+	"mwoauth-consumer-not-owned-by-user": "Можете да копирате само OAuth потребители, които притежавате.",
 	"mwoauthmanageconsumers-showproposed": "Предложени заявки",
 	"mwoauthmanageconsumers-showrejected": "Отказани заявки",
 	"mwoauthmanageconsumers-showexpired": "Изтекли заявки",
