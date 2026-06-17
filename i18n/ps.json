@@ -109,6 +109,7 @@
 	"action-mwoauthupdateownconsumer": "د OAuth مصرفوونکي چې تاسو يې کنترولوئ، هممهالول",
 	"mwoauth-botpasswords-note": "<strong>يادونه:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> د روباټ پټنومونو په پرتله ډېر خوندي دی او هرکله چې روباټ يې ملاتړ کوي، بايد غوره شي.",
 	"echo-category-title-oauth-owner": "OAuth پراختيا",
+	"echo-pref-tooltip-oauth-owner": "د OAuth غوښتنليکونو اړوند پېښو په اړه دې خبر راکړل شي؛ کومې چې ما جوړې کړې دي.",
 	"echo-category-title-oauth-admin": "OAuth پازوال",
 	"notification-oauth-app-propose-primary-link": "د کاريال بياکتنه",
 	"notification-oauth-app-update-primary-link": "د کاريال بياکتنه",

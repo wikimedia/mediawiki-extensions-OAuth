@@ -107,5 +107,6 @@
 	"mwoauth-form-description-onewiki-privateinfo": "Salam $1, \n\nSorğunuzu tamamlamaq üçün, '''$2''', sizin adınızdan '''$4''' saytındakı (həqiqi adınız və e-poçt ünvanı da daxil olmaqla) məlumatları əldə etmək üçün icazə istəyir. Hesabınızda heç bir dəyişiklik olmayacaq.",
 	"mwoauth-form-description-allwikis-privateinfo-norealname": "Salam $1, \n\nSorğunuzu tamamlamaq üçün, '''$2''', sizin adınızdan bu saytın bütün layihələrindəki (e-poçt ünvanı da daxil olmaqla) sizin haqqınızdakı məlumatları əldə etmək üçün icazə istəyir. Hesabınızda heç bir dəyişiklik olmayacaq.",
 	"mwoauth-form-description-onewiki-privateinfo-norealname": "Salam $1, \n\nSorğunuzu tamamlamaq üçün, '''$2''', sizin adınızdan '''$4''' saytındakı (e-poçt ünvanı da daxil olmaqla) məlumatları əldə etmək üçün icazə istəyir. Hesabınızda heç bir dəyişiklik olmayacaq.",
-	"mwoauth-form-button-approve": "İcazə ver"
+	"mwoauth-form-button-approve": "İcazə ver",
+	"mwoauth-form-button-cancel": "İmtina"
 }
