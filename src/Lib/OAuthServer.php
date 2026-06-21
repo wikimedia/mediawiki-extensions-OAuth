@@ -26,16 +26,20 @@
 
 namespace MediaWiki\Extension\OAuth\Lib;
 
-use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
-use MediaWiki\Extension\OAuth\Lib\OAuthException;
-use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
+use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Handles OAuth 1 token generation / lookup / verification.
+ */
 class OAuthServer {
-	protected $timestamp_threshold = 300; // in seconds, five minutes
-	protected $version = '1.0'; // hi blaine
-	protected $signature_methods = array();
+	/** Allowed lag / clock drift for OAuth1 signatures */
+	protected const TIMESTAMP_THRESHOLD = 300;
+	/** @var string Protocol version */
+	protected $version = '1.0';
+	/** @var array<string,OAuthSignatureMethod> */
+	protected $signature_methods = [];
 
 	/** @var OAuthDataStore */
 	protected $data_store;
@@ -43,11 +47,18 @@ class OAuthServer {
 	/** @var LoggerInterface */
 	protected $logger;
 
-	function __construct( $data_store ) {
+	/**
+	 * @param OAuthDataStore $data_store
+	 */
+	public function __construct( $data_store ) {
 		$this->data_store = $data_store;
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
 	}
 
+	/**
+	 * @param OAuthSignatureMethod $signature_method
+	 * @return void
+	 */
 	public function add_signature_method( $signature_method ) {
 		$this->signature_methods[$signature_method->get_name()] = $signature_method;
 	}
@@ -57,6 +68,9 @@ class OAuthServer {
 	/**
 	 * process a request_token request
 	 * returns the request token on success
+	 *
+	 * @param OAuthRequest &$request
+	 * @return OAuthToken
 	 */
 	public function fetch_request_token( &$request ) {
 		$this->get_version( $request );
@@ -78,6 +92,9 @@ class OAuthServer {
 	/**
 	 * process an access_token request
 	 * returns the access token on success
+	 *
+	 * @param OAuthRequest &$request
+	 * @return OAuthToken
 	 */
 	public function fetch_access_token( &$request ) {
 		$this->get_version( $request );
@@ -98,6 +115,9 @@ class OAuthServer {
 
 	/**
 	 * verify an api call, checks all the parameters
+	 *
+	 * @param OAuthRequest &$request
+	 * @return array{Consumer,OAuthToken}
 	 */
 	public function verify_request( &$request ) {
 		$this->get_version( $request );
@@ -105,10 +125,10 @@ class OAuthServer {
 		$token = $this->get_token( $request, $consumer, "access" );
 		$this->check_signature( $request, $consumer, $token );
 
-		return array(
+		return [
 			$consumer,
 			$token
-		);
+		];
 	}
 
 	// Internals from here
@@ -116,6 +136,8 @@ class OAuthServer {
 	/**
 	 * version 1
 	 *
+	 * @param OAuthRequest &$request
+	 * @return string
 	 * @throws OAuthException
 	 */
 	protected function get_version( &$request ) {
@@ -135,6 +157,8 @@ class OAuthServer {
 	/**
 	 * figure out the signature with some defaults
 	 *
+	 * @param OAuthRequest $request
+	 * @return OAuthSignatureMethod
 	 * @throws OAuthException
 	 */
 	private function get_signature_method( $request ) {
@@ -148,7 +172,7 @@ class OAuthServer {
 			throw new OAuthException( 'No signature method parameter. This parameter is required' );
 		}
 
-		if ( !in_array( $signature_method, array_keys( $this->signature_methods ) ) ) {
+		if ( !( $this->signature_methods[$signature_method] ?? null ) ) {
 			throw new OAuthException(
 				"Signature method '$signature_method' not supported " . "try one of the following: " . implode(
 					", ",
@@ -163,6 +187,9 @@ class OAuthServer {
 	/**
 	 * try to find the consumer for the provided request's consumer key
 	 *
+	 *
+	 * @param OAuthRequest $request
+	 * @return Consumer
 	 * @throws OAuthException
 	 */
 	protected function get_consumer( $request ) {
@@ -185,6 +212,10 @@ class OAuthServer {
 	/**
 	 * try to find the token for the provided request's token key
 	 *
+	 * @param OAuthRequest $request
+	 * @param Consumer $consumer
+	 * @param string $token_type 'request' or 'access'
+	 * @return OAuthToken
 	 * @throws OAuthException
 	 */
 	protected function get_token( $request, $consumer, $token_type = "access" ) {
@@ -208,9 +239,15 @@ class OAuthServer {
 	 * all-in-one function to check the signature on a request
 	 * should guess the signature method appropriately
 	 *
+	 * @param OAuthRequest $request
+	 * @param Consumer $consumer
+	 * @param ?OAuthToken $token
 	 * @throws OAuthException
 	 */
 	protected function check_signature( $request, $consumer, $token ) {
+		// FIXME Consumer is property-access-compatible with OAuthConsumer
+		/** @var OAuthConsumer $consumer */'@phan-var OAuthConsumer $consumer';
+
 		// this should probably be in a different method
 		$timestamp = $request instanceof OAuthRequest ? $request->get_parameter(
 			'oauth_timestamp'
@@ -240,6 +277,8 @@ class OAuthServer {
 	/**
 	 * check that the timestamp is new enough
 	 *
+	 * @param int $timestamp
+	 * @return void
 	 * @throws OAuthException
 	 */
 	private function check_timestamp( $timestamp ) {
@@ -251,7 +290,7 @@ class OAuthServer {
 
 		// verify that timestamp is recentish
 		$now = time();
-		if ( abs( $now - $timestamp ) > $this->timestamp_threshold ) {
+		if ( abs( $now - $timestamp ) > self::TIMESTAMP_THRESHOLD ) {
 			throw new OAuthException(
 				"Expired timestamp, yours $timestamp, ours $now"
 			);
@@ -261,6 +300,11 @@ class OAuthServer {
 	/**
 	 * check that the nonce is not repeated
 	 *
+	 * @param OAuthConsumer $consumer
+	 * @param ?OAuthToken $token
+	 * @param ?string $nonce
+	 * @param int $timestamp
+	 * @return void
 	 * @throws OAuthException
 	 */
 	private function check_nonce( $consumer, $token, $nonce, $timestamp ) {

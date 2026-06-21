@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth\Backend;
 use InvalidArgumentException;
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
+use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
@@ -140,13 +141,13 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * Note, timestamp has already been checked, so this should be a fresh nonce.
 	 *
 	 * @param Consumer|OAuthConsumer $consumer
-	 * @param string $token
+	 * @param ?OAuthToken $token
 	 * @param string $nonce
 	 * @param int $timestamp
 	 * @return bool
 	 */
 	public function lookup_nonce( $consumer, $token, $nonce, $timestamp ) {
-		$key = Utils::getCacheKey( 'nonce', $consumer->key, $token, $nonce );
+		$key = Utils::getCacheKey( 'nonce', $consumer->key, (string)$token, $nonce );
 		// Do an add for the key associated with this nonce to check if it was already used.
 		// Set timeout 5 minutes in the future of the timestamp as OAuthServer does. Use the
 		// timestamp so the client can also expire their nonce records after 5 mins.
@@ -240,13 +241,14 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * Return a new access token attached to this consumer for the user associated with this
 	 * token if the request token is authorized. Should also invalidate the request token.
 	 *
-	 * @param MWOAuthToken $token the request token that started this
+	 * @param OAuthToken $token the request token that started this
 	 * @param Consumer $consumer
 	 * @param int|null $verifier
 	 * @throws MWOAuthException
 	 * @return MWOAuthToken the access token
 	 */
 	public function new_access_token( $token, $consumer, $verifier = null ) {
+		/** @var MWOAuthToken $token */'@phan-var MWOAuthToken $token';
 		$this->logger->debug( __METHOD__ .
 			": Getting new access token for token {$token->key}, consumer {$consumer->key}" );
 
@@ -276,7 +278,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	/**
 	 * Update a request token. The token probably already exists, but had another attribute added.
 	 *
-	 * @param MWOAuthToken $token the token to store
+	 * @param OAuthToken $token the token to store
 	 * @param Consumer|OAuthConsumer $consumer
 	 */
 	public function updateRequestToken( $token, $consumer ) {

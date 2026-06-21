@@ -52,7 +52,7 @@ class MockOAuthDataStore extends OAuthDataStore {
 
 	/**
 	 * @param OAuthConsumer $consumer
-	 * @param string $token
+	 * @param ?OAuthToken $token
 	 * @param string $nonce
 	 * @param int $timestamp
 	 *

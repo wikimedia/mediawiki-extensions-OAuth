@@ -26,9 +26,6 @@
 
 namespace MediaWiki\Extension\OAuth\Lib;
 
-use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
-use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
-use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerInterface;
 
@@ -58,7 +55,7 @@ abstract class OAuthSignatureMethod {
 	 * request is serialized
 	 * @param OAuthRequest $request
 	 * @param OAuthConsumer $consumer
-	 * @param OAuthToken $token
+	 * @param ?OAuthToken $token
 	 * @return string
 	 */
 	abstract public function build_signature( $request, $consumer, $token );
@@ -67,7 +64,7 @@ abstract class OAuthSignatureMethod {
 	 * Verifies that a given signature is correct
 	 * @param OAuthRequest $request
 	 * @param OAuthConsumer $consumer
-	 * @param OAuthToken $token
+	 * @param ?OAuthToken $token
 	 * @param string|null $signature
 	 * @return bool
 	 */

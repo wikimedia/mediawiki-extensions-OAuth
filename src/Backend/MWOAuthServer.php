@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
+use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthServer;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Message\Message;
@@ -26,7 +27,7 @@ class MWOAuthServer extends OAuthServer {
 	 * Process a request_token request returns the request token on success. This
 	 * also checks the IP restriction, which the OAuthServer method did not.
 	 *
-	 * @param MWOAuthRequest &$request
+	 * @param OAuthRequest &$request
 	 * @return MWOAuthToken
 	 * @throws MWOAuthException
 	 */
@@ -233,7 +234,7 @@ class MWOAuthServer extends OAuthServer {
 	 * process an access_token request
 	 * returns the access token on success
 	 *
-	 * @param MWOAuthRequest &$request
+	 * @param OAuthRequest &$request
 	 * @return MWOAuthToken
 	 * @throws MWOAuthException
 	 */
@@ -298,7 +299,7 @@ class MWOAuthServer extends OAuthServer {
 	/**
 	 * Wrap the call to the parent function and check that the source IP of
 	 * the request is allowed by this consumer's restrictions.
-	 * @param MWOAuthRequest &$request
+	 * @param OAuthRequest &$request
 	 * @return array
 	 */
 	public function verify_request( &$request ) {
@@ -312,10 +313,11 @@ class MWOAuthServer extends OAuthServer {
 	 * setup by the Consumer. It throws an exception if IP address is invalid.
 	 *
 	 * @param Consumer $consumer
-	 * @param MWOAuthRequest $request
+	 * @param OAuthRequest $request
 	 * @throws MWOAuthException
 	 */
 	private function checkSourceIP( $consumer, $request ) {
+		/** @var MWOAuthRequest $request */'@phan-var MWOAuthRequest $request';
 		$restrictions = $consumer->getRestrictions();
 		if ( !$restrictions->checkIP( $request->getSourceIP() ) ) {
 			throw new MWOAuthException( 'mwoauthdatastore-bad-source-ip', [
