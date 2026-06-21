@@ -71,6 +71,7 @@ class ResetClientSecret extends AbstractClientHandler {
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-client_key' ),
 			],
 		];
 	}
@@ -85,6 +86,7 @@ class ResetClientSecret extends AbstractClientHandler {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => '',
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-reason' ),
 			],
 		];
 	}

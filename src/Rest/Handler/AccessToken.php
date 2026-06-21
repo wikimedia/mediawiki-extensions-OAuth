@@ -11,6 +11,7 @@ use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshTokenAccessToke
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Response;
 use Throwable;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -69,41 +70,49 @@ class AccessToken extends AuthenticationHandler {
 					ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
 				],
 				ParamValidator::PARAM_REQUIRED => true,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-grant_type' ),
 			],
 			'client_id' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-client_id' ),
 			],
 			'client_secret' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-client_secret' ),
 			],
 			'redirect_uri' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-redirect_uri' ),
 			],
 			'scope' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-scope' ),
 			],
 			'code' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-code' ),
 			],
 			'refresh_token' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-refresh_token' ),
 			],
 			'code_verifier' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-code_verifier' ),
 			]
 		];
 	}

@@ -90,19 +90,22 @@ class ListClients extends SimpleHandler {
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'integer',
 				ParamValidator::PARAM_REQUIRED => false,
-				ParamValidator::PARAM_DEFAULT => 25
+				ParamValidator::PARAM_DEFAULT => 25,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-limit' ),
 			],
 			'offset' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'integer',
 				ParamValidator::PARAM_REQUIRED => false,
-				ParamValidator::PARAM_DEFAULT => 0
+				ParamValidator::PARAM_DEFAULT => 0,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-offset' ),
 			],
 			'oauth_version' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => [ '1', '2' ],
 				ParamValidator::PARAM_REQUIRED => false,
-				ParamValidator::PARAM_DEFAULT => '2'
+				ParamValidator::PARAM_DEFAULT => '2',
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-oauth_version' ),
 			]
 		];
 	}

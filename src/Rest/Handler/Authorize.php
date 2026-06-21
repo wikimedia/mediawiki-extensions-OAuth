@@ -19,6 +19,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use Throwable;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -124,31 +125,37 @@ class Authorize extends AuthenticationHandler {
 					self::RESPONSE_TYPE_CODE
 				],
 				ParamValidator::PARAM_REQUIRED => true,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-response_type' ),
 			],
 			'client_id' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-client_id' ),
 			],
 			'redirect_uri' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-redirect_uri' ),
 			],
 			'scope' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-scope' ),
 			],
 			'state' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-state' ),
 			],
 			'code_challenge' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-code_challenge' ),
 			],
 			'code_challenge_method' => [
 				self::PARAM_SOURCE => 'query',
@@ -157,27 +164,32 @@ class Authorize extends AuthenticationHandler {
 					'S256'
 				],
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-code_challenge_method' ),
 			],
 			'approval_cancel' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-approval_cancel' ),
 			],
 			'approval_pass' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-approval_pass' ),
 			],
 			'display' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => [ 'page', 'popup', 'touch', 'wap' ],
 				ParamValidator::PARAM_DEFAULT => 'page',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-display' ),
 			],
 			'ui_locales' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-ui_locales' ),
 			],
 		];
 	}

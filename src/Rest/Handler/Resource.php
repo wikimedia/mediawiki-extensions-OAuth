@@ -12,6 +12,7 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use Psr\Http\Message\ResponseInterface;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -152,6 +153,7 @@ class Resource extends Handler {
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => [ self::TYPE_PROFILE, self::TYPE_SCOPES ],
 				ParamValidator::PARAM_REQUIRED => true,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-type' ),
 			],
 		];
 	}

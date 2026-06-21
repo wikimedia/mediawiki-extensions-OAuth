@@ -95,7 +95,8 @@
 	},
 	"MessagesDirs": {
 		"MWOAuth": [
-			"i18n"
+			"i18n",
+			"i18n/rest"
 		]
 	},
 	"ExtensionMessagesFiles": {
@@ -306,26 +307,46 @@
 	"RestRoutes": [
 		{
 			"path": "/oauth2/authorize",
-			"factory": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\Authorize::factory"
+			"factory": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\Authorize::factory",
+			"openApiSpec": {
+				"x-i18n-description": "mwoauth-rest-description-authorize",
+				"x-i18n-summary": "mwoauth-rest-summary-authorize"
+			}
 		},
 		{
 			"path": "/oauth2/access_token",
 			"factory": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\AccessToken::factory",
-			"method": "POST"
+			"method": "POST",
+			"openApiSpec": {
+				"x-i18n-description": "mwoauth-rest-description-access_token",
+				"x-i18n-summary": "mwoauth-rest-summary-access_token"
+			}
 		},
 		{
 			"path": "/oauth2/resource/{type}",
-			"factory": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\Resource::factory"
+			"factory": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\Resource::factory",
+			"openApiSpec": {
+				"x-i18n-description": "mwoauth-rest-description-resource",
+				"x-i18n-summary": "mwoauth-rest-summary-resource"
+			}
 		},
 		{
 			"path": "/oauth2/client",
 			"class": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\RequestClient",
-			"method": "POST"
+			"method": "POST",
+			"openApiSpec": {
+				"x-i18n-description": "mwoauth-rest-description-post-client",
+				"x-i18n-summary": "mwoauth-rest-summary-post-client"
+			}
 		},
 		{
 			"path": "/oauth2/client/{client_key}/reset_secret",
 			"class": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\ResetClientSecret",
-			"method": "POST"
+			"method": "POST",
+			"openApiSpec": {
+				"x-i18n-description": "mwoauth-rest-description-client-reset_secret",
+				"x-i18n-summary": "mwoauth-rest-summary-client-reset_secret"
+			}
 		},
 		{
 			"path": "/oauth2/client",
@@ -333,7 +354,11 @@
 			"services": [
 				"ConnectionProvider"
 			],
-			"method": "GET"
+			"method": "GET",
+			"openApiSpec": {
+				"x-i18n-description": "mwoauth-rest-description-get-client",
+				"x-i18n-summary": "mwoauth-rest-summary-get-client"
+			}
 		}
 	],
 	"DatabaseVirtualDomains": [

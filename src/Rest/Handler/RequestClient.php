@@ -40,61 +40,72 @@ class RequestClient extends AbstractClientHandler {
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-name' ),
 			],
 			'version' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => [ '1.0', '2.0' ],
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => '1.0',
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-version' ),
 			],
 			'description' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-description' ),
 			],
 			'wiki' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => '*',
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-wiki' ),
 			],
 			'owner_only' => [
 				self::PARAM_SOURCE => 'body',
-				ParamValidator::PARAM_TYPE => 'boolean'
+				ParamValidator::PARAM_TYPE => 'boolean',
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-owner_only' ),
 			],
 			'callback_url' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
-				ParamValidator::PARAM_DEFAULT => ''
+				ParamValidator::PARAM_DEFAULT => '',
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-callback_url' ),
 			],
 			'callback_is_prefix' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'boolean',
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-callback_is_prefix' ),
 			],
 			'email' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-email' ),
 			],
 			'is_confidential' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'boolean',
 				ParamValidator::PARAM_REQUIRED => true,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-is_confidential' ),
 			],
 			'grant_types'  => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				ParamValidator::PARAM_ISMULTI => true
+				ParamValidator::PARAM_ISMULTI => true,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-grant_types' ),
 			],
 			'scopes' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => $scopeRepo->getAllowedScopes(),
 				ParamValidator::PARAM_REQUIRED => true,
-				ParamValidator::PARAM_ISMULTI => true
+				ParamValidator::PARAM_ISMULTI => true,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-scopes' ),
 			]
 		];
 	}
