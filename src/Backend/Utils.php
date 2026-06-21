@@ -10,6 +10,7 @@ use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Control\SubmitControl;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
+use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodPlaintext;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -273,10 +274,15 @@ class Utils {
 	 * @return MWOAuthServer with default configurations
 	 */
 	public static function newMWOAuthServer() {
+		global $wgOAuthAllowInsecurePlaintextSignature;
+
 		$store = static::newMWOAuthDataStore();
 		$server = new MWOAuthServer( $store );
 		$server->add_signature_method( new OAuthSignatureMethodHmacSha1() );
 		$server->add_signature_method( new MWOAuthSignatureMethodRsaSha1( $store ) );
+		if ( $wgOAuthAllowInsecurePlaintextSignature ) {
+			$server->add_signature_method( new OAuthSignatureMethodPlaintext() );
+		}
 
 		return $server;
 	}

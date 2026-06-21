@@ -280,6 +280,10 @@
 		"OAuthUseJwtCookie": {
 			"description": "Whether to emit a JWT cookie when responding to an OAuth request which has no short-lived JWT (ie. it is either an OAuth 1 request or uses an owner-only consumer).",
 			"value": false
+		},
+		"OAuthAllowInsecurePlaintextSignature": {
+			"description": "Allows clients to use the PLAINTEXT signature method. Meant for debugging signature errors. Never enable this in production!",
+			"value": false
 		}
 	},
 	"GrantPermissions": {

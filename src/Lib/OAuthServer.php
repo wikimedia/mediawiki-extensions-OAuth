@@ -267,9 +267,17 @@ class OAuthServer {
 		);
 
 		if ( !$valid_sig ) {
-			$this->logger->info(
-				__METHOD__ . ': Signature check (' . get_class( $signature_method ) . ') failed'
-			);
+			$data = [
+				'signature_method' => $signature_method->get_name(),
+			];
+			// Only log signatures in plaintext mode, otherwise it's both useless and insecure.
+			if ( $signature_method instanceof OAuthSignatureMethodPlaintext ) {
+				$data = [
+					'expected_signature' => $signature_method->build_signature( $request, $consumer, $token ),
+					'actual_signature' => $signature,
+				];
+			}
+			$this->logger->info( __METHOD__ . ': Signature check ({signature_method}) failed', $data );
 			throw new OAuthException( "Invalid signature" );
 		}
 	}
