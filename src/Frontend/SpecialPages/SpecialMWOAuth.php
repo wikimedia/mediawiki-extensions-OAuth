@@ -812,6 +812,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				'oauth_token' => $token->key,
 				'oauth_token_secret' => $token->secret,
 				'oauth_callback_confirmed' => true,
+				// B/C
+				'key' => $token->key,
+				'secret' => $token->secret,
 			];
 			$this->showResponse( FormatJson::encode( $json ), 'json' );
 		} elseif ( $format == 'html' ) {
