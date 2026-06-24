@@ -811,7 +811,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			$json = [
 				'oauth_token' => $token->key,
 				'oauth_token_secret' => $token->secret,
-				'oauth_callback_confirmed' => true,
+				'oauth_callback_confirmed' => 'true',
 				// B/C
 				'key' => $token->key,
 				'secret' => $token->secret,
