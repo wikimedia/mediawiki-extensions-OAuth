@@ -175,7 +175,7 @@ class SessionProvider
 			return $this->makeException( 'mwoauth-invalid-authorization-wrong-wiki', $wiki );
 		}
 
-		$username = Utils::getCentralUserNameFromId( $access->getUserId() );
+		$username = Utils::getCentralUserNameFromId( $access->getUserId(), 'raw' );
 		if ( $username === false || $username === '' ) {
 			return $this->makeException( 'mwoauth-invalid-authorization-invalid-user',
 				Message::rawParam( Utils::getErrorLink( 'E008' ) )
