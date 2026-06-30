@@ -44,6 +44,7 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWikiIntegrationTestCase;
@@ -52,6 +53,7 @@ use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use TestLogger;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
+use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -562,20 +564,26 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayNotHasKey( 'sessionJwt', $responseOAuth2->getCookies() );
 	}
 
-	/**
-	 * This should work with any kind of consumer. The test uses OAuth 2 owner-only to keep things simple.
-	 */
-	public function testAutocreateFromSession() {
-		$unregisteredUser = User::newFromName( __METHOD__ );
-		$this->assertFalse( $unregisteredUser->isRegistered() );
+	#[\NoDiscard]
+	private function scopedSetService( string $name, object $service ): ScopedCallback {
+		$original = $this->getServiceContainer()->get( $name );
+		$this->setService( $name, $service );
+		return new ScopedCallback( function () use ( $original, $name ) {
+			$this->setService( $name, $original );
+		} );
+	}
 
+	/**
+	 * @return string Access token
+	 */
+	private function createConsumerOnAnotherWiki( string $username ): string {
 		// In a real-world scenario, this consumer would be created on another wiki, where the user
 		// would be registered. To create it on *this* wiki in the test, mock a registered User object
 		// with the same name.
 		$mockUser = $this->createMock( User::class );
 		$mockUser->method( 'getId' )->willReturn( 999 );
 		$mockUser->method( 'isRegistered' )->willReturn( true );
-		$mockUser->method( 'getName' )->willReturn( __METHOD__ );
+		$mockUser->method( 'getName' )->willReturn( $username );
 		$mockUser->method( 'isEmailConfirmed' )->willReturn( true );
 		$mockUser->method( 'getEmail' )->willReturn( 'owner@wiki.domain' );
 
@@ -583,21 +591,32 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$lookup = $this->createMock( CentralIdLookup::class );
 		$lookup->method( 'getScope' )->willReturn( 'mock:' );
 		$lookup->method( 'getProviderId' )->willReturn( 'mock' );
-		$lookup->method( 'lookupOwnedUserNames' )->willReturn( [ __METHOD__ => 456 ] );
+		$lookup->method( 'lookupOwnedUserNames' )->willReturn( [ $username => 456 ] );
+		$lookup->method( 'centralIdFromName' )->willReturn( 456 );
 		$lookup->method( 'centralIdFromLocalUser' )->willReturn( 456 );
-		$lookup->method( 'nameFromCentralId' )->willReturn( __METHOD__ );
-		$lookup->method( 'localUserFromCentralId' )->willReturn( $unregisteredUser );
+		$lookup->method( 'nameFromCentralId' )->willReturn( $username );
+		$lookup->method( 'localUserFromCentralId' )->willReturn( UserIdentityValue::newRegistered( 999, $username ) );
 		$lookup->method( 'isAttached' )->willReturn( true );
-		$this->setService( 'CentralIdLookup', $lookup );
+		$lookup->method( 'isOwned' )->willReturn( true );
+		$reset[] = $this->scopedSetService( 'CentralIdLookup', $lookup );
 
 		$lookupFactory = $this->createMock( CentralIdLookupFactory::class );
 		$lookupFactory->method( 'getLookup' )->willReturn( $lookup );
-		$this->setService( 'CentralIdLookupFactory', $lookupFactory );
+		$reset[] = $this->scopedSetService( 'CentralIdLookupFactory', $lookupFactory );
 
 		// Ensure that registering the consumer doesn't create broken actor entries
-		$this->setService( 'ActorStore', $this->createMock( ActorStore::class ) );
-		$this->setService( 'ActorStoreFactory', $this->createMock( ActorStoreFactory::class ) );
+		$reset[] = $this->scopedSetService( 'ActorStore', $this->createMock( ActorStore::class ) );
+		$reset[] = $this->scopedSetService( 'ActorStoreFactory', $this->createMock( ActorStoreFactory::class ) );
 
+		$status = $this->createOAuth2OwnerOnlyConsumer( $mockUser );
+		$accessToken = $status->getValue()['result']['accessToken'];
+		return $accessToken;
+	}
+
+	/**
+	 * This should work with any kind of consumer. The test uses OAuth 2 owner-only to keep things simple.
+	 */
+	public function testAutocreateFromSession() {
 		$config = $this->getConfig();
 		// Let's ensure this issuer matches with wgMWOAuthCentralWiki which happens to
 		// be a wiki ID and must match whatever URL we set here.
@@ -605,20 +624,39 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$config->set( MainConfigNames::UseSessionCookieJwt, false );
 		$config->set( OAuthConfigNames::OAuthUseJwtCookie, false );
 		$config->set( MainConfigNames::CanonicalServer, $issuer );
-		$startTime = 1_000_000;
-		ConvertibleTimestamp::setFakeTime( $startTime );
+
+		$username = __METHOD__;
+		$unregisteredUser = User::newFromName( $username );
+		$this->assertFalse( $unregisteredUser->isRegistered() );
+
+		$accessToken = $this->createConsumerOnAnotherWiki( $username );
+
+		// Now mock an owned, non-attached user.
+		$lookup = $this->createMock( CentralIdLookup::class );
+		$lookup->method( 'getScope' )->willReturn( 'mock:' );
+		$lookup->method( 'getProviderId' )->willReturn( 'mock' );
+		$lookup->method( 'lookupOwnedUserNames' )->willReturn( [ $username => 456 ] );
+		$lookup->method( 'centralIdFromName' )->willReturn( 456 );
+		$lookup->method( 'centralIdFromLocalUser' )->willReturn( 0 );
+		$lookup->method( 'nameFromCentralId' )->willReturn( $username );
+		$lookup->method( 'localUserFromCentralId' )->willReturn( null );
+		$lookup->method( 'isAttached' )->willReturn( false );
+		$lookup->method( 'isOwned' )->willReturn( true );
+		$this->setService( 'CentralIdLookup', $lookup );
+
+		$lookupFactory = $this->createMock( CentralIdLookupFactory::class );
+		$lookupFactory->method( 'getLookup' )->willReturn( $lookup );
+		$this->setService( 'CentralIdLookupFactory', $lookupFactory );
 
 		$provider = $this->getProvider();
 		$this->initProvider( $provider, $this->logger, $config, $this->getServiceContainer()->getSessionManager() );
 
-		$status = $this->createOAuth2OwnerOnlyConsumer( $mockUser );
-		$accessToken = $status->getValue()['result']['accessToken'];
 		$requestOAuth2 = $this->getOAuth2RequestWithNoJwtHeader( $accessToken );
 
 		$info = $provider->provideSessionInfo( $requestOAuth2 );
 		$this->assertNotNull( $info?->__toString() );
 		$this->assertNotNull( $info->getUserInfo() );
-		$this->assertSame( __METHOD__, $info->getUserInfo()->getName() );
+		$this->assertSame( $username, $info->getUserInfo()->getName() );
 		$this->assertTrue( $info->getUserInfo()->isVerified() );
 		$this->assertSame(
 			[

@@ -340,6 +340,7 @@ class Utils {
 
 	/**
 	 * Given a local User object, get the user ID for that user on the central wiki.
+	 * The user does not need to be registered locally, but it needs to be owned by the central user.
 	 * No audience checks are done for the lookup.
 	 *
 	 * @param User $user
@@ -347,10 +348,10 @@ class Utils {
 	 */
 	public static function getCentralIdFromLocalUser( User $user ) {
 		$lookup = self::getCentralIdLookup();
-		if ( !$lookup->isAttached( $user ) ) {
+		if ( !$lookup->isOwned( $user ) ) {
 			return false;
 		} else {
-			return $lookup->centralIdFromLocalUser( $user, CentralIdLookup::AUDIENCE_RAW ) ?: false;
+			return $lookup->centralIdFromName( $user->getName(), CentralIdLookup::AUDIENCE_RAW ) ?: false;
 		}
 	}
 
