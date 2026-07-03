@@ -469,6 +469,11 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		$urlParts = $oauthUrlUtils->parse( $cmrAc->getDAO()->getCallbackUrl() );
 		if ( !in_array( $urlParts['scheme'] ?? null, [ 'http', 'https' ], true ) ) {
 			$warnings[] = Html::warningBox( $this->msg( 'mwoauth-consumer-callbackurl-protocol' )->escaped() );
+			// Show additional guidance for custom URI schemes without a period (T412542)
+			if ( !str_contains( $urlParts['scheme'] ?? '', '.' ) ) {
+				$warnings[] = Html::warningBox( $this->msg(
+					'mwoauth-error-callback-url-custom-scheme-no-period' )->parse() );
+			}
 		}
 		if ( $cmrAc->getDAO()->getCallbackIsPrefix() && ( $urlParts['port'] ?? null ) === 1 ) {
 			$warnings[] = Html::warningBox( $this->msg( 'mwoauth-consumer-callbackurl-warning' )->escaped() );

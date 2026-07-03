@@ -249,7 +249,7 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 			'striker.local.wmftest.net',
 			'dev-portal.local.wmftest.org',
 		] as $host ) {
-			yield "http protocol ($host), allowed" => [
+			yield "http scheme ($host), allowed" => [
 				[
 					'callbackUrl' => "http://$host:8080/oauth",
 				]
@@ -262,16 +262,9 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 			]
 		];
 
-		yield "custom app protocol, no slashes" => [
+		yield "custom app scheme" => [
 			[
-				'callbackUrl' => 'example.app:oauth',
-				'oauth2IsConfidential' => false,
-			]
-		];
-
-		yield "custom app protocol, slashes" => [
-			[
-				'callbackUrl' => 'example.app://oauth',
+				'callbackUrl' => 'com.example.myapp://oauth/callback',
 				'oauth2IsConfidential' => false,
 			]
 		];
@@ -304,18 +297,18 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function testSubmitOAuth2InvalidProtocol() {
+	public function testSubmitOAuth2InvalidScheme() {
 		$user = $this->getMutableTestUser()->getUser();
 		$this->doSubmit(
 			[
-				'callbackUrl' => 'invalid_protocol://oauth',
+				'callbackUrl' => 'invalid_scheme://oauth',
 			] + $this->getNonOwnerOnlyOAuth2ConsumerFormData(),
 			StatusValue::newFatal( 'mwoauth-invalid-field', 'callbackUrl' ),
 			$user
 		);
 	}
 
-	public function testSubmitOAuth2ForgotProtocol() {
+	public function testSubmitOAuth2ForgotScheme() {
 		$user = $this->getMutableTestUser()->getUser();
 		$this->doSubmit(
 			[
@@ -324,6 +317,53 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 			StatusValue::newFatal( 'mwoauth-invalid-field', 'callbackUrl' ),
 			$user
 		);
+	}
+
+	/** @dataProvider provideCustomUriSchemeTestData */
+	public function testSubmitOAuth2CustomUriScheme(
+		array $data,
+		?string $expectsWarning
+	) {
+		$user = $this->getMutableTestUser()->getUser();
+		// For warning cases, we need to add ignorewarnings=true to the form data
+		// so that the form proceeds past the warning
+		if ( $expectsWarning ) {
+			// Check that we get a warning if we submit without the checkbox,
+			// then check the checkbox and try again, which should succeed
+			$consumer = $this->doSubmit(
+				$data + $this->getNonOwnerOnlyOAuth2ConsumerFormData(),
+				StatusValue::newFatal( $expectsWarning ),
+				$user
+			);
+			$this->assertNull( $consumer );
+			$data['ignorewarnings'] = true;
+		}
+		$consumer = $this->doSubmit(
+			$data + $this->getNonOwnerOnlyOAuth2ConsumerFormData(),
+			StatusValue::newGood(),
+			$user
+		);
+		$this->assertInstanceOf( ClientEntity::class, $consumer );
+	}
+
+	public static function provideCustomUriSchemeTestData() {
+		// Schemes WITH a period should pass without warning
+		yield 'custom scheme with period (with slashes)' => [
+			[
+				'callbackUrl' => 'com.example.myapp://oauth',
+				'oauth2IsConfidential' => false,
+			],
+			null
+		];
+
+		// Schemes WITHOUT a period should pass (with warning, which can be ignored)
+		yield 'custom scheme without period (with slashes)' => [
+			[
+				'callbackUrl' => 'myapp://oauth',
+				'oauth2IsConfidential' => false,
+			],
+			'mwoauth-error-callback-url-custom-scheme-no-period'
+		];
 	}
 
 	/** @dataProvider provideOAuthOwnerOnlyFormData */

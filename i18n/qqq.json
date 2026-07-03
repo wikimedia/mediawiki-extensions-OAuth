@@ -57,6 +57,8 @@
 	"mwoauth-consumer-callbackurl-help": "Used as help message for the “Callback URL” input box, in the OAuth 2.0 consumer registration form.",
 	"mwoauth-consumer-callbackurl-warning": "Used as a warning shown alongside {{msg-mw|mwoauth-consumer-callbackurl}} sometimes, when the callback URL allows arbitrary [[w:Port (computer networking)|port numbers]].",
 	"mwoauth-consumer-callbackurl-protocol": "Used as a warning shown alongside {{msg-mw|mwoauth-consumer-callbackurl}} sometimes, when the callback URL protocol is not HTTP or HTTPS.",
+	"mwoauth-consumer-callbackurl-custom-scheme": "Used as additional help message for OAuth 2.0 non-confidential clients using custom URI schemes (protocols), e.g. for native mobile apps.",
+	"mwoauth-error-callback-url-custom-scheme-no-period": "Warning shown when an OAuth 2.0 non-confidential client uses a custom URI scheme that doesn't contain a period character.",
 	"mwoauth-consumer-callbackisprefix": "Used as a label for the check box where user can decide if their consumer should use \"Callback URL\" as a string prefix (checked), or if the consumer cannot customize the callback URL in its requests as is required to specify \"oob\" (unchecked, default).",
 	"mwoauth-consumer-granttypes": "Used as label to select between authorization-only (with or without private info) and normal API access",
 	"mwoauth-consumer-grantsneeded": "Used as label.\n\nFollowed by the list of grants.\n{{Identical|Applicable grant}}",

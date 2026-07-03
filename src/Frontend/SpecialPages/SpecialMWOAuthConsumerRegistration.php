@@ -535,8 +535,11 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			'callbackUrl' => [
 				'type' => 'text',
 				'label-message' => 'mwoauth-consumer-callbackurl',
-				'help-message' => ( $oauthVersion === Consumer::OAUTH_VERSION_2 )
-					? 'mwoauth-consumer-callbackurl-help' : null,
+				'help-messages' => ( $oauthVersion === Consumer::OAUTH_VERSION_2 )
+					? [
+							'mwoauth-consumer-callbackurl-help',
+							'mwoauth-consumer-callbackurl-custom-scheme'
+						] : null,
 				'required' => true,
 				'hide-if' => [ '!==', 'ownerOnly', '' ],
 			],

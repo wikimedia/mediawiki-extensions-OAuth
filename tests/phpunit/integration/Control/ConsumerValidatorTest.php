@@ -153,8 +153,8 @@ class ConsumerValidatorTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusNotOK( $status );
 	}
 
-	public function testFieldCallbackUrlCustomProtocolOauth1IsRejected(): void {
-		// OAuth 1.0 consumers are always confidential; custom protocols cannot be confidential
+	public function testFieldCallbackUrlCustomSchemeOauth1IsRejected(): void {
+		// OAuth 1.0 consumers are always confidential; custom schemes cannot be confidential
 		$status = $this->getCallback( Consumer::FIELD_CALLBACK_URL )(
 			'myapp://oauth/callback',
 			$this->makeCallbackUrlFields( [
@@ -164,7 +164,7 @@ class ConsumerValidatorTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusNotOK( $status );
 	}
 
-	public function testFieldCallbackUrlCustomProtocolOauth2ConfidentialIsRejected(): void {
+	public function testFieldCallbackUrlCustomSchemeOauth2ConfidentialIsRejected(): void {
 		$status = $this->getCallback( Consumer::FIELD_CALLBACK_URL )(
 			'myapp://oauth/callback',
 			$this->makeCallbackUrlFields( [
@@ -175,8 +175,21 @@ class ConsumerValidatorTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusNotOK( $status );
 	}
 
-	public function testFieldCallbackUrlCustomProtocolOauth2PublicIsAllowed(): void {
-		// Public (non-confidential) OAuth 2 clients may use custom protocols (native apps)
+	public function testFieldCallbackUrlCustomSchemeOauth2PublicIsAllowed(): void {
+		// Public (non-confidential) OAuth 2 clients may use custom schemes (native apps)
+		// T412542: Custom scheme with a period (RFC 8252 reverse domain name) is allowed without warning
+		$status = $this->getCallback( Consumer::FIELD_CALLBACK_URL )(
+			'com.example.myapp://oauth/callback',
+			$this->makeCallbackUrlFields( [
+				Consumer::FIELD_OAUTH_VERSION => Consumer::OAUTH_VERSION_2,
+				Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL => false,
+			] )
+		);
+		$this->assertStatusGood( $status );
+	}
+
+	public function testFieldCallbackUrlCustomSchemeWithoutPeriodGivesWarning(): void {
+		// T412542: Custom scheme without a period violates RFC 8252 recommendation; warning issued
 		$status = $this->getCallback( Consumer::FIELD_CALLBACK_URL )(
 			'myapp://oauth/callback',
 			$this->makeCallbackUrlFields( [
@@ -184,7 +197,8 @@ class ConsumerValidatorTest extends MediaWikiIntegrationTestCase {
 				Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL => false,
 			] )
 		);
-		$this->assertStatusGood( $status );
+		$this->assertStatusOK( $status );
+		$this->assertStatusNotGood( $status );
 	}
 
 	public function testFieldCallbackUrlHttpOauth2IsRejected(): void {

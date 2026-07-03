@@ -233,6 +233,15 @@ class ConsumerValidator {
 						'invalid_callback_url' )
 				);
 			}
+			// T412542: Follow RFC 8252 recommendation to use reverse domain name
+			// format for custom URI schemes. Require at least one period to avoid generic
+			// scheme names that could be confused with standard schemes.
+			if ( !str_contains( $urlParts['scheme'], '.' ) ) {
+				return StatusValue::newGood()->warning(
+					new ApiMessage( 'mwoauth-error-callback-url-custom-scheme-no-period',
+						'invalid_callback_url' )
+				);
+			}
 		} elseif ( $isOAuth2 && !self::isSecureContext( $urlParts ) ) {
 			// The OAuth 2 spec requires an encrypted transport.
 			return StatusValue::newFatal(
