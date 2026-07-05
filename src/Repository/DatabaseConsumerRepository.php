@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth\Repository;
 use DBAccessObjectUtils;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -16,6 +17,11 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * For now it proxies to the Consumer class, but eventually that should be switched around.
  */
 class DatabaseConsumerRepository implements ConsumerRepositoryInterface {
+
+	/** @inheritDoc */
+	public function newFromRow( array|stdClass $row ): Consumer {
+		return Consumer::newFromRow( $this->getDb(), $row );
+	}
 
 	/** @inheritDoc */
 	public function getById( int $id, int $flags = 0 ): Consumer|false {

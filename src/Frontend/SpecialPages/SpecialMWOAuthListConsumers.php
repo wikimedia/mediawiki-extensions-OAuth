@@ -246,8 +246,9 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 	 * @return string
 	 */
 	public function formatRow( IReadableDatabase $db, $row ) {
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 		$cmrAc = ConsumerAccessControl::wrap(
-			Consumer::newFromRow( $db, $row ), $this->getContext() );
+			$consumerRepository->newFromRow( $row ), $this->getContext() );
 		$cmrKey = $cmrAc->getConsumerKey();
 		$stageKey = Consumer::$stageNames[$cmrAc->getStage()];
 

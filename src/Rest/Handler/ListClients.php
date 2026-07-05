@@ -6,6 +6,8 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\OAuthServices;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\SimpleHandler;
@@ -153,13 +155,14 @@ class ListClients extends SimpleHandler {
 		$consumers = [];
 		$requestContext = RequestContext::getMain();
 		$user = $this->getAuthority()->getUser();
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 
 		foreach ( $res as $row ) {
 
 			$consumer = [];
 
 			$cmrAc = ConsumerAccessControl::wrap(
-				Consumer::newFromRow( Utils::getOAuthDB( DB_REPLICA ), $row ),
+				$consumerRepository->newFromRow( $row ),
 				$requestContext
 			);
 

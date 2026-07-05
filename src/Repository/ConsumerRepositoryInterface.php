@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Repository;
 
 use MediaWiki\Extension\OAuth\Backend\Consumer;
+use stdClass;
 use Wikimedia\Rdbms\DBReadOnlyError;
 
 /**
@@ -13,6 +14,13 @@ use Wikimedia\Rdbms\DBReadOnlyError;
  * returning Consumer objects.
  */
 interface ConsumerRepositoryInterface {
+
+	/**
+	 * Create a consumer from the result of a DB query
+	 *
+	 * @param array|stdClass $row DB row data, from SelectQueryBuilder::fetchRow() or similar
+	 */
+	public function newFromRow( array|stdClass $row ): Consumer;
 
 	/**
 	 * Get a consumer by its database primary key (oarc_id).
