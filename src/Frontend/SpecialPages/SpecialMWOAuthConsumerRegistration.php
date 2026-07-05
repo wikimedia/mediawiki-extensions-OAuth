@@ -183,12 +183,15 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 					$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 					break;
 				} elseif ( $cmrAc->getDAO()->getDeleted()
-				&& !$this->permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' )
+					&& !$this->permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' )
 				) {
 					throw new PermissionsError( 'mwoauthviewsuppressed' );
 				} elseif ( $cmrAc->getDAO()->getUserId() !== $centralUserId ) {
 					// Do not show private information to other users
 					$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
+					break;
+				} elseif ( $cmrAc->getDAO()->isConfigurationBased() ) {
+					$this->getOutput()->addWikiMsg( 'mwoauthconsumerregistration-error-configbased' );
 					break;
 				}
 				$oldSecretKey = $cmrAc->getDAO()->getSecretKey();
@@ -413,16 +416,16 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$cmrKey" ),
 			$this->msg( 'mwoauthlistconsumers-view' )->text()
 		);
-
-		$links[] = $this->getLinkRenderer()->makeKnownLink(
-			$this->getPageTitle( 'update/' . $cmrKey ),
-			$this->msg( 'mwoauthconsumerregistration-manage' )->text()
-		);
-
-		$links[] = $this->getLinkRenderer()->makeKnownLink(
-			$this->getPageTitle( 'copy/' . $cmrKey ),
-			$this->msg( 'mwoauthconsumerregistration-copy' )->text()
-		);
+		if ( !$cmrAc->getDAO()->isConfigurationBased() ) {
+			$links[] = $this->getLinkRenderer()->makeKnownLink(
+				$this->getPageTitle( 'update/' . $cmrKey ),
+				$this->msg( 'mwoauthconsumerregistration-manage' )->text()
+			);
+			$links[] = $this->getLinkRenderer()->makeKnownLink(
+				$this->getPageTitle( 'copy/' . $cmrKey ),
+				$this->msg( 'mwoauthconsumerregistration-copy' )->text()
+			);
+		}
 
 		$links = $this->getLanguage()->pipeList( $links );
 
@@ -431,17 +434,6 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 		$stageKey = Consumer::$stageNames[$cmrAc->getStage()];
 		$encStageKey = htmlspecialchars( $stageKey );
-		// Show last log entry (@TODO: title namespace?)
-		// @TODO: inject DB
-		$logHtml = '';
-		LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '', [
-			'conds'  => [
-				'ls_field' => 'OAuthConsumer',
-				'ls_value' => $cmrAc->getConsumerKey(),
-			],
-			'lim'    => 1,
-			'flags'  => LogEventsList::NO_EXTRA_USER_LINKS,
-		] );
 
 		$lang = $this->getLanguage();
 		$oauthVersionMessage = $cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ?
@@ -450,21 +442,41 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$data = [
 			'mwoauthconsumerregistration-name' => $cmrAc->escapeForHtml( $cmrAc->getNameAndVersion() ),
 			'mwoauth-oauth-version' => $cmrAc->escapeForHtml( $oauthVersionMessage ),
-			// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
-			// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
-			// mwoauth-consumer-stage-disabled
-			'mwoauthconsumerregistration-stage' =>
-				$this->msg( "mwoauth-consumer-stage-$stageKey" )->escaped(),
 			'mwoauthconsumerregistration-description' => $cmrAc->escapeForHtml(
 				$cmrAc->get( 'description', static function ( $s ) use ( $lang ) {
 					return $lang->truncateForVisual( $s, 10024 );
 				} )
 			),
-			'mwoauthconsumerregistration-email' => $cmrAc->escapeForHtml( $cmrAc->getEmail() ),
 			'mwoauthconsumerregistration-wiki' => $cmrAc->escapeForHtml( $cmrAc->getWikiName() ),
 			'mwoauthconsumerregistration-consumerkey' => $cmrAc->escapeForHtml( $cmrAc->getConsumerKey() ),
-			'mwoauthconsumerregistration-lastchange' => $logHtml,
 		];
+		if ( $cmrAc->getDAO()->isConfigurationBased() ) {
+			$data += [
+				'mwoauthconsumerregistration-stage' => $this->msg( 'mwoauth-configuration-based-notice' )->escaped(),
+			];
+		} else {
+			// Show last log entry (@TODO: title namespace?)
+			// @TODO: inject DB
+			$logHtml = '';
+			LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '', [
+				'conds'  => [
+					'ls_field' => 'OAuthConsumer',
+					'ls_value' => $cmrAc->getConsumerKey(),
+				],
+				'lim'    => 1,
+				'flags'  => LogEventsList::NO_EXTRA_USER_LINKS,
+			] );
+
+			$data += [
+				// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
+				// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
+				// mwoauth-consumer-stage-disabled, mwoauth-consumer-stage-configuration-based
+				'mwoauthconsumerregistration-stage' =>
+					$this->msg( "mwoauth-consumer-stage-$stageKey" )->escaped(),
+				'mwoauthconsumerregistration-email' => $cmrAc->escapeForHtml( $cmrAc->getEmail() ),
+				'mwoauthconsumerregistration-lastchange' => $logHtml,
+			];
+		}
 
 		$r = "<li class='mw-mwoauthconsumerregistration-{$encStageKey}'>";
 		$r .= "<span class='mw-mwoauth-stage-icon'></span> ";

@@ -12,6 +12,7 @@ use Firebase\JWT\JWT;
 use LogicException;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\ILocalizedException;
 use MediaWiki\Exception\MWException;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
@@ -45,6 +46,7 @@ use MediaWiki\WikiMap\WikiMap;
 use OOUI;
 use OOUI\HtmlSnippet;
 use Psr\Log\LoggerInterface;
+use Wikimedia\NormalizedException\INormalizedException;
 
 /**
  * Page that handles OAuth consumer authorization and token exchange
@@ -382,17 +384,22 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 						);
 					}
 			}
-		} catch ( MWOAuthException $exception ) {
-			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getNormalizedMessage(),
-				[ 'exception' => $exception ] + $exception->getMessageContext() );
-			$this->showError( $this->msg( $exception->getMessageObject() ), $format );
 		} catch ( OAuthException $exception ) {
-			$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(),
-				[ 'exception' => $exception ] );
-			$this->showError(
-				$this->msg( 'mwoauth-oauth-exception', $exception->getMessage() ),
-				$format
-			);
+			if ( $exception instanceof INormalizedException ) {
+				$this->logger->warning( __METHOD__ . ": Exception " . $exception->getNormalizedMessage(),
+					[ 'exception' => $exception ] + $exception->getMessageContext() );
+			} else {
+				$this->logger->warning( __METHOD__ . ": Exception " . $exception->getMessage(),
+					[ 'exception' => $exception ] );
+			}
+			if ( $exception instanceof ILocalizedException ) {
+				$this->showError( $this->msg( $exception->getMessageObject() ), $format );
+			} else {
+				$this->showError(
+					$this->msg( 'mwoauth-oauth-exception', $exception->getMessage() ),
+					$format
+				);
+			}
 		}
 
 		$output->addModuleStyles( 'ext.MWOAuth.styles' );

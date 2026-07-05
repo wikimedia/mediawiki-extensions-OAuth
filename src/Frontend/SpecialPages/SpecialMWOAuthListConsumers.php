@@ -122,6 +122,10 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 				$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
 			'mwoauthlistconsumers-grants' => new HtmlSnippet( $out->parseInlineAsInterface( $s ) ),
 		];
+		if ( $cmrAc->getDAO()->isConfigurationBased() ) {
+			unset( $data['mwoauthlistconsumers-user'] );
+			$data['mwoauthlistconsumers-status'] = $this->msg( 'mwoauth-configuration-based-notice' )->text();
+		}
 		if ( $cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
 			$data += [
 				'mwoauthlistconsumers-oauth2-is-confidential' => $cmrAc->isConfidential() ?
@@ -161,6 +165,12 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 	 * Show a form for the paged list of consumers
 	 */
 	protected function showConsumerListForm() {
+		$stageOptions = [
+			$this->msg( 'mwoauth-consumer-stage-any' )->escaped() => -1,
+		];
+		foreach ( Consumer::$stageNames as $stageId => $stageName ) {
+			$stageOptions[ $this->msg( 'mwoauth-consumer-stage-' . $stageName )->escaped() ] = $stageId;
+		}
 		$form = HTMLForm::factory( 'ooui',
 			[
 				'name' => [
@@ -179,19 +189,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 					'name'     => 'stage',
 					'type'     => 'select',
 					'label-message' => 'mwoauth-consumer-stage',
-					'options'  => [
-						$this->msg( 'mwoauth-consumer-stage-any' )->escaped() => -1,
-						$this->msg( 'mwoauth-consumer-stage-proposed' )->escaped()
-							=> Consumer::STAGE_PROPOSED,
-						$this->msg( 'mwoauth-consumer-stage-approved' )->escaped()
-							=> Consumer::STAGE_APPROVED,
-						$this->msg( 'mwoauth-consumer-stage-rejected' )->escaped()
-							=> Consumer::STAGE_REJECTED,
-						$this->msg( 'mwoauth-consumer-stage-disabled' )->escaped()
-							=> Consumer::STAGE_DISABLED,
-						$this->msg( 'mwoauth-consumer-stage-expired' )->escaped()
-							=> Consumer::STAGE_EXPIRED
-					],
+					'options'  => $stageOptions,
 					'default'  => Consumer::STAGE_APPROVED,
 					'required' => false
 				]
@@ -259,7 +257,9 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			[],
 			$this->getRequest()->getValues( 'name', 'publisher', 'stage' )
 		);
-		if ( $this->permissionManager->userHasRight( $this->getUser(), 'mwoauthmanageconsumer' ) ) {
+		if ( $this->permissionManager->userHasRight( $this->getUser(), 'mwoauthmanageconsumer' )
+			&& !$cmrAc->getDAO()->isConfigurationBased()
+		) {
 			$links[] = $this->getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'OAuthManageConsumers', $cmrKey ),
 				$this->msg( 'mwoauthmanageconsumers-review' )->text()
@@ -291,6 +291,11 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			'mwoauthlistconsumers-status' =>
 				$this->msg( "mwoauthlistconsumers-status-$stageKey" )->escaped(),
 		];
+		if ( $cmrAc->getDAO()->isConfigurationBased() ) {
+			unset( $data['mwoauthlistconsumers-user'] );
+			$data['mwoauthlistconsumers-status']
+				= $this->msg( 'mwoauth-configuration-based-notice' )->escaped();
+		}
 		if ( $cmrAc->getDAO()->getOwnerOnly() ) {
 			$data = ArrayUtils::insertAfter( $data, [
 				'mwoauthlistconsumers-owner-only' => $this->msg( 'htmlform-yes' ),
@@ -356,7 +361,9 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		ConsumerAccessControl $cmrAc, $centralUserId,
 		LinkRenderer $linkRenderer
 	): array {
-		if ( Utils::isCentralWiki() && $cmrAc->getDAO()->getUserId() === $centralUserId ) {
+		if ( Utils::isCentralWiki()
+			&& $cmrAc->getDAO()->getUserId() === $centralUserId
+		) {
 			return [
 				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'OAuthConsumerRegistration',
 					'update/' . $cmrAc->getDAO()->getConsumerKey() ),
@@ -377,8 +384,8 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 	private function manageConsumerLink(
 		Consumer $consumer, User $user, LinkRenderer $linkRenderer
 	): array {
-		if ( Utils::isCentralWiki() &&
-			$this->permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' )
+		if ( Utils::isCentralWiki()
+			&& $this->permissionManager->userHasRight( $user, 'mwoauthmanageconsumer' )
 		) {
 			return [
 				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'OAuthManageConsumers',

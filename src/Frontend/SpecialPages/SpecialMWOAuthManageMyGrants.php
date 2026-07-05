@@ -181,7 +181,10 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 					'raw' => true,
 					'default' => UIUtils::generateInfoTable( [
 						'mwoauth-consumer-name' => $cmrAc->getNameAndVersion(),
-						'mwoauth-consumer-user' => $cmrAc->getUserName(),
+						'mwoauth-consumer-user' =>
+							$cmr->isConfigurationBased()
+								? $this->msg( 'mwoauth-configuration-based-notice' )->text()
+								: $cmrAc->getUserName(),
 						'mwoauth-consumer-description' => $cmrAc->getDescription(),
 						'mwoauthmanagemygrants-wikiallowed' => $cmraAc->getWikiName(),
 					], $this->getContext() ),

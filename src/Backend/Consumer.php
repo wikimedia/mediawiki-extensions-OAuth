@@ -57,6 +57,14 @@ abstract class Consumer extends MWOAuthDAO {
 	public const FIELD_OAUTH2_IS_CONFIDENTIAL = 'oauth2IsConfidential';
 	public const FIELD_OAUTH2_GRANT_TYPES = 'oauth2GrantTypes';
 
+	/* Stages that registered consumer takes (stored in DB) */
+	public const STAGE_PROPOSED = 0;
+	public const STAGE_APPROVED = 1;
+	public const STAGE_REJECTED = 2;
+	public const STAGE_EXPIRED  = 3;
+	public const STAGE_DISABLED = 4;
+	public const STAGE_CONFIGURATION_BASED = 5;
+
 	/**
 	 * Special grants used by the OAuth extension in addition to what's available via GrantsInfo.
 	 * These control access to the identify / userinfo endpoints, which are only accessible using
@@ -125,26 +133,29 @@ abstract class Consumer extends MWOAuthDAO {
 	/** @var array OAuth2 grant types available to the client */
 	protected $oauth2GrantTypes;
 
-	/* Stages that registered consumer takes (stored in DB) */
-	public const STAGE_PROPOSED = 0;
-	public const STAGE_APPROVED = 1;
-	public const STAGE_REJECTED = 2;
-	public const STAGE_EXPIRED  = 3;
-	public const STAGE_DISABLED = 4;
-
 	/** @var int|false|null Cache for local ID looked up from $userId */
 	protected $localUserId;
 
 	/**
-	 * Maps stage ids to human-readable names which describe them as a state
+	 * Maps stage ids to human-readable names which describe them as a state.
+	 * Used in the following messages:
+	 * - mwoauth-consumer-stage-*
+	 * - mwoauthlistconsumers-status-*
+	 * - mwoauthmanageconsumers-none-*
+	 * - mwoauthmanageconsumers-show*
+	 * - mwoauthmanageconsumers-success-*
+	 * - mwoauthmanageconsumers-link*
+	 * - mwoauthmanageconsumers-q-* / mwoauthmanageconsumers-l-*
+	 * and in some HTML class names.
 	 * @var array<int,string>
 	 */
 	public static $stageNames = [
 		self::STAGE_PROPOSED => 'proposed',
-		self::STAGE_REJECTED => 'rejected',
-		self::STAGE_EXPIRED  => 'expired',
 		self::STAGE_APPROVED => 'approved',
+		self::STAGE_REJECTED => 'rejected',
 		self::STAGE_DISABLED => 'disabled',
+		self::STAGE_EXPIRED  => 'expired',
+		self::STAGE_CONFIGURATION_BASED => 'configuration-based',
 	];
 
 	/**
@@ -154,10 +165,13 @@ abstract class Consumer extends MWOAuthDAO {
 	 */
 	public static $stageActionNames = [
 		self::STAGE_PROPOSED => 'propose',
-		self::STAGE_REJECTED => 'reject',
-		self::STAGE_EXPIRED  => 'propose',
 		self::STAGE_APPROVED => 'approve',
+		self::STAGE_REJECTED => 'reject',
 		self::STAGE_DISABLED => 'disable',
+		self::STAGE_EXPIRED  => 'propose',
+		// No logged action is associated with consumers that are managed via configuration.
+		// We don't show log snippets for them so this value won't be used.
+		self::STAGE_CONFIGURATION_BASED => '-',
 	];
 
 	/**

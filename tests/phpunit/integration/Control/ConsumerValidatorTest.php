@@ -6,13 +6,13 @@ use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Control\ConsumerValidator;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Tests\MockOAuthSignatureMethodRsaSha1;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWikiIntegrationTestCase;
-use Wikimedia\NormalizedException\NormalizedException;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Control\ConsumerValidator
@@ -143,7 +143,7 @@ class ConsumerValidatorTest extends MediaWikiIntegrationTestCase {
 	// generic
 
 	public function testValidateFieldsAndThrowInvalidFieldThrowsError(): void {
-		$this->expectException( NormalizedException::class );
+		$this->expectException( OAuthException::class );
 		( $this->getConsumerValidator() )->validateFieldsAndThrow( [
 			Consumer::FIELD_OAUTH_VERSION => 3,
 		] );
@@ -722,7 +722,7 @@ class ConsumerValidatorTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideExpandConsumerData_error
 	 */
 	public function testExpandConsumerData_error( array $consumerData ): void {
-		$this->expectException( NormalizedException::class );
+		$this->expectException( OAuthException::class );
 		$this->getConsumerValidator()->expandConsumerData( $consumerData );
 	}
 

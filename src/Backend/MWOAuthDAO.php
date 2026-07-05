@@ -495,4 +495,15 @@ abstract class MWOAuthDAO {
 	public function updateOrigin( $source ) {
 		$this->daoOrigin = $source;
 	}
+
+	/**
+	 * True when the consumer has been loaded from a configuration file, rather than the database.
+	 *
+	 * Configuration-based consumers cannot use the save() and delete() methods, and cannot be
+	 * updated via the usual special pages; they are updated via whatever configuration mechanism
+	 * the wiki has, typically by changing the value of the $wgOAuthStaticApps configuration variable.
+	 */
+	public function isConfigurationBased(): bool {
+		return $this->daoOrigin === self::ORIGIN_CONFIG;
+	}
 }

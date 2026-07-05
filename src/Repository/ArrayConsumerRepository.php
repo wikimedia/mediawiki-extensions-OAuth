@@ -197,6 +197,7 @@ class ArrayConsumerRepository implements ConsumerRepositoryInterface {
 	 * @param int|string|null $index Index to include in the logs, to identify which consumer
 	 *   caused the error.
 	 * @return void
+	 * @see examples/configurationBasedClient.php
 	 */
 	public function addConfigurationArray( array $consumerData, int|string|null $index = null ): void {
 		$consumerData[self::FIELD_EXPAND_AND_VALIDATE] = true;

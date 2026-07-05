@@ -63,6 +63,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	public static $listStages = [
 		Consumer::STAGE_APPROVED,
 		Consumer::STAGE_DISABLED,
+		Consumer::STAGE_CONFIGURATION_BASED,
 	];
 
 	public function __construct(
@@ -258,8 +259,12 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 			$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 			return;
 		} elseif ( $cmrAc->getDeleted()
-			&& !$this->permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
+			&& !$this->permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' )
+		) {
 			throw new PermissionsError( 'mwoauthviewsuppressed' );
+		} elseif ( $cmrAc->getDAO()->isConfigurationBased() ) {
+			$this->getOutput()->addWikiMsg( 'mwoauthmanageconsumers-error-configuration-based' );
+			return;
 		}
 		$startingStage = $cmrAc->getStage();
 		$pending = !in_array( $startingStage, [
@@ -530,39 +535,47 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		$r = "<li class='mw-mwoauthmanageconsumers-{$encStageKey}'>";
 		$r .= "<span class='mw-mwoauth-stage-icon'></span> ";
 
-		$r .= $time . " (<strong>{$link}</strong>)";
-
-		// Show last log entry (@TODO: title namespace?)
-		// @TODO: inject DB
-		$logHtml = '';
-		LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '', [
-			'action' => Consumer::$stageActionNames[$cmrAc->getStage()],
-			'conds'  => [
-				'ls_field' => 'OAuthConsumer',
-				'ls_value' => $cmrAc->getConsumerKey(),
-			],
-			'lim'    => 1,
-			'flags'  => LogEventsList::NO_EXTRA_USER_LINKS,
-		] );
+		$r .= $time . ( $cmrAc->getDAO()->isConfigurationBased() ? '' : " (<strong>{$link}</strong>)" );
 
 		$lang = $this->getLanguage();
 		$data = [
 			'mwoauthmanageconsumers-name' => $cmrAc->escapeForHtml( $cmrAc->getNameAndVersion() ),
-			'mwoauthmanageconsumers-user' => $cmrAc->escapeForHtml( $cmrAc->getUserName() ),
 			'mwoauth-oauth-version' => $cmrAc->escapeForHtml(
 				$cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ?
-				$this->msg( 'mwoauth-oauth-version-2' ) :
-				$this->msg( 'mwoauth-oauth-version-1' )
+					$this->msg( 'mwoauth-oauth-version-2' ) :
+					$this->msg( 'mwoauth-oauth-version-1' )
 			),
 			'mwoauthmanageconsumers-description' => $cmrAc->escapeForHtml(
 				$cmrAc->get( 'description', static function ( $s ) use ( $lang ) {
 					return $lang->truncateForVisual( $s, 10024 );
 				} )
 			),
-			'mwoauthmanageconsumers-email' => $cmrAc->escapeForHtml( $cmrAc->getEmail() ),
 			'mwoauthmanageconsumers-consumerkey' => $cmrAc->escapeForHtml( $cmrAc->getConsumerKey() ),
-			'mwoauthmanageconsumers-lastchange' => $logHtml,
 		];
+		if ( $cmrAc->getDAO()->isConfigurationBased() ) {
+			$data += [
+				'mwoauthmanageconsumers-user' => $this->msg( 'mwoauth-configuration-based-notice' )->escaped(),
+			];
+		} else {
+			// Show last log entry (@TODO: title namespace?)
+			// @TODO: inject DB
+			$logHtml = '';
+			LogEventsList::showLogExtract( $logHtml, 'mwoauthconsumer', '', '', [
+				'action' => Consumer::$stageActionNames[$cmrAc->getStage()],
+				'conds'  => [
+					'ls_field' => 'OAuthConsumer',
+					'ls_value' => $cmrAc->getConsumerKey(),
+				],
+				'lim'    => 1,
+				'flags'  => LogEventsList::NO_EXTRA_USER_LINKS,
+			] );
+
+			$data += [
+				'mwoauthmanageconsumers-user' => $cmrAc->escapeForHtml( $cmrAc->getUserName() ),
+				'mwoauthmanageconsumers-email' => $cmrAc->escapeForHtml( $cmrAc->getEmail() ),
+				'mwoauthmanageconsumers-lastchange' => $logHtml,
+			];
+		}
 
 		$r .= "<table class='mw-mwoauthmanageconsumers-body mw-datatable'>";
 		foreach ( $data as $msg => $encValue ) {

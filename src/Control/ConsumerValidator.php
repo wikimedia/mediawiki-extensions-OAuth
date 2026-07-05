@@ -7,8 +7,10 @@ use MediaWiki\Api\ApiMessage;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\NormalizedOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\MainConfigNames;
@@ -22,7 +24,6 @@ use StatusValue;
 use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterTypeException;
-use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -100,12 +101,12 @@ class ConsumerValidator {
 	/**
 	 * Like validateFields() but throws on error.
 	 *
-	 * @throws NormalizedException
+	 * @throws OAuthException
 	 */
 	public function validateFieldsAndThrow( array $fields ): void {
 		$status = $this->validateFields( $fields );
 		if ( !$status->isOK() ) {
-			throw new NormalizedException( 'Consumer {consumer_key} is invalid: {reason}', [
+			throw new NormalizedOAuthException( 'Consumer {consumer_key} is invalid: {reason}', [
 				'consumer_key' => $fields[Consumer::FIELD_CONSUMER_KEY] ?? '',
 				'reason' => $this->getStatusFormatter()->getWikiText( $status, [ 'lang' => 'en' ] ),
 			] );
@@ -280,7 +281,7 @@ class ConsumerValidator {
 	 *
 	 * @param array $consumerData
 	 * @return array
-	 * @throws NormalizedException
+	 * @throws OAuthException
 	 */
 	public function expandConsumerData( array $consumerData ): array {
 		// check OAuth version first as it determines what fields are required
@@ -479,7 +480,7 @@ class ConsumerValidator {
 	 *   - 'unused': keys not used for this consumer type, in `<key> => <db default>` format
 	 * @phan-return array{required:array,optional:array,unused:array}
 	 * @see Consumer::getSchema()
-	 * @see examples/configurationBasedApp.php
+	 * @see examples/configurationBasedClient.php
 	 */
 	private function getConsumerFields(
 		int $oauthVersion,
@@ -570,9 +571,12 @@ class ConsumerValidator {
 		];
 	}
 
+	/**
+	 * @throws NormalizedOAuthException
+	 */
 	private function raiseInvalidConfigError( array $consumerData, string $reason ): never {
 		$consumerKey = $consumerData[Consumer::FIELD_CONSUMER_KEY] ?? 'missing key';
-		throw new NormalizedException( 'Invalid configuration-based OAuth app ({consumerKey}): {reason}', [
+		throw new NormalizedOAuthException( 'Invalid configuration-based OAuth app ({consumerKey}): {reason}', [
 			'consumerKey' => $consumerKey,
 			'reason' => $reason,
 		] );

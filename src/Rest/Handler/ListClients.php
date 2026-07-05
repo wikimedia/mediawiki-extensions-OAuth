@@ -112,7 +112,7 @@ class ListClients extends SimpleHandler {
 	 * @return array the results
 	 */
 	private function getDbResults( int $centralId ) {
-		$dbr = $this->connProvider->getReplicaDatabase( 'virtual-oauth' );
+		$dbr = Utils::getOAuthDB( DB_REPLICA );
 
 		$params = $this->getValidatedParams();
 		$limit = $params['limit'];
@@ -191,6 +191,10 @@ class ListClients extends SimpleHandler {
 
 			$consumer['scopes'] = $cmrAc->getGrants();
 			$consumer['restrictions'] = $cmrAc->getRestrictions();
+
+			if ( $cmrAc->getDAO()->isConfigurationBased() ) {
+				$consumer['configuration_based'] = true;
+			}
 
 			foreach ( $consumer as $key => $value ) {
 				if ( is_object( $consumer[$key] ) ) {

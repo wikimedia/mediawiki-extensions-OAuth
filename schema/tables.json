@@ -113,7 +113,7 @@
 			},
 			{
 				"name": "oarc_stage",
-				"comment": "Stage in registration pipeline: (0=proposed, 1=approved, 2=rejected, 3=expired, 4=disabled)",
+				"comment": "Stage in registration pipeline: (0=proposed, 1=approved, 2=rejected, 3=expired, 4=disabled, 5=managed in configuration)",
 				"type": "mwtinyint",
 				"options": { "notnull": true, "unsigned": true, "default": 0 }
 			},

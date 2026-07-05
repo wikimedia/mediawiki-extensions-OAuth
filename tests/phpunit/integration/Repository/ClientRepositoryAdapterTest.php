@@ -5,11 +5,11 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Repository;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Repository\ClientRepositoryAdapter;
 use MediaWiki\Extension\OAuth\Repository\DatabaseConsumerRepository;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWikiIntegrationTestCase;
-use Wikimedia\NormalizedException\NormalizedException;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Repository\ClientRepositoryAdapter
@@ -111,7 +111,7 @@ class ClientRepositoryAdapterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testValidateClientNotFound(): void {
-		$this->expectException( NormalizedException::class );
+		$this->expectException( OAuthException::class );
 		$this->adapter->validateClient(
 			'nonexistentkey00000000000000000c',
 			'any-secret',

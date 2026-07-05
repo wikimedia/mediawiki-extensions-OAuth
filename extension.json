@@ -288,6 +288,10 @@
 		"OAuthAllowInsecurePlaintextSignature": {
 			"description": "Allows clients to use the PLAINTEXT signature method. Meant for debugging signature errors. Never enable this in production!",
 			"value": false
+		},
+		"OAuthStaticApps": {
+			"description": "A list of apps which are managed via configuration rather than via the DB. Intended for first-party apps. See examples/configurationBasedClient.php for documentation of the format and further details.",
+			"value": []
 		}
 	},
 	"GrantPermissions": {

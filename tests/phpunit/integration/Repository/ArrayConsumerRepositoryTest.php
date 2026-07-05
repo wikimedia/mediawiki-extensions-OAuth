@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Repository;
 use LogicException;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Repository\ArrayConsumerRepository;
 use MediaWiki\Extension\OAuth\Repository\DatabaseConsumerRepository;
@@ -12,7 +13,6 @@ use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWikiIntegrationTestCase;
-use Wikimedia\NormalizedException\NormalizedException;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Repository\ArrayConsumerRepository
@@ -196,7 +196,7 @@ class ArrayConsumerRepositoryTest extends MediaWikiIntegrationTestCase {
 			],
 			// missing callback URL
 		] );
-		$this->expectException( NormalizedException::class );
+		$this->expectException( OAuthException::class );
 		$this->repository->getById( 1235 );
 	}
 

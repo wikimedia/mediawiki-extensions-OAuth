@@ -5,4 +5,5 @@ namespace MediaWiki\Extension\OAuth;
 
 class OAuthConfigNames {
 	public const OAuthUseJwtCookie = 'OAuthUseJwtCookie';
+	public const OAuthStaticApps = 'OAuthStaticApps';
 }
