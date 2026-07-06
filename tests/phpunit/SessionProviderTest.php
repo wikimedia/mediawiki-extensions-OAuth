@@ -782,6 +782,9 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function &mockCentralIdLookup(): array {
+		// stops Echo from breaking the tests
+		$this->clearHook( 'UserSaveSettings' );
+
 		$centralIdMap = [];
 		// the class is abstract but the mocked methods aren't and that apparently breaks createNoOpAbstractMock
 		$lookup = $this->createNoOpMock( CentralIdLookup::class,
