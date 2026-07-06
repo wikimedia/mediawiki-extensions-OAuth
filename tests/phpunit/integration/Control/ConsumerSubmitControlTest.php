@@ -165,7 +165,7 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 			[
 				'version' => 'foo',
 			] + $this->getNonOwnerOnlyOAuth1ConsumerFormData(),
-			StatusValue::newFatal( 'mwoauth-invalid-field', 'version' ),
+			StatusValue::newFatal( 'mwoauth-invalid-field-with-details', 'version', 'Invalid version string "foo"' ),
 			$user
 		);
 	}

@@ -2,10 +2,8 @@
 
 namespace MediaWiki\Extension\OAuth\Control;
 
-use Composer\Semver\VersionParser;
 use Exception;
 use LogicException;
-use MediaWiki\Api\ApiMessage;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
@@ -18,7 +16,6 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
@@ -26,8 +23,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWCryptRand;
 use MediaWiki\WikiMap\WikiMap;
-use StatusValue;
-use UnexpectedValueException;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -57,12 +52,6 @@ class ConsumerSubmitControl extends SubmitControl {
 	protected $dbw;
 
 	/**
-	 * MySQL Blob Size is 2^16 - 1 = 65535 as per "L + 2 bytes, where L < 216" on
-	 * https://dev.mysql.com/doc/refman/8.0/en/storage-requirements.html
-	 */
-	public const BLOB_SIZE = 65535;
-
-	/**
 	 * @param IContextSource $context
 	 * @param array $params
 	 * @param IDatabase $dbw Result of Utils::getOAuthDB( DB_PRIMARY )
@@ -74,151 +63,54 @@ class ConsumerSubmitControl extends SubmitControl {
 
 	/** @inheritDoc */
 	protected function getRequiredFields() {
-		$validateRsaKey = static function ( $s ) {
-			if ( trim( $s ) === '' ) {
-				return true;
-			}
-			if ( strlen( $s ) > self::BLOB_SIZE ) {
-				return false;
-			}
-			$key = openssl_pkey_get_public( $s );
-			if ( $key === false ) {
-				return false;
-			}
-			$info = openssl_pkey_get_details( $key );
-
-			return ( $info['type'] === OPENSSL_KEYTYPE_RSA );
-		};
+		$expectedConsumerFields = [
+			// list of Consumer properties which appear as fields on the proposal form
+			Consumer::FIELD_NAME,
+			Consumer::FIELD_VERSION,
+			Consumer::FIELD_OAUTH_VERSION,
+			Consumer::FIELD_CALLBACK_URL,
+			Consumer::FIELD_DESCRIPTION,
+			Consumer::FIELD_EMAIL,
+			Consumer::FIELD_WIKI,
+			Consumer::FIELD_OAUTH2_GRANT_TYPES,
+			Consumer::FIELD_GRANTS,
+			Consumer::FIELD_RESTRICTIONS,
+			Consumer::FIELD_RSA_KEY,
+			// FIXME DEVELOPER_AGREEMENT is omitted because the form uses a different field name
+		];
+		$validator = new ConsumerValidator();
+		$validatorCallbacks = $validator->getValidatorCallbacks();
+		$validateRsaKey = $validatorCallbacks[Consumer::FIELD_RSA_KEY];
+		$validateRestrictions = $validatorCallbacks[Consumer::FIELD_RESTRICTIONS];
+		$validateDeveloperAgreement = $validatorCallbacks[Consumer::FIELD_DEVELOPER_AGREEMENT];
+		$validatorCallbacks = array_intersect_key( $validatorCallbacks,
+			array_fill_keys( $expectedConsumerFields, true ) );
 
 		$suppress = [ 'suppress' => '/^[01]$/' ];
 		$base = [
 			'consumerKey'  => '/^[0-9a-f]{32}$/',
 			'reason'       => '/^.{0,255}$/',
-			'changeToken'  => '/^[0-9a-f]{40}$/'
+			'changeToken'  => '/^[0-9a-f]{40}$/',
 		];
 
-		$validateBlobSize = static function ( $s ) {
-			return strlen( $s ?? '' ) < self::BLOB_SIZE;
-		};
-
 		return [
-			// Proposer (application administrator) actions:
-			'propose' => [
-				'name' => '/^.{1,128}$/',
-				'version' => static function ( $s ) {
-					if ( strlen( $s ) > 32 ) {
-						return false;
-					}
-					$parser = new VersionParser();
-					try {
-						$parser->normalize( $s );
-						return true;
-					} catch ( UnexpectedValueException ) {
-						return false;
-					}
-				},
-				'oauthVersion' => static function ( $i ) {
-					return in_array( $i, [ Consumer::OAUTH_VERSION_1, Consumer::OAUTH_VERSION_2 ] );
-				},
-				'callbackUrl' => static function ( $s, $vals ) {
-					$isOAuth1 = (int)$vals['oauthVersion'] === Consumer::OAUTH_VERSION_1;
-					$isOAuth2 = !$isOAuth1;
-					$clientIsConfidential = $isOAuth1 || $vals['oauth2IsConfidential'];
-
-					if ( strlen( $s ?? '' ) > 2000 ) {
-						return false;
-					} elseif ( $vals['ownerOnly'] ) {
-						return true;
-					}
-
-					$urlUtils = Utils::getOAuthUrlUtils();
-					$urlParts = $urlUtils->parse( $s );
-					if ( !$urlParts ) {
-						return false;
-					}
-					$isCustomProtocol = !in_array( $urlParts['scheme'], [ '', 'http', 'https' ], true );
-
-					if ( $isCustomProtocol ) {
-						if ( $clientIsConfidential ) {
-							// Custom protocols are handled by an application installed on the device;
-							// so it cannot possibly be confidential.
-							return StatusValue::newFatal(
-								new ApiMessage( 'mwoauth-error-callback-url-custom-protocol-nonconfidential',
-									'invalid_callback_url' )
-							);
-						}
-					} elseif ( $isOAuth2 && !self::isSecureContext( $urlParts ) ) {
-						// The OAuth 2 spec requires an encrypted transport.
-						return StatusValue::newFatal(
-							new ApiMessage( 'mwoauth-error-callback-url-must-be-https', 'invalid_callback_url' )
-						);
-					} elseif ( $clientIsConfidential && WikiMap::getWikiFromUrl( $s ) ) {
-						// Reduce noise from clueless people using Wikipedia's URL as callback
-						// (except for public clients; it can be valid e.g. for gadgets).
-						return StatusValue::newGood()->warning(
-							new ApiMessage( 'mwoauth-error-callback-server-url', 'invalid_callback_url' )
-						);
-					} elseif ( ( $isOAuth2 || !$vals['callbackIsPrefix'] )
-						&& in_array( $urlParts['path'] ?? '', [ '', '/' ], true )
-						&& !( $urlParts['query'] ?? false )
-						&& !( $urlParts['fragment'] ?? false )
-					) {
-						// Warn people using a bare domain name with no path or query part as
-						// the exact callback URL. It is valid, but it's rare that they actually mean it.
-						$message = $isOAuth1
-							? 'mwoauth-error-callback-bare-domain-oauth1'
-							: 'mwoauth-error-callback-bare-domain-oauth2';
-						return StatusValue::newGood()->warning(
-							new ApiMessage( $message, 'invalid_callback_url' )
-						);
-					}
-					return true;
-				},
-				'description' => $validateBlobSize,
-				'email' => static function ( $s ) {
-					return Sanitizer::validateEmail( $s );
-				},
-				'wiki' => static function ( $s ) {
-					global $wgConf;
-					return ( $s === '*'
-						|| in_array( $s, $wgConf->getLocalDatabases() )
-						|| in_array( $s, Utils::getAllWikiNames() )
-					);
-				},
-				'oauth2GrantTypes' => static function ( $a, $vals ) {
-					if ( $vals['oauthVersion'] == Consumer::OAUTH_VERSION_1 ) {
-						return true;
-					}
-
-					// OAuth 2 apps must have at least one grant type
-					return count( $a ) > 0 && strlen( FormatJson::encode( $a ) ) <= self::BLOB_SIZE;
-				},
+			// Proposer (application owner) actions:
+			'propose' => $validatorCallbacks + [
 				'granttype' => '/^(authonly|authonlyprivate|normal)$/',
-				'grants' => static function ( $s ) {
-					if ( strlen( $s ) > self::BLOB_SIZE ) {
-						return false;
-					}
-					$grants = FormatJson::decode( $s, true );
-					return is_array( $grants ) && Utils::grantsAreValid( $grants );
-				},
-				'restrictions' => $validateBlobSize,
-				'rsaKey' => $validateRsaKey,
-				'agreement' => static function ( $s ) {
-					return ( $s == true );
-				},
+				'agreement' => $validateDeveloperAgreement,
 			],
 			'update' => array_merge( $base, [
-				'restrictions' => $validateBlobSize,
+				'restrictions' => $validateRestrictions,
 				'rsaKey' => $validateRsaKey,
 				'resetSecret' => static function ( $s ) {
 					return is_bool( $s );
 				},
 			] ),
-			// Approver (project administrator) actions:
+			// Approver (OAuth admin) actions:
 			'approve'     => $base,
 			'reject'      => array_merge( $base, $suppress ),
 			'disable'     => array_merge( $base, $suppress ),
-			'reenable'    => $base
+			'reenable'    => $base,
 		];
 	}
 
@@ -650,38 +542,5 @@ class ConsumerSubmitControl extends SubmitControl {
 				'comment' => $comment,
 			],
 		] );
-	}
-
-	/**
-	 * Decide whether the given (parsed) URL corresponds to a secure context.
-	 * (This is only an approximation of the algorithm browsers use,
-	 * since some considerations such as frames don't apply here.)
-	 *
-	 * @see https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts
-	 *
-	 * @param array $urlParts As returned by {@link UrlUtils::parse()}.
-	 * @return bool
-	 */
-	protected static function isSecureContext( array $urlParts ): bool {
-		if ( $urlParts['scheme'] === 'https' ) {
-			return true;
-		}
-
-		$host = $urlParts['host'];
-		if ( $host === 'localhost'
-			|| $host === '127.0.0.1'
-			|| $host === '[::1]'
-			|| str_ends_with( $host, '.localhost' )
-			// The wmftest.{com,net,org} domains hosted by the Wikimedia
-			// Foundation include a '*.local IN A 127.0.0.1' that is used in
-			// some local development environments.
-			|| str_ends_with( $host, '.local.wmftest.com' )
-			|| str_ends_with( $host, '.local.wmftest.net' )
-			|| str_ends_with( $host, '.local.wmftest.org' )
-		) {
-			return true;
-		}
-
-		return false;
 	}
 }

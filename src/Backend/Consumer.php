@@ -57,6 +57,13 @@ abstract class Consumer extends MWOAuthDAO {
 	public const FIELD_OAUTH2_IS_CONFIDENTIAL = 'oauth2IsConfidential';
 	public const FIELD_OAUTH2_GRANT_TYPES = 'oauth2GrantTypes';
 
+	/**
+	 * Special grants used by the OAuth extension in addition to what's available via GrantsInfo.
+	 * These control access to the identify / userinfo endpoints, which are only accessible using
+	 * the OAuth protocol, so these grants would not make sense for other session types.
+	 */
+	public const AUTH_ONLY_GRANTS = [ 'mwoauth-authonlyprivate', 'mwoauth-authonly' ];
+
 	/** @var array Backwards-compatibility grant mappings */
 	public static $mapBackCompatGrants = [
 		'useoauth' => 'basic',

@@ -29,9 +29,6 @@ abstract class SubmitControl extends ContextSource {
 	/** @var string[]|null */
 	private static $irrevocableGrants = null;
 
-	/** @var string[] */
-	public const AUTH_ONLY_GRANTS = [ 'mwoauth-authonlyprivate', 'mwoauth-authonly' ];
-
 	/** @var array (field name => value) */
 	protected $vals;
 
@@ -222,8 +219,9 @@ abstract class SubmitControl extends ContextSource {
 	 *
 	 * A validation method is either a regex string or a callable.
 	 * Callables take (field value, field/value map) as params and must return a boolean or a
-	 * StatusValue with a single ApiMessage in it. If that is a warning, the user will be allowed
-	 * to override it. A StatusValue with an error or boolean false will prevent submission.
+	 * StatusValue with nothing or a single ApiMessage in it. If that single message is a warning,
+	 * the user will be allowed to override it. A StatusValue with an error or boolean false will
+	 * prevent submission.
 	 *
 	 * When false is returned, the error message will be 'mwoauth-invalid-field-<fieldname>'
 	 * if it exists, or a generic message otherwise (see getDefaultValidationError()).
@@ -302,7 +300,7 @@ abstract class SubmitControl extends ContextSource {
 		if ( self::$irrevocableGrants === null ) {
 			self::$irrevocableGrants = array_merge(
 				MediaWikiServices::getInstance()->getGrantsInfo()->getHiddenGrants(),
-				self::AUTH_ONLY_GRANTS
+				Consumer::AUTH_ONLY_GRANTS
 			);
 		}
 		return self::$irrevocableGrants;

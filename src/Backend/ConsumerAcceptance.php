@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
+use MediaWiki\Extension\OAuth\Control\ConsumerValidator;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -246,7 +246,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 
 		$grants = FormatJson::encode( $row['oaac_grants'] );
 
-		if ( strlen( $grants ) > ConsumerSubmitControl::BLOB_SIZE ) {
+		if ( strlen( $grants ) > ConsumerValidator::BLOB_SIZE ) {
 			throw new MWOAuthException( 'mwoauth-consumer-access-grants-too-long' );
 		}
 

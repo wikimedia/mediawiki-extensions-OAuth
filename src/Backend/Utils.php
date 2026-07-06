@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
+use MediaWiki\Api\ApiMessage;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
-use MediaWiki\Extension\OAuth\Control\SubmitControl;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodPlaintext;
 use MediaWiki\Logger\LoggerFactory;
@@ -22,6 +22,9 @@ use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
+use StatusValue;
+use Wikimedia\Message\ListParam;
+use Wikimedia\Message\ListType;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
@@ -408,12 +411,17 @@ class Utils {
 	 * @param array $grants
 	 * @return bool
 	 */
-	public static function grantsAreValid( array $grants ) {
-		// Remove our special grants before calling the core method
-		$grants = array_diff( $grants, SubmitControl::AUTH_ONLY_GRANTS );
-		return MediaWikiServices::getInstance()
-			->getGrantsInfo()
-			->grantsAreValid( $grants );
+	public static function grantsAreValid( array $grants, ?StatusValue $status = null ) {
+		$grantsInfo = MediaWikiServices::getInstance()->getGrantsInfo();
+		$invalidGrants = array_diff( $grants, $grantsInfo->getValidGrants(), Consumer::AUTH_ONLY_GRANTS );
+		if ( $status && $invalidGrants ) {
+			$status->fatal( new ApiMessage(
+				[ 'mwoauth-invalid-grants', new ListParam( ListType::COMMA, $invalidGrants ), count( $invalidGrants ) ],
+				'invalid_grants',
+				[ 'invalid_grants' => $invalidGrants ]
+			) );
+		}
+		return $invalidGrants === [];
 	}
 
 	/**

@@ -21,7 +21,6 @@ use MediaWiki\Extension\OAuth\Backend\MWOAuthToken;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceSubmitControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
-use MediaWiki\Extension\OAuth\Control\SubmitControl;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
@@ -533,7 +532,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		if ( $existing && $authenticate &&
 			$existing->getWiki() === $cmrAc->getDAO()->getWiki() &&
 			$existing->getGrants() === $cmrAc->getDAO()->getGrants() &&
-			!array_diff( $existing->getGrants(), SubmitControl::AUTH_ONLY_GRANTS ) &&
+			!array_diff( $existing->getGrants(), Consumer::AUTH_ONLY_GRANTS ) &&
 			$cmrAc->getDAO()->isConfidential()
 		) {
 			if ( $this->oauthVersion === Consumer::OAUTH_VERSION_2 ) {
