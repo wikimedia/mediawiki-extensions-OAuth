@@ -18,6 +18,18 @@ use MediaWiki\User\User;
 
 class ClientEntity extends Consumer implements MWClientEntityInterface {
 
+	/** Authorization code grant: access tokens can be obtained by sending the user through a web dialog */
+	public const GRANT_TYPE_AUTHORIZATION_CODE = 'authorization_code';
+	/** Refresh token grant: access tokens can obtained by exchanging a refresh token */
+	public const GRANT_TYPE_REFRESH_TOKEN = 'refresh_token';
+	/** Client credentials grant: access tokens can be obtained by using the secret key / RSA key */
+	public const GRANT_TYPE_CLIENT_CREDENTIALS = 'client_credentials';
+	public const GRANT_TYPES = [
+		self::GRANT_TYPE_CLIENT_CREDENTIALS,
+		self::GRANT_TYPE_AUTHORIZATION_CODE,
+		self::GRANT_TYPE_REFRESH_TOKEN,
+	];
+
 	/**
 	 * Returns the registered redirect URI (as a string).
 	 *

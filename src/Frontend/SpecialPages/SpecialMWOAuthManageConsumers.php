@@ -48,15 +48,20 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	 * Stages which are shown in a queue (they are in an actionable state and can form a backlog)
 	 * @var int[]
 	 */
-	public static $queueStages = [ Consumer::STAGE_PROPOSED,
-		Consumer::STAGE_REJECTED, Consumer::STAGE_EXPIRED ];
+	public static $queueStages = [
+		Consumer::STAGE_PROPOSED,
+		Consumer::STAGE_REJECTED,
+		Consumer::STAGE_EXPIRED,
+	];
 
 	/**
 	 * Stages which cannot form a backlog and are shown in a list
 	 * @var int[]
 	 */
-	public static $listStages = [ Consumer::STAGE_APPROVED,
-		Consumer::STAGE_DISABLED ];
+	public static $listStages = [
+		Consumer::STAGE_APPROVED,
+		Consumer::STAGE_DISABLED,
+	];
 
 	public function __construct(
 		private readonly GrantsLocalization $grantsLocalization,
@@ -430,9 +435,9 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
 				'mwoauth-oauth2-granttypes' => implode( ', ', array_map( function ( $grant ) {
 					$map = [
-						'authorization_code' => 'mwoauth-oauth2-granttype-auth-code',
-						'refresh_token' => 'mwoauth-oauth2-granttype-refresh-token',
-						'client_credentials' => 'mwoauth-oauth2-granttype-client-credentials'
+						ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE => 'mwoauth-oauth2-granttype-auth-code',
+						ClientEntity::GRANT_TYPE_REFRESH_TOKEN => 'mwoauth-oauth2-granttype-refresh-token',
+						ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS => 'mwoauth-oauth2-granttype-client-credentials'
 					];
 					return isset( $map[$grant] ) ? $this->msg( $map[$grant] ) : '';
 				}, $consumer->getAllowedGrants() ) )

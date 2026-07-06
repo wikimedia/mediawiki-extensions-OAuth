@@ -8,6 +8,7 @@ use MediaWiki\Exception\MWExceptionHandler;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeAccessTokenProvider;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\ClientCredentialsAccessTokenProvider;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshTokenAccessTokenProvider;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Response;
 use Throwable;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -17,10 +18,6 @@ use Wikimedia\ParamValidator\ParamValidator;
  * the authorization dialog to trade the off the received authorization code for an access token.
  */
 class AccessToken extends AuthenticationHandler {
-
-	private const GRANT_TYPE_CLIENT_CREDENTIALS = 'client_credentials';
-	private const GRANT_TYPE_AUTHORIZATION_CODE = 'authorization_code';
-	private const GRANT_TYPE_REFRESH_TOKEN = 'refresh_token';
 
 	/**
 	 * Support x-www-form-urlencoded (and nothing else), as required by RFC 6749.
@@ -67,9 +64,9 @@ class AccessToken extends AuthenticationHandler {
 			'grant_type' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => [
-					self::GRANT_TYPE_CLIENT_CREDENTIALS,
-					self::GRANT_TYPE_AUTHORIZATION_CODE,
-					self::GRANT_TYPE_REFRESH_TOKEN,
+					ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+					ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+					ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
 				],
 				ParamValidator::PARAM_REQUIRED => true,
 			],
@@ -126,9 +123,9 @@ class AccessToken extends AuthenticationHandler {
 	 */
 	protected function getGrantClass( $grantType ) {
 		return match ( $grantType ) {
-			static::GRANT_TYPE_AUTHORIZATION_CODE => AuthorizationCodeAccessTokenProvider::class,
-			static::GRANT_TYPE_CLIENT_CREDENTIALS => ClientCredentialsAccessTokenProvider::class,
-			static::GRANT_TYPE_REFRESH_TOKEN => RefreshTokenAccessTokenProvider::class,
+			ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE => AuthorizationCodeAccessTokenProvider::class,
+			ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS => ClientCredentialsAccessTokenProvider::class,
+			ClientEntity::GRANT_TYPE_REFRESH_TOKEN => RefreshTokenAccessTokenProvider::class,
 			default => false,
 		};
 	}

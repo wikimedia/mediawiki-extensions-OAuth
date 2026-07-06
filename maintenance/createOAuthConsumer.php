@@ -23,6 +23,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWRestrictions;
@@ -114,17 +115,20 @@ class CreateOAuthConsumer extends Maintenance {
 
 		$data = [
 			'action' => 'propose',
-			'name'         => $this->getOption( 'name' ),
-			'version'      => $this->getOption( 'version' ),
-			'description'  => $this->getOption( 'description' ),
-			'callbackUrl'  => $this->getOption( 'callbackUrl' ),
+			'name' => $this->getOption( 'name' ),
+			'version' => $this->getOption( 'version' ),
+			'description' => $this->getOption( 'description' ),
+			'callbackUrl' => $this->getOption( 'callbackUrl' ),
 			'oauthVersion' => $oauthVersion,
 			'callbackIsPrefix' => $this->hasOption( 'callbackIsPrefix' ),
 			'grants' => '["' . implode( '","', $this->getOption( 'grants' ) ) . '"]',
 			'granttype' => 'normal',
 			'ownerOnly' => $this->hasOption( 'ownerOnly' ),
 			'oauth2IsConfidential' => !$this->hasOption( 'oauth2IsNotConfidential' ),
-			'oauth2GrantTypes' => $this->getOption( 'oauth2GrantTypes', [ 'authorization_code', 'refresh_token' ] ),
+			'oauth2GrantTypes' => $this->getOption( 'oauth2GrantTypes', [
+				ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+				ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
+			] ),
 			'email' => $user->getEmail(),
 			// All wikis
 			'wiki' => '*',

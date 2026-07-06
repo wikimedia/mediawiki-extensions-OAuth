@@ -16,6 +16,7 @@ use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ListMyConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\Html\Html;
@@ -570,12 +571,18 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				'label-message' => 'mwoauth-oauth2-granttypes',
 				'hide-if' => [ '!==', 'ownerOnly', '' ],
 				'options' => array_filter( [
-					$this->msg( 'mwoauth-oauth2-granttype-auth-code' )->escaped() => 'authorization_code',
-					$this->msg( 'mwoauth-oauth2-granttype-refresh-token' )->escaped() => 'refresh_token',
-					$this->msg( 'mwoauth-oauth2-granttype-client-credentials' )->escaped() => 'client_credentials',
+					$this->msg( 'mwoauth-oauth2-granttype-auth-code' )->escaped()
+						=> ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+					$this->msg( 'mwoauth-oauth2-granttype-refresh-token' )->escaped()
+						=> ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
+					$this->msg( 'mwoauth-oauth2-granttype-client-credentials' )->escaped()
+						=> ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
 				], fn ( $grantType ) => in_array( $grantType, $this->getConfig()->get( 'OAuth2EnabledGrantTypes' ) ) ),
 				'required' => true,
-				'default' => [ 'authorization_code', 'refresh_token' ]
+				'default' => [
+					ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+					ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
+				],
 			],
 			'granttype' => [
 				'type' => 'radio',
@@ -700,7 +707,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 				// Force all ownerOnly clients to use client_credentials
 				if ( $data['ownerOnly'] ) {
-					$data['oauth2GrantTypes'] = [ 'client_credentials' ];
+					$data['oauth2GrantTypes'] = [ ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ];
 				}
 
 				$control->setInputParameters( $data );
@@ -775,7 +782,10 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$defaults = [
 			'callbackIsPrefix' => false,
 			'oauth2IsConfidential' => true,
-			'oauth2GrantTypes'  => [ 'authorization_code', 'refresh_token' ],
+			'oauth2GrantTypes'  => [
+				ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+				ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
+			],
 			'granttype' => 'normal',
 			'rsaKey' => '',
 		];

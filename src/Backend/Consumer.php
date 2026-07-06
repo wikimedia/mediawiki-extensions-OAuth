@@ -29,6 +29,34 @@ abstract class Consumer extends MWOAuthDAO {
 	public const OAUTH_VERSION_1 = 1;
 	public const OAUTH_VERSION_2 = 2;
 
+	// Field names, for use with newFromArray
+	// Note: depending on how your site is loaded, you might want to avoid using these
+	// constants in configuration ($wgOAuthStaticApps) as this class might not be loaded yet.
+	public const FIELD_ID = 'id';
+	public const FIELD_CONSUMER_KEY = 'consumerKey';
+	public const FIELD_NAME = 'name';
+	public const FIELD_USER_ID = 'userId';
+	public const FIELD_VERSION = 'version';
+	public const FIELD_CALLBACK_URL = 'callbackUrl';
+	public const FIELD_CALLBACK_IS_PREFIX = 'callbackIsPrefix';
+	public const FIELD_DESCRIPTION = 'description';
+	public const FIELD_EMAIL = 'email';
+	public const FIELD_EMAIL_AUTHENTICATED = 'emailAuthenticated';
+	public const FIELD_OAUTH_VERSION = 'oauthVersion';
+	public const FIELD_DEVELOPER_AGREEMENT = 'developerAgreement';
+	public const FIELD_OWNER_ONLY = 'ownerOnly';
+	public const FIELD_WIKI = 'wiki';
+	public const FIELD_GRANTS = 'grants';
+	public const FIELD_REGISTRATION = 'registration';
+	public const FIELD_SECRET_KEY = 'secretKey';
+	public const FIELD_RSA_KEY = 'rsaKey';
+	public const FIELD_RESTRICTIONS = 'restrictions';
+	public const FIELD_STAGE = 'stage';
+	public const FIELD_STAGE_TIMESTAMP = 'stageTimestamp';
+	public const FIELD_DELETED = 'deleted';
+	public const FIELD_OAUTH2_IS_CONFIDENTIAL = 'oauth2IsConfidential';
+	public const FIELD_OAUTH2_GRANT_TYPES = 'oauth2GrantTypes';
+
 	/** @var array Backwards-compatibility grant mappings */
 	public static $mapBackCompatGrants = [
 		'useoauth' => 'basic',

@@ -68,7 +68,7 @@ class ScopeRepository implements ScopeRepositoryInterface {
 	): array {
 		$scopes = $this->replaceDefaultScope( $scopes, $clientEntity );
 
-		if ( $grantType !== 'authorization_code' ) {
+		if ( $grantType !== ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE ) {
 			// For grants that do not require approval,
 			// just filter out the scopes that are not allowed for the client
 			return array_filter(
