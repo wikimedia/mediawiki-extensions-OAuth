@@ -3,9 +3,10 @@
 namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\OAuthServices;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Utils\MWRestrictions;
 use Wikimedia\Message\MessageValue;
@@ -33,9 +34,9 @@ class ResetClientSecret extends AbstractClientHandler {
 		$params['client_key'] = $this->getRequest()->getPathParam( 'client_key' );
 
 		$requestContext = RequestContext::getMain();
-		$dbr = Utils::getOAuthDB( DB_REPLICA );
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 		$clientAccess = ConsumerAccessControl::wrap(
-			Consumer::newFromKey( $dbr, $params['consumerKey'] ), $requestContext
+			$consumerRepository->getByKey( $params['consumerKey'] ), $requestContext
 		);
 		if ( !$clientAccess ) {
 			throw new LocalizedHttpException(

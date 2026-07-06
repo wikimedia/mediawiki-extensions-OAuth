@@ -6,8 +6,10 @@ use InvalidArgumentException;
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Utils\MWCryptRand;
 use Psr\Log\LoggerInterface;
@@ -63,7 +65,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return Consumer|false
 	 */
 	public function lookup_consumer( $consumerKey ) {
-		return Consumer::newFromKey( $this->centralReplica, $consumerKey );
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+		return $consumerRepository->getByKey( $consumerKey );
 	}
 
 	/**
@@ -294,7 +297,8 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * @return string|null
 	 */
 	public function getRSAKey( $consumerKey ) {
-		$cmr = Consumer::newFromKey( $this->centralReplica, $consumerKey );
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+		$cmr = $consumerRepository->getByKey( $consumerKey );
 		return $cmr ? $cmr->getRsaKey() : null;
 	}
 }

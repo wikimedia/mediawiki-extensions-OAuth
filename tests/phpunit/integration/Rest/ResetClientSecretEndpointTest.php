@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Rest;
 use Exception;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Rest\Handler\ResetClientSecret;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
@@ -130,7 +131,9 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					'reasonPhrase' => 'Unauthorized',
 					'protocolVersion' => '1.1'
 				],
-				static function () {
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
+						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser1' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
 					$db = Utils::getOAuthDB( DB_PRIMARY );
@@ -140,7 +143,7 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					$consumerData['consumerKey'] = '11111111111111111111111111111111';
 					$consumerData['deleted'] = true;
 					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
-					Consumer::newFromArray( $consumerData )->save( $db );
+					$consumerRepository->save( Consumer::newFromArray( $consumerData ) );
 
 					return $user;
 				}
@@ -158,7 +161,9 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					'reasonPhrase' => 'Bad Request',
 					'protocolVersion' => '1.1'
 				],
-				static function () {
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
+						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser2' );
 					$db = Utils::getOAuthDB( DB_PRIMARY );
 
@@ -168,7 +173,7 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					$consumerData['deleted'] = false;
 					$consumerData['name'] = 'test_name_user_mismatch';
 					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
-					Consumer::newFromArray( $consumerData )->save( $db );
+					$consumerRepository->save( Consumer::newFromArray( $consumerData ) );
 
 					return $user;
 				}
@@ -187,7 +192,9 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					'reasonPhrase' => 'OK',
 					'protocolVersion' => '1.1'
 				],
-				static function () {
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
+						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser3' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
 					$db = Utils::getOAuthDB( DB_PRIMARY );
@@ -197,7 +204,7 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					$consumerData['consumerKey'] = '33333333333333333333333333333333';
 					$consumerData['name'] = 'test_name_user_successful';
 					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
-					Consumer::newFromArray( $consumerData )->save( $db );
+					$consumerRepository->save( Consumer::newFromArray( $consumerData ) );
 
 					return $user;
 				}
@@ -216,7 +223,9 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					'reasonPhrase' => 'OK',
 					'protocolVersion' => '1.1'
 				],
-				static function () {
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
+						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser4' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
 					$db = Utils::getOAuthDB( DB_PRIMARY );
@@ -227,7 +236,7 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					$consumerData['name'] = 'test_name_user_successful';
 					$consumerData['oauthVersion'] = '2';
 					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
-					Consumer::newFromArray( $consumerData )->save( $db );
+					$consumerRepository->save( Consumer::newFromArray( $consumerData ) );
 
 					return $user;
 				}
@@ -246,7 +255,9 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					'reasonPhrase' => 'OK',
 					'protocolVersion' => '1.1'
 				],
-				static function () {
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
+						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser5' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
 					$db = Utils::getOAuthDB( DB_PRIMARY );
@@ -257,9 +268,9 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					$consumerData['name'] = 'test_name_user_successful';
 					$consumerData['oauthVersion'] = '2';
 					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
-					Consumer::newFromArray(
+					$consumerRepository->save( Consumer::newFromArray(
 						array_merge( $consumerData, self::OWNER_ONLY_CONSUMER_DATA )
-					)->save( $db );
+					) );
 
 					return $user;
 				},

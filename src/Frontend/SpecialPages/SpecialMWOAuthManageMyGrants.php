@@ -14,8 +14,10 @@ use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extension\OAuth\Control\SubmitControl;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ManageMyGrantsPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\PermissionManager;
@@ -102,15 +104,16 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 
 		if ( $acceptanceId ) {
 			$dbr = Utils::getOAuthDB( DB_REPLICA );
-			$cmraAc = ConsumerAcceptance::newFromId( $dbr, (int)$acceptanceId );
+			$cmra = ConsumerAcceptance::newFromId( $dbr, (int)$acceptanceId );
 			$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 				$this->getPageTitle(),
 				$this->msg( 'mwoauthmanagemygrants-showlist' )->text()
 			);
 
-			if ( $cmraAc ) {
-				$cmrAc = Consumer::newFromId( $dbr, $cmraAc->getConsumerId() );
-				$consumerKey = $cmrAc->getConsumerKey();
+			if ( $cmra ) {
+				$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+				$cmr = $consumerRepository->getById( $cmra->getConsumerId() );
+				$consumerKey = $cmr->getConsumerKey();
 				$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 					SpecialPage::getTitleFor( 'OAuthListConsumers', "view/$consumerKey" ),
 					$this->msg( 'mwoauthconsumer-application-view' )->text()
@@ -151,8 +154,9 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			return;
 		}
 
-		$cmrAc = ConsumerAccessControl::wrap(
-			Consumer::newFromId( $dbr, $cmraAc->getConsumerId() ), $this->getContext() );
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+		$cmr = $consumerRepository->getById( $cmraAc->getConsumerId() );
+		$cmrAc = ConsumerAccessControl::wrap( $cmr, $this->getContext() );
 		if ( $cmrAc->getDeleted()
 			&& !$this->permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
 			throw new PermissionsError( 'mwoauthviewsuppressed' );

@@ -16,11 +16,13 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ListConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -81,9 +83,9 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			$out->addWikiMsg( 'mwoauth-missing-consumer-key' );
 		}
 
-		$dbr = Utils::getOAuthDB( DB_REPLICA );
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 		$cmrAc = ConsumerAccessControl::wrap(
-			Consumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
+			$consumerRepository->getByKey( $consumerKey ), $this->getContext() );
 
 		if ( !$cmrAc ) {
 			$out->addWikiMsg( 'mwoauth-invalid-consumer-key' );

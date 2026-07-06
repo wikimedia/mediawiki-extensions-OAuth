@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\OAuth;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Middleware\ResourceServerMiddleware;
 use League\OAuth2\Server\ResourceServer as LeagueResourceServer;
-use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
@@ -176,13 +175,12 @@ class ResourceServer {
 	 * @throws HttpException
 	 */
 	private function setClient( ServerRequestInterface $request ) {
-		$this->client = ClientEntity::newFromKey(
-			Utils::getOAuthDB( DB_REPLICA ),
-			$request->getAttribute( 'oauth_client_id' )
-		);
-		if ( !$this->client || $this->client->getOAuthVersion() !== Consumer::OAUTH_VERSION_2 ) {
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+		$client = $consumerRepository->getByKey( $request->getAttribute( 'oauth_client_id' ) );
+		if ( !$client || !( $client instanceof ClientEntity ) ) {
 			throw new HttpException( 'Client represented by given access token is invalid', 403 );
 		}
+		$this->client = $client;
 	}
 
 	/**

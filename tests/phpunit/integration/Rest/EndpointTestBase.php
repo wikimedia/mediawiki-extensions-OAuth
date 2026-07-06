@@ -73,7 +73,7 @@ abstract class EndpointTestBase extends MediaWikiIntegrationTestCase {
 		$request = new RequestData( $requestInfo );
 
 		if ( $userCreateCallback ) {
-			$user = $userCreateCallback();
+			$user = $userCreateCallback( $this );
 		} else {
 			$user = new User();
 		}

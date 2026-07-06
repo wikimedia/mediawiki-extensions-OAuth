@@ -4,9 +4,10 @@ namespace MediaWiki\Extension\OAuth;
 
 use InvalidArgumentException;
 use League\OAuth2\Server\AuthorizationServer;
+use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
-use MediaWiki\Extension\OAuth\Repository\ClientRepository;
+use MediaWiki\Extension\OAuth\Repository\ClientRepositoryAdapter;
 use MediaWiki\Extension\OAuth\Repository\ScopeRepository;
 use MediaWiki\MediaWikiServices;
 
@@ -14,15 +15,18 @@ class AuthorizationServerFactory {
 
 	public static function factory(): static {
 		$services = MediaWikiServices::getInstance();
+		$consumerRepository = OAuthServices::wrap( $services )->getConsumerRepository();
+		$clientRepository = new ClientRepositoryAdapter( $consumerRepository );
 		$extConfig = $services->getConfigFactory()->makeConfig( 'mwoauth' );
 		$mainConfig = $services->getMainConfig();
 		$privateKey = $extConfig->get( 'OAuth2PrivateKey' );
 		$encryptionKey = $extConfig->get( 'OAuthSecretKey' ) ?? $mainConfig->get( 'SecretKey' );
 		$issuer = Utils::getJwtIssuer();
-		return new static( $privateKey, $encryptionKey, $issuer );
+		return new static( $clientRepository, $privateKey, $encryptionKey, $issuer );
 	}
 
 	public function __construct(
+		protected ClientRepositoryInterface $clientRepository,
 		protected string $privateKey,
 		protected string $encryptionKey,
 		private readonly string $issuer
@@ -36,7 +40,7 @@ class AuthorizationServerFactory {
 
 	public function getAuthorizationServer(): AuthorizationServer {
 		return new AuthorizationServer(
-			new ClientRepository(),
+			$this->clientRepository,
 			new AccessTokenRepository( $this->issuer ),
 			new ScopeRepository(),
 			$this->privateKey,

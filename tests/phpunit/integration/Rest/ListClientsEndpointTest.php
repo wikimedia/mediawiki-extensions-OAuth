@@ -4,10 +4,12 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Rest;
 
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Tests\TestHandlerFactory;
 use MediaWiki\Rest\Handler;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWRestrictions;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Rest\Handler\ListClients
@@ -70,7 +72,9 @@ class ListClientsEndpointTest extends EndpointTestBase {
 						'"client_key":"lc111111111111111111111111111111", "owner_only":false,' .
 						'"email": "test@test.com"}],"total":1}',
 				],
-				static function () {
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
+						->getConsumerRepository();
 					$user = User::createNew( 'ListClientsTestUser1' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
 					$db = Utils::getOAuthDB( DB_PRIMARY );
@@ -79,7 +83,7 @@ class ListClientsEndpointTest extends EndpointTestBase {
 					$consumerData['userId'] = $centralId;
 					$consumerData['consumerKey'] = 'lc111111111111111111111111111111';
 					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
-					Consumer::newFromArray( $consumerData )->save( $db );
+					$consumerRepository->save( Consumer::newFromArray( $consumerData ) );
 
 					return $user;
 				}
@@ -100,7 +104,9 @@ class ListClientsEndpointTest extends EndpointTestBase {
 						'"scopes":["[\"test\"]"],"client_key":"lc222222222222222222222222222222",' .
 						'"email": "test@test.com","owner_only":false}],"total":1}'
 				],
-				static function () {
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
+						->getConsumerRepository();
 					$user = User::createNew( 'ListClientsTestUser2' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
 					$db = Utils::getOAuthDB( DB_PRIMARY );
@@ -110,7 +116,7 @@ class ListClientsEndpointTest extends EndpointTestBase {
 					$consumerData['consumerKey'] = 'lc222222222222222222222222222222';
 					$consumerData['oauthVersion'] = '2';
 					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
-					Consumer::newFromArray( $consumerData )->save( $db );
+					$consumerRepository->save( Consumer::newFromArray( $consumerData ) );
 
 					return $user;
 				}
@@ -127,7 +133,9 @@ class ListClientsEndpointTest extends EndpointTestBase {
 					'protocolVersion' => '1.1',
 					'body' => '{"clients":[],"total":0}'
 				],
-				static function () {
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
+						->getConsumerRepository();
 					$user = User::createNew( 'ListClientsTestUser3' );
 					$db = Utils::getOAuthDB( DB_PRIMARY );
 
@@ -139,7 +147,7 @@ class ListClientsEndpointTest extends EndpointTestBase {
 					$consumerData['userId'] = 99999;
 					$consumerData['consumerKey'] = 'lc333333333333333333333333333333';
 					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
-					Consumer::newFromArray( $consumerData )->save( $db );
+					$consumerRepository->save( Consumer::newFromArray( $consumerData ) );
 
 					return $user;
 				}

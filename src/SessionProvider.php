@@ -204,7 +204,8 @@ class SessionProvider
 		}
 
 		// The consumer is approved or owned by $localUser, and is for this wiki.
-		$consumer = Consumer::newFromId( $dbr, $access->getConsumerId() );
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+		$consumer = $consumerRepository->getById( $access->getConsumerId() );
 		if ( !$consumer->isUsableBy( $localUser ) ) {
 			$this->logger->debug(
 				'OAuth request for consumer {consumer} not approved by user {user}', $logData

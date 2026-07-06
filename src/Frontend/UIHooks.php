@@ -5,12 +5,13 @@ namespace MediaWiki\Extension\OAuth\Frontend;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\MWException;
-use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\Hook\MessagesPreLoadHook;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
@@ -110,9 +111,9 @@ class UIHooks implements
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setLanguage( $code );
 
-		$dbr = Utils::getOAuthDB( DB_REPLICA );
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 		$cmrAc = ConsumerAccessControl::wrap(
-			Consumer::newFromId( $dbr, (int)$m[1] ),
+			$consumerRepository->getById( (int)$m[1] ),
 			$context
 		);
 		if ( !$cmrAc ) {

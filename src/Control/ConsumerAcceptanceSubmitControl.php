@@ -14,12 +14,14 @@ use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * This handles the core logic of submitting/approving application
@@ -112,7 +114,8 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 			case 'accept':
 				$payload = [];
 				$identifier = $this->isOAuth2() ? 'client_id' : 'consumerKey';
-				$cmr = Consumer::newFromKey( $this->dbw, $this->vals[$identifier] );
+				$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+				$cmr = $consumerRepository->getByKey( $this->vals[$identifier], IDBAccessObject::READ_LATEST );
 				if ( !$cmr ) {
 					return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
 				} elseif ( !$cmr->isUsableBy( $user ) ) {
@@ -163,7 +166,8 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 				} elseif ( $cmra->getUserId() !== $centralUserId ) {
 					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 				}
-				$cmr = Consumer::newFromId( $dbw, $cmra->getConsumerId() );
+				$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+				$cmr = $consumerRepository->getById( $cmra->getConsumerId(), IDBAccessObject::READ_LATEST );
 
 				// requested grants
 				$grants = FormatJson::decode( $this->vals['grants'], true );
@@ -196,7 +200,8 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 				}
 
-				$cmr = Consumer::newFromId( $dbw, $cmra->get( 'consumerId' ) );
+				$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+				$cmr = $consumerRepository->getById( $cmra->get( 'consumerId' ), IDBAccessObject::READ_LATEST );
 				LoggerFactory::getInstance( 'OAuth' )->info(
 					'{user} performed action {action} on consumer {consumer}', [
 						'action' => 'renounce',

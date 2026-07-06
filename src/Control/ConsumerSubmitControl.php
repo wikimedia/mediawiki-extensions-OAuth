@@ -24,6 +24,7 @@ use MediaWiki\User\User;
 use MediaWiki\Utils\MWCryptRand;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -134,6 +135,7 @@ class ConsumerSubmitControl extends SubmitControl {
 
 	/** @inheritDoc */
 	protected function processAction( $action ): Status {
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 		$context = $this->getContext();
 		// proposer or admin
 		$user = $this->getUser();
@@ -157,8 +159,8 @@ class ConsumerSubmitControl extends SubmitControl {
 					return $this->failure( 'email_mismatched', 'mwoauth-consumer-email-mismatched' );
 				}
 
-				if ( Consumer::newFromNameVersionUser(
-					$dbw, $this->vals['name'], $this->vals['version'], $centralUserId
+				if ( $consumerRepository->getByNameVersionUser(
+					$this->vals['name'], $this->vals['version'], $centralUserId, IDBAccessObject::READ_LATEST
 				) ) {
 					return $this->failure( 'consumer_exists', 'mwoauth-consumer-alreadyexists' );
 				}
@@ -243,7 +245,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					$logAction = 'propose-autoapproved';
 				}
 
-				$cmr->save( $dbw );
+				$consumerRepository->save( $cmr );
 				$this->makeLogEntry( Utils::getCentralWikiDB(), $cmr, $logAction, $user, $this->vals['description'] );
 				if ( !$cmr->getOwnerOnly() && !$autoApproved ) {
 					// Notify admins if the consumer needs to be approved.
@@ -288,7 +290,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					return $this->failure( 'permission_denied', 'badaccess-group0' );
 				}
 
-				$cmr = Consumer::newFromKey( $dbw, $this->vals['consumerKey'] );
+				$cmr = $consumerRepository->getByKey( $this->vals['consumerKey'], IDBAccessObject::READ_LATEST );
 				if ( !$cmr ) {
 					return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
 				} elseif ( $cmr->getUserId() !== $centralUserId ) {
@@ -314,7 +316,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				] );
 
 				// Log if something actually changed
-				if ( $cmr->save( $dbw ) ) {
+				if ( $consumerRepository->save( $cmr ) ) {
 					$this->makeLogEntry( Utils::getCentralWikiDB(), $cmr, $action, $user, $this->vals['reason'] );
 					$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 				}
@@ -353,7 +355,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					return $this->failure( 'permission_denied', 'badaccess-group0' );
 				}
 
-				$cmr = Consumer::newFromKey( $dbw, $this->vals['consumerKey'] );
+				$cmr = $consumerRepository->getByKey( $this->vals['consumerKey'], IDBAccessObject::READ_LATEST );
 				if ( !$cmr ) {
 					return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
 				} elseif ( !in_array( $cmr->getStage(), [
@@ -374,7 +376,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					'deleted'        => 0 ] );
 
 				// Log if something actually changed
-				if ( $cmr->save( $dbw ) ) {
+				if ( $consumerRepository->save( $cmr ) ) {
 					$this->makeLogEntry( Utils::getCentralWikiDB(), $cmr, $action, $user, $this->vals['reason'] );
 					$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 				}
@@ -385,7 +387,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					return $this->failure( 'permission_denied', 'badaccess-group0' );
 				}
 
-				$cmr = Consumer::newFromKey( $dbw, $this->vals['consumerKey'] );
+				$cmr = $consumerRepository->getByKey( $this->vals['consumerKey'], IDBAccessObject::READ_LATEST );
 				if ( !$cmr ) {
 					return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
 				} elseif ( $cmr->getStage() !== Consumer::STAGE_PROPOSED ) {
@@ -404,7 +406,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					'deleted'        => $this->vals['suppress'] ] );
 
 				// Log if something actually changed
-				if ( $cmr->save( $dbw ) ) {
+				if ( $consumerRepository->save( $cmr ) ) {
 					$this->makeLogEntry( Utils::getCentralWikiDB(), $cmr, $action, $user, $this->vals['reason'] );
 					$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 				}
@@ -417,7 +419,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					return $this->failure( 'permission_denied', 'badaccess-group0' );
 				}
 
-				$cmr = Consumer::newFromKey( $dbw, $this->vals['consumerKey'] );
+				$cmr = $consumerRepository->getByKey( $this->vals['consumerKey'], IDBAccessObject::READ_LATEST );
 				if ( !$cmr ) {
 					return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
 				} elseif ( $cmr->getStage() !== Consumer::STAGE_APPROVED
@@ -436,7 +438,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					'deleted'        => $this->vals['suppress'] ] );
 
 				// Log if something actually changed
-				if ( $cmr->save( $dbw ) ) {
+				if ( $consumerRepository->save( $cmr ) ) {
 					$this->makeLogEntry( Utils::getCentralWikiDB(), $cmr, $action, $user, $this->vals['reason'] );
 					$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 				}
@@ -447,7 +449,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					return $this->failure( 'permission_denied', 'badaccess-group0' );
 				}
 
-				$cmr = Consumer::newFromKey( $dbw, $this->vals['consumerKey'] );
+				$cmr = $consumerRepository->getByKey( $this->vals['consumerKey'], IDBAccessObject::READ_LATEST );
 				if ( !$cmr ) {
 					return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
 				} elseif ( $cmr->getStage() !== Consumer::STAGE_DISABLED ) {
@@ -464,7 +466,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					'deleted'        => 0 ] );
 
 				// Log if something actually changed
-				if ( $cmr->save( $dbw ) ) {
+				if ( $consumerRepository->save( $cmr ) ) {
 					$this->makeLogEntry( Utils::getCentralWikiDB(), $cmr, $action, $user, $this->vals['reason'] );
 					$this->notify( $cmr, $user, $action, $this->vals['reason'] );
 				}

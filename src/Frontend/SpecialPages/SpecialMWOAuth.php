@@ -24,6 +24,7 @@ use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\UserStatementProvider;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
@@ -363,10 +364,10 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				default:
 					$format = $request->getVal( 'format', 'html' );
 					'@phan-var string $format';
-					$dbr = Utils::getOAuthDB( DB_REPLICA );
+					$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+						->getConsumerRepository();
 					$cmrAc = ConsumerAccessControl::wrap(
-						Consumer::newFromKey(
-							$dbr,
+						$consumerRepository->getByKey(
 							$request->getVal( 'oauth_consumer_key', null )
 						),
 						$this->getContext()
@@ -418,9 +419,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	 * @throws MWOAuthException
 	 */
 	protected function showCancelPage( $consumerKey ) {
-		$dbr = Utils::getOAuthDB( DB_REPLICA );
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 		$cmrAc = ConsumerAccessControl::wrap(
-			Consumer::newFromKey( $dbr, $consumerKey ),
+			$consumerRepository->getByKey( $consumerKey ),
 			$this->getContext()
 		);
 		if ( !$cmrAc ) {
@@ -471,7 +472,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param string|null $requestToken
+	 * @param string|null $requestToken Request token for OAuth 1, null for OAuth 2
 	 * @param string|null $consumerKey
 	 * @param bool $authenticate
 	 * @throws MWOAuthException
@@ -488,8 +489,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			$consumerKey = $oauthServer->getConsumerKey( $requestToken );
 		}
 
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 		$cmrAc = ConsumerAccessControl::wrap(
-			Consumer::newFromKey( Utils::getOAuthDB( DB_REPLICA ), $consumerKey ),
+			$consumerRepository->getByKey( (string)$consumerKey ),
 			$this->getContext()
 		);
 

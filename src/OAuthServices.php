@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Extension\OAuth\Control\Workflow;
+use MediaWiki\Extension\OAuth\Repository\ConsumerRepositoryInterface;
 use MediaWiki\MediaWikiServices;
 
 class OAuthServices {
@@ -20,6 +21,10 @@ class OAuthServices {
 
 	public function getConfig(): Config {
 		return $this->coreServices->get( 'OAuthConfig' );
+	}
+
+	public function getConsumerRepository(): ConsumerRepositoryInterface {
+		return $this->coreServices->get( 'OAuthConsumerRepository' );
 	}
 
 	public function getWorkflow(): Workflow {

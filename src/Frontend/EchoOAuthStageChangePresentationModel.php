@@ -7,6 +7,8 @@ use MediaWiki\Extension\Notifications\AttributeManager;
 use MediaWiki\Extension\Notifications\Formatters\EchoEventPresentationModel;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\OAuthServices;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
 
@@ -110,9 +112,8 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 	 */
 	protected function getConsumer() {
 		if ( $this->consumer === null ) {
-			$dbr = Utils::getOAuthDB( DB_REPLICA );
-			$this->consumer =
-				Consumer::newFromKey( $dbr, $this->event->getExtraParam( 'app-key' ) );
+			$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+			$this->consumer = $consumerRepository->getByKey( $this->event->getExtraParam( 'app-key' ) );
 		}
 		return $this->consumer;
 	}

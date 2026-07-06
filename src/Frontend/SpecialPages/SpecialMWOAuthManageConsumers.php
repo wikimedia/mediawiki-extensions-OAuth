@@ -18,10 +18,12 @@ use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ManageConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -248,9 +250,9 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	 */
 	protected function handleConsumerForm( $consumerKey ) {
 		$user = $this->getUser();
-		$dbr = Utils::getOAuthDB( DB_REPLICA );
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 		$cmrAc = ConsumerAccessControl::wrap(
-			Consumer::newFromKey( $dbr, $consumerKey ), $this->getContext() );
+			$consumerRepository->getByKey( $consumerKey ), $this->getContext() );
 
 		if ( !$cmrAc ) {
 			$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );

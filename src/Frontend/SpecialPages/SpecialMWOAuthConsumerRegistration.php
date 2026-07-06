@@ -19,6 +19,7 @@ use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ListMyConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLHiddenField;
 use MediaWiki\HTMLForm\Field\HTMLRestrictionsField;
@@ -26,6 +27,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
@@ -90,6 +92,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 		$this->checkPermissions();
 
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 		$request = $this->getRequest();
 		$user = $this->getUser();
 		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
@@ -154,7 +157,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 				$dbr = Utils::getOAuthDB( DB_REPLICA );
 				$cmrAc = ConsumerAccessControl::wrap(
-					Consumer::newFromKey( $dbr, $subPage ), $this->getContext() );
+					$consumerRepository->getByKey( $subPage ), $this->getContext() );
 				if ( !$cmrAc ) {
 					$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 					break;
@@ -177,7 +180,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 
 				$dbr = Utils::getOAuthDB( DB_REPLICA );
 				$cmrAc = ConsumerAccessControl::wrap(
-				Consumer::newFromKey( $dbr, $subPage ), $this->getContext() );
+					$consumerRepository->getByKey( $subPage ), $this->getContext() );
 				if ( !$cmrAc ) {
 					$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 					break;

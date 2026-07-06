@@ -4,7 +4,9 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthServer;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Linker\Linker;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
@@ -345,8 +347,8 @@ class MWOAuthServer extends OAuthServer {
 	 * @return string
 	 */
 	public function authorize( $consumerKey, $requestTokenKey, User $mwUser, $update ) {
-		$dbr = Utils::getOAuthDB( DB_REPLICA );
-		$consumer = Consumer::newFromKey( $dbr, $consumerKey );
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+		$consumer = $consumerRepository->getByKey( $consumerKey );
 		return $consumer->authorize( $mwUser, $update, $consumer->getGrants(), $requestTokenKey );
 	}
 

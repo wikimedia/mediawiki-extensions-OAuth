@@ -4,10 +4,12 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Rest;
 
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Rest\Handler\Authorize;
 use MediaWiki\Rest\Handler;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWRestrictions;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Rest\Handler\Authorize
@@ -121,11 +123,12 @@ class AuthorizationEndpointTest extends EndpointTestBase {
 					'protocolVersion' => '1.1',
 					'bodyPattern' => '/title=Special:OAuth/',
 				],
-				static function () {
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
+						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser2' );
 
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getOAuthDB( DB_PRIMARY );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;
@@ -133,7 +136,7 @@ class AuthorizationEndpointTest extends EndpointTestBase {
 					$consumerData['oauthVersion'] = '2';
 					$consumerData['name'] = 'test_name_user_successful';
 					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
-					Consumer::newFromArray( $consumerData )->save( $db );
+					$consumerRepository->save( Consumer::newFromArray( $consumerData ) );
 
 					return $user;
 				},
@@ -160,7 +163,9 @@ class AuthorizationEndpointTest extends EndpointTestBase {
 						'/\buselang=fr\b/',
 					],
 				],
-				static function () {
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
+						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser2' );
 
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
@@ -172,7 +177,7 @@ class AuthorizationEndpointTest extends EndpointTestBase {
 					$consumerData['oauthVersion'] = '2';
 					$consumerData['name'] = 'test_name_user_successful';
 					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
-					Consumer::newFromArray( $consumerData )->save( $db );
+					$consumerRepository->save( Consumer::newFromArray( $consumerData ) );
 
 					return $user;
 				},
