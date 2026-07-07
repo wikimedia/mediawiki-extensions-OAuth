@@ -17,6 +17,7 @@ use MediaWiki\Extension\OAuth\Backend\MWOAuthRequest;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Json\JwtException;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -245,6 +246,7 @@ class SessionProvider
 			'metadata' => [
 				'oauthVersion' => $oauthVersion,
 				'consumerId' => $consumer->getOwnerOnly() ? null : $consumer->getId(),
+				'consumerKey' => $consumer->getConsumerKey(),
 				'key' => $accessTokenKey,
 				'rights' => $this->grantsInfo->getGrantRights( $access->getGrants() ),
 				'restrictions' => $consumer->getRestrictions()->toJson(),
@@ -359,6 +361,19 @@ class SessionProvider
 
 	/** @inheritDoc */
 	public function sessionWasAttachedToRequest( SessionInfo $sessionInfo, WebRequest $request ): void {
+		// For the rest of the request lifetime, include the consumer identifiers with all logging
+		$consumerKey = $sessionInfo->getProviderMetadata()['consumerKey'] ?? null;
+		if ( $consumerKey ) {
+			$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+			$consumer = $consumerRepository->getByKey( $consumerKey );
+			LoggerFactory::getContext()->add( [
+				'context.oauth_consumer_id' => (string)$consumer->getId(),
+				'context.oauth_consumer_key' => $consumer->getConsumerKey(),
+				'context.oauth_consumer_name' => $consumer->getName(),
+				'context.oauth_consumer_version' => $consumer->getVersion(),
+			] );
+		}
+
 		if ( $this->shouldUseJwtCookie( $sessionInfo )
 			&& ( $sessionInfo->getProviderMetadata()['refreshJwtCookie'] ?? false )
 		) {
