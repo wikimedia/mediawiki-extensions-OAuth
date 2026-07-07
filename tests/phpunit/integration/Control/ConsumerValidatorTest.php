@@ -5,11 +5,14 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Control;
 use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Control\ConsumerValidator;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Tests\MockOAuthSignatureMethodRsaSha1;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\NormalizedException\NormalizedException;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Control\ConsumerValidator
@@ -17,26 +20,144 @@ use MediaWikiIntegrationTestCase;
  */
 class ConsumerValidatorTest extends MediaWikiIntegrationTestCase {
 
+	private static function getConsumerData(): array {
+		return [
+			Consumer::FIELD_ID => 1234,
+			Consumer::FIELD_CONSUMER_KEY => '1234567890abcdef1234567890abcdef',
+			Consumer::FIELD_NAME => 'Test Consumer',
+			Consumer::FIELD_USER_ID => 12345,
+			Consumer::FIELD_VERSION => '1.0.0',
+			Consumer::FIELD_CALLBACK_URL => 'https://example.com/callback',
+			Consumer::FIELD_CALLBACK_IS_PREFIX => false,
+			Consumer::FIELD_DESCRIPTION => 'A test consumer',
+			Consumer::FIELD_EMAIL => 'test@example.com',
+			Consumer::FIELD_EMAIL_AUTHENTICATED => '20050101000000',
+			Consumer::FIELD_OAUTH_VERSION => Consumer::OAUTH_VERSION_2,
+			Consumer::FIELD_DEVELOPER_AGREEMENT => true,
+			Consumer::FIELD_OWNER_ONLY => false,
+			Consumer::FIELD_WIKI => '*',
+			Consumer::FIELD_GRANTS => [ 'editpage' ],
+			Consumer::FIELD_REGISTRATION => '20150101000000',
+			Consumer::FIELD_SECRET_KEY => bin2hex( random_bytes( 16 ) ),
+			Consumer::FIELD_RSA_KEY => '',
+			Consumer::FIELD_RESTRICTIONS => MWRestrictions::newDefault(),
+			Consumer::FIELD_STAGE => Consumer::STAGE_APPROVED,
+			Consumer::FIELD_STAGE_TIMESTAMP => '20250101000000',
+			Consumer::FIELD_DELETED => false,
+			Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL => true,
+			Consumer::FIELD_OAUTH2_GRANT_TYPES => [
+				ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+				ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
+			],
+		];
+	}
+
+	private static function getOAuth1ConfigurationData(): array {
+		return [
+			Consumer::FIELD_OAUTH_VERSION => Consumer::OAUTH_VERSION_1,
+		] + array_diff_key(
+			self::getConsumerData(),
+			self::getDbOnlyFields(),
+			array_fill_keys( [
+				Consumer::FIELD_CALLBACK_IS_PREFIX,
+				Consumer::FIELD_OWNER_ONLY,
+				Consumer::FIELD_WIKI,
+				Consumer::FIELD_RSA_KEY,
+				Consumer::FIELD_RESTRICTIONS,
+				Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL,
+				Consumer::FIELD_OAUTH2_GRANT_TYPES,
+			], true )
+		);
+	}
+
+	private static function getOAuth1OwnerOnlyConfigurationData(): array {
+		return [
+			Consumer::FIELD_OAUTH_VERSION => Consumer::OAUTH_VERSION_1,
+			Consumer::FIELD_OWNER_ONLY => true,
+		] + array_diff_key(
+			self::getConsumerData(),
+			self::getDbOnlyFields(),
+			array_fill_keys( [
+				Consumer::FIELD_CALLBACK_URL,
+				Consumer::FIELD_CALLBACK_IS_PREFIX,
+				Consumer::FIELD_WIKI,
+				Consumer::FIELD_RSA_KEY,
+				Consumer::FIELD_RESTRICTIONS,
+				Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL,
+				Consumer::FIELD_OAUTH2_GRANT_TYPES,
+			], true )
+		);
+	}
+
+	private static function getOAuth2ConfigurationData(): array {
+		return array_diff_key(
+			self::getConsumerData(),
+			self::getDbOnlyFields(),
+			array_fill_keys( [
+				Consumer::FIELD_CALLBACK_IS_PREFIX,
+				Consumer::FIELD_OWNER_ONLY,
+				Consumer::FIELD_WIKI,
+				Consumer::FIELD_RSA_KEY,
+				Consumer::FIELD_RESTRICTIONS,
+			], true )
+		);
+	}
+
+	private static function getOAuth2OwnerOnlyConfigurationData(): array {
+		return [
+			Consumer::FIELD_OWNER_ONLY => true,
+		] + array_diff_key(
+			self::getConsumerData(),
+				self::getDbOnlyFields(),
+			array_fill_keys( [
+				Consumer::FIELD_CALLBACK_URL,
+				Consumer::FIELD_CALLBACK_IS_PREFIX,
+				Consumer::FIELD_WIKI,
+				Consumer::FIELD_RSA_KEY,
+				Consumer::FIELD_RESTRICTIONS,
+				Consumer::FIELD_OAUTH2_GRANT_TYPES,
+			], true )
+		);
+	}
+
+	private static function getDbOnlyFields() {
+		return [
+			Consumer::FIELD_EMAIL => true,
+			Consumer::FIELD_EMAIL_AUTHENTICATED => true,
+			Consumer::FIELD_DEVELOPER_AGREEMENT => true,
+			Consumer::FIELD_REGISTRATION => true,
+			Consumer::FIELD_STAGE => true,
+			Consumer::FIELD_STAGE_TIMESTAMP => true,
+			Consumer::FIELD_DELETED => true,
+		];
+	}
+
+	private function getConsumerValidator(): ConsumerValidator {
+		return OAuthServices::wrap( $this->getServiceContainer() )->getConsumerValidator();
+	}
+
 	private function getCallback( string $fieldName ): callable {
-		return ( new ConsumerValidator() )->getValidatorCallbacks()[$fieldName];
+		return ( $this->getConsumerValidator() )->getValidatorCallbacks()[$fieldName];
 	}
 
 	// generic
 
-	public function testValidateFieldsUnknownFieldReturnsError(): void {
-		$status = ( new ConsumerValidator() )->validateFields( [ 'nonExistentField' => 'value' ] );
-		$this->assertStatusNotOK( $status );
+	public function testValidateFieldsAndThrowInvalidFieldThrowsError(): void {
+		$this->expectException( NormalizedException::class );
+		( $this->getConsumerValidator() )->validateFieldsAndThrow( [
+			Consumer::FIELD_OAUTH_VERSION => 3,
+		] );
 	}
 
-	public function testValidateFieldsKnownFieldDoesNotReturnError(): void {
-		$status = ( new ConsumerValidator() )->validateFields( [
+	public function testValidateFieldsAndThrowKnownFieldDoesNotThrowError(): void {
+		( $this->getConsumerValidator() )->validateFieldsAndThrow( [
 			Consumer::FIELD_NAME => 'My App',
 		] );
-		$this->assertStatusGood( $status );
+		$this->assertTrue( true, 'no exception' );
 	}
 
 	public function testValidateFieldsMultipleErrors(): void {
-		$status = ( new ConsumerValidator() )->validateFields( [
+		$status = ( $this->getConsumerValidator() )->validateFields( [
 			Consumer::FIELD_NAME => 'My App',
 			Consumer::FIELD_OAUTH_VERSION => 'invalid',
 			Consumer::FIELD_DEVELOPER_AGREEMENT => false,
@@ -479,6 +600,130 @@ class ConsumerValidatorTest extends MediaWikiIntegrationTestCase {
 		$grants = array_fill( 0, 5000, 'authorization_code' );
 		$status = $this->getCallback( Consumer::FIELD_OAUTH2_GRANT_TYPES )( $grants, $fields );
 		$this->assertStatusNotOK( $status );
+	}
+
+	// expandConsumerData
+
+	public static function provideExpandConsumerData(): iterable {
+		return [
+			'defaults are added' => [
+				'consumerData' => self::getOAuth1ConfigurationData(),
+				'expected' => [
+					Consumer::FIELD_CALLBACK_IS_PREFIX => false,
+					Consumer::FIELD_OWNER_ONLY => false,
+					Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL => true,
+				],
+			],
+			'override works' => [
+				'consumerData' => [
+					Consumer::FIELD_CALLBACK_IS_PREFIX => true,
+				] + self::getOAuth1ConfigurationData(),
+				'expected' => [
+					Consumer::FIELD_CALLBACK_IS_PREFIX => true,
+				],
+			],
+			'no secret key required when RSA key provided'  => [
+				'consumerData' => [
+					Consumer::FIELD_RSA_KEY => 'this is a key',
+				] + array_diff_key( self::getOAuth1ConfigurationData(), [
+					Consumer::FIELD_SECRET_KEY => true,
+				] ),
+				'expected' => [],
+			],
+			'non-owner-only grant types' => [
+				'consumerData' => self::getOAuth2ConfigurationData(),
+				'expected' => [
+					Consumer::FIELD_OAUTH2_GRANT_TYPES => [
+						ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+						ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
+					],
+				],
+			],
+			'owner-only grant types' => [
+				'consumerData' => self::getOAuth2OwnerOnlyConfigurationData(),
+				'expected' => [
+					Consumer::FIELD_OAUTH2_GRANT_TYPES => [
+						ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+					],
+				],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideExpandConsumerData
+	 */
+	public function testExpandConsumerData( array $consumerData, array $expected ): void {
+		$actual = $this->getConsumerValidator()->expandConsumerData( $consumerData );
+		$this->assertArrayContains( $expected, $actual );
+	}
+
+	public static function provideExpandConsumerData_error(): iterable {
+		return [
+			'missing OAuth version' => [ array_diff_key(
+				self::getOAuth1ConfigurationData(),
+				[ Consumer::FIELD_OAUTH_VERSION => true ]
+			) ],
+			'invalid OAuth version' => [ [
+				Consumer::FIELD_OAUTH_VERSION => 3,
+			] + self::getOAuth1ConfigurationData() ],
+			'unknown field' => [ [
+				'noSuchKey' => true,
+			] + self::getOAuth1ConfigurationData() ],
+			'missing required OAuth 1 field' => [ array_diff_key(
+				self::getOAuth1ConfigurationData(),
+				[ Consumer::FIELD_CALLBACK_URL => true ]
+			) ],
+			'missing required OAuth 1 owner-only field' => [ array_diff_key(
+				self::getOAuth1OwnerOnlyConfigurationData(),
+				[ Consumer::FIELD_GRANTS => true ]
+			) ],
+			'missing required OAuth 2 field' => [ array_diff_key(
+				self::getOAuth2ConfigurationData(),
+				[ Consumer::FIELD_OAUTH2_GRANT_TYPES => true ]
+			) ],
+			'missing required OAuth 2 owner-only field' => [ array_diff_key(
+				self::getOAuth2OwnerOnlyConfigurationData(),
+				[ Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL => true ]
+			) ],
+			'unexpected field for config consumers generally' => [ [
+				Consumer::FIELD_REGISTRATION => '20150101000000',
+			] + self::getOAuth1ConfigurationData() ],
+			'unexpected field for OAuth 1' => [ [
+				Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL => true,
+			] + self::getOAuth1ConfigurationData() ],
+			'unexpected field for OAuth 1 owner-only' => [ [
+				Consumer::FIELD_CALLBACK_URL => 'https://example.org',
+			] + self::getOAuth1OwnerOnlyConfigurationData() ],
+			'unexpected field for OAuth 2' => [ [
+				Consumer::FIELD_CALLBACK_IS_PREFIX => true,
+			] + self::getOAuth2ConfigurationData() ],
+			'unexpected field for OAuth 2 owner-only' => [ [
+				Consumer::FIELD_OAUTH2_GRANT_TYPES => [ ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE ],
+			] + self::getOAuth2OwnerOnlyConfigurationData() ],
+			'auth code grant requires callback URL' => [ array_diff_key(
+				self::getOAuth2ConfigurationData(),
+				[ Consumer::FIELD_CALLBACK_URL => true ]
+			) ],
+			'invalid type' => [ [
+				Consumer::FIELD_OAUTH_VERSION => '2',
+			] + self::getOAuth2ConfigurationData() ],
+			'missing secret key' => [ array_diff_key(
+				self::getOAuth1ConfigurationData(),
+				[ Consumer::FIELD_SECRET_KEY => true ]
+			) ],
+			'invalid OAuth2 grant type' => [ [
+				Consumer::FIELD_OAUTH2_GRANT_TYPES => [ 'foo' ],
+			] + self::getOAuth2ConfigurationData() ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideExpandConsumerData_error
+	 */
+	public function testExpandConsumerData_error( array $consumerData ): void {
+		$this->expectException( NormalizedException::class );
+		$this->getConsumerValidator()->expandConsumerData( $consumerData );
 	}
 
 }

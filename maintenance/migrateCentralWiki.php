@@ -91,7 +91,7 @@ class MigrateCentralWiki extends Maintenance {
 			/** @var MWOAuthDAO $cmrClass */
 			$cmr = $cmrClass::newFromId( $oldDb, $currentId );
 			if ( $cmr ) {
-				$cmr->updateOrigin( 'new' );
+				$cmr->updateOrigin( MWOAuthDAO::ORIGIN_NEW );
 				$cmr->setPending( true );
 				$cmr->save( $targetDb );
 				$this->output( "done.\n" );

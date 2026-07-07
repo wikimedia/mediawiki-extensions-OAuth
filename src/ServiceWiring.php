@@ -3,6 +3,7 @@
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Control\ConsumerValidator;
 use MediaWiki\Extension\OAuth\Control\Workflow;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Repository\ConsumerAcceptanceRepositoryInterface;
@@ -26,6 +27,14 @@ return [
 
 	'OAuthConsumerRepository' => static function ( MediaWikiServices $services ): ConsumerRepositoryInterface {
 		return new DatabaseConsumerRepository();
+	},
+
+	'OAuthConsumerValidator' => static function ( MediaWikiServices $services ): ConsumerValidator {
+		$mainConfig = $services->getMainConfig();
+		return new ConsumerValidator(
+			new ServiceOptions( ConsumerValidator::SERVICE_OPTIONS, $mainConfig ),
+			$services->getFormatterFactory(),
+		);
 	},
 
 	'OAuthWorkflow' => static function ( MediaWikiServices $services ): Workflow {

@@ -310,6 +310,18 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	/**
+	 * Set internal ID (DB primary key).
+	 * @internal Should only be used by ConsumerRepository classes.
+	 */
+	public function setId( int $id ): void {
+		// can't use getId() if the consumer does not have an ID yet
+		if ( $this->get( 'id' ) ) {
+			throw new LogicException( 'Cannot set ID for a consumer that already has one' );
+		}
+		$this->id = $id;
+	}
+
+	/**
 	 * Consumer key (32-character hexadecimal string that's used in the OAuth protocol
 	 * and in URLs). This is used as the consumer ID for most external purposes.
 	 */

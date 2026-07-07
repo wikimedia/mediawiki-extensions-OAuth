@@ -4,15 +4,37 @@ namespace MediaWiki\Extension\OAuth\Control;
 
 use Composer\Semver\VersionParser;
 use MediaWiki\Api\ApiMessage;
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Language\FormatterFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Status\StatusFormatter;
+use MediaWiki\Utils\MWCryptRand;
+use MediaWiki\Utils\MWRestrictions;
 use MediaWiki\WikiMap\WikiMap;
 use StatusValue;
 use UnexpectedValueException;
+use Wikimedia\Assert\Assert;
+use Wikimedia\Assert\ParameterTypeException;
+use Wikimedia\NormalizedException\NormalizedException;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
+/**
+ * Validates data sets representing Consumer objects. The data is either from a web request
+ * (e.g. Special:OAuthConsumerRegistration submission) or from configuration (e.g. $wgOAuthStaticApps),
+ * with significant differences in how they are validated.
+ */
 class ConsumerValidator {
+
+	public const SERVICE_OPTIONS = [
+		MainConfigNames::NoReplyAddress,
+	];
 
 	/**
 	 * MySQL Blob Size is 2^16 - 1 = 65535 as per "L + 2 bytes, where L < 216" on
@@ -21,7 +43,41 @@ class ConsumerValidator {
 	public const BLOB_SIZE = 65535;
 
 	/**
+	 * Field name => Wikimedia\Assert type(s)
+	 */
+	private const FIELD_TYPES = [
+		Consumer::FIELD_ID => 'integer',
+		Consumer::FIELD_CONSUMER_KEY => 'string',
+		Consumer::FIELD_NAME => 'string',
+		Consumer::FIELD_USER_ID => 'integer',
+		Consumer::FIELD_VERSION => 'string',
+		Consumer::FIELD_CALLBACK_URL => 'string',
+		Consumer::FIELD_CALLBACK_IS_PREFIX => 'boolean',
+		Consumer::FIELD_DESCRIPTION => 'string',
+		Consumer::FIELD_EMAIL => 'string',
+		Consumer::FIELD_OAUTH_VERSION => 'integer',
+		Consumer::FIELD_OWNER_ONLY  => 'boolean',
+		Consumer::FIELD_WIKI => 'string',
+		Consumer::FIELD_GRANTS => 'array',
+		Consumer::FIELD_SECRET_KEY => 'string',
+		Consumer::FIELD_RSA_KEY => 'string',
+		Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL => 'boolean',
+		Consumer::FIELD_RESTRICTIONS => MWRestrictions::class,
+	];
+
+	public function __construct(
+		private ServiceOptions $options,
+		private FormatterFactory $formatterFactory,
+	) {
+		$this->options->assertRequiredOptions( self::SERVICE_OPTIONS );
+	}
+
+	/**
 	 * Takes an array of consumer data and returns a validation status.
+	 *
+	 * Validation only checks the values of the provided fields - it does not check whether
+	 * the data is sufficient to define a consumer, and it ignores unknown fields. It also
+	 * cannot handle a value that is the wrong PHP type. Use expandConsumerData() for that.
 	 *
 	 * Warnings should be surfaced to the user when submitting a new consumer, but the user
 	 * is allowed to ignore. Errors means this consumer should not be usable.
@@ -34,13 +90,26 @@ class ConsumerValidator {
 		$status = StatusValue::newGood();
 		foreach ( $fields as $fieldName => $fieldValue ) {
 			$callback = $validatorCallbacks[$fieldName] ?? null;
-			if ( !$callback ) {
-				$status->merge( $this->getGenericErrorStatus( $fieldName ) );
-			} else {
+			if ( $callback ) {
 				$status->merge( $callback( $fieldValue, $fields ) );
 			}
 		}
 		return $status;
+	}
+
+	/**
+	 * Like validateFields() but throws on error.
+	 *
+	 * @throws NormalizedException
+	 */
+	public function validateFieldsAndThrow( array $fields ): void {
+		$status = $this->validateFields( $fields );
+		if ( !$status->isOK() ) {
+			throw new NormalizedException( 'Consumer {consumer_key} is invalid: {reason}', [
+				'consumer_key' => $fields[Consumer::FIELD_CONSUMER_KEY] ?? '',
+				'reason' => $this->getStatusFormatter()->getWikiText( $status, [ 'lang' => 'en' ] ),
+			] );
+		}
 	}
 
 	/**
@@ -120,7 +189,7 @@ class ConsumerValidator {
 					: $this->getGenericErrorStatus( Consumer::FIELD_OAUTH_VERSION );
 			},
 			Consumer::FIELD_DEVELOPER_AGREEMENT => function ( $agreed ): StatusValue {
-				return ( $agreed == true )
+				return $agreed
 					? StatusValue::newGood()
 					: $this->getGenericErrorStatus( Consumer::FIELD_DEVELOPER_AGREEMENT );
 			},
@@ -197,6 +266,83 @@ class ConsumerValidator {
 				return StatusValue::newGood();
 			},
 		];
+	}
+
+	/**
+	 * Takes an array of Consumer data (in the same format as Consumer::toArray() but potentially
+	 * with some of the fields missing) and expands it so all fields are present. Only fields
+	 * that don't affect the consumer's behavior can be missing (e.g. OAuth 2 specific fields for
+	 * an OAuth 1 consumer).
+	 *
+	 * It also validates that all required fields are present, all present fields are known, and
+	 * all fields are of the correct type. It does not validate field values beyond that - use
+	 * validateFields() for that.
+	 *
+	 * @param array $consumerData
+	 * @return array
+	 * @throws NormalizedException
+	 */
+	public function expandConsumerData( array $consumerData ): array {
+		// check OAuth version first as it determines what fields are required
+		if ( !array_key_exists( Consumer::FIELD_OAUTH_VERSION, $consumerData ) ) {
+			$this->raiseInvalidConfigError( $consumerData, 'missing required field oauthVersion' );
+		}
+		$oauthVersion = $consumerData[Consumer::FIELD_OAUTH_VERSION];
+		if ( !in_array( $oauthVersion, [ Consumer::OAUTH_VERSION_1, Consumer::OAUTH_VERSION_2 ], true ) ) {
+			$this->raiseInvalidConfigError( $consumerData, 'oauthVersion must be 1 or 2' );
+		}
+		$isOwnerOnly = (bool)( $consumerData[Consumer::FIELD_OWNER_ONLY] ?? false );
+		$oAuth2GrantTypes = (array)( $consumerData[Consumer::FIELD_OAUTH2_GRANT_TYPES] ?? [] );
+		$hasAuthorizationCodeGrant = in_array( ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE, $oAuth2GrantTypes, true );
+
+		// check required and unknown / unexpected keys
+		[ 'required' => $requiredKeys, 'optional' => $optionalKeys, 'unused' => $unusedKeys ]
+			= $this->getConsumerFields( $oauthVersion, $isOwnerOnly, $hasAuthorizationCodeGrant );
+
+		foreach ( $requiredKeys as $key => $_ ) {
+			$consumerData[$key] ?? $this->raiseInvalidConfigError( $consumerData, "$key is required" );
+		}
+		$unknownKeys = array_keys( array_diff_key( $consumerData, $requiredKeys, $optionalKeys, $unusedKeys ) );
+		if ( $unknownKeys ) {
+			$this->raiseInvalidConfigError( $consumerData, 'unknown fields: ' . implode( ', ', $unknownKeys ) );
+		}
+		$unexpectedKeys = array_keys( array_diff_key( $consumerData, $requiredKeys, $optionalKeys ) );
+		if ( $unexpectedKeys ) {
+			$appType = "OAuth $oauthVersion " . ( $isOwnerOnly ? 'owner-only' : 'non-owner-only' );
+			$this->raiseInvalidConfigError( $consumerData, "these fields cannot be used with $appType apps: "
+				. implode( ', ', $unexpectedKeys ) );
+		}
+
+		foreach ( self::FIELD_TYPES as $field => $type ) {
+			if ( array_key_exists( $field, $consumerData ) ) {
+				try {
+					Assert::parameterType( $type, $consumerData[$field], 'not used' );
+				} catch ( ParameterTypeException ) {
+					$this->raiseInvalidConfigError( $consumerData, "$field must be $type" );
+				}
+			}
+		}
+
+		$needsSecret = $oauthVersion === Consumer::OAUTH_VERSION_1
+			|| $consumerData[Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL];
+		if ( $needsSecret
+			 && !( $consumerData[Consumer::FIELD_SECRET_KEY] ?? null )
+			 && !( $consumerData[Consumer::FIELD_RSA_KEY] ?? null )
+		) {
+			$this->raiseInvalidConfigError( $consumerData,
+				'Either secretKey or rsaKey is required for confidential clients' );
+		}
+
+		$unknownOauth2GrantTypes = array_diff( $consumerData[Consumer::FIELD_OAUTH2_GRANT_TYPES] ?? [],
+			ClientEntity::GRANT_TYPES );
+		if ( $unknownOauth2GrantTypes ) {
+			$this->raiseInvalidConfigError( $consumerData, 'Invalid OAuth 2 grant types: '
+				. implode( ', ', $unknownOauth2GrantTypes ) );
+		}
+
+		$consumerData += $optionalKeys;
+		$consumerData += $unusedKeys;
+		return $consumerData;
 	}
 
 	/**
@@ -317,6 +463,119 @@ class ConsumerValidator {
 
 	private function getTooLongErrorStatus( string $fieldName, int $maxLength ): StatusValue {
 		return $this->getErrorStatus( $fieldName, [ 'mwoauth-invalid-field-too-long', $fieldName, $maxLength ] );
+	}
+
+	private function getStatusFormatter(): StatusFormatter {
+		return $this->formatterFactory->getStatusFormatter( RequestContext::getMain() );
+	}
+
+	/**
+	 * Returns what keys are required and optionally allowed for a given app type.
+	 *
+	 * Keys match Consumer properties.
+	 * @return array Three arrays:
+	 *   - 'required': required keys, in `<key> => true` format
+	 *   - 'optional': optional keys, in `<key> => <default>` format
+	 *   - 'unused': keys not used for this consumer type, in `<key> => <db default>` format
+	 * @phan-return array{required:array,optional:array,unused:array}
+	 * @see Consumer::getSchema()
+	 * @see examples/configurationBasedApp.php
+	 */
+	private function getConsumerFields(
+		int $oauthVersion,
+		bool $isOwnerOnly,
+		bool $hasAuthorizationCodeGrant,
+	): array {
+		// default values for non-required keys
+		$dbDefaults = [
+			Consumer::FIELD_OWNER_ONLY => false,
+			// need an URL for validation purposes even if it won't be used
+			// just in case, don't use anything that's not under our own control
+			Consumer::FIELD_CALLBACK_URL => SpecialPage::getTitleFor( 'OAuth' )
+				->getSubpage( 'verified' )->getCanonicalURL(),
+			Consumer::FIELD_CALLBACK_IS_PREFIX => false,
+			Consumer::FIELD_EMAIL => $this->options->get( MainConfigNames::NoReplyAddress ),
+			Consumer::FIELD_EMAIL_AUTHENTICATED => true,
+			Consumer::FIELD_DEVELOPER_AGREEMENT => true,
+			Consumer::FIELD_WIKI => '*',
+			Consumer::FIELD_REGISTRATION => ConvertibleTimestamp::now(),
+			// to be in the safe side, set this to something unguessable even for
+			// consumers that aren't supposed to use it
+			Consumer::FIELD_SECRET_KEY => MWCryptRand::generateHex( 32 ),
+			Consumer::FIELD_RSA_KEY => '',
+			Consumer::FIELD_RESTRICTIONS => MWRestrictions::newDefault(),
+			Consumer::FIELD_STAGE => Consumer::STAGE_APPROVED,
+			Consumer::FIELD_STAGE_TIMESTAMP => ConvertibleTimestamp::now(),
+			Consumer::FIELD_DELETED => false,
+			Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL => true,
+		];
+		$requiredKeys = [
+			Consumer::FIELD_ID,
+			Consumer::FIELD_CONSUMER_KEY,
+			Consumer::FIELD_NAME,
+			Consumer::FIELD_VERSION,
+			Consumer::FIELD_DESCRIPTION,
+			Consumer::FIELD_OAUTH_VERSION,
+			Consumer::FIELD_GRANTS,
+			// TODO make this not required
+			Consumer::FIELD_USER_ID,
+		];
+		$optionalKeys = [
+			Consumer::FIELD_OWNER_ONLY,
+			Consumer::FIELD_SECRET_KEY,
+			Consumer::FIELD_WIKI,
+			Consumer::FIELD_RESTRICTIONS,
+		];
+
+		if ( $oauthVersion === Consumer::OAUTH_VERSION_1 ) {
+			$optionalKeys[] = Consumer::FIELD_RSA_KEY;
+			if ( !$isOwnerOnly ) {
+				$requiredKeys[] = Consumer::FIELD_CALLBACK_URL;
+				$optionalKeys[] = Consumer::FIELD_CALLBACK_IS_PREFIX;
+			}
+		} else {
+			$requiredKeys[] = Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL;
+			if ( !$isOwnerOnly ) {
+				$requiredKeys[] = Consumer::FIELD_OAUTH2_GRANT_TYPES;
+				if ( $hasAuthorizationCodeGrant ) {
+					$requiredKeys[] = Consumer::FIELD_CALLBACK_URL;
+				}
+			}
+		}
+
+		if ( $isOwnerOnly ) {
+			$dbDefaults += [
+				Consumer::FIELD_OAUTH2_GRANT_TYPES => [
+					ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+				],
+			];
+		} else {
+			$dbDefaults += [
+				Consumer::FIELD_OAUTH2_GRANT_TYPES => [
+					ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+					ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
+				],
+			];
+		}
+
+		// More complex conditions checked elsewhere:
+		// - either SECRET_KEY or RSA_KEY is required for OAuth 1 apps and confidential OAuth 2 apps
+		// - TODO cannot set confidential=false for client credentials
+
+		$toAssoc = static fn ( array $a ) => array_fill_keys( $a, true );
+		return [
+			'required' => $toAssoc( $requiredKeys ),
+			'optional' => array_intersect_key( $dbDefaults, $toAssoc( $optionalKeys ) ),
+			'unused' => array_diff_key( $dbDefaults, $toAssoc( $requiredKeys ), $toAssoc( $optionalKeys ) ),
+		];
+	}
+
+	private function raiseInvalidConfigError( array $consumerData, string $reason ): never {
+		$consumerKey = $consumerData[Consumer::FIELD_CONSUMER_KEY] ?? 'missing key';
+		throw new NormalizedException( 'Invalid configuration-based OAuth app ({consumerKey}): {reason}', [
+			'consumerKey' => $consumerKey,
+			'reason' => $reason,
+		] );
 	}
 
 }

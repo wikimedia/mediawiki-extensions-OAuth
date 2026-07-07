@@ -79,7 +79,7 @@ class ConsumerSubmitControl extends SubmitControl {
 			Consumer::FIELD_RSA_KEY,
 			// FIXME DEVELOPER_AGREEMENT is omitted because the form uses a different field name
 		];
-		$validator = new ConsumerValidator();
+		$validator = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerValidator();
 		$validatorCallbacks = $validator->getValidatorCallbacks();
 		$validateRsaKey = $validatorCallbacks[Consumer::FIELD_RSA_KEY];
 		$validateRestrictions = $validatorCallbacks[Consumer::FIELD_RESTRICTIONS];

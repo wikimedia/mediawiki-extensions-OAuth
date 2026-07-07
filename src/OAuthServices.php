@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth;
 
 use MediaWiki\Config\Config;
+use MediaWiki\Extension\OAuth\Control\ConsumerValidator;
 use MediaWiki\Extension\OAuth\Control\Workflow;
 use MediaWiki\Extension\OAuth\Repository\ConsumerAcceptanceRepositoryInterface;
 use MediaWiki\Extension\OAuth\Repository\ConsumerRepositoryInterface;
@@ -30,6 +31,10 @@ class OAuthServices {
 
 	public function getConsumerAcceptanceRepository(): ConsumerAcceptanceRepositoryInterface {
 		return $this->coreServices->get( 'OAuthConsumerAcceptanceRepository' );
+	}
+
+	public function getConsumerValidator(): ConsumerValidator {
+		return $this->coreServices->get( 'OAuthConsumerValidator' );
 	}
 
 	public function getWorkflow(): Workflow {

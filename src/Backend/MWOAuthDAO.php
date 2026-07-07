@@ -24,8 +24,15 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * Representation of a Data Access Object
  */
 abstract class MWOAuthDAO {
+	/** New consumer, needs to be inserted to the DB */
+	public const ORIGIN_NEW = 'new';
+	/** Consumer already present in the DB */
+	public const ORIGIN_DB = 'db';
+	/** Managed via configuration, not the DB */
+	public const ORIGIN_CONFIG = 'config';
+
 	/** @var string object construction origin */
-	private $daoOrigin = 'new';
+	private $daoOrigin = self::ORIGIN_NEW;
 	/** @var bool whether fields changed or the field is new */
 	private $daoPending = true;
 
@@ -175,7 +182,7 @@ abstract class MWOAuthDAO {
 		if ( $wgMWOAuthReadOnly ) {
 			throw new DBReadOnlyError( $dbw, __CLASS__ . ": tried to save while db is read-only" );
 		}
-		if ( $this->daoOrigin === 'db' ) {
+		if ( $this->daoOrigin === self::ORIGIN_DB ) {
 			if ( $this->daoPending ) {
 				$this->logger->debug( get_class( $this ) . ': performing DB update; object changed.' );
 				$dbw->newUpdateQueryBuilder()
@@ -190,7 +197,7 @@ abstract class MWOAuthDAO {
 				$this->logger->debug( get_class( $this ) . ': skipping DB update; object unchanged.' );
 				return false;
 			}
-		} else {
+		} elseif ( $this->daoOrigin === self::ORIGIN_NEW ) {
 			$this->logger->debug( get_class( $this ) . ': performing DB update; new object.' );
 			$afield = static::getAutoIncrField();
 			$acolumn = $afield !== null ? static::getColumn( $afield ) : null;
@@ -211,6 +218,8 @@ abstract class MWOAuthDAO {
 			}
 			$this->daoPending = false;
 			return true;
+		} else {
+			throw new LogicException( __METHOD__ . ' called on a consumer not managed via the DB' );
 		}
 	}
 
@@ -227,7 +236,7 @@ abstract class MWOAuthDAO {
 		if ( $wgMWOAuthReadOnly ) {
 			throw new DBReadOnlyError( $dbw, __CLASS__ . ": tried to delete while db is read-only" );
 		}
-		if ( $this->daoOrigin === 'db' ) {
+		if ( $this->daoOrigin === self::ORIGIN_DB ) {
 			$dbw->newDeleteQueryBuilder()
 				->deleteFrom( static::getTable() )
 				->where( [ $idColumn => $uniqueId ] )
@@ -235,8 +244,10 @@ abstract class MWOAuthDAO {
 				->execute();
 			$this->daoPending = true;
 			return $dbw->affectedRows() > 0;
-		} else {
+		} elseif ( $this->daoOrigin === self::ORIGIN_NEW ) {
 			return false;
+		} else {
+			throw new LogicException( __METHOD__ . ' called on a consumer not managed via the DB' );
 		}
 	}
 
@@ -333,6 +344,14 @@ abstract class MWOAuthDAO {
 		return $this->$field;
 	}
 
+	final public function toArray(): array {
+		$values = [];
+		foreach ( static::getFieldColumnMap() as $field => $column ) {
+			$values[$field] = $this->$field;
+		}
+		return $values;
+	}
+
 	/**
 	 * @param array $values
 	 */
@@ -344,7 +363,7 @@ abstract class MWOAuthDAO {
 			$this->$field = $values[$field];
 		}
 		$this->normalizeValues();
-		$this->daoOrigin = 'new';
+		$this->daoOrigin = self::ORIGIN_NEW;
 		$this->daoPending = true;
 	}
 
@@ -367,7 +386,7 @@ abstract class MWOAuthDAO {
 			$values[$field] = $row[$column];
 		}
 		$this->loadFromValues( $values );
-		$this->daoOrigin = 'db';
+		$this->daoOrigin = self::ORIGIN_DB;
 		$this->daoPending = false;
 	}
 
@@ -468,9 +487,10 @@ abstract class MWOAuthDAO {
 
 	/**
 	 * Update the origin of this object
-	 * @param string $source source of the object
-	 * 	'new': Treat this as a new object to the datastore (insert on save)
-	 * 	'db': Treat this as already in the datastore (update on save)
+	 * @param string $source source of the object, one of the self::ORIGIN_* constants:
+	 *   - ORIGIN_NEW: Treat this as a new object to the datastore (insert on save)
+	 *   - ORIGIN_DB: Treat this as already in the datastore (update on save)
+	 *   - ORIGIN_CONFIG: Managed via configuration, save()/delete() is not expected to be called
 	 */
 	public function updateOrigin( $source ) {
 		$this->daoOrigin = $source;
