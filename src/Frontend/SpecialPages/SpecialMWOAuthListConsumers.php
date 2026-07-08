@@ -28,6 +28,7 @@ use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use OOUI\HtmlSnippet;
 use stdClass;
+use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -288,7 +289,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 				$this->msg( "mwoauthlistconsumers-status-$stageKey" )->escaped(),
 		];
 		if ( $cmrAc->getDAO()->getOwnerOnly() ) {
-			$data = wfArrayInsertAfter( $data, [
+			$data = ArrayUtils::insertAfter( $data, [
 				'mwoauthlistconsumers-owner-only' => $this->msg( 'htmlform-yes' ),
 			], 'mwoauthlistconsumers-description' );
 		}
