@@ -209,6 +209,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 									$this->msg( 'mwoauth-oauth-version-2' )->text() :
 									$this->msg( 'mwoauth-oauth-version-1' )->text(),
 								'mwoauth-consumer-key' => $cmrAc->getConsumerKey(),
+								'mwoauth-consumer-wiki' => $cmrAc->getWikiName(),
 							], $this->getContext() ),
 						],
 						'restrictions' => [
@@ -458,6 +459,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				} )
 			),
 			'mwoauthconsumerregistration-email' => $cmrAc->escapeForHtml( $cmrAc->getEmail() ),
+			'mwoauthconsumerregistration-wiki' => $cmrAc->escapeForHtml( $cmrAc->getWikiName() ),
 			'mwoauthconsumerregistration-consumerkey' => $cmrAc->escapeForHtml( $cmrAc->getConsumerKey() ),
 			'mwoauthconsumerregistration-lastchange' => $logHtml,
 		];

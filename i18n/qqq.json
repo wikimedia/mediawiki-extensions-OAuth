@@ -115,6 +115,7 @@
 	"mwoauthconsumerregistration-user": "{{Identical|Publisher}}",
 	"mwoauthconsumerregistration-description": "{{Identical|Description}}",
 	"mwoauthconsumerregistration-email": "field on registration form for email",
+	"mwoauthconsumerregistration-wiki": "Used as table row header.{{Identical|Applicable project}}",
 	"mwoauthconsumerregistration-consumerkey": "Used as table row header.\n{{Identical|Consumer key}}",
 	"mwoauthconsumerregistration-stage": "Used as table row header.\n\nFollowed by any one of the following messages:\n* {{msg-mw|Mwoauth-consumer-stage-proposed}}\n* {{msg-mw|Mwoauth-consumer-stage-rejected}}\n* {{msg-mw|Mwoauth-consumer-stage-expired}}\n* {{msg-mw|Mwoauth-consumer-stage-approved}}\n* {{msg-mw|Mwoauth-consumer-stage-disabled}}\n* {{msg-mw|Mwoauth-consumer-stage-suppressed}}\n{{Identical|Status}}",
 	"mwoauthconsumerregistration-lastchange": "Used as table row header.\n{{Identical|Last change}}",

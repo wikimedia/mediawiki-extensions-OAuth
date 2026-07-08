@@ -100,6 +100,7 @@
 	"mwoauthconsumerregistration-user": "Publisher",
 	"mwoauthconsumerregistration-description": "Description",
 	"mwoauthconsumerregistration-email": "Contact email",
+	"mwoauthconsumerregistration-wiki": "Applicable project",
 	"mwoauthconsumerregistration-consumerkey": "Consumer key",
 	"mwoauthconsumerregistration-stage": "Status",
 	"mwoauthconsumerregistration-lastchange": "Last change",
