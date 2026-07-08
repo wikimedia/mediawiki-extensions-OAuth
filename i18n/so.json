@@ -6,8 +6,8 @@
 		]
 	},
 	"mwoauth-prefs-managegrants": "Adeegyada ku xidhan",
-	"mwoauth-prefs-managegrantslink": "Maamul $1 {{PLURAL:$1|adeega ku xiran|adeegyada ku xiran}}",
-	"mwoauth-consumer-allwikis": "Dhammaan mashaaliicda ka midka ah boggaan",
+	"mwoauth-prefs-managegrantslink": "Maamul {{PLURAL:$1|$1 codsi ku xiran|$1 codsiyo ku xiran|0=codsiyada ku xiran}}",
+	"mwoauth-consumer-allwikis": "Dhammaan mashaariicda",
 	"mwoauth-consumer-name": "Magaca dhaqangalka:",
 	"mwoauth-consumer-user": "Faafinta",
 	"mwoauthconsumerregistration-navigation": "Gooshitaan",
