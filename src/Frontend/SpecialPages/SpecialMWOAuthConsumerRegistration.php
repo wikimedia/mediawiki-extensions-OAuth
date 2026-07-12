@@ -563,7 +563,8 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				'type' => 'check',
 				'label-message' => 'mwoauth-oauth2-is-confidential',
 				'help-message' => 'mwoauth-oauth2-is-confidential-help',
-				'default' => 1
+				'default' => 1,
+				'hide-if' => [ '!==', 'ownerOnly', '' ],
 			],
 			'oauth2GrantTypes' => [
 				'oauthVersion' => Consumer::OAUTH_VERSION_2,
