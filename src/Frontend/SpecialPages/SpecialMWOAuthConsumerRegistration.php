@@ -597,6 +597,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				],
 				'label-message' => 'mwoauth-consumer-granttypes',
 				'default' => 'normal',
+				'hide-if' => [ '!==', 'ownerOnly', '' ],
 			],
 			// HACK separate field from grants because HTMLFormField cannot position help text on top
 			'grantsHelp' => [
@@ -607,7 +608,10 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			'grants' => [
 				'type' => 'checkmatrix',
 				'label-message' => 'mwoauth-consumer-grantsneeded',
-				'hide-if' => [ '!==', 'granttype', 'normal' ],
+				'hide-if' => [ 'AND',
+					[ '!==', 'granttype', 'normal' ],
+					[ '===', 'ownerOnly', '' ]
+				],
 				'columns' => [
 					$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
 				],
