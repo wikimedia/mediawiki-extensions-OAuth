@@ -249,6 +249,7 @@ class SessionProvider
 				'consumerId' => $consumer->getOwnerOnly() ? null : $consumer->getId(),
 				'consumerKey' => $consumer->getConsumerKey(),
 				'key' => $accessTokenKey,
+				'grants' => $access->getGrants(),
 				'rights' => $this->grantsInfo->getGrantRights( $access->getGrants() ),
 				'restrictions' => $consumer->getRestrictions()->toJson(),
 			],
