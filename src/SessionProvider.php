@@ -254,7 +254,6 @@ class SessionProvider
 				'consumerKey' => $consumer->getConsumerKey(),
 				'key' => $accessTokenKey,
 				'grants' => $access->getGrants(),
-				'rights' => $this->grantsInfo->getGrantRights( $access->getGrants() ),
 				'restrictions' => $consumer->getRestrictions()->toJson(),
 			],
 		] );
@@ -469,7 +468,7 @@ class SessionProvider
 		}
 		$data = $backend->getProviderMetadata();
 		if ( $data ) {
-			return $data['rights'];
+			return $this->grantsInfo->getGrantRights( $data['grants'] );
 		}
 
 		// Should never happen
