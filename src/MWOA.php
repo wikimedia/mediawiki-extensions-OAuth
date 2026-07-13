@@ -6,6 +6,7 @@ use Defuse\Crypto\Crypto;
 use League\OAuth2\Server\CryptKey;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\BearerTokenValidator;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -17,6 +18,10 @@ use Wikimedia\TestingAccessWrapper;
  * @internal must not be used in code, anywhere
  */
 class MWOA {
+
+	public static function srv(): OAuthServices {
+		return OAuthServices::wrap( MediaWikiServices::getInstance() );
+	}
 
 	public static function sessionCache(): BagOStuff {
 		return Utils::getSessionCache();
