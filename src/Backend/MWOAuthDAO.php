@@ -91,10 +91,9 @@ abstract class MWOAuthDAO {
 	 * @param IReadableDatabase $db
 	 * @param int $id
 	 * @param int $flags IDBAccessObject::READ_* bitfield
-	 * @return static|bool Returns false if not found
-	 * @throws DBError
+	 * @return stdClass|false
 	 */
-	final public static function newFromId( IReadableDatabase $db, $id, $flags = 0 ) {
+	public static function fetchRowFromId( IReadableDatabase $db, $id, $flags = 0 ): stdClass|false {
 		$queryBuilder = $db->newSelectQueryBuilder()
 			->select( array_values( static::getFieldColumnMap() ) )
 			->from( static::getTable() )
@@ -103,8 +102,18 @@ abstract class MWOAuthDAO {
 		if ( $flags & IDBAccessObject::READ_LOCKING ) {
 			$queryBuilder->forUpdate();
 		}
-		$row = $queryBuilder->fetchRow();
+		return $queryBuilder->fetchRow();
+	}
 
+	/**
+	 * @param IReadableDatabase $db
+	 * @param int $id
+	 * @param int $flags IDBAccessObject::READ_* bitfield
+	 * @return static|false
+	 * @throws DBError
+	 */
+	final public static function newFromId( IReadableDatabase $db, $id, $flags = 0 ) {
+		$row = self::fetchRowFromId( $db, $id, $flags );
 		if ( $row ) {
 			$class = static::getDaoClass( (array)$row );
 			$dao = new $class();

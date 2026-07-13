@@ -7,6 +7,7 @@ use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Repository\DatabaseConsumerRepository;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @covers \MediaWiki\Extension\OAuth\Repository\DatabaseConsumerRepository
@@ -165,8 +166,11 @@ class DatabaseConsumerRepositoryTest extends MediaWikiIntegrationTestCase {
 		$fetched->setField( 'name', 'Updated Name' );
 		$this->repository->save( $fetched );
 
+		$refetchedLatest = $this->repository->getById( $id, IDBAccessObject::READ_LATEST );
+		$this->assertSame( 'Updated Name', $refetchedLatest->getName(), 'READ_LATEST skips the cache' );
+
 		$refetched = $this->repository->getById( $id );
-		$this->assertSame( 'Updated Name', $refetched->getName() );
+		$this->assertSame( 'Test Consumer', $refetched->getName(), 'Cached consumer is not updated' );
 	}
 
 	public function testDelete(): void {
@@ -178,8 +182,11 @@ class DatabaseConsumerRepositoryTest extends MediaWikiIntegrationTestCase {
 		$deleted = $this->repository->delete( $fetched );
 		$this->assertTrue( $deleted );
 
+		$resultLatest = $this->repository->getById( $id, IDBAccessObject::READ_LATEST );
+		$this->assertFalse( $resultLatest, 'READ_LATEST skips the cache' );
+
 		$result = $this->repository->getById( $id );
-		$this->assertFalse( $result );
+		$this->assertInstanceOf( Consumer::class, $result, 'Cached consumer is not updated' );
 	}
 
 	public function testDeleteNew(): void {

@@ -251,9 +251,9 @@ abstract class Consumer extends MWOAuthDAO {
 	 * @param IReadableDatabase $db
 	 * @param string|null $key
 	 * @param int $flags IDBAccessObject::READ_* bitfield
-	 * @return static|false
+	 * @return \stdClass|false
 	 */
-	public static function newFromKey( IReadableDatabase $db, $key, $flags = 0 ) {
+	public static function fetchRowFromKey( IReadableDatabase $db, $key, $flags = 0 ): \stdClass|false {
 		$queryBuilder = $db->newSelectQueryBuilder()
 			->select( array_values( static::getFieldColumnMap() ) )
 			->from( static::getTable() )
@@ -262,8 +262,17 @@ abstract class Consumer extends MWOAuthDAO {
 		if ( $flags & IDBAccessObject::READ_LOCKING ) {
 			$queryBuilder->forUpdate();
 		}
-		$row = $queryBuilder->fetchRow();
+		return $queryBuilder->fetchRow();
+	}
 
+	/**
+	 * @param IReadableDatabase $db
+	 * @param string|null $key
+	 * @param int $flags IDBAccessObject::READ_* bitfield
+	 * @return static|false
+	 */
+	public static function newFromKey( IReadableDatabase $db, $key, $flags = 0 ) {
+		$row = self::fetchRowFromKey( $db, $key, $flags );
 		if ( $row ) {
 			return static::newFromRow( $db, $row );
 		} else {

@@ -6,6 +6,7 @@ use DBAccessObjectUtils;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use stdClass;
+use Wikimedia\ObjectCache\MapCacheLRU;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -18,6 +19,16 @@ use Wikimedia\Rdbms\IReadableDatabase;
  */
 class DatabaseConsumerRepository implements ConsumerRepositoryInterface {
 
+	private MapCacheLRU $cacheById;
+	private MapCacheLRU $cacheByKey;
+
+	public function __construct() {
+		// Cache the results of SQL queries for consumers.
+		// Since Consumer objects are mutable, we only cache the rows.
+		$this->cacheById = new MapCacheLRU( 10 );
+		$this->cacheByKey = new MapCacheLRU( 10 );
+	}
+
 	/** @inheritDoc */
 	public function newFromRow( array|stdClass $row ): Consumer {
 		return Consumer::newFromRow( $this->getDb(), $row );
@@ -25,7 +36,23 @@ class DatabaseConsumerRepository implements ConsumerRepositoryInterface {
 
 	/** @inheritDoc */
 	public function getById( int $id, int $flags = 0 ): Consumer|false {
-		return Consumer::newFromId( $this->getDb( $flags ), $id, $flags );
+		$db = $this->getDb( $flags );
+		if ( $flags === IDBAccessObject::READ_NORMAL && $this->cacheById->has( $id ) ) {
+			$row = $this->cacheById->get( $id );
+		} else {
+			$row = Consumer::fetchRowFromId( $db, $id, $flags );
+			if ( $flags === IDBAccessObject::READ_NORMAL ) {
+				$this->cacheById->set( $id, $row );
+			}
+		}
+		if ( !$row ) {
+			return false;
+		}
+		$cmr = Consumer::newFromRow( $db, $row );
+		if ( $flags === IDBAccessObject::READ_NORMAL ) {
+			$this->cacheByKey->set( $cmr->getConsumerKey(), $row );
+		}
+		return $cmr;
 	}
 
 	/** @inheritDoc */
@@ -33,7 +60,23 @@ class DatabaseConsumerRepository implements ConsumerRepositoryInterface {
 		string $consumerKey,
 		int $flags = 0
 	): Consumer|false {
-		return Consumer::newFromKey( $this->getDb( $flags ), $consumerKey, $flags );
+		$db = $this->getDb( $flags );
+		if ( $flags === IDBAccessObject::READ_NORMAL && $this->cacheByKey->has( $consumerKey ) ) {
+			$row = $this->cacheByKey->get( $consumerKey );
+		} else {
+			$row = Consumer::fetchRowFromKey( $db, $consumerKey, $flags );
+			if ( $flags === IDBAccessObject::READ_NORMAL ) {
+				$this->cacheByKey->set( $consumerKey, $row );
+			}
+		}
+		if ( !$row ) {
+			return false;
+		}
+		$cmr = Consumer::newFromRow( $db, $row );
+		if ( $flags === IDBAccessObject::READ_NORMAL ) {
+			$this->cacheById->set( $cmr->getId(), $row );
+		}
+		return $cmr;
 	}
 
 	/** @inheritDoc */
