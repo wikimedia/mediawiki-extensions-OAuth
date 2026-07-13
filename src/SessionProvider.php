@@ -113,12 +113,12 @@ class SessionProvider
 		$logData = [
 			'clientip' => $request->getIP(),
 			'user' => false,
-			'consumer' => '',
 			'result' => 'fail',
 		];
 
-		$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
-			->getConsumerAcceptanceRepository();
+		$services = OAuthServices::wrap( MediaWikiServices::getInstance() );
+		$consumerRepository = $services->getConsumerRepository();
+		$consumerAcceptanceRepository = $services->getConsumerAcceptanceRepository();
 		$access = null;
 		try {
 			if ( $oauthVersion === Consumer::OAUTH_VERSION_2 ) {
@@ -147,7 +147,8 @@ class SessionProvider
 				} else {
 					$access = $consumerAcceptanceRepository->getById( $accessId );
 				}
-				$logData['consumer'] = $resourceServer->getClient()->getConsumerKey();
+				$tmpConsumer = $consumerRepository->getByKey( $resourceServer->getClient()->getConsumerKey() );
+				$logData += $tmpConsumer ? $tmpConsumer->getLogContext() : [];
 				if ( !$access ) {
 					throw new MWOAuthException( 'mwoauth-oauth2-error-create-at-no-user-approval' );
 				}
@@ -157,7 +158,8 @@ class SessionProvider
 			} else {
 				$server = Utils::newMWOAuthServer();
 				$oauthRequest = MWOAuthRequest::fromRequest( $request );
-				$logData['consumer'] = $oauthRequest->getConsumerKey();
+				$tmpConsumer = $consumerRepository->getByKey( $oauthRequest->getConsumerKey() );
+				$logData += $tmpConsumer ? $tmpConsumer->getLogContext() : [];
 				[ , $accessToken ] = $server->verify_request( $oauthRequest );
 				$accessTokenKey = $accessToken->key;
 				$access = $consumerAcceptanceRepository->getByToken( $accessTokenKey );
@@ -201,16 +203,15 @@ class SessionProvider
 		}
 
 		// The consumer is approved or owned by $localUser, and is for this wiki.
-		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 		$consumer = $consumerRepository->getById( $access->getConsumerId() );
 		if ( !$consumer->isUsableBy( $localUser ) ) {
 			$this->logger->debug(
-				'OAuth request for consumer {consumer} not approved by user {user}', $logData
+				'OAuth request for consumer {consumer_key} not approved by user {user}', $logData
 			);
 			return $this->makeException( 'mwoauth-invalid-authorization-not-approved',
 				$consumer->getName() );
 		} elseif ( $consumer->getWiki() !== '*' && $consumer->getWiki() !== $wiki ) {
-			$this->logger->debug( 'OAuth request for consumer {consumer} to incorrect wiki', $logData );
+			$this->logger->debug( 'OAuth request for consumer {consumer_key} to incorrect wiki', $logData );
 			return $this->makeException( 'mwoauth-invalid-authorization-wrong-wiki', $wiki );
 		}
 
@@ -235,7 +236,7 @@ class SessionProvider
 		}
 
 		$logData['result'] = 'success';
-		$this->logger->debug( 'OAuth request for consumer {consumer} by user {user}', $logData );
+		$this->logger->debug( 'OAuth request for consumer {consumer_key} by user {user}', $logData );
 
 		$sessionInfo = new SessionInfo( SessionInfo::MAX_PRIORITY, [
 			'provider' => $this,
@@ -271,6 +272,10 @@ class SessionProvider
 	 * @return SessionInfo
 	 */
 	private function provideSessionInfoWithJwtCookie( SessionInfo $sessionInfo, WebRequest $request ) {
+		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+		$consumerKey = $sessionInfo->getProviderMetadata()['consumerKey'] ?? null;
+		$consumer = $consumerKey ? $consumerRepository->getByKey( $consumerKey ) : null;
+
 		try {
 			// OAuth cannot use the 'refresh' flag, so set it in the metadata instead.
 			// Use a fake sessioninfo because only persisted sessions can be refreshed
@@ -287,7 +292,7 @@ class SessionProvider
 			);
 		} catch ( JwtException $e ) {
 			$this->logger->info( 'JWT validation failed: ' . $e->getNormalizedMessage(),
-				$e->getMessageContext() + [ 'exception' => $e ] );
+				$e->getMessageContext() + [ 'exception' => $e ] + ( $consumer ? $consumer->getLogContext() : [] ) );
 			return $this->makeException( 'mwoauth-invalid-authorization-jwt', $e->getMessage() );
 		}
 		if ( $sessionInfoCopy->needsRefresh() ) {

@@ -132,8 +132,12 @@ class MWOAuthDataStore extends OAuthDataStore {
 				"/(oauth_token_secret\=\w+:)/",
 				"oauth_token_secret=[REDACTED]:",
 				$key );
+
+			$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+			$cmr = $consumerRepository->getByKey( $consumer->key );
+
 			$this->logger->info( '{key} exists, so nonce has been used by this consumer+token',
-				[ 'key' => $key, 'consumer' => $consumer->key, 'oauth_timestamp' => $timestamp ] );
+				[ 'key' => $key, 'oauth_timestamp' => $timestamp ] + ( $cmr ? $cmr->getLogContext() : [] ) );
 			return true;
 		}
 		return false;

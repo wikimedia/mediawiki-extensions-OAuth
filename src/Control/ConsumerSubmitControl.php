@@ -511,14 +511,13 @@ class ConsumerSubmitControl extends SubmitControl {
 		$logEntry->insert( $dbw );
 
 		LoggerFactory::getInstance( 'OAuth' )->info(
-			'{user} performed action {action} on consumer {consumer}', [
+			'{user} performed action {action} on consumer {consumer_key}', [
 				'action' => $action,
 				'user' => $performer->getName(),
-				'consumer' => $cmr->getConsumerKey(),
 				'target' => $target->getText(),
 				'comment' => $comment,
 				'clientip' => $this->getContext()->getRequest()->getIP(),
-			]
+			] + $cmr->getLogContext(),
 		);
 	}
 

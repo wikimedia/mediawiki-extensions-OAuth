@@ -921,4 +921,17 @@ abstract class Consumer extends MWOAuthDAO {
 	protected function userCanSeeSecret( $name, IContextSource $context ) {
 		return $context->msg( 'mwoauth-field-private' );
 	}
+
+	/**
+	 * Get data for a PSR-3 log context.
+	 * @return array{consumer_id:string,consumer_key:string,consumer_name:string,consumer_version:string}
+	 */
+	public function getLogContext(): array {
+		return [
+			'consumer_id' => (string)$this->getId(),
+			'consumer_key' => $this->getConsumerKey(),
+			'consumer_name' => $this->getName(),
+			'consumer_version' => $this->getVersion(),
+		];
+	}
 }

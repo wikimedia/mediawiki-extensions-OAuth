@@ -146,14 +146,13 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 				}
 
 				LoggerFactory::getInstance( 'OAuth' )->info(
-					'{user} performed action {action} on consumer {consumer}', [
+					'{user} performed action {action} on consumer {consumer_key}', [
 						'action' => 'accept',
 						'user' => $user->getName(),
-						'consumer' => $cmr->getConsumerKey(),
 						'target' => Utils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
 						'comment' => '',
 						'clientip' => $this->getContext()->getRequest()->getIP(),
-					]
+					] + $cmr->getLogContext()
 				);
 
 				return $this->success( $payload );
@@ -178,14 +177,13 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 				$grants = $this->getAcceptedConsumerGrants( $grants, $cmr );
 
 				LoggerFactory::getInstance( 'OAuth' )->info(
-					'{user} performed action {action} on consumer {consumer}', [
+					'{user} performed action {action} on consumer {consumer_key}', [
 						'action' => 'update-acceptance',
 						'user' => $user->getName(),
-						'consumer' => $cmr->getConsumerKey(),
 						'target' => Utils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
 						'comment' => '',
 						'clientip' => $this->getContext()->getRequest()->getIP(),
-					]
+					] + $cmr->getLogContext(),
 				);
 				$cmra->setFields( [
 					'grants' => $grants
@@ -207,14 +205,13 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 				$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 				$cmr = $consumerRepository->getById( $cmra->get( 'consumerId' ), IDBAccessObject::READ_LATEST );
 				LoggerFactory::getInstance( 'OAuth' )->info(
-					'{user} performed action {action} on consumer {consumer}', [
+					'{user} performed action {action} on consumer {consumer_key}', [
 						'action' => 'renounce',
 						'user' => $user->getName(),
-						'consumer' => $cmr->getConsumerKey(),
 						'target' => Utils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
 						'comment' => '',
 						'clientip' => $this->getContext()->getRequest()->getIP(),
-					]
+					] + $cmr->getLogContext(),
 				);
 
 				if ( $cmr->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {

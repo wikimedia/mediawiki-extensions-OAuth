@@ -288,7 +288,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $info?->__toString() );
 		$this->assertSame(
 			[
-				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
+				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ],
 				[ LogLevel::INFO, 'JWT validation failed: JWT error: wrong issuer' ],
 			],
 			$this->logger->getBuffer()
@@ -306,7 +306,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotEmpty( $info->getId() );
 		$this->assertSame(
 			[
-				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
+				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ],
 				[ LogLevel::INFO, 'JWT validation failed: JWT error: wrong subject' ],
 			],
 			$this->logger->getBuffer()
@@ -324,7 +324,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $info->forceHTTPS() );
 		$this->assertSame(
 			[
-				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
+				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ],
 			],
 			$this->logger->getBuffer()
 		);
@@ -337,7 +337,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $info->getProviderMetadata()['refreshJwtCookie'] );
 		$this->assertSame(
 			[
-				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
+				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ],
 			],
 			$this->logger->getBuffer()
 		);
@@ -352,7 +352,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $info->getUserInfo() );
 		$this->assertSame( $user->getName(), $info->getUserInfo()->getName() );
 		$this->assertSame(
-			[ [ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ] ],
+			[ [ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ] ],
 			$this->logger->getBuffer()
 		);
 		$this->logger->clearBuffer();
@@ -365,7 +365,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $info?->__toString() );
 		$this->assertSame(
 			[
-				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
+				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ],
 				[ LogLevel::INFO, 'JWT validation failed: The token is expired' ],
 			],
 			$this->logger->getBuffer()
@@ -413,7 +413,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $info?->__toString() );
 		$this->assertSame(
 			[
-				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
+				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ],
 				[ LogLevel::INFO, 'JWT validation failed: JWT error: wrong issuer' ],
 			],
 			$this->logger->getBuffer()
@@ -430,7 +430,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotEmpty( $info->getId() );
 		$this->assertSame(
 			[
-				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
+				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ],
 				[ LogLevel::INFO, 'JWT validation failed: JWT error: wrong subject' ],
 			],
 			$this->logger->getBuffer()
@@ -448,7 +448,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $info->forceHTTPS() );
 		$this->assertSame(
 			[
-				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
+				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ],
 			],
 			$this->logger->getBuffer()
 		);
@@ -461,7 +461,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $info->getProviderMetadata()['refreshJwtCookie'] );
 		$this->assertSame(
 			[
-				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
+				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ],
 			],
 			$this->logger->getBuffer()
 		);
@@ -476,7 +476,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $info->getUserInfo() );
 		$this->assertSame( $user->getName(), $info->getUserInfo()->getName() );
 		$this->assertSame(
-			[ [ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ] ],
+			[ [ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ] ],
 			$this->logger->getBuffer()
 		);
 		$this->logger->clearBuffer();
@@ -489,7 +489,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $info?->__toString() );
 		$this->assertSame(
 			[
-				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
+				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ],
 				[ LogLevel::INFO, 'JWT validation failed: The token is expired' ],
 			],
 			$this->logger->getBuffer()
@@ -663,7 +663,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			[
 				[ LogLevel::DEBUG, 'OAuth request for missing local user {user}, will be autocreated later' ],
-				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer} by user {user}' ],
+				[ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ],
 			],
 			$this->logger->getBuffer()
 		);
