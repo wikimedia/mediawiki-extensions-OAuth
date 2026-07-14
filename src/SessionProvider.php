@@ -17,7 +17,6 @@ use MediaWiki\Extension\OAuth\Backend\MWOAuthRequest;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Json\JwtException;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -178,11 +177,7 @@ class SessionProvider
 		$username = Utils::getCentralUserNameFromId( $access->getUserId() );
 		if ( $username === false || $username === '' ) {
 			return $this->makeException( 'mwoauth-invalid-authorization-invalid-user',
-				Message::rawParam( Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
-					'E008',
-					true
-				) )
+				Message::rawParam( Utils::getErrorLink( 'E008' ) )
 			);
 		}
 

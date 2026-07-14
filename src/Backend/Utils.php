@@ -11,6 +11,7 @@ use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodPlaintext;
+use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -488,6 +489,17 @@ class Utils {
 	 */
 	public static function isReservedTagName( $tagName ) {
 		return stripos( $tagName, 'oauth cid:' ) === 0;
+	}
+
+	/**
+	 * Get an HTML link to mediawiki.org page about an error code, such as E001.
+	 */
+	public static function getErrorLink( string $code ): string {
+		return Linker::makeExternalLink(
+			'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth/Errors#' . $code,
+			$code,
+			true
+		);
 	}
 
 	/**

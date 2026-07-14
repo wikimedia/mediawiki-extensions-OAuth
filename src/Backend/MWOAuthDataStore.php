@@ -7,7 +7,6 @@ use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 use MediaWiki\Extension\OAuth\OAuthServices;
-use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -90,21 +89,13 @@ class MWOAuthDataStore extends OAuthDataStore {
 			) );
 			if ( $returnToken === '**USED**' ) {
 				throw new MWOAuthException( 'mwoauthdatastore-request-token-already-used', [
-					Message::rawParam( Linker::makeExternalLink(
-						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E009',
-						'E009',
-						true
-					) ),
+					Message::rawParam( Utils::getErrorLink( 'E009' ) ),
 					'consumer' => $consumer->key,
 				] );
 			}
 			if ( $token === null || !( $returnToken instanceof MWOAuthToken ) ) {
 				throw new MWOAuthException( 'mwoauthdatastore-request-token-not-found', [
-					Message::rawParam( Linker::makeExternalLink(
-						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E004',
-						'E004',
-						true
-					) ),
+					Message::rawParam( Utils::getErrorLink( 'E004' ) ),
 					'consumer' => $consumer->key,
 				] );
 			}

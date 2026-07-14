@@ -12,7 +12,6 @@ use LogicException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity as OAuth2Client;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -536,11 +535,7 @@ abstract class Consumer extends MWOAuthDAO {
 				'mwoauthserver-invalid-user',
 				[
 					'consumer_name' => $this->getName(),
-					Message::rawParam( Linker::makeExternalLink(
-						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
-						'E008',
-						true
-					) ),
+					Message::rawParam( Utils::getErrorLink( 'E008' ) ),
 					'consumer' => $this->getConsumerKey(),
 				]
 			);
@@ -590,11 +585,7 @@ abstract class Consumer extends MWOAuthDAO {
 		// Check that user and consumer are in good standing
 		if ( $mwUser->isLocked() || ( $wgBlockDisablesLogin && $mwUser->getBlock() ) ) {
 			throw new MWOAuthException( 'mwoauthserver-insufficient-rights', [
-				Message::rawParam( Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E007',
-					'E007',
-					true
-				) ),
+				Message::rawParam( Utils::getErrorLink( 'E007' ) ),
 				'consumer' => $this->getConsumerKey(),
 				'consumer_name' => $this->getName(),
 			] );
@@ -602,11 +593,7 @@ abstract class Consumer extends MWOAuthDAO {
 
 		if ( $this->getDeleted() ) {
 			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key', [
-				Message::rawParam( Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006',
-					'E006',
-					true
-				) ),
+				Message::rawParam( Utils::getErrorLink( 'E006' ) ),
 				'consumer' => $this->getConsumerKey(),
 				'consumer_name' => $this->getName(),
 			] );
@@ -620,11 +607,7 @@ abstract class Consumer extends MWOAuthDAO {
 				[
 					'consumer_name' => $this->getName(),
 					'talkpage' => Utils::getCentralUserTalk( $owner ),
-					Message::rawParam( Linker::makeExternalLink(
-						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E005',
-						'E005',
-						true
-					) ),
+					Message::rawParam( Utils::getErrorLink( 'E005' ) ),
 					'consumer' => $this->getConsumerKey(),
 				]
 			);
@@ -634,11 +617,7 @@ abstract class Consumer extends MWOAuthDAO {
 				SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $this->getConsumerKey()
 				),
-				Message::rawParam( Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
-					'E010',
-					true
-				) ),
+				Message::rawParam( Utils::getErrorLink( 'E010' ) ),
 				'consumer' => $this->getConsumerKey(),
 			] );
 		}
@@ -659,11 +638,7 @@ abstract class Consumer extends MWOAuthDAO {
 				'mwoauthserver-invalid-user',
 				[
 					'consumer_name' => $this->getName(),
-					Message::rawParam( Linker::makeExternalLink(
-						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
-						'E008',
-						true
-					) ),
+					Message::rawParam( Utils::getErrorLink( 'E008' ) ),
 					'consumer' => $this->getConsumerKey(),
 				]
 			);

@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\OAuth\Backend;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthServer;
 use MediaWiki\Extension\OAuth\OAuthServices;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -46,11 +45,7 @@ class MWOAuthServer extends OAuthServer {
 				'update_url' => SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
 				),
-				Message::rawParam( Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
-					'E010',
-					true
-				) ),
+				Message::rawParam( Utils::getErrorLink( 'E010' ) ),
 				'consumer' => $consumer->getConsumerKey(),
 			] );
 		}
@@ -58,11 +53,7 @@ class MWOAuthServer extends OAuthServer {
 		// Consumer must have a key for us to verify
 		if ( !$consumer->getSecretKey() && !$consumer->getRsaKey() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret', [
-				Message::rawParam( Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E011',
-					'E011',
-					true
-				) ),
+				Message::rawParam( Utils::getErrorLink( 'E011' ) ),
 				'consumer' => $consumer->getConsumerKey(),
 				'consumer_name' => $consumer->getName(),
 			] );
@@ -260,11 +251,7 @@ class MWOAuthServer extends OAuthServer {
 				'update_url' => SpecialPage::getTitleFor(
 					'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
 				),
-				Message::rawParam( Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E010',
-					'E010',
-					true
-				) ),
+				Message::rawParam( Utils::getErrorLink( 'E010' ) ),
 				'consumer' => $consumer->getConsumerKey(),
 			] );
 		}
@@ -272,11 +259,7 @@ class MWOAuthServer extends OAuthServer {
 		// Consumer must have a key for us to verify
 		if ( !$consumer->getSecretKey() && !$consumer->getRsaKey() ) {
 			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret', [
-				Message::rawParam( Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E011',
-					'E011',
-					true
-				) ),
+				Message::rawParam( Utils::getErrorLink( 'E011' ) ),
 				'consumer' => $consumer->getConsumerKey(),
 				'consumer_name' => $consumer->getName(),
 			] );

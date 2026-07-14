@@ -29,7 +29,6 @@ use MediaWiki\Extension\OAuth\UserStatementProvider;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -221,11 +220,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$requestToken = $request->getVal( 'oauth_token' );
 					if ( !$verifier || !$requestToken ) {
 						throw new MWOAuthException( 'mwoauth-bad-request-missing-params', [
-							Message::rawParam( Linker::makeExternalLink(
-								'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E001',
-								'E001',
-								true
-							) )
+							Message::rawParam( Utils::getErrorLink( 'E001' ) )
 						] );
 					}
 					$output->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
@@ -273,11 +268,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$username = Utils::getCentralUserNameFromId( $access->getUserId() );
 					if ( $username === false || $username === '' ) {
 						throw new MWOAuthException( 'mwoauth-invalid-authorization-invalid-user', [
-							Message::rawParam( Linker::makeExternalLink(
-								'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E008',
-								'E008',
-								true
-							) ),
+							Message::rawParam( Utils::getErrorLink( 'E008' ) ),
 							'consumer' => $consumer->getConsumerKey(),
 							'consumer_name' => $consumer->getName(),
 							'cmra_id' => $access->getId(),
@@ -376,11 +367,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					if ( !$cmrAc || !$cmrAc->userCanAccess( 'userId' ) ) {
 						$this->showError(
 							$this->msg( 'mwoauth-bad-request-invalid-action' )->rawParams(
-								Linker::makeExternalLink(
-									'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E002',
-									'E002',
-									true
-								)
+								Utils::getErrorLink( 'E002' )
 							),
 							$format
 						);
@@ -389,11 +376,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 						$this->showError(
 							$this->msg( 'mwoauth-bad-request-invalid-action-contact',
 								Utils::getCentralUserTalk( $owner )
-							)->rawParams( Linker::makeExternalLink(
-								'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E003',
-								'E003',
-								true
-							) ),
+							)->rawParams( Utils::getErrorLink( 'E003' ) ),
 							$format
 						);
 					}
@@ -497,11 +480,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 
 		if ( !$cmrAc || !$cmrAc->userCanAccess( [ 'name', 'userId', 'grants' ] ) ) {
 			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key', [
-				Message::rawParam( Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E006',
-					'E006',
-					true
-				) ),
+				Message::rawParam( Utils::getErrorLink( 'E006' ) ),
 				'consumer' => $consumerKey,
 			] );
 		} elseif ( $cmrAc->getDAO()->getOAuthVersion() !== $this->oauthVersion ) {
@@ -509,11 +488,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				'mwoauthserver-bad-consumer-version',
 				[
 					Utils::getCentralUserTalk( $cmrAc->getUserName() ),
-					Message::rawParam( Linker::makeExternalLink(
-						'https://www.mediawiki.org/wiki/Help:OAuth/Errors#E012',
-						'E012',
-						true
-					) )
+					Message::rawParam( Utils::getErrorLink( 'E012' ) )
 				]
 			);
 		} elseif ( !$cmrAc->getDAO()->isUsableBy( $user ) ) {
