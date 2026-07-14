@@ -293,9 +293,7 @@ class Utils {
 
 	public static function newMWOAuthDataStore(): MWOAuthDataStore {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbr = self::getOAuthDB( DB_REPLICA );
-		$dbw = $lb->getServerCount() > 1 ? self::getOAuthDB( DB_PRIMARY ) : null;
-		return new MWOAuthDataStore( $dbr, $dbw, self::getSessionCache(), self::getNonceCache() );
+		return new MWOAuthDataStore( $lb, self::getSessionCache(), self::getNonceCache() );
 	}
 
 	/**

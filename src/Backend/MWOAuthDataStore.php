@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
-use InvalidArgumentException;
 use MediaWiki\Extension\OAuth\Lib\OAuthConsumer;
 use MediaWiki\Extension\OAuth\Lib\OAuthDataStore;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
@@ -13,17 +12,10 @@ use MediaWiki\Message\Message;
 use MediaWiki\Utils\MWCryptRand;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\BagOStuff;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 class MWOAuthDataStore extends OAuthDataStore {
-	/** @var IDatabase DB for the consumer/grant registry */
-	protected $centralReplica;
-
-	/** @var IDatabase|null Primary DB for repeated lookup in case of replication lag problems;
-	 *    null if there is no separate primary DB and replica DB
-	 */
-	protected $centralPrimary;
-
 	/** @var BagOStuff Cache for tokens */
 	protected $tokenCache;
 
@@ -33,25 +25,11 @@ class MWOAuthDataStore extends OAuthDataStore {
 	/** @var LoggerInterface */
 	protected $logger;
 
-	/**
-	 * @param IDatabase $centralReplica Central DB replica
-	 * @param IDatabase|null $centralPrimary Central DB primary (if different)
-	 * @param BagOStuff $tokenCache
-	 * @param BagOStuff $nonceCache
-	 */
 	public function __construct(
-		IDatabase $centralReplica,
-		$centralPrimary,
+		private ILoadBalancer $loadBalancer,
 		BagOStuff $tokenCache,
 		BagOStuff $nonceCache
 	) {
-		if ( $centralPrimary !== null && !( $centralPrimary instanceof IDatabase ) ) {
-			throw new InvalidArgumentException(
-				__METHOD__ . ': $centralPrimary must be a DB or null'
-			);
-		}
-		$this->centralReplica = $centralReplica;
-		$this->centralPrimary = $centralPrimary;
 		$this->tokenCache = $tokenCache;
 		$this->nonceCache = $nonceCache;
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
@@ -100,10 +78,13 @@ class MWOAuthDataStore extends OAuthDataStore {
 				] );
 			}
 		} elseif ( $token_type === 'access' ) {
-			$cmra = ConsumerAcceptance::newFromToken( $this->centralReplica, $token );
-			if ( !$cmra && $this->centralPrimary ) {
+			$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+				->getConsumerAcceptanceRepository();
+			$cmra = $consumerAcceptanceRepository->getByToken( $token );
+			if ( !$cmra && $this->loadBalancer->hasReplicaServers() ) {
 				// try primary database in case there is replication lag T124942
-				$cmra = ConsumerAcceptance::newFromToken( $this->centralPrimary, $token );
+				$cmra = $consumerAcceptanceRepository->getByToken(
+					$token, IDBAccessObject::READ_LATEST );
 			}
 			if ( !$cmra ) {
 				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found' );

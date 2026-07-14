@@ -256,8 +256,9 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					/** @var MWOAuthToken $token */
 
 					$wiki = WikiMap::getCurrentWikiId();
-					$dbr = Utils::getOAuthDB( DB_REPLICA );
-					$access = ConsumerAcceptance::newFromToken( $dbr, $token->key );
+					$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+						->getConsumerAcceptanceRepository();
+					$access = $consumerAcceptanceRepository->getByToken( $token->key );
 					if ( !$access ) {
 						throw new MWOAuthException( 'mwoauth-access-token-not-found', [
 							'consumer' => $consumer->getConsumerKey(),

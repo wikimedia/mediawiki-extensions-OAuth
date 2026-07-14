@@ -11,6 +11,7 @@ namespace MediaWiki\Extension\OAuth\Backend;
 use LogicException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity as OAuth2Client;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -527,8 +528,6 @@ abstract class Consumer extends MWOAuthDAO {
 	 * @return ConsumerAcceptance|bool
 	 */
 	public function getCurrentAuthorization( User $mwUser, $wikiId ) {
-		$dbr = Utils::getOAuthDB( DB_REPLICA );
-
 		$centralUserId = Utils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
 			throw new MWOAuthException(
@@ -541,17 +540,17 @@ abstract class Consumer extends MWOAuthDAO {
 			);
 		}
 
+		$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+			->getConsumerAcceptanceRepository();
 		$checkWiki = $this->getWiki() !== '*' ? $this->getWiki() : $wikiId;
 
-		$cmra = ConsumerAcceptance::newFromUserConsumerWiki(
-			$dbr,
+		$cmra = $consumerAcceptanceRepository->getByUserConsumerWiki(
 			$centralUserId,
 			$this,
 			$checkWiki
 		);
 		if ( !$cmra ) {
-			$cmra = ConsumerAcceptance::newFromUserConsumerWiki(
-				$dbr,
+			$cmra = $consumerAcceptanceRepository->getByUserConsumerWiki(
 				$centralUserId,
 				$this,
 				'*'
@@ -640,9 +639,11 @@ abstract class Consumer extends MWOAuthDAO {
 			);
 		}
 
-		$dbw = Utils::getOAuthDB( DB_PRIMARY );
 		// Check if this authorization exists
 		$cmra = $this->getCurrentAuthorization( $mwUser, WikiMap::getCurrentWikiId() );
+
+		$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+			->getConsumerAcceptanceRepository();
 
 		if ( $update ) {
 			// This should be an update to an existing authorization
@@ -657,7 +658,7 @@ abstract class Consumer extends MWOAuthDAO {
 				'wiki'   => $this->getWiki(),
 				'grants' => $grants
 			] );
-			$cmra->save( $dbw );
+			$consumerAcceptanceRepository->save( $cmra );
 		} elseif ( !$cmra ) {
 			// Add the Authorization to the database
 			$accessToken = MWOAuthDataStore::newToken();
@@ -672,7 +673,7 @@ abstract class Consumer extends MWOAuthDAO {
 				'accepted'     => wfTimestampNow(),
 				'oauth_version' => $this->getOAuthVersion()
 			] );
-			$cmra->save( $dbw );
+			$consumerAcceptanceRepository->save( $cmra );
 		}
 
 		return $cmra;

@@ -269,7 +269,9 @@ class ConsumerSubmitControl extends SubmitControl {
 						'accepted'     => $now,
 						'oauth_version' => $cmr->getOAuthVersion()
 					] );
-					$cmra->save( $dbw );
+					OAuthServices::wrap( MediaWikiServices::getInstance() )
+						->getConsumerAcceptanceRepository()
+						->save( $cmra );
 					if ( $cmr instanceof ClientEntity ) {
 						// OAuth2 client
 						try {
@@ -343,7 +345,9 @@ class ConsumerSubmitControl extends SubmitControl {
 							'accepted'     => wfTimestampNow(),
 						] );
 					}
-					$cmra->save( $dbw );
+					OAuthServices::wrap( MediaWikiServices::getInstance() )
+						->getConsumerAcceptanceRepository()
+						->save( $cmra );
 					if ( $cmr instanceof ClientEntity ) {
 						$accessToken = $cmr->getOwnerOnlyAccessToken( $cmra, true );
 					}

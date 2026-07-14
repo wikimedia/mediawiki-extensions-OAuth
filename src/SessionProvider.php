@@ -116,7 +116,8 @@ class SessionProvider
 			'result' => 'fail',
 		];
 
-		$dbr = Utils::getOAuthDB( DB_REPLICA );
+		$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+			->getConsumerAcceptanceRepository();
 		$access = null;
 		try {
 			if ( $oauthVersion === Consumer::OAUTH_VERSION_2 ) {
@@ -143,7 +144,7 @@ class SessionProvider
 						] );
 					}
 				} else {
-					$access = ConsumerAcceptance::newFromId( $dbr, $accessId );
+					$access = $consumerAcceptanceRepository->getById( $accessId );
 				}
 				$logData['consumer'] = $resourceServer->getClient()->getConsumerKey();
 				if ( !$access ) {
@@ -158,7 +159,7 @@ class SessionProvider
 				$logData['consumer'] = $oauthRequest->getConsumerKey();
 				[ , $accessToken ] = $server->verify_request( $oauthRequest );
 				$accessTokenKey = $accessToken->key;
-				$access = ConsumerAcceptance::newFromToken( $dbr, $accessTokenKey );
+				$access = $consumerAcceptanceRepository->getByToken( $accessTokenKey );
 			}
 		} catch ( Exception $ex ) {
 			$this->logger->info( 'Bad OAuth request from {ip}', $logData + [ 'exception' => $ex ] );

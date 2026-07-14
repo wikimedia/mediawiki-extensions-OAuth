@@ -419,13 +419,19 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 	 * @return bool|ConsumerAcceptance
 	 */
 	private function userGrantedAcceptance( Consumer $consumer, $centralUserId ) {
-		$dbr = Utils::getOAuthDB( DB_REPLICA );
-		$wikiSpecificGrant =
-			ConsumerAcceptance::newFromUserConsumerWiki(
-				$dbr, $centralUserId, $consumer, WikiMap::getCurrentWikiId() );
+		$repository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+			->getConsumerAcceptanceRepository();
+		$wikiSpecificGrant = $repository->getByUserConsumerWiki(
+			$centralUserId,
+			$consumer,
+			WikiMap::getCurrentWikiId()
+		);
 
-		$allWikiGrant = ConsumerAcceptance::newFromUserConsumerWiki(
-			$dbr, $centralUserId, $consumer, '*' );
+		$allWikiGrant = $repository->getByUserConsumerWiki(
+			$centralUserId,
+			$consumer,
+			'*'
+		);
 
 		if ( $wikiSpecificGrant !== false ) {
 			return $wikiSpecificGrant;

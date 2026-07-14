@@ -5,7 +5,9 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\Workflow;
 use MediaWiki\Extension\OAuth\OAuthServices;
+use MediaWiki\Extension\OAuth\Repository\ConsumerAcceptanceRepositoryInterface;
 use MediaWiki\Extension\OAuth\Repository\ConsumerRepositoryInterface;
+use MediaWiki\Extension\OAuth\Repository\DatabaseConsumerAcceptanceRepository;
 use MediaWiki\Extension\OAuth\Repository\DatabaseConsumerRepository;
 use MediaWiki\MediaWikiServices;
 
@@ -14,6 +16,12 @@ return [
 
 	'OAuthConfig' => static function ( MediaWikiServices $services ): Config {
 		return $services->getMainConfig();
+	},
+
+	'OAuthConsumerAcceptanceRepository' => static function (
+		MediaWikiServices $services
+	): ConsumerAcceptanceRepositoryInterface {
+		return new DatabaseConsumerAcceptanceRepository();
 	},
 
 	'OAuthConsumerRepository' => static function ( MediaWikiServices $services ): ConsumerRepositoryInterface {

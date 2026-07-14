@@ -16,7 +16,6 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
-use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthRequest;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthToken;
 use MediaWiki\Extension\OAuth\Backend\OAuth1Consumer;
@@ -28,6 +27,7 @@ use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 use MediaWiki\Extension\OAuth\OAuthConfigNames;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extension\OAuth\SessionProvider;
 use MediaWiki\MainConfigNames;
@@ -540,7 +540,9 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		// Should pass if the consumer was approved successfully.
 		$this->assertStatusGood( $status );
 
-		$cmrAc = ConsumerAcceptance::newFromId( $this->getDb(), $consumer->getId() );
+		$cmrAc = OAuthServices::wrap( $this->getServiceContainer() )
+			->getConsumerAcceptanceRepository()
+			->getById( $consumer->getId() );
 		$accessTokenRepo = new AccessTokenRepository();
 		/** @var AccessTokenEntity $accessToken */
 		$accessToken = $accessTokenRepo->getNewToken( $consumer, $consumer->getScopes(), $cmrAc->getUserId() );

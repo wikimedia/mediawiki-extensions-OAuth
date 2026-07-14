@@ -102,8 +102,9 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		$listLinks = [];
 
 		if ( $acceptanceId ) {
-			$dbr = Utils::getOAuthDB( DB_REPLICA );
-			$cmra = ConsumerAcceptance::newFromId( $dbr, (int)$acceptanceId );
+			$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+				->getConsumerAcceptanceRepository();
+			$cmra = $consumerAcceptanceRepository->getById( (int)$acceptanceId );
 			$listLinks[] = $this->getLinkRenderer()->makeKnownLink(
 				$this->getPageTitle(),
 				$this->msg( 'mwoauthmanagemygrants-showlist' )->text()
@@ -138,7 +139,6 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	 */
 	protected function handleConsumerForm( $acceptanceId, $type ) {
 		$user = $this->getUser();
-		$dbr = Utils::getOAuthDB( DB_REPLICA );
 
 		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
 		if ( !$centralUserId ) {
@@ -146,8 +146,10 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			return;
 		}
 
+		$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+			->getConsumerAcceptanceRepository();
 		$cmraAc = ConsumerAcceptanceAccessControl::wrap(
-			ConsumerAcceptance::newFromId( $dbr, $acceptanceId ), $this->getContext() );
+			$consumerAcceptanceRepository->getById( $acceptanceId ), $this->getContext() );
 		if ( !$cmraAc || $cmraAc->getUserId() !== $centralUserId ) {
 			$this->getOutput()->addHTML( $this->msg( 'mwoauth-invalid-access-token' )->escaped() );
 			return;
@@ -169,6 +171,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 		}
 
 		$data = [ 'action' => $action ];
+		$dbr = Utils::getOAuthDB( DB_REPLICA );
 		$control = new ConsumerAcceptanceSubmitControl(
 			$this->getContext(), $data, $dbr, $cmraAc->getDAO()->getOAuthVersion()
 		);

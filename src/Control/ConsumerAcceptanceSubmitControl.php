@@ -10,7 +10,6 @@ namespace MediaWiki\Extension\OAuth\Control;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
-use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
@@ -103,7 +102,6 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 	protected function processAction( $action ): Status {
 		// proposer or admin
 		$user = $this->getUser();
-		$dbw = $this->dbw;
 
 		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
 		if ( !$centralUserId ) {
@@ -160,7 +158,10 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 
 				return $this->success( $payload );
 			case 'update':
-				$cmra = ConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
+				$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+					->getConsumerAcceptanceRepository();
+				$cmra = $consumerAcceptanceRepository->getById(
+					$this->vals['acceptanceId'], IDBAccessObject::READ_LATEST );
 				if ( !$cmra ) {
 					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 				} elseif ( $cmra->getUserId() !== $centralUserId ) {
@@ -189,11 +190,14 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 				$cmra->setFields( [
 					'grants' => $grants
 				] );
-				$cmra->save( $dbw );
+				$consumerAcceptanceRepository->save( $cmra );
 
 				return $this->success( $cmra );
 			case 'renounce':
-				$cmra = ConsumerAcceptance::newFromId( $dbw, $this->vals['acceptanceId'] );
+				$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+					->getConsumerAcceptanceRepository();
+				$cmra = $consumerAcceptanceRepository->getById(
+					$this->vals['acceptanceId'], IDBAccessObject::READ_LATEST );
 				if ( !$cmra ) {
 					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 				} elseif ( $cmra->getUserId() !== $centralUserId ) {
@@ -216,7 +220,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 				if ( $cmr->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
 					$this->removeOAuth2AccessTokens( $cmra->getId() );
 				}
-				$cmra->delete( $dbw );
+				$consumerAcceptanceRepository->delete( $cmra );
 
 				return $this->success( $cmra );
 		}

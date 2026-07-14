@@ -155,7 +155,6 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 					throw new PermissionsError( 'mwoauthproposeconsumer' );
 				}
 
-				$dbr = Utils::getOAuthDB( DB_REPLICA );
 				$cmrAc = ConsumerAccessControl::wrap(
 					$consumerRepository->getByKey( $subPage ), $this->getContext() );
 				if ( !$cmrAc ) {
@@ -178,7 +177,6 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 					throw new PermissionsError( 'mwoauthupdateownconsumer' );
 				}
 
-				$dbr = Utils::getOAuthDB( DB_REPLICA );
 				$cmrAc = ConsumerAccessControl::wrap(
 					$consumerRepository->getByKey( $subPage ), $this->getContext() );
 				if ( !$cmrAc ) {
