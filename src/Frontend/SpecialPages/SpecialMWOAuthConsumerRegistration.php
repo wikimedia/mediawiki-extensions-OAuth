@@ -601,15 +601,22 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				'default' => 'normal',
 				'hide-if' => [ '!==', 'ownerOnly', '' ],
 			],
-			// HACK separate field from grants because HTMLFormField cannot position help text on top
+			// HACK separate field from grants because OOUI HTMLFormField cannot position help text on top.
+			// If this form is changed to Codex, this could use 'description-message' instead.
 			'grantsHelp' => [
 				'type' => 'info',
 				'default' => '',
 				'help-message' => 'mwoauth-consumer-grantshelp',
+				// Keep 'hide-if' in sync between 'grants' and 'grantsHelp'
+				'hide-if' => [ 'AND',
+					[ '!==', 'granttype', 'normal' ],
+					[ '===', 'ownerOnly', '' ]
+				],
 			],
 			'grants' => [
 				'type' => 'checkmatrix',
 				'label-message' => 'mwoauth-consumer-grantsneeded',
+				// Keep 'hide-if' in sync between 'grants' and 'grantsHelp'
 				'hide-if' => [ 'AND',
 					[ '!==', 'granttype', 'normal' ],
 					[ '===', 'ownerOnly', '' ]
