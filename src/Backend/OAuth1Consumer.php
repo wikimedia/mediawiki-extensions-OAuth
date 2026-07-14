@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWCryptRand;
+use Wikimedia\Message\MessageValue;
 
 /**
  * (c) Dejan Savuljesku 2019, GPL
@@ -43,11 +44,9 @@ class OAuth1Consumer extends Consumer {
 		$store = Utils::newMWOAuthDataStore();
 		$requestToken = $store->lookup_token( $this, 'request', $requestTokenKey );
 		if ( !$requestToken || !( $requestToken instanceof MWOAuthToken ) ) {
-			throw new MWOAuthException( 'mwoauthserver-invalid-request-token', [
-				'consumer' => $this->getConsumerKey(),
-				'consumer_name' => $this->getName(),
+			throw new MWOAuthException( MessageValue::new( 'mwoauthserver-invalid-request-token' ), [
 				'token_key' => $requestTokenKey,
-			] );
+			] + $this->getLogContext() );
 		}
 		$requestToken->addVerifyCode( $verifyCode );
 

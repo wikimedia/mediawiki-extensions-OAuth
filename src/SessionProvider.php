@@ -38,6 +38,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Http\Message\ResponseInterface;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\DBError;
 
 /**
@@ -150,7 +151,10 @@ class SessionProvider
 				$tmpConsumer = $consumerRepository->getByKey( $resourceServer->getClient()->getConsumerKey() );
 				$logData += $tmpConsumer ? $tmpConsumer->getLogContext() : [];
 				if ( !$access ) {
-					throw new MWOAuthException( 'mwoauth-oauth2-error-create-at-no-user-approval' );
+					throw new MWOAuthException(
+						MessageValue::new( 'mwoauth-oauth2-error-create-at-no-user-approval' ),
+						$logData
+					);
 				}
 
 				// Set the scopes that are verified for this request
@@ -353,7 +357,7 @@ class SessionProvider
 			return $resourceServer->getAccessTokenId();
 		}
 
-		throw new MWOAuthException( 'mwoauth-oauth2-invalid-access-token' );
+		throw new MWOAuthException( MessageValue::new( 'mwoauth-oauth2-invalid-access-token' ) );
 	}
 
 	/** @inheritDoc */

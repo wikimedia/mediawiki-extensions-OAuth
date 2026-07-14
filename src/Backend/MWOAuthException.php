@@ -5,28 +5,26 @@ namespace MediaWiki\Extension\OAuth\Backend;
 use MediaWiki\Exception\ILocalizedException;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Message\Message;
+use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\NormalizedException\INormalizedException;
 
 /**
  * Exception class for human-readable OAuth errors.
  */
 class MWOAuthException extends OAuthException implements INormalizedException, ILocalizedException {
-	/** @var string */
-	protected $msg;
-	/** @var array */
-	protected $params;
+
+	protected MessageValue $msg;
+	protected array $context;
 
 	/**
 	 * Exception that may be shown to an end user.
-	 * @param string $msg i18n message key for error text.
-	 * @param array $params Error parameters. These double as i18n message parameters and PSR-3
-	 *   log context. The array keys are used as log context keys; the position is used for i18n
-	 *   (the first array element is $1 etc). Array items with numeric keys are omitted from PSR-3
-	 *   logging.
+	 * @param MessageValue $msg
+	 * @param array $context PSR-3 log context
 	 */
-	public function __construct( $msg, $params = [] ) {
+	public function __construct( MessageValue $msg, $context = [] ) {
 		$this->msg = $msg;
-		$this->params = $params;
+		$this->context = $context;
 		parent::__construct(
 			$this->getMessageObject()->inLanguage( 'en' )->useDatabase( false )->plain()
 		);
@@ -36,10 +34,10 @@ class MWOAuthException extends OAuthException implements INormalizedException, I
 	 * @inheritDoc
 	 */
 	public function getNormalizedMessage(): string {
-		$paramsWithPsr3Placeholders = array_map( static function ( $val, $key ) {
-			return is_numeric( $key ) ? $val : "{{$key}}";
-		}, $this->params, array_keys( $this->params ) );
-		return wfMessage( $this->msg, $paramsWithPsr3Placeholders )->inLanguage( 'en' )
+		$paramsPlaceholders = array_map( static function ( $i ) {
+			return "{parameter" . ( $i + 1 ) . "}";
+		}, array_keys( $this->msg->getParams() ) );
+		return wfMessage( $this->msg->getKey(), $paramsPlaceholders )->inLanguage( 'en' )
 			->useDatabase( false )->plain();
 	}
 
@@ -47,14 +45,19 @@ class MWOAuthException extends OAuthException implements INormalizedException, I
 	 * @inheritDoc
 	 */
 	public function getMessageContext(): array {
-		return array_filter( $this->params, static fn ( $key ) => !is_numeric( $key ), ARRAY_FILTER_USE_KEY );
+		$paramsPlaceholders = array_map( static function ( $i ) {
+			return "parameter" . ( $i + 1 );
+		}, array_keys( $this->msg->getParams() ) );
+		return array_combine( $paramsPlaceholders, array_map( static function ( MessageParam $param ) {
+			return $param->getValue();
+		}, $this->msg->getParams() ) ) + $this->context;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getMessageObject() {
-		return new Message( $this->msg, array_values( $this->params ) );
+		return Message::newFromSpecifier( $this->msg );
 	}
 
 }

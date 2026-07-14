@@ -6,9 +6,9 @@ use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthServer;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
+use Wikimedia\Message\MessageValue;
 
 class MWOAuthServer extends OAuthServer {
 	/** @var MWOAuthDataStore */
@@ -40,23 +40,23 @@ class MWOAuthServer extends OAuthServer {
 
 		// Consumer must not be owner-only
 		if ( $consumer->getOwnerOnly() ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
-				'consumer_name' => $consumer->getName(),
-				'update_url' => SpecialPage::getTitleFor(
-					'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
-				),
-				Message::rawParam( Utils::getErrorLink( 'E010' ) ),
-				'consumer' => $consumer->getConsumerKey(),
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthserver-consumer-owner-only' )
+					->params( $consumer->getName(), SpecialPage::getTitleFor(
+						'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
+					)->getPrefixedText() )
+					->rawParams( Utils::getErrorLink( 'E010' ) ),
+				$consumer->getLogContext()
+			);
 		}
 
 		// Consumer must have a key for us to verify
 		if ( !$consumer->getSecretKey() && !$consumer->getRsaKey() ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret', [
-				Message::rawParam( Utils::getErrorLink( 'E011' ) ),
-				'consumer' => $consumer->getConsumerKey(),
-				'consumer_name' => $consumer->getName(),
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthserver-consumer-no-secret' )
+					->rawParams( Utils::getErrorLink( 'E011' ) ),
+				$consumer->getLogContext()
+			);
 		}
 
 		$this->checkSourceIP( $consumer, $request );
@@ -101,21 +101,20 @@ class MWOAuthServer extends OAuthServer {
 	private function checkCallback( $consumer, $callback ) {
 		if ( !$consumer->getCallbackIsPrefix() ) {
 			if ( $callback !== 'oob' ) {
-				throw new MWOAuthException( 'mwoauth-callback-not-oob', [
-					'consumer' => $consumer->getConsumerKey(),
-					'consumer_name' => $consumer->getName(),
-					'callback_url' => $callback,
-				] );
+				throw new MWOAuthException(
+					MessageValue::new( 'mwoauth-callback-not-oob' ),
+					[ 'callback_url' => $callback ] + $consumer->getLogContext()
+				);
 			}
 
 			return;
 		}
 
 		if ( !$callback ) {
-			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix', [
-				'consumer' => $consumer->getConsumerKey(),
-				'consumer_name' => $consumer->getName(),
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauth-callback-not-oob-or-prefix' ),
+				$consumer->getLogContext()
+			);
 		}
 		if ( $callback === 'oob' ) {
 			return;
@@ -125,18 +124,16 @@ class MWOAuthServer extends OAuthServer {
 
 		$reqCallback = $urlUtils->parse( $callback );
 		if ( $reqCallback === null ) {
-			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix', [
-				'consumer' => $consumer->getConsumerKey(),
-				'consumer_name' => $consumer->getName(),
-				'callback_url' => $callback,
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauth-callback-not-oob-or-prefix' ),
+				[ 'callback_url' => $callback ] + $consumer->getLogContext()
+			);
 		} elseif ( isset( $reqCallback['user'] ) || isset( $reqCallback['pass'] ) ) {
 			// T428324 no need for user/pass and it could be used to confuse URL parsing
-			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix', [
-				'consumer' => $consumer->getConsumerKey(),
-				'consumer_name' => $consumer->getName(),
-				'callback_url' => $callback,
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauth-callback-not-oob-or-prefix' ),
+				[ 'callback_url' => $callback ] + $consumer->getLogContext()
+			);
 		}
 
 		$knownCallback = $urlUtils->parse( $consumer->getCallbackUrl() ) ?? [];
@@ -164,12 +161,13 @@ class MWOAuthServer extends OAuthServer {
 			static::componentMatches( 'query', $knownCallback, $reqCallback );
 
 		if ( !$match ) {
-			throw new MWOAuthException( 'mwoauth-callback-not-oob-or-prefix', [
-				'consumer' => $consumer->getConsumerKey(),
-				'consumer_name' => $consumer->getName(),
-				'callback_url' => $callback,
-				'consumer_callback_prefix' => $consumer->getCallbackUrl(),
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauth-callback-not-oob-or-prefix' ),
+				[
+					'callback_url' => $callback,
+					'consumer_callback_prefix' => $consumer->getCallbackUrl(),
+				] + $consumer->getLogContext()
+			);
 		}
 	}
 
@@ -246,23 +244,23 @@ class MWOAuthServer extends OAuthServer {
 
 		// Consumer must not be owner-only
 		if ( $consumer->getOwnerOnly() ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
-				'consumer_name' => $consumer->getName(),
-				'update_url' => SpecialPage::getTitleFor(
-					'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
-				),
-				Message::rawParam( Utils::getErrorLink( 'E010' ) ),
-				'consumer' => $consumer->getConsumerKey(),
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthserver-consumer-owner-only' )
+					->params( $consumer->getName(), SpecialPage::getTitleFor(
+						'OAuthConsumerRegistration', 'update/' . $consumer->getConsumerKey()
+					)->getPrefixedText() )
+					->rawParams( Utils::getErrorLink( 'E010' ) ),
+				$consumer->getLogContext()
+			);
 		}
 
 		// Consumer must have a key for us to verify
 		if ( !$consumer->getSecretKey() && !$consumer->getRsaKey() ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-no-secret', [
-				Message::rawParam( Utils::getErrorLink( 'E011' ) ),
-				'consumer' => $consumer->getConsumerKey(),
-				'consumer_name' => $consumer->getName(),
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthserver-consumer-no-secret' )
+					->rawParams( Utils::getErrorLink( 'E011' ) ),
+				$consumer->getLogContext()
+			);
 		}
 
 		$this->checkSourceIP( $consumer, $request );
@@ -273,11 +271,10 @@ class MWOAuthServer extends OAuthServer {
 
 		if ( !$token->secret ) {
 			// This token has a blank secret.. something is wrong
-			throw new MWOAuthException( 'mwoauthdatastore-bad-token', [
-				'consumer' => $consumer->getConsumerKey(),
-				'consumer_name' => $consumer->getName(),
-				'token' => $token->key,
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthdatastore-bad-token' ),
+				[ 'token' => $token->key ] + $consumer->getLogContext()
+			);
 		}
 
 		$this->check_signature( $request, $consumer, $token );
@@ -312,11 +309,10 @@ class MWOAuthServer extends OAuthServer {
 		/** @var MWOAuthRequest $request */'@phan-var MWOAuthRequest $request';
 		$restrictions = $consumer->getRestrictions();
 		if ( !$restrictions->checkIP( $request->getSourceIP() ) ) {
-			throw new MWOAuthException( 'mwoauthdatastore-bad-source-ip', [
-				'consumer' => $consumer->getConsumerKey(),
-				'consumer_name' => $consumer->getName(),
-				'request_ip' => $request->getSourceIP(),
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthdatastore-bad-source-ip' ),
+				[ 'request_ip' => $request->getSourceIP() ] + $consumer->getLogContext()
+			);
 		}
 	}
 

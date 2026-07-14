@@ -46,6 +46,7 @@ use MediaWiki\WikiMap\WikiMap;
 use OOUI;
 use OOUI\HtmlSnippet;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\NormalizedException\INormalizedException;
 
 /**
@@ -112,7 +113,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			if ( $config->get( 'MWOAuthReadOnly' ) &&
 				!in_array( $subpage, [ 'verified', 'grants', 'identify' ] )
 			) {
-				throw new MWOAuthException( 'mwoauth-db-readonly' );
+				throw new MWOAuthException( MessageValue::new( 'mwoauth-db-readonly' ) );
 			}
 
 			$this->determineOAuthVersion( $request );
@@ -221,9 +222,10 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					$verifier = $request->getVal( 'oauth_verifier' );
 					$requestToken = $request->getVal( 'oauth_token' );
 					if ( !$verifier || !$requestToken ) {
-						throw new MWOAuthException( 'mwoauth-bad-request-missing-params', [
-							Message::rawParam( Utils::getErrorLink( 'E001' ) )
-						] );
+						throw new MWOAuthException(
+							MessageValue::new( 'mwoauth-bad-request-missing-params' )
+								->rawParams( Utils::getErrorLink( 'E001' ) )
+						);
 					}
 					$output->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
 					$this->showResponse(
@@ -262,20 +264,20 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 						->getConsumerAcceptanceRepository();
 					$access = $consumerAcceptanceRepository->getByToken( $token->key );
 					if ( !$access ) {
-						throw new MWOAuthException( 'mwoauth-access-token-not-found', [
-							'consumer' => $consumer->getConsumerKey(),
-							'consumer_name' => $consumer->getName(),
-						] );
+						throw new MWOAuthException(
+							MessageValue::new( 'mwoauth-access-token-not-found' ),
+							$consumer->getLogContext()
+						);
 					}
 
 					$username = Utils::getCentralUserNameFromId( $access->getUserId() );
 					if ( $username === false || $username === '' ) {
-						throw new MWOAuthException( 'mwoauth-invalid-authorization-invalid-user', [
-							Message::rawParam( Utils::getErrorLink( 'E008' ) ),
-							'consumer' => $consumer->getConsumerKey(),
-							'consumer_name' => $consumer->getName(),
-							'cmra_id' => $access->getId(),
-						] );
+						throw new MWOAuthException(
+							MessageValue::new( 'mwoauth-invalid-authorization-invalid-user' )
+								// FIXME This parameter is unused
+								->rawParams( Utils::getErrorLink( 'E008' ) ),
+							[ 'cmra_id' => $access->getId() ] + $consumer->getLogContext()
+						);
 					}
 
 					$localUser = User::newFromName( $username );
@@ -291,7 +293,10 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 							false
 						);
 						if ( !$status->isOK() ) {
-							throw new MWOAuthException( 'mwoauth-invalid-authorization', [ $status->getMessage() ] );
+							throw new MWOAuthException(
+								MessageValue::new( 'mwoauth-invalid-authorization' )->params( $status->getMessage() ),
+								$consumer->getLogContext()
+							);
 						}
 					}
 
@@ -303,29 +308,26 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					if ( $localUser->isLocked() ||
 						( $config->get( 'BlockDisablesLogin' ) && $localUser->getBlock() )
 					) {
-						throw new MWOAuthException( 'mwoauth-invalid-authorization-blocked-user', [
-							'consumer' => $consumer->getConsumerKey(),
-							'consumer_name' => $consumer->getName(),
-							'user_name' => $localUser->getName(),
-						] );
+						throw new MWOAuthException(
+							MessageValue::new( 'mwoauth-invalid-authorization-blocked-user' ),
+							[ 'user_name' => $localUser->getName() ] + $consumer->getLogContext()
+						);
 					}
 					// Access token is for this wiki
 					if ( $access->getWiki() !== '*' && $access->getWiki() !== $wiki ) {
 						throw new MWOAuthException(
-							'mwoauth-invalid-authorization-wrong-wiki',
+							MessageValue::new( 'mwoauth-invalid-authorization-wrong-wiki' )->params( $wiki ),
 							[
 								'request_wiki' => $wiki,
-								'consumer' => $consumer->getConsumerKey(),
-								'consumer_name' => $consumer->getName(),
 								'consumer_wiki' => $access->getWiki(),
-							]
+							] + $consumer->getLogContext()
 						);
 					} elseif ( !$consumer->isUsableBy( $localUser ) ) {
-						throw new MWOAuthException( 'mwoauth-invalid-authorization-not-approved', [
-							'consumer_name' => $consumer->getName(),
-							'consumer' => $consumer->getConsumerKey(),
-							'user_name' => $localUser->getName(),
-						] );
+						throw new MWOAuthException(
+							MessageValue::new( 'mwoauth-invalid-authorization-not-approved' )
+								->params( $consumer->getName() ),
+							[ 'user_name' => $localUser->getName() ] + $consumer->getLogContext()
+						);
 					}
 
 					// We know the identity of the user who granted the authorization
@@ -416,9 +418,10 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			$this->getContext()
 		);
 		if ( !$cmrAc ) {
-			throw new MWOAuthException( 'mwoauth-invalid-consumer-key', [
-				'consumer' => $consumerKey,
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauth-invalid-consumer-key' ),
+				[ 'consumer' => $consumerKey ]
+			);
 		}
 
 		if ( $cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
@@ -487,25 +490,23 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		);
 
 		if ( !$cmrAc || !$cmrAc->userCanAccess( [ 'name', 'userId', 'grants' ] ) ) {
-			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key', [
-				Message::rawParam( Utils::getErrorLink( 'E006' ) ),
-				'consumer' => $consumerKey,
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthserver-bad-consumer-key' )
+					->rawParams( Utils::getErrorLink( 'E006' ) ),
+				[ 'consumer' => $consumerKey ]
+			);
 		} elseif ( $cmrAc->getDAO()->getOAuthVersion() !== $this->oauthVersion ) {
 			throw new MWOAuthException(
-				'mwoauthserver-bad-consumer-version',
-				[
-					Utils::getCentralUserTalk( $cmrAc->getUserName() ),
-					Message::rawParam( Utils::getErrorLink( 'E012' ) )
-				]
+				MessageValue::new( 'mwoauthserver-bad-consumer-version' )
+					->params( Utils::getCentralUserTalk( $cmrAc->getUserName() ) )
+					->rawParams( Utils::getErrorLink( 'E012' ) ),
+				$cmrAc->getDAO()->getLogContext()
 			);
 		} elseif ( !$cmrAc->getDAO()->isUsableBy( $user ) ) {
 			throw new MWOAuthException(
-				'mwoauthserver-bad-consumer',
-				[
-					$cmrAc->getName(),
-					Utils::getCentralUserTalk( $cmrAc->getUserName() ),
-				]
+				MessageValue::new( 'mwoauthserver-bad-consumer' )
+					->params( $cmrAc->getName(), Utils::getCentralUserTalk( $cmrAc->getUserName() ) ),
+				$cmrAc->getDAO()->getLogContext()
 			);
 		}
 
@@ -896,8 +897,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	private function assertOAuthVersion( $allowed ) {
 		if ( $this->oauthVersion !== $allowed ) {
 			throw new MWOAuthException(
-				'mwoauth-oauth-unsupported-version',
-				[ $this->oauthVersion ]
+				MessageValue::new( 'mwoauth-oauth-unsupported-version' )->params( $this->oauthVersion ),
+				[ 'oauth_version' => $this->oauthVersion ]
 			);
 		}
 	}

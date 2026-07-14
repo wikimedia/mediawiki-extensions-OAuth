@@ -15,6 +15,7 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extension\OAuth\Repository\ClaimStore;
 use MediaWiki\User\User;
+use Wikimedia\Message\MessageValue;
 
 class ClientEntity extends Consumer implements MWClientEntityInterface {
 
@@ -160,10 +161,10 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 		) {
 			// make sure client is allowed *only* client_credentials grant,
 			// so that this AT cannot be used in other grant type requests
-			throw new MWOAuthException( 'mwoauth-oauth2-error-owner-only-invalid-grant', [
-				'consumer' => $this->getConsumerKey(),
-				'consumer_name' => $this->getName(),
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauth-oauth2-error-owner-only-invalid-grant' ),
+				$this->getLogContext()
+			);
 		}
 		$accessTokenRepo = new AccessTokenRepository();
 		if ( $revokeExisting ) {

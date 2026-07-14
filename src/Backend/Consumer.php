@@ -19,6 +19,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 
@@ -556,7 +557,7 @@ abstract class Consumer extends MWOAuthDAO {
 	 * @return string the url for redirection
 	 */
 	public function generateCallbackUrl( $dataStore, $verifyCode, $requestKey ) {
-		$callback = $dataStore->getCallbackUrl( $this->key, $requestKey );
+		$callback = $dataStore->getCallbackUrl( $this, $requestKey );
 
 		if ( $callback === 'oob' ) {
 			$callback = $this->getCallbackUrl();
@@ -589,12 +590,10 @@ abstract class Consumer extends MWOAuthDAO {
 		$centralUserId = Utils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
 			throw new MWOAuthException(
-				'mwoauthserver-invalid-user',
-				[
-					'consumer_name' => $this->getName(),
-					Message::rawParam( Utils::getErrorLink( 'E008' ) ),
-					'consumer' => $this->getConsumerKey(),
-				]
+				MessageValue::new( 'mwoauthserver-invalid-user' )
+					->params( $this->getName() )
+					->rawParams( Utils::getErrorLink( 'E008' ) ),
+				$this->getLogContext()
 			);
 		}
 
@@ -637,42 +636,40 @@ abstract class Consumer extends MWOAuthDAO {
 
 		// Check that user and consumer are in good standing
 		if ( $mwUser->isLocked() || ( $wgBlockDisablesLogin && $mwUser->getBlock() ) ) {
-			throw new MWOAuthException( 'mwoauthserver-insufficient-rights', [
-				Message::rawParam( Utils::getErrorLink( 'E007' ) ),
-				'consumer' => $this->getConsumerKey(),
-				'consumer_name' => $this->getName(),
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthserver-insufficient-rights' )
+					->rawParams( Utils::getErrorLink( 'E007' ) ),
+				$this->getLogContext()
+			);
 		}
 
 		if ( $this->getDeleted() ) {
-			throw new MWOAuthException( 'mwoauthserver-bad-consumer-key', [
-				Message::rawParam( Utils::getErrorLink( 'E006' ) ),
-				'consumer' => $this->getConsumerKey(),
-				'consumer_name' => $this->getName(),
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthserver-bad-consumer-key' )
+					->rawParams( Utils::getErrorLink( 'E006' ) ),
+				$this->getLogContext()
+			);
 		} elseif ( !$this->isUsableBy( $mwUser ) ) {
 			$owner = Utils::getCentralUserNameFromId(
 				$this->getUserId(),
 				$mwUser
 			);
 			throw new MWOAuthException(
-				'mwoauthserver-bad-consumer',
-				[
-					'consumer_name' => $this->getName(),
-					'talkpage' => Utils::getCentralUserTalk( $owner ),
-					Message::rawParam( Utils::getErrorLink( 'E005' ) ),
-					'consumer' => $this->getConsumerKey(),
-				]
+				MessageValue::new( 'mwoauthserver-bad-consumer' )
+					->params( $this->getName(), Utils::getCentralUserTalk( $owner ) )
+					// FIXME: This parameter is unused
+					->rawParams( Utils::getErrorLink( 'E005' ) ),
+				$this->getLogContext()
 			);
 		} elseif ( $this->getOwnerOnly() ) {
-			throw new MWOAuthException( 'mwoauthserver-consumer-owner-only', [
-				'consumer_name' => $this->getName(),
-				SpecialPage::getTitleFor(
-					'OAuthConsumerRegistration', 'update/' . $this->getConsumerKey()
-				),
-				Message::rawParam( Utils::getErrorLink( 'E010' ) ),
-				'consumer' => $this->getConsumerKey(),
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthserver-consumer-owner-only' )
+					->params( $this->getName(), SpecialPage::getTitleFor(
+						'OAuthConsumerRegistration', 'update/' . $this->getConsumerKey()
+					)->getPrefixedText() )
+					->rawParams( Utils::getErrorLink( 'E010' ) ),
+				$this->getLogContext()
+			);
 		}
 	}
 
@@ -688,12 +685,10 @@ abstract class Consumer extends MWOAuthDAO {
 		$centralUserId = Utils::getCentralIdFromLocalUser( $mwUser );
 		if ( !$centralUserId ) {
 			throw new MWOAuthException(
-				'mwoauthserver-invalid-user',
-				[
-					'consumer_name' => $this->getName(),
-					Message::rawParam( Utils::getErrorLink( 'E008' ) ),
-					'consumer' => $this->getConsumerKey(),
-				]
+				MessageValue::new( 'mwoauthserver-invalid-user' )
+					->params( $this->getName() )
+					->rawParams( Utils::getErrorLink( 'E008' ) ),
+				$this->getLogContext()
 			);
 		}
 
@@ -707,10 +702,11 @@ abstract class Consumer extends MWOAuthDAO {
 			// This should be an update to an existing authorization
 			if ( !$cmra ) {
 				// update requested, but no existing key
-				throw new MWOAuthException( 'mwoauthserver-invalid-request', [
-					'consumer' => $this->getConsumerKey(),
-					'consumer_name' => $this->getName(),
-				] );
+				throw new MWOAuthException(
+					// FIXME: This message does not exist
+					MessageValue::new( 'mwoauthserver-invalid-request' ),
+					$this->getLogContext()
+				);
 			}
 			$cmra->setFields( [
 				'wiki'   => $this->getWiki(),

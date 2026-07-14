@@ -8,9 +8,9 @@ use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Message\Message;
 use MediaWiki\Utils\MWCryptRand;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -66,16 +66,18 @@ class MWOAuthDataStore extends OAuthDataStore {
 				$token
 			) );
 			if ( $returnToken === '**USED**' ) {
-				throw new MWOAuthException( 'mwoauthdatastore-request-token-already-used', [
-					Message::rawParam( Utils::getErrorLink( 'E009' ) ),
-					'consumer' => $consumer->key,
-				] );
+				throw new MWOAuthException(
+					MessageValue::new( 'mwoauthdatastore-request-token-already-used' )
+						->rawParams( Utils::getErrorLink( 'E009' ) ),
+					$consumer->getLogContext()
+				);
 			}
 			if ( $token === null || !( $returnToken instanceof MWOAuthToken ) ) {
-				throw new MWOAuthException( 'mwoauthdatastore-request-token-not-found', [
-					Message::rawParam( Utils::getErrorLink( 'E004' ) ),
-					'consumer' => $consumer->key,
-				] );
+				throw new MWOAuthException(
+					MessageValue::new( 'mwoauthdatastore-request-token-not-found' )
+						->rawParams( Utils::getErrorLink( 'E004' ) ),
+					$consumer->getLogContext()
+				);
 			}
 		} elseif ( $token_type === 'access' ) {
 			$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
@@ -87,25 +89,29 @@ class MWOAuthDataStore extends OAuthDataStore {
 					$token, IDBAccessObject::READ_LATEST );
 			}
 			if ( !$cmra ) {
-				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found' );
+				throw new MWOAuthException(
+					MessageValue::new( 'mwoauthdatastore-access-token-not-found' ),
+					$consumer->getLogContext()
+				);
 			}
 
 			// Ensure the cmra's consumer matches the expected consumer (T103023)
 			$mwconsumer = ( $consumer instanceof Consumer )
 				? $consumer : $this->lookup_consumer( $consumer->key );
 			if ( !$mwconsumer || $mwconsumer->getId() !== $cmra->getConsumerId() ) {
-				throw new MWOAuthException( 'mwoauthdatastore-access-token-not-found', [
-					'consumer' => $mwconsumer ? $mwconsumer->getConsumerKey() : '',
-					'cmra_id' => $cmra->getId(),
-				] );
+				throw new MWOAuthException(
+					MessageValue::new( 'mwoauthdatastore-access-token-not-found' ),
+					[ 'cmra_id' => $cmra->getId() ] + $consumer->getLogContext()
+				);
 			}
 
 			$secret = Utils::hmacDBSecret( $cmra->getAccessSecret() );
 			$returnToken = new MWOAuthToken( $cmra->getAccessToken(), $secret );
 		} else {
-			throw new MWOAuthException( 'mwoauthdatastore-invalid-token-type', [
-				'token_type' => $token_type,
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthdatastore-invalid-token-type' ),
+				[ 'token_type' => $token_type ] + $consumer->getLogContext()
+			);
 		}
 
 		return $returnToken;
@@ -199,18 +205,19 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 * A stored callback URL parameter is deleted from the cache once read for the first
 	 * time.
 	 *
-	 * @param string $consumerKey
+	 * @param Consumer $consumer
 	 * @param string $requestKey original request key from /initiate
 	 * @throws MWOAuthException
 	 * @return string|false the stored callback URL parameter
 	 */
-	public function getCallbackUrl( $consumerKey, $requestKey ) {
-		$cacheKey = Utils::getCacheKey( 'callback', $consumerKey, 'request', $requestKey );
+	public function getCallbackUrl( $consumer, $requestKey ) {
+		$cacheKey = Utils::getCacheKey( 'callback', $consumer->getConsumerKey(), 'request', $requestKey );
 		$callback = $this->tokenCache->get( $cacheKey );
 		if ( $callback === null || !is_string( $callback ) ) {
-			throw new MWOAuthException( 'mwoauthdatastore-callback-not-found', [
-				'consumer' => $consumerKey,
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthdatastore-callback-not-found' ),
+				$consumer->getLogContext()
+			);
 		}
 		$this->tokenCache->delete( $cacheKey );
 		return $callback;
@@ -232,17 +239,15 @@ class MWOAuthDataStore extends OAuthDataStore {
 			": Getting new access token for token {$token->key}, consumer {$consumer->key}" );
 
 		if ( !$token->getVerifyCode() || !$token->getAccessKey() ) {
-			throw new MWOAuthException( 'mwoauthdatastore-bad-token', [
-				'consumer' => $consumer->getConsumerKey(),
-				'consumer_name' => $consumer->getName(),
-				'token' => $token->key,
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthdatastore-bad-token' ),
+				[ 'token' => $token->key ] + $consumer->getLogContext()
+			);
 		} elseif ( $token->getVerifyCode() !== $verifier ) {
-			throw new MWOAuthException( 'mwoauthdatastore-bad-verifier', [
-				'consumer' => $consumer->getConsumerKey(),
-				'consumer_name' => $consumer->getName(),
-				'token' => $token->key,
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauthdatastore-bad-verifier' ),
+				[ 'token' => $token->key ] + $consumer->getLogContext()
+			);
 		}
 
 		$cacheKey = Utils::getCacheKey( 'token',

@@ -7,6 +7,7 @@ use MediaWiki\Extension\OAuth\Control\ConsumerValidator;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 
@@ -232,7 +233,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 	 */
 	protected function encodeRow( IReadableDatabase $db, $row ) {
 		if ( (int)$row['oaac_user_id'] === 0 ) {
-			throw new MWOAuthException( 'mwoauth-consumer-access-no-user', [
+			throw new MWOAuthException( MessageValue::new( 'mwoauth-consumer-access-no-user' ), [
 				'consumer_id' => $row['oaac_consumer_id'],
 			] );
 		}
@@ -247,7 +248,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 		$grants = FormatJson::encode( $row['oaac_grants'] );
 
 		if ( strlen( $grants ) > ConsumerValidator::BLOB_SIZE ) {
-			throw new MWOAuthException( 'mwoauth-consumer-access-grants-too-long' );
+			throw new MWOAuthException( MessageValue::new( 'mwoauth-consumer-access-grants-too-long' ) );
 		}
 
 		$row['oaac_grants'] = $grants;

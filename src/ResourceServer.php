@@ -16,6 +16,7 @@ use MediaWiki\Rest\HttpException;
 use MediaWiki\User\User;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Wikimedia\Message\MessageValue;
 
 class ResourceServer {
 	/** @var ResourceServerMiddleware */
@@ -211,10 +212,10 @@ class ResourceServer {
 	 */
 	private function assertVerified() {
 		if ( !$this->verified ) {
-			throw new MWOAuthException( 'mwoauth-oauth2-error-request-not-verified', [
-				'consumer' => $this->getClient()->getConsumerKey(),
-				'consumer_name' => $this->getClient()->getName(),
-			] );
+			throw new MWOAuthException(
+				MessageValue::new( 'mwoauth-oauth2-error-request-not-verified' ),
+				$this->getClient()->getLogContext()
+			);
 		}
 	}
 }
