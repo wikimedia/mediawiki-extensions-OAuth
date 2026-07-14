@@ -547,18 +547,14 @@ abstract class Consumer extends MWOAuthDAO {
 			$dbr,
 			$centralUserId,
 			$this,
-			$checkWiki,
-			0,
-			$this->getOAuthVersion()
+			$checkWiki
 		);
 		if ( !$cmra ) {
 			$cmra = ConsumerAcceptance::newFromUserConsumerWiki(
 				$dbr,
 				$centralUserId,
 				$this,
-				'*',
-				0,
-				$this->getOAuthVersion()
+				'*'
 			);
 		}
 		return $cmra;

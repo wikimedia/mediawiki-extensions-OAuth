@@ -114,12 +114,11 @@ class ConsumerAcceptance extends MWOAuthDAO {
 	 * @param Consumer $consumer
 	 * @param string $wiki wiki associated with the acceptance
 	 * @param int $flags ConsumerAcceptance::READ_* bitfield
-	 * @param int $oauthVersion
 	 * @return ConsumerAcceptance|bool
 	 */
 	public static function newFromUserConsumerWiki(
 		IReadableDatabase $db, $userId, $consumer,
-		$wiki, $flags = 0, $oauthVersion = Consumer::OAUTH_VERSION_1
+		$wiki, $flags = 0
 	) {
 		$queryBuilder = $db->newSelectQueryBuilder()
 			->select( array_values( static::getFieldColumnMap() ) )
@@ -127,7 +126,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 			->where( [
 				'oaac_user_id' => $userId,
 				'oaac_consumer_id' => $consumer->getId(),
-				'oaac_oauth_version' => $oauthVersion,
+				'oaac_oauth_version' => $consumer->getOAuthVersion(),
 				'oaac_wiki' => (string)$wiki
 			] )
 			->caller( __METHOD__ );
