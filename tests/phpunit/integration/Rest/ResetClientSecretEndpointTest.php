@@ -136,7 +136,6 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser1' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getOAuthDB( DB_PRIMARY );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;
@@ -165,7 +164,6 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
 						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser2' );
-					$db = Utils::getOAuthDB( DB_PRIMARY );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = 999;
@@ -197,7 +195,6 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser3' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getOAuthDB( DB_PRIMARY );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;
@@ -228,7 +225,6 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser4' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getOAuthDB( DB_PRIMARY );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;
@@ -260,7 +256,6 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser5' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getOAuthDB( DB_PRIMARY );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;

@@ -169,7 +169,6 @@ class AuthorizationEndpointTest extends EndpointTestBase {
 					$user = User::createNew( 'ResetClientSecretTestUser2' );
 
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getOAuthDB( DB_PRIMARY );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;

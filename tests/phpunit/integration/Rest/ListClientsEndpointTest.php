@@ -77,7 +77,6 @@ class ListClientsEndpointTest extends EndpointTestBase {
 						->getConsumerRepository();
 					$user = User::createNew( 'ListClientsTestUser1' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getOAuthDB( DB_PRIMARY );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;
@@ -109,7 +108,6 @@ class ListClientsEndpointTest extends EndpointTestBase {
 						->getConsumerRepository();
 					$user = User::createNew( 'ListClientsTestUser2' );
 					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-					$db = Utils::getOAuthDB( DB_PRIMARY );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;
@@ -137,7 +135,6 @@ class ListClientsEndpointTest extends EndpointTestBase {
 					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
 						->getConsumerRepository();
 					$user = User::createNew( 'ListClientsTestUser3' );
-					$db = Utils::getOAuthDB( DB_PRIMARY );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					/*
