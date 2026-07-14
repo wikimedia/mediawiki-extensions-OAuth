@@ -6,5 +6,7 @@
 	},
 	"mwoauth-prefs-managegrants": "Povezane aplikacije:",
 	"mwoauth-prefs-managegrantslink": "Upraviti {{PLURAL:$1|$1 povezanoju aplikacijeju|$1 povezanymi aplikacijami|0=povezanymi aplikacijami}}",
+	"oauthconsumerregistration": "Registracija klienta OAuth",
+	"oauthlistconsumers": "Spisok OAuth-aplikacij",
 	"oauthmanagemygrants": "Upravjenje povezanymi aplikacijami"
 }
