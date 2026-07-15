@@ -56,6 +56,8 @@ abstract class Consumer extends MWOAuthDAO {
 	public const FIELD_DELETED = 'deleted';
 	public const FIELD_OAUTH2_IS_CONFIDENTIAL = 'oauth2IsConfidential';
 	public const FIELD_OAUTH2_GRANT_TYPES = 'oauth2GrantTypes';
+	// Names of non-DB-based fields
+	public const FIELD_SKIP_AUTHORIZATION = 'skipAuthorization';
 
 	/* Stages that registered consumer takes (stored in DB) */
 	public const STAGE_PROPOSED = 0;
@@ -132,6 +134,8 @@ abstract class Consumer extends MWOAuthDAO {
 	protected $oauth2IsConfidential;
 	/** @var array OAuth2 grant types available to the client */
 	protected $oauth2GrantTypes;
+	/** @see canSkipAuthorization() */
+	protected bool $skipAuthorization = false;
 
 	/** @var int|false|null Cache for local ID looked up from $userId */
 	protected $localUserId;
@@ -209,6 +213,9 @@ abstract class Consumer extends MWOAuthDAO {
 				'oauth2IsConfidential'  => 'oarc_oauth2_is_confidential',
 				'oauth2GrantTypes'      => 'oarc_oauth2_allowed_grants',
 			],
+			'extraFields'    => [
+				self::FIELD_SKIP_AUTHORIZATION,
+			],
 			'idField'        => 'id',
 			'autoIncrField'  => 'id',
 		];
@@ -229,7 +236,7 @@ abstract class Consumer extends MWOAuthDAO {
 		];
 	}
 
-	protected static function getConsumerClass( array $data ): string {
+	protected static function getDaoClass( array $data ): string {
 		return static::isOAuth2( $data ) ?
 			OAuth2Client::class :
 			OAuth1Consumer::class;
@@ -515,6 +522,22 @@ abstract class Consumer extends MWOAuthDAO {
 			}
 		}
 		return $this->localUserId;
+	}
+
+	/**
+	 * When true, users aren't shown an authorization dialog and authorization will be assumed.
+	 * Only supported for OAuth 2. Should only be used when:
+	 * - the client is a first-party client (ie. owned by the site operator)
+	 * - the consumer is stored as configuration (this is enforced)
+	 * - the callback URL / redirect URI uses a domain that is owned by the first party
+	 * - the client can prove ownership of the callback URL / redirect URI within their plaform
+	 *   environment, e.g. via App Links in Android or Universal Links in iOS.
+	 *   (this is enforced to the extent that the URI scheme must be HTTPS)
+	 */
+	public function canSkipAuthorization(): bool {
+		return $this->skipAuthorization
+			&& $this->getOAuthVersion() === self::OAUTH_VERSION_2
+			&& parse_url( $this->getCallbackUrl(), PHP_URL_SCHEME ) === 'https';
 	}
 
 	/**

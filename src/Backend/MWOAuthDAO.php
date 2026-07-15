@@ -55,13 +55,14 @@ abstract class MWOAuthDAO {
 	 * @return static
 	 */
 	final public static function newFromArray( array $values ) {
-		$class = static::getConsumerClass( $values );
-		$consumer = new $class();
+		$class = static::getDaoClass( $values );
+		/** @var self $dao */
+		$dao = new $class();
 
 		// Make sure oauth_version is set - for backwards compat
 		$values['oauth_version'] ??= Consumer::OAUTH_VERSION_1;
-		$consumer->loadFromValues( $values );
-		return $consumer;
+		$dao->loadFromValues( $values );
+		return $dao;
 	}
 
 	/**
@@ -70,7 +71,7 @@ abstract class MWOAuthDAO {
 	 * @param array $data
 	 * @return string
 	 */
-	protected static function getConsumerClass( array $data ) {
+	protected static function getDaoClass( array $data ) {
 		return static::class;
 	}
 
@@ -80,10 +81,10 @@ abstract class MWOAuthDAO {
 	 * @return static
 	 */
 	final public static function newFromRow( IReadableDatabase $db, $row ) {
-		$class = static::getConsumerClass( (array)$row );
-		$consumer = new $class();
-		$consumer->loadFromRow( $db, $row );
-		return $consumer;
+		$class = static::getDaoClass( (array)$row );
+		$dao = new $class();
+		$dao->loadFromRow( $db, $row );
+		return $dao;
 	}
 
 	/**
@@ -105,10 +106,10 @@ abstract class MWOAuthDAO {
 		$row = $queryBuilder->fetchRow();
 
 		if ( $row ) {
-			$class = static::getConsumerClass( (array)$row );
-			$consumer = new $class();
-			$consumer->loadFromRow( $db, $row );
-			return $consumer;
+			$class = static::getDaoClass( (array)$row );
+			$dao = new $class();
+			$dao->loadFromRow( $db, $row );
+			return $dao;
 		} else {
 			return false;
 		}
@@ -259,6 +260,9 @@ abstract class MWOAuthDAO {
 	 *   - autoIncrField  : a field that auto-increments in the DB (or NULL if none)
 	 *   - table          : a table name
 	 *   - fieldColumnMap : a map of field names to column names
+	 *   - extraFields    : a list of field names which don't map to column names but are
+	 *                      nevertheless part of the entity's persistent state. Used by entities
+	 *                      which aren't stored in the database.
 	 *
 	 * @return array
 	 */
@@ -289,12 +293,25 @@ abstract class MWOAuthDAO {
 	}
 
 	/**
+	 * Returns a mapping of field names (object properties) to DB column names.
 	 * @return array<string,string>
 	 */
 	final protected static function getFieldColumnMap() {
 		// @phan-suppress-next-line PhanAbstractStaticMethodCallInStatic
 		$schema = static::getSchema();
 		return $schema['fieldColumnMap'];
+	}
+
+	/**
+	 * Returns a list of field names which don't map to column names but are nevertheless
+	 * part of the entity's persistent state. Used by entities which aren't stored in the database.
+	 * @return string[]
+	 * @phan-return list<string>
+	 */
+	final protected static function getExtraFields(): array {
+		// @phan-suppress-next-line PhanAbstractStaticMethodCallInStatic
+		$schema = static::getSchema();
+		return $schema['extraFields'];
 	}
 
 	/**
@@ -314,7 +331,8 @@ abstract class MWOAuthDAO {
 	final protected static function hasField( $field ) {
 		// @phan-suppress-next-line PhanAbstractStaticMethodCallInStatic
 		$schema = static::getSchema();
-		return isset( $schema['fieldColumnMap'][$field] );
+		return isset( $schema['fieldColumnMap'][$field] )
+			|| in_array( $field, $schema['extraFields'], true );
 	}
 
 	/**
@@ -349,6 +367,9 @@ abstract class MWOAuthDAO {
 		foreach ( static::getFieldColumnMap() as $field => $column ) {
 			$values[$field] = $this->$field;
 		}
+		foreach ( static::getExtraFields() as $field ) {
+			$values[$field] = $this->$field;
+		}
 		return $values;
 	}
 
@@ -361,6 +382,11 @@ abstract class MWOAuthDAO {
 				throw new LogicException( get_class( $this ) . " requires '$field' field." );
 			}
 			$this->$field = $values[$field];
+		}
+		foreach ( static::getExtraFields() as $field ) {
+			if ( array_key_exists( $field, $values ) ) {
+				$this->$field = $values[$field];
+			}
 		}
 		$this->normalizeValues();
 		$this->daoOrigin = self::ORIGIN_NEW;

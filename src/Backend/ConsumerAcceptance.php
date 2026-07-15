@@ -64,6 +64,7 @@ class ConsumerAcceptance extends MWOAuthDAO {
 				'accepted'        => 'oaac_accepted',
 				'oauth_version'   => 'oaac_oauth_version',
 			],
+			'extraFields'         => [],
 			'idField'             => 'id',
 			'autoIncrField'       => 'id',
 		];

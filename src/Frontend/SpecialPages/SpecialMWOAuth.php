@@ -511,9 +511,25 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 
 		$existing = $cmrAc->getDAO()->getCurrentAuthorization( $user, WikiMap::getCurrentWikiId() );
 
-		// If only authentication was requested, and the existing authorization
-		// matches, and the only grants are 'mwoauth-authonly' or 'mwoauth-authonlyprivate',
-		// then don't bother prompting the user about it.
+		// Some first-party consumers are explicitly allowed to skip authorization.
+		// An authorization will be created, or the existing authorization updated if needed,
+		// without notifying the user.
+		if ( $cmrAc->getDAO()->canSkipAuthorization()
+			&& $this->oauthVersion === Consumer::OAUTH_VERSION_2
+		) {
+			$cmrAc->getDAO()->authorize(
+				$user, (bool)$existing, $cmrAc->getDAO()->getGrants(), $requestToken
+			);
+			$this->redirectToREST( [
+				'approval_pass' => true
+			] );
+		}
+
+		// Other consumers can still be allowed to skip authorization if they have already been
+		// authorized in the past, they are confidental (so we can be sure it was the same client
+		// that was authorized in the past), they have authentication-only access ('mwoauth-authonly'
+		// or 'mwoauth-authonlyprivate'), and the client is explicitly requesting it (by using
+		// the /authenticate endpoint rather than /authorize)
 		if ( $existing && $authenticate &&
 			$existing->getWiki() === $cmrAc->getDAO()->getWiki() &&
 			$existing->getGrants() === $cmrAc->getDAO()->getGrants() &&

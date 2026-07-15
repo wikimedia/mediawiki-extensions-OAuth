@@ -509,6 +509,7 @@ class ConsumerValidator {
 			Consumer::FIELD_STAGE_TIMESTAMP => ConvertibleTimestamp::now(),
 			Consumer::FIELD_DELETED => false,
 			Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL => true,
+			Consumer::FIELD_SKIP_AUTHORIZATION => false,
 		];
 		$requiredKeys = [
 			Consumer::FIELD_ID,
@@ -526,6 +527,7 @@ class ConsumerValidator {
 			Consumer::FIELD_SECRET_KEY,
 			Consumer::FIELD_WIKI,
 			Consumer::FIELD_RESTRICTIONS,
+			Consumer::FIELD_SKIP_AUTHORIZATION,
 		];
 
 		if ( $oauthVersion === Consumer::OAUTH_VERSION_1 ) {
