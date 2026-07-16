@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"COMISSIONTOPOC",
 			"Cedric31",
 			"Quentí"
 		]
@@ -63,6 +64,7 @@
 	"mwoauthconsumerregistration-user": "Editor",
 	"mwoauthconsumerregistration-description": "Descripcion",
 	"mwoauthconsumerregistration-email": "Corrièr electronic de contacte",
+	"mwoauthconsumerregistration-wiki": "Projècte aplicable :",
 	"mwoauthconsumerregistration-consumerkey": "Clau del consomator",
 	"mwoauthconsumerregistration-stage": "Estat",
 	"mwoauthconsumerregistration-lastchange": "Darrièr cambiament",
