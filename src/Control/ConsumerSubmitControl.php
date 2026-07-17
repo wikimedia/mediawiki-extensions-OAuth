@@ -12,6 +12,7 @@ use MediaWiki\Extension\OAuth\Backend\MWOAuthDataStore;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Entity\UserEntity;
+use MediaWiki\Extension\OAuth\OAuthConfigNames;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
@@ -27,6 +28,7 @@ use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * (c) Aaron Schulz 2013, GPL
@@ -182,11 +184,21 @@ class ConsumerSubmitControl extends SubmitControl {
 						'mwoauth-consumer-alreadyexistsversion', $curVer );
 				}
 
-				// Handle owner-only mode
-				if ( $this->vals['ownerOnly'] ) {
+				$now = wfTimestampNow();
+				$isClientCredentialsOwnerAuth = (int)$this->vals['oauthVersion'] === Consumer::OAUTH_VERSION_2
+					&& count( $this->vals['oauth2GrantTypes'] ) === 1
+					&& in_array( ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS, $this->vals['oauth2GrantTypes'], true )
+					&& $this->clientCredentialsOwnerAuthCutoverApplies( $now );
+
+				// Handle owner-only mode and OAuth 2 client credentials owner-auth mode.
+				if ( $this->vals['ownerOnly'] || $isClientCredentialsOwnerAuth ) {
 					$this->vals['callbackUrl'] = SpecialPage::getTitleFor( 'OAuth', 'verified' )
 						->getLocalURL();
 					$this->vals['callbackIsPrefix'] = '';
+					if ( $isClientCredentialsOwnerAuth ) {
+						$this->vals['callbackUrl'] = '';
+						$this->vals['oauth2IsConfidential'] = true;
+					}
 					$stage = Consumer::STAGE_APPROVED;
 				} else {
 					$stage = Consumer::STAGE_PROPOSED;
@@ -212,7 +224,6 @@ class ConsumerSubmitControl extends SubmitControl {
 						break;
 				}
 
-				$now = wfTimestampNow();
 				$cmr = Consumer::newFromArray(
 					[
 						'id'                 => null,
@@ -238,6 +249,8 @@ class ConsumerSubmitControl extends SubmitControl {
 				if ( $cmr->getOwnerOnly() ) {
 					// FIXME the stage is set a few dozen lines earlier - should simplify this
 					$logAction = 'create-owner-only';
+				} elseif ( $isClientCredentialsOwnerAuth ) {
+					$logAction = 'propose-autoapproved';
 				} elseif ( $autoApproved ) {
 					$cmr->setField( 'stage', Consumer::STAGE_APPROVED );
 					$logAction = 'propose-autoapproved';
@@ -245,16 +258,16 @@ class ConsumerSubmitControl extends SubmitControl {
 
 				$consumerRepository->save( $cmr );
 				$this->makeLogEntry( Utils::getCentralWikiDB(), $cmr, $logAction, $user, $this->vals['description'] );
-				if ( !$cmr->getOwnerOnly() && !$autoApproved ) {
+				if ( !$cmr->getOwnerOnly() && !$isClientCredentialsOwnerAuth && !$autoApproved ) {
 					// Notify admins if the consumer needs to be approved.
 					if ( $cmr->getStage() === Consumer::STAGE_PROPOSED ) {
 						$this->notify( $cmr, $user, $action, '' );
 					}
 				}
 
-				// If it's owner-only, automatically accept it for the user too.
+				// If it's owner-only or client-credentials owner-auth, automatically accept it for the user too.
 				$accessToken = null;
-				if ( $cmr->getOwnerOnly() ) {
+				if ( $cmr->getOwnerOnly() || $isClientCredentialsOwnerAuth ) {
 					$accessToken = MWOAuthDataStore::newToken();
 					$cmra = ConsumerAcceptance::newFromArray( [
 						'id'           => null,
@@ -270,7 +283,7 @@ class ConsumerSubmitControl extends SubmitControl {
 					OAuthServices::wrap( MediaWikiServices::getInstance() )
 						->getConsumerAcceptanceRepository()
 						->save( $cmra );
-					if ( $cmr instanceof ClientEntity ) {
+					if ( $cmr->getOwnerOnly() && $cmr instanceof ClientEntity ) {
 						// OAuth2 client
 						try {
 							$accessToken = $cmr->getOwnerOnlyAccessToken( $cmra );
@@ -281,6 +294,8 @@ class ConsumerSubmitControl extends SubmitControl {
 								$ex->getMessage()
 							);
 						}
+					} elseif ( $isClientCredentialsOwnerAuth ) {
+						$accessToken = null;
 					}
 				}
 
@@ -475,6 +490,22 @@ class ConsumerSubmitControl extends SubmitControl {
 
 				return $this->success( $cmr );
 		}
+	}
+
+	private function clientCredentialsOwnerAuthCutoverApplies( string $timestamp ): bool {
+		$cutover = OAuthServices::wrap( MediaWikiServices::getInstance() )
+			->getConfig()
+			->get( OAuthConfigNames::OAuth2ClientCredentialsOwnerAuthCutover );
+		if ( !$cutover ) {
+			return false;
+		}
+
+		$cutoverTimestamp = ConvertibleTimestamp::convert( TS_MW, $cutover );
+		if ( $cutoverTimestamp === false ) {
+			return false;
+		}
+
+		return $timestamp >= $cutoverTimestamp;
 	}
 
 	/**

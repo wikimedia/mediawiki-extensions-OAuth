@@ -128,19 +128,21 @@ class SessionProvider
 				$accessId = $accessTokenRepo->getApprovalId( $accessTokenKey );
 				if ( $accessId === 0 ) {
 					if ( $resourceServer->getClient()->getOwnerOnly() === false ) {
-						// Access token created via client credentials flow.
-						// Requests signed by such tokens are intentionally anonymous (for now).
-						$access = ConsumerAcceptance::newFromArray( [
-							'id'           => null,
-							'wiki'         => $resourceServer->getClient()->getWiki(),
-							'userId'       => 0,
-							'consumerId'   => $resourceServer->getClient()->getId(),
-							'accessToken'  => '',
-							'accessSecret' => '',
-							'grants'       => $resourceServer->getClient()->getGrants(),
-							'accepted'     => wfTimestampNow(),
-							'oauth_version' => Consumer::OAUTH_VERSION_2
-						] );
+						if ( !$resourceServer->getClient()->clientCredentialsAuthenticateAsOwner() ) {
+							// Access token created via the legacy client credentials flow.
+							// Requests signed by such tokens are intentionally anonymous.
+							$access = ConsumerAcceptance::newFromArray( [
+								'id'           => null,
+								'wiki'         => $resourceServer->getClient()->getWiki(),
+								'userId'       => 0,
+								'consumerId'   => $resourceServer->getClient()->getId(),
+								'accessToken'  => '',
+								'accessSecret' => '',
+								'grants'       => $resourceServer->getClient()->getGrants(),
+								'accepted'     => wfTimestampNow(),
+								'oauth_version' => Consumer::OAUTH_VERSION_2
+							] );
+						}
 					}
 				} else {
 					$access = $consumerAcceptanceRepository->getById( $accessId );

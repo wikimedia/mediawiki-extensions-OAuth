@@ -6,9 +6,13 @@ use CentralAuthTestUser;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\CentralAuth\User\CentralAuthUser;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\OAuth1Consumer;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
+use MediaWiki\Extension\OAuth\OAuthServices;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
@@ -51,6 +55,7 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 	private function doSubmit( array $data, StatusValue $expectedStatus, ?User $user = null ) {
 		$this->overrideConfigValues( [
 			'MWOAuthCentralWiki' => WikiMap::getCurrentWikiId(),
+			'OAuth2ClientCredentialsOwnerAuthCutover' => '20000101000000',
 			'OAuthAutoApprove' => [ [
 				'grants' => [ 'mwoauth-authonly', 'mwoauth-authonlyprivate', 'basic' ],
 			] ],
@@ -284,6 +289,36 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $this->owner->getId(), $consumer->getUserId() );
 		$this->assertFalse( $consumer->getOwnerOnly() );
 		$this->assertSame( [ 'basic', 'editpage' ], $consumer->getGrants() );
+	}
+
+	public function testSubmitOAuth2ClientCredentialsOwnerAuthAutoApprovedAndAccepted() {
+		$user = $this->getMutableTestUser()->getUser();
+		$consumer = $this->doSubmit(
+			[
+				'callbackUrl' => '',
+				'oauth2IsConfidential' => false,
+				'oauth2GrantTypes' => [ 'client_credentials' ],
+			] + $this->getNonOwnerOnlyOAuth2ConsumerFormData(),
+			StatusValue::newGood(),
+			$user
+		);
+		$this->assertInstanceOf( ClientEntity::class, $consumer );
+		$this->assertFalse( $consumer->getOwnerOnly() );
+		$this->assertSame( [ 'client_credentials' ], $consumer->getAllowedGrants() );
+		$this->assertTrue( $consumer->clientCredentialsAuthenticateAsOwner() );
+		$this->assertTrue( $consumer->isConfidential() );
+		$this->assertSame( Consumer::STAGE_APPROVED, $consumer->getStage() );
+
+		$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+			->getConsumerAcceptanceRepository();
+		$acceptance = $consumerAcceptanceRepository->getByUserConsumerWiki(
+			UserEntity::newFromMWUser( $consumer->getUser() ),
+			$consumer,
+			$consumer->getWiki(),
+			0,
+		);
+		$this->assertInstanceOf( ConsumerAcceptance::class, $acceptance );
+		$this->assertSame( $consumer->getGrants(), $acceptance->getGrants() );
 	}
 
 	public function testSubmitOAuth2NonLocalhostHttpNotAlllowed() {

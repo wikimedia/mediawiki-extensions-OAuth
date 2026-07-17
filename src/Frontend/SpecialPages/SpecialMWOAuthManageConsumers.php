@@ -492,6 +492,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	 * Show a paged list of consumers with links to details
 	 */
 	protected function showConsumerList() {
+		$this->showConsumerListFilterForm();
 		$conds = [];
 		// Owner-only consumers are approved on creation, so they only ever show up on the list stages
 		if ( in_array( $this->stage, self::$listStages, true ) ) {
@@ -501,7 +502,12 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 				$conds['oarc_owner_only'] = 0;
 			}
 		}
-		$pager = new ManageConsumersPager( $this, $conds, $this->stage );
+		$pager = new ManageConsumersPager(
+			$this,
+			$conds,
+			$this->stage,
+			$this->getRequest()->getVal( 'grant_type', '' )
+		);
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addHTML( $pager->getNavigationBar() );
 			$this->getOutput()->addHTML( $pager->getBody() );
@@ -534,6 +540,30 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 			$showOwnerOnly ? [] : [ UIUtils::SHOW_OWNER_ONLY_PARAM => 1 ]
 		);
 		return Html::rawElement( 'p', [], $link );
+	}
+
+	private function showConsumerListFilterForm(): void {
+		$form = HTMLForm::factory( 'ooui', [
+			'grant_type' => [
+				'name' => 'grant_type',
+				'type' => 'select',
+				'label-message' => 'mwoauth-oauth2-flow-filter',
+				'options-messages' => [
+					'mwoauth-oauth2-flow-filter-any' => '',
+					'mwoauth-oauth2-flow-auth-code' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+					'mwoauth-oauth2-flow-client-credentials' => ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+				],
+				'default' => $this->getRequest()->getVal( 'grant_type', '' ),
+				'required' => false,
+			],
+		], $this->getContext() );
+		$form->setAction( $this->getPageTitle( $this->stageKey )->getFullURL() );
+		$form->setSubmitCallback( static function () {
+			return false;
+		} );
+		$form->setMethod( 'get' );
+		$form->setSubmitTextMsg( 'go' );
+		$form->show();
 	}
 
 	/**

@@ -269,6 +269,10 @@
 			],
 			"description": "List of OAuth2 grants that client applications can use"
 		},
+		"OAuth2ClientCredentialsOwnerAuthCutover": {
+			"value": false,
+			"description": "Timestamp after which newly registered OAuth 2 client-credentials clients authenticate as their owner. Clients registered before this timestamp retain the legacy anonymous client-credentials behavior. Set to false to keep all client-credentials clients in legacy mode."
+		},
 		"OAuth2PrivateKey": {
 			"value": "",
 			"description": "Private key or a path to the private key used to sign OAuth2 JWT being transmitted. Key needs to be >= 2048 bits"

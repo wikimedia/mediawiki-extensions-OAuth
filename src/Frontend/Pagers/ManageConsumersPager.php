@@ -9,6 +9,7 @@ namespace MediaWiki\Extension\OAuth\Frontend\Pagers;
  */
 
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ReverseChronologicalPager;
@@ -25,15 +26,22 @@ class ManageConsumersPager extends ReverseChronologicalPager {
 	/** @var array */
 	public $mConds;
 
+	private ?string $grantType;
+
 	/**
 	 * @param SpecialMWOAuthManageConsumers $form
 	 * @param array $conds
 	 * @param int $stage
+	 * @param string|null $grantType
 	 */
-	public function __construct( $form, $conds, $stage ) {
+	public function __construct( $form, $conds, $stage, ?string $grantType = null ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->mConds['oarc_stage'] = $stage;
+		$this->grantType = in_array( $grantType, [
+			ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+			ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+		], true ) ? $grantType : null;
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( !$permissionManager->userHasRight( $this->getUser(), 'mwoauthviewsuppressed' ) ) {
@@ -89,10 +97,19 @@ class ManageConsumersPager extends ReverseChronologicalPager {
 	 * @return array
 	 */
 	public function getQueryInfo() {
+		$conds = $this->mConds;
+		if ( $this->grantType !== null ) {
+			$conds['oarc_oauth_version'] = 2;
+			$conds[] = 'oarc_oauth2_allowed_grants ' . $this->mDb->buildLike(
+				$this->mDb->anyString(),
+				'"' . $this->grantType . '"',
+				$this->mDb->anyString()
+			);
+		}
 		return [
 			'tables' => [ 'oauth_registered_consumer' ],
 			'fields' => [ '*' ],
-			'conds'  => $this->mConds
+			'conds'  => $conds
 		];
 	}
 

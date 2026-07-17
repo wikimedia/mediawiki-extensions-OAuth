@@ -268,6 +268,17 @@ class ConsumerValidator {
 				if ( strlen( FormatJson::encode( $oauth2Grants ) ) >= self::BLOB_SIZE ) {
 					return $this->getTooLongErrorStatus( Consumer::FIELD_OAUTH2_GRANT_TYPES, self::BLOB_SIZE - 1 );
 				}
+
+				if (
+					in_array( ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS, $oauth2Grants, true ) &&
+					count( $oauth2Grants ) > 1
+				) {
+					return $this->getErrorStatus(
+						Consumer::FIELD_OAUTH2_GRANT_TYPES,
+						'mwoauth-invalid-field-oauth2GrantTypes-mixed'
+					);
+				}
+
 				return StatusValue::newGood();
 			},
 		];
@@ -361,10 +372,14 @@ class ConsumerValidator {
 		$isOAuth1 = (int)$fields[Consumer::FIELD_OAUTH_VERSION] === Consumer::OAUTH_VERSION_1;
 		$isOAuth2 = !$isOAuth1;
 		$clientIsConfidential = $isOAuth1 || $fields[Consumer::FIELD_OAUTH2_IS_CONFIDENTIAL];
+		$oauth2GrantTypes = $fields[Consumer::FIELD_OAUTH2_GRANT_TYPES] ?? [];
+		$isClientCredentialsOnly = $isOAuth2
+			&& count( $oauth2GrantTypes ) === 1
+			&& in_array( ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS, $oauth2GrantTypes, true );
 
 		if ( strlen( $url ) > 2000 ) {
 			return $this->getTooLongErrorStatus( Consumer::FIELD_CALLBACK_URL, 2000 );
-		} elseif ( $fields[Consumer::FIELD_OWNER_ONLY] ) {
+		} elseif ( $fields[Consumer::FIELD_OWNER_ONLY] || $isClientCredentialsOnly ) {
 			return StatusValue::newGood();
 		}
 

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Repository\ScopeRepository;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -117,6 +118,13 @@ class RequestClient extends AbstractClientHandler {
 	 */
 	protected function getUnifiedParams(): array {
 		$params = parent::getUnifiedParams();
+		if (
+			count( $params['oauth2GrantTypes'] ) === 1
+			&& in_array( ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS, $params['oauth2GrantTypes'], true )
+		) {
+			$params['callbackUrl'] = '';
+			$params['oauth2IsConfidential'] = true;
+		}
 		return $this->adjustScopes( $params );
 	}
 
@@ -171,10 +179,14 @@ class RequestClient extends AbstractClientHandler {
 		parent::validate( $restValidator );
 
 		$params = $this->getValidatedBody();
+		$grantTypes = $params['grant_types'] ?? [];
+		$isClientCredentialsOnly = count( $grantTypes ) === 1
+			&& in_array( ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS, $grantTypes, true );
 
 		if (
 			( isset( $params['owner_only'] ) && !$params['owner_only'] ) &&
-			( isset( $params['callback_url'] ) && !$params['callback_url'] )
+			( isset( $params['callback_url'] ) && !$params['callback_url'] ) &&
+			!$isClientCredentialsOnly
 		) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'mwoauth-error-missing-callback-url-non-owner', [] ), 400

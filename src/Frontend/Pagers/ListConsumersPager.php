@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Frontend\Pagers;
 
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthListConsumers;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\AlphabeticPager;
@@ -25,16 +26,23 @@ class ListConsumersPager extends AlphabeticPager {
 	/** @var array */
 	public $mConds;
 
+	private ?string $grantType;
+
 	/**
 	 * @param SpecialMWOAuthListConsumers $form
 	 * @param array $conds
 	 * @param string|null $name
 	 * @param int|null $centralUserID
 	 * @param int $stage
+	 * @param string|null $grantType
 	 */
-	public function __construct( $form, $conds, $name, $centralUserID, $stage ) {
+	public function __construct( $form, $conds, $name, $centralUserID, $stage, ?string $grantType = null ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
+		$this->grantType = in_array( $grantType, [
+			ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+			ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+		], true ) ? $grantType : null;
 
 		$indexField = null;
 		if ( $name !== '' ) {
@@ -110,10 +118,19 @@ class ListConsumersPager extends AlphabeticPager {
 	 * @return array
 	 */
 	public function getQueryInfo() {
+		$conds = $this->mConds;
+		if ( $this->grantType !== null ) {
+			$conds['oarc_oauth_version'] = 2;
+			$conds[] = 'oarc_oauth2_allowed_grants ' . $this->mDb->buildLike(
+				$this->mDb->anyString(),
+				'"' . $this->grantType . '"',
+				$this->mDb->anyString()
+			);
+		}
 		return [
 			'tables' => [ 'oauth_registered_consumer' ],
 			'fields' => [ '*' ],
-			'conds'  => $this->mConds
+			'conds'  => $conds
 		];
 	}
 

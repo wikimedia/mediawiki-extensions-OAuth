@@ -4,6 +4,7 @@
 namespace MediaWiki\Extension\OAuth;
 
 class OAuthConfigNames {
+	public const OAuth2ClientCredentialsOwnerAuthCutover = 'OAuth2ClientCredentialsOwnerAuthCutover';
 	public const OAuthUseJwtCookie = 'OAuthUseJwtCookie';
 	public const OAuthStaticApps = 'OAuthStaticApps';
 }

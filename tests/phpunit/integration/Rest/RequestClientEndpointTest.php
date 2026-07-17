@@ -55,6 +55,7 @@ class RequestClientEndpointTest extends EndpointTestBase {
 	 */
 	private const JSON_BODY_OWNERS_ONLY_RESTRICTION = [
 		'callback_url' => false,
+		'grant_types' => [ 'authorization_code' ],
 	];
 
 	/**
@@ -90,6 +91,7 @@ class RequestClientEndpointTest extends EndpointTestBase {
 
 		$this->overrideConfigValues( [
 			'MWOAuthCentralWiki' => WikiMap::getCurrentWikiId(),
+			'OAuth2ClientCredentialsOwnerAuthCutover' => '20000101000000',
 			MainConfigNames::GroupPermissions => [
 				'*' => [ 'mwoauthproposeconsumer' => true ]
 			],
@@ -227,6 +229,37 @@ class RequestClientEndpointTest extends EndpointTestBase {
 
 					return $user;
 				}
+			],
+			'Successful client credentials request without callback' => [
+				[
+					'method' => 'POST',
+					'uri' => self::makeUri( '/oauth2/client' ),
+					'parsedBody' => [
+						'callback_url' => '',
+						'is_confidential' => false,
+					] + self::DEFAULT_JSON_BODY,
+					'headers' => [
+						'Content-Type' => 'application/json'
+					],
+				],
+				[
+					'statusCode' => 200,
+					'reasonPhrase' => 'OK',
+					'protocolVersion' => '1.1',
+				],
+				static function () {
+					$user = User::createNew( 'RequestClientTestUser11' );
+					$user->setEmail( 'test@test.com' );
+
+					return $user;
+				},
+				static function ( MediaWikiIntegrationTestCase $testCase, ResponseInterface $response ) {
+					$responseBody = FormatJson::decode(
+						$response->getBody()->getContents(),
+						true
+					);
+					$testCase->assertArrayNotHasKey( 'access_token', $responseBody );
+				},
 			],
 			'Successful request owner only' => [
 				[

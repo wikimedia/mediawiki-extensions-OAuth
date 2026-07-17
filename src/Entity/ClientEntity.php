@@ -12,12 +12,14 @@ use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\OAuthConfigNames;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Repository\ClaimStore;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 class ClientEntity extends Consumer implements MWClientEntityInterface {
 
@@ -65,7 +67,49 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 	 * @return string[]
 	 */
 	public function getAllowedGrants() {
-		return $this->oauth2GrantTypes;
+		return (array)$this->oauth2GrantTypes;
+	}
+
+	public function usesAuthorizationCodeGrant(): bool {
+		return in_array( self::GRANT_TYPE_AUTHORIZATION_CODE, $this->getAllowedGrants(), true );
+	}
+
+	public function usesClientCredentialsGrant(): bool {
+		return in_array( self::GRANT_TYPE_CLIENT_CREDENTIALS, $this->getAllowedGrants(), true );
+	}
+
+	public function usesClientCredentialsOnly(): bool {
+		$allowedGrants = $this->getAllowedGrants();
+		return count( $allowedGrants ) === 1
+			&& in_array( self::GRANT_TYPE_CLIENT_CREDENTIALS, $allowedGrants, true );
+	}
+
+	public function clientCredentialsAuthenticateAsOwner(): bool {
+		return !$this->getOwnerOnly()
+			&& $this->usesClientCredentialsGrant()
+			&& $this->registeredAfterClientCredentialsOwnerAuthCutover();
+	}
+
+	public function usesLegacyClientCredentialsBehavior(): bool {
+		return !$this->getOwnerOnly()
+			&& $this->usesClientCredentialsGrant()
+			&& !$this->clientCredentialsAuthenticateAsOwner();
+	}
+
+	private function registeredAfterClientCredentialsOwnerAuthCutover(): bool {
+		$cutover = OAuthServices::wrap( MediaWikiServices::getInstance() )
+			->getConfig()
+			->get( OAuthConfigNames::OAuth2ClientCredentialsOwnerAuthCutover );
+		if ( !$cutover ) {
+			return false;
+		}
+
+		$cutoverTimestamp = ConvertibleTimestamp::convert( TS_MW, $cutover );
+		if ( $cutoverTimestamp === false ) {
+			return false;
+		}
+
+		return $this->getRegistration() >= $cutoverTimestamp;
 	}
 
 	/**

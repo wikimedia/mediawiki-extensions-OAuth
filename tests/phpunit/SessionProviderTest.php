@@ -16,6 +16,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthRequest;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthToken;
 use MediaWiki\Extension\OAuth\Backend\OAuth1Consumer;
@@ -24,12 +25,14 @@ use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceSubmitControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Entity\AccessTokenEntity;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 use MediaWiki\Extension\OAuth\OAuthConfigNames;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\SessionProvider;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\CookieSessionProvider;
@@ -69,6 +72,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 	public function setUp(): void {
 		$this->overrideConfigValues( [
 			'MWOAuthCentralWiki' => WikiMap::getCurrentWikiId(),
+			'OAuth2ClientCredentialsOwnerAuthCutover' => '20000101000000',
 			'OAuthAutoApprove' => [ [
 				'grants' => [ 'mwoauth-authonly', 'mwoauth-authonlyprivate', 'basic' ],
 			] ],
@@ -563,6 +567,71 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$responseOAuth2 = RequestContext::getMain()->getRequest()->response();
 		// OAuth2 non-owner-only consumers shouldn't emit a `sessionJwt` cookie.
 		$this->assertArrayNotHasKey( 'sessionJwt', $responseOAuth2->getCookies() );
+	}
+
+	public function testOAuth2ClientCredentialsOwnerAuthProvideSessionInfo() {
+		$centralIdMap = &$this->mockCentralIdLookup();
+
+		$config = $this->getConfig();
+		$config->set( MainConfigNames::UseSessionCookieJwt, false );
+		$config->set( OAuthConfigNames::OAuthUseJwtCookie, false );
+		$config->set(
+			MainConfigNames::CanonicalServer,
+			$this->getServiceContainer()->getUrlUtils()->getCanonicalServer()
+		);
+
+		$provider = $this->getProvider();
+		$this->initProvider( $provider, $this->logger, $config, $this->getServiceContainer()->getSessionManager() );
+
+		$user = $this->getTestSysop()->getUser();
+		$centralIdMap = [ $user->getName() => 123 ];
+
+		$status = $this->createOAuth2ClientCredentialsOwnerAuthConsumer( $user );
+		/** @var ClientEntity $consumer */
+		$consumer = $status->getValue()['result']['consumer'];
+		$this->assertFalse( $consumer->getOwnerOnly() );
+		$this->assertTrue( $consumer->clientCredentialsAuthenticateAsOwner() );
+
+		$accessTokenRepo = OAuthServices::wrap( $this->getServiceContainer() )->getAccessTokenRepository();
+		/** @var AccessTokenEntity $accessToken */
+		$accessToken = $accessTokenRepo->getNewToken( $consumer, $consumer->getScopes(), $consumer->getUserId() );
+		$accessToken->setExpiryDateTime( ( new DateTimeImmutable() )->add(
+			new DateInterval( 'PT1H' )
+		) );
+		$accessToken->setPrivateKeyFromConfig();
+		$accessToken->setIdentifier( bin2hex( random_bytes( 40 ) ) );
+		$accessToken->setUserIdentifier( $consumer->getUserId() );
+		$accessTokenRepo->persistNewAccessToken( $accessToken );
+
+		$info = $provider->provideSessionInfo( $this->getOAuth2RequestWithNoJwtHeader( (string)$accessToken ) );
+		$this->assertInstanceOf( SessionInfo::class, $info );
+		$this->assertNotNull( $info->getUserInfo() );
+		$this->assertSame( $user->getName(), $info->getUserInfo()->getName() );
+		$this->assertSame( $consumer->getId(), $info->getProviderMetadata()['consumerId'] );
+		$this->assertSame(
+			[ [ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ] ],
+			$this->logger->getBuffer()
+		);
+		$this->logger->clearBuffer();
+
+		$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+			->getConsumerAcceptanceRepository();
+		$acceptance = $consumerAcceptanceRepository->getByUserConsumerWiki(
+			UserEntity::newFromMWUser( $consumer->getUser() ),
+			$consumer,
+			$consumer->getWiki(),
+			0,
+		);
+		$this->assertInstanceOf( ConsumerAcceptance::class, $acceptance );
+		$acceptance->delete( $this->getDb() );
+
+		$info = $provider->provideSessionInfo( $this->getOAuth2RequestWithNoJwtHeader( (string)$accessToken ) );
+		$this->assertNotNull( $info?->__toString() );
+		$this->assertSame(
+			[ [ LogLevel::INFO, 'Bad OAuth request from {ip}' ] ],
+			$this->logger->getBuffer()
+		);
+		$this->logger->clearBuffer();
 	}
 
 	#[\NoDiscard]
@@ -1073,6 +1142,49 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		// NOTE: Owner-only consumers are approved on submission automatically, so no extra
 		// approval step is needed.
 		$actualStatus = $control->submit();
+		/** @var ClientEntity $consumer */
+		$consumer = $actualStatus->getValue()['result']['consumer'];
+		$this->assertInstanceOf( ClientEntity::class, $consumer );
+
+		return $actualStatus;
+	}
+
+	/**
+	 * Create and approve an OAuth2 client-credentials owner-auth consumer.
+	 * @return Status
+	 */
+	private function createOAuth2ClientCredentialsOwnerAuthConsumer( User $user ) {
+		$context = RequestContext::getMain();
+		$user->setEmail( 'owner@wiki.domain' );
+		$user->confirmEmail();
+		$user->saveSettings();
+		$context->setUser( $user );
+
+		$dbw = $this->getDb();
+		$control = new ConsumerSubmitControl( $context, [], $dbw );
+		$control->registerValidators( [] );
+		$control->setInputParameters( [
+			'oauthVersion' => Consumer::OAUTH_VERSION_2,
+			'name' => 'OAuth2 client credentials owner-auth consumer',
+			'version' => '1.0',
+			'description' => 'test',
+			'ownerOnly' => false,
+			'callbackUrl' => '',
+			'callbackIsPrefix' => false,
+			'email' => 'owner@wiki.domain',
+			'wiki' => '*',
+			'oauth2IsConfidential' => false,
+			'oauth2GrantTypes' => [ 'client_credentials' ],
+			'granttype' => 'normal',
+			'grants' => json_encode( [ 'basic', 'editpage' ] ),
+			'restrictions' => MWRestrictions::newDefault(),
+			'rsaKey' => '',
+			'agreement' => true,
+			'action' => 'propose',
+		] );
+
+		$actualStatus = $control->submit();
+		$this->assertStatusGood( $actualStatus );
 		/** @var ClientEntity $consumer */
 		$consumer = $actualStatus->getValue()['result']['consumer'];
 		$this->assertInstanceOf( ClientEntity::class, $consumer );

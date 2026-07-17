@@ -23,6 +23,7 @@
 	"mwoauth-rest-param-desc-limit": "Maximum number of clients to return.",
 	"mwoauth-rest-param-desc-offset": "Number of clients to skip, for pagination.",
 	"mwoauth-rest-param-desc-oauth_version": "Filter results by OAuth protocol version.",
+	"mwoauth-rest-param-desc-grant_type-list": "Filter results by OAuth2 grant type.",
 	"mwoauth-rest-param-desc-name": "The name of the OAuth application.",
 	"mwoauth-rest-param-desc-version": "The OAuth protocol version the application uses.",
 	"mwoauth-rest-param-desc-description": "A plaintext description of what the OAuth application does.",

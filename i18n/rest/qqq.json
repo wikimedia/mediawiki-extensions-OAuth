@@ -23,6 +23,7 @@
 	"mwoauth-rest-param-desc-limit": "Parameter documentation for the <code>limit</code> parameter of the <code>/oauth2/client</code> REST API endpoint. Shown in API documentation such as Special:RestSandbox.",
 	"mwoauth-rest-param-desc-offset": "Parameter documentation for the <code>offset</code> parameter of the <code>/oauth2/client</code> REST API endpoint. Shown in API documentation such as Special:RestSandbox.",
 	"mwoauth-rest-param-desc-oauth_version": "Parameter documentation for the <code>oauth_version</code> parameter of the <code>/oauth2/client</code> REST API endpoint. Shown in API documentation such as Special:RestSandbox.",
+	"mwoauth-rest-param-desc-grant_type-list": "Parameter documentation for the <code>grant_type</code> parameter of the <code>/oauth2/client</code> REST API endpoint. Shown in API documentation such as Special:RestSandbox.",
 	"mwoauth-rest-param-desc-name": "Parameter documentation for the <code>name</code> parameter of the <code>/oauth2/client</code> REST API endpoint. Shown in API documentation such as Special:RestSandbox.",
 	"mwoauth-rest-param-desc-version": "Parameter documentation for the <code>version</code> parameter of the <code>/oauth2/client</code> REST API endpoint. Shown in API documentation such as Special:RestSandbox.",
 	"mwoauth-rest-param-desc-description": "Parameter documentation for the <code>description</code> parameter of the <code>/oauth2/client</code> REST API endpoint. Shown in API documentation such as Special:RestSandbox.",

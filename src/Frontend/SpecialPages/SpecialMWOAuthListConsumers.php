@@ -14,6 +14,7 @@ use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ListConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
@@ -194,6 +195,18 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 					'default'  => Consumer::STAGE_APPROVED,
 					'required' => false
 				],
+				'grant_type' => [
+					'name' => 'grant_type',
+					'type' => 'select',
+					'label-message' => 'mwoauth-oauth2-flow-filter',
+					'options-messages' => [
+						'mwoauth-oauth2-flow-filter-any' => '',
+						'mwoauth-oauth2-flow-auth-code' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+						'mwoauth-oauth2-flow-client-credentials' => ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+					],
+					'default' => '',
+					'required' => false
+				],
 				UIUtils::SHOW_OWNER_ONLY_PARAM => [
 					'name'     => UIUtils::SHOW_OWNER_ONLY_PARAM,
 					'type'     => 'check',
@@ -222,6 +235,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 
 		$name = $request->getVal( 'name', '' );
 		$stage = $request->getInt( 'stage', Consumer::STAGE_APPROVED );
+		$grantType = $request->getVal( 'grant_type', '' );
 		if ( $request->getVal( 'publisher', '' ) !== '' ) {
 			$centralId = Utils::getCentralIdLookup()->centralIdFromName( $request->getVal( 'publisher' ) );
 		} else {
@@ -229,7 +243,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		}
 
 		$conds = $request->getBool( UIUtils::SHOW_OWNER_ONLY_PARAM ) ? [] : [ 'oarc_owner_only' => 0 ];
-		$pager = new ListConsumersPager( $this, $conds, $name, $centralId, $stage );
+		$pager = new ListConsumersPager( $this, $conds, $name, $centralId, $stage, $grantType );
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addHTML( $pager->getNavigationBar() );
 			$this->getOutput()->addHTML( $pager->getBody() );

@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Rest;
 
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Tests\TestHandlerFactory;
 use MediaWiki\Rest\Handler;
@@ -47,6 +48,11 @@ class ListClientsEndpointTest extends EndpointTestBase {
 		'oauth2IsConfidential' => 1,
 		'oauth2GrantTypes' => null,
 	];
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->overrideConfigValue( 'OAuth2ClientCredentialsOwnerAuthCutover', '20200101000000' );
+	}
 
 	public function testNeedsWriteAccess() {
 		$this->assertFalse( $this->newHandler()->needsWriteAccess() );
@@ -101,7 +107,7 @@ class ListClientsEndpointTest extends EndpointTestBase {
 						'"https://test.com","description":"test_description","stage":1,"oauth_version":2,' .
 						'"registration_formatted":"00:00, 1 January 2020","allowed_grants":null,' .
 						'"scopes":["[\"test\"]"],"client_key":"lc222222222222222222222222222222",' .
-						'"email": "test@test.com","owner_only":false}],"total":1}'
+						'"email": "test@test.com","owner_only":false,"client_credentials_legacy":false}],"total":1}'
 				],
 				static function ( MediaWikiIntegrationTestCase $testCase ) {
 					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
@@ -117,6 +123,135 @@ class ListClientsEndpointTest extends EndpointTestBase {
 					$consumerRepository->save( Consumer::newFromArray( $consumerData ) );
 
 					return $user;
+				}
+			],
+			'Client credentials grant type filter' => [
+				[
+					'method' => 'GET',
+					'uri' => self::makeUri( '/oauth2/client' ),
+					'queryParams' => [
+						'grant_type' => ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+					]
+				],
+				[
+					'statusCode' => 200,
+					'reasonPhrase' => 'OK',
+					'protocolVersion' => '1.1',
+					'body' => [
+						'clients' => [
+							[
+								'name' => 'ListClientsTestUser4',
+								'version' => '1.3',
+								'callback_url' => 'https://test.com',
+								'description' => 'test_description',
+								'stage' => 1,
+								'oauth_version' => 2,
+								'registration_formatted' => '23:59, 31 December 2019',
+								'allowed_grants' => [
+									ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+									ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+								],
+								'scopes' => [ '["test"]' ],
+								'client_key' => 'lc666666666666666666666666666666',
+								'email' => 'test@test.com',
+								'owner_only' => false,
+								'client_credentials_legacy' => true,
+							],
+							[
+								'name' => 'ListClientsTestUser4',
+								'version' => '1.2',
+								'callback_url' => 'https://test.com',
+								'description' => 'test_description',
+								'stage' => 1,
+								'oauth_version' => 2,
+								'registration_formatted' => '00:00, 1 January 2020',
+								'allowed_grants' => [ ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ],
+								'scopes' => [ '["test"]' ],
+								'client_key' => 'lc555555555555555555555555555555',
+								'email' => 'test@test.com',
+								'owner_only' => false,
+								'client_credentials_legacy' => false,
+							],
+						],
+						'total' => 2,
+					],
+				],
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					return self::createOAuth2GrantFilterFixtures(
+						$testCase,
+						'ListClientsTestUser4',
+						[
+							'authorizationCode' => 'lc444444444444444444444444444444',
+							'clientCredentials' => 'lc555555555555555555555555555555',
+							'mixed' => 'lc666666666666666666666666666666',
+						]
+					);
+				}
+			],
+			'Authorization code grant type filter' => [
+				[
+					'method' => 'GET',
+					'uri' => self::makeUri( '/oauth2/client' ),
+					'queryParams' => [
+						'grant_type' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+					]
+				],
+				[
+					'statusCode' => 200,
+					'reasonPhrase' => 'OK',
+					'protocolVersion' => '1.1',
+					'body' => [
+						'clients' => [
+							[
+								'name' => 'ListClientsTestUser5',
+								'version' => '1.3',
+								'callback_url' => 'https://test.com',
+								'description' => 'test_description',
+								'stage' => 1,
+								'oauth_version' => 2,
+								'registration_formatted' => '23:59, 31 December 2019',
+								'allowed_grants' => [
+									ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+									ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+								],
+								'scopes' => [ '["test"]' ],
+								'client_key' => 'lc999999999999999999999999999999',
+								'email' => 'test@test.com',
+								'owner_only' => false,
+								'client_credentials_legacy' => true,
+							],
+							[
+								'name' => 'ListClientsTestUser5',
+								'version' => '1.1',
+								'callback_url' => 'https://test.com',
+								'description' => 'test_description',
+								'stage' => 1,
+								'oauth_version' => 2,
+								'registration_formatted' => '00:00, 1 January 2020',
+								'allowed_grants' => [
+									ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+									ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
+								],
+								'scopes' => [ '["test"]' ],
+								'client_key' => 'lc777777777777777777777777777777',
+								'email' => 'test@test.com',
+								'owner_only' => false,
+								'client_credentials_legacy' => false,
+							],
+						],
+						'total' => 2,
+					],
+				],
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					return self::createOAuth2GrantFilterFixtures(
+						$testCase,
+						'ListClientsTestUser5',
+						[
+							'authorizationCode' => 'lc777777777777777777777777777777',
+							'clientCredentials' => 'lc888888888888888888888888888888',
+							'mixed' => 'lc999999999999999999999999999999',
+						]
+					);
 				}
 			],
 			'Empty result' => [
@@ -167,5 +302,52 @@ class ListClientsEndpointTest extends EndpointTestBase {
 
 	protected function newHandler(): Handler {
 		return TestHandlerFactory::getListClients();
+	}
+
+	private static function createOAuth2GrantFilterFixtures(
+		MediaWikiIntegrationTestCase $testCase,
+		string $userName,
+		array $consumerKeys
+	): User {
+		$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
+			->getConsumerRepository();
+		$user = User::createNew( $userName );
+		$centralId = Utils::getCentralIdLookup()->centralIdFromName( $user->getName() );
+
+		$baseConsumerData = self::DEFAULT_CONSUMER_DATA;
+		$baseConsumerData['name'] = $userName;
+		$baseConsumerData['userId'] = $centralId;
+		$baseConsumerData['oauthVersion'] = '2';
+		$baseConsumerData['restrictions'] = MWRestrictions::newFromJson( $baseConsumerData['restrictions'] );
+
+		foreach ( [
+			$consumerKeys['authorizationCode'] => [
+				'version' => '1.1',
+				'oauth2GrantTypes' => [
+					ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+					ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
+				],
+			],
+			$consumerKeys['clientCredentials'] => [
+				'version' => '1.2',
+				'oauth2GrantTypes' => [ ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ],
+			],
+			$consumerKeys['mixed'] => [
+				'version' => '1.3',
+				'registration' => 1577836799,
+				'oauth2GrantTypes' => [
+					ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+					ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+				],
+			],
+		] as $consumerKey => $consumerOverrides ) {
+			$consumerRepository->save( Consumer::newFromArray(
+				[
+					'consumerKey' => $consumerKey,
+				] + $consumerOverrides + $baseConsumerData
+			) );
+		}
+
+		return $user;
 	}
 }

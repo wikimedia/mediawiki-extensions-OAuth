@@ -317,9 +317,15 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				}
 				break;
 			case 'list':
+				$this->showConsumerListFilterForm();
 				// FIXME: This class is not supposed to accept null
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
-				$pager = new ListMyConsumersPager( $this, [], $userEntity?->getCentralId() );
+				$pager = new ListMyConsumersPager(
+					$this,
+					[],
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+					$userEntity?->getCentralId(),
+					$this->getRequest()->getVal( 'grant_type', '' ),
+				);
 				if ( $pager->getNumRows() ) {
 					$this->getOutput()->addHTML( $pager->getNavigationBar() );
 					$this->getOutput()->addHTML( $pager->getBody() );
@@ -401,6 +407,30 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$this->getOutput()->setSubtitle(
 			"<strong>" . $this->msg( 'mwoauthconsumerregistration-navigation' )->escaped() .
 			"</strong> [{$linkHtml}] <strong>{$viewall}</strong>" );
+	}
+
+	private function showConsumerListFilterForm(): void {
+		$form = HTMLForm::factory( 'ooui', [
+			'grant_type' => [
+				'name' => 'grant_type',
+				'type' => 'select',
+				'label-message' => 'mwoauth-oauth2-flow-filter',
+				'options-messages' => [
+					'mwoauth-oauth2-flow-filter-any' => '',
+					'mwoauth-oauth2-flow-auth-code' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+					'mwoauth-oauth2-flow-client-credentials' => ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+				],
+				'default' => $this->getRequest()->getVal( 'grant_type', '' ),
+				'required' => false,
+			],
+		], $this->getContext() );
+		$form->setAction( $this->getPageTitle( 'list' )->getFullURL() );
+		$form->setSubmitCallback( static function () {
+			return false;
+		} );
+		$form->setMethod( 'get' );
+		$form->setSubmitTextMsg( 'go' );
+		$form->show();
 	}
 
 	/**
@@ -556,7 +586,12 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 							'mwoauth-consumer-callbackurl-custom-scheme'
 						] : null,
 				'required' => true,
-				'hide-if' => [ '!==', 'ownerOnly', '' ],
+				'hide-if' => $oauthVersion === Consumer::OAUTH_VERSION_2
+					? [ 'OR',
+						[ '!==', 'ownerOnly', '' ],
+						[ '===', 'oauth2Flow', ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ],
+					]
+					: [ '!==', 'ownerOnly', '' ],
 			],
 			'callbackIsPrefix' => [
 				'oauthVersion' => Consumer::OAUTH_VERSION_1,
@@ -581,25 +616,31 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				'label-message' => 'mwoauth-oauth2-is-confidential',
 				'help-message' => 'mwoauth-oauth2-is-confidential-help',
 				'default' => 1,
-				'hide-if' => [ '!==', 'ownerOnly', '' ],
+				'hide-if' => [ 'OR',
+					[ '!==', 'ownerOnly', '' ],
+					[ '===', 'oauth2Flow', ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ],
+				],
 			],
-			'oauth2GrantTypes' => [
+			'oauth2Flow' => [
 				'oauthVersion' => Consumer::OAUTH_VERSION_2,
-				'type' => 'multiselect',
-				'label-message' => 'mwoauth-oauth2-granttypes',
+				'type' => 'radio',
+				'label-message' => 'mwoauth-oauth2-flow',
 				'hide-if' => [ '!==', 'ownerOnly', '' ],
-				'options' => array_filter( [
-					$this->msg( 'mwoauth-oauth2-granttype-auth-code' )->escaped()
-						=> ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
-					$this->msg( 'mwoauth-oauth2-granttype-refresh-token' )->escaped()
-						=> ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
-					$this->msg( 'mwoauth-oauth2-granttype-client-credentials' )->escaped()
-						=> ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+				'options-messages' => array_filter( [
+					'mwoauth-oauth2-flow-auth-code' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+					'mwoauth-oauth2-flow-client-credentials' => ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
 				], fn ( $grantType ) => in_array( $grantType, $this->getConfig()->get( 'OAuth2EnabledGrantTypes' ) ) ),
 				'required' => true,
-				'default' => [
-					ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
-					ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
+				'default' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+			],
+			'oauth2ClientCredentialsHelp' => [
+				'oauthVersion' => Consumer::OAUTH_VERSION_2,
+				'type' => 'info',
+				'raw' => true,
+				'default' => $this->msg( 'mwoauth-oauth2-flow-client-credentials-help' )->parseAsBlock(),
+				'hide-if' => [ 'OR',
+					[ '!==', 'ownerOnly', '' ],
+					[ '!==', 'oauth2Flow', ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ],
 				],
 			],
 			'granttype' => [
@@ -697,7 +738,10 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 			$formDescriptor['rsaKey']['default'] = $copyFrom->getRsaKey();
 			if ( $oauthVersion === Consumer::OAUTH_VERSION_2 ) {
 				$formDescriptor['oauth2IsConfidential']['default'] = $copyFrom->get( 'oauth2IsConfidential' );
-				$formDescriptor['oauth2GrantTypes']['default'] = $copyFrom->get( 'oauth2GrantTypes' );
+				$formDescriptor['oauth2Flow']['default'] =
+					in_array( ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS, $copyFrom->get( 'oauth2GrantTypes' ), true )
+						? ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS
+						: ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE;
 			}
 			// Derive granttype and grants from the stored grants array
 			$grants = $copyFrom->getGrants();
@@ -737,7 +781,14 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				// Force all ownerOnly clients to use client_credentials
 				if ( $data['ownerOnly'] ) {
 					$data['oauth2GrantTypes'] = [ ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ];
+				} elseif ( (int)( $data['oauthVersion'] ?? 0 ) === Consumer::OAUTH_VERSION_2 ) {
+					$data['oauth2GrantTypes'] = $this->getGrantTypesForOAuth2Flow( $data['oauth2Flow'] );
+					if ( $data['oauth2Flow'] === ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ) {
+						$data['oauth2IsConfidential'] = true;
+						$data['callbackUrl'] = '';
+					}
 				}
+				unset( $data['oauth2Flow'], $data['oauth2ClientCredentialsHelp'] );
 
 				$control->setInputParameters( $data );
 				return $control->submit();
@@ -829,5 +880,24 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		}
 
 		return $form;
+	}
+
+	/**
+	 * @return string[]
+	 */
+	private function getGrantTypesForOAuth2Flow( string $flow ): array {
+		if ( $flow === ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ) {
+			return [ ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ];
+		}
+
+		$grantTypes = [ ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE ];
+		if ( in_array(
+			ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
+			$this->getConfig()->get( 'OAuth2EnabledGrantTypes' ),
+			true
+		) ) {
+			$grantTypes[] = ClientEntity::GRANT_TYPE_REFRESH_TOKEN;
+		}
+		return $grantTypes;
 	}
 }

@@ -6,6 +6,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -106,6 +107,15 @@ class ListClients extends SimpleHandler {
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => '2',
 				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-oauth_version' ),
+			],
+			'grant_type' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => [
+					ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+					ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+				],
+				ParamValidator::PARAM_REQUIRED => false,
+				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-grant_type-list' ),
 			]
 		];
 	}
@@ -125,6 +135,14 @@ class ListClients extends SimpleHandler {
 		$conds = [ 'oarc_user_id' => $centralId ];
 		if ( $oauthVersion !== null ) {
 			$conds['oarc_oauth_version'] = (int)$oauthVersion;
+		}
+		if ( isset( $params['grant_type'] ) ) {
+			$conds['oarc_oauth_version'] = Consumer::OAUTH_VERSION_2;
+			$conds[] = 'oarc_oauth2_allowed_grants ' . $dbr->buildLike(
+				$dbr->anyString(),
+				'"' . $params['grant_type'] . '"',
+				$dbr->anyString()
+			);
 		}
 
 		$res = $dbr->newSelectQueryBuilder()
@@ -164,10 +182,8 @@ class ListClients extends SimpleHandler {
 
 			$consumer = [];
 
-			$cmrAc = ConsumerAccessControl::wrap(
-				$consumerRepository->newFromRow( $row ),
-				$requestContext
-			);
+			$cmr = $consumerRepository->newFromRow( $row );
+			$cmrAc = ConsumerAccessControl::wrap( $cmr, $requestContext );
 
 			if ( !$cmrAc ) {
 				continue;
@@ -190,6 +206,8 @@ class ListClients extends SimpleHandler {
 
 			if ( $consumer['oauth_version'] === Consumer::OAUTH_VERSION_2 ) {
 				$consumer['allowed_grants'] = $cmrAc->get( 'oauth2GrantTypes' );
+				$consumer['client_credentials_legacy'] = $cmr instanceof ClientEntity
+					&& $cmr->usesLegacyClientCredentialsBehavior();
 			}
 
 			$consumer['scopes'] = $cmrAc->getGrants();

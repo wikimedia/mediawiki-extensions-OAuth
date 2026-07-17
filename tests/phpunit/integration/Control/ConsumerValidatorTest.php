@@ -274,6 +274,17 @@ class ConsumerValidatorTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusNotOK( $status );
 	}
 
+	public function testFieldCallbackUrlClientCredentialsOnlySkipsUrlValidation(): void {
+		$status = $this->getCallback( Consumer::FIELD_CALLBACK_URL )(
+			'',
+			$this->makeCallbackUrlFields( [
+				Consumer::FIELD_OAUTH_VERSION => Consumer::OAUTH_VERSION_2,
+				Consumer::FIELD_OAUTH2_GRANT_TYPES => [ 'client_credentials' ],
+			] )
+		);
+		$this->assertStatusGood( $status );
+	}
+
 	public function testFieldCallbackUrlCustomSchemeOauth1IsRejected(): void {
 		// OAuth 1.0 consumers are always confidential; custom schemes cannot be confidential
 		$status = $this->getCallback( Consumer::FIELD_CALLBACK_URL )(
@@ -592,6 +603,15 @@ class ConsumerValidatorTest extends MediaWikiIntegrationTestCase {
 		$fields = [ Consumer::FIELD_OAUTH_VERSION => Consumer::OAUTH_VERSION_2 ];
 		$status = $this->getCallback( Consumer::FIELD_OAUTH2_GRANT_TYPES )( [ 'authorization_code' ], $fields );
 		$this->assertStatusGood( $status );
+	}
+
+	public function testFieldOauth2GrantTypesOauth2MixedClientCredentialsFails(): void {
+		$fields = [ Consumer::FIELD_OAUTH_VERSION => Consumer::OAUTH_VERSION_2 ];
+		$status = $this->getCallback( Consumer::FIELD_OAUTH2_GRANT_TYPES )(
+			[ 'client_credentials', 'authorization_code' ],
+			$fields
+		);
+		$this->assertStatusNotOK( $status );
 	}
 
 	public function testFieldOauth2GrantTypesTooLong(): void {
