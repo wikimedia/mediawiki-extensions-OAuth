@@ -124,21 +124,12 @@ class AuthorizationEndpointTest extends EndpointTestBase {
 					'bodyPattern' => '/title=Special:OAuth/',
 				],
 				static function ( MediaWikiIntegrationTestCase $testCase ) {
-					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
-						->getConsumerRepository();
-					$user = User::createNew( 'ResetClientSecretTestUser2' );
-
-					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-
-					$consumerData = self::DEFAULT_CONSUMER_DATA;
-					$consumerData['userId'] = $centralId;
-					$consumerData['consumerKey'] = '33333333333333333333333333333333';
-					$consumerData['oauthVersion'] = '2';
-					$consumerData['name'] = 'test_name_user_successful';
-					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
-					$consumerRepository->save( Consumer::newFromArray( $consumerData ) );
-
-					return $user;
+					return self::createOAuth2AuthorizationCodeConsumer(
+						$testCase,
+						'33333333333333333333333333333333',
+						'test_name_user_successful',
+						true
+					);
 				},
 			],
 
@@ -164,26 +155,139 @@ class AuthorizationEndpointTest extends EndpointTestBase {
 					],
 				],
 				static function ( MediaWikiIntegrationTestCase $testCase ) {
-					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
-						->getConsumerRepository();
-					$user = User::createNew( 'ResetClientSecretTestUser2' );
-
-					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
-
-					$consumerData = self::DEFAULT_CONSUMER_DATA;
-					$consumerData['userId'] = $centralId;
-					$consumerData['consumerKey'] = '33333333333333333333333333333333';
-					$consumerData['oauthVersion'] = '2';
-					$consumerData['name'] = 'test_name_user_successful';
-					$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
-					$consumerRepository->save( Consumer::newFromArray( $consumerData ) );
-
-					return $user;
+					return self::createOAuth2AuthorizationCodeConsumer(
+						$testCase,
+						'33333333333333333333333333333333',
+						'test_name_user_successful',
+						true
+					);
 				},
 			],
 
-			// TODO test actual authorization
+			'public client without code challenge' => [
+				[
+					'method' => 'GET',
+					'uri' => self::makeUri( '/oauth2/authorize' ),
+					'queryParams' => [
+						'client_id' => '44444444444444444444444444444444',
+						'response_type' => 'code',
+					],
+				],
+				[
+					'statusCode' => 400,
+					'reasonPhrase' => 'Bad Request',
+					'protocolVersion' => '1.1',
+					'bodyPattern' => '/Code challenge must be provided for public clients/',
+				],
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					return self::createOAuth2AuthorizationCodeConsumer(
+						$testCase,
+						'44444444444444444444444444444444',
+						'test_name_public_without_pkce',
+						false
+					);
+				},
+			],
+
+			'public client with code challenge' => [
+				[
+					'method' => 'GET',
+					'uri' => self::makeUri( '/oauth2/authorize' ),
+					'queryParams' => [
+						'client_id' => '55555555555555555555555555555555',
+						'response_type' => 'code',
+						'code_challenge' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+						'code_challenge_method' => 'plain',
+					],
+				],
+				[
+					'statusCode' => 307,
+					'reasonPhrase' => 'Temporary Redirect',
+					'protocolVersion' => '1.1',
+					'bodyPattern' => '/title=Special:OAuth/',
+				],
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					return self::createOAuth2AuthorizationCodeConsumer(
+						$testCase,
+						'55555555555555555555555555555555',
+						'test_name_public_with_pkce',
+						false
+					);
+				},
+			],
+
+			'approve authorization' => [
+				[
+					'method' => 'GET',
+					'uri' => self::makeUri( '/oauth2/authorize' ),
+					'queryParams' => [
+						'client_id' => '66666666666666666666666666666666',
+						'response_type' => 'code',
+						'approval_pass' => '1',
+						'state' => 'test-state',
+					],
+				],
+				[
+					'statusCode' => 302,
+					'protocolVersion' => '1.1',
+				],
+				static function ( MediaWikiIntegrationTestCase $testCase ) {
+					return self::createOAuth2AuthorizationCodeConsumer(
+						$testCase,
+						'66666666666666666666666666666666',
+						'test_name_approved_authorization',
+						true,
+						true
+					);
+				},
+				static function ( self $testCase, $response ) {
+					$location = $response->getHeaderLine( 'Location' );
+					$testCase->assertStringStartsWith( 'https://test.com?', $location );
+
+					parse_str( parse_url( $location, PHP_URL_QUERY ), $query );
+					$testCase->assertArrayHasKey( 'code', $query );
+					$testCase->assertNotSame( '', $query['code'] );
+					$testCase->assertSame( 'test-state', $query['state'] );
+				},
+			],
 		];
+	}
+
+	/**
+	 * @param MediaWikiIntegrationTestCase $testCase
+	 * @param string $consumerKey
+	 * @param string $name
+	 * @param bool $isConfidential
+	 * @param bool $authorize
+	 * @return User
+	 */
+	private static function createOAuth2AuthorizationCodeConsumer(
+		MediaWikiIntegrationTestCase $testCase,
+		string $consumerKey,
+		string $name,
+		bool $isConfidential,
+		bool $authorize = false
+	): User {
+		$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
+			->getConsumerRepository();
+		$user = User::createNew( 'AuthorizationEndpointTestUser' . $consumerKey[0] );
+
+		$consumerData = self::DEFAULT_CONSUMER_DATA;
+		$consumerData['userId'] = Utils::getCentralIdFromUserName( $user->getName() );
+		$consumerData['consumerKey'] = $consumerKey;
+		$consumerData['oauthVersion'] = '2';
+		$consumerData['name'] = $name;
+		$consumerData['oauth2IsConfidential'] = $isConfidential;
+		$consumerData['oauth2GrantTypes'] = [ 'authorization_code', 'refresh_token' ];
+		$consumerData['restrictions'] = MWRestrictions::newFromJson( $consumerData['restrictions'] );
+		$consumer = Consumer::newFromArray( $consumerData );
+		$consumerRepository->save( $consumer );
+
+		if ( $authorize ) {
+			$consumer->authorize( $user, false, $consumer->getGrants() );
+		}
+
+		return $user;
 	}
 
 	protected function newHandler(): Handler {
