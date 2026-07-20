@@ -112,6 +112,7 @@
 	"mwoauthconsumerregistration-user": "게시자",
 	"mwoauthconsumerregistration-description": "설명",
 	"mwoauthconsumerregistration-email": "연락처 이메일",
+	"mwoauthconsumerregistration-wiki": "적용할 수 있는 프로젝트",
 	"mwoauthconsumerregistration-consumerkey": "컨슈머 키",
 	"mwoauthconsumerregistration-stage": "상태",
 	"mwoauthconsumerregistration-lastchange": "마지막으로 바뀜",
