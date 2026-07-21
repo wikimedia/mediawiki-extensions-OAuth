@@ -97,6 +97,7 @@
 	"mwoauthmanagemygrants-action": "دريځ بدلول:",
 	"mwoauthmanagemygrants-editslink": "د دې کاريال په کارولو {{GENDER:$1|ستاسو}} سمونونه",
 	"mwoauthmanagemygrants-actionslink": "د دې کاريال په کارولو {{GENDER:$1|ستاسو}} چارې",
+	"mwoauthconsumer-consumer-logpage": "د OAuth مصرفوونکي يادښت",
 	"mwoauth-form-button-approve": "پرېښول",
 	"mwoauth-form-button-cancel": "ناگارل",
 	"mwoauth-error": "د کاريال نښلېدنې تېروتنه",
