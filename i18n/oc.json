@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Cedric31",
-			"Quentí"
+			"Quentí",
+			"COMISSIONTOPOC"
 		]
 	},
 	"mwoauth-desc": "Autoriza l’utilizacion de OAuth 1.0a per l’autentificacion de l’API",
