@@ -91,7 +91,7 @@ abstract class MWOAuthDAO {
 			->select( array_values( static::getFieldColumnMap() ) )
 			->from( static::getTable() )
 			->where( [ static::getIdColumn() => (int)$id ] )
-			->caller( __METHOD__ );
+			->caller( static::class . '::' . __FUNCTION__ );
 		if ( $flags & IDBAccessObject::READ_LOCKING ) {
 			$queryBuilder->forUpdate();
 		}
@@ -182,7 +182,7 @@ abstract class MWOAuthDAO {
 					->update( static::getTable() )
 					->set( $this->getRowArray( $dbw ) )
 					->where( [ $idColumn => $uniqueId ] )
-					->caller( __METHOD__ )
+					->caller( static::class . '::' . __FUNCTION__ )
 					->execute();
 				$this->daoPending = false;
 				return $dbw->affectedRows() > 0;
@@ -203,7 +203,7 @@ abstract class MWOAuthDAO {
 			$dbw->newInsertQueryBuilder()
 				->insertInto( static::getTable() )
 				->row( $row )
-				->caller( __METHOD__ )
+				->caller( static::class . '::' . __FUNCTION__ )
 				->execute();
 			if ( $afield !== null ) {
 				// update field for auto-increment field
@@ -231,7 +231,7 @@ abstract class MWOAuthDAO {
 			$dbw->newDeleteQueryBuilder()
 				->deleteFrom( static::getTable() )
 				->where( [ $idColumn => $uniqueId ] )
-				->caller( __METHOD__ )
+				->caller( static::class . '::' . __FUNCTION__ )
 				->execute();
 			$this->daoPending = true;
 			return $dbw->affectedRows() > 0;
