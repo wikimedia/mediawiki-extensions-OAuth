@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Repository;
 
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
+use stdClass;
 use Wikimedia\Rdbms\DBReadOnlyError;
 
 /**
@@ -13,6 +14,13 @@ use Wikimedia\Rdbms\DBReadOnlyError;
  * rather than directly returning ConsumerAcceptance objects.
  */
 interface ConsumerAcceptanceRepositoryInterface {
+
+	/**
+	 * Create a consumer acceptance from the result of a DB query
+	 *
+	 * @param array|stdClass $row DB row data, from SelectQueryBuilder::fetchRow() or similar
+	 */
+	public function newFromRow( array|stdClass $row ): ConsumerAcceptance;
 
 	/**
 	 * Get a consumer acceptance by its database primary key (oaac_id).

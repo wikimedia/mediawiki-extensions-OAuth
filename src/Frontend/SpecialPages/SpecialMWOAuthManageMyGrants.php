@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\OAuth\Frontend\SpecialPages;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\ErrorPageError;
 use MediaWiki\Exception\PermissionsError;
-use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceAccessControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceSubmitControl;
@@ -294,11 +293,13 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	 * @return string
 	 */
 	public function formatRow( IReadableDatabase $db, $row ) {
-		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
+		$oauthServices = OAuthServices::wrap( MediaWikiServices::getInstance() );
+		$consumerRepository = $oauthServices->getConsumerRepository();
+		$consumerAcceptanceRepository = $oauthServices->getConsumerAcceptanceRepository();
 		$cmrAc = ConsumerAccessControl::wrap(
 			$consumerRepository->newFromRow( $row ), $this->getContext() );
 		$cmraAc = ConsumerAcceptanceAccessControl::wrap(
-			ConsumerAcceptance::newFromRow( $db, $row ), $this->getContext() );
+			$consumerAcceptanceRepository->newFromRow( $row ), $this->getContext() );
 
 		$linkRenderer = $this->getLinkRenderer();
 

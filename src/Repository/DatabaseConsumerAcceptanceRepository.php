@@ -6,6 +6,7 @@ use DBAccessObjectUtils;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -19,6 +20,11 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * should be switched around.
  */
 class DatabaseConsumerAcceptanceRepository implements ConsumerAcceptanceRepositoryInterface {
+
+	/** @inheritDoc */
+	public function newFromRow( array|stdClass $row ): ConsumerAcceptance {
+		return ConsumerAcceptance::newFromRow( $this->getDb(), $row );
+	}
 
 	/** @inheritDoc */
 	public function getById( int $id, int $flags = 0 ): ConsumerAcceptance|false {
