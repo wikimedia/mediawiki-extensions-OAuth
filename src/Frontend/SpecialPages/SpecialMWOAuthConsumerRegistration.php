@@ -550,6 +550,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				'readonly' => true,
 				'default' => $user->getEmail(),
 				'help-message' => 'mwoauth-consumer-email-help',
+				'hide-if' => [ '!==', 'ownerOnly', '' ],
 			],
 			'wiki' => [
 				'type' => $allWikis ? 'combobox' : 'select',
