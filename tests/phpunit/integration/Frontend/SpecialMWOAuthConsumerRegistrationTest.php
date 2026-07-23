@@ -571,5 +571,6 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 		);
 		$this->assertStringContainsString( '>Update OAuth consumer application<', $pageHtml );
 		$this->assertStringContainsString( '>Update consumer<', $pageHtml );
+		$this->assertStringNotContainsString( '>Public RSA key (optional):<', $pageHtml );
 	}
 }

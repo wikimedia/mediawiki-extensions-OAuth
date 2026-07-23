@@ -220,12 +220,15 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 							'label-message' => 'mwoauthconsumerregistration-resetsecretkey',
 							'default' => false,
 						],
-						'rsaKey' => [
+						'rsaKey' => $cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_1 ? [
 							'type' => 'textarea',
 							'label-message' => 'mwoauth-consumer-rsakey',
 							'required' => false,
 							'default' => $cmrAc->getDAO()->getRsaKey(),
 							'rows' => 5,
+						] : [
+							'type' => 'hidden',
+							'default' => '',
 						],
 						'reason' => [
 							'type' => 'text',
