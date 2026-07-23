@@ -42,10 +42,9 @@ class MigrateCentralWikiLogs extends Maintenance {
 		$this->output( "Moving OAuth logs from '$oldWiki' to '$targetWiki'\n" );
 
 		// We only read from $oldDb, but we do want to make sure we get the most recent logs.
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$oldDb = $lbFactory->getMainLB( $oldWiki )->getConnection( DB_PRIMARY, [], $oldWiki );
-		$targetDb = $lbFactory->getMainLB( $targetWiki )
-			->getConnection( DB_PRIMARY, [], $targetWiki );
+		$connectionProvider = MediaWikiServices::getInstance()->getConnectionProvider();
+		$oldDb = $connectionProvider->getPrimaryDatabase( $oldWiki );
+		$targetDb = $connectionProvider->getPrimaryDatabase( $targetWiki );
 
 		$targetMinTS = $targetDb->newSelectQueryBuilder()
 			->select( 'MIN(log_timestamp)' )

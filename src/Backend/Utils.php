@@ -64,9 +64,8 @@ class Utils {
 	 * @return false|IDatabase
 	 */
 	public static function getCentralWikiDB() {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-
-		return $lbFactory->getMainLB( self::getCentralWiki() )->getConnection( DB_PRIMARY );
+		$connectionProvider = MediaWikiServices::getInstance()->getConnectionProvider();
+		return $connectionProvider->getPrimaryDatabase( self::getCentralWiki() );
 	}
 
 	/**

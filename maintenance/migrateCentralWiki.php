@@ -64,10 +64,9 @@ class MigrateCentralWiki extends Maintenance {
 				"or 'oauth_accepted_consumer'.\n" );
 		}
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$oldDb = $lbFactory->getMainLB( $oldWiki )->getConnection( DB_PRIMARY, [], $oldWiki );
-		$targetDb = $lbFactory->getMainLB( $targetWiki )
-			->getConnection( DB_PRIMARY, [], $targetWiki );
+		$connectionProvider = MediaWikiServices::getInstance()->getConnectionProvider();
+		$oldDb = $connectionProvider->getPrimaryDatabase( $oldWiki );
+		$targetDb = $connectionProvider->getPrimaryDatabase( $targetWiki );
 
 		$newMax = $targetDb->newSelectQueryBuilder()
 			->select( "MAX($idKey)" )
