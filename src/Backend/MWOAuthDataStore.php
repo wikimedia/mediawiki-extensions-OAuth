@@ -51,7 +51,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 	 *
 	 * @param OAuthConsumer|Consumer $consumer
 	 * @param string $token_type
-	 * @param string $token String the token
+	 * @param ?string $token
 	 * @throws MWOAuthException
 	 * @return MWOAuthToken
 	 */
@@ -59,6 +59,13 @@ class MWOAuthDataStore extends OAuthDataStore {
 		$this->logger->debug( __METHOD__ . ": Looking up $token_type token '$token'" );
 
 		if ( $token_type === 'request' ) {
+			if ( $token === null ) {
+				throw new MWOAuthException(
+					MessageValue::new( 'mwoauthdatastore-request-token-not-found' )
+						->rawParams( Utils::getErrorLink( 'E004' ) ),
+					$consumer->getLogContext()
+				);
+			}
 			$returnToken = $this->tokenCache->get( Utils::getCacheKey(
 				'token',
 				$consumer->key,
@@ -72,7 +79,7 @@ class MWOAuthDataStore extends OAuthDataStore {
 					$consumer->getLogContext()
 				);
 			}
-			if ( $token === null || !( $returnToken instanceof MWOAuthToken ) ) {
+			if ( !( $returnToken instanceof MWOAuthToken ) ) {
 				throw new MWOAuthException(
 					MessageValue::new( 'mwoauthdatastore-request-token-not-found' )
 						->rawParams( Utils::getErrorLink( 'E004' ) ),
@@ -80,6 +87,12 @@ class MWOAuthDataStore extends OAuthDataStore {
 				);
 			}
 		} elseif ( $token_type === 'access' ) {
+			if ( $token === null ) {
+				throw new MWOAuthException(
+					MessageValue::new( 'mwoauthdatastore-access-token-not-found' ),
+					$consumer->getLogContext()
+				);
+			}
 			$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
 				->getConsumerAcceptanceRepository();
 			$cmra = $consumerAcceptanceRepository->getByToken( $token );
