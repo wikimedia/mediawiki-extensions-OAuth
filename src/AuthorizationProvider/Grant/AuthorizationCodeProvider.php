@@ -32,10 +32,6 @@ class AuthorizationCodeProvider extends AuthorizationProvider {
 		// May not need custom claims here?
 		$grant = new AuthCodeGrantWithCustomClaims(
 			$authCodeRepo, $refreshTokenRepo, new DateInterval( 'PT10M' ) );
-		if ( !$this->config->get( 'OAuth2RequireCodeChallengeForPublicClients' ) ) {
-			$grant->disableRequireCodeChallengeForPublicClients();
-		}
-
 		return $grant;
 	}
 

@@ -265,10 +265,6 @@
 			"value": "",
 			"description": "Public key or a path to the public key used to verify OAuth2 resource requests"
 		},
-		"OAuth2RequireCodeChallengeForPublicClients": {
-			"value": true,
-			"description": "Controls whether clients are required to send code challenges with OAuth2 requests. This only applies to non-confidential clients"
-		},
 		"OAuth2GrantExpirationInterval": {
 			"description": "Controls validity period for access tokens (stored in the cache configured in MWOAuthSessionCacheType). Does not apply to owner-only clients, whose access tokens are always non-expiring. Accepts ISO 8601 durations or can be set to \"infinity\" or false for non-expiring tokens. Defaults to one hour.",
 			"value": "PT1H"

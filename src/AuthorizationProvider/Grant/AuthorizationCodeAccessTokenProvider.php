@@ -21,10 +21,6 @@ class AuthorizationCodeAccessTokenProvider extends AccessTokenProvider {
 		$refreshTokenRepo = $this->getRefreshTokenRepo();
 		$grant = new AuthCodeGrantWithCustomClaims(
 			$authCodeRepo, $refreshTokenRepo, new DateInterval( 'PT10M' ) );
-		if ( !$this->config->get( 'OAuth2RequireCodeChallengeForPublicClients' ) ) {
-			$grant->disableRequireCodeChallengeForPublicClients();
-		}
-
 		return $grant;
 	}
 }
