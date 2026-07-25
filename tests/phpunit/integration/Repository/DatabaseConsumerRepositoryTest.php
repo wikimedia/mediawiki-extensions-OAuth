@@ -7,6 +7,8 @@ use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Repository\DatabaseConsumerRepository;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
@@ -193,6 +195,32 @@ class DatabaseConsumerRepositoryTest extends MediaWikiIntegrationTestCase {
 		$consumer = $this->newConsumer();
 		$result = $this->repository->delete( $consumer );
 		$this->assertFalse( $result );
+	}
+
+	public function testCache(): void {
+		$consumer = $this->newConsumer();
+
+		$repository = new class () extends DatabaseConsumerRepository {
+			private IDatabase $db;
+
+			public function setDb( IDatabase $db ): void {
+				$this->db = $db;
+			}
+
+			public function getDb(): IDatabase {
+				return $this->db;
+			}
+		};
+
+		$repository->setDb( $this->getDb() );
+		$repository->save( $consumer );
+
+		// should not touch DB on second READ_NORMAL get call
+		$repository->setDb( $this->createNoOpMock( Database::class ) );
+		$cmr = $repository->getById( $consumer->getId() );
+		$this->assertSame( $consumer->getConsumerKey(), $cmr->getConsumerKey() );
+		$cmr = $repository->getByKey( $consumer->getConsumerKey() );
+		$this->assertSame( $consumer->getId(), $cmr->getId() );
 	}
 
 }
