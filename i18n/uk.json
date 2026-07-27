@@ -41,7 +41,7 @@
 	"mwoauth-consumer-owner-only-help": "Вибір цієї опції зробить так, що споживач буде автоматично прийнятий для використання та затверджений за $1. Ним не зможе користуватися будь-який інший користувач, і звична процедура авторизації не працюватиме. Дії, виконані цим споживачем, не позначатимуться тегами.",
 	"mwoauth-consumer-description": "Опис програми:",
 	"mwoauth-consumer-callbackurl": "URL «зворотного виклику» OAuth:",
-	"mwoauth-consumer-callbackurl-help": "На відміну від OAuth 1.0a, ця URL-адреса точно збігається",
+	"mwoauth-consumer-callbackurl-help": "На відміну від OAuth 1.0a, ця URL-адреса точно збігається.",
 	"mwoauth-consumer-callbackurl-warning": "(маска порту)",
 	"mwoauth-consumer-callbackisprefix": "Дозволяти споживачеві вказати зворотний виклик у запитах і використовувати URL «зворотного виклику» вище як обов'язковий префікс.",
 	"mwoauth-consumer-granttypes": "Типи доступу, які запитуються:",

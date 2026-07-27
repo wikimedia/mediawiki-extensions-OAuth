@@ -50,7 +50,7 @@
 	"mwoauth-consumer-owner-only-help": "سيؤدي تحديد هذا الخيار إلى الموافقة على المستهلك وقبوله تلقائيا للاستخدام بواسطة $1، لن يكون قابلا للاستخدام من قِبل أي مستخدم آخر، ولن يعمل تدفق التفويض المعتاد، لن يتم وسم الإجراءات المتخذة باستخدام هذا المستهلك.",
 	"mwoauth-consumer-description": "وصف للتطبيق:",
 	"mwoauth-consumer-callbackurl": "مسار \"معاودة اتصال\" OAuth:",
-	"mwoauth-consumer-callbackurl-help": "بخلاف OAuth 1.0a ، فإن عنوان URL هذا مطابق تمامًا",
+	"mwoauth-consumer-callbackurl-help": "على عكس OAuth 1.0a، يتم مطابقة عنوان URL هذا تمامًا.",
 	"mwoauth-consumer-callbackurl-warning": "(منفذ wildcard)",
 	"mwoauth-consumer-callbackurl-protocol": "(بروتوكول غير معتاد)",
 	"mwoauth-consumer-callbackisprefix": "السماح للمستهلك بتحديد رد اتصال في الطلبات واستخدام مسار \"معاودة الاتصال\" أعلاه كبادئة مطلوبة.",
