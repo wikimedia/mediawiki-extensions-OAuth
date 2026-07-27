@@ -9,8 +9,8 @@
 namespace MediaWiki\Extension\OAuth\Control;
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Exception\ILocalizedException;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
-use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\OAuthServices;
@@ -19,6 +19,7 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
+use Wikimedia\NormalizedException\INormalizedException;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -138,11 +139,24 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 						);
 						$payload = [ 'callbackUrl' => $callback ];
 					}
-				} catch ( MWOAuthException $exception ) {
-					return $this->failure( 'oauth_exception', $exception->getMessageObject() );
 				} catch ( OAuthException $exception ) {
-					return $this->failure( 'oauth_exception',
-						'mwoauth-oauth-exception', $exception->getMessage() );
+					if ( $exception instanceof INormalizedException ) {
+						LoggerFactory::getInstance( 'OAuth' )->warning(
+							__METHOD__ . ": Exception " . $exception->getNormalizedMessage(),
+							[ 'exception' => $exception ] + $exception->getMessageContext()
+						);
+					} else {
+						LoggerFactory::getInstance( 'OAuth' )->warning(
+							__METHOD__ . ": Exception " . $exception->getMessage(),
+							[ 'exception' => $exception ]
+						);
+					}
+					if ( $exception instanceof ILocalizedException ) {
+						return $this->failure( 'oauth_exception', $exception->getMessageObject() );
+					} else {
+						return $this->failure( 'oauth_exception',
+							'mwoauth-oauth-exception', $exception->getMessage() );
+					}
 				}
 
 				LoggerFactory::getInstance( 'OAuth' )->info(

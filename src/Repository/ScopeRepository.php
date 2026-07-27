@@ -10,6 +10,7 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Entity\ScopeEntity;
 use MediaWiki\Extension\OAuth\Entity\UserEntity;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 
@@ -95,7 +96,11 @@ class ScopeRepository implements ScopeRepositoryInterface {
 		try {
 			$approval = $clientEntity->getCurrentAuthorization( $mwUser, WikiMap::getCurrentWikiId() );
 			$approvedScopeIds = $approval->getGrants();
-		} catch ( MWOAuthException ) {
+		} catch ( MWOAuthException $e ) {
+			LoggerFactory::getInstance( 'OAuth' )->warning(
+				__METHOD__ . ": Exception " . $e->getNormalizedMessage(),
+				[ 'exception' => $e ] + $e->getMessageContext()
+			);
 			$approvedScopeIds = [];
 		}
 
