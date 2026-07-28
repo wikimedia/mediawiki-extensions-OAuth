@@ -322,7 +322,7 @@ class Utils {
 	public static function getLocalUserFromCentralId( $userId ) {
 		$lookup = self::getCentralIdLookup();
 		$user = $lookup->localUserFromCentralId( $userId, CentralIdLookup::AUDIENCE_RAW );
-		if ( $user === null || !$lookup->isAttached( $user ) ) {
+		if ( $user === null ) {
 			return false;
 		}
 		return User::newFromIdentity( $user );
