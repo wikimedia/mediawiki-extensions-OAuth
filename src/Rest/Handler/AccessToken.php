@@ -53,7 +53,8 @@ class AccessToken extends AuthenticationHandler {
 		} catch ( Throwable $exception ) {
 			MWExceptionHandler::logException( $exception );
 			return $this->errorResponse(
-				OAuthServerException::serverError( $exception->getMessage(), $exception ),
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				@OAuthServerException::serverError( $exception->getMessage(), $exception ),
 				$response
 			);
 		}
