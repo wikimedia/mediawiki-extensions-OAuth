@@ -19,7 +19,8 @@ abstract class AccessToken extends AuthorizationProvider implements IAccessToken
 		ServerRequestInterface $request, ResponseInterface $response
 	): ResponseInterface {
 		$this->logAccessTokenRequest( $request );
-		return $this->server->respondToAccessTokenRequest( $request, $response );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		return @$this->server->respondToAccessTokenRequest( $request, $response );
 	}
 
 	/**

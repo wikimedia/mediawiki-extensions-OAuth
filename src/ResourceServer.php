@@ -46,7 +46,8 @@ class ResourceServer {
 	protected function __construct( string $publicKey, string $canonicalServer ) {
 		$accessTokenRepository = new AccessTokenRepository( $canonicalServer );
 
-		$server = new LeagueResourceServer(
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$server = @new LeagueResourceServer(
 			$accessTokenRepository,
 			$publicKey
 		);

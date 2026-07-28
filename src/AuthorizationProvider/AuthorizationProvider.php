@@ -107,7 +107,8 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 		$grant = $this->getGrantSingleton();
 		$grant->setRefreshTokenTTL( $this->getRefreshTokenTTL() );
 		$this->server->setDefaultScope( '#default' );
-		$this->server->enableGrantType(
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		@$this->server->enableGrantType(
 			$grant,
 			$this->getGrantExpirationInterval()
 		);
