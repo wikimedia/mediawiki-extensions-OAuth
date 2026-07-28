@@ -56,7 +56,8 @@ class AuthorizationServerFactory {
 	 * @return AuthorizationServer
 	 */
 	public function getAuthorizationServer() {
-		return new AuthorizationServer(
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		return @new AuthorizationServer(
 			new ClientRepository(),
 			new AccessTokenRepository( $this->canonicalServer ),
 			new ScopeRepository(),
