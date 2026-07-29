@@ -294,8 +294,9 @@ abstract class MWOAuthDAO {
 
 	/**
 	 * @return string
+	 * @internal for use by ConsumerRepository and ConsumerAcceptanceRepository classes only
 	 */
-	final protected static function getTable() {
+	final public static function getTable() {
 		// @phan-suppress-next-line PhanAbstractStaticMethodCallInStatic
 		$schema = static::getSchema();
 		return $schema['table'];
@@ -304,8 +305,9 @@ abstract class MWOAuthDAO {
 	/**
 	 * Returns a mapping of field names (object properties) to DB column names.
 	 * @return array<string,string>
+	 * @internal for use by ConsumerRepository and ConsumerAcceptanceRepository classes only
 	 */
-	final protected static function getFieldColumnMap() {
+	final public static function getFieldColumnMap() {
 		// @phan-suppress-next-line PhanAbstractStaticMethodCallInStatic
 		$schema = static::getSchema();
 		return $schema['fieldColumnMap'];
@@ -355,8 +357,9 @@ abstract class MWOAuthDAO {
 
 	/**
 	 * @return string
+	 * @internal for use by ConsumerRepository and ConsumerAcceptanceRepository classes only
 	 */
-	final protected static function getIdColumn() {
+	final public static function getIdColumn() {
 		// @phan-suppress-next-line PhanAbstractStaticMethodCallInStatic
 		$schema = static::getSchema();
 		return $schema['fieldColumnMap'][$schema['idField']];

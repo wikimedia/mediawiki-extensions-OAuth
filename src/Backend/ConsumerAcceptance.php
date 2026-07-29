@@ -8,7 +8,6 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
@@ -82,68 +81,6 @@ class ConsumerAcceptance extends MWOAuthDAO {
 			'accepted'      => 'userCanSee',
 			'oauth_version' => 'userCanSee',
 		];
-	}
-
-	/**
-	 * @param IReadableDatabase $db
-	 * @param string $token Access token
-	 * @param int $flags ConsumerAcceptance::READ_* bitfield
-	 * @return ConsumerAcceptance|bool
-	 */
-	public static function newFromToken( IReadableDatabase $db, $token, $flags = 0 ) {
-		$queryBuilder = $db->newSelectQueryBuilder()
-			->select( array_values( static::getFieldColumnMap() ) )
-			->from( static::getTable() )
-			->where( [ 'oaac_access_token' => (string)$token ] )
-			->caller( __METHOD__ );
-		if ( $flags & IDBAccessObject::READ_LOCKING ) {
-			$queryBuilder->forUpdate();
-		}
-		$row = $queryBuilder->fetchRow();
-
-		if ( $row ) {
-			$consumer = new self();
-			$consumer->loadFromRow( $db, $row );
-			return $consumer;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * @param IReadableDatabase $db
-	 * @param int $userId of user who authorized (central wiki's id)
-	 * @param Consumer $consumer
-	 * @param string $wiki wiki associated with the acceptance
-	 * @param int $flags ConsumerAcceptance::READ_* bitfield
-	 * @return ConsumerAcceptance|bool
-	 */
-	public static function newFromUserConsumerWiki(
-		IReadableDatabase $db, $userId, $consumer,
-		$wiki, $flags = 0
-	) {
-		$queryBuilder = $db->newSelectQueryBuilder()
-			->select( array_values( static::getFieldColumnMap() ) )
-			->from( static::getTable() )
-			->where( [
-				'oaac_user_id' => $userId,
-				'oaac_consumer_id' => $consumer->getId(),
-				'oaac_oauth_version' => $consumer->getOAuthVersion(),
-				'oaac_wiki' => (string)$wiki
-			] )
-			->caller( __METHOD__ );
-		if ( $flags & IDBAccessObject::READ_LOCKING ) {
-			$queryBuilder->forUpdate();
-		}
-		$row = $queryBuilder->fetchRow();
-
-		if ( $row ) {
-			$consumer = new self();
-			$consumer->loadFromRow( $db, $row );
-			return $consumer;
-		} else {
-			return false;
-		}
 	}
 
 	/**

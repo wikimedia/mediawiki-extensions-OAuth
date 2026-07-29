@@ -28,7 +28,16 @@ class DatabaseConsumerAcceptanceRepository implements ConsumerAcceptanceReposito
 
 	/** @inheritDoc */
 	public function getById( int $id, int $flags = 0 ): ConsumerAcceptance|false {
-		return ConsumerAcceptance::newFromId( $this->getDb( $flags ), $id, $flags );
+		$queryBuilder = $this->getDb( $flags )->newSelectQueryBuilder()
+			->select( array_values( ConsumerAcceptance::getFieldColumnMap() ) )
+			->from( ConsumerAcceptance::getTable() )
+			->where( [ ConsumerAcceptance::getIdColumn() => $id ] )
+			->caller( static::class . '::' . __FUNCTION__ );
+		if ( $flags & IDBAccessObject::READ_LOCKING ) {
+			$queryBuilder->forUpdate();
+		}
+		$row = $queryBuilder->fetchRow();
+		return $row ? $this->newFromRow( $row ) : false;
 	}
 
 	/** @inheritDoc */
@@ -36,7 +45,16 @@ class DatabaseConsumerAcceptanceRepository implements ConsumerAcceptanceReposito
 		string $token,
 		int $flags = 0
 	): ConsumerAcceptance|false {
-		return ConsumerAcceptance::newFromToken( $this->getDb( $flags ), $token, $flags );
+		$queryBuilder = $this->getDb( $flags )->newSelectQueryBuilder()
+			->select( array_values( ConsumerAcceptance::getFieldColumnMap() ) )
+			->from( ConsumerAcceptance::getTable() )
+			->where( [ 'oaac_access_token' => $token ] )
+			->caller( __METHOD__ );
+		if ( $flags & IDBAccessObject::READ_LOCKING ) {
+			$queryBuilder->forUpdate();
+		}
+		$row = $queryBuilder->fetchRow();
+		return $row ? $this->newFromRow( $row ) : false;
 	}
 
 	/** @inheritDoc */
@@ -46,9 +64,21 @@ class DatabaseConsumerAcceptanceRepository implements ConsumerAcceptanceReposito
 		string $wiki,
 		int $flags = 0
 	): ConsumerAcceptance|false {
-		return ConsumerAcceptance::newFromUserConsumerWiki(
-			$this->getDb( $flags ), $centralUserId, $consumer, $wiki, $flags
-		);
+		$queryBuilder = $this->getDb( $flags )->newSelectQueryBuilder()
+			->select( array_values( ConsumerAcceptance::getFieldColumnMap() ) )
+			->from( ConsumerAcceptance::getTable() )
+			->where( [
+				'oaac_user_id' => $centralUserId,
+				'oaac_consumer_id' => $consumer->getId(),
+				'oaac_oauth_version' => $consumer->getOAuthVersion(),
+				'oaac_wiki' => $wiki
+			] )
+			->caller( __METHOD__ );
+		if ( $flags & IDBAccessObject::READ_LOCKING ) {
+			$queryBuilder->forUpdate();
+		}
+		$row = $queryBuilder->fetchRow();
+		return $row ? $this->newFromRow( $row ) : false;
 	}
 
 	/** @inheritDoc */
