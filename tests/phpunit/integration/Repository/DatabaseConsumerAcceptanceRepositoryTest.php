@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Repository;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Repository\DatabaseConsumerAcceptanceRepository;
 use MediaWikiIntegrationTestCase;
 
@@ -113,15 +114,15 @@ class DatabaseConsumerAcceptanceRepositoryTest extends MediaWikiIntegrationTestC
 	}
 
 	public function testSaveAndGetByUserConsumerWiki(): void {
-		$user = $this->getTestUser()->getUser();
+		$user = UserEntity::newFromMWUser( $this->getTestUser()->getUser() );
 		$acceptance = $this->newAcceptance( [
 			'wiki' => '*',
-			'userId' => $user->getId(),
+			'userId' => $user->getCentralId(),
 		] );
 		$this->repository->save( $acceptance );
 
 		$fetched = $this->repository->getByUserConsumerWiki(
-			$user->getId(),
+			$user,
 			$this->consumer,
 			'*'
 		);
@@ -130,9 +131,8 @@ class DatabaseConsumerAcceptanceRepositoryTest extends MediaWikiIntegrationTestC
 	}
 
 	public function testGetByUserConsumerWikiNotFound(): void {
-		$user = $this->getTestUser()->getUser();
 		$result = $this->repository->getByUserConsumerWiki(
-			999999,
+			new UserEntity( -1 ),
 			$this->consumer,
 			'*'
 		);
@@ -140,15 +140,15 @@ class DatabaseConsumerAcceptanceRepositoryTest extends MediaWikiIntegrationTestC
 	}
 
 	public function testGetByUserConsumerWikiWithSpecificWiki(): void {
-		$user = $this->getTestUser()->getUser();
+		$user = UserEntity::newFromMWUser( $this->getTestUser()->getUser() );
 		$acceptance = $this->newAcceptance( [
 			'wiki' => 'enwiki',
-			'userId' => $user->getId(),
+			'userId' => $user->getCentralId(),
 		] );
 		$this->repository->save( $acceptance );
 
 		$fetched = $this->repository->getByUserConsumerWiki(
-			$user->getId(),
+			$user,
 			$this->consumer,
 			'enwiki'
 		);
@@ -157,7 +157,7 @@ class DatabaseConsumerAcceptanceRepositoryTest extends MediaWikiIntegrationTestC
 
 		// Should not find when looking for '*'
 		$notFound = $this->repository->getByUserConsumerWiki(
-			$user->getId(),
+			$user,
 			$this->consumer,
 			'*'
 		);

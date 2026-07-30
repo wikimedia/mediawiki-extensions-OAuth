@@ -14,6 +14,7 @@ use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ListConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\Extension\OAuth\OAuthServices;
@@ -339,7 +340,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		$siteLinks = array_merge(
 			$this->updateLink( $cmrAc, $centralUserId, $linkRenderer ),
 			$this->manageConsumerLink( $consumer, $user, $linkRenderer ),
-			$this->manageMyGrantsLink( $consumer, $centralUserId, $linkRenderer )
+			$this->manageMyGrantsLink( $consumer, UserEntity::newFromMWUser( $user ), $linkRenderer )
 		);
 
 		if ( $siteLinks ) {
@@ -399,16 +400,16 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 
 	/**
 	 * @param Consumer $consumer
-	 * @param int $centralUserId Add link to manage grants for this user, if they've granted this
+	 * @param UserEntity $user Add link to manage grants for this user, if they've granted this
 	 * consumer
 	 * @param LinkRenderer $linkRenderer
 	 * @return string[]
 	 * @throws MWException
 	 */
 	private function manageMyGrantsLink(
-		Consumer $consumer, $centralUserId, LinkRenderer $linkRenderer
+		Consumer $consumer, UserEntity $user, LinkRenderer $linkRenderer
 	): array {
-		$acceptance = $this->userGrantedAcceptance( $consumer, $centralUserId );
+		$acceptance = $this->userGrantedAcceptance( $consumer, $user );
 		if ( $acceptance !== false ) {
 			return [
 				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'OAuthManageMyGrants',
@@ -422,20 +423,20 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 
 	/**
 	 * @param Consumer $consumer
-	 * @param int $centralUserId UserId to retrieve the grants for
+	 * @param UserEntity $user User to retrieve the grants for
 	 * @return bool|ConsumerAcceptance
 	 */
-	private function userGrantedAcceptance( Consumer $consumer, $centralUserId ) {
+	private function userGrantedAcceptance( Consumer $consumer, UserEntity $user ) {
 		$repository = OAuthServices::wrap( MediaWikiServices::getInstance() )
 			->getConsumerAcceptanceRepository();
 		$wikiSpecificGrant = $repository->getByUserConsumerWiki(
-			$centralUserId,
+			$user,
 			$consumer,
 			WikiMap::getCurrentWikiId()
 		);
 
 		$allWikiGrant = $repository->getByUserConsumerWiki(
-			$centralUserId,
+			$user,
 			$consumer,
 			'*'
 		);

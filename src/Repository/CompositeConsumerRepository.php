@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Repository;
 
 use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use stdClass;
 
 /**
@@ -41,11 +42,11 @@ class CompositeConsumerRepository implements ConsumerRepositoryInterface {
 	public function getByNameVersionUser(
 		string $name,
 		string $version,
-		int $centralUserId,
+		UserEntity $user,
 		int $flags = 0
 	): Consumer|false {
-		return $this->arrayRepository->getByNameVersionUser( $name, $version, $centralUserId, $flags )
-			?: $this->databaseRepository->getByNameVersionUser( $name, $version, $centralUserId, $flags );
+		return $this->arrayRepository->getByNameVersionUser( $name, $version, $user, $flags )
+			?: $this->databaseRepository->getByNameVersionUser( $name, $version, $user, $flags );
 	}
 
 	/** @inheritDoc */

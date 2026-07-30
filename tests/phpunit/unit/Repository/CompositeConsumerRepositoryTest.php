@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Tests\Repository;
 
 use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Repository\ArrayConsumerRepository;
 use MediaWiki\Extension\OAuth\Repository\CompositeConsumerRepository;
 use MediaWiki\Extension\OAuth\Repository\DatabaseConsumerRepository;
@@ -64,7 +65,7 @@ class CompositeConsumerRepositoryTest extends MediaWikiUnitTestCase {
 	public static function provideGetters() {
 		yield 'getById' => [ 'getById', [ 1 ] ];
 		yield 'getByKey' => [ 'getByKey', [ 'somekey' ] ];
-		yield 'getByNameVersionUser' => [ 'getByNameVersionUser', [ 'Test Consumer', '0.1.0', 9 ] ];
+		yield 'getByNameVersionUser' => [ 'getByNameVersionUser', [ 'Test Consumer', '0.1.0', new UserEntity( 9 ) ] ];
 	}
 
 	/**

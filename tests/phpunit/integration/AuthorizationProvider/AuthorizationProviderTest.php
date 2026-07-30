@@ -10,7 +10,7 @@ use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\ClientCredentialsAcces
 use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\RefreshTokenAccessTokenProvider;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\IAuthorizationProvider;
 use MediaWiki\Extension\OAuth\AuthorizationServerFactory;
-use MediaWiki\User\User;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use ReflectionClass;
@@ -60,15 +60,15 @@ class AuthorizationProviderTest extends MediaWikiIntegrationTestCase {
 		$userProperty = $authReflection->getProperty( 'user' );
 
 		$user = $this->getTestUser()->getUser();
-		$authorizationProvider->setUser( $user );
+		$authorizationProvider->setUser( UserEntity::newFromMWUser( $user ) );
 		$actualValue = $userProperty->getValue( $authorizationProvider );
 		$this->assertInstanceOf(
-			User::class, $actualValue,
-			"Value of user set must be an instance of " . User::class .
+			UserEntity::class, $actualValue,
+			"Value of user set must be an instance of " . UserEntity::class .
 			", " . get_class( $actualValue ) . " found"
 		);
 		$this->assertSame(
-			$user->getName(), $actualValue->getName(),
+			$user->getId(), $actualValue->getCentralId(),
 			"User passed to $class must be the same as the one actually set"
 		);
 	}

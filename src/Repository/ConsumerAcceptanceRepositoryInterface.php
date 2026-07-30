@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Repository;
 
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use stdClass;
 use Wikimedia\Rdbms\DBReadOnlyError;
 
@@ -44,13 +45,13 @@ interface ConsumerAcceptanceRepositoryInterface {
 	/**
 	 * Get a consumer acceptance by user ID, consumer, and wiki.
 	 *
-	 * @param int $centralUserId Central user ID of the authorizing user.
+	 * @param UserEntity $user Authorizing user.
 	 * @param Consumer $consumer
 	 * @param string $wiki Wiki ID or '*' for all.
 	 * @param int $flags IDBAccessObject::READ_* bitfield
 	 */
 	public function getByUserConsumerWiki(
-		int $centralUserId,
+		UserEntity $user,
 		Consumer $consumer,
 		string $wiki,
 		int $flags = 0

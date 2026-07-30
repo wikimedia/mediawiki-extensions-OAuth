@@ -12,6 +12,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\ILocalizedException;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Json\FormatJson;
@@ -102,11 +103,11 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 	protected function processAction( $action ): Status {
 		// proposer or admin
 		$user = $this->getUser();
-
-		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
-		if ( !$centralUserId ) {
+		$userEntity = UserEntity::newFromMWUser( $user );
+		if ( !$userEntity ) {
 			return $this->failure( 'permission_denied', 'badaccess-group0' );
 		}
+		$centralUserId = $userEntity->getCentralId();
 
 		switch ( $action ) {
 			case 'accept':
@@ -116,7 +117,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 				$cmr = $consumerRepository->getByKey( $this->vals[$identifier], IDBAccessObject::READ_LATEST );
 				if ( !$cmr ) {
 					return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
-				} elseif ( !$cmr->isUsableBy( $user ) ) {
+				} elseif ( !$cmr->isUsableBy( $userEntity ) ) {
 					return $this->failure( 'permission_denied', 'badaccess-group0' );
 				}
 
@@ -128,10 +129,10 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 						// the 'scope' parameter to the /oauth2/authorize endpoint incorrectly
 						$scopes = $this->getAcceptedConsumerGrants( $scopes, $cmr );
 
-						$payload = $cmr->authorize( $this->getUser(), (bool)$this->vals['confirmUpdate'], $scopes );
+						$payload = $cmr->authorize( $userEntity, (bool)$this->vals['confirmUpdate'], $scopes );
 					} else {
 						$callback = $cmr->authorize(
-							$this->getUser(),
+							$userEntity,
 							(bool)$this->vals[ 'confirmUpdate' ],
 							$cmr->getGrants(),
 							$this->vals[ 'requestToken' ]

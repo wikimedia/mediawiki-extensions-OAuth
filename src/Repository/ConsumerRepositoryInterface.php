@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\OAuth\Repository;
 
 use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use stdClass;
 use Wikimedia\Rdbms\DBReadOnlyError;
 
@@ -48,13 +49,13 @@ interface ConsumerRepositoryInterface {
 	 *
 	 * @param string $name App name
 	 * @param string $version App version
-	 * @param int $centralUserId Central user ID from CentralIdLookup
+	 * @param UserEntity $user Owning user
 	 * @param int $flags IDBAccessObject::READ_* bitfield
 	 */
 	public function getByNameVersionUser(
 		string $name,
 		string $version,
-		int $centralUserId,
+		UserEntity $user,
 		int $flags = 0
 	): Consumer|false;
 

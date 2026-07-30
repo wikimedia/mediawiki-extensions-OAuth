@@ -6,7 +6,6 @@ use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
-use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Entity\ScopeEntity;
 use MediaWiki\Extension\OAuth\Entity\UserEntity;
@@ -82,22 +81,17 @@ class ScopeRepository implements ScopeRepositoryInterface {
 				}
 			);
 		}
-		if ( !is_numeric( $userIdentifier ) ) {
+		if ( !$userIdentifier ) {
 			return [];
 		}
-
-		$mwUser = Utils::getLocalUserFromCentralId( (int)$userIdentifier );
-		if ( !$mwUser ) {
-			return [];
-		}
-		$userEntity = UserEntity::newFromMWUser( $mwUser );
-		if ( $userEntity === null ) {
+		$userEntity = UserEntity::newFromCentralId( (int)$userIdentifier );
+		if ( !$userEntity ) {
 			return [];
 		}
 
 		// Filter out not approved scopes
 		try {
-			$approval = $clientEntity->getCurrentAuthorization( $mwUser, WikiMap::getCurrentWikiId() );
+			$approval = $clientEntity->getCurrentAuthorization( $userEntity, WikiMap::getCurrentWikiId() );
 			$approvedScopeIds = $approval->getGrants();
 		} catch ( MWOAuthException $e ) {
 			LoggerFactory::getInstance( 'OAuth' )->warning(

@@ -18,7 +18,6 @@ use League\OAuth2\Server\Exception\OAuthServerException;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use Throwable;
 
@@ -173,7 +172,7 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 			return false;
 		}
 		try {
-			$user = Utils::getLocalUserFromCentralId( $userIdentifier );
+			$user = UserEntity::newFromCentralId( (int)$userIdentifier );
 			$approval = $clientEntity->getCurrentAuthorization( $user, WikiMap::getCurrentWikiId() );
 		} catch ( Throwable ) {
 			return false;
@@ -197,16 +196,12 @@ class AccessTokenEntity implements AccessTokenEntityInterface {
 	 * @throws OAuthServerException
 	 */
 	private function confirmClientUsable() {
-		$userId = $this->getUserIdentifier() ?? 0;
-		$user = Utils::getLocalUserFromCentralId( $userId );
-		if ( !$user ) {
-			$user = User::newFromId( 0 );
-		}
+		$userEntity = UserEntity::newFromCentralId( (int)$this->getUserIdentifier() );
 
-		if ( !$this->getClient()->isUsableBy( $user ) ) {
+		if ( !$this->getClient()->isUsableBy( $userEntity ) ) {
 			throw OAuthServerException::accessDenied(
 				'Client ' . $this->getClient()->getIdentifier() .
-				' is not usable by user with ID ' . $user->getId()
+				' is not usable by user with ID ' . $this->getUserIdentifier()
 			);
 		}
 	}

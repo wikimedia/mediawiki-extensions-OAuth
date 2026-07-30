@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth\Repository;
 use DBAccessObjectUtils;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use stdClass;
 use Wikimedia\ObjectCache\MapCacheLRU;
 use Wikimedia\Rdbms\IDatabase;
@@ -83,10 +84,10 @@ class DatabaseConsumerRepository implements ConsumerRepositoryInterface {
 	public function getByNameVersionUser(
 		string $name,
 		string $version,
-		int $centralUserId,
+		UserEntity $user,
 		int $flags = 0
 	): Consumer|false {
-		return Consumer::newFromNameVersionUser( $this->getDb( $flags ), $name, $version, $centralUserId, $flags );
+		return Consumer::newFromNameVersionUser( $this->getDb( $flags ), $name, $version, $user, $flags );
 	}
 
 	/** @inheritDoc */

@@ -11,6 +11,7 @@ use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthDataStore;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
@@ -137,14 +138,15 @@ class ConsumerSubmitControl extends SubmitControl {
 	protected function processAction( $action ): Status {
 		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 		$context = $this->getContext();
-		// proposer or admin
-		$user = $this->getUser();
 		$dbw = $this->dbw;
 
-		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
-		if ( !$centralUserId ) {
+		// proposer or admin
+		$user = $this->getUser();
+		$userEntity = UserEntity::newFromMWUser( $user );
+		if ( !$userEntity ) {
 			return $this->failure( 'permission_denied', 'badaccess-group0' );
 		}
+		$centralUserId = $userEntity->getCentralId();
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
@@ -160,7 +162,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				}
 
 				if ( $consumerRepository->getByNameVersionUser(
-					$this->vals['name'], $this->vals['version'], $centralUserId, IDBAccessObject::READ_LATEST
+					$this->vals['name'], $this->vals['version'], $userEntity, IDBAccessObject::READ_LATEST
 				) ) {
 					return $this->failure( 'consumer_exists', 'mwoauth-consumer-alreadyexists' );
 				}
@@ -325,7 +327,7 @@ class ConsumerSubmitControl extends SubmitControl {
 
 				$accessToken = null;
 				if ( $cmr->getOwnerOnly() && $this->vals['resetSecret'] ) {
-					$cmra = $cmr->getCurrentAuthorization( $user, WikiMap::getCurrentWikiId() );
+					$cmra = $cmr->getCurrentAuthorization( $userEntity, WikiMap::getCurrentWikiId() );
 					$accessToken = MWOAuthDataStore::newToken();
 					$fields = [
 						'wiki'         => $cmr->getWiki(),

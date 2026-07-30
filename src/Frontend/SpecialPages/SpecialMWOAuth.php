@@ -22,6 +22,7 @@ use MediaWiki\Extension\OAuth\Backend\MWOAuthToken;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceSubmitControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthToken;
 use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
@@ -285,7 +286,11 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 						);
 					}
 
+					// It's okay if the user is not yet registered locally, as long as the username
+					// is owned by the central user, so don't use UserEntity::newFromCentralId() here.
+					// We will autocreate the local user below.
 					$localUser = User::newFromName( $username );
+					$userEntity = UserEntity::newFromMWUser( $localUser );
 
 					// Since we skipped normal session handling,
 					// attempt to autocreate the user now if it does not exist locally
@@ -327,7 +332,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 								'consumer_wiki' => $access->getWiki(),
 							] + $consumer->getLogContext()
 						);
-					} elseif ( !$consumer->isUsableBy( $localUser ) ) {
+					} elseif ( !$consumer->isUsableBy( $userEntity ) ) {
 						throw new MWOAuthException(
 							MessageValue::new( 'mwoauth-invalid-authorization-not-approved' )
 								->params( $consumer->getName() ),
@@ -480,6 +485,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 
 		$output->addSubtitle( $this->msg( 'mwoauth-desc' )->escaped() );
 		$user = $this->getUser();
+		$userEntity = UserEntity::newFromMWUser( $user );
 
 		$oauthServer = Utils::newMWOAuthServer();
 
@@ -506,7 +512,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					->rawParams( Utils::getErrorLink( 'E012' ) ),
 				$cmrAc->getDAO()->getLogContext()
 			);
-		} elseif ( !$cmrAc->getDAO()->isUsableBy( $user ) ) {
+		} elseif ( !$cmrAc->getDAO()->isUsableBy( $userEntity ) ) {
 			throw new MWOAuthException(
 				MessageValue::new( 'mwoauthserver-bad-consumer' )
 					->params( $cmrAc->getName(), Utils::getCentralUserTalk( $cmrAc->getUserName() ) ),
@@ -514,7 +520,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			);
 		}
 
-		$existing = $cmrAc->getDAO()->getCurrentAuthorization( $user, WikiMap::getCurrentWikiId() );
+		$existing = $cmrAc->getDAO()->getCurrentAuthorization( $userEntity, WikiMap::getCurrentWikiId() );
 
 		// Some first-party consumers are explicitly allowed to skip authorization.
 		// An authorization will be created, or the existing authorization updated if needed,
@@ -523,7 +529,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			&& $this->oauthVersion === Consumer::OAUTH_VERSION_2
 		) {
 			$cmrAc->getDAO()->authorize(
-				$user, (bool)$existing, $cmrAc->getDAO()->getGrants(), $requestToken
+				$userEntity, (bool)$existing, $cmrAc->getDAO()->getGrants(), $requestToken
 			);
 			$this->redirectToREST( [
 				'approval_pass' => true
@@ -547,7 +553,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				] );
 			} else {
 				$callback = $cmrAc->getDAO()->authorize(
-					$user, false, $cmrAc->getDAO()->getGrants(), $requestToken
+					$userEntity, false, $cmrAc->getDAO()->getGrants(), $requestToken
 				);
 				$output->redirect( $callback );
 			}

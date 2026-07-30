@@ -16,7 +16,6 @@ use MediaWiki\Language\LanguageCode;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Response as RestResponse;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\User\User;
 use MediaWiki\WikiMap\WikiMap;
 use Throwable;
 use Wikimedia\Message\MessageValue;
@@ -47,7 +46,7 @@ class Authorize extends AuthenticationHandler {
 			// Note: Owner-only clients can only use client_credentials grant
 			// so would be rejected from this endpoint with invalid_client error
 			// automatically, no need for additional checks
-			if ( !$this->user instanceof User || !$this->user->isNamed() ) {
+			if ( !$this->user ) {
 				return $this->getLoginRedirectResponse();
 			}
 
@@ -286,7 +285,7 @@ class Authorize extends AuthenticationHandler {
 
 		try {
 			$approval = $client->getCurrentAuthorization(
-				$userEntity->getMwUser(),
+				$userEntity,
 				WikiMap::getCurrentWikiId()
 			);
 		} catch ( Exception ) {

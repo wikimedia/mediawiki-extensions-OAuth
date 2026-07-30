@@ -6,6 +6,7 @@ use DBAccessObjectUtils;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -59,7 +60,7 @@ class DatabaseConsumerAcceptanceRepository implements ConsumerAcceptanceReposito
 
 	/** @inheritDoc */
 	public function getByUserConsumerWiki(
-		int $centralUserId,
+		UserEntity $user,
 		Consumer $consumer,
 		string $wiki,
 		int $flags = 0
@@ -68,7 +69,7 @@ class DatabaseConsumerAcceptanceRepository implements ConsumerAcceptanceReposito
 			->select( array_values( ConsumerAcceptance::getFieldColumnMap() ) )
 			->from( ConsumerAcceptance::getTable() )
 			->where( [
-				'oaac_user_id' => $centralUserId,
+				'oaac_user_id' => $user->getCentralId(),
 				'oaac_consumer_id' => $consumer->getId(),
 				'oaac_oauth_version' => $consumer->getOAuthVersion(),
 				'oaac_wiki' => $wiki

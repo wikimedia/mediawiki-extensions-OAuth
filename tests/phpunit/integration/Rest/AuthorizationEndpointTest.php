@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Rest;
 
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Rest\Handler\Authorize;
 use MediaWiki\Rest\Handler;
@@ -284,7 +285,7 @@ class AuthorizationEndpointTest extends EndpointTestBase {
 		$consumerRepository->save( $consumer );
 
 		if ( $authorize ) {
-			$consumer->authorize( $user, false, $consumer->getGrants() );
+			$consumer->authorize( UserEntity::newFromMWUser( $user ), false, $consumer->getGrants() );
 		}
 
 		return $user;

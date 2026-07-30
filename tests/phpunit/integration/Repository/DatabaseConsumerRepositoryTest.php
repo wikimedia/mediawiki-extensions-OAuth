@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Repository;
 
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Repository\DatabaseConsumerRepository;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWikiIntegrationTestCase;
@@ -143,19 +144,19 @@ class DatabaseConsumerRepositoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSaveAndGetByNameVersionUser(): void {
-		$userId = $this->getTestUser()->getUser()->getId();
+		$user = UserEntity::newFromMWUser( $this->getTestUser()->getUser() );
 		$consumer = $this->newConsumer( [
 			Consumer::FIELD_NAME => 'MyUniqueApp',
 			Consumer::FIELD_VERSION => '2.0',
-			Consumer::FIELD_USER_ID => $userId,
+			Consumer::FIELD_USER_ID => $user->getCentralId(),
 		] );
 		$this->repository->save( $consumer );
 
-		$fetched = $this->repository->getByNameVersionUser( 'MyUniqueApp', '2.0', $userId );
+		$fetched = $this->repository->getByNameVersionUser( 'MyUniqueApp', '2.0', $user );
 		$this->assertInstanceOf( Consumer::class, $fetched );
 		$this->assertSame( $consumer->getConsumerKey(), $fetched->getConsumerKey() );
 
-		$result = $this->repository->getByNameVersionUser( 'Nonexistent App', '9.9', 999999 );
+		$result = $this->repository->getByNameVersionUser( 'Nonexistent', '9.9', new UserEntity( -1 ) );
 		$this->assertFalse( $result );
 	}
 

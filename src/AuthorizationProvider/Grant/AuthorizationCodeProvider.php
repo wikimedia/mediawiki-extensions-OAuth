@@ -9,7 +9,6 @@ use League\OAuth2\Server\Grant\GrantTypeInterface;
 use League\OAuth2\Server\RequestTypes\AuthorizationRequestInterface;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\AuthorizationProvider;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
-use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\MediaWikiServices;
 use Psr\Http\Message\ResponseInterface;
@@ -49,11 +48,10 @@ class AuthorizationCodeProvider extends AuthorizationProvider {
 		if ( !$client->isUsableBy( $this->user ) ) {
 			throw OAuthServerException::accessDenied(
 				'Client ' . $client->getIdentifier() .
-				' is not usable by user with ID ' . $this->user->getId()
+				' is not usable by user with ID ' . $this->user->getIdentifier()
 			);
 		}
-		$userEntity = UserEntity::newFromMWUser( $this->user );
-		$authRequest->setUser( $userEntity );
+		$authRequest->setUser( $this->user );
 		$this->logAuthorizationRequest( __METHOD__, $authRequest );
 
 		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();

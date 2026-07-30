@@ -11,12 +11,12 @@ namespace MediaWiki\Extension\OAuth\Backend;
 use LogicException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity as OAuth2Client;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\User\User;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Message\MessageValue;
@@ -282,12 +282,12 @@ abstract class Consumer extends MWOAuthDAO {
 	 * @param IReadableDatabase $db
 	 * @param string $name
 	 * @param string $version
-	 * @param int $userId Central user ID
+	 * @param UserEntity $user Owning user
 	 * @param int $flags IDBAccessObject::READ_* bitfield
 	 * @return static|false
 	 */
 	public static function newFromNameVersionUser(
-		IReadableDatabase $db, $name, $version, $userId, $flags = 0
+		IReadableDatabase $db, $name, $version, UserEntity $user, $flags = 0
 	) {
 		$queryBuilder = $db->newSelectQueryBuilder()
 			->select( array_values( static::getFieldColumnMap() ) )
@@ -295,7 +295,7 @@ abstract class Consumer extends MWOAuthDAO {
 			->where( [
 				'oarc_name' => (string)$name,
 				'oarc_version' => (string)$version,
-				'oarc_user_id' => (int)$userId
+				'oarc_user_id' => $user->getCentralId(),
 			] )
 			->caller( __METHOD__ );
 		if ( $flags & IDBAccessObject::READ_LOCKING ) {
@@ -562,14 +562,13 @@ abstract class Consumer extends MWOAuthDAO {
 	 * Users might want more grants on some wikis than on "*". Note that the reverse would not
 	 * make sense, since the consumer could just use the "*" acceptance if it has more grants.
 	 *
-	 * @param User $mwUser (local wiki user) User who may or may not have authorizations
+	 * @param ?UserEntity $user User who may or may not have authorizations
 	 * @param string $wikiId
 	 * @throws MWOAuthException
 	 * @return ConsumerAcceptance|bool
 	 */
-	public function getCurrentAuthorization( User $mwUser, $wikiId ) {
-		$centralUserId = Utils::getCentralIdFromLocalUser( $mwUser );
-		if ( !$centralUserId ) {
+	public function getCurrentAuthorization( ?UserEntity $user, $wikiId ) {
+		if ( !$user ) {
 			throw new MWOAuthException(
 				MessageValue::new( 'mwoauthserver-invalid-user' )
 					->params( $this->getName() )
@@ -583,13 +582,13 @@ abstract class Consumer extends MWOAuthDAO {
 		$checkWiki = $this->getWiki() !== '*' ? $this->getWiki() : $wikiId;
 
 		$cmra = $consumerAcceptanceRepository->getByUserConsumerWiki(
-			$centralUserId,
+			$user,
 			$this,
 			$checkWiki
 		);
 		if ( !$cmra ) {
 			$cmra = $consumerAcceptanceRepository->getByUserConsumerWiki(
-				$centralUserId,
+				$user,
 				$this,
 				'*'
 			);
@@ -598,22 +597,23 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param User $mwUser
+	 * @param UserEntity $user
 	 * @param bool $update
 	 * @param array $grants
 	 * @param string|null $requestTokenKey
 	 * @return mixed
 	 */
-	abstract public function authorize( User $mwUser, $update, $grants, $requestTokenKey = null );
+	abstract public function authorize( UserEntity $user, $update, $grants, $requestTokenKey = null );
 
 	/**
 	 * Verify that this user can authorize this consumer
 	 *
-	 * @param User $mwUser
+	 * @param UserEntity $user
 	 * @throws MWOAuthException
 	 */
-	protected function conductAuthorizationChecks( User $mwUser ) {
+	protected function conductAuthorizationChecks( UserEntity $user ) {
 		global $wgBlockDisablesLogin;
+		$mwUser = $user->getMWUser();
 
 		// Check that user and consumer are in good standing
 		if ( $mwUser->isLocked() || ( $wgBlockDisablesLogin && $mwUser->getBlock() ) ) {
@@ -630,11 +630,8 @@ abstract class Consumer extends MWOAuthDAO {
 					->rawParams( Utils::getErrorLink( 'E006' ) ),
 				$this->getLogContext()
 			);
-		} elseif ( !$this->isUsableBy( $mwUser ) ) {
-			$owner = Utils::getCentralUserNameFromId(
-				$this->getUserId(),
-				$mwUser
-			);
+		} elseif ( !$this->isUsableBy( $user ) ) {
+			$owner = $mwUser->getName();
 			throw new MWOAuthException(
 				MessageValue::new( 'mwoauthserver-bad-consumer' )
 					->params( $this->getName(), Utils::getCentralUserTalk( $owner ) )
@@ -655,16 +652,15 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * @param User $mwUser
+	 * @param ?UserEntity $user
 	 * @param bool $update
 	 * @param string[] $grants
 	 * @return ConsumerAcceptance
 	 * @throws MWOAuthException
 	 */
-	protected function saveAuthorization( User $mwUser, $update, $grants ) {
+	protected function saveAuthorization( ?UserEntity $user, $update, $grants ) {
 		// CentralAuth may abort here if there is no global account for this user
-		$centralUserId = Utils::getCentralIdFromLocalUser( $mwUser );
-		if ( !$centralUserId ) {
+		if ( !$user ) {
 			throw new MWOAuthException(
 				MessageValue::new( 'mwoauthserver-invalid-user' )
 					->params( $this->getName() )
@@ -674,7 +670,7 @@ abstract class Consumer extends MWOAuthDAO {
 		}
 
 		// Check if this authorization exists
-		$cmra = $this->getCurrentAuthorization( $mwUser, WikiMap::getCurrentWikiId() );
+		$cmra = $this->getCurrentAuthorization( $user, WikiMap::getCurrentWikiId() );
 
 		$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
 			->getConsumerAcceptanceRepository();
@@ -700,7 +696,7 @@ abstract class Consumer extends MWOAuthDAO {
 			$cmra = ConsumerAcceptance::newFromArray( [
 				'id'           => null,
 				'wiki'         => $this->getWiki(),
-				'userId'       => $centralUserId,
+				'userId'       => $user->getCentralId(),
 				'consumerId'   => $this->getId(),
 				'accessToken'  => $accessToken->key,
 				'accessSecret' => $accessToken->secret,
@@ -722,14 +718,13 @@ abstract class Consumer extends MWOAuthDAO {
 	 * - Approved for owner-only use and is owned by $user
 	 * - Still pending approval and is owned by $user
 	 */
-	public function isUsableBy( User $user ): bool {
+	public function isUsableBy( ?UserEntity $user ): bool {
 		if ( $this->stage === self::STAGE_APPROVED && !$this->getOwnerOnly() ) {
 			return true;
 		}
 
 		if ( $this->stage === self::STAGE_PROPOSED || $this->stage === self::STAGE_APPROVED ) {
-			$centralId = Utils::getCentralIdFromLocalUser( $user );
-			return ( $centralId && $this->userId === $centralId );
+			return ( $user && $this->userId === $user->getCentralId() );
 		}
 
 		return false;

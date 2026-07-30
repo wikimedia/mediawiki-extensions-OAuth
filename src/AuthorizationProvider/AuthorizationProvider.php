@@ -8,34 +8,17 @@ use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Grant\GrantTypeInterface;
 use MediaWiki\Config\Config;
 use MediaWiki\Extension\OAuth\AuthorizationServerFactory;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Repository\AuthCodeRepository;
 use MediaWiki\Extension\OAuth\Repository\RefreshTokenRepository;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\User;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 
 abstract class AuthorizationProvider implements IAuthorizationProvider {
-	/**
-	 * @var AuthorizationServer
-	 */
-	protected $server;
 
-	/**
-	 * @var Config|null
-	 */
-	protected $config;
-
-	/**
-	 * @var User
-	 */
-	protected $user;
-
-	/**
-	 * @var LoggerInterface
-	 */
-	protected $logger;
+	protected UserEntity $user;
 
 	/**
 	 * @var GrantTypeInterface
@@ -57,23 +40,20 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 	}
 
 	/**
-	 * @param Config $config
-	 * @param AuthorizationServer $server
-	 * @param LoggerInterface $logger
 	 * @throws Exception
 	 */
-	public function __construct( $config, $server, $logger ) {
-		$this->config = $config;
-		$this->server = $server;
-		$this->logger = $logger;
-
+	public function __construct(
+		protected ?Config $config,
+		protected AuthorizationServer $server,
+		protected LoggerInterface $logger,
+	) {
 		$this->decorateAuthServer();
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function setUser( User $user ) {
+	public function setUser( UserEntity $user ) {
 		$this->user = $user;
 	}
 

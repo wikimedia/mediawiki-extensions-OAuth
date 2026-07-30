@@ -7,6 +7,7 @@ use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Control\ConsumerValidator;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Utils\MWRestrictions;
 use stdClass;
 
@@ -68,13 +69,13 @@ class ArrayConsumerRepository implements ConsumerRepositoryInterface {
 	public function getByNameVersionUser(
 		string $name,
 		string $version,
-		int $centralUserId,
+		UserEntity $user,
 		int $flags = 0
 	): Consumer|false {
 		foreach ( $this->iterateConsumerData() as $consumerKey => $consumerData ) {
 			if ( $name === $consumerData[Consumer::FIELD_NAME]
 				 && $version === $consumerData[Consumer::FIELD_VERSION]
-				 && $centralUserId === $consumerData[Consumer::FIELD_USER_ID]
+				 && $user->getCentralId() === $consumerData[Consumer::FIELD_USER_ID]
 			) {
 				return $this->getByKey( $consumerKey, $flags );
 			}

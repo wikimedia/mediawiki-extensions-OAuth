@@ -124,18 +124,18 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 	}
 
 	/**
-	 * @param User $mwUser
+	 * @param UserEntity $user
 	 * @param bool $update
 	 * @param string[] $grants
 	 * @param null $requestTokenKey
 	 * @return bool
 	 * @throws MWOAuthException
 	 */
-	public function authorize( User $mwUser, $update, $grants, $requestTokenKey = null ) {
-		$this->conductAuthorizationChecks( $mwUser );
+	public function authorize( UserEntity $user, $update, $grants, $requestTokenKey = null ) {
+		$this->conductAuthorizationChecks( $user );
 
 		$grants = $this->getVerifiedScopes( $grants );
-		$this->saveAuthorization( $mwUser, $update, $grants );
+		$this->saveAuthorization( $user, $update, $grants );
 
 		return true;
 	}

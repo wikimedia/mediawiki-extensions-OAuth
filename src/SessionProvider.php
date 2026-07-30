@@ -15,6 +15,7 @@ use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthRequest;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Json\JwtException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -188,14 +189,18 @@ class SessionProvider
 				);
 			}
 
-			// It's okay if the user does not exist locally, it should be autocreated later
+			// It's okay if the user is not yet registered locally, as long as the username
+			// is owned by the central user, so don't use UserEntity::newFromCentralId() here.
+			// MediaWiki will autocreate the local user in Setup.php.
 			$localUser = User::newFromName( $username );
+			$userEntity = UserEntity::newFromMWUser( $localUser );
 			if ( !$localUser->isRegistered() ) {
 				$this->logger->debug( 'OAuth request for missing local user {user}, will be autocreated later',
 					$logData );
 			}
 		} else {
 			$localUser = User::newFromId( 0 );
+			$userEntity = null;
 		}
 
 		if ( $localUser->isLocked() ) {
@@ -212,7 +217,7 @@ class SessionProvider
 
 		// The consumer is approved or owned by $localUser, and is for this wiki.
 		$consumer = $consumerRepository->getById( $access->getConsumerId() );
-		if ( !$consumer->isUsableBy( $localUser ) ) {
+		if ( !$consumer->isUsableBy( $userEntity ) ) {
 			$this->logger->debug(
 				'OAuth request for consumer {consumer_key} not approved by user {user}', $logData
 			);

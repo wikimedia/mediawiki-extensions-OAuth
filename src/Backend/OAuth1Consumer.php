@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
-use MediaWiki\User\User;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Utils\MWCryptRand;
 use Wikimedia\Message\MessageValue;
 
@@ -25,15 +25,15 @@ class OAuth1Consumer extends Consumer {
 	 * everything so that the consumer can swap the request token for an access token. Then
 	 * generate the callback URL where we will redirect our user back to the consumer.
 	 *
-	 * @param User $mwUser
+	 * @param UserEntity $user
 	 * @param bool $update
 	 * @param array $grants
 	 * @param string|null $requestTokenKey
 	 * @return string
 	 * @throws MWOAuthException
 	 */
-	public function authorize( User $mwUser, $update, $grants, $requestTokenKey = null ) {
-		$this->conductAuthorizationChecks( $mwUser );
+	public function authorize( UserEntity $user, $update, $grants, $requestTokenKey = null ) {
+		$this->conductAuthorizationChecks( $user );
 
 		// Generate and Update the tokens:
 		// * Generate a new Verification code, and add it to the request token
@@ -50,7 +50,7 @@ class OAuth1Consumer extends Consumer {
 		}
 		$requestToken->addVerifyCode( $verifyCode );
 
-		$cmra = $this->saveAuthorization( $mwUser, $update, $grants );
+		$cmra = $this->saveAuthorization( $user, $update, $grants );
 		$accessToken = new MWOAuthToken( $cmra->getAccessToken(), '' );
 
 		$requestToken->addAccessKey( $accessToken->key );

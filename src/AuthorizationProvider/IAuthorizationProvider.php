@@ -2,17 +2,15 @@
 
 namespace MediaWiki\Extension\OAuth\AuthorizationProvider;
 
-use MediaWiki\User\User;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 
 interface IAuthorizationProvider {
 
 	/**
 	 * Set user that on whose behalf
 	 * the client is making the request
-	 *
-	 * @param User $user
 	 */
-	public function setUser( User $user );
+	public function setUser( UserEntity $user );
 
 	/**
 	 * Must user explicitly allow application

@@ -8,7 +8,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\AccessTokenProvider;
 use MediaWiki\Extension\OAuth\AuthorizationProvider\Grant\AuthorizationCodeProvider;
-use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Response;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -19,20 +19,9 @@ use MediaWiki\Rest\Response as RestResponse;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
 use Psr\Http\Message\ResponseInterface;
 
 abstract class AuthenticationHandler extends Handler {
-
-	/**
-	 * @var User
-	 */
-	protected $user;
-
-	/**
-	 * @var Config
-	 */
-	protected $config;
 
 	/**
 	 * @var OAuthServerException|null
@@ -43,20 +32,16 @@ abstract class AuthenticationHandler extends Handler {
 	 * @return AuthenticationHandler
 	 */
 	public static function factory() {
-		$centralId = Utils::getCentralIdFromLocalUser( RequestContext::getMain()->getUser() );
-		$user = $centralId ? RequestContext::getMain()->getUser() : User::newFromId( 0 );
+		$user = UserEntity::newFromMWUser( RequestContext::getMain()->getUser() );
 		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
 		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
 		return new static( $user, $config );
 	}
 
-	/**
-	 * @param User $user
-	 * @param Config $config
-	 */
-	protected function __construct( User $user, Config $config ) {
-		$this->user = $user;
-		$this->config = $config;
+	protected function __construct(
+		protected ?UserEntity $user,
+		protected Config $config,
+	) {
 	}
 
 	/**
