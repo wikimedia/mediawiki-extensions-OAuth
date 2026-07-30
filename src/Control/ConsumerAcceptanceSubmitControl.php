@@ -163,7 +163,6 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 					'{user} performed action {action} on consumer {consumer_key}', [
 						'action' => 'accept',
 						'user' => $user->getName(),
-						'target' => Utils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
 						'comment' => '',
 						'clientip' => $this->getContext()->getRequest()->getIP(),
 					] + $cmr->getLogContext()
@@ -194,7 +193,6 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 					'{user} performed action {action} on consumer {consumer_key}', [
 						'action' => 'update-acceptance',
 						'user' => $user->getName(),
-						'target' => Utils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
 						'comment' => '',
 						'clientip' => $this->getContext()->getRequest()->getIP(),
 					] + $cmr->getLogContext(),
@@ -222,7 +220,6 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 					'{user} performed action {action} on consumer {consumer_key}', [
 						'action' => 'renounce',
 						'user' => $user->getName(),
-						'target' => Utils::getCentralUserNameFromId( $cmr->getUserId(), 'raw' ),
 						'comment' => '',
 						'clientip' => $this->getContext()->getRequest()->getIP(),
 					] + $cmr->getLogContext(),

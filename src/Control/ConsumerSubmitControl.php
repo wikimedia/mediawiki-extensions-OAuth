@@ -501,8 +501,7 @@ class ConsumerSubmitControl extends SubmitControl {
 	) {
 		$logEntry = new ManualLogEntry( 'mwoauthconsumer', $action );
 		$logEntry->setPerformer( $performer );
-		$target = $this->getLogTitle( $dbw, $cmr->getUserId() );
-		$logEntry->setTarget( $target );
+		$logEntry->setTarget( $this->getLogTitle( $dbw, $cmr->getUserId() ) );
 		$logEntry->setComment( $comment );
 		$logEntry->setParameters( [ '4:consumer' => $cmr->getConsumerKey() ] );
 		$logEntry->setRelations( [
@@ -514,7 +513,6 @@ class ConsumerSubmitControl extends SubmitControl {
 			'{user} performed action {action} on consumer {consumer_key}', [
 				'action' => $action,
 				'user' => $performer->getName(),
-				'target' => $target->getText(),
 				'comment' => $comment,
 				'clientip' => $this->getContext()->getRequest()->getIP(),
 			] + $cmr->getLogContext(),
