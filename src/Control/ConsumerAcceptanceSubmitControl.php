@@ -89,7 +89,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 		$permissionManager = $services->getPermissionManager();
 		$readOnlyMode = $services->getReadOnlyMode();
 
-		if ( !$user->getID() ) {
+		if ( !$user->isRegistered() ) {
 			return $this->failure( 'not_logged_in', 'badaccess-group0' );
 		} elseif ( !$permissionManager->userHasRight( $user, 'mwoauthmanagemygrants' ) ) {
 			return $this->failure( 'permission_denied', 'badaccess-group0' );

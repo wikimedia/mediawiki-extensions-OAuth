@@ -138,9 +138,6 @@ abstract class Consumer extends MWOAuthDAO {
 	/** @see canSkipAuthorization() */
 	protected bool $skipAuthorization = false;
 
-	/** @var int|false|null Cache for local ID looked up from $userId */
-	protected $localUserId;
-
 	/**
 	 * Maps stage ids to human-readable names which describe them as a state.
 	 * Used in the following messages:
@@ -519,22 +516,6 @@ abstract class Consumer extends MWOAuthDAO {
 	}
 
 	/**
-	 * Local ID of the owner (or false if there is no local account).
-	 * @return int|false
-	 */
-	public function getLocalUserId() {
-		if ( $this->localUserId === null ) {
-			$user = Utils::getLocalUserFromCentralId( $this->getUserId() );
-			if ( $user ) {
-				$this->localUserId = $user->getId();
-			} else {
-				$this->localUserId = false;
-			}
-		}
-		return $this->localUserId;
-	}
-
-	/**
 	 * When true, users aren't shown an authorization dialog and authorization will be assumed.
 	 * Only supported for OAuth 2. Should only be used when:
 	 * - the client is a first-party client (ie. owned by the site operator)
@@ -893,7 +874,7 @@ abstract class Consumer extends MWOAuthDAO {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$user = $context->getUser();
 
-		if ( $user->getId() === $this->getLocalUserId() ) {
+		if ( $this->getUserId() === Utils::getCentralIdFromLocalUser( $user ) ) {
 			// owners can always see the details of their apps, unless the app got deleted-suppressed
 			return $this->userCanSee( $name, $context );
 		} elseif ( $this->getOwnerOnly() ) {
