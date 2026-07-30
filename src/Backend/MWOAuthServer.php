@@ -4,10 +4,7 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthServer;
-use MediaWiki\Extension\OAuth\OAuthServices;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\User\User;
 use Wikimedia\Message\MessageValue;
 
 class MWOAuthServer extends OAuthServer {
@@ -314,44 +311,5 @@ class MWOAuthServer extends OAuthServer {
 				[ 'request_ip' => $request->getSourceIP() ] + $consumer->getLogContext()
 			);
 		}
-	}
-
-	/**
-	 * @deprecated User MWOAuthConsumer::authorize(...)
-	 *
-	 * @param string $consumerKey
-	 * @param string $requestTokenKey
-	 * @param User $mwUser
-	 * @param bool $update
-	 * @return string
-	 */
-	public function authorize( $consumerKey, $requestTokenKey, User $mwUser, $update ) {
-		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
-		$consumer = $consumerRepository->getByKey( $consumerKey );
-		return $consumer->authorize( $mwUser, $update, $consumer->getGrants(), $requestTokenKey );
-	}
-
-	/**
-	 * Attempts to find an authorization by this user for this consumer. Since a user can
-	 * accept a consumer multiple times (once for "*" and once for each specific wiki),
-	 * there can several access tokens per-wiki (with varying grants) for a consumer.
-	 * This will choose the most wiki-specific access token. The precedence is:
-	 * a) The acceptance for wiki X if the consumer is applicable only to wiki X
-	 * b) The acceptance for wiki $wikiId (if the consumer is applicable to it)
-	 * c) The acceptance for wikis "*" (all wikis)
-	 *
-	 * Users might want more grants on some wikis than on "*". Note that the reverse would not
-	 * make sense, since the consumer could just use the "*" acceptance if it has more grants.
-	 *
-	 * @param User $mwUser (local wiki user) User who may or may not have authorizations
-	 * @param Consumer $consumer
-	 * @param string $wikiId
-	 * @throws MWOAuthException
-	 * @return ConsumerAcceptance
-	 * @deprecated Use MWOAuthConsumer::getCurrentAuthorization(...)
-	 */
-	public function getCurrentAuthorization( User $mwUser, $consumer, $wikiId ) {
-		wfDeprecated( __METHOD__ );
-		return $consumer->getCurrentAuthorization( $mwUser, $wikiId );
 	}
 }
