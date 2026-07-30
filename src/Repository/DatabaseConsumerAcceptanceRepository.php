@@ -32,7 +32,7 @@ class DatabaseConsumerAcceptanceRepository implements ConsumerAcceptanceReposito
 			->select( array_values( ConsumerAcceptance::getFieldColumnMap() ) )
 			->from( ConsumerAcceptance::getTable() )
 			->where( [ ConsumerAcceptance::getIdColumn() => $id ] )
-			->caller( static::class . '::' . __FUNCTION__ );
+			->caller( __METHOD__ );
 		if ( $flags & IDBAccessObject::READ_LOCKING ) {
 			$queryBuilder->forUpdate();
 		}

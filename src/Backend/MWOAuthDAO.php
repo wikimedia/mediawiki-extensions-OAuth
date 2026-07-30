@@ -8,7 +8,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
 use Psr\Log\LoggerInterface;
 use stdClass;
-use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBReadOnlyError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -39,9 +38,6 @@ abstract class MWOAuthDAO {
 	/** @var LoggerInterface */
 	protected $logger;
 
-	/**
-	 * @throws LogicException
-	 */
 	final protected function __construct() {
 		$fields = array_keys( static::getFieldPermissionChecks() );
 		if ( array_diff( $fields, $this->getFieldNames() ) ) {
@@ -110,18 +106,13 @@ abstract class MWOAuthDAO {
 	 * @param int $id
 	 * @param int $flags IDBAccessObject::READ_* bitfield
 	 * @return static|false
-	 * @throws DBError
 	 */
 	final public static function newFromId( IReadableDatabase $db, $id, $flags = 0 ) {
 		$row = self::fetchRowFromId( $db, $id, $flags );
-		if ( $row ) {
-			$class = static::getDaoClass( (array)$row );
-			$dao = new $class();
-			$dao->loadFromRow( $db, $row );
-			return $dao;
-		} else {
+		if ( !$row ) {
 			return false;
 		}
+		return static::newFromRow( $db, $row );
 	}
 
 	/**
@@ -129,7 +120,6 @@ abstract class MWOAuthDAO {
 	 *
 	 * @param string $name
 	 * @return mixed
-	 * @throws LogicException
 	 */
 	final public function get( $name ) {
 		if ( !static::hasField( $name ) ) {
@@ -193,20 +183,19 @@ abstract class MWOAuthDAO {
 			throw new DBReadOnlyError( $dbw, __CLASS__ . ": tried to save while db is read-only" );
 		}
 		if ( $this->daoOrigin === self::ORIGIN_DB ) {
-			if ( $this->daoPending ) {
-				$this->logger->debug( get_class( $this ) . ': performing DB update; object changed.' );
-				$dbw->newUpdateQueryBuilder()
-					->update( static::getTable() )
-					->set( $this->getRowArray( $dbw ) )
-					->where( [ $idColumn => $uniqueId ] )
-					->caller( static::class . '::' . __FUNCTION__ )
-					->execute();
-				$this->daoPending = false;
-				return $dbw->affectedRows() > 0;
-			} else {
+			if ( !$this->daoPending ) {
 				$this->logger->debug( get_class( $this ) . ': skipping DB update; object unchanged.' );
 				return false;
 			}
+			$this->logger->debug( get_class( $this ) . ': performing DB update; object changed.' );
+			$dbw->newUpdateQueryBuilder()
+				->update( static::getTable() )
+				->set( $this->getRowArray( $dbw ) )
+				->where( [ $idColumn => $uniqueId ] )
+				->caller( static::class . '::' . __FUNCTION__ )
+				->execute();
+			$this->daoPending = false;
+			return $dbw->affectedRows() > 0;
 		} elseif ( $this->daoOrigin === self::ORIGIN_NEW ) {
 			$this->logger->debug( get_class( $this ) . ': performing DB update; new object.' );
 			$afield = static::getAutoIncrField();

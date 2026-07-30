@@ -32,7 +32,6 @@ class DAOAccessControl extends ContextSource {
 	/**
 	 * @param MWOAuthDAO|false|null $dao
 	 * @param IContextSource $context
-	 * @throws LogicException
 	 * @return static|null|false
 	 */
 	final public static function wrap( $dao, IContextSource $context ) {
