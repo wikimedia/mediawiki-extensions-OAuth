@@ -180,14 +180,15 @@ class SessionProvider
 		}
 
 		$username = Utils::getCentralUserNameFromId( $access->getUserId(), 'raw' );
-		if ( $username === false || $username === '' ) {
+		// If there is an actual approval (not client creds), but user bound to it does not exist
+		if ( $access->getId() > 0 && ( $username === false || $username === '' ) ) {
 			return $this->makeException( 'mwoauth-invalid-authorization-invalid-user',
 				Message::rawParam( Utils::getErrorLink( 'E008' ) )
 			);
 		}
 
 		// It's okay if the user does not exist locally, it should be autocreated later
-		$localUser = User::newFromName( $username );
+		$localUser = $access->getId() > 0 ? User::newFromName( $username ) : User::newFromId( 0 );
 		if ( $access->getId() > 0 && $localUser->getId() === 0 ) {
 			$this->logger->debug( 'OAuth request for missing local user {user}, will be autocreated later', $logData );
 		}
