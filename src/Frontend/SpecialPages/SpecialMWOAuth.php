@@ -205,12 +205,17 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 						break;
 					}
 
-					$token = $oauthServer->fetch_access_token( $oauthRequest );
+					/** @var Consumer $consumer */
+					$token = $oauthServer->fetch_access_token( $oauthRequest, $consumer );
 					if ( $isRsa ) {
 						// RSA doesn't use the token secret, so don't return one.
 						$token->secret = '__unused__';
 					}
 					$this->returnToken( $token, $format );
+					$this->logger->info( 'OAuth 1: access token returned for {consumer_key}', [
+							// makes it more convenient to aggregate with OAuth 2 access token creations
+							'grant' => 'oauth1',
+					] + $consumer->getLogContext() );
 					break;
 
 				// Can be used as a return URL for non-web-based OAuth 1 applications which cannot

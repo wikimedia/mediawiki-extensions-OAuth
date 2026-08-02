@@ -14,6 +14,7 @@ use Wikimedia\Assert\Assert;
 
 class ClientCredentialsGrantWithCustomClaims extends ClientCredentialsGrant {
 
+	use AccessTokenLogger;
 	use GrantWithCustomClaims;
 
 	protected function issueAccessToken(
@@ -23,13 +24,13 @@ class ClientCredentialsGrantWithCustomClaims extends ClientCredentialsGrant {
 		array $scopes = []
 	): AccessTokenEntityInterface {
 		Assert::parameter( $userIdentifier === null, '$userIdentifier', 'must be null' );
-		if ( !( $client instanceof ClientEntity ) ) {
-			throw new LogicException( 'Unexpected type' );
-		}
 
 		$accessToken = parent::issueAccessToken( $accessTokenTTL, $client, $userIdentifier, $scopes );
-		if ( !( $accessToken instanceof AccessTokenEntity ) ) {
-			throw new LogicException( 'Unexpected type' );
+
+		if ( !( $client instanceof ClientEntity )
+			 || !( $accessToken instanceof AccessTokenEntity )
+		) {
+			throw new LogicException( 'Impossible but makes static checkers happy' );
 		}
 
 		// T417278 set user ID so the JWT has a `sub` field and doesn't break rate limiting etc.
@@ -41,6 +42,8 @@ class ClientCredentialsGrantWithCustomClaims extends ClientCredentialsGrant {
 		$accessToken->setUserIdentifier( (string)$client->getUserId() );
 
 		$this->addCustomClaims( $client, $userIdentifier, $accessToken );
+
+		$this->logAccessToken( $accessToken, $client );
 
 		return $accessToken;
 	}

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\OAuth\Backend;
 
+use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthServer;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -230,13 +231,13 @@ class MWOAuthServer extends OAuthServer {
 	 * returns the access token on success
 	 *
 	 * @param OAuthRequest &$request
+	 * @param Consumer|null &$consumer output parameter
 	 * @return MWOAuthToken
-	 * @throws MWOAuthException
+	 * @throws OAuthException
 	 */
-	public function fetch_access_token( &$request ) {
+	public function fetch_access_token( &$request, &$consumer = null ) {
 		$this->get_version( $request );
 
-		/** @var Consumer $consumer */
 		$consumer = $this->get_consumer( $request );
 
 		// Consumer must not be owner-only
