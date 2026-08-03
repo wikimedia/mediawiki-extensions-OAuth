@@ -362,12 +362,11 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					'@phan-var string $format';
 					$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
 						->getConsumerRepository();
-					$cmrAc = ConsumerAccessControl::wrap(
-						$consumerRepository->getByKey(
-							$request->getVal( 'oauth_consumer_key', null )
-						),
+					$consumerKey = $request->getRawVal( 'oauth_consumer_key' );
+					$cmrAc = $consumerKey ? ConsumerAccessControl::wrap(
+						$consumerRepository->getByKey( $consumerKey ),
 						$this->getContext()
-					);
+					) : null;
 
 					if ( !$cmrAc || !$cmrAc->userCanAccess( 'userId' ) ) {
 						$this->showError(
