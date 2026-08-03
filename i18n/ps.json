@@ -129,7 +129,7 @@
 	"notification-oauth-app-reject-primary-link": "کاريال کتل",
 	"notification-oauth-app-disable-primary-link": "کاريال کتل",
 	"notification-oauth-app-reenable-primary-link": "کاريال کتل",
-	"notification-oauth-app-body": "سبب: $1",
+	"notification-oauth-app-body": "لامل: $1",
 	"mwoauth-oauth-version": "د OAuth پروتوکول بلبڼه",
 	"mwoauth-oauth2-granttype-auth-code": "واک ورکولو کوډ",
 	"mwoauthconsumer-application-view": "دا کاريال ښودل",

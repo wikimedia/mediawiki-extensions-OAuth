@@ -41,7 +41,7 @@
 	"mwoauth-consumer-owner-only-help": "Со оваа можност, потрошувачот ќе биде автоматски одобрен и прифатин за употреба од $1. Нема да може да го користи било кој друг корисник, и нема да работи вообичаениот тек на овластување. Дејствата на овој потрошувач нема да се означуваат.",
 	"mwoauth-consumer-description": "Опис на извршникот:",
 	"mwoauth-consumer-callbackurl": "URL-адреса за возврат на OAuth:",
-	"mwoauth-consumer-callbackurl-help": "За разлика од OAuth 1.0a, оваа URL-адреса е точно совпадната",
+	"mwoauth-consumer-callbackurl-help": "За разлика од OAuth 1.0a, оваа URL-адреса е точно совпадната.",
 	"mwoauth-consumer-callbackurl-warning": "(џокерска порта)",
 	"mwoauth-consumer-callbackurl-protocol": "(необичен протокол)",
 	"mwoauth-consumer-callbackisprefix": "Овозможи му на потрошувачот да укаже возврат во барањата и погоре да користи URL за повратен повик како задолжителна претставка.",
