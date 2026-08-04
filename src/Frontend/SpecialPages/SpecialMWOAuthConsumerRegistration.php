@@ -17,6 +17,7 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ListMyConsumersPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\Extension\OAuth\OAuthServices;
@@ -95,7 +96,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
 		$request = $this->getRequest();
 		$user = $this->getUser();
-		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
+		$userEntity = UserEntity::newFromMWUser( $user );
 
 		// Redirect to HTTPs if attempting to access this page via HTTP.
 		// Proposals and updates to consumers can involve sending new secrets.
@@ -160,7 +161,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				if ( !$cmrAc ) {
 					$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 					break;
-				} elseif ( $cmrAc->getDAO()->getUserId() !== $centralUserId ) {
+				} elseif ( !$cmrAc->getDAO()->isOwnedBy( $userEntity ) ) {
 					// Do not allow copying another user's consumer
 					$this->getOutput()->addWikiMsg( 'mwoauth-consumer-not-owned-by-user' );
 					break;
@@ -186,7 +187,7 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 					&& !$this->permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' )
 				) {
 					throw new PermissionsError( 'mwoauthviewsuppressed' );
-				} elseif ( $cmrAc->getDAO()->getUserId() !== $centralUserId ) {
+				} elseif ( !$cmrAc->getDAO()->isOwnedBy( $userEntity ) ) {
 					// Do not show private information to other users
 					$this->getOutput()->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 					break;
@@ -316,7 +317,9 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				}
 				break;
 			case 'list':
-				$pager = new ListMyConsumersPager( $this, [], $centralUserId );
+				// FIXME: This class is not supposed to accept null
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+				$pager = new ListMyConsumersPager( $this, [], $userEntity?->getCentralId() );
 				if ( $pager->getNumRows() ) {
 					$this->getOutput()->addHTML( $pager->getNavigationBar() );
 					$this->getOutput()->addHTML( $pager->getBody() );

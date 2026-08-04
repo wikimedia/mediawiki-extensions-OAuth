@@ -297,7 +297,7 @@ class ConsumerSubmitControl extends SubmitControl {
 				$cmr = $consumerRepository->getByKey( $this->vals['consumerKey'], IDBAccessObject::READ_LATEST );
 				if ( !$cmr ) {
 					return $this->failure( 'invalid_consumer_key', 'mwoauth-invalid-consumer-key' );
-				} elseif ( $cmr->getUserId() !== $centralUserId ) {
+				} elseif ( !$cmr->isOwnedBy( $userEntity ) ) {
 					return $this->failure( 'permission_denied', 'badaccess-group0' );
 				} elseif (
 					$cmr->getStage() !== Consumer::STAGE_APPROVED

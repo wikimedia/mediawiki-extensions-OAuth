@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Backend;
 
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Extension\OAuth\Control\ConsumerValidator;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -210,15 +211,23 @@ class ConsumerAcceptance extends MWOAuthDAO {
 	}
 
 	/**
+	 * Check if the acceptance was authorized by $user.
+	 *
+	 * Always false when $user is null (as a convenience for using methods which return a UserEntity or null).
+	 */
+	public function isAuthorizedBy( ?UserEntity $user ): bool {
+		return $user && $this->userId === $user->getCentralId();
+	}
+
+	/**
 	 * @param string $name
 	 * @param IContextSource $context
 	 * @return Message|true
 	 */
 	protected function userCanSee( $name, IContextSource $context ) {
-		$centralUserId = Utils::getCentralIdFromLocalUser( $context->getUser() );
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
-		if ( $this->userId != $centralUserId
+		if ( !$this->isAuthorizedBy( UserEntity::newFromMWUser( $context->getUser() ) )
 			&& !$permissionManager->userHasRight( $context->getUser(), 'mwoauthviewprivate' )
 		) {
 			return $context->msg( 'mwoauth-field-private' );

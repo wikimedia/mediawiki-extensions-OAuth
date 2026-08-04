@@ -10,6 +10,7 @@ use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceAccessControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceSubmitControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
 use MediaWiki\Extension\OAuth\Control\SubmitControl;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Frontend\Pagers\ManageMyGrantsPager;
 use MediaWiki\Extension\OAuth\Frontend\UIUtils;
 use MediaWiki\Extension\OAuth\OAuthServices;
@@ -138,9 +139,8 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	 */
 	protected function handleConsumerForm( $acceptanceId, $type ) {
 		$user = $this->getUser();
-
-		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
-		if ( !$centralUserId ) {
+		$userEntity = UserEntity::newFromMWUser( $user );
+		if ( !$userEntity ) {
 			$this->getOutput()->addWikiMsg( 'badaccess-group0' );
 			return;
 		}
@@ -149,7 +149,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			->getConsumerAcceptanceRepository();
 		$cmraAc = ConsumerAcceptanceAccessControl::wrap(
 			$consumerAcceptanceRepository->getById( $acceptanceId ), $this->getContext() );
-		if ( !$cmraAc || $cmraAc->getUserId() !== $centralUserId ) {
+		if ( !$cmraAc || !$cmraAc->getDAO()->isAuthorizedBy( $userEntity ) ) {
 			$this->getOutput()->addHTML( $this->msg( 'mwoauth-invalid-access-token' )->escaped() );
 			return;
 		}

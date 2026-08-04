@@ -333,14 +333,14 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 	 */
 	private function addNavigationSubtitle( ConsumerAccessControl $cmrAc ): void {
 		$user = $this->getUser();
-		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
+		$userEntity = UserEntity::newFromMWUser( $user );
 		$linkRenderer = $this->getLinkRenderer();
 		$consumer = $cmrAc->getDAO();
 
 		$siteLinks = array_merge(
-			$this->updateLink( $cmrAc, $centralUserId, $linkRenderer ),
+			$this->updateLink( $cmrAc, $userEntity, $linkRenderer ),
 			$this->manageConsumerLink( $consumer, $user, $linkRenderer ),
-			$this->manageMyGrantsLink( $consumer, UserEntity::newFromMWUser( $user ), $linkRenderer )
+			$this->manageMyGrantsLink( $consumer, $userEntity, $linkRenderer )
 		);
 
 		if ( $siteLinks ) {
@@ -353,17 +353,18 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 
 	/**
 	 * @param ConsumerAccessControl $cmrAc
-	 * @param int $centralUserId Add update link for this user id, if they can update the consumer
+	 * @param UserEntity $user Add update link for this user, if they can update the consumer
 	 * @param LinkRenderer $linkRenderer
 	 * @return string[]
 	 * @throws MWException
 	 */
 	private function updateLink(
-		ConsumerAccessControl $cmrAc, $centralUserId,
+		ConsumerAccessControl $cmrAc,
+		UserEntity $user,
 		LinkRenderer $linkRenderer
 	): array {
 		if ( Utils::isCentralWiki()
-			&& $cmrAc->getDAO()->getUserId() === $centralUserId
+			&& $cmrAc->getDAO()->isOwnedBy( $user )
 		) {
 			return [
 				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'OAuthConsumerRegistration',

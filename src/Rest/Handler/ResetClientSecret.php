@@ -3,8 +3,8 @@
 namespace MediaWiki\Extension\OAuth\Rest\Handler;
 
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
+use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -50,9 +50,7 @@ class ResetClientSecret extends AbstractClientHandler {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'mwoauth-consumer-deleted-error' ), 401
 			);
-		} elseif ( $dataAccessObj->getUserId() !== Utils::getCentralIdFromLocalUser(
-				$requestContext->getUser()
-			) ) {
+		} elseif ( !$dataAccessObj->isOwnedBy( UserEntity::newFromMWUser( $requestContext->getUser() ) ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'mwoauth-consumer-user-mismatch' ), 400
 			);

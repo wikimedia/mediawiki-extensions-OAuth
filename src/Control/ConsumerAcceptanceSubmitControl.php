@@ -107,7 +107,6 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 		if ( !$userEntity ) {
 			return $this->failure( 'permission_denied', 'badaccess-group0' );
 		}
-		$centralUserId = $userEntity->getCentralId();
 
 		switch ( $action ) {
 			case 'accept':
@@ -176,7 +175,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 					$this->vals['acceptanceId'], IDBAccessObject::READ_LATEST );
 				if ( !$cmra ) {
 					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
-				} elseif ( $cmra->getUserId() !== $centralUserId ) {
+				} elseif ( !$cmra->isAuthorizedBy( $userEntity ) ) {
 					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 				}
 				$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
@@ -214,7 +213,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 					$this->vals['acceptanceId'], IDBAccessObject::READ_LATEST );
 				if ( !$cmra ) {
 					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
-				} elseif ( $cmra->getUserId() !== $centralUserId ) {
+				} elseif ( !$cmra->isAuthorizedBy( $userEntity ) ) {
 					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
 				}
 

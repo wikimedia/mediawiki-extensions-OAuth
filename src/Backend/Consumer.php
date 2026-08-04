@@ -724,10 +724,19 @@ abstract class Consumer extends MWOAuthDAO {
 		}
 
 		if ( $this->stage === self::STAGE_PROPOSED || $this->stage === self::STAGE_APPROVED ) {
-			return ( $user && $this->userId === $user->getCentralId() );
+			return $this->isOwnedBy( $user );
 		}
 
 		return false;
+	}
+
+	/**
+	 * Check if the consumer is owned by $user.
+	 *
+	 * Always false when $user is null (as a convenience for using methods which return a UserEntity or null).
+	 */
+	public function isOwnedBy( ?UserEntity $user ): bool {
+		return $user && $this->userId === $user->getCentralId();
 	}
 
 	protected function normalizeValues() {
@@ -869,7 +878,7 @@ abstract class Consumer extends MWOAuthDAO {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$user = $context->getUser();
 
-		if ( $this->getUserId() === Utils::getCentralIdFromLocalUser( $user ) ) {
+		if ( $this->isOwnedBy( UserEntity::newFromMWUser( $user ) ) ) {
 			// owners can always see the details of their apps, unless the app got deleted-suppressed
 			return $this->userCanSee( $name, $context );
 		} elseif ( $this->getOwnerOnly() ) {
