@@ -23,8 +23,10 @@ class UserEntity implements UserEntityInterface {
 	 * @return UserEntity|null
 	 */
 	public static function newFromMWUser( UserIdentity $user ) {
-		$centralUserId = Utils::getCentralIdFromLocalUser( $user );
-		return $centralUserId ? new static( $centralUserId ) : null;
+		$lookup = Utils::getCentralIdLookup();
+		// Do not use ::centralIdFromLocalUser(), since we only require the user to be owned, not attached
+		$centralUserId = $lookup->centralIdFromName( $user->getName(), CentralIdLookup::AUDIENCE_RAW );
+		return $centralUserId && $lookup->isOwned( $user ) ? new static( $centralUserId ) : null;
 	}
 
 	/**

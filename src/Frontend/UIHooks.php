@@ -49,7 +49,7 @@ class UIHooks implements
 	public function onGetPreferences( $user, &$preferences ) {
 		$dbr = Utils::getOAuthDB( DB_REPLICA );
 		$conds = [
-			'oaac_user_id' => Utils::getCentralIdFromLocalUser( $user ),
+			'oaac_user_id' => Utils::getCentralIdLookup()->centralIdFromLocalUser( $user ),
 		];
 
 		if ( !$this->permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {

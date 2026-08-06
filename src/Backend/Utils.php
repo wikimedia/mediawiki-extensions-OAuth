@@ -20,7 +20,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\User\User;
-use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use StatusValue;
@@ -305,23 +304,6 @@ class Utils {
 
 	private static function usingCentralIds(): bool {
 		return !( self::getCentralIdLookup() instanceof LocalIdLookup );
-	}
-
-	/**
-	 * Given a local User object, get the user ID for that user on the central wiki.
-	 * The user does not need to be registered locally, but it needs to be owned by the central user.
-	 * No audience checks are done for the lookup.
-	 *
-	 * @param UserIdentity $user
-	 * @return int|bool ID or false if not found
-	 */
-	public static function getCentralIdFromLocalUser( UserIdentity $user ) {
-		$lookup = self::getCentralIdLookup();
-		if ( !$lookup->isOwned( $user ) ) {
-			return false;
-		} else {
-			return $lookup->centralIdFromName( $user->getName(), CentralIdLookup::AUDIENCE_RAW ) ?: false;
-		}
 	}
 
 	/**

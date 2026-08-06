@@ -266,7 +266,8 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	protected function showConsumerList() {
 		$this->getOutput()->addWikiMsg( 'mwoauthmanagemygrants-text' );
 
-		$centralUserId = Utils::getCentralIdFromLocalUser( $this->getUser() );
+		$centralUserId = Utils::getCentralIdLookup()->centralIdFromLocalUser( $this->getUser() );
+		// FIXME: This class is not supposed to accept null
 		$pager = new ManageMyGrantsPager( $this, [], $centralUserId );
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addHTML( $pager->getNavigationBar() );

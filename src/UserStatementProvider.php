@@ -7,6 +7,7 @@ use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsInfo;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 
@@ -107,9 +108,13 @@ class UserStatementProvider {
 	 * @return array
 	 */
 	public function getUserProfile() {
+		$lookup = Utils::getCentralIdLookup();
+		$centralUserId = $lookup->isOwned( $this->user ) ?
+			$lookup->centralIdFromName( $this->user->getName(), CentralIdLookup::AUDIENCE_RAW ) :
+			0;
 		$profile = [
 			// 'sub' should be a StringOrURI - https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.2
-			'sub' => (string)Utils::getCentralIdFromLocalUser( $this->user ),
+			'sub' => (string)$centralUserId,
 		];
 		// Include some MediaWiki info about the user
 		if ( !$this->user->isHidden() ) {

@@ -30,8 +30,8 @@ class UserMergeHook implements MergeAccountFromToHook {
 
 	/** @inheritDoc */
 	public function onMergeAccountFromTo( User &$oUser, User &$nUser ) {
-		$oldid = Utils::getCentralIdFromLocalUser( $oUser );
-		$newid = Utils::getCentralIdFromLocalUser( $nUser );
+		$oldid = Utils::getCentralIdLookup()->centralIdFromLocalUser( $oUser );
+		$newid = Utils::getCentralIdLookup()->centralIdFromLocalUser( $nUser );
 		if ( $oldid && $newid ) {
 			self::doUserIdMerge( $oldid, $newid );
 		}
