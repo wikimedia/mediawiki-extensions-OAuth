@@ -11,12 +11,12 @@ use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodPlaintext;
-use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\LocalIdLookup;
@@ -492,10 +492,10 @@ class Utils {
 	 * Get an HTML link to mediawiki.org page about an error code, such as E001.
 	 */
 	public static function getErrorLink( string $code ): string {
-		return Linker::makeExternalLink(
+		return MediaWikiServices::getInstance()->getLinkRenderer()->makeExternalLink(
 			'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth/Errors#' . $code,
 			$code,
-			true
+			SpecialPage::getTitleFor( 'Badtitle' )
 		);
 	}
 
