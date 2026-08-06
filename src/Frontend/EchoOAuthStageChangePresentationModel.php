@@ -10,6 +10,7 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 
 class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
@@ -123,8 +124,11 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 	 */
 	protected function getOwner() {
 		if ( $this->owner === null ) {
-			$this->owner = Utils::getLocalUserFromCentralId(
-				$this->event->getExtraParam( 'owner-id' ) );
+			$userIdentity = Utils::getCentralIdLookup()->localUserFromCentralId(
+				$this->event->getExtraParam( 'owner-id' ),
+				CentralIdLookup::AUDIENCE_RAW
+			);
+			$this->owner = $userIdentity ? User::newFromIdentity( $userIdentity ) : false;
 		}
 		// No need to check whether the user is hidden, the only messages in which the owner
 		// is a parameter are only shown to the owner.

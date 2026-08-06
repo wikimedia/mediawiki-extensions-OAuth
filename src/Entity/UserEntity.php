@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Entity;
 
 use League\OAuth2\Server\Entities\UserEntityInterface;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 
@@ -32,8 +33,9 @@ class UserEntity implements UserEntityInterface {
 	 * @return UserEntity|null
 	 */
 	public static function newFromCentralId( int $centralUserId ) {
-		$localUser = Utils::getLocalUserFromCentralId( $centralUserId );
-		return $localUser ? new static( $centralUserId ) : null;
+		$userIdentity = Utils::getCentralIdLookup()
+			->localUserFromCentralId( $centralUserId, CentralIdLookup::AUDIENCE_RAW );
+		return $userIdentity ? new static( $centralUserId ) : null;
 	}
 
 	/**
@@ -59,6 +61,8 @@ class UserEntity implements UserEntityInterface {
 	 * @return User|false
 	 */
 	public function getMWUser(): false|User {
-		return Utils::getLocalUserFromCentralId( $this->identifier );
+		$userIdentity = Utils::getCentralIdLookup()
+			->localUserFromCentralId( $this->identifier, CentralIdLookup::AUDIENCE_RAW );
+		return $userIdentity ? User::newFromIdentity( $userIdentity ) : false;
 	}
 }

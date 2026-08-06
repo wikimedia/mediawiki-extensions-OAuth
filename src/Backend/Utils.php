@@ -296,22 +296,6 @@ class Utils {
 		return new MWOAuthDataStore( $lb, self::getSessionCache(), self::getNonceCache() );
 	}
 
-	/**
-	 * Given a central wiki user ID, get a local User object.
-	 * No audience checks are done for the lookup.
-	 *
-	 * @param int $userId
-	 * @return User|false False if not found
-	 */
-	public static function getLocalUserFromCentralId( $userId ) {
-		$lookup = self::getCentralIdLookup();
-		$user = $lookup->localUserFromCentralId( $userId, CentralIdLookup::AUDIENCE_RAW );
-		if ( $user === null ) {
-			return false;
-		}
-		return User::newFromIdentity( $user );
-	}
-
 	public static function getCentralIdLookup(): CentralIdLookup {
 		global $wgMWOAuthSharedUserSource;
 
@@ -415,7 +399,8 @@ class Utils {
 	 */
 	public static function locateUsersToNotify( Event $event ) {
 		$agent = $event->getAgent();
-		$owner = self::getLocalUserFromCentralId( $event->getExtraParam( 'owner-id' ) );
+		$owner = self::getCentralIdLookup()
+			->localUserFromCentralId( $event->getExtraParam( 'owner-id' ), CentralIdLookup::AUDIENCE_RAW );
 
 		$users = [];
 		switch ( $event->getType() ) {
@@ -435,8 +420,8 @@ class Utils {
 			case 'oauth-app-disable':
 			case 'oauth-app-reenable':
 				// notify owner if someone else changed the status of the app
-				if ( !$owner->equals( $agent ) ) {
-					$users[$owner->getId()] = $owner;
+				if ( $owner && !$owner->equals( $agent ) ) {
+					$users[$owner->getId()] = User::newFromIdentity( $owner );
 				}
 				break;
 		}

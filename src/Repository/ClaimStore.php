@@ -11,6 +11,8 @@ use MediaWiki\Extension\OAuth\Entity\MWClientEntityInterface;
 use MediaWiki\Extension\OAuth\HookRunner;
 use MediaWiki\HookContainer\HookRunner as CoreHookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\CentralId\CentralIdLookup;
+use MediaWiki\User\User;
 
 class ClaimStore {
 
@@ -51,7 +53,11 @@ class ClaimStore {
 			$user = $clientEntity->getUser();
 		}
 		if ( !$user && $userIdentifier ) {
-			$user = Utils::getLocalUserFromCentralId( (int)$userIdentifier );
+			$userIdentity = Utils::getCentralIdLookup()
+				->localUserFromCentralId( (int)$userIdentifier, CentralIdLookup::AUDIENCE_RAW );
+			if ( $userIdentity ) {
+				$user = User::newFromIdentity( $userIdentity );
+			}
 		}
 		if ( $user ) {
 			$this->coreHookRunner->onGetSessionJwtData( $user, $claims );

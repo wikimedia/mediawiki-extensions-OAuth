@@ -15,6 +15,7 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Repository\ClaimStore;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use Wikimedia\Message\MessageValue;
 
@@ -86,7 +87,9 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 	 * @return bool|User
 	 */
 	public function getUser() {
-		return Utils::getLocalUserFromCentralId( $this->getUserId() );
+		$userIdentity = Utils::getCentralIdLookup()
+			->localUserFromCentralId( $this->getUserId(), CentralIdLookup::AUDIENCE_RAW );
+		return $userIdentity ? User::newFromIdentity( $userIdentity ) : false;
 	}
 
 	/**

@@ -12,6 +12,7 @@ use MediaWiki\Extension\OAuth\Repository\ScopeRepository;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -166,7 +167,10 @@ class ResourceServer {
 			return;
 		}
 
-		$this->user = Utils::getLocalUserFromCentralId( $userId );
+		$userIdentity = Utils::getCentralIdLookup()
+			->localUserFromCentralId( $userId, CentralIdLookup::AUDIENCE_RAW );
+		// FIXME: This property is not supposed to be set to false
+		$this->user = $userIdentity ? User::newFromIdentity( $userIdentity ) : false;
 	}
 
 	/**
