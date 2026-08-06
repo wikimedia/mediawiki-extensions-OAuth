@@ -20,7 +20,7 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 	/** @var Consumer|false */
 	protected $consumer;
 
-	/** @var User|false The owner of the OAuth consumer */
+	/** @var ?string Username of the owner of the OAuth consumer */
 	protected $owner;
 
 	/**
@@ -60,14 +60,14 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 	public function getHeaderMessage() {
 		$action = $this->event->getExtraParam( 'action' );
 		return $this->msg( "notification-oauth-app-$action-title",
-			$this->event->getAgent(), $this->getConsumerName(), $this->getOwner() );
+			$this->event->getAgent()->getName(), $this->getConsumerName(), $this->getOwnerName() );
 	}
 
 	/** @inheritDoc */
 	public function getSubjectMessage() {
 		$action = $this->event->getExtraParam( 'action' );
 		return $this->msg( "notification-oauth-app-$action-subject",
-			$this->event->getAgent(), $this->getConsumerName(), $this->getOwner() );
+			$this->event->getAgent()->getName(), $this->getConsumerName(), $this->getOwnerName() );
 	}
 
 	/** @inheritDoc */
@@ -119,16 +119,13 @@ class EchoOAuthStageChangePresentationModel extends EchoEventPresentationModel {
 		return $this->consumer;
 	}
 
-	/**
-	 * @return User|false
-	 */
-	protected function getOwner() {
+	protected function getOwnerName(): string {
 		if ( $this->owner === null ) {
 			$userIdentity = Utils::getCentralIdLookup()->localUserFromCentralId(
 				$this->event->getExtraParam( 'owner-id' ),
 				CentralIdLookup::AUDIENCE_RAW
 			);
-			$this->owner = $userIdentity ? User::newFromIdentity( $userIdentity ) : false;
+			$this->owner = $userIdentity ? $userIdentity->getName() : '';
 		}
 		// No need to check whether the user is hidden, the only messages in which the owner
 		// is a parameter are only shown to the owner.
