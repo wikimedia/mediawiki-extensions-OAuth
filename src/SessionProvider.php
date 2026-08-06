@@ -171,7 +171,10 @@ class SessionProvider
 			return $this->makeException( 'mwoauth-invalid-authorization', $ex->getMessage() );
 		}
 
-		$logData['user'] = Utils::getCentralUserNameFromId( $access->getUserId(), 'raw' );
+		$logData['user'] = Utils::getCentralIdLookup()->nameFromCentralId(
+			$access->getUserId(),
+			CentralIdLookup::AUDIENCE_RAW
+		);
 
 		$wiki = WikiMap::getCurrentWikiId();
 		// Access token is for this wiki
@@ -181,9 +184,12 @@ class SessionProvider
 		}
 
 		if ( $access->getId() > 0 ) {
-			$username = Utils::getCentralUserNameFromId( $access->getUserId(), 'raw' );
+			$username = Utils::getCentralIdLookup()->nameFromCentralId(
+				$access->getUserId(),
+				CentralIdLookup::AUDIENCE_RAW
+			);
 			// If there is an actual approval (not client creds), but user bound to it does not exist
-			if ( $username === false || $username === '' ) {
+			if ( $username === null || $username === '' ) {
 				return $this->makeException( 'mwoauth-invalid-authorization-invalid-user',
 					Message::rawParam( Utils::getErrorLink( 'E008' ) )
 				);

@@ -487,7 +487,8 @@ class ConsumerSubmitControl extends SubmitControl {
 	 * @return Title
 	 */
 	protected function getLogTitle( IDatabase $db, $userId ) {
-		$name = Utils::getCentralUserNameFromId( $userId );
+		$name = Utils::getCentralIdLookup()->nameFromCentralId( $userId );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 		return Title::makeTitleSafe( NS_USER, $name );
 	}
 

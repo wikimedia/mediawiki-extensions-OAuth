@@ -297,22 +297,6 @@ class Utils {
 	}
 
 	/**
-	 * Given a central wiki user ID, get a central username
-	 *
-	 * @param int $userId
-	 * @param bool|User|string $audience show hidden names based on this user, or false for public
-	 * @return string|bool Username, false if not found, empty string if name is hidden
-	 */
-	public static function getCentralUserNameFromId( $userId, $audience = false ) {
-		return self::getCentralIdLookup()->nameFromCentralId(
-			$userId,
-			$audience === 'raw'
-				? CentralIdLookup::AUDIENCE_RAW
-				: ( $audience ?: CentralIdLookup::AUDIENCE_PUBLIC )
-		) ?? false;
-	}
-
-	/**
 	 * Given a central wiki user ID, get a local User object.
 	 * No audience checks are done for the lookup.
 	 *

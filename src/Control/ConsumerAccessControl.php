@@ -6,6 +6,7 @@ use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Message\Message;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWRestrictions;
 
@@ -233,7 +234,10 @@ class ConsumerAccessControl extends DAOAccessControl {
 	 */
 	public function getUserName( $audience = false ) {
 		return $this->get( 'userId', static function ( $id ) use ( $audience ) {
-			return Utils::getCentralUserNameFromId( $id, $audience );
+			return Utils::getCentralIdLookup()->nameFromCentralId(
+				$id,
+				$audience ?: CentralIdLookup::AUDIENCE_PUBLIC
+			);
 		} );
 	}
 

@@ -17,6 +17,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\StatusFormatter;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\Utils\MWCryptRand;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWiki\WikiMap\WikiMap;
@@ -153,8 +154,11 @@ class ConsumerValidator {
 				return StatusValue::newGood();
 			},
 			Consumer::FIELD_USER_ID => function ( int $userId ): StatusValue {
-				$userName = Utils::getCentralUserNameFromId( $userId, 'raw' );
-				return ( $userName === false )
+				$userName = Utils::getCentralIdLookup()->nameFromCentralId(
+					$userId,
+					CentralIdLookup::AUDIENCE_RAW
+				);
+				return ( $userName === null )
 					? $this->getErrorStatus( Consumer::FIELD_USER_ID, 'mwoauth-invalid-field-userId' )
 					: StatusValue::newGood();
 			},

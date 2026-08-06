@@ -276,8 +276,8 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 						);
 					}
 
-					$username = Utils::getCentralUserNameFromId( $access->getUserId() );
-					if ( $username === false || $username === '' ) {
+					$username = Utils::getCentralIdLookup()->nameFromCentralId( $access->getUserId() );
+					if ( $username === null || $username === '' ) {
 						throw new MWOAuthException(
 							MessageValue::new( 'mwoauth-invalid-authorization-invalid-user' )
 								// FIXME This parameter is unused
