@@ -274,7 +274,7 @@ class AuthorizationEndpointTest extends EndpointTestBase {
 		$user = User::createNew( 'AuthorizationEndpointTestUser' . $consumerKey[0] );
 
 		$consumerData = self::DEFAULT_CONSUMER_DATA;
-		$consumerData['userId'] = Utils::getCentralIdFromUserName( $user->getName() );
+		$consumerData['userId'] = Utils::getCentralIdLookup()->centralIdFromName( $user->getName() );
 		$consumerData['consumerKey'] = $consumerKey;
 		$consumerData['oauthVersion'] = '2';
 		$consumerData['name'] = $name;

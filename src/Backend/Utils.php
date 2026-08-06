@@ -14,7 +14,6 @@ use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodPlaintext;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
@@ -323,16 +322,6 @@ class Utils {
 		} else {
 			return $lookup->centralIdFromName( $user->getName(), CentralIdLookup::AUDIENCE_RAW ) ?: false;
 		}
-	}
-
-	/**
-	 * Given a username, get the user ID for that user on the central wiki.
-	 * @param string $username
-	 * @param int|Authority $audience CentralIdLookup::AUDIENCE_* flag or user
-	 * @return int|bool ID or false if not found
-	 */
-	public static function getCentralIdFromUserName( $username, $audience = CentralIdLookup::AUDIENCE_PUBLIC ) {
-		return self::getCentralIdLookup()->centralIdFromName( $username, $audience ) ?: false;
 	}
 
 	/**

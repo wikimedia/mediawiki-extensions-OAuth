@@ -70,7 +70,7 @@ class ListClients extends SimpleHandler {
 	public function run(): ResponseInterface {
 		$user = $this->getAuthority()->getUser();
 
-		$centralId = Utils::getCentralIdFromUserName( $user->getName() );
+		$centralId = Utils::getCentralIdLookup()->centralIdFromName( $user->getName() );
 		$responseFactory = $this->getResponseFactory();
 
 		if ( !$centralId ) {

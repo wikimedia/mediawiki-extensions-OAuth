@@ -217,7 +217,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 		$name = $request->getVal( 'name', '' );
 		$stage = $request->getInt( 'stage', Consumer::STAGE_APPROVED );
 		if ( $request->getVal( 'publisher', '' ) !== '' ) {
-			$centralId = Utils::getCentralIdFromUserName( $request->getVal( 'publisher' ) );
+			$centralId = Utils::getCentralIdLookup()->centralIdFromName( $request->getVal( 'publisher' ) );
 		} else {
 			$centralId = null;
 		}

@@ -135,7 +135,7 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
 						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser1' );
-					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
+					$centralId = Utils::getCentralIdLookup()->centralIdFromName( $user->getName() );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;
@@ -194,7 +194,7 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
 						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser3' );
-					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
+					$centralId = Utils::getCentralIdLookup()->centralIdFromName( $user->getName() );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;
@@ -224,7 +224,7 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
 						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser4' );
-					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
+					$centralId = Utils::getCentralIdLookup()->centralIdFromName( $user->getName() );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;
@@ -255,7 +255,7 @@ class ResetClientSecretEndpointTest extends EndpointTestBase {
 					$consumerRepository = OAuthServices::wrap( $testCase->getServiceContainer() )
 						->getConsumerRepository();
 					$user = User::createNew( 'ResetClientSecretTestUser5' );
-					$centralId = Utils::getCentralIdFromUserName( $user->getName() );
+					$centralId = Utils::getCentralIdLookup()->centralIdFromName( $user->getName() );
 
 					$consumerData = self::DEFAULT_CONSUMER_DATA;
 					$consumerData['userId'] = $centralId;

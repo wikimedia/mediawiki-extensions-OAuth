@@ -412,7 +412,7 @@ class SessionProvider
 
 	/** @inheritDoc */
 	public function preventSessionsForUser( $username ) {
-		$id = Utils::getCentralIdFromUserName( $username, CentralIdLookup::AUDIENCE_RAW );
+		$id = Utils::getCentralIdLookup()->centralIdFromName( $username, CentralIdLookup::AUDIENCE_RAW );
 		$dbw = Utils::getOAuthDB( DB_PRIMARY );
 
 		$dbw->startAtomic( __METHOD__ );
