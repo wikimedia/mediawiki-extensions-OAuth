@@ -24,13 +24,14 @@ class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideClaims() {
 		yield 'empty claims' => [
-			[], [], []
+			[], [], [ new ClaimEntity( 'grant_type', 'fake_type' ) ]
 		];
 
 		yield 'one claim' => [
 			[ 'core' => 'foo' ],
 			[ 'ext' => 'bar' ],
 			[
+				new ClaimEntity( 'grant_type', 'fake_type' ),
 				new ClaimEntity( 'core', 'foo' ),
 				new ClaimEntity( 'ext', 'bar' ),
 			],
@@ -46,6 +47,7 @@ class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 				'another' => [ 'num' => 8, 'str' => 'mock' ]
 			],
 			[
+				new ClaimEntity( 'grant_type', 'fake_type' ),
 				new ClaimEntity( 'some', 'stuff' ),
 				new ClaimEntity( 'more', 123 ),
 				new ClaimEntity( 'class', 'dummy class' ),
@@ -58,6 +60,7 @@ class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 			[ 'foo' => 'core', 'bar' => 'core' ],
 			[ 'boom' => 'ext', 'foo' => 'ext' ],
 			[
+				new ClaimEntity( 'grant_type', 'fake_type' ),
 				new ClaimEntity( 'foo', 'ext' ),
 				new ClaimEntity( 'bar', 'core' ),
 				new ClaimEntity( 'boom', 'ext' ),
@@ -141,9 +144,9 @@ class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 
 		$claims = array_map( static fn ( ClaimEntity $claimEntity ) => $claimEntity->getName(), $res );
 		if ( $expectCoreHook ) {
-			$this->assertArrayEquals( [ 'core', 'ext' ], $claims, ordered: false );
+			$this->assertArrayEquals( [ 'grant_type', 'core', 'ext' ], $claims, ordered: false );
 		} else {
-			$this->assertSame( [ 'ext' ], $claims );
+			$this->assertSame( [ 'grant_type', 'ext' ], $claims );
 		}
 	}
 
@@ -189,6 +192,7 @@ class ClaimStoreTest extends MediaWikiIntegrationTestCase {
 	public static function provideGetClaims_ownerOnly() {
 		return [
 			'non-owner-only' => [ false, [
+				new ClaimEntity( 'grant_type', 'fake_type' ),
 				new ClaimEntity( 'isOwnerOnlyCore', false ),
 				new ClaimEntity( 'isOwnerOnlyExt', false ),
 			] ],

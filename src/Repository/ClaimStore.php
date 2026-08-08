@@ -43,6 +43,8 @@ class ClaimStore {
 			// HACK: add a fake 'ownerOnly' claim to allow hooks to differentiate - owner-only tokens
 			// never expire so often it makes sense to use different claims
 			$claims['ownerOnly'] = true;
+		} else {
+			$claims['grant_type'] = $grantType;
 		}
 		$user = null;
 		if ( $clientEntity instanceof ClientEntity ) {
