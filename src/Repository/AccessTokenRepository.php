@@ -8,14 +8,26 @@ use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
+use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\AccessTokenEntity;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\MediaWikiServices;
+use stdClass;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
-class AccessTokenRepository extends DatabaseRepository implements AccessTokenRepositoryInterface {
-	private const FIELD_EXPIRES = 'oaat_expires';
+class AccessTokenRepository implements AccessTokenRepositoryInterface {
+	private const TABLE = 'oauth2_access_tokens';
+	private const FIELD_ID = 'oaat_identifier';
 	private const FIELD_ACCEPTANCE_ID = 'oaat_acceptance_id';
+	private const FIELD_EXPIRES = 'oaat_expires';
 	private const FIELD_REVOKED = 'oaat_revoked';
+	private const FIELDS = [
+		self::FIELD_ID,
+		self::FIELD_ACCEPTANCE_ID,
+		self::FIELD_EXPIRES,
+		self::FIELD_REVOKED,
+	];
 
 	/** @var string */
 	private $issuer;
@@ -64,7 +76,7 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 * @throws UniqueTokenIdentifierConstraintViolationException
 	 */
 	public function persistNewAccessToken( AccessTokenEntityInterface $accessTokenEntity ): void {
-		if ( $this->identifierExists( $accessTokenEntity->getIdentifier() ) ) {
+		if ( $this->getRowById( $accessTokenEntity->getIdentifier() ) ) {
 			throw UniqueTokenIdentifierConstraintViolationException::create();
 		}
 
@@ -73,7 +85,7 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 		$data = $this->getDbDataFromTokenEntity( $accessTokenEntity );
 
 		$this->getDB( DB_PRIMARY )->newInsertQueryBuilder()
-			->insertInto( $this->getTableName() )
+			->insertInto( self::TABLE )
 			->row( $data )
 			->caller( __METHOD__ )
 			->execute();
@@ -83,14 +95,12 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 * Revoke an access token.
 	 */
 	public function revokeAccessToken( string $tokenId ): void {
-		if ( $this->identifierExists( $tokenId ) ) {
-			$this->getDB( DB_PRIMARY )->newUpdateQueryBuilder()
-				->update( $this->getTableName() )
-				->set( [ static::FIELD_REVOKED => 1 ] )
-				->where( [ $this->getIdentifierField() => $tokenId ] )
-				->caller( __METHOD__ )
-				->execute();
-		}
+		$this->getDB( DB_PRIMARY )->newUpdateQueryBuilder()
+			->update( self::TABLE )
+			->set( [ self::FIELD_REVOKED => 1 ] )
+			->where( [ self::FIELD_ID => $tokenId ] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -101,16 +111,11 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 * @return bool Return true if this token has been revoked
 	 */
 	public function isAccessTokenRevoked( string $tokenId ): bool {
-		$row = $this->getDB()->newSelectQueryBuilder()
-			->select( static::FIELD_REVOKED )
-			->from( $this->getTableName() )
-			->where( [ $this->getIdentifierField() => $tokenId ] )
-			->caller( __METHOD__ )
-			->fetchRow();
+		$row = $this->getRowById( $tokenId );
 		if ( !$row ) {
 			return true;
 		}
-		return (bool)$row->{static::FIELD_REVOKED};
+		return (bool)$row->{self::FIELD_REVOKED};
 	}
 
 	/**
@@ -118,10 +123,10 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 *
 	 * @param int $approvalId
 	 */
-	public function deleteForApprovalId( $approvalId ) {
+	public function deleteForApprovalId( $approvalId ): void {
 		$this->getDB( DB_PRIMARY )->newDeleteQueryBuilder()
-			->deleteFrom( $this->getTableName() )
-			->where( [ static::FIELD_ACCEPTANCE_ID => $approvalId ] )
+			->deleteFrom( self::TABLE )
+			->where( [ self::FIELD_ACCEPTANCE_ID => $approvalId ] )
 			->caller( __METHOD__ )
 			->execute();
 	}
@@ -132,19 +137,31 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 	 * @param string $tokenId
 	 * @return bool|int
 	 */
-	public function getApprovalId( $tokenId ) {
-		$row = $this->getDB()->newSelectQueryBuilder()
-			->select( static::FIELD_ACCEPTANCE_ID )
-			->from( $this->getTableName() )
-			->where( [ $this->getIdentifierField() => $tokenId ] )
-			->caller( __METHOD__ )
-			->fetchRow();
+	public function getApprovalId( string $tokenId ) {
+		$row = $this->getRowById( $tokenId );
 
 		if ( $row ) {
-			return (int)$row->{static::FIELD_ACCEPTANCE_ID};
+			return (int)$row->{self::FIELD_ACCEPTANCE_ID};
 		}
 
 		return false;
+	}
+
+	/**
+	 * @param int $index
+	 * @return IDatabase|IReadableDatabase
+	 */
+	public function getDB( $index = DB_REPLICA ) {
+		return Utils::getOAuthDB( $index );
+	}
+
+	private function getRowById( string $tokenId ): false|stdClass {
+		return $this->getDB()->newSelectQueryBuilder()
+		   ->select( self::FIELDS )
+		   ->from( self::TABLE )
+		   ->where( [ self::FIELD_ID => $tokenId ] )
+		   ->caller( __METHOD__ )
+		   ->fetchRow();
 	}
 
 	private function getDbDataFromTokenEntity( AccessTokenEntity $accessTokenEntity ): array {
@@ -153,19 +170,12 @@ class AccessTokenRepository extends DatabaseRepository implements AccessTokenRep
 			$expiry = 'infinity';
 		}
 		return [
-			$this->getIdentifierField() => $accessTokenEntity->getIdentifier(),
-			static::FIELD_EXPIRES => $this->getDB()->encodeExpiry( $expiry ),
-			static::FIELD_ACCEPTANCE_ID => $accessTokenEntity->getApproval() ?
+			self::FIELD_ID => $accessTokenEntity->getIdentifier(),
+			self::FIELD_EXPIRES => $this->getDB()->encodeExpiry( $expiry ),
+			self::FIELD_ACCEPTANCE_ID => $accessTokenEntity->getApproval() ?
 				$accessTokenEntity->getApproval()->getId() :
 				0
 		];
 	}
 
-	protected function getTableName(): string {
-		return 'oauth2_access_tokens';
-	}
-
-	protected function getIdentifierField(): string {
-		return 'oaat_identifier';
-	}
 }
