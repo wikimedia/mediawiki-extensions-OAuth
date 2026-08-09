@@ -8,7 +8,6 @@ use League\OAuth2\Server\ResourceServer as LeagueResourceServer;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
-use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extension\OAuth\Repository\ScopeRepository;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
@@ -34,15 +33,15 @@ class ResourceServer {
 
 	public static function factory(): self {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
-		return new static( $config->get( 'OAuth2PublicKey' ), $config->get( 'CanonicalServer' ) );
+		return new static( $config->get( 'OAuth2PublicKey' ) );
 	}
 
 	/**
 	 * @param string $publicKey
-	 * @param string $canonicalServer
 	 */
-	protected function __construct( string $publicKey, string $canonicalServer ) {
-		$accessTokenRepository = new AccessTokenRepository( $canonicalServer );
+	protected function __construct( string $publicKey ) {
+		$accessTokenRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+			->getAccessTokenRepository();
 
 		$server = new LeagueResourceServer(
 			$accessTokenRepository,

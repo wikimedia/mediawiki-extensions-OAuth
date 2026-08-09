@@ -7,6 +7,7 @@ use MediaWiki\Extension\OAuth\Control\ConsumerValidator;
 use MediaWiki\Extension\OAuth\Control\Workflow;
 use MediaWiki\Extension\OAuth\OAuthConfigNames;
 use MediaWiki\Extension\OAuth\OAuthServices;
+use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extension\OAuth\Repository\ArrayConsumerRepository;
 use MediaWiki\Extension\OAuth\Repository\CompositeConsumerRepository;
 use MediaWiki\Extension\OAuth\Repository\ConsumerAcceptanceRepositoryInterface;
@@ -17,6 +18,10 @@ use MediaWiki\MediaWikiServices;
 
 /** @phpcs-require-sorted-array */
 return [
+
+	'OAuthAccessTokenRepository' => static function ( MediaWikiServices $services ): AccessTokenRepository {
+		return new AccessTokenRepository( Utils::getJwtIssuer() );
+	},
 
 	'OAuthConfig' => static function ( MediaWikiServices $services ): Config {
 		return $services->getMainConfig();

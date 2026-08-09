@@ -15,7 +15,6 @@ use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthRequest;
 use MediaWiki\Extension\OAuth\Backend\Utils;
-use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Json\JwtException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -125,9 +124,7 @@ class SessionProvider
 			if ( $oauthVersion === Consumer::OAUTH_VERSION_2 ) {
 				$resourceServer = ResourceServer::factory();
 				$accessTokenKey = $this->verifyOAuth2Request( $resourceServer, $request );
-				$accessTokenRepo = new AccessTokenRepository(
-					$this->config->get( MainConfigNames::CanonicalServer )
-				);
+				$accessTokenRepo = $services->getAccessTokenRepository();
 				$accessId = $accessTokenRepo->getApprovalId( $accessTokenKey );
 				if ( $accessId === 0 ) {
 					if ( $resourceServer->getClient()->getOwnerOnly() === false ) {

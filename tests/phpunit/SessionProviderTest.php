@@ -28,7 +28,6 @@ use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
 use MediaWiki\Extension\OAuth\Lib\OAuthUtil;
 use MediaWiki\Extension\OAuth\OAuthConfigNames;
 use MediaWiki\Extension\OAuth\OAuthServices;
-use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extension\OAuth\SessionProvider;
 use MediaWiki\MainConfigNames;
 use MediaWiki\RecentChanges\RecentChange;
@@ -543,7 +542,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$cmrAc = OAuthServices::wrap( $this->getServiceContainer() )
 			->getConsumerAcceptanceRepository()
 			->getById( $consumer->getId() );
-		$accessTokenRepo = new AccessTokenRepository();
+		$accessTokenRepo = OAuthServices::wrap( $this->getServiceContainer() )->getAccessTokenRepository();
 		/** @var AccessTokenEntity $accessToken */
 		$accessToken = $accessTokenRepo->getNewToken( $consumer, $consumer->getScopes(), $cmrAc->getUserId() );
 		$accessToken->setExpiryDateTime( ( new DateTimeImmutable() )->add(

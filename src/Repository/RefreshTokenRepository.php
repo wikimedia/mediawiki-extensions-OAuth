@@ -8,6 +8,7 @@ use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationExcep
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\RefreshTokenEntity;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -103,7 +104,8 @@ class RefreshTokenRepository extends CacheRepository implements RefreshTokenRepo
 			// already, but no harm in checking just in case.
 			return true;
 		}
-		$accessTokenRepository = new AccessTokenRepository();
+		$accessTokenRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+			->getAccessTokenRepository();
 		return $accessTokenRepository->getApprovalId( $refreshTokenData['accessToken'] ) === false;
 	}
 

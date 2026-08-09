@@ -7,7 +7,6 @@ use League\OAuth2\Server\CryptKey;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\BearerTokenValidator;
 use MediaWiki\Extension\OAuth\OAuthServices;
-use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\TestingAccessWrapper;
@@ -46,7 +45,7 @@ class MWOA {
 	 */
 	public static function decryptAccessToken( string $token ): array {
 		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'mwoauth' );
-		$accessTokenRepository = new AccessTokenRepository( $config->get( 'CanonicalServer' ) );
+		$accessTokenRepository = self::srv()->getAccessTokenRepository();
 		$validator = new BearerTokenValidator( $accessTokenRepository );
 		$validator->setPublicKey( new CryptKey( $config->get( 'OAuth2PublicKey' ) ) );
 		/** @var \Lcobucci\JWT\Configuration $jwtConfiguration */

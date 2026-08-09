@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth;
 use MediaWiki\Config\Config;
 use MediaWiki\Extension\OAuth\Control\ConsumerValidator;
 use MediaWiki\Extension\OAuth\Control\Workflow;
+use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Extension\OAuth\Repository\ConsumerAcceptanceRepositoryInterface;
 use MediaWiki\Extension\OAuth\Repository\ConsumerRepositoryInterface;
 use MediaWiki\MediaWikiServices;
@@ -19,6 +20,10 @@ class OAuthServices {
 	 */
 	public static function wrap( MediaWikiServices $coreServices ): static {
 		return new static( $coreServices );
+	}
+
+	public function getAccessTokenRepository(): AccessTokenRepository {
+		return $this->coreServices->get( 'OAuthAccessTokenRepository' );
 	}
 
 	public function getConfig(): Config {

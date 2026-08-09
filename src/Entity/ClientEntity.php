@@ -12,8 +12,9 @@ use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\Utils;
-use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
+use MediaWiki\Extension\OAuth\OAuthServices;
 use MediaWiki\Extension\OAuth\Repository\ClaimStore;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use Wikimedia\Message\MessageValue;
 
@@ -166,7 +167,7 @@ class ClientEntity extends Consumer implements MWClientEntityInterface {
 				$this->getLogContext()
 			);
 		}
-		$accessTokenRepo = new AccessTokenRepository();
+		$accessTokenRepo = OAuthServices::wrap( MediaWikiServices::getInstance() )->getAccessTokenRepository();
 		if ( $revokeExisting ) {
 			$accessTokenRepo->deleteForApprovalId( $approval->getId() );
 		}

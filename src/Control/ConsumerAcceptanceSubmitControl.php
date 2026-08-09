@@ -14,7 +14,6 @@ use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\OAuthServices;
-use MediaWiki\Extension\OAuth\Repository\AccessTokenRepository;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -247,7 +246,8 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 	 * @param int $approvalId
 	 */
 	private function removeOAuth2AccessTokens( $approvalId ) {
-		$accessTokenRepository = new AccessTokenRepository();
+		$accessTokenRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
+			->getAccessTokenRepository();
 		$accessTokenRepository->deleteForApprovalId( $approvalId );
 	}
 }
