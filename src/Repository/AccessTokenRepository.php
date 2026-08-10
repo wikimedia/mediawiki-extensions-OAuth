@@ -11,7 +11,6 @@ use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\AccessTokenEntity;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
-use MediaWiki\MediaWikiServices;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -29,23 +28,9 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface {
 		self::FIELD_REVOKED,
 	];
 
-	/** @var string */
-	private $issuer;
-
-	/**
-	 * @param string|null $issuer
-	 */
 	public function __construct(
-		?string $issuer = null
+		private string $issuer
 	) {
-		if ( !$issuer ) {
-			// TODO: When the extension is converted to proper use of DI,
-			// this needs to be always injected.
-			$issuer = MediaWikiServices::getInstance()
-				->getMainConfig()
-				->get( 'CanonicalServer' );
-		}
-		$this->issuer = $issuer;
 	}
 
 	/**
