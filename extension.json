@@ -184,6 +184,9 @@
 		},
 		"usermerge": {
 			"class": "MediaWiki\\Extension\\OAuth\\Backend\\UserMergeHook"
+		},
+		"xanalytics": {
+			"class": "MediaWiki\\Extension\\OAuth\\Backend\\XAnalyticsHook"
 		}
 	},
 	"Hooks": {
@@ -206,7 +209,8 @@
 		"LoginFormValidErrorMessages": "frontend",
 		"MediaWikiServices": "mwservices",
 		"LogEventsListGetExtraInputs": "logfilter",
-		"SpecialLogAddLogSearchRelations": "logfilter"
+		"SpecialLogAddLogSearchRelations": "logfilter",
+		"XAnalyticsSetHeader": "xanalytics"
 	},
 	"ConfigRegistry": {
 		"mwoauth": "MediaWiki\\Config\\GlobalVarConfig::newInstance"
