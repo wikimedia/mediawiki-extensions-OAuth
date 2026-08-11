@@ -193,6 +193,10 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 						'clientip' => $this->getContext()->getRequest()->getIP(),
 					]
 				);
+
+				if ( $cmr->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
+					$this->removeOAuth2AccessTokens( $cmra->getId() );
+				}
 				$cmra->setFields( [
 					'grants' => array_intersect( $grants, $cmr->getGrants() )
 				] );
