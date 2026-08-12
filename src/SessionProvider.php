@@ -179,19 +179,25 @@ class SessionProvider
 			return $this->makeException( 'mwoauth-invalid-authorization-wrong-wiki', $wiki );
 		}
 
-		$username = Utils::getCentralUserNameFromId( $access->getUserId(), 'raw' );
-		// If there is an actual approval (not client creds), but user bound to it does not exist
-		if ( $access->getId() > 0 && ( $username === false || $username === '' ) ) {
-			return $this->makeException( 'mwoauth-invalid-authorization-invalid-user',
-				Message::rawParam( Utils::getErrorLink( 'E008' ) )
-			);
+		if ( $access->getId() > 0 ) {
+			$username = Utils::getCentralUserNameFromId( $access->getUserId(), 'raw' );
+			// If there is an actual approval (not client creds), but user bound to it does not exist
+			if ( $username === false || $username === '' ) {
+				return $this->makeException( 'mwoauth-invalid-authorization-invalid-user',
+					Message::rawParam( Utils::getErrorLink( 'E008' ) )
+				);
+			}
+
+			// It's okay if the user does not exist locally, it should be autocreated later
+			$localUser = User::newFromName( $username );
+			if ( !$localUser->isRegistered() ) {
+				$this->logger->debug( 'OAuth request for missing local user {user}, will be autocreated later',
+					$logData );
+			}
+		} else {
+			$localUser = User::newFromId( 0 );
 		}
 
-		// It's okay if the user does not exist locally, it should be autocreated later
-		$localUser = $access->getId() > 0 ? User::newFromName( $username ) : User::newFromId( 0 );
-		if ( $access->getId() > 0 && $localUser->getId() === 0 ) {
-			$this->logger->debug( 'OAuth request for missing local user {user}, will be autocreated later', $logData );
-		}
 		if ( $localUser->isLocked() ) {
 			$this->logger->debug( 'OAuth request for locked user {user}', $logData );
 			return $this->makeException( 'mwoauth-invalid-authorization-blocked-user' );
