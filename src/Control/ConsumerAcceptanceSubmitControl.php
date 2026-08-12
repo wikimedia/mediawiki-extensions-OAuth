@@ -11,11 +11,9 @@ namespace MediaWiki\Extension\OAuth\Control;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\ILocalizedException;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
-use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\OAuthServices;
-use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
@@ -55,13 +53,6 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 	/** @inheritDoc */
 	protected function getRequiredFields() {
 		$required = [
-			'update'   => [
-				'acceptanceId' => '/^\d+$/',
-				'grants'      => static function ( $s ) {
-					$grants = FormatJson::decode( $s, true );
-					return is_array( $grants ) && Utils::grantsAreValid( $grants );
-				}
-			],
 			'renounce' => [
 				'acceptanceId' => '/^\d+$/',
 			],
@@ -168,44 +159,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 				);
 
 				return $this->success( $payload );
-			case 'update':
-				$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
-					->getConsumerAcceptanceRepository();
-				$cmra = $consumerAcceptanceRepository->getById(
-					$this->vals['acceptanceId'], IDBAccessObject::READ_LATEST );
-				if ( !$cmra ) {
-					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
-				} elseif ( !$cmra->isAuthorizedBy( $userEntity ) ) {
-					return $this->failure( 'invalid_access_token', 'mwoauth-invalid-access-token' );
-				}
-				$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
-				$cmr = $consumerRepository->getById( $cmra->getConsumerId(), IDBAccessObject::READ_LATEST );
 
-				// requested grants
-				$grants = FormatJson::decode( $this->vals['grants'], true );
-				// T413947: If the grant(s) match(es) the authonly case, treat them differently
-				// otherwise we might end up with an empty array in the DB when this is clearly not a revoke
-				// action.
-				$grants = $this->getAcceptedConsumerGrants( $grants, $cmr );
-
-				LoggerFactory::getInstance( 'OAuth' )->info(
-					'{user} performed action {action} on consumer {consumer_key}', [
-						'action' => 'update-acceptance',
-						'user' => $user->getName(),
-						'comment' => '',
-						'clientip' => $this->getContext()->getRequest()->getIP(),
-					] + $cmr->getLogContext(),
-				);
-
-				if ( $cmr->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
-					$this->removeOAuth2AccessTokens( $cmra->getId() );
-				}
-				$cmra->setFields( [
-					'grants' => $grants
-				] );
-				$consumerAcceptanceRepository->save( $cmra );
-
-				return $this->success( $cmra );
 			case 'renounce':
 				$consumerAcceptanceRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )
 					->getConsumerAcceptanceRepository();
@@ -218,7 +172,7 @@ class ConsumerAcceptanceSubmitControl extends SubmitControl {
 				}
 
 				$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
-				$cmr = $consumerRepository->getById( $cmra->get( 'consumerId' ), IDBAccessObject::READ_LATEST );
+				$cmr = $consumerRepository->getById( $cmra->getConsumerId(), IDBAccessObject::READ_LATEST );
 				LoggerFactory::getInstance( 'OAuth' )->info(
 					'{user} performed action {action} on consumer {consumer_key}', [
 						'action' => 'renounce',

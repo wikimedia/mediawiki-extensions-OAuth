@@ -66,21 +66,20 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 			throw new PermissionsError( 'mwoauthmanagemygrants' );
 		}
 
-		// Format is Special:OAuthManageMyGrants[/list|/manage/<accesstoken>]
+		// Format is Special:OAuthManageMyGrants[/list|/manage/<id>]
 		$navigation = $par !== null ? explode( '/', $par ) : [];
 		$typeKey = $navigation[0] ?? null;
 		$acceptanceId = $navigation[1] ?? null;
 
-		if ( $this->getConfig()->get( 'MWOAuthReadOnly' )
-				&& in_array( $typeKey, [ 'update', 'revoke' ] )
-		) {
-			throw new ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
-		}
-
 		switch ( $typeKey ) {
 			case 'update':
 			case 'revoke':
-				$this->handleConsumerForm( $acceptanceId ?? 0, $typeKey );
+				// Aliases for compatibility with old links - fall through
+			case 'manage':
+				if ( $this->getConfig()->get( 'MWOAuthReadOnly' ) ) {
+					throw new ErrorPageError( 'mwoauth-error', 'mwoauth-db-readonly' );
+				}
+				$this->handleConsumerForm( $acceptanceId ?? 0 );
 				break;
 			default:
 				$this->showConsumerList();
@@ -134,10 +133,9 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 	 * Show the form to approve/reject/disable/re-enable consumers
 	 *
 	 * @param int $acceptanceId
-	 * @param string $type One of (update,revoke)
 	 * @throws PermissionsError
 	 */
-	protected function handleConsumerForm( $acceptanceId, $type ) {
+	protected function handleConsumerForm( $acceptanceId ) {
 		$user = $this->getUser();
 		$userEntity = UserEntity::newFromMWUser( $user );
 		if ( !$userEntity ) {
@@ -217,9 +215,7 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 						static function ( $g ) {
 							return "grant-$g";
 						},
-						( $type === 'revoke' )
-							? array_merge( $this->grantsInfo->getValidGrants(), SubmitControl::getIrrevocableGrants() )
-							: SubmitControl::getIrrevocableGrants()
+						array_merge( $this->grantsInfo->getValidGrants(), SubmitControl::getIrrevocableGrants() )
 					),
 					'validation-callback' => null
 				],
@@ -248,26 +244,17 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 
 		$form->setWrapperLegendMsg( 'mwoauthmanagemygrants-confirm-legend' );
 		$form->suppressDefaultSubmit();
-		if ( $type === 'revoke' ) {
-			$form->addButton( [
-				'name' => 'renounce',
-				'value' => $this->msg( 'mwoauthmanagemygrants-renounce' )->text(),
-				'flags' => [ 'primary', 'destructive' ],
-			] );
-		} else {
-			$form->addButton( [
-				'name' => 'update',
-				'value' => $this->msg( 'mwoauthmanagemygrants-update' )->text(),
-				'flags' => [ 'primary', 'progressive' ],
-			] );
-		}
+		$form->addButton( [
+			'name' => 'renounce',
+			'value' => $this->msg( 'mwoauthmanagemygrants-renounce' )->text(),
+			'flags' => [ 'primary', 'destructive' ],
+		] );
 		$form->addPreHtml(
-			$this->msg( "mwoauthmanagemygrants-$type-text" )->parseAsBlock() );
+			$this->msg( "mwoauthmanagemygrants-review-text" )->parseAsBlock() );
 
 		$status = $form->show();
 		if ( $status instanceof Status && $status->isOK() ) {
-			// Messages: mwoauthmanagemygrants-success-update, mwoauthmanagemygrants-success-renounce
-			$this->getOutput()->addWikiMsg( "mwoauthmanagemygrants-success-$action", $cmrAc->getNameAndVersion() );
+			$this->getOutput()->addWikiMsg( 'mwoauthmanagemygrants-success-renounce', $cmrAc->getNameAndVersion() );
 		}
 	}
 
@@ -306,23 +293,14 @@ class SpecialMWOAuthManageMyGrants extends SpecialPage {
 
 		$linkRenderer = $this->getLinkRenderer();
 
-		$links = [];
-		if ( array_diff( $cmrAc->getGrants(), SubmitControl::getIrrevocableGrants() ) ) {
-			$links[] = $linkRenderer->makeKnownLink(
-				$this->getPageTitle( 'update/' . $cmraAc->getId() ),
-				$this->msg( 'mwoauthmanagemygrants-review' )->text()
-			);
-		}
-		$links[] = $linkRenderer->makeKnownLink(
-			$this->getPageTitle( 'revoke/' . $cmraAc->getId() ),
-			$this->msg( 'mwoauthmanagemygrants-revoke' )->text()
+		$reviewLink = $linkRenderer->makeKnownLink(
+			$this->getPageTitle( 'manage/' . $cmraAc->getId() ),
+			$this->msg( 'mwoauthmanagemygrants-review' )->text()
 		);
-		$reviewLinks = $this->getLanguage()->pipeList( $links );
-
 		$encName = $cmrAc->escapeForHtml( $cmrAc->getNameAndVersion() );
 
 		$r = '<li class="mw-mwoauthmanagemygrants-list-item">';
-		$r .= "<strong dir='ltr'>{$encName}</strong> (<strong>$reviewLinks</strong>)";
+		$r .= "<strong dir='ltr'>{$encName}</strong> (<strong>$reviewLink</strong>)";
 		$data = [
 			'mwoauthmanagemygrants-user' => $cmrAc->getUserName(),
 			'mwoauthmanagemygrants-wikiallowed' => $cmraAc->getWikiName(),
