@@ -276,12 +276,11 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 						);
 					}
 
-					$username = Utils::getCentralIdLookup()->nameFromCentralId( $access->getUserId() );
+					$lookup = Utils::getCentralIdLookup();
+					$username = $lookup->nameFromCentralId( $access->getUserId() );
 					if ( $username === null || $username === '' ) {
 						throw new MWOAuthException(
-							MessageValue::new( 'mwoauth-invalid-authorization-invalid-user' )
-								// FIXME This parameter is unused
-								->rawParams( Utils::getErrorLink( 'E008' ) ),
+							MessageValue::new( 'mwoauth-invalid-authorization-invalid-user' ),
 							[ 'cmra_id' => $access->getId() ] + $consumer->getLogContext()
 						);
 					}
@@ -291,6 +290,13 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					// We will autocreate the local user below.
 					$localUser = User::newFromName( $username );
 					$userEntity = UserEntity::newFromMWUser( $localUser );
+
+					if ( !$lookup->isOwned( $localUser ) ) {
+						throw new MWOAuthException(
+							MessageValue::new( 'mwoauth-invalid-authorization-invalid-user' ),
+							[ 'cmra_id' => $access->getId() ] + $consumer->getLogContext()
+						);
+					}
 
 					// Since we skipped normal session handling,
 					// attempt to autocreate the user now if it does not exist locally

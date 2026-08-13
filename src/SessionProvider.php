@@ -20,7 +20,6 @@ use MediaWiki\Json\JwtException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Message\Message;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\RecentChanges\Hook\MarkPatrolledHook;
 use MediaWiki\RecentChanges\Hook\RecentChange_saveHook;
@@ -171,10 +170,12 @@ class SessionProvider
 			return $this->makeException( 'mwoauth-invalid-authorization', $ex->getMessage() );
 		}
 
-		$logData['user'] = Utils::getCentralIdLookup()->nameFromCentralId(
+		$lookup = Utils::getCentralIdLookup();
+		$username = $lookup->nameFromCentralId(
 			$access->getUserId(),
 			CentralIdLookup::AUDIENCE_RAW
 		);
+		$logData['user'] = $username;
 
 		$wiki = WikiMap::getCurrentWikiId();
 		// Access token is for this wiki
@@ -184,15 +185,9 @@ class SessionProvider
 		}
 
 		if ( $access->getId() > 0 ) {
-			$username = Utils::getCentralIdLookup()->nameFromCentralId(
-				$access->getUserId(),
-				CentralIdLookup::AUDIENCE_RAW
-			);
 			// If there is an actual approval (not client creds), but user bound to it does not exist
 			if ( $username === null || $username === '' ) {
-				return $this->makeException( 'mwoauth-invalid-authorization-invalid-user',
-					Message::rawParam( Utils::getErrorLink( 'E008' ) )
-				);
+				return $this->makeException( 'mwoauth-invalid-authorization-invalid-user' );
 			}
 
 			// It's okay if the user is not yet registered locally, as long as the username
@@ -200,6 +195,11 @@ class SessionProvider
 			// MediaWiki will autocreate the local user in Setup.php.
 			$localUser = User::newFromName( $username );
 			$userEntity = UserEntity::newFromMWUser( $localUser );
+
+			if ( !$lookup->isOwned( $localUser ) ) {
+				return $this->makeException( 'mwoauth-invalid-authorization-invalid-user' );
+			}
+
 			if ( !$localUser->isRegistered() ) {
 				$this->logger->debug( 'OAuth request for missing local user {user}, will be autocreated later',
 					$logData );
