@@ -167,10 +167,18 @@ class ResourceServer {
 			return;
 		}
 
-		$userIdentity = Utils::getCentralIdLookup()
-			->localUserFromCentralId( $userId, CentralIdLookup::AUDIENCE_RAW );
-		// FIXME: This property is not supposed to be set to false
-		$this->user = $userIdentity ? User::newFromIdentity( $userIdentity ) : false;
+		$lookup = Utils::getCentralIdLookup();
+		$userName = $lookup->nameFromCentralId( $userId, CentralIdLookup::AUDIENCE_RAW );
+		if ( !$userName ) {
+			// This should be unreachable
+			throw new HttpException( 'User represented by given access token is invalid', 403 );
+		}
+		// Local user account may be unregistered if account autocreation failed
+		$this->user = User::newFromName( $userName );
+		if ( !$lookup->isOwned( $this->user ) ) {
+			// This should be unreachable
+			throw new HttpException( 'User represented by given access token is invalid', 403 );
+		}
 	}
 
 	/**
