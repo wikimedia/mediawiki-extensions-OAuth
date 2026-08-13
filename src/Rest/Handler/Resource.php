@@ -67,10 +67,11 @@ class Resource extends Handler {
 	 */
 	public function execute() {
 		$response = new Response();
-		$request = ServerRequest::fromGlobals()->withHeader(
-			'authorization',
-			$this->getRequest()->getHeader( 'authorization' )
-		);
+		$request = ServerRequest::fromGlobals();
+		if ( $this->getRequest()->hasHeader( 'authorization' ) ) {
+			// Unclear if this is necessary... the request from globals should already have the same header
+			$request = $request->withHeader( 'authorization', $this->getRequest()->getHeader( 'authorization' ) );
+		}
 
 		$callback = [ $this, 'getByType' ];
 		return $this->resourceServer->verify( $request, $response, $callback );
