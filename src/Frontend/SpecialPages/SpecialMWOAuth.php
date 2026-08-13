@@ -14,6 +14,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Exception\ILocalizedException;
 use MediaWiki\Exception\MWException;
+use MediaWiki\Extension\CheckUser\Services\CheckUserInsert;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
@@ -32,8 +33,10 @@ use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Skin\SkinFactory;
@@ -63,6 +66,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		private readonly GrantsLocalization $grantsLocalization,
 		private readonly SkinFactory $skinFactory,
 		private readonly UrlUtils $urlUtils,
+		private readonly ?CheckUserInsert $checkUserInsert,
 	) {
 		parent::__construct( 'OAuth' );
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
@@ -553,6 +557,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			!array_diff( $existing->getGrants(), Consumer::AUTH_ONLY_GRANTS ) &&
 			$cmrAc->getDAO()->isConfidential()
 		) {
+			$this->logOAuthAuthorizationSuccess( $user, $cmrAc );
 			if ( $this->oauthVersion === Consumer::OAUTH_VERSION_2 ) {
 				$this->redirectToREST( [
 					'approval_pass' => true
@@ -681,6 +686,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 		] ) );
 
 		if ( $status instanceof Status && $status->isOK() ) {
+			$this->logOAuthAuthorizationSuccess( $user, $cmrAc );
 			if ( $this->oauthVersion === Consumer::OAUTH_VERSION_2 ) {
 				$this->redirectToREST( [
 					'approval_pass' => true
@@ -690,6 +696,37 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 				$output->redirect( $status->value['result']['callbackUrl'] );
 			}
 		}
+	}
+
+	private function logOAuthAuthorizationSuccess( User $user, ConsumerAccessControl $cmrAc ): void {
+		if ( $this->checkUserInsert === null ) {
+			return;
+		}
+
+		$config = $this->getConfig();
+		if (
+			!$config->get( 'CheckUserLogLogins' ) ||
+			(
+				$user->isBot() &&
+				$config->get( 'CheckUserLogSuccessfulBotLogins' ) !== true
+			)
+		) {
+			return;
+		}
+
+		// Message used:
+		// * logentry-mwoauthconsumer-authorize
+		$logEntry = new ManualLogEntry( 'mwoauthconsumer', 'authorize' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget(
+			PageReferenceValue::localReference( NS_USER, $user->getName() )
+		);
+		$logEntry->setParameters( [
+			'4::consumer' => $cmrAc->getName(),
+			'5::consumer-key' => $cmrAc->getConsumerKey(),
+		] );
+
+		$this->checkUserInsert->updateCheckUserData( $logEntry->getRecentChange() );
 	}
 
 	private function redirectToREST( array $queryAppend = [] ) {

@@ -58,6 +58,9 @@
 				"GrantsLocalization",
 				"SkinFactory",
 				"UrlUtils"
+			],
+			"optional_services": [
+				"CheckUserInsert"
 			]
 		},
 		"OAuthManageMyGrants": {
@@ -365,6 +368,9 @@
 			}
 		}
 	],
+	"LogActionsHandlers": {
+		"mwoauthconsumer/authorize": "MediaWiki\\Logging\\LogFormatter"
+	},
 	"DatabaseVirtualDomains": [
 		"virtual-oauth"
 	],

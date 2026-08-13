@@ -251,6 +251,7 @@
 	"logentry-mwoauthconsumer-disable": "{{logentry}}\nAdditional parameters:\n* $4 - consumer key",
 	"logentry-mwoauthconsumer-reenable": "{{logentry}}\nAdditional parameters:\n* $4 - consumer key",
 	"logentry-mwoauthconsumer-create-owner-only": "{{logentry}}\nAdditional parameters:\n* $4 - consumer key",
+	"logentry-mwoauthconsumer-authorize": "{{logentry}}\nDisplayed in CheckUser for private events when a user successfully authorizes an OAuth application.\n\nAdditional parameters:\n* $4 - OAuth consumer/application name\n* $5 - OAuth consumer key",
 	"log-action-filter-mwoauthconsumer": "{{doc-log-action-filter-type|mwoauthconsumer}}\n{{Related|Log-action-filter}}",
 	"log-action-filter-mwoauthconsumer-approve": "{{doc-log-action-filter-action|mwoauthconsumer|approve}}",
 	"log-action-filter-mwoauthconsumer-create-owner-only": "{{doc-log-action-filter-action|mwoauthconsumer|create-owner-only}}",
