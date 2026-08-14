@@ -95,7 +95,6 @@
 	"mwoauthlistconsumers-status-disabled": "söndürülüb",
 	"oauthmanagemygrants": "Qoşulmuş tətbiqləri idarə et",
 	"mwoauthmanagemygrants-review": "girişi idarə et",
-	"mwoauthmanagemygrants-revoke": "girişi ləğv et",
 	"mwoauthmanagemygrants-grantaccept": "Verilib",
 	"mwoauthmanagemygrants-confirm-legend": "Qoşulmuş tətbiqin idarə edilməsi",
 	"mwoauthmanagemygrants-editslink": "Bu tətbiqdəki {{GENDER:$1|redaktələriniz}}",

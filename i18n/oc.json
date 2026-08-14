@@ -104,7 +104,6 @@
 	"mwoauthmanagemygrants-description": "Descripcion",
 	"mwoauthmanagemygrants-wikiallowed": "Autorizat sul projècte :",
 	"mwoauthmanagemygrants-grantaccept": "Acordat",
-	"mwoauthmanagemygrants-revoke-text": "Utilizar lo formulari çaijós per revocar lo dreit, per una aplicacion, d’agir en vòstre nom.",
 	"mwoauthmanagemygrants-confirm-legend": "Gerir las aplicacions connectadas",
 	"mwoauth-error": "Error de connexion de l’aplicacion",
 	"mwoauth-grants-nogrants": "L’aplicacion a pas demandat cap de dreit.",

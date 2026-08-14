@@ -132,7 +132,6 @@
 	"mwoauthmanagemygrants-update": "अनुदानांना अद्यतन करा",
 	"mwoauthmanagemygrants-renounce": "अधिकार नाकारा",
 	"mwoauthmanagemygrants-action": "स्थिती बदला:",
-	"mwoauthmanagemygrants-success-update": "आपला या अनुप्रयुक्तिसाठीचा पसंतीक्रम अद्यतन करण्यात आलेला आहे.",
 	"mwoauthdatastore-bad-source-ip": "ही विनंती अवैध अंकपत्त्याद्वारे आली आहे.",
 	"mwoauthdatastore-bad-verifier": "पुरविलेला पडताळणी संकेत वैध नाही.",
 	"mwoauthdatastore-invalid-token-type": "विनंती केलेला टोकन प्रकार अवैध आहे.",
