@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Arent",
+			"Bdijkstra",
 			"Elroy",
 			"HanV",
 			"Hansmuller",
@@ -19,7 +20,8 @@
 			"Servien",
 			"Siebrand",
 			"Sjoerddebruin",
-			"Southparkfan"
+			"Southparkfan",
+			"Sumurai8"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "De OAuth-consumer die is gebruikt om deze wijziging door te voeren ($1)",
@@ -234,12 +236,13 @@
 	"mwoauthmanagemygrants-applicablegrantsallowed": "Toegestane toewijzingen:",
 	"mwoauthmanagemygrants-review": "toegang beheren",
 	"mwoauthmanagemygrants-grantaccept": "Toegestaan",
+	"mwoauthmanagemygrants-review-text": "Gebruik het onderstaande formulier om de verleende machtigingen voor een toepassing te controleren of diens toegang tot uw account in te trekken. Als u de toegang intrekt, dan kunt u de toepassing opnieuw autoriseren wanneer u deze opnieuw gebruikt.",
 	"mwoauthmanagemygrants-confirm-legend": "Gekoppelde toepassing beheren",
 	"mwoauthmanagemygrants-update": "Toegang bijwerken",
-	"mwoauthmanagemygrants-renounce": "Machtiging intrekken",
+	"mwoauthmanagemygrants-renounce": "Toegang intrekken",
 	"mwoauthmanagemygrants-action": "Statuswijziging:",
 	"mwoauthmanagemygrants-confirm-submit": "Toegangstokenstatus bijwerken",
-	"mwoauthmanagemygrants-success-renounce": "De toegang tot uw account is voor deze toepassing ingetrokken.",
+	"mwoauthmanagemygrants-success-renounce": "De toepassing '''$1''' is niet langer gemachtigd om toegang te krijgen tot uw account. U heeft de mogelijkheid om de toepassing opnieuw toegang te geven wanneer u deze weer gebruikt.",
 	"mwoauthmanagemygrants-basic-tooltip": "'''Waarom kan ik deze toestemming niet bijwerken?'''\nDeze toewijzing geeft uw gekoppelde toepassing basisrechten die nodig zijn om goed te kunnen werken. Als u niet wilt dat deze gekoppelde toepassing deze rechten heeft, trek dan de toegang van de toepassing in.",
 	"mwoauthmanagemygrants-authonly-tooltip": "'''Waarom kan ik deze toewijzing niet bijwerken?'''\n\nAls u niet wilt dat deze verbonden toepassing dit recht heeft, moet u de toegang tot de toepassing intrekken.",
 	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Uw}} bewerkingen gemaakt door deze toepassing",

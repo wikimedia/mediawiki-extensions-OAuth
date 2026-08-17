@@ -129,7 +129,7 @@
 	"mwoauthmanagemygrants-update": "Rechter aktualiséieren",
 	"mwoauthmanagemygrants-renounce": "Autorisatioun ewechhuelen",
 	"mwoauthmanagemygrants-action": "Status änneren:",
-	"mwoauthmanagemygrants-success-renounce": "Den Accès vun der Applikatioun op Är Benotzerkont gouf ewechgeholl.",
+	"mwoauthmanagemygrants-success-renounce": "D'Applikatioun '''$1''' ass net méi autoriséiert, fir op Äre Kont zouzegräifen. Dir hutt d'Méiglechkeet, s'erëm z'autoriséieren, wann Dir d'Applikatioun nees benotzt.",
 	"mwoauthmanagemygrants-editslink": "{{GENDER:$1|Är}} Ännerungen duerch dës Applikatioun",
 	"mwoauthmanagemygrants-actionslink": "{{GENDER:$1|Är}} Aktiounen duerch dës Applikatioun",
 	"logentry-mwoauthconsumer-propose": "{{GENDER:$2|De(n) $1|D'$1|De Benotzer $1}} huet en OAuth-Konsument proposéiert (Konsumenteschlëssel $4)",
