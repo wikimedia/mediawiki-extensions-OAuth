@@ -334,6 +334,10 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 	private function addNavigationSubtitle( ConsumerAccessControl $cmrAc ): void {
 		$user = $this->getUser();
 		$userEntity = UserEntity::newFromMWUser( $user );
+		if ( !$userEntity ) {
+			return;
+		}
+
 		$linkRenderer = $this->getLinkRenderer();
 		$consumer = $cmrAc->getDAO();
 
