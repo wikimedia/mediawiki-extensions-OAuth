@@ -144,7 +144,11 @@
 	"callback": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks::onRegistration",
 	"HookHandlers": {
 		"abusefilter": {
-			"class": "MediaWiki\\Extension\\OAuth\\Backend\\AbuseFilterHookHandler"
+			"class": "MediaWiki\\Extension\\OAuth\\Backend\\AbuseFilterHookHandler",
+			"services": [
+				"ChangeTagsStore",
+				"ConnectionProvider"
+			]
 		},
 		"backend": {
 			"class": "MediaWiki\\Extension\\OAuth\\Backend\\Hooks",
