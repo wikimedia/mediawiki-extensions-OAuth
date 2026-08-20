@@ -21,7 +21,8 @@
 			"Physicsch",
 			"Reza1615",
 			"Taha",
-			"Mohammad ebz"
+			"Mohammad ebz",
+			"LProfo"
 		]
 	},
 	"mwoauth-desc": "اجازهٔ استفاده از رابط برنامه‌نویسی هویت‌سنجی OAuth ۱٫۰آ و OAuth ۲٫۰ را می‌دهد",
@@ -53,7 +54,7 @@
 	"mwoauth-consumer-restrictions-json": "محدودیت استفاده از  (JSON):",
 	"mwoauth-consumer-rsakey": "کلید عمومی RSA (اختیاری):",
 	"mwoauth-consumer-secretkey": " نشانه‌های مخفی مصرف‌کننده:",
-	"mwoauth-consumer-accesstoken": "رمز دسترسی:",
+	"mwoauth-consumer-accesstoken": "توکن دسترسی:",
 	"mwoauth-consumer-reason": "دلیل:",
 	"mwoauth-consumer-email-unconfirmed": "نشانی ایمیل شما هنوز تأیید نشده است.",
 	"mwoauth-consumer-email-mismatched": "آدرس ایمیل ارائه شده باید با حسابتان مطابقت داشته باشد.",
