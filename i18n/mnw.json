@@ -4,6 +4,8 @@
 			"咽頭べさ"
 		]
 	},
+	"mwoauth-prefs-managegrants": "အေက်ပ်မဆက်ဆောံလဝ်ဂမၠိုၚ်",
+	"mwoauth-prefs-managegrantslink": "မယဵုဒုၚ်မာန်နကဵု{{PLURAL:$1|မချိက်လဝ်အေက်ပလဳကေဃှေန် $1 သာ်|မချိက်လဝ်အေက်ပလဳကေဃှေန် $1 သာ်ဂမၠိုၚ်|0=မချိက်လဝ်အေက်ပလဳကေဃှေန်ဂမၠိုၚ်}}",
 	"mwoauth-consumer-name": "ယၟုအာက်ပလေကေဃှေန်:",
 	"mwoauth-consumer-description": "တၚ်ထမံက်ထ္ၜးပွမသုၚ်စောဲမာန်:",
 	"mwoauth-consumer-wiki": "ပရဝ်ဂျေတ်ပွမသုၚ်စောဲမာန်:",
