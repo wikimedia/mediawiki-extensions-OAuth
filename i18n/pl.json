@@ -62,7 +62,7 @@
 	"mwoauth-consumer-secretkey": "Tajny klucz konsumenta:",
 	"mwoauth-consumer-accesstoken": "Token dostępu:",
 	"mwoauth-consumer-reason": "Powód:",
-	"mwoauth-consumer-developer-agreement": "Przesyłając tę aplikację potwierdzasz, że zastrzegamy sobie prawo do wyłączenia twojej aplikacji, odebrania bądź ograniczenia Twojego oraz aplikacji dostępu do tej strony oraz do podjęcia wszelkich innych działań, które uznamy za właściwe, jeżeli uznamy według naszego osądu, że Twoja aplikacja narusza nasze zasady, wytyczne oraz przewodnie reguły tej strony. Możemy zmienić nasze Wytyczne Aplikacji w każdym momencie bez wcześniejszego powiadamiania o tym i według własnego uznania, gdy uznamy to za konieczne. Dalsze używanie OAuth oznacza akceptację tych zmian.",
+	"mwoauth-consumer-developer-agreement": "Przesyłając tę aplikację, potwierdzasz, że zastrzegamy sobie prawo do wyłączenia Twojej aplikacji, odebrania bądź ograniczenia Twojego oraz aplikacji dostępu do tej strony oraz do podjęcia wszelkich innych działań, które uznamy za właściwe, jeżeli uznamy według naszego osądu, że Twoja aplikacja narusza nasze zasady, wytyczne oraz przewodnie reguły tej strony. Możemy zmienić nasze Wytyczne aplikacji w każdym momencie bez wcześniejszego powiadamiania o tym i według własnego uznania, gdy uznamy to za konieczne. Dalsze używanie OAuth oznacza akceptację tych zmian.",
 	"mwoauth-consumer-email-unconfirmed": "Adres e-mail Twojego konta nie został jeszcze zweryfikowany.",
 	"mwoauth-consumer-email-mismatched": "Wprowadzony adres e-mail musi pasować do adresu Twojego konta.",
 	"mwoauth-consumer-alreadyexists": "Konsument z taką kombinacją nazwy/wersji/wydawcy już istnieje",
