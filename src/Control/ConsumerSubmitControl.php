@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\OAuth\Control;
 use Exception;
 use LogicException;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\Extension\Notifications\Model\Event;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthDataStore;
@@ -18,11 +17,13 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Notification\RecipientSet;
+use MediaWiki\Notification\Types\AgentNotification;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWCryptRand;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDatabase;
@@ -551,29 +552,29 @@ class ConsumerSubmitControl extends SubmitControl {
 
 	/**
 	 * @param Consumer $cmr Consumer which was the subject of the action
-	 * @param User $user User who performed the action
+	 * @param UserIdentity $user User who performed the action
 	 * @param string $actionType
 	 * @param string $comment
 	 */
 	protected function notify( $cmr, $user, $actionType, $comment ) {
 		if ( !in_array( $actionType, self::$actions, true ) ) {
 			throw new LogicException( "Invalid action type: $actionType" );
-		} elseif ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
-			return;
 		} elseif ( !Utils::isCentralWiki() ) {
 			# sanity; should never get here on a replica wiki
 			return;
 		}
 
-		Event::create( [
-			'type' => 'oauth-app-' . $actionType,
-			'agent' => $user,
-			'extra' => [
+		MediaWikiServices::getInstance()->getNotificationService()->notify(
+			new AgentNotification( 'oauth-app-' . $actionType, $user, [
 				'action' => $actionType,
 				'app-key' => $cmr->getConsumerKey(),
 				'owner-id' => $cmr->getUserId(),
 				'comment' => $comment,
-			],
-		] );
+			] ),
+			// The actual recipients (admins or the app owner, depending on action) are
+			// resolved by Echo via the notification type's own user-locators config
+			// (Utils::locateUsersToNotify()).
+			new RecipientSet( [] )
+		);
 	}
 }
