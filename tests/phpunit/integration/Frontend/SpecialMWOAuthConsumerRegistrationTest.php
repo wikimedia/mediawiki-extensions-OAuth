@@ -287,7 +287,6 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 			'ownerOnly' => false,
 			'callbackUrl' => 'https://example.com/oauth',
 			'callbackIsPrefix' => false,
-			'email' => 'owner@wiki.domain',
 			'wiki' => '*',
 			'oauth2IsConfidential' => null,
 			'oauth2GrantTypes' => [],
@@ -332,7 +331,6 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 			'ownerOnly' => true,
 			'callbackUrl' => 'https://example.com/oauth',
 			'callbackIsPrefix' => false,
-			'email' => 'owner@wiki.domain',
 			'wiki' => '*',
 			'oauth2IsConfidential' => null,
 			'oauth2GrantTypes' => [],
@@ -377,7 +375,6 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 			'ownerOnly' => false,
 			'callbackUrl' => 'https://example.com/oauth',
 			'callbackIsPrefix' => null,
-			'email' => 'owner@wiki.domain',
 			'wiki' => '*',
 			'oauth2IsConfidential' => true,
 			'oauth2GrantTypes' => [ 'authorization_code', 'refresh_token' ],
@@ -422,7 +419,6 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 			'ownerOnly' => true,
 			'callbackUrl' => 'https://example.com/oauth',
 			'callbackIsPrefix' => null,
-			'email' => 'owner@wiki.domain',
 			'wiki' => '*',
 			'oauth2IsConfidential' => true,
 			'oauth2GrantTypes' => [ 'client_credentials' ],
@@ -454,6 +450,40 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 		$this->assertStringContainsString( '>manage</a>', $pageHtml );
 		$this->assertStringContainsString( '>Contact email<', $pageHtml );
 		$this->assertStringContainsString( '> created an owner-only OAuth consumer (consumer key <', $pageHtml );
+	}
+
+	public function testProposeStoresOwnEmailWithoutEmailInput(): void {
+		$this->assertCentralAuthExtensionIsLoaded();
+
+		// No 'email' key: the proposal form no longer asks for one.
+		$spec = [
+			'oauthVersion' => Consumer::OAUTH_VERSION_2,
+			'name' => 'no email input',
+			'version' => '1.0',
+			'description' => 'test',
+			'ownerOnly' => false,
+			'callbackUrl' => 'https://example.com/oauth',
+			'callbackIsPrefix' => null,
+			'wiki' => '*',
+			'oauth2IsConfidential' => true,
+			'oauth2GrantTypes' => [ 'authorization_code', 'refresh_token' ],
+			'granttype' => 'normal',
+			'grants' => json_encode( [ 'editpage' ] ),
+			'restrictions' => MWRestrictions::newDefault(),
+			'rsaKey' => '',
+			'agreement' => true,
+			'action' => 'propose',
+		];
+
+		$user = $this->getTestSysop()->getUser();
+		$this->createCentralUserAccount( $user );
+
+		$consumer = $this->registerOAuthConsumer( $user, $spec, StatusValue::newGood() );
+
+		// The contact address is taken from the proposer's account, not from the form.
+		$this->assertInstanceOf( ClientEntity::class, $consumer );
+		$this->assertSame( 'owner@wiki.domain', $consumer->getEmail() );
+		$this->assertNotEmpty( $consumer->getEmailAuthenticated() );
 	}
 
 	public function testExecuteReadOnlyMode(): void {
@@ -535,7 +565,6 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 			'ownerOnly' => true,
 			'callbackUrl' => 'https://example.com/oauth',
 			'callbackIsPrefix' => null,
-			'email' => 'owner@wiki.domain',
 			'wiki' => '*',
 			'oauth2IsConfidential' => true,
 			'oauth2GrantTypes' => [ 'client_credentials' ],

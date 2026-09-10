@@ -58,9 +58,12 @@ class RequestClientEndpointTest extends EndpointTestBase {
 	];
 
 	/**
+	 * An email address that differs from the requesting user's. The parameter is
+	 * accepted for backwards compatibility but ignored, so this must still succeed.
+	 *
 	 * @var array
 	 */
-	private const JSON_BODY_EMAIL_MISTMATCH = [
+	private const JSON_BODY_DIFFERENT_EMAIL = [
 		'email' => '_test@test.com',
 	];
 
@@ -162,18 +165,18 @@ class RequestClientEndpointTest extends EndpointTestBase {
 					return $user;
 				}
 			],
-			'Email Mismatch' => [
+			'Email differing from the account is ignored' => [
 				[
 					'method' => 'POST',
 					'uri' => self::makeUri( '/oauth2/client' ),
-					'parsedBody' => array_merge( self::DEFAULT_JSON_BODY, self::JSON_BODY_EMAIL_MISTMATCH ),
+					'parsedBody' => array_merge( self::DEFAULT_JSON_BODY, self::JSON_BODY_DIFFERENT_EMAIL ),
 					'headers' => [
 						'Content-Type' => 'application/json'
 					],
 				],
 				[
-					'statusCode' => 400,
-					'reasonPhrase' => 'Bad Request',
+					'statusCode' => 200,
+					'reasonPhrase' => 'OK',
 					'protocolVersion' => '1.1'
 				],
 				static function () {

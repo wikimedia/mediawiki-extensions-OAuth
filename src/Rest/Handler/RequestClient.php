@@ -81,10 +81,12 @@ class RequestClient extends AbstractClientHandler {
 				ParamValidator::PARAM_DEFAULT => false,
 				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-callback_is_prefix' ),
 			],
+			// Ignored; retained as an optional parameter for backwards compatibility.
+			// The consumer's contact address is always taken from the proposer's account.
 			'email' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_REQUIRED => false,
 				self::PARAM_DESCRIPTION => new MessageValue( 'mwoauth-rest-param-desc-email' ),
 			],
 			'is_confidential' => [

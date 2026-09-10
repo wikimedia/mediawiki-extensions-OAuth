@@ -564,15 +564,6 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				'label-message' => 'mwoauth-consumer-callbackisprefix',
 				'hide-if' => [ '!==', 'ownerOnly', '' ],
 			],
-			'email' => [
-				'type' => 'text',
-				'label-message' => 'mwoauth-consumer-email',
-				'required' => true,
-				'readonly' => true,
-				'default' => $user->getEmail(),
-				'help-message' => 'mwoauth-consumer-email-help',
-				'hide-if' => [ '!==', 'ownerOnly', '' ],
-			],
 			'wiki' => [
 				'type' => $allWikis ? 'combobox' : 'select',
 				'options' => [

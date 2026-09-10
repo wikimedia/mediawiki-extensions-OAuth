@@ -72,7 +72,6 @@ class ConsumerSubmitControl extends SubmitControl {
 			Consumer::FIELD_OAUTH_VERSION,
 			Consumer::FIELD_CALLBACK_URL,
 			Consumer::FIELD_DESCRIPTION,
-			Consumer::FIELD_EMAIL,
 			Consumer::FIELD_WIKI,
 			Consumer::FIELD_OAUTH2_GRANT_TYPES,
 			Consumer::FIELD_GRANTS,
@@ -156,9 +155,6 @@ class ConsumerSubmitControl extends SubmitControl {
 					return $this->failure( 'permission_denied', 'badaccess-group0' );
 				} elseif ( !$user->isEmailConfirmed() ) {
 					return $this->failure( 'email_not_confirmed', 'mwoauth-consumer-email-unconfirmed' );
-				} elseif ( $user->getEmail() !== $this->vals['email'] ) {
-					// @TODO: allow any email and don't set emailAuthenticated below
-					return $this->failure( 'email_mismatched', 'mwoauth-consumer-email-mismatched' );
 				}
 
 				if ( $consumerRepository->getByNameVersionUser(
