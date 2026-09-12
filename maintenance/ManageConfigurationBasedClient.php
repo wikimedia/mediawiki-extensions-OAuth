@@ -8,7 +8,6 @@ use MediaWiki\Extension\OAuth\Control\ConsumerValidator;
 use MediaWiki\Extension\OAuth\Lib\OAuthException;
 use MediaWiki\Extension\OAuth\Repository\ConsumerRepositoryInterface;
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWCryptRand;
@@ -64,7 +63,7 @@ class ManageConfigurationBasedClient extends Maintenance {
 	}
 
 	private function initialize(): void {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$oauthServices = OAuthServices::wrap( $services );
 		$this->centralIdLookup = Utils::getCentralIdLookup();
 		$this->repository = $oauthServices->getConsumerRepository();
