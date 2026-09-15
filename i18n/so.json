@@ -236,6 +236,7 @@
 	"logentry-mwoauthconsumer-disable": "$1 {{GENDER:$2|curyaamiyay}} macaamil OAuth ah oo uu soo gudbiyay $3 (furaha macaamilka $4)",
 	"logentry-mwoauthconsumer-reenable": "$1 {{GENDER:$2|dib u hawlgeliyay}} macaamil OAuth ah oo uu soo gudbiyay $3 (furaha macaamilka $4)",
 	"logentry-mwoauthconsumer-create-owner-only": "$1 {{GENDER:$2|sameeyay}} macaamil OAuth ah oo kaliya milkiiluhu isticmaali karo (furaha macaamilka $4)",
+	"logentry-mwoauthconsumer-authorize": "$1 {{GENDER:$2|oggolaaday}} codsi OAuth ah \"$4\" oo ku jira {{SITENAME}} (furaha macaamilka $5)",
 	"log-action-filter-mwoauthconsumer": "Nooca ficilka macaamilka OAuth:",
 	"log-action-filter-mwoauthconsumer-approve": "Ansixinta macaamilka OAuth",
 	"log-action-filter-mwoauthconsumer-create-owner-only": "Abuurista macaamil OAuth oo kaliya milkiiluhu isticmaali karo",

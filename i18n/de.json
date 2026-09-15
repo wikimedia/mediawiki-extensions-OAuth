@@ -246,6 +246,7 @@
 	"logentry-mwoauthconsumer-disable": "$1 deaktivierte einen OAuth-Verbraucher von $3 (Verbraucherschlüssel $4)",
 	"logentry-mwoauthconsumer-reenable": "$1 {{GENDER:$2|reaktivierte}} einen OAuth-Verbraucher von $3 (Verbraucherschlüssel $4)",
 	"logentry-mwoauthconsumer-create-owner-only": "$1 {{GENDER:$2|erstellte}} einen Nur-Besitzer-OAuth-Verbraucher (Verbraucherschlüssel $4)",
+	"logentry-mwoauthconsumer-authorize": "$1 {{GENDER:$2|genehmigte}} die OAuth-Anwendung „$4“ auf {{SITENAME}} (Consumer-Schlüssel $5)",
 	"log-action-filter-mwoauthconsumer": "Typ der OAuth-Verbraucheraktion:",
 	"log-action-filter-mwoauthconsumer-approve": "OAuth-Verbraucherbestätigung",
 	"log-action-filter-mwoauthconsumer-create-owner-only": "OAuth-Verbrauchererstellung (nur Besitzer)",
