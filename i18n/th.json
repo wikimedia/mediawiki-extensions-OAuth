@@ -35,7 +35,6 @@
 	"mwoauth-consumer-accesstoken": "โทเค็นการเข้าถึง:",
 	"mwoauth-consumer-reason": "สาเหตุ:",
 	"mwoauth-consumer-email-unconfirmed": "อีเมลของคุณยังไม่ได้รับการยืนยัน",
-	"mwoauth-consumer-email-mismatched": "ที่อยู่อีเมลที่กรอกต้องตรงกับที่ระบุในบัญชีของคุณ",
 	"mwoauth-consumer-alreadyexists": "ผู้บริโภคที่มีชุดข้อมูลชื่อ/รุ่น/ผู้เผยแพร่นี้มีอยู่แล้ว",
 	"mwoauth-consumer-not-proposed": "ไม่ได้เสนอผู้บริโภคในขณะนี้",
 	"mwoauth-consumer-not-disabled": "ไม่ได้ปิดใช้งานผู้บริโภคในขณะนี้",

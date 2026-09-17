@@ -25,7 +25,6 @@
 	"mwoauth-consumer-user": "Botuesi:",
 	"mwoauth-consumer-stage": "Statusi aktual:",
 	"mwoauth-consumer-email": "Adresa e email-it për kontakt:",
-	"mwoauth-consumer-email-help": "E dukshme vetëm për ata që miratojnë konsumatorë të rinj",
 	"mwoauth-consumer-owner-only-label": "Vetëm për pronarin:",
 	"mwoauth-consumer-description": "Përshkrimi i aplikacionit:",
 	"mwoauth-consumer-callbackurl-help": "Ndryshe nga OAuth 1.0a, kjo URL përputhet saktësisht",

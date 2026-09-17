@@ -33,7 +33,6 @@
 	"mwoauth-consumer-rsakey": "Nyilvános RSA-kulcs (nem kötelező):",
 	"mwoauth-consumer-reason": "Ok:",
 	"mwoauth-consumer-email-unconfirmed": "A fiókodhoz tartozó e-mail-címet még nem erősítetted meg.",
-	"mwoauth-consumer-email-mismatched": "A megadott e-mail-címnek azonosnak kell lennie a fiókodhoz tartozóval.",
 	"mwoauth-consumer-grantshelp": "Mindegyik jogosultság olyan felsorolt felhasználói jogokhoz ad hozzáférést, amelyekkel egy felhasználói fiók már rendelkezik. További információkhoz lásd [[Special:ListGrants|a jogosultságok táblázatát]].",
 	"mwoauth-consumer-stage-proposed": "javasolt",
 	"mwoauth-consumer-stage-rejected": "elutasított",

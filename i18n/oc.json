@@ -35,7 +35,6 @@
 	"mwoauth-consumer-accesstoken": "Geton d’accès :",
 	"mwoauth-consumer-reason": "Motiu :",
 	"mwoauth-consumer-email-unconfirmed": "Vòstra adreça de corrièr electronic del compte es pas encara estada confirmada.",
-	"mwoauth-consumer-email-mismatched": "L’adreça de corrièr electronic provesida deu correspondre a la de vòstre compte.",
 	"mwoauth-consumer-alreadyexists": "Un consomator amb aquesta combinason de nom/version/editor existís ja",
 	"mwoauth-consumer-alreadyexistsversion": "Un consomator amb aquesta combinason de nom/editor existís ja amb una version egala o superiora (\"$1\")",
 	"mwoauth-consumer-not-accepted": "Impossible de metre a jorn las informacions per una demanda de consomator en cors",

@@ -37,7 +37,6 @@
 	"mwoauth-consumer-rsakey": "Ëffentlechen RSA-Schlëssel (fakultativ):",
 	"mwoauth-consumer-reason": "Grond:",
 	"mwoauth-consumer-email-unconfirmed": "D'E-Mail-Adress vun Ärem Benotzerkont gouf nach net confirméiert.",
-	"mwoauth-consumer-email-mismatched": "D'E-Mail-Adress, déi ugi gëtt, muss déi sinn, déi an Ärem Benotzerkont uginn ass.",
 	"mwoauth-consumer-not-proposed": "De Konsument gëtt elo net proposéiert",
 	"mwoauth-consumer-not-disabled": "De Konsument ass elo net desaktivéiert",
 	"mwoauth-missing-consumer-key": "Et gouf kee Konsumenteschlëssel uginn.",

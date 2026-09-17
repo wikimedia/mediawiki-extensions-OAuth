@@ -21,7 +21,6 @@
 	"mwoauth-consumer-rsakey": "Der öffentlesche <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Rivest-Shamir-Adleman cryptosystem\">RSA</i>-Schlößel:",
 	"mwoauth-consumer-reason": "Jrond:",
 	"mwoauth-consumer-email-unconfirmed": "De <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i>-Adräß för Dinge Zohjang es not nit beschtähtesch.",
-	"mwoauth-consumer-email-mismatched": "De aanjejovve <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i>-Adräß moß desällve sin, wi för Dinge Zohjang.",
 	"mwoauth-consumer-stage-proposed": "vörjeschlahre",
 	"mwoauth-consumer-stage-rejected": "affjelehnt",
 	"mwoauth-consumer-stage-expired": "afjeloufe:",

@@ -5,7 +5,6 @@
 			"Emem.calist"
 		]
 	},
-	"mwoauth-consumer-email-help": "Kilala lang sa mga aprubado't baguhang suki",
 	"notification-oauth-app-approve-title": "$1 {{GENDER:$1|aprobado}} {{GENDER:$3|iyong}} OMaya app ($2)",
 	"notification-oauth-app-disable-title": "$1 {{GENDER:$1|maykapansanan}} {{GENDER:$3|iyong}} OMaya app ($2)",
 	"notification-oauth-app-reenable-title": "$1 {{GENDER:$1|👍}} {{GENDER:$3|iyong}} OMaya app ($2)"

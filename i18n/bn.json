@@ -28,7 +28,6 @@
 	"mwoauth-consumer-user": "প্রকাশক:",
 	"mwoauth-consumer-stage": "বর্তমান অবস্থা:",
 	"mwoauth-consumer-email": "যোগাযোগের ইমেল ঠিকানা:",
-	"mwoauth-consumer-email-help": "শুধু তাদের কাছেই দৃশ্যমান যারা নতুন ভোক্তাদের অনুমোদন করছে",
 	"mwoauth-consumer-owner-only-label": "শুধুমাত্র মালিক:",
 	"mwoauth-consumer-description": "অ্যাপ্লিকেশনের বিবরণ:",
 	"mwoauth-consumer-callbackurl": "\"কলব্যাক\" ওআউথের URL:",

@@ -18,7 +18,6 @@
 	"mwoauth-consumer-user": "Väljaandja:",
 	"mwoauth-consumer-stage": "Praegune olek:",
 	"mwoauth-consumer-email": "E-posti kontaktaadress:",
-	"mwoauth-consumer-email-help": "Nähtav ainult neile, kes tarvitusi heaks kiidavad.",
 	"mwoauth-consumer-owner-only": "Seda tarvitust kasutab ainult $1.",
 	"mwoauth-consumer-owner-only-help": "Selle valiku korral kiidetakse tarvitus automaatselt heaks ja selle kasutamine lubatakse kasutajale $1. Teised kasutajad seda kasutada ei saa ja harilik volitamisvoog ei toimi. Selle tarvitusega sooritatud toiminguid ei märgistata.",
 	"mwoauth-consumer-description": "Rakenduse kirjeldus:",

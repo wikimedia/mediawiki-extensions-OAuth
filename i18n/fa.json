@@ -57,7 +57,6 @@
 	"mwoauth-consumer-accesstoken": "توکن دسترسی:",
 	"mwoauth-consumer-reason": "دلیل:",
 	"mwoauth-consumer-email-unconfirmed": "نشانی ایمیل شما هنوز تأیید نشده است.",
-	"mwoauth-consumer-email-mismatched": "آدرس ایمیل ارائه شده باید با حسابتان مطابقت داشته باشد.",
 	"mwoauth-consumer-alreadyexists": "مصرف‌کنندگان با این ترکیب ناشر/نام/نسخه در حال حاضر وجود دارد",
 	"mwoauth-consumer-alreadyexistsversion": "مصرف‌کننده‌ای با این ترکیب نام/منتشرکننده با نسخه‌ای برابر یا بالاتر در حال حاضر موجود است («$1»)",
 	"mwoauth-consumer-not-accepted": "اطلاعات یک درخواست معلق مصرف‌کننده را نمی‌توان روزآمد کرد",

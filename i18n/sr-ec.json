@@ -36,7 +36,6 @@
 	"mwoauth-consumer-accesstoken": "Токен за приступ:",
 	"mwoauth-consumer-reason": "Разлог:",
 	"mwoauth-consumer-email-unconfirmed": "Е-адреса вашег налога још није потврђена.",
-	"mwoauth-consumer-email-mismatched": "Наведена е-адреса се мора подударати са оном на вашем налогу.",
 	"mwoauth-consumer-stage-proposed": "предложено",
 	"mwoauth-consumer-stage-rejected": "одбијено",
 	"mwoauth-consumer-stage-expired": "истекло",

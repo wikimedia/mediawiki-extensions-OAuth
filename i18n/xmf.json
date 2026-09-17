@@ -28,7 +28,6 @@
 	"mwoauth-consumer-accesstoken": "ჭირინაფაშ კოდი (ტოკენი):",
 	"mwoauth-consumer-reason": "სამანჯელი:",
 	"mwoauth-consumer-email-unconfirmed": "თქვანი ელექტრონული ფოსტაშ მიოწურაფუ დიო ვა რე დოდასურებული.",
-	"mwoauth-consumer-email-mismatched": "მეწურაფილი ელექტრონული ფოსტაშ მიოწურაფუ უხუჯანდას ოკო თი მიოწურაფუს, ნამუთ მეწურაფილი რე თქვანი ანგარიშის.",
 	"mwoauth-consumer-alreadyexists": "კლიენტი ათე ჯოხოშ, ვერსიაშ დო გჷმაბჟინაფალიშ კომბინაციათ უკვე რე",
 	"mwoauth-consumer-stage-proposed": "მერზიებული",
 	"mwoauth-consumer-stage-rejected": "ვარებული რე",

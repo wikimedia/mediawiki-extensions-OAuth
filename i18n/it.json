@@ -47,7 +47,6 @@
 	"mwoauth-consumer-accesstoken": "Token di accesso:",
 	"mwoauth-consumer-reason": "Motivo:",
 	"mwoauth-consumer-email-unconfirmed": "Il tuo indirizzo email non è stato ancora confermato.",
-	"mwoauth-consumer-email-mismatched": "L'indirizzo email fornito deve corrispondere a quello della tua utenza.",
 	"mwoauth-consumer-alreadyexists": "Un cliente con questa combinazione di nome/versione/editore esiste già",
 	"mwoauth-consumer-alreadyexistsversion": "Un cliente con questa combinazione di nome/editore esiste già con una versione uguale o superiore (\"$1\")",
 	"mwoauth-consumer-not-accepted": "Non è possibile aggiornare le informazioni per una richiesta in sospeso",
