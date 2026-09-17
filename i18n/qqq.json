@@ -42,7 +42,7 @@
 	"mwoauth-consumer-version": "Used as label for the \"Version\" input box.\n{{Identical|Consumer version}}",
 	"mwoauth-consumer-user": "Used as label for the \"Central username\" box.\n{{Identical|Publisher}}",
 	"mwoauth-consumer-stage": "Used as label for the \"Stage\" value\n\nFollowed by any one of the following messages:\n* {{msg-mw|Mwoauth-consumer-stage-proposed}}\n* {{msg-mw|Mwoauth-consumer-stage-rejected}}\n* {{msg-mw|Mwoauth-consumer-stage-expired}}\n* {{msg-mw|Mwoauth-consumer-stage-approved}}\n* {{msg-mw|Mwoauth-consumer-stage-disabled}}\n* {{msg-mw|Mwoauth-consumer-stage-suppressed}}\n{{Identical|Current status}}",
-	"mwoauth-consumer-email": "Used as label for the \"Email address\" input box.",
+	"mwoauth-consumer-email": "Used as label for the consumer's contact email address, shown to OAuth administrators reviewing a consumer.",
 	"mwoauth-consumer-email-help": "Used as help message for the \"Email address\" input box, in the consumer registration form.",
 	"mwoauth-consumer-owner-only-label": "Used as label for the \"Owner only\" field.",
 	"mwoauth-consumer-owner-only": "Used as label for the \"Owner only\" checkbox.",
