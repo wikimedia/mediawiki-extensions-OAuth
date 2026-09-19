@@ -16,22 +16,20 @@ use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class MWOAuthDataStore extends OAuthDataStore {
-	/** @var BagOStuff Cache for tokens */
-	protected $tokenCache;
-
-	/** @var BagOStuff Cache for nonces */
-	protected $nonceCache;
 
 	/** @var LoggerInterface */
 	protected $logger;
 
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 * @param BagOStuff $tokenCache Cache for tokens
+	 * @param BagOStuff $nonceCache Cache for nonces
+	 */
 	public function __construct(
-		private ILoadBalancer $loadBalancer,
-		BagOStuff $tokenCache,
-		BagOStuff $nonceCache
+		private readonly ILoadBalancer $loadBalancer,
+		private readonly BagOStuff $tokenCache,
+		private readonly BagOStuff $nonceCache,
 	) {
-		$this->tokenCache = $tokenCache;
-		$this->nonceCache = $nonceCache;
 		$this->logger = LoggerFactory::getInstance( 'OAuth' );
 	}
 

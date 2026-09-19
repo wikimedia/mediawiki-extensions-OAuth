@@ -43,9 +43,9 @@ abstract class AuthorizationProvider implements IAuthorizationProvider {
 	 * @throws Exception
 	 */
 	public function __construct(
-		protected ?Config $config,
-		protected AuthorizationServer $server,
-		protected LoggerInterface $logger,
+		protected readonly ?Config $config,
+		protected readonly AuthorizationServer $server,
+		protected readonly LoggerInterface $logger,
 	) {
 		$this->decorateAuthServer();
 	}

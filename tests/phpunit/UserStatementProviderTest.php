@@ -35,8 +35,8 @@ class UserStatementProviderTest extends MediaWikiIntegrationTestCase {
 		$time = wfTimestamp();
 		MWTimestamp::setFakeTime( $time );
 		$config = new HashConfig( [
-			'CanonicalServer' => 'https://example.com/',
-			'HiddenPrefs' => [],
+			MainConfigNames::CanonicalServer => 'https://example.com/',
+			MainConfigNames::HiddenPrefs => [],
 		] );
 
 		$user = $this->getMutableTestUser()->getUser();

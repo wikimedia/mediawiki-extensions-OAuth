@@ -29,7 +29,7 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface {
 	];
 
 	public function __construct(
-		private string $issuer
+		private readonly string $issuer,
 	) {
 	}
 

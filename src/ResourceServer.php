@@ -25,7 +25,7 @@ class ResourceServer {
 	protected $user;
 	/** @var ClientEntity */
 	protected $client;
-	/** @var ScopeEntityInterface[] */
+	/** @var array<string,ScopeEntityInterface> */
 	protected $scopes;
 	/** @var string */
 	protected $accessTokenId;
@@ -105,7 +105,7 @@ class ResourceServer {
 	}
 
 	/**
-	 * @return ScopeEntityInterface[]
+	 * @return array<string,ScopeEntityInterface>
 	 * @throws MWOAuthException
 	 */
 	public function getScopes(): array {

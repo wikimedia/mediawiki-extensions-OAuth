@@ -34,6 +34,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logging\ManualLogEntry;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReferenceValue;
@@ -326,7 +327,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					}
 
 					if ( $localUser->isLocked() ||
-						( $config->get( 'BlockDisablesLogin' ) && $localUser->getBlock() )
+						( $config->get( MainConfigNames::BlockDisablesLogin ) && $localUser->getBlock() )
 					) {
 						throw new MWOAuthException(
 							MessageValue::new( 'mwoauth-invalid-authorization-blocked-user' ),
@@ -929,7 +930,7 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	 */
 	private function useRealNames() {
 		$config = $this->getContext()->getConfig();
-		return !in_array( 'realname', $config->get( 'HiddenPrefs' ), true );
+		return !in_array( 'realname', $config->get( MainConfigNames::HiddenPrefs ), true );
 	}
 
 	/**

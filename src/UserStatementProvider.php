@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\OAuth;
 use MediaWiki\Config\Config;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\User\CentralId\CentralIdLookup;
@@ -28,21 +29,18 @@ class UserStatementProvider {
 	/**
 	 * @param User $user
 	 * @param Consumer $consumer
-	 * @param array $grants
+	 * @param string[] $grants
 	 * @return static
 	 */
-	public static function factory( User $user, Consumer $consumer, $grants = [] ) {
+	public static function factory( User $user, Consumer $consumer, array $grants = [] ): static {
 		$services = MediaWikiServices::getInstance();
-		$mainConfig = $services->getMainConfig();
-		$userGroupManager = $services->getUserGroupManager();
-		$grantsInfo = $services->getGrantsInfo();
 		return new static(
-			$mainConfig,
+			$services->getMainConfig(),
 			$user,
 			$consumer,
 			$grants,
-			$userGroupManager,
-			$grantsInfo
+			$services->getUserGroupManager(),
+			$services->getGrantsInfo()
 		);
 	}
 
@@ -81,7 +79,7 @@ class UserStatementProvider {
 			// Include some of the OpenID Connect attributes
 			// http://openid.net/specs/openid-connect-core-1_0.html (draft 14)
 			// Issuer Identifier for the Issuer of the response.
-			'iss' => $this->config->get( 'CanonicalServer' ),
+			'iss' => $this->config->get( MainConfigNames::CanonicalServer ),
 
 			// Subject identifier. A locally unique and never reassigned identifier.
 			// T264560: sub added via $this->getUserProfile()
@@ -139,7 +137,7 @@ class UserStatementProvider {
 				// to the user differently when useRealNames() is false.
 				// Don't omit the field completely to avoid a breaking change.
 				$profile['realname'] = !in_array(
-					'realname', $this->config->get( 'HiddenPrefs' ), true
+					'realname', $this->config->get( MainConfigNames::HiddenPrefs ), true
 				) ? $this->user->getRealName() : '';
 				$profile['email'] = $this->user->isEmailConfirmed() ? $this->user->getEmail() : '';
 			}

@@ -68,8 +68,8 @@ class ConsumerValidator {
 	];
 
 	public function __construct(
-		private ServiceOptions $options,
-		private FormatterFactory $formatterFactory,
+		private readonly ServiceOptions $options,
+		private readonly FormatterFactory $formatterFactory,
 	) {
 		$this->options->assertRequiredOptions( self::SERVICE_OPTIONS );
 	}

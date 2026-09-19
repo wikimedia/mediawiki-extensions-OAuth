@@ -7,20 +7,16 @@ use MediaWiki\Extension\OAuth\Lib\OAuthRequest;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodRsaSha1;
 
 class MWOAuthSignatureMethodRsaSha1 extends OAuthSignatureMethodRsaSha1 {
-	/** @var MWOAuthDataStore */
-	protected $store;
-	/** @var string PEM encoded RSA private key */
-	private $privateKey;
 
 	/**
 	 * @param MWOAuthDataStore $store
 	 * @param string|null $privateKey RSA private key, passed to openssl_get_privatekey
 	 * @throws OAuthException
 	 */
-	public function __construct( MWOAuthDataStore $store, $privateKey = null ) {
-		$this->store = $store;
-		$this->privateKey = $privateKey;
-
+	public function __construct(
+		private MWOAuthDataStore $store,
+		private readonly ?string $privateKey = null,
+	) {
 		if ( $privateKey !== null ) {
 			$key = openssl_pkey_get_private( $privateKey );
 			if ( !$key ) {

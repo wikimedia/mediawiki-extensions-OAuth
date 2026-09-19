@@ -7,6 +7,7 @@ use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use MediaWiki\Extension\OAuth\Repository\ClientRepositoryAdapter;
 use MediaWiki\Extension\OAuth\Repository\ScopeRepository;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 class AuthorizationServerFactory {
@@ -18,14 +19,14 @@ class AuthorizationServerFactory {
 		$extConfig = $services->getConfigFactory()->makeConfig( 'mwoauth' );
 		$mainConfig = $services->getMainConfig();
 		$privateKey = $extConfig->get( 'OAuth2PrivateKey' );
-		$encryptionKey = $extConfig->get( 'OAuthSecretKey' ) ?? $mainConfig->get( 'SecretKey' );
+		$encryptionKey = $extConfig->get( 'OAuthSecretKey' ) ?? $mainConfig->get( MainConfigNames::SecretKey );
 		return new static( $clientRepository, $privateKey, $encryptionKey );
 	}
 
 	public function __construct(
-		protected ClientRepositoryInterface $clientRepository,
-		protected string $privateKey,
-		protected string $encryptionKey
+		private readonly ClientRepositoryInterface $clientRepository,
+		private readonly string $privateKey,
+		private string $encryptionKey,
 	) {
 		$this->encryptionKey = trim( $this->encryptionKey );
 		if ( $this->encryptionKey === '' ) {

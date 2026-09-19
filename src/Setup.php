@@ -25,9 +25,7 @@ class Setup implements TestCanonicalRedirectHook {
 	}
 
 	protected static function isOAuthRequest( WebRequest $request ): bool {
-		if ( Utils::hasOAuthHeaders( $request ) ) {
-			return true;
-		}
-		return ResourceServer::isOAuth2Request( $request );
+		return Utils::hasOAuthHeaders( $request ) ||
+			ResourceServer::isOAuth2Request( $request );
 	}
 }

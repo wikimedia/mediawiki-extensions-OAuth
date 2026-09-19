@@ -14,17 +14,15 @@ use Wikimedia\NormalizedException\INormalizedException;
  */
 class MWOAuthException extends OAuthException implements INormalizedException, ILocalizedException {
 
-	protected MessageValue $msg;
-	protected array $context;
-
 	/**
 	 * Exception that may be shown to an end user.
 	 * @param MessageValue $msg
 	 * @param array $context PSR-3 log context
 	 */
-	public function __construct( MessageValue $msg, $context = [] ) {
-		$this->msg = $msg;
-		$this->context = $context;
+	public function __construct(
+		private readonly MessageValue $msg,
+		private readonly array $context = [],
+	) {
 		parent::__construct(
 			$this->getMessageObject()->inLanguage( 'en' )->useDatabase( false )->plain()
 		);
