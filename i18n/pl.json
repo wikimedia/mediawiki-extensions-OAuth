@@ -256,7 +256,7 @@
 	"mwoauthserver-bad-consumer-key": "Przepraszamy, coś poszło nie tak podczas łączenia tej aplikacji.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Nieznany klucz OAuth – $1</span>",
 	"mwoauthserver-insufficient-rights": "Twoje konto nie może używać połączonych aplikacji. Skontaktuj się z administratorem witryny, aby dowiedzieć się dlaczego.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Niewystarczające uprawnienia użytkownika OAuth – $1</span>",
 	"mwoauthserver-invalid-request-token": "Niewłaściwy token w Twoim żądaniu:",
-	"mwoauthserver-invalid-user": "Aby używać połączonych aplikacji na tej stronie musisz posiadać konto we wszystkich projektach. Gdy będziesz już takie posiadać, możesz spróbować podłączyć „$1” ponownie.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Ujednolicone logowanie jest konieczne – $2</span>",
+	"mwoauthserver-invalid-user": "Aby używać połączonych aplikacji na tej stronie, musisz mieć konto we wszystkich projektach. Gdy będziesz już je utworzysz, możesz spróbować podłączyć „$1” ponownie.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Ujednolicone logowanie jest konieczne – $2</span>",
 	"mwoauthserver-consumer-no-secret": "Przepraszamy, coś poszło nie tak podczas łączenia tej aplikacji.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Konsument nie ma sekretnego klucza – $1</span>",
 	"mwoauthserver-consumer-owner-only": "„$1” jest aplikacją tylko do użytku przez jej autora. Aby uzyskać token dostępu zobacz [[$2]]/\n\n<span class=\"plainlinks mw-mwoautherror-details\">Konsument jest do użytku tylko przez autora – $3</span>",
 	"mwoauth-invalid-authorization-title": "Błąd autoryzacji OAuth",
