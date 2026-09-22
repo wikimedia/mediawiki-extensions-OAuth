@@ -168,6 +168,12 @@
 				"PermissionManager"
 			]
 		},
+		"logfilter": {
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\LogFilterHooks",
+			"services": [
+				"ConnectionProvider"
+			]
+		},
 		"mwservices": {
 			"class": "MediaWiki\\Extension\\OAuth\\MWServicesHookHandler"
 		},
@@ -199,7 +205,9 @@
 		"ListDefinedTags": "backend",
 		"ChangeTagsListActive": "backend",
 		"LoginFormValidErrorMessages": "frontend",
-		"MediaWikiServices": "mwservices"
+		"MediaWikiServices": "mwservices",
+		"LogEventsListGetExtraInputs": "logfilter",
+		"SpecialLogAddLogSearchRelations": "logfilter"
 	},
 	"ConfigRegistry": {
 		"mwoauth": "MediaWiki\\Config\\GlobalVarConfig::newInstance"

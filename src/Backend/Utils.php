@@ -129,21 +129,26 @@ class Utils {
 
 	/**
 	 * @param IDatabase $db
-	 * @return int[]
+	 * @param bool $includeOwnerOnly Whether to count owner-only consumers
+	 * @return int[] Number of consumers, keyed by Consumer::STAGE_* constant
 	 */
-	public static function getConsumerStateCounts( IDatabase $db ) {
-		$res = $db->newSelectQueryBuilder()
+	public static function getConsumerStateCounts( IDatabase $db, bool $includeOwnerOnly = true ) {
+		$queryBuilder = $db->newSelectQueryBuilder()
 			->select( [ 'oarc_stage', 'count' => 'COUNT(*)' ] )
 			->from( 'oauth_registered_consumer' )
 			->groupBy( 'oarc_stage' )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+			->caller( __METHOD__ );
+		if ( !$includeOwnerOnly ) {
+			$queryBuilder->where( [ 'oarc_owner_only' => 0 ] );
+		}
+		$res = $queryBuilder->fetchResultSet();
 		$table = [
 			Consumer::STAGE_APPROVED => 0,
 			Consumer::STAGE_DISABLED => 0,
 			Consumer::STAGE_EXPIRED  => 0,
 			Consumer::STAGE_PROPOSED => 0,
 			Consumer::STAGE_REJECTED => 0,
+			Consumer::STAGE_CONFIGURATION_BASED => 0,
 		];
 		foreach ( $res as $row ) {
 			$table[(int)$row->oarc_stage] = (int)$row->count;

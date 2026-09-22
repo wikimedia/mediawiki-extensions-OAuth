@@ -193,7 +193,13 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 					'options'  => $stageOptions,
 					'default'  => Consumer::STAGE_APPROVED,
 					'required' => false
-				]
+				],
+				UIUtils::SHOW_OWNER_ONLY_PARAM => [
+					'name'     => UIUtils::SHOW_OWNER_ONLY_PARAM,
+					'type'     => 'check',
+					'label-message' => 'mwoauthlistconsumers-show-owner-only',
+					'default'  => false,
+				],
 			],
 			$this->getContext()
 		);
@@ -222,7 +228,8 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			$centralId = null;
 		}
 
-		$pager = new ListConsumersPager( $this, [], $name, $centralId, $stage );
+		$conds = $request->getBool( UIUtils::SHOW_OWNER_ONLY_PARAM ) ? [] : [ 'oarc_owner_only' => 0 ];
+		$pager = new ListConsumersPager( $this, $conds, $name, $centralId, $stage );
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addHTML( $pager->getNavigationBar() );
 			$this->getOutput()->addHTML( $pager->getBody() );
@@ -256,7 +263,7 @@ class SpecialMWOAuthListConsumers extends SpecialPage {
 			$this->getPageTitle( "view/{$cmrKey}" ),
 			$this->msg( 'mwoauthlistconsumers-view' )->text(),
 			[],
-			$this->getRequest()->getValues( 'name', 'publisher', 'stage' )
+			$this->getRequest()->getValues( 'name', 'publisher', 'stage', UIUtils::SHOW_OWNER_ONLY_PARAM )
 		);
 		if ( $this->permissionManager->userHasRight( $this->getUser(), 'mwoauthmanageconsumer' )
 			&& !$cmrAc->getDAO()->isConfigurationBased()

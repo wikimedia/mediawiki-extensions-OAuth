@@ -205,7 +205,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 
 		$out->addWikiMsg( 'mwoauthmanageconsumers-maintext' );
 
-		$counts = Utils::getConsumerStateCounts( Utils::getOAuthDB( DB_REPLICA ) );
+		$counts = Utils::getConsumerStateCounts( Utils::getOAuthDB( DB_REPLICA ), includeOwnerOnly: false );
 
 		$out->wrapWikiMsg( "<p><strong>$1</strong></p>", 'mwoauthmanageconsumers-queues' );
 		$out->addHTML( '<ul>' );
@@ -386,7 +386,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 			$title = SpecialPage::getTitleFor( 'OAuthListConsumers' ),
 			$this->msg( 'mwoauthmanageconsumers-search-publisher' )->text(),
 			[],
-			[ 'publisher' => $owner ]
+			[ 'publisher' => $owner, UIUtils::SHOW_OWNER_ONLY_PARAM => 1 ]
 		);
 		$ownerLink = $cmrAc->escapeForHtml( $owner ) . ' ' .
 			$this->msg( 'parentheses' )->rawParams( $link )->escaped();
@@ -407,7 +407,7 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 					SpecialPage::getTitleFor( 'OAuthListConsumers' ),
 					$this->msg( 'mwoauthmanageconsumers-search-name' )->text(),
 					[],
-					[ 'name' => $s ]
+					[ 'name' => $s, UIUtils::SHOW_OWNER_ONLY_PARAM => 1 ]
 				);
 				return htmlspecialchars( $s ) . ' ' .
 					$this->msg( 'parentheses' )->rawParams( $link )->escaped();
@@ -492,7 +492,16 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	 * Show a paged list of consumers with links to details
 	 */
 	protected function showConsumerList() {
-		$pager = new ManageConsumersPager( $this, [], $this->stage );
+		$conds = [];
+		// Owner-only consumers are approved on creation, so they only ever show up on the list stages
+		if ( in_array( $this->stage, self::$listStages, true ) ) {
+			$showOwnerOnly = $this->getRequest()->getBool( UIUtils::SHOW_OWNER_ONLY_PARAM );
+			$this->getOutput()->addHTML( $this->getOwnerOnlyToggle( $showOwnerOnly ) );
+			if ( !$showOwnerOnly ) {
+				$conds['oarc_owner_only'] = 0;
+			}
+		}
+		$pager = new ManageConsumersPager( $this, $conds, $this->stage );
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addHTML( $pager->getNavigationBar() );
 			$this->getOutput()->addHTML( $pager->getBody() );
@@ -507,6 +516,24 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 		if ( mt_rand( 0, 29 ) == 0 ) {
 			Utils::runAutoMaintenance( Utils::getOAuthDB( DB_PRIMARY ) );
 		}
+	}
+
+	/**
+	 * Link that switches the current list between hiding and showing owner-only consumers
+	 *
+	 * @param bool $showOwnerOnly Whether owner-only consumers are currently shown
+	 * @return string HTML
+	 */
+	private function getOwnerOnlyToggle( bool $showOwnerOnly ): string {
+		$link = $this->getLinkRenderer()->makeKnownLink(
+			$this->getPageTitle( $this->stageKey ),
+			$this->msg( $showOwnerOnly
+				? 'mwoauthmanageconsumers-hide-owner-only'
+				: 'mwoauthmanageconsumers-show-owner-only' )->text(),
+			[],
+			$showOwnerOnly ? [] : [ UIUtils::SHOW_OWNER_ONLY_PARAM => 1 ]
+		);
+		return Html::rawElement( 'p', [], $link );
 	}
 
 	/**
@@ -552,6 +579,9 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 			),
 			'mwoauthmanageconsumers-consumerkey' => $cmrAc->escapeForHtml( $cmrAc->getConsumerKey() ),
 		];
+		if ( $cmrAc->getDAO()->getOwnerOnly() ) {
+			$data['mwoauthlistconsumers-owner-only'] = $this->msg( 'htmlform-yes' )->escaped();
+		}
 		if ( $cmrAc->getDAO()->isConfigurationBased() ) {
 			$data += [
 				'mwoauthmanageconsumers-user' => $this->msg( 'mwoauth-configuration-based-notice' )->escaped(),

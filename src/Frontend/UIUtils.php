@@ -10,6 +10,9 @@ use OOUI\Tag;
  * Static utility class for the special pages
  */
 class UIUtils {
+	/** Request parameter that opts in to listing owner-only consumers */
+	public const SHOW_OWNER_ONLY_PARAM = 'showowneronly';
+
 	/**
 	 * Generate an information table for a consumer. The result will be suitable for use as a
 	 * HTMLForm field with no label.

@@ -16,6 +16,7 @@ use MediaWiki\Extension\OAuth\Backend\OAuth1Consumer;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
+use MediaWiki\Extension\OAuth\Tests\ConsumerFixtureTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
@@ -33,6 +34,7 @@ use StatusValue;
  * @group Database
  */
 class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCase {
+	use ConsumerFixtureTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -450,6 +452,22 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 		$this->assertStringContainsString( '>manage</a>', $pageHtml );
 		$this->assertStringContainsString( '>Contact email<', $pageHtml );
 		$this->assertStringContainsString( '> created an owner-only OAuth consumer (consumer key <', $pageHtml );
+	}
+
+	public function testExecuteListIncludesOwnerOnlyConsumers(): void {
+		// Other lists hide owner-only consumers by default, but not the list of your own consumers.
+		// Unlike the tests above, this needs no CentralAuth, as the consumers are saved directly.
+		$user = $this->getTestSysop()->getUser();
+		$consumer = $this->createConsumer( $user, 'Multi-user test consumer', false );
+		$ownerOnlyConsumer = $this->createConsumer( $user, 'Owner-only test consumer', true );
+
+		$specialConReg = $this->newSpecialPage();
+		$specialConReg->setContext( $this->prepareRequestContext( $user ) );
+		$specialConReg->execute( 'list' );
+
+		$pageHtml = $specialConReg->getContext()->getOutput()->getHTML();
+		$this->assertStringContainsString( $consumer->getConsumerKey(), $pageHtml );
+		$this->assertStringContainsString( $ownerOnlyConsumer->getConsumerKey(), $pageHtml );
 	}
 
 	public function testProposeStoresOwnEmailWithoutEmailInput(): void {
