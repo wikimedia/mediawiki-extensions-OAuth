@@ -240,6 +240,7 @@
 	"logentry-mwoauthconsumer-disable": "$1 {{GENDER:$2|deaktiverede}} en OAuth-forbruger af $3 (forbrugernøgle $4)",
 	"logentry-mwoauthconsumer-reenable": "$1 {{GENDER:$2|genaktiverede}} en OAuth-forbruger med $3 (forbrugernøgle $4)",
 	"logentry-mwoauthconsumer-create-owner-only": "$1 {{GENDER:$2|oprettede}} en OAuth-forbruger, der kun for ejeren (forbrugernøgle $4)",
+	"logentry-mwoauthconsumer-authorize": "$1 {{GENDER:$2|godkendte}} en OAuth-applikation \"$4\" på {{SITENAME}} (forbrugernøgle $5)",
 	"log-action-filter-mwoauthconsumer": "Type af OAuth-forbrugerhandling:",
 	"log-action-filter-mwoauthconsumer-approve": "OAuth-forbrugergodkendelse",
 	"log-action-filter-mwoauthconsumer-create-owner-only": "Oprettelse af OAuth-forbruger, der kun er for ejeren",

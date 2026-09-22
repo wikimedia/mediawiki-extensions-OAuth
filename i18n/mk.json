@@ -236,6 +236,7 @@
 	"logentry-mwoauthconsumer-disable": "$1 {{GENDER:$2|оневозможи}} потрошувач на OAuth со $3 (потрошувачки клуч $4)",
 	"logentry-mwoauthconsumer-reenable": "$1 {{GENDER:$2|преовозможи}} потрошувач на OAuth со $3 (потрошувачки клуч $4)",
 	"logentry-mwoauthconsumer-create-owner-only": "$1 {{GENDER:$2|создаде}} OAuth-потршувач наменет само за сопственикот (потрошувачки клуч $4)",
+	"logentry-mwoauthconsumer-authorize": "$1 {{GENDER:$2|овласти}} прилог со OAuth „$4“ на {{SITENAME}} (потрошувачки клуч $5)",
 	"log-action-filter-mwoauthconsumer": "Вид потрошувачко дејство со OAuth:",
 	"log-action-filter-mwoauthconsumer-approve": "Потрошувачко одобрување со OAuth",
 	"log-action-filter-mwoauthconsumer-create-owner-only": "Создавање на потрошувачи со OAuth само за сопственикот",
