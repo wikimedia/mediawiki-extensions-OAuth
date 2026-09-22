@@ -38,6 +38,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\GrantsLocalization;
+use MediaWiki\Profiler\Profiler;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Skin\SkinFactory;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -52,6 +53,7 @@ use OOUI\HtmlSnippet;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\NormalizedException\INormalizedException;
+use Wikimedia\ScopedCallback;
 
 /**
  * Page that handles OAuth consumer authorization and token exchange
@@ -726,7 +728,11 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			'5::consumer-key' => $cmrAc->getConsumerKey(),
 		] );
 
+		// Logging is intentional on the interaction-free OAuth authentication GET flow
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$scope = $trxProfiler->silenceForScope( $trxProfiler::EXPECTATION_REPLICAS_ONLY );
 		$this->checkUserInsert->updateCheckUserData( $logEntry->getRecentChange() );
+		ScopedCallback::consume( $scope );
 	}
 
 	private function redirectToREST( array $queryAppend = [] ) {
