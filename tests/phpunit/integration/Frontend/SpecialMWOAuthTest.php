@@ -114,10 +114,9 @@ class SpecialMWOAuthTest extends MediaWikiIntegrationTestCase {
 
 	public function testLogOAuthAuthorizationSuccessSendsRecentChangeOnGet(): void {
 		$checkUserInsert = $this->createMock( CheckUserInsert::class );
-		$checkUserInsert->expects( $this->once() )
-			->method( 'updateCheckUserData' )
-			->with( $this->isInstanceOf( RecentChange::class ) );
-
+		$recentChangeMatcher = $this->isInstanceOf( RecentChange::class );
+		$checkUserInsert->expects( $this->once() )->method( 'updateCheckUserData' )
+			->with( $recentChangeMatcher, true );
 		$this->invokeLogOAuthAuthorizationSuccess(
 			$this->newSpecialPage( $checkUserInsert, false ),
 			$this->getTestUser()->getUser(),
