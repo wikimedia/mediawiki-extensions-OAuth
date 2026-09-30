@@ -168,6 +168,8 @@
 	"mwoauthmanageconsumers-none-approved": "Er zijn geen consumers die aan deze voorwaarden voldoen.",
 	"mwoauthmanageconsumers-none-disabled": "Er zijn geen consumers die aan deze criteria voldoen.",
 	"mwoauthmanageconsumers-none-configuration-based": "Er zijn geen consumers die aan deze voorwaarden voldoen.",
+	"mwoauthmanageconsumers-show-owner-only": "Alleen consumers weergeven die de eigenaar zijn",
+	"mwoauthmanageconsumers-hide-owner-only": "Consumers die eigenaar zijn verbergen",
 	"mwoauthmanageconsumers-name": "Consumer",
 	"mwoauthmanageconsumers-user": "Uitgever",
 	"mwoauthmanageconsumers-description": "Beschrijving",
