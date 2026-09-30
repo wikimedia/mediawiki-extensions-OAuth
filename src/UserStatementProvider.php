@@ -45,7 +45,6 @@ class UserStatementProvider {
 	}
 
 	/**
-	 * UserStatementProvider constructor.
 	 * @param Config $config
 	 * @param User $user
 	 * @param Consumer $consumer
