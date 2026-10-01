@@ -9,5 +9,6 @@
 	"mwoauth-consumer-stage-expired": "مُک ڳیا",
 	"mwoauth-consumer-stage-approved": "منظور تھی ڳیا",
 	"mwoauth-consumer-stage-disabled": "غیر فعال",
-	"mwoauthlistconsumers-oauth2-is-confidential": "کلائنٹ خفیہ ہے"
+	"mwoauthlistconsumers-oauth2-is-confidential": "کلائنٹ خفیہ ہے",
+	"mwoauth-oauth2-flow-filter-any": "کوئی وی"
 }

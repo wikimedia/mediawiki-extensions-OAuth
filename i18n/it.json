@@ -266,6 +266,7 @@
 	"notification-oauth-app-reenable-primary-link": "Visualizza applicazione",
 	"notification-oauth-app-body": "Motivo: $1",
 	"mwoauth-oauth-version": "Versione protocollo OAuth",
+	"mwoauth-oauth2-flow-filter-any": "qualsiasi",
 	"mwoauth-oauth2-error-serverexception-withhint": "$1 \n\nUlteriori informazioni di debug: $2",
 	"mwoauth-oauth2-error-server-error": "Il server di autorizzazione ha riscontrato una condizione imprevista che gli ha impedito di soddisfare la richiesta.\n\nInformazioni di debug: $1"
 }
