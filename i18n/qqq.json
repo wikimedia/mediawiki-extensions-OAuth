@@ -174,7 +174,7 @@
 	"mwoauthmanageconsumers-search-name": "Link to search for consumers with the same name.\n\nSee also:\n* {{msg-mw|Mwoauthmanageconsumers-search-publisher}}",
 	"mwoauthmanageconsumers-search-publisher": "Link to search for consumers by the same user.\n\nSee also:\n* {{msg-mw|Mwoauthmanageconsumers-search-name}}",
 	"oauthlistconsumers": "{{doc-special|OAuthListConsumers}}",
-	"mwoauthlistconsumers-legend": "Legend used for filter form fieldset.\n\nFollowed by the following labels:\n* {{msg-mw|mwoauth-consumer-name}}\n* {{msg-mw|mwoauth-consumer-user}}\n* {{msg-mw|mwoauth-consumer-stage}}",
+	"mwoauthlistconsumers-legend": "Legend used for filter form fieldset.\n\nFollowed by the following labels:\n* {{msg-mw|mwoauth-consumer-name}}\n* {{msg-mw|mwoauth-consumer-user}}\n* {{msg-mw|mwoauth-consumer-stage}}\n* {{msg-mw|mwoauthlistconsumers-show-owner-only}}",
 	"mwoauthlistconsumers-view": "Link to view consumer details.\n{{Identical|Detail}}",
 	"mwoauthlistconsumers-none": "Shown when a list of consumers is empty",
 	"mwoauthlistconsumers-name": "Used as a field name in consumer lists.\n{{Identical|Application name}}",
