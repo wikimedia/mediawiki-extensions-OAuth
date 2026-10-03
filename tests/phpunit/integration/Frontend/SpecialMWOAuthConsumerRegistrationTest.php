@@ -3,7 +3,6 @@
 namespace MediaWiki\Extension\OAuth\Tests\Integration\Frontend;
 
 use CentralAuthTestUser;
-use ExtensionRegistry;
 use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -18,6 +17,7 @@ use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
 use MediaWiki\Extension\OAuth\Tests\ConsumerFixtureTrait;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
