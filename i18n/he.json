@@ -287,7 +287,7 @@
 	"mwoauth-listgrants-extra-summary": "== זיכיונות ייחודיים ל־OAuth ==\n\nהזיכיונות הנוספים האלה חלים על צרכני OAuth.",
 	"mwoauth-oauth-exception": "אירעה שגיאה בפרוטוקול OAuth:$1",
 	"mwoauth-callback-not-oob": "הפרמטר oauth_callback צריך להיות מוגדר והערך שלו חייב להיות \"oob\" (תלוי־רישיות)",
-	"mwoauth-callback-not-oob-or-prefix": "יש להגדיר את oauth_callback לערך \"oob\" (תלוי רישיות), או שהמענה המוגדר צריך להיות תחילית של המענה שניתן.",
+	"mwoauth-callback-not-oob-or-prefix": "יש להגדיר את oauth_callback לערך \"oob\" (תלוי־רישיות), או שהמענה המוגדר צריך להיות תחילית של המענה שניתן.",
 	"right-mwoauthproposeconsumer": "הצעת צרכני OAuth חדשים",
 	"right-mwoauthupdateownconsumer": "עדכון צרכני OAuth שבשליטת המשתמש עצמו",
 	"right-mwoauthmanageconsumer": "ניהול צרכני OAuth",
