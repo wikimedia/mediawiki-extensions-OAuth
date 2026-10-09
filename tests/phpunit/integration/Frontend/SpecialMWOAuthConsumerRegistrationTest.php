@@ -175,7 +175,10 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 		$this->overrideConfigValues( [
 			MainConfigNames::LocalDatabases => [ 'enwiki' ],
 			MainConfigNames::DBname => 'enwiki',
-			MainConfigNames::DBprefix => ''
+			MainConfigNames::DBprefix => '',
+			MainConfigNames::CanonicalServer => 'http://en.example.org',
+			MainConfigNames::Server => 'http://en.example.org',
+			MainConfigNames::ArticlePath => '/w/$1',
 		] );
 	}
 
