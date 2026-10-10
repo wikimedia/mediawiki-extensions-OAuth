@@ -24,6 +24,7 @@ use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Control\ConsumerAcceptanceSubmitControl;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Entity\AccessTokenEntity;
+use MediaWiki\Extension\OAuth\Entity\ClaimEntity;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Extension\OAuth\Lib\OAuthSignatureMethodHmacSha1;
@@ -35,7 +36,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CookieSessionProvider;
+use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
@@ -55,6 +58,7 @@ use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use TestLogger;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -181,6 +185,52 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		yield 'consumer 123' => [
 			123,
 		];
+	}
+
+	/** @dataProvider provideChangeTagMetadata */
+	public function testChangeTags( array $metadata, ?string $expectedTag ) {
+		$this->assertChangeTags( $metadata, $expectedTag );
+	}
+
+	private function assertChangeTags( array $metadata, ?string $expectedTag ): void {
+		$provider = $this->getProvider();
+		$user = $this->createMock( User::class );
+		$user->method( 'equals' )->with( $user )->willReturn( true );
+		$session = $this->createMock( Session::class );
+		$session->method( 'getProvider' )->willReturn( $provider );
+		$session->method( 'getUser' )->willReturn( $user );
+		$session->method( 'getProviderMetadata' )->willReturn( $metadata );
+		$request = $this->createMock( WebRequest::class );
+		$request->method( 'getSession' )->willReturn( $session );
+		$user->method( 'getRequest' )->willReturn( $request );
+
+		$rc = $this->createMock( RecentChange::class );
+		$rc->method( 'getPerformerIdentity' )->willReturn( $user );
+		if ( $expectedTag === null ) {
+			$rc->expects( $this->never() )->method( 'addTags' );
+		} else {
+			$rc->expects( $this->once() )->method( 'addTags' )->with( $expectedTag );
+		}
+		$provider->onRecentChange_save( $rc );
+
+		$tags = [ 'Unrelated tag' ];
+		$provider->onMarkPatrolled( 1, $user, false, false, $tags );
+		$this->assertSame( $expectedTag === null ? [ 'Unrelated tag' ] : [ 'Unrelated tag', $expectedTag ], $tags );
+	}
+
+	public static function provideChangeTagMetadata(): iterable {
+		yield 'client credentials' => [
+			[ 'consumerId' => 123, 'grantType' => ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ], null,
+		];
+		yield 'authorization code' => [
+			[ 'consumerId' => 123, 'grantType' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE ], 'OAuth CID: 123',
+		];
+		yield 'refresh token' => [
+			[ 'consumerId' => 123, 'grantType' => ClientEntity::GRANT_TYPE_REFRESH_TOKEN ], 'OAuth CID: 123',
+		];
+		yield 'owner only' => [ [ 'consumerId' => null, 'grantType' => 'owner_only' ], null ];
+		yield 'legacy metadata' => [ [ 'consumerId' => 123 ], 'OAuth CID: 123' ];
+		yield 'unknown grant type' => [ [ 'consumerId' => 123, 'grantType' => null ], 'OAuth CID: 123' ];
 	}
 
 	public function testBasics() {
@@ -570,7 +620,8 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayNotHasKey( 'sessionJwt', $responseOAuth2->getCookies() );
 	}
 
-	public function testOAuth2ClientCredentialsOwnerAuthProvideSessionInfo() {
+	/** @dataProvider provideOAuth2TokenGrantTypes */
+	public function testOAuth2ClientCredentialsOwnerAuthProvideSessionInfo( array $allowedGrants, string $grantType ) {
 		$centralIdMap = &$this->mockCentralIdLookup();
 
 		$config = $this->getConfig();
@@ -590,6 +641,11 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$status = $this->createOAuth2ClientCredentialsOwnerAuthConsumer( $user );
 		/** @var ClientEntity $consumer */
 		$consumer = $status->getValue()['result']['consumer'];
+		// Existing clients can allow multiple grants even though new registrations cannot.
+		$consumerRepository = OAuthServices::wrap( $this->getServiceContainer() )->getConsumerRepository();
+		$consumer = $consumerRepository->getById( $consumer->getId(), IDBAccessObject::READ_LATEST );
+		$consumer->setField( 'oauth2GrantTypes', $allowedGrants );
+		$consumerRepository->save( $consumer );
 		$this->assertFalse( $consumer->getOwnerOnly() );
 		$this->assertTrue( $consumer->clientCredentialsAuthenticateAsOwner() );
 
@@ -602,6 +658,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$accessToken->setPrivateKeyFromConfig();
 		$accessToken->setIdentifier( bin2hex( random_bytes( 40 ) ) );
 		$accessToken->setUserIdentifier( $consumer->getUserId() );
+		$accessToken->addClaim( new ClaimEntity( 'grant_type', $grantType ) );
 		$accessTokenRepo->persistNewAccessToken( $accessToken );
 
 		$info = $provider->provideSessionInfo( $this->getOAuth2RequestWithNoJwtHeader( (string)$accessToken ) );
@@ -609,6 +666,12 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $info->getUserInfo() );
 		$this->assertSame( $user->getName(), $info->getUserInfo()->getName() );
 		$this->assertSame( $consumer->getId(), $info->getProviderMetadata()['consumerId'] );
+		$this->assertSame( $grantType, $info->getProviderMetadata()['grantType'] );
+		$this->assertChangeTags(
+			$info->getProviderMetadata(),
+			$grantType === ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS
+				? null : Utils::getTagName( $consumer->getId() )
+		);
 		$this->assertSame(
 			[ [ LogLevel::DEBUG, 'OAuth request for consumer {consumer_key} by user {user}' ] ],
 			$this->logger->getBuffer()
@@ -633,6 +696,20 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 			$this->logger->getBuffer()
 		);
 		$this->logger->clearBuffer();
+	}
+
+	public static function provideOAuth2TokenGrantTypes(): iterable {
+		yield 'client credentials only' => [
+			[ ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ], ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+		];
+		$mixedGrants = [
+			ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+			ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+			ClientEntity::GRANT_TYPE_REFRESH_TOKEN,
+		];
+		foreach ( $mixedGrants as $grantType ) {
+			yield 'mixed grants: ' . $grantType => [ $mixedGrants, $grantType ];
+		}
 	}
 
 	#[\NoDiscard]
