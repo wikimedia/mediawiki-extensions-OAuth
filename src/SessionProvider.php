@@ -558,13 +558,14 @@ class SessionProvider
 	}
 
 	/**
-	 * Get the consumer ID of the non-owner-only OAuth consumer associated with this user, or null.
+	 * Get the consumer ID for change tagging, excluding owner-only and client-credentials consumers.
 	 * @param UserIdentity|null $userIdentity
 	 * @return int|null
 	 */
 	protected function getPublicConsumerId( ?UserIdentity $userIdentity = null ) {
 		$data = $this->getSessionData( $userIdentity );
-		if ( $data && isset( $data['consumerId'] ) ) {
+		if ( $data && isset( $data['consumerId'] ) &&
+			( $data['grantType'] ?? '' ) !== ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ) {
 			return $data['consumerId'];
 		}
 		return null;
