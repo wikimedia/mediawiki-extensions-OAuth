@@ -4,7 +4,7 @@ namespace MediaWiki\Extension\OAuth\Frontend\Pagers;
 
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
-use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthListConsumers;
+use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialOAuthListConsumers;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\AlphabeticPager;
 use MediaWiki\Title\Title;
@@ -20,7 +20,7 @@ use stdClass;
  * Query to list out consumers
  */
 class ListConsumersPager extends AlphabeticPager {
-	/** @var SpecialMWOAuthListConsumers */
+	/** @var SpecialOAuthListConsumers */
 	public $mForm;
 
 	/** @var array */
@@ -29,7 +29,7 @@ class ListConsumersPager extends AlphabeticPager {
 	private ?string $grantType;
 
 	/**
-	 * @param SpecialMWOAuthListConsumers $form
+	 * @param SpecialOAuthListConsumers $form
 	 * @param array $conds
 	 * @param string|null $name
 	 * @param int|null $centralUserID

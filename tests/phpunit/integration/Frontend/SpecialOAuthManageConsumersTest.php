@@ -10,12 +10,12 @@ use MediaWiki\Tests\Specials\SpecialPageTestBase;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
- * @covers \MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers
+ * @covers \MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialOAuthManageConsumers
  * @covers \MediaWiki\Extension\OAuth\Backend\Utils::getConsumerStateCounts
  * @group Database
  * @group OAuth
  */
-class SpecialMWOAuthManageConsumersTest extends SpecialPageTestBase {
+class SpecialOAuthManageConsumersTest extends SpecialPageTestBase {
 	use ConsumerFixtureTrait;
 
 	private Consumer $consumer;

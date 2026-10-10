@@ -9,7 +9,7 @@ namespace MediaWiki\Extension\OAuth\Frontend\Pagers;
  */
 
 use MediaWiki\Extension\OAuth\Backend\Utils;
-use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageMyGrants;
+use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialOAuthManageMyGrants;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Title\Title;
@@ -19,13 +19,13 @@ use stdClass;
  * Query to list out consumers that have an access token for this user
  */
 class ManageMyGrantsPager extends ReverseChronologicalPager {
-	/** @var SpecialMWOAuthManageMyGrants */
+	/** @var SpecialOAuthManageMyGrants */
 	public $mForm;
 	/** @var array */
 	public $mConds;
 
 	/**
-	 * @param SpecialMWOAuthManageMyGrants $form
+	 * @param SpecialOAuthManageMyGrants $form
 	 * @param array $conds
 	 * @param int $centralUserId
 	 */

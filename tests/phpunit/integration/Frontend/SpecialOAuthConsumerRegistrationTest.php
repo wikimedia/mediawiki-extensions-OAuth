@@ -14,7 +14,7 @@ use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Backend\OAuth1Consumer;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
-use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration;
+use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialOAuthConsumerRegistration;
 use MediaWiki\Extension\OAuth\Tests\ConsumerFixtureTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Registration\ExtensionRegistry;
@@ -28,12 +28,12 @@ use MediaWikiIntegrationTestCase;
 use StatusValue;
 
 /**
- * @covers \MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthConsumerRegistration
+ * @covers \MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialOAuthConsumerRegistration
  * @covers \MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl
  * @covers \MediaWiki\Extension\OAuth\Control\SubmitControl
  * @group Database
  */
-class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCase {
+class SpecialOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCase {
 	use ConsumerFixtureTrait;
 
 	protected function setUp(): void {
@@ -61,7 +61,7 @@ class SpecialMWOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCas
 	private function newSpecialPage(): SpecialPage {
 		$services = $this->getServiceContainer();
 
-		return new SpecialMWOAuthConsumerRegistration(
+		return new SpecialOAuthConsumerRegistration(
 			$services->getPermissionManager(),
 			$services->getGrantsInfo(),
 			$services->getGrantsLocalization(),

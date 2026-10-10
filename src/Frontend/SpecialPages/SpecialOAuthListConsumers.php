@@ -39,7 +39,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * Special page for listing the queue of consumer requests and managing
  * their approval/rejection and also for listing approved/disabled consumers
  */
-class SpecialMWOAuthListConsumers extends SpecialPage {
+class SpecialOAuthListConsumers extends SpecialPage {
 	public function __construct(
 		private readonly GrantsLocalization $grantsLocalization,
 		private readonly PermissionManager $permissionManager
