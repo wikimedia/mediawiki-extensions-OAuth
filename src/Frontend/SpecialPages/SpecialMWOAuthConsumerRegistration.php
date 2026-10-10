@@ -249,8 +249,8 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 						],
 						'action' => [
 							'type'    => 'hidden',
-								'default' => 'update'
-						]
+							'default' => 'update',
+						],
 					] ),
 					$this->getContext()
 				);
@@ -577,6 +577,28 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				'label-message' => [ 'mwoauth-consumer-owner-only', $user->getName() ],
 				'help-message' => [ 'mwoauth-consumer-owner-only-help', $user->getName() ],
 			],
+			'oauth2Flow' => [
+				'oauthVersion' => Consumer::OAUTH_VERSION_2,
+				'type' => 'radio',
+				'label-message' => 'mwoauth-oauth2-flow',
+				'hide-if' => [ '!==', 'ownerOnly', '' ],
+				'options-messages' => array_filter( [
+					'mwoauth-oauth2-flow-auth-code' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+					'mwoauth-oauth2-flow-client-credentials' => ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+				], fn ( $grantType ) => in_array( $grantType, $this->getConfig()->get( 'OAuth2EnabledGrantTypes' ) ) ),
+				'required' => true,
+				'default' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+			],
+			'oauth2ClientCredentialsHelp' => [
+				'oauthVersion' => Consumer::OAUTH_VERSION_2,
+				'type' => 'info',
+				'raw' => true,
+				'default' => $this->msg( 'mwoauth-oauth2-flow-client-credentials-help' )->parseAsBlock(),
+				'hide-if' => [ 'OR',
+					[ '!==', 'ownerOnly', '' ],
+					[ '!==', 'oauth2Flow', ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ],
+				],
+			],
 			'callbackUrl' => [
 				'type' => 'text',
 				'label-message' => 'mwoauth-consumer-callbackurl',
@@ -599,17 +621,6 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 				'label-message' => 'mwoauth-consumer-callbackisprefix',
 				'hide-if' => [ '!==', 'ownerOnly', '' ],
 			],
-			'wiki' => [
-				'type' => $allWikis ? 'combobox' : 'select',
-				'options' => [
-					 $this->msg( 'mwoauth-consumer-allwikis' )->escaped() => '*',
-					 $this->msg( 'mwoauth-consumer-wiki-thiswiki', WikiMap::getCurrentWikiId() )
-						 ->escaped() => WikiMap::getCurrentWikiId()
-				 ] + array_flip( $allWikis ),
-				'label-message' => 'mwoauth-consumer-wiki',
-				'required' => true,
-				'default' => '*'
-			],
 			'oauth2IsConfidential' => [
 				'oauthVersion' => Consumer::OAUTH_VERSION_2,
 				'type' => 'check',
@@ -621,27 +632,16 @@ class SpecialMWOAuthConsumerRegistration extends SpecialPage {
 					[ '===', 'oauth2Flow', ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ],
 				],
 			],
-			'oauth2Flow' => [
-				'oauthVersion' => Consumer::OAUTH_VERSION_2,
-				'type' => 'radio',
-				'label-message' => 'mwoauth-oauth2-flow',
-				'hide-if' => [ '!==', 'ownerOnly', '' ],
-				'options-messages' => array_filter( [
-					'mwoauth-oauth2-flow-auth-code' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
-					'mwoauth-oauth2-flow-client-credentials' => ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
-				], fn ( $grantType ) => in_array( $grantType, $this->getConfig()->get( 'OAuth2EnabledGrantTypes' ) ) ),
+			'wiki' => [
+				'type' => $allWikis ? 'combobox' : 'select',
+				'options' => [
+					 $this->msg( 'mwoauth-consumer-allwikis' )->escaped() => '*',
+					 $this->msg( 'mwoauth-consumer-wiki-thiswiki', WikiMap::getCurrentWikiId() )
+						 ->escaped() => WikiMap::getCurrentWikiId()
+				 ] + array_flip( $allWikis ),
+				'label-message' => 'mwoauth-consumer-wiki',
 				'required' => true,
-				'default' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
-			],
-			'oauth2ClientCredentialsHelp' => [
-				'oauthVersion' => Consumer::OAUTH_VERSION_2,
-				'type' => 'info',
-				'raw' => true,
-				'default' => $this->msg( 'mwoauth-oauth2-flow-client-credentials-help' )->parseAsBlock(),
-				'hide-if' => [ 'OR',
-					[ '!==', 'ownerOnly', '' ],
-					[ '!==', 'oauth2Flow', ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ],
-				],
+				'default' => '*'
 			],
 			'granttype' => [
 				'type' => 'radio',
