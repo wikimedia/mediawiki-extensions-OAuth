@@ -53,7 +53,7 @@
 	},
 	"SpecialPages": {
 		"OAuth": {
-			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuth",
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialOAuth",
 			"services": [
 				"GrantsLocalization",
 				"SkinFactory",
@@ -64,7 +64,7 @@
 			]
 		},
 		"OAuthManageMyGrants": {
-			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthManageMyGrants",
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialOAuthManageMyGrants",
 			"services": [
 				"GrantsInfo",
 				"GrantsLocalization",
@@ -72,14 +72,14 @@
 			]
 		},
 		"OAuthListConsumers": {
-			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthListConsumers",
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialOAuthListConsumers",
 			"services": [
 				"GrantsLocalization",
 				"PermissionManager"
 			]
 		},
 		"OAuthConsumerRegistration": {
-			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthConsumerRegistration",
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialOAuthConsumerRegistration",
 			"services": [
 				"PermissionManager",
 				"GrantsInfo",
@@ -88,7 +88,7 @@
 			]
 		},
 		"OAuthManageConsumers": {
-			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialMWOAuthManageConsumers",
+			"class": "MediaWiki\\Extension\\OAuth\\Frontend\\SpecialPages\\SpecialOAuthManageConsumers",
 			"services": [
 				"GrantsLocalization",
 				"PermissionManager"

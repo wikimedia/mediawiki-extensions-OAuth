@@ -10,7 +10,7 @@ namespace MediaWiki\Extension\OAuth\Frontend\Pagers;
 
 use MediaWiki\Extension\OAuth\Backend\Utils;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
-use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthManageConsumers;
+use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialOAuthManageConsumers;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ReverseChronologicalPager;
 use MediaWiki\Title\Title;
@@ -20,7 +20,7 @@ use stdClass;
  * Query to list out consumers
  */
 class ManageConsumersPager extends ReverseChronologicalPager {
-	/** @var SpecialMWOAuthManageConsumers */
+	/** @var SpecialOAuthManageConsumers */
 	public $mForm;
 
 	/** @var array */
@@ -29,7 +29,7 @@ class ManageConsumersPager extends ReverseChronologicalPager {
 	private ?string $grantType;
 
 	/**
-	 * @param SpecialMWOAuthManageConsumers $form
+	 * @param SpecialOAuthManageConsumers $form
 	 * @param array $conds
 	 * @param int $stage
 	 * @param string|null $grantType

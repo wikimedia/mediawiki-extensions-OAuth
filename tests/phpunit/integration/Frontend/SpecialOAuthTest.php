@@ -4,7 +4,7 @@ namespace MediaWiki\Extension\OAuth\Tests\Integration\Frontend;
 
 use MediaWiki\Extension\CheckUser\Services\CheckUserInsert;
 use MediaWiki\Extension\OAuth\Control\ConsumerAccessControl;
-use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuth;
+use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialOAuth;
 use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\RecentChanges\RecentChange;
 use MediaWiki\Request\FauxRequest;
@@ -14,11 +14,11 @@ use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuth
+ * @covers \MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialOAuth
  * @group Database
  * @group OAuth
  */
-class SpecialMWOAuthTest extends MediaWikiIntegrationTestCase {
+class SpecialOAuthTest extends MediaWikiIntegrationTestCase {
 
 	private const CONSUMER_NAME = 'Test OAuth app';
 	private const CONSUMER_KEY = 'abcdef0123456789abcdef0123456789';
@@ -34,9 +34,9 @@ class SpecialMWOAuthTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	private function newSpecialPage( ?object $checkUserInsert, bool $wasPosted = true ): SpecialMWOAuth {
+	private function newSpecialPage( ?object $checkUserInsert, bool $wasPosted = true ): SpecialOAuth {
 		$services = $this->getServiceContainer();
-		$specialPage = new SpecialMWOAuth(
+		$specialPage = new SpecialOAuth(
 			$services->getGrantsLocalization(),
 			$services->getSkinFactory(),
 			$services->getUrlUtils(),
@@ -61,7 +61,7 @@ class SpecialMWOAuthTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function invokeLogOAuthAuthorizationSuccess(
-		SpecialMWOAuth $specialPage,
+		SpecialOAuth $specialPage,
 		User $user,
 		ConsumerAccessControl $cmrAc
 	): void {

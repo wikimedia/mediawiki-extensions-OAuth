@@ -58,7 +58,7 @@ use Wikimedia\NormalizedException\INormalizedException;
 /**
  * Page that handles OAuth consumer authorization and token exchange
  */
-class SpecialMWOAuth extends UnlistedSpecialPage {
+class SpecialOAuth extends UnlistedSpecialPage {
 	protected readonly LoggerInterface $logger;
 
 	/** @var int Defaults to OAuth1 */

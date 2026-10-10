@@ -10,11 +10,11 @@ use MediaWiki\Tests\Specials\SpecialPageTestBase;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
- * @covers \MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialMWOAuthListConsumers
+ * @covers \MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialOAuthListConsumers
  * @group Database
  * @group OAuth
  */
-class SpecialMWOAuthListConsumersTest extends SpecialPageTestBase {
+class SpecialOAuthListConsumersTest extends SpecialPageTestBase {
 	use ConsumerFixtureTrait;
 
 	private Consumer $consumer;

@@ -46,7 +46,7 @@ use Wikimedia\Timestamp\TimestampFormat;
 /**
  * Page that has registration request form and consumer update form
  */
-class SpecialMWOAuthConsumerRegistration extends SpecialPage {
+class SpecialOAuthConsumerRegistration extends SpecialPage {
 	public function __construct(
 		private readonly PermissionManager $permissionManager,
 		private readonly GrantsInfo $grantsInfo,

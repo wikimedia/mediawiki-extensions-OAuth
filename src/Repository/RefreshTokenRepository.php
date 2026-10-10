@@ -87,7 +87,7 @@ class RefreshTokenRepository extends CacheRepository implements RefreshTokenRepo
 	 */
 	public function isRefreshTokenRevoked( string $tokenId ): bool {
 		// Refresh tokens cannot be mass-revoked when the user revokes the approval for a client
-		// via SpecialMWOAuthManageMyGrants, because they are stored in a key-value store.
+		// via SpecialOAuthManageMyGrants, because they are stored in a key-value store.
 		// instead we rely on the fact that the refresh token contains the access token ID
 		// (oaat_identifier), and access tokens are marked invalid but never deleted, except when
 		// the user revokes the approval for the client.

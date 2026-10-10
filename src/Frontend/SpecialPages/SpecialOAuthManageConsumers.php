@@ -39,7 +39,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * Special page for listing the queue of consumer requests and managing
  * their approval/rejection and also for listing approved/disabled consumers
  */
-class SpecialMWOAuthManageConsumers extends SpecialPage {
+class SpecialOAuthManageConsumers extends SpecialPage {
 	/** @var bool|int An Consumer::STAGE_* constant on queue/list subpages, false otherwise */
 	protected $stage = false;
 	/** @var string A stage key from Consumer::$stageNames */

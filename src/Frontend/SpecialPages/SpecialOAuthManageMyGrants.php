@@ -35,7 +35,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * Special page for listing consumers this user granted access to and
  * for manage the specific grants given or revoking access for the consumer
  */
-class SpecialMWOAuthManageMyGrants extends SpecialPage {
+class SpecialOAuthManageMyGrants extends SpecialPage {
 	public function __construct(
 		private readonly GrantsInfo $grantsInfo,
 		private readonly GrantsLocalization $grantsLocalization,
