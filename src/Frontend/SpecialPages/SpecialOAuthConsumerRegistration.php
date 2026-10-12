@@ -47,6 +47,9 @@ use Wikimedia\Timestamp\TimestampFormat;
  * Page that has registration request form and consumer update form
  */
 class SpecialOAuthConsumerRegistration extends SpecialPage {
+	// Form-only choice; persisted using ownerOnly and the client_credentials grant.
+	private const FLOW_OWNER_ONLY = 'owner_only';
+
 	public function __construct(
 		private readonly PermissionManager $permissionManager,
 		private readonly GrantsInfo $grantsInfo,
@@ -549,6 +552,19 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 
 		$grantNames = $this->grantsLocalization->getGrantDescriptionsWithClasses(
 			$showGrants, $this->getLanguage() );
+
+		$oauth2Flows = array_filter( [
+			'mwoauth-oauth2-flow-auth-code-description' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
+			'mwoauth-oauth2-flow-client-credentials-description' => ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
+		], fn ( $grantType ) => in_array( $grantType, $this->getConfig()->get( 'OAuth2EnabledGrantTypes' ), true ) );
+		// Owner-only registration remains available independently of enabled OAuth 2 flows.
+		$oauth2Flows['mwoauth-oauth2-flow-owner-only-description'] = self::FLOW_OWNER_ONLY;
+
+		// Hide conditions for form fields
+		$ifSingleUserApp = $oauthVersion === Consumer::OAUTH_VERSION_2
+			? [ '!==', 'oauth2Flow', ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE ]
+			: [ '!==', 'ownerOnly', '' ];
+
 		$formDescriptor = [
 			'oauthVersion' => [
 				'class' => HTMLHiddenField::class,
@@ -573,6 +589,7 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 				'rows' => 5
 			],
 			'ownerOnly' => [
+				'oauthVersion' => Consumer::OAUTH_VERSION_1,
 				'type' => 'check',
 				'label-message' => [ 'mwoauth-consumer-owner-only', $user->getName() ],
 				'help-message' => [ 'mwoauth-consumer-owner-only-help', $user->getName() ],
@@ -581,45 +598,33 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 				'oauthVersion' => Consumer::OAUTH_VERSION_2,
 				'type' => 'radio',
 				'label-message' => 'mwoauth-oauth2-flow',
-				'hide-if' => [ '!==', 'ownerOnly', '' ],
-				'options-messages' => array_filter( [
-					'mwoauth-oauth2-flow-auth-code' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
-					'mwoauth-oauth2-flow-client-credentials' => ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS,
-				], fn ( $grantType ) => in_array( $grantType, $this->getConfig()->get( 'OAuth2EnabledGrantTypes' ) ) ),
+				'options-messages' => $oauth2Flows,
+				'options-messages-parse' => true,
 				'required' => true,
-				'default' => ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE,
-			],
-			'oauth2ClientCredentialsHelp' => [
-				'oauthVersion' => Consumer::OAUTH_VERSION_2,
-				'type' => 'info',
-				'raw' => true,
-				'default' => $this->msg( 'mwoauth-oauth2-flow-client-credentials-help' )->parseAsBlock(),
-				'hide-if' => [ 'OR',
-					[ '!==', 'ownerOnly', '' ],
-					[ '!==', 'oauth2Flow', ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ],
-				],
+				'default' => reset( $oauth2Flows ),
 			],
 			'callbackUrl' => [
 				'type' => 'text',
 				'label-message' => 'mwoauth-consumer-callbackurl',
+				'validation-callback' => static function ( $value, $data, $form ) use ( $control ) {
+					// OAuth 2 only validates this field for authorization code apps,
+					// whose ownerOnly flag is no longer a separate form field.
+					$data += [ 'ownerOnly' => false ];
+					return $control->validateFieldInternal( 'callbackUrl', $value, $data, $form );
+				},
 				'help-messages' => ( $oauthVersion === Consumer::OAUTH_VERSION_2 )
 					? [
 							'mwoauth-consumer-callbackurl-help',
 							'mwoauth-consumer-callbackurl-custom-scheme'
 						] : null,
 				'required' => true,
-				'hide-if' => $oauthVersion === Consumer::OAUTH_VERSION_2
-					? [ 'OR',
-						[ '!==', 'ownerOnly', '' ],
-						[ '===', 'oauth2Flow', ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ],
-					]
-					: [ '!==', 'ownerOnly', '' ],
+				'hide-if' => $ifSingleUserApp,
 			],
 			'callbackIsPrefix' => [
 				'oauthVersion' => Consumer::OAUTH_VERSION_1,
 				'type' => 'check',
 				'label-message' => 'mwoauth-consumer-callbackisprefix',
-				'hide-if' => [ '!==', 'ownerOnly', '' ],
+				'hide-if' => $ifSingleUserApp,
 			],
 			'oauth2IsConfidential' => [
 				'oauthVersion' => Consumer::OAUTH_VERSION_2,
@@ -627,10 +632,7 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 				'label-message' => 'mwoauth-oauth2-is-confidential',
 				'help-message' => 'mwoauth-oauth2-is-confidential-help',
 				'default' => 1,
-				'hide-if' => [ 'OR',
-					[ '!==', 'ownerOnly', '' ],
-					[ '===', 'oauth2Flow', ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ],
-				],
+				'hide-if' => $ifSingleUserApp,
 			],
 			'wiki' => [
 				'type' => $allWikis ? 'combobox' : 'select',
@@ -652,7 +654,7 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 				],
 				'label-message' => 'mwoauth-consumer-granttypes',
 				'default' => 'normal',
-				'hide-if' => [ '!==', 'ownerOnly', '' ],
+				'hide-if' => $ifSingleUserApp,
 			],
 			// HACK separate field from grants because OOUI HTMLFormField cannot position help text on top.
 			// If this form is changed to Codex, this could use 'description-message' instead.
@@ -661,19 +663,13 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 				'default' => '',
 				'help-message' => 'mwoauth-consumer-grantshelp',
 				// Keep 'hide-if' in sync between 'grants' and 'grantsHelp'
-				'hide-if' => [ 'AND',
-					[ '!==', 'granttype', 'normal' ],
-					[ '===', 'ownerOnly', '' ]
-				],
+				'hide-if' => [ 'AND', [ '!==', 'granttype', 'normal' ], [ 'NOT', $ifSingleUserApp ] ],
 			],
 			'grants' => [
 				'type' => 'checkmatrix',
 				'label-message' => 'mwoauth-consumer-grantsneeded',
 				// Keep 'hide-if' in sync between 'grants' and 'grantsHelp'
-				'hide-if' => [ 'AND',
-					[ '!==', 'granttype', 'normal' ],
-					[ '===', 'ownerOnly', '' ]
-				],
+				'hide-if' => [ 'AND', [ '!==', 'granttype', 'normal' ], [ 'NOT', $ifSingleUserApp ] ],
 				'columns' => [
 					$this->msg( 'mwoauth-consumer-required-grant' )->escaped() => 'grant'
 				],
@@ -738,10 +734,13 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 			$formDescriptor['rsaKey']['default'] = $copyFrom->getRsaKey();
 			if ( $oauthVersion === Consumer::OAUTH_VERSION_2 ) {
 				$formDescriptor['oauth2IsConfidential']['default'] = $copyFrom->get( 'oauth2IsConfidential' );
-				$formDescriptor['oauth2Flow']['default'] =
-					in_array( ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS, $copyFrom->get( 'oauth2GrantTypes' ), true )
-						? ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS
-						: ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE;
+				if ( $copyFrom->getOwnerOnly() ) {
+					$formDescriptor['oauth2Flow']['default'] = self::FLOW_OWNER_ONLY;
+				} else {
+					$formDescriptor['oauth2Flow']['default'] = in_array(
+						ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS, $copyFrom->get( 'oauth2GrantTypes' ), true
+					) ? ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS : ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE;
+				}
 			}
 			// Derive granttype and grants from the stored grants array
 			$grants = $copyFrom->getGrants();
@@ -777,18 +776,6 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 				$data['grants'] = FormatJson::encode(
 					preg_replace( '/^grant-/', '', $data['grants'] )
 				);
-
-				// Force all ownerOnly clients to use client_credentials
-				if ( $data['ownerOnly'] ) {
-					$data['oauth2GrantTypes'] = [ ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ];
-				} elseif ( (int)( $data['oauthVersion'] ?? 0 ) === Consumer::OAUTH_VERSION_2 ) {
-					$data['oauth2GrantTypes'] = $this->getGrantTypesForOAuth2Flow( $data['oauth2Flow'] );
-					if ( $data['oauth2Flow'] === ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ) {
-						$data['oauth2IsConfidential'] = true;
-						$data['callbackUrl'] = '';
-					}
-				}
-				unset( $data['oauth2Flow'], $data['oauth2ClientCredentialsHelp'] );
 
 				$control->setInputParameters( $data );
 				return $control->submit();
@@ -858,6 +845,20 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 	 * @return array
 	 */
 	private function fillDefaultFields( array $form ): array {
+		if ( (int)$form['oauthVersion'] === Consumer::OAUTH_VERSION_2 ) {
+			$form['ownerOnly'] = $form['oauth2Flow'] === self::FLOW_OWNER_ONLY;
+			$form['oauth2GrantTypes'] = $this->getGrantTypesForOAuth2Flow( $form['oauth2Flow'] );
+			if ( $form['oauth2Flow'] !== ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE ) {
+				$form['oauth2IsConfidential'] = true;
+				$form['callbackUrl'] = '';
+				$form['granttype'] = 'normal';
+			}
+		} elseif ( $form['ownerOnly'] ) {
+			$form['oauth2GrantTypes'] = [ ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ];
+			$form['callbackUrl'] = '';
+		}
+		unset( $form['oauth2Flow'] );
+
 		// These defaults are taken from the legacy form and are present regardless of OAuth version
 		$defaults = [
 			'callbackIsPrefix' => false,
@@ -870,23 +871,14 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 			'rsaKey' => '',
 		];
 
-		$form = array_merge( $defaults, $form );
-
-		// 'callbackUrl' must be present,
-		// otherwise SubmitControl::validateFields() fails.
-		// @phan-suppress-next-line PhanTypeInvalidDimOffset
-		if ( $form['ownerOnly'] && !isset( $form['callbackUrl'] ) ) {
-			$form['callbackUrl'] = '';
-		}
-
-		return $form;
+		return array_merge( $defaults, $form );
 	}
 
 	/**
 	 * @return string[]
 	 */
 	private function getGrantTypesForOAuth2Flow( string $flow ): array {
-		if ( $flow === ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ) {
+		if ( $flow === ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS || $flow === self::FLOW_OWNER_ONLY ) {
 			return [ ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS ];
 		}
 

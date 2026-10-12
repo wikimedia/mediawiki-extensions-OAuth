@@ -15,9 +15,11 @@ use MediaWiki\Extension\OAuth\Backend\OAuth1Consumer;
 use MediaWiki\Extension\OAuth\Control\ConsumerSubmitControl;
 use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Frontend\SpecialPages\SpecialOAuthConsumerRegistration;
+use MediaWiki\Extension\OAuth\Repository\DatabaseConsumerRepository;
 use MediaWiki\Extension\OAuth\Tests\ConsumerFixtureTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -544,6 +546,112 @@ class SpecialOAuthConsumerRegistrationTest extends MediaWikiIntegrationTestCase 
 			'Developers should use the form below to request a token for a new OAuth 2.0 client',
 			$outputPage->getHTML()
 		);
+	}
+
+	public function testOAuth2ApplicationOptions(): void {
+		// Owner-only is a form choice, not an enabled OAuth grant type.
+		$this->overrideConfigValue( 'OAuth2EnabledGrantTypes', [
+			'authorization_code', 'refresh_token', 'client_credentials',
+		] );
+		$page = $this->newSpecialPage();
+		$page->setContext( $this->prepareRequestContext( $this->getTestSysop()->getUser() ) );
+		$page->execute( 'propose/oauth2' );
+		$html = $page->getOutput()->getHTML();
+		foreach ( [ 'authorization_code', 'client_credentials', 'owner_only' ] as $flow ) {
+			$this->assertStringContainsString( "value='" . $flow . "'", $html );
+		}
+		$this->assertStringNotContainsString( "name='wpownerOnly'", $html );
+		$this->assertStringContainsString( '<strong>Authorization code</strong>', $html );
+		$this->assertStringContainsString( '<strong>Client credentials</strong>', $html );
+		$this->assertStringContainsString( '<strong>Owner-only</strong>', $html );
+	}
+
+	public function testOwnerOnlyAvailableWithoutEnabledFlows(): void {
+		$this->overrideConfigValue( 'OAuth2EnabledGrantTypes', [] );
+		$page = $this->newSpecialPage();
+		$page->setContext( $this->prepareRequestContext( $this->getTestSysop()->getUser() ) );
+		$page->execute( 'propose/oauth2' );
+		$html = $page->getOutput()->getHTML();
+		$this->assertStringContainsString( "value='owner_only'", $html );
+		$this->assertStringNotContainsString( "value='authorization_code'", $html );
+		$this->assertStringNotContainsString( "value='client_credentials'", $html );
+	}
+
+	public static function provideApplicationTypes(): iterable {
+		yield 'authorization code' => [ 'authorization_code', false, [ 'authorization_code', 'refresh_token' ] ];
+		yield 'client credentials' => [ 'client_credentials', false, [ 'client_credentials' ] ];
+		yield 'owner only' => [ 'owner_only', true, [ 'client_credentials' ] ];
+	}
+
+	/** @dataProvider provideApplicationTypes */
+	public function testCopyApplicationType( string $flow, bool $ownerOnly, array $grantTypes ): void {
+		$user = $this->getTestSysop()->getUser();
+		$consumer = $this->createConsumer( $user, 'Copy application', $ownerOnly );
+		$repository = new DatabaseConsumerRepository();
+		$consumer = $repository->getByKey( $consumer->getConsumerKey() );
+		$consumer->setField( 'oauth2GrantTypes', $grantTypes );
+		$repository->save( $consumer );
+		$page = $this->newSpecialPage();
+		$page->setContext( $this->prepareRequestContext( $user ) );
+		$page->execute( 'copy/' . $consumer->getConsumerKey() );
+		$html = $page->getOutput()->getHTML();
+		$this->assertMatchesRegularExpression(
+			"/<input(?=[^>]*name='wpoauth2Flow')(?=[^>]*value='" . $flow . "')(?=[^>]*checked)[^>]*>/",
+			$html
+		);
+	}
+
+	/** @dataProvider provideApplicationTypes */
+	public function testSubmitApplicationType( string $flow, bool $ownerOnly, array $grantTypes ): void {
+		$this->overrideConfigValues( [
+			'OAuth2EnabledGrantTypes' => [ 'authorization_code', 'refresh_token', 'client_credentials' ],
+			'OAuth2ClientCredentialsOwnerAuthCutover' => '20000101000000',
+		] );
+		$user = $this->getTestSysop()->getUser();
+		$context = $this->prepareRequestContext( $user );
+		$request = new FauxRequest( [
+			'wpoauthVersion' => Consumer::OAUTH_VERSION_2,
+			'wpname' => 'Application type test',
+			'wpversion' => '1.0',
+			'wpdescription' => 'Test registration through the form',
+			'wpoauth2Flow' => $flow,
+			'wpcallbackUrl' => 'https://example.com/callback',
+			// An unchecked confidential checkbox is valid only for authorization code.
+			'wpwiki' => '*',
+			'wpgranttype' => 'normal',
+			'wpgrants' => [ 'grant-editpage' ],
+			'wprestrictions-ip' => '0.0.0.0/0',
+			'wpagreement' => '1',
+			'wpignorewarnings' => '1',
+			'wpaction' => 'propose',
+		], true );
+		$context->setRequest( $request );
+		$request->setVal( 'wpEditToken', $context->getCsrfTokenSet()->getToken() );
+		$page = $this->newSpecialPage();
+		$page->setContext( $context );
+		$page->execute( 'propose/oauth2' );
+
+		$row = $this->getDb()->newSelectQueryBuilder()
+			->select( '*' )->from( 'oauth_registered_consumer' )
+			->where( [ 'oarc_name' => 'Application type test' ] )
+			->caller( __METHOD__ )->fetchRow();
+		$this->assertNotFalse( $row, $page->getOutput()->getHTML() );
+		$consumer = ( new DatabaseConsumerRepository() )->newFromRow( $row );
+		$this->assertSame( $ownerOnly, $consumer->getOwnerOnly() );
+		$this->assertSame( $grantTypes, $consumer->get( 'oauth2GrantTypes' ) );
+		$this->assertContains( 'editpage', $consumer->getGrants() );
+		$this->assertSame( $flow !== 'authorization_code', $consumer->get( 'oauth2IsConfidential' ) );
+		$this->assertSame(
+			$flow === 'authorization_code' ? 'https://example.com/callback' : '',
+			$consumer->getCallbackUrl()
+		);
+		$this->assertSame(
+			$flow === 'authorization_code' ? Consumer::STAGE_PROPOSED : Consumer::STAGE_APPROVED,
+			$consumer->getStage()
+		);
+		if ( $ownerOnly ) {
+			$this->assertStringContainsString( 'Access token', $page->getOutput()->getHTML() );
+		}
 	}
 
 	public function testExecuteUpdateViewWithoutUpdateRights(): void {
