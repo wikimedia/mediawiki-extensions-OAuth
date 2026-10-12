@@ -389,6 +389,7 @@ class SpecialOAuthManageConsumers extends SpecialPage {
 		$ownerLink = $cmrAc->escapeForHtml( $owner ) . ' ' .
 			$this->msg( 'parentheses' )->rawParams( $link )->escaped();
 		$ownerOnly = $cmrAc->getDAO()->getOwnerOnly();
+		$clientCredentials = $cmrAc->getDAO()->usesClientCredentialsOnly();
 		$restrictions = $cmrAc->getRestrictions();
 
 		$options = [
@@ -418,9 +419,9 @@ class SpecialOAuthManageConsumers extends SpecialPage {
 			'mwoauth-consumer-description' => $cmrAc->getDescription(),
 			'mwoauth-consumer-owner-only-label' => $ownerOnly ?
 				$this->msg( 'mwoauth-consumer-owner-only', $owner ) : null,
-			'mwoauth-consumer-callbackurl' => $ownerOnly ?
+			'mwoauth-consumer-callbackurl' => ( $ownerOnly || $clientCredentials ) ?
 				null : $this->formatCallbackUrl( $cmrAc ),
-			'mwoauth-consumer-callbackisprefix' => $ownerOnly ?
+			'mwoauth-consumer-callbackisprefix' => ( $ownerOnly || $clientCredentials ) ?
 				null : ( $cmrAc->getCallbackIsPrefix() ?
 					$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ) ),
 			'mwoauth-consumer-grantsneeded' => $cmrAc->get( 'grants',
