@@ -96,6 +96,7 @@
 	"mwoauthconsumerregistration-propose-legend": "New OAuth consumer application",
 	"mwoauthconsumerregistration-update-legend": "Update OAuth consumer application",
 	"mwoauthconsumerregistration-propose-submit": "Propose consumer",
+	"mwoauthconsumerregistration-create-submit": "Create consumer",
 	"mwoauthconsumerregistration-update-submit": "Update consumer",
 	"mwoauthconsumerregistration-none": "You do not control any OAuth consumers.",
 	"mwoauthconsumerregistration-name": "Consumer",

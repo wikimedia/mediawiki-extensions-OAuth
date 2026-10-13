@@ -111,6 +111,7 @@
 	"mwoauthconsumerregistration-propose-legend": "Used as fieldset label.",
 	"mwoauthconsumerregistration-update-legend": "Used as fieldset label.",
 	"mwoauthconsumerregistration-propose-submit": "Used as label for the Submit button.",
+	"mwoauthconsumerregistration-create-submit": "Submit button label for registering an owner-only or client credentials application.",
 	"mwoauthconsumerregistration-update-submit": "Used as label for the Submit button.",
 	"mwoauthconsumerregistration-none": "Used if there are no OAuth consumers to list.",
 	"mwoauthconsumerregistration-name": "Used as table row header.\n{{Identical|Consumer}}",
