@@ -716,6 +716,16 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 				'label-message' => 'mwoauth-consumer-developer-agreement',
 				'required' => true,
 			],
+			'proposeSubmit' => [
+				'type' => 'submit',
+				'buttonlabel-message' => 'mwoauthconsumerregistration-propose-submit',
+				'hide-if' => $ifSingleUserApp,
+			],
+			'createSubmit' => [
+				'type' => 'submit',
+				'buttonlabel-message' => 'mwoauthconsumerregistration-create-submit',
+				'hide-if' => [ 'NOT', $ifSingleUserApp ],
+			],
 			'action' => [
 				'type'    => 'hidden',
 				'default' => 'propose'
@@ -781,7 +791,7 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 				return $control->submit();
 			}
 		);
-		$form->setSubmitTextMsg( 'mwoauthconsumerregistration-propose-submit' );
+		$form->suppressDefaultSubmit();
 		if ( $copyFrom !== null ) {
 			$form->setWrapperLegendMsg( 'mwoauthconsumerregistration-copy-legend' );
 			$form->addPreHtml(
