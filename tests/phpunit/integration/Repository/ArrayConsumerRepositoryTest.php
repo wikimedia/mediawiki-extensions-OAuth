@@ -12,6 +12,7 @@ use MediaWiki\Extension\OAuth\Repository\ArrayConsumerRepository;
 use MediaWiki\Extension\OAuth\Repository\DatabaseConsumerRepository;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
+use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\Utils\MWRestrictions;
 use MediaWikiIntegrationTestCase;
 
@@ -153,8 +154,9 @@ class ArrayConsumerRepositoryTest extends MediaWikiIntegrationTestCase {
 	public function testConfigurationArray() {
 		$mockCentralIdLookup = $this->createNoOpMock( CentralIdLookup::class, [ 'nameFromCentralId' ] );
 		$mockCentralIdLookup->method( 'nameFromCentralId' )->with( 12345 )->willReturn( 'TestUser' );
-		$mockLookupFactory = $this->createNoOpMock( CentralIdLookupFactory::class, [ 'getLookup' ] );
+		$mockLookupFactory = $this->createNoOpMock( CentralIdLookupFactory::class, [ 'getLookup', 'getLocalLookup' ] );
 		$mockLookupFactory->method( 'getLookup' )->willReturn( $mockCentralIdLookup );
+		$mockLookupFactory->method( 'getLocalLookup' )->willReturn( $this->createNoOpMock( LocalIdLookup::class ) );
 		$this->setService( 'CentralIdLookupFactory', $mockLookupFactory );
 
 		$this->repository->addConfigurationArray( [

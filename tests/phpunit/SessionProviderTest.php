@@ -199,6 +199,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 			new MultiConfig( [ $this->getConfig(), $this->getServiceContainer()->getMainConfig() ] ),
 			new NullLogger,
 			$this->getServiceContainer()->getCentralIdLookup(),
+			$this->getServiceContainer()->getCentralIdLookupFactory()->getLocalLookup(),
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getObjectFactory(),
 			$this->getServiceContainer()->getProxyLookup(),
