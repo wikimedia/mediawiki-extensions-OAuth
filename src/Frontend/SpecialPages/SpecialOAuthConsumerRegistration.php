@@ -588,6 +588,17 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 				'required' => true,
 				'rows' => 5
 			],
+			'wiki' => [
+				'type' => $allWikis ? 'combobox' : 'select',
+				'options' => [
+						$this->msg( 'mwoauth-consumer-allwikis' )->escaped() => '*',
+						$this->msg( 'mwoauth-consumer-wiki-thiswiki', WikiMap::getCurrentWikiId() )
+							->escaped() => WikiMap::getCurrentWikiId()
+					] + array_flip( $allWikis ),
+				'label-message' => 'mwoauth-consumer-wiki',
+				'required' => true,
+				'default' => '*'
+			],
 			'ownerOnly' => [
 				'oauthVersion' => Consumer::OAUTH_VERSION_1,
 				'type' => 'check',
@@ -633,17 +644,6 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 				'help-message' => 'mwoauth-oauth2-is-confidential-help',
 				'default' => 1,
 				'hide-if' => $ifSingleUserApp,
-			],
-			'wiki' => [
-				'type' => $allWikis ? 'combobox' : 'select',
-				'options' => [
-					 $this->msg( 'mwoauth-consumer-allwikis' )->escaped() => '*',
-					 $this->msg( 'mwoauth-consumer-wiki-thiswiki', WikiMap::getCurrentWikiId() )
-						 ->escaped() => WikiMap::getCurrentWikiId()
-				 ] + array_flip( $allWikis ),
-				'label-message' => 'mwoauth-consumer-wiki',
-				'required' => true,
-				'default' => '*'
 			],
 			'granttype' => [
 				'type' => 'radio',
