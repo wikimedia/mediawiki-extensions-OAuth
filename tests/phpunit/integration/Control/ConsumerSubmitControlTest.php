@@ -33,6 +33,7 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 	public function setUp(): void {
 		parent::setUp();
 		$this->overrideConfigValue( 'MWOAuthSharedUserSource', 'local' );
+		$this->overrideConfigValue( 'OAuth2ClientCredentialsOwnerAuthCutover', '20000101000000' );
 	}
 
 	private function createCentralUserAccount( User $user ): void {
@@ -55,7 +56,6 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 	private function doSubmit( array $data, StatusValue $expectedStatus, ?User $user = null ) {
 		$this->overrideConfigValues( [
 			'MWOAuthCentralWiki' => WikiMap::getCurrentWikiId(),
-			'OAuth2ClientCredentialsOwnerAuthCutover' => '20000101000000',
 			'OAuthAutoApprove' => [ [
 				'grants' => [ 'mwoauth-authonly', 'mwoauth-authonlyprivate', 'basic' ],
 			] ],
@@ -196,6 +196,24 @@ class ConsumerSubmitControlTest extends MediaWikiIntegrationTestCase {
 			StatusValue::newGood(),
 			$user
 		);
+	}
+
+	/** @dataProvider provideClientCredentialsCutover */
+	public function testClientCredentialsAutoApproved( string $cutover, bool $legacy ) {
+		$this->overrideConfigValue( 'OAuth2ClientCredentialsOwnerAuthCutover', $cutover );
+		$consumer = $this->doSubmit(
+			[ 'oauth2GrantTypes' => [ 'client_credentials' ] ] + $this->getNonOwnerOnlyOAuth2ConsumerFormData(),
+			StatusValue::newGood(),
+			$this->getMutableTestUser()->getUser()
+		);
+		$this->assertInstanceOf( ClientEntity::class, $consumer );
+		$this->assertSame( Consumer::STAGE_APPROVED, $consumer->getStage() );
+		$this->assertSame( $legacy, $consumer->usesLegacyClientCredentialsBehavior() );
+	}
+
+	public static function provideClientCredentialsCutover(): iterable {
+		yield 'legacy' => [ '20990101000000', true ];
+		yield 'owner authentication' => [ '20000101000000', false ];
 	}
 
 	private function getNonOwnerOnlyOAuth2ConsumerFormData() {

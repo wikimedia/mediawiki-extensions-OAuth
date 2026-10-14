@@ -6,6 +6,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
 use MediaWiki\Extension\OAuth\Control\Workflow;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Utils\UrlUtils;
 use MediaWikiUnitTestCase;
 
@@ -100,6 +101,16 @@ class WorkflowTest extends MediaWikiUnitTestCase {
 				false
 			],
 		];
+	}
+
+	public function testClientCredentialsCanBeAutoApprovedWithoutRules() {
+		$consumer = $this->createNoOpMock( ClientEntity::class, [ 'usesClientCredentialsOnly' ] );
+		$consumer->method( 'usesClientCredentialsOnly' )->willReturn( true );
+		$workflow = new Workflow(
+			new ServiceOptions( Workflow::CONSTRUCTOR_OPTIONS, new HashConfig( [ 'OAuthAutoApprove' => [] ] ) ),
+			new UrlUtils( [ UrlUtils::VALID_PROTOCOLS => UrlUtils::ALL_PROTOCOLS ] )
+		);
+		$this->assertTrue( $workflow->consumerCanBeAutoApproved( $consumer ) );
 	}
 
 }
