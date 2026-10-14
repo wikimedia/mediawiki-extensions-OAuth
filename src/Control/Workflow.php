@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\OAuth\Control;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Extension\OAuth\Backend\Consumer;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Utils\UrlUtils;
 
 /** Service class for OAuth workflow-related business logic. */
@@ -31,6 +32,10 @@ class Workflow {
 	 * @return bool
 	 */
 	public function consumerCanBeAutoApproved( Consumer $consumer ): bool {
+		if ( $consumer instanceof ClientEntity && $consumer->usesClientCredentialsOnly() ) {
+			return true;
+		}
+
 		$urlParts = $this->oauthUrlUtils->parse( $consumer->getCallbackUrl() );
 		if ( ( ( $urlParts['port'] ?? null ) === 1 ) && $consumer->getCallbackIsPrefix() ) {
 			// wildcard port
