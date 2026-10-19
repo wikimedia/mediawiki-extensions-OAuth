@@ -30,7 +30,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWRestrictions;
-use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use OOUI\HtmlSnippet;
 use stdClass;
@@ -69,7 +68,6 @@ class SpecialMWOAuthManageConsumers extends SpecialPage {
 	public function __construct(
 		private readonly GrantsLocalization $grantsLocalization,
 		private readonly PermissionManager $permissionManager,
-		private readonly UrlUtils $urlUtils,
 	) {
 		parent::__construct( 'OAuthManageConsumers' );
 	}
