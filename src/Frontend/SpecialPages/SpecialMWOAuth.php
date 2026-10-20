@@ -732,32 +732,19 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	}
 
 	private function redirectToREST( array $queryAppend = [] ) {
-		$redirectParams = [
-			'returnto' => $this->getRequest()->getText(
-				'returnto', $this->getRequest()->getText( 'returnto' )
-			),
-			'returntoquery' => wfCgiToArray(
-				$this->getRequest()->getText(
-					'returntoquery', $this->getRequest()->getText( 'returntoquery' )
-				)
-			)
-		];
-
-		$expanded = $this->urlUtils->expand( $redirectParams['returnto'] );
-		if ( !$expanded ) {
-			return;
-		}
-
 		$returnToQuery = array_merge(
-			$redirectParams['returntoquery'],
+			wfCgiToArray( $this->getRequest()->getText( 'returntoquery' ) ),
 			$queryAppend
 		);
-		$returnToQuery = wfArrayToCgi( $returnToQuery );
+		$redirectUrl = wfAppendQuery(
+			wfScript( 'rest' ) . '/oauth2/authorize',
+			$returnToQuery
+		);
 
 		$output = $this->getOutput();
 		$output->disable();
 		$output->getRequest()->response()->header(
-			"Location: $expanded?$returnToQuery"
+			'Location: ' . $redirectUrl
 		);
 	}
 
@@ -792,11 +779,6 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 					'name' => 'scope',
 					'type' => 'hidden',
 					'default' => $this->getRequest()->getText( 'scope' )
-				],
-				'returnto' => [
-					'name' => 'returnto',
-					'type'    => 'hidden',
-					'default' => $this->getRequest()->getText( 'returnto' )
 				],
 				'returntoquery' => [
 					'name'    => 'returntoquery',
