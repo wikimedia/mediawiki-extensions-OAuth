@@ -207,7 +207,6 @@ class Authorize extends AuthenticationHandler {
 
 	private function getApprovalRedirectResponse( AuthorizationRequest $authRequest ): RestResponse {
 		$queryParams = [
-			'returnto' => $this->getRequest()->getUri()->getPath(),
 			'returntoquery' => $this->getQueryParamsCgi(),
 			'client_id' => $authRequest->getClient()->getIdentifier(),
 			'oauth_version' => ClientEntity::OAUTH_VERSION_2,
