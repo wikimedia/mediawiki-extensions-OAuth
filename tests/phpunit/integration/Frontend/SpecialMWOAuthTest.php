@@ -163,4 +163,28 @@ class SpecialMWOAuthTest extends MediaWikiIntegrationTestCase {
 			'bot login logging enabled' => [ true, true, true, 1 ],
 		];
 	}
+
+	/**
+	 * @dataProvider provideErrorFormats
+	 */
+	public function testErrorInNonHtmlFormatIsPlainText( string $format, callable $getMessage ): void {
+		$this->setUserLang( 'qqx' );
+		$specialPage = $this->newSpecialPage( null, false );
+		$specialPage->getContext()->setRequest( new FauxRequest( [ 'format' => $format ] ) );
+
+		ob_start();
+		$specialPage->execute( 'nonexistent-action' );
+		$message = $getMessage( ob_get_clean() );
+
+		$this->assertStringContainsString( '(mwoauth-bad-request-invalid-action: E002)', $message );
+		$this->assertStringNotContainsString( '<', $message );
+		$this->assertStringNotContainsString( '&lt;', $message );
+	}
+
+	public static function provideErrorFormats(): array {
+		return [
+			'json' => [ 'json', static fn ( $output ) => json_decode( $output, true )['message'] ],
+			'raw' => [ 'raw', static fn ( $output ) => $output ],
+		];
+	}
 }

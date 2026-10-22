@@ -38,6 +38,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Skin\SkinFactory;
@@ -824,16 +825,27 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 	 */
 	private function showError( $message, $format ) {
 		if ( $format == 'raw' ) {
-			$this->showResponse( 'Error: ' . $message->escaped(), 'raw' );
+			$this->showResponse( 'Error: ' . htmlspecialchars( $this->getPlainErrorText( $message ) ), 'raw' );
 		} elseif ( $format == 'json' ) {
 			$error = FormatJson::encode( [
 				'error' => $message->getKey(),
-				'message' => $message->text(),
+				'message' => $this->getPlainErrorText( $message ),
 			] );
 			$this->showResponse( $error, 'json' );
 		} elseif ( $format == 'html' ) {
 			$this->getOutput()->showErrorPage( 'mwoauth-error', $message );
 		}
+	}
+
+	/**
+	 * Error messages can contain HTML (e.g. the link to the error code documentation),
+	 * which is not wanted in the non-HTML formats where clients will display it as text.
+	 *
+	 * @param Message $message
+	 * @return string
+	 */
+	private function getPlainErrorText( Message $message ): string {
+		return Sanitizer::stripAllTags( $message->text() );
 	}
 
 	/**
