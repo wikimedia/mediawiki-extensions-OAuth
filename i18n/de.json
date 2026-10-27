@@ -200,7 +200,7 @@
 	"mwoauthmanagemygrants-text": "Diese Seite listet alle Anwendungen auf, die dein Benutzerkonto verwenden können. Für jede Anwendung ist der Zugriffsbereich durch die Berechtigungen beschränkt, die du gewährt hast, als du die Anwendung zum Handeln in deinem Namen autorisiert hast. Falls du eine Anwendung separat autorisiert hast, um auf unterschiedliche Schwesterprojekte zuzugreifen, dann wirst du unten separate Konfigurationen für jedes Projekt sehen.\n\nVerbundene Anwendungen greifen auf dein Benutzerkonto durch Verwendung eines OAuth-Protokolls zu. <span class=\"plainlinks\">([https://www.mediawiki.org/wiki/Special:MyLanguage/Help:OAuth Mehr über verbundene Anwendungen erfahren])</span>",
 	"mwoauthmanagemygrants-navigation": "Navigation:",
 	"mwoauthmanagemygrants-showlist": "Liste verbundener Anwendungen",
-	"mwoauthmanagemygrants-none": "Es sind keine Anwendungen mit deinem Benutzerkonto verbunden.",
+	"mwoauthmanagemygrants-none": "Es sind keine Anwendungen mit {{#FORMAL:deinem|Ihrem}} Benutzerkonto verbunden.",
 	"mwoauthmanagemygrants-user": "Herausgeber:",
 	"mwoauthmanagemygrants-description": "Beschreibung",
 	"mwoauthmanagemygrants-wikiallowed": "Erlaubt auf Projekt:",
