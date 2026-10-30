@@ -373,9 +373,6 @@
 		{
 			"path": "/oauth2/client",
 			"class": "MediaWiki\\Extension\\OAuth\\Rest\\Handler\\ListClients",
-			"services": [
-				"ConnectionProvider"
-			],
 			"method": "GET",
 			"openApiSpec": {
 				"x-i18n-description": "mwoauth-rest-description-get-client",

@@ -14,7 +14,6 @@ use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\SimpleHandler;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -51,11 +50,6 @@ class ListClients extends SimpleHandler {
 		'deleted' => 'oarc_deleted',
 		'oauth2_is_confidential' => 'oarc_oauth2_is_confidential',
 	];
-
-	public function __construct(
-		private readonly IConnectionProvider $connProvider,
-	) {
-	}
 
 	/**
 	 * @return bool
