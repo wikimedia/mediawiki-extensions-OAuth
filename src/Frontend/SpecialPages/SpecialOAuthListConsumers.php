@@ -98,11 +98,11 @@ class SpecialOAuthListConsumers extends SpecialPage {
 
 		$grants = $cmr->getGrants();
 		if ( $grants === [ 'mwoauth-authonly' ] || $grants === [ 'mwoauth-authonlyprivate' ] ) {
-			$s = $this->msg( 'grant-' . $grants[0] )->plain();
+			$grantsWikitext = $this->msg( 'grant-' . $grants[0] )->plain();
 		} elseif ( $grants === [ 'basic' ] ) {
-			$s = $this->msg( 'mwoauthlistconsumers-basicgrantsonly' )->plain();
+			$grantsWikitext = $this->msg( 'mwoauthlistconsumers-basicgrantsonly' )->plain();
 		} else {
-			$s = $this->grantsLocalization->getGrantsWikiText( $grants, $this->getLanguage() );
+			$grantsWikitext = trim( $this->grantsLocalization->getGrantsWikiText( $grants, $this->getLanguage() ) );
 		}
 
 		$stageKey = Consumer::$stageNames[$cmr->getStage()];
@@ -121,7 +121,7 @@ class SpecialOAuthListConsumers extends SpecialPage {
 			'mwoauthlistconsumers-callbackurl' => $cmrAc->getCallbackUrl(),
 			'mwoauthlistconsumers-callbackisprefix' => $cmrAc->getCallbackIsPrefix() ?
 				$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
-			'mwoauthlistconsumers-grants' => new HtmlSnippet( $out->parseInlineAsInterface( $s ) ),
+			'mwoauthlistconsumers-grants' => new HtmlSnippet( $out->parseInlineAsInterface( $grantsWikitext ) ),
 		];
 		if ( $cmr->getOwnerOnly()
 			|| ( $cmr instanceof ClientEntity && $cmr->usesClientCredentialsOnly() )
