@@ -379,7 +379,7 @@ class SpecialOAuthManageConsumers extends SpecialPage {
 	protected function getInfoTableOptions( $cmrAc ) {
 		$cmr = $cmrAc->getDAO();
 		$owner = $cmrAc->getUserName();
-		$lang = $this->getLanguage();
+		$out = $this->getOutput();
 
 		$link = $this->getLinkRenderer()->makeKnownLink(
 			$title = SpecialPage::getTitleFor( 'OAuthListConsumers' ),
@@ -392,6 +392,15 @@ class SpecialOAuthManageConsumers extends SpecialPage {
 		$ownerOnly = $cmr->getOwnerOnly();
 		$clientCredentials = $cmr instanceof ClientEntity && $cmr->usesClientCredentialsOnly();
 		$restrictions = $cmrAc->getRestrictions();
+
+		$grants = $cmrAc->getGrants();
+		if ( $grants === [ 'mwoauth-authonly' ] || $grants === [ 'mwoauth-authonlyprivate' ] ) {
+			$grantsWikitext = $this->msg( 'grant-' . $grants[0] )->plain();
+		} elseif ( $grants === [ 'basic' ] ) {
+			$grantsWikitext = $this->msg( 'mwoauthlistconsumers-basicgrantsonly' )->plain();
+		} else {
+			$grantsWikitext = trim( $this->grantsLocalization->getGrantsWikiText( $grants, $this->getLanguage() ) );
+		}
 
 		$options = [
 			// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
@@ -425,10 +434,7 @@ class SpecialOAuthManageConsumers extends SpecialPage {
 			'mwoauth-consumer-callbackisprefix' => ( $ownerOnly || $clientCredentials ) ?
 				null : ( $cmrAc->getCallbackIsPrefix() ?
 					$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ) ),
-			'mwoauth-consumer-grantsneeded' => $cmrAc->get( 'grants',
-				function ( $grants ) use ( $lang ) {
-					return $lang->semicolonList( $this->grantsLocalization->getGrantDescriptions( $grants, $lang ) );
-				} ),
+			'mwoauth-consumer-grantsneeded' => new HtmlSnippet( $out->parseInlineAsInterface( $grantsWikitext ) ),
 			'mwoauth-consumer-email' => $cmrAc->getEmail(),
 			'mwoauth-consumer-wiki' => $cmrAc->getWiki()
 		];

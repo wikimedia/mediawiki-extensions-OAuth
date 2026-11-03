@@ -623,8 +623,8 @@ class SpecialOAuth extends UnlistedSpecialPage {
 			$grants = $this->getRequestedGrants( $cmrAc );
 		}
 
-		$grantsText = $this->grantsLocalization->getGrantsWikiText( $grants, $this->getLanguage() );
-		if ( $grantsText === "\n" ) {
+		$grantsWikitext = trim( $this->grantsLocalization->getGrantsWikiText( $grants, $this->getLanguage() ) );
+		if ( $grantsWikitext === '' ) {
 			if ( in_array( 'mwoauth-authonlyprivate', $cmrAc->getGrants(), true ) ) {
 				$msgKey .= '-privateinfo';
 				if ( !$this->useRealNames() ) {
@@ -639,7 +639,7 @@ class SpecialOAuth extends UnlistedSpecialPage {
 				$msgKey .= '-nogrants';
 			}
 		} else {
-			$params[] = $grantsText;
+			$params[] = $grantsWikitext;
 		}
 		$form->addHeaderHtml( $this->msg( $msgKey, $params )->parseAsBlock() );
 		$form->addHeaderHtml( $this->msg( 'mwoauth-form-legal' )->text() );
