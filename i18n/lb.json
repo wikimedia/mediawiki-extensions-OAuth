@@ -175,7 +175,7 @@
 	"echo-category-title-oauth-owner": "OAuth-Entwécklung",
 	"echo-pref-tooltip-oauth-owner": "Mech iwwer Evenementer a Relatioun mat OAuth-Appen, déi ech ugeluecht hunn, informéieren.",
 	"echo-category-title-oauth-admin": "OAuth-Gestioun",
-	"echo-pref-tooltip-oauth-admin": "Mech informéiere iwwer Evenementer a Verbindung mam Nokucke vun OAuth-Applikatiounen.",
+	"echo-pref-tooltip-oauth-admin": "Mech informéieren iwwer Evenementer a Verbindung mam Nokucke vun OAuth-Applikatiounen.",
 	"notification-oauth-app-propose-title": "{{GENDER:$1|De(n) $1|D'$1}} huet eng nei OAuth-App $2 {{GENDER:$1|proposéiert}}.",
 	"notification-oauth-app-update-title": "{{GENDER:$1|De(n) $1|D'$1}} huet d'OAuth-App $2 {{GENDER:$1|aktualiséiert}}",
 	"notification-oauth-app-approve-title": "{{GENDER:$1|De(n) $1|D'$1}} huet {{GENDER:$3|Är}} OAuth-App ($2) {{GENDER:$1|approuvéiert}}",
