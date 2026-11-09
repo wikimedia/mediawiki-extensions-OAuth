@@ -183,7 +183,7 @@
 	"mwoauthmanagemygrants-update": "به‌روزرسانی اعطا",
 	"mwoauthmanagemygrants-renounce": "برداشتن ثبت",
 	"mwoauthmanagemygrants-action": "تغییر وضعیت:",
-	"mwoauthmanagemygrants-confirm-submit": "به‌روزرسانی وضعیت رمز دسترسی",
+	"mwoauthmanagemygrants-confirm-submit": "به‌روزرسانی وضعیت توکن دسترسی",
 	"mwoauthmanagemygrants-success-renounce": "رمز دسترسی برای این مصرف‌کننده حذف  شد.",
 	"mwoauthmanagemygrants-basic-tooltip": "چرا من نمی‌توانم این کمک را به روز کنم؟ این کمک به درخواست متصل شما مجوزهای اساسی می‌دهد که نیاز به عملکرد مناسب می‌دهد. اگز شما این درخواست متصل را برای داشتن این حقوق نمی‌خواهید، شما باید دسترسی برنامه را لغو کنید.",
 	"mwoauthmanagemygrants-editslink": "ویرایش‌های {{GENDER:$1|شما}} با استفاده از این نرم‌افزار",
