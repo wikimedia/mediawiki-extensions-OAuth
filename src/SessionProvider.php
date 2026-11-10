@@ -15,6 +15,7 @@ use MediaWiki\Extension\OAuth\Backend\ConsumerAcceptance;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthException;
 use MediaWiki\Extension\OAuth\Backend\MWOAuthRequest;
 use MediaWiki\Extension\OAuth\Backend\Utils;
+use MediaWiki\Extension\OAuth\Entity\ClientEntity;
 use MediaWiki\Extension\OAuth\Entity\UserEntity;
 use MediaWiki\Json\JwtException;
 use MediaWiki\Logger\LoggerFactory;
@@ -147,6 +148,9 @@ class SessionProvider
 				} else {
 					$access = $consumerAcceptanceRepository->getById( $accessId );
 				}
+				$grantType = $resourceServer->getClient()->getOwnerOnly()
+					? 'owner_only'
+					: $resourceServer->getGrantType();
 				$tmpConsumer = $consumerRepository->getByKey( $resourceServer->getClient()->getConsumerKey() );
 				$logData += $tmpConsumer ? $tmpConsumer->getLogContext() : [];
 				if ( !$access ) {
@@ -163,9 +167,13 @@ class SessionProvider
 				$oauthRequest = MWOAuthRequest::fromRequest( $request );
 				$tmpConsumer = $consumerRepository->getByKey( $oauthRequest->getConsumerKey() );
 				$logData += $tmpConsumer ? $tmpConsumer->getLogContext() : [];
-				[ , $accessToken ] = $server->verify_request( $oauthRequest );
+				[ $consumer, $accessToken ] = $server->verify_request( $oauthRequest );
 				$accessTokenKey = $accessToken->key;
 				$access = $consumerAcceptanceRepository->getByToken( $accessTokenKey );
+				$grantType = $consumer->getOwnerOnly()
+					? 'owner_only'
+					// OAuth 1 has no concept of grant type but its only flow is basically same as auth code
+					: ClientEntity::GRANT_TYPE_AUTHORIZATION_CODE;
 			}
 		} catch ( Exception $ex ) {
 			$this->logger->info( 'Bad OAuth request from {ip}', $logData + [ 'exception' => $ex ] );
@@ -267,6 +275,7 @@ class SessionProvider
 			'forceUse' => $forceUse,
 			'metadata' => [
 				'oauthVersion' => $oauthVersion,
+				'grantType' => $grantType,
 				'consumerId' => $consumer->getOwnerOnly() ? null : $consumer->getId(),
 				'consumerKey' => $consumer->getConsumerKey(),
 				'key' => $accessTokenKey,

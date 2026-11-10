@@ -287,10 +287,11 @@ class MWOAuthServer extends OAuthServer {
 	 * Wrap the call to the parent function and check that the source IP of
 	 * the request is allowed by this consumer's restrictions.
 	 * @param OAuthRequest &$request
-	 * @return array
+	 * @return array{0:Consumer,1:MWOAuthToken}
 	 */
 	public function verify_request( &$request ) {
 		[ $consumer, $token ] = parent::verify_request( $request );
+		/** @var MWOAuthToken $token */'@phan-var MWOAuthToken $token';
 		$this->checkSourceIP( $consumer, $request );
 		return [ $consumer, $token ];
 	}

@@ -107,7 +107,8 @@ class BearerTokenValidator extends LeagueBearerTokenValidator {
 			->withAttribute( 'oauth_access_token_id', $claims->get( 'jti' ) )
 			->withAttribute( 'oauth_client_id', $claims->get( 'aud' )[0] )
 			->withAttribute( 'oauth_user_id', $sub )
-			->withAttribute( 'oauth_scopes', $claims->get( 'scopes' ) );
+			->withAttribute( 'oauth_scopes', $claims->get( 'scopes' ) )
+			->withAttribute( 'oauth_grant_type', $claims->get( 'grant_type' ) );
 	}
 
 	/**
