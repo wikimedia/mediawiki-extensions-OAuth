@@ -14,10 +14,11 @@ class XAnalyticsHook implements XAnalyticsSetHeaderHook {
 			$metadata = $session->getProviderMetadata();
 			// ignore bogus session returned by SessionProvider::makeException()
 			if ( $metadata ) {
-				$headerItems += [
+				$headerItems += array_filter( [
 					'oauth_version' => $metadata['oauthVersion'],
 					'oauth_client_id' => $metadata['consumerKey'],
-				];
+					'oauth_grant_type' => $metadata['grantType'],
+				] );
 			}
 		}
 	}

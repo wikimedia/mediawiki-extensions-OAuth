@@ -29,6 +29,8 @@ class ResourceServer {
 	protected $scopes;
 	/** @var string */
 	protected $accessTokenId;
+	/** @var string */
+	private $grantType;
 	/** @var bool */
 	protected $verified = false;
 
@@ -124,6 +126,16 @@ class ResourceServer {
 	}
 
 	/**
+	 * Get the grant used for creating this access token (authorization code etc.)
+	 *
+	 * @throws MWOAuthException
+	 */
+	public function getGrantType(): ?string {
+		$this->assertVerified();
+		return $this->grantType;
+	}
+
+	/**
 	 * Check if the scope is allowed
 	 *
 	 * @param string|ScopeEntityInterface $scope
@@ -150,6 +162,7 @@ class ResourceServer {
 		$this->setClient( $request );
 		$this->setScopes( $request );
 		$this->setAccessTokenId( $request );
+		$this->setGrantType( $request );
 
 		$this->verified = true;
 	}
@@ -216,6 +229,10 @@ class ResourceServer {
 	 */
 	private function setAccessTokenId( ServerRequestInterface $request ) {
 		$this->accessTokenId = $request->getAttribute( 'oauth_access_token_id' );
+	}
+
+	private function setGrantType( ServerRequestInterface $request ) {
+		$this->grantType = $request->getAttribute( 'oauth_grant_type' );
 	}
 
 	/**
