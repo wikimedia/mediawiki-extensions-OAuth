@@ -47,6 +47,7 @@ class BearerTokenValidatorTest extends MediaWikiIntegrationTestCase {
 			->permittedFor( 'xyz' )
 			->relatedTo( $jwtSubject )
 			->identifiedBy( '123' )
+			->withClaim( 'scopes', [ 'scope1', 'scope2' ] )
 			->getToken( $wrapper->jwtConfiguration->signer(), $wrapper->jwtConfiguration->signingKey() );
 		$request = new ServerRequest( 'GET', 'https://example.org', headers: [
 			'Authorization' => 'Bearer ' . $jwt->toString(),
@@ -59,6 +60,7 @@ class BearerTokenValidatorTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( $expectedUserId, $validatedRequest->getAttribute( 'oauth_user_id' ) );
 			$this->assertSame( 'xyz', $validatedRequest->getAttribute( 'oauth_client_id' ) );
 			$this->assertSame( '123', $validatedRequest->getAttribute( 'oauth_access_token_id' ) );
+			$this->assertArrayEquals( [ 'scope1', 'scope2' ], $validatedRequest->getAttribute( 'oauth_scopes' ) );
 		}
 	}
 
