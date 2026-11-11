@@ -86,18 +86,17 @@ class SpecialOAuthListConsumers extends SpecialPage {
 		}
 
 		$consumerRepository = OAuthServices::wrap( MediaWikiServices::getInstance() )->getConsumerRepository();
-		$cmrAc = ConsumerAccessControl::wrap(
-			$consumerRepository->getByKey( $consumerKey ), $this->getContext() );
-
-		if ( !$cmrAc ) {
+		$cmr = $consumerRepository->getByKey( $consumerKey );
+		if ( !$cmr ) {
 			$out->addWikiMsg( 'mwoauth-invalid-consumer-key' );
 			return;
-		} elseif ( $cmrAc->getDeleted()
+		} elseif ( $cmr->getDeleted()
 			&& !$this->permissionManager->userHasRight( $user, 'mwoauthviewsuppressed' ) ) {
 			throw new PermissionsError( 'mwoauthviewsuppressed' );
 		}
+		$cmrAc = ConsumerAccessControl::wrap( $cmr, $this->getContext() );
 
-		$grants = $cmrAc->getGrants();
+		$grants = $cmr->getGrants();
 		if ( $grants === [ 'mwoauth-authonly' ] || $grants === [ 'mwoauth-authonlyprivate' ] ) {
 			$s = $this->msg( 'grant-' . $grants[0] )->plain();
 		} elseif ( $grants === [ 'basic' ] ) {
@@ -106,7 +105,7 @@ class SpecialOAuthListConsumers extends SpecialPage {
 			$s = $this->grantsLocalization->getGrantsWikiText( $grants, $this->getLanguage() );
 		}
 
-		$stageKey = Consumer::$stageNames[$cmrAc->getDAO()->getStage()];
+		$stageKey = Consumer::$stageNames[$cmr->getStage()];
 		$data = [
 			'mwoauthlistconsumers-name' => $cmrAc->getName(),
 			'mwoauthlistconsumers-version' => $cmrAc->getVersion(),
@@ -124,6 +123,12 @@ class SpecialOAuthListConsumers extends SpecialPage {
 				$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
 			'mwoauthlistconsumers-grants' => new HtmlSnippet( $out->parseInlineAsInterface( $s ) ),
 		];
+		if ( $cmr->getOwnerOnly()
+			|| ( $cmr instanceof ClientEntity && $cmr->usesClientCredentialsOnly() )
+		) {
+			unset( $data['mwoauthlistconsumers-callbackurl'] );
+			unset( $data['mwoauthlistconsumers-callbackisprefix'] );
+		}
 		if ( $cmrAc->getDAO()->isConfigurationBased() ) {
 			unset( $data['mwoauthlistconsumers-user'] );
 			$data['mwoauthlistconsumers-status'] = $this->msg( 'mwoauth-configuration-based-notice' )->text();
