@@ -663,13 +663,10 @@ class SpecialOAuth extends UnlistedSpecialPage {
 			'framed' => false,
 		] );
 
-		if ( $this->getRequest()->getRawVal( 'display' ) !== 'popup' ) {
-			// If not in popup mode, duplicate the "Privacy policy" link from the site footer for
-			// easy access, as the overlaid dialog would cover it. In popup mode, the site footer
-			// with the link is easily accessible below the form, so don't duplicate it.
-			// This should be replaced with the app's own privacy policy link eventually (T64686).
-			$form->addFooterHtml( $this->makePrivacyLink() );
-		}
+		// Duplicate the "Privacy policy" link from the site footer, as the overlaid dialog
+		// would cover it. In popup mode there is no dialog, but there is no site footer either.
+		// This should be replaced with the app's own privacy policy link eventually (T64686).
+		$form->addFooterHtml( $this->makePrivacyLink() );
 
 		$out = $this->getOutput();
 		$out->enableOOUI();
