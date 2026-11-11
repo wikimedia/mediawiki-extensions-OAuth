@@ -377,6 +377,7 @@ class SpecialOAuthManageConsumers extends SpecialPage {
 	 * @return array
 	 */
 	protected function getInfoTableOptions( $cmrAc ) {
+		$cmr = $cmrAc->getDAO();
 		$owner = $cmrAc->getUserName();
 		$lang = $this->getLanguage();
 
@@ -388,18 +389,18 @@ class SpecialOAuthManageConsumers extends SpecialPage {
 		);
 		$ownerLink = $cmrAc->escapeForHtml( $owner ) . ' ' .
 			$this->msg( 'parentheses' )->rawParams( $link )->escaped();
-		$ownerOnly = $cmrAc->getDAO()->getOwnerOnly();
-		$clientCredentials = $cmrAc->getDAO()->usesClientCredentialsOnly();
+		$ownerOnly = $cmr->getOwnerOnly();
+		$clientCredentials = $cmr instanceof ClientEntity && $cmr->usesClientCredentialsOnly();
 		$restrictions = $cmrAc->getRestrictions();
 
 		$options = [
 			// Messages: mwoauth-consumer-stage-proposed, mwoauth-consumer-stage-rejected,
 			// mwoauth-consumer-stage-expired, mwoauth-consumer-stage-approved,
 			// mwoauth-consumer-stage-disabled
-			'mwoauth-consumer-stage' => $cmrAc->getDeleted()
+			'mwoauth-consumer-stage' => $cmr->getDeleted()
 				? $this->msg( 'mwoauth-consumer-stage-suppressed' )
 				: $this->msg( 'mwoauth-consumer-stage-' .
-					Consumer::$stageNames[$cmrAc->getStage()] ),
+					Consumer::$stageNames[$cmr->getStage()] ),
 			'mwoauth-consumer-key' => $cmrAc->getConsumerKey(),
 			'mwoauth-consumer-name' => new HtmlSnippet( $cmrAc->get( 'name', function ( $s ) {
 				$link = $this->getLinkRenderer()->makeKnownLink(
@@ -433,11 +434,9 @@ class SpecialOAuthManageConsumers extends SpecialPage {
 		];
 
 		// Add OAuth2 specific parameters
-		if ( $cmrAc->getOAuthVersion() === Consumer::OAUTH_VERSION_2 ) {
-			/** @var ClientEntity $consumer */
-			$consumer = $cmrAc->getDAO();
+		if ( $cmr instanceof ClientEntity ) {
 			$options += [
-				'mwoauth-oauth2-is-confidential' => $consumer->isConfidential() ?
+				'mwoauth-oauth2-is-confidential' => $cmr->isConfidential() ?
 					$this->msg( 'htmlform-yes' ) : $this->msg( 'htmlform-no' ),
 				'mwoauth-oauth2-granttypes' => implode( ', ', array_map( function ( $grant ) {
 					$map = [
@@ -446,7 +445,7 @@ class SpecialOAuthManageConsumers extends SpecialPage {
 						ClientEntity::GRANT_TYPE_CLIENT_CREDENTIALS => 'mwoauth-oauth2-granttype-client-credentials'
 					];
 					return isset( $map[$grant] ) ? $this->msg( $map[$grant] ) : '';
-				}, $consumer->getAllowedGrants() ) )
+				}, $cmr->getAllowedGrants() ) )
 			];
 		}
 
