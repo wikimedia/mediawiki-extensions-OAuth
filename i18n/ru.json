@@ -31,7 +31,8 @@
 			"Vlad5250",
 			"WindEwriX",
 			"Yurik",
-			"Дмитрий"
+			"Дмитрий",
+			"Mitte27"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "OAuth-клиент, использованный для внесения правок ($1)",
@@ -216,6 +217,7 @@
 	"log-action-filter-mwoauthconsumer-update": "Клиентское обновление с OAuth",
 	"mwoauthconsumer-consumer-logpage": "Журнал клиентов OAuth",
 	"mwoauthconsumer-consumer-logpagetext": "Журнал одобрений, отклонений и отключений зарегистрированных клиентов OAuth.",
+	"mwoauthdatastore-request-token-already-used": "Этот запрос уже был выполнен и не может быть отправлен повторно. Вернитесь в приложение и попробуйте снова подключить свою учётную запись либо свяжитесь с разработчиком приложения.\n\n<span class=\"plainlinks mw-mwoautherror-details\">Токен OAuth уже был использован, $1</span>",
 	"mwoauthdatastore-bad-token": "Не был найден подходящий для вашего запроса токен.",
 	"mwoauthdatastore-bad-source-ip": "Запрос пришёл с некорректного IP-адреса.",
 	"mwoauthdatastore-bad-verifier": "Предоставленный проверочный код недействителен.",
@@ -240,6 +242,7 @@
 	"mwoauth-error": "Ошибка подключения приложения",
 	"mwoauth-grants-heading": "Запросить разрешения:",
 	"mwoauth-grants-nogrants": "Приложение не запрашивает никаких прав.",
+	"mwoauth-acceptance-cancelled": "Вы отказали приложению «$1» в доступе к своей учётной записи. Приложение «$1» не сможет работать без предоставления ему доступа. Вы можете вернуться в приложение «$1» или [[Special:OAuthManageMyGrants|управлять]] подключёнными приложениями.",
 	"mwoauth-granttype-normal": "Запрос авторизации для конкретных прав.",
 	"grant-mwoauth-authonly": "Только проверка личности участника, без возможности читать страницы или действовать от имени участника.",
 	"grant-mwoauth-authonlyprivate": "Только проверка личности участника, с доступом к настоящему имени и электронному адресу, без возможности читать страницы или действовать от имени участника.",
