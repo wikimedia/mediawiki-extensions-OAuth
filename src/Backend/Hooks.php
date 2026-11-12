@@ -33,7 +33,7 @@ class Hooks implements
 	 * Called right after configuration variables have been set.
 	 */
 	public static function onRegistration() {
-		global $wgReservedUsernames,
+		global $wgReservedUsernames, $wgMWOAuthSharedUserSource,
 			$wgOAuth2PrivateKey, $wgOAuth2PublicKey,
 			$wgJwtPublicKey, $wgJwtPrivateKey;
 
@@ -41,6 +41,8 @@ class Hooks implements
 
 		// Set $wgOAuth2PrivateKey and $wgOAuth2PublicKey for Wikimedia Jenkins, PHPUnit.
 		if ( defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_QUIBBLE_CI' ) ) {
+			$wgMWOAuthSharedUserSource = 'local';
+
 			// Key needs to be >= 2048 bits
 			$wgOAuth2PrivateKey = <<<EOK
 -----BEGIN PRIVATE KEY-----
@@ -195,22 +197,11 @@ EOK;
 
 	/** @inheritDoc */
 	public function onSetupAfterCache() {
-		global $wgMWOAuthCentralWiki, $wgMWOAuthSharedUserIDs, $wgMWOAuthSharedUserSource;
+		global $wgMWOAuthCentralWiki;
 
 		if ( $wgMWOAuthCentralWiki === false ) {
 			// Treat each wiki as its own "central wiki" as there is no actual one
 			$wgMWOAuthCentralWiki = WikiMap::getCurrentWikiId();
-		} else {
-			// There is actually a central wiki, requiring global user IDs via hook
-			$wgMWOAuthSharedUserIDs = true;
-		}
-
-		if ( $wgMWOAuthSharedUserIDs === false ) {
-			if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_QUIBBLE_CI' ) ) {
-				wfDeprecatedMsg( '$wgMWOAuthSharedUserIDs=false is deprecated, set '
-					. '$wgMWOAuthSharedUserIDs=true, $wgMWOAuthSharedUserSource=\'local\' instead', '1.45', 'OAuth' );
-			}
-			$wgMWOAuthSharedUserSource = 'local';
 		}
 	}
 
