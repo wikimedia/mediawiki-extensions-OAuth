@@ -16,7 +16,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
- * Handles the oauth2/resource/profile and oauth2/resource/scope endpoints, which return
+ * Handles the oauth2/resource/profile and oauth2/resource/scopes endpoints, which return
  * information about the user and the grants of the application, respectively.
  */
 class Resource extends Handler {

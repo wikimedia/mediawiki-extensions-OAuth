@@ -43,7 +43,7 @@
 	"mwoauth-rest-summary-access_token": "Get an OAuth 2.0 access token",
 	"mwoauth-rest-description-access_token": "The OAuth 2.0 [token endpoint](https://datatracker.ietf.org/doc/html/rfc6749#section-3.2). Exchanges an authorization code, refresh token or client credentials for an access token.",
 	"mwoauth-rest-summary-resource": "Get OAuth 2.0 resource information",
-	"mwoauth-rest-description-resource": "With <code>type=profile</code>, acts as the OIDC [userinfo endpoint](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo). With <code>type=scope</code>, enumerates the scopes the client has.",
+	"mwoauth-rest-description-resource": "With <code>type=profile</code>, acts as the OIDC [userinfo endpoint](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo). With <code>type=scopes</code>, enumerates the scopes the client has.",
 	"mwoauth-rest-summary-post-client": "Register a new OAuth 2.0 client",
 	"mwoauth-rest-description-post-client": "Registers a new OAuth 2.0 client application. The API equivalent of <em>Special:OAuthConsumerRegistration/propose/oauth2</em>.",
 	"mwoauth-rest-summary-client-reset_secret": "Reset an OAuth 2.0 client secret",
