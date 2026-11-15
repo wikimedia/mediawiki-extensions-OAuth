@@ -26,7 +26,9 @@ class ClaimStore {
 	}
 
 	/**
-	 * @inheritDoc
+	 * @param string $grantType
+	 * @param ClientEntityInterface $clientEntity
+	 * @param string|null $userIdentifier
 	 * @param bool $ownerOnly True for owner-only apps.
 	 */
 	public function getClaims(
