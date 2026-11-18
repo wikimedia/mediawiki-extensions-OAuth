@@ -8,7 +8,8 @@
 			"Toghrul Rahimli",
 			"Wertuose",
 			"Əkrəm",
-			"Əkrəm Cəfər"
+			"Əkrəm Cəfər",
+			"Gadir"
 		]
 	},
 	"abusefilter-edit-builder-vars-oauth-consumer": "Bu dəyişikliyi həyata keçirmək üçün istifadə olunan OAuth istifadəçisi ($1)",
@@ -108,5 +109,6 @@
 	"mwoauth-form-description-allwikis-privateinfo-norealname": "Salam $1, \n\nSorğunuzu tamamlamaq üçün, '''$2''', sizin adınızdan bu saytın bütün layihələrindəki (e-poçt ünvanı da daxil olmaqla) sizin haqqınızdakı məlumatları əldə etmək üçün icazə istəyir. Hesabınızda heç bir dəyişiklik olmayacaq.",
 	"mwoauth-form-description-onewiki-privateinfo-norealname": "Salam $1, \n\nSorğunuzu tamamlamaq üçün, '''$2''', sizin adınızdan '''$4''' saytındakı (e-poçt ünvanı da daxil olmaqla) məlumatları əldə etmək üçün icazə istəyir. Hesabınızda heç bir dəyişiklik olmayacaq.",
 	"mwoauth-form-button-approve": "İcazə ver",
-	"mwoauth-form-button-cancel": "İmtina"
+	"mwoauth-form-button-cancel": "İmtina",
+	"mwoauth-botpasswords-note": "<strong>Qeyd:</strong> <span class=\"plainlinks\">[$1 OAuth]</span> bot parollarından daha təhlükəsizdir və bot tərəfindən dəstəkləndiyi hallarda ona üstünlük verilməlidir."
 }
