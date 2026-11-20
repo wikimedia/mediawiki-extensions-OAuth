@@ -10,7 +10,8 @@
 			"Nokib Sarkar",
 			"San1joy23",
 			"Tauhid16",
-			"আফতাবুজ্জামান"
+			"আফতাবুজ্জামান",
+			"আজিজ"
 		]
 	},
 	"oauth": "ওআউথ",
@@ -59,7 +60,7 @@
 	"mwoauthconsumerregistration-description": "বিবরণ",
 	"mwoauthconsumerregistration-email": "যোগাযোগের ইমেইল",
 	"mwoauthconsumerregistration-consumerkey": "ভোক্তার চাবি",
-	"mwoauthconsumerregistration-stage": "অবস্থা",
+	"mwoauthconsumerregistration-stage": "স্থিতি",
 	"mwoauthconsumerregistration-lastchange": "সর্বশেষ পরিবর্তন",
 	"mwoauthconsumerregistration-manage": "পরিচালনা করুন",
 	"mwoauthconsumerregistration-resetsecretkey": "একটি নতুন মানে গোপন চাবিটি পুনঃস্থাপন করুন",
@@ -98,8 +99,8 @@
 	"mwoauthlistconsumers-callbackurl": "ওআউথ \"কলব্যাক ইউআরএল\"",
 	"mwoauthlistconsumers-grants": "প্রযোজ্য অনুমতি",
 	"mwoauthlistconsumers-basicgrantsonly": "(শুধুমাত্র মৌলিক প্রবেশাধিকার)",
-	"mwoauthlistconsumers-status": "অবস্থা",
-	"mwoauth-consumer-stage-any": "যেকোনো",
+	"mwoauthlistconsumers-status": "স্থিতি",
+	"mwoauth-consumer-stage-any": "যেকোনও",
 	"mwoauthlistconsumers-status-proposed": "প্রস্তাবিত",
 	"mwoauthlistconsumers-status-approved": "অনুমোদিত",
 	"mwoauthlistconsumers-status-disabled": "নিস্ক্রিয়",
@@ -125,7 +126,7 @@
 	"mwoauthmanagemygrants-update-text": "আপনার পক্ষে কাজ করার জন্য কোনও অ্যাপ্লিকেশনকে দেওয়া অনুমতিগুলি পরিবর্তন করতে নিচের ফরমটি ব্যবহার করুন।",
 	"mwoauthmanagemygrants-confirm-legend": "সংযুক্ত অ্যাপ্লিকেশন পরিচালনা করুন",
 	"mwoauthmanagemygrants-update": "অনুমোদন হালনাগাদ করুন",
-	"mwoauthmanagemygrants-action": "অবস্থা পরিবর্তন করুন:",
+	"mwoauthmanagemygrants-action": "স্থিতি পরিবর্তন করুন:",
 	"mwoauthmanagemygrants-editslink": "এই অ্যাপ্লিকেশন দ্বারা {{GENDER:$1|আপনার}} সম্পাদনাগুলি",
 	"mwoauthmanagemygrants-actionslink": "এই অ্যাপ্লিকেশন দ্বারা {{GENDER:$1|আপনার}} কার্যগুলি",
 	"mwoauth-centralauth-account-link": "বৈশ্বিক অ্যাকাউন্ট",
