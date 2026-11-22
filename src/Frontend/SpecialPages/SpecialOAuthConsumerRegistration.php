@@ -617,12 +617,6 @@ class SpecialOAuthConsumerRegistration extends SpecialPage {
 			'callbackUrl' => [
 				'type' => 'text',
 				'label-message' => 'mwoauth-consumer-callbackurl',
-				'validation-callback' => static function ( $value, $data, $form ) use ( $control ) {
-					// OAuth 2 only validates this field for authorization code apps,
-					// whose ownerOnly flag is no longer a separate form field.
-					$data += [ 'ownerOnly' => false ];
-					return $control->validateFieldInternal( 'callbackUrl', $value, $data, $form );
-				},
 				'help-messages' => ( $oauthVersion === Consumer::OAUTH_VERSION_2 )
 					? [
 							'mwoauth-consumer-callbackurl-help',

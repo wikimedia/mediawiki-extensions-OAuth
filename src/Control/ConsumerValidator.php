@@ -379,7 +379,7 @@ class ConsumerValidator {
 
 		if ( strlen( $url ) > 2000 ) {
 			return $this->getTooLongErrorStatus( Consumer::FIELD_CALLBACK_URL, 2000 );
-		} elseif ( $fields[Consumer::FIELD_OWNER_ONLY] || $isClientCredentialsOnly ) {
+		} elseif ( ( $fields[Consumer::FIELD_OWNER_ONLY] ?? false ) || $isClientCredentialsOnly ) {
 			return StatusValue::newGood();
 		}
 
