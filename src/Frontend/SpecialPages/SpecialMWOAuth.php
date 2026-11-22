@@ -748,12 +748,6 @@ class SpecialMWOAuth extends UnlistedSpecialPage {
 			return;
 		}
 
-		// Redirect only to a returnto that stays on this wiki, to stop an open redirect.
-		$localRoot = $this->urlUtils->expand( '/' );
-		if ( $localRoot === null || !str_starts_with( $expanded, $localRoot ) ) {
-			return;
-		}
-
 		$returnToQuery = array_merge(
 			$redirectParams['returntoquery'],
 			$queryAppend
