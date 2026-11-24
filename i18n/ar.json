@@ -370,7 +370,6 @@
 	"mwoauth-oauth2-flow": "مسار OAuth 2:",
 	"mwoauth-oauth2-flow-auth-code": "رمز التفويض",
 	"mwoauth-oauth2-flow-client-credentials": "بيانات اعتماد العميل",
-	"mwoauth-oauth2-flow-client-credentials-help": "تُستخدم بيانات اعتماد العميل للروبوتات والخدمات التي يتحكم بها مالك التطبيق. يُصادق العميل باستخدام سر العميل الخاص به، وتُنفذ الإجراءات بصفته مالك التطبيق دون الحاجة إلى شاشة تفويض المستخدم. هذا سلوك قياسي في بروتوكول OAuth 2، ولكنه يختلف عن معظم تطبيقات OAuth الموجهة للمستخدمين.",
 	"mwoauth-oauth2-flow-filter": "مسار OAuth 2:",
 	"mwoauth-oauth2-flow-filter-any": "أي",
 	"mwoauth-oauth2-error-create-at-no-user-approval": "لا يمكن إنشاء رمز الوصول ، لم يوافق المستخدم على إصدار رمز الوصول هذا",

@@ -365,7 +365,6 @@
 	"mwoauth-oauth2-flow": "OAuth 2-flow:",
 	"mwoauth-oauth2-flow-auth-code": "Autoriseringskode",
 	"mwoauth-oauth2-flow-client-credentials": "Klientlegitimationsoplysninger",
-	"mwoauth-oauth2-flow-client-credentials-help": "Klientlegitimationsoplysninger er beregnet til ejerstyrede bots og tjenester. Klienten godkender med sin klienthemmelighed, og handlinger udføres som applikationsejeren uden en brugergodkendelsesskærm. Dette er standard OAuth 2-adfærd, men den er forskellig fra de fleste brugervendte OAuth-apps.",
 	"mwoauth-oauth2-flow-filter": "OAuth 2-flow:",
 	"mwoauth-oauth2-flow-filter-any": "enhver",
 	"mwoauth-oauth2-error-create-at-no-user-approval": "Kan ikke oprette adgangstoken. Brugeren godkendte ikke udstedelsen af dette adgangstoken.",

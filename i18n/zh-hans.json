@@ -393,7 +393,6 @@
 	"mwoauth-oauth2-flow": "OAuth 2流程：",
 	"mwoauth-oauth2-flow-auth-code": "授权码",
 	"mwoauth-oauth2-flow-client-credentials": "客户端凭证",
-	"mwoauth-oauth2-flow-client-credentials-help": "客户端凭证适用于由所有者控制的机器人和服务。客户端使用其客户端私钥进行身份验证，并以应用程序所有者的身份执行操作，无需经过用户授权界面。这是标准的OAuth 2行为，但与大多面向用户的OAuth应用不同。",
 	"mwoauth-oauth2-flow-filter": "OAuth 2流程：",
 	"mwoauth-oauth2-flow-filter-any": "任何",
 	"mwoauth-oauth2-error-create-at-no-user-approval": "无法创建访问令牌，用户未批准发布此访问令牌",

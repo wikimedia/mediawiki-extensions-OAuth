@@ -378,7 +378,6 @@
 	"mwoauth-oauth2-flow": "OAuth 2-procedure:",
 	"mwoauth-oauth2-flow-auth-code": "Autorisatiecode",
 	"mwoauth-oauth2-flow-client-credentials": "Cliëntgegevens",
-	"mwoauth-oauth2-flow-client-credentials-help": "Cliëntgegevens zijn bedoeld voor door de eigenaar beheerde robots en diensten. De cliënt meldt zich aan met zijn cliëntgeheim. Handelingen worden in naam van de eigenaar van de toepassing verricht. Hierbij verschijnt geen gebruikersautorisatiescherm. Deze werkwijze is standaard voor OAuth 2, maar verschilt van de meeste gebruikersgerichte OAuth-toepassingen.",
 	"mwoauth-oauth2-flow-filter": "OAuth 2-procedure:",
 	"mwoauth-oauth2-flow-filter-any": "alle",
 	"mwoauth-oauth2-error-create-at-no-user-approval": "Kan geen toegangstoken maken. De gebruiker heeft de uitgifte van dit toegangstoken niet goedgekeurd.",
