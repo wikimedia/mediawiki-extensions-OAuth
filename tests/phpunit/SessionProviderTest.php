@@ -936,10 +936,16 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$centralIdMap = [];
 		// the class is abstract but the mocked methods aren't and that apparently breaks createNoOpAbstractMock
 		$lookup = $this->createNoOpMock( CentralIdLookup::class,
-			[ 'lookupOwnedUserNames', 'getScope', 'getProviderId' ] );
+			[ 'lookupOwnedUserNames', 'centralIdFromName', 'getScope', 'getProviderId' ] );
 		$lookup->method( 'lookupOwnedUserNames' )->willReturnCallback(
 			static function ( $nameToId ) use ( &$centralIdMap ) {
 				return array_intersect_key( $centralIdMap, $nameToId );
+			}
+		);
+		// Called via User::setEmail() since core change I0eed32e6bbf3
+		$lookup->method( 'centralIdFromName' )->willReturnCallback(
+			static function ( $name ) use ( &$centralIdMap ) {
+				return $centralIdMap[$name] ?? 0;
 			}
 		);
 		$lookup->method( 'getScope' )->willReturn( 'mock:' );
