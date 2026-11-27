@@ -137,6 +137,7 @@
 	"logentry-mwoauthconsumer-update": "{{GENDER:$2|De(n) $1|D'$1|De Benotzer $1}} huet en OAuth-Konsument aktualiséiert (Konsumenteschlëssel $4)",
 	"mwoauth-centralauth-account-link": "Global Benotzerkonten",
 	"mwoauthdatastore-request-token-not-found": "Leider ass eppes schif gaange beim Verbanne mat dëser Applikatioun.\nGitt zréck a probéiert !Are Benotzerkont nach eng Kéier ze verbannen oder kontaktéiert den Auteur vun der Applikatioun.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth Token net fonnt, $1</span>",
+	"mwoauthdatastore-request-token-already-used": "Dës Ufro gouf schonn ofgeschloss a kann net nach eng Kéier ofgeschéckt ginn. Gitt zeréck op d'Applikatioun a probéiert nach eng Kéier, Iech mat Ärem Kont ze verbannen, oder kontaktéiert den Auteur vun der Applikatioun.\n\n<span class=\"plainlinks mw-mwoautherror-details\">OAuth-Toke scho benotzt, $1</span>",
 	"mwoauthdatastore-bad-token": "Et gouf keen Token fonnt deen op Är Ufro passt.",
 	"mwoauthdatastore-bad-source-ip": "D'Ufro koum vun enger net autoriséierter IP-Adress.",
 	"mwoauthgrants-general-error": "An Ärer OAuth-Ufro war e Feeler.",
